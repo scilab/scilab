@@ -30,7 +30,7 @@ import javax.swing.JToggleButton;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -104,13 +104,13 @@ public class DataProperties extends Control {
         lFigureID.setAlignmentX(0.5F);
         lFigureID.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lFigureID.setOpaque(true);
-        lFigureID.setPreferredSize(new Dimension(153, 20));
+        lFigureID.setPreferredSize(new Dimension(70, 20));
 
         cFigureID.setBackground(new Color(238, 238, 238));
         cFigureID.setEditable(true);
         cFigureID.setToolTipText(MessagesGED.figure_id_tooltip);
         cFigureID.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cFigureID.setPreferredSize(new Dimension(150, 20));
+        cFigureID.setPreferredSize(new Dimension(70, 20));
         cFigureID.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cFigureIDActionPerformed(evt);
@@ -123,11 +123,11 @@ public class DataProperties extends Control {
         lFigureName.setAlignmentX(0.5F);
         lFigureName.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lFigureName.setOpaque(true);
-        lFigureName.setPreferredSize(new Dimension(153, 20));
+        lFigureName.setPreferredSize(new Dimension(70, 20));
 
         cFigureName.setToolTipText(MessagesGED.figure_name_tooltip);
         cFigureName.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cFigureName.setPreferredSize(new Dimension(150, 20));
+        cFigureName.setPreferredSize(new Dimension(93	, 20));
         cFigureName.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cFigureNameActionPerformed(evt);
@@ -140,7 +140,7 @@ public class DataProperties extends Control {
         lUnits.setAlignmentX(0.5F);
         lUnits.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lUnits.setOpaque(true);
-        lUnits.setPreferredSize(new Dimension(153, 20));
+        lUnits.setPreferredSize(new Dimension(127, 20));
 
         cUnits.setModel(new DefaultComboBoxModel(new String[] { 
             "Inches", "Centimeters", "Normalized",
@@ -148,7 +148,7 @@ public class DataProperties extends Control {
         cUnits.setSelectedIndex(4);
         cUnits.setBorder(null);
         cUnits.setEditor(null);
-        cUnits.setPreferredSize(new Dimension(150, 20));
+        cUnits.setPreferredSize(new Dimension(70, 20));
    }
 
     /**
@@ -163,17 +163,17 @@ public class DataProperties extends Control {
                 .addGap(18, 18, 18)
                 .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureID, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cFigureID, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureName, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cFigureName, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lUnits, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cUnits, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pDataLayout.setVerticalGroup(
             pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -223,8 +223,8 @@ public class DataProperties extends Control {
     * Insert the icons on buttons.
     */
     private void setIconsData() {
-        bData.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bData.setIcon(new ImageIcon(Inspector.icon_collapse));
+        bData.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bData.setIcon(new ImageIcon(SwingInspector.icon_collapse));
     }
 
     /**

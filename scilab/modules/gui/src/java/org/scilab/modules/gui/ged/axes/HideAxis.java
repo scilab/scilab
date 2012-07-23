@@ -18,40 +18,28 @@ package org.scilab.modules.gui.ged.axes;
  */
 public class HideAxis {
     public HideAxis(boolean hide) {
-        if (hide) {
-            AxisRulers.pAxisRulers.setVisible(false);
-            AxisRulers.bAxisRulers.setSelected(true);
-            AxisRulers.pLocation.setVisible(false);
-            AxisRulers.bLocation.setSelected(true);
-            AxisRulers.pReverse.setVisible(false);
-            AxisRulers.bReverse.setSelected(true);
+        try {
+            AxisRulers.pAxisRulers.setVisible(!hide);
+            AxisRulers.bAxisRulers.setSelected(hide);
+            AxisRulers.pLocation.setVisible(!hide);
+            AxisRulers.bLocation.setSelected(hide);
+            AxisRulers.pReverse.setVisible(!hide);
+            AxisRulers.bReverse.setSelected(hide);
 
-            Label.pLabel.setVisible(false);
-            Label.bLabel.setSelected(true);
-            Label.pAxisTitle.setVisible(false);
-            Label.bAxisTitle.setSelected(true);
+            Label.pLabel.setVisible(!hide);
+            Label.bLabel.setSelected(hide);
+            Label.pAxisTitle.setVisible(!hide);
+            Label.bAxisTitle.setSelected(hide);
 
-            Position.pPosition.setVisible(false);
-            Position.bPosition.setSelected(true);
-            Position.pAxesBounds.setVisible(false);
-            Position.bAxesBounds.setSelected(true);
-            Position.pMargins.setVisible(false);
-            Position.bMargins.setSelected(true);
+            Position.pPosition.setVisible(!hide);
+            Position.bPosition.setSelected(hide);
+            Position.pAxesBounds.setVisible(!hide);
+            Position.bAxesBounds.setSelected(hide);
+            Position.pMargins.setVisible(!hide);
+            Position.bMargins.setSelected(hide);
 
-            Style.pStyle.setVisible(false);
-            Style.bStyle.setSelected(true);   
-        } else {
-            AxisRulers.pAxisRulers.setVisible(true);
-            AxisRulers.bAxisRulers.setSelected(false);
-
-            Label.pLabel.setVisible(true);
-            Label.bLabel.setSelected(false);
-
-            Position.pPosition.setVisible(true);
-            Position.bPosition.setSelected(false);
-
-            Style.pStyle.setVisible(true);
-            Style.bStyle.setSelected(false);
-        }
+            Style.pStyle.setVisible(!hide);
+            Style.bStyle.setSelected(hide);
+        } catch (NullPointerException nexcA) { }
     }
 }

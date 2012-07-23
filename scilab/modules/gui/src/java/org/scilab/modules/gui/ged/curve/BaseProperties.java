@@ -29,7 +29,7 @@ import javax.swing.JToggleButton;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -95,12 +95,12 @@ public class BaseProperties extends Roof {
         lVisible.setAlignmentX(0.5F);
         lVisible.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lVisible.setOpaque(true);
-        lVisible.setPreferredSize(new Dimension(153, 20));
+        lVisible.setPreferredSize(new Dimension(70, 20));
 
         cVisible.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off , MessagesGED.on}));
         cVisible.setBorder(null);
         cVisible.setEditor(null);
-        cVisible.setPreferredSize(new Dimension(150, 20));
+        cVisible.setPreferredSize(new Dimension(70, 20));
         cVisible.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cVisibleActionPerformed(evt);
@@ -118,9 +118,9 @@ public class BaseProperties extends Roof {
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pBasePropertiesLayout.setVerticalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -152,8 +152,8 @@ public class BaseProperties extends Roof {
     * Insert the icons on buttons.
     */
     public void setIconsBaseProperties() {
-        bBaseProperties.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bBaseProperties.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
+        bBaseProperties.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bBaseProperties.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
     }
 
     /**

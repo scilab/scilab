@@ -1,0 +1,101 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Marcos Cardinot
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+package org.scilab.modules.gui.ged;
+
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
+
+/**
+ * Swing implementation of Scilab Graphic Editor.
+ *
+ * @author Marcos Cardinot <mcardinot@gmail.com>
+ */
+public class SwingInspector extends SwingScilabTab {
+    private JScrollPane desktop;
+    public static JPanel pReceive;
+    public static final String INSPECTORUUID = "4m249547-6a71-4998-r8c-00o367s47932";
+
+    private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
+    public static String icon_color_fill = imagepath + "16x16/actions/color-fill.png";
+    public static String icon_collapse = imagepath + "16x16/actions/tree-collapse.png";
+    public static String icon_expand = imagepath + "16x16/actions/media-playback-start.png";
+    public static String icon_expand_all = imagepath + "32x32/actions/tree-diagramm.png";
+    public static String icon_collapse_all = imagepath + "32x32/actions/tree-diagramm-delete.png";
+
+    /**
+    * Constructor
+    *
+    * @param select Indicates which property window will open.
+    * @param objectID Enters the identification of object.
+    */
+    public SwingInspector(String select , String objectID) {
+        super(MessagesGED.quick_ged, INSPECTORUUID);
+
+        setAssociatedXMLIDForHelp("quickged");
+
+        ToolBar toolBar = ScilabToolBar.createToolBar();
+        toolBar.add(ShowHide.createButton(MessagesGED.hide));
+        toolBar.addSeparator();
+
+        guiComponents();
+        new SwapObject(select, objectID, 1, 1);
+
+        setContentPane(desktop);
+        WindowsConfigurationManager.restorationFinished(this);
+        addToolBar(toolBar);
+    }
+
+    /**
+    * It has all the components of the inspector panel.
+    */
+    private void guiComponents() {
+        desktop = new JScrollPane();
+        pReceive = new JPanel();
+
+        desktop.setBorder(null);
+        desktop.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        desktop.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        desktop.setAlignmentX(0.0F);
+        desktop.setAlignmentY(0.0F);
+        //desktop.setPreferredSize(new Dimension(370, 584));
+
+        pReceive.setAlignmentX(0.0F);
+        pReceive.setAlignmentY(0.0F);
+        //pReceive.setPreferredSize(new Dimension(370, 780));
+        pReceive.setLayout(new CardLayout());
+
+        desktop.setViewportView(pReceive);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+        setInfoBar(infoBarToAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        setToolBar(toolBarToAdd);
+    }
+}

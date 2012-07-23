@@ -35,7 +35,7 @@ import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.EditorManager;
 
 import org.scilab.modules.gui.ged.ColorMapHandler;
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -124,11 +124,11 @@ public class Style extends BaseProperties {
         lBackColor.setAlignmentX(0.5F);
         lBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBackColor.setOpaque(true);
-        lBackColor.setPreferredSize(new Dimension(153, 20));
+        lBackColor.setPreferredSize(new Dimension(70, 20));
 
         pBackColor.setBackground(new Color(255, 255, 255));
         pBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pBackColor.setPreferredSize(new Dimension(157, 20));
+        pBackColor.setPreferredSize(new Dimension(70, 20));
 
         bBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         bBackColor.setContentAreaFilled(false);
@@ -170,11 +170,11 @@ public class Style extends BaseProperties {
         lForeColor.setAlignmentX(0.5F);
         lForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lForeColor.setOpaque(true);
-        lForeColor.setPreferredSize(new Dimension(153, 20));
+        lForeColor.setPreferredSize(new Dimension(70, 20));
 
         pForeColor.setBackground(new Color(255, 255, 255));
         pForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pForeColor.setPreferredSize(new Dimension(157, 20));
+        pForeColor.setPreferredSize(new Dimension(70, 20));
 
         bForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         bForeColor.setContentAreaFilled(false);
@@ -216,7 +216,7 @@ public class Style extends BaseProperties {
         lLine.setAlignmentX(0.5F);
         lLine.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lLine.setOpaque(true);
-        lLine.setPreferredSize(new Dimension(153, 20));
+        lLine.setPreferredSize(new Dimension(70, 20));
 
         cLine.setModel(new DefaultComboBoxModel(new String[] { 
             MessagesGED.solid, MessagesGED.dash, MessagesGED.dash_dot, 
@@ -224,7 +224,7 @@ public class Style extends BaseProperties {
             MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot }));
         cLine.setBorder(null);
         cLine.setEditor(null);
-        cLine.setPreferredSize(new Dimension(150, 20));
+        cLine.setPreferredSize(new Dimension(70, 20));
         cLine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cLineActionPerformed(evt);
@@ -237,14 +237,14 @@ public class Style extends BaseProperties {
         lPolyline.setAlignmentX(0.5F);
         lPolyline.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lPolyline.setOpaque(true);
-        lPolyline.setPreferredSize(new Dimension(153, 20));
+        lPolyline.setPreferredSize(new Dimension(70, 20));
 
         cPolyline.setModel(new DefaultComboBoxModel(new String[] { 
             MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot, 
             MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled }));
         cPolyline.setBorder(null);
         cPolyline.setEditor(null);
-        cPolyline.setPreferredSize(new Dimension(150, 20));
+        cPolyline.setPreferredSize(new Dimension(70, 20));
         cPolyline.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cPolylineActionPerformed(evt);
@@ -265,21 +265,21 @@ public class Style extends BaseProperties {
                 .addGap(18, 18, 18)
                 .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pBackColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pForeColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lLine, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lLine, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cLine, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cLine, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lPolyline, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lPolyline, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cPolyline, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cPolyline, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pStyleLayout.setVerticalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -348,10 +348,10 @@ public class Style extends BaseProperties {
     * Insert the icons on buttons.
     */
     private void setIconsStyle() {
-        bStyle.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bStyle.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bBackColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
-        bForeColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
+        bStyle.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bStyle.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bBackColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
+        bForeColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
     }
 
     /**

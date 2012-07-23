@@ -25,7 +25,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -115,10 +115,10 @@ public class Label extends AxisRulers {
         lTitlePage.setText(" " + MessagesGED.title_page);
         lTitlePage.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lTitlePage.setOpaque(true);
-        lTitlePage.setPreferredSize(new Dimension(120, 16));
+        lTitlePage.setPreferredSize(new Dimension(70, 20));
 
         cTitlePage.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitlePage.setPreferredSize(new Dimension(55, 20));
+        cTitlePage.setPreferredSize(new Dimension(70, 20));
         cTitlePage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cTitlePageActionPerformed(evt);
@@ -144,11 +144,12 @@ public class Label extends AxisRulers {
         lAxisTitle.setText(" " + MessagesGED.axis_title);
         lAxisTitle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lAxisTitle.setOpaque(true);
-        lAxisTitle.setPreferredSize(new Dimension(120, 16));
+        lAxisTitle.setPreferredSize(new Dimension(70, 20));
 
         cAxisTitle.setBackground(new Color(255, 255, 255));
         cAxisTitle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         cAxisTitle.setOpaque(true);
+        cAxisTitle.setPreferredSize(new Dimension(70, 20));
 
         pAxisTitle.setVisible(false);
 
@@ -156,9 +157,10 @@ public class Label extends AxisRulers {
         lTitleX.setText(" X");
         lTitleX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lTitleX.setOpaque(true);
+        lTitleX.setPreferredSize(new Dimension(70, 20));
 
         cTitleX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleX.setPreferredSize(new Dimension(55, 20));
+        cTitleX.setPreferredSize(new Dimension(70, 20));
         cTitleX.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cTitleXActionPerformed(evt);
@@ -169,9 +171,10 @@ public class Label extends AxisRulers {
         lTitleY.setText(" Y");
         lTitleY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lTitleY.setOpaque(true);
+        lTitleY.setPreferredSize(new Dimension(70, 20));
 
         cTitleY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleY.setPreferredSize(new Dimension(55, 20));
+        cTitleY.setPreferredSize(new Dimension(70, 20));
         cTitleY.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cTitleYActionPerformed(evt);
@@ -182,9 +185,10 @@ public class Label extends AxisRulers {
         lTitleZ.setText(" Z");
         lTitleZ.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lTitleZ.setOpaque(true);
+        lTitleZ.setPreferredSize(new Dimension(70, 20));
 
         cTitleZ.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleZ.setPreferredSize(new Dimension(55, 20));
+        cTitleZ.setPreferredSize(new Dimension(70, 20));
         cTitleZ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cTitleZActionPerformed(evt);
@@ -197,17 +201,17 @@ public class Label extends AxisRulers {
         pAxisTitleLayout.setHorizontalGroup(
             pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pAxisTitleLayout.setVerticalGroup(
             pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -238,17 +242,17 @@ public class Label extends AxisRulers {
             .addGroup(pLabelLayout.createSequentialGroup()
                 .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pLabelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pLabelLayout.createSequentialGroup()
-                        .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                    .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
         );
         pLabelLayout.setVerticalGroup(
             pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -314,10 +318,10 @@ public class Label extends AxisRulers {
     * Insert the icons on buttons.
     */
     private final void setIconsLabel() {
-        bLabel.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bLabel.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bAxisTitle.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bAxisTitle.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
+        bLabel.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bLabel.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bAxisTitle.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bAxisTitle.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
     }
 
     /**

@@ -32,7 +32,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.ged.ColorMapHandler;
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -112,7 +112,7 @@ public class Style extends DataProperties {
 	//Components of the property: Color.
         pColor.setBackground(new Color(255, 255, 255));
         pColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pColor.setPreferredSize(new Dimension(157, 20));
+        pColor.setPreferredSize(new Dimension(70, 20));
 
 
         bColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
@@ -133,7 +133,7 @@ public class Style extends DataProperties {
         lColor.setAlignmentX(0.5F);
         lColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lColor.setOpaque(true);
-        lColor.setPreferredSize(new Dimension(153, 20));
+        lColor.setPreferredSize(new Dimension(70, 20));
 
 	//Positioning the components of the property: Color.
         GroupLayout pColorLayout = new GroupLayout(pColor);
@@ -162,12 +162,12 @@ public class Style extends DataProperties {
         lPixmap.setAlignmentX(0.5F);
         lPixmap.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lPixmap.setOpaque(true);
-        lPixmap.setPreferredSize(new Dimension(153, 20));
+        lPixmap.setPreferredSize(new Dimension(70, 20));
 
         cPixmap.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
         cPixmap.setBorder(null);
         cPixmap.setEditor(null);
-        cPixmap.setPreferredSize(new Dimension(150, 20));
+        cPixmap.setPreferredSize(new Dimension(70, 20));
         cPixmap.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cPixmapActionPerformed(evt);
@@ -180,7 +180,7 @@ public class Style extends DataProperties {
         lPixelDrawing.setAlignmentX(0.5F);
         lPixelDrawing.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lPixelDrawing.setOpaque(true);
-        lPixelDrawing.setPreferredSize(new Dimension(153, 20));
+        lPixelDrawing.setPreferredSize(new Dimension(70, 20));
 
         cPixelDrawing.setModel(new DefaultComboBoxModel(new String[] { 
             "clear", "and", "andReverse", "copy", "andInverted",
@@ -189,7 +189,7 @@ public class Style extends DataProperties {
         cPixelDrawing.setSelectedIndex(3);
         cPixelDrawing.setBorder(null);
         cPixelDrawing.setEditor(null);
-        cPixelDrawing.setPreferredSize(new Dimension(150, 20));
+        cPixelDrawing.setPreferredSize(new Dimension(70, 20));
         cPixelDrawing.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cPixelDrawingActionPerformed(evt);
@@ -202,13 +202,13 @@ public class Style extends DataProperties {
         lRotationStyle.setAlignmentX(0.5F);
         lRotationStyle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lRotationStyle.setOpaque(true);
-        lRotationStyle.setPreferredSize(new Dimension(153, 20));
+        lRotationStyle.setPreferredSize(new Dimension(70, 20));
 
         cRotationStyle.setModel(new DefaultComboBoxModel(new String[] { 
             MessagesGED.unary, MessagesGED.multiple }));
         cRotationStyle.setBorder(null);
         cRotationStyle.setEditor(null);
-        cRotationStyle.setPreferredSize(new Dimension(150, 20));
+        cRotationStyle.setPreferredSize(new Dimension(70, 20));
         cRotationStyle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cRotationStyleActionPerformed(evt);
@@ -228,21 +228,21 @@ public class Style extends DataProperties {
                 .addGap(18, 18, 18)
                 .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pColor, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                        .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pStyleLayout.setVerticalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -250,7 +250,7 @@ public class Style extends DataProperties {
                 .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(7, 7, 7)
                 .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pStyleLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -316,9 +316,9 @@ public class Style extends DataProperties {
     * Insert the icons on buttons.
     */
     private void setIconsStyle() {
-        bStyle.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bStyle.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
+        bStyle.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bStyle.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
     }
 
    /**

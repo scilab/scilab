@@ -18,30 +18,18 @@ package org.scilab.modules.gui.ged.figure;
  */
 public class HideFigure {
     public HideFigure(boolean hide) {
-        if (hide) {
-            BaseProperties.pBaseProperties.setVisible(false);
-            BaseProperties.bBaseProperties.setSelected(true);
+        try {
+            BaseProperties.pBaseProperties.setVisible(!hide);
+            BaseProperties.bBaseProperties.setSelected(hide);
 
-            Control.pControl.setVisible(false);
-            Control.bControl.setSelected(true);
+            Control.pControl.setVisible(!hide);
+            Control.bControl.setSelected(hide);
 
-            DataProperties.pData.setVisible(false);
-            DataProperties.bData.setSelected(true);
+            DataProperties.pData.setVisible(!hide);
+            DataProperties.bData.setSelected(hide);
 
-            Style.pStyle.setVisible(false);
-            Style.bStyle.setSelected(true);
-        } else {
-            BaseProperties.pBaseProperties.setVisible(true);
-            BaseProperties.bBaseProperties.setSelected(false);
-
-            Control.pControl.setVisible(true);
-            Control.bControl.setSelected(false);
-
-            DataProperties.pData.setVisible(true);
-            DataProperties.bData.setSelected(false);
-
-            Style.pStyle.setVisible(true);
-            Style.bStyle.setSelected(false);
-        }
+            Style.pStyle.setVisible(!hide);
+            Style.bStyle.setSelected(hide);
+        } catch (NullPointerException nexcF) { }
     }
 }

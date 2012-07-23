@@ -26,6 +26,7 @@ import org.scilab.modules.gui.ged.figure.Figure;
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
 public class SwapObject {
+
     /**
     * Manager which property window will open.
     *
@@ -79,15 +80,14 @@ public class SwapObject {
     * @param axesID Enters the identification of axis.
     */
     private void axes(String axesID) {
-        Inspector.pReceive.removeAll();
-        Inspector.pReceive.repaint();
-        Inspector.bHideShow.setSelected(false);
-        JPanel received = new Axes(axesID);
-        received.setBounds(2, 0, 348, 780);
-        received.setVisible(true);
-        Inspector.pReceive.add(received);
-        Inspector.pReceive.setPreferredSize(new Dimension(370, 780));
-        Inspector.selectaux = "axes";
+        //Resets the panel.
+        SwingInspector.pReceive.removeAll();
+        SwingInspector.pReceive.repaint();
+        //Resets the Show/Hide button.
+        ShowHide.click = true;
+        ShowHide.setIcon(1);
+        //Load the Axes panel.
+        SwingInspector.pReceive.add(new Axes(axesID));
     }
 
     /**
@@ -96,15 +96,14 @@ public class SwapObject {
     * @param objectID Enters the identification of curve.
     */
     private void curve(String objectID) {
-        Inspector.pReceive.removeAll();
-        Inspector.pReceive.repaint();
-        Inspector.bHideShow.setSelected(false);
-        JPanel received = new Curve(objectID);
-        received.setBounds(2, 0, 348, 300);
-        received.setVisible(true);
-        Inspector.pReceive.add(received);
-        Inspector.pReceive.setPreferredSize(new Dimension(370, 300));
-        Inspector.selectaux = "curve";
+        //Resets the panel.
+        SwingInspector.pReceive.removeAll();
+        SwingInspector.pReceive.repaint();
+        //Resets the Show/Hide button.
+        ShowHide.click = true;
+        ShowHide.setIcon(1);
+        //Load the curve panel.
+        SwingInspector.pReceive.add(new Curve(objectID));
     }
 
     /**
@@ -113,14 +112,13 @@ public class SwapObject {
     * @param objectID Enters the identification of figure.
     */
     private void figure(String objectID) {
-        Inspector.pReceive.removeAll();
-        Inspector.pReceive.repaint();
-        Inspector.bHideShow.setSelected(false);
-        JPanel received = new Figure(objectID);
-        received.setBounds(2, 0, 348, 600);
-        received.setVisible(true);
-        Inspector.pReceive.add(received);
-        Inspector.pReceive.setPreferredSize(new Dimension(370, 600));
-        Inspector.selectaux = "figure";
+        //Resets the panel.
+        SwingInspector.pReceive.removeAll();
+        SwingInspector.pReceive.repaint();
+        //Resets the Show/Hide button.
+        ShowHide.click = true;
+        ShowHide.setIcon(1);
+        //Load the figure panel.
+        SwingInspector.pReceive.add(new Figure(objectID));
     }
 }

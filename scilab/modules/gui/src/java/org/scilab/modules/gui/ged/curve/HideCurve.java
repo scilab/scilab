@@ -18,18 +18,12 @@ package org.scilab.modules.gui.ged.curve;
  */
 public class HideCurve {
     public HideCurve(boolean hide) {
-        if (hide) {
-            BaseProperties.pBaseProperties.setVisible(false);
-            BaseProperties.bBaseProperties.setSelected(true);
+        try {
+            BaseProperties.pBaseProperties.setVisible(!hide);
+            BaseProperties.bBaseProperties.setSelected(hide);
 
-            Style.pStyle.setVisible(false);
-            Style.bStyle.setSelected(true);
-        } else {
-            BaseProperties.pBaseProperties.setVisible(true);
-            BaseProperties.bBaseProperties.setSelected(false);
-
-            Style.pStyle.setVisible(true);
-            Style.bStyle.setSelected(false);
-        }
+            Style.pStyle.setVisible(!hide);
+            Style.bStyle.setSelected(hide);
+        } catch (NullPointerException nexcC) { }
     }
 }

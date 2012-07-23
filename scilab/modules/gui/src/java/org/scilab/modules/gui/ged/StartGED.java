@@ -25,6 +25,6 @@ import org.scilab.modules.gui.editor.EditorEventListener;
     * Initializes the lightGED.
     */
     public static void quickGED() {
-        Inspector.createGuiInspector("figure" , EditorEventListener.windowUid);
+        Inspector.getInspector("figure" , EditorEventListener.windowUid);
     }
 }

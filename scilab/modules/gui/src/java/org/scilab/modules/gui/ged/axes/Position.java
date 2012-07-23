@@ -25,7 +25,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -154,19 +154,21 @@ public class Position extends Label {
         lAxesBounds.setText(" " + MessagesGED.axes_bounds);
         lAxesBounds.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lAxesBounds.setOpaque(true);
-        lAxesBounds.setPreferredSize(new Dimension(120, 16));
+        lAxesBounds.setPreferredSize(new Dimension(70, 20));
 
         cAxesBounds.setBackground(new Color(255, 255, 255));
         cAxesBounds.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         cAxesBounds.setOpaque(true);
+        cAxesBounds.setPreferredSize(new Dimension(70, 20));
 
         lBoundsLeft.setBackground(new Color(255, 255, 255));
         lBoundsLeft.setText(" " + MessagesGED.left);
         lBoundsLeft.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBoundsLeft.setOpaque(true);
+        lBoundsLeft.setPreferredSize(new Dimension(70, 20));
 
         cBoundsLeft.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cBoundsLeft.setPreferredSize(new Dimension(55, 20));
+        cBoundsLeft.setPreferredSize(new Dimension(70, 20));
         cBoundsLeft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsLeftActionPerformed(evt);
@@ -177,9 +179,10 @@ public class Position extends Label {
         lBoundsUp.setText(" " + MessagesGED.up);
         lBoundsUp.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBoundsUp.setOpaque(true);
+        lBoundsUp.setPreferredSize(new Dimension(70, 20));
 
         cBoundsUp.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cBoundsUp.setPreferredSize(new Dimension(55, 20));
+        cBoundsUp.setPreferredSize(new Dimension(70, 20));
         cBoundsUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsUpActionPerformed(evt);
@@ -190,9 +193,10 @@ public class Position extends Label {
         lBoundsWidth.setText(" " + MessagesGED.width);
         lBoundsWidth.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBoundsWidth.setOpaque(true);
+        lBoundsWidth.setPreferredSize(new Dimension(70, 20));
 
         cBoundsWidth.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cBoundsWidth.setPreferredSize(new Dimension(55, 20));
+        cBoundsWidth.setPreferredSize(new Dimension(70, 20));
         cBoundsWidth.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsWidthActionPerformed(evt);
@@ -203,9 +207,10 @@ public class Position extends Label {
         lBoundsHeight.setText(" " + MessagesGED.height);
         lBoundsHeight.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBoundsHeight.setOpaque(true);
+        lBoundsHeight.setPreferredSize(new Dimension(70, 20));
 
         cBoundsHeight.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cBoundsHeight.setPreferredSize(new Dimension(55, 20));
+        cBoundsHeight.setPreferredSize(new Dimension(70, 20));
         cBoundsHeight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsHeightActionPerformed(evt);
@@ -220,21 +225,21 @@ public class Position extends Label {
         pAxesBoundsLayout.setHorizontalGroup(
             pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pAxesBoundsLayout.setVerticalGroup(
             pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -277,19 +282,21 @@ public class Position extends Label {
         lMargins.setText(" " + MessagesGED.margins);
         lMargins.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lMargins.setOpaque(true);
-        lMargins.setPreferredSize(new Dimension(120, 16));
+        lMargins.setPreferredSize(new Dimension(70, 20));
 
         cMargins.setBackground(new Color(255, 255, 255));
         cMargins.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         cMargins.setOpaque(true);
+        cMargins.setPreferredSize(new Dimension(70, 20));
 
         lMarginsLeft.setBackground(new Color(255, 255, 255));
         lMarginsLeft.setText(" " + MessagesGED.left);
         lMarginsLeft.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lMarginsLeft.setOpaque(true);
+        lMarginsLeft.setPreferredSize(new Dimension(70, 20));
 
         cMarginsLeft.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cMarginsLeft.setPreferredSize(new Dimension(55, 20));
+        cMarginsLeft.setPreferredSize(new Dimension(70, 20));
         cMarginsLeft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsLeftActionPerformed(evt);
@@ -300,9 +307,10 @@ public class Position extends Label {
         lMarginsRight.setText(" " + MessagesGED.right);
         lMarginsRight.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lMarginsRight.setOpaque(true);
+        lMarginsRight.setPreferredSize(new Dimension(70, 20));
 
         cMarginsRight.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cMarginsRight.setPreferredSize(new Dimension(55, 20));
+        cMarginsRight.setPreferredSize(new Dimension(70, 20));
         cMarginsRight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsRightActionPerformed(evt);
@@ -313,9 +321,10 @@ public class Position extends Label {
         lMarginsTop.setText(" " + MessagesGED.top);
         lMarginsTop.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lMarginsTop.setOpaque(true);
+        lMarginsTop.setPreferredSize(new Dimension(70, 20));
 
         cMarginsTop.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cMarginsTop.setPreferredSize(new Dimension(55, 20));
+        cMarginsTop.setPreferredSize(new Dimension(70, 20));
         cMarginsTop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsTopActionPerformed(evt);
@@ -326,9 +335,10 @@ public class Position extends Label {
         lMarginsBottom.setText(" " + MessagesGED.bottom);
         lMarginsBottom.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lMarginsBottom.setOpaque(true);
+        lMarginsBottom.setPreferredSize(new Dimension(70, 20));
 
         cMarginsBottom.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cMarginsBottom.setPreferredSize(new Dimension(55, 20));
+        cMarginsBottom.setPreferredSize(new Dimension(70, 20));
         cMarginsBottom.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsBottomActionPerformed(evt);
@@ -343,21 +353,21 @@ public class Position extends Label {
         pMarginsLayout.setHorizontalGroup(
             pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pMarginsLayout.setVerticalGroup(
             pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -392,20 +402,20 @@ public class Position extends Label {
             .addGroup(pPositionLayout.createSequentialGroup()
                 .addComponent(bAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pPositionLayout.createSequentialGroup()
                 .addComponent(bMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pPositionLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                    .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
         );
         pPositionLayout.setVerticalGroup(
             pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -461,12 +471,12 @@ public class Position extends Label {
     * Insert the icons on buttons.
     */
     private final void setIconsPosition() {
-        bPosition.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bPosition.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bMargins.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bMargins.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bAxesBounds.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bAxesBounds.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
+        bPosition.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bPosition.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bMargins.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bMargins.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bAxesBounds.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bAxesBounds.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
     }
 
     /**

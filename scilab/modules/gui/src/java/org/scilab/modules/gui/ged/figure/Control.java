@@ -30,7 +30,7 @@ import javax.swing.JToggleButton;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -112,12 +112,12 @@ public class Control extends BaseProperties {
         lAutoResize.setAlignmentX(0.5F);
         lAutoResize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lAutoResize.setOpaque(true);
-        lAutoResize.setPreferredSize(new Dimension(153, 20));
+        lAutoResize.setPreferredSize(new Dimension(70, 20));
 
         cAutoResize.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
         cAutoResize.setBorder(null);
         cAutoResize.setEditor(null);
-        cAutoResize.setPreferredSize(new Dimension(150, 20));
+        cAutoResize.setPreferredSize(new Dimension(70, 20));
         cAutoResize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cAutoResizeActionPerformed(evt);
@@ -130,11 +130,11 @@ public class Control extends BaseProperties {
         lxposition.setAlignmentX(0.5F);
         lxposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lxposition.setOpaque(true);
-        lxposition.setPreferredSize(new Dimension(153, 20));
+        lxposition.setPreferredSize(new Dimension(70, 20));
 
         cxposition.setToolTipText(MessagesGED.x_position_tooltip);
         cxposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cxposition.setPreferredSize(new Dimension(150, 20));
+        cxposition.setPreferredSize(new Dimension(70, 20));
         cxposition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cxpositionActionPerformed(evt);
@@ -147,11 +147,11 @@ public class Control extends BaseProperties {
         lyposition.setAlignmentX(0.5F);
         lyposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lyposition.setOpaque(true);
-        lyposition.setPreferredSize(new Dimension(153, 20));
+        lyposition.setPreferredSize(new Dimension(70, 20));
 
         cyposition.setToolTipText(MessagesGED.y_position_tooltip);
         cyposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cyposition.setPreferredSize(new Dimension(150, 20));
+        cyposition.setPreferredSize(new Dimension(70, 20));
         cyposition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cypositionActionPerformed(evt);
@@ -164,11 +164,11 @@ public class Control extends BaseProperties {
         lxsize.setAlignmentX(0.5F);
         lxsize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lxsize.setOpaque(true);
-        lxsize.setPreferredSize(new Dimension(153, 20));
+        lxsize.setPreferredSize(new Dimension(70, 20));
 
         cxsize.setToolTipText(MessagesGED.x_size_tooltip);
         cxsize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cxsize.setPreferredSize(new Dimension(150, 20));
+        cxsize.setPreferredSize(new Dimension(70, 20));
         cxsize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cxsizeActionPerformed(evt);
@@ -181,11 +181,11 @@ public class Control extends BaseProperties {
         lysize.setAlignmentX(0.5F);
         lysize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lysize.setOpaque(true);
-        lysize.setPreferredSize(new Dimension(153, 20));
+        lysize.setPreferredSize(new Dimension(70, 20));
 
         cysize.setToolTipText(MessagesGED.y_size_tooltip);
         cysize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cysize.setPreferredSize(new Dimension(150, 20));
+        cysize.setPreferredSize(new Dimension(70, 20));
         cysize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cysizeActionPerformed(evt);
@@ -205,25 +205,25 @@ public class Control extends BaseProperties {
                 .addGap(18, 18, 18)
                 .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lysize, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cysize, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pControlLayout.setVerticalGroup(
             pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -291,8 +291,8 @@ public class Control extends BaseProperties {
     * Insert the icons on buttons.
     */
     private void setIconsControl() {
-        bControl.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bControl.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
+        bControl.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bControl.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
     }
 
     /**

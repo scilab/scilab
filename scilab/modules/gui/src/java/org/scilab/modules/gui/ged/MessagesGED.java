@@ -20,7 +20,12 @@ import org.scilab.modules.localization.Messages;
  */
 public class MessagesGED {
     //Inspector - Labels
-    public static final String collapse_expand = Messages.gettext("Collapse/Expand Properties");
+    public static final String quick_ged = Messages.gettext("Quick GED");
+    public static final String hide = Messages.gettext("Hide");
+    public static final String show = Messages.gettext("Show");
+    public static final String axes = Messages.gettext("Axes");
+    public static final String curve = Messages.gettext("Curve");
+    public static final String figure = Messages.gettext("Figure");
 
     //Base Properties - Labels
     public static final String visible = Messages.gettext("Visible");

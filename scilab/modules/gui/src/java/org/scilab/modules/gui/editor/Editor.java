@@ -611,6 +611,6 @@ public class Editor {
     * Starts the GED with the property of the Figure.
     */
     public void onClickGED() {
-        Inspector.createGuiInspector("figure" , figureUid);
+        Inspector.getInspector("figure" , figureUid);
     }
 }

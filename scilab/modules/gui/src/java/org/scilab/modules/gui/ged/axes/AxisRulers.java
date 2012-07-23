@@ -28,7 +28,7 @@ import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -130,11 +130,12 @@ public class AxisRulers extends Roof {
         lLocation.setText(" " + MessagesGED.location);
         lLocation.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lLocation.setOpaque(true);
-        lLocation.setPreferredSize(new Dimension(120, 16));
+        lLocation.setPreferredSize(new Dimension(70, 20));
 
         cLocation.setBackground(new Color(255, 255, 255));
         cLocation.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         cLocation.setOpaque(true);
+        cLocation.setPreferredSize(new Dimension(70, 20));
 
         bLocation.setSelected(true);
         bLocation.setBorder(null);
@@ -156,11 +157,12 @@ public class AxisRulers extends Roof {
         lLocationX.setText(" X");
         lLocationX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lLocationX.setOpaque(true);
+        lLocationX.setPreferredSize(new Dimension(70, 20));
 
         cLocationX.setModel(new DefaultComboBoxModel(new String[] {
             MessagesGED.bottom, MessagesGED.top, MessagesGED.middle, MessagesGED.origin
         }));
-        cLocationX.setPreferredSize(new Dimension(89, 20));
+        cLocationX.setPreferredSize(new Dimension(70, 20));
         cLocationX.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cLocationXActionPerformed(evt);
@@ -171,11 +173,12 @@ public class AxisRulers extends Roof {
         lLocationY.setText(" Y");
         lLocationY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lLocationY.setOpaque(true);
+        lLocationY.setPreferredSize(new Dimension(70, 20));
 
         cLocationY.setModel(new DefaultComboBoxModel(new String[] {
             MessagesGED.middle, MessagesGED.origin, MessagesGED.left, MessagesGED.right
         }));
-        cLocationY.setPreferredSize(new Dimension(84, 20));
+        cLocationY.setPreferredSize(new Dimension(70, 20));
         cLocationY.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cLocationYActionPerformed(evt);
@@ -190,13 +193,13 @@ public class AxisRulers extends Roof {
         pLocationLayout.setHorizontalGroup(
             pLocationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pLocationLayout.createSequentialGroup()
-                .addComponent(lLocationX, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lLocationX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cLocationX, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cLocationX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pLocationLayout.createSequentialGroup()
-                .addComponent(lLocationY, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lLocationY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cLocationY, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cLocationY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pLocationLayout.setVerticalGroup(
             pLocationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -216,11 +219,12 @@ public class AxisRulers extends Roof {
         lReverse.setText(" " + MessagesGED.reverse);
         lReverse.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lReverse.setOpaque(true);
-        lReverse.setPreferredSize(new Dimension(120, 16));
+        lReverse.setPreferredSize(new Dimension(70, 20));
 
         cReverse.setBackground(new Color(255, 255, 255));
         cReverse.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         cReverse.setOpaque(true);
+        cReverse.setPreferredSize(new Dimension(70, 20));
 
         bReverse.setSelected(true);
         bReverse.setBorder(null);
@@ -242,9 +246,10 @@ public class AxisRulers extends Roof {
         lReverseX.setText(" X");
         lReverseX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lReverseX.setOpaque(true);
+        lReverseX.setPreferredSize(new Dimension(70, 20));
 
         cReverseX.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
-        cReverseX.setPreferredSize(new Dimension(58, 20));
+        cReverseX.setPreferredSize(new Dimension(70, 20));
         cReverseX.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cReverseXActionPerformed(evt);
@@ -255,9 +260,10 @@ public class AxisRulers extends Roof {
         lReverseY.setText(" Y");
         lReverseY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lReverseY.setOpaque(true);
+        lReverseY.setPreferredSize(new Dimension(70, 20));
 
         cReverseY.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
-        cReverseY.setPreferredSize(new Dimension(58, 20));
+        cReverseY.setPreferredSize(new Dimension(70, 20));
         cReverseY.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cReverseYActionPerformed(evt);
@@ -268,9 +274,10 @@ public class AxisRulers extends Roof {
         lReverseZ.setText(" Z");
         lReverseZ.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lReverseZ.setOpaque(true);
+        lReverseZ.setPreferredSize(new Dimension(70, 20));
 
         cReverseZ.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
-        cReverseZ.setPreferredSize(new Dimension(58, 20));
+        cReverseZ.setPreferredSize(new Dimension(70, 20));
         cReverseZ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cReverseZActionPerformed(evt);
@@ -285,17 +292,17 @@ public class AxisRulers extends Roof {
         pReverseLayout.setHorizontalGroup(
             pReverseLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pReverseLayout.createSequentialGroup()
-                .addComponent(lReverseX, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lReverseX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cReverseX, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cReverseX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pReverseLayout.createSequentialGroup()
-                .addComponent(lReverseY, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lReverseY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cReverseY, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cReverseY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pReverseLayout.createSequentialGroup()
-                .addComponent(lReverseZ, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lReverseZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cReverseZ, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cReverseZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pReverseLayout.setVerticalGroup(
             pReverseLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -326,20 +333,20 @@ public class AxisRulers extends Roof {
             .addGroup(pAxisRulersLayout.createSequentialGroup()
                 .addComponent(bLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lLocation, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cLocation, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisRulersLayout.createSequentialGroup()
                 .addComponent(bReverse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lReverse, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                .addComponent(lReverse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addComponent(cReverse, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                .addComponent(cReverse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisRulersLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(pAxisRulersLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(pLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pReverse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pLocation, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                    .addComponent(pReverse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
         );
         pAxisRulersLayout.setVerticalGroup(
             pAxisRulersLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -409,12 +416,12 @@ public class AxisRulers extends Roof {
     * Insert the icons on buttons.
     */
     private void setIconsAxisRulers() {
-        bAxisRulers.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bAxisRulers.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bLocation.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bLocation.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bReverse.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bReverse.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
+        bAxisRulers.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bAxisRulers.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bLocation.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bLocation.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bReverse.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bReverse.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
     }
 
     /**

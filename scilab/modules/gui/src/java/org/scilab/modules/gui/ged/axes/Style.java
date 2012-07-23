@@ -31,7 +31,7 @@ import javax.swing.JToggleButton;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.ged.ColorMapHandler;
-import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -142,11 +142,11 @@ public class Style extends Position {
         lBackColor.setAlignmentX(0.5F);
         lBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lBackColor.setOpaque(true);
-        lBackColor.setPreferredSize(new Dimension(153, 20));
+        lBackColor.setPreferredSize(new Dimension(70, 20));
 
         pBackColor.setBackground(new Color(255, 255, 255));
         pBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pBackColor.setPreferredSize(new Dimension(157, 20));
+        pBackColor.setPreferredSize(new Dimension(70, 20));
 
         bBackColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         bBackColor.setContentAreaFilled(false);
@@ -188,11 +188,11 @@ public class Style extends Position {
         lForeColor.setAlignmentX(0.5F);
         lForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lForeColor.setOpaque(true);
-        lForeColor.setPreferredSize(new Dimension(153, 20));
+        lForeColor.setPreferredSize(new Dimension(70, 20));
 
         pForeColor.setBackground(new Color(255, 255, 255));
         pForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pForeColor.setPreferredSize(new Dimension(157, 20));
+        pForeColor.setPreferredSize(new Dimension(70, 20));
 
         bForeColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         bForeColor.setContentAreaFilled(false);
@@ -234,11 +234,11 @@ public class Style extends Position {
         lFontColor.setAlignmentX(0.5F);
         lFontColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lFontColor.setOpaque(true);
-        lFontColor.setPreferredSize(new Dimension(153, 20));
+        lFontColor.setPreferredSize(new Dimension(70, 20));
 
         pFontColor.setBackground(new Color(255, 255, 255));
         pFontColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        pFontColor.setPreferredSize(new Dimension(157, 20));
+        pFontColor.setPreferredSize(new Dimension(70, 20));
 
         bFontColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         bFontColor.setContentAreaFilled(false);
@@ -280,7 +280,7 @@ public class Style extends Position {
         lFontStyle.setAlignmentX(0.5F);
         lFontStyle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lFontStyle.setOpaque(true);
-        lFontStyle.setPreferredSize(new Dimension(153, 20));
+        lFontStyle.setPreferredSize(new Dimension(70, 20));
 
         cFontStyle.setModel(new DefaultComboBoxModel(new String[] { 
             "Monospaced", "Symbol", "Serif", "Serif Italic", "Serif Bold", 
@@ -289,7 +289,7 @@ public class Style extends Position {
         }));
         cFontStyle.setBorder(null);
         cFontStyle.setEditor(null);
-        cFontStyle.setPreferredSize(new Dimension(150, 20));
+        cFontStyle.setPreferredSize(new Dimension(70, 20));
         cFontStyle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cFontStyleActionPerformed(evt);
@@ -302,12 +302,12 @@ public class Style extends Position {
         lVisible.setAlignmentX(0.5F);
         lVisible.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         lVisible.setOpaque(true);
-        lVisible.setPreferredSize(new Dimension(153, 20));
+        lVisible.setPreferredSize(new Dimension(70, 20));
 
         cVisible.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
         cVisible.setBorder(null);
         cVisible.setEditor(null);
-        cVisible.setPreferredSize(new Dimension(150, 20));
+        cVisible.setPreferredSize(new Dimension(70, 20));
         cVisible.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cVisibleActionPerformed(evt);
@@ -328,25 +328,25 @@ public class Style extends Position {
                 .addGap(18, 18, 18)
                 .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pBackColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pForeColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(pFontColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
                     .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pStyleLayout.setVerticalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -438,11 +438,11 @@ public class Style extends Position {
     * Insert the icons on buttons.
     */
     private void setIconsStyle() {
-        bStyle.setIcon(new ImageIcon(Inspector.icon_collapse));
-        bStyle.setSelectedIcon(new ImageIcon(Inspector.icon_expand));
-        bBackColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
-        bForeColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
-        bFontColor.setIcon(new ImageIcon(Inspector.icon_color_fill));
+        bStyle.setIcon(new ImageIcon(SwingInspector.icon_collapse));
+        bStyle.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+        bBackColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
+        bForeColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
+        bFontColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
     }
 
     /**
