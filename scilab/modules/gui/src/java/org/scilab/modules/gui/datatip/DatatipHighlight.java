@@ -26,41 +26,30 @@ import java.util.ArrayList;
 public class DatatipHighlight {
 
     private static boolean isSelected = false;
-    public static String datatipid;
     public static String markerid;
-    public static Integer firstColorDatatip;
     public static Integer firstColorMarker;
 
     /**
     * Highlight a datatip and its marker when selected
     *
     * @param datatipIndex Integer referring to the selected datatip.
-    * @param datatipsUid Arraylist containing all created datatip's unique identifier.
     * @param markersUid Arraylist containing all created merker's unique identifier.
     */
-    public static void highlightSelected (Integer datatipIndex, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
+    public static void highlightSelected (Integer datatipIndex, ArrayList<String> markersUid) {
         if (datatipIndex != null) {
             if (!isSelected) {
-                datatipid = datatipsUid.get (datatipIndex / 2);
                 markerid = markersUid.get (datatipIndex / 2);
-                firstColorDatatip = (Integer) GraphicController.getController().getProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__);
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__, 12);
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__, 12);
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__);
+                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
             } else {
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__, firstColorDatatip);
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__, firstColorMarker);
-                datatipid = datatipsUid.get (datatipIndex / 2);
+                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
                 markerid = markersUid.get (datatipIndex / 2);
-                firstColorDatatip = (Integer) GraphicController.getController().getProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__);
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__, 12);
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__, 12);
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__);
+                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
             }
         isSelected = true;
         } else {
-            GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_LINE_COLOR__, firstColorDatatip);
-            GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_LINE_COLOR__, firstColorMarker);
+            GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
             isSelected = false;
         }
     }

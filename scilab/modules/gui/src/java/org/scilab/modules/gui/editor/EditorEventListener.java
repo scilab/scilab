@@ -29,6 +29,8 @@ import org.scilab.modules.gui.datatip.MarkerCreate;
 import org.scilab.modules.gui.datatip.DatatipSelect;
 import org.scilab.modules.gui.datatip.DatatipDelete;
 import org.scilab.modules.gui.datatip.DatatipMove;
+import org.scilab.modules.gui.datatip.DatatipDrag;
+import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.gui.datatip.DatatipManagerMode;
 
 import org.scilab.modules.gui.editor.AxesHandler;
@@ -61,7 +63,10 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     ArrayList<String> getDatatipsUid = new ArrayList<String>();
     ArrayList<String> getMarkersUid = new ArrayList<String>();
     ArrayList<String> getPolylinesUid = new ArrayList<String>();
+    public static Integer[] pixelMouseCoordInt = new Integer[2];
     Integer indexToMove;
+    String polylineUidInit = null;
+    boolean dragDatatip = false;
 
 
     Editor editor;
@@ -87,15 +92,21 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                 } else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
                     getDatatipsCoord = DatatipMove.moveLeft (windowUid, getPolylinesUid, indexToMove, getDatatipsCoord, getDatatipsUid, getMarkersUid);
                 }
+                keyReleased(arg0);
             }
         }
     }
 
     public void keyReleased(KeyEvent arg0) {
-        editor.onKeyTyped(arg0);
+        if (DatatipManagerMode.getDatatipManagerMode()) {
+            if (indexToMove != null) {
+                DatatipOrientation.setOrientation (windowUid, getDatatipsUid, getMarkersUid, pixelMouseCoordInt);
+            }
+        }
     }
 
     public void keyTyped(KeyEvent arg0) {
+        editor.onKeyTyped(arg0);
     }
 
     /**
@@ -110,16 +121,19 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         if (DatatipManagerMode.getDatatipManagerMode()) {
             if (arg0.getButton() == 1) {
                 if (arg0.getClickCount() == 1) {
+                    pixelMouseCoordInt[0] = arg0.getX();
+                    pixelMouseCoordInt[1] = arg0.getY();
+                    indexToMove = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY(), getDatatipsCoord, getDatatipsUid, getMarkersUid);
                     picked = ep.pick( windowUid, arg0.getX(), arg0.getY() );
-                    if (picked != null) {
-                        String datatipUid = DatatipCreate.createDatatip ( windowUid, arg0.getX(), arg0.getY() );
-                        String markerUid = MarkerCreate.createMarker ( windowUid, arg0.getX(), arg0.getY() );
-                        getDatatipsCoord = DatatipCreate.getAllDatatipsCoord (getDatatipsCoord, datatipUid);
-                        getDatatipsUid = DatatipCreate.getAllDatatipsUid (getDatatipsUid, datatipUid);
-                        getMarkersUid = MarkerCreate.getAllMarkersUid (getMarkersUid, markerUid);
-                        getPolylinesUid = DatatipCreate.getAllPolylinesUid (getPolylinesUid, picked);
-                    } else {
-                        indexToMove = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY(), getDatatipsCoord, getDatatipsUid, getMarkersUid);
+                    if (indexToMove == null) {
+                        if (picked != null) {
+                            String datatipUid = DatatipCreate.createDatatip ( windowUid, arg0.getX(), arg0.getY() );
+                            String markerUid = MarkerCreate.createMarker ( windowUid, arg0.getX(), arg0.getY() );
+                            getDatatipsCoord = DatatipCreate.getAllDatatipsCoord (getDatatipsCoord, markerUid);
+                            getDatatipsUid = DatatipCreate.getAllDatatipsUid (getDatatipsUid, datatipUid);
+                            getMarkersUid = MarkerCreate.getAllMarkersUid (getMarkersUid, markerUid);
+                            getPolylinesUid = DatatipCreate.getAllPolylinesUid (getPolylinesUid, picked);
+                        }
                     }
                 }
             } else if (arg0.getButton() == 3) {
@@ -152,7 +166,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         if (arg0.getButton() == 1) {
             isLeftButtonPressed = true;
             editor.onLeftMouseDown(arg0);
-            
+
             // Part responsible for the exchange of properties of the GED.
             //If the GED is open, so the code is executed.
             if (Inspector.isInspectorOpened()) {
@@ -160,7 +174,11 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                     new SwapObject("axes or figure", windowUid, (Integer) arg0.getX(), (Integer) arg0.getY());
                 } else {
                     new SwapObject("curve", editor.getSelected(), 0, 0);
-	        }
+                }
+            }
+            polylineUidInit = DatatipDrag.getInitialInfo (windowUid, indexToMove, arg0.getX(), arg0.getY());
+            if (polylineUidInit != null) {
+                dragDatatip = true;
             }
         }
     }
@@ -186,13 +204,19 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     public void mouseDragged(MouseEvent arg0) {
         if (isLeftButtonPressed) {
             editor.onMouseDragged(arg0);
-        }
-        else {
+        } else {
             isInRotation = true;
+        }
+        if (indexToMove != null) {
+            if (dragDatatip) {
+                getDatatipsCoord = DatatipDrag.dragDatatip (windowUid, arg0.getX(), arg0.getY(), polylineUidInit, getDatatipsUid, getMarkersUid, indexToMove, getDatatipsCoord, getPolylinesUid);
+                DatatipOrientation.setOrientation (windowUid, getDatatipsUid, getMarkersUid, pixelMouseCoordInt);
+            }
         }
     }
 
     public void mouseMoved(MouseEvent arg0) {
+        DatatipOrientation.setOrientation (windowUid, getDatatipsUid, getMarkersUid, pixelMouseCoordInt);
     }
 }
 

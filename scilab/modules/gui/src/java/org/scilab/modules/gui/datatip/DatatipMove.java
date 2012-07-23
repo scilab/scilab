@@ -130,7 +130,7 @@ public class DatatipMove {
     * @param polylinesUid ArrayList containing all polylines unique identifiers.
     * @return Array containing all values of x in double precision
     */
-    private static double[] getPolylineDataX (Integer indexToMove, ArrayList<String> polylinesUid) {
+    public static double[] getPolylineDataX (Integer indexToMove, ArrayList<String> polylinesUid) {
         String polylineUid = polylinesUid.get (indexToMove / 2);
         double[] DataX = (double[]) PolylineData.getDataX (polylineUid);
         return DataX;
@@ -143,7 +143,7 @@ public class DatatipMove {
     * @param polylinesUid ArrayList containing all polylines unique identifiers.
     * @return Array containing all values of y in double precision
     */
-    private static double[] getPolylineDataY (Integer indexToMove, ArrayList<String> polylinesUid) {
+    public static double[] getPolylineDataY (Integer indexToMove, ArrayList<String> polylinesUid) {
         String polylineUid = polylinesUid.get (indexToMove / 2);
         double[] DataY = (double[]) PolylineData.getDataY (polylineUid);
         return DataY;

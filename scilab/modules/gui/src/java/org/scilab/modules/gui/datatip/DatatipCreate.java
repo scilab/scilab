@@ -128,9 +128,9 @@ public class DatatipCreate {
 
         DecimalFormat numDecimal = new DecimalFormat("#.#####");
         String datatipLabelX = numDecimal.format(graphicCoord[0]);
-        datatipLabelX = "X:" + datatipLabelX;
+        datatipLabelX = " X:" + datatipLabelX + "  ";
         String datatipLabelY = numDecimal.format(graphicCoord[1]);
-        datatipLabelY = "Y:" + datatipLabelY;
+        datatipLabelY = " Y:" + datatipLabelY + "  ";
         String[] datatipLabel = { datatipLabelX , datatipLabelY };
         return datatipLabel;
     }
@@ -169,9 +169,9 @@ public class DatatipCreate {
     * @param datatipid datatip unique identifier to get its coordinates
     * @return ArrayList containing all created datatips coordinates updated
     */
-    public static ArrayList<Double> getAllDatatipsCoord (ArrayList<Double> datatipsCoord, String datatipUid) {
+    public static ArrayList<Double> getAllDatatipsCoord (ArrayList<Double> datatipsCoord, String markerUid) {
 
-        Double[] graphicCoord = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_POSITION__);
+        Double[] graphicCoord = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
         datatipsCoord.add(graphicCoord[0]);
         datatipsCoord.add(graphicCoord[1]);
         return datatipsCoord;
