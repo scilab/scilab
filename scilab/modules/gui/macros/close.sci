@@ -23,7 +23,7 @@ if rhs < 1 then
 else 
   if type(h) == 9 then // Graphics handle
     delete(h);
-  elseif type(h) == 1 then // Assumed to be a old TK figure
+  elseif type(h) == 1 then // Assumed to be an old TK figure
     ierr = execstr("figureExists = ~isempty(find(winsid()==get(h,""figure_id"")))", "errcatch");
     if ~ierr & figureExists then
       delete(scf(h));

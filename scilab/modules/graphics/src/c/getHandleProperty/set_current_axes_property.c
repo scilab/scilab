@@ -67,7 +67,7 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
-        Scierror(999, _("Wrong value for '%s' property: Must be a handle on a axes.\n"), "current_axes");
+        Scierror(999, _("Wrong value for '%s' property: Must be a handle on axes.\n"), "current_axes");
         return SET_PROPERTY_ERROR;
     }
 

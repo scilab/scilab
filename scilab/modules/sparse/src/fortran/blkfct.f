@@ -210,7 +210,7 @@ C
 C           -----------------------------------------------------
 C           SET UP INDMAP(*) TO MAP THE ENTRIES IN UPDATE COLUMNS
 C           TO THEIR CORRESPONDING POSITIONS IN UPDATED COLUMNS, 
-C           RELATIVE THE THE BOTTOM OF EACH UPDATED COLUMN.
+C           RELATIVE THE BOTTOM OF EACH UPDATED COLUMN.
 C           -----------------------------------------------------
             CALL  LDINDX ( JLEN, LINDX(JXPNT), INDMAP )
 C

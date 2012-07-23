@@ -223,7 +223,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     }
 
     /**
-     * Add a new line the the History Browser
+     * Add a new line to the History Browser
      * @param lineToAppend the line to append
      */
     public static void appendLine(String lineToAppend) {
@@ -243,7 +243,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     }
 
     /**
-     * Add a new line the the History Browser
+     * Add a new line to the History Browser
      * @param lineToAppend the line to append
      * @param expand do we need to expand all session nodes?
      */

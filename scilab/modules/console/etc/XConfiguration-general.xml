@@ -178,7 +178,7 @@
           <action key="" description="_(Line numbering)" name="scinotes-line-numbering"/>
         </action-folder>
         <!--action-folder name="Xcos" xconf-uid="xcos">
-          <action key="OSSCKEY S" description="_(Save diagramm)" name="xcos-save"/>
+          <action key="OSSCKEY S" description="_(Save diagram)" name="xcos-save"/>
         </action-folder>
         <action-folder name="Variable Browser" xconf-uid="browsevar">
           <action key="OSSCKEY S" description="_(Save)" name="variablebrowser-save"/>

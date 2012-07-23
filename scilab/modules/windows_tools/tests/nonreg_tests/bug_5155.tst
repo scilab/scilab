@@ -14,7 +14,7 @@
 // <-- Short Description -->
 // Scilab windows 32 bits version requires CPU SSE 2 instructions.
 
-// Install Scilab on a old pentium without SSE 2 instructions and try to launch it.
+// Install Scilab on an old pentium without SSE 2 instructions and try to launch it.
 
 // 1+1
 

@@ -626,7 +626,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Get the the time where the file associated with this pane
+     * Get the time where the file associated with this pane
      * has been modified.
      * @return the last modified time or 0
      */

@@ -816,7 +816,7 @@ endfunction
 // neldermead_istorestart --
 //   Returns 1 if the optimization is to restart.
 // Arguments
-//   istorestart : %t of the the optimization is to restart.
+//   istorestart : %t of the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_istorestart ( this )
     status = optimbase_get ( this.optbase , "-status" );
@@ -839,7 +839,7 @@ endfunction
 //   Returns 1 if the optimization is to restart.
 //   Use kelleystagnation as a criteria for restart.
 // Arguments
-//   istorestart : %t of the the optimization is to restart.
+//   istorestart : %t of the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_isrkelley ( this )
     istorestart = %f
@@ -854,14 +854,14 @@ endfunction
 // neldermead_isroneill --
 //   Returns 1 if the optimization is to restart.
 //   Use O'Neill method as a criteria for restart.
-//   It is a axis by axis search for optimality.
+//   It is an axis by axis search for optimality.
 // Arguments
 //   xopt : the optimum, as a st of n values
 //   fopt : function value at optimum
 //   eps : a small value
 //   step : a list of n values, representing
 //     the "size" of each parameter
-//   istorestart : %t if the the optimization is to restart.
+//   istorestart : %t if the optimization is to restart.
 //
 function [ this , istorestart ] = neldermead_isroneill ( this )
     n = optimbase_cget ( this.optbase , "-numberofvariables" );

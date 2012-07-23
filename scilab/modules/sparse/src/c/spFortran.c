@@ -866,8 +866,8 @@ sfSolveTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTOR
  *  PrintReordered  <input>  (long *) [LOGICAL]
  *      Indicates whether the matrix should be printed out in its original
  *      form, as input by the user, or whether it should be printed in its
- *      reordered form, as used by the matrix routines.  A zero indicates that
- *      the matrix should be printed as inputed, a one indicates that it
+ *      reordered form, as used by the matrix routines.  Zero indicates that
+ *      the matrix should be printed as inputed, one indicates that it
  *      should be printed reordered.
  *  Data  <input>  (long *) [LOGICAL]
  *      Boolean flag that when false indicates that output should be

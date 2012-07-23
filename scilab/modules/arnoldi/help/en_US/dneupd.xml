@@ -164,7 +164,7 @@
       V, IPARAM, IPNTR, WORKD, WORKL, LWORKL, INFO must be passed directly to
       DNEUPD following the last call to DNAUPD . 
     </para>
-    <para>These arguments MUST NOT BE MODIFIED between the the last call to
+    <para>These arguments MUST NOT BE MODIFIED between the last call to
       DNAUPD and the call to DNEUPD . 
     </para>
     <para>Three of these parameters (V, WORKL, INFO) are also output

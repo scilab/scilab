@@ -149,7 +149,7 @@
       patch. The recall type and properties are recovered from the given
       handles:
     </para>
-    <para>when called without handle argument (or with a handle on a axes
+    <para>when called without handle argument (or with a handle on an axes
       entity) the function first build the vectors of handle on polylines
       entities which are the children of the given axes.
     </para>

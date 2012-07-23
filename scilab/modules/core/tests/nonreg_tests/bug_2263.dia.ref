@@ -4,7 +4,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2263
 //
 // <-- Short Description -->
-//    Suppose you want to call a arbitrary scilab function "test". But you want the
+//    Suppose you want to call an arbitrary scilab function "test". But you want the
 //    outputs from this function be stored in a matlab-like struct, for example,
 //    [out.t1,out.t2,out.t3,out.t4]=test(1)
 //    This works fine, but if you have a nested structure (out.a.XXX) than scilab is

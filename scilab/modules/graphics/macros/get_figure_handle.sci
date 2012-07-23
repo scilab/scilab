@@ -25,7 +25,7 @@ function [fig]=get_figure_handle(index)
   curFig = gcf();
   fig = scf(index);
   
-  // scf sets the the figure, so switch back to curFig
+  // scf sets the figure, so switch back to curFig
   scf(curFig);
 
 endfunction

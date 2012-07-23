@@ -84,7 +84,7 @@ public class";
 /**
 * completion function on all types for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchAllDictionaries(char *somechars);
@@ -94,7 +94,7 @@ char **searchAllDictionaries(char *somechars);
 /**
 * completion function on Functions for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchFunctionsDictionary(char *somechars);
@@ -104,7 +104,7 @@ char **searchFunctionsDictionary(char *somechars);
 /**
 * completion function on command words for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchCommandsDictionary(char *somechars);
@@ -114,7 +114,7 @@ char **searchCommandsDictionary(char *somechars);
 /**
 * completion function on Macros in libraries for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchMacrosDictionary(char *somechars);
@@ -124,7 +124,7 @@ char **searchMacrosDictionary(char *somechars);
 /**
 * completion function on Variables for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchVariablesDictionary(char *somechars);
@@ -134,7 +134,7 @@ char **searchVariablesDictionary(char *somechars);
 /**
 * completion function on files for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchFilesDictionary(char *somechars);
@@ -145,7 +145,7 @@ char **searchFilesDictionary(char *somechars);
 * completion function on files for scilab
 * @param[in] the line before the caret
 * @param[in] the part
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern);
@@ -155,7 +155,7 @@ char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern);
 /**
 * completion handle graphics properties for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public";
 char **searchHandleGraphicsPropertiesDictionary(char *somechars);

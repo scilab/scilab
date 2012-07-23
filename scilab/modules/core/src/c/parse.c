@@ -667,7 +667,7 @@ L35:
 L36:
     if (C2F(com).sym == lparen || C2F(com).sym == dot)
     {
-        /* begining of a a new index list */
+        /* begining of a new index list */
         /* first memorize the previous one */
         if (excnt > 1)
         {

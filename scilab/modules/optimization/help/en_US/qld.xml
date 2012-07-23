@@ -143,7 +143,7 @@
     </informalequation>
     <para>
       This function requires <literal>Q</literal> to be positive definite,
-      if it is not the case, one may use the The contributed toolbox "<emphasis role="bold">quapro</emphasis>".
+      if it is not the case, one may use the contributed toolbox "<emphasis role="bold">quapro</emphasis>".
     </para>
   </refsection>
   <refsection>

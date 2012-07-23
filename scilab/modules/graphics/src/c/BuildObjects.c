@@ -1796,7 +1796,7 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
 
 /**sciConstructCompound
  * constructs a Compound of entities
- * do only a association with a parent and a handle reservation !
+ * do only an association with a parent and a handle reservation !
  * check for valid handle can be done using CheckForCompound
  */
 char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types with definition */

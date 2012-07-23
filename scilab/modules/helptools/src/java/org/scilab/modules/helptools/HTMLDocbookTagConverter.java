@@ -683,7 +683,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
-     * Handle a option
+     * Handle an option
      * @param attributes the tag attributes
      * @param contents the tag contents
      * @return the HTML code

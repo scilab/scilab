@@ -530,7 +530,7 @@ static int sci_strcat_one_rhs(char *fname)
 /*-------------------------------------------------------------------------------------*/
 static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 {
-    /* strcat([],'A') returns a empty string matrix */
+    /* strcat([],'A') returns an empty string matrix */
     double *Input_String_One = NULL;
     int Row_One = 0, Col_One = 0;
 

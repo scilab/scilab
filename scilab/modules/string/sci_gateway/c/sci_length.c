@@ -215,7 +215,7 @@ static int lengthStrings(int *piAddressVar)
         {
             int j = 0;
             /* bug 4727 */
-            /* A scilab string is a array of characters */
+            /* A scilab string is an array of characters */
             /* we can put '\0' in a scilab string */
             for (j = 0; j < lenStVarOne[i]; j++)
             {

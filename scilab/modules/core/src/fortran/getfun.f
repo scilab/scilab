@@ -407,7 +407,7 @@ c
       l=l+1
 
       if(lunit.eq.0) goto 33
-c     caller = 'getf' add a empty line for backward compatiblity
+c     caller = 'getf' add an empty line for backward compatiblity
       istk(l)=eol
       istk(l+1)=blank
       l=l+2

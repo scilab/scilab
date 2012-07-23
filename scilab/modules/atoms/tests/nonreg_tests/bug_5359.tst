@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5359
 //
 // <-- Short Description -->
-// When a atoms module cannot be loaded at startup, fileseps in the path
+// When an atoms module cannot be loaded at startup, fileseps in the path
 // displayed in the error message are eaten.
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");

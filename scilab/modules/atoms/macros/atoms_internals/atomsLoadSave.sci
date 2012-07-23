@@ -57,7 +57,7 @@ function  atomsLoadSave(loaded_mat)
     loaded_txt = pathconvert(TMPDIR+"/atoms/loaded.txt",%F);
     loaded_bin = pathconvert(TMPDIR+"/atoms/loaded.bin",%F);
 
-    // Build the the loaded_str
+    // Build the loaded_str
     // =========================================================================
 
     if ~ isempty(loaded_mat) then

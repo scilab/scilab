@@ -45,5 +45,5 @@ function %_Matplot()
    a.title.font_size = 2;
    xtitle([ _("Matplot(M) scales axes with"); 
             _("indices of M''s components")], ..
-            _("For axes scaled with data, lease use Matplot1(..)") )
+            _("For axes scaled with data, please use Matplot1(..)") )
 endfunction

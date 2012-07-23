@@ -14,7 +14,7 @@
 // Arguments
 //   fun : the function to use
 //   method : the method to use, "forward" or "centered"
-//   data : user-defined data, added to the the function if provided
+//   data : user-defined data, added to the function if provided
 //
 function [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
   if ( this.nbve <> this.n+1 ) then

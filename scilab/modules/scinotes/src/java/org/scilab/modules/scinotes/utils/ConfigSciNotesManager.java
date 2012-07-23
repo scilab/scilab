@@ -258,7 +258,7 @@ public final class ConfigSciNotesManager {
 
     /**
      * Get all Style name
-     * @return a array list of all style name
+     * @return an array list of all style name
      */
     public static List<String> getAllStyleName() {
         List<String> stylesName = new ArrayList<String>();
@@ -1555,7 +1555,7 @@ public final class ConfigSciNotesManager {
 
     /**
      * Get all the recent opened files
-     * @return a array of uri
+     * @return an array of uri
      */
     public static List<File> getAllRecentOpenedFiles() {
         List<File> files = new ArrayList<File>();
@@ -1746,7 +1746,7 @@ public final class ConfigSciNotesManager {
      * Get the list of open files associated with an editor instance hashcode.
      * Only files that exist are returned.
      * @param editorID unique id of an editor instance
-     * @return a array of uri
+     * @return an array of uri
      */
     public static List<File> getOpenFilesByEditor(UUID editorID) {
         List<File> files = new ArrayList<File>();

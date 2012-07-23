@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3133
 //
 // <-- Short Description -->
-// After having rotated an axis with the rotation button (toolbar), Alpha and Theta rotation angles displayed in the info bar are not updated if previously you have change the rotation angle with the the rotation_angles property.
+// After having rotated an axis with the rotation button (toolbar), Alpha and Theta rotation angles displayed in the info bar are not updated if previously you have change the rotation angle with the rotation_angles property.
 
 plot3d();
 

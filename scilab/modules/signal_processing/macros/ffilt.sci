@@ -11,7 +11,7 @@
 function x=ffilt(ft,n,fl,fh)
 	
 	//x=ffilt(ft,n,fl,fh)
-	//Get n coefficients of a an FIR low-pass,
+	//Get n coefficients of an FIR low-pass,
 	//high-pass, band-pass, or stop-band filter
 	//  ft :Filter type where ft can take the values
 	//     :       'lp' for low-pass filter

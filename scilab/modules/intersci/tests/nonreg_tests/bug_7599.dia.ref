@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7599
 //
 // <-- Short Description -->
-// Intersci-n and intersci did not create code from a .desc file if it was not ended by a empty line.
+// Intersci-n and intersci did not create code from a .desc file if it was not ended by an empty line.
 //
 if getos() == 'Windows' then
   copyfile(SCI+"/modules/intersci/tests/nonreg_tests/bug_7599.desc", TMPDIR+"/bug_7599.desc");

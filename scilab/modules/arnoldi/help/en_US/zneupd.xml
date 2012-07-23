@@ -118,7 +118,7 @@
       V, IPARAM, IPNTR, WORKD, WORKL, LWORKL, RWORK, INFO must be passed
       directly to ZNEUPD following the last call to ZNAUPD. 
     </para>
-    <para>These arguments MUST NOT BE MODIFIED between the the last call to
+    <para>These arguments MUST NOT BE MODIFIED between the last call to
       ZNAUPD and the call to ZNEUPD. 
     </para>
     <para>Three of these parameters (V, WORKL and INFO) are also output

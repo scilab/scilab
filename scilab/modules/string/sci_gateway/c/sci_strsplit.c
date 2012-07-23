@@ -251,7 +251,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
                     {
                         int k = 0;
 
-                        /* checks that 2nd parameter is not a array of regexp pattern */
+                        /* checks that 2nd parameter is not an array of regexp pattern */
                         for (k = 0; k < m2 * n2; k++)
                         {
                             if (isValidRegExp(pStrsTwo[k]))

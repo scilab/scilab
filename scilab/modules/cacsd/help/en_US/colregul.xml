@@ -51,7 +51,7 @@
       Zeros at infinity of <literal>Sl</literal> are moved to <literal>beta</literal>;
     </para>
     <para>
-      <literal>Sl</literal> is a assumed to be a left invertible linear system (<literal>syslin</literal> list)
+      <literal>Sl</literal> is assumed to be a left invertible linear system (<literal>syslin</literal> list)
       in state-space representation with possibly a polynomial <literal>D</literal> matrix.
     </para>
   </refsection>
