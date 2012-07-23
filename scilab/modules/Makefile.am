@@ -38,7 +38,6 @@ data_structures \
 differential_equations \
 elementary_functions \
 integer \
-intersci \
 io \
 linear_algebra \
 localization \
@@ -180,7 +179,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \

@@ -157,18 +157,18 @@ CTAGS = ctags
 DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	elementary_functions functions_manager fileio mexlib functions \
 	parameters boolean cacsd signal_processing core call_scilab \
-	api_scilab data_structures differential_equations integer \
-	intersci io linear_algebra localization polynomials \
-	special_functions time windows_tools sparse completion \
-	history_manager string hdf5 fftw statistics dynamic_link \
-	console spreadsheet tclsci commons jvm action_binding \
-	graphic_objects renderer graphic_export gui graphics \
-	optimization symbolic randlib interpolation sound overloading \
-	m2sci development_tools compatibility_functions helptools \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	matio atoms graph xcos system_env ast symbol parse scinotes \
-	parallel modules_manager ui_data history_browser preferences \
-	xml types scicos_blocks scicos . javasci
+	api_scilab data_structures differential_equations integer io \
+	linear_algebra localization polynomials special_functions time \
+	windows_tools sparse completion history_manager string hdf5 \
+	fftw statistics dynamic_link console spreadsheet tclsci \
+	commons jvm action_binding graphic_objects renderer \
+	graphic_export gui graphics optimization symbolic randlib \
+	interpolation sound overloading m2sci development_tools \
+	compatibility_functions helptools umfpack demo_tools \
+	genetic_algorithms simulated_annealing matio atoms graph xcos \
+	system_env ast symbol parse scinotes parallel modules_manager \
+	ui_data history_browser preferences xml types scicos_blocks \
+	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -459,11 +459,11 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	elementary_functions functions_manager fileio mexlib functions \
 	parameters boolean cacsd signal_processing core call_scilab \
 	api_scilab data_structures differential_equations \
-	elementary_functions integer intersci io linear_algebra \
-	localization polynomials special_functions time windows_tools \
-	sparse completion history_manager output_stream string hdf5 \
-	fftw statistics dynamic_link console arnoldi spreadsheet \
-	tclsci commons jvm action_binding graphic_objects renderer \
+	elementary_functions integer io linear_algebra localization \
+	polynomials special_functions time windows_tools sparse \
+	completion history_manager output_stream string hdf5 fftw \
+	statistics dynamic_link console arnoldi spreadsheet tclsci \
+	commons jvm action_binding graphic_objects renderer \
 	graphic_export gui graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
@@ -531,7 +531,6 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
