@@ -95,7 +95,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -126,7 +126,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -157,7 +157,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -193,7 +193,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
