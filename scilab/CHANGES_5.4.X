@@ -202,6 +202,9 @@ Bug Fixes
 
 * Bug #11519 fixed - The colored lines in the legend of nyquist plot were inverted.
 
+* Bug #11537 fixed - In SciNotes it was not possible to modify font size with
+                     CTRL+scroll.
+
 
 Known Incompatibilities
 =======================
