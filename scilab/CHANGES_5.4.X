@@ -79,6 +79,22 @@ Statistics
   - Eigenvalues graph improved.
 
 
+Graphics
+========
+
+* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
+                     logarithm scale.
+
+* Bug #11332 fixed - Default usage of contour2d was producing some errors.
+
+* Bug #11333 fixed - Missing argument number checking in comet added.
+
+* Bug #11490 fixed - comet produced wrong display with matrix inputs.
+
+* Bug #11506 fixed - "Rendu d'équations mathématiques dans le graphique Scilab"
+                     were missing some closure tags in the examples.
+
+
 Bug Fixes
 =========
 
@@ -101,9 +117,6 @@ Bug Fixes
 
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
-* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
-                     logarithm scale.
-
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
                               when executed.
 
@@ -119,8 +132,6 @@ Bug Fixes
 * Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
-
-* Bug #11333 fixed - Missing argument number checking in comet added.
 
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
@@ -170,11 +181,6 @@ Bug Fixes
 
 * Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
                      something in the console.
-
-* Bug #11490 fixed - comet produced wrong display with matrix inputs.
-
-* Bug #11506 fixed - "Rendu d'équations mathématiques dans le graphique Scilab"
-                     were missing some closure tags in the examples.
 
 
 Known Incompatibilities
