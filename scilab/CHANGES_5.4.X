@@ -100,6 +100,9 @@ Graphics
 Bug Fixes
 =========
 
+* Bug #3235 fixed - In the bezout function, typo in the name of a variable.
+                    This made the calpol unitary test fail.
+
 * Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
                     was always calculated its own, arbitrary, internal value.
 
