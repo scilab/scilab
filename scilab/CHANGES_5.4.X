@@ -10,6 +10,8 @@ Xcos
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
 
+* Bug #11132 fixed - Some help pages were missing : standard_origin, ...
+
 * Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter
 
 * Bug #11518 fixed - CLR block-text left box when zooming.
