@@ -885,9 +885,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
 "динамічну систему.\n"
 
-msgid "Phase ()"
-msgstr "Фаза ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""

@@ -122,6 +122,9 @@ Bug Fixes
 
 * Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
 
+* Bug #10497 fixed - Some special characters were causing issues in the phaseplot
+                     localization.
+
 * Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared

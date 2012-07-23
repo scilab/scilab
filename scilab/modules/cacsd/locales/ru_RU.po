@@ -854,9 +854,6 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась линейная динамическая "
 "система.\n"
 
-msgid "Phase ()"
-msgstr "Фаза ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""

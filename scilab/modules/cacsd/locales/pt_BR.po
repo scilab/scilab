@@ -887,9 +887,6 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um sistema "
 "linear dinâmico.\n"
 
-msgid "Phase ()"
-msgstr "Fase ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""

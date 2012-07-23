@@ -803,9 +803,6 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém.\n"
 
-msgid "Phase ()"
-msgstr "Fáze ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu %d: Očekáván řádný systém.\n"

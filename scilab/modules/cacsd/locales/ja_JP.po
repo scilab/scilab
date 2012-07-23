@@ -823,9 +823,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 線形動的システムを指定してください.\n"
 
-msgid "Phase ()"
-msgstr "位相 ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません:  システムはプロパーであることが必要です.\n"

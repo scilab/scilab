@@ -1400,11 +1400,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/phaseplot.sci, line: 83
-msgid "Phase ()"
-msgstr ""
-
-#
 # File: macros/plzr.sci, line: 31
 # File: macros/plzr.sci, line: 39
 #, c-format
