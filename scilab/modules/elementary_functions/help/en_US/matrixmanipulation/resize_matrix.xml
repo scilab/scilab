@@ -82,7 +82,7 @@
 // number matrix
 myMat = 5 * rand( 3, 4 )
 myMat = resize_matrix( myMat, 3, 3 ) // reduce the matrix size
-myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create a integer matrix
+myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create an integer matrix
 myMatBoolean = resize_matrix( myMat, 2, 2, 'boolean' )
 myMatBoolean = resize_matrix( myMatBoolean, 3, 5 )
 

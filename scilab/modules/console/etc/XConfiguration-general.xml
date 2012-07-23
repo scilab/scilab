@@ -101,7 +101,7 @@
           <action key="" description="_(Open Scilab website)" name="console-scilab-website"/>
           <action key="" description="_(Open Online Help)" name="console-help-website"/>
           <action key="" description="_(Open Scilab wiki)" name="console-wiki-website"/>
-          <action key="" description="_(Open ATOM website)" name="console-atom-website"/>
+          <action key="" description="_(Open ATOMS website)" name="console-atom-website"/>
           <action key="" description="_(Open File Exchange website)" name="console-fileex-website"/>
           <action key="" description="_(Open Mailing lists)" name="console-ml-website"/>
           <action key="" description="_(Open Forge website)" name="console-forge-website"/>
@@ -173,7 +173,7 @@
           <action key="" description="_(Overwrite)" name="scinotes-overwrite"/>
           <action key="" description="_(Page setup)" name="scinotes-page-setup"/>
           <action key="" description="_(Close all)" name="scinotes-close-all"/>
-          <action key="" description="_(Close all but)" name="scinotes-close-all-but"/>
+          <action key="" description="_(Close all but this)" name="scinotes-close-all-but"/>
           <action key="" description="_(Convert quote to double quote)" name="scinotes-double-quote"/>
           <action key="" description="_(Line numbering)" name="scinotes-line-numbering"/>
         </action-folder>

@@ -22,7 +22,7 @@ function M=%i_i_s(varargin)
       f=getfield(1,M);f(1)="ce"
       setfield(1,f,M)
     end
-  elseif rhs>4 then//more than 2 indices: insertion of a integer in a matrix of numbers
+  elseif rhs>4 then//more than 2 indices: insertion of an integer in a matrix of numbers
     M=varargin($)
     if M<>[] then
       varargin($-1)=double(varargin($-1)),

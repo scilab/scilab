@@ -738,7 +738,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
     }
     else
     {
-        addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or a integer scalar expected.\n"),
+        addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or an integer scalar expected.\n"),
             "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
         return sciErr;
     }

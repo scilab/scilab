@@ -105,7 +105,7 @@ int sci_strsplit(char *fname,unsigned long fname_len)
         iValueThree = (int)dValueThree;
         if ((double) iValueThree != dValueThree)
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 3);
+            Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 3);
             return 0;
         }
 

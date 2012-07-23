@@ -60,7 +60,7 @@
       <varlistentry>
         <term>k</term>
         <listitem>
-          <para>a integer, number of eigenvalues to be computed</para>
+          <para>an integer, number of eigenvalues to be computed</para>
         </listitem>
       </varlistentry>
       <varlistentry>

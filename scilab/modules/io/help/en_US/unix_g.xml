@@ -42,7 +42,7 @@
       <varlistentry>
         <term>stat</term>
         <listitem>
-          <para>a integer, the error status. stat=0 if no error occurred</para>
+          <para>an integer, the error status. stat=0 if no error occurred</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -475,16 +475,16 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     //NCV :
     //*************************
     if(typeof(ncv) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "speigs", 7, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
     end
 
     //check if ncv is complex?
     if(~isreal(ncv))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "speigs", 7, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
     end
 
     if(size(ncv, "*") > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be a integer scalar.\n"), "speigs", 7, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
     end
 
     if(isempty(ncv))
@@ -509,12 +509,12 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     //CHOL :
     //*************************
     if(typeof(cholB) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "speigs", 8, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
     end
 
     //check if chol is complex?
     if(~isreal(cholB))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "speigs", 8, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
     end
 
     if(size(cholB, "*") <> 1 | cholB <> floor(cholB) | cholB > 1)
@@ -522,7 +522,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     end
 
     if(cholB <> floor(cholB) | cholB > 1)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "speigs", 8, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
     end
 
     //*************************
@@ -570,7 +570,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
 
     if(cholB)
         if(~and(triu(B) == B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmmetric or hermitian, definite, semi positive.\n"), "speigs", 2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "speigs", 2));
         end
         R = B;
         Rprime = R';
@@ -578,7 +578,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
 
     if(~cholB & matB <> 0 & iparam(7) == 1)
         if(~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparses matrices.\n"), "speigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "speigs"));
         else
             [R,P] = spchol(B);
         end
@@ -931,16 +931,16 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     //NCV :
     //*************************
     if(typeof(ncv) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "feigs", 8, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
     end
 
     //check if ncv is complex?
     if(~isreal(ncv))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "feigs", 8, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
     end
 
     if(size(ncv,'*') > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be a integer scalar.\n"), "feigs", 8, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
     end
 	
 
@@ -971,12 +971,12 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     //CHOL :
     //*************************
     if(typeof(cholB) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "feigs", 9, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 9, "opts.cholB"));
     end
 
     //check if chol is complex?
     if(~isreal(cholB))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "feigs", 9, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 9, "opts.cholB"));
     end
 
     if(size(cholB,'*') <> 1 | cholB <> floor(cholB) | cholB > 1)
@@ -1027,7 +1027,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
 
     if(cholB)
         if(~and(triu(B) == B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmmetric or hermitian, definite, semi positive.\n"), "feigs", 2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "feigs", 2));
         end
         R = B;
         Rprime = R';
@@ -1035,7 +1035,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
 
     if(~cholB & matB <> 0 & iparam(7) == 1)
         if(~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparses matrices.\n"), "feigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "feigs"));
         else
             if(issparse(B))
                 [R,P] = spchol(B);

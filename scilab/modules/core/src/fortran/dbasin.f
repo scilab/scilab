@@ -224,7 +224,7 @@ c     end of number definition
       return
       end
       subroutine s2int(str,nlz,v,ir,ierr)
-c if the first characters of str contain representation of a integer >0
+c if the first characters of str contain representation of an integer >0
 c     s2int returns 
 c        in v the integer value, 
 c        in nlz the number of leading zeros

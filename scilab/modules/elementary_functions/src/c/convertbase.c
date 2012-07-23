@@ -180,7 +180,7 @@ char **convertMatrixOfDec2Base(const double* dValues, int mn,
             maxVal = dValues[i];
         }
 
-        /* check if it is a integer value */
+        /* check if it is an integer value */
         if (dValues[i] != (double)iValue)
         {
             *err = ERROR_CONVERTBASE_NOT_INTEGER_VALUE;

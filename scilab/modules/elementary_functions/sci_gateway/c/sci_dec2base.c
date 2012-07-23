@@ -71,7 +71,7 @@ int sci_dec2base(char *fname, unsigned long fname_len)
 
         if (dParamThree != (double)iParamThree)
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 3);
+            Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 3);
             return 0;
         }
 
@@ -88,7 +88,7 @@ int sci_dec2base(char *fname, unsigned long fname_len)
 
     if (!isDoubleType(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A integer value expected.\n"), fname, 2);
+        Scierror(999,_("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
         return 0;
     }
 
@@ -107,7 +107,7 @@ int sci_dec2base(char *fname, unsigned long fname_len)
     iBaseUsed = (unsigned int)dBaseUsed;
     if (dBaseUsed != (double)iBaseUsed)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
         return 0;
     }
 

@@ -139,7 +139,7 @@ int sci_or(char *fname, unsigned long l)
                 opt = (int)dValue;
                 if (dValue != (double)opt)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
                     return 0;
                 }
 
