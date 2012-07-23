@@ -76,7 +76,7 @@ public abstract class SciConsole extends JPanel {
     /**
      * Maximum length of a command send to Scilab
      */
-    private static final int MAX_CMD_LENGTH = 512;
+    private static final int MAX_CMD_LENGTH = 4096;
 
     private static Map<KeyStroke, String> actionKeys;
     private static final Map<String, String> actionToName;
@@ -541,8 +541,7 @@ public abstract class SciConsole extends JPanel {
 
             // Store the command in the buffer so that Scilab can read it
             if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
-                config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
-                                              + " characters long): could not send it to Scilab\n");
+                config.getOutputView().append(String.format(Messages.gettext("Command is too long (more than %d characters long): could not send it to Scilab\n"), MAX_CMD_LENGTH));
                 ((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("", false);
                 return;
             }

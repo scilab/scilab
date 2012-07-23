@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -42,7 +42,7 @@ IERODE_struct C2F(ierode);
 /* manages CTRL-C event */
 BASBRK_struct C2F(basbrk);
 
-/** 
+/**
 * simpmd : rational fraction simplification mode
 * used in polynomials and inisci.f (core)
 */
@@ -67,16 +67,19 @@ DBG_struct C2F(dbg);
 TYPE_struct C2F(typnams);
 MPROT_struct C2F(mprot);
 
-struct {
+struct
+{
     int byptr[40], nbyptr;
 } C2F(ippty);
 
-struct {
+struct
+{
     int bkflag;
-    char bckbuf[512];
+    char bckbuf[4096];
 } C2F(keepme);
 
-struct {
+struct
+{
     int lwk;
 } C2F(ptkeep);
 /*-----------------------------------------------------------------------------------*/
@@ -84,14 +87,14 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
     switch (reason)
     {
-    case DLL_PROCESS_ATTACH:
-        break;
-    case DLL_PROCESS_DETACH:
-        break;
-    case DLL_THREAD_ATTACH:
-        break;
-    case DLL_THREAD_DETACH:
-        break;
+        case DLL_PROCESS_ATTACH:
+            break;
+        case DLL_PROCESS_DETACH:
+            break;
+        case DLL_THREAD_ATTACH:
+            break;
+        case DLL_THREAD_DETACH:
+            break;
     }
     return 1;
 }

@@ -15,7 +15,7 @@ c
       include 'stack.h'
 c     --- for myback 
       integer lrecl,bkflag
-      parameter (lrecl=512) 
+      parameter (lrecl=4096) 
       character bckbuf*(lrecl)
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/
@@ -83,7 +83,7 @@ C     this routine is only used in getfun where lrecl
 C     is also set 
       include 'stack.h'
       integer lrecl,bkflag
-      parameter (lrecl=512) 
+      parameter (lrecl=4096) 
       character bckbuf*(lrecl)
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/

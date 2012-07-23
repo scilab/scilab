@@ -205,6 +205,9 @@ Bug Fixes
 * Bug #11537 fixed - In SciNotes it was not possible to modify font size with
                      CTRL+scroll.
 
+* Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
+                     fixed to 4096.
+
 
 Known Incompatibilities
 =======================
