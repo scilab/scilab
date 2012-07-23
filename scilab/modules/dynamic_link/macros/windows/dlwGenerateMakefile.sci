@@ -68,9 +68,9 @@ function Makename = dlwGenerateMakefile(name, ..
     libname = 'lib' + libname;
   end
   
-  if getenv('__USE_DEPRECATED_STACK_FUNCTIONS__', 'NO') == "YES" then
-    cflags = cflags + " -D__USE_DEPRECATED_STACK_FUNCTIONS__";
-  end
+  //if getenv('__USE_DEPRECATED_STACK_FUNCTIONS__', 'NO') == "YES" then
+  //  cflags = cflags + " -D__USE_DEPRECATED_STACK_FUNCTIONS__";
+  //end
   
   ilib_gen_Make_win32(name, tables, files, libs, libname, Makename, with_gateway, ldflags, cflags, fflags)
 

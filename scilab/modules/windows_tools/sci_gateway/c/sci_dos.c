@@ -24,7 +24,6 @@
 #include "freeArrayOfString.h"
 #include "getshortpathname.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
