@@ -36,6 +36,7 @@ int sci_xcosPalGenerateIcon(char *fname, unsigned long l);
 int sci_xcosConfigureXmlFile(char *fname, unsigned long l);
 int sci_xcosAddToolsMenu(char *fname, unsigned long l);
 int sci_xcosUpdateBlock(char *fname, unsigned long l);
+int sci_loadXcos(char *fname, unsigned long l);
 
 /*--------------------------------------------------------------------------*/
 /**
