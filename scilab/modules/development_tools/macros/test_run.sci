@@ -847,7 +847,6 @@ if try_catch & grep(dia,"<--Error on the test script file-->") <> [] then
   status.details = details;
   if params.show_error == %t then
     status.details = [ status.details; dia($-10:$) ]
-    mprintf("%s\n",dia($-10:$));
   end
 
   return;
@@ -880,7 +879,6 @@ if grep(dia_tmp,"error on test")<>[] then
   status.details = details;
   if params.show_error == %t then
     status.details = [ status.details; dia($-10:$) ]
-    mprintf("%s\n",dia($-10:$));
   end
   return;
 end
