@@ -653,7 +653,7 @@ msgstr ""
 #
 # File: macros/eigs.sci, line: 988
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %S must be a integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"
 msgstr ""
 
 #

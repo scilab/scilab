@@ -976,7 +976,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
 
     //check if chol is complex?
     if(~isreal(cholB))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %S must be a integer scalar.\n"), "feigs", 9, "opts.cholB"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), "feigs", 9, "opts.cholB"));
     end
 
     if(size(cholB,'*') <> 1 | cholB <> floor(cholB) | cholB > 1)
