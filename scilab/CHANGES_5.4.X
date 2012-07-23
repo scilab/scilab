@@ -625,6 +625,8 @@ ATOMS
 * Bug #10957 fixed - atomsInstall required a network connection to install
                      a local package.
 
+* Bug #11062 fixed - atomsGetInstalledPath function moved as a public function
+
 Call_Scilab
 ===========
 
