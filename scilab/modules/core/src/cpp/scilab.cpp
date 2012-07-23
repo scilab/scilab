@@ -87,6 +87,11 @@ extern "C"
 #include "filemanager.hxx"
 #include "runner.hxx"
 
+
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
+
 #define INTERACTIVE     -1
 
 const wchar_t *prog_name;
@@ -154,6 +159,7 @@ static void checkForLinkerErrors(void)
     */
 #define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
 #define LINKER_ERROR_2 "If you do not know what it means, please report a bug on http://bugzilla.scilab.org/. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
+
     if (getScilabMode() != SCILAB_NWNI)
     {
         if (isItTheDisabledLib())
@@ -560,7 +566,24 @@ int main(int argc, char *argv[])
 
     prog_name = to_wide_string(argv[0]);
 
+
+    /* This bug only occurs under Linux 32 bits
+     * See: http://wiki.scilab.org/Scilab_precision
+     */
+#if defined(netbsd) || defined(freebsd)
+    /* floating point exceptions */
+    fpsetmask(0);
+#endif
+
+#ifdef WITHOUT_GUI
+    /* Building Scilab-cli-bin. We won't ever had the gui nor the jvm */
+    consoleMode = true;
+    noJvm = true;
+    setScilabMode(SCILAB_NWNI);
+#else
     setScilabMode(SCILAB_STD);
+#endif
+
     get_option(argc, argv, &iFileIndex, &iLangIndex);
 
     if (iFileIndex >= argc || iLangIndex >= argc)
