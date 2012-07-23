@@ -631,7 +631,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of LM, SM, LA, SA or BE.\n"
+" Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
 
 #
@@ -639,7 +639,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of LM, SM, LR, SR, LI or SI.\n"
+" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
 msgstr ""
 
 #

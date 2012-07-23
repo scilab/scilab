@@ -871,9 +871,9 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
         end
         if(strcmp(which,'LM') ~= 0 & strcmp(which,'SM') ~= 0  & strcmp(which,'LR') ~= 0 & strcmp(which,'SR') ~= 0 & strcmp(which,'LI') ~= 0 & strcmp(which,'SI') ~= 0 & strcmp(which,'LA') ~= 0 & strcmp(which,'SA') ~= 0 & strcmp(which,'BE') ~= 0)
             if(a_real & Breal & a_sym)
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of LM, SM, LA, SA or BE.\n"), "feigs", 5));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s or %s.\n"), "feigs", 5, "LM", "SM", "LA", "SA", "BE"));
             else
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of LM, SM, LR, SR, LI or SI.\n"), "feigs", 5));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s, %s or %s.\n"), "feigs", 5, "LM", "SM", "LR", "SR", "LI", "SI"));
             end
         end
         if((~a_real | ~Breal | ~a_sym) & (strcmp(which,'LA') == 0 | strcmp(which,'SA') == 0 | strcmp(which,'BE') == 0))
