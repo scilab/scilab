@@ -42,7 +42,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <code>r=isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
+      <function>r=isdir(path)</function> checks if <varname>path</varname> is a path to a directory.
     </para>
   </refsection>
   <refsection>
