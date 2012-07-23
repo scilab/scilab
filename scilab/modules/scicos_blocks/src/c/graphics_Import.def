@@ -28,7 +28,6 @@ ConstructPolyline
 DestroyPolyline
 ConstructSegs
 ConstructArc
-ConstructRectangle
 sciSetName
 sciSetFontSize
 sciSetText

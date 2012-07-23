@@ -909,24 +909,13 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
         return NULL;
     }
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&type);
-
-    if (strcmp(type, __GO_AXES__) != 0)
-    {
-        Scierror(999, _("The parent has to be a SUBWIN\n"));
-        releaseGraphicObjectProperty(__GO_TYPE__, type, jni_string, 1);
-        return (char *)NULL;
-    }
-    releaseGraphicObjectProperty(__GO_TYPE__, type, jni_string, 1);
-    type = NULL;
-
     pobjUID = (char *)createGraphicObject(__GO_RECTANGLE__);
 
     /*
      * Sets the rectangle's parent in order to initialize the former's Contoured properties
      * with the latter's values (cloneGraphicContext call below)
      */
-    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
+    //setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
     upperLeftPoint[0] = x;
     upperLeftPoint[1] = y;
@@ -974,13 +963,13 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     }
 
     /* Parent reset to the null object */
-    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
+    //setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
     /*
      * Sets the Axes as the rectangle's parent and adds the rectangle to
      * its parent's list of children.
      */
-    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
+    //setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     return pobjUID;
 }
