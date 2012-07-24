@@ -169,7 +169,9 @@ Bug Fixes
                               when executed.
 
 * Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
-                      repercuted.
+                     repercuted.
+
+* Bug #10865 fixed - At start-up filebrowser could have the focus.
 
 * Bug #10915 fixed - It was not possible to select several files when using
                      button "Open file" in console toolbar.
