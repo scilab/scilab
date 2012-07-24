@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "scirun.h"
 #include "callinterf.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "recursionFunction.h"
 #include "exitCodeValue.h"

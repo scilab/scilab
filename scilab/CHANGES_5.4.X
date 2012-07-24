@@ -107,6 +107,8 @@ Bug Fixes
 
 * Bug #3787 fixed - Invalid calling sequences removed from the schur help page.
 
+* Bug #6154, #10850 fixed - Update help pages of arnoldi package.
+
 * Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
                     was always calculated its own, arbitrary, internal value.
 
@@ -164,6 +166,8 @@ Bug Fixes
 
 * Bug #11385 fixed - length() returned a wrong error message when called without
                      input argument.
+
+* Bug #11388 fixed - Calling xsetech(frect=[0,0,100,100]) failed.
 
 * Bug #11396 fixed - Overloading: toto([])=[] with toto being an mlist failed.
 

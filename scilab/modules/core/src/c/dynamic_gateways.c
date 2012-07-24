@@ -1,15 +1,15 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Allan CORNET
-* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 #include <stdlib.h>
 #include "dynamic_gateways.h"
 //#include "callDynamicGateway.h"
@@ -182,11 +182,7 @@ static char* gatewayname_preferences = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_preferences(void)
 {
-    return gw_dynamic_generic(PREFERENCES_MODULE_NAME,
-        &dynlibname_preferences,
-        &gatewayname_preferences,
-        &hPreferencesLib,
-        &ptr_gw_preferences);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* xml module */
@@ -222,11 +218,19 @@ static char* gatewayname_history_browser = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_history_browser(void)
 {
-    return gw_dynamic_generic(HISTORY_BROWSER_MODULE_NAME,
-        &dynlibname_history_browser,
-        &gatewayname_history_browser,
-        &hHistory_browserLib,
-        &ptr_gw_history_browser);
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+/* external_objects module */
+#define EXTERNAL_OBJECTS_MODULE_NAME "external_objects"
+static DynLibHandle hExternal_ObjectsLib = NULL;
+static PROC_GATEWAY ptr_gw_external_objects = NULL;
+static char* dynlibname_external_objects = NULL;
+static char* gatewayname_external_objects = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_external_objects(void)
+{
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)

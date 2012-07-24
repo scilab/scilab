@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="external_objects">
+  
+  <!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ Don't touch if you do not know what you are doing
+
+-->
+  <PRIMITIVE gatewayId="71" primitiveId="1" primitiveName="%_EObj_e" />
+  <PRIMITIVE gatewayId="71" primitiveId="2" primitiveName="%_EObj_6" />
+  <PRIMITIVE gatewayId="71" primitiveId="3" primitiveName="%_EClass_6" />
+  <PRIMITIVE gatewayId="71" primitiveId="4" primitiveName="%_EObj_p" />
+  <PRIMITIVE gatewayId="71" primitiveId="5" primitiveName="%_EClass_e" />
+  <PRIMITIVE gatewayId="71" primitiveId="6" primitiveName="%_EClass_p" />
+  <PRIMITIVE gatewayId="71" primitiveId="7" primitiveName="%c_i__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="8" primitiveName="%s_i__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="9" primitiveName="%b_i__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="10" primitiveName="%i_i__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="11" primitiveName="%_EObj_a_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="12" primitiveName="%_EObj_a_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="13" primitiveName="%_EObj_a_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="14" primitiveName="%_EObj_a_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="15" primitiveName="%_EObj_a__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="16" primitiveName="%c_a__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="17" primitiveName="%s_a__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="18" primitiveName="%b_a__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="19" primitiveName="%i_a__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="20" primitiveName="%_EObj_d_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="21" primitiveName="%_EObj_d_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="22" primitiveName="%_EObj_d_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="23" primitiveName="%_EObj_d_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="24" primitiveName="%_EObj_d__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="25" primitiveName="%c_d__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="26" primitiveName="%s_d__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="27" primitiveName="%b_d__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="28" primitiveName="%i_d__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="29" primitiveName="%_EObj_g_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="30" primitiveName="%_EObj_g_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="31" primitiveName="%_EObj_g_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="32" primitiveName="%_EObj_g_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="33" primitiveName="%_EObj_g__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="34" primitiveName="%c_g__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="35" primitiveName="%s_g__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="36" primitiveName="%b_g__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="37" primitiveName="%i_g__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="38" primitiveName="%_EObj_h_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="39" primitiveName="%_EObj_h_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="40" primitiveName="%_EObj_h_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="41" primitiveName="%_EObj_h_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="42" primitiveName="%_EObj_h__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="43" primitiveName="%c_h__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="44" primitiveName="%s_h__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="45" primitiveName="%b_h__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="46" primitiveName="%i_h__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="47" primitiveName="%_EObj_j_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="48" primitiveName="%_EObj_j_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="49" primitiveName="%_EObj_j_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="50" primitiveName="%_EObj_j_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="51" primitiveName="%_EObj_j__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="52" primitiveName="%c_j__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="53" primitiveName="%s_j__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="54" primitiveName="%b_j__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="55" primitiveName="%i_j__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="56" primitiveName="%_EObj_k_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="57" primitiveName="%_EObj_k_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="58" primitiveName="%_EObj_k_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="59" primitiveName="%_EObj_k_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="60" primitiveName="%_EObj_k__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="61" primitiveName="%c_k__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="62" primitiveName="%s_k__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="63" primitiveName="%b_k__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="64" primitiveName="%i_k__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="65" primitiveName="%_EObj_l_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="66" primitiveName="%_EObj_l_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="67" primitiveName="%_EObj_l_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="68" primitiveName="%_EObj_l_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="69" primitiveName="%_EObj_l__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="70" primitiveName="%c_l__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="71" primitiveName="%s_l__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="72" primitiveName="%b_l__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="73" primitiveName="%i_l__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="74" primitiveName="%_EObj_m_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="75" primitiveName="%_EObj_m_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="76" primitiveName="%_EObj_m_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="77" primitiveName="%_EObj_m_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="78" primitiveName="%_EObj_m__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="79" primitiveName="%c_m__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="80" primitiveName="%s_m__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="81" primitiveName="%b_m__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="82" primitiveName="%i_m__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="83" primitiveName="%_EObj_n_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="84" primitiveName="%_EObj_n_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="85" primitiveName="%_EObj_n_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="86" primitiveName="%_EObj_n_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="87" primitiveName="%_EObj_n__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="88" primitiveName="%c_n__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="89" primitiveName="%s_n__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="90" primitiveName="%b_n__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="91" primitiveName="%i_n__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="92" primitiveName="%_EObj_o_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="93" primitiveName="%_EObj_o_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="94" primitiveName="%_EObj_o_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="95" primitiveName="%_EObj_o_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="96" primitiveName="%_EObj_o__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="97" primitiveName="%c_o__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="98" primitiveName="%s_o__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="99" primitiveName="%b_o__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="100" primitiveName="%i_o__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="101" primitiveName="%_EObj_p_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="102" primitiveName="%_EObj_p_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="103" primitiveName="%_EObj_p_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="104" primitiveName="%_EObj_p_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="105" primitiveName="%_EObj_p__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="106" primitiveName="%c_p__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="107" primitiveName="%s_p__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="108" primitiveName="%b_p__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="109" primitiveName="%i_p__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="110" primitiveName="%_EObj_q_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="111" primitiveName="%_EObj_q_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="112" primitiveName="%_EObj_q_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="113" primitiveName="%_EObj_q_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="114" primitiveName="%_EObj_q__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="115" primitiveName="%c_q__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="116" primitiveName="%s_q__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="117" primitiveName="%b_q__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="118" primitiveName="%i_q__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="119" primitiveName="%_EObj_r_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="120" primitiveName="%_EObj_r_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="121" primitiveName="%_EObj_r_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="122" primitiveName="%_EObj_r_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="123" primitiveName="%_EObj_r__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="124" primitiveName="%c_r__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="125" primitiveName="%s_r__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="126" primitiveName="%b_r__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="127" primitiveName="%i_r__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="128" primitiveName="%_EObj_s_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="129" primitiveName="%_EObj_s_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="130" primitiveName="%_EObj_s_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="131" primitiveName="%_EObj_s_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="132" primitiveName="%_EObj_s__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="133" primitiveName="%c_s__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="134" primitiveName="%s_s__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="135" primitiveName="%b_s__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="136" primitiveName="%i_s__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="137" primitiveName="%_EObj_x_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="138" primitiveName="%_EObj_x_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="139" primitiveName="%_EObj_x_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="140" primitiveName="%_EObj_x_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="141" primitiveName="%_EObj_x__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="142" primitiveName="%c_x__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="143" primitiveName="%s_x__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="144" primitiveName="%b_x__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="145" primitiveName="%i_x__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="146" primitiveName="%_EObj_y_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="147" primitiveName="%_EObj_y_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="148" primitiveName="%_EObj_y_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="149" primitiveName="%_EObj_y_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="150" primitiveName="%_EObj_y__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="151" primitiveName="%c_y__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="152" primitiveName="%s_y__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="153" primitiveName="%b_y__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="154" primitiveName="%i_y__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="155" primitiveName="%_EObj_z_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="156" primitiveName="%_EObj_z_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="157" primitiveName="%_EObj_z_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="158" primitiveName="%_EObj_z_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="159" primitiveName="%_EObj_z__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="160" primitiveName="%c_z__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="161" primitiveName="%s_z__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="162" primitiveName="%b_z__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="163" primitiveName="%i_z__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="164" primitiveName="%_EObj_1_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="165" primitiveName="%_EObj_1_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="166" primitiveName="%_EObj_1_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="167" primitiveName="%_EObj_1_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="168" primitiveName="%_EObj_1__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="169" primitiveName="%c_1__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="170" primitiveName="%s_1__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="171" primitiveName="%b_1__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="172" primitiveName="%i_1__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="173" primitiveName="%_EObj_2_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="174" primitiveName="%_EObj_2_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="175" primitiveName="%_EObj_2_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="176" primitiveName="%_EObj_2_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="177" primitiveName="%_EObj_2__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="178" primitiveName="%c_2__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="179" primitiveName="%s_2__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="180" primitiveName="%b_2__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="181" primitiveName="%i_2__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="182" primitiveName="%_EObj_3_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="183" primitiveName="%_EObj_3_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="184" primitiveName="%_EObj_3_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="185" primitiveName="%_EObj_3_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="186" primitiveName="%_EObj_3__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="187" primitiveName="%c_3__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="188" primitiveName="%s_3__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="189" primitiveName="%b_3__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="190" primitiveName="%i_3__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="191" primitiveName="%_EObj_4_c" />
+  <PRIMITIVE gatewayId="71" primitiveId="192" primitiveName="%_EObj_4_s" />
+  <PRIMITIVE gatewayId="71" primitiveId="193" primitiveName="%_EObj_4_b" />
+  <PRIMITIVE gatewayId="71" primitiveId="194" primitiveName="%_EObj_4_i" />
+  <PRIMITIVE gatewayId="71" primitiveId="195" primitiveName="%_EObj_4__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="196" primitiveName="%c_4__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="197" primitiveName="%s_4__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="198" primitiveName="%b_4__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="199" primitiveName="%i_4__EObj" />
+  <PRIMITIVE gatewayId="71" primitiveId="200" primitiveName="%_EObj_0" />
+  <PRIMITIVE gatewayId="71" primitiveId="201" primitiveName="%_EObj_5" />
+  <PRIMITIVE gatewayId="71" primitiveId="202" primitiveName="%_EObj_t" />
+  <PRIMITIVE gatewayId="71" primitiveId="203" primitiveName="invoke_lu" />
+  <PRIMITIVE gatewayId="71" primitiveId="204" primitiveName="!!_invoke_" />
+  <PRIMITIVE gatewayId="71" primitiveId="205" primitiveName="%_EObj_disp" />
+</GATEWAY>

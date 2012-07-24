@@ -1356,6 +1356,9 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iZero = 0;
     int il;
+    //int sRhs = Rhs;
+    //int sLhs = Lhs;
+    //int sTop = Top;
 
     if(isNamedVarExist(_pvCtx, _pstName) == 0)
     {
@@ -1372,6 +1375,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     //C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
     //create a null matrix a the Top of the stack
+    //Top = Top + 1;
     //il = iadr(*Lstk(Top));
     //*istk(il) = 0;
     //*Lstk(Top+1) = *Lstk(Top) + 1;
@@ -1379,6 +1383,9 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
 
     //Replace existing value by null matrix to delete it
     //C2F(stackp) (iVarID, &iZero);
+    //Rhs = sRhs;
+    //Lhs = sLhs;
+    //Top = sTop ;
     //if(C2F(iop).err > 0/* || C2F(errgst).err1 > 0*/)
     //{
     //    return 0;

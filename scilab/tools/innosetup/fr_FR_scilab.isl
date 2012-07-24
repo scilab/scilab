@@ -57,6 +57,7 @@ fr_FR.DescriptionUmfpack =UMFPACK pour Scilab
 fr_FR.DescriptionCompatFunctions =Fonctions de Compatibilité
 fr_FR.DescriptionM2sci =Boite à outils M2SCI
 fr_FR.DescriptionMatio =Boite à outils Fichiers MAT Entree/Sortie
+fr_FR.DescriptionExternalObjects =External objects
 fr_FR.DescriptionSound =Boite à outils Manipulation des fichiers son
 fr_FR.DescriptionRandlib =Boite à outils Randlib
 fr_FR.DescriptionMexlib =Outils Mexlib

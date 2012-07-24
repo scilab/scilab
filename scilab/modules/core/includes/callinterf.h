@@ -45,7 +45,7 @@
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
 /* 24  gw_user2(); RESERVED to gw_user (see callinter.h) */
-                                #include "gw_user2.h"
+#include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
 /* 26 *///						#include "../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../sparse/includes/gw_sparse.h"
@@ -92,13 +92,14 @@
 /* 68 */                        #include "dynamic_gateways.h" /* xml */
 /* 69 */                        #include "dynamic_gateways.h" /* preferences */
 /* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
-
+/* 71 */                        #include "dynamic_gateways.h" /* external_objects */
 
 
 /** table of interfaces **/
 
-typedef struct {
-	int  (*fonc)(void);
+typedef struct
+{
+    int  (*fonc)(void);
 } OpTab ;
 
 /**

@@ -629,6 +629,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui_gw", "modules\gui\sci_g
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics_gw", "modules\graphics\sci_gateway\cpp\graphics_gw.vcxproj", "{61B23D9B-3F73-4204-98F7-6F41218F4564}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "external_objects", "modules\external_objects\external_objects.vcxproj", "{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1917,6 +1919,14 @@ Global
 		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|Win32.Build.0 = Release|Win32
 		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|x64.ActiveCfg = Release|x64
 		{61B23D9B-3F73-4204-98F7-6F41218F4564}.Release|x64.Build.0 = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.Build.0 = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.ActiveCfg = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.Build.0 = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.ActiveCfg = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.Build.0 = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.ActiveCfg = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
