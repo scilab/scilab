@@ -155,6 +155,9 @@ Bug Fixes
 
 * Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
 
+* Bug #11326 fixed - set(h, "enable", "off") and set(h, "visible", "off") had no
+                     effect after menu creation.
+
 * Bug #11328 fixed - strsplit returned a wrong error message when second input
                      argument contained wrong values.
 
