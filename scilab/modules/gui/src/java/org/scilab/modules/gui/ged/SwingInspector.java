@@ -75,11 +75,9 @@ public class SwingInspector extends SwingScilabTab {
         desktop.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         desktop.setAlignmentX(0.0F);
         desktop.setAlignmentY(0.0F);
-        //desktop.setPreferredSize(new Dimension(370, 584));
 
         pReceive.setAlignmentX(0.0F);
         pReceive.setAlignmentY(0.0F);
-        //pReceive.setPreferredSize(new Dimension(370, 780));
         pReceive.setLayout(new CardLayout());
 
         desktop.setViewportView(pReceive);

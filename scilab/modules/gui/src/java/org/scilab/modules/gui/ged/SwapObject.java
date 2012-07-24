@@ -88,6 +88,9 @@ public class SwapObject {
         ShowHide.setIcon(1);
         //Load the Axes panel.
         SwingInspector.pReceive.add(new Axes(axesID));
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.axes);
+        } catch (NullPointerException npe){ }
     }
 
     /**
@@ -104,6 +107,9 @@ public class SwapObject {
         ShowHide.setIcon(1);
         //Load the curve panel.
         SwingInspector.pReceive.add(new Curve(objectID));
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.curve);
+        } catch (NullPointerException npe){ }
     }
 
     /**
@@ -120,5 +126,8 @@ public class SwapObject {
         ShowHide.setIcon(1);
         //Load the figure panel.
         SwingInspector.pReceive.add(new Figure(objectID));
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
+        } catch (NullPointerException npe){ }
     }
 }

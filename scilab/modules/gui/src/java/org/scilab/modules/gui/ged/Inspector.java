@@ -26,7 +26,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 */
 public class Inspector {
     private static Inspector instance;
-    private static SwingInspector inspectorTab;
+    public static SwingInspector inspectorTab;
 
     /**
     * Constructor.
@@ -38,7 +38,6 @@ public class Inspector {
         TextBox infobar = ScilabTextBox.createTextBox();
 	inspectorTab = new SwingInspector(select , objectID);
         inspectorTab.addInfoBar(infobar);
-        //inspectorTab.setTitle("Inspector");
     }
 
     /**
@@ -79,7 +78,7 @@ public class Inspector {
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
-                window.setSize(370, 500);
+                window.setSize(300, 700);
                 window.setVisible(true);
             }
         } else {
@@ -87,7 +86,7 @@ public class Inspector {
             window.setVisible(true);
             window.toFront();
         }
-
+        inspectorTab.setTitle(MessagesGED.quick_ged + ": " + select);
         return instance;
     }
 
