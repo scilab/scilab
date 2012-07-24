@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: ru\n"
 
 #, c-format
@@ -225,6 +225,12 @@ msgstr "%s не является установленным модулем ил�
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "Файл ссылок (%s) не существует"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr ""
 
 #, c-format
 msgid "No variable %s_ref in reference file"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-03 14:48+0000\n"
+"PO-Revision-Date: 2012-07-22 14:39+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: ja\n"
 
 #, c-format
@@ -314,6 +314,165 @@ msgstr "エコーバックありで選択部を評価;エコーバックあり�
 
 msgid "Complete"
 msgstr "完了"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Header"
+msgstr "ヘッダ"
+
+msgid "Autosave"
+msgstr "自動保存"
+
+msgid "Editor"
+msgstr "エディタ"
+
+msgid "External editor: "
+msgstr "外部エディタ: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(パスが空白文字を含む場合,必ず引用符で括ってください)"
+
+msgid "Scilab command: "
+msgstr "Scilabコマンド: "
+
+msgid "SciNotes General settings"
+msgstr "SciNotes一般設定"
+
+msgid "Restore previous session on start-up"
+msgstr "起動時に前のセッションを回復する"
+
+msgid "Add carriage return at the end of the file."
+msgstr "ファイルの末尾に復改を追加"
+
+msgid "Number of recently opened files to display: "
+msgstr "表示用に最近開いたファイルの数: "
+
+msgid "Default file encoding: "
+msgstr "デフォルトのファイルエンコーディング: "
+
+msgid "Default End-Of-Line: "
+msgstr "デフォルトの改行: "
+
+msgid "General display options"
+msgstr "一般表示オプション"
+
+msgid "Highlight current line: "
+msgstr "カレント行をハイライト表示: "
+
+msgid "Show line numbers: "
+msgstr "行数を表示: "
+
+msgid "Whereami compatible"
+msgstr "Whereami互換"
+
+msgid "Normal"
+msgstr "標準"
+
+msgid "Wrap lines"
+msgstr "行を完了"
+
+msgid "Keywords"
+msgstr "キーワード"
+
+msgid "Set syntax Colors"
+msgstr "構文色を設定"
+
+msgid "Highlight corresponding brackets"
+msgstr "対応する括弧をハイライト表示"
+
+msgid "Color: "
+msgstr "色: "
+
+msgid "Highlight on mouse over"
+msgstr "マウス通過部をハイライト表示"
+
+msgid "Style: "
+msgstr "スタイル: "
+
+msgid "Filled"
+msgstr "塗りつぶす"
+
+msgid "Framed"
+msgstr "フレームで囲む"
+
+msgid "Underlined"
+msgstr "下線付き"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "対応するキーワードをハイライト表示 (例: if .. end)"
+
+msgid "Tabulation and Indentation"
+msgstr "タブまたはインデント"
+
+msgid "Tabulation size: "
+msgstr "タブの大きさ: "
+
+msgid "Use space"
+msgstr "空白を使用"
+
+msgid "Representation: "
+msgstr "表現: "
+
+msgid "Chevrons"
+msgstr "シェブロン"
+
+msgid "Horizontal rule"
+msgstr "水平方向の罫線"
+
+msgid "Vertical rule"
+msgstr "縦罫線"
+
+msgid "Enable auto indentation"
+msgstr "自動インデントを有効にする"
+
+msgid "Indent size: "
+msgstr "インデントの大きさ: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Scinotesの自動保存を有効にする"
+
+msgid "Save options"
+msgstr "オプションを保存"
+
+msgid "Save every "
+msgstr "毎に保存 "
+
+msgid " minutes "
+msgstr " 分 "
+
+msgid "Close options"
+msgstr "オプションを閉じる"
+
+msgid "Delete automatically saved files"
+msgstr "自動保存したファイルを削除"
+
+msgid "Filename"
+msgstr "ファイル名"
+
+msgid "Append filename with: "
+msgstr "ファイル名に以下を追加: "
+
+msgid "Replace extension with: "
+msgstr "拡張子を以下に置換: "
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Source file directory"
+msgstr "ソースファイル用ディレクトリ"
+
+msgid "Single directory"
+msgstr "単一のディレクトリ"
+
+msgid "Choose an autosave directory"
+msgstr "自動保存用ディレクトリを選択"
+
+msgid "Default header"
+msgstr "デフォルトのヘッダ"
+
+msgid "Add a default header to new file"
+msgstr "デフォルトのヘッダを新規ファイルに追加"
 
 msgid "Graphics handle field"
 msgstr "グラフィックハンドルのフィールド"
@@ -700,7 +859,7 @@ msgstr "バックアップを終了しました..."
 
 #, c-format
 msgid "%s occurences found."
-msgstr ""
+msgstr "%s 回の発生が見つかりました."
 
 msgid "Change Colors"
 msgstr "色を変更"
@@ -800,12 +959,6 @@ msgstr "長さ"
 
 msgid "Tab representation"
 msgstr "タブ形式"
-
-msgid "Horizontal rule"
-msgstr "水平方向の罫線"
-
-msgid "Vertical rule"
-msgstr "縦罫線"
 
 msgid "Double chevrons"
 msgstr "二重逆V字型"

@@ -37,7 +37,7 @@ public class LookAndFeelManager {
 
     /**
      * Get Installed Look and Feels
-     * @return a array of String
+     * @return an array of String
      */
     public String[] getInstalledLookAndFeels() {
         String[] retStrings = new String[availableLookAndFeels.length];

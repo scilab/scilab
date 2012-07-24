@@ -13,12 +13,13 @@ Scilab a better software.
     - Testing and binary of Scilab under Solaris
 
 * Yuri Chornoivan
-    - Ukrainian localization 
+    - Ukrainian localization
     - Many patches fixing typos and English mistakes
 
 * Yann Collette
     - Genetic algorithm
     - Generic probabilistic meta-algorithm
+    - Simulated Annealing
     - Param/parameters module
     - French localization
     - Bug reports
@@ -27,13 +28,13 @@ Scilab a better software.
 * Arnaud Dessein
     - French localization
 
-* Calixte Denizet 
+* Calixte Denizet
     - LaTeX and MathML rendering capabilities in the Scilab Graphic
     - Improved graphic exports
     - SciNotes (Scilab editors)
     - Many key contributions
 
-* Markus Dittrich 
+* Markus Dittrich
     - Misc patches for Gentoo
 
 * Bernard Dujardin
@@ -62,6 +63,7 @@ Scilab a better software.
 
 * Samuel Gougeon
     - The world record of reported bugs on Scilab
+    - Various demos and patches
     - Advice
     - Many feedbacks
     - Patches
@@ -74,7 +76,7 @@ Scilab a better software.
 * Gerard Henry
     - Misc patches for Solaris/Opensolaris
 
-* Rui Hirokawa 
+* Rui Hirokawa
     - Translation of the help into Japanese
 
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )
@@ -103,7 +105,7 @@ Scilab a better software.
 * Séverin Lemaignan
     - Advice
 
-* Dan McMahill 
+* Dan McMahill
       - Patches for NetBSD
 
 * Olivier Mehani
@@ -113,24 +115,29 @@ Scilab a better software.
 * Armin Mohring
       - German localization
 
-* Stéphane Mottelet 
+* Stéphane Mottelet
     - Advice
     - Bug reports
     - Misc patches for Mac OS X
 
 * Bruno Pinçon
     - UMFPACK interface
+    - TAUCS interface
+    - Random number generators
+    - Distribution functions
+    - Special and complex elementary functions
+    - Interpolation
     - Bug reports
     - Bug fixes
     - Advice
 
-* Jacques-Deric Rouault 
+* Jacques-Deric Rouault
     - Bug reports
 
-* Jean-Sebastien Roy 
+* Jean-Sebastien Roy
     - Misc patches for FreeBSD
 
-* Daniel de Souza Grilo 
+* Daniel de Souza Grilo
     - Traduction of the help into Portugues do Brazil
     - Portugues do Brazil localization
 

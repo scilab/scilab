@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -81,6 +81,8 @@ public final class BlockFactory {
         /** @see RoundBlock */
         PROD_f(new RoundBlock("PROD_f")),
         /** @see RoundBlock */
+        CLKSOM_f(new RoundBlock("CLKSOM_f")),
+        /** @see RoundBlock */
         CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
         /** @see BigSom */
         BIGSOM_f(new BigSom()),
@@ -93,7 +95,7 @@ public final class BlockFactory {
 
         /**
          * Default constructor
-         * 
+         *
          * @param block
          *            The reference instance
          */
@@ -103,7 +105,7 @@ public final class BlockFactory {
 
         /**
          * Create a block instance
-         * 
+         *
          * @return The new block instance
          */
         private BasicBlock createInstance() {
@@ -117,7 +119,7 @@ public final class BlockFactory {
 
         /**
          * Get the reference shared block instance for this BlockInterFunction.
-         * 
+         *
          * @return The shared block instance
          */
         public BasicBlock getSharedInstance() {
@@ -134,7 +136,7 @@ public final class BlockFactory {
 
     /**
      * Instantiate a new block with the specified interface function name.
-     * 
+     *
      * @param label
      *            The interface function name.
      * @return A new instance of a block.
@@ -159,7 +161,7 @@ public final class BlockFactory {
 
     /**
      * Instantiate a new block with the specified interface function.
-     * 
+     *
      * @param func
      *            the interface function
      * @return A new instance of a block.
@@ -170,7 +172,7 @@ public final class BlockFactory {
 
     /**
      * Create a clone for a block
-     * 
+     *
      * @param block
      *            The block to be cloned
      * @return the clone

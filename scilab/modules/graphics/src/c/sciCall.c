@@ -879,6 +879,7 @@ void Objplot3d ( char    * fname ,
             if (pNewPolylineUID == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
+                FREE(hdltab);
                 return;
             }
 

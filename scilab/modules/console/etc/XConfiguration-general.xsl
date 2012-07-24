@@ -11,7 +11,7 @@
     <xsl:template match="environment">
         <Title text="Environment">
             <Grid>
-                <Label gridx="1" gridy="1" weightx="0" text="Floating point exception (ieee): "/>
+                <Label gridx="1" gridy="1" weightx="0" text="_(Floating point exception (ieee): )"/>
                 <Panel gridx="2" gridy="1" weightx="1"/>
                 <Select gridx="3" gridy="1" listener="ActionListener">
                     <xsl:variable name="fpe" select="@fpe"/>
@@ -27,7 +27,7 @@
                     </xsl:for-each>
                 </Select>
 
-                <Label gridx="1" gridy="2" weightx="0" text="Printing format: "/>
+                <Label gridx="1" gridy="2" weightx="0" text="_(Printing format: )"/>
                 <Select gridx="3" gridy="2" listener="ActionListener">
                     <xsl:variable name="pf" select="@printing-format"/>
                     <actionPerformed choose="printing-format">
@@ -41,7 +41,7 @@
                         </option>
                     </xsl:for-each>
                 </Select>
-                <Label gridx="1" gridy="3" weightx="0" text="Width: "/>
+                <Label gridx="1" gridy="3" weightx="0" text="_(Width: )"/>
                 <NumericalSpinner gridx="3"
                                   gridy="3"
                                   weightx="0"
@@ -62,9 +62,9 @@
     <xsl:template match="languages">
         <xsl:if test="$OS='Windows'">
             <VSpace height="10"/>
-            <Title text="Language setting">
+            <Title text="_(Language setting)">
                 <Grid>
-                    <Label text="Default language:" gridx="1" gridy="1" anchor="baseline" weightx="0"/>
+                    <Label text="_(Default language: )" gridx="1" gridy="1" anchor="baseline" weightx="0"/>
                     <Panel gridx="2" gridy="1" weightx="1"/>
                     <Select gridx="3" gridy="1" listener="ActionListener">
                         <actionPerformed choose="lang">
@@ -79,7 +79,7 @@
                             </option>
                         </xsl:for-each>
                     </Select>
-                    <Label text="(This requires a restart of Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+                    <Label text="_((This requires a restart of Scilab))" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
                     <Panel gridx="2" gridy="2" weightx="1" fill="both"/>
                 </Grid>
             </Title>
@@ -89,9 +89,9 @@
     <xsl:template match="java-heap-memory" mode="tooltip"> and java heap size.</xsl:template>
     <xsl:template match="java-heap-memory">
         <VSpace height="10"/>
-        <Title text="Java Heap Memory">
+        <Title text="_(Java Heap Memory)">
             <Grid>
-                <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
+                <Label text="_(Select the memory (in MB) available in Java: )" gridx="1" gridy="1" anchor="baseline" weightx="0"/>
                 <Panel gridx="2" gridy="1" weightx="1"/>
                 <NumericalSpinner min-value="0"
                                   increment="128"
@@ -103,7 +103,7 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </NumericalSpinner>
-                <Label text="(This requires a restart of Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+                <Label text="_((This requires a restart of Scilab))" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
                 <Panel gridx="2" gridy="2" weightx="1" fill="both"/>
             </Grid>
         </Title>
@@ -111,7 +111,7 @@
     </xsl:template>
 
     <xsl:template match="tools">
-        <Title text="Confirmation dialogs">
+        <Title text="_(Confirmation dialogs)">
             <Grid>
                 <xsl:for-each select="tool">
                     <Checkbox
@@ -130,27 +130,30 @@
     </xsl:template>
 
     <xsl:template match="layouts">
-        <xsl:variable name="name" select="@name"/>
-        <Title text="Desktop Layout">
+        <xsl:variable name="id" select="@id"/>
+        <Title text="_(Desktop Layout)">
             <Grid>
-                <Label gridx="1" gridy="1" weightx="0" text="Select a layout"/>
+                <Label gridx="1" gridy="1" weightx="0" text="_(Select a layout)"/>
                 <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
-                <Panel gridx="3" gridy="1">
-                    <xsl:call-template name="Select">
-                        <xsl:with-param name="among">
-                            <xsl:for-each select="layout">
-                                <option name="{@name}"/>
-                            </xsl:for-each>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </Panel>
-                <Label text="(modify the layout requires to restart Scilab)" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
+		<Select gridx="3" gridy="1" listener="ActionListener">
+                    <actionPerformed choose="id">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                    <xsl:for-each select="layout">
+                        <option value="{@name}" key="{@id}">
+                            <xsl:if test="@id=$id">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
+                    </xsl:for-each>
+                </Select>
+                <Label text="_((Modify the layout requires to restart Scilab))" font-face="bold" gridx="1" gridy="2" anchor="west" weightx="0"/>
                 <Panel gridx="1" gridy="3">
                     <VSpace height="10"/>
                 </Panel>
                 <Image gridx="1" gridy="4" gridwidth="3">
                     <xsl:attribute name="url">
-                        <xsl:value-of select="layout[@name=$name]/@image"/>
+                        <xsl:value-of select="layout[@id=$id]/@image"/>
                     </xsl:attribute>
                 </Image>
 
@@ -161,10 +164,10 @@
     <xsl:template match="actions">
         <xsl:variable name="name" select="@name"/>
         <xsl:variable name="current-item" select="action-folder[@name=$name]/action[number(@item)]"/>
-        <Title text="Keys binding" fixed-height="false">
+        <Title text="_(Keys binding)" fixed-height="false">
             <VBox fixed-height="false">
                 <Grid>
-                    <Label gridy="1" gridx="1" gridwidth="2" text="Filter on action name:"/>
+                    <Label gridy="1" gridx="1" gridwidth="2" text="_(Filter on action name: )"/>
                     <Entry gridy="2" gridx="1" gridwidth="2" text="{@filter}" listener="EntryListener">
                         <entryChanged choose="filter">
                             <xsl:call-template name="context"/>
@@ -174,7 +177,7 @@
                 <VSpace height="10"/>
                 <Grid>
                     <VBox gridx="1" gridy="1" weightx="0" anchor="north">
-                        <Label text="Component"/>
+                        <Label text="_(Component)"/>
                         <List item="{@name}" nb-visible-rows="4" listener="ActionListener">
                             <actionPerformed choose="name">
                                 <xsl:call-template name="context"/>
@@ -186,19 +189,19 @@
                     </VBox>
                     <Panel gridx="2" gridy="1" weightx="0" width="30" height="1" fixed-width="true"/>
                     <Grid gridx="3" gridy="1" weightx="1" anchor="north">
-                        <Label gridx="1" gridy="1" weightx="0" weighty="0" anchor="north" text="Name: "/>
+                        <Label gridx="1" gridy="1" weightx="0" weighty="0" anchor="north" text="_(Name: )"/>
                         <Label gridx="2" gridy="1" weightx="0" weighty="0" anchor="west">
                             <xsl:attribute name="text">
                                 <xsl:value-of select="$current-item/@name"/>
                             </xsl:attribute>
                         </Label>
-                        <Label gridx="1" gridy="2" weightx="0" weighty="0" anchor="north" text="Description: "/>
+                        <Label gridx="1" gridy="2" weightx="0" weighty="0" anchor="north" text="_(Description: )"/>
                         <TextArea gridx="2" gridy="2" weightx="1" weighty="0" anchor="west" editable="false" rows="4">
                             <xsl:attribute name="text">
                                 <xsl:value-of select="$current-item/@description"/>
                             </xsl:attribute>
                         </TextArea>
-                        <Label gridx="1" gridy="3" weightx="0" weighty="0" anchor="baseline" text="Binding: "/>
+                        <Label gridx="1" gridy="3" weightx="0" weighty="0" anchor="baseline" text="_(Binding: )"/>
                         <Entry gridx="2" gridy="3" weightx="0" weighty="0" anchor="baseline" listener="ActionListener">
                             <xsl:attribute name="text">
                                 <xsl:value-of select="$current-item/@key"/>
@@ -230,8 +233,8 @@
                                 translate(current()/@filter,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'))]">
                         <tableRow binding="{@key}" command="{@name}"/>
                     </xsl:for-each>
-                    <tableCol title="Action name" attr="command"/>
-                    <tableCol title="Key binding" attr="binding"/>
+                    <tableCol title="_(Action name)" attr="command"/>
+                    <tableCol title="_(Key binding)" attr="binding"/>
                 </Table>
                 <Glue/>
             </VBox>

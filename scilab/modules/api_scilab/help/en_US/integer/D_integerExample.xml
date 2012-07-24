@@ -19,7 +19,7 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>This example shows how to get a integer variable and return it to Scilab.</para>
+    <para>This example shows how to get an integer variable and return it to Scilab.</para>
   </refsection>
   <refsection>
     <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integerExample.c-->

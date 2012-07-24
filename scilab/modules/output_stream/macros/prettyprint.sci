@@ -12,7 +12,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     //
     // Calling Sequence
     // str = prettyprint(a) // Show the variable a with the default format (LaTeX)
-    // str = prettyprint(a,exportFormat) // Show the variable a a with the specified format
+    // str = prettyprint(a,exportFormat) // Show the variable a with the specified format
     // str = prettyprint(a,exportFormat, delim) // As above but change the delimiter
     // str = prettyprint(a,exportFormat, delim, processByElement) // As above but process each element independently
     // str = prettyprint(a,exportFormat, delim, processByElement, isWrapped) // As above Add the special keyword of Tex or LaTeX export

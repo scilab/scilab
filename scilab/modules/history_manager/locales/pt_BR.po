@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -81,6 +81,24 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
 "booleano.\n"
+
+msgid "Command history"
+msgstr ""
+
+msgid "History Management Settings"
+msgstr ""
+
+msgid "Enable history management"
+msgstr ""
+
+msgid "History file: "
+msgstr ""
+
+msgid "History files"
+msgstr ""
+
+msgid "History lines: "
+msgstr ""
 
 msgid "Begin Session : "
 msgstr "Início da sessão: "

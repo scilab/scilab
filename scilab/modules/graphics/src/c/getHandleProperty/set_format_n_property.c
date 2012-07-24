@@ -44,14 +44,6 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     format = getStringFromStack(stackPointer);
 
     status = setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);

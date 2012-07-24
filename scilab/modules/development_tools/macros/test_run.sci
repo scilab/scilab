@@ -788,6 +788,12 @@ if (error_output == "check") & (_module.error_output == "check") then
       txt(txt==msg) = [];
       if isempty(txt) then
         deletefile(tmp_err);
+      else // Remove messages due to JOGL2 RC8
+        toRemove = grep(txt, "__NSAutoreleaseNoPool()");
+        txt(toRemove) = [];
+        if isempty(txt) then
+          deletefile(tmp_err);
+        end
       end
     end
   end
@@ -841,7 +847,6 @@ if try_catch & grep(dia,"<--Error on the test script file-->") <> [] then
   status.details = details;
   if params.show_error == %t then
     status.details = [ status.details; dia($-10:$) ]
-    mprintf("%s\n",dia($-10:$));
   end
 
   return;
@@ -874,7 +879,6 @@ if grep(dia_tmp,"error on test")<>[] then
   status.details = details;
   if params.show_error == %t then
     status.details = [ status.details; dia($-10:$) ]
-    mprintf("%s\n",dia($-10:$));
   end
   return;
 end
@@ -1055,16 +1059,16 @@ function msg = comparethefiles ( filename1 , filename2 )
   msg(2) = "   - "+filename1
   msg(3) = "   - "+filename2
   if params.show_diff == %t then
-    if getos() <> "Windows" then
-      targetFile=TMPDIR + "/tempdiff.diff";
-      unix("diff -u " +filename1 + " " +filename2 + " > " + targetFile);
-      // unix_g is failing to return the output into a variable
-      fd = mopen(targetFile,"r");
-      msg=[msg; mgetl(fd)]
-      disp(msg(4:$));
-      mclose(fd);
-      deletefile(targetFile);
+    if getos() == "Windows" then
+        diffTool = SCI + "\tools\diff\diff.exe";
+    else
+        diffTool = "diff";
     end
+    targetFile=TMPDIR + filesep() + "tempdiff.diff";
+    unix(diffTool + " -u " + filename1 + " " + filename2 + " > " + targetFile);
+    // unix_g is failing to return the output into a variable
+    msg=[msg; mgetl(targetFile)]
+    deletefile(targetFile);
   end
 endfunction
 
@@ -1182,3 +1186,4 @@ function result =  exportToXUnitFormat(exportToFile, testsuites)
 
   xmlWrite(doc);
 endfunction
+

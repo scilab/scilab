@@ -42,14 +42,6 @@ int set_outside_colors_property(void* _pvCtx, char* pobjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_FEC )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if ( nbRow * nbCol != 2 )
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "outside_colors", 2);

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
@@ -98,7 +98,7 @@ msgstr "%s : Le paramètre %s n'est pas défini"
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
 msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Un nombre est encore attendu.\n"
+"%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

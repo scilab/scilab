@@ -27,8 +27,32 @@
 #ifndef __SCI_BUILD__
 #define __SCI_BUILD__
 
+#include "dynlib_graphics.h"
 #include "BOOL.h"
-#include "ObjectStructure.h"
+
+/** @name Text Alignment
+ * Text alignement enum.
+ */
+typedef enum {
+    ALIGN_NONE = 0,
+    ALIGN_LEFT = 1,
+    ALIGN_CENTER = 2,
+    ALIGN_RIGHT = 3
+}
+sciTextAlignment;
+
+/** @name Type of 3D Object
+ * Type of 3D Object enum
+ */
+typedef enum
+{
+    SCI_FAC3D = 0,
+    SCI_PLOT3D = 1,
+    SCI_CONTOUR,
+    SCI_PARAM3D,
+    SCI_PARAM3D1
+}
+sciTypeOf3D;
 
 /**
  * If a current figure exists : return it

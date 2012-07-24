@@ -38,14 +38,6 @@ int get_grid_property(void* _pvCtx, char* pobjUID)
     int iView = 0;
     int* piView = &iView;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
-        return -1;
-    }
-#endif
-
     /* need conversion for display in double */
     getGraphicObjectProperty(pobjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, (void **)&piGridColor);
 

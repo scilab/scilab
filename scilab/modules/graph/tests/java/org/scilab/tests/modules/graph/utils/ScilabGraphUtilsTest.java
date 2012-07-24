@@ -99,7 +99,7 @@ public class ScilabGraphUtilsTest {
     }
 
     /**
-     * Check the the return status of a valid and invalid latex expressions.
+     * Check the return status of a valid and invalid latex expressions.
      */
     @Test
     public void checkSampleTEX() throws ParseException {

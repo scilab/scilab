@@ -434,6 +434,15 @@ public class XConfiguration {
     }
 
     /**
+     * Save the current file
+     */
+    public static void save() {
+        if (doc != null) {
+            writeDocument(USER_CONFIG_FILE, doc);
+        }
+    }
+
+    /**
      * Get all the nodes with the given path.
      * All the get nodes are serialized into an object (generic paramater) which must have
      * a constructor without argument and with methods named set&lt;Attribute Name&gt; with

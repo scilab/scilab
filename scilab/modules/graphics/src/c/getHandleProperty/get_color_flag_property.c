@@ -35,14 +35,6 @@ int get_color_flag_property(void* _pvCtx, char* pobjUID)
     int iColorFlag = 0;
     int* piColorFlag = &iColorFlag;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_SURFACE)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, jni_int, (void **)&piColorFlag);
 
     if (piColorFlag == NULL)

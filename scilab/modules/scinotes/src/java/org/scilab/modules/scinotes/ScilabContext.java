@@ -24,8 +24,13 @@ import java.util.Set;
 import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
 import javax.swing.text.Element;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
@@ -84,11 +89,41 @@ public class ScilabContext implements ViewFactory {
         this.plain = plain;
     }
 
+
+    public static void saveFont(Font font) {
+        XPathFactory xpathFactory = XPathFactory.newInstance();
+        XPath xp = xpathFactory.newXPath();
+        NodeList nodes;
+        Document doc = XConfiguration.getXConfigurationDocument();
+
+        try {
+            nodes = (NodeList) xp.compile("//fonts/body/fonts/item[@xconf-uid='scinotes-font']").evaluate(doc, XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            System.err.println(e);
+            return;
+        }
+
+        org.w3c.dom.Element e = (org.w3c.dom.Element) nodes.item(0);
+        e.setAttribute("desktop", "false");
+        e.setAttribute("font-name", font.getName());
+        e.setAttribute("font-size", Integer.toString(font.getSize()));
+
+        XConfiguration.save();
+    }
+
     /**
      * @return the font used to render
      */
     public Font getBaseFont() {
         return baseFont;
+    }
+
+    public void changeBaseFontSize(int n) {
+        float size = baseFont.getSize2D() + n;
+        baseFont = baseFont.deriveFont(size);
+        for (int i = 0; i < tokenFonts.length; i++) {
+            tokenFonts[i] = tokenFonts[i].deriveFont(size);
+        }
     }
 
     public void configurationChanged(SciNotesConfiguration.Conf conf) {
@@ -288,9 +323,9 @@ public class ScilabContext implements ViewFactory {
     @XConfAttribute
     private static class FontInfo {
 
-        private String fontname;
-        private int fontsize;
-        private boolean desktop;
+        String fontname;
+        int fontsize;
+        boolean desktop;
 
         public FontInfo() { }
 

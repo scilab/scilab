@@ -34,7 +34,7 @@ c     ====================================
       character*(*) buffer
       double precision r
       
-      write(buffer(1:13),'(1pd13.4)') rcond
+      write(buffer(1:13),'(1pd13.4)') r
       
       end
 c     ====================================      

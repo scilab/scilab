@@ -59,7 +59,7 @@ creates a string matrix in scilab and get result in powershell :
 	$strB = $objScilab.readNamedMatrixOfString('strB')
 	$strB
 	
-send a array of double from powershell, modify by scilab and get result :
+send an array of double from powershell, modify by scilab and get result :
 	$matDouble = (5.,10.,5.,10.,5.,10.)
 	$matDouble
 
@@ -71,7 +71,7 @@ send a array of double from powershell, modify by scilab and get result :
 	$matDouble = $objScilab.readNamedMatrixOfDouble('matDouble')
 	$matDouble
 	
-send a array of string from powershell, modify by scilab and get result :
+send an array of string from powershell, modify by scilab and get result :
 	$matString = ('test' , 'scilab' , 'from' , 'powershell')
 	$matString
 

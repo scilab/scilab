@@ -44,6 +44,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -91,7 +92,7 @@ public final class XConfigManager extends XCommonManager {
         Frame topWindow = XCommonManager.getTopLevel();
 
         // Set up Swing Side
-        dialog = new JDialog(topWindow, "Scilab Preferences", true);
+        dialog = new JDialog(topWindow, Messages.gettext("Scilab Preferences"), true);
         topSwing = dialog.getContentPane();
         topSwing.setLayout(new BorderLayout());
         // AWT implies to set layout at construction time.

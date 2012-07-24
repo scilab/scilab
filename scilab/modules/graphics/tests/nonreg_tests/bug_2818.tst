@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // incompatibility between Scilab-4.1.2 and Scilab-5.0.alpha
-// when a empty graphic window is opened, the axes box is drawn in scilab5
+// when an empty graphic window is opened, the axes box is drawn in scilab5
 
 clf();
 axes = gca();

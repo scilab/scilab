@@ -51,9 +51,7 @@
           <link linkend="plot2d3">plot2d3</link>
         </term>
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de barres
-            verticales
-          </para>
+          <para>représentation de courbes dans le plan sous forme de barres verticales</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -67,9 +65,7 @@
           <link linkend="plot2d4">plot2d4</link>
         </term>
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de
-            flèches
-          </para>
+          <para>représentation de courbes dans le plan sous forme de flèches</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -125,9 +121,7 @@
           <link linkend="fchamp">fchamp</link>
         </term>
         <listitem>
-          <para>champ défini par une équation différentielle du premier
-            ordre
-          </para>
+          <para>champ défini par une équation différentielle du premier ordre</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -149,9 +143,7 @@
           <link linkend="fcontour2d">fcontour2d</link>
         </term>
         <listitem>
-          <para>courbes de niveau d'une surface (définie par une
-            fonction)
-          </para>
+          <para>courbes de niveau d'une surface (définie par une fonction)</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -165,9 +157,7 @@
           <link linkend="grayplot">grayplot</link>
         </term>
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de
-            couleurs
-          </para>
+          <para>représentation d'une surface en 2D sous forme de couleurs</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -181,9 +171,7 @@
           <link linkend="fgrayplot">fgrayplot</link>
         </term>
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D
-            sous forme de couleurs
-          </para>
+          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -197,9 +185,7 @@
           <link linkend="Sgrayplot">Sgrayplot</link>
         </term>
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de couleurs
-            interpolées
-          </para>
+          <para>représentation d'une surface en 2D sous forme de couleurs interpolées</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -213,9 +199,7 @@
           <link linkend="Sfgrayplot">Sfgrayplot</link>
         </term>
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D
-            sous forme de couleurs interpolées
-          </para>
+          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs interpolées</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -318,9 +302,7 @@
           <link linkend="fplot3d">fplot3d</link>
         </term>
         <listitem>
-          <para>représente une surface non paramétrique définie par une
-            fonction
-          </para>
+          <para>représente une surface non paramétrique définie par une fonction</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -334,9 +316,7 @@
           <link linkend="fplot3d1">fplot3d1</link>
         </term>
         <listitem>
-          <para>représente une surface non paramétrique définie par une
-            fonction
-          </para>
+          <para>représente une surface non paramétrique définie par une fonction</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -392,9 +372,7 @@
           <link linkend="fcontour">fcontour</link>
         </term>
         <listitem>
-          <para>courbes de niveau sur une surface en 3D définie par une
-            fonction
-          </para>
+          <para>courbes de niveau sur une surface en 3D définie par une fonction</para>
           <para>
             <emphasis role="bold">Exemple:</emphasis>
           </para>
@@ -441,7 +419,14 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>eval3dp();</scilab:image>
+            <scilab:image>p1=linspace(0,2*%pi,10);
+              p2=linspace(0,2*%pi,10);
+              deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+              "y=p1.*cos(p1).*cos(p2)";..
+              "z=p1.*sin(p2)"])
+              [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+              plot3d(Xf,Yf,Zf)
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -455,7 +440,14 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>geom3d();</scilab:image>
+            <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+              t=%pi*(-10:10)/10;
+              // 3D plot of the surface
+              fplot3d(t,t,surface,35,45,"X@Y@Z")
+              // now (t,t,sin(t).*cos(t)) is a curve on the surface
+              // which can be drawn using geom3d and xpoly
+              [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -653,9 +645,7 @@
           <link linkend="xinfo">xinfo</link>
         </term>
         <listitem>
-          <para>affiche une chaîne de caractères dans la sous-fenêtre des
-            messages
-          </para>
+          <para>affiche une chaîne de caractères dans la sous-fenêtre des messages</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -663,6 +653,14 @@
   <refsection>
     <title>Cadres et axes</title>
     <variablelist>
+      <varlistentry>
+        <term>
+          <link linkend="drawaxis">drawaxis</link>
+        </term>
+        <listitem>
+          <para>Draw an axis</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>
           <link linkend="graduate">graduate</link>
@@ -697,9 +695,7 @@
           <link linkend="square">square</link>
         </term>
         <listitem>
-          <para>échelle isométrique (par changement de la taille de la
-            fenêtre)
-          </para>
+          <para>échelle isométrique (par changement de la taille de la fenêtre)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -768,9 +764,7 @@
           <link linkend="getcolor">getcolor</link>
         </term>
         <listitem>
-          <para>boîte de dialogue pour sélectionner des couleurs dans la table
-            des couleurs
-          </para>
+          <para>boîte de dialogue pour sélectionner des couleurs dans la table des couleurs</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -823,9 +817,7 @@
           <link linkend="xlfont">xlfont</link>
         </term>
         <listitem>
-          <para>charge une police dans le contexte graphique ou donne la liste
-            des polices
-          </para>
+          <para>charge une police dans le contexte graphique ou donne la liste des polices</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -947,9 +939,7 @@
           <link linkend="clf">clf</link>
         </term>
         <listitem>
-          <para>efface une fenêtre graphique et les graphiques
-            enregistrés
-          </para>
+          <para>efface une fenêtre graphique et les graphiques enregistrés</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -997,9 +987,7 @@
           <link linkend="replot">replot</link>
         </term>
         <listitem>
-          <para>redessine une fenêtre graphique avec de nouvelles
-            bornes
-          </para>
+          <para>redessine une fenêtre graphique avec de nouvelles bornes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1099,7 +1087,10 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>bode();</scilab:image>
+            <scilab:image>s=poly(0,'s')
+              h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+              clf();bode(h,0.01,100);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1113,7 +1104,12 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>gainplot();</scilab:image>
+            <scilab:image>s=poly(0,'s')
+              h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+              h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+              clf();gainplot([h1;h2],0.01,100,['h1';'h2'])
+              title('Gainplot');
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1127,7 +1123,15 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>nyquist();</scilab:image>
+            <scilab:image>s=poly(0,'s')
+              h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+              h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+              nyquist(h1)
+              ax=gca();
+              h_h=ax.children($).children(2);
+              tip=datatipCreate(h_h,[1.331,0.684]);
+              datatipSetOrientation(tip,"upper left");
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1169,7 +1173,10 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>black();</scilab:image>
+            <scilab:image>s=poly(0,'s');
+              sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+              clf();black(sl,0.01,10);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>
@@ -1211,7 +1218,12 @@
             <emphasis role="bold">Exemple:</emphasis>
           </para>
           <para>
-            <scilab:image>plzr();</scilab:image>
+            <scilab:image>s=poly(0,'s');
+              n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
+              d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
+              h=syslin('c',n./d); 
+              plzr(h);
+            </scilab:image>
           </para>
         </listitem>
       </varlistentry>

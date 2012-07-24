@@ -52,7 +52,7 @@ function assert_checkcmatview3d()
     assert_checkequal(g.color_mode, 2);
     assert_checkequal(g.color_flag, 1);
     assert_checkequal(g.hiddencolor, 4);
-    assert_checkequal(g.clip_state, "off");
+    assert_checkequal(g.clip_state, "clipgrf");
     assert_checkequal(g.clip_box, []);
 endfunction
 assert_checkcmatview3d()

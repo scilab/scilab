@@ -45,6 +45,8 @@ int sci_xrects( char *fname, unsigned long fname_len )
     int *piForeground = &foreground;
     char *pstCompoundUID = NULL;
 
+    int iVisible = (int) FALSE;
+
     CheckRhs(1,2);
 
     GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -78,6 +80,12 @@ int sci_xrects( char *fname, unsigned long fname_len )
     /* Sets the parent-child relationship for the Compound */
     setGraphicObjectRelationship(psubwinUID,pstCompoundUID);
 
+    /** Hide Compound */
+    //setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+
+    /** Get Subwin line color */
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+
     for (i = 0; i < n1; ++i)
     {
         /*       j = (i==0) ? 0 : 1; */
@@ -85,7 +93,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
         {
             /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
             /* color setting is done now */
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
                      &foreground,NULL,FALSE,TRUE,&hdl);
@@ -109,6 +116,10 @@ int sci_xrects( char *fname, unsigned long fname_len )
         // Add newly created object to Compound
         setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
     }
+
+    /** Show Compound */
+    iVisible = (int) TRUE;
+    //setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
     /** make Compound current object **/
     setCurrentObject(pstCompoundUID);

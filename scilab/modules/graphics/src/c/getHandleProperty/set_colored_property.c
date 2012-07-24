@@ -37,14 +37,6 @@ int set_colored_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
     BOOL status = FALSE;
     int b =  (int)FALSE;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype == 0 )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"colored");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "colored");
     if(b == NOT_A_BOOLEAN_VALUE)
     {

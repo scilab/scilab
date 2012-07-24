@@ -48,8 +48,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
     int nbRowOutPath = 1, nbColOutPath = 1;
 
-    char *optName = NULL;
-
     char **mask = NULL;
     char **description = NULL;
     char **titleBox = NULL, *selectionPathName = NULL;
@@ -66,12 +64,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     CheckRhs(0, 3);
     CheckLhs(1, 3);
 
-    if ((optName = (char *)MALLOC(sizeof(char *) * (strlen("title") + 1))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
-
     //inputs checking
     /* call uiputfile with 1 arg */
     if (Rhs >= 1)
@@ -79,7 +71,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         if (VarType(1) != sci_strings)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
-            FREE(optName);
             return 0;
         }
 
@@ -104,7 +95,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         else
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"), fname, 1);
-            FREE(optName);
             return 0;
         }
     }
@@ -117,7 +107,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         if (VarType(2) != sci_strings)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            FREE(optName);
             return 0;
         }
 
@@ -126,7 +115,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         if (nbCol2 != 1 || nbRow2 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 2);
-            FREE(optName);
             return 0;
         }
 
@@ -141,7 +129,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         if (VarType(3) != sci_strings)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
-            FREE(optName);
             return 0;
         }
 
@@ -150,7 +137,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         if (nbCol3 != 1 || nbRow3 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 3);
-            FREE(optName);
             return 0;
         }
     }
@@ -160,25 +146,25 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         /* Call Java */
         switch (Rhs)
         {
-        case 0:
-            CallJuiputfileWithoutInput();
-            break;
+            case 0:
+                CallJuiputfileWithoutInput();
+                break;
 
-        case 1:
-            CallJuiputfileOnlyWithMask(mask, description, nbRow);
-            break;
+            case 1:
+                CallJuiputfileOnlyWithMask(mask, description, nbRow);
+                break;
 
-        case 2:
-            CallJuiputfileWithMaskAndInitialdirectory(mask, description, nbRow, initialDirectory[0]);
-            break;
+            case 2:
+                CallJuiputfileWithMaskAndInitialdirectory(mask, description, nbRow, initialDirectory[0]);
+                break;
 
-        case 3:
-            CallJuiputfileWithoutMultipleSelection(mask, description, nbRow, initialDirectory[0], titleBox[0]);
-            break;
+            case 3:
+                CallJuiputfileWithoutMultipleSelection(mask, description, nbRow, initialDirectory[0], titleBox[0]);
+                break;
 
-        default:
-            // never here
-            break;
+            default:
+                // never here
+                break;
         }
 
         // free pointer
@@ -196,7 +182,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         filterIndex = getJuigetfileFilterIndex();
         menuCallback = getJuigetfileMenuCallback();
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return 0;

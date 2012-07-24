@@ -102,7 +102,7 @@
     <para>The Derivative block approximates the instantaneous derivative of
       its input with respect to time t.
     </para>
-    <para>It is a measure of how a output changes as its input changes Δu. The
+    <para>It is a measure of how an output changes as its input changes Δu. The
       derivative is given by:
     </para>
     <para>

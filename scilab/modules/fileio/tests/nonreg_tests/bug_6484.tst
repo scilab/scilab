@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6484
 //
 // <-- Short Description -->
-// 'file' did not return filename of a opened fortran file
+// 'file' did not return filename of an opened fortran file
 
 u = file('open',TMPDIR+'/foo.txt','unknown');
 [a,b,c,d,e] = file(u);

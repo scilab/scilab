@@ -43,14 +43,6 @@ int set_bar_width_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_width");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     barWidth = getDoubleFromStack( stackPointer );
 
     status = setGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);

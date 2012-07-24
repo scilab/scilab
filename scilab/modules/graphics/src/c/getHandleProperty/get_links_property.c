@@ -64,6 +64,7 @@ int get_links_property(void* _pvCtx, char* pobjUID)
     if (links == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
+        FREE(handles);
         return -1;
     }
 

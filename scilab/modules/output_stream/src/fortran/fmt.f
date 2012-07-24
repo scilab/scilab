@@ -42,12 +42,16 @@ c     testing Inf
       endif
       if(maxc-3.le.0) goto 30
       if(a.lt.1.0d+0) goto 20
-      ent=dble(int(a))
+      a1=mod(a,10.0d+0)
+      ent=a-a1+int(a1)
+c      ent=dble(int(a))
       dec=a-ent
       if (abs(1.0d0-dec).le.10.0d0*a*dlamch('e')) then
          ent=ent+1.0d0
-         dec=0.0d0
+         dec=a-ent
       endif
+
+
       ndgt=int(log10(ent+0.4))+1
       if(ndgt.lt.0) ndgt=maxc
       if(ndgt.le.maxc-2) goto 10

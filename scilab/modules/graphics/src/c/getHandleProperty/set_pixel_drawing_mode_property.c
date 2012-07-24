@@ -42,14 +42,6 @@ int set_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID, size_t stackPoi
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-	  Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
-	  return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )

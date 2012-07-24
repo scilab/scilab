@@ -28,7 +28,7 @@ c     write read from a binary or formatted file
       include 'stack.h'
 c     ipar(1) = lfil : file name length
 c     ipar(2) = lfmt : format length (0) if binary file
-c     ipar(3) = ievt  : 1 if each data have a an associated time
+c     ipar(3) = ievt  : 1 if each data have an associated time
 c     ipar(4) = N : buffer length
 c     ipar(5:4+lfil) = character codes for file name
 c     ipar(5+lfil:4+lfil+lfmt) = character codes for format if any

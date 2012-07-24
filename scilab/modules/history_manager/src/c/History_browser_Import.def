@@ -9,3 +9,4 @@ CommandHistoryAppendLine
 CommandHistoryLoadFromFile
 CommandHistoryReset
 CommandHistoryDeleteLine
+CommandHistoryExpandAll

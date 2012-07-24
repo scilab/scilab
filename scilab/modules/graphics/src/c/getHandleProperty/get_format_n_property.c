@@ -34,14 +34,6 @@ int get_format_n_property(void* _pvCtx, char* pobjUID)
 {
     char* formatn = NULL;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&formatn);
 
     if (formatn == NULL)

@@ -33,14 +33,6 @@ int set_grid_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
   BOOL status = FALSE;
   int position = 0;
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid_position") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   if ( !isParameterStringMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "grid_position");

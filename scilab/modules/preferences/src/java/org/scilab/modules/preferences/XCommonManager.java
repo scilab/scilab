@@ -68,6 +68,7 @@ import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.localization.WindowsDefaultLanguage;
 
 /* This class is the common ancestor to both X_manager.
@@ -673,7 +674,12 @@ public abstract class XCommonManager {
             return NAV;
         }
 
-        return attr.getNodeValue();
+	String response = attr.getNodeValue();
+	if (response.startsWith("_(") && response.endsWith(")")) {
+	    response = Messages.gettext(response.substring(2, response.length() - 1));
+	}
+
+        return response;
     }
 
     /**

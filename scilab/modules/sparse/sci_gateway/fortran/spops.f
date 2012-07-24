@@ -1792,7 +1792,7 @@ c     get arg1    ! for insertion  arg4(arg1,arg2)=arg3
                           ! In the following many special cases are taken into account
                           ! this is certainly not necessary.
          if(m1.eq.-1.and.m2.eq.-1) then 
-            ! this is  arg4(:,:)=[] and so arg4 becomes a empty matrix arg4 <- []
+            ! this is  arg4(:,:)=[] and so arg4 becomes an empty matrix arg4 <- []
             istk(ilrs)=1
             istk(ilrs+1)=0
             istk(ilrs+2)=0

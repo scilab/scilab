@@ -40,20 +40,6 @@ int get_labels_font_size_property(void* _pvCtx, char* pobjUID)
     double dblFontSize = 0.0;
     double* pdblFontSize = &dblFontSize;
 
-#if 0
-    if (   sciGetEntityType (pobj) == SCI_SUBWIN
-           || sciGetEntityType (pobj) == SCI_FIGURE
-           || sciGetEntityType (pobj) == SCI_AXES)
-    {
-        return sciReturnDouble( sciGetFontSize(pobj) ) ; /* F.Leray 08.04.04 */
-    }
-    else
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_size");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
 
     if (pdblFontSize == NULL)

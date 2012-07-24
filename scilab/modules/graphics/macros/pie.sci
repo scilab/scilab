@@ -3,17 +3,17 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function pie(varargin)
 // Copyright INRIA
-// This function draws a pie, if size of x is N then pie function draws a pie with N parts, the area of the ith part is equal to (x(i)/sum(x))*( surface of the unit cercle). 
+// This function draws a pie, if size of x is N then pie function draws a pie with N parts, the area of the ith part is equal to (x(i)/sum(x))*( surface of the unit cercle).
 //
 //
 // syntax : pie(x[,sp[,txt]])
 // Input : The input arguments must have the same size
-// x : a scalar or a vector of positive reals. 
+// x : a scalar or a vector of positive reals.
 // sp : a scalar or a vector of reals. The sp vector allows to cut one or several parts of the pie
 // txt : a cell or a vector of strings. The txt vector allows to write a text for each part of the pie
 
@@ -22,7 +22,7 @@ varlist = varargin;
 
 for i=2:size(varlist)
   if size(varlist(i-1),"*") <> size(varlist(i),"*") then
-    error("input arguments must have the same length")
+     error(msprintf(gettext("%s: Wrong size for input arguments: Matrices of same size expected.\n"), "pie"));
   end
 end
 
@@ -35,16 +35,16 @@ if size(varlist) == 1 then
   if type(varlist(1))==1 & and(varlist(1)>0) then
     x = varlist(1)
   else
-    error("first argument must be a scalar or a vector of positve reals");
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "pie", 1));
   end
   // case : pie(x,sp) or pie(x,txt)
 elseif size(varlist) == 2 then
   if type(varlist(1)) == 1 & and(varlist(1)>0) then
     x = varlist(1);
   else
-    error("first argument must be a scalar or a vector of positve reals");   
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "pie", 1));
   end
-  if type(varlist(2)) == 1 | type(varlist(2)) == 4 
+  if type(varlist(2)) == 1 | type(varlist(2)) == 4
     esp = varlist(2);
   elseif type(varlist(2)) == 10 | iscellstr(varlist(2)) then
     txt = varlist(2);
@@ -54,28 +54,28 @@ elseif size(varlist) == 3 then
   if type(varlist(1)) == 1 & and(varlist(1)>0) then
     x = varlist(1);
   else
-    error("first argument must be a scalar or a vector of positve reals");
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "pie", 1));
   end
-  if type(varlist(2)) == 1 | type(varlist(2)) == 4 
+  if type(varlist(2)) == 1 | type(varlist(2)) == 4
     esp = varlist(2);
-  else 
-    error("second argument must be a scalar or a vector of reals");
+  else
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "pie", 2));
   end
-  if type(varlist(3)) == 10 
+  if type(varlist(3)) == 10
     txt = varlist(3);
   elseif iscellstr(varlist(3)) then
     for j=1:size(varlist(3),"*")
       txt(j) = varlist(3).entries(j);
     end
   else
-    error("third argument must be a cell or a vector of strings");
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector of strings expected.\n"),"pie", 3));
   end
-else 
+else
   error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "pie", 1, 3));
 end
 
 if isempty(x) then
-  error("first argument must be a scalar or a vector of positve reals")
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "pie", 1));
 end
 // xi and yi represents the coordinates of each polyline
 // iesp is the index of the part of i which are separated of the pie

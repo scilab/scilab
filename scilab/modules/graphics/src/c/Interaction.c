@@ -456,49 +456,9 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
 int Objmove (char *pobjUID, double d[], int m, BOOL opt)
 {
-    int status = moveObj(pobjUID, d, m);
-#if 0
-    if (status < 0)
-    {
-        return status;
-    }
-
-    if (opt)
-    {
-        /* should be sci draw single obj */
-        sciDrawSingleObj(pobj);
-    }
-    else
-    {
-        sciDrawObj(sciGetParentFigure(pobj));
-    }
-#endif
-    return status;
+    return moveObj(pobjUID, d, m);
 }
 
-/*---------------------------------------------------------------------------------*/
-void interactiveZoom(sciPointObj * pObj)
-{
-    if (sciGetEntityType(pObj) == SCI_FIGURE)
-    {
-        interactiveJavaZoom(pObj);
-    }
-    else if (sciGetEntityType(pObj) == SCI_SUBWIN)
-    {
-        interactiveJavaSubwinZoom(pObj);
-    }
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveRotation(sciPointObj * pFigure)
-{
-    interactiveJavaRotation(pFigure);
-}
-/*---------------------------------------------------------------------------------*/
-void interactiveSubwinRotation(sciPointObj * pSubwin)
-{
-    /* get coordinates of first mouse click */
-    interactiveJavaSubwinRotation(pSubwin);
-}
 /*---------------------------------------------------------------------------------*/
 void showWindow(char * pFigureUID)
 {

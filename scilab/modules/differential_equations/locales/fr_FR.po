@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-06-20 12:10+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-07-20 14:25+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 msgid "bike simulation, stable trajectory"
@@ -91,19 +91,20 @@ msgstr "Code d'équations différentielles généré par Maple"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : %s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus.\n"
+msgstr ""
+"%s : %s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
@@ -111,7 +112,8 @@ msgstr "%s : Option %s invalide : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendus.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"

@@ -39,14 +39,6 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-#if 0
-    if( sciGetEntityType(pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if ( !isParameterDoubleMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
@@ -65,38 +57,31 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
         return SET_PROPERTY_ERROR;
     }
 
-    /*  sciGetNbPoints's only use was to get a polyline's number of points */
-#if 0
-    if( ( nbCol == 3 && sciGetNbPoints(pobj) == 3 ) ||
-        ( nbCol == 4 && sciGetNbPoints(pobj) == 4 ) )
-#endif
+    if( ( nbCol == 3 && iNumElements == 3 ) ||
+        ( nbCol == 4 && iNumElements == 4 ) )
+    {
+        int tmp[4];
+        getDoubleMatrixFromStack( stackPointer );
 
-        if( ( nbCol == 3 && iNumElements == 3 ) ||
-            ( nbCol == 4 && iNumElements == 4 ) )
+        copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
+
+        status = setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
+
+        if (status == TRUE)
         {
-            int tmp[4];
-            getDoubleMatrixFromStack( stackPointer );
-
-            copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
-
-            status = setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
-
-            if (status == TRUE)
-            {
-                return SET_PROPERTY_SUCCEED;
-            }
-            else
-            {
-                Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
-                return SET_PROPERTY_ERROR;
-            }
-
+            return SET_PROPERTY_SUCCEED;
         }
         else
         {
-            Scierror(999, _("The number of column of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
             return SET_PROPERTY_ERROR;
         }
 
+    }
+    else
+    {
+        Scierror(999, _("The number of column of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

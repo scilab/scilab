@@ -43,14 +43,6 @@ int set_arrow_size_factor_property(void* _pvCtx, char* pobjUID, size_t stackPoin
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_POLYLINE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size_factor");
-       return SET_PROPERTY_ERROR;
-    }
-#endif
-
     arrowSizeFactor = getDoubleFromStack(stackPointer);
 
     status = setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);

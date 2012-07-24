@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 12:38+0000\n"
+"PO-Revision-Date: 2012-07-23 09:17+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "%s: Could not add line to the history.\n"
-msgstr ""
+msgstr "%s : Impossible d'ajouter une ligne à l'historique.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -78,6 +78,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+msgid "Command history"
+msgstr "Historique de commandes"
+
+msgid "History Management Settings"
+msgstr "Paramètres de l'historique"
+
+msgid "Enable history management"
+msgstr "Activer l'historique"
+
+msgid "History file: "
+msgstr "Fichier d'historique : "
+
+msgid "History files"
+msgstr "Fichiers d'historique"
+
+msgid "History lines: "
+msgstr "Lignes d'historique : "
 
 msgid "Begin Session : "
 msgstr "Début de session : "

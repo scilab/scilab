@@ -10,14 +10,8 @@
  *
  */
 
-#include "MALLOC.h"             /* MALLOC */
-#include "sciprint.h"
-#include "localization.h"
-#include "HandleManagement.h"   /* sciGetRelationship... */
-#include "SetProperty.h"        /* sciInitVisibility... */
-#include "GetProperty.h"        /* sciGetPointerToUserData */
-#include "InitUIMenu.h"
-#include "BuildObjects.h"
+#ifndef __CREATE_UIMENU_H__
+#define __CREATE_UIMENU_H__
 
 /**
  * CreateUimenu
@@ -25,3 +19,5 @@
  * @return created uimenu UID
  */
 char *CreateUimenu(void);
+
+#endif /* !__CREATE_UIMENU_H__ */

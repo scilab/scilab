@@ -285,6 +285,7 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             end
             if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
                 totalSize = seekString(fd, totalSize); // resizefcn
+                totalSize = seekString(fd, totalSize); // closerequestfcn
             end
 
             [totalSize, axesCount] = readInt(fd, totalSize); // children

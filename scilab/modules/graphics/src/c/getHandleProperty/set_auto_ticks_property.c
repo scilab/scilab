@@ -52,14 +52,6 @@ int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     values = getStringMatrixFromStack( stackPointer );
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks") ;
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
     if ( mSize == 1 )
     {
         /* only one parameter to set the value for every axes.*/

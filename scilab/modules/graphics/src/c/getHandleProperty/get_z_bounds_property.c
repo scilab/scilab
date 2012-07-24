@@ -35,14 +35,6 @@ int get_z_bounds_property(void* _pvCtx, char* pobjUID)
 {
     double* zBounds = NULL;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_FEC)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_bounds");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_Z_BOUNDS__, jni_double_vector, (void **)&zBounds);
 
     if (zBounds == NULL)

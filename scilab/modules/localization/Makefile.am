@@ -34,7 +34,6 @@ sci_gateway/c/sci_getlanguage.c \
 sci_gateway/c/sci_setdefaultlanguage.c
 
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-				-I/sw/include \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \

@@ -48,14 +48,6 @@ int set_axes_reverse_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
         return SET_PROPERTY_ERROR ;
     }
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_reverse") ;
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
     if ( nbCol == 1 )
     {
         /* only one parameter to set the value for every axes.*/

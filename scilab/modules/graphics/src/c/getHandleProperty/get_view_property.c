@@ -34,14 +34,6 @@ int get_view_property(void* _pvCtx, char* pobjUID)
     int iView = 0;
     int* piView = &iView;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
 
     if (piView == NULL)

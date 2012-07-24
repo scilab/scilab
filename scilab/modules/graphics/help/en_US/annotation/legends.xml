@@ -49,7 +49,7 @@
             <varlistentry>
               <term>opt</term>
               <listitem>
-                <para>specify where to draw the legends; this parameter may be a integer
+                <para>specify where to draw the legends; this parameter may be an integer
                   flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates 
                   of the upper left corner of the legend box. In the first case the possible values
                   are:

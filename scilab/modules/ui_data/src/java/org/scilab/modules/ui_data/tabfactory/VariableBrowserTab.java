@@ -41,8 +41,8 @@ public class VariableBrowserTab {
                 new ClosingOperationsManager.ClosingOperation() {
 
                     @Override
-                    public boolean canClose() {
-                        return true;
+                    public int canClose() {
+                        return 1;
                     }
 
                     @Override

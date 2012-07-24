@@ -76,7 +76,7 @@
           <para>
             Matrix of strings : the first column give the list of repositories
             managed by ATOMS and the second column indicate if the repository is
-            a official repository, if the repository has been added for all users
+            an official repository, if the repository has been added for all users
             or only for the current user.
           </para>
         </listitem>

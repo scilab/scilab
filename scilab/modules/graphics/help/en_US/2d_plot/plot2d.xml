@@ -56,7 +56,7 @@
               <term>logflag</term>
               <listitem>
                 <para>sets the scale (linear or logarithmic) along the axes.
-                  The associated value should be a a string with possible
+                  The associated value should be a string with possible
                   values: <literal>"nn"</literal>, <literal>"nl"</literal> ,
                   <literal>"ln"</literal> and <literal>"ll"</literal> .
                 </para>
@@ -177,7 +177,7 @@
         <term>logflag</term>
         <listitem>
           <para>This option may be used to set the scale (linear or
-            logarithmic) along the axes. The associated value should be a a
+            logarithmic) along the axes. The associated value should be a
             string with possible values: <literal>"nn"</literal>,
             <literal>"nl"</literal> , <literal>"ln"</literal> and
             <literal>"ll"</literal>. <literal>"l"</literal> stands for

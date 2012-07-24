@@ -37,14 +37,6 @@ int get_y_ticks_property(void* _pvCtx, char* pobjUID)
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
-        return -1 ;
-    }
-#endif
-
     /* retrieve number of ticks */
     getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
 

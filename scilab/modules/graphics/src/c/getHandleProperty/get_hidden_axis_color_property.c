@@ -34,14 +34,6 @@ int get_hidden_axis_color_property(void* _pvCtx, char* pobjUID)
     int iHiddenAxisColor = 0;
     int* piHiddenAxisColor = &iHiddenAxisColor;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, (void **)&piHiddenAxisColor);
 
     if (piHiddenAxisColor == NULL)

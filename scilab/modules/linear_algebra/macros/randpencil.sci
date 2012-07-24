@@ -22,7 +22,7 @@ function F=randpencil(eps,infi,fin,eta)
 // this should be an empty matrix with zero rows and coldim(eps) columns
 // If called with eps=[], infi=[], fin=[], eta=[0,..,0]
 // randpencil returns F=[];
-// this should be a empty matrix with coldim(eta) rows and 0 columns.
+// this should be an empty matrix with coldim(eta) rows and 0 columns.
 // (bad behavior of the empty matrix!!!!!)
 
   [LHS,RHS]=argn(0);

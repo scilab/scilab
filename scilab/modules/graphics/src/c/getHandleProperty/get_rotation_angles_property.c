@@ -33,15 +33,6 @@ int get_rotation_angles_property(void* _pvCtx, char* pobjUID)
 {
     double* angles = NULL;
 
-#if 0
-    /* DJ.A 2003 */
-    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **)&angles);
 
     if (angles == NULL)

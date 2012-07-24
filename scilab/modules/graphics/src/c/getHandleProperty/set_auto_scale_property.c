@@ -36,14 +36,6 @@ int set_auto_scale_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 	BOOL status = FALSE;
 	int b =  (int)FALSE;
 
-#if 0
-	if (sciGetEntityType(pobj) != SCI_FIGURE && sciGetEntityType(pobj) != SCI_SUBWIN)
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_scale");
-		return SET_PROPERTY_ERROR ;
-	}
-#endif
-
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_scale");
 	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 

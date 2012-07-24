@@ -11,8 +11,14 @@
 Xcos
 ====
 
+* Bug #9290 fixed - HALT blocks displayed STOP
+
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
+
+* Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter
+
+* Bug #11518 fixed - CLR block-text left box when zooming.
 
 
 Preferences
@@ -30,16 +36,23 @@ Javasci
 Documentation
 =============
 
-* Management of Docbook tags <varname>, <command> and <constant>.
+* Management of Docbook tags <varname>, <command>, <function> and <constant>.
   See bug #11459.
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
+
+* Categories have been created for the following modules help pages:
+    - statistics. See bug #9108.
+    - genetic algorithms. See bug #11514.
 
 
 GUI
 ===
 
 * Uicontrols tooltip can now be managed using the new "TooltipString" property.
+
+* Figure closure can now be managed by the user (confirmation, ...) through the
+  'closerequestfcn' property.
 
 
 Obsolete Functions
@@ -50,14 +63,58 @@ Obsolete Functions
 * uipopup function is now obsolete. Please use 'uicontextmenu' instead.
 
 
+Arnoldi Package
+===============
+
+* New function:
+  - eigs function added (See SEP #82)
+
+
 Unitary tests
 =============
 
 * A fourth argument added to test_run to export test results to XUnit format.
 
 
+Statistics
+==========
+
+* General improvements of the show_pca function (See bug #11500):
+  - Data bounds fixed in the left graph,
+  - Correlation circle graph improved,
+  - Eigenvalues graph improved.
+
+
+Graphics
+========
+
+* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
+                     logarithm scale.
+
+* Bug #11330 fixed - oldplot function removed.
+
+* Bug #11332 fixed - Default usage of contour2d was producing some errors.
+
+* Bug #11333 fixed - Missing argument number checking in comet added.
+
+* Bug #11490 fixed - comet produced wrong display with matrix inputs.
+
+* Bug #11506 fixed - "Rendu d'équations mathématiques dans le graphique Scilab"
+                     were missing some closure tags in the examples.
+
+
 Bug Fixes
 =========
+
+* Bug #3235 fixed - In the bezout function, typo in the name of a variable.
+                    This made the calpol unitary test fail.
+
+* Bug #3244 fixed - Error messages in the qpsolve and qp_solve functions updated.
+
+* Bug #3787 fixed - Invalid calling sequences removed from the schur help page.
+
+* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
+                    was always calculated its own, arbitrary, internal value.
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
@@ -71,10 +128,12 @@ Bug Fixes
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
 
-* Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
+* Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
 
-* Bug #10711 fixed - The textbox of datatip was not displayed in graphics using
-                     logarithm scale.
+* Bug #10497 fixed - Some special characters were causing issues in the phaseplot
+                     localization.
+
+* Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
 
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
                               when executed.
@@ -85,8 +144,18 @@ Bug Fixes
 * Bug #10915 fixed - It was not possible to select several files when using
                      button "Open file" in console toolbar.
 
+* Bug #10921 fixed - For ill-conditioned matrix, the inv function printed a
+                     wrong value of rcond.
+
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
+
+* Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
+
+* Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
+
+* Bug #11328 fixed - strsplit returned a wrong error message when second input
+                     argument contained wrong values.
 
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
@@ -101,6 +170,10 @@ Bug Fixes
 
 * Bug #11385 fixed - length() returned a wrong error message when called without
                      input argument.
+
+* Bug #11388 fixed - Calling xsetech(frect=[0,0,100,100]) failed.
+
+* Bug #11396 fixed - Overloading: toto([])=[] with toto being an mlist failed.
 
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
@@ -117,14 +190,38 @@ Bug Fixes
 * Bug #11443 fixed - There was no way to set default language via prefs under
                      Windows.
 
+* Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
+
+* Bug #11449 fixed - The color function created a figure when it did not already
+                     exist.
+
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
+* Bug #11460 fixed - In the console, scrollbar was not updated before something was
+                     entered at the prompt.
+
 * Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
 
-* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
-                              into itself. 
+* Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of draw
+                     at the end of the update.
 
+* Bug #11482 fixed - The 2 plots of demo "Graphics/Complex elementary function/Custom"
+                     were too small.
+
+* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
+                              into itself.
+
+* Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
+                     something in the console.
+
+* Bug #11519 fixed - The colored lines in the legend of nyquist plot were inverted.
+
+* Bug #11537 fixed - In SciNotes it was not possible to modify font size with
+                     CTRL+scroll.
+
+* Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
+                     fixed to 4096.
 
 
 Known Incompatibilities
@@ -550,6 +647,9 @@ ATOMS
 
 * Bug #10957 fixed - atomsInstall required a network connection to install
                      a local package.
+
+* Bug #11062 fixed - atomsGetInstalledPath function moved as a public function.
+
 
 Call_Scilab
 ===========
@@ -1470,7 +1570,7 @@ Obsolete Functions
    removed in Scilab 5.4.1.
 
 * 'showalluimenushandles' function (graphics) was undocumented. This function is
-  obsolete and will be removed on 5.4.
+  obsolete and will be removed on 5.4.1.
   Use set(get(0), "ShowHiddenHandles", "on"); instead.
 
 * 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use

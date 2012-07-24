@@ -13,7 +13,8 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
 
   if rhs == 0 then
     scf();
-    contour2d(1:10, 1:10, rand(10,10), 5, rect = [0, 0, 11, 11]);
+    levels = contour2d(1:10, 1:10, rand(10,10), 5, rect = [0, 0, 11, 11]);
+    return;
   end
 
   if rhs < 4 then
@@ -191,5 +192,4 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
   end
   set('current_entity', a);
   fig.immediate_drawing = v;
-  draw(fig);
 endfunction

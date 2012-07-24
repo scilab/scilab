@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-13 11:27+0100\n"
+"Revision-Date: 2012-07-20 00:21+0100\n"
 
 # File: sci_gateway/c/sci_addhistory.c, line: 40
 #, c-format
@@ -100,6 +100,36 @@ msgstr ""
 # File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 54
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 2
+msgid "Command history"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 16
+msgid "History Management Settings"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 18
+msgid "Enable history management"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 23
+msgid "History file: "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 30
+msgid "History files"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 37
+msgid "History lines: "
 msgstr ""
 
 #

@@ -22,6 +22,7 @@
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
+#include "BOOL.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -51,7 +52,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 156
+#define NB_PROPERTIES 157
 
 /**
 * list of all property names and associated functions in scilab
@@ -214,7 +215,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"anti_aliasing", set_anti_aliasing_property},
     {"showhiddenhandles", SetConsoleShowHiddenHandles},
     {"resizefcn", set_figure_resizefcn_property},
-    {"tooltipstring", SetUicontrolTooltipString}
+    {"tooltipstring", SetUicontrolTooltipString},
+    {"closerequestfcn", set_figure_closerequestfcn_property}
 };
 
 /*--------------------------------------------------------------------------*/

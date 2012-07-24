@@ -68,4 +68,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
 <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
 <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="useeditor" />
+<PRIMITIVE gatewayId="25" primitiveId="38" primitiveName="fire_closing_finished" />
 </GATEWAY>

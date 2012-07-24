@@ -34,14 +34,6 @@ int get_isoview_property(void* _pvCtx, char* pobjUID)
     int iIsoview = 0;
     int* piIsoview = &iIsoview;
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
 
     if (piIsoview == NULL)

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: zh_CN\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -75,14 +75,6 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型错误：应该为二维字符串数组。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr "%s：输入参数 #%d 的类型错误：应该为标量或字符串。\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s：句柄不正确。\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少应该输入 %d 个。\n"
 
@@ -91,8 +83,29 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s：可选参数位置错误：参数 #%d 必须置于位置 %d。\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为矩阵。\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s：句柄不正确。\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -106,6 +119,10 @@ msgid "This object cannot be deleted.\n"
 msgstr "该对象不能被删除。\n"
 
 msgid "A Label object cannot be deleted.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
 msgstr ""
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -266,10 +283,6 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个“%s”句柄或者一个实数标量。\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr "%s：不能创建所需的图象：内存不足。\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s：句柄“%s”不存在。\n"
 
@@ -362,6 +375,22 @@ msgstr "%s：输入的参数的数目错误：应该为 %d。\n"
 
 #, c-format
 msgid "Figure n%d"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr ""
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use drawlater/drawnow instead."
+msgstr ""
+
+msgid "xset(\"wwpc\") is obsolete."
 msgstr ""
 
 #, c-format
@@ -475,23 +504,11 @@ msgid ""
 "%s: Wrong size for input argument #%d: String of %d characters expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为有 %d 字符的字符串。\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "您没有使用 Legend 对象。\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr "坐标修改只能适用于坐标轴对象。\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "只有坐标轴句柄具有可视区域。"
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr "无法为这种对象计算数据范围。"
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "无法为这种对象计算 x_location。"
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "无法为这种对象计算 y_location。"
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -507,9 +524,6 @@ msgstr ""
 msgid "This object has not any graphic mode\n"
 msgstr "这个对象没有任何图象模式\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "没有回调函数跟此实体联系。\n"
-
 msgid "This object can not be moved.\n"
 msgstr "这个对象不能移动。\n"
 
@@ -524,9 +538,6 @@ msgstr "线的风格必须大于 %d。\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "标号大小必须大于或等于 %d。\n"
-
-msgid "Unable to load default values.\n"
-msgstr "无法装载缺省值。\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "句柄不是一个 SubWindow。\n"
@@ -552,10 +563,6 @@ msgstr "非句柄数据域\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "列数必须是 %d 。\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s：请使用 %s 代替。\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -587,10 +594,6 @@ msgstr "属性 %s 的类型错误：应该是字符串。\n"
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "属性“%s”值错误。\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "属性 %s 仅为 %s 的表面存在。\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -773,10 +776,6 @@ msgid ""
 "defining the line (which must be %d or %d).\n"
 msgstr ""
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr ""
 
@@ -832,30 +831,12 @@ msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr "属性“%s”大小错误：应该是 %d 或 %d 个元素。\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "参数 #%d 必须有 %d 个元素。\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s 不能在这种情况下设置。\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr "属性“%s”大小错误：应该是至少 %d 个元素。\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr "错误：在 %s 中大小不足；您必须先增加 %s 的大小。\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr "警告：%s 已经被用户设置；在切换到这个新的 %s 模式前您必须先增加这个 %s 字符串向量的大小。\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "不能直接设置一个标签对象。\n"
@@ -871,10 +852,6 @@ msgstr "属性“%s”类型错误：应该是机打的列表。\n"
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "属性“%s”大小错误：应该是行向量。\n"
-
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "不可能：%s 在重新分配前必须释放。"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1049,6 +1026,25 @@ msgstr "海洋"
 
 msgid "White"
 msgstr "白色"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr ""
+
+msgid "Color's number of pixel(i,j)"
+msgstr ""
+
+msgid "   = rounded value of M(i,j)"
+msgstr ""
+
+msgid "Matplot(M) scales axes with"
+msgstr ""
+
+msgid "indices of M's components"
+msgstr ""
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

@@ -11,12 +11,8 @@
  *
  */
 
-#include "MALLOC.h" /* MALLOC */
-#include "sciprint.h"
-#include "localization.h"
-#include "HandleManagement.h" /* sciGetRelationship... */
-#include "SetProperty.h" /* sciInitVisibility... */
-#include "GetProperty.h" /* sciGetPointerToUserData */
+#ifndef __CREATE_UICONTROL_H__
+#define __CREATE_UICONTROL_H__
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -24,3 +20,5 @@
  * @return  : object UID if ok , NULL if not
  */
 char *CreateUIControl(char *style);
+
+#endif /* !__CREATE_UICONTROL_H__ */

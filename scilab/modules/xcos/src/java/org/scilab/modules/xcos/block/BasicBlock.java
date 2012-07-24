@@ -778,7 +778,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     /**
-     * @return the expression as a object array
+     * @return the expression as an object array
      */
     public Object[] getExprsFormat() {
         // evaluate emptiness

@@ -35,14 +35,6 @@ int get_tics_segment_property(void* _pvCtx, char* pobjUID)
     int iTicksSegment = 0;
     int* piTicksSegment = &iTicksSegment;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_AXES )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_segment");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, jni_bool, (void **)&piTicksSegment);
 
     if (piTicksSegment == NULL)

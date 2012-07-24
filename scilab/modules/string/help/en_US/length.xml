@@ -79,7 +79,7 @@ a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
 length(a) 
 // returns 3 default behaviour if length not overloaded for MList
 
-// we create a overload function for MList of type myMlistT
+// we create an overload function for MList of type myMlistT
 function r = %myMlistT_length(M)
   r = length(M.field1)
 endfunction

@@ -73,7 +73,7 @@
       <literal>angle(i)</literal>gives the slope in degree used for drawing the strings at location <literal>(x[i], y[i])</literal>.
     </para>
     <para>
-      If <literal>box</literal> is a integer scalar, it's regarded as a vector of size n whose elements are set to <literal>box</literal>.
+      If <literal>box</literal> is an integer scalar, it's regarded as a vector of size n whose elements are set to <literal>box</literal>.
     </para>
     <para>
       If <literal>box(i)</literal> is 1 and <literal>angle(i)</literal> is 0, a box is drawn around the strings at location <literal>(x[i], y[i])</literal>.

@@ -37,14 +37,6 @@ int get_legend_location_property(void* _pvCtx, char* pobjUID)
     int iLegendLocation = 0;
     int* piLegendLocation = &iLegendLocation;
 
-#if 0
-    if (sciGetEntityType (pobj) != SCI_LEGEND)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
-        return -1;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, jni_int, (void**)&piLegendLocation);
 
     if (piLegendLocation == NULL)

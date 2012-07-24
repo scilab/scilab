@@ -41,14 +41,6 @@ int set_alignment_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_TEXT )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"alignment");
-        return SET_PROPERTY_ERROR;
-    }
-#endif
-
     if ( isStringParamEqual( stackPointer, "left" ) )
     {
         alignment = 0;

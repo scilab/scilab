@@ -68,7 +68,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private Color alternColor1 = new Color(246, 191, 246);
     private Color alternColor2 = new Color(246, 101, 246);
 
-    private int numbers;
+    private int numbers = 1;
     private int lastLine;
     private int state;
 
@@ -210,8 +210,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setFont(font);
         metrics = textPane.getFontMetrics(font);
         ascent = metrics.getAscent();
-        numbers = 0;
-        updateWidth();
+        updateWidth(false);
     }
 
     /**
@@ -239,8 +238,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     /**
      * Update the width of this component in using the number of digits used
      */
-    public void updateWidth() {
-        ++numbers;
+    public void updateWidth(boolean inc) {
+        if (inc) {
+            ++numbers;
+        }
         Insets insets = getInsets();
         int width = metrics.charWidth('0') * numbers;
         availableWidth = width;
@@ -317,7 +318,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
 
                 int diff = (availableWidth - metrics.stringWidth(str)) / 2;
                 if (diff <= 0) {
-                    updateWidth();
+                    updateWidth(true);
                     diff = (availableWidth - metrics.stringWidth(str)) / 2;
                 }
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: pl\n"
 
 #, c-format
@@ -839,9 +839,6 @@ msgstr ""
 "%s: Zły typ parametru wejściowego nr %d: Oczekiwano dynamicznego liniowego "
 "układu.\n"
 
-msgid "Phase ()"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
@@ -988,6 +985,14 @@ msgstr "%s: Nieprawidłowa odpowiedź.\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: Norma błędu = %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr ""
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

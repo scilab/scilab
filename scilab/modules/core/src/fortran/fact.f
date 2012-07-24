@@ -403,7 +403,7 @@ c     check for a==
          goto 42
       endif
       if(ids(1,pt).eq.blank) then 
-c     .  (x=2) syntax for a a factor ->(x==2)
+c     .  (x=2) syntax for an a factor ->(x==2)
          lpt(4)=lpt4
          char1=equal
          goto 42

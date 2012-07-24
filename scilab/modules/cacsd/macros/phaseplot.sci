@@ -80,7 +80,7 @@ function []=phaseplot(varargin)
   if size(axes.children,"*")==0 then
     axes.data_bounds=[min(frq),min(phi);max(frq),max(phi)]
     axes.x_label.text=_("Frequency (Hz)")
-    axes.y_label.text=_("Phase (°)")
+    axes.y_label.text=_("Phase (Deg)")
 
   else
     axes.data_bounds=[min([min(frq),min(phi)],axes.data_bounds(1,:));

@@ -54,7 +54,7 @@
       magnitude response. The approximation takes
       the form <literal>h = sum[a(n)*cos(wn)]</literal>
       for n=0,1,...,nc. An FIR, linear-phase filter
-      can be obtained from the the output of the function
+      can be obtained from the output of the function
       by using the following commands
     </para>
     <programlisting role=""><![CDATA[ 

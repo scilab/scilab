@@ -18,7 +18,6 @@
 #define _SCI_ECH
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
 
 GRAPHICS_IMPEXP void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[],
                                    int xPixCoords[], int yPixCoords[], int nbCoords,

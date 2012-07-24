@@ -71,7 +71,7 @@
       possible to replace <literal>mtlb_axis</literal> call by <literal>get(axeshandle,
         prop)
       </literal>
-      call (prop is a axes property, see
+      call (prop is an axis property, see
       <link linkend="axis_properties">axis_properties</link>)
     </para>
     <para>

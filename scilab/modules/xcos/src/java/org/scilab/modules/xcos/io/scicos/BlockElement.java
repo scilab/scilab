@@ -393,7 +393,7 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
     }
 
     /**
-     * Set the the port size per type.
+     * Set the port size per type.
      *
      * @param from
      *            the source block

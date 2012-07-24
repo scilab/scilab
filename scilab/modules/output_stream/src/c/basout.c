@@ -79,7 +79,7 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 				in printf.f line 102 
 				call basout(io,lunit,'     []')
 				if we do basout(io,lunit,'     []',7) it works ...
-				temp workaround , we returns to old version with a allocation
+				temp workaround , we returns to old version with an allocation
 				*/
 				char *buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+1));
 				if (buffer)

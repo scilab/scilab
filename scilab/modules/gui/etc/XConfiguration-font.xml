@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fonts title="Fonts">
+<fonts title="_(Fonts)">
   <body>
     <fonts item="Console" system="true" font-name="Monospaced" font-face="plain" font-size="13">
       <item xconf-uid="console-font" name="Console" desktop="false" font-name="Monospaced" font-face="plain" font-size="13"/>

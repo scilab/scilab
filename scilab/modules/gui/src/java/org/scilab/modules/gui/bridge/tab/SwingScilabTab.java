@@ -19,6 +19,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
@@ -46,6 +47,8 @@ import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -53,12 +56,14 @@ import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
+import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
@@ -104,6 +109,7 @@ import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.BarUpdater;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
@@ -141,21 +147,14 @@ import org.scilab.modules.gui.editor.EditorEventListener;
  */
 public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener {
 
-    /** Use to put a component above any other object within its layer */
-    private static final int TOP_POSITION = 0;
-    /** Use to put a component below any other object within its layer */
-    private static final int BOTTOM_POSITION = -1;
+    public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
     private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
 
     private static final long serialVersionUID = 1L;
 
-    private static final int VIEWPORT_SIZE = 4;
-
     private static final String UNDOCK = "undock";
     private static final String HELP = "help";
-
-    public static final String GRAPHICS_TOOLBAR_DESCRIPTOR = System.getenv("SCI") + "/modules/gui/etc/graphics_toolbar.xml";
 
     private String id;
 
@@ -341,6 +340,34 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             public void componentHidden(ComponentEvent arg0) {
             }
         });
+
+        /* Manage closerequestfcn */
+        ClosingOperationsManager.registerClosingOperation(SwingScilabTab.this, new ClosingOperationsManager.ClosingOperation() {
+
+            public int canClose() {
+                String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
+                if (!closeRequestFcn.equals("")) {
+                    InterpreterManagement.requestScilabExec(closeRequestFcn + ";fire_closing_finished()");
+		    return -1;
+                } else {
+                    closeAction.actionPerformed(null);
+		    return 1;
+                }
+            }
+
+            public void destroy() {
+            }
+
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
+
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+
+            }
+        });
+        ClosingOperationsManager.addDependencyWithRoot(this);
     }
 
     /**
@@ -1397,8 +1424,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             Integer[] axesSize = (Integer[]) value;
             Dimension oldAxesSize = getContentPane().getSize();
             if (
-                ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1])) &&
-                ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
+                ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1]))
+                && ((Boolean) GraphicController.getController().getProperty(getId(), __GO_AUTORESIZE__))
             ) {
                 // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
                 int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();

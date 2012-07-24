@@ -60,19 +60,6 @@ void closeGraphicModule( void )
     /* destroy all graphic windows */
     AllGraphWinDelete() ;
 
-    /* destroy default objects */
-    //destroyDefaultObjects() ;
-
-    /* Destroy the handle tab */
-    //destroyScilabHandleTab();
-
-    /* destroy hashtables */
-    //destroyScilabGetHashTable() ;
-    //destroyScilabSetHashTable() ;
-
-    /* Delete synchronization data */
-    //destroyGraphicSynchronizer();
-
     /* Unegister Scilab as a dedicated View */
     unregisterToController();
 

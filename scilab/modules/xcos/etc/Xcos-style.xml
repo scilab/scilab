@@ -636,7 +636,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>
   </add>
   <add as="HALT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="STOP"/>
+    <add as="displayedLabel" value="HALT"/>
   </add>
   <add as="freq_div" extend="blockWithLabel">
     <add as="displayedLabel" value="Frequency&lt;BR&gt;         division"/>

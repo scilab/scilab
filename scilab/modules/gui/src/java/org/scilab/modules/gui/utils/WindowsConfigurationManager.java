@@ -129,7 +129,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         try {
             Document doc = XConfiguration.getXConfigurationDocument();
             XPath xp = XPathFactory.newInstance().newXPath();
-            NodeList nodes = (NodeList) xp.compile(LAYOUT_PATH + "/layout[@name=../@name]/@path").evaluate(doc, XPathConstants.NODESET);
+            NodeList nodes = (NodeList) xp.compile(LAYOUT_PATH + "/layout[@id=../@id]/@path").evaluate(doc, XPathConstants.NODESET);
             if (nodes != null && nodes.getLength() > 0) {
                 return nodes.item(0).getNodeValue().replace("$SCI", System.getenv(SCI));
             }
@@ -694,8 +694,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         NodeList list = root.getElementsByTagName("Window");
 
         int length = getNodeListLength(list);
+        List<Element> elems = new ArrayList<Element>(length);
         for (int i = 0; i < length; i++) {
-            validateWindow(((Element) list.item(i)).getAttribute("uuid"));
+            elems.add((Element) list.item(i));
+        }
+
+        for (Element e : elems) {
+            validateWindow(e.getAttribute("uuid"));
         }
     }
 

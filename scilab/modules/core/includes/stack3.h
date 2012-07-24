@@ -47,7 +47,7 @@ int C2F(putvar) (int *number, char *namex, unsigned long name_len );
  * @param _iVar the matrix
  * @return 1 if is complex 0 otherwise
  */
-/* int iIsComplex(int _iVar); */
+int iIsComplex(int _iVar);
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal);

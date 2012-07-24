@@ -107,6 +107,7 @@ import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.uitable.ScilabUiTable;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.BarUpdater;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.Position;
@@ -3181,5 +3182,10 @@ public class CallScilabBridge {
     // TODO REMOVE ME (NO MORE USED IN JNI)
     public static void setUiTreeData(int id, String[] text) {
         ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
+    }
+
+    public static void fireClosingFinished(String figUID) {
+	SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(figUID);
+	ClosingOperationsManager.removeFromDunnoList(parentTab);
     }
 }

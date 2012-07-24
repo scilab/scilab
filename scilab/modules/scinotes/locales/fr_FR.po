@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-12 12:43+0000\n"
+"PO-Revision-Date: 2012-07-23 13:07+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
@@ -252,7 +252,7 @@ msgid "Line Endings"
 msgstr "Fin de lignes"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Complétion automatique sur"
 
 msgid "(, [, ..."
 msgstr "(, [, ..."
@@ -324,6 +324,168 @@ msgstr "Évaluer la sélection avec écho;Évaluer jusqu'au curseur, avec écho"
 
 msgid "Complete"
 msgstr "Compléter"
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Header"
+msgstr "En-tête"
+
+msgid "Autosave"
+msgstr "Enregistrement automatique"
+
+msgid "Editor"
+msgstr "Éditeur"
+
+msgid "External editor: "
+msgstr "Éditeur externe : "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+"N'oubliez pas de mettre des guillemets autour du chemin s'il contient des "
+"espaces blancs"
+
+msgid "Scilab command: "
+msgstr "Commande Scilab : "
+
+msgid "SciNotes General settings"
+msgstr "Paramètres de base de Scinotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Restaurer la session précédente au démarrage"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Ajouter retour chariot à la fin du fichier"
+
+msgid "Number of recently opened files to display: "
+msgstr "Nombre de fichiers ouverts récemment à afficher : "
+
+msgid "Default file encoding: "
+msgstr "Encodage de fichier par défaut : "
+
+msgid "Default End-Of-Line: "
+msgstr "Fin de ligne par défaut : "
+
+msgid "General display options"
+msgstr "Options d'affichage"
+
+msgid "Highlight current line: "
+msgstr "Mettre en surbrillance la ligne courante : "
+
+msgid "Show line numbers: "
+msgstr "Afficher les numéros de ligne : "
+
+msgid "Whereami compatible"
+msgstr "Compatible Whereami"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Wrap lines"
+msgstr "Retour automatique à la ligne"
+
+msgid "Keywords"
+msgstr "Mots-clés"
+
+msgid "Set syntax Colors"
+msgstr "Régler les couleurs de syntaxe"
+
+msgid "Highlight corresponding brackets"
+msgstr "Mettre en surbrillance les parenthèses correspondantes"
+
+msgid "Color: "
+msgstr "Couleur: "
+
+msgid "Highlight on mouse over"
+msgstr "Mettre en surbrillance au passage de la souris"
+
+msgid "Style: "
+msgstr "Style : "
+
+msgid "Filled"
+msgstr "Justifié"
+
+msgid "Framed"
+msgstr "Encadré"
+
+msgid "Underlined"
+msgstr "Souligné"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr ""
+"Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Tabulation et indentation"
+
+msgid "Tabulation size: "
+msgstr "Taille des tabulations : "
+
+msgid "Use space"
+msgstr "Utiliser des espaces"
+
+msgid "Representation: "
+msgstr "Représentation : "
+
+msgid "Chevrons"
+msgstr "Chevrons"
+
+msgid "Horizontal rule"
+msgstr "Règle horizontale"
+
+msgid "Vertical rule"
+msgstr "Règle verticale"
+
+msgid "Enable auto indentation"
+msgstr "Activer l'indentation automatique"
+
+msgid "Indent size: "
+msgstr "Taille des indentations : "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Activer l'enregistrement automatique dans Scinotes"
+
+msgid "Save options"
+msgstr "Enregistrer les options"
+
+msgid "Save every "
+msgstr "Enregistrer toutes les "
+
+msgid " minutes "
+msgstr " minutes "
+
+msgid "Close options"
+msgstr "Fermer les options"
+
+msgid "Delete automatically saved files"
+msgstr "Supprimer les fichiers enregistrés automatiquement"
+
+msgid "Filename"
+msgstr "Nom de fichier"
+
+msgid "Append filename with: "
+msgstr "Adjoindre le nom de fichier avec : "
+
+msgid "Replace extension with: "
+msgstr "Remplacer l'extension par : "
+
+msgid "Location"
+msgstr "Emplacement"
+
+msgid "Source file directory"
+msgstr "Répertoire du fichier source"
+
+msgid "Single directory"
+msgstr "Répertoire unique"
+
+msgid "Choose an autosave directory"
+msgstr "Choisir un répertoire d'enregistrement automatique"
+
+msgid "Default header"
+msgstr "En-tête par défaut"
+
+msgid "Add a default header to new file"
+msgstr "Ajouter un en-tête par défaut à un nouveau fichier"
 
 msgid "Graphics handle field"
 msgstr "Champ d'un handle graphique"
@@ -716,13 +878,14 @@ msgstr "Impossible de supposer l'encodage du fichier."
 #, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
+"Impossible d'enregistrer le fichier %s... Arrêt du processus de sauvegarde"
 
 msgid "Backup finished..."
-msgstr ""
+msgstr "Sauvegarde terminée..."
 
 #, c-format
 msgid "%s occurences found."
-msgstr ""
+msgstr "%s occurrences trouvées."
 
 msgid "Change Colors"
 msgstr "Changer les couleurs"
@@ -822,12 +985,6 @@ msgstr "Longueur"
 
 msgid "Tab representation"
 msgstr "Représentation de la tabulation"
-
-msgid "Horizontal rule"
-msgstr "Règle horizontale"
-
-msgid "Vertical rule"
-msgstr "Règle verticale"
 
 msgid "Double chevrons"
 msgstr "Double chevrons"

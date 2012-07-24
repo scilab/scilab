@@ -3,6 +3,7 @@
  * Copyright (C) 2001 - 2002 - INRIA - Mathieu Philipe
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2012 - 2012 - Scialb Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,30 +27,18 @@
 #define __SCI_INIT_GRAPHICS__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
-#include "BOOL.h"
 #include "machine.h" /* C2F */
 
-GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
-GRAPHICS_IMPEXP int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
+#define NUMCOLORS_SCI 32
 
+GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
 
 GRAPHICS_IMPEXP int sciInitGraphicMode (char* pobjUID);
 
-GRAPHICS_IMPEXP char * initLabel(char * parentObjUID) ; /* INITOBJECT */
+GRAPHICS_IMPEXP char *initLabel(char *parentObjUID) ; /* INITOBJECT */
 
-GRAPHICS_IMPEXP void reinitSubwin( void ) ;
+GRAPHICS_IMPEXP void InitFigureModel(char *pfiguremdlUID); /* INITOBJECT */
 
-GRAPHICS_IMPEXP FigureModelData * newFigureModelData( void ) ;
-GRAPHICS_IMPEXP void destroyFigureModelData( FigureModelData * data ) ;
-
-GRAPHICS_IMPEXP void InitFigureModel(char* pfiguremdlUID); /* INITOBJECT */
 GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
-
-GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
-
-GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
-
-GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;
 
 #endif /* __SCI_INIT_GRAPHICS__ */

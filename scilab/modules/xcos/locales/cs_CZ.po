@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-06-13 19:29+0000\n"
+"PO-Revision-Date: 2012-07-23 21:02+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1205,6 +1205,10 @@ msgstr "Nastavení bloku pomocí funkce [%s] selhalo."
 #, c-format
 msgid "%s: Wrong type for argument #%d: A Block expected."
 msgstr "%s: Špatný typ argumentu #%d: Očekáván blok"
+
+#, c-format
+msgid "Field %s has different values."
+msgstr "Pole %s má různé hodnoty."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Knihovny Scicos nejsou načteny"

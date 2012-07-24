@@ -35,14 +35,6 @@ int get_cube_scaling_property(void* _pvCtx, char* pobjUID)
     int iCubeScaling = 0;
     int* piCubeScaling = &iCubeScaling;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cube_scaling") ;
-        return -1 ;
-    }
-#endif
-
     getGraphicObjectProperty(pobjUID, __GO_CUBE_SCALING__, jni_bool, (void **)&piCubeScaling);
 
     if (piCubeScaling == NULL)

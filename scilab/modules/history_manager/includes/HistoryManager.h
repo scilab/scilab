@@ -97,7 +97,7 @@ extern "C" {
 
     /**
     * Get all lines in history
-    * @return a array of string
+    * @return an array of string
     */
     HISTORY_MANAGER_IMPEXP char **getAllLinesOfScilabHistory(void);
 
@@ -130,14 +130,14 @@ extern "C" {
     /**
     * Get the previous line in Scilab history
     * @return a line or NULL
-    * after a appendLine iterator go to end
+    * after an appendLine iterator go to end
     */
     HISTORY_MANAGER_IMPEXP char *getPreviousLineInScilabHistory(void);
 
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
-    * after a appendLine iterator go to end
+    * after an appendLine iterator go to end
     */
     HISTORY_MANAGER_IMPEXP char *getNextLineInScilabHistory(void);
 

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-13 20:24+0000\n"
+"PO-Revision-Date: 2012-07-23 19:58+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -731,6 +731,81 @@ msgstr "Předvolby Scilab"
 msgid "Scilab Demonstrations"
 msgstr "Ukázky Scilab"
 
+msgid "Select a file to load"
+msgstr "Vyberte soubor k načtení"
+
+msgid "Figure loaded.\n"
+msgstr "Obrazec načten.\n"
+
+msgid "Select a file to write"
+msgstr "Vyberte soubor k zápisu"
+
+msgid "Figure saved.\n"
+msgstr "Obrazec uložen.\n"
+
+msgid "Select a file name"
+msgstr "Vyberte jméno souboru"
+
+msgid "Colors"
+msgstr "Barvy"
+
+msgid "Desktop color"
+msgstr "Barva plochy"
+
+msgid "Use system color"
+msgstr "Použít systémové barvy"
+
+msgid "Text "
+msgstr "Text "
+
+msgid "Background "
+msgstr "Pozadí "
+
+msgid "Cursor "
+msgstr "Kurzor "
+
+msgid "Syntax highlighting colors"
+msgstr "Barvy zvýraznění syntaxe"
+
+msgid "Keyword color "
+msgstr "Barva klíčového slova "
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;b&gt;Tučné&lt;/b&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;i&gt;Kurzíva&lt;/i&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;u&gt;Podtržené&lt;/u&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;s&gt;Přeškrtnuté&lt;/s&gt;&lt;html&gt;"
+
+msgid "Fonts"
+msgstr "Písma"
+
+msgid "Desktop font"
+msgstr "Písmo plochy"
+
+msgid "Use system font"
+msgstr "Použít písmo systému"
+
+msgid "Desktop text font: "
+msgstr "Písmo textu plochy: "
+
+msgid "Custom font"
+msgstr "Vlastní písmo"
+
+msgid "Fonts to use:"
+msgstr "Písmo k použití"
+
+msgid "Desktop text font"
+msgstr "Písmo textu plochy"
+
+msgid "Custom:"
+msgstr "Vlastní:"
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Vlastnost '%s' pro tuto obslužnou rutinu neexistuje.\n"
@@ -905,6 +980,11 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáván řetězec nebo vektor řetězců.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo "
@@ -963,6 +1043,7 @@ msgstr "Pozadí Konzole..."
 msgid "No print service found."
 msgstr "Žádna služba tisku nenalezena."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -972,6 +1053,7 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1152,6 +1234,7 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1159,9 +1242,11 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1216,6 +1301,7 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
@@ -1241,21 +1327,6 @@ msgstr "%s: Dostupné pouze v režimu 'STANDARD'.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Chyba. Byl zachycen signál.\n"
-
-msgid "Select a file to load"
-msgstr "Vyberte soubor k načtení"
-
-msgid "Figure loaded.\n"
-msgstr "Obrazec načten.\n"
-
-msgid "Select a file to write"
-msgstr "Vyberte soubor k zápisu"
-
-msgid "Figure saved.\n"
-msgstr "Obrazec uložen.\n"
-
-msgid "Select a file name"
-msgstr "Vyberte jméno souboru"
 
 msgid "Control Plot3d"
 msgstr "Kontrola Plot3d"

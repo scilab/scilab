@@ -68,7 +68,7 @@ c     standard matrix case
 
          if (m .eq. 1 .or. n .eq. 1) go to 63
 c     
-c     .  diag(a,k) with a a matrix
+c     .  diag(a,k) with an a matrix
          if (k.ge.0) then
             mn=max(0,min(m,n-k))
          else

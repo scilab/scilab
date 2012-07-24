@@ -33,7 +33,7 @@
             (<literal>df&gt;0</literal>).
           </para>
           <para>Only one of these two value should be specified the other one
-            should set equal to a nonpostive value.
+            should set equal to a nonpositive value.
           </para>
         </listitem>
       </varlistentry>

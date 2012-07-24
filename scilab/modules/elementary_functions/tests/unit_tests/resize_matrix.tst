@@ -23,7 +23,7 @@ refMat=int32([0,4,3,0;
 4,4,0,0;
 0,0,0,0]);
 
-myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create a integer matrix
+myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create an integer matrix
 assert_checkequal(myMatInteger, refMat);
 booleanMat=resize_matrix( refMat, 3, 5 , "boolean");
 assert_checkequal(booleanMat, [%f,%f,%f,%f,%f;%t,%f,%f,%f,%f;%f,%f,%f,%f,%f]);

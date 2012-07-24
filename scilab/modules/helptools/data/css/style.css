@@ -72,6 +72,12 @@ h3 {
     color: #32b9b9
 }
 
+.function {
+    font-family: monospace;
+    font-size: 100%;
+    color: #32b9b9
+}
+
 .varname {
     font-family: monospace;
     font-weight: bold;

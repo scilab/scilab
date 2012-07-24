@@ -46,7 +46,7 @@
     <para>allows to manage default value for optimization parameters. Indeed,
       if the field corresponding to the <literal>key</literal> is empty (i.e.
       has not been set by the user), the input argument <literal>value</literal>
-      is returned. Instead, if the field corresponding the the key is not empty
+      is returned. Instead, if the field corresponding the key is not empty
       (i.e. has been set by the user), the parameter stored in the <literal>options</literal>
       argument is returned.
     </para>

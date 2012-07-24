@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 20:25+0000\n"
+"PO-Revision-Date: 2012-07-22 20:50+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -69,6 +69,528 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
+
+msgid "Console"
+msgstr "Konzole"
+
+msgid "Display"
+msgstr "Zobrazení"
+
+msgid "Lines to display:"
+msgstr "Řádky k zobrazení:"
+
+msgid "Columns to display:"
+msgstr "Sloupce k zobrazení:"
+
+msgid "Number of lines in console scroll buffer:"
+msgstr "Počet řádků ve vyrovnávací paměti posunu v konzoli:"
+
+msgid "General"
+msgstr "Obecné"
+
+msgid "Produces an error"
+msgstr "Vytváří chybu"
+
+msgid "Produces a warning"
+msgstr "Vytváří varování"
+
+msgid "Produces Inf or NaN"
+msgstr "Vytváří nekonečno nebo NaN"
+
+msgid "Variable format"
+msgstr "Proměnný formát"
+
+msgid "Scientific format"
+msgstr "Vědecký formát"
+
+msgid "English"
+msgstr "Angličtina"
+
+msgid "French"
+msgstr "Franzouzština"
+
+msgid "Portugese (Brazil)"
+msgstr "Portugalština (brazilská)"
+
+msgid "Catalan"
+msgstr "Katalánština"
+
+msgid "Czech"
+msgstr "Čeština"
+
+msgid "Spanish"
+msgstr "Španělština"
+
+msgid "Italian"
+msgstr "Italština"
+
+msgid "Polish"
+msgstr "Polština"
+
+msgid "Russian"
+msgstr "Ruština"
+
+msgid "Chinese (Simplified)"
+msgstr "Čínština (zjednodušená)"
+
+msgid "Chinese (Traditional)"
+msgstr "Čínština (tradiční))"
+
+msgid "German"
+msgstr "Němčina"
+
+msgid "Japanese"
+msgstr "Japonština"
+
+msgid "Ukrainian"
+msgstr "Ukrajinština"
+
+msgid "Confirmation dialogs"
+msgstr "Dialogová okna potvrzení"
+
+msgid "Warn before exiting Scilab"
+msgstr "Varovat před ukončením Scilab"
+
+msgid "Warn before deleting Command History items"
+msgstr "Varovat před vymazáním položek historie příkazů"
+
+msgid "Warn before clearing the Console"
+msgstr "Varovat před vyčištěním konzole"
+
+msgid "Desktop layout"
+msgstr "Rozložení plochy"
+
+msgid "Integrated"
+msgstr "Začleněné"
+
+msgid "Simple"
+msgstr "Jednoduché"
+
+msgid "Shortcuts"
+msgstr "Zkratky"
+
+msgid "Cut or interrupt"
+msgstr "Vyjmout nebo přerušit"
+
+msgid "Copy or interrupt"
+msgstr "Kopírovat nebo přerušit"
+
+msgid "Select all"
+msgstr "Vybrat vše"
+
+msgid "Line beginning"
+msgstr "Začátek řádku"
+
+msgid "Line end"
+msgstr "Konec řádku"
+
+msgid "Previous char"
+msgstr "Předchozí znak"
+
+msgid "Next char"
+msgstr "Další znak"
+
+msgid "Delete next char"
+msgstr "Smazat další znak"
+
+msgid "Delete previous char"
+msgstr "Smazat předchozí znak"
+
+msgid "Delete end of line"
+msgstr "Smazat konec řádku"
+
+msgid "Delete whole line"
+msgstr "Smazat celý řádek"
+
+msgid "Delete last word"
+msgstr "Smazat poslední slovo"
+
+msgid "Previous console page"
+msgstr "Předchozí stránka konzole"
+
+msgid "Next console page"
+msgstr "Další stránka konzole"
+
+msgid "Validate input"
+msgstr "Ověřit vstup"
+
+msgid "Clear console"
+msgstr "Vyčistit konzoli"
+
+msgid "Console box"
+msgstr "Rámeček konzole"
+
+msgid "Completion"
+msgstr "Dokončení"
+
+msgid "Previous history line"
+msgstr "Předchozí řádek historie"
+
+msgid "Next history line"
+msgstr "Další řádek historie"
+
+msgid "Help Browser"
+msgstr "Průzkumník nápovědy"
+
+msgid "Paste"
+msgstr "Vložit"
+
+msgid "Open a file"
+msgstr "Otevřít soubor"
+
+msgid "Load environment"
+msgstr "Nahrát prostředí"
+
+msgid "Save environment"
+msgstr "Uložit prostředí"
+
+msgid "Quit"
+msgstr "Ukončit"
+
+msgid "Execute"
+msgstr "Spustit"
+
+msgid "Empty clipboard"
+msgstr "Vyčistit schránku"
+
+msgid "Change current directory"
+msgstr "Změnit současný adresář"
+
+msgid "Display current directory"
+msgstr "Zobrazit současný adresář"
+
+msgid "Page setup"
+msgstr "Nastavení stránky"
+
+msgid "Print"
+msgstr "Tisk"
+
+msgid "Preferences"
+msgstr "Nastaveni"
+
+msgid "Show/Hide toolbar"
+msgstr "Zobrrazit/Skrýt panel nástrojů"
+
+msgid "Clear history"
+msgstr "Vyčistit historii"
+
+msgid "Resume"
+msgstr "Pokračovat"
+
+msgid "Abort"
+msgstr "Ukončit"
+
+msgid "Interrupt"
+msgstr "Přerušit"
+
+msgid "Launch SciNotes"
+msgstr "Spustit SciNotes"
+
+msgid "Launch Xcos"
+msgstr "Spustit Xcos"
+
+msgid "Matlab to Scilab Translator"
+msgstr "Převaděč Matlab na Scilab"
+
+msgid "Module manager"
+msgstr "Správce modulů"
+
+msgid "Variable Browser"
+msgstr "Prohlížeč proměnných"
+
+msgid "Command History"
+msgstr "Historie příkazů"
+
+msgid "File Browser"
+msgstr "Průzkumník souborů"
+
+msgid "Demonstrations"
+msgstr "Ukázky"
+
+msgid "Open Scilab website"
+msgstr "Otevřít stránku Scilab"
+
+msgid "Open Online Help"
+msgstr "Otevřít nápoědu online"
+
+msgid "Open Scilab wiki"
+msgstr "Otevřít wiki Scilab"
+
+msgid "Open ATOM website"
+msgstr "Otevřít stránku ATOM"
+
+msgid "Open File Exchange website"
+msgstr "Otevřít stránku výměny souborů"
+
+msgid "Open Mailing lists"
+msgstr "Otevřít poštovní konference"
+
+msgid "Open Forge website"
+msgstr "Otevřít stránku Forge"
+
+msgid "Open Bugzilla"
+msgstr "Otevřít Bugzilla"
+
+msgid "About Scilab"
+msgstr "O Scilab"
+
+msgid "Auto complete (, [,..."
+msgstr "Automatické dokončení  (, [,..."
+
+msgid "Auto complete keyword"
+msgstr "Automatické dokončení klíčového slova"
+
+msgid "Generate Help prototype"
+msgstr "Vytvořit prototyp nápovědy"
+
+msgid "Tabify"
+msgstr "Tabulovat"
+
+msgid "Untabify"
+msgstr "Odtabulovat"
+
+msgid "Indent"
+msgstr "Odsadit"
+
+msgid "Comment"
+msgstr "Okomenovat"
+
+msgid "Uncomment"
+msgstr "Odkomentovat"
+
+msgid "Remove trailing whites"
+msgstr "Odstranit konečné mezery"
+
+msgid "Select block"
+msgstr "Vybrat blok"
+
+msgid "Open current tab in a new window"
+msgstr "Otevřít současnou kartu v novém okně"
+
+msgid "Export current tab in a new window"
+msgstr "Exportovat současnou kartu do nového okna"
+
+msgid "Copy"
+msgstr "Kopírovat"
+
+msgid "Cut"
+msgstr "Vyjmout"
+
+msgid "Paste a column"
+msgstr "Vložit sloupec"
+
+msgid "Repeat selection on column"
+msgstr "Opakovat výběr ve sloupci"
+
+msgid "Undo"
+msgstr "Zpět"
+
+msgid "Redo"
+msgstr "Znovu"
+
+msgid "Copy as HTML with line number"
+msgstr "Kopírovat jako HTML s čísly řádků"
+
+msgid "New"
+msgstr "Nový"
+
+msgid "Open"
+msgstr "Otevřít"
+
+msgid "Open URL"
+msgstr "Otevřít URL"
+
+msgid "Open source"
+msgstr "Otevřený software"
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Save as"
+msgstr "Uložit jako"
+
+msgid "Reload"
+msgstr "Obnovit"
+
+msgid "Print preview"
+msgstr "Náhled tisku"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Exit"
+msgstr "Ukončit"
+
+msgid "To lower case"
+msgstr "Na malá písmena"
+
+msgid "To upper case"
+msgstr "Na velká písmena"
+
+msgid "Capitalize"
+msgstr "Kapitálky"
+
+msgid "Help on keyword"
+msgstr "Nápověda pro klíčové slovo"
+
+msgid "Load in Scilab"
+msgstr "Načíst v Scilab"
+
+msgid "Execute in Scilab"
+msgstr "Spustit v Scilab"
+
+msgid "Evaluate selection"
+msgstr "Vyhodnotit výběr"
+
+msgid "Save and execute"
+msgstr "Uložit a spustit"
+
+msgid "Save and execute all"
+msgstr "Uložit a spustit vše"
+
+msgid "Find"
+msgstr "Najít"
+
+msgid "Find next"
+msgstr "Najít další"
+
+msgid "Find previous"
+msgstr "Najít předchozí"
+
+msgid "Incremental search"
+msgstr "Přírůstkové hledání"
+
+msgid "Set anchor"
+msgstr "Nastavit kotvu"
+
+msgid "Remove anchor"
+msgstr "Odstranit kotvu"
+
+msgid "Go to next anchor"
+msgstr "Přejít na další kotvu"
+
+msgid "Go to previous anchor"
+msgstr "Přejit na předchozí kotvu"
+
+msgid "Start Code Navigator"
+msgstr "Spustit prohlížeče kódu"
+
+msgid "Search word in file"
+msgstr "Hledat slovo v souboru"
+
+msgid "Search files"
+msgstr "Hledat soubory"
+
+msgid "Keyword completion"
+msgstr "Dokončení klíčových slov"
+
+msgid "Help"
+msgstr "Nápověda"
+
+msgid "About"
+msgstr "O aplikaci"
+
+msgid "Next tab"
+msgstr "Další karta"
+
+msgid "Previous tab"
+msgstr "Předchozí karta"
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Next paragraph"
+msgstr "Další odstavec"
+
+msgid "Previous paragraph"
+msgstr "Předchozí odstavec"
+
+msgid "Save all"
+msgstr "Uložit vše"
+
+msgid "Overwrite"
+msgstr "Přepsat"
+
+msgid "Close all"
+msgstr "Zavřít vše"
+
+msgid "Close all but"
+msgstr "Zavřít vše kromě"
+
+msgid "Convert quote to double quote"
+msgstr "Převést uvozovky na dvojité"
+
+msgid "Line numbering"
+msgstr "Číslování řádků"
+
+msgid "Save diagramm"
+msgstr "Uložiz graf"
+
+msgid "Save variable"
+msgstr "Uložit proměnnou"
+
+msgid "Save history"
+msgstr "Uložit historii"
+
+msgid "Save file"
+msgstr "Uložit soubor"
+
+msgid "Floating point exception (ieee): "
+msgstr "Výjimka čísel s plovoucí čárkou (ieee): "
+
+msgid "Printing format: "
+msgstr "Formát tisku: "
+
+msgid "Width: "
+msgstr "Šířka: "
+
+msgid "Language setting"
+msgstr "Nastavení jazyka"
+
+msgid "Default language: "
+msgstr "Výchozí jazyk: "
+
+msgid "(This requires a restart of Scilab)"
+msgstr "(Toto vyžaduje restart Scilabu)"
+
+msgid "Java Heap Memory"
+msgstr "Haldová paměť Java"
+
+msgid "Select the memory (in MB) available in Java: "
+msgstr "Vyberte paměť (v MB) dostupnou pro Java: "
+
+msgid "Desktop Layout"
+msgstr "Rozložení plochy"
+
+msgid "Select a layout"
+msgstr "Zvolit rozložení"
+
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr "(Změna rozvržení vyžaduje retart)"
+
+msgid "Keys binding"
+msgstr "Přidělení kláves"
+
+msgid "Filter on action name: "
+msgstr "Filtr v názech činností: "
+
+msgid "Component"
+msgstr "Díl"
+
+msgid "Name: "
+msgstr "Název: "
+
+msgid "Description: "
+msgstr "Popis: "
+
+msgid "Binding: "
+msgstr "Přidělení: "
+
+msgid "Action name"
+msgstr "Název činnosti"
+
+msgid "Key binding"
+msgstr "Přidělení klávesy"
 
 msgid "File or Directory"
 msgstr "Soubor nebo Adresář"

@@ -12,7 +12,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	// if error_check is %t then execution errors are reported
 	// if error_check is %f then only test checked error are detected
 	// (see examples in tests directory)
-	// if keep_prompt is %t the the prompt is kept in the dia file
+	// if keep_prompt is %t the prompt is kept in the dia file
 	// this can be useful for producing demos
 
 	[lhs,rhs]=argn(0);

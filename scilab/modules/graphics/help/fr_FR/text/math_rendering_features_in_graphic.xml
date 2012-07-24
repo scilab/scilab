@@ -37,24 +37,24 @@ a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x
       Le rendu est basé sur la bibliothèque Java JLaTeXMath. Il s'agit d'une implémentation du mode mathématique de LaTeX. L'ensemble des commandes LaTeX de base sont gérées (s'il en manque une, n'hésitez pas à soumettre un rapport de bug), par contre celles de TeX, comme <literal>\over</literal> ne le sont pas.
     </para>
     <para>Depuis Scilab 5.2.1, le grec, le cyrillique et l'intégralité de l'unicode pour les alphabets latin sont gérés dans les graphiques Scilab.</para>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[
       xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
       xtitle('$\big(\bigg)$')
       xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
       xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
       xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
-    </programlisting>
+     ]]></programlisting>
     <para>
       JLaTeXMath fournit plusieurs polices utilisables avec les commandes <literal>\mathbb</literal>, <literal>\mathscr</literal>, <literal>\mathcal</literal>, <literal>\mathbf</literal>, <literal>\mathit</literal>, <literal>\mathsf</literal>, <literal>\mathtt</literal>, <literal>\mathfrak</literal>, <literal>\mathds</literal>, <literal>\mathrm</literal>, ainsi que leurs versions grasses quand elles existent activables avec la commande <literal>\boldsymbol</literal> :
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 xtitle('$\mathbb{SCILAB}\ \mathsf{or}\ \boldsymbol{\mathfrak{Scilab}}$')
 xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
  ]]></programlisting>
     <para>
       Différents packages LaTeX sont disponibles : <replaceable>amsmath</replaceable>, <replaceable>amssymb</replaceable>, <replaceable>stmaryrd</replaceable>, <replaceable>amsxtra</replaceable> et <replaceable>accents</replaceable> ainsi que quelques commandes de <replaceable>graphics</replaceable>. La plupart des commandes de ces packages sont disponibles (il en manque quelques unes d'<replaceable>amsmath</replaceable> en l'occurence).
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
 xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
 xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }..
@@ -65,10 +65,10 @@ xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
 xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
 xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
 xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
-</programlisting>
-
-<para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>
-
+]]></programlisting>
+    
+    <para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>
+    
     <programlisting role="example"><![CDATA[ 
 xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
 xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')

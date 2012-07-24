@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -14,7 +14,7 @@
   <refnamediv>
     <refname>show_pixmap</refname>
     <refpurpose>send the pixmap buffer to the
-      screen
+      screen <emphasis role="bold">This function is obsolete.</emphasis>
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -36,10 +36,13 @@
       can be found among the figure entity fields (see
       <link linkend="figure_properties">figure_properties</link>).
     </para>
+    <para>
+      WARNING: This function is obsolete from Scilab 5.4.0 and is going to be removed with Scilab 5.4.1 Please use <link linkend="drawlater">drawlater</link>/<link linkend="drawnow">drawnow</link> instead.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 f=gcf();
 f.pixmap='on'; //set the pixmap mode
 a=gca();
@@ -55,7 +58,7 @@ r2=r2.children;
 for k=1:1000
   //draw the rectangles in the pixmap buffer
   move(r1,[0.01,-0.01]);
-  move(r2,[0.01,0.01]) 
+  move(r2,[0.01,0.01])
   //show the pixmap buffer
   show_pixmap()
   xpause(10000)
@@ -71,6 +74,21 @@ end
       <member>
         <link linkend="clear_pixmap">clear_pixmap</link>
       </member>
+      <member>
+        <link linkend="drawlater">drawlater</link>
+      </member>
+      <member>
+        <link linkend="drawnow">drawnow</link>
+      </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function show_pixmap is obsolete.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

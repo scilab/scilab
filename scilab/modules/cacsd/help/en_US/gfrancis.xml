@@ -45,7 +45,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      Given the the linear plant:
+      Given the linear plant:
     </para>
     <programlisting role=""><![CDATA[ 
 x'= F*x + G*u 

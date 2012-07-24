@@ -41,14 +41,6 @@ int set_figure_name_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
         return SET_PROPERTY_ERROR ;
     }
 
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_FIGURE )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
     status = setGraphicObjectProperty(pobjUID, __GO_NAME__, getStringFromStack( stackPointer ), jni_string, 1);
 
     if(status == TRUE)

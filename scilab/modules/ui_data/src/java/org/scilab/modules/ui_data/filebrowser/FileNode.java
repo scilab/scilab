@@ -198,7 +198,7 @@ public class FileNode {
     }
 
     /**
-     * Returns the the string to be used to display this leaf in the JTree.
+     * Returns the string to be used to display this leaf in the JTree.
      */
     public String toString() {
         String name = file.getName();

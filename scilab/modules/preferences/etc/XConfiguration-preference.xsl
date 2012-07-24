@@ -4,14 +4,14 @@
   <xsl:template match="preference" mode="tooltip">Preferences</xsl:template>
   <xsl:template match="backups">
     <xsl:variable name="name" select="@name"/>
-    <Title text="Preferences backup">
+    <Title text="_(Preferences backup)">
     <Grid>
-      <Label gridx="1" gridy="1" weightx="0" text="Select a backup file "/>
+      <Label gridx="1" gridy="1" weightx="0" text="_(Select a backup file)"/>
       <FileSelector gridx="2" gridy="1" weightx="1" anchor="above_baseline"
                     listener="EntryListener"
                     href="{@restore-path}"
                     mask="*.xml"
-                    desc="Scilab Configuration files"
+                    desc="_(Scilab Configuration files)"
                     dir-selection="false"
 		    check-entry="false">
         <entryChanged choose="restore-path">
@@ -19,7 +19,7 @@
         </entryChanged>
       </FileSelector>
       <Panel gridx="3" gridy="1" weightx="1" fill="both"/>
-      <Button gridx="4" gridy="1" text="Restore" listener="ActionListener">
+      <Button gridx="4" gridy="1" text="_(Restore)" listener="ActionListener">
         <actionPerformed callback="Restore Backup">
           <xsl:attribute name="path">
             <xsl:value-of select="@restore-path"/>
@@ -27,12 +27,12 @@
 	  <xsl:call-template name="context"/>
         </actionPerformed>
       </Button>
-      <Label gridx="1" gridy="2" weightx="0" text="Create a backup file "/>
+      <Label gridx="1" gridy="2" weightx="0" text="_(Create a backup file)"/>
       <FileSelector gridx="2" gridy="2" weightx="1" anchor="above_baseline"
                     listener="EntryListener"
                     href="{@save-path}"
                     mask="*.xml"
-                    desc="Scilab Configuration files"
+                    desc="_(Scilab Configuration files)"
                     dir-selection="false"
 		    check-entry="false">
         <entryChanged choose="save-path">
@@ -40,7 +40,7 @@
         </entryChanged>
       </FileSelector>
       <Panel gridx="3" gridy="2" weightx="1" fill="both"/>
-      <Button gridx="4" gridy="2" text="Save" listener="ActionListener">
+      <Button gridx="4" gridy="2" text="_(Save)" listener="ActionListener">
         <actionPerformed callback="Save Backup">
 	  <xsl:attribute name="path">
             <xsl:value-of select="@save-path"/>

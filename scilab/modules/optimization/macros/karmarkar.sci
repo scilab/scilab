@@ -333,7 +333,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     end
     //
     // Remove constraints where b(i) = %inf.
-    // Such a A(i,:)*x <= %inf = b(i) will be satisfied anyway, but 
+    // Such an A(i,:)*x <= %inf = b(i) will be satisfied anyway, but 
     // may cause failures in the algorithm.
     iinf = find(b == %inf)
     b(iinf) = []
