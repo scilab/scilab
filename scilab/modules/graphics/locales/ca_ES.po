@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: ca\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -91,16 +91,6 @@ msgstr ""
 "2D de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
-"o una cadena de text.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s: El tractament no és vàlid.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
@@ -113,10 +103,31 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
 "matriu.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: El tractament no és vàlid.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -132,6 +143,10 @@ msgstr "No es pot eliminar aquest objecte.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "No es pot eliminar un objecte Etiqueta.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr ""
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Valor incorrecte de %s '%c': Ha de ser '%s', '%s' i '%s'.\n"
@@ -333,10 +348,6 @@ msgstr ""
 "tractament '%s' o un escalar real.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr "%s: No s'ha pogut crear la figura: No hi ha més memòria.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: El tractament '%s' no existeix.\n"
 
@@ -447,6 +458,22 @@ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
 msgid "Figure n%d"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr ""
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use drawlater/drawnow instead."
+msgstr ""
+
+msgid "xset(\"wwpc\") is obsolete."
 msgstr ""
 
 #, c-format
@@ -583,25 +610,12 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "%d caràcters.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "No esteu utilitzant un objecte llegenda.\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Les modificacions de coordenades només es poden aplicar a objectes eix.\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "Només els tractaments d'eixos tenen una àrea de visualització."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr ""
-"No es pot calcular els límits de les dades per a aquest tipus d'objecte."
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "No es pot calcular la posició x per a aquest tipus d'objecte."
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "No es pot calcular la posició y per a aquest tipus d'objecte."
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -617,9 +631,6 @@ msgstr ""
 msgid "This object has not any graphic mode\n"
 msgstr "Aquest no té mode gràfic\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "No hi ha cap Callback associat a aquesta entitat.\n"
-
 msgid "This object can not be moved.\n"
 msgstr "No es pot moure aquest objecte.\n"
 
@@ -634,9 +645,6 @@ msgstr "L'estil de la línia ha de ser major que %d.\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "La mida de la marca ha de ser igual o major que %d.\n"
-
-msgid "Unable to load default values.\n"
-msgstr "No es poden carregar els valors predeterminats.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "El tractament no és un SubWindow.\n"
@@ -663,10 +671,6 @@ msgstr "Camp de dades no tractat\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "El nombre de columnes ha de ser %d.\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s: Utilitzeu %s.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -702,10 +706,6 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "La propietat '%s' té un valor incorrecte.\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "La propietat %s només existeix per a superfícies %s.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -919,10 +919,6 @@ msgid ""
 "defining the line (which must be %d or %d).\n"
 msgstr ""
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr ""
 
@@ -987,14 +983,6 @@ msgstr ""
 "La propietat '%s' té una mida incorrecta: Ha de tenir %d o %d elements.\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "L'argument #%d ha de tenir%d elements.\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "No es pot definir el %s per a aquest cas.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
 
@@ -1003,19 +991,6 @@ msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
 "La propietat '%s' té una mida incorrecta: Com a mínim, ha de tenir %d "
 "elements.\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr ""
-"Error: La mida de %s és incorrecta; heu d'augmentar la mida del %s.\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"Avís: L'usuari ha definit el %s ; abans heu d'augmentar la mida del vector "
-"de cadenes de text %s abans de canviar al nou mode %s.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "No es pot establir directament un objecte etiqueta.\n"
@@ -1032,10 +1007,6 @@ msgstr "La propietat '%s' és d'un tipus incorrecte: Ha de ser una llista.\n"
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 "La propietat '%s' té una mida incorrecta: Ha de ser un vector fila.\n"
-
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "Impossible: Per poder reaassignar el %s primer s'ha d'alliberar"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1210,6 +1181,25 @@ msgstr "Oceà"
 
 msgid "White"
 msgstr "Blanc"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr ""
+
+msgid "Color's number of pixel(i,j)"
+msgstr ""
+
+msgid "   = rounded value of M(i,j)"
+msgstr ""
+
+msgid "Matplot(M) scales axes with"
+msgstr ""
+
+msgid "indices of M's components"
+msgstr ""
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

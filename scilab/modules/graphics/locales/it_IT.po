@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: it\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -92,16 +92,6 @@ msgstr ""
 "stringhe 2D.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
-"o una stringa.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s: Il gestore non è valido o non lo è più.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
@@ -114,10 +104,31 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "matrice.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: Il gestore non è valido o non lo è più.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -133,6 +144,10 @@ msgstr "Questo oggetto non può essere distrutto.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "Un oggetto Etichetta non può essere eliminato.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr ""
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Valore sbagliato per %s '%c': erano attesi '%s', '%s' e '%s'.\n"
@@ -343,12 +358,6 @@ msgstr ""
 "'%s' o uno scalare reale.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr ""
-"%s: Non è possibile creare la figura richiesta: non c'è memoria "
-"sufficiente.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: il gestore '%s' non c'è o non esiste più.\n"
 
@@ -467,6 +476,22 @@ msgstr ""
 
 #, c-format
 msgid "Figure n%d"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr ""
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr ""
+
+msgid "Please use drawlater/drawnow instead."
+msgstr ""
+
+msgid "xset(\"wwpc\") is obsolete."
 msgstr ""
 
 #, c-format
@@ -610,25 +635,12 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa di %d caratteri.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "Non si sta usando un oggetto legenda.\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Le modifiche di coordinate sono applicabili solo ad oggetti sugli assi.\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "Solo i gestori degli assi hanno un'area di visualizzazione."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr ""
-"Non è possibile calcolare i margini dei dati per questo tipo di oggetto."
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "Non è possibile calcolare x_location per questo tipo di oggetto."
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "Non è possibile calcolare y_location per questo tipo di oggetto."
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -644,9 +656,6 @@ msgstr ""
 msgid "This object has not any graphic mode\n"
 msgstr "Questo oggetto non ha alcuna modalità grafica\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "Nessun Callback è associato con questa entity.\n"
-
 msgid "This object can not be moved.\n"
 msgstr "Questo oggetto non può essere spostato.\n"
 
@@ -661,9 +670,6 @@ msgstr "Lo stile della linea deve essere maggiore di %d.\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "La dimensione del segno deve essere maggiore o uguale a %d.\n"
-
-msgid "Unable to load default values.\n"
-msgstr "Non è possibile caricare i valori predefiniti.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Il gestore non è un SubWindow.\n"
@@ -690,10 +696,6 @@ msgstr "Campo di dati non gestito\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "Il numero delle colonne deve essere %d.\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s: usare %s invece.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -727,10 +729,6 @@ msgstr "La proprietà '%s' è di tipo sbagliato: era attesa una stringa.\n"
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "La proprietà '%s' ha un valore sbagliato.\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "la proprietà %s esiste solo per %s superfici.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -948,10 +946,6 @@ msgid ""
 "defining the line (which must be %d or %d).\n"
 msgstr ""
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr ""
 
@@ -1019,14 +1013,6 @@ msgstr ""
 "elementi.\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "L'argomento #%d deve avere %d elementi.\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s non può essere impostato/a in questo caso.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
 
@@ -1035,20 +1021,6 @@ msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
 "La proprietà '%s' ha una dimensione sbagliata: erano attesi almeno %d "
 "elementi.\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr ""
-"Errore: la dimensione in %s è sbagliata; occorre prima aumentare la "
-"dimensione di %s.\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"Attenzione: %s è stato/a impostato/a dall'utente; occorre aumentare la "
-"dimensione del vettore stringa %s prima di passare alla nuova modalità %s.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "Non è possibile impostare direttamente un oggetto etichetta.\n"
@@ -1067,11 +1039,6 @@ msgstr ""
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 "La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore riga.\n"
-
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr ""
-"Operazione impossibile: %s deve essere liberato/a prima della ricollocazione."
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1247,6 +1214,25 @@ msgstr "Oceano"
 
 msgid "White"
 msgstr "Bianco"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr ""
+
+msgid "Color's number of pixel(i,j)"
+msgstr ""
+
+msgid "   = rounded value of M(i,j)"
+msgstr ""
+
+msgid "Matplot(M) scales axes with"
+msgstr ""
+
+msgid "indices of M's components"
+msgstr ""
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-13 15:13+0000\n"
+"PO-Revision-Date: 2012-07-22 14:22+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -77,14 +77,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の二次元配列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s: ハンドルは有効でないか有効でなくなりました.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
@@ -93,8 +85,31 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: 引数オプションの位置が間違っています: #%d は,位置　%d でなくてはなりません.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: 関数 %s は廃止されています.\n"
+
+msgid "Warning"
+msgstr "警告"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: 代わりに %s を使用してください.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: この関数は Scilab %s で削除されます\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: ハンドルは有効でないか有効でなくなりました.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -111,6 +126,10 @@ msgstr "このオブジェクトは削除することができません。\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "ラベルオブジェクトは削除できません.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: 詳細はドキュメントを参照ください.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%:  %s '%c' の値が間違っています: '%s', '%s' および '%s' を指定してください.\n"
@@ -274,10 +293,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: '%s' ハンドルまたは実スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr "%s: 指定された図を作成できません: メモリ不足です.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' ハンドルは存在しないか、なくなりました.\n"
 
@@ -371,6 +386,22 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid "Figure n%d"
 msgstr "図 n%d"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr "xset(\"wshow\") は廃止されています."
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr "これは Scilab 5.4.0 以降で削除されます."
+
+msgid "Please use drawlater/drawnow instead."
+msgstr "代わりに drawlater/drawnow を使用してください."
+
+msgid "xset(\"wwpc\") is obsolete."
+msgstr "xset(\"wwpc\") は廃止されています."
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -510,9 +541,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: String of %d characters expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: %d　文字の文字列を指定してください.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "legend オブジェクトを使用していません.\n"
-
 #
 # File: src/c/GetProperty.c, line: 3300
 # File: src/c/GetProperty.c, line: 3321
@@ -523,19 +551,6 @@ msgstr "座標修正は、単に軸オブジェクトに適用できます。\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "軸ハンドルのみがビューエリアを有します."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr "この種のオブジェクトではデータ境界を計算できません."
-
-#
-# File: src/c/GetProperty.c, line: 3646
-msgid "Unable to compute x_location for this kind of object."
-msgstr "このオブジェクト種類の x_location を計算できません。"
-
-#
-# File: src/c/GetProperty.c, line: 3660
-msgid "Unable to compute y_location for this kind of object."
-msgstr "このオブジェクト種類の y_location を計算できません。"
 
 #
 # File: src/c/GetProperty.c, line: 3853
@@ -558,15 +573,6 @@ msgid "This object has not any graphic mode\n"
 msgstr "このオブジェクトはどのようなグラフィックモードも持てません。\n"
 
 #
-# File: src/c/Interaction.c, line: 169
-# File: src/c/Interaction.c, line: 227
-# File: src/c/Interaction.c, line: 277
-# File: src/c/Interaction.c, line: 327
-# File: src/c/Interaction.c, line: 395
-msgid "No Callback is associated with this Entity.\n"
-msgstr "いかなるコールバックも、この実体に関係がありません。\n"
-
-#
 # File: src/c/Interaction.c, line: 514
 # File: src/c/Interaction.c, line: 575
 msgid "This object can not be moved.\n"
@@ -585,11 +591,6 @@ msgstr "線スタイルは、%d 以上必要です。\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "記号の大きさは %d 以上とする必要があります.\n"
-
-#
-# File: src/c/SetProperty.c, line: 1652
-msgid "Unable to load default values.\n"
-msgstr "標準値をロードできません。\n"
 
 #
 # File: src/c/SetProperty.c, line: 2154
@@ -617,12 +618,6 @@ msgstr "未処理のデータフィールド\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "列の数は %d とする必要があります.\n"
-
-#
-# File: src/c/SetProperty.c, line: 2777
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s: どうぞ代わりに %s を使ってください。\n"
 
 #
 # File: src/c/getHandleProperty/get_alignment_property.c, line: 46
@@ -813,10 +808,6 @@ msgstr "'%s' プロパティの型が間違っています: 文字列を指定�
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "'%s' プロパティの値が間違っています\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "%s プロパティは %s 曲面専用です.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -1138,10 +1129,6 @@ msgid ""
 "defining the line (which must be %d or %d).\n"
 msgstr "色ベクトルの列の数は線を定義する点の数(%d または %d)に一致する必要があります.\n"
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "警告: %s\n"
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "{0,1} の値は line_styleプロパティとして等価です."
 
@@ -1212,20 +1199,6 @@ msgstr "親プロパティは、直接に修正することができません。
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr "プロパティ '%s' で不正なサイズ: 要素 %d または %d を想定します。\n"
 
-#
-# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 203
-# File: src/c/getHandleProperty/set_surface_color_property.c, line: 52
-# File: src/c/getHandleProperty/set_surface_color_property.c, line: 70
-#, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "引数 #%d は、%d 要素を持っていなくてはいけません。\n"
-
-#
-# File: src/c/getHandleProperty/set_surface_color_property.c, line: 77
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s は、この場合セットすることができません。\n"
-
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
@@ -1237,22 +1210,6 @@ msgstr "'%s' プロパティの型が間違っています: 文字列を指定�
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr "プロパティ '%s' で不正なサイズ: 最も小さな要素 %d を想定します。\n"
-
-#
-# File: src/c/getHandleProperty/set_tics_style_property.c, line: 68
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr "エラー: %s で不正なサイズです; %s のサイズを最初に増やさなくてはいけません。\n"
-
-#
-# File: src/c/getHandleProperty/set_tics_style_property.c, line: 73
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"警告: %1$s は、ユーザーによってセットされました; 新しい %3$s モードに変える前に %2$s "
-"文字ベクトルのサイズを最初に増やさなくてはいけません。\n"
 
 #
 # File: src/c/getHandleProperty/set_title_property.c, line: 41
@@ -1284,14 +1241,6 @@ msgstr "プロパティ '%s' で不正な型: 型リストを想定します。\
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "プロパティ '%s' で不正なサイズ: 行ベクトルを想定します。\n"
-
-#
-# File: src/c/get_ticks_utils.c, line: 157
-# File: src/c/get_ticks_utils.c, line: 196
-# File: src/c/get_ticks_utils.c, line: 243
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "不可能です: %s は、再配置する前に自由にされなくてはいけません"
 
 #
 # File: src/c/sciCall.c, line: 631
@@ -1509,6 +1458,25 @@ msgstr "海"
 # File: demos/misc/misc.dem.sci, line: 310
 msgid "White"
 msgstr "白"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr "size(M)=>(%d,%d) を指定した Matplot(M)"
+
+msgid "Color's number of pixel(i,j)"
+msgstr "pixel(i,j) の色数"
+
+msgid "   = rounded value of M(i,j)"
+msgstr "   = M(i,j)　を丸めた値"
+
+msgid "Matplot(M) scales axes with"
+msgstr "以下でMatplot(M) の軸を調整"
+
+msgid "indices of M's components"
+msgstr "Mの要素の添字"
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr "データで調整された軸の場合, Matplot1(..) を使用してください"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

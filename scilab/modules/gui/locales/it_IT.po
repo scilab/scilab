@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-03 11:17+0000\n"
+"PO-Revision-Date: 2012-07-16 15:54+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: it\n"
 
 #, c-format
@@ -772,6 +772,81 @@ msgstr ""
 msgid "Scilab Demonstrations"
 msgstr "Dimostrazioni di Scilab"
 
+msgid "Select a file to load"
+msgstr "Scegliere un file da caricare"
+
+msgid "Figure loaded.\n"
+msgstr "Figura caricata\n"
+
+msgid "Select a file to write"
+msgstr "Scegliere un file da scrivere"
+
+msgid "Figure saved.\n"
+msgstr "Figura salvata\n"
+
+msgid "Select a file name"
+msgstr "Scegliere un nome per il file"
+
+msgid "Colors"
+msgstr ""
+
+msgid "Desktop color"
+msgstr ""
+
+msgid "Use system color"
+msgstr ""
+
+msgid "Text "
+msgstr ""
+
+msgid "Background "
+msgstr ""
+
+msgid "Cursor "
+msgstr ""
+
+msgid "Syntax highlighting colors"
+msgstr ""
+
+msgid "Keyword color "
+msgstr ""
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "Fonts"
+msgstr ""
+
+msgid "Desktop font"
+msgstr ""
+
+msgid "Use system font"
+msgstr ""
+
+msgid "Desktop text font: "
+msgstr ""
+
+msgid "Custom font"
+msgstr ""
+
+msgid "Fonts to use:"
+msgstr ""
+
+msgid "Desktop text font"
+msgstr ""
+
+msgid "Custom:"
+msgstr ""
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -959,6 +1034,11 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "La proprietà '%s' ha una dimensione sbagliata: era atteso '%s', '%s', '%s', "
@@ -1023,12 +1103,14 @@ msgstr "Sfondo del terminale..."
 msgid "No print service found."
 msgstr ""
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1204,14 +1286,17 @@ msgstr "Salva ed esegui"
 msgid "Empty tab"
 msgstr ""
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1266,6 +1351,7 @@ msgstr "Tutte le immagini PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tutti i file RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Tutti i file %s"
 
@@ -1291,21 +1377,6 @@ msgstr "%s: Disponibile solo sotto modalità \"STANDARD\".\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "ERRORE. È stato catturato un segnale.\n"
-
-msgid "Select a file to load"
-msgstr "Scegliere un file da caricare"
-
-msgid "Figure loaded.\n"
-msgstr "Figura caricata\n"
-
-msgid "Select a file to write"
-msgstr "Scegliere un file da scrivere"
-
-msgid "Figure saved.\n"
-msgstr "Figura salvata\n"
-
-msgid "Select a file name"
-msgstr "Scegliere un nome per il file"
 
 msgid "Control Plot3d"
 msgstr "Controllare Plot3d"

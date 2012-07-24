@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-13 20:22+0000\n"
+"PO-Revision-Date: 2012-07-22 20:57+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -79,15 +79,6 @@ msgid ""
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno 2D pole řetězců.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár nebo řetězec.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s: Obslužná rutina není nebo nikdy nebyla platná.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
 
@@ -96,8 +87,31 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: Špatně umístěný nepovinný argument: #%d musí být na pozici %d.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: Funkce %s je zastaralá.\n"
+
+msgid "Warning"
+msgstr "Varování"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Prosím namísto toho použijte %s.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Tato funkce bude trvale odstraněna ve Scilab %s\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: Obslužná rutina není nebo nikdy nebyla platná.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -112,6 +126,10 @@ msgstr "Tento objekt nemůže být smazán.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "Objekt Štítek nemůže být smazán.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: Pro další informace si prosím prohlédněte dokumentaci.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Špatná hodnota pro %s '%c': Očekáváno '%s' a '%s'.\n"
@@ -304,10 +322,6 @@ msgstr ""
 "reálný skalár.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr "%s: Nelze vytvořit požadovaný obrazec: Není více paměti.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: obslužná rutina '%s' neexistuje.\n"
 
@@ -412,6 +426,22 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 #, c-format
 msgid "Figure n%d"
 msgstr "Číslo n%d"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "VAROVÁNÍ: %s\n"
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr "xset(\"wshow\") je zastaralé."
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr "Bude odstraněno po Scilab 5.4.0."
+
+msgid "Please use drawlater/drawnow instead."
+msgstr "Místo toho prosím použijte drawlater/drawnow."
+
+msgid "xset(\"wwpc\") is obsolete."
+msgstr "xset(\"wwpc\") je zastaralé."
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -540,23 +570,11 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec o %d znacích.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "Nepoužíváte objekt legendy.\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr "Změny souřadnic jsou dostupné pouze pro objekty os.\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "Pouze obslužné rutiny os mají oblast pro zobrazení."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr "Nelze spočítat datové hranice pro tento druh objektu."
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "Nelze spočítat umístění_x pro tento druh objektu."
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "Nelze spočítat umístění_y pro tento druh objektu."
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -572,9 +590,6 @@ msgstr "Výchozí osy nemohou být vytvořeny.\n"
 msgid "This object has not any graphic mode\n"
 msgstr "Tento objekt nemá žádný grafický režim.\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "S tímto Objektem není spojeno žádné zpětné volání.\n"
-
 msgid "This object can not be moved.\n"
 msgstr "Tento objekt nemůže být přesunut.\n"
 
@@ -589,9 +604,6 @@ msgstr "Styl čáry musí být větší než %d.\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Velikost značky musí být větší nebo rovna %d.\n"
-
-msgid "Unable to load default values.\n"
-msgstr "Nelze načíst výchozí hodnoty.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Obslužná rutina není PodOkno.\n"
@@ -617,10 +629,6 @@ msgstr "Neošetřené datové pole\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "Počet sloupců musí být %d.\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s: použijte, prosím, místo toho %s.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -652,10 +660,6 @@ msgstr "Špatný typ vlastnosti '%s': Očekáván řetězec.\n"
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "Špatný hodnota vlastnosti '%s'.\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "vlastnost %s existuje pouze pro povrchy %s.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -851,10 +855,6 @@ msgstr ""
 "Počet sloupců vektoru barvy se musí shodovat s počtem bodů určující čáru "
 "(jenž musí být %d nebo %d).\n"
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "VAROVÁNÍ: %s\n"
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "Hodnoty {0,1} odpovídají vlastnosti line_style"
 
@@ -915,32 +915,12 @@ msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáváno %d nebo %d prvků.\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "Argument #%d musí mít %d prvků.\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s nemůže být v tomto případě nastaveno.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr "Špatný typ vlastnosti '%s': Očekáván řetězec.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáváno alespoň %d prvků.\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr "Chyba: Špatná velikost ve %s ; musíte nejdříve zvýšit velikost %s.\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"Varování: %s bylo nastaveno uživatelem ; nejdříve musíte zvýšit velikost "
-"řetězcového vektoru %s než přepnete na nový režim %s.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "Nelze přímo nastavit objekt štítku.\n"
@@ -956,10 +936,6 @@ msgstr "Špatný typ vlastnosti '%s': Očekáván zadaný seznam.\n"
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáván řádkový vektor.\n"
-
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "Nemožné: %s musí být uvolněno před přerozdělením"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1136,6 +1112,25 @@ msgstr "Oceán"
 
 msgid "White"
 msgstr "Bílá"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr "Matplot(M)  s velkostí(M)=>(%d,%d)"
+
+msgid "Color's number of pixel(i,j)"
+msgstr "Číslo barvy pixelu (i,j)"
+
+msgid "   = rounded value of M(i,j)"
+msgstr "   = zaokrouhlená hodnota M(i,j)"
+
+msgid "Matplot(M) scales axes with"
+msgstr "Matplot(M) měří osy pomocí"
+
+msgid "indices of M's components"
+msgstr "Indexy dílů M"
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr "Pro osy měřené pomocí dat prosím použijte Matplot1(..)"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

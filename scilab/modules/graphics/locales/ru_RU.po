@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-13 12:53+0000\n"
+"PO-Revision-Date: 2012-07-22 06:29+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -85,15 +85,6 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался двумерный массив строк.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s: Дескриптор (более) не действителен.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
@@ -105,8 +96,31 @@ msgstr ""
 "позиции %d.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: Функция %s устарела.\n"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Эта функция будет окончательно удалена в  Scilab %s\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: Дескриптор (более) не действителен.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -121,6 +135,10 @@ msgstr "Этот объект не удалось удалить.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "Не удалось удалить метку.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Неверное значение %s «%c»: Ожидалось «%s», «%s» и «%s».\n"
@@ -319,12 +337,6 @@ msgstr ""
 "вещественный скаляр.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr ""
-"%s: Не могу создать заданное графическое окно: не осталось доступной "
-"памяти.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: Дескриптор «%s» более не существует.\n"
 
@@ -434,6 +446,22 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "Figure n%d"
 msgstr "Рисунок №%d"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "ВНИМАНИЕ: %s\n"
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr "xset(\"wshow\") устарела."
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr "Это будет удалено после Scilab 5.4.0."
+
+msgid "Please use drawlater/drawnow instead."
+msgstr "Пожалуйста, вместо этого используйте drawlater/drawnow."
+
+msgid "xset(\"wwpc\") is obsolete."
+msgstr "xset(\"wwpc\") устарела."
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -571,23 +599,11 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась строка из %d "
 "символов.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "Вы не используете легенду.\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr "Изменение координат применимо только к осям.\n"
 
 msgid "Only axes handles have a viewing area."
 msgstr "Только дескрипторы осей имеют область просмотра."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr "Невозможно вычислить границы данных для данного типа объекта."
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "Невозможно вычислить x_location для данного типа объекта."
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "Невозможно вычислить y_location для данного типа объекта."
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -603,9 +619,6 @@ msgstr "Нельзя создать оси по умолчанию.\n"
 msgid "This object has not any graphic mode\n"
 msgstr "Этот объект не имеет ни одного графического режима\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "Нет связанной с этим объектом функции обратного вызова.\n"
-
 msgid "This object can not be moved.\n"
 msgstr "Этот объект не может быть перемещён.\n"
 
@@ -620,9 +633,6 @@ msgstr "Стиль линии должен быть больше чем %d.\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "Размер маркера должен быть больше или равен %d.\n"
-
-msgid "Unable to load default values.\n"
-msgstr "Невозможно загрузить значения по умолчанию.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Дескриптор на является «SubWindow».\n"
@@ -648,10 +658,6 @@ msgstr "Необработанное поле данных\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "Количество столбцов должно быть %d.\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s: используйте %s.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -685,10 +691,6 @@ msgstr "Неверный тип свойства «%s»: ожидалась ст
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "Неверное значение свойства «%s».\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "свойство %s существует только для поверхностей %s.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -886,10 +888,6 @@ msgstr ""
 "Количество столбцов в векторе цветов должно совпадать с количеством точек, "
 "определяющих линию (которое должно быть %d или %d).\n"
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "ВНИМАНИЕ: %s\n"
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "Значения {0,1} эквивалентны для свойства line_style."
 
@@ -950,32 +948,12 @@ msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидалось %d или %d элемента.\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "Параметр #%d должно иметь %d элементов.\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s не может быть задано в этом случае.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr "Неверный тип для свойства «%s»: ожидалась строка.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидалось не менее %d элементов.\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr "Ошибка: неверный размер в %s - нужно увеличить размер %s.\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"Внимание: %s было установлено пользователем; нужно сначала увеличить размер "
-"вектора строк %s перед переключением в новый режим %s.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "Не удалось напрямую установить метку.\n"
@@ -991,10 +969,6 @@ msgstr "Неверный тип свойства «%s»: ожидался тип
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "Неверный размер свойства «%s»: ожидался вектор-строка.\n"
-
-#, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "Ошибка: %s должен быть освобожден прежде перераспределения"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1172,6 +1146,26 @@ msgstr "Ocen"
 
 msgid "White"
 msgstr "White"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr "Matplot(M)  с  size(M)=>(%d,%d)"
+
+msgid "Color's number of pixel(i,j)"
+msgstr "Номер цвета элемента изображения pixel(i,j)"
+
+msgid "   = rounded value of M(i,j)"
+msgstr "   = округлённому значению M(i,j)"
+
+msgid "Matplot(M) scales axes with"
+msgstr "Matplot(M) масштабирует ось"
+
+msgid "indices of M's components"
+msgstr "индексами элементов M"
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr ""
+"Для оси, масштабированной данными, пожалуйста, используйте Matplot1(...)"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-12 12:40+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2012-07-24 07:59+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -88,16 +88,6 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une chaîne de "
-"caractères attendu.\n"
-
-#, c-format
-msgid "%s: The handle is not or no more valid.\n"
-msgstr "%s : Le handle n'est plus valide.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
 
@@ -107,9 +97,32 @@ msgstr ""
 "%s : Argument optionnel mal placé : n°%d doit être à la position %d.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s : La fonction %s est obsolète.\n"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s : Veuillez utiliser %s à la place.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s : Le handle n'est plus valide.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
@@ -124,6 +137,10 @@ msgstr "Cet objet ne peut pas être supprimé.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "Un objet Label ne peut pas être supprimé.\n"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s : Veuillez consulter l'aide pour plus de détails.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "% : Valeur erronée de %s '%c' : '%s', '%s' et '%s' attendus.\n"
@@ -328,11 +345,6 @@ msgstr ""
 "scalaire réel attendu.\n"
 
 #, c-format
-msgid "%s: Unable to create requested figure: No more memory.\n"
-msgstr ""
-"%s : Impossible de créer la figure demandée : Plus de mémoire disponible.\n"
-
-#, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s : Le handle de type '%s' n'existe pas ou n'existe plus.\n"
 
@@ -445,6 +457,22 @@ msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 #, c-format
 msgid "Figure n%d"
 msgstr "Figure n%d"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "AVERTISSEMENT : %s\n"
+
+msgid "xset(\"wshow\") is obsolete."
+msgstr "xset(\"wshow\") est obsolète."
+
+msgid "It will be removed after Scilab 5.4.0."
+msgstr "Cette fonction sera supprimée après Scilab 5.4.0"
+
+msgid "Please use drawlater/drawnow instead."
+msgstr "Veuillez utiliser drawlater/drawnow à la place."
+
+msgid "xset(\"wwpc\") is obsolete."
+msgstr "xset(\"wwpc\") est obsolète."
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
@@ -589,9 +617,6 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de %d "
 "caractères attendue.\n"
 
-msgid "You are not using a legend object.\n"
-msgstr "Vous n'êtes pas en train d'utiliser un objet legend.\n"
-
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Les modifications de coordonnées ne sont applicables que sur les objets "
@@ -599,15 +624,6 @@ msgstr ""
 
 msgid "Only axes handles have a viewing area."
 msgstr "Seuls les handles de type axe ont une zone de visualisation."
-
-msgid "Unable to compute data bounds for this kind of object."
-msgstr "Impossible de calculer les bornes des données pour ce type d'objet."
-
-msgid "Unable to compute x_location for this kind of object."
-msgstr "Impossible de calculer x_location pour ce type d'objet."
-
-msgid "Unable to compute y_location for this kind of object."
-msgstr "Impossible de calculer y_location pour ce type d'objet."
 
 #, c-format
 msgid "This object has no %s property.\n"
@@ -623,9 +639,6 @@ msgstr "Les axes par défaut ne peuvent pas être créés.\n"
 msgid "This object has not any graphic mode\n"
 msgstr "Cet objet n'a pas de mode graphique\n"
 
-msgid "No Callback is associated with this Entity.\n"
-msgstr "Aucun rappel n'est associé à cette entité.\n"
-
 msgid "This object can not be moved.\n"
 msgstr "Cet objet ne peut pas être déplacé.\n"
 
@@ -640,9 +653,6 @@ msgstr "Le style de la ligne doit être plus grand que %d.\n"
 #, c-format
 msgid "The mark size must be greater or equal than %d.\n"
 msgstr "La taille de la marque doit être plus grande ou égale à %d.\n"
-
-msgid "Unable to load default values.\n"
-msgstr "Impossible de charger les valeurs par défaut.\n"
 
 msgid "Handle is not a SubWindow.\n"
 msgstr "Le handle n'est pas une sous-fenêtre.\n"
@@ -668,10 +678,6 @@ msgstr "Champ de données non supporté\n"
 #, c-format
 msgid "Number of columns must be %d.\n"
 msgstr "%d colonnes sont attendues.\n"
-
-#, c-format
-msgid "%s: please use %s instead.\n"
-msgstr "%s : Veuillez utiliser %s à la place.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -706,10 +712,6 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property.\n"
 msgstr "Valeur erronée de la propriété '%s'.\n"
-
-#, c-format
-msgid "%s property only exists for %s surfaces.\n"
-msgstr "La propriété %s existe seulement pour les surfaces %s.\n"
 
 #, c-format
 msgid "%s: No more memory."
@@ -921,10 +923,6 @@ msgstr ""
 "Le nombre de colonnes du vecteur de couleur doit correspondre au nombre de "
 "points définissant la ligne (qui doit être %d ou %d).\n"
 
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "AVERTISSEMENT : %s\n"
-
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "Les valeurs {0,1} sont équivalentes pour la propriété line_style."
 
@@ -990,14 +988,6 @@ msgstr ""
 "Dimension erronée de la propriété '%s' : %d ou %d éléments attendus.\n"
 
 #, c-format
-msgid "Argument #%d must have %d elements.\n"
-msgstr "L'argument n°%d doit avoir %d éléments.\n"
-
-#, c-format
-msgid "%s cannot be set in this case.\n"
-msgstr "%s ne peut pas être activé dans ce cas.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Une chaîne de caractères attendue.\n"
@@ -1006,21 +996,6 @@ msgstr ""
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Au moins %d éléments attendus.\n"
-
-#, c-format
-msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
-msgstr ""
-"Erreur : Dimension erronée dans %s ; Vous devez d'abord augmenter la "
-"dimension de %s.\n"
-
-#, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
-msgstr ""
-"Attention : %s a été activé par l'utilisateur ; vous devez d'abord augmenter "
-"la dimension du vecteur de chaîne de caractères %s avant de passer au "
-"nouveau mode %s.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "Impossible d'activer directement le label d'un objet.\n"
@@ -1038,10 +1013,6 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "Dimension erronée de la propriété '%s' : Un vecteur ligne attendu.\n"
 
 #, c-format
-msgid "Impossible: %s must be freed before re-allocating"
-msgstr "Impossible : %s doit être libéré avant d'être réalloué"
-
-#, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s : Le vecteur x n'est pas monotone.\n"
 
@@ -1053,22 +1024,22 @@ msgid "Scilab Graphics module not installed.\n"
 msgstr "Le module graphique de Scilab n'est pas installé.\n"
 
 msgid "Average monthly temperatures in french cities"
-msgstr ""
+msgstr "Températures mensuelles moyennes des villes françaises"
 
 msgid "Computing in progress..."
-msgstr ""
+msgstr "Calcul en cours..."
 
 msgid "(here an area of the Mandelbrot set)"
-msgstr ""
+msgstr "(ici une aire de l'ensemble de Mandelbrot)"
 
 msgid "Matplot1(..) displays an area with SCALED AXES"
-msgstr ""
+msgstr "Matplot1(..) affiche une zone avec des axes gradués"
 
 msgid "Real part"
-msgstr ""
+msgstr "Partie réelle"
 
 msgid "Imaginary part"
-msgstr ""
+msgstr "Partie imaginaire"
 
 msgid "Graphics with 2 different Y-scales"
 msgstr "Graphiques avec 2 échelles Y différentes"
@@ -1221,6 +1192,25 @@ msgstr "Océan"
 
 msgid "White"
 msgstr "Blanc"
+
+#, c-format
+msgid "Matplot(M)  with  size(M)=>(%d,%d)"
+msgstr "Matplot(M) avec size(M)=>(%d,%d)"
+
+msgid "Color's number of pixel(i,j)"
+msgstr "Le numéro de la couleur du pixel(i,j)"
+
+msgid "   = rounded value of M(i,j)"
+msgstr "   = valeur de M(i,j) arrondie"
+
+msgid "Matplot(M) scales axes with"
+msgstr "Matplot(M) calibre les axes avec"
+
+msgid "indices of M's components"
+msgstr "les indices des composants de M"
+
+msgid "For axes scaled with data, lease use Matplot1(..)"
+msgstr ""
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"

@@ -1,0 +1,73 @@
+# French translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-20 14:07+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15668)\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%i : Une chaîne de caractères "
+"attendue.\n"
+
+msgid "An error occurred while opening Preferences window:"
+msgstr ""
+"Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
+"%s : Une exception Java s'est produite :\n"
+"%s"
+
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Preferences backup"
+msgstr "Sauvegarde des préférences"
+
+msgid "Select a backup file"
+msgstr "Sélectionner un fichier de sauvegarde"
+
+msgid "Scilab Configuration files"
+msgstr "Fichiers de configuration de Scilab"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Create a backup file"
+msgstr "Créer un fichier de sauvegarde"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Invalid path:"
+msgstr "Chemin incorrect:"
+
+msgid "Invalid preferences file:"
+msgstr "Fichier de préférence incorrect:"
+
+msgid "Scilab Preferences"
+msgstr "Préférences de Scilab"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"
