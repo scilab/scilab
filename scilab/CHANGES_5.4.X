@@ -158,6 +158,8 @@ Bug Fixes
 * Bug #11328 fixed - strsplit returned a wrong error message when second input
                      argument contained wrong values.
 
+* Bug #11331 fixed - graypolarplot() returned an error about an unknown property.
+
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
 
