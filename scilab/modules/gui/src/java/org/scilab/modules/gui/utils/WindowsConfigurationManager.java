@@ -694,8 +694,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         NodeList list = root.getElementsByTagName("Window");
 
         int length = getNodeListLength(list);
+        List<Element> elems = new ArrayList<Element>(length);
         for (int i = 0; i < length; i++) {
-            validateWindow(((Element) list.item(i)).getAttribute("uuid"));
+            elems.add((Element) list.item(i));
+        }
+
+        for (Element e : elems) {
+            validateWindow(e.getAttribute("uuid"));
         }
     }
 
