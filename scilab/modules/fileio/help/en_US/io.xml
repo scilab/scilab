@@ -26,10 +26,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      <function>%io(1)</function> returns standard input (file descriptor 5).
+      <code>%io(1)</code> returns standard input (file descriptor 5).
     </para>
     <para>
-      <function>%io(2)</function> returns standard output (file descriptor 6).
+      <code>%io(2)</code> returns standard output (file descriptor 6).
     </para>
     <para>File descriptor 0 is the standard error.</para>
   </refsection>

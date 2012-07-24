@@ -42,7 +42,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <function>fullpath(relative_path)</function> сreates an full path name
+      <code>fullpath(relative_path)</code> сreates an full path name
       for the specified relative path name.
     </para>
     <para>

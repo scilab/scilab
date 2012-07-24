@@ -46,7 +46,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <function>f= fullfile(varargin)</function> builds a full filename taking care of platform on which it is run
+      <code>f= fullfile(varargin)</code> builds a full filename taking care of platform on which it is run
       and handling the cases when the directories begin or end with a directory separator.
     </para>
   </refsection>
