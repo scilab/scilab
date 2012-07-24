@@ -12,7 +12,7 @@
 function []=xsetech(wrect, frect, logflag, arect)
 
     // 1 <= RHS <= 3
-    if (argn(2) > 3 | argn(2) < 1)
+    if (argn(2) > 3 | argn(2) < 1) then
         error(77, sprintf(_("%s: Wrong number of input argument(s): %d to %d expected."), "xsetech", 1, 3));
     end
 
@@ -20,7 +20,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         wrect = [];
     else
         // Check wrect
-        if (type(wrect) <> 1 | isreal(wrect) == %f | size(wrect) <> [1 4])
+        if (type(wrect) <> 1 | isreal(wrect) == %f | size(wrect) <> [1 4]) then
             error(77, sprintf(_("%s: Wrong value given for %s."), "xsetech", "wrect"));
         end
     end
@@ -29,7 +29,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         frect = [];
     else
         // Check frect
-        if (type(wrect) <> 1 | isreal(wrect) == %f | size(wrect) <> [1 4])
+        if (type(frect) <> 1 | isreal(frect) == %f | size(frect) <> [1 4]) then
             error(77, sprintf(_("%s: Wrong value given for %s."), "xsetech", "frect"));
         end
         frect = [frect(1), frect(2); frect(3), frect(4)]
@@ -39,7 +39,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         logflag = [];
     else
         // check logflag
-        if (type(logflag) <> 10 | or(logflag == ["ll" "nn" "nl" "ln"]) == %f)
+        if (type(logflag) <> 10 | or(logflag == ["ll" "nn" "nl" "ln"]) == %f) then
             error(77, sprintf(_("%s: Wrong value given for %s."), "xsetech", "logflag"));
         end
     end
@@ -47,7 +47,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     if ~exists("arect", "local")
         arect = [];
     else
-        if (type(arect) <> 1 | isreal(arect) == %f | size(arect) <> [1 4])
+        if (type(arect) <> 1 | isreal(arect) == %f | size(arect) <> [1 4]) then
             error(77, sprintf(_("%s: Wrong value given for %s."), "xsetech", "arect"));
         end
     end
@@ -70,7 +70,7 @@ function []=xsetech(wrect, frect, logflag, arect)
             a.axes_bounds = wrect;
         end
     end
-    
+
     if ~isempty(frect) then
         a.data_bounds = frect;
     end
