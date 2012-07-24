@@ -21,25 +21,47 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>copyfile('источник,'назначение)
-      [status,message] = copyfile('источник','назначение')
+    <synopsis>
+      copyfile(source,destination)
+      [status,message] = copyfile(source,destination)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>source</term>
+        <listitem>
+          <para>
+	    символьная строка: имя файла или директории (источник).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>destination</term>
+        <listitem>
+	  <para>
+	    символьная строка: имя директории (назначение).
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Описание</title>
     <para>
-      <literal>copyfile('источник','назначение')</literal> копирует файл или
-      директорию <literal>'источник'</literal> в файл или директорию
-      <literal>'назначение'</literal> (и поддиректории).
+      <code>copyfile(source,destination)</code> копирует файл или
+      директорию <varname>source</varname> в файл или директорию
+      <varname>destination</varname> (и поддиректории).
     </para>
     <para>
       Если источник является директорией, то назначение не может быть файлом.
-      <literal>copyfile</literal> замещает существующие файлы без предупреждения.
+      <code>copyfile</code> замещает существующие файлы без предупреждения.
     </para>
     <para>
-      <literal>[status, message] = copyfile('источник','назначение')</literal>
-      копирует <literal>'источник'</literal> в <literal>'назначение'</literal>,
-      возвращая статус <literal>status</literal> и сообщение <literal>message</literal>. 
+      <code>[status, message] = copyfile(source,destination)</code>
+      копирует из источника <varname>source</varname> в назначение <varname>destination</varname>,
+      возвращая статус <varname>status</varname> и сообщение <varname>message</varname>. 
     </para>
     <para>
       Для любой операционной системы, если копирование завершилось успешно, то
