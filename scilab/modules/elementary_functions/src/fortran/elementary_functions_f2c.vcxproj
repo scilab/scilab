@@ -140,8 +140,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -247,8 +248,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
