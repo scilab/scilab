@@ -154,7 +154,7 @@ while (ii < size(CS,2)),
     I(ncurves) = ii;
     xp=CS(1,ii+(1:nl));  // First patch
     yp=CS(2,ii+(1:nl));
-    Area(ncurves)=sum( mtlb_diff(xp).*(yp(1:nl-1)+yp(2:nl))/2 );
+    Area(ncurves)=sum(diff(xp).*(yp(1:nl-1)+yp(2:nl))/2);
     ii = ii + nl + 1;
 end
 

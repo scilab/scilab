@@ -119,6 +119,9 @@ Bug Fixes
 * Bug #9884 fixed - Add in prefs the possibility to add a default header on
                     new files in SciNotes.
 
+* Bug #9464 fixed - contourf did not work when the "Matlab Compatibility functions
+                    module" was not installed.
+
 * Bug #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
