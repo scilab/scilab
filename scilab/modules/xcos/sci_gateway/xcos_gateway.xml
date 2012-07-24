@@ -35,5 +35,4 @@
   <PRIMITIVE gatewayId="64" primitiveId="12" primitiveName="xcosConfigureXmlFile"/>
   <PRIMITIVE gatewayId="64" primitiveId="13" primitiveName="xcosAddToolsMenu"/>
   <PRIMITIVE gatewayId="64" primitiveId="14" primitiveName="xcosUpdateBlock"/>
-  <PRIMITIVE gatewayId="64" primitiveId="15" primitiveName="loadXcos"/>
 </GATEWAY>
