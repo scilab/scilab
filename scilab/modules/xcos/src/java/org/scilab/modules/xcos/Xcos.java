@@ -157,7 +157,7 @@ public final class Xcos {
         }
 
         /* Check the dependencies at startup time */
-        // checkDependencies();
+        checkDependencies();
 
         /*
          * Allocate data
@@ -540,6 +540,7 @@ public final class Xcos {
      * 
      * @return the diagram collection
      */
+    @SuppressWarnings("serial")
     public Collection<XcosDiagram> createDiagramCollection() {
         return new ArrayList<XcosDiagram>() {
             @Override

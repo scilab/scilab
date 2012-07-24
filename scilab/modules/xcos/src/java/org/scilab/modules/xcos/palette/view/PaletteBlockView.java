@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.FileInputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -27,11 +28,12 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 /**
  * The palette block view
  */
+new FileInputStream(in)
 public final class PaletteBlockView extends JLabel {
 
     private static final Dimension PREFERRED_SIZE = new Dimension(
-            XcosConstants.PALETTE_BLOCK_WIDTH,
-            XcosConstants.PALETTE_BLOCK_HEIGHT);
+        XcosConstants.PALETTE_BLOCK_WIDTH,
+        XcosConstants.PALETTE_BLOCK_HEIGHT);
     private static final int DEFAULT_FONT_SIZE = 12;
     private static final int DEFAULT_ICON_TEXT_GAP = 5;
 
@@ -44,13 +46,13 @@ public final class PaletteBlockView extends JLabel {
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the associated controller
      */
     public PaletteBlockView(PaletteBlockCtrl controller) {
         super(controller.getModel().getName(), controller.getModel()
-                .getLoadedIcon(), SwingConstants.CENTER);
+              .getLoadedIcon(), SwingConstants.CENTER);
         this.controller = controller;
         initComponents();
     }

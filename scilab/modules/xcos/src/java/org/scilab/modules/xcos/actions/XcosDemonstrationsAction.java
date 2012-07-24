@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos demos
  */
+@SuppressWarnings(value = { "serial" })
 public final class XcosDemonstrationsAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.XCOS_DEMONSTRATIONS;
@@ -39,7 +40,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -49,7 +50,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
 
     /**
      * Create a button for a graph toolbar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the button
@@ -60,7 +61,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
 
     /**
      * Create a menu for a graph menubar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the menu
@@ -71,7 +72,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
 
     /**
      * Action associated
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -85,9 +86,7 @@ public final class XcosDemonstrationsAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
-        ScilabInterpreterManagement.requestScilabExec("exec(\""
-                + System.getenv("SCI")
-                + "/modules/xcos/demos/xcos_demos.sce\", -1)");
+
+        ScilabInterpreterManagement.requestScilabExec("exec(\"" + System.getenv("SCI") + "/modules/xcos/demos/xcos_demos.sce\", -1)");
     }
 }

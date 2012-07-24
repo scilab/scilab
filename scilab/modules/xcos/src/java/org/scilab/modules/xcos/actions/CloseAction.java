@@ -30,7 +30,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Diagram closing management
  */
 @SuppressWarnings(value = { "serial" })
-public class CloseAction extends DefaultAction {
+public final class CloseAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.CLOSE;
     /** Icon name of the action */
