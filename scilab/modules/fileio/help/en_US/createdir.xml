@@ -22,20 +22,19 @@
       status = createdir(dirname)
     </synopsis>
   </refsynopsisdiv>
-<refsection>
+  <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dirname</term>
         <listitem>
-          <para>a character string</para>
+          <para>a character string.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>status</term>
         <listitem>
-          <para>a boolean 
-          </para>
+          <para>a boolean.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,21 +42,25 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>createdir(dirname)</literal> creates the directory <literal>dirname</literal> in the current
-      directory, if <literal>dirname</literal> is not in the current directory, specify the
-      relative path to the current directory or the full path for <literal>dirname</literal>.
+      <code>createdir(dirname)</code> creates the directory 
+      <varname>dirname</varname> in the current
+      directory, if <varname>dirname</varname> is not in the current 
+      directory, specify the relative path to the current directory or the 
+      full path for <varname>dirname</varname>.
     </para>
-    <para><literal>[status] = createdir(dirname)</literal> creates the directory <literal>dirname</literal> in the
-      existing directory parentdir, returning the status, a message. Here,
-      status is <literal>%T</literal> for success and <literal>%F</literal> otherwise.
+    <para>
+      <code>[status] = createdir(dirname)</code> creates the directory 
+      <varname>dirname</varname> in the existing directory, returning the 
+      status. Here, <varname>status</varname> is <constant>%T</constant> for 
+      success and <constant>%F</constant> otherwise.
     </para>
-    <para><literal>createdir</literal> is used by <literal>mkdir</literal>.</para>
+    <para><code>createdir</code> is used by <code>mkdir</code>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-createdir(SCIHOME+'/Directory_test')
-removedir(SCIHOME+'/Directory_test')
+createdir(TMPDIR+'/Directory_test')
+removedir(TMPDIR+'/Directory_test')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
