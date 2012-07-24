@@ -169,6 +169,8 @@ Bug Fixes
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
 
+* Bug #11369 fixed - colordef("black") returned an error about an unknown property.
+
 * Bug #11385 fixed - length() returned a wrong error message when called without
                      input argument.
 
@@ -234,6 +236,9 @@ Known Incompatibilities
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
+* Setting the "foreground" property for a figure was possible even if not officially
+  supported or documented. This now returns an error.
+  Please use the axes "foreground" property instead. See bug #11369.
 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
