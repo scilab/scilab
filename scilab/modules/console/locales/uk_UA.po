@@ -2,19 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+# Yuri Chornoivan <yurchor@ukr.net>, 2010, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 17:21+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-23 12:47+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: uk\n"
 
 #, c-format
@@ -79,6 +79,528 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
+
+msgid "Console"
+msgstr "Консоль"
+
+msgid "Display"
+msgstr "Показ"
+
+msgid "Lines to display:"
+msgstr "Кількість показаних рядків:"
+
+msgid "Columns to display:"
+msgstr "К-ть показаних позицій у рядку:"
+
+msgid "Number of lines in console scroll buffer:"
+msgstr "Кількість рядків у буфері гортання консолі:"
+
+msgid "General"
+msgstr "Загальні"
+
+msgid "Produces an error"
+msgstr "показ повідомлення про помилку"
+
+msgid "Produces a warning"
+msgstr "показ попередження"
+
+msgid "Produces Inf or NaN"
+msgstr "показ Inf або NaN"
+
+msgid "Variable format"
+msgstr "Формат змінних"
+
+msgid "Scientific format"
+msgstr "Інженерний формат"
+
+msgid "English"
+msgstr "англійська"
+
+msgid "French"
+msgstr "французька"
+
+msgid "Portugese (Brazil)"
+msgstr "португальська (Бразилія)"
+
+msgid "Catalan"
+msgstr "каталонська"
+
+msgid "Czech"
+msgstr "чеська"
+
+msgid "Spanish"
+msgstr "іспанська"
+
+msgid "Italian"
+msgstr "італійська"
+
+msgid "Polish"
+msgstr "польська"
+
+msgid "Russian"
+msgstr "російська"
+
+msgid "Chinese (Simplified)"
+msgstr "китайська (спрощений запис)"
+
+msgid "Chinese (Traditional)"
+msgstr "китайська (традиційний запис)"
+
+msgid "German"
+msgstr "німецька"
+
+msgid "Japanese"
+msgstr "японська"
+
+msgid "Ukrainian"
+msgstr "українська"
+
+msgid "Confirmation dialogs"
+msgstr "Діалогові вікна підтвердження"
+
+msgid "Warn before exiting Scilab"
+msgstr "Попереджати перед завершенням роботи Scilab"
+
+msgid "Warn before deleting Command History items"
+msgstr "Попереджати перед вилучення пунктів журналу команд"
+
+msgid "Warn before clearing the Console"
+msgstr "Попереджати перед спорожненням консолі"
+
+msgid "Desktop layout"
+msgstr "Компонування"
+
+msgid "Integrated"
+msgstr "Інтегроване"
+
+msgid "Simple"
+msgstr "Просте"
+
+msgid "Shortcuts"
+msgstr "Клавіатурні скорочення"
+
+msgid "Cut or interrupt"
+msgstr "Вирізати або перервати"
+
+msgid "Copy or interrupt"
+msgstr "Копіювати або перервати"
+
+msgid "Select all"
+msgstr "Позначити все"
+
+msgid "Line beginning"
+msgstr "Початок рядка"
+
+msgid "Line end"
+msgstr "Кінець рядка"
+
+msgid "Previous char"
+msgstr "Попередній символ"
+
+msgid "Next char"
+msgstr "Наступний символ"
+
+msgid "Delete next char"
+msgstr "Вилучити наступний символ"
+
+msgid "Delete previous char"
+msgstr "Вилучити попередній символ"
+
+msgid "Delete end of line"
+msgstr "Вилучити кінець рядка"
+
+msgid "Delete whole line"
+msgstr "Вилучити цілий рядок"
+
+msgid "Delete last word"
+msgstr "Вилучити останнє слово"
+
+msgid "Previous console page"
+msgstr "Попередня сторінка консолі"
+
+msgid "Next console page"
+msgstr "Наступна сторінка консолі"
+
+msgid "Validate input"
+msgstr "Перевірити введені дані"
+
+msgid "Clear console"
+msgstr "Спорожнити консоль"
+
+msgid "Console box"
+msgstr "Відкрити панель консолі"
+
+msgid "Completion"
+msgstr "Завершення"
+
+msgid "Previous history line"
+msgstr "Попередній рядок у журналі"
+
+msgid "Next history line"
+msgstr "Наступний рядок у журналі"
+
+msgid "Help Browser"
+msgstr "Перегляд довідки"
+
+msgid "Paste"
+msgstr "Вставити"
+
+msgid "Open a file"
+msgstr "Відкрити файл"
+
+msgid "Load environment"
+msgstr "Завантажити середовище"
+
+msgid "Save environment"
+msgstr "Зберегти середовище"
+
+msgid "Quit"
+msgstr "Вийти"
+
+msgid "Execute"
+msgstr "Виконати"
+
+msgid "Empty clipboard"
+msgstr "Спорожнити буфер обміну даними"
+
+msgid "Change current directory"
+msgstr "Змінити поточний каталог"
+
+msgid "Display current directory"
+msgstr "Показати поточний каталог"
+
+msgid "Page setup"
+msgstr "Параметри сторінки"
+
+msgid "Print"
+msgstr "Надрукувати"
+
+msgid "Preferences"
+msgstr "Налаштування"
+
+msgid "Show/Hide toolbar"
+msgstr "Показати/Сховати панель інструментів"
+
+msgid "Clear history"
+msgstr "Спорожнити журнал"
+
+msgid "Resume"
+msgstr "Продовжити"
+
+msgid "Abort"
+msgstr "Перервати"
+
+msgid "Interrupt"
+msgstr "Призупинити"
+
+msgid "Launch SciNotes"
+msgstr "Запустити SciNotes"
+
+msgid "Launch Xcos"
+msgstr "Запустити Xcos"
+
+msgid "Matlab to Scilab Translator"
+msgstr "Інструмент перетворення з Matlab у Scilab"
+
+msgid "Module manager"
+msgstr "Керування модулями"
+
+msgid "Variable Browser"
+msgstr "Перегляд змінних"
+
+msgid "Command History"
+msgstr "Журнал команд"
+
+msgid "File Browser"
+msgstr "Перегляд файлів"
+
+msgid "Demonstrations"
+msgstr "Демонстрації"
+
+msgid "Open Scilab website"
+msgstr "Відкрити сайт Scilab"
+
+msgid "Open Online Help"
+msgstr "Відкрити інтернет-довідку"
+
+msgid "Open Scilab wiki"
+msgstr "Відкрити вікі Scilab"
+
+msgid "Open ATOM website"
+msgstr "Відкрити сайт ATOMS"
+
+msgid "Open File Exchange website"
+msgstr "Відкрити сайт обміну файлами"
+
+msgid "Open Mailing lists"
+msgstr "Відкрити сторінку списків листування"
+
+msgid "Open Forge website"
+msgstr "Відкрити сайт Forge"
+
+msgid "Open Bugzilla"
+msgstr "Відкрити сторінку Bugzilla"
+
+msgid "About Scilab"
+msgstr "Про Scilab"
+
+msgid "Auto complete (, [,..."
+msgstr "Автозавершення (, […"
+
+msgid "Auto complete keyword"
+msgstr "Автозавершення ключових слів"
+
+msgid "Generate Help prototype"
+msgstr "Створити прототип довідки"
+
+msgid "Tabify"
+msgstr "Додати табуляцію"
+
+msgid "Untabify"
+msgstr "Скасувати табуляцію"
+
+msgid "Indent"
+msgstr "Додати відступ"
+
+msgid "Comment"
+msgstr "Закоментувати"
+
+msgid "Uncomment"
+msgstr "Розкоментувати"
+
+msgid "Remove trailing whites"
+msgstr "Вилучити кінцеві пробіли"
+
+msgid "Select block"
+msgstr "Позначити блок"
+
+msgid "Open current tab in a new window"
+msgstr "Відкрити поточну вкладку у новому вікні"
+
+msgid "Export current tab in a new window"
+msgstr "Експортувати поточну вкладку до нового вікна"
+
+msgid "Copy"
+msgstr "Копіювати"
+
+msgid "Cut"
+msgstr "Вирізати"
+
+msgid "Paste a column"
+msgstr "Вставити стовпчик"
+
+msgid "Repeat selection on column"
+msgstr "Повторити позначення стовпчика"
+
+msgid "Undo"
+msgstr "Вернути"
+
+msgid "Redo"
+msgstr "Повторити"
+
+msgid "Copy as HTML with line number"
+msgstr "Копіювати як HTML з номерами рядків"
+
+msgid "New"
+msgstr "Створити"
+
+msgid "Open"
+msgstr "Відкрити"
+
+msgid "Open URL"
+msgstr "Відкрити адресу"
+
+msgid "Open source"
+msgstr "Відкрити код"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Save as"
+msgstr "Зберегти як"
+
+msgid "Reload"
+msgstr "Перезавантажити"
+
+msgid "Print preview"
+msgstr "Попередній перегляд друку"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Exit"
+msgstr "Вийти"
+
+msgid "To lower case"
+msgstr "У нижній регістр"
+
+msgid "To upper case"
+msgstr "У верхній регістр"
+
+msgid "Capitalize"
+msgstr "З великої літери"
+
+msgid "Help on keyword"
+msgstr "Довідка щодо ключового слова"
+
+msgid "Load in Scilab"
+msgstr "Завантажити до Scilab"
+
+msgid "Execute in Scilab"
+msgstr "Виконати у Scilab"
+
+msgid "Evaluate selection"
+msgstr "Обчислити позначене"
+
+msgid "Save and execute"
+msgstr "Зберегти і виконати"
+
+msgid "Save and execute all"
+msgstr "Зберегти і виконати все"
+
+msgid "Find"
+msgstr "Знайти"
+
+msgid "Find next"
+msgstr "Знайти наступне"
+
+msgid "Find previous"
+msgstr "Знайти попереднє"
+
+msgid "Incremental search"
+msgstr "Покроковий пошук"
+
+msgid "Set anchor"
+msgstr "Встановити прив’язку"
+
+msgid "Remove anchor"
+msgstr "Вилучити прив’язку"
+
+msgid "Go to next anchor"
+msgstr "Перейти до наступної прив’язки"
+
+msgid "Go to previous anchor"
+msgstr "Перейти до попередньої прив’язки"
+
+msgid "Start Code Navigator"
+msgstr "Запустити засіб навігації кодом"
+
+msgid "Search word in file"
+msgstr "Шукати слово у файлі"
+
+msgid "Search files"
+msgstr "Шукати файли"
+
+msgid "Keyword completion"
+msgstr "Завершення ключових слів"
+
+msgid "Help"
+msgstr "Довідка"
+
+msgid "About"
+msgstr "Про програму"
+
+msgid "Next tab"
+msgstr "Наступна вкладка"
+
+msgid "Previous tab"
+msgstr "Попередня вкладка"
+
+msgid "Delete"
+msgstr "Вилучити"
+
+msgid "Next paragraph"
+msgstr "Наступний абзац"
+
+msgid "Previous paragraph"
+msgstr "Попередній абзац"
+
+msgid "Save all"
+msgstr "Зберегти всі"
+
+msgid "Overwrite"
+msgstr "Перезаписати"
+
+msgid "Close all"
+msgstr "Закрити всі"
+
+msgid "Close all but"
+msgstr "Закрити всі, окрім поточної"
+
+msgid "Convert quote to double quote"
+msgstr "Перетворити одинарні лапки на подвійні"
+
+msgid "Line numbering"
+msgstr "Нумерування рядків"
+
+msgid "Save diagramm"
+msgstr "Зберегти діаграму"
+
+msgid "Save variable"
+msgstr "Зберегти змінну"
+
+msgid "Save history"
+msgstr "Зберегти журнал"
+
+msgid "Save file"
+msgstr "Зберегти файл"
+
+msgid "Floating point exception (ieee): "
+msgstr "Помилка під час обчислень з рухомою комою (ieee): "
+
+msgid "Printing format: "
+msgstr "Формат показу: "
+
+msgid "Width: "
+msgstr "Ширина: "
+
+msgid "Language setting"
+msgstr "Параметр мови"
+
+msgid "Default language: "
+msgstr "Типова мова: "
+
+msgid "(This requires a restart of Scilab)"
+msgstr "(Потребує перезапуску Scilab)"
+
+msgid "Java Heap Memory"
+msgstr "Пам’ять купи даних Java"
+
+msgid "Select the memory (in MB) available in Java: "
+msgstr "Виберіть об’єм пам’яті (у МБ), доступний у Java: "
+
+msgid "Desktop Layout"
+msgstr "Компонування"
+
+msgid "Select a layout"
+msgstr "Виберіть компонування"
+
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr "(Зміна компонування потребуватиме перезапуску Scilab)"
+
+msgid "Keys binding"
+msgstr "Прив’язка до клавіш"
+
+msgid "Filter on action name: "
+msgstr "Фільтр за назвою дії: "
+
+msgid "Component"
+msgstr "Компонент"
+
+msgid "Name: "
+msgstr "Назва: "
+
+msgid "Description: "
+msgstr "Опис: "
+
+msgid "Binding: "
+msgstr "Прив’язка: "
+
+msgid "Action name"
+msgstr "Назва дії"
+
+msgid "Key binding"
+msgstr "Прив’язка клавіш"
 
 msgid "File or Directory"
 msgstr "Файл або каталог"

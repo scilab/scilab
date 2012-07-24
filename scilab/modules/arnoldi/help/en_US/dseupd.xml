@@ -111,7 +111,7 @@
       V, IPARAM, IPNTR, WORKD, WORKL, LWORKL, INFO must be passed directly to
       DSEUPD following the last call to DSAUPD . 
     </para>
-    <para>These arguments MUST NOT BE MODIFIED between the the last call to
+    <para>These arguments MUST NOT BE MODIFIED between the last call to
       DSAUPD and the call to DSEUPD.
     </para>
     <para>Two of these parameters (WORKL, INFO) are also output

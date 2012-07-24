@@ -24,7 +24,7 @@ else
     if (handl.type == 'Axes')
       a = handl;
     else
-      error(msprintf(gettext("%s: Input argument #%d must be a handle on a axes.\n"), "replot", 2));
+      error(msprintf(gettext("%s: Input argument #%d must be a handle on an axis.\n"), "replot", 2));
     end
   else
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "replot", 2));

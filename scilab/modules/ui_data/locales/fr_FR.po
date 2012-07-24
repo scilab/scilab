@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-02-27 10:36+0000\n"
+"PO-Revision-Date: 2012-07-23 09:22+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
@@ -23,7 +23,8 @@ msgstr "Le module Scilab '%s' est désactivé en mode -nogui or -nwni.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -340,4 +341,4 @@ msgstr "Octets :"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Le module Scilab '%s' n'est pas installé.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"

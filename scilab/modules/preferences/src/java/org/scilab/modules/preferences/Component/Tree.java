@@ -161,16 +161,17 @@ public class Tree extends Panel implements XComponent, XChooser, TreeSelectionLi
      */
     public final void path(final String item) {
         String[] ids = item.split("/");
+        int index = 0;
         XAdapterNode node = (XAdapterNode) tree.getModel().getRoot();
         for (int i = 0; i < ids.length; i++) {
             try {
-                int index = Integer.parseInt(ids[i]);
-                node = node.getChild(index - 1);
+                index += Integer.parseInt(ids[i]) - 1;
+                node = node.getChild(index);
                 if (i < ids.length - 1) {
-                    tree.expandRow(index - 1);
+                    tree.expandRow(index);
                 } else {
                     dontChange = true;
-                    tree.setSelectionRow(index - 1);
+                    tree.setSelectionRow(index);
                     dontChange = false;
                 }
             } catch (NumberFormatException e) {

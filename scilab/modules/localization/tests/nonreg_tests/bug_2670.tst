@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2670
 //
 // <-- Short Description -->
-//    getlanguage() returns a empty string (occurs both under Linux and Windows).
+//    getlanguage() returns an empty string (occurs both under Linux and Windows).
 //
 
 if length(getlanguage()) <> 5 then pause,end

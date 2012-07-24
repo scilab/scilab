@@ -67,7 +67,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
-	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
+	sci_gateway/cpp/sci_loadXcos.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

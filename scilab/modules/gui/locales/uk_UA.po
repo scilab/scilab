@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-13 11:14+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-23 09:03+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: uk\n"
 
 #, c-format
@@ -777,6 +777,81 @@ msgstr "Налаштування Scilab"
 msgid "Scilab Demonstrations"
 msgstr "Демонстрації Scilab"
 
+msgid "Select a file to load"
+msgstr "Вкажіть файл для завантаження"
+
+msgid "Figure loaded.\n"
+msgstr "Рисунок завантажено.\n"
+
+msgid "Select a file to write"
+msgstr "Вкажіть файл для запису"
+
+msgid "Figure saved.\n"
+msgstr "Рисунок збережено.\n"
+
+msgid "Select a file name"
+msgstr "Вкажіть назву файла"
+
+msgid "Colors"
+msgstr "Кольори"
+
+msgid "Desktop color"
+msgstr "Стільничний колір"
+
+msgid "Use system color"
+msgstr "Використовувати колір системи"
+
+msgid "Text "
+msgstr "Текст "
+
+msgid "Background "
+msgstr "Тло "
+
+msgid "Cursor "
+msgstr "Курсор "
+
+msgid "Syntax highlighting colors"
+msgstr "Кольори підсвічування синтаксису"
+
+msgid "Keyword color "
+msgstr "Колір ключових слів "
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;b&gt;Жирний&lt;/b&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;i&gt;Курсив&lt;/i&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;u&gt;Підкреслений&lt;/u&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;s&gt;Перекреслений&lt;/s&gt;&lt;html&gt;"
+
+msgid "Fonts"
+msgstr "Шрифти"
+
+msgid "Desktop font"
+msgstr "Стільничний шрифт"
+
+msgid "Use system font"
+msgstr "Використовувати системний шрифт"
+
+msgid "Desktop text font: "
+msgstr "Шрифт тексту стільниці: "
+
+msgid "Custom font"
+msgstr "Нетиповий шрифт"
+
+msgid "Fonts to use:"
+msgstr "Використані шрифти:"
+
+msgid "Desktop text font"
+msgstr "Шрифт тексту стільниці"
+
+msgid "Custom:"
+msgstr "Нетипове:"
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Для цього елемента керування властивості «%s» не передбачено.\n"
@@ -971,6 +1046,13 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+"Помилковий тип значення властивості «%s»: слід використовувати рядок або "
+"вектор рядків.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "Помилковий розмір властивості «%s»: слід використовувати «%s», «%s», «%s», "
@@ -1039,6 +1121,7 @@ msgstr "Тло консолі…"
 msgid "No print service found."
 msgstr "Службу друку не знайдено."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1048,6 +1131,7 @@ msgstr ""
 "показ графічних елементів керування неможливий. Віддайте команду %s, щоб "
 "дізнатися більше."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Іноді, проблему можна усунути за допомогою команди %s"
 
@@ -1229,6 +1313,7 @@ msgstr "Зберегти і виконати"
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1237,9 +1322,11 @@ msgstr ""
 "Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
 "долученим файлом %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Ви справді бажаєте закрити %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Ви справді бажаєте закрити %s і %s ?"
 
@@ -1294,6 +1381,7 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
 
@@ -1319,21 +1407,6 @@ msgstr "%s: можна використовувати лише у режимі �
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Помилка. A signal has been caught.\n"
-
-msgid "Select a file to load"
-msgstr "Вкажіть файл для завантаження"
-
-msgid "Figure loaded.\n"
-msgstr "Рисунок завантажено.\n"
-
-msgid "Select a file to write"
-msgstr "Вкажіть файл для запису"
-
-msgid "Figure saved.\n"
-msgstr "Рисунок збережено.\n"
-
-msgid "Select a file name"
-msgstr "Вкажіть назву файла"
 
 msgid "Control Plot3d"
 msgstr "Керування Plot3d"

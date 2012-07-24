@@ -533,7 +533,7 @@ public final class H5Read {
     
     /**
      * @param dataType the datatype found as attribute
-     * @return true if it is a integer
+     * @return true if it is an integer
      */
     private static boolean isScilabInteger(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_INT) == 0; }
 }

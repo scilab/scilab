@@ -69,10 +69,11 @@ c     dest dcopy bezstp dlamch
       double precision  dlamch
       integer ipb(6)
 c
-      integer nn,nm
+      integer nn,mm
 c
       err=dlamch('o')
-
+      nn = n
+      mm = m
 c
 c     compute the true degree for A and B taking care of 0 higer degree
 c
@@ -148,7 +149,7 @@ c     Handle special cases at least one polynomial is a scalar
       err=0.0d+0
       ipb(1)=1
       if(min(nn,mm).eq.0) goto 70
-      CRES=nn-nm
+      CRES=nn-mm
       if (CRES .lt. 0) then
          goto 40
       elseif (CRES .eq. 0) then
@@ -158,9 +159,9 @@ c     Handle special cases at least one polynomial is a scalar
       endif
  40   continue
 c     A=0
-      np=nm
-      call dcopy(nm+1,B,1,best(1),1)
-      ipb(2)=ipb(1)+nm+1
+      np=mm
+      call dcopy(mm+1,B,1,best(1),1)
+      ipb(2)=ipb(1)+mm+1
       best(ipb(2))=0.0d+0
       ipb(3)=ipb(2)+1
       best(ipb(3))=1.0d+0
@@ -201,7 +202,7 @@ c     B=0
 c
  70   best(1)=1.0d+0
       ipb(2)=2
-      CRES=nn-nm
+      CRES=nn-mm
       if (CRES .lt. 0) then
          goto 90
       elseif (CRES .eq. 0) then
@@ -215,8 +216,8 @@ c     A=cte
       ipb(3)=ipb(2)+1
       best(ipb(3))=0.0d+0
       ipb(4)=ipb(3)+1
-      call dcopy(nm+1,B,1,best(ipb(4)),1)
-      ipb(5)=ipb(4)+nm+1
+      call dcopy(mm+1,B,1,best(ipb(4)),1)
+      ipb(5)=ipb(4)+mm+1
       best(ipb(5))=-A(1)
       ipb(6)=ipb(5)+1
       return

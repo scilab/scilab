@@ -42,7 +42,7 @@ c
 
       data eol/99/,dot/51/,blank/40/,tab/-40/
       data retu/27,14,29,30,27,23/
-      data slash/48/,lrecl/512/
+      data slash/48/,lrecl/4096/
       data quit/26,30,18,29/
 c
       if(ddt.eq.4) then

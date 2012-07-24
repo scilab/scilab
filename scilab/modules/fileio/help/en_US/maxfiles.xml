@@ -26,7 +26,7 @@
       <varlistentry>
         <term>newnumbermax</term>
         <listitem>
-          <para>a integer the new value</para>
+          <para>an integer the new value</para>
         </listitem>
       </varlistentry>
       <varlistentry>

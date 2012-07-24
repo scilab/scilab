@@ -11,7 +11,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 //
-// Do not check ref, because imp option create a output messages
+// Do not check ref, because imp option create output messages
 // which contains lots of floating point values which may
 // be slightly different across platforms, without being bugs.
 //

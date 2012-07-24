@@ -35,7 +35,7 @@ function result = atomsAutoload()
     // =========================================================================
     ATOMSINITIALPATH = pwd();
 
-    // Tell atomsLoad() we are in a atomsAutoload() session
+    // Tell atomsLoad() we are in an atomsAutoload() session
     // =========================================================================
     ATOMSAUTOLOAD = %T;
 

@@ -36,7 +36,7 @@ public class LatexTextShape implements mxITextShape {
 
     /**
      * Painter
-     * 
+     *
      * @param canvas
      *            the current canvas
      * @param text
@@ -68,8 +68,12 @@ public class LatexTextShape implements mxITextShape {
             if (g.hitClip(x, y, w, h)) {
                 AffineTransform at = g.getTransform();
 
-                final double sx = (x / scale);
-                final double sy = (y / scale);
+                /*
+                 * do not scale x nor y, due to the g.scale() call.
+                 */
+                final double sx = x;
+                final double sy = y;
+
                 final double sw = w / scale;
                 final double sh = h / scale;
                 g.scale(scale, scale);
@@ -109,7 +113,6 @@ public class LatexTextShape implements mxITextShape {
 
                 final double dx = (sw - iw) / 2;
                 final double dy = (sh - ih) / 2;
-
 
                 icon.paintIcon(rendererPane, g, (int) (sx + dx), (int) (sy + dy));
 

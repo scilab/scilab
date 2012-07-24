@@ -58,15 +58,17 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
      */
     public List(final Node peer) {
         super(peer);
-	model = new Model(peer);
+        model = new Model(peer);
         list = new JList(model);
-	list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	list.getSelectionModel().addListSelectionListener(this);
-	JScrollPane scrollPane = new JScrollPane(list);
-	add(scrollPane);
-	list.setRequestFocusEnabled(true);
+        list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.getSelectionModel().addListSelectionListener(this);
+        JScrollPane scrollPane = new JScrollPane(list);
+        add(scrollPane);
+        list.setRequestFocusEnabled(true);
         list.setFocusable(true);
-   }
+
+        refresh(peer);
+    }
 
     /** Define the set of actuators.
     *
@@ -78,9 +80,9 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     }
 
     public void valueChanged(ListSelectionEvent e) {
-	if (actionListener != null && !dontChange && !e.getValueIsAdjusting()) {
-	    actionListener.actionPerformed(new ActionEvent(this, 0, "List selected Value changed", System.currentTimeMillis(), 0));
-	}
+        if (actionListener != null && !dontChange && !e.getValueIsAdjusting()) {
+            actionListener.actionPerformed(new ActionEvent(this, 0, "List selected Value changed", System.currentTimeMillis(), 0));
+        }
     }
 
     /** Refresh the component by the use of actuators.
@@ -90,16 +92,16 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     public final void refresh(final Node peer) {
         model.setNodeList(peer.getChildNodes());
         String item = XCommonManager.getAttribute(peer , "item");
-	if (!item.equals(item())) {
+        if (!item.equals(item())) {
             item(item);
         }
 
         String nbvisible = XCommonManager.getAttribute(peer , "nb-visible-rows", "5");
-	if (!nbvisible.equals(nbvisible())) {
+        if (!nbvisible.equals(nbvisible())) {
             nbvisible(nbvisible);
         }
 
-	String enable = XConfigManager.getAttribute(peer , "enable", "true");
+        String enable = XConfigManager.getAttribute(peer , "enable", "true");
         setEnabled(enable.equals("true"));
     }
 
@@ -124,11 +126,12 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
      */
     public final String item() {
         Object value = list.getSelectedValue();
-	if (value == null) {
-	    value = model.getElementAt(0);
-	}
+        if (value == null) {
+            value = model.getElementAt(0);
+            list.setSelectedValue(value, true);
+        }
 
-	return value.toString();
+        return value.toString();
     }
 
     /** Actuator for 'item' attribute.
@@ -136,10 +139,10 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
      * @param text : the attribute value.
      */
     public final void item(final String item) {
-	if (!item.equals(XCommonManager.NAV) && !item.equals("")) {
-	    dontChange = true;
-	    list.setSelectedValue(item, true);
-	    dontChange = false;
+        if (!item.equals(XCommonManager.NAV) && !item.equals("")) {
+            dontChange = true;
+            list.setSelectedValue(item, true);
+            dontChange = false;
         }
     }
 
@@ -156,10 +159,10 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
      * @param text : the attribute value.
      */
     public final void nbvisible(final String nbvisible) {
-	if (!nbvisible.equals(XCommonManager.NAV) && !nbvisible.equals("")) {
+        if (!nbvisible.equals(XCommonManager.NAV) && !nbvisible.equals("")) {
             try {
                 int nb = Integer.parseInt(nbvisible);
-		list.setVisibleRowCount(nb);
+                list.setVisibleRowCount(nb);
             } catch (NumberFormatException e) { }
         }
     }
@@ -173,7 +176,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
         return signature;
     }
 
-    /** 
+    /**
      * Scans DOM nodes and translate it into list model.
      */
     class Model extends AbstractListModel {
@@ -192,9 +195,9 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
             setNodeList(peer.getChildNodes());
         }
 
-	public void setNodeList(NodeList list) {
-	    nodelist = list;
-	}
+        public void setNodeList(NodeList list) {
+            nodelist = list;
+        }
 
         /**
          * {@inheritDoc}
@@ -205,7 +208,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
                 Node node = nodelist.item(i);
                 if (node.getNodeName().equals("listElement")) {
                     if (count == 0) {
-			return XCommonManager.getAttribute(node, "name");
+                        return XCommonManager.getAttribute(node, "name");
                     }
                     count--;
                 }

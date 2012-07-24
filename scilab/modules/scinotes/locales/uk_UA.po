@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-13 11:16+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-23 10:51+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: uk\n"
 
 #, c-format
@@ -324,6 +324,165 @@ msgstr "Обчислити позначене з виведенням;Обчис
 
 msgid "Complete"
 msgstr "Завершити"
+
+msgid "Display"
+msgstr "Показ"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Autosave"
+msgstr "Автозбереження"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "External editor: "
+msgstr "Зовнішній редактор: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Не забудьте додати лапки, якщо у запису шляху містяться пробіли)"
+
+msgid "Scilab command: "
+msgstr "Команда Scilab: "
+
+msgid "SciNotes General settings"
+msgstr "Загальні параметри SciNotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Відновлювати попередній сеанс під час запуску"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Додавати символ нового рядка наприкінці файла."
+
+msgid "Number of recently opened files to display: "
+msgstr "Кількість нещодавно відкритих файлів у списку: "
+
+msgid "Default file encoding: "
+msgstr "Типове кодування файлів: "
+
+msgid "Default End-Of-Line: "
+msgstr "Типове завершення рядка: "
+
+msgid "General display options"
+msgstr "Загальні параметри показу"
+
+msgid "Highlight current line: "
+msgstr "Підсвічування поточного рядка: "
+
+msgid "Show line numbers: "
+msgstr "Показ номерів рядків: "
+
+msgid "Whereami compatible"
+msgstr "Сумісність з Whereami"
+
+msgid "Normal"
+msgstr "Звичайна"
+
+msgid "Wrap lines"
+msgstr "Переносити рядки"
+
+msgid "Keywords"
+msgstr "Ключові слова"
+
+msgid "Set syntax Colors"
+msgstr "Встановити кольори синтаксису"
+
+msgid "Highlight corresponding brackets"
+msgstr "Підсвічувати відповідні дужки"
+
+msgid "Color: "
+msgstr "Колір: "
+
+msgid "Highlight on mouse over"
+msgstr "Підсвічування у разі наведення вказівника"
+
+msgid "Style: "
+msgstr "Стиль: "
+
+msgid "Filled"
+msgstr "Заповнення кольором"
+
+msgid "Framed"
+msgstr "У рамці"
+
+msgid "Underlined"
+msgstr "Підкреслення"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Підсвічувати відповідні ключові слова (наприклад if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Табуляція і відступи"
+
+msgid "Tabulation size: "
+msgstr "Розмір табуляції: "
+
+msgid "Use space"
+msgstr "Використовувати пробіл"
+
+msgid "Representation: "
+msgstr "Представлення: "
+
+msgid "Chevrons"
+msgstr "Шеврон"
+
+msgid "Horizontal rule"
+msgstr "Горизонтальна лінійка"
+
+msgid "Vertical rule"
+msgstr "Вертикальна лінійка"
+
+msgid "Enable auto indentation"
+msgstr "Увімкнути автовідступ"
+
+msgid "Indent size: "
+msgstr "Розмір відступу: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Увімкнути автозбереження у Scinotes"
+
+msgid "Save options"
+msgstr "Параметри збереження"
+
+msgid "Save every "
+msgstr "Зберігати кожні "
+
+msgid " minutes "
+msgstr " хвилин "
+
+msgid "Close options"
+msgstr "Параметри закриття"
+
+msgid "Delete automatically saved files"
+msgstr "Вилучити автоматично збережені файли"
+
+msgid "Filename"
+msgstr "Назва файла"
+
+msgid "Append filename with: "
+msgstr "Додати назву файла з: "
+
+msgid "Replace extension with: "
+msgstr "Замінити суфікс на такий: "
+
+msgid "Location"
+msgstr "Розташування"
+
+msgid "Source file directory"
+msgstr "Каталог файлів кодів"
+
+msgid "Single directory"
+msgstr "Окремий каталог"
+
+msgid "Choose an autosave directory"
+msgstr "Виберіть каталог для автозбереження"
+
+msgid "Default header"
+msgstr "Типовий заголовок"
+
+msgid "Add a default header to new file"
+msgstr "Додавати до нових файлів типовий заголовок"
 
 msgid "Graphics handle field"
 msgstr "Поле елемента керування графіки"
@@ -821,12 +980,6 @@ msgstr "Довжина"
 
 msgid "Tab representation"
 msgstr "Показ табуляції"
-
-msgid "Horizontal rule"
-msgstr "Горизонтальна лінійка"
-
-msgid "Vertical rule"
-msgstr "Вертикальна лінійка"
 
 msgid "Double chevrons"
 msgstr "Подвійний шеврон"

@@ -49,7 +49,7 @@
     </para>
     <para>
       The optional argument <literal>colminmax</literal> may be used to precise the first color
-      (associated with umin) and the the last color (associated with umax) of the current 
+      (associated with umin) and the last color (associated with umax) of the current 
       colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the 
       number of colors of the current colormap.
     </para>

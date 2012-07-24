@@ -2,19 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2011.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-15 16:43+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-23 07:03+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: uk\n"
 
 #, c-format
@@ -885,9 +885,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
 "динамічну систему.\n"
 
-msgid "Phase ()"
-msgstr "Фаза ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
@@ -1042,6 +1039,16 @@ msgstr "%s: помилкова відповідь.\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: норма нев’язки = %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr ""
+"#%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
+"дійсних значень."
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

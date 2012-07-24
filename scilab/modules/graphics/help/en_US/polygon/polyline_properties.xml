@@ -117,7 +117,7 @@
         <listitem>
           <para>This integer allows to set the size of arrows drawn on the
             polyline. The actual size of arrows is the product of the
-            <literal>thickness</literal> and the the size factor.
+            <literal>thickness</literal> and the size factor.
           </para>
         </listitem>
       </varlistentry>

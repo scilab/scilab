@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-05-15 14:24+0000\n"
+"PO-Revision-Date: 2012-07-22 13:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -823,9 +823,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 線形動的システムを指定してください.\n"
 
-msgid "Phase ()"
-msgstr "位相 ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません:  システムはプロパーであることが必要です.\n"
@@ -966,6 +963,14 @@ msgstr "%s:  不正確な答えです。\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: 残差ノルム = %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr "%s: 入力引数の数が間違っています:  %d から %d 個の引数を指定してください."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr "%s: 入力引数 #%d の型が間違っています:  実行列を指定してください."
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

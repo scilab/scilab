@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: \n"
 
 #, c-format
@@ -666,6 +666,81 @@ msgstr ""
 msgid "Scilab Demonstrations"
 msgstr ""
 
+msgid "Select a file to load"
+msgstr "装载文件"
+
+msgid "Figure loaded.\n"
+msgstr "载入Figure\n"
+
+msgid "Select a file to write"
+msgstr "选择一个文件写入"
+
+msgid "Figure saved.\n"
+msgstr "Figure已被保存\n"
+
+msgid "Select a file name"
+msgstr "选择文件名"
+
+msgid "Colors"
+msgstr ""
+
+msgid "Desktop color"
+msgstr ""
+
+msgid "Use system color"
+msgstr ""
+
+msgid "Text "
+msgstr ""
+
+msgid "Background "
+msgstr ""
+
+msgid "Cursor "
+msgstr ""
+
+msgid "Syntax highlighting colors"
+msgstr ""
+
+msgid "Keyword color "
+msgstr ""
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "Fonts"
+msgstr ""
+
+msgid "Desktop font"
+msgstr ""
+
+msgid "Use system font"
+msgstr ""
+
+msgid "Desktop text font: "
+msgstr ""
+
+msgid "Custom font"
+msgstr ""
+
+msgid "Fonts to use:"
+msgstr ""
+
+msgid "Desktop text font"
+msgstr ""
+
+msgid "Custom:"
+msgstr ""
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -814,6 +889,11 @@ msgstr "属性'%s'的大小错误：应该为一个字符串或者一个字符�
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "属性'%s'的大小错误：应该为'%s'、'%s'、'%s'、'%s'或'%s'。\n"
 
@@ -864,12 +944,14 @@ msgstr "控制台背景..."
 msgid "No print service found."
 msgstr ""
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1043,14 +1125,17 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr "空标签"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1105,6 +1190,7 @@ msgstr "所有PNG图像文件"
 msgid "All RTF (Rich Text Format) files"
 msgstr "所有RTF (Rich Text Format) 文件"
 
+#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
@@ -1130,21 +1216,6 @@ msgstr "%s：只有在'STANDARD'模式下可用。\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
-
-msgid "Select a file to load"
-msgstr "装载文件"
-
-msgid "Figure loaded.\n"
-msgstr "载入Figure\n"
-
-msgid "Select a file to write"
-msgstr "选择一个文件写入"
-
-msgid "Figure saved.\n"
-msgstr "Figure已被保存\n"
-
-msgid "Select a file name"
-msgstr "选择文件名"
 
 msgid "Control Plot3d"
 msgstr "控制Plot3d"

@@ -16,7 +16,7 @@
 /** 
 * convert status to an int (open a file)
 * @param status path example : "rt" "rb"
-* @return a integer
+* @return an integer
 */
 int Status2Mode(char *status);
 

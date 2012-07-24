@@ -60,7 +60,7 @@
  ]]></programlisting>
     <para>
       Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
-      we have allways <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
+      we have always <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
       something superior to <literal>1/2 K1e</literal>
     </para>
   </refsection>

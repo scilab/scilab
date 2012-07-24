@@ -68,7 +68,7 @@
     <programlisting role=""><![CDATA[ 
 h = sum[a(i)*cos(weight)], i=1:n
  ]]></programlisting>
-    <para>An FIR, linear-phase filter can be obtained from the the output of
+    <para>An FIR, linear-phase filter can be obtained from the output of
       <literal>remez</literal> by using the following commands:
     </para>
     <programlisting role=""><![CDATA[ 

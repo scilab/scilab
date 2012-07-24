@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-13 20:23+0000\n"
+"PO-Revision-Date: 2012-07-23 21:01+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -316,6 +316,165 @@ msgstr "Vyhodnotit Výběr s odezvou;Vyhodnotit do stříšky, s odezvou"
 
 msgid "Complete"
 msgstr "Hotovo"
+
+msgid "Display"
+msgstr "Zobrazení"
+
+msgid "Header"
+msgstr "Záhlaví"
+
+msgid "Autosave"
+msgstr "Automatické ukládání"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "External editor: "
+msgstr "Externí editor: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
+
+msgid "Scilab command: "
+msgstr "Příkaz Scilab: "
+
+msgid "SciNotes General settings"
+msgstr "Obecná nastavení SciNotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Obnovit předchozí relaci při startu"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Přidat návrat vozíku na konec souboru."
+
+msgid "Number of recently opened files to display: "
+msgstr "Počet nedávno otevřených souborů k zobrazení: "
+
+msgid "Default file encoding: "
+msgstr "Výchozí kódování souboru: "
+
+msgid "Default End-Of-Line: "
+msgstr "Výchozí konec řádku: "
+
+msgid "General display options"
+msgstr "Obecné možnosti zobrazení"
+
+msgid "Highlight current line: "
+msgstr "Zvýraznit současný řádek: "
+
+msgid "Show line numbers: "
+msgstr "Zobrazit čísla řádku: "
+
+msgid "Whereami compatible"
+msgstr "Kompatibilní s whereami"
+
+msgid "Normal"
+msgstr "Normální"
+
+msgid "Wrap lines"
+msgstr "Zalamovat řádky"
+
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+msgid "Set syntax Colors"
+msgstr "Nastavit barvy syntakce"
+
+msgid "Highlight corresponding brackets"
+msgstr "Zvýraznit odpovídající závorky"
+
+msgid "Color: "
+msgstr "Barva: "
+
+msgid "Highlight on mouse over"
+msgstr "Zvýraznit při najetí myši"
+
+msgid "Style: "
+msgstr "Styl: "
+
+msgid "Filled"
+msgstr "Vyplněné"
+
+msgid "Framed"
+msgstr "V rámečku"
+
+msgid "Underlined"
+msgstr "Podtržené"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Zvýraznit odpovídající klíčová slova (např. if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Tabelace a odsazení"
+
+msgid "Tabulation size: "
+msgstr "Velikost tabelace: "
+
+msgid "Use space"
+msgstr "Použít mezeru"
+
+msgid "Representation: "
+msgstr "Znázornění: "
+
+msgid "Chevrons"
+msgstr "Ševrony"
+
+msgid "Horizontal rule"
+msgstr "Vodorovná čára"
+
+msgid "Vertical rule"
+msgstr "Svislá čára"
+
+msgid "Enable auto indentation"
+msgstr "Povolit automatické odsazování"
+
+msgid "Indent size: "
+msgstr "Velikost odsazení: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Povolit automatické ukládání ve Scinotes"
+
+msgid "Save options"
+msgstr "Možnosti ukládání"
+
+msgid "Save every "
+msgstr "Uložit každých "
+
+msgid " minutes "
+msgstr " minut "
+
+msgid "Close options"
+msgstr "Zavřít možnosti"
+
+msgid "Delete automatically saved files"
+msgstr "Smazat automaticky uložené soubory"
+
+msgid "Filename"
+msgstr "Název souboru"
+
+msgid "Append filename with: "
+msgstr "Připojit k souborům: "
+
+msgid "Replace extension with: "
+msgstr "Nahradit příponu tímto: "
+
+msgid "Location"
+msgstr "Umístění"
+
+msgid "Source file directory"
+msgstr "Adresář zdrojového souboru"
+
+msgid "Single directory"
+msgstr "Jeden adresář"
+
+msgid "Choose an autosave directory"
+msgstr "Zvolte adresář pro automatické uložení"
+
+msgid "Default header"
+msgstr "Výchozí hlavička"
+
+msgid "Add a default header to new file"
+msgstr "Přidat výchozí hlavičku do nového souboru"
 
 msgid "Graphics handle field"
 msgstr "Grafická obslužná rutina pole"
@@ -809,12 +968,6 @@ msgstr "Délka"
 
 msgid "Tab representation"
 msgstr "Zobrazení karty"
-
-msgid "Horizontal rule"
-msgstr "Vodorovná čára"
-
-msgid "Vertical rule"
-msgstr "Svislá čára"
 
 msgid "Double chevrons"
 msgstr "Dvojité krokve"

@@ -270,7 +270,7 @@ int C2F(getval)(double *s, int *dotdet)
   /*4-2/ ndgexp is to large => the exponent expo is perhaps badly 
     computed (int "overflow") or in all cases the 
     exponent is too large (positive or negative) such that it result 
-    (for s) in a overflow or underflow depending the exponent sign */
+    (for s) in an overflow or underflow depending the exponent sign */
   if (ndgexp >= NDEMAX) {
     if (sgnexp == minus) {/*underflow */
       *s = 0.;

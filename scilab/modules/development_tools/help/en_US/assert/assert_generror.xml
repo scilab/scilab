@@ -49,7 +49,7 @@
     <para>
       This function is called by the assert_check* function each time an error
       produced by the wrong match between expected and computed outputs is generated.
-      In the case where a assert_check* function receives a wrong number of input arguments,
+      In the case where an assert_check* function receives a wrong number of input arguments,
       a wrong number of output arguments, a wrong type of input argument or a wrong content
       of input arguments, the regular error function is called.
       This function can be customized to modify the behaviour of the assert_check* functions.

@@ -100,7 +100,7 @@
       real and imaginary parts.
     </para>
     <para>
-      TODO : use computedigits inside a assert_digits ( computed , expected , dmin ) function
+      TODO : use computedigits inside an assert_digits ( computed , expected , dmin ) function
     </para>
     <para>
       TODO : add a comptype option to make the comparison "matrix" (current is "element")

@@ -26,6 +26,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -55,6 +57,7 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.View;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
 import org.scilab.modules.gui.utils.WebBrowser;
@@ -263,6 +266,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         });
 
+        getScrollPane().addMouseWheelListener(new MouseWheelListener() {
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                if ((OS.get() == OS.MAC && e.isMetaDown()) || e.isControlDown()) {
+                    int n = e.getWheelRotation();
+                    SciNotes.updateFontSize(n);
+                    e.consume();
+                }
+            }
+        });
+
         addKeyListener(this);
         setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
     }
@@ -401,7 +414,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 && e.getKeyChar() != KeyEvent.VK_DELETE) {
             e.setKeyCode(KeyEvent.VK_DECIMAL);
             ctrlHit = false;
-        } else if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+        } else if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
             ctrlHit = true;
             preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
         } else {
@@ -626,7 +639,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Get the the time where the file associated with this pane
+     * Get the time where the file associated with this pane
      * has been modified.
      * @return the last modified time or 0
      */
@@ -866,7 +879,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         Font font = ((ScilabEditorKit) getEditorKit()).getStylePreferences().getBaseFont();
         setFont(font);
         xln.updateFont(font);
-        repaint();
     }
 
     /**

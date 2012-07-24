@@ -30,7 +30,7 @@ c
 c
       data slash/48/,dot/51/,blank/40/,equal/50/,lparen/41/,rparen/42/
       data comma/52/,semi/43/,less/59/,great/60/,left/54/,right/55/
-      data name/1/,cmt/2/,eol/99/,lrecl/512/
+      data name/1/,cmt/2/,eol/99/,lrecl/4096/
       data retu/27,14,29,30,27,23/
 
 c     ennd/14,23,13/
@@ -407,7 +407,7 @@ c
       l=l+1
 
       if(lunit.eq.0) goto 33
-c     caller = 'getf' add a empty line for backward compatiblity
+c     caller = 'getf' add an empty line for backward compatiblity
       istk(l)=eol
       istk(l+1)=blank
       l=l+2

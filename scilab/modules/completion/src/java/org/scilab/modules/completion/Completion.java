@@ -25,7 +25,7 @@ public class Completion {
 /**
 * completion function on all types for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchAllDictionaries(String somechars) {
     return CompletionJNI.searchAllDictionaries(somechars);
@@ -35,7 +35,7 @@ public static String[] searchAllDictionaries(String somechars) {
 /**
 * completion function on Functions for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchFunctionsDictionary(String somechars) {
     return CompletionJNI.searchFunctionsDictionary(somechars);
@@ -45,7 +45,7 @@ public static String[] searchFunctionsDictionary(String somechars) {
 /**
 * completion function on command words for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchCommandsDictionary(String somechars) {
     return CompletionJNI.searchCommandsDictionary(somechars);
@@ -55,7 +55,7 @@ public static String[] searchCommandsDictionary(String somechars) {
 /**
 * completion function on Macros in libraries for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchMacrosDictionary(String somechars) {
     return CompletionJNI.searchMacrosDictionary(somechars);
@@ -65,7 +65,7 @@ public static String[] searchMacrosDictionary(String somechars) {
 /**
 * completion function on Variables for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchVariablesDictionary(String somechars) {
     return CompletionJNI.searchVariablesDictionary(somechars);
@@ -75,7 +75,7 @@ public static String[] searchVariablesDictionary(String somechars) {
 /**
 * completion function on files for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchFilesDictionary(String somechars) {
     return CompletionJNI.searchFilesDictionary(somechars);
@@ -86,7 +86,7 @@ public static String[] searchFilesDictionary(String somechars) {
 * completion function on files for scilab
 * @param[in] the line before the caret
 * @param[in] the part
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchFieldsDictionary(String lineBeforeCaret, String pattern) {
     return CompletionJNI.searchFieldsDictionary(lineBeforeCaret, pattern);
@@ -96,7 +96,7 @@ public static String[] searchFieldsDictionary(String lineBeforeCaret, String pat
 /**
 * completion handle graphics properties for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 public static String[] searchHandleGraphicsPropertiesDictionary(String somechars) {
     return CompletionJNI.searchHandleGraphicsPropertiesDictionary(somechars);
@@ -124,7 +124,7 @@ public static String getFilePartLevel(String line) {
 
   
 /**
-* Get common part to a array
+* Get common part to an array
 * @param[in] string array
 * @param[in] size of string array
 * @return common part

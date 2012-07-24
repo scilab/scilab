@@ -171,7 +171,7 @@ res=parallel_run(1:6, g); // the actual output depends on the architecture (i.e.
  called on 4
 
  computed 16]]></programlisting>
-      As we can see, not only were the the calls to <literal>g</literal> 'out of order', but they where also interleaved.
+      As we can see, not only were the calls to <literal>g</literal> 'out of order', but they where also interleaved.
       <para>
         <emphasis role="bold">Note :</emphasis> This example is for illustrative purposes only ! When the operations performed by the function are available in vector form, it is much more efficient to use these operators than to call parallel_run. For instance, the most efficient way to perform g() on a vector of values would be to rewrite it as <emphasis role="italic"> a= arg1 .* arg1</emphasis> an call it directly on the matrix of arguments (i.e res= g(1:10);). parallel_run is intended for more involved functions.
       </para>

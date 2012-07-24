@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -154,14 +154,6 @@ msgstr "%02d-%02d-%04d"
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr "\tZpracovávání souboru %s.xml\n"
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr "Varování %s nesplňuje dtd"
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"

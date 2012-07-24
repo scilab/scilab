@@ -22,7 +22,7 @@ scinotes();
 // Open two files
 // ctrl+G to open the Code Navigator
 // Switch them in dnd'ing one of them
-// Look at the the Code Nav., the order must have been updated.
+// Look at the Code Nav., the order must have been updated.
 // Look at the order of the tabs and close SciNotes
 // Reopen SciNotes
 // The order should the same as previous

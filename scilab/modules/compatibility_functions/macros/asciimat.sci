@@ -9,7 +9,7 @@
 
 function y=asciimat(x)
 // This function converts a matrix of string into a matrix of ascii codes using ascii() Scilab function
-// and converts a array of ascii codes into a array of string 
+// and converts an array of ascii codes into a array of string 
 // Returned value have same size as input value instead of second dims !
 // Fonction created because ascii() Scilab function returns a row vector
 if size(size(x),"*")<=2 then

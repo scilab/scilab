@@ -104,7 +104,7 @@ public:
         void setRoot(const XMLElement & value) const;
 
         /**
-         * Replaces the root element by the the root of the xmlCode/
+         * Replaces the root element by the root of the xmlCode/
          * @param xmlCode the XML code
          * @param error a pointer to a string which will receive the error message
          */

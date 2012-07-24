@@ -389,16 +389,21 @@ localization:
 	rm modules/*/locales/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE$$EXTENSION`; \
+		if test "$$LOCALE" == "en_US"; then \
+			LOCFILE=$$MASK/*.pot; \
+		else \
+			LOCFILE=$$MASK/$$LOCALE$$EXTENSION; \
+		fi; \
+		FILES=`ls $$LOCFILE`; \
 		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-		$(MSGCAT) --use-first -o $$POFILE $$FILES; \
+		$(MSGCAT) --use-first -o $$POFILE $$FILES || exit 2; \
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE || exit 2; \
 	done;
 
 

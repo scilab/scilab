@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-13 13:15+0000\n"
+"PO-Revision-Date: 2012-07-22 14:49+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: ru\n"
 
 #, c-format
@@ -321,6 +321,165 @@ msgstr ""
 
 msgid "Complete"
 msgstr "Завершить"
+
+msgid "Display"
+msgstr "Показать"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Autosave"
+msgstr "Автосохранение"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "External editor: "
+msgstr "Внешний редактор: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Не забудьте помещать в кавычки путь, содержащий пробелы.)"
+
+msgid "Scilab command: "
+msgstr "Scilab-команда: "
+
+msgid "SciNotes General settings"
+msgstr "Общие настройки SciNotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Восстанавливать предыдущую сессию при запуске"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Добавлять возврат каретки в конце файла."
+
+msgid "Number of recently opened files to display: "
+msgstr "Количество отображаемых недавно открытых файлов: "
+
+msgid "Default file encoding: "
+msgstr "Кодировка файла по умолчанию: "
+
+msgid "Default End-Of-Line: "
+msgstr "Конец строки по умолчанию: "
+
+msgid "General display options"
+msgstr "Общие настройки отображения"
+
+msgid "Highlight current line: "
+msgstr "Подстветка текущей строки: "
+
+msgid "Show line numbers: "
+msgstr "Показать номера строк: "
+
+msgid "Whereami compatible"
+msgstr ""
+
+msgid "Normal"
+msgstr "Стандартная"
+
+msgid "Wrap lines"
+msgstr "Перенос строк"
+
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+msgid "Set syntax Colors"
+msgstr "Установка цветов синтаксиса"
+
+msgid "Highlight corresponding brackets"
+msgstr "Подсветка соответствующих скобок"
+
+msgid "Color: "
+msgstr "Цвет: "
+
+msgid "Highlight on mouse over"
+msgstr "Подсветка при наведении курсора"
+
+msgid "Style: "
+msgstr "Стиль: "
+
+msgid "Filled"
+msgstr ""
+
+msgid "Framed"
+msgstr ""
+
+msgid "Underlined"
+msgstr ""
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Подсветка соответствующих ключевых слов (например, if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Табуляция и отступы"
+
+msgid "Tabulation size: "
+msgstr "Размер табуляции: "
+
+msgid "Use space"
+msgstr "Использовать пробелы"
+
+msgid "Representation: "
+msgstr "Представление: "
+
+msgid "Chevrons"
+msgstr ""
+
+msgid "Horizontal rule"
+msgstr "Горизонтальная линия"
+
+msgid "Vertical rule"
+msgstr "Вертикальная линия"
+
+msgid "Enable auto indentation"
+msgstr "Включить автоматические отступы"
+
+msgid "Indent size: "
+msgstr "Размер отступов: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Включить автосохранение в SciNotes"
+
+msgid "Save options"
+msgstr "Сохранить настройки"
+
+msgid "Save every "
+msgstr "Сохранять каждые "
+
+msgid " minutes "
+msgstr " минут "
+
+msgid "Close options"
+msgstr "Закрыть настройки"
+
+msgid "Delete automatically saved files"
+msgstr "Удалить автоматически сохранённые файлы"
+
+msgid "Filename"
+msgstr "Имя файла"
+
+msgid "Append filename with: "
+msgstr "Добавить к имени файла: "
+
+msgid "Replace extension with: "
+msgstr "Заменить расширение: "
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Source file directory"
+msgstr ""
+
+msgid "Single directory"
+msgstr ""
+
+msgid "Choose an autosave directory"
+msgstr "Выбрать директорию для автосохранения"
+
+msgid "Default header"
+msgstr "Заголовок по умолчанию"
+
+msgid "Add a default header to new file"
+msgstr "Добавлять заголовок по умолчанию к новому файлу"
 
 msgid "Graphics handle field"
 msgstr "Поле графического дескриптора"
@@ -813,12 +972,6 @@ msgstr "Длина"
 
 msgid "Tab representation"
 msgstr "Отображение табуляции"
-
-msgid "Horizontal rule"
-msgstr "Горизонтальная линия"
-
-msgid "Vertical rule"
-msgstr "Вертикальная линия"
 
 msgid "Double chevrons"
 msgstr "Двойные угловые скобки"

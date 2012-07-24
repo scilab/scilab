@@ -26,7 +26,9 @@
 #include "localization.h"
 #include "Scierror.h"
 
+#include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
 
@@ -101,6 +103,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     if ( hdl > 0 )
     {
+        setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
         LhsVar(1)=0;
         PutLhsVar();
     }

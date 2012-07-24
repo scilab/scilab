@@ -21,4 +21,4 @@ mputl(['function s=foo(a)', 'a=type(a)', 's=''scilab type'''], TMPDIR + '/bug_11
 scinotes(TMPDIR + '/bug_11423.sce');
 
 // Select the variable "a", the a in scilab must not be highlighted
-// Select the the function type, the type in the string must not be highlighted.
+// Select the function type, the type in the string must not be highlighted.

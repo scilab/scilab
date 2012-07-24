@@ -13,8 +13,8 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="get_absolute_file_path" xml:lang="en">
   <refnamediv>
     <refname>get_absolute_file_path</refname>
-    <refpurpose>Given an absolute pathname of a file opened in
-      scilab.
+    <refpurpose>
+      gives an absolute pathname of a file opened in Scilab
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -27,34 +27,37 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>A character string : filename</para>
+          <para>a character string: filename.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pathname</term>
         <listitem>
-          <para>A character string : the absolute pathname</para>
+          <para>a character string: an absolute pathname.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Given the absolute pathname of a file already opened in
-      scilab.
+    <para>
+      <function>get_absolute_file_path</function> gives an absolute pathname 
+      of a file already opened in Scilab.
     </para>
-    <para>get_absolute_file_path searches, in scilab's internal list of files
-      currently opened, filename and returns its path.
+    <para>
+      <function>get_absolute_file_path</function> searches in Scilab's 
+	internal list of files currently opened <varname>filename</varname> 
+	and returns its path <varname>pathname</varname>.
     </para>
-    <para>"get_absolute_file_path" seek, in the internal list of the files of
-      scilab currently opened, " filename" and it gives his path.
-    </para>
-    <para>if file not opened , it will return a error.</para>
-    <para>WARNING : in previous version (scilab 5.0.x) current directory was
-      returned if file was not found.
+    <para>If file is not opened, it will return an error.</para>
+    <para>
+      <warning>
+	In previous version (Scilab 5.0.x) current directory was
+	returned if file was not found.
+      </warning>
     </para>
     <para>This function can be used to find from where (path) is executed a
-      scilab script.
+      Scilab script.
     </para>
   </refsection>
   <refsection>

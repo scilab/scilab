@@ -267,7 +267,7 @@ function nyquist(varargin)
   end;
 
   if comments<>[] then
-    legend(Curves($:-1:1),comments);
+    legend(Curves, comments);
   end
   fig.immediate_drawing=immediate_drawing;
 endfunction

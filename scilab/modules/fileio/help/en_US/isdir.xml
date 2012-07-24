@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isdir">
   <refnamediv>
     <refname>isdir</refname>
-    <refpurpose> checks if argument is a directory path</refpurpose>
+    <refpurpose>checks if argument is a directory path</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -26,14 +26,14 @@
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string or a matrix of strings, the file pathname</para>
+          <para>a character string or a matrix of strings: a directory pathname.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
           <para>
-            a boolean, true if <literal>path</literal> is a path to a directory.
+            a boolean: <literal>%t</literal> if <varname>path</varname> is a path to a directory.
           </para>
         </listitem>
       </varlistentry>
@@ -42,13 +42,15 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>r=isdir(path)</literal> checks if <literal>path</literal> is a path to a directory.
+      <code>r=isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
     </para>
   </refsection>
   <refsection>
     <title>Reference</title>
     <para>
-      This function is based on the C function stat. The <literal>SCI</literal> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
+      This function is based on the C function 
+      <function>stat</function>
+      .The <varname>SCI</varname> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
     </para>
   </refsection>
   <refsection>
@@ -62,8 +64,11 @@ isdir SCI/etc/scilab.start
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="fileinfo">fileinfo</link>
+        <link linkend="isfile">isfile</link>
       </member>
     </simplelist>
+    <member>
+      <link linkend="fileinfo">fileinfo</link>
+    </member>
   </refsection>
 </refentry>

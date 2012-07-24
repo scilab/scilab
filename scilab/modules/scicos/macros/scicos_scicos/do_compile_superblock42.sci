@@ -1542,7 +1542,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   //** This code does not cover 100% of the possible situations because the user can
   //** destroy one or more Scicos wins manually during this intermediate phase
-  //** This code is 100% functional if the the user does not close manually any win.
+  //** This code is 100% functional if the user does not close manually any win.
   //** TO BE updated in Scilab 5.0
 
   AfterCG_WinList = winsid();

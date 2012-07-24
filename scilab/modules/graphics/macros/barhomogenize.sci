@@ -181,7 +181,7 @@ end
 endfunction
 
 function  hbarlist=searchbarhandle(h,hbarlist)
-// This function searches all the bares contained in a axes handle 
+// This function searches all the bares contained in an axes handle 
 // output : 
 // hbarlist: a list which contains the bars handles 
 if h.type=="Compound" then

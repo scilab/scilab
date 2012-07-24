@@ -84,7 +84,7 @@
       file.
     </para>
     <para>The first input argument is a string that contain the path of the
-      diary file. This can be a relative path or a absolute path.
+      diary file. This can be a relative path or an absolute path.
     </para>
     <para>The 2nd input argument controls if a new file is created ('new') or
       if diary() adds new content at the end of the file ('append'). If the 2nd

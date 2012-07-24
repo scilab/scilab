@@ -64,7 +64,7 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     autoloaded_txt = atoms_directory+"autoloaded.txt";
     autoloaded_bin = atoms_directory+"autoloaded.bin";
 
-    // Build the the installed_str
+    // Build the installed_str
     // =========================================================================
 
     if ~ isempty(autoloaded_mat) then

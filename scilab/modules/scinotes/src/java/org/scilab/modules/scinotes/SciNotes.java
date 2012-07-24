@@ -15,6 +15,7 @@ package org.scilab.modules.scinotes;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -2023,6 +2024,29 @@ public class SciNotes extends SwingScilabTab {
                 }
                 sep.repaint();
             }
+        }
+    }
+
+    public static void updateFontSize(int inc) {
+        Font baseFont = null;
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = ed.getTextPane(i);
+                ((ScilabEditorKit) sep.getEditorKit()).getStylePreferences().changeBaseFontSize(inc);
+                if (baseFont == null) {
+                    baseFont = ((ScilabEditorKit) sep.getEditorKit()).getStylePreferences().getBaseFont();
+                }
+                if (sep.getOtherPaneInSplit() != null) {
+                    ((ScilabEditorKit) sep.getOtherPaneInSplit().getEditorKit()).getStylePreferences().changeBaseFontSize(n);
+                    sep.getOtherPaneInSplit().resetFont();
+                }
+                sep.resetFont();
+            }
+        }
+
+        if (baseFont != null) {
+            ScilabContext.saveFont(baseFont);
         }
     }
 

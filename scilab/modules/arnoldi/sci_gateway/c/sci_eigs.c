@@ -173,7 +173,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &iRowsTwo, &iColsTwo);
     if (iRowsTwo * iColsTwo == 1 || iRowsTwo != iColsTwo)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), fname, 2);
         return 0;
     }
 
@@ -240,7 +240,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
     if (!finite(dblNEV))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: k must be int the range 1 to N.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"), fname, 3);
         return 0;
     }
 
@@ -396,14 +396,14 @@ int sci_eigs(char *fname, void* pvApiCtx)
     if (sciErr.iErr || TypeVarSeven != sci_matrix)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a integer scalar..\n"), fname, 7, "opts.ncv");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
         return 0;
     }
     else
     {
         if (isVarComplex(pvApiCtx, piAddressVarSeven))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), fname, 7, "opts.ncv");
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
             0;
         }
         else
@@ -411,7 +411,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
             sciErr = getVarDimension(pvApiCtx, piAddressVarSeven, &RowsSeven, &ColsSeven);
             if (RowsSeven * ColsSeven > 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), fname, 7, "opts.ncv");
+                Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
                 return 0;
             }
 
@@ -427,7 +427,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
                 if (dblNCV[0] != floor(dblNCV[0]))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"), fname, 7, "opts.ncv");
+                    Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
                     return 0;
                 }
             }
@@ -448,7 +448,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     iErr = getScalarDouble(pvApiCtx, piAddressVarEight, &dblCHOLB);
     if (iErr)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: %s must be a integer scalar.\n"), fname, 8, "opts.cholB");
+        Scierror(999, _("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), fname, 8, "opts.cholB");
         return 0;
     }
 
@@ -583,7 +583,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
             return 0;
 
         case -3 :
-            Scierror(999, _("%s: Wrong type for input argument(s) #%d: B must be symmmetric or hemitian, definite, semi positive.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument(s) #%d: B must be symmetric or hermitian, definite, semi positive.\n"), fname, 2);
             PutLhsVar();
             return 0;
 

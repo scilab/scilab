@@ -114,7 +114,7 @@ public class HistoryManagement {
 
     /**
     * Get all lines in history
-    * @return a array of string
+    * @return an array of string
     */
     public static String[] getAllLinesOfScilabHistory() {
         return HistoryManagementJNI.getAllLinesOfScilabHistory();
@@ -162,7 +162,7 @@ public class HistoryManagement {
     /**
     * Get the previous line in Scilab history
     * @return a line or NULL
-    * after a appendLine iterator go to end
+    * after an appendLine iterator go to end
     */
     public static String getPreviousLineInScilabHistory() {
         return HistoryManagementJNI.getPreviousLineInScilabHistory();
@@ -172,7 +172,7 @@ public class HistoryManagement {
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
-    * after a appendLine iterator go to end
+    * after an appendLine iterator go to end
     */
     public static String getNextLineInScilabHistory() {
         return HistoryManagementJNI.getNextLineInScilabHistory();

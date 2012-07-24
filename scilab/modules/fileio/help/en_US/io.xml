@@ -13,8 +13,8 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="percentio" xml:lang="en">
   <refnamediv>
     <refname>%io</refname>
-    <refpurpose>variable returns standard input and standard output (file
-      descriptor).
+    <refpurpose>a variable, which keeps standard input and standard output (file
+      descriptor)
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -25,9 +25,13 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>%io(1) returns standard input (file descriptor 5).</para>
-    <para>%io(2) returns standard output (file descriptor 6).</para>
-    <para>file descriptor 0 is the standard error.</para>
+    <para>
+      <code>%io(1)</code> returns standard input (file descriptor 5).
+    </para>
+    <para>
+      <code>%io(2)</code> returns standard output (file descriptor 6).
+    </para>
+    <para>File descriptor 0 is the standard error.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -35,7 +39,7 @@
 mfprintf(%io(2),'Scilab stdout (C)');
 mfprintf(0,'Scilab stderr (C)');
 write(%io(2),'Scilab stdout (Fortran)');
-write(0,'Scilab stderr (Fortran');
+write(0,'Scilab stderr (Fortran)');
 [units,typ,names]=file()
  ]]></programlisting>
   </refsection>
@@ -50,6 +54,9 @@ write(0,'Scilab stderr (Fortran');
       </member>
       <member>
         <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="dispfiles">dispfiles</link>
       </member>
     </simplelist>
   </refsection>

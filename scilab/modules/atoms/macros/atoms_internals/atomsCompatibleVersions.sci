@@ -36,7 +36,7 @@ function versions = atomsCompatibleVersions(name)
     // Check if it's a Atoms package
     // =========================================================================
     if ~ isfield(allpackages,name) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be a atoms package name.\n"),"atomsCompatibleVersions",1));
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be an atoms package name.\n"),"atomsCompatibleVersions",1));
     end
 
     // Get versions

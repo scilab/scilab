@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 12:32+0000\n"
+"PO-Revision-Date: 2012-07-23 11:51+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
@@ -78,6 +78,529 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie.\n"
+
+msgid "Console"
+msgstr "Console"
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Lines to display:"
+msgstr "Lignes à afficher :"
+
+msgid "Columns to display:"
+msgstr "Colonnes à afficher :"
+
+msgid "Number of lines in console scroll buffer:"
+msgstr "Nombre de lignes dans la mémoire tampon de la console :"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Produces an error"
+msgstr "Produit une erreur"
+
+msgid "Produces a warning"
+msgstr "Produit un avertissement"
+
+msgid "Produces Inf or NaN"
+msgstr "Produit Inf ou NaN"
+
+msgid "Variable format"
+msgstr "Format variable"
+
+msgid "Scientific format"
+msgstr "Format scientifique"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "French"
+msgstr "Français"
+
+msgid "Portugese (Brazil)"
+msgstr "Portugais du Brésil"
+
+msgid "Catalan"
+msgstr "Catalan"
+
+msgid "Czech"
+msgstr "Tchèque"
+
+msgid "Spanish"
+msgstr "Espagnol"
+
+msgid "Italian"
+msgstr "Italien"
+
+msgid "Polish"
+msgstr "Polonais"
+
+msgid "Russian"
+msgstr "Russe"
+
+msgid "Chinese (Simplified)"
+msgstr "Chinois (Simplifié)"
+
+msgid "Chinese (Traditional)"
+msgstr "Chinois (Traditionnel)"
+
+msgid "German"
+msgstr "Allemand"
+
+msgid "Japanese"
+msgstr "Japonais"
+
+msgid "Ukrainian"
+msgstr "Ukrainien"
+
+msgid "Confirmation dialogs"
+msgstr "Messages de confirmation"
+
+msgid "Warn before exiting Scilab"
+msgstr "Avertissement avant de quitter Scilab"
+
+msgid "Warn before deleting Command History items"
+msgstr "Avertissement avant d'effacer des commandes dans l'historique"
+
+msgid "Warn before clearing the Console"
+msgstr "Avertissement avant d'effacer la console"
+
+msgid "Desktop layout"
+msgstr "Disposition du bureau"
+
+msgid "Integrated"
+msgstr "Intégrée"
+
+msgid "Simple"
+msgstr "Simple"
+
+msgid "Shortcuts"
+msgstr "Raccourcis clavier"
+
+msgid "Cut or interrupt"
+msgstr "Couper ou interrompre"
+
+msgid "Copy or interrupt"
+msgstr "Copier ou interrompre"
+
+msgid "Select all"
+msgstr "Tout sélectionner"
+
+msgid "Line beginning"
+msgstr "Début de ligne"
+
+msgid "Line end"
+msgstr "Fin de ligne"
+
+msgid "Previous char"
+msgstr "Caractère précédent"
+
+msgid "Next char"
+msgstr "Caractère suivant"
+
+msgid "Delete next char"
+msgstr "Supprimer le caractère suivant"
+
+msgid "Delete previous char"
+msgstr "Supprimer le caractère précédent"
+
+msgid "Delete end of line"
+msgstr "Supprimer la fin de la ligne"
+
+msgid "Delete whole line"
+msgstr "Supprimer la ligne entière"
+
+msgid "Delete last word"
+msgstr "Supprimer le dernier mot"
+
+msgid "Previous console page"
+msgstr "Page précédente"
+
+msgid "Next console page"
+msgstr "Page suivante"
+
+msgid "Validate input"
+msgstr "Valider l'entrée"
+
+msgid "Clear console"
+msgstr "Effacer la console"
+
+msgid "Console box"
+msgstr "Invite de commandes"
+
+msgid "Completion"
+msgstr "Complétion"
+
+msgid "Previous history line"
+msgstr "Ligne précédente dans l'historique"
+
+msgid "Next history line"
+msgstr "Ligne suivante dans l'historique"
+
+msgid "Help Browser"
+msgstr "Navigateur d'aide"
+
+msgid "Paste"
+msgstr "Coller"
+
+msgid "Open a file"
+msgstr "Ouvrir un fichier"
+
+msgid "Load environment"
+msgstr "Charger l'environnement"
+
+msgid "Save environment"
+msgstr "Sauvegarder l'environnement"
+
+msgid "Quit"
+msgstr "Quitter"
+
+msgid "Execute"
+msgstr "Exécuter"
+
+msgid "Empty clipboard"
+msgstr "Vider le presse-papiers"
+
+msgid "Change current directory"
+msgstr "Changer le répertoire courant"
+
+msgid "Display current directory"
+msgstr "Afficher le répertoire courant"
+
+msgid "Page setup"
+msgstr "Configuration de la page"
+
+msgid "Print"
+msgstr "Imprimer"
+
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Show/Hide toolbar"
+msgstr "Afficher/Masquer la barre d'outils"
+
+msgid "Clear history"
+msgstr "Effacer l'historique"
+
+msgid "Resume"
+msgstr "Reprendre"
+
+msgid "Abort"
+msgstr "Abandon"
+
+msgid "Interrupt"
+msgstr "Interrompt"
+
+msgid "Launch SciNotes"
+msgstr "Démarrer SciNotes"
+
+msgid "Launch Xcos"
+msgstr "Démarrer Xcos"
+
+msgid "Matlab to Scilab Translator"
+msgstr "Traducteur Matlab vers Scilab"
+
+msgid "Module manager"
+msgstr "Gestionnaire de modules"
+
+msgid "Variable Browser"
+msgstr "Navigateur de variables"
+
+msgid "Command History"
+msgstr "Historique des commandes"
+
+msgid "File Browser"
+msgstr "Navigateur de fichiers"
+
+msgid "Demonstrations"
+msgstr "Demonstrations"
+
+msgid "Open Scilab website"
+msgstr "Lien vers le site web de Scilab"
+
+msgid "Open Online Help"
+msgstr "Lien vers l'aide en ligne de Scilab"
+
+msgid "Open Scilab wiki"
+msgstr "Lien vers le wiki de Scilab"
+
+msgid "Open ATOM website"
+msgstr "Lien vers le portail web d'ATOMS"
+
+msgid "Open File Exchange website"
+msgstr "Lien vers le File Exchange"
+
+msgid "Open Mailing lists"
+msgstr "Lien vers les archives des listes de diffusion"
+
+msgid "Open Forge website"
+msgstr "Lien vers la forge"
+
+msgid "Open Bugzilla"
+msgstr "Lien vers Bugzilla"
+
+msgid "About Scilab"
+msgstr "À propos de Scilab"
+
+msgid "Auto complete (, [,..."
+msgstr "Complétion automatique (, [,..."
+
+msgid "Auto complete keyword"
+msgstr "Complétion automatique sur les mots-clés"
+
+msgid "Generate Help prototype"
+msgstr "Générer le prototype d'aide"
+
+msgid "Tabify"
+msgstr "Conversion d'espaces en tabulations"
+
+msgid "Untabify"
+msgstr "Supprimer la tabulation"
+
+msgid "Indent"
+msgstr "Indentation"
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgid "Uncomment"
+msgstr "Décommenter"
+
+msgid "Remove trailing whites"
+msgstr "Supprimer les blancs de fin de lignes"
+
+msgid "Select block"
+msgstr "Sélectionner le bloc"
+
+msgid "Open current tab in a new window"
+msgstr "Ouvrir l'onglet courant dans une nouvelle fenêtre"
+
+msgid "Export current tab in a new window"
+msgstr "Exporter l'onglet courant vers une nouvelle fenêtre"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Cut"
+msgstr "Couper"
+
+msgid "Paste a column"
+msgstr "Coller une colonne"
+
+msgid "Repeat selection on column"
+msgstr "Répéter la sélection sur la colonne"
+
+msgid "Undo"
+msgstr "Annuler"
+
+msgid "Redo"
+msgstr "Rétablir"
+
+msgid "Copy as HTML with line number"
+msgstr "Copier en HTML avec les numéros de ligne"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Open"
+msgstr "Ouvrir"
+
+msgid "Open URL"
+msgstr "Ouvrir une URL"
+
+msgid "Open source"
+msgstr "Ouvrir la source"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Save as"
+msgstr "Enregistrer sous"
+
+msgid "Reload"
+msgstr "Recharger"
+
+msgid "Print preview"
+msgstr "Aperçu avant impression"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Exit"
+msgstr "Quitter"
+
+msgid "To lower case"
+msgstr "Passer en minuscules"
+
+msgid "To upper case"
+msgstr "Passer en majuscules"
+
+msgid "Capitalize"
+msgstr "Mettre en majuscules"
+
+msgid "Help on keyword"
+msgstr "Aide sur le mot-clé"
+
+msgid "Load in Scilab"
+msgstr "Charger dans Scilab"
+
+msgid "Execute in Scilab"
+msgstr "Exécuter dans Scilab"
+
+msgid "Evaluate selection"
+msgstr "Évaluer la sélection"
+
+msgid "Save and execute"
+msgstr "Enregistrer et exécuter"
+
+msgid "Save and execute all"
+msgstr "Enregistrer et exécuter tout"
+
+msgid "Find"
+msgstr "Chercher"
+
+msgid "Find next"
+msgstr "Rechercher le suivant"
+
+msgid "Find previous"
+msgstr "Rechercher le précédent"
+
+msgid "Incremental search"
+msgstr "Recherche incrémentale"
+
+msgid "Set anchor"
+msgstr "Ajouter une ancre"
+
+msgid "Remove anchor"
+msgstr "Supprimer l'ancre"
+
+msgid "Go to next anchor"
+msgstr "Ancre suivante"
+
+msgid "Go to previous anchor"
+msgstr "Ancre précédente"
+
+msgid "Start Code Navigator"
+msgstr "Lancer le navigateur de code"
+
+msgid "Search word in file"
+msgstr "Rechercher un mot dans un fichier"
+
+msgid "Search files"
+msgstr "Recherche fichiers"
+
+msgid "Keyword completion"
+msgstr "Complétion sur les mots-clés"
+
+msgid "Help"
+msgstr "Aide"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Next tab"
+msgstr "Onglet suivant"
+
+msgid "Previous tab"
+msgstr "Onglet précédent"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Next paragraph"
+msgstr "Paragraphe suivant"
+
+msgid "Previous paragraph"
+msgstr "Paragraphe précédent"
+
+msgid "Save all"
+msgstr "Tout enregistrer"
+
+msgid "Overwrite"
+msgstr "Écraser"
+
+msgid "Close all"
+msgstr "Tout fermer"
+
+msgid "Close all but"
+msgstr "Fermer tout sauf"
+
+msgid "Convert quote to double quote"
+msgstr "Convertir les simples guillemets en double"
+
+msgid "Line numbering"
+msgstr "Numérotation de lignes"
+
+msgid "Save diagramm"
+msgstr "Enregistrer le diagramme"
+
+msgid "Save variable"
+msgstr "Enregistrer la variable"
+
+msgid "Save history"
+msgstr "Enregistrer l'historique"
+
+msgid "Save file"
+msgstr "Enregistrer le fichier"
+
+msgid "Floating point exception (ieee): "
+msgstr "Exception en virgule flottante (ieee) : "
+
+msgid "Printing format: "
+msgstr "Format d'impression : "
+
+msgid "Width: "
+msgstr "Largeur : "
+
+msgid "Language setting"
+msgstr "Paramètres de la langue"
+
+msgid "Default language: "
+msgstr "Langue par défaut : "
+
+msgid "(This requires a restart of Scilab)"
+msgstr "(Cela nécessite de redémarrer Scilab)"
+
+msgid "Java Heap Memory"
+msgstr "Mémoire du Tas Java"
+
+msgid "Select the memory (in MB) available in Java: "
+msgstr "Sélectionner la mémoire (en MB) disponible pour le Java : "
+
+msgid "Desktop Layout"
+msgstr "Agencement du bureau"
+
+msgid "Select a layout"
+msgstr "Sélectionne un agencement"
+
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr ""
+"(Modifier la disposition des fenêtres nécessite de redémarrer Scilab)"
+
+msgid "Keys binding"
+msgstr "Combinaison de touches"
+
+msgid "Filter on action name: "
+msgstr "Filtrer sur le nom de l'action : "
+
+msgid "Component"
+msgstr "Composant"
+
+msgid "Name: "
+msgstr "Nom : "
+
+msgid "Description: "
+msgstr "Description : "
+
+msgid "Binding: "
+msgstr "Combinaison : "
+
+msgid "Action name"
+msgstr "Nom de l'action"
+
+msgid "Key binding"
+msgstr "Combinaison de touches"
 
 msgid "File or Directory"
 msgstr "Fichier ou répertoire"

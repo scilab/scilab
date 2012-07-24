@@ -202,7 +202,7 @@ public class BuildDocObject extends StyleSheet {
      * Replace links by the contents of the XML files in the master
      * @param masterXML name of the master file
      * @param styleSheet CSS to be used
-     * @return the absolute path the the new master file
+     * @return the absolute path of the new master file
      */
     private String preProcessMaster(String masterXML) {
 

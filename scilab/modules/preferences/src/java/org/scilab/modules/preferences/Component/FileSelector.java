@@ -125,6 +125,7 @@ public class FileSelector extends Panel implements XComponent, XChooser, Documen
 
         String href = XConfigManager.getAttribute(peer, "href");
         href(href);
+        textField.setCaretPosition(0);
 
         String dirsel = XCommonManager.getAttribute(peer, "dir-selection", "false");
         dirSelection = dirsel.equals("true");

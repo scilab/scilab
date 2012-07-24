@@ -63,7 +63,6 @@ int sci_listvar_in_hdf5(char *fname, void *pvApiCtx)
     int iFile       = 0;
     int iNbItem     = 0;
     VarInfo* pInfo  = NULL;
-    bool bRet       = true;
 
     CheckRhs(1, 1);
     CheckLhs(1, 4);
@@ -115,7 +114,6 @@ int sci_listvar_in_hdf5(char *fname, void *pvApiCtx)
             int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
             if (iDataSetId == 0)
             {
-                bRet = false;
                 break;
             }
 
@@ -123,7 +121,6 @@ int sci_listvar_in_hdf5(char *fname, void *pvApiCtx)
             FREE(pstVarNameList[i]);
             if (read_data(iDataSetId, 0, NULL, &pInfo[i]) == false)
             {
-                bRet = false;
                 break;
             }
 
@@ -414,8 +411,6 @@ static bool read_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddress,
     {
         return false;
     }
-
-    iComplex = isComplexData(_iDatasetId);
 
     _pInfo->iDims = 2;
     _pInfo->piDims[0] = iRows;

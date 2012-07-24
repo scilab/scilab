@@ -235,14 +235,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * {@inheritDoc}
      */
     public boolean isEscapable(final String tagName, final String uri) {
-        return !"latex".equals(tagName) && !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName) && !(uri.equals(SCILAB_URI) && tagName.equals("image"));
+        return !"latex".equals(tagName) && !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"code".equals(tagName) && !"synopsis".equals(tagName) && !(uri.equals(SCILAB_URI) && tagName.equals("image"));
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isTrimable(final String tagName) {
-        return !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
+        return !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"code".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
@@ -661,6 +661,17 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a code
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleCode(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("code", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));//encloseContents("code", "code", contents);
+    }
+
+    /**
      * Handle a function
      * @param attributes the tag attributes
      * @param contents the tag contents
@@ -683,7 +694,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
-     * Handle a option
+     * Handle an option
      * @param attributes the tag attributes
      * @param contents the tag contents
      * @return the HTML code

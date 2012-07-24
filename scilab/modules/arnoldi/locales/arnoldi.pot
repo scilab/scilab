@@ -118,7 +118,7 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 176
 #, c-format
 msgid ""
-"%s: Wrong dimension for input argument #%d: B must be a same size as A.\n"
+"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
 
 #
@@ -137,7 +137,7 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 242
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: k must be int the range 1 to N.\n"
+"%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
 
 #
@@ -216,7 +216,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_eigs.c, line: 397
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a integer scalar..\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar..\n"
 msgstr ""
 
 #
@@ -224,14 +224,14 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 412
 # File: sci_gateway/c/sci_eigs.c, line: 428
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_eigs.c, line: 449
 #, c-format
 msgid ""
-"%s: Wrong dimension for input argument #%d: %s must be a integer scalar.\n"
+"%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
@@ -501,7 +501,7 @@ msgstr ""
 # File: macros/eigs.sci, line: 491
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: opts.nev must be a integer scalar.\n"
+"%s: Wrong type for input argument #%d: opts.nev must be an integer scalar.\n"
 msgstr ""
 
 #
@@ -613,33 +613,9 @@ msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 820
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a empty matrix or full or sparse "
-"square matrix expected.\n"
-msgstr ""
-
-#
 # File: macros/eigs.sci, line: 878
 #, c-format
 msgid "%s: Wrong dimension for input argument(s) #%d: a string expected.\n"
-msgstr ""
-
-#
-# File: macros/eigs.sci, line: 882
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of LM, SM, LA, SA or BE.\n"
-msgstr ""
-
-#
-# File: macros/eigs.sci, line: 884
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of LM, SM, LR, SR, LI or SI.\n"
 msgstr ""
 
 #
@@ -648,12 +624,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: For real non symmetric problems, %s "
 "must be less than N.\n"
-msgstr ""
-
-#
-# File: macros/eigs.sci, line: 988
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %S must be a integer scalar.\n"
 msgstr ""
 
 #

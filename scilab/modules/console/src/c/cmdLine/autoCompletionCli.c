@@ -58,7 +58,7 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
 
 static char **concatenateStrings(int *sizearrayofstring, char *string1, char *string2, char *string3, char *string4, char *string5);
 
-/* Autocopmpletion in NW/NWNI */
+/* Autocompletion in NW/NWNI */
 void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     char *multiByteString = NULL;

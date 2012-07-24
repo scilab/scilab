@@ -68,7 +68,7 @@
                 For "ellip" filters <literal>rp(1)</literal> and
                 <literal>rp(2)</literal> are both used.  The passband
                 ripple is between <literal>1-rp(1)</literal> and
-                <literal>1</literal> while the The stopband ripple is
+                <literal>1</literal> while the stopband ripple is
                 between <literal>0</literal> and
                 <literal>rp(2)</literal>. 
               </para>

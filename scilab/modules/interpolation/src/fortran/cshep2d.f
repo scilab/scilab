@@ -109,7 +109,7 @@ C                         STORE2.
 C
 C       RMAX = Largest element in RW -- maximum radius R(k).
 C
-C       RW = Array containing the the radii R(k) which enter
+C       RW = Array containing the radii R(k) which enter
 C            into the weights W(k).
 C
 C       A = 9 by N array containing the coefficients for
@@ -506,7 +506,7 @@ C                         STORE2.
 C
 C       RMAX = Largest element in RW -- maximum radius R(k).
 C
-C       RW = Array containing the the radii R(k) which enter
+C       RW = Array containing the radii R(k) which enter
 C            into the weights W(k) defining C.
 C
 C       A = 9 by N array containing the coefficients for
@@ -685,7 +685,7 @@ C                         STORE2.
 C
 C       RMAX = Largest element in RW -- maximum radius R(k).
 C
-C       RW = Array of length N containing the the radii R(k)
+C       RW = Array of length N containing the radii R(k)
 C            which enter into the weights W(k) defining C.
 C
 C       A = 9 by N array containing the coefficients for
@@ -927,7 +927,7 @@ C                         STORE2.
 C
 C       RMAX = Largest element in RW -- maximum radius R(k).
 C
-C       RW = Array of length N containing the the radii R(k)
+C       RW = Array of length N containing the radii R(k)
 C            which enter into the weights W(k) defining C.
 C
 C       A = 9 by N array containing the coefficients for

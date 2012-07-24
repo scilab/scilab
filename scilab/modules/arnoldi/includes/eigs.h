@@ -14,7 +14,39 @@
 #define __EIGS_H__
 #include "doublecomplex.h"
 
-int eigs(double *, doublecomplex *, int, int, int, double*, doublecomplex*, int, int, int, doublecomplex*, char*, double*, double*, double*, double*, doublecomplex*, int*, double*, int, doublecomplex*, doublecomplex*);
+/**
+ * @TODO add comment
+ *
+ * @param AR
+ * @param AC
+ * @param N
+ * @param Acomplex
+ * @param Asym
+ * @param B
+ * @param BC
+ * @param Bcomplex
+ * @param matB
+ * @param nev
+ * @param SIGMA
+ * @param which
+ * @param maxiter
+ * @param tol
+ * @param NCV
+ * @param RESID
+ * @param RESIDC
+ * @param INFO
+ * @param cholB
+ * @param INFO_EUPD
+ * @param eigenvalue
+ * @param eigenvector
+ * @return <ReturnValue>
+ */
+int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
+         double* B,  doublecomplex* BC, int Bcomplex, int matB, int nev,
+         doublecomplex* SIGMA, char* which, double* maxiter, double* tol,
+         double* NCV, double* RESID, doublecomplex* RESIDC, int* INFO,
+         double* cholB, int INFO_EUPD, doublecomplex* eigenvalue,
+         doublecomplex* eigenvector);
 
 #endif /* __EIGS_H__ */
 /*--------------------------------------------------------------------------*/

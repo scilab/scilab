@@ -256,7 +256,7 @@ int sci_strsplit(char *fname, void* pvApiCtx)
 					break;
 				case STRSPLIT_INCORRECT_VALUE_ERROR:
 					{
-						Scierror(116,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
+						Scierror(116,_("%s: Wrong value for input argument #%d.\n"),fname, 2);
 					}
 					break;
 				case STRSPLIT_INCORRECT_ORDER_ERROR:

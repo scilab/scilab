@@ -170,7 +170,7 @@
       <varlistentry>
         <term>&lt;params&gt;</term>
         <listitem>
-          <para>in the case where the objective function is a a C or Fortran
+          <para>in the case where the objective function is a C or Fortran
             routine, a sequence of arguments containing the method to
             communicate with the objective function. This option has no meaning
             when the cost function is a Scilab script.

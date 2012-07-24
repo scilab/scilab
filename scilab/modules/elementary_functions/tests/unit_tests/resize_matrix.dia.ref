@@ -22,7 +22,7 @@ refMat=int32([0,4,3,0;
 1,2,4,0;
 4,4,0,0;
 0,0,0,0]);
-myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create a integer matrix
+myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // create an integer matrix
  myMatInteger  =
  
   0  4  3  0  

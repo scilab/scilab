@@ -100,8 +100,8 @@
       <varlistentry>
         <term>arrow_size: </term>
         <listitem>
-          <para>Factor that specify the size of a arrowheads. With a negative
-            value, the size is also dependent of the arrows length. TO draw
+          <para>Factor that specify the size of arrowheads. With a negative
+            value, the size is also dependent of the arrows length. To draw
             segment, the value must be set to 0.
           </para>
         </listitem>

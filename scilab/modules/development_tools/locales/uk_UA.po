@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-04-17 19:44+0000\n"
+"PO-Revision-Date: 2012-07-23 05:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: uk\n"
 
 #, c-format
@@ -238,6 +238,14 @@ msgstr "%s не належить до встановлених модулів а
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "Еталонного файла (%s) не існує"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr ""
+"Форматування файла «%s» не відповідає специфікації XML XUnit. Кореневим "
+"теґом мав бути 'testsuites"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

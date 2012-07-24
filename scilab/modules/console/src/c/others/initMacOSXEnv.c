@@ -219,7 +219,7 @@ int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScriptType in
   pthread_create(&vmthread, &thread_attr,  launchMacOSXEnv, (void*)param);
   pthread_attr_destroy(&thread_attr);
 
-  /* Create a a sourceContext to be used by our source that makes */
+  /* Create a sourceContext to be used by our source that makes */
   /* sure the CFRunLoop doesn't exit right away */
   sourceContext.version = 0;
   sourceContext.info = NULL;

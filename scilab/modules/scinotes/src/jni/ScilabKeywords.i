@@ -84,7 +84,7 @@ public class";
 %javamethodmodifiers GetVariablesName() "
 /**
 * get Variables Name
-* @return a array of chars
+* @return an array of chars
 */
 public";
 char **GetVariablesName(void);
@@ -93,7 +93,7 @@ char **GetVariablesName(void);
 %javamethodmodifiers GetFunctionsName() "
 /**
 * get Functions Name
-* @return a array of chars
+* @return an array of chars
 */
 public";
 char **GetFunctionsName(void);
@@ -102,7 +102,7 @@ char **GetFunctionsName(void);
 %javamethodmodifiers GetMacrosName() "
 /**
 * get Macros Name
-* @return a array of chars
+* @return an array of chars
 */
 public";
 char **GetMacrosName(void);

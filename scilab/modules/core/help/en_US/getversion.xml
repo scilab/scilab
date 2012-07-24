@@ -32,7 +32,7 @@
       <varlistentry>
         <term>version_numbers</term>
         <listitem>
-          <para>a integer vector</para>
+          <para>an integer vector</para>
           <para>ver(1) Major version</para>
           <para>ver(2) Minor version</para>
           <para>ver(3) Maintenance version</para>

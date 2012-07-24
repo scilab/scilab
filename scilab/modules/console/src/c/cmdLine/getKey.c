@@ -10,6 +10,7 @@
  */
 
 #include <wchar.h>
+#include <string.h>
 #include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,6 +31,7 @@
 #include "cliDisplayManagement.h"
 #include "autoCompletionCli.h"
 #include "tohome.h"
+#include "localization.h"
 
 /* Set new token in order to get string changement in history */
 static void updateTokenInScilabHistory(wchar_t ** commandLine)
@@ -345,6 +347,13 @@ char *getCmdLine(void)
     setSearchedTokenInScilabHistory(NULL);
 
     setCharDisplay(DISP_RESET);
+
+    if (multiByteString && strlen(multiByteString) > 4096)
+    {
+        printf(_("Command is too long (more than %d characters long): could not send it to Scilab\n"), 4096);
+        FREE(multiByteString);
+        return NULL;
+    }
 
     return multiByteString;
 }

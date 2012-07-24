@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
@@ -20,7 +20,7 @@
     <synopsis>
       d = eigs(A [,B [,k [,sigma [,opts]]]])
       [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])
-
+      
       d = eigs(Af, n [,B [,k [,sigma [,opts]]]])
       [d, v] = eigs(Af, n [,B [,k [,sigma [,opts]]]])
     </synopsis>
@@ -60,7 +60,7 @@
       <varlistentry>
         <term>k</term>
         <listitem>
-          <para>a integer, number of eigenvalues to be computed</para>
+          <para>an integer, number of eigenvalues to be computed</para>
         </listitem>
       </varlistentry>
       <varlistentry>

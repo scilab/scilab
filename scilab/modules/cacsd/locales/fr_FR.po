@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-06-20 11:55+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Generator: Launchpad (build 15668)\n"
 "Language: fr\n"
 
 #, c-format
@@ -616,7 +616,8 @@ msgstr "%s : L'équation de Francis n'est pas vérifiée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -868,9 +869,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un système linéaire dynamique "
 "attendu.\n"
 
-msgid "Phase ()"
-msgstr "Phase ()"
-
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
@@ -1021,6 +1019,14 @@ msgstr "%s : Réponse incorrecte.\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s : Norme résiduelle = %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr "%s : Type erroné de l'argument n°%d : Une matrice réelle attendue."
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

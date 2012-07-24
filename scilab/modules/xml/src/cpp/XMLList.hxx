@@ -75,7 +75,7 @@ protected:
      * This way to search the element is faster in a for loop where the indexes are
      * consecutives.
      * @param index the searched index
-     * @param max the the max
+     * @param max the max
      * @param prev a pointer on the previous index (*prev is modified by this function)
      * @param prevElem a pointer on the previous element (*prevElem is modified by this function)
      * @return the found element
