@@ -103,7 +103,9 @@ Bug Fixes
 * Bug #3235 fixed - In the bezout function, typo in the name of a variable.
                     This made the calpol unitary test fail.
 
-* Bug #3244 fixed - Change error messages in the qpsolve and qp_solve functions.
+* Bug #3244 fixed - Error messages in the qpsolve and qp_solve functions updated.
+
+* Bug #3787 fixed - Invalid calling sequences removed from the schur help page.
 
 * Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
                     was always calculated its own, arbitrary, internal value.
@@ -625,7 +627,8 @@ ATOMS
 * Bug #10957 fixed - atomsInstall required a network connection to install
                      a local package.
 
-* Bug #11062 fixed - atomsGetInstalledPath function moved as a public function
+* Bug #11062 fixed - atomsGetInstalledPath function moved as a public function.
+
 
 Call_Scilab
 ===========

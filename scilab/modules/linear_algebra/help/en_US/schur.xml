@@ -22,9 +22,9 @@
       [U,dim [,T] ]=schur(A,extern1)
       
       [As,Es [,Q,Z]]=schur(A,E)
-      [As,Es [,Q],Z,dim] = schur(A,E,flag)
+      [As,Es [,Z,dim]] = schur(A,E,flag)
       [Z,dim] = schur(A,E,flag)
-      [As,Es [,Q],Z,dim]= schur(A,E,extern2)
+      [As,Es [,Z,dim]]= schur(A,E,extern2)
       [Z,dim]= schur(A,E,extern2)
     </synopsis>
   </refsynopsisdiv>
