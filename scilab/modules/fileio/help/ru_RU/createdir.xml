@@ -20,32 +20,49 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>createdir('имя директории')
-      status = createdir('имя директории')
+    <synopsis>
+      createdir(dirname)
+      status = createdir(dirname)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>dirname</term>
+        <listitem>
+          <para>символьная строка: имя директории.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>логическое значение: статус.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Описание</title>
     <para>
-      <literal>createdir('имя директории')</literal> создаёт директорию
-      <literal>'имя директории'</literal> в текущей директории. Если <literal>'имя директории'</literal>
-      находится не в текущей директории, то определите относительный путь к текущей директории, либо 
-      полный путь для <literal>'имя директории'</literal>.
+      <code>createdir(dirname)</code> создаёт директорию
+      <varname>dirname</varname> в текущей директории. Если 
+      <varname>dirname</varname> находится не в текущей директории, то 
+      определите относительный путь к текущей директории, либо 
+      полный путь для <varname>dirname</varname>.
     </para>
     <para>
-      <literal>[status] = createdir('dirname')</literal> creates the directory dirname in the
-      existing directory parentdir, returning the status, a message. Here,
-      status is <literal>%T</literal> for success and <literal>%F</literal> otherwise.
+      <code>[status] = createdir(dirname)</code> создаёт директорию <varname>dirname</varname> в существующей директории, возвращая статус <varname>status</varname>. Здесь <varname>status</varname> равен <constant>%T</constant> в случае успеха, иначе <constant>%F</constant>.
     </para>
     <para>
-      <literal>createdir</literal> is used by <literal>mkdir</literal>.
+      <code>createdir</code> используется <code>mkdir</code>.
     </para>
   </refsection>
   <refsection>
     <title>Примеры</title>
     <programlisting role="example"><![CDATA[ 
-createdir(SCIHOME+'/Directory_test')
-removedir(SCIHOME+'/Directory_test')
+createdir(TMPDIR+'/Directory_test')
+removedir(TMPDIR+'/Directory_test')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
