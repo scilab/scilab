@@ -55,6 +55,8 @@ Signal Processing
 Compilation
 ===========
 
+* Switch to flexdock 1.2.0.
+
 * Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
 
 
