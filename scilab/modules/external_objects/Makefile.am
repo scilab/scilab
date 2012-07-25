@@ -18,9 +18,10 @@ libsciexternal_objects_la_rootdir = $(mydatadir)
 libsciexternal_objects_la_root_DATA =  license.txt 
 
 
-#### scinotes : init scripts & configuration files ####
+#### external_objects : init scripts & configuration files ####
 libsciexternal_objects_la_etcdir = $(mydatadir)/etc
-libsciexternal_objects_la_etc_DATA = 
+libsciexternal_objects_la_etc_DATA = etc/external_objects.quit \
+									 etc/external_objects.start
 
 include $(top_srcdir)/Makefile.incl.am
 

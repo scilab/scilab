@@ -27,13 +27,13 @@ Source: modules\{#EXTERNAL_OBJECTS}\sci_gateway\{#EXTERNAL_OBJECTS}_gateway.xml;
 Source: modules\{#EXTERNAL_OBJECTS}\etc\{#EXTERNAL_OBJECTS}.quit; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\etc; Components: {#COMPN_EXTERNAL_OBJECTS}
 Source: modules\{#EXTERNAL_OBJECTS}\etc\{#EXTERNAL_OBJECTS}.start; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\etc; Components: {#COMPN_EXTERNAL_OBJECTS}
 ;
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\buildmacros.sce; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\buildmacros.bat; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\*.bin; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\*.sci; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\lib; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
-;Source: modules\{#EXTERNAL_OBJECTS}\macros\names; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\buildmacros.sce; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\buildmacros.bat; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\*.bin; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\*.sci; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\lib; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\macros\names; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_EXTERNAL_OBJECTS}
 ;
 ;Source: modules\{#EXTERNAL_OBJECTS}\tests\*.*; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\tests; Flags: recursesubdirs; Components: {#COMPN_EXTERNAL_OBJECTS} and {#COMPN_TESTS}
 ;
