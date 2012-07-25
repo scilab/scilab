@@ -142,6 +142,9 @@ Bug Fixes
 * Bug #6702 fixed - the max and min functions returned a scalar in k when the input
                     argument was the last column of an hypermatrix.
 
+* Bug #7216 fixed - modulo(x,0) and pmodulo(x,0) did not return an error message.
+                    With ieee(2) these functions now return %nan.
+
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
 
 * Bug #7855 fixed - It was not possible to change the event function while
@@ -281,6 +284,11 @@ Bug Fixes
 
 Known Incompatibilities
 =======================
+
+* In previous versions, modulo(x,0) and pmodulo(x,0) returned x. But this solution is 
+  not correct. Indeed, the expression used to compute the modulo is x - y * int(x / y) 
+  for the modulo function and x - y * floor(x / y). Now, they return an error and
+  %nan with ieee(2). See bug #7216.
 
 * In previous versions, the newest() function could be called with a string vector
   as second (up to last) input argument. In these cases, only the first string of

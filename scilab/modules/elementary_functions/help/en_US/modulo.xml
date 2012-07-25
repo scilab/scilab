@@ -61,6 +61,12 @@
       </literal>
       ,the answer is positive or zero.
     </para>
+    <para>
+      <literal>modulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>modulo(x,0)</literal> returns %nan.
+    </para>
+    <para>
+      <literal>pmodulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>pmodulo(x,0)</literal> returns %nan.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
