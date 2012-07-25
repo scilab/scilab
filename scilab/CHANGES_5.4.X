@@ -40,6 +40,13 @@ Documentation
     - genetic algorithms. See bug #11514.
 
 
+
+Compilation
+===========
+
+* Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
+
+
 GUI
 ===
 
