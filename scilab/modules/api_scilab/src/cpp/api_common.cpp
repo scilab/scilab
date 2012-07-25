@@ -53,6 +53,12 @@ int* getNbInputArgument(void* _pvCtx)
     return &C2F(com).rhs;
 }
 
+/* Replaces Top */
+int* getNbArgumentOnStack(void* _pvCtx)
+{
+    return &C2F(vstk).top;
+}
+
 /* Replaces Lhs */
 int* getNbOutputArgument(void* _pvCtx)
 {
@@ -191,7 +197,12 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 /*--------------------------------------------------------------------------*/
 int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
 {
-    int iVar = _iVar + Top - Rhs;
+    int iVar = 0;
+    if(_iVar != 0)
+    {
+        iVar = _iVar + Top - Rhs;
+    }
+
     return C2F(overload)(&iVar, _pstName, _iNameLen);
 }
 

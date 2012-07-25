@@ -179,6 +179,8 @@ Bug Fixes
 * Bug #10921 fixed - For ill-conditioned matrix, the inv function printed a
                      wrong value of rcond.
 
+* Bug #11046 fixed - Sometimes, OverLoad(0) did not called %_xxx but %x_xxx.
+
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
 
