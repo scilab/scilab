@@ -31,11 +31,13 @@
         <Glue/>
       </HBox>
       <HBox border-side="Center">
+	<Scroll>
         <Panel border-side="Center">
           <xsl:apply-templates mode="main-panel">
             <xsl:with-param name="path" select="@path"/>
           </xsl:apply-templates>
         </Panel>
+	</Scroll>
       </HBox>
       <HBox border-side="East">
         <Glue/>
