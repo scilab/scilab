@@ -2,12 +2,12 @@
 Comment=Scientific software package for numerical computations
 Comment[fr]=Logiciel scientifique de calcul numérique
 Comment[de]=eine Wissenschaftssoftware für numerische Berechnungen
-Exec=scilab
+Exec=scilab -f
 GenericName=Scientific Software Package
 GenericName[fr]=Logiciel de calcul numérique
 GenericName[de]=Wissenschaftssoftware
 Icon=scilab
-MimeType=application/x-scilab-sci;application/x-scilab-sce;application/x-scilab-tst;application/x-scilab-dem;application/x-scilab-xcos;application/x-scilab-bin;application/x-scilab-cosf;application/x-scilab-cos;
+MimeType=application/x-scilab-sci;application/x-scilab-sce;application/x-scilab-tst;application/x-scilab-dem;application/x-scilab-sod;application/x-scilab-xcos;application/x-scilab-zcos;application/x-scilab-bin;application/x-scilab-cosf;application/x-scilab-cos;
 Name=Scilab
 Name[de]=Scilab
 StartupNotify=false
