@@ -239,6 +239,8 @@ Bug Fixes
 * Bug #11449 fixed - The color function created a figure when it did not already
                      exist.
 
+* Bug #11457 fixed - gsort crashed when get string data from stack after big stacksize.
+
 * Bug #11459 fixed - Docbook tags varname, command, constant and option were not
                      handled.
 
