@@ -32,15 +32,15 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>a boolean: <literal>%t</literal> or <literal>%f</literal></para>
+          <para>a boolean: <constant>%t</constant> or <constant>%f</constant></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function deletes a file. If file has been deleted, it will return <literal>%t</literal> else
-      <literal>%f</literal>.
+    <para>This function deletes a file. If file has been deleted, it will return <constant>%t</constant> else
+      <constant>%f</constant>.
     </para>
   </refsection>
   <refsection>

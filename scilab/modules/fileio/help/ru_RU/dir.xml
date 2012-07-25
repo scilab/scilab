@@ -41,7 +41,7 @@
           <para>
             типизированный список <literal>tlist</literal> типа
             <literal>dir</literal> с полями:
-            <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> и <literal>isdir</literal>
+            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> и <varname>isdir</varname>
           </para>
         </listitem>
       </varlistentry>
@@ -50,11 +50,11 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>dir</literal> может использоваться для получения
+      <function>dir</function> может использоваться для получения
       файлов, которые соответствуют шаблонам, указанным аргументом 
-      <literal>path</literal>. Шаблоны указываются для команды Unix
-      <literal>ls</literal> либо для команды Windows
-      <literal>dir</literal> для того, чтобы получить информацию о
+      <varname>path</varname>. Шаблоны указываются для команды Unix
+      <command>ls</command> либо для команды Windows
+      <command>dir</command> для того, чтобы получить информацию о
       файлах. Таким образом, чтобы написать переносимый Scilab-сценарий,
       требуется указать шаблоны для обеих ОС. Заметьте, что
       выполняется преобразование имени пути, например,
@@ -62,26 +62,26 @@
       корректным шаблоном как для Unix, так и для Windows.
     </para>
     <para>
-      Поле <literal>name</literal> возвращаемой переменной является
+      Поле <varname>name</varname> возвращаемой переменной является
       вектор-столбцом имён файлов.
     </para>
     <para>
-      Поле <literal>date</literal> возвращаемой переменной является вектор-столбцом
+      Поле <varname>date</varname> возвращаемой переменной является вектор-столбцом
       целых чисел, содержащих дату последней модификации, кодированную
       в секундах от 1 Янв 1970.
     </para>
     <para>
-      Поле <literal>bytes</literal> возвращаемой переменной является вектор-столбцом
+      Поле <varname>bytes</varname> возвращаемой переменной является вектор-столбцом
       целых чисел, содержащих размер файлов в байтах.
     </para>
     <para>
-      Поле <literal>isdir</literal> возвращаемой переменной является вектор-столбцом
+      Поле <varname>isdir</varname> возвращаемой переменной является вектор-столбцом
       логического значения ИСТИНА, если соответствующее имя расположено в директории.
     </para>
     <para>
       Возвращаемая структура по умолчанию отображается в виде списка файлов,
       форматированного в виде столбца. Это можно изменить,
-      переопределив функцию <literal>%dir_p</literal>.
+      переопределив функцию <function>%dir_p</function>.
     </para>
     <para>
       Начиная с Scilab 5.3.1, завершение "/" or "\" (см. <link

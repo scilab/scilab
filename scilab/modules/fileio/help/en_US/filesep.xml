@@ -33,7 +33,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns directory separator ( '/' on GNU/Linux or '\' on Windows ).</para>
+    <para>The <function>filesep</function> returns directory separator (<literal>'/'</literal> on GNU/Linux or <literal>'\'</literal> on Windows).</para>
   </refsection>
   <refsection>
     <title>Examples</title>

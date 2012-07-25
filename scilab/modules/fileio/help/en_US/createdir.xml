@@ -54,7 +54,7 @@
       status. Here, <varname>status</varname> is <constant>%T</constant> for 
       success and <constant>%F</constant> otherwise.
     </para>
-    <para><code>createdir</code> is used by <code>mkdir</code>.</para>
+    <para><function>createdir</function> is used by <function>mkdir</function>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

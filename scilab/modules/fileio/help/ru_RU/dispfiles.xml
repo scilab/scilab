@@ -37,7 +37,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>dispfiles</literal> выводит на экран свойства файлов, открытых
+      <function>dispfiles</function> выводит на экран свойства файлов, открытых
       на данный момент.
     </para>
   </refsection>

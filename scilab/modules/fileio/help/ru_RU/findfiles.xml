@@ -31,7 +31,7 @@
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>символьная строка, путь </para>
+          <para>символьная строка, путь.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,7 +46,7 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>вектор-столбец строк, имена файлов</para>
+          <para>вектор-столбец строк, имена файлов.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,7 +55,7 @@
     <title>Описание</title>
     <para>
       Поиск всех файлов с указанным уточнением файла
-      <literal>filespec</literal>.
+      <varname>filespec</varname>.
     </para>
   </refsection>
   <refsection>

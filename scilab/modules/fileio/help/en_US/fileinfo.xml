@@ -37,12 +37,12 @@
             empty matrix if file does not exist.
           </para>
           <para>
-            If <literal>files</literal> is a string column vector, <literal>x</literal> will be a matrix of
+            If <varname>files</varname> is a string column vector, <varname>x</varname> will be a matrix of
             size <literal>m x 13</literal>.
           </para>
           <para>
             If a filename does not exist, it will return as output
-            information a line of size 13 with <literal>Nan</literal>
+            information a line of size 13 with <constant>Nan</constant>
             in each element of this line.
           </para>
         </listitem>
@@ -58,7 +58,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>x = fileinfo(file)</literal> returns
+      <code>x = fileinfo(file)</code> returns
     </para>
     <variablelist>
       <varlistentry>
@@ -145,7 +145,7 @@
     <title>References</title>
     <para>This function is an interface to the C function stat.</para>
     <para>
-      Permissions are typically specified as octal numbers: <literal>dec2oct(x(2))</literal> to convert.
+      Permissions are typically specified as octal numbers: <code>dec2oct(x(2))</code> to convert.
     </para>
     <para>Numeric mode is from one to four octal digits (0-7), derived by
       adding up the bits with values 4, 2, and 1. Any omitted digits are assumed

@@ -33,7 +33,7 @@
         <term>flag, flagexpand</term>
         <listitem>
           <para>
-            логические необязательные параметры (значение по умолчанию <literal>%t</literal>)
+            логические необязательные параметры (значение по умолчанию <constant>%t</constant>)
           </para>
         </listitem>
       </varlistentry>
@@ -48,22 +48,22 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>dirname</literal> возвращает имя директории из файлов,
-      указанных в <literal>files</literal>.
+      <function>dirname</function> возвращает имя директории из файлов,
+      указанных в <varname>files</varname>.
     </para>
     <para>
-      Если <literal>flag</literal> равен ИСТИНЕ, то файлы сначала
+      Если <varname>flag</varname> равен ИСТИНЕ, то файлы сначала
       преобразуются в целевой тип, указанный переменной
-      <literal>getos() == 'Windows'</literal>. Более того, если
-      <literal>flagexpand</literal> равен ИСТИНЕ, то начальные строки,
-      такие как <literal>HOME</literal>, <literal>SCI</literal> или
+      <code>getos() == 'Windows'</code>. Более того, если
+      <varname>flagexpand</varname> равен ИСТИНЕ, то начальные строки,
+      такие как <varname>SCIHOME</varname>, <varname>SCI</varname> или
       <literal>~</literal> расширяются с помощью переменных среды.
     </para>
     <para>
-      Заметьте, что <literal>dirname(files,%f)</literal> может дать
+      Заметьте, что <code>dirname(files,%f)</code> может дать
       ошибочные результаты, если пути, указанные в
-      <literal>files</literal> не соответствуют соглашению, указанному
-      переменной <literal>getos() == 'Windows'</literal>.
+      <varname>files</varname> не соответствуют соглашению, указанному
+      переменной <code>getos() == 'Windows'</code>.
     </para>
   </refsection>
   <refsection>

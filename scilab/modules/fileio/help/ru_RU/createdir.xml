@@ -55,7 +55,7 @@
       <code>[status] = createdir(dirname)</code> создаёт директорию <varname>dirname</varname> в существующей директории, возвращая статус <varname>status</varname>. Здесь <varname>status</varname> равен <constant>%T</constant> в случае успеха, иначе <constant>%F</constant>.
     </para>
     <para>
-      <code>createdir</code> используется <code>mkdir</code>.
+      <function>createdir</function> используется <function>mkdir</function>.
     </para>
   </refsection>
   <refsection>
