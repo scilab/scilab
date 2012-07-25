@@ -42,3 +42,10 @@ assert_checkequal(h.callback, "disp(1)");
 assert_checkequal(h.callback_type, 0);
 assert_checkequal(h.checked, "on");
 assert_checkequal(h.tag, "hello");
+// Add a menu in default figure
+f=gdf();
+m=uimenu(f, "label", "windows");
+m1=uimenu(m, "label", "operations");
+f=scf(50);
+assert_checkequal(f.children(2).Label, "windows");
+assert_checkequal(f.children(2).children.Label, "operations");
