@@ -198,6 +198,8 @@ Bug Fixes
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      correctly.
 
+* Bug #11069 fixed - An axes could be wrongly set as parent for an uicontrol.
+
 * Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
 
 * Bug #11488 fixed - Error in console due to browsevar when deleting a global
