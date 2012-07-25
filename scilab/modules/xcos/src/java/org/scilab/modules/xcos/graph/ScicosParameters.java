@@ -20,6 +20,8 @@ import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
 import java.io.Serializable;
 
+import org.scilab.modules.xcos.preferences.XcosOptions;
+
 /**
  * Contains Scicos specific parameters.
  *
@@ -33,43 +35,46 @@ public class ScicosParameters implements Serializable, Cloneable {
     /*
      * Default instance values from :
      * SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
+     *
+     * These values are preferences and thus can be updated by user settings.
      */
+
     /**
      * The default integration time
      */
-    public static final double FINAL_INTEGRATION_TIME = 100000;
+    public static double FINAL_INTEGRATION_TIME = 100000;
     /**
      * The default integrator absolute tolerance
      */
-    public static final double INTEGRATOR_ABSOLUTE_TOLERANCE = 1e-6;
+    public static double INTEGRATOR_ABSOLUTE_TOLERANCE = 1e-6;
     /**
      * The default integrator relative tolerance
      */
-    public static final double INTEGRATOR_RELATIVE_TOLERANCE = 1e-6;
+    public static double INTEGRATOR_RELATIVE_TOLERANCE = 1e-6;
     /**
      * The default tolerance on time to use
      */
-    public static final double TOLERANCE_ON_TIME = 1e-10;
+    public static double TOLERANCE_ON_TIME = 1e-10;
     /**
      * The default maximum integration time to use
      */
-    public static final double MAX_INTEGRATION_TIME_INTERVAL = FINAL_INTEGRATION_TIME + 1;
+    public static double MAX_INTEGRATION_TIME_INTERVAL = FINAL_INTEGRATION_TIME + 1;
     /**
      * The default real time scaling
      */
-    public static final double REAL_TIME_SCALING = 0.0;
+    public static double REAL_TIME_SCALING = 0.0;
     /**
      * Select the solver
      */
-    public static final double SOLVER = 0.0;
+    public static double SOLVER = 0.0;
     /**
      * The default maximum simulation step size.
      */
-    public static final double MAXIMUM_STEP_SIZE = 0.0;
+    public static double MAXIMUM_STEP_SIZE = 0.0;
     /**
      * The default level of information display.
      */
-    public static final int DEBUG_LEVEL = 0;
+    public static int DEBUG_LEVEL = 0;
     /**
      * The context is any Scilab expression evaluated at the start of the
      * simulation.
@@ -151,6 +156,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Initialize parameters with their default values.
      */
     public ScicosParameters() {
+        /*
+         * This call will update static values from the configuration.
+         */
+        XcosOptions.getSimulation();
+
         finalIntegrationTime = FINAL_INTEGRATION_TIME;
         integratorAbsoluteTolerance = INTEGRATOR_ABSOLUTE_TOLERANCE;
         integratorRelativeTolerance = INTEGRATOR_RELATIVE_TOLERANCE;

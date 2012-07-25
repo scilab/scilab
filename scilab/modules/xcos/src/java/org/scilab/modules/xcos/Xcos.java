@@ -34,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -63,6 +64,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.preferences.XcosConfiguration;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -119,6 +121,8 @@ public final class Xcos {
                 InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
             }
         });
+
+        XConfiguration.addXConfigurationListener(new XcosConfiguration());
     }
 
     /*

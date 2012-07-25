@@ -24,8 +24,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.junit.*;
 
 /**
  * Test the behavior of the {@link ScicosParameters} class.
@@ -37,6 +38,11 @@ public class ScicosParametersTest {
     private static final Field[] DEFAULT_VALUES;
     private static final Method[] GETTERS;
     private static final Method[] SETTERS;
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
 
     /**
      * Initialize FIELDS, GETTERS and SETTERS and DEFAULT_VALUES.
