@@ -39,9 +39,10 @@ public class LabelHandler {
      * @param axes The axes that will recieve the label.
      * @param text An array of text to set.
      * @param axis The axis to set x, y or z.
+     * @return The Label that was setted
      */
 
-    public static void setLabel(String axes, String[] text, AxesHandler.axisTo axis) {
+    public static String setLabel(String axes, String[] text, AxesHandler.axisTo axis) {
 
         String label = null;
 
@@ -56,11 +57,12 @@ public class LabelHandler {
                 label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 break;
             default:
-                return;
+                return null;
         }
         if (label != null) {
             GraphicController.getController().setProperty(label, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
         }
+        return label;
     }
 
     /**

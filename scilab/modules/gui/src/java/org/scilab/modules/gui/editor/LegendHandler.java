@@ -215,4 +215,48 @@ public class LegendHandler {
         GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_POSITION__, legendPos);
     }
 
+    /**
+    * Get the links of a Legend
+    *
+    * @param legend The legend to get the links
+    * @return Links of the legend
+    */
+    public static String[] getLinks(String legend) {
+
+        if (legend == null) {
+            return null;
+        } else {
+            return (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
+        }
+    }
+
+    /**
+    * Get the text of a Legend
+    *
+    * @param legend The legend to get the text
+    * @return Text of the legend
+    */
+    public static String[] getText(String legend) {
+
+        if (legend == null) {
+            return null;
+        } else {
+            return (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        }
+    }
+
+    /**
+    * Get the position of a Legend
+    *
+    * @param legend The legend to get the position
+    * @return The legend position
+    */
+    public static Double[] getPosition(String legend) {
+
+        if (legend == null) {
+            return null;
+        } else {
+            return (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
+        }
+   }
 }

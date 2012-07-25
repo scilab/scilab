@@ -53,17 +53,18 @@ public class ScilabClipboard {
     * Paste the copied polyline to the given axes.
     * @param figure Figure unique identifier.
     * @param position Vector with mouse position x and y.
+    * @retrun The UID from pasted object
     */
-    public void paste(String figure, Integer[] position) {
+    public String paste(String figure, Integer[] position) {
         String polyline = polylineUid;
         /*We store only the uid, so we need check if the object exists*/
         if (!canPaste()) {
-            return;
+            return null;
         }
 
         String axesFrom = (new ObjectSearcher()).searchParent(polyline, GraphicObjectProperties.__GO_AXES__);
         if (axesFrom == null) {
-            return;
+            return null;
         }
 
         if (needDuplication == true ) {
@@ -80,13 +81,16 @@ public class ScilabClipboard {
             AxesHandler.setAxesVisible(axesTo);
             PolylineHandler.getInstance().insert(axesTo, polyline);
             polylineUid = null;
+            return polyline;
         } else { /* If doesn't exists an axes will duplicate the origin axes */
             axesTo = AxesHandler.duplicateAxes(axesFrom);
             if (axesTo != null) { /* If duplicated sucessfull then adjust the bounds and paste */
                 AxesHandler.axesBound(axesFrom, axesTo);
                 PolylineHandler.getInstance().insert(axesTo, polyline);
                 polylineUid = null;
+                return polyline;
             }
+            return null;
         }
     }
 
@@ -119,5 +123,14 @@ public class ScilabClipboard {
         copiedColor = color;
     }
 
+    /**
+    * Get The current object in the clipboard
+    *
+    * @return Current object in the clipboard
+    */
+    public String getCurrentObject() {
+
+        return polylineUid;
+    }
 }
 

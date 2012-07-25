@@ -277,5 +277,16 @@ public class PolylineHandler {
             GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_DATA_MODEL__, polyline);
         }
     }
+
+    /**
+    * Get The parent UID from an object
+    *
+    * @param object The object
+    * @return the parent UID
+    */
+    public String getParent(String object) {
+
+        return (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__);
+    }
 }
 
