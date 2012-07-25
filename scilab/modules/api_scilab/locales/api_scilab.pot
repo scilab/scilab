@@ -9,18 +9,18 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: src/cpp/api_boolean.cpp, line: 35
 # File: src/cpp/api_boolean_sparse.cpp, line: 33
 # File: src/cpp/api_boolean_sparse.cpp, line: 116
 # File: src/cpp/api_common.cpp, line: 216
-# File: src/cpp/api_common.cpp, line: 369
+# File: src/cpp/api_common.cpp, line: 364
 # File: src/cpp/api_double.cpp, line: 67
 # File: src/cpp/api_int.cpp, line: 33
 # File: src/cpp/api_int.cpp, line: 84
@@ -44,10 +44,10 @@ msgstr ""
 # File: src/cpp/api_double.cpp, line: 74
 # File: src/cpp/api_int.cpp, line: 39
 # File: src/cpp/api_int.cpp, line: 724
-# File: src/cpp/api_list.cpp, line: 283
-# File: src/cpp/api_list.cpp, line: 501
-# File: src/cpp/api_list.cpp, line: 548
-# File: src/cpp/api_list.cpp, line: 585
+# File: src/cpp/api_list.cpp, line: 281
+# File: src/cpp/api_list.cpp, line: 489
+# File: src/cpp/api_list.cpp, line: 534
+# File: src/cpp/api_list.cpp, line: 569
 # File: src/cpp/api_pointer.cpp, line: 44
 # File: src/cpp/api_poly.cpp, line: 47
 # File: src/cpp/api_poly.cpp, line: 109
@@ -108,8 +108,8 @@ msgstr ""
 # File: src/cpp/api_boolean_sparse.cpp, line: 144
 # File: src/cpp/api_boolean_sparse.cpp, line: 152
 # File: src/cpp/api_boolean_sparse.cpp, line: 180
-# File: src/cpp/api_common.cpp, line: 1230
-# File: src/cpp/api_common.cpp, line: 1247
+# File: src/cpp/api_common.cpp, line: 1245
+# File: src/cpp/api_common.cpp, line: 1264
 # File: src/cpp/api_double.cpp, line: 110
 # File: src/cpp/api_double.cpp, line: 128
 # File: src/cpp/api_double.cpp, line: 192
@@ -165,7 +165,7 @@ msgstr ""
 # File: src/cpp/api_int.cpp, line: 1300
 # File: src/cpp/api_int.cpp, line: 1315
 # File: src/cpp/api_int.cpp, line: 1331
-# File: src/cpp/api_list.cpp, line: 432
+# File: src/cpp/api_list.cpp, line: 424
 # File: src/cpp/api_pointer.cpp, line: 94
 # File: src/cpp/api_pointer.cpp, line: 113
 # File: src/cpp/api_poly.cpp, line: 187
@@ -189,23 +189,23 @@ msgstr ""
 #
 # File: src/cpp/api_boolean.cpp, line: 157
 # File: src/cpp/api_boolean_sparse.cpp, line: 187
-# File: src/cpp/api_common.cpp, line: 1326
+# File: src/cpp/api_common.cpp, line: 1350
 # File: src/cpp/api_double.cpp, line: 262
 # File: src/cpp/api_double.cpp, line: 303
 # File: src/cpp/api_int.cpp, line: 674
-# File: src/cpp/api_list.cpp, line: 385
-# File: src/cpp/api_list.cpp, line: 717
-# File: src/cpp/api_list.cpp, line: 791
-# File: src/cpp/api_list.cpp, line: 859
-# File: src/cpp/api_list.cpp, line: 1112
-# File: src/cpp/api_list.cpp, line: 1169
-# File: src/cpp/api_list.cpp, line: 1409
-# File: src/cpp/api_list.cpp, line: 1621
-# File: src/cpp/api_list.cpp, line: 1875
-# File: src/cpp/api_list.cpp, line: 2213
-# File: src/cpp/api_list.cpp, line: 2504
-# File: src/cpp/api_list.cpp, line: 2785
-# File: src/cpp/api_list.cpp, line: 3042
+# File: src/cpp/api_list.cpp, line: 379
+# File: src/cpp/api_list.cpp, line: 697
+# File: src/cpp/api_list.cpp, line: 767
+# File: src/cpp/api_list.cpp, line: 833
+# File: src/cpp/api_list.cpp, line: 1071
+# File: src/cpp/api_list.cpp, line: 1126
+# File: src/cpp/api_list.cpp, line: 1358
+# File: src/cpp/api_list.cpp, line: 1560
+# File: src/cpp/api_list.cpp, line: 1806
+# File: src/cpp/api_list.cpp, line: 2132
+# File: src/cpp/api_list.cpp, line: 2415
+# File: src/cpp/api_list.cpp, line: 2686
+# File: src/cpp/api_list.cpp, line: 2933
 # File: src/cpp/api_pointer.cpp, line: 133
 # File: src/cpp/api_poly.cpp, line: 298
 # File: src/cpp/api_sparse.cpp, line: 282
@@ -217,7 +217,7 @@ msgstr ""
 #
 # File: src/cpp/api_boolean.cpp, line: 178
 # File: src/cpp/api_boolean_sparse.cpp, line: 206
-# File: src/cpp/api_list.cpp, line: 397
+# File: src/cpp/api_list.cpp, line: 391
 # File: src/cpp/api_pointer.cpp, line: 154
 # File: src/cpp/api_poly.cpp, line: 311
 # File: src/cpp/api_sparse.cpp, line: 305
@@ -236,13 +236,13 @@ msgstr ""
 # File: src/cpp/api_boolean.cpp, line: 205
 # File: src/cpp/api_boolean.cpp, line: 212
 # File: src/cpp/api_boolean_sparse.cpp, line: 239
-# File: src/cpp/api_common.cpp, line: 389
+# File: src/cpp/api_common.cpp, line: 383
 # File: src/cpp/api_double.cpp, line: 365
 # File: src/cpp/api_double.cpp, line: 372
 # File: src/cpp/api_int.cpp, line: 779
 # File: src/cpp/api_int.cpp, line: 786
-# File: src/cpp/api_list.cpp, line: 495
-# File: src/cpp/api_list.cpp, line: 508
+# File: src/cpp/api_list.cpp, line: 483
+# File: src/cpp/api_list.cpp, line: 496
 # File: src/cpp/api_pointer.cpp, line: 181
 # File: src/cpp/api_pointer.cpp, line: 188
 # File: src/cpp/api_poly.cpp, line: 347
@@ -276,8 +276,8 @@ msgstr ""
 # File: src/cpp/api_poly.cpp, line: 551
 # File: src/cpp/api_poly.cpp, line: 561
 # File: src/cpp/api_poly.cpp, line: 584
-# File: src/cpp/api_sparse.cpp, line: 482
-# File: src/cpp/api_sparse.cpp, line: 499
+# File: src/cpp/api_sparse.cpp, line: 481
+# File: src/cpp/api_sparse.cpp, line: 498
 #, c-format
 msgid "%s: Unable to get argument \"%s\""
 msgstr ""
@@ -356,78 +356,78 @@ msgid "%s: matrix argument excepted"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 238
-# File: src/cpp/api_common.cpp, line: 245
+# File: src/cpp/api_common.cpp, line: 237
+# File: src/cpp/api_common.cpp, line: 244
 #, c-format
 msgid "%s: Unable to get dimension of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 265
+# File: src/cpp/api_common.cpp, line: 263
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 295
+# File: src/cpp/api_common.cpp, line: 292
 #, c-format
 msgid "%s: Unable to get name of argument #%d"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 339
+# File: src/cpp/api_common.cpp, line: 334
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 396
+# File: src/cpp/api_common.cpp, line: 390
 #, c-format
 msgid "%s: Unable to get type of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 534
-# File: src/cpp/api_common.cpp, line: 580
-# File: src/cpp/api_common.cpp, line: 683
-# File: src/cpp/api_common.cpp, line: 859
-# File: src/cpp/api_common.cpp, line: 887
-# File: src/cpp/api_common.cpp, line: 920
-# File: src/cpp/api_common.cpp, line: 948
-# File: src/cpp/api_common.cpp, line: 993
-# File: src/cpp/api_common.cpp, line: 1021
-# File: src/cpp/api_common.cpp, line: 1054
-# File: src/cpp/api_common.cpp, line: 1082
-# File: src/cpp/api_common.cpp, line: 1115
-# File: src/cpp/api_common.cpp, line: 1143
+# File: src/cpp/api_common.cpp, line: 525
+# File: src/cpp/api_common.cpp, line: 571
+# File: src/cpp/api_common.cpp, line: 673
+# File: src/cpp/api_common.cpp, line: 850
+# File: src/cpp/api_common.cpp, line: 880
+# File: src/cpp/api_common.cpp, line: 915
+# File: src/cpp/api_common.cpp, line: 945
+# File: src/cpp/api_common.cpp, line: 992
+# File: src/cpp/api_common.cpp, line: 1022
+# File: src/cpp/api_common.cpp, line: 1057
+# File: src/cpp/api_common.cpp, line: 1087
+# File: src/cpp/api_common.cpp, line: 1122
+# File: src/cpp/api_common.cpp, line: 1152
 #, c-format
 msgid "%s: Unable to get argument dimension"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 541
+# File: src/cpp/api_common.cpp, line: 532
 #, c-format
 msgid "%s: Unable to get variable address"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 548
-# File: src/cpp/api_common.cpp, line: 654
+# File: src/cpp/api_common.cpp, line: 539
+# File: src/cpp/api_common.cpp, line: 644
 #, c-format
 msgid "%s: Unable to get argument type"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 559
-# File: src/cpp/api_common.cpp, line: 594
-# File: src/cpp/api_common.cpp, line: 602
-# File: src/cpp/api_common.cpp, line: 670
-# File: src/cpp/api_common.cpp, line: 710
-# File: src/cpp/api_common.cpp, line: 723
-# File: src/cpp/api_common.cpp, line: 736
-# File: src/cpp/api_common.cpp, line: 749
-# File: src/cpp/api_common.cpp, line: 762
-# File: src/cpp/api_common.cpp, line: 775
+# File: src/cpp/api_common.cpp, line: 550
+# File: src/cpp/api_common.cpp, line: 585
+# File: src/cpp/api_common.cpp, line: 593
+# File: src/cpp/api_common.cpp, line: 660
+# File: src/cpp/api_common.cpp, line: 700
+# File: src/cpp/api_common.cpp, line: 713
+# File: src/cpp/api_common.cpp, line: 726
+# File: src/cpp/api_common.cpp, line: 739
+# File: src/cpp/api_common.cpp, line: 752
+# File: src/cpp/api_common.cpp, line: 765
 # File: src/cpp/api_string.cpp, line: 528
 # File: src/cpp/api_string.cpp, line: 538
 # File: src/cpp/api_string.cpp, line: 563
@@ -457,48 +457,48 @@ msgid "%s: Unable to get argument data"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 565
-# File: src/cpp/api_common.cpp, line: 586
-# File: src/cpp/api_common.cpp, line: 689
+# File: src/cpp/api_common.cpp, line: 556
+# File: src/cpp/api_common.cpp, line: 577
+# File: src/cpp/api_common.cpp, line: 679
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 611
+# File: src/cpp/api_common.cpp, line: 602
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 632
+# File: src/cpp/api_common.cpp, line: 623
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 662
+# File: src/cpp/api_common.cpp, line: 652
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 697
+# File: src/cpp/api_common.cpp, line: 687
 #, c-format
 msgid "%s: Unable to get argument precision"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 785
+# File: src/cpp/api_common.cpp, line: 775
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 804
-# File: src/cpp/api_common.cpp, line: 812
+# File: src/cpp/api_common.cpp, line: 793
+# File: src/cpp/api_common.cpp, line: 801
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
 msgstr ""
@@ -577,164 +577,164 @@ msgid "%s: Unable to get precision of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 272
+# File: src/cpp/api_list.cpp, line: 270
 #, c-format
 msgid "%s: Unable to get item number of list"
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 283
+# File: src/cpp/api_list.cpp, line: 281
 msgid "list"
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 302
-# File: src/cpp/api_list.cpp, line: 308
-# File: src/cpp/api_list.cpp, line: 542
-# File: src/cpp/api_list.cpp, line: 802
-# File: src/cpp/api_list.cpp, line: 815
-# File: src/cpp/api_list.cpp, line: 870
-# File: src/cpp/api_list.cpp, line: 883
+# File: src/cpp/api_list.cpp, line: 298
+# File: src/cpp/api_list.cpp, line: 304
+# File: src/cpp/api_list.cpp, line: 528
+# File: src/cpp/api_list.cpp, line: 778
+# File: src/cpp/api_list.cpp, line: 791
+# File: src/cpp/api_list.cpp, line: 844
+# File: src/cpp/api_list.cpp, line: 857
+# File: src/cpp/api_list.cpp, line: 902
+# File: src/cpp/api_list.cpp, line: 909
 # File: src/cpp/api_list.cpp, line: 935
-# File: src/cpp/api_list.cpp, line: 942
-# File: src/cpp/api_list.cpp, line: 968
-# File: src/cpp/api_list.cpp, line: 997
-# File: src/cpp/api_list.cpp, line: 1011
-# File: src/cpp/api_list.cpp, line: 1018
-# File: src/cpp/api_list.cpp, line: 1291
-# File: src/cpp/api_list.cpp, line: 1298
-# File: src/cpp/api_list.cpp, line: 1501
-# File: src/cpp/api_list.cpp, line: 1508
-# File: src/cpp/api_list.cpp, line: 1735
-# File: src/cpp/api_list.cpp, line: 2153
-# File: src/cpp/api_list.cpp, line: 2160
-# File: src/cpp/api_list.cpp, line: 2564
-# File: src/cpp/api_list.cpp, line: 2571
-# File: src/cpp/api_list.cpp, line: 2834
-# File: src/cpp/api_list.cpp, line: 2841
-# File: src/cpp/api_list.cpp, line: 2916
-# File: src/cpp/api_list.cpp, line: 2923
+# File: src/cpp/api_list.cpp, line: 962
+# File: src/cpp/api_list.cpp, line: 976
+# File: src/cpp/api_list.cpp, line: 983
+# File: src/cpp/api_list.cpp, line: 1244
+# File: src/cpp/api_list.cpp, line: 1251
+# File: src/cpp/api_list.cpp, line: 1446
+# File: src/cpp/api_list.cpp, line: 1453
+# File: src/cpp/api_list.cpp, line: 1670
+# File: src/cpp/api_list.cpp, line: 2074
+# File: src/cpp/api_list.cpp, line: 2081
+# File: src/cpp/api_list.cpp, line: 2473
+# File: src/cpp/api_list.cpp, line: 2480
+# File: src/cpp/api_list.cpp, line: 2733
+# File: src/cpp/api_list.cpp, line: 2740
+# File: src/cpp/api_list.cpp, line: 2811
+# File: src/cpp/api_list.cpp, line: 2818
 #, c-format
 msgid "%s: Unable to get address of item #%d in argument #%d"
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 579
-# File: src/cpp/api_list.cpp, line: 1239
-# File: src/cpp/api_list.cpp, line: 1252
-# File: src/cpp/api_list.cpp, line: 1259
-# File: src/cpp/api_list.cpp, line: 1460
-# File: src/cpp/api_list.cpp, line: 1473
-# File: src/cpp/api_list.cpp, line: 1480
-# File: src/cpp/api_list.cpp, line: 1677
-# File: src/cpp/api_list.cpp, line: 1690
-# File: src/cpp/api_list.cpp, line: 1697
-# File: src/cpp/api_list.cpp, line: 1941
-# File: src/cpp/api_list.cpp, line: 1954
-# File: src/cpp/api_list.cpp, line: 1961
-# File: src/cpp/api_list.cpp, line: 2300
-# File: src/cpp/api_list.cpp, line: 2313
-# File: src/cpp/api_list.cpp, line: 2320
-# File: src/cpp/api_list.cpp, line: 2606
-# File: src/cpp/api_list.cpp, line: 2619
-# File: src/cpp/api_list.cpp, line: 2626
-# File: src/cpp/api_list.cpp, line: 2864
-# File: src/cpp/api_list.cpp, line: 2877
-# File: src/cpp/api_list.cpp, line: 2884
-# File: src/cpp/api_list.cpp, line: 3000
-# File: src/cpp/api_list.cpp, line: 3013
-# File: src/cpp/api_list.cpp, line: 3020
+# File: src/cpp/api_list.cpp, line: 563
+# File: src/cpp/api_list.cpp, line: 1194
+# File: src/cpp/api_list.cpp, line: 1207
+# File: src/cpp/api_list.cpp, line: 1214
+# File: src/cpp/api_list.cpp, line: 1407
+# File: src/cpp/api_list.cpp, line: 1420
+# File: src/cpp/api_list.cpp, line: 1427
+# File: src/cpp/api_list.cpp, line: 1614
+# File: src/cpp/api_list.cpp, line: 1627
+# File: src/cpp/api_list.cpp, line: 1634
+# File: src/cpp/api_list.cpp, line: 1870
+# File: src/cpp/api_list.cpp, line: 1883
+# File: src/cpp/api_list.cpp, line: 1890
+# File: src/cpp/api_list.cpp, line: 2217
+# File: src/cpp/api_list.cpp, line: 2230
+# File: src/cpp/api_list.cpp, line: 2237
+# File: src/cpp/api_list.cpp, line: 2513
+# File: src/cpp/api_list.cpp, line: 2526
+# File: src/cpp/api_list.cpp, line: 2533
+# File: src/cpp/api_list.cpp, line: 2761
+# File: src/cpp/api_list.cpp, line: 2774
+# File: src/cpp/api_list.cpp, line: 2781
+# File: src/cpp/api_list.cpp, line: 2893
+# File: src/cpp/api_list.cpp, line: 2906
+# File: src/cpp/api_list.cpp, line: 2913
 #, c-format
 msgid "%s: Unable to get address of item #%d in variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 632
-# File: src/cpp/api_list.cpp, line: 639
-# File: src/cpp/api_list.cpp, line: 646
-# File: src/cpp/api_list.cpp, line: 765
-# File: src/cpp/api_list.cpp, line: 808
-# File: src/cpp/api_list.cpp, line: 876
-# File: src/cpp/api_list.cpp, line: 1003
-# File: src/cpp/api_list.cpp, line: 1049
-# File: src/cpp/api_list.cpp, line: 1069
-# File: src/cpp/api_list.cpp, line: 1320
-# File: src/cpp/api_list.cpp, line: 1326
-# File: src/cpp/api_list.cpp, line: 1333
-# File: src/cpp/api_list.cpp, line: 1340
-# File: src/cpp/api_list.cpp, line: 1370
-# File: src/cpp/api_list.cpp, line: 1377
-# File: src/cpp/api_list.cpp, line: 1384
-# File: src/cpp/api_list.cpp, line: 1525
-# File: src/cpp/api_list.cpp, line: 1546
-# File: src/cpp/api_list.cpp, line: 1574
-# File: src/cpp/api_list.cpp, line: 1580
-# File: src/cpp/api_list.cpp, line: 1588
-# File: src/cpp/api_list.cpp, line: 1595
-# File: src/cpp/api_list.cpp, line: 1771
-# File: src/cpp/api_list.cpp, line: 1778
-# File: src/cpp/api_list.cpp, line: 1812
-# File: src/cpp/api_list.cpp, line: 1818
-# File: src/cpp/api_list.cpp, line: 1825
-# File: src/cpp/api_list.cpp, line: 1832
-# File: src/cpp/api_list.cpp, line: 1985
-# File: src/cpp/api_list.cpp, line: 1991
-# File: src/cpp/api_list.cpp, line: 1999
-# File: src/cpp/api_list.cpp, line: 2006
-# File: src/cpp/api_list.cpp, line: 2047
-# File: src/cpp/api_list.cpp, line: 2102
-# File: src/cpp/api_list.cpp, line: 2387
-# File: src/cpp/api_list.cpp, line: 2393
-# File: src/cpp/api_list.cpp, line: 2400
-# File: src/cpp/api_list.cpp, line: 2407
-# File: src/cpp/api_list.cpp, line: 2453
-# File: src/cpp/api_list.cpp, line: 2460
-# File: src/cpp/api_list.cpp, line: 2697
-# File: src/cpp/api_list.cpp, line: 2703
-# File: src/cpp/api_list.cpp, line: 2710
-# File: src/cpp/api_list.cpp, line: 2717
-# File: src/cpp/api_list.cpp, line: 2745
-# File: src/cpp/api_list.cpp, line: 2752
-# File: src/cpp/api_list.cpp, line: 2945
-# File: src/cpp/api_list.cpp, line: 2951
-# File: src/cpp/api_list.cpp, line: 2959
-# File: src/cpp/api_list.cpp, line: 2966
+# File: src/cpp/api_list.cpp, line: 614
+# File: src/cpp/api_list.cpp, line: 621
+# File: src/cpp/api_list.cpp, line: 628
+# File: src/cpp/api_list.cpp, line: 743
+# File: src/cpp/api_list.cpp, line: 784
+# File: src/cpp/api_list.cpp, line: 850
+# File: src/cpp/api_list.cpp, line: 968
+# File: src/cpp/api_list.cpp, line: 1012
+# File: src/cpp/api_list.cpp, line: 1030
+# File: src/cpp/api_list.cpp, line: 1273
+# File: src/cpp/api_list.cpp, line: 1279
+# File: src/cpp/api_list.cpp, line: 1286
+# File: src/cpp/api_list.cpp, line: 1293
+# File: src/cpp/api_list.cpp, line: 1321
+# File: src/cpp/api_list.cpp, line: 1328
+# File: src/cpp/api_list.cpp, line: 1335
+# File: src/cpp/api_list.cpp, line: 1468
+# File: src/cpp/api_list.cpp, line: 1489
+# File: src/cpp/api_list.cpp, line: 1515
+# File: src/cpp/api_list.cpp, line: 1521
+# File: src/cpp/api_list.cpp, line: 1529
+# File: src/cpp/api_list.cpp, line: 1536
+# File: src/cpp/api_list.cpp, line: 1706
+# File: src/cpp/api_list.cpp, line: 1713
+# File: src/cpp/api_list.cpp, line: 1745
+# File: src/cpp/api_list.cpp, line: 1751
+# File: src/cpp/api_list.cpp, line: 1758
+# File: src/cpp/api_list.cpp, line: 1765
+# File: src/cpp/api_list.cpp, line: 1912
+# File: src/cpp/api_list.cpp, line: 1918
+# File: src/cpp/api_list.cpp, line: 1926
+# File: src/cpp/api_list.cpp, line: 1933
+# File: src/cpp/api_list.cpp, line: 1972
+# File: src/cpp/api_list.cpp, line: 2025
+# File: src/cpp/api_list.cpp, line: 2302
+# File: src/cpp/api_list.cpp, line: 2308
+# File: src/cpp/api_list.cpp, line: 2315
+# File: src/cpp/api_list.cpp, line: 2322
+# File: src/cpp/api_list.cpp, line: 2366
+# File: src/cpp/api_list.cpp, line: 2373
+# File: src/cpp/api_list.cpp, line: 2602
+# File: src/cpp/api_list.cpp, line: 2608
+# File: src/cpp/api_list.cpp, line: 2615
+# File: src/cpp/api_list.cpp, line: 2622
+# File: src/cpp/api_list.cpp, line: 2648
+# File: src/cpp/api_list.cpp, line: 2655
+# File: src/cpp/api_list.cpp, line: 2840
+# File: src/cpp/api_list.cpp, line: 2846
+# File: src/cpp/api_list.cpp, line: 2854
+# File: src/cpp/api_list.cpp, line: 2861
 #, c-format
 msgid "%s: Unable to create list item #%d in Scilab memory"
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 727
-# File: src/cpp/api_list.cpp, line: 1124
-# File: src/cpp/api_list.cpp, line: 1133
-# File: src/cpp/api_list.cpp, line: 1181
-# File: src/cpp/api_list.cpp, line: 1194
-# File: src/cpp/api_list.cpp, line: 1419
-# File: src/cpp/api_list.cpp, line: 1426
-# File: src/cpp/api_list.cpp, line: 1633
-# File: src/cpp/api_list.cpp, line: 1642
-# File: src/cpp/api_list.cpp, line: 1887
-# File: src/cpp/api_list.cpp, line: 1897
-# File: src/cpp/api_list.cpp, line: 2225
-# File: src/cpp/api_list.cpp, line: 2232
-# File: src/cpp/api_list.cpp, line: 2516
-# File: src/cpp/api_list.cpp, line: 2523
-# File: src/cpp/api_list.cpp, line: 2797
-# File: src/cpp/api_list.cpp, line: 2804
-# File: src/cpp/api_list.cpp, line: 3054
-# File: src/cpp/api_list.cpp, line: 3061
+# File: src/cpp/api_list.cpp, line: 707
+# File: src/cpp/api_list.cpp, line: 1083
+# File: src/cpp/api_list.cpp, line: 1092
+# File: src/cpp/api_list.cpp, line: 1138
+# File: src/cpp/api_list.cpp, line: 1151
+# File: src/cpp/api_list.cpp, line: 1368
+# File: src/cpp/api_list.cpp, line: 1375
+# File: src/cpp/api_list.cpp, line: 1572
+# File: src/cpp/api_list.cpp, line: 1581
+# File: src/cpp/api_list.cpp, line: 1818
+# File: src/cpp/api_list.cpp, line: 1828
+# File: src/cpp/api_list.cpp, line: 2144
+# File: src/cpp/api_list.cpp, line: 2151
+# File: src/cpp/api_list.cpp, line: 2427
+# File: src/cpp/api_list.cpp, line: 2434
+# File: src/cpp/api_list.cpp, line: 2698
+# File: src/cpp/api_list.cpp, line: 2705
+# File: src/cpp/api_list.cpp, line: 2945
+# File: src/cpp/api_list.cpp, line: 2952
 #, c-format
 msgid "%s: Unable to create list item #%d in variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 758
+# File: src/cpp/api_list.cpp, line: 736
 #, c-format
 msgid "%s: Items must be inserted in order"
 msgstr ""
 
 #
-# File: src/cpp/api_list.cpp, line: 1742
+# File: src/cpp/api_list.cpp, line: 1677
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr ""
 

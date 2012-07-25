@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 205
@@ -532,7 +532,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 364
-msgid "Open ATOM website"
+msgid "Open ATOMS website"
 msgstr ""
 
 #
@@ -863,7 +863,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 436
-msgid "Close all but"
+msgid "Close all but this"
 msgstr ""
 
 #
@@ -878,7 +878,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 441
-msgid "Save diagramm"
+msgid "Save diagram"
 msgstr ""
 
 #
@@ -1041,6 +1041,15 @@ msgid "Graphics handle field"
 msgstr ""
 
 #
+# File: src/c/cmdLine/getKey.c, line: 353
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 544
+#, c-format
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+
+#
 # File: src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
@@ -1069,11 +1078,11 @@ msgid "Out of Screen"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 633
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 632
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 696
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 695
 msgid "Could not change the Console Foreground."
 msgstr ""

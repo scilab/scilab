@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -30,6 +30,7 @@ msgstr ""
 # File: macros/atomsAutoloadDel.sci, line: 35
 # File: macros/atomsCategoryList.sci, line: 29
 # File: macros/atomsGetConfig.sci, line: 20
+# File: macros/atomsGetInstalledPath.sci, line: 24
 # File: macros/atomsIsInstalled.sci, line: 38
 # File: macros/atomsRepositoryAdd.sci, line: 37
 # File: macros/atomsRepositoryDel.sci, line: 33
@@ -44,7 +45,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 23
 # File: macros/atoms_internals/atomsGetDepParents.sci, line: 23
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 23
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 24
 # File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 23
 # File: macros/atoms_internals/atomsGetInstalledVers.sci, line: 22
 # File: macros/atoms_internals/atomsGetVersions.sci, line: 26
@@ -123,6 +123,7 @@ msgstr ""
 # File: macros/atomsCategoryList.sci, line: 36
 # File: macros/atomsGetConfig.sci, line: 26
 # File: macros/atomsGetInstalled.sci, line: 46
+# File: macros/atomsGetInstalledPath.sci, line: 31
 # File: macros/atomsInstall.sci, line: 97
 # File: macros/atomsIsInstalled.sci, line: 76
 # File: macros/atomsRepositoryAdd.sci, line: 73
@@ -161,7 +162,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 46
 # File: macros/atoms_internals/atomsGetDepParents.sci, line: 46
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 30
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 31
 # File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 30
 # File: macros/atoms_internals/atomsGetInstalledVers.sci, line: 29
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 34
@@ -285,8 +285,8 @@ msgstr ""
 
 #
 # File: macros/atomsAutoloadDel.sci, line: 75
+# File: macros/atomsGetInstalledPath.sci, line: 58
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 49
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 58
 # File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 49
 # File: macros/atoms_internals/atomsGetInstalledVers.sci, line: 48
 # File: macros/atoms_internals/atomsRemoveList.sci, line: 66
@@ -528,6 +528,39 @@ msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
 
 #
+# File: macros/atomsGetInstalledPath.sci, line: 35
+# File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 34
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsGetInstalledPath.sci, line: 41
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+
+#
+# File: macros/atomsGetInstalledPath.sci, line: 62
+# File: macros/atomsRemove.sci, line: 112
+# File: macros/atomsRemove.sci, line: 151
+# File: macros/atomsRepositoryDel.sci, line: 74
+# File: macros/atoms_internals/atomsDeleteTarball.sci, line: 54
+# File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 53
+# File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 53
+# File: macros/atoms_internals/atomsGetInstalledVers.sci, line: 52
+# File: macros/atoms_internals/atomsOrphanList.sci, line: 35
+# File: macros/atoms_internals/atomsToremoveList.sci, line: 60
+# File: macros/atoms_internals/atomsToremoveProcess.sci, line: 59
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr ""
+
+#
 # File: macros/atomsGetLoadedPath.sci, line: 32
 # File: macros/atomsIsLoaded.sci, line: 52
 # File: macros/atomsLoad.sci, line: 46
@@ -729,24 +762,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
-msgstr ""
-
-#
-# File: macros/atomsRemove.sci, line: 112
-# File: macros/atomsRemove.sci, line: 151
-# File: macros/atomsRepositoryDel.sci, line: 74
-# File: macros/atoms_internals/atomsDeleteTarball.sci, line: 54
-# File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 53
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 62
-# File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 53
-# File: macros/atoms_internals/atomsGetInstalledVers.sci, line: 52
-# File: macros/atoms_internals/atomsOrphanList.sci, line: 35
-# File: macros/atoms_internals/atomsToremoveList.sci, line: 60
-# File: macros/atoms_internals/atomsToremoveProcess.sci, line: 59
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
 msgstr ""
 
 #
@@ -1212,7 +1227,8 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsCompatibleVersions.sci, line: 39
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
 msgstr ""
 
 #
@@ -1547,21 +1563,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsUpdateDeps.sci, line: 34
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 34
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 35
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 41
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
 
 #

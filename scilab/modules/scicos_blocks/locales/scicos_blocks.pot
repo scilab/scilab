@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: src/c/convert.c, line: 769
 # File: src/c/convert.c, line: 784
@@ -749,138 +749,138 @@ msgid "positive"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 82
+# File: macros/PDE/IHM_EDP.sci, line: 83
 msgid "PDE block"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 86
+# File: macros/PDE/IHM_EDP.sci, line: 87
 msgid "Domain"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 99
+# File: macros/PDE/IHM_EDP.sci, line: 100
 msgid "PDE Specification"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 105
+# File: macros/PDE/IHM_EDP.sci, line: 106
 msgid "PDE Expression:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 107
+# File: macros/PDE/IHM_EDP.sci, line: 108
 msgid "Display"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 232
+# File: macros/PDE/IHM_EDP.sci, line: 233
 msgid "Discriminant type:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 236
+# File: macros/PDE/IHM_EDP.sci, line: 237
 msgid "Constant discriminant"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 241
+# File: macros/PDE/IHM_EDP.sci, line: 242
 msgid "Variable discriminant:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 248
+# File: macros/PDE/IHM_EDP.sci, line: 249
 msgid "Spatial discretization method"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 250
+# File: macros/PDE/IHM_EDP.sci, line: 251
 msgid "Choice:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 257
+# File: macros/PDE/IHM_EDP.sci, line: 258
 msgid "Automatic"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 263
+# File: macros/PDE/IHM_EDP.sci, line: 264
 msgid "Manual"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 266
+# File: macros/PDE/IHM_EDP.sci, line: 267
 msgid "Type:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 271
+# File: macros/PDE/IHM_EDP.sci, line: 272
 msgid "Ordering:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 280
+# File: macros/PDE/IHM_EDP.sci, line: 281
 msgid "degree:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 285
+# File: macros/PDE/IHM_EDP.sci, line: 286
 msgid "Number of nodes:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 290
+# File: macros/PDE/IHM_EDP.sci, line: 291
 msgid "Display step value"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 298
+# File: macros/PDE/IHM_EDP.sci, line: 299
 msgid "Initial conditions"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 310
+# File: macros/PDE/IHM_EDP.sci, line: 311
 msgid "Boundary condition on a"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 313
+# File: macros/PDE/IHM_EDP.sci, line: 314
 msgid "Boundary condition on b"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 323
-# File: macros/PDE/IHM_EDP.sci, line: 327
+# File: macros/PDE/IHM_EDP.sci, line: 324
+# File: macros/PDE/IHM_EDP.sci, line: 328
 msgid "Expression ="
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 335
+# File: macros/PDE/IHM_EDP.sci, line: 336
 msgid "Measurement points"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 339
+# File: macros/PDE/IHM_EDP.sci, line: 340
 msgid "The measurement points"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 345
+# File: macros/PDE/IHM_EDP.sci, line: 346
 msgid "Add"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 347
+# File: macros/PDE/IHM_EDP.sci, line: 348
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 349
+# File: macros/PDE/IHM_EDP.sci, line: 350
 msgid "Validate"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 351
+# File: macros/PDE/IHM_EDP.sci, line: 352
 msgid "Cancel"
 msgstr ""
 
