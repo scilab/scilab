@@ -25,6 +25,16 @@
     <comment xml:lang="en">Scilab/Xcos schema</comment>
     <glob pattern="*.xcos"/>
   </mime-type>
+  <mime-type type="application/x-scilab-zcos">
+    <sub-class-of type="application/zip"/>
+    <comment xml:lang="en">Scilab/Xcos compressed schema</comment>
+    <glob pattern="*.zcos"/>
+  </mime-type>
+  <mime-type type="application/x-scilab-sod">
+    <sub-class-of type="application/x-hdf5"/>
+    <comment xml:lang="en">Scilab open data format (hdf5 based)</comment>
+    <glob pattern="*.sod"/>
+  </mime-type>
   <!-- Deprecated -->
   <mime-type type="application/x-scilab-bin">
     <sub-class-of type="application/octet-stream"/>
