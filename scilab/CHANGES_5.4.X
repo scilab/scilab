@@ -5,6 +5,8 @@
 Xcos
 ====
 
+* Bug #8510 fixed - The message "Diagram contains implicit blocks..." was blocker
+
 * Bug #9290 fixed - HALT blocks displayed STOP
 
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
