@@ -169,19 +169,19 @@ public class AxesHandler {
      * @return True if there is any object visible, false otherwise.
      */
     public static boolean isAxesNotBlank(String figure) {
-        
+
         String[] axes = searchAxes(figure);
         if (axes == null) {
             return false;
         }
         boolean flag = false;
-        for( Integer j = 0; j < axes.length; j++) {
+        for ( Integer j = 0; j < axes.length; j++) {
 
             Integer childCount = (Integer)GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN_COUNT__);
             String[] child = (String[])GraphicController.getController().getProperty(axes[j], GraphicObjectProperties.__GO_CHILDREN__);
             for (Integer i = 0; i < childCount; i++) {
                 flag = isBlank(child[i]);
-                if(flag) {
+                if (flag) {
                     return flag;
                 }
             }
@@ -199,16 +199,16 @@ public class AxesHandler {
 
         String type = (String)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         boolean flag = (Boolean) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__);
-        if(flag) {
+        if (flag) {
 
-            if(type != GraphicObjectProperties.__GO_LABEL__ && type != GraphicObjectProperties.__GO_COMPOUND__) {
+            if (type != GraphicObjectProperties.__GO_LABEL__ && type != GraphicObjectProperties.__GO_COMPOUND__) {
                 return flag;
-            } else if(type == GraphicObjectProperties.__GO_COMPOUND__) {
+            } else if (type == GraphicObjectProperties.__GO_COMPOUND__) {
                 Integer childCount = (Integer)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
                 String[] child = (String[])GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_CHILDREN__);
-                for(Integer i = 0; i < childCount; i++) {
+                for (Integer i = 0; i < childCount; i++) {
                     flag = (Boolean) GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_VISIBLE__);
-                    if(flag) {
+                    if (flag) {
                         return flag;
                     }
                 }

@@ -36,7 +36,7 @@ public class LegendHandler {
 
     public static String searchLegend(String uid) {
 
-        if(uid == null) {
+        if (uid == null) {
             return null;
         }
         Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
@@ -133,9 +133,9 @@ public class LegendHandler {
                 }
             }
             for (Integer i = 0; i < textOld.length; i++) {
-                 if ( i != (textOld.length - remove - 1)) {
-                     texts.add(textOld[i]);
-                 }
+                if ( i != (textOld.length - remove - 1)) {
+                    texts.add(textOld[i]);
+                }
             }
         }
         String[] textToSet = new String[texts.size()];
@@ -166,7 +166,7 @@ public class LegendHandler {
     public static String getLegendText(String axes, String polyline) {
 
         if (polyline != null && axes != null) {
-           String legend = searchLegend(axes);
+            String legend = searchLegend(axes);
             if (legend == null) {
                 return null;
             } else {
@@ -174,7 +174,7 @@ public class LegendHandler {
                 String[] linksOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
                 for (Integer i = 0; i < linksOld.length; i++) {
                     if (linksOld[i] == polyline) {
-                        return textOld[linksOld.length-i-1];
+                        return textOld[linksOld.length - i - 1];
                     }
                 }
             }
@@ -197,7 +197,7 @@ public class LegendHandler {
         String figure = searcher.searchParent(legend, GraphicObjectProperties.__GO_FIGURE__);
         Integer[] axesSize = { 0, 0 };
         Double[] axesBounds = { 0., 0. }, diff = { 0., 0. }, legendPos = { 0., 0. };
-        if(legend == null || axes == null || figure == null) {
+        if (legend == null || axes == null || figure == null) {
             return;
         }
 
@@ -258,5 +258,5 @@ public class LegendHandler {
         } else {
             return (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
         }
-   }
+    }
 }

@@ -58,7 +58,7 @@ public class DatatipSelect {
                     DatatipHighlight.highlightSelected (indexToSelect, markersUid);
                     return indexToSelect;
                 }
-            }    
+            }
         }
         indexToSelect = null;
         DatatipHighlight.highlightSelected (indexToSelect, markersUid);

@@ -46,12 +46,12 @@ public class PolylineHandler {
         return instance;
     }
 
-   /**
-    * Checks if the polyline object exists.
-    *
-    * @param uid Polyline unique identifier.
-    * @return True if exists, false otherwise.
-    */
+    /**
+     * Checks if the polyline object exists.
+     *
+     * @param uid Polyline unique identifier.
+     * @return True if exists, false otherwise.
+     */
     public Boolean polylineExists(String uid) {
         if (uid != null) {
             if (GraphicController.getController().getObjectFromId(uid) != null) {
@@ -254,8 +254,8 @@ public class PolylineHandler {
     private String[] searchCompound(String uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_COMPOUND__);
     }
-    
-    
+
+
     /**
     * Drag the given polyline, add the difference of the click position to the polyline data
     *

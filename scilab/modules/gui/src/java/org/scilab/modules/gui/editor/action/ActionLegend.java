@@ -46,7 +46,7 @@ public class ActionLegend extends BaseAction {
     */
     public ActionLegend(String parent, String[] links, String[] text, Double[] pos) {
 
-        super(null,parent);
+        super(null, parent);
         if ( links != null ) {
             oldLinks = new String[links.length];
             oldText = new String[links.length];
@@ -87,9 +87,9 @@ public class ActionLegend extends BaseAction {
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, oldLinks);
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
-            setRelation(objectUID,parentUID);
+            setRelation(objectUID, parentUID);
         } else {
-            if(oldLinks == null) {
+            if (oldLinks == null) {
                 GraphicController.getController().removeRelationShipAndDelete(objectUID);
             } else {
                 Integer[] dimension = {oldLinks.length, 1};
@@ -120,9 +120,9 @@ public class ActionLegend extends BaseAction {
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, newLinks);
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
             GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
-            setRelation(objectUID,parentUID);
+            setRelation(objectUID, parentUID);
         } else {
-            if(newLinks == null) {
+            if (newLinks == null) {
                 GraphicController.getController().removeRelationShipAndDelete(objectUID);
             } else {
                 Integer[] dimension = {newLinks.length, 1};

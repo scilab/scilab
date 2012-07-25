@@ -38,7 +38,7 @@ public class ActionTextEdit extends BaseAction {
     */
     public ActionTextEdit(String object, String[] oldText, String[] newText) {
 
-        super(object,(String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
+        super(object, (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__));
         this.oldText = oldText;
         this.newText = newText;
     }

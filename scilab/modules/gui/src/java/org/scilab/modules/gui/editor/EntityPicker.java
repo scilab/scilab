@@ -129,13 +129,12 @@ public class EntityPicker {
 
         for (Integer i = 0; i < (size - 1); ++i) {
             if (needTransform) {
-                double[] newPoint = transformPoint(curAxes, datax[i+1], datay[i+1]);
+                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1]);
                 if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
                     return i;
                 }
                 oldPoint = newPoint;
-            }
-            else {
+            } else {
                 if (isInRange(datax[i], datax[i + 1], datay[i], datay[i + 1], x, y)) {
                     return i;
                 }
@@ -146,7 +145,7 @@ public class EntityPicker {
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
         /* Fast bound check*/
-        double m = (x1 + x0)/2;
+        double m = (x1 + x0) / 2;
         double dx = m - x0;
 
         Double ca = (y1 - y0) / (x1 - x0);
@@ -161,13 +160,13 @@ public class EntityPicker {
         return false;
     }
 
-   /**
-    * Checks if the given point belongs the polyline mark.
-    * @param uid    Polyline uid to be checked.
-    * @param x        position on x axis in view coordinates.
-    * @param y        position on y axis in view coordinates.
-    * @return        True if x,y belongs to the polyline mark.
-    */
+    /**
+     * Checks if the given point belongs the polyline mark.
+     * @param uid    Polyline uid to be checked.
+     * @param x        position on x axis in view coordinates.
+     * @param y        position on y axis in view coordinates.
+     * @return        True if x,y belongs to the polyline mark.
+     */
     private int isOverMark(String uid, Double x, Double y) {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
@@ -175,20 +174,19 @@ public class EntityPicker {
         Integer size = PolylineHandler.getInstance().getMarkSize(uid);
         Integer unit = PolylineHandler.getInstance().getMarkSizeUnit(uid);
 
-        int finalSize = (unit == 1) ? (8 + 2*size) : size;
+        int finalSize = (unit == 1) ? (8 + 2 * size) : size;
         finalSize /= 2;
-        double deltax = Math.abs((dx/selectionDelta)*finalSize);
-        double deltay = Math.abs((dy/selectionDelta)*finalSize);
+        double deltax = Math.abs((dx / selectionDelta) * finalSize);
+        double deltay = Math.abs((dy / selectionDelta) * finalSize);
 
-        
+
         for (int i = 0; i < datax.length; ++i) {
             if (needTransform) {
                 double[] point = transformPoint(curAxes, datax[i], datay[i]);
                 if ((Math.abs(point[0] - x) <= deltax) && (Math.abs(point[1] - y) <= deltay)) {
                     return i;
                 }
-            }
-            else {
+            } else {
                 if ((Math.abs(datax[i] - x) <= deltax) && (Math.abs(datay[i] - y) <= deltay)) {
                     return i;
                 }
@@ -196,8 +194,8 @@ public class EntityPicker {
         }
         return -1;
     }
-    
-    
+
+
     public class PickedPoint {
         public int point;
         public boolean isSegment;
@@ -208,13 +206,13 @@ public class EntityPicker {
     }
 
     /**
-     * Given a polyline uid checks if the given point (px,py) 
+     * Given a polyline uid checks if the given point (px,py)
      * belongs or is closer to any polyline point.
-     * 
+     *
      * @return The picked point or PickedPoint.point = -1 otherwise.
      */
     public PickedPoint pickPoint(String uid, int px, int py) {
-        
+
         PickedPoint point = new PickedPoint(-1, false);
         Integer[] position = {px, py};
         String figUid = (new ObjectSearcher()).searchParent(uid, GraphicObjectProperties.__GO_FIGURE__);
@@ -251,7 +249,7 @@ public class EntityPicker {
 
     /**
      * Checks if the axes is in default view (2d view).
-     * 
+     *
      * @return true if is in default view, false otherwise.
      */
     private boolean isInDefaultView(Axes axes) {
@@ -261,7 +259,7 @@ public class EntityPicker {
 
     /**
      * Project the given point in view plane.
-     * 
+     *
      * @return the projected point.
      */
     private double[] transformPoint(Axes axes, double x, double y) {
@@ -298,9 +296,9 @@ public class EntityPicker {
         }
 
         String[] links;
-        Integer[] axesSize = {0,0};
+        Integer[] axesSize = {0, 0};
         Double delta;
-        Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension ={ 0., 0. };
+        Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
         axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
         axesBounds = (Double[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
@@ -314,11 +312,10 @@ public class EntityPicker {
         legendBounds[2] = legendPos[0] + dimension[0];
         legendBounds[3] = legendPos[1] + dimension[1];
         delta = dimension[1] / (1.0 * links.length);
-   
-        if (dPosition[0] >= legendBounds[0] && dPosition[0] <= legendBounds[2] && dPosition[1] >= legendBounds[1] && dPosition[1] <= legendBounds[3])
-        {
+
+        if (dPosition[0] >= legendBounds[0] && dPosition[0] <= legendBounds[2] && dPosition[1] >= legendBounds[1] && dPosition[1] <= legendBounds[3]) {
             for (Integer i = 0; i < links.length; i++) {
-                if (dPosition[1] >= (legendBounds[1] + i * delta) && dPosition[1] <= (legendBounds[1] + (i+1) * delta)) {
+                if (dPosition[1] >= (legendBounds[1] + i * delta) && dPosition[1] <= (legendBounds[1] + (i + 1) * delta)) {
                     return new LegendInfo(legend, links[links.length - 1 - i]);
                 }
             }
@@ -333,9 +330,9 @@ public class EntityPicker {
      * @return The picked axis label or null.
      */
     public AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
-        
+
         String axes = AxesHandler.clickedAxes(figure, pos);
-        if( axes == null) {
+        if ( axes == null) {
             return null;
         }
         Double[] corners;
@@ -345,11 +342,12 @@ public class EntityPicker {
         double[] coord;
         String[] label = {  (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__),
                             (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__),
-                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__) };
+                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__)
+                         };
         for (Integer i = 0; i < 3; i++) {
             corners = (Double[])GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_CORNERS__);
             radAngle = (Double)GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_FONT_ANGLE__);
-            rotate = ((int)((radAngle * 2) / Math.PI))%2;
+            rotate = ((int)((radAngle * 2) / Math.PI)) % 2;
             if (rotate == 1) {
                 corners = rotateCorners(corners);
             }
@@ -383,12 +381,12 @@ public class EntityPicker {
         Integer length = vec.length;
         Double[] newVec = new Double[length];
         for (Integer i = 0; i < length - 3; i++) {
-            newVec[i+3] = vec[i];
+            newVec[i + 3] = vec[i];
         }
-        newVec[0] = vec[length-3];
-        newVec[1] = vec[length-2];
-        newVec[2] = vec[length-1];
+        newVec[0] = vec[length - 3];
+        newVec[1] = vec[length - 2];
+        newVec[2] = vec[length - 1];
         return newVec;
-   }
+    }
 }
 

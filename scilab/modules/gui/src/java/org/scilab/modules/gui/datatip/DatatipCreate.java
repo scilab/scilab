@@ -87,8 +87,7 @@ public class DatatipCreate {
     */
     public static double[] transformPixelCoordToDouble(Integer[] pixelMouseCoordInt) {
 
-        for (int i = 0 ; i < pixelMouseCoordInt.length ; i++)
-        {
+        for (int i = 0 ; i < pixelMouseCoordInt.length ; i++) {
             pixelMouseCoordDouble[i] = (double) pixelMouseCoordInt[i];
         }
         return pixelMouseCoordDouble;

@@ -117,11 +117,11 @@ public class DatatipDrag {
             testPixel--;
             polylineUidTest = ep.pick (figureUid, newX, testPixel);
         }
-        if (middleLineFactor%2 == 0) {
-            newY = yVerify - (middleLineFactor/2);
+        if (middleLineFactor % 2 == 0) {
+            newY = yVerify - (middleLineFactor / 2);
         } else {
             middleLineFactor++;
-            newY = yVerify - (middleLineFactor/2);
+            newY = yVerify - (middleLineFactor / 2);
         }
         return newY;
     }
@@ -138,9 +138,9 @@ public class DatatipDrag {
     private static double[] setNewPosition (double[] graphicCoord, ArrayList<String> datatipsUid, ArrayList<String> markersUid, Integer indexToMove) {
 
         datatipPosition = DatatipCreate.setDatatipPosition(graphicCoord);
-        String datatipid = datatipsUid.get (indexToMove/2);
+        String datatipid = datatipsUid.get (indexToMove / 2);
         GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
-        String markerid = markersUid.get (indexToMove/2);
+        String markerid = markersUid.get (indexToMove / 2);
         GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
         String[] datatipLabel = DatatipCreate.setDatatipLabel(graphicCoord);
         Integer[] datatipBounds = DatatipCreate.getDatatipBounds(datatipLabel);
@@ -154,9 +154,9 @@ public class DatatipDrag {
     *
     * @param figureUid Figure unique identifier.
     * @param indexToMove Integer referring to the selected datatip.
-    * @param startX pixel coordinate x of the initial click. 
-    * @param startY pixel coordinate y of the initial click. 
-    * @return Polyline unique identifier 
+    * @param startX pixel coordinate x of the initial click.
+    * @param startY pixel coordinate y of the initial click.
+    * @return Polyline unique identifier
     */
     public static String getInitialInfo (String figureUid, Integer indexToMove, Integer startX, Integer startY) {
 
@@ -167,5 +167,5 @@ public class DatatipDrag {
         polylineUidInit = null;
         return polylineUidInit;
     }
-   
+
 }

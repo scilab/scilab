@@ -47,7 +47,7 @@ public class DatatipHighlight {
                 firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__);
                 GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
             }
-        isSelected = true;
+            isSelected = true;
         } else {
             GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
             isSelected = false;

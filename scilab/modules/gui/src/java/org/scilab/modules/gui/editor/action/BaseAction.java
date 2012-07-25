@@ -24,7 +24,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 *
 * @since 2012-06-01
 */
-public abstract class BaseAction implements Action{
+public abstract class BaseAction implements Action {
 
     String objectUID;
     String parentUID;
@@ -37,8 +37,8 @@ public abstract class BaseAction implements Action{
     */
     public BaseAction(String objectUID, String parentUID) {
 
-         this.objectUID = objectUID;
-         this.parentUID = parentUID;
+        this.objectUID = objectUID;
+        this.parentUID = parentUID;
     }
 
     /**
@@ -72,6 +72,6 @@ public abstract class BaseAction implements Action{
     */
     public void removeRelation(String object) {
 
-            GraphicController.getController().setGraphicObjectRelationship("", object);
+        GraphicController.getController().setGraphicObjectRelationship("", object);
     }
 }

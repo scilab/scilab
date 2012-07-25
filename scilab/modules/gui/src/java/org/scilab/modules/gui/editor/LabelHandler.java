@@ -46,7 +46,7 @@ public class LabelHandler {
 
         String label = null;
 
-        switch(axis) {
+        switch (axis) {
             case __X__:
                 label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 break;
@@ -76,7 +76,7 @@ public class LabelHandler {
     public static String getLabelText(String axes, AxesHandler.axisTo axis) {
 
         String label = null;
-        switch(axis) {
+        switch (axis) {
             case __X__:
                 label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 break;

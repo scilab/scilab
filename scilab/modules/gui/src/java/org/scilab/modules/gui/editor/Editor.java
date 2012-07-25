@@ -144,7 +144,7 @@ public class Editor {
         lastClick[1] = event.getY();
 
         if (!dataEditEnabled) {
-            switch(event.getClickCount()) {
+            switch (event.getClickCount()) {
                 case 1:
                     /*try pick a legend*/
                     selectedLegend = entityPicker.pickLegend(figureUid, lastClick);
@@ -174,7 +174,7 @@ public class Editor {
                     break;
             }
         } else { /*data editor is enabled, pass event to it*/
-            switch(event.getClickCount()) {
+            switch (event.getClickCount()) {
                 case 1:
                     dataEditor.onLeftMouseDown(event);
                     break;
@@ -192,7 +192,7 @@ public class Editor {
     public void onLeftMouseRelease(MouseEvent event) {
 
         String object = getSelected();
-        if (dataModifyEnabled && !dataEditEnabled && object != null) { 
+        if (dataModifyEnabled && !dataEditEnabled && object != null) {
             editorHistory.addAction(new ActionMove(object, lastClick, dragClick, isLegend));
         } else {
             dataEditor.onLeftMouseRelease(event);
@@ -200,7 +200,7 @@ public class Editor {
     }
 
     /**
-     * On drag move the selected object, if dataEditor 
+     * On drag move the selected object, if dataEditor
      * is enabled pass event to it.
      * @param event The mouse event.
      */
@@ -235,7 +235,7 @@ public class Editor {
             leaveDataEditor();
         }
     }
-    
+
     /**
      * Initializes the popup menu.
      *
@@ -430,7 +430,7 @@ public class Editor {
 
         if (selected != null) {
             oriColor = PolylineHandler.getInstance().setColor(selected, -3);
-            if(!isLegend) {
+            if (!isLegend) {
                 copy.setEnabled(true);
                 cut.setEnabled(true);
                 delete.setEnabled(true);
@@ -493,9 +493,9 @@ public class Editor {
      * Get the figure uid wich the editor belongs.
      * @return figure uid.
      */
-     public String getFigureUid() {
-         return figureUid;
-     }
+    public String getFigureUid() {
+        return figureUid;
+    }
 
     /**
     * Implements copy menu item action(Callback).
@@ -594,13 +594,13 @@ public class Editor {
         if (axes != null && axis != null) {
             String text = LabelHandler.getLabelText(axes, axis);
             String s = (String)JOptionPane.showInputDialog(
-                        dialogComponent,
-                        Messages.gettext("Enter the text"),
-                        Messages.gettext("Set label text"),
-                        JOptionPane.PLAIN_MESSAGE,
-                        null,
-                        null,
-                        text);
+                           dialogComponent,
+                           Messages.gettext("Enter the text"),
+                           Messages.gettext("Set label text"),
+                           JOptionPane.PLAIN_MESSAGE,
+                           null,
+                           null,
+                           text);
             if (s != null) {
                 String tmp[] = {s};
                 String[] oldText = {text};
@@ -620,20 +620,20 @@ public class Editor {
         if (axes != null) {
             String text = LegendHandler.getLegendText(axes, polyline);
             String s = (String)JOptionPane.showInputDialog(
-                        dialogComponent,
-                        Messages.gettext("Enter the text"),
-                        Messages.gettext("Set legend text"),
-                        JOptionPane.PLAIN_MESSAGE,
-                        null,
-                        null,
-                        text);
+                           dialogComponent,
+                           Messages.gettext("Enter the text"),
+                           Messages.gettext("Set legend text"),
+                           JOptionPane.PLAIN_MESSAGE,
+                           null,
+                           null,
+                           text);
             if (s != null) {
                 String legend = LegendHandler.searchLegend(axes);
                 String[] links = LegendHandler.getLinks(legend);
                 String[] texts = LegendHandler.getText(legend);
                 Double[] position = LegendHandler.getPosition(legend);
                 LegendHandler.setLegend(axes, polyline, s);
-                editorHistory.addAction(new ActionLegend(axes,links,texts,position));
+                editorHistory.addAction(new ActionLegend(axes, links, texts, position));
             }
         }
     }
@@ -649,9 +649,9 @@ public class Editor {
         String[] text = LegendHandler.getText(legend);
         Double[] position = LegendHandler.getPosition(legend);
         LegendHandler.removeLegend(axesTo, selected);
-        editorHistory.addAction(new ActionLegend(axesTo,links,text,position));
+        editorHistory.addAction(new ActionLegend(axesTo, links, text, position));
     }
-    
+
     /**
      * Enter data editor mode.
      */

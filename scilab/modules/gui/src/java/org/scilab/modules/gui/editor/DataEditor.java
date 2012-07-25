@@ -35,19 +35,19 @@ import org.scilab.modules.localization.Messages;
  * @since 2012-07-12
  */
 public class DataEditor {
-    
-    
+
+
     JPopupMenu menu;
     JMenuItem remove, insert, exit;
-    
+
     polylineStyle savedStyle;
     String curPolyline = null;
     EntityPicker picker;
     EntityPicker.PickedPoint picked = null;
     String axes;
     Integer rClickPos[] = {0, 0};
-    
-    
+
+
     /**Class to save polyline style*/
     public class polylineStyle {
         Integer lineFgColor;
@@ -65,7 +65,7 @@ public class DataEditor {
         Integer markStyle;
         Integer markSizeUnit;
         Integer markSize;
-        
+
         boolean canRestore = false;
 
         void Save(String polyline) {
@@ -106,7 +106,7 @@ public class DataEditor {
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_MARK_SIZE__, markSize);
             }
         }
-        
+
         /**Polyline style used by data editor*/
         private polylineStyle setDefaulStyle() {
             lineFgColor = -3;
@@ -127,7 +127,7 @@ public class DataEditor {
             canRestore = true;
             return this;
         }
-        
+
         /**Switch to data editor polyline style*/
         public void changeToEditStyle(String polyline) {
             polylineStyle ps = new polylineStyle();
@@ -135,7 +135,7 @@ public class DataEditor {
             ps.Restore(polyline);
         }
     }
-    
+
     public DataEditor() {
         init();
     }
@@ -143,26 +143,26 @@ public class DataEditor {
     /**Initializes and setup the class*/
     private void init() {
         menu = new JPopupMenu();
-        
+
         insert = new JMenuItem(Messages.gettext("Insert"));
         insert.setToolTipText(Messages.gettext("Insert a new point here"));
         remove = new JMenuItem(Messages.gettext("Remove"));
         remove.setToolTipText(Messages.gettext("Remove this point"));
         exit = new JMenuItem(Messages.gettext("Exit"));
         exit.setToolTipText(Messages.gettext("Leave data editor mode"));
-        
+
         insert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 onClickInsert(rClickPos);
             }
         });
-        
+
         remove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 onClickRemove(picked.point);
             }
         });
-        
+
         menu.add(insert);
         menu.add(remove);
         menu.add(exit);
@@ -178,7 +178,7 @@ public class DataEditor {
     public void setLeaveAction(ActionListener action) {
         exit.addActionListener(action);
     }
-    
+
 
     /**
      * Begin data edition in the given polyline.
@@ -226,13 +226,13 @@ public class DataEditor {
         if (picked != null && picked.point != -1) {
 
             if (!picked.isSegment) {
-                
+
                 double[] pos = {1.0 * lastClick[0], 1.0 * lastClick[1], 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
                 double[] pos2 = {1.0 * newClick[0], 1.0 * newClick[1], 1.0};
                 double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos2);
                 PolylineData.translatePoint(curPolyline, picked.point, c2d2[0] - c2d[0], c2d2[1] - c2d[1]);
-                
+
             } else {
                 PolylineHandler.getInstance().dragPolyline(curPolyline, lastClick, newClick);
             }
@@ -282,7 +282,7 @@ public class DataEditor {
             }
         }
     }
-    
+
     /**
      * Implements remove menu action.
      * @param point index to remove.
@@ -300,5 +300,5 @@ public class DataEditor {
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
         PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1]);
     }
-   
+
 }

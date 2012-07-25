@@ -38,7 +38,7 @@ public class DatatipManagerMode {
     * @return Datatip manager mode status.
     */
     public static boolean setDatatipManagerModeToggle() {
-        if(datatipManagerModeStatus) {
+        if (datatipManagerModeStatus) {
             datatipManagerModeStatus = false;
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
         } else {
@@ -55,7 +55,7 @@ public class DatatipManagerMode {
     * @return Datatip manager mode status on.
     */
     public static boolean setDatatipManagerModeButtonOn() {
-        if(!datatipManagerModeStatus) {
+        if (!datatipManagerModeStatus) {
             datatipManagerModeStatus = true;
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
         }
@@ -69,7 +69,7 @@ public class DatatipManagerMode {
     * @return Datatip manager mode status off.
     */
     public static boolean setDatatipManagerModeButtonOff() {
-        if(datatipManagerModeStatus) {
+        if (datatipManagerModeStatus) {
             datatipManagerModeStatus = false;
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
         }
@@ -82,7 +82,7 @@ public class DatatipManagerMode {
     * @return Datatip manager mode status.
     */
     public static boolean getDatatipManagerMode() {
-        if(datatipManagerModeStatus) {
+        if (datatipManagerModeStatus) {
             return true;
         } else {
             return false;

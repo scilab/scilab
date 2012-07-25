@@ -53,7 +53,7 @@ public class EditorHistory implements ActionHistory {
         if (head == null) {
             head = 0;
         }
-        while(head > 0) {
+        while (head > 0) {
             /*same as removeFirst without throwing exception if the deque is empty*/
             Action a = history.pollFirst();
             a.dispose();
@@ -61,7 +61,7 @@ public class EditorHistory implements ActionHistory {
         }
 
         /*history reached max capacity? remove oldest action*/
-        if(history.size() == MAX_HISTORY_SIZE) {
+        if (history.size() == MAX_HISTORY_SIZE) {
             Action a = history.pollLast();
             a.dispose();
         }

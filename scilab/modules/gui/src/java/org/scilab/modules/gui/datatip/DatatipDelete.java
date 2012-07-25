@@ -33,7 +33,7 @@ public class DatatipDelete {
     * @param markersUid Arraylist containing all created merker's unique identifier.
     */
     public static void deleteDatatip (Integer index, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
-    
+
         String datatipUidToDelete = datatipsUid.get(index / 2);
         GraphicController.getController().removeRelationShipAndDelete(datatipUidToDelete);
         String markerUidToDelete = markersUid.get(index / 2);
