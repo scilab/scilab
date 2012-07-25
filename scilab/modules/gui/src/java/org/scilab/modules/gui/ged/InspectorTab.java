@@ -27,32 +27,32 @@ public class InspectorTab {
 
     public static SwingScilabTab getInspectorInstance(String select, String objectID) {
         final SwingScilabTab inspector = Inspector
-                .createInspectorTab(select, objectID);
+                                         .createInspectorTab(select, objectID);
         ScilabTabFactory.getInstance().addToCache(inspector);
 
         ClosingOperationsManager.registerClosingOperation(inspector,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public boolean canClose() {
-                        return true;
-                    }
+            //@Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        Inspector.closeInspector();
-                    }
+            //@Override
+            public void destroy() {
+                Inspector.closeInspector();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            //@Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            //@Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         ClosingOperationsManager.addDependencyWithRoot(inspector);
 
