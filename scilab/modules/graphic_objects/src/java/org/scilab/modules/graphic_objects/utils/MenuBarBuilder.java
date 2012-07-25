@@ -21,6 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,12 +39,14 @@ import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 
 /**
  * Create a menuBar from an XML file
@@ -198,6 +201,13 @@ public final class MenuBarBuilder {
          * @see org.scilab.modules.MenuBarConfiguration.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
          */
         public void addMenus(String parentId) {
+
+            // delete old menus
+            for (String childId : (String []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
+                if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__))
+                    GraphicController.getController().removeRelationShipAndDelete(childId);
+            }
+
             NodeList menus = dom.getElementsByTagName(MENU);
 
             for (int i = 0; i < menus.getLength(); i++) {

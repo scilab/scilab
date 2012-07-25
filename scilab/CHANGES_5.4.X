@@ -279,9 +279,11 @@ Bug Fixes
 * Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of drawing
                      at once at the end.
 
+* Bug #11472 fixed - Old menus were not removed before adding the new ones in default figure.
+
 * Bug #11481 fixed - The title axes was in front of plots.
 
-* Bug #11482 fixed - The two plots drawn in"Graphics/Complex elementary function/Custom"
+* Bug #11482 fixed - The two plots drawn in "Graphics/Complex elementary function/Custom"
                      demonstration were too small.
 
 * Bug #11486 & #11487 fixed - When a list was inserted into itself,
