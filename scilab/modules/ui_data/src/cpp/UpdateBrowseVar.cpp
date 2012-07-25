@@ -42,6 +42,7 @@ static std::set < string > createScilabDefaultVariablesSet();
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
 {
+    SciErr err;
     int iGlobalVariablesUsed = 0;
     int iGlobalVariablesTotal = 0;
     int iLocalVariablesUsed = 0;
@@ -69,19 +70,19 @@ void UpdateBrowseVar(BOOL update)
     std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
 
     // for each local variable get informations
-    for (i = 0; i < iLocalVariablesUsed; ++i)
+    for (; i < iLocalVariablesUsed; ++i)
     {
         // name
         pstAllVariableNames[i] = getLocalNamefromId(i + 1);
         // type
-        //getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
-        // Bytes used
-        piAllVariableBytes[i] = getLocalSizefromId(i);
+        err = getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
+        if (!err.iErr)
+        {
+            piAllVariableBytes[i] = getLocalSizefromId(i);
+            err = getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
+        }
 
-        // Sizes of the variable
-        getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
-
-        if (nbRows * nbCols == 0)
+        if (err.iErr || nbRows * nbCols == 0)
         {
 #define N_A "N/A"
             pstAllVariableSizes[i] = (char *)MALLOC((sizeof(N_A) + 1) * sizeof(char));
@@ -89,7 +90,8 @@ void UpdateBrowseVar(BOOL update)
         }
         else
         {
-            sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
+            // 11 =strlen("2147483647")+1 (1 for security)
+            sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
             sprintf(sizeStr, "%dx%d", nbRows, nbCols);
             pstAllVariableSizes[i] = os_strdup(sizeStr);
             FREE(sizeStr);
@@ -99,7 +101,7 @@ void UpdateBrowseVar(BOOL update)
         pstAllVariableVisibility[i] = os_strdup("local");
 
         if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_c_function    /*TODO: voir si je fais sauter ou pas */
-            && piAllVariableTypes[i] != sci_lib)
+                && piAllVariableTypes[i] != sci_lib)
         {
             piAllVariableFromUser[i] = TRUE;
         }
@@ -127,7 +129,8 @@ void UpdateBrowseVar(BOOL update)
 
         // Sizes of the variable
         getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
-        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
+        // 11 =strlen("2147483647")+1 (1 for security)
+        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
         sprintf(sizeStr, "%dx%d", nbRows, nbCols);
         pstAllVariableSizes[i] = os_strdup(sizeStr);
         FREE(sizeStr);
@@ -136,7 +139,7 @@ void UpdateBrowseVar(BOOL update)
         pstAllVariableVisibility[i] = os_strdup("global");
 
         if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
-            && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
+                && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
         {
             piAllVariableFromUser[i] = TRUE;
         }
@@ -181,40 +184,40 @@ void UpdateBrowseVar(BOOL update)
 static std::set < string > createScilabDefaultVariablesSet()
 {
     string arr[] = { "home",
-        "PWD",
-        "%tk",
-        "%pvm",
-        "MSDOS",
-        "%F",
-        "%T",
-        "%f",
-        "%t",
-        "%e",
-        "%pi",
-        "%modalWarning",
-        "%exportFileName",
-        "%nan",
-        "%inf",
-        "SCI",
-        "WSCI",
-        "SCIHOME",
-        "TMPDIR",
-        "%gui",
-        "%fftw",
-        "%helps",
-        "%eps",
-        "%io",
-        "%i",
-        "demolist",
-        "%z",
-        "%s",
-        "$",
-        "%driverName",
-        "%toolboxes",
-        "%toolboxes_dir",
-        "TICTOC",
-        "%helps_modules"
-    };
+                     "PWD",
+                     "%tk",
+                     "%pvm",
+                     "MSDOS",
+                     "%F",
+                     "%T",
+                     "%f",
+                     "%t",
+                     "%e",
+                     "%pi",
+                     "%modalWarning",
+                     "%exportFileName",
+                     "%nan",
+                     "%inf",
+                     "SCI",
+                     "WSCI",
+                     "SCIHOME",
+                     "TMPDIR",
+                     "%gui",
+                     "%fftw",
+                     "%helps",
+                     "%eps",
+                     "%io",
+                     "%i",
+                     "demolist",
+                     "%z",
+                     "%s",
+                     "$",
+                     "%driverName",
+                     "%toolboxes",
+                     "%toolboxes_dir",
+                     "TICTOC",
+                     "%helps_modules"
+                   };
     int i = 0;
 
 #define NBELEMENT 33

@@ -33,7 +33,7 @@
         <term>flag, flagexpand</term>
         <listitem>
           <para>
-            boolean optional parameters (default value <literal>%t</literal>)
+            boolean optional parameters (default value <constant>%t</constant>)
           </para>
         </listitem>
       </varlistentry>
@@ -48,19 +48,19 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>dirname</literal> returns the directory names of the file entries given in <literal>files</literal>.
+      <function>dirname</function> returns the directory names of the file entries given in <varname>files</varname>.
     </para>
     <para>
-      If <literal>flag</literal> is true the files are first converted to the target 
-      type given by the <literal>getos() == 'Windows'</literal> variable. 
-      Moreover, if <literal>flagexpand</literal> is true leading strings like
-      <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
+      If <varname>flag</varname> is true the files are first converted to the target 
+      type given by the <code>getos() == 'Windows'</code> variable. 
+      Moreover, if <varname>flagexpand</varname> is true leading strings like
+      <varname>SCIHOME</varname>, <varname>SCI</varname> or <literal>~</literal> are expanded using environment
       variables.
     </para>
     <para>
-      Note that <literal>dirname(files,%f)</literal> can give erroneous results if 
-      pathnames given in <literal>files</literal> do not follow the convention 
-      given by the <literal>getos() == 'Windows'</literal> variable.
+      Note that <code>dirname(files,%f)</code> can give erroneous results if 
+      pathnames given in <varname>files</varname> do not follow the convention 
+      given by the <code>getos() == 'Windows'</code> variable.
     </para>
   </refsection>
   <refsection>

@@ -32,7 +32,7 @@
         <term>f</term>
         <listitem>
           <para>
-            логическое значение: <literal>%t</literal> или <literal>%f</literal>
+            логическое значение: <constant>%t</constant> или <constant>%f</constant>
           </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
     <title>Описание</title>
     <para>
       Эта функция удаляет файл. Если файл удалён, то она возвращает
-      <literal>%t</literal>, а иначе <literal>%f</literal>.
+      <constant>%t</constant>, а иначе <constant>%f</constant>.
     </para>
   </refsection>
   <refsection>

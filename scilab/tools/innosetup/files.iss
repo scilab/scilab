@@ -26,7 +26,6 @@
 #include BinariesSourcePath + "\modules\output_stream\output_stream.iss"
 #include BinariesSourcePath + "\modules\string\string.iss"
 #include BinariesSourcePath + "\modules\io\io.iss"
-#include BinariesSourcePath + "\modules\double\double.iss"
 #include BinariesSourcePath + "\modules\integer\integer.iss"
 #include BinariesSourcePath + "\modules\overloading\overloading.iss"
 #include BinariesSourcePath + "\modules\elementary_functions\elementary_functions.iss"

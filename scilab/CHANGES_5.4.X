@@ -148,6 +148,9 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
 
+* Bug #11488 fixed - Error in console due to browsevar when deleting a global
+                     var.
+
 * Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
 
 * Bug #11328 fixed - strsplit returned a wrong error message when second input
