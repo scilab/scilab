@@ -563,6 +563,8 @@ libscigui_la_etc_DATA = \
 	etc/XConfiguration-colors.xsl \
 	etc/XConfiguration-font.xml \
 	etc/XConfiguration-font.xsl \
+	etc/XConfiguration-web.xml \
+	etc/XConfiguration-web.xsl \
 	etc/XConfiguration-toolbars.xml \
 	etc/XConfiguration-toolbars.xsl
 

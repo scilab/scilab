@@ -389,7 +389,7 @@ public:
         if (!rows || !cols)
         {
             createEmptyMatrix(pvApiCtx, position);
-            return;
+            return 0;
         }
 
         if (dataPtr)

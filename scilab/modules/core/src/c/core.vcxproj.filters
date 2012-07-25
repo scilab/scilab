@@ -374,6 +374,9 @@
     <ClCompile Include="backtrace.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="setlines.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />
@@ -733,6 +736,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="backtrace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setlines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

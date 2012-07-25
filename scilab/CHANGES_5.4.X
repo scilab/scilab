@@ -1,4 +1,4 @@
-﻿            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
+            Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
 
 
@@ -9,6 +9,8 @@ Xcos
 
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
                     stopped from user interface.
+
+* Bug #11132 fixed - Some help pages were missing : standard_origin, ...
 
 * Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter
 
@@ -38,6 +40,20 @@ Documentation
 * Categories have been created for the following modules help pages:
     - statistics. See bug #9108.
     - genetic algorithms. See bug #11514.
+
+
+Signal Processing
+=================
+
+* Updated and improved fft function based on fftw (See SEP#84):
+    - taking data symmetry into account,
+    - hard coded multivariate fft.
+
+
+Compilation
+===========
+
+* Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
 
 
 GUI
@@ -112,17 +128,27 @@ Bug Fixes
 * Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
                     was always calculated its own, arbitrary, internal value.
 
+* Bug #6702 fixed - the max and min functions returned a scalar in k when the input 
+                    argument was the last column of an hypermatrix.
+
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
+
+* Bug #8785 fixed - Check input arguments in the modulo and pmodulo functions.
 
 * Bug #9830 fixed - leastsq did not match the information of optim.
 
 * Bug #9884 fixed - Add in prefs the possibility to add a default header on
                     new files in SciNotes.
 
+* Bug #9464 fixed - contourf did not work when the "Matlab Compatibility functions
+                    module" was not installed.
+
 * Bug #10150 fixed - Completion help page moved to the console chapter.
 
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
+
+* Bug #10385 fixed - It was not possible to configure default web browser.
 
 * Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
 
@@ -153,8 +179,13 @@ Bug Fixes
 
 * Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
 
+* Bug #11326 fixed - set(h, "enable", "off") and set(h, "visible", "off") had no
+                     effect after menu creation.
+
 * Bug #11328 fixed - strsplit returned a wrong error message when second input
                      argument contained wrong values.
+
+* Bug #11331 fixed - graypolarplot() returned an error about an unknown property.
 
 * Bug #11346 fixed - Add error messages in the cosm function in case of bad
                      usage.
@@ -166,6 +197,8 @@ Bug Fixes
 
 * Bug #11349 fixed - There was an error when path to external editor contained
                      white spaces.
+
+* Bug #11369 fixed - colordef("black") returned an error about an unknown property.
 
 * Bug #11385 fixed - length() returned a wrong error message when called without
                      input argument.
@@ -205,6 +238,8 @@ Bug Fixes
 * Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of draw
                      at the end of the update.
 
+* Bug #11481 fixed - The title axes was in front of plots.
+
 * Bug #11482 fixed - The 2 plots of demo "Graphics/Complex elementary function/Custom"
                      were too small.
 
@@ -230,6 +265,9 @@ Known Incompatibilities
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
+* Setting the "foreground" property for a figure was possible even if not officially
+  supported or documented. This now returns an error.
+  Please use the axes "foreground" property instead. See bug #11369.
 
 
             Changes between version 5.4.0-alpha-1 and 5.4.0-beta-1 of Scilab
@@ -613,6 +651,7 @@ CACSD & Signal Processing
 * Bug #10562 fixed - The "CACSD/Robust Control" demo failed.
 
 * Bug #11340 fixed - bode, gainplot, nyquist and plzr without arguments did not show an example.
+
 
 ATOMS
 =======

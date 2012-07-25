@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 FTTW_SCILAB_IMPEXP int gw_fftw(void);
 FTTW_SCILAB_IMPEXP int sci_disposefftwlibrary(char *fname,unsigned long fname_len);
-FTTW_SCILAB_IMPEXP int sci_fftw(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw(char *fname, void *pvApiCtx);
 FTTW_SCILAB_IMPEXP int sci_fftw_flags(char *fname,unsigned long fname_len);
 FTTW_SCILAB_IMPEXP int sci_fftw_forget_wisdom(char *fname,unsigned long fname_len);
 FTTW_SCILAB_IMPEXP int sci_fftwlibraryisloaded(char *fname,unsigned long fname_len);

@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fft">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997   - INRIA
+ * Copyright (C) 2012 - Serge Steer - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="fr" xml:id="fft">
   <refnamediv>
     <refname>fft</refname>
     <refpurpose>Transformée de Fourier discrète rapide.</refpurpose>
@@ -9,158 +26,330 @@
     <refpurpose>Transformée de Fourier discrète rapide inverse.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>x=fft(a ,-1) ou x=fft(a)
-      x=fft(a,1) or x=ifft(a)
-      x=fft(a,-1,dim,incr)
-      x=fft(a,1,dim,incr)
-    </synopsis>
+    <title>Séquence d'appel</title>
+    <synopsis>X=fft(A [,sign] [,option])
+X=fft(A,sign,selection  [,option])
+X=fft(A,sign,dims,incr [,option] )</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>a</term>
+        <term>A</term>
         <listitem>
-          <para>Vecteur ou matrice réelle ou complexe.</para>
+          <para>un tableau de nombres réels ou complexes (vecteur,
+          matrice, ou tableau N-dimensionnel.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x</term>
+        <term>X</term>
         <listitem>
-          <para>Vecteur  ou matrice réelle complexe ayant les
-            mêmes dimensions que <literal>a</literal>.
+          <para>un tableau de nombres réels ou complexes ayant les
+            mêmes dimensions que <literal>A</literal>.
           </para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>dim</term>
+   <varlistentry>
+        <term>sign</term>
         <listitem>
-          <para>un entier positif</para>
+          un entier. qui peut prendre les valeurs <literal>1</literal>
+          ou <literal>-1</literal>. Détermine le sens de la
+          transformation. La valeur par défaut est
+          <literal>-1</literal> (transformée directe).
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>option</term>
+        <listitem>
+          une chaîne de caratères. qui peut prendre les valeurs
+          <literal>"symmetric"</literal> ou
+          <literal>"nonsymmetric"</literal>. Permet d'indiquer à
+          l'algorithme si <literal>A</literal> est symmétrique ou
+          non. Si cet argument est omis l'algorithme determine
+          automatiquement si <literal>A</literal> est symmétrique ou
+          non. Voir la partie "Description" pour plus de détails.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>selection</term>
+        <listitem>
+          un vecteur contenant des index sur les dimensions de
+          <literal>A</literal>.  Voir la partie "Description" pour plus
+          de détails.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dims</term>
+        <listitem>
+          <para>
+            un vecteur de nombres positifs à valeurs entières, ou un
+            vecteur d'entiers positifs.  Voir la partie "Description"
+            pour plus de détails.
+          </para>
+          <para>
+            Chaque élément doit être un diviseur du nombre total
+            d'éléments de <literal>A</literal>.
+          </para>
+          <para>
+            Le produit des éléments de <literal>dims</literal> doit
+            être strictement inférieur au nombre total d'éléments de
+            <literal>A</literal>.
+          </para>
+    
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>incr</term>
         <listitem>
-          <para>un entier positif</para>
+          <para>
+            un vecteur de nombres positifs à valeurs entières, ou un
+            vecteur d'entiers positifs.  Voir la partie "Description"
+            pour plus de détails.
+          </para>
+          <para>
+            Le nombre d'éléments de <literal>incr</literal> doit être
+            égal au nombre d'éléments de <literal>dims</literal>.
+          </para>
+          <para>
+            Chaque élément doit être un diviseur du nombre total
+            d'éléments de <literal>A</literal>.
+          </para>
+          <para>
+            Les éléments de <literal>incr</literal> doivent être en
+            ordre strictement croissant.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Description</title>
+    <title>Description</title> Cette fonction calcule la transformée
+    de Fourier discrete directe ou inverse, mono ou multi
+    dimensionnelle
     <variablelist>
       <varlistentry>
         <term>Syntaxe courte</term>
         <listitem>
-          <para>
-            Si <literal>a</literal> est un vecteur,
-            <literal>x=fft(a,-1)</literal> ou
-            <literal>x=fft(a)</literal> calcule la
-            transformée de Fourier discrète directe
-            monovariable de <literal>a</literal>:
-          </para>
-          <para>
-            <latex>
-              $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
-            </latex>
-          </para>
-          <para>
-            Et <literal>x=fft(a,+1)</literal> ou
-            <literal>x=ifft(a)</literal> calcule la
-            transformée de Fourier  discrète inverse
-            monovariable de <literal>a</literal>:
-          </para>
-          <para>
-            <latex>
-              $x(k) = \sum_{m=1}^n {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
-            </latex>
-          </para>
-          <para>
-            A noter: (l'argument <literal>-1</literal> ou  <literal>+1</literal>
-            argument de la fonction <literal>fft</literal>
-            représente le signe de l'exposant de
-            l'exponentielle.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Si <literal>a</literal> est une matrice, 
-          </para>
-          <para>
-            <literal>x=fft(a,-1)</literal> ou
-            <literal>x=fft(a)</literal> calcule la transformée de
-            Fourier  discrète directe multivariable de
-            <literal>a</literal>
-          </para>
-          <para>
-            Et <literal>x=fft(a,-1)</literal> ou
-            <literal>x=fft(a)</literal> calcule la transformée de
-            Fourier  discrète inverse multivariable de
-            <literal>a</literal>
-          </para>
+          <variablelist>
+            <varlistentry>
+              <term>direct</term>
+              <listitem>
+                <literal>X=fft(A,-1 [,option])</literal> ou
+                <literal>X=fft(A [,option])</literal> calcule la
+                transformée de Fourier discrète directe
+                 de <literal>A</literal>
+                 <variablelist>
+                   <varlistentry>
+                     <term>monovariable</term>
+                     <listitem>
+                       <para>Si <literal>A</literal> est un vecteur
+                       <literal>x=fft(a,-1)</literal> ou
+                       <literal>x=fft(a)</literal> calcule une
+                       transformée monovariable, c'est à dire:</para>
+                       <para>
+                         <latex>
+                          $x(k) = \sum_{m=1}^n
+                          {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
+                         </latex>
+                       </para>
+          
+                        <para>
+                          A noter: (l'argument <literal>-1</literal>
+                          argument de la fonction
+                          <literal>fft</literal> représente le signe
+                          de l'exposant de l'exponentielle.
+                        </para>
+                     </listitem>
+                   </varlistentry>
+
+                   <varlistentry>
+                     <term>multivariable</term>
+                     <listitem>
+                       <para>
+                        Si <literal>A</literal> est une matrice, ou un
+                        tableau multi-diemnsionnel,
+                        <literal>X=fft(A,-1)</literal> ou
+                        <literal>X=fft(A)</literal> calcule la
+                        transformée de Fourier discrète directe
+                        multivariable de <literal>A</literal>.
+                      </para>
+                     </listitem>
+                   </varlistentry>
+                 </variablelist>
+
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>inverse</term>
+                <listitem>
+                  <para><literal>X=fft(A,1)</literal> or
+                  <literal>X=ifft(A)</literal> calcule la
+                  transformée inverse normalisée, telle que
+                  <literal>A==ifft(fft(A))</literal>.</para>
+                  <variablelist>
+                    <varlistentry>
+                      <listitem>
+                        <term>mono-variable</term>
+                        <para>Si <literal>A</literal> est un vecteur
+                        <literal>X=fft(A,+1)</literal> ou
+                        <literal>X=ifft(A)</literal> calcule une
+                        transformée monovariable inverse, c'est à
+                        dire:</para>
+                        <para>
+                          <latex>
+                            $x(k) = \sum_{m=1}^n
+                            {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
+                          </latex>
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>multi variable</term>
+                      <listitem>
+                      <para>
+                         <literal>X=fft(A,+1)</literal> ou
+                         <literal>X=ifft(A)</literal> calcule la
+                         transformée de Fourier discrète inverse
+                         multivariable de <literal>A</literal>
+                      </para>
+                      </listitem>
+                    </varlistentry>
+                  </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Syntaxe longue pour la FFT mutidimensionnelle</term>
         <listitem>
-          <para>
-            <literal>X=fft(A,-1,dim,incr)</literal> permet
-            de réaliser une transformée de Fourier  discrète 
-            multidimensionnelle.
-          </para>
-          <para>
-            Si <literal>A</literal> est un vecteur réel ou
-            complexe implicitement indexé par
-            <literal>j1,j2,..,jp</literal>
-            i.e. <literal>a(j1,j2,..,jp)</literal> où
-            <literal>j1</literal> varie dans
-            <literal>1:dim(1),</literal> <literal>j2</literal> dans
-            <literal>1:dim(2),...</literal> on obtient une p-variable
-            transformée de Fourier en appelant p fois la fonction
-            <literal>fft</literal> comme suit:
-          </para>
-          <programlisting role=""><![CDATA[ 
-incrk=1; 
-x=a; 
-for k=1:p 
-x=fft(x,-1,dim(k),incrk);
-incrk=incrk*dim(k);
-end
-            ]]></programlisting>
-          <para>
-            où <literal>dimk</literal> est la
-            dimension de la variable courante, c'est à dire celle que
-            l'on intègre et <literal>incrk</literal> est l'incrément qui
-            sépare deux éléments successifs indexés par
-            <literal>jk</literal> et <literal>jk+1</literal> dans
-            <literal>a</literal>.
-          </para>
-          <para>En particulier,si
-            <literal>a</literal> est une matrice <literal>m</literal>
-            par <literal>n</literal> <literal>x=fft(a,-1)</literal> est
-            équivalent aux 2 instructions:
-          </para>
-          <programlisting role=""><![CDATA[ 
-a1=fft(a,-1,m,1);
-x=fft(a1,-1,n,m);
+          <itemizedlist>
+            <listitem>
+              <para>
+                <literal>X=fft(A,sign,selection [,option])</literal>
+                permet de calculer efficacement les transformées directes
+                ou inverses de toutes les "tranches" de
+                <literal>A</literal> correspondant à la selection de
+                dimensions.
+              </para>
+              <para>
+                Par exemple si, <literal>A</literal> est un tableau 3-D a
+                <literal>X=fft(A,-1,2)</literal> est équivalent à:
+              </para>
+              <programlisting role=""><![CDATA[ 
+              for i1=1:size(A,1),
+              for i3=1:size(A,3),
+              X(i1,:,i3)=fft(A(i1,:,i3),-1);
+              end
+              end
               ]]></programlisting>
+              <para>
+                et <literal>X=fft(A,-1,[1 3])</literal> est équivalent à:
+              </para>
+              <programlisting role=""><![CDATA[ 
+              for i2=1:size(A,2),
+              X(:,i2,:)=fft(A(:,i2,:),-1);
+              end
+              ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>
+                <literal>X=fft(A,sign,dims,incr [,option])</literal>
+                isest une syntaxe ancienne qui permet aussi de
+                calculer efficacement les transformées directes ou
+                inverses de toutes les "tranches" de
+                <literal>A</literal> La sélection des "tranches" se
+                faisant par la donnée des dimensions et des incréments
+                associés à chacune des dimensions. Avec cette syntaxe
+                les dimensions effectives de <literal>A</literal> ne
+                sont pas prise en compte.
+              </para>
+              <para>
+                Par example si <literal>A</literal> est un tableau ayant
+                <literal>n1*n2*n3</literal> éléments
+                <literal>X=fft(A,-1,n1,1)</literal> est équivalent à
+                <literal>X=fft(matrix(A,[n1,n2,n3]),-1,1)</literal>.
+                et <literal>X=fft(A,-1,[n1 n3],[1 n1*n2])</literal>
+                est équivalent à
+                <literal>X=fft(matrix(A,[n1,n2,n3]),-1,[1,3])</literal>.
+              </para>
+            </listitem>
+          </itemizedlist>
         </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>utilisation de l'argument option</term> Cet argument
+        peut être utilisé pour informer l'algorithme de fft au sujet
+        de la symétrie de <literal>A</literal> ou de toutes ses
+        "tranches". Un tableau multi-dimensionnel <literal>B</literal>
+        qui a pour dimensions <literal>n1</literal>, ...,
+        <literal>np</literal> est symétrique conjugué pour la fft si
+        et seulement si <literal>B==conj(B([1 n1:-1:2],[1
+        n2:-1:2],...,[1 np:-1:2])) </literal>.  Dans un tel cas le
+        résultat de la fft est réel et un algorithme spécifique
+        peut-être utilisé pour amélioer l'éfficacité et réduire le
+        cout mémoire.
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <term>"symmetric"</term> Cette valeur indique à
+              l'algorithme de considérer que <literal>A</literal> ou
+              toutes ses "tranches" est symétrique conjugué. Cette
+              option est utile pour éviter le surcoùt de la
+              détermination automatique de la symétrie et pour gérer
+              les cas où <literal>A</literal> n'est pas exactement
+              symmétrique du fait par exemple d'erreurs d'arrondis.
+            </listitem>
+            <listitem>
+              <term>"nonsymmetric"</term> Cette valeur force
+              l'algorithme à ne pas prendre en compte une éventuelle
+              symétrie.
+            </listitem>
+            <listitem>
+              <term>non spécifié</term> Si l'argument
+              <literal>option</literal> est omis l'algorithme va
+              réaliser automatiquement un test de symmétrie exacte.
+            </listitem>
+
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Optimisation de l'efficacité de la fft</term>
+        <listitem>
+           <para>
+             Remarque: la fonction <literal>fft</literal> sauve
+             automatiquement des paramêtres en mémoire
+             (<literal>wisdom</literal>) pour accélérer les calculs de
+             fft suivants correspondants aux mêmes dimension et mêmes
+             options.
+           </para>
+           <para> 
+             Les fonctions <link
+             linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
+             linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+             permettent de récupérer et recharger ces paramêtres pour
+             amélioer l'efficacité de calcul de fft lorsque l'on
+             alterne plusieurs types de fft.
+           </para>
+         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Algorithme</title>
+    <title>Algorithmes</title>
     <para>
-      Si le module <literal>fftw</literal> a été chargé dans Scilab
-      cette fonction utilise cette bibliothèque (http://www.fftw.org/). A
-      défaut cette fonction est basée sur les routines fortran fft842.f
-      (algorithme de Cooley-Tukey pour des vecteurs de taille n=2^m) et
-      dfftbi.f (pour les vecteurs de taille quelconque) 
+        Cette fonction est basée sur la bibliothèque <ulink
+        url="http://www.fftw.org/">fftw3</ulink>.
     </para>
+
   </refsection>
+ 
   <refsection>
     <title>Examples</title>
+    <para>1-D fft</para>
     <programlisting role="example"><![CDATA[ 
 //Composantes fréquentielles d'un signal
 //----------------------------------
@@ -177,7 +366,48 @@ f=sample_rate*(0:(N/2))/N; //vecteur de fréquences associé
 n=size(f,'*')
 clf()
 plot(f,abs(y(1:n)))
- ]]></programlisting>
+    ]]></programlisting>
+
+    <para>2-D fft</para>
+    <programlisting role="example"><![CDATA[ 
+----------------------------------
+A = zeros(256,256);
+A(5:24,13:17) = 1;
+X = fftshift(fft(A));
+set(gcf(),"color_map",jetcolormap(128));
+clf;grayplot(0:255,0:255,abs(X)')
+     ]]></programlisting>
+    <para>mupliple fft</para>
+    <programlisting role="example"><![CDATA[ 
+//simple case, 3 1-D fft at a time
+N=2048;
+t=linspace(0,10,2048);
+A=[2*sin(2*%pi*3*t)+ sin(2*%pi*3.5*t)
+  10*sin(2*%pi*8*t)
+   sin(2*%pi*0.5*t)+4*sin(2*%pi*0.8*t)];
+X=fft(A,-1,2);
+
+fs=1/(t(2)-t(1));
+f=fs*(0:(N/2))/N; //associated frequency vector
+clf;plot(f(1:100)',abs(X(:,1:100))')
+legend(["3 and 3.5 Hz","8 Hz","0.5 and 0.8 Hz"],"in_upper_left")
+
+// 45  3-D fft at a time
+Dims=[5 4 9 5 6];
+A=matrix(rand(1,prod(Dims)),Dims);
+
+y=fft(A,-1,[2 4 5]);
+
+//equivalent (but less efficient code)
+y1=zeros(A);
+for i1=1:Dims(1) 
+  for i3=1:Dims(3)
+    ind=list(i1,:,i3,:,:);
+    y1(ind(:))=fft(A(ind(:)),-1);
+  end
+end
+   ]]></programlisting>
+
     <programlisting role="example"><![CDATA[ 
 //Définition directe de la transformée de Fourier discrete
 //--------------------------------------------------------
@@ -210,8 +440,24 @@ timer();fft(a,-1);timer()
         <link linkend="corr">corr</link>
       </member>
       <member>
-        <link linkend="fftw">fftw</link>
+        <link linkend="fftw_flags">fftw_flags</link>
+      </member>
+      <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
       </member>
     </simplelist>
+  </refsection>
+ <refsection>
+    <title>Bibliographie</title>
+    <para>
+    Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink
+    url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+    </para>
   </refsection>
 </refentry>

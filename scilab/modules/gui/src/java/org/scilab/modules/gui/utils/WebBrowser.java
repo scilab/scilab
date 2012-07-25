@@ -17,24 +17,51 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import org.w3c.dom.Document;
+
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.commons.xml.XConfigurationEvent;
+import org.scilab.modules.commons.xml.XConfigurationListener;
 import org.scilab.modules.localization.Messages;
+
 
 /**
  * Class used to launch a Web Browser from Scilab
  * @author Vincent COUVERT
  */
-public final class WebBrowser {
+public final class WebBrowser implements XConfigurationListener {
 
     private static final String ERROR_MSG = Messages.gettext("Could not open: ");
+    public static final String WEBPATH = "//web/body/web";
+
+    private static WebPreferences webprefs;
+    private static Document doc;
+
+    static {
+        XConfiguration.addXConfigurationListener(new WebBrowser());
+    }
 
     /**
      * Constructor
      */
-    private WebBrowser() {
-        throw new UnsupportedOperationException();
+    private WebBrowser() { }
+
+    /**
+     * Prevent the listener that configuration has changed
+     *
+     * @param e the event
+     */
+    public void configurationChanged(XConfigurationEvent e) {
+        Set<String> path = e.getModifiedPaths();
+        if (path.contains("ALL") || path.contains(WEBPATH)) {
+            webprefs = null;
+            doc = null;
+        }
     }
 
     /**
@@ -46,13 +73,7 @@ public final class WebBrowser {
         if (url == null) {
             JOptionPane.showMessageDialog(null, ERROR_MSG + description);
         } else {
-            try {
-                Desktop.getDesktop().browse(url.toURI());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, ERROR_MSG + url);
-            } catch (URISyntaxException e) {
-                JOptionPane.showMessageDialog(null, ERROR_MSG + url);
-            }
+            openUrl(url.toString());
         }
     }
 
@@ -65,19 +86,52 @@ public final class WebBrowser {
             return;
         }
 
+        if (webprefs == null) {
+            if (doc == null) {
+                doc = XConfiguration.getXConfigurationDocument();
+            }
+            webprefs = XConfiguration.get(WebBrowser.WebPreferences.class, doc, WEBPATH)[0];
+        }
+
         try {
             if (url.charAt(0) == 'h' || url.charAt(0) == 'f') {
                 // We have something like http://... or file://
-                Desktop.getDesktop().browse(new URI(url));
+                if (webprefs.defaultBrowser) {
+                    Desktop.getDesktop().browse(new URI(url));
+                } else {
+                    Runtime.getRuntime().exec(webprefs.cmdBrowser + " " + new URI(url).toString());
+                }
             } else {
                 // We have <pierre.marechal@scilab.org>
                 String mail = "mailto:" + url.substring(1, url.length() - 1);
-                Desktop.getDesktop().mail(new URI(mail));
+                if (webprefs.defaultMailer) {
+                    Desktop.getDesktop().mail(new URI(mail));
+                } else {
+                    Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(mail).toString());
+                }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, ERROR_MSG + url);
-        } catch (URISyntaxException e) {
-            JOptionPane.showMessageDialog(null, ERROR_MSG + url);
+        }
+    }
+
+    /* web */
+    @XConfAttribute
+    static class WebPreferences {
+
+        boolean defaultBrowser;
+        boolean defaultMailer;
+        String cmdBrowser;
+        String cmdMailer;
+
+        private WebPreferences() { }
+
+        @XConfAttribute(tag = "web", attributes = {"default-browser", "default-mailer", "command-browser", "command-mailer"})
+        private void set(boolean defaultBrowser, boolean defaultMailer, String cmdBrowser, String cmdMailer) {
+            this.defaultBrowser = defaultBrowser;
+            this.defaultMailer = defaultMailer;
+            this.cmdBrowser = cmdBrowser;
+            this.cmdMailer = cmdMailer;
         }
     }
 }

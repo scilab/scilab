@@ -644,6 +644,35 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     // draw
     // ============================================
 
+    // Title
+    // ============================================
+
+    my_title_axes             = newaxes();
+    my_title_axes.axes_bounds = [1/3,0,2/3,1];
+    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
+
+    // make axes transparent
+    my_title_axes.filled = "off";
+
+    Rs = string(R);
+
+    if TypeDomain == "Square" then
+        end_title = " Function on [-"+Rs+","+Rs+"]x[-"+Rs+","+Rs+"]"
+    else
+        end_title = " Function on D(0,R="+Rs+")"
+    end
+
+    if StrFunc == "f" then
+        the_title = "Your Custom (named f) Complex" + end_title;
+    else
+        the_title = "The Complex " + StrFunc + end_title;
+    end
+
+    xtitle(the_title);
+
+    my_title_axes.title.text       = the_title;
+    my_title_axes.title.font_size  = 3;
+
     // plot Im(z)
     // ============================================
 
@@ -687,35 +716,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
         yellow_line = get('hdl');
         yellow_line.thickness = 3;
     end
-
-    // Title
-    // ============================================
-
-    my_title_axes             = newaxes();
-    my_title_axes.axes_bounds = [1/3,0,2/3,1];
-    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
-
-    // make axes transparent
-    my_title_axes.filled = "off";
-
-    Rs = string(R);
-
-    if TypeDomain == "Square" then
-        end_title = " Function on [-"+Rs+","+Rs+"]x[-"+Rs+","+Rs+"]"
-    else
-        end_title = " Function on D(0,R="+Rs+")"
-    end
-
-    if StrFunc == "f" then
-        the_title = "Your Custom (named f) Complex" + end_title;
-    else
-        the_title = "The Complex " + StrFunc + end_title;
-    end
-
-    xtitle(the_title);
-
-    my_title_axes.title.text       = the_title;
-    my_title_axes.title.font_size  = 3;
 
 endfunction
 

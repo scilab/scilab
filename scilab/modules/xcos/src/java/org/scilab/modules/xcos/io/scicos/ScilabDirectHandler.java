@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.Scilab;
-import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -158,7 +158,7 @@ public class ScilabDirectHandler implements Handler {
     @Override
     public synchronized Map<String, String> readContext() {
         LOG.entering("ScilabDirectHandler", "readContext");
-        final ScilabList list;
+        final ScilabMList list;
         final Map<String, String> result = new LinkedHashMap<String, String>();
 
         final ScilabType data;
@@ -167,11 +167,11 @@ public class ScilabDirectHandler implements Handler {
         } catch (JavasciException e) {
             throw new RuntimeException(e);
         }
-        if (data instanceof ScilabList) {
-            list = (ScilabList) data;
+        if (data instanceof ScilabMList) {
+            list = (ScilabMList) data;
             LOG.finer("data available");
         } else {
-            list = new ScilabList();
+            list = new ScilabMList();
             LOG.finer("data unavailable");
         }
 

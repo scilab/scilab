@@ -87,34 +87,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     drawlater();
 
-    // plot Im(z)
-    // ============================================
-
-    subplot(1,2,1);
-    plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
-    xtitle("Im("+StrFunc+"(z))");
-
-    // plot Re(z) + the real restriction
-    // ============================================
-
-    subplot(1,2,2);
-    plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
-    xtitle("Re("+StrFunc+"(z))");
-
-    // real function in yellow
-    // ============================================
-
-    if DomReal(2) > DomReal(1) then
-        //xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
-        xx = linspace(DomReal(1),DomReal(2),40)';
-        yy = zeros(xx);
-        zz = evstr(StrFunc+"(xx)");
-        param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
-        yellow_line = get('hdl');
-        yellow_line.thickness = 3;
-        captions(yellow_line, "the real "+StrFunc+" function", "lower_caption");
-    end
-
     // Title
     // ============================================
 
@@ -144,6 +116,36 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     my_title_axes.title.text       = the_title;
     my_title_axes.title.font_size  = 3;
     my_title_axes.title.font_style = 2;
+
+    // plot Im(z)
+    // ============================================
+
+    subplot(1,2,1);
+    plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
+    xtitle("Im("+StrFunc+"(z))");
+
+    // plot Re(z) + the real restriction
+    // ============================================
+
+    subplot(1,2,2);
+    plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
+    xtitle("Re("+StrFunc+"(z))");
+
+    // real function in yellow
+    // ============================================
+
+    if DomReal(2) > DomReal(1) then
+        //xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
+        xx = linspace(DomReal(1),DomReal(2),40)';
+        yy = zeros(xx);
+        zz = evstr(StrFunc+"(xx)");
+        param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
+        yellow_line = get('hdl');
+        yellow_line.thickness = 3;
+        captions(yellow_line, "the real "+StrFunc+" function", "lower_caption");
+    end
+
+
 
     drawnow();
 
