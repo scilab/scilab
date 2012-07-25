@@ -17,6 +17,7 @@
 #include <curses.h>
 #include <termios.h>
 #include <term.h>
+#include <string.h>
 #include "cliHistory.h"
 #include "termcapManagement.h"
 #include "gotoFunctions.h"
