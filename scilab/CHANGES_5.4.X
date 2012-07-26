@@ -139,10 +139,13 @@ Bug Fixes
 * Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
                     was always calculated its own, arbitrary, internal value.
 
-* Bug #6702 fixed - the max and min functions returned a scalar in k when the input 
+* Bug #6702 fixed - the max and min functions returned a scalar in k when the input
                     argument was the last column of an hypermatrix.
 
 * Bug #7251 fixed - Fix an error in the qp_solve documentation.
+
+* Bug #7855 fixed - It was not possible to change the event function while
+                    the event handler was enabled.
 
 * Bug #8351 fixed - The integrate function did not manage the optional input 
                     arguments properly.
