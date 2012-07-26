@@ -308,6 +308,9 @@ Bug Fixes
 * Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
                      set to 4096.
 
+* Bug #11538 fixed - xxxWideString functions (API Scilab) did not check to_wide_string
+                     conversion (crashed under GNU/Linux & Mac OS X).
+
 * Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
                      used to select the file name for graphic export.
 
