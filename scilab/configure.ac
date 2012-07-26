@@ -599,6 +599,8 @@ case "$CC" in
     ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
     ARCH_FFLAGS="-mmacosx-version-min=10.5"
     ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    # We need this to be passed to all linker commands
+    LDFLAGS="$LDFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
 
     case "$F77" in
          gfortran-*|gfortran)
@@ -659,6 +661,7 @@ case "$host" in
 esac
 ;; # end of not a gcc compiler
 esac
+
 
 # enable the code coverage
 if test "$enable_code_coverage" = yes; then
