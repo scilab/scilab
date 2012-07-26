@@ -150,6 +150,9 @@ Bug Fixes
 
 * Bug #7251 fixed - Error fixed in qp_solve help page.
 
+* Bug #7763 fixed - The mtlb_max and mtlb_min functions did not manage the complex with 
+                    null imaginary part.
+
 * Bug #7855 fixed - It was not possible to change the event function while
                     the event handler was enabled.
 
