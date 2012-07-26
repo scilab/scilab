@@ -317,6 +317,9 @@ Bug Fixes
 * Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
                      used to select the file name for graphic export.
 
+* Bug #11553 fixed - The uicontextmenu handles (and their children) were not
+                     destroyed at the end of execution.
+
 
 Known Incompatibilities
 =======================
