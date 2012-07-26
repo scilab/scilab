@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="InputArgument" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getNbInputArgument" xml:lang="en">
   <refnamediv>
-    <refname>InputArgument</refname>
+    <refname>getNbInputArgument (Scilab gateway)</refname>
     <refpurpose>A C gateway function which provides the number of input
       arguments present in the calling Scilab function
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>nb_params = InputArgument</synopsis>
+      <synopsis>nb_params = getNbInputArgument(void* _pvCtx)</synopsis>
+      <synopsis>nb_params = nbInputArgument</synopsis>
+      <synopsis>nb_params = Rhs</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
-      <varlistentry>
+        <varlistentry>
+            <term>_pvCtx</term>
+            <listitem>
+                <para>
+                    Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
         <term>nb_params</term>
         <listitem>
           <para>the number of input arguments present in the calling Scilab
-            function
+          function
           </para>
         </listitem>
       </varlistentry>
@@ -37,13 +47,14 @@
       the number of input arguments detected in the calling Scilab
       function.
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+    <![CDATA[ 
 #include "api_scilab.h"
 #include "sciprint.h"
 
 int sci_myrhs(char * fname)
 {
-  sciprint("The number of input parameters is %d\n", InputArgument);
+  sciprint("The number of input parameters is %d\n", getNbInputArgument);
 
   return 0;
 }
@@ -53,7 +64,7 @@ int sci_myrhs(char * fname)
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="OutputArgument">OutputArgument</link>
+        <link linkend="getNbOutputArgument">getNbOutputArgument</link>
       </member>
       <member>
         <link linkend="sciprint">sciprint</link>
