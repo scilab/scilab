@@ -161,7 +161,7 @@ libsciexternal_objects_la_etc_DATA = etc/external_objects.quit etc/external_obje
 #### external_objects : include files ####
 libsciexternal_objects_la_includedir=$(pkgincludedir)
 libsciexternal_objects_la_include_HEADERS = includes/ExternalObjects.h \
-includes/OptionsHelper.hxx.h \
+includes/OptionsHelper.hxx \
 includes/ScilabAbstractEnvironmentException.hxx \
 includes/ScilabAbstractInvoker.hxx \
 includes/ScilabAbstractOptionsSetter.hxx \
