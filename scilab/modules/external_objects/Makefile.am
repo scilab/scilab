@@ -153,3 +153,25 @@ libsciexternal_objects_la_includedir=$(pkgincludedir)
 #### external_objects : gateway declaration ####
 libsciexternal_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciexternal_objects_la_sci_gateway_DATA = sci_gateway/external_objects_gateway.xml
+
+#### external_objects : init scripts ####
+libsciexternal_objects_la_etcdir = $(mydatadir)/etc
+libsciexternal_objects_la_etc_DATA = etc/external_objects.quit etc/external_objects.start
+
+#### external_objects : include files ####
+libsciexternal_objects_la_includedir=$(pkgincludedir)
+libsciexternal_objects_la_include_HEADERS = includes/ExternalObjects.h \
+includes/OptionsHelper.hxx.h \
+includes/ScilabAbstractEnvironmentException.hxx \
+includes/ScilabAbstractInvoker.hxx \
+includes/ScilabAbstractOptionsSetter.hxx \
+includes/ScilabEnvironments.hxx \
+includes/ScilabGatewayOptions.hxx \
+includes/ScilabOptionsSetter.hxx \
+includes/ScilabAbstractEnvironment.hxx \
+includes/ScilabAbstractEnvironmentWrapper.hxx \
+includes/ScilabAbstractMemoryAllocator.hxx \
+includes/ScilabAutoCleaner.hxx \
+includes/ScilabGateway.hxx \
+includes/ScilabObjects.hxx \
+includes/ScilabStream.hxx
