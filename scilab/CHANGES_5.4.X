@@ -23,6 +23,9 @@ Xcos
 
 * Bug #11518 fixed - When zooming on CLR block-text, the block was outside the box.
 
+* Bug #11550 fixed - Closing the scope graph while running simulation led to a
+                     segfault.
+
 
 Preferences
 ===========
