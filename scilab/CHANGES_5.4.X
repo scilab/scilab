@@ -202,6 +202,8 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
 
+* Bug #11450 fixed - Logarithmic ticks were wrongly not sorted.
+
 * Bug #11488 fixed - Error in console due to browsevar when deleting a global
                      var.
 

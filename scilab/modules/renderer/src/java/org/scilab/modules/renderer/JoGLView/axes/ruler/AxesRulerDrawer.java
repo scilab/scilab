@@ -40,6 +40,7 @@ import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 /**
  * @author Pierre Lando
@@ -154,6 +155,7 @@ public class AxesRulerDrawer {
             rulerDrawingResult = rulerDrawers[0].draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getXAxisAutoTicks()) {
+                Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
@@ -230,6 +232,7 @@ public class AxesRulerDrawer {
             rulerDrawingResult = rulerDrawers[1].draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getYAxisAutoTicks()) {
+                Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
@@ -318,6 +321,7 @@ public class AxesRulerDrawer {
                 rulerDrawingResult = rulerDrawers[2].draw(drawingTools, rulerModel);
                 values = rulerDrawingResult.getTicksValues();
                 if (axes.getZAxisAutoTicks()) {
+                    Arrays.sort(values);
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
