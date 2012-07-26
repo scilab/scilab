@@ -238,6 +238,8 @@ Bug Fixes
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
+* Bug #11420 fixed - When using the event_handler of the default figure, events were not trapped.
+
 * Bug #11422 fixed - datatips did not work when the figure contained uicontrols.
 
 * Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted

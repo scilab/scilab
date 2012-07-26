@@ -363,6 +363,9 @@ public final class SwingView implements GraphicView {
 
                 tab.setParentWindowId(window.getId());
 
+                tab.setEventHandler(figure.getEventHandlerString());
+                tab.setEventHandlerEnabled(figure.getEventHandlerEnable());
+
                 DockingManager.dock(tab, window.getDockingPort());
                 ActiveDockableTracker.requestDockableActivation(tab);
 
