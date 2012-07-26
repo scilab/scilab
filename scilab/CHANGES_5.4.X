@@ -293,6 +293,9 @@ Bug Fixes
 * Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
                      fixed to 4096.
 
+* Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
+                     used to select the file name for graphic export.
+
 
 Known Incompatibilities
 =======================
