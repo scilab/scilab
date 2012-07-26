@@ -150,6 +150,8 @@ Bug Fixes
 * Bug #7855 fixed - It was not possible to change the event function while
                     the event handler was enabled.
 
+* Bug #7873 fixed - The lagr parameter of the help page of the qld function was wrong.
+
 * Bug #8351 fixed - The integrate function did not manage the optional input 
                     arguments properly.
 
