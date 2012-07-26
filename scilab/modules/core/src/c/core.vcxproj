@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -328,6 +328,7 @@ cd ..
     <ClCompile Include="..\cpp\search_functions.cpp" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setieee.c" />
+    <ClCompile Include="setlines.c" />
     <ClCompile Include="stack1.c" />
     <ClCompile Include="stack2.c" />
     <ClCompile Include="stack3.c" />
@@ -541,6 +542,7 @@ cd ..
     <ClInclude Include="..\..\includes\sci_types.h" />
     <ClInclude Include="..\..\includes\setformat.h" />
     <ClInclude Include="..\..\includes\setieee.h" />
+    <ClInclude Include="..\..\includes\setlines.h" />
     <ClInclude Include="..\..\includes\setPrecisionFPU.h" />
     <ClInclude Include="..\..\includes\sigbas.h" />
     <ClInclude Include="..\..\includes\signal_mgmt.h" />

@@ -85,8 +85,9 @@ function demo_mandelbrot()
     ca.data_bounds = [xmin ymin ; xmax ymax];
     ca.tight_limits = "on";
     ca.axes_visible = ["on" "on" "off"];
-    ca.title.font_size = 3;
-    xtitle(justify([_("Matplot1(..) displays an area with SCALED AXES");_("(here an area of the Mandelbrot set)");],"c"))
+    ca.title.font_size = 2;
+    Ttxt = _("Matplot1(..) displays a matrix\n(value => color#), with SCALED AXES\n(here is a part of the Mandelbrot set)")
+    xtitle(justify(msprintf(Ttxt),"c"))
     xlabel(_("Real part"))
     ylabel(_("Imaginary part"))
     
@@ -97,3 +98,4 @@ endfunction
 
 demo_mandelbrot();
 clear demo_mandelbrot;
+

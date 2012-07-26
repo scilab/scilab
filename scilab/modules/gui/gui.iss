@@ -24,7 +24,7 @@ Source: bin\sci{#GUI}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {
 
 Source: modules\{#GUI}\jar\org.scilab.modules.{#GUI}.jar; DestDir: {app}\modules\{#GUI}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: thirdparty\flexdock-1.1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: thirdparty\flexdock-1.2.0.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\commons-logging-1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\looks-2.1.1.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: thirdparty\skinlf.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

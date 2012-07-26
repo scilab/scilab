@@ -5,6 +5,8 @@
 Xcos
 ====
 
+* Bug #8510 fixed - The message "Diagram contains implicit blocks..." was blocker
+
 * Bug #9290 fixed - HALT blocks displayed STOP
 
 * Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
@@ -53,6 +55,8 @@ Signal Processing
 Compilation
 ===========
 
+* Switch to flexdock 1.2.0.
+
 * Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
 
 
@@ -63,6 +67,10 @@ GUI
 
 * Figure closure can now be managed by the user (confirmation, ...) through the
   'closerequestfcn' property.
+
+* F5 and F6 change the focus of the dock element.
+
+* Improvement in the refresh of the dock elements.
 
 
 Obsolete Functions
@@ -161,7 +169,9 @@ Bug Fixes
                               when executed.
 
 * Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
-                      repercuted.
+                     repercuted.
+
+* Bug #10865 fixed - At start-up filebrowser could have the focus.
 
 * Bug #10915 fixed - It was not possible to select several files when using
                      button "Open file" in console toolbar.

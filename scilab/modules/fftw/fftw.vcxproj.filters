@@ -108,9 +108,9 @@
     <None Include="locales\fftw.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />
   </ItemGroup>
 </Project>

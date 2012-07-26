@@ -327,6 +327,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nofftw", "modules\fftw\src\nofftw\nofftw.vcxproj", "{7D4C4BE5-62F7-4886-9E59-645017329A22}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fftw", "modules\fftw\fftw.vcxproj", "{13B86307-5A11-48D6-94BE-71F77BCB82D1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8028F371-6A94-4A26-8804-6E7F05F1D1AA} = {8028F371-6A94-4A26-8804-6E7F05F1D1AA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noscicos", "modules\scicos\src\c\noscicos\noscicos.vcxproj", "{0A0B68FA-98F5-4FC2-A9E9-4AC9CEE6A6B4}"
 EndProject
