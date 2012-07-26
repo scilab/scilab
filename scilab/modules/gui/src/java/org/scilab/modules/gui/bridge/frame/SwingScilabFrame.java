@@ -13,10 +13,15 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+
 import java.awt.Component;
 
 import javax.swing.JPanel;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -597,5 +602,30 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     public void update(String property, Object value) {
         SwingViewWidget.update(this, property, value);
+    }
+
+    /**
+     * Set the enable status of the frame and its children
+     * @param status the status to set
+     */
+    public void setEnabled(boolean status) {
+        if (status) {
+            // Enable the frame
+            super.setEnabled(status);
+            // Enable its children according to their __GO_UI_ENABLE__ property
+            String[] children = (String[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
+            for (int kChild = 0; kChild < children.length; kChild++) {
+                Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
+                SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+            }
+        } else {
+            // Disable the frame
+            super.setEnabled(status);
+            // Disable its children
+            Component[] components = getComponents();
+            for (int compIndex = 0; compIndex < components.length; compIndex++) {
+                components[compIndex].setEnabled(false);
+            }
+        }
     }
 }

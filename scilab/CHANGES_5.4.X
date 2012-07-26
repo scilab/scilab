@@ -221,13 +221,16 @@ Bug Fixes
 
 * Bug #11069 fixed - An axe could be wrongly set as parent for an uicontrol.
 
+* Bug #11070 fixed - The "Visible"/"Enable"/"Position" properties of a frame
+                     uicontrol did not impact its children.
+
 * Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
 * Bug #11450 fixed - Logarithmic ticks were not sorted.
 
 * Bug #11485 fixed - delete function kills reference to axes before use it.
 
-* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting 
+* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting
                      a global var.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
