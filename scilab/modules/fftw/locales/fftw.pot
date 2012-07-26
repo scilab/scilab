@@ -54,7 +54,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 178
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Array of floating point numbers expected.\n"
+"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
 msgstr ""
 
 #
@@ -67,7 +67,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 398
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: An integer or a floating point number "
+"%s: Wrong type for argument #%d: An integer or a floating point number "
 "expected.\n"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 489
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: An array of floating point or integer "
+"%s: Wrong type for argument #%d: An array of floating point or integer "
 "numbers expected.\n"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 615
 #, c-format
-msgid "%s: Wrong values for input argument #%d:Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #
@@ -173,12 +173,6 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_fftw.c, line: 794
-#, c-format
-msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_fftw.c, line: 799
 #, c-format
 msgid ""
@@ -195,26 +189,13 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 1160
 #, c-format
-msgid "%s:Plan, No more memory.\n"
+msgid "%s: No more memory.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 158
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 192
-# File: sci_gateway/c/sci_fftw_flags.c, line: 199
-# File: sci_gateway/c/sci_fftw_flags.c, line: 222
-# File: sci_gateway/c/sci_fftw_flags.c, line: 230
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 69
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 88
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 115
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 132
-#, c-format
-msgid "%s: No more memory.\n"
 msgstr ""
 
 #
