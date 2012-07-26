@@ -28,7 +28,7 @@ import org.scilab.modules.gui.editor.PolylineHandler;
 public class ScilabClipboard {
 
     static ScilabClipboard instance = null;
-    String polylineUid = null;
+    String objectUid = null;
     Integer copiedColor = 0;
     boolean needDuplication = false;
 
@@ -41,65 +41,65 @@ public class ScilabClipboard {
     }
 
     /**
-    * Copy a polyline to the clipboad.
-    * @param polyline Polyline unique identifier.
+    * Copy a object to the clipboad.
+    * @param uid object unique identifier.
     */
-    public void copy(String polyline) {
-        polylineUid = polyline;
+    public void copy(String uid) {
+    	objectUid = uid;
         needDuplication = true;
     }
 
     /**
-    * Paste the copied polyline to the given axes.
+    * Paste the copied object to the given axes.
     * @param figure Figure unique identifier.
     * @param position Vector with mouse position x and y.
     * @retrun The UID from pasted object
     */
     public String paste(String figure, Integer[] position) {
-        String polyline = polylineUid;
+        String object = objectUid;
         /*We store only the uid, so we need check if the object exists*/
         if (!canPaste()) {
             return null;
         }
 
-        String axesFrom = (new ObjectSearcher()).searchParent(polyline, GraphicObjectProperties.__GO_AXES__);
+        String axesFrom = (new ObjectSearcher()).searchParent(object, GraphicObjectProperties.__GO_AXES__);
         if (axesFrom == null) {
             return null;
         }
 
         if (needDuplication == true ) {
-            polyline = PolylineHandler.getInstance().duplicate(polylineUid);
+            object = CommonHandler.duplicate(objectUid);
         } else {
-            PolylineHandler.getInstance().cut(polyline);
+            CommonHandler.cut(object);
         }
 
-        PolylineHandler.getInstance().setColor(polyline, copiedColor);
+        CommonHandler.setColor(object, copiedColor);
 
         String axesTo = AxesHandler.clickedAxes(figure, position);
         if (axesTo != null) { /* If there is an axes in the clicked position then adjust the bounds, make the axes visible and paste */
             AxesHandler.axesBound(axesFrom, axesTo);
             AxesHandler.setAxesVisible(axesTo);
-            PolylineHandler.getInstance().insert(axesTo, polyline);
-            polylineUid = null;
-            return polyline;
+            CommonHandler.insert(axesTo, object);
+            objectUid = null;
+            return object;
         } else { /* If doesn't exists an axes will duplicate the origin axes */
             axesTo = AxesHandler.duplicateAxes(axesFrom);
             if (axesTo != null) { /* If duplicated sucessfull then adjust the bounds and paste */
                 AxesHandler.axesBound(axesFrom, axesTo);
-                PolylineHandler.getInstance().insert(axesTo, polyline);
-                polylineUid = null;
-                return polyline;
+                CommonHandler.insert(axesTo, object);
+                objectUid = null;
+                return object;
             }
             return null;
         }
     }
 
     /**
-    * Cut a polyline to the clipboad.
-    * @param polyline Polyline unique identifier.
+    * Cut an object to the clipboad.
+    * @param object object unique identifier.
     */
-    public void cut(String polyline) {
-        polylineUid = polyline;
+    public void cut(String object) {
+    	objectUid = object;
         needDuplication = false;
     }
 
@@ -108,8 +108,8 @@ public class ScilabClipboard {
     * @return True if can be pasted, false otherwise.
     */
     public boolean canPaste() {
-        if (!PolylineHandler.getInstance().polylineExists(polylineUid)) {
-            polylineUid = null;
+        if (!CommonHandler.objectExists(objectUid)) {
+        	objectUid = null;
             return false;
         }
         return true;
@@ -130,7 +130,7 @@ public class ScilabClipboard {
     */
     public String getCurrentObject() {
 
-        return polylineUid;
+        return objectUid;
     }
 }
 

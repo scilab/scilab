@@ -47,149 +47,6 @@ public class PolylineHandler {
     }
 
     /**
-     * Checks if the polyline object exists.
-     *
-     * @param uid Polyline unique identifier.
-     * @return True if exists, false otherwise.
-     */
-    public Boolean polylineExists(String uid) {
-        if (uid != null) {
-            if (GraphicController.getController().getObjectFromId(uid) != null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-    * Checks if the polyline uses line mode.
-    *
-    * @param uid Polyline unique identifier.
-    * @return True if line mode is enabled, false otherwise.
-    */
-    public Boolean isLineEnabled(String uid) {
-        return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_MODE__);
-    }
-
-    /**
-    * Checks if the polyline uses mark mode.
-    *
-    * @param uid Polyline unique identifier.
-    * @return True if mark mode is enabled, false otherwise.
-    */
-    public Boolean isMarkEnabled(String uid) {
-        return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_MODE__);
-    }
-
-    /**
-    * Get the mark style from the given polyline.
-    *
-    * @param uid Polyline unique identifier.
-    * @return Style number.
-    */
-    public Integer getMarkStyle(String uid) {
-        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_STYLE__);
-    }
-
-    /**
-    * Get the mark size from the given polyline.
-    *
-    * @param uid Polyline unique identifier.
-    * @return Mark size.
-    */
-    public Integer getMarkSize(String uid) {
-        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE__);
-    }
-
-    /**
-    * Get the mark size from the given polyline.
-    *
-    * @param uid Polyline unique identifier.
-    * @return Mark size.
-    */
-    public Integer getMarkSizeUnit(String uid) {
-        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
-    }
-
-    /**
-    * Change polyline line/mark color.
-    *
-    * @param uid Polyline unique identifier.
-    * @param newColor Color to be used.
-    * @return Returns the old color of the polyline.
-    */
-    public Integer setColor(String uid, Integer newColor) {
-
-        if (uid == null) {
-            return 0;
-        }
-        Integer oldColor;
-        Boolean markon = isMarkEnabled(uid);
-        if (markon == true) {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__, newColor );
-        } else {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__, newColor );
-        }
-
-        return oldColor;
-
-    }
-
-    /**
-    * Duplicate the polyline and its data.
-    *
-    * @param uid Polyline unique identifier.
-    * @return New duplicated polyline uid or null if it fails.
-    */
-    public String duplicate(String uid) {
-        String dup = null;
-        dup = GraphicController.getController().cloneObject(uid);
-        GraphicController.getController().setGraphicObjectRelationship("", dup);
-        String ret = PolylineData.createPolylineData(uid, dup);
-        if (ret == null) {
-            delete(dup);
-        }
-        return dup;
-
-    }
-
-    /**
-    * Inserts the given polyline in the given axes.
-    *
-    * @param axes Axes unique identifier.
-    * @param polyline Polyline unique identifier.
-    */
-    public void insert(String axes, String polyline) {
-        GraphicController.getController().setGraphicObjectRelationship(axes, polyline);
-        String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
-        GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
-        GraphicController.getController().setGraphicObjectRelationship(newCompound, polyline);
-    }
-
-    /**
-    * Remove the relationship from the given polyline
-    * from its parent.
-    *
-    * @param uid Polyline unique identifier.
-    */
-    public void cut(String uid) {
-        GraphicController.getController().setGraphicObjectRelationship("", uid);
-    }
-
-    /**
-    * Remove the relationship from the given polyline
-    * from its parent and deletes it.
-    *
-    * @param uid Polyline unique identifier.
-    */
-    public void delete(String uid) {
-        GraphicController.getController().removeRelationShipAndDelete(uid);
-    }
-
-
-    /**
     * Deletes all child entities from the given object.
     *
     * @param uid Object unique identifier.
@@ -203,7 +60,7 @@ public class PolylineHandler {
             for (Integer i = 0; i < childCount; ++i) {
                 String cType = (String)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
                 if (cType != GraphicObjectProperties.__GO_LABEL__) {
-                    delete(child[i]);
+                    CommonHandler.delete(child[i]);
                 } else {
                     String[] text = { "" };
                     GraphicController.getController().setProperty(child[i], GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
@@ -241,15 +98,6 @@ public class PolylineHandler {
         }
     }
 
-    /**
-    * Retrieve if the polyline is visible.
-    *
-    * @param uid Polyline unique identifier.
-    * @return True if is visible, false otherwise.
-    */
-    public Boolean isVisible(String uid) {
-        return (Boolean)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_VISIBLE__);
-    }
 
     private String[] searchCompound(String uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_COMPOUND__);
@@ -263,7 +111,6 @@ public class PolylineHandler {
     * @param position The click position
     * @param nextPosition The drag position
     */
-
     public void dragPolyline(String polyline, Integer[] position, Integer[] nextPosition) {
 
         String axes = (new ObjectSearcher()).searchParent(polyline, GraphicObjectProperties.__GO_AXES__);
@@ -278,15 +125,6 @@ public class PolylineHandler {
         }
     }
 
-    /**
-    * Get The parent UID from an object
-    *
-    * @param object The object
-    * @return the parent UID
-    */
-    public String getParent(String object) {
 
-        return (String)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT__);
-    }
 }
 

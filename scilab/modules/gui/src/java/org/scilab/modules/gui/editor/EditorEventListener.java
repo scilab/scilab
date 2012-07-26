@@ -20,9 +20,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.*;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
 import org.scilab.modules.gui.datatip.MarkerCreate;
@@ -33,10 +30,11 @@ import org.scilab.modules.gui.datatip.DatatipDrag;
 import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.gui.datatip.DatatipManagerMode;
 
-import org.scilab.modules.gui.editor.AxesHandler;
+
 import org.scilab.modules.gui.editor.Editor;
-import org.scilab.modules.gui.editor.PolylineHandler;
-import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.gui.editor.EditorManager;
+import org.scilab.modules.gui.editor.EntityPicker;
+
 
 import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.ged.SwapObject;

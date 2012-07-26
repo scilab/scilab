@@ -82,7 +82,7 @@ public class LegendHandler {
                     return;
                 }
             }
-            PolylineHandler.getInstance().delete(legend);
+            CommonHandler.delete(legend);
         }
         legend = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
         GraphicController.getController().setGraphicObjectRelationship(axes, legend);
@@ -133,7 +133,7 @@ public class LegendHandler {
                 }
             }
             for (Integer i = 0; i < textOld.length; i++) {
-                if ( i != (textOld.length - remove - 1)) {
+                if (i != (textOld.length - remove - 1)) {
                     texts.add(textOld[i]);
                 }
             }
@@ -151,7 +151,7 @@ public class LegendHandler {
             GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINKS__, linksToSet);
             GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 0);
         } else {
-            PolylineHandler.getInstance().delete(legend);
+            CommonHandler.delete(legend);
         }
     }
 

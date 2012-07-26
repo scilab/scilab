@@ -418,18 +418,18 @@ public class Editor {
      * enable/disable popup menu items if there is/isn't
      * a object selected.
      *
-     * @param uid polyline/legend unique identifier. Null uid unselect previous selection.
+     * @param uid object unique identifier. Null uid unselect previous selection.
      */
     public void setSelected(String uid) {
 
-        if (PolylineHandler.getInstance().polylineExists(selected)) {
-            PolylineHandler.getInstance().setColor(selected, oriColor);
+        if (CommonHandler.objectExists(selected)) {
+            CommonHandler.setColor(selected, oriColor);
         }
 
         selected = uid;
 
         if (selected != null) {
-            oriColor = PolylineHandler.getInstance().setColor(selected, -3);
+            oriColor = CommonHandler.setColor(selected, -3);
             if (!isLegend) {
                 copy.setEnabled(true);
                 cut.setEnabled(true);
@@ -450,16 +450,16 @@ public class Editor {
     }
 
     /**
-    * Get current color of the polyline line/mark.
+    * Get current color of the object line/mark.
     *
-    * @return Returns the current color of the polyline.
+    * @return Returns the current color of the object.
     */
     public Integer getOriColor() {
         return oriColor;
     }
 
     /**
-    * Set current color of the polyline line/mark.
+    * Set current color of the object line/mark.
     *
     * @param newScilabColor Color selected by user.
     */
@@ -473,7 +473,7 @@ public class Editor {
      * @return selected object uid or null if there isn't any selected.
      */
     public String getSelected() {
-        if (PolylineHandler.getInstance().polylineExists(selected)) {
+        if (CommonHandler.objectExists(selected)) {
             return selected;
         } else {
             setSelected(null);
@@ -516,9 +516,9 @@ public class Editor {
         boolean isDuplicated = false;
 
         currentObject = ScilabClipboard.getInstance().getCurrentObject();
-        currentParent = PolylineHandler.getInstance().getParent(currentObject);
+        currentParent = CommonHandler.getParent(currentObject);
         newObject = ScilabClipboard.getInstance().paste(figureUid, lastClick);
-        newParent = PolylineHandler.getInstance().getParent(newObject);
+        newParent = CommonHandler.getParent(newObject);
         if (newObject == currentObject) {
             isDuplicated = false;
         }
@@ -544,8 +544,8 @@ public class Editor {
         String toDelete = getSelected();
         if (toDelete != null) {
             setSelected(null);
-            editorHistory.addAction(new ActionDelete(toDelete, PolylineHandler.getInstance().getParent(toDelete)));
-            PolylineHandler.getInstance().cut(toDelete);
+            editorHistory.addAction(new ActionDelete(toDelete, CommonHandler.getParent(toDelete)));
+            CommonHandler.cut(toDelete);
         }
     }
 

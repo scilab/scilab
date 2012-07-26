@@ -90,14 +90,14 @@ public class EntityPicker {
 
         if (polylines != null) {
             for (int i = 0; i < polylines.length; ++i) {
-                if (PolylineHandler.getInstance().isVisible(polylines[i])) {
+                if (CommonHandler.isVisible(polylines[i])) {
 
-                    if (PolylineHandler.getInstance().isLineEnabled(polylines[i])) {
+                    if (CommonHandler.isLineEnabled(polylines[i])) {
                         if (isOverLine(polylines[i], c2d[0], c2d[1]) != -1) {
                             return polylines[i];
                         }
                     }
-                    if (PolylineHandler.getInstance().isMarkEnabled(polylines[i])) {
+                    if (CommonHandler.isMarkEnabled(polylines[i])) {
                         if (isOverMark(polylines[i], c2d[0], c2d[1]) != -1) {
                             return polylines[i];
                         }
@@ -171,8 +171,8 @@ public class EntityPicker {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
-        Integer size = PolylineHandler.getInstance().getMarkSize(uid);
-        Integer unit = PolylineHandler.getInstance().getMarkSizeUnit(uid);
+        Integer size = CommonHandler.getMarkSize(uid);
+        Integer unit = CommonHandler.getMarkSizeUnit(uid);
 
         int finalSize = (unit == 1) ? (8 + 2 * size) : size;
         finalSize /= 2;
@@ -332,7 +332,7 @@ public class EntityPicker {
     public AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
 
         String axes = AxesHandler.clickedAxes(figure, pos);
-        if ( axes == null) {
+        if (axes == null) {
             return null;
         }
         Double[] corners;
