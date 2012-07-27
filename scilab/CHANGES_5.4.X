@@ -45,6 +45,7 @@ Documentation
 * help_from_sci updated to manage recent changes in docbook Scilab files.
 
 * Categories have been created for the following modules help pages:
+    - Scilab. See bug #11546.
     - Statistics. See bug #9108.
     - Genetic algorithms. See bug #11514.
     - Simulated annealing. See bug #11560.
