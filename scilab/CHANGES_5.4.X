@@ -204,6 +204,9 @@ Bug Fixes
 
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      properly.
+                     
+* Bug #11050 fixed - The output argument rd in the ode and ode_root help pages was not
+                     documented.
 
 * Bug #11069 fixed - An axe could be wrongly set as parent for an uicontrol.
 
