@@ -16,7 +16,6 @@
 ;
 #define GENETICALGORITHMS "genetic_algorithms"
 ;
-Source: modules\{#GENETICALGORITHMS}\license.txt; DestDir: {app}\modules\{#GENETICALGORITHMS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.quit; DestDir: {app}\modules\{#GENETICALGORITHMS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.start; DestDir: {app}\modules\{#GENETICALGORITHMS}\etc; Components: {#COMPN_SCILAB}

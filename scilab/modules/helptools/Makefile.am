@@ -62,7 +62,6 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA =  license.txt 
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc

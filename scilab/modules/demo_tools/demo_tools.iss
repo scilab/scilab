@@ -18,7 +18,6 @@
 ;
 #define DEMO_TOOLS "demo_tools"
 ;
-Source: modules\{#DEMO_TOOLS}\license.txt; DestDir: {app}\modules\{#DEMO_TOOLS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DEMO_TOOLS}\etc\{#DEMO_TOOLS}.quit; DestDir: {app}\modules\{#DEMO_TOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DEMO_TOOLS}\etc\{#DEMO_TOOLS}.start; DestDir: {app}\modules\{#DEMO_TOOLS}\etc; Components: {#COMPN_SCILAB}

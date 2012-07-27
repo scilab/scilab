@@ -20,7 +20,6 @@
 Source: bin\{#API_SCILAB}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#API_SCILAB}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#API_SCILAB}\license.txt; DestDir: {app}\modules\{#API_SCILAB}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#API_SCILAB}\includes\*.h; DestDir: {app}\modules\{#API_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;

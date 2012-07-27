@@ -121,7 +121,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphic_objects_la_etcdir)" \
-	"$(DESTDIR)$(libscigraphic_objects_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphic_objects_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphic_objects_disable_la_LIBADD =
@@ -209,7 +208,6 @@ SOURCES = $(libscigraphic_objects_disable_la_SOURCES) \
 DIST_SOURCES = $(libscigraphic_objects_disable_la_SOURCES) \
 	$(libscigraphic_objects_la_SOURCES)
 DATA = $(libscigraphic_objects_la_etc_DATA) \
-	$(libscigraphic_objects_la_root_DATA) \
 	$(libscigraphic_objects_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -249,6 +247,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -326,6 +325,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -417,6 +417,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -473,7 +474,6 @@ modulename = graphic_objects
 
 #### graphic_objects : Conf files ####
 libscigraphic_objects_la_rootdir = $(mydatadir)
-libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### graphic_objects : init scripts ####
 libscigraphic_objects_la_etcdir = $(mydatadir)/etc
@@ -1116,24 +1116,6 @@ uninstall-libscigraphic_objects_la_etcDATA:
 	@list='$(libscigraphic_objects_la_etc_DATA)'; test -n "$(libscigraphic_objects_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscigraphic_objects_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscigraphic_objects_la_rootDATA: $(libscigraphic_objects_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphic_objects_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphic_objects_la_rootdir)"
-	@list='$(libscigraphic_objects_la_root_DATA)'; test -n "$(libscigraphic_objects_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscigraphic_objects_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscigraphic_objects_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscigraphic_objects_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraphic_objects_la_root_DATA)'; test -n "$(libscigraphic_objects_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscigraphic_objects_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscigraphic_objects_la_sci_gatewayDATA: $(libscigraphic_objects_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigraphic_objects_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphic_objects_la_sci_gatewaydir)"
@@ -1241,7 +1223,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphic_objects_la_etcdir)" "$(DESTDIR)$(libscigraphic_objects_la_rootdir)" "$(DESTDIR)$(libscigraphic_objects_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphic_objects_la_etcdir)" "$(DESTDIR)$(libscigraphic_objects_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1301,7 +1283,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscigraphic_objects_la_etcDATA \
-	install-libscigraphic_objects_la_rootDATA \
 	install-libscigraphic_objects_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1349,7 +1330,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigraphic_objects_la_etcDATA \
-	uninstall-libscigraphic_objects_la_rootDATA \
 	uninstall-libscigraphic_objects_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1365,7 +1345,6 @@ uninstall-am: uninstall-libscigraphic_objects_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscigraphic_objects_la_etcDATA \
-	install-libscigraphic_objects_la_rootDATA \
 	install-libscigraphic_objects_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -1374,7 +1353,6 @@ uninstall-am: uninstall-libscigraphic_objects_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscigraphic_objects_la_etcDATA \
-	uninstall-libscigraphic_objects_la_rootDATA \
 	uninstall-libscigraphic_objects_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

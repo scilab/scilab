@@ -21,7 +21,6 @@ Source: modules\{#COMMONS}\jar\org.scilab.modules.{#COMMONS}.jar;DestDir: {app}\
 ;
 Source: bin\sci{#COMMONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#COMMONS}\license.txt; DestDir: {app}\modules\{#COMMONS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMMONS}\etc\{#COMMONS}.quit; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COMMONS}\etc\{#COMMONS}.start; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}

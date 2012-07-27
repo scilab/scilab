@@ -123,8 +123,7 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscirenderer_la_etcdir)" \
-	"$(DESTDIR)$(libscirenderer_la_rootdir)"
+	"$(DESTDIR)$(libscirenderer_la_etcdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-GetJavaProperty.lo \
@@ -151,7 +150,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscirenderer_la_SOURCES)
 DIST_SOURCES = $(libscirenderer_la_SOURCES)
-DATA = $(libscirenderer_la_etc_DATA) $(libscirenderer_la_root_DATA)
+DATA = $(libscirenderer_la_etc_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -190,6 +189,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -267,6 +267,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -358,6 +359,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -414,7 +416,6 @@ modulename = renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = license.txt
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -707,24 +708,6 @@ uninstall-libscirenderer_la_etcDATA:
 	@list='$(libscirenderer_la_etc_DATA)'; test -n "$(libscirenderer_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscirenderer_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscirenderer_la_rootDATA: $(libscirenderer_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscirenderer_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirenderer_la_rootdir)"
-	@list='$(libscirenderer_la_root_DATA)'; test -n "$(libscirenderer_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscirenderer_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscirenderer_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscirenderer_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscirenderer_la_root_DATA)'; test -n "$(libscirenderer_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscirenderer_la_rootdir)'; $(am__uninstall_files_from_dir)
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -814,7 +797,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirenderer_la_etcdir)" "$(DESTDIR)$(libscirenderer_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirenderer_la_etcdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -872,8 +855,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscirenderer_la_etcDATA \
-	install-libscirenderer_la_rootDATA
+install-data-am: install-data-local install-libscirenderer_la_etcDATA
 
 install-dvi: install-dvi-am
 
@@ -920,7 +902,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscirenderer_la_etcDATA \
-	uninstall-libscirenderer_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -934,15 +915,13 @@ uninstall-am: uninstall-libscirenderer_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscirenderer_la_etcDATA \
-	install-libscirenderer_la_rootDATA install-man install-pdf \
+	install-libscirenderer_la_etcDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscirenderer_la_etcDATA \
-	uninstall-libscirenderer_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

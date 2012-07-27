@@ -130,7 +130,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciconsole_la_etcdir)" \
-	"$(DESTDIR)$(libsciconsole_la_rootdir)" \
 	"$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciconsole_minimal_la_LIBADD =
@@ -242,7 +241,7 @@ SOURCES = $(libsciconsole_minimal_la_SOURCES) \
 	$(libsciconsole_la_SOURCES)
 DIST_SOURCES = $(am__libsciconsole_minimal_la_SOURCES_DIST) \
 	$(am__libsciconsole_la_SOURCES_DIST)
-DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA) \
+DATA = $(libsciconsole_la_etc_DATA) \
 	$(libsciconsole_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -282,6 +281,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -359,6 +359,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -450,6 +451,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -506,7 +508,6 @@ modulename = console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA = license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -1231,24 +1232,6 @@ uninstall-libsciconsole_la_etcDATA:
 	@list='$(libsciconsole_la_etc_DATA)'; test -n "$(libsciconsole_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciconsole_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libsciconsole_la_rootDATA: $(libsciconsole_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciconsole_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_rootdir)"
-	@list='$(libsciconsole_la_root_DATA)'; test -n "$(libsciconsole_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciconsole_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciconsole_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libsciconsole_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciconsole_la_root_DATA)'; test -n "$(libsciconsole_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libsciconsole_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libsciconsole_la_sci_gatewayDATA: $(libsciconsole_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciconsole_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)"
@@ -1356,7 +1339,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_rootdir)" "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciconsole_la_etcdir)" "$(DESTDIR)$(libsciconsole_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1415,7 +1398,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciconsole_la_etcDATA \
-	install-libsciconsole_la_rootDATA \
 	install-libsciconsole_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1463,7 +1445,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciconsole_la_etcDATA \
-	uninstall-libsciconsole_la_rootDATA \
 	uninstall-libsciconsole_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1479,7 +1460,6 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libsciconsole_la_etcDATA \
-	install-libsciconsole_la_rootDATA \
 	install-libsciconsole_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -1487,7 +1467,6 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libsciconsole_la_etcDATA \
-	uninstall-libsciconsole_la_rootDATA \
 	uninstall-libsciconsole_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

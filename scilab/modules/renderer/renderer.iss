@@ -38,7 +38,6 @@ Source: thirdparty\fonts\scilabsymbols.ttf;DestDir: {app}\thirdparty\fonts; Comp
 Source: modules\{#RENDERER}\jar\org.scilab.modules.{#RENDERER}.jar;DestDir: {app}\modules\{#RENDERER}\jar; Components: {#COMPN_GRAPHICS}
 ;
 
-Source: modules\{#RENDERER}\license.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 ;
 ;Source: modules\{#RENDERER}\sci_gateway\{#RENDERER}_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;

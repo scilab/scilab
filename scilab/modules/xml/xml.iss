@@ -20,7 +20,6 @@
 Source: bin\{#XML}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#XML}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#XML}\license.txt; DestDir: {app}\modules\{#XML}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#XML}\sci_gateway\{#XML}_gateway.xml; DestDir: {app}\modules\{#XML}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

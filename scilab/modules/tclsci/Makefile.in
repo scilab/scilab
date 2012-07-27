@@ -112,7 +112,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_etcdir)" \
-	"$(DESTDIR)$(libscitclsci_la_rootdir)" \
 	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscitclsci_la_tcldir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -190,8 +189,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscitclsci_algo_la_SOURCES) $(libscitclsci_la_SOURCES)
 DIST_SOURCES = $(am__libscitclsci_algo_la_SOURCES_DIST) \
 	$(am__libscitclsci_la_SOURCES_DIST)
-DATA = $(libscitclsci_la_etc_DATA) $(libscitclsci_la_root_DATA) \
-	$(libscitclsci_la_sci_gateway_DATA) \
+DATA = $(libscitclsci_la_etc_DATA) $(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -231,6 +229,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -308,6 +307,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -399,6 +399,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -511,7 +512,6 @@ modulename = tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA = license.txt 
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
@@ -554,7 +554,6 @@ tcl/sciGUI/local_extra/combobox-2.3/example.tcl \
 tcl/sciGUI/local_extra/balloonhelp.tcl \
 tcl/sciGUI/local_extra/rnotebook.tcl \
 tcl/sciGUI/local_extra/spinbutton.tcl \
-tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
@@ -1001,24 +1000,6 @@ uninstall-libscitclsci_la_etcDATA:
 	@list='$(libscitclsci_la_etc_DATA)'; test -n "$(libscitclsci_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscitclsci_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscitclsci_la_rootDATA: $(libscitclsci_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitclsci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_rootdir)"
-	@list='$(libscitclsci_la_root_DATA)'; test -n "$(libscitclsci_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscitclsci_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscitclsci_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscitclsci_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitclsci_la_root_DATA)'; test -n "$(libscitclsci_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscitclsci_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscitclsci_la_sci_gatewayDATA: $(libscitclsci_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscitclsci_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)"
@@ -1146,7 +1127,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_rootdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1203,7 +1184,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscitclsci_la_etcDATA \
-	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA \
 	install-nobase_libscitclsci_la_tclDATA
 
@@ -1252,7 +1232,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscitclsci_la_etcDATA \
-	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1269,7 +1248,6 @@ uninstall-am: uninstall-libscitclsci_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscitclsci_la_etcDATA \
-	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA install-man \
 	install-nobase_libscitclsci_la_tclDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -1278,7 +1256,6 @@ uninstall-am: uninstall-libscitclsci_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscitclsci_la_etcDATA \
-	uninstall-libscitclsci_la_rootDATA \
 	uninstall-libscitclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES

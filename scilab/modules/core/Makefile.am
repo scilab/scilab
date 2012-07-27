@@ -333,7 +333,6 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA =  license.txt
 
 
 #### core : init scripts ####

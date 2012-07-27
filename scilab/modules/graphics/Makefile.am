@@ -16,7 +16,6 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA =  license.txt
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc

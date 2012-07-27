@@ -21,7 +21,6 @@
 Source: bin\{#SYMBOLIC}.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}.dll; Components: {#COMPN_SYMB}
 Source: bin\{#SYMBOLIC}_f.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}_f.dll; Components: {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\license.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\sci_gateway\{#SYMBOLIC}_gateway.xml; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SYMB}
 ;

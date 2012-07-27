@@ -32,7 +32,6 @@ modulename=windows_tools
 
 #### windows_tools : Conf files ####
 libsciwindows_tools_la_rootdir = $(mydatadir)
-libsciwindows_tools_la_root_DATA =  license.txt 
 
 #### windows_tools : init scripts ####
 libsciwindows_tools_la_etcdir = $(mydatadir)/etc

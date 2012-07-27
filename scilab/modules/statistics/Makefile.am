@@ -112,7 +112,6 @@ modulename=statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(mydatadir)
-libscistatistics_la_root_DATA =  license.txt 
 
 
 #### statistics : init scripts ####

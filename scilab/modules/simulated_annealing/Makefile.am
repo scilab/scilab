@@ -12,7 +12,6 @@ modulename=simulated_annealing
 
 #### simulated_annealing : Conf files ####
 libsimulated_annealing_la_rootdir = $(mydatadir)
-libsimulated_annealing_la_root_DATA =  license.txt 
 
 #### simulated_annealing : init scripts ####
 libsimulated_annealing_la_etcdir = $(mydatadir)/etc

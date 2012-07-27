@@ -72,7 +72,6 @@ modulename=randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(mydatadir)
-libscirandlib_la_root_DATA =  license.txt 
 
 
 #### randlib : init scripts ####

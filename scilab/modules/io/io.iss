@@ -21,7 +21,6 @@
 Source: bin\{#IO}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#IO}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\license.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\sci_gateway\{#IO}_gateway.xml; DestDir: {app}\modules\{#IO}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

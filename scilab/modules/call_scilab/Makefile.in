@@ -114,7 +114,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_etcdir)" \
-	"$(DESTDIR)$(libscicall_scilab_la_rootdir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -150,7 +149,6 @@ SOURCES = $(libscicall_scilab_algo_la_SOURCES) \
 DIST_SOURCES = $(libscicall_scilab_algo_la_SOURCES) \
 	$(libscicall_scilab_la_SOURCES)
 DATA = $(libscicall_scilab_la_etc_DATA) \
-	$(libscicall_scilab_la_root_DATA) \
 	$(libscicall_scilab_la_sci_gateway_DATA)
 HEADERS = $(libscicall_scilab_la_include_HEADERS)
 ETAGS = etags
@@ -191,6 +189,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -268,6 +267,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -359,6 +359,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -450,7 +451,6 @@ modulename = call_scilab
 
 #### call_scilab : Conf files ####
 libscicall_scilab_la_rootdir = $(mydatadir)
-libscicall_scilab_la_root_DATA = license.txt
 
 #### call_scilab : init scripts ####
 libscicall_scilab_la_etcdir = $(mydatadir)/etc
@@ -723,24 +723,6 @@ uninstall-libscicall_scilab_la_etcDATA:
 	@list='$(libscicall_scilab_la_etc_DATA)'; test -n "$(libscicall_scilab_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscicall_scilab_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscicall_scilab_la_rootDATA: $(libscicall_scilab_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicall_scilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicall_scilab_la_rootdir)"
-	@list='$(libscicall_scilab_la_root_DATA)'; test -n "$(libscicall_scilab_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscicall_scilab_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscicall_scilab_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscicall_scilab_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscicall_scilab_la_root_DATA)'; test -n "$(libscicall_scilab_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscicall_scilab_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscicall_scilab_la_sci_gatewayDATA: $(libscicall_scilab_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicall_scilab_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscicall_scilab_la_sci_gatewaydir)"
@@ -865,7 +847,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicall_scilab_la_etcdir)" "$(DESTDIR)$(libscicall_scilab_la_rootdir)" "$(DESTDIR)$(libscicall_scilab_la_sci_gatewaydir)" "$(DESTDIR)$(libscicall_scilab_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicall_scilab_la_etcdir)" "$(DESTDIR)$(libscicall_scilab_la_sci_gatewaydir)" "$(DESTDIR)$(libscicall_scilab_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -924,7 +906,6 @@ info-am:
 install-data-am: install-data-local \
 	install-libscicall_scilab_la_etcDATA \
 	install-libscicall_scilab_la_includeHEADERS \
-	install-libscicall_scilab_la_rootDATA \
 	install-libscicall_scilab_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -973,7 +954,6 @@ ps-am:
 
 uninstall-am: uninstall-libscicall_scilab_la_etcDATA \
 	uninstall-libscicall_scilab_la_includeHEADERS \
-	uninstall-libscicall_scilab_la_rootDATA \
 	uninstall-libscicall_scilab_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -990,7 +970,6 @@ uninstall-am: uninstall-libscicall_scilab_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscicall_scilab_la_etcDATA \
 	install-libscicall_scilab_la_includeHEADERS \
-	install-libscicall_scilab_la_rootDATA \
 	install-libscicall_scilab_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -1000,7 +979,6 @@ uninstall-am: uninstall-libscicall_scilab_la_etcDATA \
 	tags uninstall uninstall-am \
 	uninstall-libscicall_scilab_la_etcDATA \
 	uninstall-libscicall_scilab_la_includeHEADERS \
-	uninstall-libscicall_scilab_la_rootDATA \
 	uninstall-libscicall_scilab_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

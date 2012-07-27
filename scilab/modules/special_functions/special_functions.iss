@@ -21,7 +21,6 @@
 Source: bin\{#SPFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#SPFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\license.txt; DestDir: {app}\modules\{#SPFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPFUNCTIONS}\sci_gateway\{#SPFUNCTIONS}_gateway.xml; DestDir: {app}\modules\{#SPFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

@@ -20,7 +20,6 @@
 ;
 Source: bin\sound.dll; DestDir: {app}\bin; Components: {#COMPN_SOUND}
 ;
-Source: modules\{#SOUND}\license.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 ;
 Source: modules\{#SOUND}\sci_gateway\{#SOUND}_gateway.xml; DestDir: {app}\modules\{#SOUND}\sci_gateway; Components: {#COMPN_SOUND}
 ;

@@ -15,7 +15,6 @@ modulename=javasci
 
 #### javasci : Conf files ####
 libjavasci2_la_rootdir = $(mydatadir)
-libjavasci2_la_root_DATA =  license.txt 
 
 #### javasci : init scripts ####
 libjavasci2_la_etcdir = $(mydatadir)/etc

@@ -16,7 +16,6 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt
 
 
 #### xcos : init scripts ####

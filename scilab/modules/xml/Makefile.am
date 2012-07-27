@@ -15,7 +15,6 @@ modulename=xml
 
 #### xml : Conf files ####
 libscixml_la_rootdir = $(mydatadir)
-libscixml_la_root_DATA =  license.txt 
 
 
 #### scinotes : init scripts & configuration files ####

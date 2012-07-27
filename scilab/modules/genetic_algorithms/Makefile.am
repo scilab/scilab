@@ -12,7 +12,6 @@ modulename=genetic_algorithms
 
 #### genetic_algorithms : Conf files ####
 libgenetic_algorithms_la_rootdir = $(mydatadir)
-libgenetic_algorithms_la_root_DATA =  license.txt 
 
 #### genetic_algorithms : init scripts ####
 libgenetic_algorithms_la_etcdir = $(mydatadir)/etc

@@ -112,10 +112,8 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdemo_tools_la_etcdir)" \
-	"$(DESTDIR)$(libdemo_tools_la_imagesdir)" \
-	"$(DESTDIR)$(libdemo_tools_la_rootdir)"
-DATA = $(libdemo_tools_la_etc_DATA) $(libdemo_tools_la_images_DATA) \
-	$(libdemo_tools_la_root_DATA)
+	"$(DESTDIR)$(libdemo_tools_la_imagesdir)"
+DATA = $(libdemo_tools_la_etc_DATA) $(libdemo_tools_la_images_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -152,6 +150,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -229,6 +228,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -320,6 +320,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -376,7 +377,6 @@ modulename = demo_tools
 
 #### demo_tools : Conf files ####
 libdemo_tools_la_rootdir = $(mydatadir)
-libdemo_tools_la_root_DATA = license.txt 
 
 #### demo_tools : init scripts ####
 libdemo_tools_la_etcdir = $(mydatadir)/etc
@@ -535,24 +535,6 @@ uninstall-libdemo_tools_la_imagesDATA:
 	@list='$(libdemo_tools_la_images_DATA)'; test -n "$(libdemo_tools_la_imagesdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libdemo_tools_la_imagesdir)'; $(am__uninstall_files_from_dir)
-install-libdemo_tools_la_rootDATA: $(libdemo_tools_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdemo_tools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libdemo_tools_la_rootdir)"
-	@list='$(libdemo_tools_la_root_DATA)'; test -n "$(libdemo_tools_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libdemo_tools_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libdemo_tools_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libdemo_tools_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libdemo_tools_la_root_DATA)'; test -n "$(libdemo_tools_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libdemo_tools_la_rootdir)'; $(am__uninstall_files_from_dir)
 tags: TAGS
 TAGS:
 
@@ -595,7 +577,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libdemo_tools_la_etcdir)" "$(DESTDIR)$(libdemo_tools_la_imagesdir)" "$(DESTDIR)$(libdemo_tools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdemo_tools_la_etcdir)" "$(DESTDIR)$(libdemo_tools_la_imagesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -649,8 +631,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libdemo_tools_la_etcDATA \
-	install-libdemo_tools_la_imagesDATA \
-	install-libdemo_tools_la_rootDATA
+	install-libdemo_tools_la_imagesDATA
 
 install-dvi: install-dvi-am
 
@@ -695,8 +676,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libdemo_tools_la_etcDATA \
-	uninstall-libdemo_tools_la_imagesDATA \
-	uninstall-libdemo_tools_la_rootDATA
+	uninstall-libdemo_tools_la_imagesDATA
 
 .MAKE: check-am install-am install-strip
 
@@ -708,15 +688,13 @@ uninstall-am: uninstall-libdemo_tools_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libdemo_tools_la_etcDATA \
-	install-libdemo_tools_la_imagesDATA \
-	install-libdemo_tools_la_rootDATA install-man install-pdf \
+	install-libdemo_tools_la_imagesDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libdemo_tools_la_etcDATA \
-	uninstall-libdemo_tools_la_imagesDATA \
-	uninstall-libdemo_tools_la_rootDATA
+	uninstall-libdemo_tools_la_imagesDATA
 
 
 # This target enables tests for Scilab

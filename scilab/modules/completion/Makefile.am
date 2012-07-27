@@ -76,7 +76,6 @@ modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc

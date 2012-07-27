@@ -117,7 +117,6 @@ modulename=signal_processing
 
 #### signal_processing : Conf files ####
 libscisignal_processing_la_rootdir = $(mydatadir)
-libscisignal_processing_la_root_DATA =  license.txt 
 
 
 ####�signal_processing : init scripts ####

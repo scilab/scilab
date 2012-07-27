@@ -24,7 +24,6 @@ Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.{#HISTORY_MANAGER}.jar
 ;
 ;Source: bin\nosci{#HISTORY_MANAGER}.dll; DestDir: {app}\bin; DestName: sci{#HISTORY_MANAGER}.dll; Components: not ({#COMPN_SCILAB})
 ;
-Source: modules\{#HISTORY_MANAGER}\license.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 
 ;
 Source: modules\{#HISTORY_MANAGER}\sci_gateway\{#HISTORY_MANAGER}_gateway.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\sci_gateway; Components: {#COMPN_SCILAB}

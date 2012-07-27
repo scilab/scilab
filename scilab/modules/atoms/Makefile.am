@@ -11,7 +11,6 @@ modulename=atoms
 
 #### atoms : Conf files ####
 libsciatoms_la_rootdir = $(mydatadir)
-libsciatoms_la_root_DATA =  license.txt 
 
 #### atoms : init scripts ####
 libsciatoms_la_etcdir = $(mydatadir)/etc

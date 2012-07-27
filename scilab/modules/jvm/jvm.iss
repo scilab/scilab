@@ -31,7 +31,6 @@ Source: modules\{#JVM}\xml\*.dtd; DestDir: {app}\modules\{#JVM}\xml; Components:
 ;
 Source: modules\{#JVM}\jar\org.scilab.modules.{#JVM}.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#JVM}\license.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JVM}\sci_gateway\{#JVM}_gateway.xml; DestDir: {app}\modules\{#JVM}\sci_gateway; Components: {#COMPN_JVM_MODULE}
 ;

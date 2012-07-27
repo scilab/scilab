@@ -108,7 +108,6 @@ modulename=hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA =  license.txt
 
 
 #### hdf5 : init scripts ####

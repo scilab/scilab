@@ -19,7 +19,6 @@
 ;
 Source: bin\{#PARALLEL}.dll; DestDir: {app}\bin; Components: {#COMPN_PARALLEL}
 ;
-Source: modules\{#PARALLEL}\license.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL}
 ;
 Source: modules\{#PARALLEL}\sci_gateway\{#PARALLEL}_gateway.xml; DestDir: {app}\modules\{#PARALLEL}\sci_gateway; Components: {#COMPN_PARALLEL}
 ;

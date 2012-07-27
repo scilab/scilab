@@ -9,7 +9,6 @@ modulename=demo_tools
 
 #### demo_tools : Conf files ####
 libdemo_tools_la_rootdir = $(mydatadir)
-libdemo_tools_la_root_DATA =  license.txt 
 
 #### demo_tools : init scripts ####
 libdemo_tools_la_etcdir = $(mydatadir)/etc

@@ -16,7 +16,6 @@ modulename=renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA =  license.txt
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc

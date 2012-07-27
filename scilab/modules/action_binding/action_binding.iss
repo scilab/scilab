@@ -25,7 +25,6 @@ Source: modules\{#ACTION_BINDING}\jar\org.scilab.modules.{#ACTION_BINDING}.jar;D
 ;
 ;Source: bin\no{#ACTION_BINDING}.dll; DestDir: {app}\bin; DestName: sci{#ACTION_BINDING}.dll; Components: not ({#COMPN_ACTION_BINDING})
 ;
-Source: modules\{#ACTION_BINDING}\license.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#ACTION_BINDING}\sci_gateway\{#ACTION_BINDING}_gateway.xml; DestDir: {app}\modules\{#ACTION_BINDING}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

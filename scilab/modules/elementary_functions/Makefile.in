@@ -114,7 +114,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_etcdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_rootdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementary_functions_la_LIBADD =
@@ -292,7 +291,6 @@ DIST_SOURCES = $(libdummy_elementary_functions_la_SOURCES) \
 	$(libscielementary_functions_algo_la_SOURCES) \
 	$(libscielementary_functions_la_SOURCES)
 DATA = $(libscielementary_functions_la_etc_DATA) \
-	$(libscielementary_functions_la_root_DATA) \
 	$(libscielementary_functions_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -332,6 +330,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -409,6 +408,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -500,6 +500,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -943,7 +944,6 @@ modulename = elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA = license.txt
 
 #### elementary_functions : init scripts ####
 libscielementary_functions_la_etcdir = $(mydatadir)/etc
@@ -2573,24 +2573,6 @@ uninstall-libscielementary_functions_la_etcDATA:
 	@list='$(libscielementary_functions_la_etc_DATA)'; test -n "$(libscielementary_functions_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscielementary_functions_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscielementary_functions_la_rootDATA: $(libscielementary_functions_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscielementary_functions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_rootdir)"
-	@list='$(libscielementary_functions_la_root_DATA)'; test -n "$(libscielementary_functions_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscielementary_functions_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscielementary_functions_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscielementary_functions_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscielementary_functions_la_root_DATA)'; test -n "$(libscielementary_functions_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscielementary_functions_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscielementary_functions_la_sci_gatewayDATA: $(libscielementary_functions_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscielementary_functions_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
@@ -2697,7 +2679,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2755,7 +2737,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -2803,7 +2784,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -2819,7 +2799,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am \
 	install-pkglibLTLIBRARIES install-ps install-ps-am \
@@ -2828,7 +2807,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

@@ -33,7 +33,6 @@ modulename=sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
-libscisound_la_root_DATA =  license.txt 
 
 
 ####�sound : init scripts ####

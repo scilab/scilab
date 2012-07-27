@@ -22,7 +22,6 @@ Source: bin\{#PREFERENCES}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} 
 ;
 Source: modules\{#PREFERENCES}\jar\org.scilab.modules.{#PREFERENCES}.jar; DestDir: {app}\modules\{#PREFERENCES}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#PREFERENCES}\license.txt; DestDir: {app}\modules\{#PREFERENCES}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#PREFERENCES}\sci_gateway\{#PREFERENCES}_gateway.xml; DestDir: {app}\modules\{#PREFERENCES}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

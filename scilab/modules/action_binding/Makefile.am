@@ -86,7 +86,6 @@ modulename=action_binding
 
 #### action_binding : Conf files ####
 libsciaction_binding_la_rootdir = $(mydatadir)
-libsciaction_binding_la_root_DATA =  license.txt 
 
 ####�action_binding : init scripts ####
 libsciaction_binding_la_etcdir = $(mydatadir)/etc

@@ -142,7 +142,6 @@ modulename=optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA =  license.txt 
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/neldermead \

@@ -28,7 +28,6 @@ Source: thirdparty\jrosetta-API.jar;DestDir: {app}\thirdparty; Components: {#COM
 Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 
-Source: modules\{#CONSOLE}\license.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CONSOLE}\sci_gateway\{#CONSOLE}_gateway.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

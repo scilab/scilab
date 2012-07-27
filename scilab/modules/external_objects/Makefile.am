@@ -15,7 +15,6 @@ modulename=external_objects
 
 #### external_objects : Conf files ####
 libsciexternal_objects_la_rootdir = $(mydatadir)
-libsciexternal_objects_la_root_DATA =  license.txt 
 
 
 #### external_objects : init scripts & configuration files ####
@@ -147,16 +146,9 @@ libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la
 CHECK_SRC= $(EXTERNAL_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciexternal_objects_la_CFLAGS)
 
-#### external_objects : include files ####
-libsciexternal_objects_la_includedir=$(pkgincludedir)
-
 #### external_objects : gateway declaration ####
 libsciexternal_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciexternal_objects_la_sci_gateway_DATA = sci_gateway/external_objects_gateway.xml
-
-#### external_objects : init scripts ####
-libsciexternal_objects_la_etcdir = $(mydatadir)/etc
-libsciexternal_objects_la_etc_DATA = etc/external_objects.quit etc/external_objects.start
 
 #### external_objects : include files ####
 libsciexternal_objects_la_includedir=$(pkgincludedir)

@@ -15,7 +15,6 @@ modulename=preferences
 
 #### preferences : Conf files ####
 libscipreferences_la_rootdir = $(mydatadir)
-libscipreferences_la_root_DATA =  license.txt 
 
 
 #### preferences : init scripts & configuration files ####

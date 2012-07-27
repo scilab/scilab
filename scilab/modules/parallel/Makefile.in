@@ -120,7 +120,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciparallel_la_etcdir)" \
-	"$(DESTDIR)$(libsciparallel_la_rootdir)" \
 	"$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciparallel_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -161,7 +160,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciparallel_la_SOURCES)
 DIST_SOURCES = $(am__libsciparallel_la_SOURCES_DIST)
-DATA = $(libsciparallel_la_etc_DATA) $(libsciparallel_la_root_DATA) \
+DATA = $(libsciparallel_la_etc_DATA) \
 	$(libsciparallel_la_sci_gateway_DATA)
 HEADERS = $(libsciparallel_la_include_HEADERS)
 ETAGS = etags
@@ -202,6 +201,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -279,6 +279,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -370,6 +371,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -454,7 +456,6 @@ modulename = parallel
 
 #### parallel : Conf files ####
 libsciparallel_la_rootdir = $(mydatadir)
-libsciparallel_la_root_DATA = license.txt 
 
 #### parallel : init scripts ####
 libsciparallel_la_etcdir = $(mydatadir)/etc
@@ -713,24 +714,6 @@ uninstall-libsciparallel_la_etcDATA:
 	@list='$(libsciparallel_la_etc_DATA)'; test -n "$(libsciparallel_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciparallel_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libsciparallel_la_rootDATA: $(libsciparallel_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciparallel_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciparallel_la_rootdir)"
-	@list='$(libsciparallel_la_root_DATA)'; test -n "$(libsciparallel_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciparallel_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciparallel_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libsciparallel_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciparallel_la_root_DATA)'; test -n "$(libsciparallel_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libsciparallel_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libsciparallel_la_sci_gatewayDATA: $(libsciparallel_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciparallel_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)"
@@ -855,7 +838,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciparallel_la_etcdir)" "$(DESTDIR)$(libsciparallel_la_rootdir)" "$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)" "$(DESTDIR)$(libsciparallel_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciparallel_la_etcdir)" "$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)" "$(DESTDIR)$(libsciparallel_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -913,7 +896,6 @@ info-am:
 
 install-data-am: install-data-local install-libsciparallel_la_etcDATA \
 	install-libsciparallel_la_includeHEADERS \
-	install-libsciparallel_la_rootDATA \
 	install-libsciparallel_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -962,7 +944,6 @@ ps-am:
 
 uninstall-am: uninstall-libsciparallel_la_etcDATA \
 	uninstall-libsciparallel_la_includeHEADERS \
-	uninstall-libsciparallel_la_rootDATA \
 	uninstall-libsciparallel_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -979,7 +960,6 @@ uninstall-am: uninstall-libsciparallel_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libsciparallel_la_etcDATA \
 	install-libsciparallel_la_includeHEADERS \
-	install-libsciparallel_la_rootDATA \
 	install-libsciparallel_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -989,7 +969,6 @@ uninstall-am: uninstall-libsciparallel_la_etcDATA \
 	tags uninstall uninstall-am \
 	uninstall-libsciparallel_la_etcDATA \
 	uninstall-libsciparallel_la_includeHEADERS \
-	uninstall-libsciparallel_la_rootDATA \
 	uninstall-libsciparallel_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

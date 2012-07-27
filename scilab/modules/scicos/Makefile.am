@@ -143,7 +143,6 @@ endif
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA =  license.txt
 
 
 #### scicos : init scripts ####

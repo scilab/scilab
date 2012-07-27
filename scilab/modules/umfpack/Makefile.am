@@ -20,11 +20,7 @@ libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
-libsciumfpack_la_root_DATA =  \
-license.txt \
- \
- \
-TAUCS_license.txt \
+libsciumfpack_la_root_DATA = TAUCS_license.txt \
 UMFPACK_license.txt
 
 #### umfpack : init scripts ####

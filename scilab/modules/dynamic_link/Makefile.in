@@ -114,7 +114,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_etcdir)" \
-	"$(DESTDIR)$(libscidynamic_link_la_rootdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -170,7 +169,6 @@ SOURCES = $(libscidynamic_link_algo_la_SOURCES) \
 DIST_SOURCES = $(libscidynamic_link_algo_la_SOURCES) \
 	$(libscidynamic_link_la_SOURCES)
 DATA = $(libscidynamic_link_la_etc_DATA) \
-	$(libscidynamic_link_la_root_DATA) \
 	$(libscidynamic_link_la_sci_gateway_DATA) \
 	$(libscidynamic_link_la_script_DATA)
 ETAGS = etags
@@ -211,6 +209,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -288,6 +287,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -379,6 +379,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -477,7 +478,6 @@ modulename = dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA = license.txt 
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
@@ -859,24 +859,6 @@ uninstall-libscidynamic_link_la_etcDATA:
 	@list='$(libscidynamic_link_la_etc_DATA)'; test -n "$(libscidynamic_link_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscidynamic_link_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscidynamic_link_la_rootDATA: $(libscidynamic_link_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscidynamic_link_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_rootdir)"
-	@list='$(libscidynamic_link_la_root_DATA)'; test -n "$(libscidynamic_link_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscidynamic_link_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscidynamic_link_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscidynamic_link_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscidynamic_link_la_root_DATA)'; test -n "$(libscidynamic_link_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscidynamic_link_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscidynamic_link_la_sci_gatewayDATA: $(libscidynamic_link_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscidynamic_link_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)"
@@ -1001,7 +983,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_rootdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1060,7 +1042,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscidynamic_link_la_etcDATA \
-	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
 	install-libscidynamic_link_la_scriptSCRIPTS
@@ -1110,7 +1091,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
-	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \
 	uninstall-libscidynamic_link_la_scriptSCRIPTS \
@@ -1128,7 +1108,6 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscidynamic_link_la_etcDATA \
-	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
 	install-libscidynamic_link_la_scriptSCRIPTS install-man \
@@ -1139,7 +1118,6 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscidynamic_link_la_etcDATA \
-	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \
 	uninstall-libscidynamic_link_la_scriptSCRIPTS \

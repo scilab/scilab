@@ -117,9 +117,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(libscigraph_la_etcdir)" \
-	"$(DESTDIR)$(libscigraph_la_rootdir)"
-DATA = $(libscigraph_la_etc_DATA) $(libscigraph_la_root_DATA)
+am__installdirs = "$(DESTDIR)$(libscigraph_la_etcdir)"
+DATA = $(libscigraph_la_etc_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -156,6 +155,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -233,6 +233,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -324,6 +325,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -380,7 +382,6 @@ modulename = graph
 
 #### graph : Conf files ####
 libscigraph_la_rootdir = $(mydatadir)
-libscigraph_la_root_DATA = license.txt 
 
 #### graph : init scripts ####
 libscigraph_la_etcdir = $(mydatadir)/etc
@@ -520,24 +521,6 @@ uninstall-libscigraph_la_etcDATA:
 	@list='$(libscigraph_la_etc_DATA)'; test -n "$(libscigraph_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscigraph_la_etcdir)'; $(am__uninstall_files_from_dir)
-install-libscigraph_la_rootDATA: $(libscigraph_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraph_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraph_la_rootdir)"
-	@list='$(libscigraph_la_root_DATA)'; test -n "$(libscigraph_la_rootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscigraph_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscigraph_la_rootdir)" || exit $$?; \
-	done
-
-uninstall-libscigraph_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraph_la_root_DATA)'; test -n "$(libscigraph_la_rootdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscigraph_la_rootdir)'; $(am__uninstall_files_from_dir)
 tags: TAGS
 TAGS:
 
@@ -580,7 +563,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libscigraph_la_etcdir)" "$(DESTDIR)$(libscigraph_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscigraph_la_etcdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -633,8 +616,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscigraph_la_etcDATA \
-	install-libscigraph_la_rootDATA
+install-data-am: install-data-local install-libscigraph_la_etcDATA
 
 install-dvi: install-dvi-am
 
@@ -678,8 +660,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscigraph_la_etcDATA \
-	uninstall-libscigraph_la_rootDATA
+uninstall-am: uninstall-libscigraph_la_etcDATA
 
 .MAKE: check-am install-am install-strip
 
@@ -690,14 +671,12 @@ uninstall-am: uninstall-libscigraph_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscigraph_la_etcDATA \
-	install-libscigraph_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscigraph_la_etcDATA \
-	uninstall-libscigraph_la_rootDATA
+	install-info-am install-libscigraph_la_etcDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	uninstall uninstall-am uninstall-libscigraph_la_etcDATA
 
 
 # This target enables tests for Scilab
