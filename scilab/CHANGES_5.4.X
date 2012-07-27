@@ -283,6 +283,9 @@ Bug Fixes
 * Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
                      something in the console.
 
+* Bug #11502 fixed - Some Java debug information was displayed when playing with
+                     graphics.
+
 * Bug #11515 fixed - Add checkVarDimension documentation page.
                      Update getNbInputArgument and getNbOutputArgument pages.
 
