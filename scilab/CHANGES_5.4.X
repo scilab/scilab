@@ -336,6 +336,8 @@ Bug Fixes
 * Bug #11544 fixed - ilib_gen_cleaner did not add command to remove "Debug" and
                      "Release" forlder under Windows.
 
+* Bug #11547 fixed - _() moved into the gettext() help page.
+
 * Bug #11553 fixed - The uicontextmenu handles (and their children) were not
                      destroyed at the end of execution.
 
