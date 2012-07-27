@@ -29,14 +29,14 @@ import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
 import org.scilab.modules.gui.editor.LabelHandler;
 import org.scilab.modules.gui.editor.LegendHandler;
-import org.scilab.modules.gui.ged.Inspector;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.editor.action.EditorHistory;
 import org.scilab.modules.gui.editor.action.ActionDelete;
 import org.scilab.modules.gui.editor.action.ActionLegend;
 import org.scilab.modules.gui.editor.action.ActionMove;
 import org.scilab.modules.gui.editor.action.ActionPaste;
 import org.scilab.modules.gui.editor.action.ActionTextEdit;
+import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.localization.Messages;
 
 
 
@@ -67,12 +67,14 @@ public class Editor {
     Integer[] dragClick = { 0, 0 };
     EntityPicker entityPicker;
     DataEditor dataEditor;
-    boolean isLegend = false;
     boolean dataModifyEnabled = false;
     boolean dataEditEnabled = false;
     EditorHistory editorHistory;
 
     Component dialogComponent;
+
+    enum SelectionType {POLYLINE, LEGEND, SURFACE};
+    SelectionType selectedType;
 
     public Editor() {
         init();
@@ -149,17 +151,23 @@ public class Editor {
                     /*try pick a legend*/
                     selectedLegend = entityPicker.pickLegend(figureUid, lastClick);
                     if (selectedLegend != null) {
-                        isLegend = true;
+                        selectedType = SelectionType.LEGEND;
                         setSelected(selectedLegend.legend);
                     } else {
                         /*try pick a polyline*/
-                        isLegend = false;
-                        setSelected(entityPicker.pick(figureUid, lastClick[0], lastClick[1]));
+                        String picked = entityPicker.pick(figureUid, lastClick[0], lastClick[1]);
+                        if (picked != null) {
+                            selectedType = SelectionType.POLYLINE;
+                            setSelected(picked);
+                        } else {
+                            selectedType = SelectionType.SURFACE;
+                            setSelected(entityPicker.pickSurface(figureUid, lastClick));
+                        }
                     }
                     break;
                 case 2:
                     /*there is a polyline selected? if yes start dataEditor*/
-                    if (selected != null && !isLegend && dataModifyEnabled) {
+                    if (selected != null && selectedType == SelectionType.POLYLINE && dataModifyEnabled) {
                         enterDataEditor();
                     }
                     /*on double click over a legend or label open dialog*/
@@ -193,7 +201,7 @@ public class Editor {
 
         String object = getSelected();
         if (dataModifyEnabled && !dataEditEnabled && object != null) {
-            editorHistory.addAction(new ActionMove(object, lastClick, dragClick, isLegend));
+            editorHistory.addAction(new ActionMove(object, lastClick, dragClick, (selectedType == SelectionType.LEGEND)));
         } else {
             dataEditor.onLeftMouseRelease(event);
         }
@@ -210,9 +218,9 @@ public class Editor {
             if (!dataEditEnabled) {
                 String objUID = getSelected();
                 if (objUID != null) {
-                    if (isLegend) {
+                    if (selectedType == SelectionType.LEGEND) {
                         LegendHandler.dragLegend(objUID, dragClick, newClick);
-                    } else {
+                    } else if (selectedType == SelectionType.POLYLINE) {
                         PolylineHandler.getInstance().dragPolyline(objUID, dragClick, newClick);
                     }
                 }
@@ -225,12 +233,11 @@ public class Editor {
     }
 
     /**
-     * On ESC typed if dataEditor is enabled,
-     * back to normal editor else leave editor mode.
-     * is enabled pass event to it.
+     * On ESC pressed if dataEditor is enabled,
+     * back to normal editor.
      * @param event The Key event.
      */
-    void onKeyTyped(KeyEvent event) {
+    void onKeyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
             leaveDataEditor();
         }
@@ -430,15 +437,19 @@ public class Editor {
 
         if (selected != null) {
             oriColor = CommonHandler.setColor(selected, -3);
-            if (!isLegend) {
-                copy.setEnabled(true);
-                cut.setEnabled(true);
-                delete.setEnabled(true);
-                hide.setEnabled(true);
-                legends.setEnabled(true);
-                editdata.setEnabled(true);
-            }
-            delete.setEnabled(true);
+
+            boolean spl = selectedType == SelectionType.SURFACE ||selectedType == SelectionType.POLYLINE || selectedType == SelectionType.LEGEND;
+            boolean sp = selectedType == SelectionType.SURFACE ||selectedType == SelectionType.POLYLINE;
+            boolean p = selectedType == SelectionType.POLYLINE;
+            /* Enable delete if object is surface or polyline or legend*/
+            delete.setEnabled(true && spl);
+            /* Enable copy, cut, hide if object is surface or polyline*/
+            copy.setEnabled(true && sp);
+            cut.setEnabled(true && sp);
+            hide.setEnabled(true && sp);
+            /* Enable editdata, add legend if object is  polyline*/
+            legends.setEnabled(true && p);
+            editdata.setEnabled(true && p);
         } else {
             copy.setEnabled(false);
             cut.setEnabled(false);
@@ -501,7 +512,7 @@ public class Editor {
     * Implements copy menu item action(Callback).
     */
     public void onClickCopy() {
-        if (!isLegend) {
+        if (selectedType != SelectionType.LEGEND) {
             ScilabClipboard.getInstance().copy(getSelected());
             ScilabClipboard.getInstance().setCopiedColor(oriColor);
         }
@@ -517,6 +528,18 @@ public class Editor {
 
         currentObject = ScilabClipboard.getInstance().getCurrentObject();
         currentParent = CommonHandler.getParent(currentObject);
+        String oldFigure = CommonHandler.getParentFigure(currentObject);
+        if (!CommonHandler.cmpColorMap(figureUid, oldFigure)) {
+            String msg=  "The colormap from source figure seems to be different from the destination figure." +
+                         "\nThis may influence the final appearence from the object." +
+                         "\nDo you want copy the color map too?";
+            int i = JOptionPane.showConfirmDialog(dialogComponent, msg, "Warning", JOptionPane.YES_NO_OPTION);
+
+            if (i == JOptionPane.YES_OPTION) {
+                CommonHandler.cloneColorMap(oldFigure, figureUid);
+            }
+        }
+
         newObject = ScilabClipboard.getInstance().paste(figureUid, lastClick);
         newParent = CommonHandler.getParent(newObject);
         if (newObject == currentObject) {
@@ -530,7 +553,7 @@ public class Editor {
      */
     public void onClickCut() {
         String s = getSelected();
-        if (s != null && !isLegend) {
+        if (s != null && selectedType != SelectionType.LEGEND) {
             setSelected(null);
             ScilabClipboard.getInstance().cut(s);
             ScilabClipboard.getInstance().setCopiedColor(oriColor);
@@ -565,7 +588,7 @@ public class Editor {
     */
     public void onClickHide() {
         if (getSelected() != null) {
-            PolylineHandler.getInstance().visible(selected, false);
+            CommonHandler.setVisible(selected, false);
             setSelected(null);
         }
     }
@@ -574,7 +597,7 @@ public class Editor {
      * Implements unhide menu item action(Callback).
      */
     public void onClickUnhide() {
-        PolylineHandler.getInstance().visible(figureUid, true);
+        CommonHandler.unhideAll(figureUid);
     }
 
     /**
@@ -656,7 +679,7 @@ public class Editor {
      * Enter data editor mode.
      */
     public void enterDataEditor() {
-        if (!dataEditEnabled && !isLegend) {
+        if (!dataEditEnabled && selectedType == SelectionType.POLYLINE) {
             dataEditor.beginEdit(selected);
             dataEditEnabled = true;
         }

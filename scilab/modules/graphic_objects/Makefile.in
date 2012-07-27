@@ -128,7 +128,8 @@ libscigraphic_objects_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 = libscigraphic_objects_la-DataLoader_wrap.lo \
 	libscigraphic_objects_la-ScilabNativeView_wrap.lo \
-	libscigraphic_objects_la-PolylineData_wrap.lo
+	libscigraphic_objects_la-PolylineData_wrap.lo \
+	libscigraphic_objects_la-SurfaceData_wrap.lo
 am__objects_3 = libscigraphic_objects_la-CallGraphicController.lo
 am__objects_4 = libscigraphic_objects_la-gw_graphic_objects.lo
 am__objects_5 = libscigraphic_objects_la-sci_graphicfunction.lo
@@ -166,7 +167,9 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-FigureModel.lo \
 	libscigraphic_objects_la-CurrentFigure.lo \
 	libscigraphic_objects_la-CurrentObject.lo \
-	libscigraphic_objects_la-CurrentSubwin.lo
+	libscigraphic_objects_la-CurrentSubwin.lo \
+	libscigraphic_objects_la-createObjectData.lo \
+	libscigraphic_objects_la-pickSurface.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
@@ -555,7 +558,8 @@ BUILT_SOURCES = includes/graphicObjectsProperties.h $(am__append_2) \
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
-							src/jni/PolylineData_wrap.c
+							src/jni/PolylineData_wrap.c \
+							src/jni/SurfaceData_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -591,7 +595,9 @@ GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/FigureModel.cpp \
 								src/cpp/CurrentFigure.cpp \
 								src/cpp/CurrentObject.cpp \
-								src/cpp/CurrentSubwin.cpp
+								src/cpp/CurrentSubwin.cpp \
+								src/cpp/createObjectData.cpp \
+								src/cpp/pickSurface.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
@@ -629,7 +635,8 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/DataLoader.i \
 				src/jni/ScilabNativeView.i \
-				src/jni/PolylineData.i
+				src/jni/PolylineData.i \
+                src/jni/SurfaceData.i
 
 libscigraphic_objects_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -746,16 +753,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ScilabView.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-SurfaceData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Triangulator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createObjectData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-dataModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-deleteGraphicObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-getConsoleIdentifier.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-getGraphicObjectProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-pickSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-sci_graphicfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-setGraphicObjectProperty.Plo@am__quote@
 
@@ -807,6 +817,13 @@ libscigraphic_objects_la-PolylineData_wrap.lo: src/jni/PolylineData_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/PolylineData_wrap.c' object='libscigraphic_objects_la-PolylineData_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-PolylineData_wrap.lo `test -f 'src/jni/PolylineData_wrap.c' || echo '$(srcdir)/'`src/jni/PolylineData_wrap.c
+
+libscigraphic_objects_la-SurfaceData_wrap.lo: src/jni/SurfaceData_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-SurfaceData_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-SurfaceData_wrap.Tpo -c -o libscigraphic_objects_la-SurfaceData_wrap.lo `test -f 'src/jni/SurfaceData_wrap.c' || echo '$(srcdir)/'`src/jni/SurfaceData_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-SurfaceData_wrap.Tpo $(DEPDIR)/libscigraphic_objects_la-SurfaceData_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/SurfaceData_wrap.c' object='libscigraphic_objects_la-SurfaceData_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-SurfaceData_wrap.lo `test -f 'src/jni/SurfaceData_wrap.c' || echo '$(srcdir)/'`src/jni/SurfaceData_wrap.c
 
 libscigraphic_objects_la-gw_graphic_objects.lo: sci_gateway/c/gw_graphic_objects.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-gw_graphic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Tpo -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
@@ -1094,6 +1111,20 @@ libscigraphic_objects_la-CurrentSubwin.lo: src/cpp/CurrentSubwin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CurrentSubwin.cpp' object='libscigraphic_objects_la-CurrentSubwin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-CurrentSubwin.lo `test -f 'src/cpp/CurrentSubwin.cpp' || echo '$(srcdir)/'`src/cpp/CurrentSubwin.cpp
+
+libscigraphic_objects_la-createObjectData.lo: src/cpp/createObjectData.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-createObjectData.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-createObjectData.Tpo -c -o libscigraphic_objects_la-createObjectData.lo `test -f 'src/cpp/createObjectData.cpp' || echo '$(srcdir)/'`src/cpp/createObjectData.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-createObjectData.Tpo $(DEPDIR)/libscigraphic_objects_la-createObjectData.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/createObjectData.cpp' object='libscigraphic_objects_la-createObjectData.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-createObjectData.lo `test -f 'src/cpp/createObjectData.cpp' || echo '$(srcdir)/'`src/cpp/createObjectData.cpp
+
+libscigraphic_objects_la-pickSurface.lo: src/cpp/pickSurface.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-pickSurface.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-pickSurface.Tpo -c -o libscigraphic_objects_la-pickSurface.lo `test -f 'src/cpp/pickSurface.cpp' || echo '$(srcdir)/'`src/cpp/pickSurface.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-pickSurface.Tpo $(DEPDIR)/libscigraphic_objects_la-pickSurface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/pickSurface.cpp' object='libscigraphic_objects_la-pickSurface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-pickSurface.lo `test -f 'src/cpp/pickSurface.cpp' || echo '$(srcdir)/'`src/cpp/pickSurface.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

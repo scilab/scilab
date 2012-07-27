@@ -83,6 +83,9 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void keyPressed(KeyEvent arg0) {
+
+        editor.onKeyPressed(arg0);
+
         if (DatatipManagerMode.getDatatipManagerMode()) {
             if (indexToMove != null) {
                 if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -96,6 +99,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void keyReleased(KeyEvent arg0) {
+
         if (DatatipManagerMode.getDatatipManagerMode()) {
             if (indexToMove != null) {
                 DatatipOrientation.setOrientation (windowUid, getDatatipsUid, getMarkersUid, pixelMouseCoordInt);
@@ -104,7 +108,6 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void keyTyped(KeyEvent arg0) {
-        editor.onKeyTyped(arg0);
     }
 
     /**

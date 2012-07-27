@@ -32,6 +32,7 @@ public class ObjectSearcher {
 
     private List<String> objects = new ArrayList<String>();
     private String type;
+    private String[] types;
 
     /**
     * Search for the given object type.
@@ -88,6 +89,44 @@ public class ObjectSearcher {
                 getObjects(childUid[i]);
             }
         }
+    }
+
+    private void getMultipleObjects(String uid) {
+
+        Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+        String[] childUid = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
+
+        for (Integer i = 0; i < childCount; ++i ) {
+            String objType = (String)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
+
+            boolean found = false;
+
+            for (Integer j = 0; j < types.length; ++j) {
+                if (objType == types[j]) {
+                    objects.add(childUid[i]);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                getMultipleObjects(childUid[i]);
+            }
+        }
+    }
+
+    public String[] searchMultiple(String root, String[] objTypes) {
+
+        types = objTypes;
+        objects.clear();
+        getMultipleObjects(root);
+        if (objects.size() != 0){
+            String[] ret = new String[objects.size()];
+            for (int i = 0; i < objects.size(); ++i) {
+                 ret[i] = objects.get(i);
+            }
+            return ret;
+        }
+        return null;
     }
 }
 

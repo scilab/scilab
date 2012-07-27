@@ -278,6 +278,10 @@
     <ClCompile Include="..\cpp\TriangleMeshData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
+    <ClCompile Include="..\jni\SurfaceData_wrap.c" />
+    <ClCompile Include="..\cpp\createObjectData.cpp" />
+    <ClCompile Include="..\cpp\pickSurface.cpp" />
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
@@ -315,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\PolylineData.i" />
+    <None Include="..\jni\SurfaceData.i" />
     <None Include="..\jni\ScilabNativeView.i" />
     <None Include="core_import.def" />
     <None Include="..\jni\DataLoader.i" />

@@ -149,6 +149,15 @@
     <ClCompile Include="..\jni\PolylineData_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\SurfaceData_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\createObjectData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\pickSurface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -262,6 +271,9 @@
       <Filter>Swig Files</Filter>
     </None>
     <None Include="..\jni\PolylineData.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\SurfaceData.i">
       <Filter>Swig Files</Filter>
     </None>
   </ItemGroup>

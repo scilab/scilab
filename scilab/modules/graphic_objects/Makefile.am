@@ -33,7 +33,8 @@ GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
-							src/jni/PolylineData_wrap.c
+							src/jni/PolylineData_wrap.c \
+							src/jni/SurfaceData_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -69,7 +70,9 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/FigureModel.cpp \
 								src/cpp/CurrentFigure.cpp \
 								src/cpp/CurrentObject.cpp \
-								src/cpp/CurrentSubwin.cpp
+								src/cpp/CurrentSubwin.cpp \
+								src/cpp/createObjectData.cpp \
+								src/cpp/pickSurface.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 
@@ -124,7 +127,8 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/DataLoader.i \
 				src/jni/ScilabNativeView.i \
-				src/jni/PolylineData.i
+				src/jni/PolylineData.i \
+                src/jni/SurfaceData.i
 if SWIG
   BUILT_SOURCES += swig
 endif

@@ -21,10 +21,12 @@ import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.gui.editor.PolylineHandler;
+import org.scilab.modules.graphic_objects.SurfaceData;
+import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.editor.ObjectSearcher;
 
 import java.lang.Math;
@@ -387,6 +389,42 @@ public class EntityPicker {
         newVec[1] = vec[length - 2];
         newVec[2] = vec[length - 1];
         return newVec;
+    }
+
+    /*
+     * Given a figure search for all plot3d's and for each surface
+     * test if the ray given by the mouse position intersects any surface
+     * @param figure Figure unique identifier.
+     * @param pos Mouse position (x, y).
+     * @return The nearest surface intersected or null otherwise.
+     */
+    String pickSurface(String figure, Integer[] pos) {
+
+        String uid = AxesHandler.clickedAxes(figure, pos);
+        curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
+
+        double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
+
+
+        Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f*pos[0], 1.0f*pos[1], 0.0));
+        Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f*pos[0], 1.0f*pos[1], 1.0));
+        Vector3d Dir = v0.minus(v1).getNormalized();
+
+        String[] objs = (new ObjectSearcher()).search(figure, GraphicObjectProperties.__GO_PLOT3D__);
+        double Z = 2.0;
+        String picked = null;
+        if (objs != null) {
+            for (int i = 0; i < objs.length; ++i) {
+                double curZ = SurfaceData.pickSurface(objs[i], v0.getX(), v0.getY(), v0.getZ(),
+                                            Dir.getX(), Dir.getY(), Dir.getZ(),mat[2], mat[6], mat[10], mat[14]);
+                if (curZ < Z) {
+                    picked = objs[i];
+                    Z = curZ;
+                }
+            }
+        }
+
+        return picked;
     }
 }
 

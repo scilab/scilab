@@ -75,29 +75,6 @@ public class PolylineHandler {
 
     }
 
-    /**
-    * If the given object is a polyline change its state.
-    * Else change the state of all child polylines from the given object.
-    *
-    * @param uid Polyline/Object unique identifier.
-    * @param state True for visible, false for hidden.
-    */
-    public void visible(String uid, Boolean state) {
-
-        String objType = (String)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
-        if (objType == GraphicObjectProperties.__GO_POLYLINE__) {
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_VISIBLE__, state);
-        } else {
-            String[] polylines = (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_POLYLINE__);
-
-            if (polylines != null) {
-                for (Integer i = 0; i < polylines.length; ++i) {
-                    GraphicController.getController().setProperty(polylines[i], GraphicObjectProperties.__GO_VISIBLE__, state);
-                }
-            }
-        }
-    }
-
 
     private String[] searchCompound(String uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_COMPOUND__);
