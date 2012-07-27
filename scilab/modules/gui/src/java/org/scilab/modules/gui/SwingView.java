@@ -12,7 +12,6 @@
  */
 package org.scilab.modules.gui;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
@@ -890,7 +889,6 @@ public final class SwingView implements GraphicView {
         TypedObject updatedObject = allObjects.get(id);
         Container updatedComponent = null;
         boolean needRevalidate = false;
-        String parentId = null;
         int updatedObjectPosition = 0;
         TypedObject newParent = null;
 
@@ -904,11 +902,11 @@ public final class SwingView implements GraphicView {
 
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     Object addedChild = allObjects.get(childId).getValue();
-                    parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
-                    JComponent parent = (JComponent) allObjects.get(parentId).getValue();
+                    JComponent parent = null;
                     switch (updatedObject.getType()) {
                         case UiChildMenu:
                             updatedComponent = (SwingScilabMenuItem) updatedObject.getValue();
+                            parent = (JComponent) updatedComponent.getParent();
                             switch (childAsTypedObject.getType()) {
                                 case UiChildMenu:
                                     /* Replace the item by a parent menu */
@@ -939,6 +937,7 @@ public final class SwingView implements GraphicView {
                             break;
                         case UiCheckedMenu:
                             updatedComponent = (SwingScilabCheckBoxMenuItem) updatedObject.getValue();
+                            parent = (JComponent) updatedComponent.getParent();
                             switch (childAsTypedObject.getType()) {
                                 case UiChildMenu:
                                     /* Replace the item by a parent menu */

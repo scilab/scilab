@@ -225,6 +225,8 @@ Bug Fixes
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
 
+* Bug #11318 fixed - Order of uimenus in a figure changed when adding submenus.
+
 * Bug #11326 fixed - set(h, "enable", "off") and set(h, "visible", "off") had no
                      effect after menu creation.
 
