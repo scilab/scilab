@@ -107,7 +107,15 @@ int sci_Legend( char * fname, unsigned long fname_len )
         handlesvalue = (unsigned long) (hstk(l1))[n - 1 - i];
         pobjUID = (char*)getObjectFromHandle(handlesvalue);
 
-        /**
+        if (pobjUID == NULL)
+        {
+            freeArrayOfString(Str, n);
+            FREE(tabofhandles);
+            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
+            return 0;
+        }
+
+       /**
          * We get the current pSubwin & pFigure from the first handle's parents.
          */
         if (i == 0)
@@ -127,15 +135,6 @@ int sci_Legend( char * fname, unsigned long fname_len )
             FREE(tabofhandles);
             return 0;
         }
-
-        if (pobjUID == NULL)
-        {
-            freeArrayOfString(Str, n);
-            FREE(tabofhandles);
-            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
-            return 0;
-        }
-
 
         getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
 
