@@ -5,24 +5,25 @@
 Xcos
 ====
 
-* Bug #8510 fixed - The message "Diagram contains implicit blocks..." was blocker
+* Bug #8510 fixed - The message "Diagram contains implicit blocks..." stopped
+                    all process.
 
-* Bug #9290 fixed - HALT blocks displayed STOP
+* Bug #9290 fixed - HALT blocks displayed STOP.
 
-* Bug #9496 fixed - Xcos flag 5 (ending) was not called if simulation is
-                    stopped from user interface.
+* Bug #9496 fixed - Xcos flag 5 (ending) was not called when simulation was
+                    stopped from the user interface.
 
-* Bug #11132 fixed - Some help pages were missing : standard_origin, ...
+* Bug #11132 fixed - Some help pages were missing: standard_origin, ...
 
-* Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter
+* Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter.
 
-* Bug #11518 fixed - CLR block-text left box when zooming.
+* Bug #11518 fixed - When zooming on CLR block-text, the block was outside the box.
 
 
 Preferences
 ===========
 
-* Add a function preferences() to open the Preferences window.
+* preferences() function added to open the Preferences window.
 
 
 Javasci
@@ -47,9 +48,9 @@ Documentation
 Signal Processing
 =================
 
-* Updated and improved fft function based on fftw (See SEP#84):
-    - taking data symmetry into account,
-    - hard coded multivariate fft.
+* fft function based on fftw updated and improved (See SEP#84):
+    - Take data symmetry into account,
+    - Include hard coded multivariate fft.
 
 
 Compilation
@@ -68,9 +69,9 @@ GUI
 * Figure closure can now be managed by the user (confirmation, ...) through the
   'closerequestfcn' property.
 
-* F5 and F6 change the focus of the dock element.
+* F5 and F6 change the focus of the docked element.
 
-* Improvement in the refresh of the dock elements.
+* Improvement in the refresh of the docked elements.
 
 
 Obsolete Functions
@@ -127,97 +128,97 @@ Graphics
 Bug Fixes
 =========
 
-* Bug #3235 fixed - In the bezout function, typo in the name of a variable.
-                    This made the calpol unitary test fail.
+* Bug #3235 fixed - In the bezout function, wrong typo in the name of a variable
+                    made the calpol unitary test failed.
 
 * Bug #3244 fixed - Error messages in the qpsolve and qp_solve functions updated.
 
-* Bug #3787 fixed - Invalid calling sequences removed from the schur help page.
+* Bug #3787 fixed - Invalid calling sequences removed from schur help page.
 
-* Bug #5675 fixed - Levitron demo was failing in some cases.
+* Bug #5675 fixed - Levitron demonstration was failing in some cases.
 
-* Bug #6154, #10850 fixed - Update help pages of arnoldi package.
+* Bug #6154, #10850 fixed - arnoldi package help pages updated.
 
-* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was present,
-                    was always calculated its own, arbitrary, internal value.
+* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was given,
+                    and always calculated its own, arbitrary, internal value.
 
-* Bug #6702 fixed - the max and min functions returned a scalar in k when the input
+* Bug #6702 fixed - max and min functions returned a scalar in k when the input
                     argument was the last column of an hypermatrix.
 
 * Bug #7216 fixed - modulo(x,0) and pmodulo(x,0) did not return an error message.
                     With ieee(2) these functions now return %nan.
 
-* Bug #7251 fixed - Fix an error in the qp_solve documentation.
+* Bug #7251 fixed - Error fixed in qp_solve help page.
 
 * Bug #7855 fixed - It was not possible to change the event function while
                     the event handler was enabled.
 
-* Bug #7873 fixed - The lagr parameter of the help page of the qld function was wrong.
+* Bug #7873 fixed - The lagr parameter in qld help page was wrong.
 
-* Bug #8351 fixed - The integrate function did not manage the optional input 
-                    arguments properly.
+* Bug #8351 fixed - The integrate function did not manage properly the optional 
+                    input arguments.
 
-* Bug #8785 fixed - Check input arguments in the modulo and pmodulo functions.
+* Bug #8785 fixed - modulo and pmodulo functions did not check input arguments.
 
-* Bug #9830 fixed - leastsq did not match the information of optim.
+* Bug #9830 fixed - leastsq did not match the information given in optim help page.
 
-* Bug #9884 fixed - Add in prefs the possibility to add a default header on
-                    new files in SciNotes.
+* Bug #9884 fixed - Possibility to add a default header on new files in SciNotes 
+                    added in Preferences.
 
 * Bug #9464 fixed - contourf did not work when the "Matlab Compatibility functions
                     module" was not installed.
 
-* Bug #10150 fixed - Completion help page moved to the console chapter.
+* Bug #10150 fixed - Completion help page moved to console chapter.
 
 * Bug #10184 fixed - In messagebox, focus was not set by default on yes or ok
                      button.
 
 * Bug #10385 fixed - It was not possible to configure default web browser.
 
-* Bug #10479 fixed - The max and min functions where incorrect for N-D arrays.
+* Bug #10479 fixed - max and min functions were incorrect for N-D arrays.
 
-* Bug #10497 fixed - Some special characters were causing issues in the phaseplot
+* Bug #10497 fixed - Some special characters were causing issues in phaseplot
                      localization.
 
-* Bug #10595 fixed - In SciNotes, <TAB> didn't go to the next tab position.
+* Bug #10595 fixed - In SciNotes, <TAB> did not go to the next tab position.
 
-* Bugs #10827, #10868 fixed - In SciNotes, strings containing latex disappeared
+* Bugs #10827, #10868 fixed - In SciNotes, strings containing LaTeX disappeared
                               when executed.
 
-* Bug #10837 fixed - In SciNotes prefs, font modification was not correctly
+* Bug #10837 fixed - In SciNotes preferences, font modification was not correctly
                       repercuted.
 
 * Bug #10915 fixed - It was not possible to select several files when using
                      button "Open file" in console toolbar.
 
-* Bug #10921 fixed - For ill-conditioned matrix, the inv function printed a
+* Bug #10921 fixed - For ill-conditioned matrix, inv function displayed a
                      wrong value of rcond.
 
 * Bug #11046 fixed - Sometimes, OverLoad(0) did not called %_xxx but %x_xxx.
 
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
-                     correctly.
+                     properly.
 
-* Bug #11069 fixed - An axes could be wrongly set as parent for an uicontrol.
+* Bug #11069 fixed - An axe could be wrongly set as parent for an uicontrol.
 
-* Bug #11203 fixed - Description for info output parameter was wrong in lsqrsolve help page.
+* Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
-* Bug #11450 fixed - Logarithmic ticks were wrongly not sorted.
+* Bug #11450 fixed - Logarithmic ticks were not sorted.
 
-* Bug #11488 fixed - Error in console due to browsevar when deleting a global
-                     var.
+* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting 
+                     a global var.
 
-* Bug #11300 fixed - freson calculated wrong frequencies in scilab-5.3.3.
+* Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
 
 * Bug #11326 fixed - set(h, "enable", "off") and set(h, "visible", "off") had no
                      effect after menu creation.
 
-* Bug #11328 fixed - strsplit returned a wrong error message when second input
+* Bug #11328 fixed - strsplit returned a wrong error message when the second input
                      argument contained wrong values.
 
 * Bug #11331 fixed - graypolarplot() returned an error about an unknown property.
 
-* Bug #11346 fixed - Add error messages in the cosm function in case of bad
+* Bug #11346 fixed - Error messages added in cosm function in case of bad
                      usage.
 
 * Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
@@ -240,7 +241,7 @@ Bug Fixes
 * Bug #11398 fixed - newest() produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
-* Bug #11403 fixed - toprint() did not work and and menu Print too.
+* Bug #11403 fixed - toprint() and Print menu did not work.
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
@@ -248,37 +249,37 @@ Bug Fixes
 
 * Bug #11422 fixed - datatips did not work when the figure contained uicontrols.
 
-* Bug #11423 fixed - When the variable "a" was selected, all the a were highlighted
-                     rather than only the variable "a".
+* Bug #11423 fixed - When the variable "a" was selected, all the a characters were 
+                     highlighted rather than only the "a" variable.
 
-* Bug #11443 fixed - There was no way to set default language via prefs under
+* Bug #11443 fixed - There was no way to set default language by the preferences under
                      Windows.
 
 * Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
 
-* Bug #11449 fixed - The color function created a figure when it did not already
-                     exist.
+* Bug #11449 fixed - The color function created a figure when no current figure
+                     existed.
 
-* Bug #11457 fixed - gsort crashed when get string data from stack after big stacksize.
+* Bug #11457 fixed - gsort crashed when getting string data from stack after big stacksize.
 
-* Bug #11459 fixed - Docbook tags varname, command, constant and option were not
+* Bug #11459 fixed - varname, command, constant and option docbook tags were not
                      handled.
 
-* Bug #11460 fixed - In the console, scrollbar was not updated before something was
+* Bug #11460 fixed - In the console, scrollbar was not updated if nothing was
                      entered at the prompt.
 
-* Bug #11466 fixed - fscanf was not set as obsolete but called an obsolete function.
+* Bug #11466 fixed - fscanf was not set as obsolete as it should have been.
 
-* Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of draw
-                     at the end of the update.
+* Bug #11469 fixed - The drawing, using xfpolys, was incremental instead of drawing
+                     at once at the end.
 
 * Bug #11481 fixed - The title axes was in front of plots.
 
-* Bug #11482 fixed - The 2 plots of demo "Graphics/Complex elementary function/Custom"
-                     were too small.
+* Bug #11482 fixed - The two plots drawn in"Graphics/Complex elementary function/Custom"
+                     demonstration were too small.
 
-* Bug #11486 & #11487 fixed - Segfault or infinite loop when a list was inserted
-                              into itself.
+* Bug #11486 & #11487 fixed - When a list was inserted into itself,
+                              it produced Segfault or infinite loop.
 
 * Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
                      something in the console.
@@ -286,18 +287,18 @@ Bug Fixes
 * Bug #11502 fixed - Some Java debug information was displayed when playing with
                      graphics.
 
-* Bug #11515 fixed - Add checkVarDimension documentation page.
-                     Update getNbInputArgument and getNbOutputArgument pages.
+* Bug #11515 fixed - checkVarDimension help page added and getNbInputArgument and
+                     getNbOutputArgument help pages updated.
 
-* Bug #11517 fixed - Bad formatting fixed in getenv help page (French version only).
+* Bug #11517 fixed - Bad formatting fixed in the French version of getenv help page.
 
 * Bug #11519 fixed - The colored lines in the legend of nyquist plot were inverted.
 
-* Bug #11537 fixed - In SciNotes it was not possible to modify font size with
+* Bug #11537 fixed - In SciNotes, it was not possible to modify font size with
                      CTRL+scroll.
 
 * Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
-                     fixed to 4096.
+                     set to 4096.
 
 * Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
                      used to select the file name for graphic export.
@@ -315,8 +316,8 @@ Known Incompatibilities
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
-* Setting the "foreground" property for a figure was possible even if not officially
-  supported or documented. This now returns an error.
+* Setting the "foreground" property for a figure was possible even if it was not 
+  officially supported or documented. An error is now returned.
   Please use the axes "foreground" property instead. See bug #11369.
 
 
@@ -1423,7 +1424,7 @@ to find the parameters dialog to open.
 Localization
 =============
 
-* Czech localization by ZbynÄk Schwarz
+* Czech localization by ZbynÄk Schwarz
 
 
 * Bug #10032 fixed - Force the unset of the environment variable LANGUAGE to
