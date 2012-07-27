@@ -61,7 +61,6 @@
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"
 #include BinariesSourcePath + "\modules\javasci\javasci.iss"
-#include BinariesSourcePath + "\modules\intersci\intersci.iss"
 #include BinariesSourcePath + "\modules\mexlib\mexlib.iss"
 #include BinariesSourcePath + "\modules\m2sci\m2sci.iss"
 #include BinariesSourcePath + "\modules\randlib\randlib.iss"
