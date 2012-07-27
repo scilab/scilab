@@ -573,6 +573,9 @@ y=ode(y0,t0,t,'myode');
       <member>
         <link linkend="rtitr">rtitr</link>
       </member>
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>
