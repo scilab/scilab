@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * ...
  * 
  * This file must be used under the terms of the CeCILL.
@@ -20,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+    <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w, iw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -66,7 +67,9 @@
       <varlistentry>
         <term>w, iw</term>
         <listitem>
-          <para>векторы вещественных значений.</para>
+          <para>
+	    векторы вещественных значений (ВХОДНЫЕ/ВЫХОДНЫЕ).
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -79,6 +82,19 @@
         <term>g</term>
         <listitem>
           <para>внешняя функция, символьная строка или список.</para>
+        </listitem>
+      </varlistentry>
+        </variablelist>
+        <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>вещественный вектор или матрица (ВЫХОДНАЯ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rd</term>
+        <listitem>
+          <para>вещественный вектор (ВЫХОДНОЙ).</para>
         </listitem>
       </varlistentry>
     </variablelist>

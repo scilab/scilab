@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -21,10 +21,10 @@
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
     <synopsis>
-      y=ode(y0,t0,t,f)
-      [y,w,iw]=ode([type,]y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-      [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
-      y=ode("discrete",y0,k0,kvect,f)
+      y=ode(y0, t0, t, f)
+      [y, w, iw]=ode([type,]y0, t0, t [,rtol [,atol]],f [,jac] [,w, iw])
+      [y, rd, w, iw]=ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [, w, iw])
+      y=ode("discrete", y0, k0, kvect, f)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -105,7 +105,7 @@
       <varlistentry>
         <term>w, iw</term>
         <listitem>
-          <para>вещественные векторы.</para>
+          <para>вещественные векторы (ВХОДНЫЕ/ВЫХОДНЫЕ).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -131,6 +131,18 @@
         <listitem>
           <para>целочисленный вектор.</para>
         </listitem>
+      </varlistentry>
+        <varlistentry>
+	<term>y</term>
+	<listitem>
+	  <para>вещественный вектор или матрица (ВЫХОДНАЯ).</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>rd</term>
+	<listitem>
+	  <para>вещественный вектор (ВЫХОДНОЙ).</para>
+	</listitem>
       </varlistentry>
     </variablelist>
   </refsection>
