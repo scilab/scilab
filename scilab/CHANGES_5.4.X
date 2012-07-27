@@ -204,7 +204,9 @@ Bug Fixes
 
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      properly.
-                     
+
+* Bug #11049 fixed - Link to intg help page added in the ode help page.
+
 * Bug #11050 fixed - The output argument rd in the ode and ode_root help pages was not
                      documented.
 
