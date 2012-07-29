@@ -24,6 +24,7 @@ Source: thirdparty\jlatexmath-0.9.7.jar;DestDir: {app}\thirdparty; Components: {
 Source: thirdparty\jlatexmath-fop-0.9.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\{#GRAPHICS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\{#GRAPHICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}.dll; Components: not ({#COMPN_GRAPHICS})
 ;
