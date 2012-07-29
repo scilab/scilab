@@ -47,5 +47,6 @@
     <module name="differential_equations" activate="yes"/>
     <module name="spreadsheet" activate="yes"/>
     <module name="randlib" activate="yes"/>
+    <module name="atoms" activate="yes"/>
 </modules>
 
