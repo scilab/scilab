@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA
+* Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+* ...
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ode_root" xml:lang="ru">
   <refnamediv>
     <refname>ode_root</refname>
@@ -68,8 +68,8 @@
         <term>w, iw</term>
         <listitem>
           <para>
-	    векторы вещественных значений (ВХОДНЫЕ/ВЫХОДНЫЕ).
-	  </para>
+            векторы вещественных значений (ВХОДНЫЕ/ВЫХОДНЫЕ).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -84,8 +84,7 @@
           <para>внешняя функция, символьная строка или список.</para>
         </listitem>
       </varlistentry>
-        </variablelist>
-        <varlistentry>
+      <varlistentry>
         <term>y</term>
         <listitem>
           <para>вещественный вектор или матрица (ВЫХОДНАЯ).</para>
@@ -111,8 +110,8 @@
       Если <literal>g</literal> является функцией, то её синтаксис должен быть следующим:
     </para>
     <programlisting role="no-scilab-exec"><![CDATA[ 
-z = g(t,y)
- ]]></programlisting>
+    z = g(t,y)
+    ]]></programlisting>
     <para>
       где <literal>t</literal> -- вещественный скаляр (время) и <literal>y</literal> -- вещественный вектор (состояние). Она возвращает вектор размером       <literal>ng</literal>, который соответствует <literal>ng</literal> ограничениям. Если <literal>g</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C со следующей последовательностью вызова: <literal>g(n,t,y,ng,gout)</literal>, где <literal>ng</literal> --  количество ограничений, а <literal>gout</literal> -- значение  <literal>g</literal> (на выходе программы). Если <literal>g</literal> является списком, то применяются те же договорённости, что и для <literal>f</literal> (см. справку <link linkend="ode">ode</link>).
     </para>
@@ -127,16 +126,16 @@ z = g(t,y)
   <refsection>
     <title>Примеры</title>
     <programlisting role="example"><![CDATA[ 
-// Интегрирование дифференциального уравнения
-// dy/dt=y , y(0)=1, и поиск такого минимального времени t, что y(t)=2
-deff("[ydot]=f(t,y)","ydot=y")
-deff("[z]=g(t,y)","z=y-2")
-y0=1;ng=1;
-[y,rd]=ode("roots",y0,0,2,f,ng,g)
- 
-deff("[z]=g(t,y)","z=y-[2;2;33]")
-[y,rd]=ode("roots",1,0,2,f,3,g)
- ]]></programlisting>
+    // Интегрирование дифференциального уравнения
+    // dy/dt=y , y(0)=1, и поиск такого минимального времени t, что y(t)=2
+    deff("[ydot]=f(t,y)","ydot=y")
+    deff("[z]=g(t,y)","z=y-2")
+    y0=1;ng=1;
+    [y,rd]=ode("roots",y0,0,2,f,ng,g)
+    
+    deff("[z]=g(t,y)","z=y-[2;2;33]")
+    [y,rd]=ode("roots",1,0,2,f,3,g)
+    ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>Смотрите также</title>
