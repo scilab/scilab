@@ -14,6 +14,8 @@ package org.scilab.tests.modules.commons;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.commons.ScilabCommons;
@@ -40,4 +42,13 @@ public class CommonsTests {
         assertTrue(ScilabCommons.createtempfilename("prefix_", 0).length() > 0);
     }
 
+    @Test
+    public void getSCIHOME() throws IOException {
+        assertTrue(ScilabCommons.getSCIHOME() != null);
+    }
+
+    @Test
+    public void getTMPDIR() throws IOException {
+        assertTrue(ScilabCommons.getTMPDIR() != null);
+    }
 }
