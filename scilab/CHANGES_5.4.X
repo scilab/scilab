@@ -168,6 +168,10 @@ Bug Fixes
 * Bug #7881 fixed - Error in the condition which must check if the second input
                     argument in the lattn function is or not scalar.
 
+* Bug #8101 fixed - The median function with a sparse as a first argument did not
+                    return the good result. Moreover, median(sparse, 'r'| 'c') was not
+                    managed.
+
 * Bug #8351 fixed - The integrate function did not manage properly the optional 
                     input arguments.
 
