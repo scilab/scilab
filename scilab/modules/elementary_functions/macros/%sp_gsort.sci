@@ -9,6 +9,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function A = %sp_gsort(A, optsort, directionsort)
+    rhs = argn(2);
+    select rhs
+    case 1
+        optsort = 'g';
+        directionsort = 'd';
+    case 2
+        directionsort = 'd';
+    end
+
     [ij, v, mn] = spget(A);
 
     if mn(1) <> 1 & mn(2) <> 1 then
@@ -21,31 +30,54 @@ function A = %sp_gsort(A, optsort, directionsort)
         if mn(2) == 1 then
             dif = mn(1) - length(v);
             v = gsort(v, optsort, directionsort);
+            
+            last = find(v<0);
+            first = find(v>0);
+            
+            if last == [] & first <> [] then
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,1) = first(:) + dif;
+                else
+                    ij(:,1) = first(:);
+                end
+            elseif first == [] & last <> [] then
+                ij(:,1) = last(:) + dif;
+            else
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,1) = [last(:); first(:) + dif];
+                else
+                    ij(:,1) = [first(:); last(:) + dif];
+                end
+            end
+            
         elseif mn(1) == 1 then
             dif = mn(2) - length(v);
             v = gsort(v, optsort, directionsort);
-        end
-
-        last = find(v<0);
-        first = find(v>0);
-
-        if last == [] & first <> [] then
-            if strcmp(directionsort, 'i')== 0 then
-                ij(:,1) = first(:) + dif;
+            
+            last = find(v<0);
+            first = find(v>0);
+            
+            if last == [] & first <> [] then
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,2) = first(:) + dif;
+                else
+                    ij(:,2) = first(:);
+                end
+            elseif first == [] & last <> [] then
+                ij(:,1) = last(:) + dif;
             else
-                ij(:,1) = first(:);
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,2) = [last(:); first(:) + dif];
+                else
+                    ij(:,2) = [first(:); last(:) + dif];
+                end
             end
-        elseif first == [] & last <> [] then
-            ij(:,1) = last(:) + dif;
-        else
-            if strcmp(directionsort, 'i')== 0 then
-                ij(:,1) = [last(:); first(:) + dif];
-            else
-                ij(:,1) = [first(:); last(:) + dif];
-            end
+            
         end
-
         A = sparse(ij, v, mn)
     end
+
 endfunction
+
+
 
