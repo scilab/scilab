@@ -44,5 +44,5 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"

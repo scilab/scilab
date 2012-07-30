@@ -286,7 +286,7 @@ msgstr ""
 "escalar.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format

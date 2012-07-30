@@ -164,7 +164,7 @@ msgstr "%s: 引数の精度を取得できません"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr "%s: 入力引数#%dの型が間違っています: 実数スカラーまたは整数スカラーを指定してください.\n"
 

@@ -172,7 +172,7 @@ msgstr "%s: Nie można pobrać dokładności parametru"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano skalara "

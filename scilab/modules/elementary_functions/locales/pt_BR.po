@@ -80,18 +80,6 @@ msgstr ""
 "escalar inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um valor "
-"inteiro.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um valor "
-"inteiro.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr ""

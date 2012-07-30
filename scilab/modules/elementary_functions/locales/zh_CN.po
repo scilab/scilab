@@ -66,14 +66,6 @@ msgid ""
 msgstr "%s：第%d个输入参数的大小错误：应该为整数标量。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为矩阵或整数。\n"

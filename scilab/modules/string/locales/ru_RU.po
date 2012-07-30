@@ -263,7 +263,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
 "значение.\n"

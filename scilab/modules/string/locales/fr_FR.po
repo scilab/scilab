@@ -287,7 +287,7 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
 "attendue.\n"

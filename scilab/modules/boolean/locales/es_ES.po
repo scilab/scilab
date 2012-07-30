@@ -42,6 +42,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Valor erróneo para el argumento de entrada #%d: Se esperaba un entero.\n"

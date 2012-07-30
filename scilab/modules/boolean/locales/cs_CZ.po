@@ -41,6 +41,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Žádná další paměť.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"

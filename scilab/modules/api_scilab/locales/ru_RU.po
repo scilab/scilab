@@ -171,7 +171,7 @@ msgstr "%s: Невозможно получить точность параме�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра #%d: ожидался вещественный или целый "

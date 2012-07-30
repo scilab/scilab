@@ -176,7 +176,7 @@ msgstr "%s: Impossibile ottenere la precisione dell'argomento"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "

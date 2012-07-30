@@ -75,17 +75,6 @@ msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидался целочисленный скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
-"значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалось целочисленное значение.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr ""

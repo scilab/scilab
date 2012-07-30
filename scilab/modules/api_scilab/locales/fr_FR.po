@@ -172,7 +172,7 @@ msgstr "%s : Impossible d'obtenir l'argument precision"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel ou un entier "

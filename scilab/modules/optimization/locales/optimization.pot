@@ -56,7 +56,7 @@ msgstr ""
 # File: sci_gateway/c/sci_qp_solve.c, line: 95
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
 "to %d.\n"
 msgstr ""
 

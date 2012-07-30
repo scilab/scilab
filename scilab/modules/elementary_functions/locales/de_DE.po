@@ -71,14 +71,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr ""

@@ -42,7 +42,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
 "цілого типу.\n"
