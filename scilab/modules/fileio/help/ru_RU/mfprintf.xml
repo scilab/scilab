@@ -11,34 +11,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mfprintf" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mfprintf" xml:lang="ru">
   <refnamediv>
     <refname>mfprintf</refname>
     <refpurpose>converts, formats, and writes data to a file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
+    <title>Последовательность вызова</title>
     <synopsis>mfprintf(fd,format,a1,...,an);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Arguments</title>
+    <title>Аргументы</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
         <listitem>
           <para>
-            a scalar, file descriptor given by <function>mopen</function>
-            (it's a positive integer). 
+            скаляр, файловый дескриптор, предоставленный с помощью 
+            <function>mopen</function> (это положительное число). 
           </para>
           <para>
-            If <varname>fd</varname> equals 0 redirection in stderr.
+            Если <varname>fd</varname> равен 0, то перенаправление в 
+            стандартное устройство вывода сообщений об ошибках (stderr).
           </para>
           <para>
-            If <varname>fd</varname> equals 6 redirection in stdout.
+            Если <varname>fd</varname> равен 6, то перенаправление в 
+            стандартное устройство вывода (stdout).
           </para>
           <para>
-            OBSOLETE: The value <literal>-1</literal> refers to the
-            default file (i.e the last opened file).
+            УСТАРЕЛО: значение <literal>-1</literal> относится к файлу по 
+            умолчанию (т. е. последнему открытому файлу).
           </para>
         </listitem>
       </varlistentry>
@@ -46,65 +48,56 @@
         <term>format</term>
         <listitem>
           <para>
-            a Scilab string describing the format to use to write the
-            remaining operands. The 
-            <varname>
-              format
-            </varname>
-            operand follows, 
-            as close as possible, the C 
-            <function>
-              printf
-            </function>
-            format 
-            operand syntax.
+            Scilab-строка, описывающая формат, который нужно использовать для 
+            записи оставшихся операндов. Операнд <varname>format</varname> 
+            следует как можно ближе к синтаксису операндов формата 
+            <function>printf</function> в языке C.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a character string: a string to be scanned.</para>
+          <para>
+            символьная строка: строка, которую нужно отсканировать.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a1,...,an</term>
         <listitem>
           <para>
-            the data to be converted and printed according to
-            the format parameter.
+            данные, которые преобразуются и распечатываются в соответствии с параметром формата.
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Description</title>
+    <title>Описание</title>
     <para>
-      The <function>mfprintf</function> function is a interface for C-coded 
-      version of <function>fprintf</function> function.
+      Функция <function>mfprintf</function> является интерфейсом для версии функции <function>fprintf</function> на языке C.
     </para>
     <para>
-      The <function>mfprintf</function> function writes formatted operands
-      to the file specified by the file desciptor <varname>fd</varname>. The
-      argument operands are formatted under control of the 
-      <varname>format</varname> operand.
+      Функция <function>mfprintf</function> записывает форматированные 
+      операнды в файл, указанный файловым дескриптором <varname>fd</varname>. 
+      Операнды аргумента форматируются по управлением операнда      
+      <varname>format</varname>.
     </para>
     <para>
-      This function may be used to output column vectors of numbers
-      and string vectors without an explicit loop on the elements. In that 
-      case this function iterates on the rows. The shortest vector gives the 
-      number of time the format has to be iterated.
+      Эта функция может быть использована для вывода векторов-столбцов чисел и 
+      строковых векторов без явных циклов по элементам. В этом случае функция 
+      проводит итерации по строкам. Наиболее короткий вектор даёт количество раз, сколько формат будет повторён.
     </para>
     <para>
-      An homogeneous sequence of identical type parameters can be replaced
-      by a matrix.
+      Однородная последовательность параметров одинакового типа может быть 
+      заменена матрицей.
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Примеры</title>
     <programlisting role="example"><![CDATA[ 
-
+ 
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);
@@ -121,7 +114,7 @@ mfprintf(6,'stdout output.\n');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-    <title>See Also</title>
+    <title>Смотрите также</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>
@@ -171,3 +164,4 @@ mfprintf(6,'stdout output.\n');
     </simplelist>
   </refsection>
 </refentry>
+
