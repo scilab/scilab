@@ -260,18 +260,21 @@ public enum XcosFileType {
      * @return The determined filetype
      */
     public static XcosFileType findFileType(FileFilter filter) {
-        XcosFileType retValue = null;
+        final FileFilter[] filters = getSavingFilters();
 
-        for (XcosFileType currentFileType : XcosFileType.values()) {
-            final File sample = new File("sample." + currentFileType.getExtension());
-
-            if (filter.accept(sample)) {
-                retValue = currentFileType;
+        int index = 0;
+        for (FileFilter fileFilter : filters) {
+            if (fileFilter == filter)
                 break;
-            }
+
+            index++;
         }
 
-        return retValue;
+        if (index > 0) {
+            return XcosFileType.values()[index - 1];
+        } else {
+            return null;
+        }
     }
 
     /**

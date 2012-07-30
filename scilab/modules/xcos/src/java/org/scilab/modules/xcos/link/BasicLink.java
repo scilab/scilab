@@ -36,6 +36,7 @@ import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
+import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -50,8 +51,7 @@ import com.mxgraph.util.mxRectangle;
  */
 // CSOFF: ClassDataAbstractionCoupling
 public abstract class BasicLink extends ScilabGraphUniqueObject {
-    private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80,
-            80);
+    private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
     private static final int DETECTION_RECTANGLE_DIMENSION = 10;
     private transient int ordering;
 
@@ -65,7 +65,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         super();
         setVertex(false);
         setEdge(true);
-        setStyle(style);
+        setStyle(style + XcosOptions.getEdition().getEdgeStyle());
     }
 
     /**
@@ -119,12 +119,10 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
         final List<mxPoint> points = getGeometry().getPoints();
         if (fromStart) {
-            return new ArrayList<mxPoint>(points.subList(0,
-                                          Math.min(points.size(), index)));
+            return new ArrayList<mxPoint>(points.subList(0, Math.min(points.size(), index)));
         } else {
             if (index < points.size()) {
-                return new ArrayList<mxPoint>(points.subList(index,
-                                              points.size()));
+                return new ArrayList<mxPoint>(points.subList(index, points.size()));
             } else {
                 return new ArrayList<mxPoint>();
             }
@@ -152,15 +150,11 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
             return 0;
         }
 
-        double startX = (getSource().getParent().getGeometry().getX() + getSource()
-                         .getGeometry().getX());
-        double startY = (getSource().getParent().getGeometry().getY() + getSource()
-                         .getGeometry().getY());
+        double startX = (getSource().getParent().getGeometry().getX() + getSource().getGeometry().getX());
+        double startY = (getSource().getParent().getGeometry().getY() + getSource().getGeometry().getY());
 
-        double endX = (getTarget().getParent().getGeometry().getX() + getTarget()
-                       .getGeometry().getX());
-        double endY = (getTarget().getParent().getGeometry().getY() + getTarget()
-                       .getGeometry().getY());
+        double endX = (getTarget().getParent().getGeometry().getX() + getTarget().getGeometry().getX());
+        double endY = (getTarget().getParent().getGeometry().getY() + getTarget().getGeometry().getY());
 
         double saveDist = -1;
         int findPos = 0;
@@ -172,21 +166,16 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
             if (i == 0) { // first block
                 point1 = new Point2D.Double(startX, startY);
             } else {
-                point1 = new Point2D.Double(
-                    (int) (getGeometry().getPoints().get(i - 1)).getX(),
-                    (int) (getGeometry().getPoints().get(i - 1)).getY());
+                point1 = new Point2D.Double((int) (getGeometry().getPoints().get(i - 1)).getX(), (int) (getGeometry().getPoints().get(i - 1)).getY());
             }
 
             if (i == getGeometry().getPoints().size()) {
                 point2 = new Point2D.Double(endX, endY);
             } else {
-                point2 = new Point2D.Double(
-                    (int) (getGeometry().getPoints().get(i)).getX(),
-                    (int) (getGeometry().getPoints().get(i)).getY());
+                point2 = new Point2D.Double((int) (getGeometry().getPoints().get(i)).getX(), (int) (getGeometry().getPoints().get(i)).getY());
             }
 
-            Point2D.Double addPoint = new Point2D.Double(point.getX(),
-                    point.getY());
+            Point2D.Double addPoint = new Point2D.Double(point.getX(), point.getY());
             Line2D.Double line = new Line2D.Double(point1, point2);
 
             if (saveDist == -1) {
@@ -246,11 +235,8 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
             // check to delete an old point before try to insert
             for (int i = 0; i < getGeometry().getPoints().size(); i++) {
                 mxPoint oldPoint = getGeometry().getPoints().get(i);
-                mxRectangle rect = new mxRectangle(oldPoint.getX()
-                                                   - (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
-                                                   - (DETECTION_RECTANGLE_DIMENSION / 2),
-                                                   DETECTION_RECTANGLE_DIMENSION,
-                                                   DETECTION_RECTANGLE_DIMENSION);
+                mxRectangle rect = new mxRectangle(oldPoint.getX() - (DETECTION_RECTANGLE_DIMENSION / 2),
+                                                   oldPoint.getY() - (DETECTION_RECTANGLE_DIMENSION / 2), DETECTION_RECTANGLE_DIMENSION, DETECTION_RECTANGLE_DIMENSION);
                 if (rect.contains(point.getX(), point.getY())) {
                     getGeometry().getPoints().remove(i);
                     return;
@@ -265,8 +251,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     /** @return True if the link is on the same block, false otherwise */
     private boolean isLoopLink() {
         if (getSource() != null && getTarget() != null) {
-            if (getSource().getParent() == getParent()
-                    && getTarget().getParent() == getParent()) {
+            if (getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
                 return true;
             }
         }
@@ -304,9 +289,8 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
         menu.add(linkStyle);
 
-        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-            MouseInfo.getPointerInfo().getLocation().x, MouseInfo
-            .getPointerInfo().getLocation().y);
+        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
+                .getLocation().y);
 
         menu.setVisible(true);
     }

@@ -26,20 +26,21 @@ import org.scilab.modules.graph.actions.base.GraphActionManager;
 public abstract class SimulationNotRunningAction extends DefaultAction {
     /**
      * Default constructor
-     * 
+     *
      * @param scilabGraph
      *            the associated scilab graph
      */
     public SimulationNotRunningAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
 
-        GraphActionManager.get(scilabGraph, StartAction.class)
-                .addPropertyChangeListener(new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        setEnabled((Boolean) evt.getNewValue());
-                    }
-                });
+        GraphActionManager.get(scilabGraph, StartAction.class).addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("enabled")) {
+                    setEnabled((Boolean) evt.getNewValue());
+                }
+            }
+        });
     }
 
 }
