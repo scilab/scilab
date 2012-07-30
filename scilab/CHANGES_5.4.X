@@ -339,6 +339,9 @@ Bug Fixes
 * Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
                      used to select the file name for graphic export.
 
+* Bug #11578 fixed - dir function under Windows took into account the
+                     case to sort the results.
+
 * Bug #11582 fixed - Typo fixed in strchr help page.
 
 
