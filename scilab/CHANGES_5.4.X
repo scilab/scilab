@@ -333,6 +333,9 @@ Bug Fixes
 * Bug #11538 fixed - xxxWideString functions (API Scilab) did not check to_wide_string
                      conversion (crashed under GNU/Linux & Mac OS X).
 
+* Bug #11544 fixed - ilib_gen_cleaner did not add command to remove "Debug" and
+                     "Release" forlder under Windows.
+
 * Bug #11553 fixed - The uicontextmenu handles (and their children) were not
                      destroyed at the end of execution.
 
