@@ -13,51 +13,56 @@
 
 package org.scilab.modules.preferences;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.preferences.Component.Entry;
 import org.scilab.modules.preferences.Component.FileSelector;
 import org.scilab.modules.preferences.Component.Scroll;
+import org.scilab.modules.preferences.Component.Select;
 import org.scilab.modules.preferences.Component.Table;
 import org.scilab.modules.preferences.Component.TextArea;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Updates swing component to reach correspondence with dom nodes.
+/** Updates swing component to reach correspondence with dom nodes.
  */
 public class XUpdateVisitor {
 
     /**
      * stores preceding correspondence to compute diff.
      */
-    private final Map<Component, XSentinel> matching;
+    private Map<Component, XSentinel> matching;
 
-    /**
-     * Construction of visitor.
+    /** Construction of  visitor.
      *
-     * @param table
-     *            : previous correspondence.
+     * @param table : previous correspondence.
      */
     public XUpdateVisitor(final Map<Component, XSentinel> table) {
         matching = table;
     }
 
-    /**
-     * build a component from scratch with a given node.
+    /** build a component from scratch with a given node.
      *
-     * @param view
-     *            : container of the built component.
-     * @param peer
-     *            : peer of the container.
-     * @param item
-     *            : peer of the built component.
-     * @param index
-     *            : component index in container layout.
+     * @param view : container of the built component.
+     * @param peer : peer of the container.
+     * @param item : peer of the built component.
+     * @param index : component index in container layout.
      * @return a built component inserted in its container.
      */
     public final Component build(final Container view, final Node peer, final Node item, final int index) {
@@ -71,27 +76,21 @@ public class XUpdateVisitor {
         return component;
     }
 
-    /**
-     * Suppress a component.
+    /** Suppress a component.
      *
-     * @param view
-     *            : container of the suppressed component.
-     * @param component
-     *            : suppressed component.
+     * @param view : container of the suppressed component.
+     * @param component : suppressed component.
      */
     public final void forget(final Container view, final Component component) {
         view.remove(component);
         matching.remove(component);
     }
 
-    /**
-     * Computes a recursive diff on both tree structure to achieve
-     * correspondence.
+    /** Computes a recursive diff on both tree structure
+     *  to achieve correspondence.
      *
-     * @param view
-     *            : the visited container.
-     * @param peer
-     *            : the visited node.
+     * @param view : the visited container.
+     * @param peer : the visited node.
      */
     public final void visit(final Container view, final Node peer) {
         int visibleIndex = 0;
@@ -162,13 +161,10 @@ public class XUpdateVisitor {
         }
     }
 
-    /**
-     * Builds the layout constraint object.
+    /** Builds the layout constraint object.
      *
-     * @param parent
-     *            : parent node
-     * @param current
-     *            : current node
+     * @param parent : parent node
+     * @param current : current node
      * @return layout constraint (e.g. border side for border layout)
      */
     final Object getLayoutConstraints(final Node parent, final Node current) {
@@ -182,11 +178,9 @@ public class XUpdateVisitor {
         return null;
     }
 
-    /**
-     * Checks whether a node is visible or not.
+    /** Checks whether a node is visible or not.
      *
-     * @param node
-     *            : the checked node
+     * @param node : the checked node
      * @return its visibility
      */
     public final boolean isVisible(final Node node) {
@@ -198,9 +192,6 @@ public class XUpdateVisitor {
             return false;
         }
         if (node.getNodeName().equals("entryChanged")) {
-            return false;
-        }
-        if (node.getNodeName().startsWith("propertyChange")) {
             return false;
         }
         // b. Text nodes with only invisible characters are invisible.
@@ -230,15 +221,11 @@ public class XUpdateVisitor {
         return true;
     }
 
-    /**
-     * Link XSentinal as listener for the given component.
+    /** Link XSentinal as listener for the given component.
      *
-     * @param component
-     *            : listened component
-     * @param node
-     *            : peer node of the component
-     * @param sentinel
-     *            : listener of component, node interpreter
+     * @param component : listened component
+     * @param node : peer node of the component
+     * @param sentinel : listener of component, node interpreter
      */
     public final void addListeners(final Component component, final Node node, final XSentinel sentinel) {
         String listener = XCommonManager.getAttribute(node, "listener");
@@ -256,8 +243,7 @@ public class XUpdateVisitor {
         }
 
         if (listener.equals("MouseListener")) {
-            // component.addKeyListener(sentinel); Provide focus with proper
-            // focus policy.
+            //component.addKeyListener(sentinel); Provide focus with proper focus policy.
             component.addMouseListener(sentinel);
             return;
         }
@@ -291,35 +277,11 @@ public class XUpdateVisitor {
                 return;
             }
         }
-
-        if (listener.startsWith("PropertyChangeListener")) {
-            final int nameIndex = listener.indexOf('#');
-            final boolean hasPropertyName = nameIndex > 0;
-
-            final String propertyName;
-            if (hasPropertyName) {
-                propertyName = listener.substring(nameIndex + 1);
-            } else {
-                propertyName = null;
-            }
-
-            if (component instanceof java.awt.Component) {
-                if (hasPropertyName) {
-                    component.addPropertyChangeListener(propertyName, sentinel);
-                } else {
-                    component.addPropertyChangeListener(sentinel);
-                }
-
-                return;
-            }
-        }
     }
 
-    /**
-     * Build component from scratch with its node description.
+    /** Build component from scratch with its node description.
      *
-     * @param node
-     *            : description of component
+     * @param node : description of component
      * @return the built component
      */
     @SuppressWarnings("unchecked")
@@ -327,3 +289,5 @@ public class XUpdateVisitor {
         return ComponentFactory.getComponent(node);
     }
 }
+
+
