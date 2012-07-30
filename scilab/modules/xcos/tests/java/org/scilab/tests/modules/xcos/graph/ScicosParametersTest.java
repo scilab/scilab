@@ -12,6 +12,7 @@
 
 package org.scilab.tests.modules.xcos.graph;
 
+import java.awt.GraphicsEnvironment;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
@@ -124,6 +125,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkInitValues() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
 
         for (int i = 0; i < DEFAULT_VALUES.length; i++) {
