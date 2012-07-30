@@ -378,7 +378,8 @@ includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
-includes/Thread_Wrapper.h
+includes/Thread_Wrapper.h \
+includes/backtrace_print.h
 
 if GUI
 USEANT=1
