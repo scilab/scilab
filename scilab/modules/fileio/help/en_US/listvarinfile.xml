@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listvarinfile">
   <refnamediv>
     <refname>listvarinfile</refname>
-    <refpurpose>list the contents of a saved data file</refpurpose>
+    <refpurpose>list of variables in a saved data file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -16,35 +16,40 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>character string, the pathname of the file to be inspected
+          <para>
+            a character string, the pathname of the file to be inspected.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>nams</term>
         <listitem>
-          <para>character array, names of the variables saved in the file
+          <para>
+            a matrix of strings, names of the variables saved in the file.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dims</term>
         <listitem>
-          <para>list, dimensions of the variables saved in the file
+          <para>
+            a list, dimensions of the variables saved in the file.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>typs</term>
         <listitem>
-          <para>numeric array, types of the variables saved in the file
+          <para>
+            a numeric matrix, types of the variables saved in the file.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>vols</term>
         <listitem>
-          <para>numeric array, size in bytes of the variables saved in the file 
+          <para>
+            a numeric matrix, size in bytes of the variables saved in the file.
           </para>
         </listitem>
       </varlistentry>
@@ -59,9 +64,11 @@
           a Scilab data file produced by <link linkend="save">save</link>.
         </para>
         <para>
-          Remark: hypermatrices are reported as plain mlists;
-          rationals and state-spaces are reported as plain tlists;
-          graphic handles are not recognized.
+          <note>
+            Hypermatrices are reported as plain mlists;
+            rationals and state-spaces are reported as plain tlists;
+            graphic handles are not recognized.
+          </note>
         </para>
       </listitem>
     </itemizedlist>
@@ -70,8 +77,8 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
-save("vals.dat",a,b,c)
-listvarinfile("vals.dat")
+save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
+[names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

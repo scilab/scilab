@@ -14,11 +14,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mclose">
   <refnamediv>
     <refname>mclose</refname>
-    <refpurpose> close an opened file</refpurpose>
+    <refpurpose>closes an opened file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>err=mclose([fd])
+    <synopsis>
+      err=mclose([fd])
       mclose('all')
     </synopsis>
   </refsynopsisdiv>
@@ -29,14 +30,14 @@
         <term>fd</term>
         <listitem>
           <para>
-            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal> is used as a file descriptor (it's a positive integer).
+            a scalar: the <varname>fd</varname> parameter returned by the function <function>mopen</function> is used as a file descriptor.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>a scalar. Error indicator : vector</para>
+          <para>a scalar: an error indicator.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,11 +45,19 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>mclose</literal> must be used to close a file opened by <literal>mopen</literal>. If fd
-      is omitted <literal>mclose</literal> closes the last opend file.
+      <function>mclose</function> must be used to close a file opened by 
+      <function>mopen</function>. If <varname>fd</varname> is omitted 
+      <function>mclose</function> closes the last opend file.
     </para>
     <para>
-      <literal>mclose('all')</literal> closes all files opened by <literal>file('open',..)</literal> or <literal>mopen</literal>. Be careful with this use of <literal>mclose</literal> because when it is used inside a Scilab script file, it also closes the script and Scilab will not execute commands written after <literal>mclose('all')</literal>.
+      <code>mclose('all')</code> closes all files opened by 
+      <code>file('open',..)</code> or <function>mopen</function>. 
+      <warning>
+        Be careful with this use of <function>mclose</function> because when 
+        it is used inside a Scilab script file, it also closes the script and 
+        Scilab will not execute commands written after 
+        <code>mclose('all')</code>.
+      </warning>
     </para>
   </refsection>
   <refsection role="see also">
@@ -92,9 +101,6 @@
       </member>
       <member>
         <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
       </member>
       <member>
         <link linkend="mseek">mseek</link>
