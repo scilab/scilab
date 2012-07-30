@@ -3,6 +3,10 @@
 #
 AC_DEFUN([AC_GET_MACOSX_VERSION],[
         AC_MSG_CHECKING([MacOSX Version])
+        if eval system_profiler SPSoftwareDataType | grep "System Version" | grep "10\.8" > /dev/null; then
+        AC_MSG_RESULT([MacOSX 10.8 - Moutain Lion.])
+        macosx_version="10.8"
+        else
         if eval system_profiler SPSoftwareDataType | grep "System Version" | grep "10\.7" > /dev/null; then
         AC_MSG_RESULT([MacOSX 10.7 - Lion.])
         macosx_version="10.7"
@@ -15,8 +19,9 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
         AC_MSG_RESULT([MacOSX 10.5 - Leopard.])
         macosx_version="10.5"
         else
-        AC_MSG_ERROR([MacOSX 10.5,10.6 or 10.7 is needed.])
+        AC_MSG_ERROR([MacOSX 10.5,10.6,10.7 or 10.8 is needed.])
         fi
         fi
+	fi
 	fi
 ])
