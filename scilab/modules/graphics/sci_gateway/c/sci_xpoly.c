@@ -30,6 +30,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "HandleManagement.h"
 #include "CurrentObject.h"
 #include "BuildObjects.h"
 
@@ -92,7 +93,9 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
     Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
-    pobjUID = (char*)getCurrentObject(); /* the polyline newly created */
+    pobjUID = (char*)getObjectFromHandle(hdl); /* the polyline newly created */
+
+    setGraphicObjectRelationship(psubwinUID, pobjUID);
 
     /*
      * The contour properties set calls below were

@@ -22,10 +22,13 @@
 #include "sciCall.h"
 #include "BuildObjects.h"
 
+#include "CurrentFigure.h"
 #include "CurrentObject.h"
-
+#include "HandleManagement.h"
+#include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xpolys(char *fname, unsigned long fname_len)
@@ -36,6 +39,14 @@ int sci_xpolys(char *fname, unsigned long fname_len)
 
     int i = 0;
     long hdl = 0;
+
+    char *pstFigureUID = NULL;
+    char *pstSubWinUID = NULL;
+    char *pstCompoundUID = NULL;
+    int iFalse = 0;
+
+    int iVisible = 0;
+    int *piVisible = &iVisible;
 
     CheckRhs(2, 3);
 
@@ -50,8 +61,13 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         PutLhsVar();
         return 0;
     }
-
-    getOrCreateDefaultSubwin();
+    pstSubWinUID = getOrCreateDefaultSubwin();
+    pstFigureUID = getCurrentFigure();
+    // Create compound.
+    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
+    /* Sets the parent-child relationship for the Compound */
+    setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
 
     if (Rhs == 3)
     {
@@ -62,6 +78,8 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         for (i = 0; i < n1; ++i)
         {
             Objpoly(stk(l1 + (i * m1)), stk(l2 + (i * m2)), m1, 0, *istk(l3 + i), &hdl);
+            // Add newly created object to Compound
+            setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
         }
     }
     else
@@ -69,15 +87,16 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         for (i = 0; i < n1; ++i)
         {
             Objpoly(stk(l1 + (i * m1)), stk(l2 + (i * m2)), m1, 0, 1, &hdl);
+            // Add newly created object to Compound
+            setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
         }
     }
 
-    /** Construct Compound and make it current object**/
-    {
-        char * o = ConstructCompoundSeq(n1);
-        setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
-    }
+    getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+
+    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+
+    setCurrentObject(pstCompoundUID);
 
     LhsVar(1) = 0;
     PutLhsVar();
