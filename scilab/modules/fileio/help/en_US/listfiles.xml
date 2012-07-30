@@ -2,12 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -50,29 +49,48 @@
   <refsection>
     <title>Description</title>
     <para>
-      <function>listfiles</function> can be used to list the files which match 
-      the patterns given by one of the paths entries. 
+      <function>listfiles</function> can be used to list the files which match
+      the patterns given by one of the paths entries.
       Patterns are given to the Unix <command>ls</command> or to the Windows
-      <command>dir</command> commands in order to get information about files. 
-      Thus in order to write portable Scilab script valid wildcard patterns 
+      <command>dir</command> commands in order to get information about files.
+      Thus in order to write portable Scilab script valid wildcard patterns
       for both OS are to be given. Note that pathname conversion is
-      performed and for example <literal>SCI/core/macros/*.sci</literal> is a valid 
+      performed and for example <literal>SCI/core/macros/*.sci</literal> is a valid
       pattern for both Unix and Windows.
     </para>
     <para>
-      If <varname>flag</varname> is true the pathnames given by 
+      If <varname>flag</varname> is true the pathnames given by
       <varname>paths</varname> are converted according to the <code>getos() == 'Windows'</code>
-      value (see also <link linkend="pathconvert">pathconvert</link>). 
+      value (see also <link linkend="pathconvert">pathconvert</link>).
       Moreover, if <varname>flagexpand</varname> is true leading strings like
-      <varname>SCIHOME</varname>, <varname>SCI</varname> or 
+      <varname>SCIHOME</varname>, <varname>SCI</varname> or
       <literal>~</literal> are expanded using environment variables.
+    </para>
+    <para>
+      If the input path is the name of a directory, the returned "files" names are the
+      relative to that directory.
+    </para>
+    <para>
+      If the input path contains a pattern (e.g. "/*", "*.c"), the returned "files" names
+      are prepended with the input path.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+      <![CDATA[
 files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin']);
- ]]></programlisting>
+ ]]>
+    </programlisting>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>if paths is not a single string, all returned files are homogenized with the absolute path form.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
