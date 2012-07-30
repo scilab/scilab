@@ -324,6 +324,9 @@ Bug Fixes
 
 * Bug #11532 fixed - mkdir english and french mkdir documentation updated.
 
+* Bug #11534 fixed - getshortpathname and getlongpathname documentation updated to be clearer
+                     about what happens on other OS than Windows.
+
 * Bug #11535 fixed - listfiles used on multiple folders could return unusable results.
 
 * Bug #11537 fixed - In SciNotes, it was not possible to modify font size with
