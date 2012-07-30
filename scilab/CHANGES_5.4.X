@@ -159,7 +159,7 @@ Bug Fixes
 
 * Bug #7251 fixed - Error fixed in qp_solve help page.
 
-* Bug #7763 fixed - The mtlb_max and mtlb_min functions did not manage the complex with 
+* Bug #7763 fixed - The mtlb_max and mtlb_min functions did not manage the complex with
                     null imaginary part.
 
 * Bug #7855 fixed - It was not possible to change the event function while
@@ -174,14 +174,14 @@ Bug Fixes
                     return the good result. Moreover, median(sparse, 'r'| 'c') was not
                     managed.
 
-* Bug #8351 fixed - The integrate function did not manage properly the optional 
+* Bug #8351 fixed - The integrate function did not manage properly the optional
                     input arguments.
 
 * Bug #8785 fixed - modulo and pmodulo functions did not check input arguments.
 
 * Bug #9830 fixed - leastsq did not match the information given in optim help page.
 
-* Bug #9884 fixed - Possibility to add a default header on new files in SciNotes 
+* Bug #9884 fixed - Possibility to add a default header on new files in SciNotes
                     added in Preferences.
 
 * Bug #9464 fixed - contourf did not work when the "Matlab Compatibility functions
@@ -229,7 +229,7 @@ Bug Fixes
 
 * Bug #11450 fixed - Logarithmic ticks were not sorted.
 
-* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting 
+* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting
                      a global var.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
@@ -275,8 +275,10 @@ Bug Fixes
 
 * Bug #11422 fixed - datatips did not work when the figure contained uicontrols.
 
-* Bug #11423 fixed - When the variable "a" was selected, all the a characters were 
+* Bug #11423 fixed - When the variable "a" was selected, all the a characters were
                      highlighted rather than only the "a" variable.
+
+* Bug #11434 fixed - We could not drawing after set to off the property auto resize of default figure.
 
 * Bug #11443 fixed - There was no way to set default language by the preferences under
                      Windows.
@@ -358,8 +360,8 @@ Bug Fixes
 Known Incompatibilities
 =======================
 
-* In previous versions, modulo(x,0) and pmodulo(x,0) returned x. But this solution is 
-  not correct. Indeed, the expression used to compute the modulo is x - y * int(x / y) 
+* In previous versions, modulo(x,0) and pmodulo(x,0) returned x. But this solution is
+  not correct. Indeed, the expression used to compute the modulo is x - y * int(x / y)
   for the modulo function and x - y * floor(x / y). Now, they return an error and
   %nan with ieee(2). See bug #7216.
 
@@ -367,7 +369,7 @@ Known Incompatibilities
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
-* Setting the "foreground" property for a figure was possible even if it was not 
+* Setting the "foreground" property for a figure was possible even if it was not
   officially supported or documented. An error is now returned.
   Please use the axes "foreground" property instead. See bug #11369.
 

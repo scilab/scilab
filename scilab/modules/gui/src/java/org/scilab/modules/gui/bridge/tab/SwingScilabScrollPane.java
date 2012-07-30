@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - 2008 Digiteo Jean-Baptiste Silvy
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -58,8 +58,16 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
         // use the axes background as default one
         setRealBackground(canvas.getBackground());
         GraphicController.getController().register(this);
-        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        if (figure.getAutoResize()) {
+            // hide scroll bars
+            setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        } else {
+            // show scroll bars
+            setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        }
     }
 
     /**
@@ -69,9 +77,10 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     public int[] getViewingRegion() {
         Rectangle viewport = getViewport().getViewRect();
         int[] res = {(int) viewport.getX(),
-                (int) viewport.getY(),
-                (int) viewport.getWidth(),
-                (int) viewport.getHeight()};
+                     (int) viewport.getY(),
+                     (int) viewport.getWidth(),
+                     (int) viewport.getHeight()
+                    };
         return res;
     }
 
@@ -138,7 +147,7 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
                 canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
             }
         }
-        
+
     }
 
     @Override
