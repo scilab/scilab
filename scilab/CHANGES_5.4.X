@@ -65,6 +65,8 @@ Compilation
 
 * Switch to flexdock 1.2.0.
 
+* Switch to Scirenderer 0.5.3.
+
 * Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
 
 
@@ -334,7 +336,7 @@ Bug Fixes
                      conversion (crashed under GNU/Linux & Mac OS X).
 
 * Bug #11544 fixed - ilib_gen_cleaner did not add command to remove "Debug" and
-                     "Release" forlder under Windows.
+                     "Release" folder under Windows.
 
 * Bug #11547 fixed - _() moved into the gettext() help page.
 
