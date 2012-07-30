@@ -139,7 +139,6 @@ void Objpoly ( double  * x     ,
     char * psubwinUID = NULL;
     char * pobjUID = NULL;
 
-    pfigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
@@ -164,7 +163,6 @@ void Objpoly ( double  * x     ,
 
     setCurrentObject(pobjUID);
     *hdl = getHandle(pobjUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
 }
 
 
