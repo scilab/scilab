@@ -48,6 +48,17 @@ function ilib_gen_cleaner(makename,loadername,files)
     mfprintf(fd,"// ------------------------------------------------------\n");
   end
 
+  if getos() == 'Windows' then
+    mfprintf(fd,"if isdir(''Debug'') then\n");
+    mfprintf(fd,"  rmdir(''Debug'',''s'');\n");
+    mfprintf(fd,"end\n");
+    mfprintf(fd,"// ------------------------------------------------------\n");
+    mfprintf(fd,"if isdir(''Release'') then\n");
+    mfprintf(fd,"  rmdir(''Release'',''s'');\n");
+    mfprintf(fd,"end\n");
+    mfprintf(fd,"// ------------------------------------------------------\n");
+  end
+
   if files <> [] then
     for i = 1:size(files,'*')
       if ( files(i) <> '' ) then

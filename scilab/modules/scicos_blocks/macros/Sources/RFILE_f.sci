@@ -1,7 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) 2011 - Bernard DUJARDIN
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,10 +19,6 @@
 //
 // See the file ../license.txt
 //
-// 03/02/2011   Bernard DUJARDIN
-// - Fix typo and messages
-// - Adding some checks on the user's inputs
-// - Begin to set file to the Scilab coding's standards
 
 function [x, y, typ] = RFILE_f(job,arg1,arg2)
 
@@ -64,20 +60,11 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
         end
 
         while %t do
-            [ok,tmask1,outmask,fname1,frmt1,N,exprs] = scicos_getvalue( ...
-                [ "Set RFILE block parameters"; ...
-                  " "; ...
-                  "Read is done on"; ...
-                  "&nbsp; - A binary file if no format given"; ...
-                  "&nbsp; - A formatted file if a  format (fortran type) is given" ...
-                ], ...
-                [ "Time record selection";"Outputs record selection"; ...
-                 "Input file name";"Input Format"; ...
-                 "Buffer size" ...
-                ], ...
-                list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1), ...
-                exprs ...
-                );
+            [ok,tmask1,outmask,fname1,frmt1,N,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "RFILE_f");" "; ..
+                gettext("Read from an input file"); " "; gettext("Read is done on:"); gettext("&nbsp; - A binary file if no format given"); ..
+                gettext("&nbsp; - A formatted text file if a  format (fortran type) is given")], ..
+                [gettext("Time Record Selection"); gettext("Outputs Record Selection"); gettext("Input File Name"); gettext("Input Format"); gettext("Buffer Size")], ..
+                list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1), exprs);
 
             if ~ok then
                 break
@@ -91,40 +78,39 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
             nout = size(outmask, "*")
 
             if prod(size(tmask1)) > 1 then
-                message( ...
-                    "Time record selection must be a scalar or an empty matrix")
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Time Record Selection"), strcat(string(tmask1(:))," ")),..
+                    gettext("Empty matrix or scalar expected."));
 
             elseif tmask1 ~= [] & tmask1 < 1 then
-                message( ...
-                    "Time record selection must be strictly positive")
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d"), gettext("Time Record Selection"), tmask1), ..
+                    gettext("Strictly positive integer expected."));
 
             elseif lunit > 0 & min(length(frmt),1) <> min(length(frmt1), 1) then
-                message(["You cannot swich from formatted to unformatted"; ...
-                    "or  from unformatted to formatted when running";" "])
+                block_parameter_error([gettext("Simulation running !!! You cannot switch <br />between formatted and unformatted")], ..
+                    gettext("End current simulation first."));
 
             elseif lunit > 0 & fname1 <> fname then
-                message("You cannot modify Output file name when running")
+                block_parameter_error(gettext("Simulation running !!! You cannot modify ''Input File Name''"), gettext("End current simulation first."));
 
             elseif lunit > 0 & size(tmask1) <> size(tmask) then
-                message("You cannot modify time management when running")
+               block_parameter_error(gettext("Simulation running !!! You cannot modify ''Time Record Selection''"), gettext("End current simulation first."));
 
             elseif fname1 == "" then
-                message("You must provide a file name")
-
+              block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s"), gettext("Input File Name"), fname1), gettext("You must provide a filename."));
             // Simple check for including of the format's string  in parenthesis
-            elseif frmt1 ~= "" &  ...
-                   (part(frmt1, 1) ~= "(" |  part(frmt1, length(frmt1)) ~= ")")
-                   message("You must enclose the format''s string between parentheses")
-
+            elseif frmt1 ~= "" &  (part(frmt1, 1) ~= "(" |  part(frmt1, length(frmt1)) ~= ")")
+                block_parameter_error(msprintf(gettext("Wrong format for ''%s'' parameter: %s."), gettext("Input Format"), frmt1), ..
+                    gettext("You must enclose the format''s string between parentheses."));
             elseif N < 2 then
-                message("Buffer size must be at least 2")
-
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
+                    gettext("Buffer size must be at least 2."));
             elseif nout == 0 then
-                message("You must read at least one field in record")
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Outputs Record Selection"), nout), ..
+                    gettext("You must read at least one field in record."));
 
             elseif min(outmask) < 1 then
-                message("Outputs record selection indexes must be strictly positive.")
-
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s"), gettext("Outputs Record Selection"), ..
+                   strcat(string(outmask(:))," ")), gettext("Strictly positive indexes expected."));
             else
                 if tmask1 == [] then
                     ievt = 0;

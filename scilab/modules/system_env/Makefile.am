@@ -50,4 +50,5 @@ libscisystem_env_la_CPPFLAGS = \
 
 libscisystem_env_la_includedir=$(pkgincludedir)/system_env
 
-libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx
+libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx \
+includes/sci_warning.h

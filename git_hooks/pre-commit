@@ -101,8 +101,8 @@ indent() {
     do
         local ext=$(expr "$file" : ".*\(\..*\)")
         case $ext in
-        .xcos|.xml)
-            __indent_Xml;
+        .xcos|.xml|.xsl)
+            __indent_xml;
         ;;
         .h|.c|.hxx|.cpp)
             __indent_C;
@@ -117,7 +117,7 @@ indent() {
 }
 
 # Indent the file with xmlindent if this is an xcos file
-__indent_Xml() {
+__indent_xml() {
 
     if test ! -x "$XMLINDENT"
     then

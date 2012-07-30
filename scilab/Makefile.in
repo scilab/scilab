@@ -1918,7 +1918,7 @@ check-jvm-dep:
 # Check that scilab-cli does not have a dependency on libjvm
 @IS_MACOSX_FALSE@	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
 @IS_MACOSX_FALSE@	if test $$? == 0; then \
-@IS_MACOSX_FALSE@		echo "Found dependency from scilab-cli-bin to libjvm found"; \
+@IS_MACOSX_FALSE@		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 @IS_MACOSX_FALSE@	fi
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)

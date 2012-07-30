@@ -360,7 +360,8 @@ includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
-includes/getversion.h
+includes/getversion.h \
+includes/backtrace_print.h
 
 if GUI
 USEANT=1

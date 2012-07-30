@@ -27,14 +27,14 @@
         <term>fd</term>
         <listitem>
           <para>
-            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.
+            a scalar: the <varname>fd</varname> parameter returned by the function <function>mopen</function>. -1 stands for last opened file. Default value is -1.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>scalar. Error indicator</para>
+          <para>a scalar: an error indicator.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,10 +42,11 @@
   <refsection>
     <title>Description</title>
     <para>
-      The function <literal>meof</literal> will return a non null value if end of file 
-      has been reached in a previous call to <literal>mget</literal> or <literal>mgetstr</literal>. 
-      The function <literal>clearerr</literal> is used to reset the error flag and
-      EOF flag to zero.
+      The function <function>meof</function> will return a non null value if 
+      end of file has been reached in a previous call to 
+      <function>mget</function> or <function>mgetstr</function>. The function 
+      <function>mclearerr</function> is used to reset the error flag and EOF 
+      flag to zero.
     </para>
   </refsection>
   <refsection role="see also">
@@ -86,9 +87,6 @@
       </member>
       <member>
         <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
       </member>
       <member>
         <link linkend="mseek">mseek</link>

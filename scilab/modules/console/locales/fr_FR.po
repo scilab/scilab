@@ -563,7 +563,7 @@ msgid "(This requires a restart of Scilab)"
 msgstr "(Cela nécessite de redémarrer Scilab)"
 
 msgid "Java Heap Memory"
-msgstr "Mémoire du Tas Java"
+msgstr "Mémoire du tas Java (heap memory)"
 
 msgid "Select the memory (in MB) available in Java: "
 msgstr "Sélectionner la mémoire (en MB) disponible pour le Java : "

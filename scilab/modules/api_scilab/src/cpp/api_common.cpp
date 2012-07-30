@@ -262,7 +262,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
         {
             (pStr->m_pOut)[i] = *it;
-            pStr->m_pOutOrder[i] = pStr->m_pIn->size() + i + 1;
+            pStr->m_pOutOrder[i] = (int)pStr->m_pIn->size() + i + 1;
         }
     }
     return 0;
@@ -1419,7 +1419,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iZero = 0;
-    int il;
+    //int il;
     //int sRhs = Rhs;
     //int sLhs = Lhs;
     //int sTop = Top;

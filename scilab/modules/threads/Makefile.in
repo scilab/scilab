@@ -40,6 +40,7 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -59,7 +60,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscithreads_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/threads
@@ -113,7 +115,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(pkglibdir)"
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libscithreads_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscithreads_la_LIBADD =
 am__objects_1 = libscithreads_la-Thread_Wrapper.lo
@@ -139,6 +142,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscithreads_la_SOURCES)
 DIST_SOURCES = $(libscithreads_la_SOURCES)
+HEADERS = $(libscithreads_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -426,6 +430,20 @@ modulename = threads
 #### threads : Conf files ####
 libscithreads_la_rootdir = $(mydatadir)
 
+#### threads : init scripts ####
+# libscithreads_la_etcdir = $(mydatadir)/etc
+# libscithreads_la_etc_DATA = etc/threads.quit etc/threads.start
+
+#### threads : gateway declaration ####
+# libscithreads_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+# libscithreads_la_sci_gateway_DATA = sci_gateway/threads_gateway.xml
+
+#### threads : include files ####
+libscithreads_la_includedir = $(pkgincludedir)
+libscithreads_la_include_HEADERS = \
+includes/Thread_Wrapper.h
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -617,6 +635,24 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libscithreads_la_includeHEADERS: $(libscithreads_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscithreads_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscithreads_la_includedir)"
+	@list='$(libscithreads_la_include_HEADERS)'; test -n "$(libscithreads_la_includedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscithreads_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscithreads_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscithreads_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscithreads_la_include_HEADERS)'; test -n "$(libscithreads_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscithreads_la_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -703,9 +739,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) all-local
+all-am: Makefile $(LTLIBRARIES) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscithreads_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -761,7 +797,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local
+install-data-am: install-data-local \
+	install-libscithreads_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -807,7 +844,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-pkglibLTLIBRARIES
+uninstall-am: uninstall-libscithreads_la_includeHEADERS \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -820,12 +858,14 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-man install-pdf install-pdf-am \
+	install-info-am install-libscithreads_la_includeHEADERS \
+	install-man install-pdf install-pdf-am \
 	install-pkglibLTLIBRARIES install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libscithreads_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 
@@ -1033,14 +1073,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-#### threads : init scripts ####
-# libscithreads_la_etcdir = $(mydatadir)/etc
-# libscithreads_la_etc_DATA = etc/threads.quit etc/threads.start
-
-#### threads : gateway declaration ####
-# libscithreads_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-# libscithreads_la_sci_gateway_DATA = sci_gateway/threads_gateway.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

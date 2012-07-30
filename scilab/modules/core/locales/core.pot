@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -715,12 +715,12 @@ msgid "Error: Not a valid primitive ID %d.\n"
 msgstr ""
 
 #
-# File: src/c/callinterf.c, line: 124
+# File: src/c/callinterf.c, line: 126
 msgid "Aborting current computation\n"
 msgstr ""
 
 #
-# File: src/c/callinterf.c, line: 138
+# File: src/c/callinterf.c, line: 140
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
 msgstr ""
@@ -1715,14 +1715,14 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: src/cpp/backtrace_print.cpp, line: 63
+# File: src/cpp/backtrace_print.cpp, line: 69
 msgid ""
 "\n"
 "Call stack:\n"
 msgstr ""
 
 #
-# File: src/cpp/backtrace_print.cpp, line: 102
+# File: src/cpp/backtrace_print.cpp, line: 108
 msgid ""
 "End of stack\n"
 "\n"
@@ -1759,51 +1759,51 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 74
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 74
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 75
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 75
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 152
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 152
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 153
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 153
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 154
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 154
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 155
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 155
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 156
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 158
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 161
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 164
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 156
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 158
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 161
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 167
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 169
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 169
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab.git/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 170
 msgid "&Toolboxes"
 msgstr ""
 

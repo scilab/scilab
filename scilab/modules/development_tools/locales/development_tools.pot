@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: macros/assert/assert_checkalmostequal.sci, line: 15
 # File: macros/assert/assert_checkfilesequal.sci, line: 15
@@ -340,13 +340,13 @@ msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1002
+# File: macros/test_run.sci, line: 1000
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1145
+# File: macros/test_run.sci, line: 1143
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "

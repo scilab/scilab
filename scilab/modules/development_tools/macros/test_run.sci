@@ -1141,7 +1141,7 @@ function result =  exportToXUnitFormat(exportToFile, testsuites)
     appendIntoFile = %t;
     node = xmlXPath(doc, "//testsuites");
     if node.size == 0 then
-      error(msprintf(gettext("The file ''%s'' is not following the XUnit XML format. Root tag expected ''testsuites''"),exportToFile))
+      error(msprintf(gettext("The file ''%s'' is not following the XUnit XML format. Root tag expected ''testsuites''.\n"),exportToFile))
       end
   else
     doc = xmlDocument(exportToFile);

@@ -17,7 +17,7 @@ function [H]=build_levitron(h)
   np=1+size(X,2)/N
   drawlater()
   f=gcf();f.color_map=graycolormap(N);
-  
+
   s=[((N/2)):(N-1),N:-1:((N/2)+1)];
   clf(),plot3d(X,Y,list(Z,ones(1,np-1).*.s))// the top
 
@@ -52,7 +52,7 @@ function [H]=build_levitron(h)
 endfunction
 
 function [zp,ro]=levitron_profile()
-//zp : elevation of the profile's points 
+//zp : elevation of the profile's points
 //ro : radius
 //c  : color
   zp = [0.6;0.22;0.15;0.06;0.04;0.02;-0.04;-0.06;
@@ -75,7 +75,7 @@ function [X,Y,Z]=levitron_facets(prof,n)
   x=ro*cos(t);//np x n
   y=ro*sin(t);
   z=zp*ones(t);
-  
+
   //build the facets
   Iz=([0;0;1;1]*ones(1,np-1)+ones(4,1)*(1:(np-1))).*.ones(1,n-1);
   It=ones(1,np-1).*.([0;1;1;0]*ones(1,n-1)+ones(4,1)*(0:(n-2)));
@@ -98,7 +98,7 @@ function levitron_gui()
   xs=w(1)-lslider-lv-m-10;
   xv=xs+lslider+10;
   SliderStep=[0.001 0.001]
-  
+
   yh=w(2)-(m+h);
   Height_title = uicontrol( ...
       "parent"              , fig,...
@@ -113,7 +113,7 @@ function levitron_gui()
       "tag"                 , "HeightTitle" ...
       );
 
-  
+
   Slider_Height=uicontrol("parent",fig,..
 	      "style","slider",..
 	      "Min",0,..
@@ -129,7 +129,7 @@ function levitron_gui()
 			   "Style"     , "text",...
 			   "String"    , "70",...
 			   "BackgroundColor",[1 1 1]);
-  
+
   yt=yh-(m+h);
   Theta_title = uicontrol( ...
       "parent"              , fig,...
@@ -146,7 +146,7 @@ function levitron_gui()
 
   Slider_Theta=uicontrol("parent",fig,..
 			 "style","slider",..
-			 "Min",0,..
+			 "Min",0.1,..
 			 "Max",100,..
 			 "Value",70,..
 			 "units","pixels",..
@@ -219,7 +219,7 @@ function levitron_gui()
 			"String"    , "70",...
 			"BackgroundColor",[1 1 1]);
 
-    ybtn= ypsi -(m+h);  
+    ybtn= ypsi -(m+h);
     wb=40;eb=13;
     Start = uicontrol("parent",fig, ..
 		       "Position"  , [xs ybtn wb h],...
@@ -242,7 +242,7 @@ function levitron_gui()
 		       Slider_Theta Value_Theta
 		       Slider_Phi Value_Phi
 		       Slider_Psi Value_Psi]
-    
+
     update_height(1.72)
     update_theta(0.28)
     update_phi(0)
@@ -335,9 +335,9 @@ function update_state(k,value)
   if ~changed then
     if or(k==(4:6)) then value=value*%pi/180;end
     y1(k)=value;
-    if init then 
+    if init then
       set_levitron(H,y1),
-    else 
+    else
       state_changed=%t;
     end
   end
@@ -353,9 +353,9 @@ function set_levitron(H,q)
   psi  =q(6); //precession:rotation Oxyz ->Ouvz
   theta=q(4);//nutation Ouvz -> Ouwz'
   phi  =q(5);// rotation propre Ouwz'->0x'y'z' (referentiel attache a la toupie)
-       
+
   XYZ=euler(psi,theta,phi)*eulerm1(O(6),O(4),O(5))*XYZ
-  
+
   drawlater()
   Data.x=f*q(1)+matrix(XYZ(1,:),4,-1);
   Data.y=f*q(2)+matrix(XYZ(2,:),4,-1);
@@ -378,14 +378,16 @@ function show()
   t0=dt
   k=1
   while %t
-    if state_changed then 
+    if state_changed then
       [y,w,iw]=ode(y1,t0,t0+dt,list(levitron_dyn,a,c,Mc));y1=y;
-    else    
+    else
       [y,w,iw]=ode(y,t0,t0+dt,list(levitron_dyn,a,c,Mc),w,iw);y1=y;
     end
     if y(3)<=0 then Stop=%t,end
     if Stop then init=%t,break,end
-    set_levitron(H,y(1:6)),
+    if ~is_handle_valid(H) then break; end
+    set_levitron(H,y(1:6));
+
     if %t then
       changed=%t
       update_height(y(3))

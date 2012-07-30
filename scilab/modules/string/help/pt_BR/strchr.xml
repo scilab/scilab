@@ -50,7 +50,7 @@
       <literal>res = strchr(haystack,char)</literal> retorna a primeira
       ocorrência do caractere no string str.
     </para>
-    <para>num deve ter as mesmas dimensões que haystack, ou apenas um
+    <para>char deve ter as mesmas dimensões que haystack, ou apenas um
       caractere.
     </para>
   </refsection>

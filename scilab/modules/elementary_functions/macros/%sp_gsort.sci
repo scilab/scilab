@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
+// Copyrifht (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,20 +9,75 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function A = %sp_gsort(A, optsort, directionsort)
-  [ij, v, mn] = spget(A);
-  if mn(2) == 1 then
-    last = find( v<0 );
-    first = find( v>0 );
-    nn = size(v, '*');
-    v([1:size(first, '*'), nn-size(last, '*')+1:nn]) = [gsort(v(first));gsort(v(last))];
-    A = sparse(ij, v, mn);
-  elseif mn(1) == 1 then
-    last = find( v<0 );
-    first = find( v>0 );
-    nn = size(v, '*');
-    v([1:size(first, '*'),nn-size(last, '*')+1:nn]) = [gsort(v(first));gsort(v(last))];
-    A = sparse(ij, v, mn);  
-  else
-    error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"),'gsort',1));
-  end
+    rhs = argn(2);
+    select rhs
+    case 1
+        optsort = 'g';
+        directionsort = 'd';
+    case 2
+        directionsort = 'd';
+    end
+
+    [ij, v, mn] = spget(A);
+
+    if mn(1) <> 1 & mn(2) <> 1 then
+        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"),'gsort',1));
+    end
+
+    if (strcmp(optsort, 'c')) == 0 | v == [] then
+        A = A;
+    else
+        if mn(2) == 1 then
+            dif = mn(1) - length(v);
+            v = gsort(v, optsort, directionsort);
+            
+            last = find(v<0);
+            first = find(v>0);
+            
+            if last == [] & first <> [] then
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,1) = first(:) + dif;
+                else
+                    ij(:,1) = first(:);
+                end
+            elseif first == [] & last <> [] then
+                ij(:,1) = last(:) + dif;
+            else
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,1) = [last(:); first(:) + dif];
+                else
+                    ij(:,1) = [first(:); last(:) + dif];
+                end
+            end
+            
+        elseif mn(1) == 1 then
+            dif = mn(2) - length(v);
+            v = gsort(v, optsort, directionsort);
+            
+            last = find(v<0);
+            first = find(v>0);
+            
+            if last == [] & first <> [] then
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,2) = first(:) + dif;
+                else
+                    ij(:,2) = first(:);
+                end
+            elseif first == [] & last <> [] then
+                ij(:,1) = last(:) + dif;
+            else
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,2) = [last(:); first(:) + dif];
+                else
+                    ij(:,2) = [first(:); last(:) + dif];
+                end
+            end
+            
+        end
+        A = sparse(ij, v, mn)
+    end
+
 endfunction
+
+
+

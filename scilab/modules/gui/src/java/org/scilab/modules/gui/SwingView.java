@@ -12,7 +12,6 @@
  */
 package org.scilab.modules.gui;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
@@ -363,6 +362,9 @@ public final class SwingView implements GraphicView {
 
                 tab.setParentWindowId(window.getId());
 
+                tab.setEventHandler(figure.getEventHandlerString());
+                tab.setEventHandlerEnabled(figure.getEventHandlerEnable());
+
                 DockingManager.dock(tab, window.getDockingPort());
                 ActiveDockableTracker.requestDockableActivation(tab);
 
@@ -531,9 +533,9 @@ public final class SwingView implements GraphicView {
                             SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
                             DockingManager.close(tab);
                             DockingManager.unregisterDockable((Dockable) tab);
-			    ClosingOperationsManager.unregisterClosingOperation(tab);
-			    ClosingOperationsManager.removeDependency(tab);
-			    ClosingOperationsManager.checkTabForClosing(tab);
+                            ClosingOperationsManager.unregisterClosingOperation(tab);
+                            ClosingOperationsManager.removeDependency(tab);
+                            ClosingOperationsManager.checkTabForClosing(tab);
                             tab.close();
                         }
                     });
@@ -561,6 +563,15 @@ public final class SwingView implements GraphicView {
         if (registeredObject == null && property.equals(__GO_STYLE__)) {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
             allObjects.put(id, CreateObjectFromType(style, id));
+        }
+
+        /* Removes the swing object if its parent is not display */
+        if (registeredObject != null && property.equals(__GO_PARENT__)) {
+            String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+            TypedObject registeredParent = allObjects.get(parentId);
+            if (registeredParent == null) {
+                allObjects.remove(id);
+            }
         }
 
         /* Children list update */
@@ -878,7 +889,6 @@ public final class SwingView implements GraphicView {
         TypedObject updatedObject = allObjects.get(id);
         Container updatedComponent = null;
         boolean needRevalidate = false;
-        String parentId = null;
         int updatedObjectPosition = 0;
         TypedObject newParent = null;
 
@@ -892,11 +902,11 @@ public final class SwingView implements GraphicView {
 
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     Object addedChild = allObjects.get(childId).getValue();
-                    parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
-                    JComponent parent = (JComponent) allObjects.get(parentId).getValue();
+                    JComponent parent = null;
                     switch (updatedObject.getType()) {
                         case UiChildMenu:
                             updatedComponent = (SwingScilabMenuItem) updatedObject.getValue();
+                            parent = (JComponent) updatedComponent.getParent();
                             switch (childAsTypedObject.getType()) {
                                 case UiChildMenu:
                                     /* Replace the item by a parent menu */
@@ -927,6 +937,7 @@ public final class SwingView implements GraphicView {
                             break;
                         case UiCheckedMenu:
                             updatedComponent = (SwingScilabCheckBoxMenuItem) updatedObject.getValue();
+                            parent = (JComponent) updatedComponent.getParent();
                             switch (childAsTypedObject.getType()) {
                                 case UiChildMenu:
                                     /* Replace the item by a parent menu */

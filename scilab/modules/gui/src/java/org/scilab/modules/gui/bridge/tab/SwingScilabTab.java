@@ -140,6 +140,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     private String id;
 
+    private boolean eventEnabled = false;
+
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
     }
@@ -328,10 +330,10 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
                 if (!closeRequestFcn.equals("")) {
                     InterpreterManagement.requestScilabExec(closeRequestFcn + ";fire_closing_finished()");
-		    return -1;
+                    return -1;
                 } else {
                     closeAction.actionPerformed(null);
-		    return 1;
+                    return 1;
                 }
             }
 
@@ -1271,6 +1273,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         disableEventHandler();
         Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
         eventHandler = new ScilabEventListener(funName, figureId);
+        if (eventEnabled) {
+            enableEventHandler();
+        }
     }
 
     /**
@@ -1278,10 +1283,16 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param status is true to set the event handler active
      */
     public void setEventHandlerEnabled(boolean status) {
+        if (status && eventEnabled) {
+            return;
+        }
+
         if (status) {
             enableEventHandler();
+            eventEnabled = true;
         } else {
             disableEventHandler();
+            eventEnabled = false;
         }
     }
 

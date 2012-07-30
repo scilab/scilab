@@ -439,6 +439,9 @@ ode("stiff",[0;1],0,1,f,Jacobian)
       <member>
         <link linkend="rtitr">rtitr</link>
       </member>
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

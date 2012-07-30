@@ -18,9 +18,9 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>err = merror([fd])
-      
-      [err,msg] = merror([fd])
+    <synopsis>
+      err = merror([fd])      
+      [err, msg] = merror([fd])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -30,28 +30,31 @@
         <term>fd</term>
         <listitem>
           <para>
-            scalar. The <literal>fd</literal> parameter returned by the
-            function <literal>mopen</literal>. -1 stands for last opened file.
-            Default value is -1.
+            a scalar: the <varname>fd</varname> parameter returned by the 
+            function <function>mopen</function> is used as a file descriptor 
+            (it's a positive integer). -1 stands for last opened file. The 
+            default value is -1.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>scalar. returns the error status number errnum of the most
+          <para>a scalar: an error status number of the most
             recent file I/O operation associated with the specified file.
           </para>
-          <para>If the most recent I/O operation performed on the specified
-            file was successful, the value of msg is empty and merror returns an
-            err value of 0.
+          <para>
+            If the most recent I/O operation performed on the specified
+            file was successful, the value of <varname>msg</varname> is empty 
+            and <function>merror</function> returns an <varname>err</varname> 
+            value of 0.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>msg</term>
         <listitem>
-          <para>string. returns the error string message.</para>
+          <para>a string: an error string message.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,16 +62,13 @@
   <refsection>
     <title>Description</title>
     <para>
-      The function <literal>merror</literal> is used to tests the file
-      access errors indicator. returning non-zero if it is set. The error
-      indicator can only be reset by the <literal>mclearerr</literal>
+      The function <function>merror</function> is used to test the file
+      access errors indicator returning non-zero if it is set. The error
+      indicator can only be reset by the <function>mclearerr</function>
       function.
     </para>
-    <para>A nonzero err indicates that an error occurred in the most recent
-      file I/O operation. The value of message is a string that can contain
-      information about the nature of the error. If the message is not helpful,
-      consult the C run-time library manual for your host operating system for
-      further details.
+    <para>
+      A nonzero <varname>err</varname> indicates that an error occurred in the most recent file I/O operation. The value of message is a string that can contain information about the nature of the error. If the message is not helpful, consult the C run-time library manual for your host operating system for further details.
     </para>
   </refsection>
   <refsection>

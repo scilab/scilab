@@ -148,9 +148,24 @@ libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la
 CHECK_SRC= $(EXTERNAL_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciexternal_objects_la_CFLAGS)
 
-#### external_objects : include files ####
-libsciexternal_objects_la_includedir=$(pkgincludedir)
-
 #### external_objects : gateway declaration ####
 libsciexternal_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciexternal_objects_la_sci_gateway_DATA = sci_gateway/external_objects_gateway.xml
+
+#### external_objects : include files ####
+libsciexternal_objects_la_includedir=$(pkgincludedir)
+libsciexternal_objects_la_include_HEADERS = includes/ExternalObjects.h \
+includes/OptionsHelper.hxx \
+includes/ScilabAbstractEnvironmentException.hxx \
+includes/ScilabAbstractInvoker.hxx \
+includes/ScilabAbstractOptionsSetter.hxx \
+includes/ScilabEnvironments.hxx \
+includes/ScilabGatewayOptions.hxx \
+includes/ScilabOptionsSetter.hxx \
+includes/ScilabAbstractEnvironment.hxx \
+includes/ScilabAbstractEnvironmentWrapper.hxx \
+includes/ScilabAbstractMemoryAllocator.hxx \
+includes/ScilabAutoCleaner.hxx \
+includes/ScilabGateway.hxx \
+includes/ScilabObjects.hxx \
+includes/ScilabStream.hxx

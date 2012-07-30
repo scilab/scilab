@@ -16,9 +16,17 @@
     <refname>gettext</refname>
     <refpurpose>get text translated into the current locale and domain.</refpurpose>
   </refnamediv>
+  <refnamediv xml:id="_">
+    <refname>_</refname>
+    <refpurpose>
+      Similar to <link linkend="gettext">gettext</link>
+    </refpurpose>
+  </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>msg=gettext(myString)</synopsis>
+    <synopsis>msg=gettext(myString)
+      msg=_(myString)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -36,11 +44,15 @@
     <para>
       <literal>gettext(myString)</literal> gets the translation of a string <literal>myString</literal> to the current locale in the current domain.
     </para>
+    <para>
+      <code>_(myString)</code> is an alias of <code>gettext(myString)</code>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 gettext('Startup execution:')
+_('Startup execution:')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -48,11 +60,6 @@ gettext('Startup execution:')
     <simplelist type="inline">
       <member>
         <link linkend="dgettext">dgettext</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="_">_</link>
       </member>
     </simplelist>
   </refsection>

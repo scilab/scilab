@@ -17,8 +17,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import org.scilab.modules.commons.utils.StringBlockingResult;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -53,6 +56,22 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
     public SwingScilabContextMenu() {
         super();
         setInvoker(this);
+        addPopupMenuListener(new PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
+            }
+
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+                if (uid != null) {
+                    GraphicController.getController().removeRelationShipAndDelete(uid);
+                }
+            }
+
+            public void popupMenuCanceled(PopupMenuEvent arg0) {
+                if (uid != null) {
+                    GraphicController.getController().removeRelationShipAndDelete(uid);
+                }
+            }
+        });
     }
 
     /**

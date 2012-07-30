@@ -29,13 +29,13 @@ function i = pmodulo(n, m)
     if size(n,'*') == 1 then
         i = zeros(m);
         k = find(m == 0)
-        i(k) = n;
+        i(k) = n - floor(n ./ m(k)) .* m(k);
         k = find(m~=0);
         i(k) = n-floor(n./m(k)).*m(k);
     elseif size(m,'*') == 1 then
         i = zeros(n);
         if m == 0 then
-            i = n;
+            i = n - floor(n ./ m) .* m;
         else
             i = n-floor(n./m).*m;
         end
@@ -45,11 +45,13 @@ function i = pmodulo(n, m)
         end
         i = zeros(n);
         k = find(m==0);
-        i(k) = n(k);
+        i(k) = n(k) - floor(n(k) ./ m(k)) .* m(k);
         k = find(m~=0);
         i(k) = n(k)-floor(n(k)./m(k)).*m(k);
     end
 endfunction
+
+
 
 
 

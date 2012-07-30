@@ -53,6 +53,7 @@ extern "C" {
 #include "api_scilab.h"
     /* generics functions */
 
+/*Rhs*/
     int* getNbInputArgument(void* _pvCtx);
 #define nbInputArgument (*getNbInputArgument(pvApiCtx))
 
@@ -61,6 +62,7 @@ extern "C" {
 #endif
 #define Rhs (*getNbInputArgument(pvApiCtx))
 
+/*Lhs*/
     int* getNbOutputArgument(void* _pvCtx);
 #define nbOutputArgument (*getNbOutputArgument(pvApiCtx))
 #ifdef Lhs

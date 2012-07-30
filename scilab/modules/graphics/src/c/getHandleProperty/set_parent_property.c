@@ -37,20 +37,22 @@
 /*------------------------------------------------------------------------*/
 int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-    char *figureUID = NULL;
-    char *type = NULL;
+    char *pstParentUID = NULL;
+    char *pstParentType = NULL;
+    char *pstParentStyle = NULL;
+    char *pstObjType = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjType);
 
-    if (strcmp(type, __GO_UICONTROL__) == 0)
+    if (strcmp(pstObjType, __GO_UICONTROL__) == 0)
     {
         if (valueType == sci_handles)
         {
-            figureUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
+            pstParentUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
         }
         else if (valueType == sci_matrix)
         {
-            figureUID = (char*)getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+            pstParentUID = (char*)getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
         }
         else
         {
@@ -58,18 +60,30 @@ int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
             return SET_PROPERTY_ERROR;
         }
 
-        if (figureUID == NULL)
+        if (pstParentUID == NULL)
         {
             // Can not set the parent
             Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectRelationship(figureUID, pobjUID);
+        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
+
+        if (strcmp(pstParentType, __GO_FIGURE__) != 0)
+        {
+            getGraphicObjectProperty(pstParentUID, __GO_STYLE__, jni_string, (void **)&pstParentStyle);
+            if ((strcmp(pstParentType, __GO_UICONTROL__) != 0) || (strcmp(pstParentStyle, __GO_UI_FRAME__) != 0))
+            {
+                Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+                return SET_PROPERTY_ERROR;
+            }
+        }
+
+        setGraphicObjectRelationship(pstParentUID, pobjUID);
         return SET_PROPERTY_SUCCEED;
     }
 
-    if (strcmp(type, __GO_UIMENU__) == 0)
+    if (strcmp(pstObjType, __GO_UIMENU__) == 0)
     {
         if ((valueType != sci_handles) && (valueType != sci_matrix))    /* sci_matrix used for adding menus in console menu */
         {

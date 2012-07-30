@@ -181,7 +181,7 @@ check-jvm-dep:
 if !IS_MACOSX
 	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
 	if test $$? == 0; then \
-		echo "Found dependency from scilab-cli-bin to libjvm found"; \
+		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 	fi
 endif
 

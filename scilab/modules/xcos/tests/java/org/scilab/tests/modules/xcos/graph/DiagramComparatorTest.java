@@ -18,14 +18,20 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.junit.*;
 
 public class DiagramComparatorTest {
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
 
     @Test
     public void addXcosDiagrams() {
@@ -33,8 +39,7 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
-            1, DiagramComparator.getInstance());
+        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
@@ -67,8 +72,7 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
-            1, DiagramComparator.getInstance());
+        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
@@ -99,8 +103,7 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final Collection<XcosDiagram> sorted = Xcos.getInstance()
-                                               .createDiagramCollection();
+        final Collection<XcosDiagram> sorted = Xcos.getInstance().createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
@@ -177,8 +180,7 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final Collection<XcosDiagram> sorted = Xcos.getInstance()
-                                               .createDiagramCollection();
+        final Collection<XcosDiagram> sorted = Xcos.getInstance().createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
@@ -253,9 +255,7 @@ public class DiagramComparatorTest {
 
     }
 
-    private void assertOnTwoFilesHierarchy(
-        final Collection<XcosDiagram> sorted, XcosDiagram root1,
-        XcosDiagram root2) {
+    private void assertOnTwoFilesHierarchy(final Collection<XcosDiagram> sorted, XcosDiagram root1, XcosDiagram root2) {
         final Iterator<XcosDiagram> it = sorted.iterator();
         XcosDiagram first = it.next();
         XcosDiagram second = it.next();
@@ -275,8 +275,7 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final Collection<XcosDiagram> sorted = Xcos.getInstance()
-                                               .createDiagramCollection();
+        final Collection<XcosDiagram> sorted = Xcos.getInstance().createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*

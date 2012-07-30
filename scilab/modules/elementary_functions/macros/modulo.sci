@@ -28,13 +28,13 @@ function i = modulo(n, m)
     if size(n,'*')==1 then
         i = zeros(m);
         k = find(m==0);
-        i(k) = n;
+        i(k) = n - int(n ./ m(k)) .* m(k);
         k = find(m~=0);
         i(k) = n-int(n./m(k)).*m(k);
     elseif size(m,'*')==1 then
         i = zeros(n);
         if m == 0 then
-            i = n;
+            i = n - int(n ./ m) .* m;
         else
             i = n-int(n./m).*m;
         end
@@ -44,11 +44,13 @@ function i = modulo(n, m)
         end
         i = zeros(n);
         k = find(m==0);
-        i(k) = n(k);
+        i(k) = n(k) - int(n(k) ./ m(k)) .* m(k);
         k = find(m~=0);
         i(k) = n(k) - int(n(k)./m(k)).*m(k);
     end
 endfunction
+
+
 
 
 

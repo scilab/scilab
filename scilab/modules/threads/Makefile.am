@@ -44,4 +44,9 @@ libscithreads_la_rootdir = $(mydatadir)
 # libscithreads_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 # libscithreads_la_sci_gateway_DATA = sci_gateway/threads_gateway.xml
 
+#### threads : include files ####
+libscithreads_la_includedir=$(pkgincludedir)
+libscithreads_la_include_HEADERS = \
+includes/Thread_Wrapper.h
+
 include $(top_srcdir)/Makefile.incl.am

@@ -85,7 +85,7 @@
     <!-- Check the version of Java. If it changes after the configure
          or if there is a mistake in the build system
     -->
-    <fail message="JDK 1.6 or 1.7 required">
+    <fail message="JDK 1.6 or 1.7 required. Found ${ant.java.version}">
       <condition>
         <not>
           <or>

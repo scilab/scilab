@@ -6,8 +6,9 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])
-      [x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])
+    <synopsis>
+      [x, lagr] = qld(Q, p, C, b, ci, cs, me [,tol])
+      [x, lagr, info] = qld(Q, p, C, b, ci, cs, me [,tol])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -17,7 +18,8 @@
         <term>Q</term>
         <listitem>
           <para>
-            real positive definite symmetric matrix (dimension <literal>n
+            real positive definite symmetric matrix (dimension <literal>
+              n
               x n
             </literal>
             ).
@@ -36,7 +38,8 @@
         <term>C</term>
         <listitem>
           <para>
-            real matrix (dimension <literal> (me + md) x
+            real matrix (dimension <literal>
+              (me + md) x
               n
             </literal>
             )
@@ -47,7 +50,8 @@
         <term>b</term>
         <listitem>
           <para>
-            RHS column vector (dimension <literal> (me +
+            RHS column vector (dimension <literal>
+              (me +
               md)
             </literal>
             )
@@ -57,12 +61,14 @@
       <varlistentry>
         <term>ci</term>
         <listitem>
-          <para>column vector of lower-bounds (dimension
+          <para>
+            column vector of lower-bounds (dimension
             <literal>n</literal>). If there are no lower bound constraints, put
             <literal>ci = []</literal>. If some components of
             <literal>x</literal> are bounded from below, set the other
             (unconstrained) values of <literal>ci</literal> to a very large
-            negative number (e.g. <literal>ci(j) =
+            negative number (e.g. <literal>
+              ci(j) =
               -number_properties('huge')
             </literal>
             .
@@ -79,7 +85,8 @@
         <term>me</term>
         <listitem>
           <para>
-            number of equality constraints (i.e. <literal>C(1:me,:)*x =
+            number of equality constraints (i.e. <literal>
+              C(1:me,:)*x =
               b(1:me)
             </literal>
             )
@@ -101,29 +108,41 @@
       <varlistentry>
         <term>lagr</term>
         <listitem>
-          <para>vector of Lagrange multipliers. If lower and upper-bounds
-            <literal>ci,cs</literal> are provided, <literal>lagr</literal> has
-            <literal>n + me + md</literal> components and
-            <literal>lagr(1:n)</literal> is the Lagrange vector associated with
-            the bound constraints and <literal>lagr (n+1 : n + me +
-              md)
-            </literal>
-            is the Lagrange vector associated with the linear
-            constraints. (If an upper-bound (resp. lower-bound) constraint
+          <para>
+            vector of Lagrange multipliers.
+            <para>
+              If lower and upper-bounds
+              <literal>ci, cs</literal> are provided, <literal>lagr</literal> has
+              <literal>me + md + 2* n</literal> components. The components <literal>lagr(1:me + md)</literal>
+              are associated with
+              the linear constraints and <literal>
+                lagr (me + md + 1 : 2 * n)
+              </literal>
+              are associated with the lower and upper bounds constraints.
+            </para>
+            <para>
+            If an upper-bound (resp. lower-bound) constraint
             <literal>i</literal> is active <literal>lagr(i)</literal> is &gt; 0
             (resp. &lt;0). If no bounds are provided, <literal>lagr</literal>
             has only <literal>me + md</literal> components.
+          </para>
+            <para>
+              On successful termination, all values of <literal>lagr</literal> with respect to inequalities
+              and bounds should be greater or equal to zero.
+            </para>
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>integer, return the execution status instead of sending
+          <para>
+            integer, return the execution status instead of sending
             errors.
           </para>
           <para>info==1 : Too many iterations needed</para>
-          <para>info==2 : Accuracy insufficient to statisfy convergence
+          <para>
+            info==2 : Accuracy insufficient to statisfy convergence
             criterion
           </para>
           <para>info==5 : Length of working array is too short</para>
@@ -148,7 +167,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+      <![CDATA[ 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -173,7 +193,8 @@ b=[b1;b2];
 me=3;
 [x,lagr]=qld(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -185,7 +206,8 @@ me=3;
         <link linkend="optim">optim</link>
       </member>
     </simplelist>
-    <para>The contributed toolbox "quapro" may also be of interest, in
+    <para>
+      The contributed toolbox "quapro" may also be of interest, in
       particular for singular <literal>Q</literal>.
     </para>
   </refsection>

@@ -22,7 +22,8 @@ Source: bin\external_objects.lib; DestDir: {app}\bin; Components: {#COMPN_EXTERN
 ;
 ;Source: modules\{#EXTERNAL_OBJECTS}\sci_gateway\{#EXTERNAL_OBJECTS}_gateway.xml; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\sci_gateway; Components: {#COMPN_EXTERNAL_OBJECTS}
 ;
-;Source: modules\{#EXTERNAL_OBJECTS}\includes\*.h; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\includes; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\includes\*.h; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\includes; Components: {#COMPN_EXTERNAL_OBJECTS}
+Source: modules\{#EXTERNAL_OBJECTS}\includes\*.hxx; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\includes; Components: {#COMPN_EXTERNAL_OBJECTS}
 ;
 Source: modules\{#EXTERNAL_OBJECTS}\etc\{#EXTERNAL_OBJECTS}.quit; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\etc; Components: {#COMPN_EXTERNAL_OBJECTS}
 Source: modules\{#EXTERNAL_OBJECTS}\etc\{#EXTERNAL_OBJECTS}.start; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\etc; Components: {#COMPN_EXTERNAL_OBJECTS}

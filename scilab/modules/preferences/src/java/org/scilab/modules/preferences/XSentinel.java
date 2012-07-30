@@ -17,63 +17,70 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EventObject;
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
+import org.scilab.modules.preferences.Component.Table;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import org.scilab.modules.preferences.Component.Table;
-
 /**
- *    XSentinel embeds correspondence between swing components
- *    and visible DOM nodes. Each instance has two functions :
- *    1. Checks if a given node can be updated through actuators
- *        from the former one
- *    2. Interprets incoming events and transmit corresponding
- *        action to XConfigManager.
+ * XSentinel embeds correspondence between swing components and visible DOM
+ * nodes. Each instance has two functions : 1. Checks if a given node can be
+ * updated through actuators from the former one 2. Interprets incoming events
+ * and transmit corresponding action to XConfigManager.
  *
  * @author Pierre GRADIT
  *
  **/
-public class XSentinel implements MouseListener, ActionListener, TableModelListener, KeyListener, DocumentListener {
+public class XSentinel implements MouseListener, ActionListener, TableModelListener, KeyListener, DocumentListener, PropertyChangeListener {
 
-    private static final Set<String> LAYOUT = new TreeSet<String>(Arrays.asList(new String[] {"listener", "gridx", "gridy", "gridwidth", "gridheight", "weightx", "weighty", "anchor", "ipadx", "ipday", "insets", "fill", "border-side", "fixed-height", "fixed-width"}));
+    private static final Set<String> LAYOUT = new TreeSet<String>(Arrays.asList(new String[] { "listener", "gridx", "gridy", "gridwidth", "gridheight",
+            "weightx", "weighty", "anchor", "ipadx", "ipday", "insets", "fill", "border-side", "fixed-height", "fixed-width"
+                                                                                             }));
 
-    /** Associated DOM Node.
-     * TODO Add accessors for this attribute. */
+    /**
+     * Associated DOM Node. TODO Add accessors for this attribute.
+     */
     protected Node peer;
 
-    /** Attributes which can be modified.
-     * TODO Add accessors for this attribute. */
+    /**
+     * Attributes which can be modified. TODO Add accessors for this attribute.
+     */
     protected String[] actuators;
 
-    /** Reduced string for actuation test.
-     * TODO Add accessors for this attribute. */
+    /**
+     * Reduced string for actuation test. TODO Add accessors for this attribute.
+     */
     public String reduced;
 
-    /** Last time-stamp to avoid event duplication.
+    /**
+     * Last time-stamp to avoid event duplication.
      */
     private long timestamp = 0;
 
     private XComponent xComponent;
 
-    /** Construction of a correspondence.
+    /**
+     * Construction of a correspondence.
      *
-     * @param component : Swing component
-     * @param node : DOM node
+     * @param component
+     *            : Swing component
+     * @param node
+     *            : DOM node
      */
     public XSentinel(final Component component, final Node node) {
         peer = node;
@@ -85,12 +92,15 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         }
     }
 
-    /** Evaluate reachability through actuators as string equality.
+    /**
+     * Evaluate reachability through actuators as string equality.
      *
-     * @param node : a given peer node to be reached.
-     * @param actuators : the set of actuators.
-     * @return the string verifying that string equality implies
-     * reachability through actuators.
+     * @param node
+     *            : a given peer node to be reached.
+     * @param actuators
+     *            : the set of actuators.
+     * @return the string verifying that string equality implies reachability
+     *         through actuators.
      */
     public static String signature(final Node node, final String[] actuators) {
         StringBuilder signature = new StringBuilder(node.getNodeName());
@@ -108,9 +118,10 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
             Node item = attributes.item(i);
             String attrName = item.getNodeName();
             if (!set.contains(attrName)) {
-                /* As "actuators" can be performed without deleting node
-                 * their value is removed from signature,
-                 * grid layout manages "layout"...
+                /*
+                 * As "actuators" can be performed without deleting node their
+                 * value is removed from signature, grid layout manages
+                 * "layout"...
                  */
                 String value = item.getNodeValue().replaceAll("[ \t\n]+", " ");
                 signature.append(" ");
@@ -128,9 +139,11 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         peer = next;
     }
 
-    /** Check whether the next node can be reached through actuators.
+    /**
+     * Check whether the next node can be reached through actuators.
      *
-     * @param next : the node to be reached.
+     * @param next
+     *            : the node to be reached.
      * @return can the node be reached ?
      */
     public boolean checks(final Node next) {
@@ -141,10 +154,14 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         return reduced.equals(checker);
     }
 
-    /** Process event node through component.
-     *  (must be updated if a new manager is created)
-     * @param component : the source of the action.
-     * @param node : the node embedding the action.
+    /**
+     * Process event node through component. (must be updated if a new manager
+     * is created)
+     *
+     * @param component
+     *            : the source of the action.
+     * @param node
+     *            : the node embedding the action.
      */
     boolean triggerEventNodes(final Component component, final Node[] nodes) {
         if (XConfigManager.active) {
@@ -157,10 +174,13 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
     }
 
     //
-    /** Returns the first event node of the given type.
+    /**
+     * Returns the first event node of the given type.
      *
-     * @param node : the node to browse.
-     * @param type : the seek type in peer children.
+     * @param node
+     *            : the node to browse.
+     * @param type
+     *            : the seek type in peer children.
      */
     Node[] getEventNodes(final Node node, final String type) {
         ArrayList<Node> list = new ArrayList<Node>();
@@ -175,29 +195,39 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         return list.toArray(new Node[list.size()]);
     }
 
-    /** Mouse listener callback. @param e : event*/
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void mouseClicked(final MouseEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
             Node[] action = getEventNodes(peer, "mouseClicked");
-            triggerEventNodes((Component) e.getSource(), action) ;
+            triggerEventNodes((Component) e.getSource(), action);
             timestamp = when;
         }
     }
-    /** Mouse listener callback. @param e : event*/
+
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void mouseEntered(final MouseEvent e) {
     }
-    /** Mouse listener callback. @param e : event*/
+
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void mouseExited(final MouseEvent e) {
     }
-    /** Mouse listener callback. @param e : event*/
+
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void mousePressed(final MouseEvent e) {
     }
-    /** Mouse listener callback. @param e : event*/
+
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void mouseReleased(final MouseEvent e) {
     }
 
-    /** Action listener callback. @param e : event*/
+    /** Action listener callback. @param e : event */
+    @Override
     public void actionPerformed(final ActionEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
@@ -216,41 +246,65 @@ public class XSentinel implements MouseListener, ActionListener, TableModelListe
         }
     }
 
-    /** Mouse listener callback. @param e : event*/
-    public void keyPressed(final KeyEvent e) { }
+    /** Mouse listener callback. @param e : event */
+    @Override
+    public void keyPressed(final KeyEvent e) {
+    }
 
-    /** Mouse listener callback. @param e : event*/
-    public void keyReleased(final KeyEvent e) { }
+    /** Mouse listener callback. @param e : event */
+    @Override
+    public void keyReleased(final KeyEvent e) {
+    }
 
-    /** Mouse listener callback. @param e : event*/
+    /** Mouse listener callback. @param e : event */
+    @Override
     public void keyTyped(final KeyEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
             Node[] action = getEventNodes(peer, "keyTyped");
-            triggerEventNodes((Component) e.getSource(), action) ;
+            triggerEventNodes((Component) e.getSource(), action);
             timestamp = when;
         }
     }
 
-    public void changedUpdate(DocumentEvent e) { }
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+    }
 
+    @Override
     public void insertUpdate(DocumentEvent e) {
         Node[] action = getEventNodes(peer, "entryChanged");
-        triggerEventNodes((Component) xComponent, action) ;
+        triggerEventNodes((Component) xComponent, action);
     }
 
+    @Override
     public void removeUpdate(DocumentEvent e) {
         Node[] action = getEventNodes(peer, "entryChanged");
-        triggerEventNodes((Component) xComponent, action) ;
+        triggerEventNodes((Component) xComponent, action);
     }
 
-    /** Table listener callback. @param e : event*/
+    /** Table listener callback. @param e : event */
+    @Override
     public void tableChanged(final TableModelEvent e) {
         Node[] actions = getEventNodes(peer, "tableChanged");
         Table.processModelEvent(e, actions);
         triggerEventNodes(null, actions);
         // source is used for "choose" behavior not "set" ones.
     }
+
+    /** Global property change listener */
+    @Override
+    public void propertyChange(final PropertyChangeEvent e) {
+        Node[] action = getEventNodes(peer, "propertyChange");
+        final ArrayList<Node> called = new ArrayList<Node>(action.length);
+
+        for (Node a : action) {
+            final String name = XCommonManager.getAttribute(a, "name", null);
+
+            if (name == null || name.equals(e.getPropertyName())) {
+                called.add(a);
+            }
+        }
+        triggerEventNodes((Component) xComponent, called.toArray(new Node[called.size()]));
+    }
 }
-
-

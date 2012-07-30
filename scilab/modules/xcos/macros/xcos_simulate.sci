@@ -57,6 +57,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     %cpr        = struct();
     %tcur       = 0;
     %cpr.state  = %state0;
+    alreadyran = %f;
   else
     %state0 = %cpr.state;
     alreadyran = %f;

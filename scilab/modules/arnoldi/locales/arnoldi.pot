@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: sci_gateway/c/sci_dnaupd.c, line: 84
 # File: sci_gateway/c/sci_znaupd.c, line: 85
@@ -86,17 +86,17 @@ msgstr ""
 # File: sci_gateway/c/sci_eigs.c, line: 111
 # File: sci_gateway/c/sci_eigs.c, line: 161
 # File: sci_gateway/c/sci_eigs.c, line: 223
-# File: sci_gateway/c/sci_eigs.c, line: 256
-# File: sci_gateway/c/sci_eigs.c, line: 321
-# File: sci_gateway/c/sci_eigs.c, line: 341
-# File: sci_gateway/c/sci_eigs.c, line: 365
-# File: sci_gateway/c/sci_eigs.c, line: 389
-# File: sci_gateway/c/sci_eigs.c, line: 422
-# File: sci_gateway/c/sci_eigs.c, line: 442
-# File: sci_gateway/c/sci_eigs.c, line: 466
-# File: sci_gateway/c/sci_eigs.c, line: 500
-# File: sci_gateway/c/sci_eigs.c, line: 511
-# File: sci_gateway/c/sci_eigs.c, line: 523
+# File: sci_gateway/c/sci_eigs.c, line: 257
+# File: sci_gateway/c/sci_eigs.c, line: 322
+# File: sci_gateway/c/sci_eigs.c, line: 342
+# File: sci_gateway/c/sci_eigs.c, line: 367
+# File: sci_gateway/c/sci_eigs.c, line: 391
+# File: sci_gateway/c/sci_eigs.c, line: 424
+# File: sci_gateway/c/sci_eigs.c, line: 444
+# File: sci_gateway/c/sci_eigs.c, line: 468
+# File: sci_gateway/c/sci_eigs.c, line: 502
+# File: sci_gateway/c/sci_eigs.c, line: 513
+# File: sci_gateway/c/sci_eigs.c, line: 525
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -122,32 +122,31 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 230
+# File: sci_gateway/c/sci_eigs.c, line: 231
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 236
+# File: sci_gateway/c/sci_eigs.c, line: 237
 #, c-format
 msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 242
+# File: sci_gateway/c/sci_eigs.c, line: 243
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"
+msgid "%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 263
+# File: sci_gateway/c/sci_eigs.c, line: 264
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected \n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 280
+# File: sci_gateway/c/sci_eigs.c, line: 281
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Unrecognized sigma value.\n"
@@ -155,7 +154,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 285
+# File: sci_gateway/c/sci_eigs.c, line: 286
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Unrecognized sigma value.\n"
@@ -164,37 +163,37 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 292
+# File: sci_gateway/c/sci_eigs.c, line: 293
 #, c-format
 msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 298
+# File: sci_gateway/c/sci_eigs.c, line: 299
 #, c-format
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 312
+# File: sci_gateway/c/sci_eigs.c, line: 313
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 327
+# File: sci_gateway/c/sci_eigs.c, line: 328
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 348
+# File: sci_gateway/c/sci_eigs.c, line: 350
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 354
+# File: sci_gateway/c/sci_eigs.c, line: 356
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer positive "
@@ -202,59 +201,54 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 372
+# File: sci_gateway/c/sci_eigs.c, line: 374
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 378
+# File: sci_gateway/c/sci_eigs.c, line: 380
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 397
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar..\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_eigs.c, line: 404
-# File: sci_gateway/c/sci_eigs.c, line: 412
-# File: sci_gateway/c/sci_eigs.c, line: 428
+# File: sci_gateway/c/sci_eigs.c, line: 399
+# File: sci_gateway/c/sci_eigs.c, line: 406
+# File: sci_gateway/c/sci_eigs.c, line: 414
+# File: sci_gateway/c/sci_eigs.c, line: 430
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 449
+# File: sci_gateway/c/sci_eigs.c, line: 451
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 455
+# File: sci_gateway/c/sci_eigs.c, line: 457
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be between 0 and 1.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 474
+# File: sci_gateway/c/sci_eigs.c, line: 476
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 482
+# File: sci_gateway/c/sci_eigs.c, line: 484
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 491
+# File: sci_gateway/c/sci_eigs.c, line: 493
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
@@ -262,13 +256,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 530
+# File: sci_gateway/c/sci_eigs.c, line: 532
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 555
+# File: sci_gateway/c/sci_eigs.c, line: 557
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: For real symmetric problems, NCV "
@@ -276,7 +270,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 561
+# File: sci_gateway/c/sci_eigs.c, line: 563
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: For real non symmetric problems, "
@@ -284,7 +278,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 565
+# File: sci_gateway/c/sci_eigs.c, line: 567
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: For complex problems, NCV must "
@@ -292,7 +286,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 574
+# File: sci_gateway/c/sci_eigs.c, line: 576
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: For real symmetric problems, k "
@@ -300,7 +294,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 578
+# File: sci_gateway/c/sci_eigs.c, line: 580
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: For real non symmetric or "
@@ -308,36 +302,36 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 584
+# File: sci_gateway/c/sci_eigs.c, line: 586
 #, c-format
 msgid ""
-"%s: Wrong type for input argument(s) #%d: B must be symmmetric or hemitian, "
+"%s: Wrong type for input argument(s) #%d: B must be symmetric or hermitian, "
 "definite, semi positive.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 593
-# File: sci_gateway/c/sci_eigs.c, line: 597
-# File: sci_gateway/c/sci_eigs.c, line: 602
-# File: sci_gateway/c/sci_eigs.c, line: 631
-# File: sci_gateway/c/sci_eigs.c, line: 635
-# File: sci_gateway/c/sci_eigs.c, line: 640
+# File: sci_gateway/c/sci_eigs.c, line: 595
+# File: sci_gateway/c/sci_eigs.c, line: 599
+# File: sci_gateway/c/sci_eigs.c, line: 604
+# File: sci_gateway/c/sci_eigs.c, line: 633
+# File: sci_gateway/c/sci_eigs.c, line: 637
+# File: sci_gateway/c/sci_eigs.c, line: 642
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 612
-# File: sci_gateway/c/sci_eigs.c, line: 616
-# File: sci_gateway/c/sci_eigs.c, line: 621
+# File: sci_gateway/c/sci_eigs.c, line: 614
+# File: sci_gateway/c/sci_eigs.c, line: 618
+# File: sci_gateway/c/sci_eigs.c, line: 623
 #, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_eigs.c, line: 652
-# File: sci_gateway/c/sci_eigs.c, line: 671
-# File: sci_gateway/c/sci_eigs.c, line: 679
+# File: sci_gateway/c/sci_eigs.c, line: 655
+# File: sci_gateway/c/sci_eigs.c, line: 674
+# File: sci_gateway/c/sci_eigs.c, line: 682
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -398,6 +392,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 356
+# File: macros/eigs.sci, line: 812
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
@@ -407,22 +402,22 @@ msgstr ""
 #
 # File: macros/eigs.sci, line: 374
 # File: macros/eigs.sci, line: 379
-# File: macros/eigs.sci, line: 838
-# File: macros/eigs.sci, line: 843
+# File: macros/eigs.sci, line: 830
+# File: macros/eigs.sci, line: 835
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 
 #
 # File: macros/eigs.sci, line: 383
-# File: macros/eigs.sci, line: 847
+# File: macros/eigs.sci, line: 839
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: k must be 1 by 1 size.\n"
 msgstr ""
 
 #
 # File: macros/eigs.sci, line: 392
-# File: macros/eigs.sci, line: 856
+# File: macros/eigs.sci, line: 848
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real symmetric problems, k must "
@@ -431,7 +426,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 396
-# File: macros/eigs.sci, line: 860
+# File: macros/eigs.sci, line: 852
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real non symmetric or complex "
@@ -440,7 +435,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 407
-# File: macros/eigs.sci, line: 871
+# File: macros/eigs.sci, line: 863
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
 msgstr ""
@@ -453,6 +448,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 418
+# File: macros/eigs.sci, line: 874
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -461,6 +457,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 420
+# File: macros/eigs.sci, line: 876
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -469,7 +466,7 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 431
-# File: macros/eigs.sci, line: 895
+# File: macros/eigs.sci, line: 887
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
@@ -478,8 +475,8 @@ msgstr ""
 #
 # File: macros/eigs.sci, line: 442
 # File: macros/eigs.sci, line: 447
-# File: macros/eigs.sci, line: 906
-# File: macros/eigs.sci, line: 911
+# File: macros/eigs.sci, line: 898
+# File: macros/eigs.sci, line: 903
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
 msgstr ""
@@ -492,70 +489,63 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 471
-# File: macros/eigs.sci, line: 935
+# File: macros/eigs.sci, line: 927
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 491
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: opts.nev must be an integer scalar.\n"
-msgstr ""
-
-#
-# File: macros/eigs.sci, line: 507
-# File: macros/eigs.sci, line: 965
+# File: macros/eigs.sci, line: 499
+# File: macros/eigs.sci, line: 956
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real symmetric problems, NCV must "
-"be NEV < NCV <= N.\n"
+"be k < NCV <= N.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 509
-# File: macros/eigs.sci, line: 967
+# File: macros/eigs.sci, line: 501
+# File: macros/eigs.sci, line: 958
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real non symmetric problems, NCV "
-"must be NEV+2 < NCV < N.\n"
+"must be k + 2 < NCV < N.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 511
-# File: macros/eigs.sci, line: 970
+# File: macros/eigs.sci, line: 503
+# File: macros/eigs.sci, line: 961
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: For complex problems, NCV must be NEV"
-"+1 < NCV <= N.\n"
+"%s: Wrong type for input argument #%d: For complex problems, NCV must be k + "
+"1 < NCV <= N.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 529
-# File: macros/eigs.sci, line: 992
+# File: macros/eigs.sci, line: 521
+# File: macros/eigs.sci, line: 983
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be between 0 and 1 .\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 540
-# File: macros/eigs.sci, line: 999
+# File: macros/eigs.sci, line: 532
+# File: macros/eigs.sci, line: 990
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 545
+# File: macros/eigs.sci, line: 537
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 555
+# File: macros/eigs.sci, line: 547
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
@@ -563,63 +553,63 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 581
-# File: macros/eigs.sci, line: 1039
+# File: macros/eigs.sci, line: 573
+# File: macros/eigs.sci, line: 1030
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmmetric or hermitian, "
+"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
 "definite, semi positive.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 589
-# File: macros/eigs.sci, line: 1047
+# File: macros/eigs.sci, line: 581
+# File: macros/eigs.sci, line: 1038
 #, c-format
 msgid ""
-"%s: Impossible to use the Cholesky factorisation with complex sparses "
+"%s: Impossible to use the Cholesky factorisation with complex sparse "
 "matrices.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 663
-# File: macros/eigs.sci, line: 668
-# File: macros/eigs.sci, line: 674
-# File: macros/eigs.sci, line: 752
-# File: macros/eigs.sci, line: 765
-# File: macros/eigs.sci, line: 785
-# File: macros/eigs.sci, line: 1098
-# File: macros/eigs.sci, line: 1103
-# File: macros/eigs.sci, line: 1109
-# File: macros/eigs.sci, line: 1190
-# File: macros/eigs.sci, line: 1204
-# File: macros/eigs.sci, line: 1224
+# File: macros/eigs.sci, line: 655
+# File: macros/eigs.sci, line: 660
+# File: macros/eigs.sci, line: 666
+# File: macros/eigs.sci, line: 744
+# File: macros/eigs.sci, line: 757
+# File: macros/eigs.sci, line: 777
+# File: macros/eigs.sci, line: 1089
+# File: macros/eigs.sci, line: 1094
+# File: macros/eigs.sci, line: 1100
+# File: macros/eigs.sci, line: 1181
+# File: macros/eigs.sci, line: 1195
+# File: macros/eigs.sci, line: 1215
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 694
-# File: macros/eigs.sci, line: 717
-# File: macros/eigs.sci, line: 727
+# File: macros/eigs.sci, line: 686
+# File: macros/eigs.sci, line: 709
+# File: macros/eigs.sci, line: 719
 #, c-format
 msgid "%s: Impossible to invert complex sparse matrix.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 809
-# File: macros/eigs.sci, line: 813
+# File: macros/eigs.sci, line: 801
+# File: macros/eigs.sci, line: 805
 #, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 878
+# File: macros/eigs.sci, line: 870
 #, c-format
 msgid "%s: Wrong dimension for input argument(s) #%d: a string expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 975
+# File: macros/eigs.sci, line: 966
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real non symmetric problems, %s "
@@ -627,7 +617,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1003
+# File: macros/eigs.sci, line: 994
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
@@ -635,7 +625,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1009
+# File: macros/eigs.sci, line: 1000
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
@@ -643,7 +633,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1013
+# File: macros/eigs.sci, line: 1004
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
@@ -651,7 +641,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1181
+# File: macros/eigs.sci, line: 1172
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: n does not match rows number of "
@@ -659,7 +649,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1183
+# File: macros/eigs.sci, line: 1174
 #, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
 msgstr ""

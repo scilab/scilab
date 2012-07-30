@@ -291,19 +291,19 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		return sciErr;
 	}
 
-	sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
-		return sciErr;
-	}
+    sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
+    if(sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
+    }
 
-	if (_piwLength == NULL)
-	{
-		return sciErr;
-	}
+    if (_piwLength == NULL)
+    {
+        return sciErr;
+    }
 
-	String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
+    String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
     for(int i = 0 ; i < pS->getSize() ; i++)
     {
         _piwLength[i] = (int)wcslen(pS->get(i));
@@ -316,15 +316,15 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 
     for(int i = 0 ; i < pS->getSize() ; i++)
     {
-		if(_pwstStrings[i] == NULL)
-		{
-			addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-			return sciErr;
+        if(_pwstStrings[i] == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+            return sciErr;
         }
         wcscpy( _pwstStrings[i], pS->get(i));
     }
 
-	return sciErr;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, const wchar_t* const* _pstwStrings)
@@ -466,6 +466,7 @@ int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
 
 	return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstData)
 {

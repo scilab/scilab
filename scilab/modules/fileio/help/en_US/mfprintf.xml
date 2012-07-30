@@ -27,36 +27,51 @@
         <term>fd</term>
         <listitem>
           <para>
-            scalar, file descriptor given by <literal>mopen</literal>
+            a scalar, file descriptor given by <function>mopen</function>
             (it's a positive integer). 
           </para>
-          <para> if fd equals 0 redirection in stderr.</para>
-          <para> if fd equals 6 redirection in stdout.</para>
           <para>
-            OBSOLETE :The value <literal>-1</literal> refers to the
-            default file ( i.e the last opened file).
+            If <varname>fd</varname> equals 0 redirection in stderr.
+          </para>
+          <para>
+            If <varname>fd</varname> equals 6 redirection in stdout.
+          </para>
+          <para>
+            OBSOLETE: The value <literal>-1</literal> refers to the
+            default file (i.e the last opened file).
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>a Scilab string describing the format to use to write the
-            remaining operands. The format operand follows, as close as
-            possible, the C printf format operand syntax.
+          <para>
+            a Scilab string describing the format to use to write the
+            remaining operands. The 
+            <varname>
+              format
+            </varname>
+            operand follows, 
+            as close as possible, the C 
+            <function>
+              printf
+            </function>
+            format 
+            operand syntax.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a character string, string to be scanned.</para>
+          <para>a character string: a string to be scanned.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a1,...,an</term>
         <listitem>
-          <para>Specifies the data to be converted and printed according to
+          <para>
+            the data to be converted and printed according to
             the format parameter.
           </para>
         </listitem>
@@ -66,22 +81,24 @@
   <refsection>
     <title>Description</title>
     <para>
-      The <literal>mfprintf</literal> function is a interface for C-coded version of
-      <literal>fprintf</literal> functions.
+      The <function>mfprintf</function> function is a interface for C-coded 
+      version of <function>fprintf</function> function.
     </para>
     <para>
-      The <literal>mfprintf</literal> function writes formatted operands
-      to the file specified by the file desciptor <literal>fd</literal>. The
-      argument operands are formatted under control of the format
-      operand.
+      The <function>mfprintf</function> function writes formatted operands
+      to the file specified by the file desciptor <varname>fd</varname>. The
+      argument operands are formatted under control of the 
+      <varname>format</varname> operand.
     </para>
-    <para>this function may be used to output column vectors of numbers
-      and string vectors without an explicit loop on the elements. In that case
-      this function iterates on the rows. The shortest vector gives the number
-      of time the format has to be iterated.
+    <para>
+      This function may be used to output column vectors of numbers
+      and string vectors without an explicit loop on the elements. In that 
+      case this function iterates on the rows. The shortest vector gives the 
+      number of time the format has to be iterated.
     </para>
-    <para>An homogeneous sequence of identical type parameters can be replaced
-      by a matrix
+    <para>
+      An homogeneous sequence of identical type parameters can be replaced
+      by a matrix.
     </para>
   </refsection>
   <refsection>
@@ -91,6 +108,10 @@
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);
+mfprintf(fd,'This line is built with a column vector (26:28) %d.\n',[26:28].');
+mfprintf(fd,'This line is built with a row vector (26:28) %d.\n',[26:28]);
+A = rand(3,6);
+mfprintf(fd,'This line is built with a matrix %.3f.\n',A);
 mclose(fd);
 if (isdef('editor') | (funptr('editor')<>0)) then
   editor(TMPDIR+'/text.txt')
@@ -134,9 +155,6 @@ mfprintf(6,'stdout output.\n');
       </member>
       <member>
         <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
       </member>
       <member>
         <link linkend="mseek">mseek</link>

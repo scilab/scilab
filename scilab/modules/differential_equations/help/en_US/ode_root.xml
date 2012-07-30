@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * ...
  * 
  * This file must be used under the terms of the CeCILL.
@@ -20,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+    <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -66,7 +67,7 @@
       <varlistentry>
         <term>w, iw</term>
         <listitem>
-          <para>a real vectors.</para>
+          <para>a real vectors. (INPUT/OUTPUT)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -79,6 +80,18 @@
         <term>g</term>
         <listitem>
           <para>an external i.e. function or character string or list.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>a real vector or matrix. (OUTPUT)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rd</term>
+        <listitem>
+          <para>a real vector. (OUTPUT)</para>
         </listitem>
       </varlistentry>
     </variablelist>
