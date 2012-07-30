@@ -25,6 +25,7 @@ Source: modules\{#COMPLETION}\jar\org.scilab.modules.{#COMPLETION}.jar;DestDir: 
 ;
 ;Source: bin\nosci{#COMPLETION}.dll; DestDir: {app}\bin; DestName: sci{#COMPLETION}.dll; Components: not ({#COMPN_SCILAB})
 ;
+Source: modules\{#COMPLETION}\license.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMPLETION}\sci_gateway\{#COMPLETION}_gateway.xml; DestDir: {app}\modules\{#COMPLETION}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

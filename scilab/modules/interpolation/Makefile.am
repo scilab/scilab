@@ -57,6 +57,7 @@ modulename=interpolation
 
 #### interpolation : Conf files ####
 libsciinterpolation_la_rootdir = $(mydatadir)
+libsciinterpolation_la_root_DATA =  license.txt 
 
 
 ####�interpolation : init scripts ####

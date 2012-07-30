@@ -19,6 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
+libscigui_la_root_DATA =  license.txt
 
 
 #### gui : init scripts ####

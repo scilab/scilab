@@ -148,6 +148,7 @@ modulename=integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
+libsciinteger_la_root_DATA =  license.txt 
 
 
 #### integer : init scripts ####

@@ -61,6 +61,7 @@ modulename=dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
+libscidynamic_link_la_root_DATA =  license.txt 
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc

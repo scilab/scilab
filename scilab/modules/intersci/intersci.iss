@@ -21,6 +21,7 @@
 Source: bin\{#INTERSCI}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#INTERSCI}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INTERSCI}\license.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 ;
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}

@@ -54,6 +54,7 @@ modulename=api_scilab
 
 #### api_scilab : Conf files ####
 libsciapi_scilab_la_rootdir = $(mydatadir)
+libsciapi_scilab_la_root_DATA =  license.txt 
 
 
 #### api_scilab : init scripts ####

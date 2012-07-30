@@ -50,6 +50,7 @@ modulename=spreadsheet
 
 #### spreadsheet : Conf files ####
 libscispreadsheet_la_rootdir = $(mydatadir)
+libscispreadsheet_la_root_DATA =  license.txt 
 
 
 ####�spreadsheet : init scripts ####

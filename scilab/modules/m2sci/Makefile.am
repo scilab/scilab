@@ -8,6 +8,7 @@ modulename=m2sci
 
 #### m2sci : Conf files ####
 libm2sci_la_rootdir = $(mydatadir)
+libm2sci_la_root_DATA =  license.txt 
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/kernel macros/percent macros/sci_files

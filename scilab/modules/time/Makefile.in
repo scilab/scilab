@@ -113,6 +113,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitime_la_etcdir)" \
+	"$(DESTDIR)$(libscitime_la_rootdir)" \
 	"$(DESTDIR)$(libscitime_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscitime_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -147,7 +148,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscitime_algo_la_SOURCES) $(libscitime_la_SOURCES)
 DIST_SOURCES = $(libscitime_algo_la_SOURCES) $(libscitime_la_SOURCES)
-DATA = $(libscitime_la_etc_DATA) $(libscitime_la_sci_gateway_DATA)
+DATA = $(libscitime_la_etc_DATA) $(libscitime_la_root_DATA) \
+	$(libscitime_la_sci_gateway_DATA)
 HEADERS = $(libscitime_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -187,7 +189,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -265,7 +266,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -357,7 +357,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -447,6 +446,7 @@ modulename = time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
+libscitime_la_root_DATA = license.txt 
 
 #### time : init scripts ####
 libscitime_la_etcdir = $(mydatadir)/etc
@@ -745,6 +745,24 @@ uninstall-libscitime_la_etcDATA:
 	@list='$(libscitime_la_etc_DATA)'; test -n "$(libscitime_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscitime_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscitime_la_rootDATA: $(libscitime_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitime_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitime_la_rootdir)"
+	@list='$(libscitime_la_root_DATA)'; test -n "$(libscitime_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscitime_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscitime_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libscitime_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitime_la_root_DATA)'; test -n "$(libscitime_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscitime_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscitime_la_sci_gatewayDATA: $(libscitime_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscitime_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscitime_la_sci_gatewaydir)"
@@ -869,7 +887,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitime_la_etcdir)" "$(DESTDIR)$(libscitime_la_sci_gatewaydir)" "$(DESTDIR)$(libscitime_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitime_la_etcdir)" "$(DESTDIR)$(libscitime_la_rootdir)" "$(DESTDIR)$(libscitime_la_sci_gatewaydir)" "$(DESTDIR)$(libscitime_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -927,6 +945,7 @@ info-am:
 
 install-data-am: install-data-local install-libscitime_la_etcDATA \
 	install-libscitime_la_includeHEADERS \
+	install-libscitime_la_rootDATA \
 	install-libscitime_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -975,6 +994,7 @@ ps-am:
 
 uninstall-am: uninstall-libscitime_la_etcDATA \
 	uninstall-libscitime_la_includeHEADERS \
+	uninstall-libscitime_la_rootDATA \
 	uninstall-libscitime_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -991,6 +1011,7 @@ uninstall-am: uninstall-libscitime_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscitime_la_etcDATA \
 	install-libscitime_la_includeHEADERS \
+	install-libscitime_la_rootDATA \
 	install-libscitime_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -999,6 +1020,7 @@ uninstall-am: uninstall-libscitime_la_etcDATA \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscitime_la_etcDATA \
 	uninstall-libscitime_la_includeHEADERS \
+	uninstall-libscitime_la_rootDATA \
 	uninstall-libscitime_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

@@ -24,6 +24,7 @@ Source: bin\windows_tools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: bin\no{#WINDOWS_TOOLS}.dll; DestDir: {app}\bin; DestName: windows_tools.dll; Components: not ({#COMPN_SCILAB})
 ;
+Source: modules\{#WINDOWS_TOOLS}\license.txt; DestDir: {app}\modules\{#WINDOWS_TOOLS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINDOWS_TOOLS}\sci_gateway\{#WINDOWS_TOOLS}_gateway.xml; DestDir: {app}\modules\{#WINDOWS_TOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

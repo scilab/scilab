@@ -16,6 +16,7 @@ modulename=jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
+libscijvm_la_root_DATA =  license.txt 
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc

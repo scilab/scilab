@@ -50,6 +50,7 @@ modulename=time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
+libscitime_la_root_DATA =  license.txt 
 
 
 #### time : init scripts ####

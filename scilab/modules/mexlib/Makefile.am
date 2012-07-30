@@ -51,6 +51,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
+libmex_la_root_DATA =  license.txt 
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc

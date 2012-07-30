@@ -118,6 +118,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_etcdir)" \
+	"$(DESTDIR)$(libscifftw_la_rootdir)" \
 	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscifftw_algo_la_LIBADD =
@@ -182,7 +183,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscifftw_algo_la_SOURCES) $(libscifftw_la_SOURCES)
 DIST_SOURCES = $(am__libscifftw_algo_la_SOURCES_DIST) \
 	$(am__libscifftw_la_SOURCES_DIST)
-DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_sci_gateway_DATA)
+DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_root_DATA) \
+	$(libscifftw_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -221,7 +223,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -299,7 +300,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -391,7 +391,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -473,6 +472,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 
 #### fftw : Conf files ####
+@FFTW_TRUE@libscifftw_la_root_DATA = license.txt 
 
 #### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -860,6 +860,24 @@ uninstall-libscifftw_la_etcDATA:
 	@list='$(libscifftw_la_etc_DATA)'; test -n "$(libscifftw_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscifftw_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscifftw_la_rootDATA: $(libscifftw_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscifftw_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscifftw_la_rootdir)"
+	@list='$(libscifftw_la_root_DATA)'; test -n "$(libscifftw_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscifftw_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscifftw_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libscifftw_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscifftw_la_root_DATA)'; test -n "$(libscifftw_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscifftw_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscifftw_la_sci_gatewayDATA: $(libscifftw_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscifftw_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"
@@ -966,7 +984,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifftw_la_etcdir)" "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifftw_la_etcdir)" "$(DESTDIR)$(libscifftw_la_rootdir)" "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1023,6 +1041,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscifftw_la_etcDATA \
+	install-libscifftw_la_rootDATA \
 	install-libscifftw_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1070,6 +1089,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscifftw_la_etcDATA \
+	uninstall-libscifftw_la_rootDATA \
 	uninstall-libscifftw_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1085,6 +1105,7 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscifftw_la_etcDATA \
+	install-libscifftw_la_rootDATA \
 	install-libscifftw_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1092,6 +1113,7 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscifftw_la_etcDATA \
+	uninstall-libscifftw_la_rootDATA \
 	uninstall-libscifftw_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

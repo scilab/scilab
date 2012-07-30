@@ -23,6 +23,7 @@ Source: modules\{#LOCALIZATION}\jar\org.scilab.modules.{#LOCALIZATION}.jar;DestD
 Source: bin\sci{#LOCALIZATION}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\sci{#LOCALIZATION}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#LOCALIZATION}\license.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.start; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}

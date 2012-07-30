@@ -53,6 +53,7 @@ modulename=intersci
 
 #### intersci : Conf files ####
 libsciintersci_la_rootdir = $(mydatadir)
+libsciintersci_la_root_DATA =  license.txt 
 
 
 #### intersci : init scripts ####

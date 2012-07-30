@@ -113,6 +113,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscispecial_functions_la_etcdir)" \
+	"$(DESTDIR)$(libscispecial_functions_la_rootdir)" \
 	"$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscispecial_functions_algo_la_LIBADD =
@@ -169,6 +170,7 @@ SOURCES = $(libscispecial_functions_algo_la_SOURCES) \
 DIST_SOURCES = $(libscispecial_functions_algo_la_SOURCES) \
 	$(libscispecial_functions_la_SOURCES)
 DATA = $(libscispecial_functions_la_etc_DATA) \
+	$(libscispecial_functions_la_root_DATA) \
 	$(libscispecial_functions_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -208,7 +210,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -286,7 +287,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -378,7 +378,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -489,6 +488,7 @@ modulename = special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(mydatadir)
+libscispecial_functions_la_root_DATA = license.txt 
 
 #### special_functions : init scripts ####
 libscispecial_functions_la_etcdir = $(mydatadir)/etc
@@ -850,6 +850,24 @@ uninstall-libscispecial_functions_la_etcDATA:
 	@list='$(libscispecial_functions_la_etc_DATA)'; test -n "$(libscispecial_functions_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscispecial_functions_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscispecial_functions_la_rootDATA: $(libscispecial_functions_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscispecial_functions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispecial_functions_la_rootdir)"
+	@list='$(libscispecial_functions_la_root_DATA)'; test -n "$(libscispecial_functions_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscispecial_functions_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscispecial_functions_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libscispecial_functions_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscispecial_functions_la_root_DATA)'; test -n "$(libscispecial_functions_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscispecial_functions_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscispecial_functions_la_sci_gatewayDATA: $(libscispecial_functions_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscispecial_functions_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)"
@@ -956,7 +974,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispecial_functions_la_etcdir)" "$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispecial_functions_la_etcdir)" "$(DESTDIR)$(libscispecial_functions_la_rootdir)" "$(DESTDIR)$(libscispecial_functions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1014,6 +1032,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscispecial_functions_la_etcDATA \
+	install-libscispecial_functions_la_rootDATA \
 	install-libscispecial_functions_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1061,6 +1080,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscispecial_functions_la_etcDATA \
+	uninstall-libscispecial_functions_la_rootDATA \
 	uninstall-libscispecial_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1076,6 +1096,7 @@ uninstall-am: uninstall-libscispecial_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscispecial_functions_la_etcDATA \
+	install-libscispecial_functions_la_rootDATA \
 	install-libscispecial_functions_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -1084,6 +1105,7 @@ uninstall-am: uninstall-libscispecial_functions_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscispecial_functions_la_etcDATA \
+	uninstall-libscispecial_functions_la_rootDATA \
 	uninstall-libscispecial_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

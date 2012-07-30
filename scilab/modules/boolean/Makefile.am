@@ -51,6 +51,7 @@ modulename=boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(mydatadir)
+libsciboolean_la_root_DATA =  license.txt 
 
 
 #### boolean : init scripts ####

@@ -15,6 +15,7 @@ modulename=scinotes
 
 #### scinotes : Conf files ####
 libsciscinotes_la_rootdir = $(mydatadir)
+libsciscinotes_la_root_DATA =  license.txt 
 
 
 #### scinotes : init scripts & configuration files ####

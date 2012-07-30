@@ -15,6 +15,7 @@ modulename=ui_data
 
 #### ui_data : Conf files ####
 libsciui_data_la_rootdir = $(mydatadir)
+libsciui_data_la_root_DATA =  license.txt 
 
 
 #### ui_data : init scripts ####

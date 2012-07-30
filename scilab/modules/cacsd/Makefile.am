@@ -235,6 +235,7 @@ modulename=cacsd
 
 #### cacsd : Conf files ####
 libscicacsd_la_rootdir = $(mydatadir)
+libscicacsd_la_root_DATA =  license.txt 
 
 ####�cacsd : init scripts ####
 libscicacsd_la_etcdir = $(mydatadir)/etc

@@ -18,6 +18,7 @@
 ;
 #define OVERLOADING "overloading"
 ;
+Source: modules\{#OVERLOADING}\license.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.quit; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}

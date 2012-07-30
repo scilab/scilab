@@ -120,6 +120,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_la_etcdir)" \
+	"$(DESTDIR)$(libsciexternal_objects_la_rootdir)" \
 	"$(DESTDIR)$(libsciexternal_objects_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciexternal_objects_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -243,6 +244,7 @@ SOURCES = $(libsciexternal_objects_algo_la_SOURCES) \
 DIST_SOURCES = $(libsciexternal_objects_algo_la_SOURCES) \
 	$(libsciexternal_objects_la_SOURCES)
 DATA = $(libsciexternal_objects_la_etc_DATA) \
+	$(libsciexternal_objects_la_root_DATA) \
 	$(libsciexternal_objects_la_sci_gateway_DATA)
 HEADERS = $(libsciexternal_objects_la_include_HEADERS)
 ETAGS = etags
@@ -283,7 +285,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -361,7 +362,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -453,7 +453,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -510,12 +509,11 @@ modulename = external_objects
 
 #### external_objects : Conf files ####
 libsciexternal_objects_la_rootdir = $(mydatadir)
+libsciexternal_objects_la_root_DATA = license.txt 
 
-#### external_objects : init scripts & configuration files ####
+#### external_objects : init scripts ####
 libsciexternal_objects_la_etcdir = $(mydatadir)/etc
-libsciexternal_objects_la_etc_DATA = etc/external_objects.quit \
-									 etc/external_objects.start
-
+libsciexternal_objects_la_etc_DATA = etc/external_objects.quit etc/external_objects.start
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -703,12 +701,12 @@ libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la
 CHECK_SRC = $(EXTERNAL_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciexternal_objects_la_CFLAGS)
 
+#### external_objects : include files ####
+libsciexternal_objects_la_includedir = $(pkgincludedir)
+
 #### external_objects : gateway declaration ####
 libsciexternal_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciexternal_objects_la_sci_gateway_DATA = sci_gateway/external_objects_gateway.xml
-
-#### external_objects : include files ####
-libsciexternal_objects_la_includedir = $(pkgincludedir)
 libsciexternal_objects_la_include_HEADERS = includes/ExternalObjects.h \
 includes/OptionsHelper.hxx \
 includes/ScilabAbstractEnvironmentException.hxx \
@@ -1493,6 +1491,24 @@ uninstall-libsciexternal_objects_la_etcDATA:
 	@list='$(libsciexternal_objects_la_etc_DATA)'; test -n "$(libsciexternal_objects_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciexternal_objects_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libsciexternal_objects_la_rootDATA: $(libsciexternal_objects_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciexternal_objects_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciexternal_objects_la_rootdir)"
+	@list='$(libsciexternal_objects_la_root_DATA)'; test -n "$(libsciexternal_objects_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciexternal_objects_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciexternal_objects_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libsciexternal_objects_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciexternal_objects_la_root_DATA)'; test -n "$(libsciexternal_objects_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciexternal_objects_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libsciexternal_objects_la_sci_gatewayDATA: $(libsciexternal_objects_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciexternal_objects_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciexternal_objects_la_sci_gatewaydir)"
@@ -1617,7 +1633,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciexternal_objects_la_etcdir)" "$(DESTDIR)$(libsciexternal_objects_la_sci_gatewaydir)" "$(DESTDIR)$(libsciexternal_objects_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciexternal_objects_la_etcdir)" "$(DESTDIR)$(libsciexternal_objects_la_rootdir)" "$(DESTDIR)$(libsciexternal_objects_la_sci_gatewaydir)" "$(DESTDIR)$(libsciexternal_objects_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1676,6 +1692,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libsciexternal_objects_la_etcDATA \
 	install-libsciexternal_objects_la_includeHEADERS \
+	install-libsciexternal_objects_la_rootDATA \
 	install-libsciexternal_objects_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1724,6 +1741,7 @@ ps-am:
 
 uninstall-am: uninstall-libsciexternal_objects_la_etcDATA \
 	uninstall-libsciexternal_objects_la_includeHEADERS \
+	uninstall-libsciexternal_objects_la_rootDATA \
 	uninstall-libsciexternal_objects_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -1740,6 +1758,7 @@ uninstall-am: uninstall-libsciexternal_objects_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libsciexternal_objects_la_etcDATA \
 	install-libsciexternal_objects_la_includeHEADERS \
+	install-libsciexternal_objects_la_rootDATA \
 	install-libsciexternal_objects_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -1749,6 +1768,7 @@ uninstall-am: uninstall-libsciexternal_objects_la_etcDATA \
 	tags uninstall uninstall-am \
 	uninstall-libsciexternal_objects_la_etcDATA \
 	uninstall-libsciexternal_objects_la_includeHEADERS \
+	uninstall-libsciexternal_objects_la_rootDATA \
 	uninstall-libsciexternal_objects_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

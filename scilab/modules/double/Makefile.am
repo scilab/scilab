@@ -53,6 +53,7 @@ modulename=double
 
 #### double : Conf files ####
 libscidouble_la_rootdir = $(mydatadir)
+libscidouble_la_root_DATA =  license.txt 
 
 
 #### double : init scripts ####

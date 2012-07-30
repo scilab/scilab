@@ -11,6 +11,7 @@ modulename=compatibility_functions
 
 #### compatibility_functions : Conf files ####
 libscicompatibility_functions_la_rootdir = $(mydatadir)
+libscicompatibility_functions_la_root_DATA =  license.txt 
 
 
 #### compatibility_functions : init scripts #### 

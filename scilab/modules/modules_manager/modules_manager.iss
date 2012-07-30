@@ -17,6 +17,7 @@
 ;
 #define MODULES_MANAGER "modules_manager"
 ;
+Source: modules\{#MODULES_MANAGER}\license.txt; DestDir: {app}\modules\{#MODULES_MANAGER}; Components: {#COMPN_MODULES_MANAGER}
 ;
 Source: modules\{#MODULES_MANAGER}\etc\{#MODULES_MANAGER}.quit; DestDir: {app}\modules\{#MODULES_MANAGER}\etc; Components: {#COMPN_MODULES_MANAGER}
 Source: modules\{#MODULES_MANAGER}\etc\{#MODULES_MANAGER}.start; DestDir: {app}\modules\{#MODULES_MANAGER}\etc; Components: {#COMPN_MODULES_MANAGER}

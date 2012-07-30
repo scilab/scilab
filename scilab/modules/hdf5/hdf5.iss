@@ -23,6 +23,7 @@ Source: modules\{#HDF5}\jar\org.scilab.modules.{#HDF5}.jar;DestDir: {app}\module
 ;
 ;Source: bin\nohdf5.dll; DestDir: {app}\bin; DestName: scihdf5.dll; Components: not ({#COMPN_SCILAB})
 ;
+Source: modules\{#HDF5}\license.txt; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HDF5}\sci_gateway\{#HDF5}_gateway.xml; DestDir: {app}\modules\{#HDF5}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

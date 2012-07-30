@@ -132,6 +132,7 @@ modulename=polynomials
 
 #### polynomials : Conf files ####
 libscipolynomials_la_rootdir = $(mydatadir)
+libscipolynomials_la_root_DATA =  license.txt 
 
 
 #### polynomials : init scripts ####

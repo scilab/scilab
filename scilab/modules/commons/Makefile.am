@@ -15,6 +15,7 @@ modulename=commons
 
 #### commons : Conf files ####
 libscicommons_la_rootdir = $(mydatadir)
+libscicommons_la_root_DATA =  license.txt 
 
 
 #### commons : init scripts ####

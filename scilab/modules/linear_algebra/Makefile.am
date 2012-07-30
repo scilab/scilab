@@ -123,6 +123,7 @@ modulename=linear_algebra
 
 #### linear_algebra : Conf files ####
 libscilinear_algebra_la_rootdir = $(mydatadir)
+libscilinear_algebra_la_root_DATA =  license.txt
 
 
 #### linear_algebra : init scripts ####

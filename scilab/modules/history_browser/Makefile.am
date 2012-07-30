@@ -15,6 +15,7 @@ modulename=history_browser
 
 #### history_browser : Conf files ####
 libscihistory_browser_la_rootdir = $(mydatadir)
+libscihistory_browser_la_root_DATA =  license.txt 
 
 
 #### history_browser : init scripts ####

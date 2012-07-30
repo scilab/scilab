@@ -112,6 +112,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisound_la_etcdir)" \
+	"$(DESTDIR)$(libscisound_la_rootdir)" \
 	"$(DESTDIR)$(libscisound_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisound_la_LIBADD =
@@ -134,7 +135,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscisound_la_SOURCES)
 DIST_SOURCES = $(libscisound_la_SOURCES)
-DATA = $(libscisound_la_etc_DATA) $(libscisound_la_sci_gateway_DATA)
+DATA = $(libscisound_la_etc_DATA) $(libscisound_la_root_DATA) \
+	$(libscisound_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -173,7 +175,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -251,7 +252,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -343,7 +343,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -419,6 +418,7 @@ modulename = sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
+libscisound_la_root_DATA = license.txt 
 
 ####�sound : init scripts ####
 libscisound_la_etcdir = $(mydatadir)/etc
@@ -647,6 +647,24 @@ uninstall-libscisound_la_etcDATA:
 	@list='$(libscisound_la_etc_DATA)'; test -n "$(libscisound_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscisound_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscisound_la_rootDATA: $(libscisound_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscisound_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_rootdir)"
+	@list='$(libscisound_la_root_DATA)'; test -n "$(libscisound_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscisound_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscisound_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libscisound_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscisound_la_root_DATA)'; test -n "$(libscisound_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscisound_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscisound_la_sci_gatewayDATA: $(libscisound_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscisound_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscisound_la_sci_gatewaydir)"
@@ -753,7 +771,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisound_la_etcdir)" "$(DESTDIR)$(libscisound_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisound_la_etcdir)" "$(DESTDIR)$(libscisound_la_rootdir)" "$(DESTDIR)$(libscisound_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -810,6 +828,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscisound_la_etcDATA \
+	install-libscisound_la_rootDATA \
 	install-libscisound_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -857,6 +876,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscisound_la_etcDATA \
+	uninstall-libscisound_la_rootDATA \
 	uninstall-libscisound_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -871,7 +891,7 @@ uninstall-am: uninstall-libscisound_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscisound_la_etcDATA \
+	install-libscisound_la_etcDATA install-libscisound_la_rootDATA \
 	install-libscisound_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -879,6 +899,7 @@ uninstall-am: uninstall-libscisound_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscisound_la_etcDATA \
+	uninstall-libscisound_la_rootDATA \
 	uninstall-libscisound_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

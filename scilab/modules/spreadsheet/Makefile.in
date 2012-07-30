@@ -112,6 +112,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_etcdir)" \
+	"$(DESTDIR)$(libscispreadsheet_la_rootdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscispreadsheet_algo_la_LIBADD =
@@ -151,6 +152,7 @@ SOURCES = $(libscispreadsheet_algo_la_SOURCES) \
 DIST_SOURCES = $(libscispreadsheet_algo_la_SOURCES) \
 	$(libscispreadsheet_la_SOURCES)
 DATA = $(libscispreadsheet_la_etc_DATA) \
+	$(libscispreadsheet_la_root_DATA) \
 	$(libscispreadsheet_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -190,7 +192,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -268,7 +269,6 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -360,7 +360,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
@@ -451,6 +450,7 @@ modulename = spreadsheet
 
 #### spreadsheet : Conf files ####
 libscispreadsheet_la_rootdir = $(mydatadir)
+libscispreadsheet_la_root_DATA = license.txt 
 
 ####�spreadsheet : init scripts ####
 libscispreadsheet_la_etcdir = $(mydatadir)/etc
@@ -751,6 +751,24 @@ uninstall-libscispreadsheet_la_etcDATA:
 	@list='$(libscispreadsheet_la_etc_DATA)'; test -n "$(libscispreadsheet_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscispreadsheet_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscispreadsheet_la_rootDATA: $(libscispreadsheet_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscispreadsheet_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_rootdir)"
+	@list='$(libscispreadsheet_la_root_DATA)'; test -n "$(libscispreadsheet_la_rootdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscispreadsheet_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscispreadsheet_la_rootdir)" || exit $$?; \
+	done
+
+uninstall-libscispreadsheet_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscispreadsheet_la_root_DATA)'; test -n "$(libscispreadsheet_la_rootdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscispreadsheet_la_rootdir)'; $(am__uninstall_files_from_dir)
 install-libscispreadsheet_la_sci_gatewayDATA: $(libscispreadsheet_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscispreadsheet_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)"
@@ -857,7 +875,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_rootdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -915,6 +933,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscispreadsheet_la_etcDATA \
+	install-libscispreadsheet_la_rootDATA \
 	install-libscispreadsheet_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -962,6 +981,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscispreadsheet_la_etcDATA \
+	uninstall-libscispreadsheet_la_rootDATA \
 	uninstall-libscispreadsheet_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -977,6 +997,7 @@ uninstall-am: uninstall-libscispreadsheet_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscispreadsheet_la_etcDATA \
+	install-libscispreadsheet_la_rootDATA \
 	install-libscispreadsheet_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
@@ -985,6 +1006,7 @@ uninstall-am: uninstall-libscispreadsheet_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscispreadsheet_la_etcDATA \
+	uninstall-libscispreadsheet_la_rootDATA \
 	uninstall-libscispreadsheet_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 

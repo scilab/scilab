@@ -190,6 +190,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
+libscisparse_la_root_DATA =  license.txt 
 
 
 #### sparse : init scripts ####

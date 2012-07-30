@@ -77,6 +77,7 @@ modulename=tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
+libscitclsci_la_root_DATA =  license.txt 
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
@@ -119,6 +120,7 @@ tcl/sciGUI/local_extra/combobox-2.3/example.tcl \
 tcl/sciGUI/local_extra/balloonhelp.tcl \
 tcl/sciGUI/local_extra/rnotebook.tcl \
 tcl/sciGUI/local_extra/spinbutton.tcl \
+tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \

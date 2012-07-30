@@ -21,6 +21,7 @@ Source: bin\sci{#SCINOTES}.dll; DestDir: {app}\bin; Components: {#COMPN_SCINOTES
 ;
 Source: modules\{#SCINOTES}\jar\org.scilab.modules.{#SCINOTES}.jar; DestDir: {app}\modules\{#SCINOTES}\jar; Components: {#COMPN_SCINOTES}
 ;
+Source: modules\{#SCINOTES}\license.txt; DestDir: {app}\modules\{#SCINOTES}; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\sci_gateway\{#SCINOTES}_gateway.xml; DestDir: {app}\modules\{#SCINOTES}\sci_gateway; Components: {#COMPN_SCINOTES}
 ;

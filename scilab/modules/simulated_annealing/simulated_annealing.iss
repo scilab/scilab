@@ -18,6 +18,7 @@
 ;
 #define SIMANNEALING "simulated_annealing"
 ;
+Source: modules\{#SIMANNEALING}\license.txt; DestDir: {app}\modules\{#SIMANNEALING}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SIMANNEALING}\etc\{#SIMANNEALING}.quit; DestDir: {app}\modules\{#SIMANNEALING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SIMANNEALING}\etc\{#SIMANNEALING}.start; DestDir: {app}\modules\{#SIMANNEALING}\etc; Components: {#COMPN_SCILAB}

@@ -22,6 +22,7 @@ Source: bin\no{#HISTORY_BROWSER}.dll; DestDir: {app}\bin; DestName: {#HISTORY_BR
 ;
 Source: modules\{#HISTORY_BROWSER}\jar\org.scilab.modules.{#HISTORY_BROWSER}.jar;DestDir: {app}\modules\{#HISTORY_BROWSER}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: modules\{#HISTORY_BROWSER}\license.txt; DestDir: {app}\modules\{#HISTORY_BROWSER}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#HISTORY_BROWSER}\etc\{#HISTORY_BROWSER}.quit; DestDir: {app}\modules\{#HISTORY_BROWSER}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HISTORY_BROWSER}\etc\{#HISTORY_BROWSER}.start; DestDir: {app}\modules\{#HISTORY_BROWSER}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

@@ -21,6 +21,7 @@
 Source: bin\{#STATISTICS}.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 Source: bin\dcd_f.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 ;
+Source: modules\{#STATISTICS}\license.txt; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATISTICS}\sci_gateway\{#STATISTICS}_gateway.xml; DestDir: {app}\modules\{#STATISTICS}\sci_gateway; Components: {#COMPN_STATS}
 ;
