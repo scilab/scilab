@@ -297,10 +297,10 @@ public class AxesDrawer {
         Double[] margins = axes.getMargins();
 
         // TODO :  zoom box.
-        double x = axesBounds[0] - 1 + (margins[0] * 2);
-        double y = axesBounds[1] - 1 + (margins[3] * 2);
-        double w = axesBounds[2] - margins[1] - margins[0];
-        double h = axesBounds[3] - margins[2] - margins[3];
+        double x = (axesBounds[0] + axesBounds[2] * margins[0]) * 2 - 1;  
+        double y = (1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3])) * 2 - 1;
+        double w = (1 - margins[0] - margins[1]) * axesBounds[2];
+        double h = (1 - margins[2] - margins[3]) * axesBounds[3];
 
         if (axes.getIsoview()) {
             double minSize = Math.min(w, h);
