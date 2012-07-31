@@ -177,6 +177,9 @@ Bug Fixes
 * Bug #8351 fixed - The integrate function did not manage properly the optional
                     input arguments.
 
+* Bug #8640 fixed - The histplot function failed when the data vector contained
+                    the same values.
+
 * Bug #8785 fixed - modulo and pmodulo functions did not check input arguments.
 
 * Bug #9830 fixed - leastsq did not match the information given in optim help page.
