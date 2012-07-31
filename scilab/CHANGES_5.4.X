@@ -4,6 +4,11 @@
 Bug Fixes
 =========
 
+* Bug #7674 fixed - In all demos Optimization and Simulation, the source
+                    code was displayed by default.
+                    A messagebox now lets the choice to the user to display the
+                    code or not.
+
 * Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
                     duplicates.
 
