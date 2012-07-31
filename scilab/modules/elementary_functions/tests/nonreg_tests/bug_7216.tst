@@ -18,11 +18,11 @@
 // =============================================================================
 
 assert_checkfalse(execstr("modulo(5,0)", "errcatch") == 0);
-refMsg = msprintf(_("Division by zero...")); 
+refMsg = msprintf(_("Division by zero...\n")); 
 assert_checkerror("modulo(5,0)", refMsg);
 
 assert_checkfalse(execstr("pmodulo(5,0)", "errcatch") == 0);
-refMsg = msprintf(_("Division by zero...")); 
+refMsg = msprintf(_("Division by zero...\n")); 
 assert_checkerror("pmodulo(5,0)", refMsg);
 
 ieee(2)
@@ -32,4 +32,6 @@ assert_checkequal(x, %nan);
 x = pmodulo(5,0);
 assert_checkequal(x, %nan);
 
-ieee(0)
+ieee(0)
+
+
