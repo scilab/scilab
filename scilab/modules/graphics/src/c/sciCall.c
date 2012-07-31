@@ -882,6 +882,7 @@ void Objplot3d ( char    * fname ,
             }
 
             setCurrentObject(pNewPolylineUID);
+            setGraphicObjectRelationship(currentSubwinUID, pNewPolylineUID);
             releaseGraphicObjectProperty(__GO_PARENT__, pNewPolylineUID, jni_string, 1);
             pNewPolylineUID = NULL;
 
