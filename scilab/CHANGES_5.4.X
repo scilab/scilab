@@ -5,10 +5,9 @@
 Xcos
 ====
 
-* Documentation updated with examples of the blocks and their translations
-  into French:
-  - WFILE_f - Write to output file
-  - WRITEC_f - Write C binary file
+* Help pages updated with examples and translated into French:
+  - WFILE_f - Block to write to output file
+  - WRITEC_f - Block to write C binary file
 
 * Bug #8510 fixed - The message "Diagram contains implicit blocks..." stopped
                     all process.
@@ -43,10 +42,10 @@ Documentation
 * Tag <scilab:image> added. This tag will perform the graphic rendering of
   a Scilab code and include the result into the help page as a sample image.
 
-* Thanks to the <scilab:image> tag, all graphic and trigonometric help pages
-  contains now a sample image.
+* With the <scilab:image> tag, all graphic and trigonometric help pages
+  now contain a sample image.
 
-* Management of Docbook tags <varname>, <command>, <function> and <constant>.
+* Management of <varname>, <command>, <function> and <constant> Docbook tags.
   See bug #11459.
 
 * help_from_sci updated to manage recent changes in docbook Scilab files.
@@ -125,10 +124,10 @@ Statistics
 Bug Fixes
 =========
 
-* Bug #3235 fixed - In the bezout function, wrong typo in the name of a variable
+* Bug #3235 fixed - In bezout function, wrong typo in the name of a variable
                     made the calpol unitary test failed.
 
-* Bug #3244 fixed - Error messages in the qpsolve and qp_solve functions updated.
+* Bug #3244 fixed - Error messages in qpsolve and qp_solve functions updated.
 
 * Bug #3787 fixed - Invalid calling sequences removed from schur help page.
 
@@ -147,28 +146,31 @@ Bug Fixes
 
 * Bug #7251 fixed - Error fixed in qp_solve help page.
 
-* Bug #7763 fixed - The mtlb_max and mtlb_min functions did not manage the complex with
-                    null imaginary part.
+* Bug #7763 fixed - mtlb_max and mtlb_min functions did not manage complex
+                    numbers with null imaginary part.
 
-* Bug #7855 fixed - It was not possible to change the event function while
+* Bug #7855 fixed - It was not possible to change event function while
                     the event handler was enabled.
 
 * Bug #7873 fixed - The lagr parameter in qld help page was wrong.
 
-* Bug #7881 fixed - Error in the condition which must check if the second input
-                    argument in the lattn function is or not scalar.
+* Bug #7881 fixed - Error in the condition which checks if the second input
+                    argument in lattn function was scalar or not.
 
-* Bug #8101 fixed - The median function with a sparse as a first argument did not
+* Bug #8101 fixed - median function with a sparse as a first argument did not
                     return the good result. Moreover, median(sparse, 'r'| 'c') was not
                     managed.
 
-* Bug #8351 fixed - The integrate function did not manage properly the optional
+* Bug #8351 fixed - integrate function did not manage properly the optional
                     input arguments.
 
-* Bug #8640 fixed - The histplot function failed when the data vector contained
+* Bug #8640 fixed - histplot function failed when the data vector contained
                     the same values.
 
 * Bug #8785 fixed - modulo and pmodulo functions did not check input arguments.
+
+* Bug #9464 fixed - contourf did not work if the "Matlab Compatibility functions
+                    module" was not installed.
 
 * Bug #9824 fixed - BLAS_LIBS variable was overloaded by the configure.
 
@@ -176,9 +178,6 @@ Bug Fixes
 
 * Bug #9884 fixed - Possibility to add a default header on new files in SciNotes
                     added in Preferences.
-
-* Bug #9464 fixed - contourf did not work when the "Matlab Compatibility functions
-                    module" was not installed.
 
 * Bug #10150 fixed - Completion help page moved to console chapter.
 
@@ -200,8 +199,7 @@ Bug Fixes
 * Bugs #10827, #10868 fixed - In SciNotes, strings containing LaTeX disappeared
                               when executed.
 
-* Bug #10837 fixed - In SciNotes preferences, font modification was not correctly
-                      repercuted.
+* Bug #10837 fixed - Font modification in SciNotes preferences did not work.
 
 * Bug #10915 fixed - It was not possible to select several files when using
                      button "Open file" in console toolbar.
@@ -214,9 +212,9 @@ Bug Fixes
 * Bug #11048 fixed - In SciNotes, comment/uncomment actions did not work
                      properly.
 
-* Bug #11049 fixed - Link to intg help page added in the ode help page.
+* Bug #11049 fixed - Link to intg help page added in ode help page.
 
-* Bug #11050 fixed - The output argument rd in the ode and ode_root help pages was not
+* Bug #11050 fixed - The output argument rd in ode and ode_root help pages was not
                      documented.
 
 * Bug #11069 fixed - An axe could be wrongly set as parent for an uicontrol.
@@ -226,12 +224,8 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
-* Bug #11450 fixed - Logarithmic ticks were not sorted.
-
-* Bug #11485 fixed - delete function kills reference to axes before use it.
-
-* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting
-                     a global var.
+* Bug #11244 fixed - Due to browsevar, an error was displayed in the console when deleting
+                     a global variable.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
 
@@ -254,15 +248,15 @@ Bug Fixes
 * Bug #11346 fixed - Error messages added in cosm function in case of bad
                      usage.
 
+* Bug #11349 fixed - There was an error when the path to external editor contained
+                     white spaces.
+
 * Bug #11360 fixed - In some help pages, f in calling sequence was named mtx in
                      the parameter section.
 
-* Bug #11372 fixed - Calling odeoptions() returned an error.
-
-* Bug #11349 fixed - There was an error when path to external editor contained
-                     white spaces.
-
 * Bug #11369 fixed - colordef("black") returned an error about an unknown property.
+
+* Bug #11372 fixed - Calling odeoptions() returned an error.
 
 * Bug #11385 fixed - length() returned a wrong error message when called without
                      input argument.
@@ -285,15 +279,18 @@ Bug Fixes
 * Bug #11423 fixed - When the variable "a" was selected, all the a characters were
                      highlighted rather than only the "a" variable.
 
-* Bug #11434 fixed - We could not drawing after set to off the property auto resize of default figure.
+* Bug #11434 fixed - After having set the "auto_resize" default figure property
+                     to "off", plot was no longer possible.
 
 * Bug #11443 fixed - There was no way to set default language by the preferences under
                      Windows.
 
-* Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
-
-* Bug #11449 fixed - The color function created a figure when no current figure
+* Bug #11449 fixed - color function created a figure when no current figure
                      existed.
+
+* Bug #11450 fixed - Logarithmic ticks were not sorted.
+
+* Bug #11452 fixed - The use of diag optional argument in lsqrsolve produced an error.
 
 * Bug #11457 fixed - gsort crashed when getting string data from stack after big stacksize.
 
@@ -310,16 +307,18 @@ Bug Fixes
 
 * Bug #11472 fixed - Old menus were not removed before adding the new ones in default figure.
 
-* Bug #11481 fixed - The title axes was in front of plots.
+* Bug #11481 fixed - The title of axes was in front of plots.
 
 * Bug #11482 fixed - The two plots drawn in "Graphics/Complex elementary function/Custom"
                      demonstration were too small.
 
+* Bug #11485 fixed - delete function deleted axes identifier before using it.
+
 * Bug #11486 & #11487 fixed - When a list was inserted into itself,
                               it produced Segfault or infinite loop.
 
-* Bug #11488 fixed - Java exception led to a segfault in -ns mode when entering
-                     something in the console.
+* Bug #11488 fixed - Java exception led to a segfault in -ns mode when something
+                     was typed in the console.
 
 * Bug #11490 fixed - comet produced wrong display with matrix inputs.
 
@@ -336,7 +335,10 @@ Bug Fixes
 
 * Bug #11519 fixed - The colored lines in the legend of nyquist plot were inverted.
 
-* Bug #11532 fixed - mkdir english and french mkdir documentation updated.
+* Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
+                     set to 4096.
+
+* Bug #11532 fixed - Update of mkdir English and French help pages.
 
 * Bug #11534 fixed - getshortpathname and getlongpathname documentation updated to be clearer
                      about what happens on other OS than Windows.
@@ -346,22 +348,19 @@ Bug Fixes
 * Bug #11537 fixed - In SciNotes, it was not possible to modify font size with
                      CTRL+scroll.
 
-* Bug #11529 fixed - Only 512 chars could be entered in the console, now it is
-                     set to 4096.
-
 * Bug #11538 fixed - xxxWideString functions (API Scilab) did not check to_wide_string
                      conversion (crashed under GNU/Linux & Mac OS X).
 
 * Bug #11544 fixed - ilib_gen_cleaner did not add command to remove "Debug" and
                      "Release" folder under Windows.
 
-* Bug #11547 fixed - _() moved into the gettext() help page.
+* Bug #11547 fixed - _() moved into gettext() help page.
 
 * Bug #11553 fixed - The uicontextmenu handles (and their children) were not
-                     destroyed at the end of execution.
+                     deleted at the end of execution.
 
 * Bug #11563 fixed - Button was called "Open" (instead of "Save") in the GUI
-                     used to select the file name for graphic export.
+                     used to select a file name for graphic export.
 
 * Bug #11578 fixed - dir function under Windows took into account the
                      case to sort the results.
