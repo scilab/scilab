@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-23 11:51+0000\n"
+"PO-Revision-Date: 2012-07-30 08:45+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -325,8 +325,8 @@ msgstr "Lien vers l'aide en ligne de Scilab"
 msgid "Open Scilab wiki"
 msgstr "Lien vers le wiki de Scilab"
 
-msgid "Open ATOM website"
-msgstr "Lien vers le portail web d'ATOMS"
+msgid "Open ATOMS website"
+msgstr "Lien vers le site web d'ATOMS"
 
 msgid "Open File Exchange website"
 msgstr "Lien vers le File Exchange"
@@ -523,8 +523,8 @@ msgstr "Écraser"
 msgid "Close all"
 msgstr "Tout fermer"
 
-msgid "Close all but"
-msgstr "Fermer tout sauf"
+msgid "Close all but this"
+msgstr "Fermer tous sauf celui-ci"
 
 msgid "Convert quote to double quote"
 msgstr "Convertir les simples guillemets en double"
@@ -532,7 +532,7 @@ msgstr "Convertir les simples guillemets en double"
 msgid "Line numbering"
 msgstr "Numérotation de lignes"
 
-msgid "Save diagramm"
+msgid "Save diagram"
 msgstr "Enregistrer le diagramme"
 
 msgid "Save variable"
@@ -622,6 +622,14 @@ msgstr "Variable Scilab"
 
 msgid "Graphics handle field"
 msgstr "Champ d'un handle graphique"
+
+#, c-format
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"La commande est trop longue (plus de %d caractères de long) : Impossible de "
+"l'envoyer à Scilab.\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""

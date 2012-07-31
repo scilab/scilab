@@ -8,16 +8,24 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-22 13:42+0000\n"
+"PO-Revision-Date: 2012-07-29 14:30+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数のスカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -546,6 +554,11 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: %s 繰り返し、エラー=%s\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 周波数0でゲインが無限大です.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr "%s: 入力引数 #%dの型が間違っています: 線形システムを指定してください.\n"
 
@@ -822,6 +835,9 @@ msgstr "引数 %d の型が間違っています: SISO を指定してくださ�
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 線形動的システムを指定してください.\n"
+
+msgid "Phase (Deg)"
+msgstr "位相 (度)"
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

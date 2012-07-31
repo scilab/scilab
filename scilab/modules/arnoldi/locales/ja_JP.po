@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-22 13:41+0000\n"
+"PO-Revision-Date: 2012-07-29 14:26+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ja\n"
 
 #, c-format
@@ -122,18 +122,13 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  %s には実スカ
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar..\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: %s は整数スカラーとしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の次元が間違っています: %s は整数スカラーとしてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be between 0 and 1.\n"
@@ -193,9 +188,9 @@ msgstr "%s: 入力引数 #%d の次元が間違っています: 実非対称ま�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument(s) #%d: B must be symmmetric or hemitian, "
+"%s: Wrong type for input argument(s) #%d: B must be symmetric or hermitian, "
 "definite, semi positive.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています:  B 　は対称またはエルミート, 正定,半正定とする必要があります.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: B は対称またはエルミート, 正定, 半正定としてください.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
@@ -320,29 +315,21 @@ msgstr "%s: 入力引数 #%d の次元が間違っています: %s には大き�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: opts.nev must be an integer scalar.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Wrong type for input argument #%d: For real symmetric problems, NCV must "
-"be NEV < NCV <= N.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実対称問題の場合, NCV には NEV < NCV <= N の値を指定してください.\n"
+"be k < NCV <= N.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実対称問題の場合, NCV　は k < NCV <= N としてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: For real non symmetric problems, NCV "
-"must be NEV+2 < NCV < N.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実非対称問題の場合, NCV には NEV+2 < NCV < N の値を指定してください.\n"
+"must be k + 2 < NCV < N.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実非対称問題の場合, NCV　は k+2 < NCV <N としてください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: For complex problems, NCV must be "
-"NEV+1 < NCV <= N.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 複素問題の場合, NCV には NEV+1 < NCV <= N の値を指定してください.\n"
+"%s: Wrong type for input argument #%d: For complex problems, NCV must be k + "
+"1 < NCV <= N.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 複素問題の場合, NCV　は k+1 < NCV <= N としてください.\n"
 
 #, c-format
 msgid ""
@@ -367,15 +354,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 複素問題の場�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmmetric or hermitian, "
+"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
 "definite, semi positive.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: B は対称, エルミート, 正定, 半正定としてください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: B は対称またはエルミート, 正定, 半正定としてください.\n"
 
 #, c-format
 msgid ""
-"%s: Impossible to use the Cholesky factorisation with complex sparses "
+"%s: Impossible to use the Cholesky factorisation with complex sparse "
 "matrices.\n"
-msgstr "%s:  複素疎行列の場合, コレスキー分解を使用できません.\n"
+msgstr "%s: 複素疎行列の場合,コレスキー分解を使用できません.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -217,6 +217,28 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se uma "
+"matriz de textos mx2 ou mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: Valor incorreto para o %dº argumento de entrada: as versões de todos os "
+"módulos devem ser definidas.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'user', "
+"'allusers' ou 'all'.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
@@ -353,14 +375,6 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um valor "
 "booleano ou um único texto.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
-msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'user', "
-"'allusers' ou 'all'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -685,10 +699,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
 msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: deve ser um nome de "
-"pacote Atoms.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -938,20 +950,6 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se uma "
 "matriz de texto 1x2.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se uma "
-"matriz de textos mx2 ou mx3.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: as versões de todos os "
-"módulos devem ser definidas.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"

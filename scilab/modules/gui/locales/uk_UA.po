@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -1121,7 +1121,6 @@ msgstr "Тло консолі…"
 msgid "No print service found."
 msgstr "Службу друку не знайдено."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1131,7 +1130,6 @@ msgstr ""
 "показ графічних елементів керування неможливий. Віддайте команду %s, щоб "
 "дізнатися більше."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Іноді, проблему можна усунути за допомогою команди %s"
 
@@ -1313,7 +1311,6 @@ msgstr "Зберегти і виконати"
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1322,11 +1319,9 @@ msgstr ""
 "Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
 "долученим файлом %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Ви справді бажаєте закрити %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Ви справді бажаєте закрити %s і %s ?"
 
@@ -1381,7 +1376,6 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
 

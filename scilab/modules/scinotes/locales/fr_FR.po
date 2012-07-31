@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-23 13:07+0000\n"
+"PO-Revision-Date: 2012-07-30 09:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -337,6 +337,9 @@ msgstr "Enregistrement automatique"
 msgid "Editor"
 msgstr "Éditeur"
 
+msgid "Use SciNotes"
+msgstr "Utiliser SciNotes"
+
 msgid "External editor: "
 msgstr "Éditeur externe : "
 
@@ -386,6 +389,9 @@ msgstr "Retour automatique à la ligne"
 
 msgid "Keywords"
 msgstr "Mots-clés"
+
+msgid "Enable keywords colorization"
+msgstr "Activer la coloration des mots-clés"
 
 msgid "Set syntax Colors"
 msgstr "Régler les couleurs de syntaxe"
@@ -443,7 +449,7 @@ msgid "Indent size: "
 msgstr "Taille des indentations : "
 
 msgid "Enable autosave in Scinotes"
-msgstr "Activer l'enregistrement automatique dans Scinotes"
+msgstr "Activer l'enregistrement automatique dans SciNotes"
 
 msgid "Save options"
 msgstr "Enregistrer les options"
@@ -684,7 +690,6 @@ msgstr "Remplacer"
 msgid "Replace All"
 msgstr "Remplacer tout"
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Expression rationnelle invalide : %s"
 
@@ -700,11 +705,9 @@ msgstr "Vous avez atteint la fin du document"
 msgid "You have reached the beginning of the document"
 msgstr "Vous avez atteint le début du document"
 
-#, c-format
 msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -725,7 +728,6 @@ msgstr ""
 " a été modifié depuis le dernier enregistrement\n"
 "L'enregistrer ?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -789,7 +791,7 @@ msgid "Loading"
 msgstr "Chargement"
 
 msgid "Colorization canceled"
-msgstr "Colorisation annulée"
+msgstr "Coloration annulée"
 
 msgid "Binary file: read-only mode"
 msgstr "Fichier binaire : mode en lecture seule"
@@ -812,14 +814,12 @@ msgstr "Ouvrir le code source de la macro "
 msgid "Show the definition of the macro "
 msgstr "Afficher la définition de la macro "
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Ligne %s, Colonne %s. Fonction '%s' à la Ligne %s."
 
 msgid "Unknown function"
 msgstr "Fonction inconnue"
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr "Ligne %s, Colonne %s."
 
@@ -835,7 +835,6 @@ msgstr "Impossible d'enregistrer le fichier"
 msgid "The file could not be converted."
 msgstr "Impossible de convertir le fichier"
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%s est un répertoire."
 
@@ -862,7 +861,6 @@ msgstr "Pas de texte sélectionné."
 msgid "No text to execute."
 msgstr "Pas de texte à exécuter."
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -875,7 +873,6 @@ msgstr "Problèmes d'encodage"
 msgid "Cannot guess the file encoding."
 msgstr "Impossible de supposer l'encodage du fichier."
 
-#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 "Impossible d'enregistrer le fichier %s... Arrêt du processus de sauvegarde"
@@ -883,7 +880,6 @@ msgstr ""
 msgid "Backup finished..."
 msgstr "Sauvegarde terminée..."
 
-#, c-format
 msgid "%s occurences found."
 msgstr "%s occurrences trouvées."
 
@@ -1007,17 +1003,14 @@ msgstr "Rechercher dans des fichiers..."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s correspondances)</i></html>"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s correspondance)</i></html>"
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Temps écoulé : %s sec."
 

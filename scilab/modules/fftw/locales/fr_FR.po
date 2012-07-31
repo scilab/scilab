@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-02 07:29+0000\n"
+"PO-Revision-Date: 2012-07-30 10:22+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -25,53 +25,126 @@ msgid "FFTW Library not found.\n"
 msgstr "Impossible de trouver la bibliothèque FFTW.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d pas attendu.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel ou un complexe "
-"attendu.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s : Valeurs erronées de l'argument d'entrée n°%d.\n"
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un tableau à N-dimensions "
-"attendu.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Un tableau de nombres à "
+"virgule flottante attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: An integer or a floating point number "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un entier ou un nombre à "
+"virgule flottante attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice d'entiers "
-"attendue.\n"
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s : Impossible d'allouer plus de mémoire.\n"
 
 #, c-format
 msgid ""
-"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+"%s: Wrong type for argument #%d: An array of floating point or integer "
+"numbers expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un tableau de nombres à "
+"virgule flottante ou d'entiers attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Doit être entre %d et "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Des entiers positifs "
+"attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+"être plus petits que %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+"être en ordre croissant.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+"être plus grands que %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Doivent être plus "
+"petites que %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Doivent être un diviseur "
+"de %d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes dimensions "
 "attendues.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+"être des diviseurs de %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s : Valeurs erronées de l'argument d'entrée n°%d : Un entier non-négatif "
-"attendu.\n"
+msgid "%s: Incompatible input arguments #%d and #%d.\n"
+msgstr "%s : Arguments d'entrée n°%d et n°%d incompatibles.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
@@ -80,8 +153,10 @@ msgstr ""
 "attendus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr ""
+"%s : La fftw de la bibliothèque MKL ne met pas encore en oeuvre de fonctions "
+"wisdom.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -90,11 +165,9 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
-
-msgid "FFTW can't read wisdom."
-msgstr "FFTW ne peut pas lire la transformation pré-calculée (wisdom)."
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un wisdom valide attendu.\n"
 
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Le module Scilab FFTW n'est pas installé.\n"
