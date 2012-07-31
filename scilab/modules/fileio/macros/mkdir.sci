@@ -56,7 +56,7 @@ function [status, msg]=mkdir(varargin)
 
     NewDirName   = varargin(2);
     if type(NewDirName) <> 10 then
-      error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "mkdir", 2));
+      error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "mkdir", 2));
     end
 
     if size(NewDirName, "*") <> 1 then
@@ -107,7 +107,9 @@ function [status, msg]=mkdir(varargin)
       end
       if ~isfile(currentsubdir) & ~isdir(currentsubdir) then
         status = createdir(currentsubdir);
-        if ~status then break, end
+        if ~status then 
+            break 
+        end
       end
     end
 
