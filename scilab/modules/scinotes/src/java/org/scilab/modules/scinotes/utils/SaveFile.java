@@ -112,7 +112,7 @@ public final class SaveFile {
 
         try {
             fos = new FileOutputStream(fOut);
-            osw = new OutputStreamWriter(fos, ConfigSciNotesManager.getDefaultEncoding());
+            osw = new OutputStreamWriter(fos, SciNotesOptions.getSciNotesPreferences().encoding);
             bw = new BufferedWriter(osw);
             editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
             bw.flush();

@@ -112,15 +112,46 @@
           </xsl:call-template>
         </Panel>
         <Label gridx="1" gridy="5" weightx="0" text="_(Default End-Of-Line: )"/>
-        <Panel gridx="3" gridy="5">
-          <xsl:call-template name="Select">
-            <xsl:with-param name="among">
-              <option eol="Unix (LF)"/>
-              <option eol="Windows (CR+LF)"/>
-              <option eol="Mac OS (CR)"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </Panel>
+        <Select gridx="3" gridy="5" listener="ActionListener">
+          <actionPerformed choose="eol">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+          <xsl:variable name="eol">
+            <xsl:choose>
+              <xsl:when test="@eol=''">
+                <xsl:choose>
+                  <xsl:when test="$OS='Windows'">
+                    <xsl:text>Windows (CR+LF)</xsl:text>
+                  </xsl:when>
+                  <xsl:when test="$OS='Mac'">
+                    <xsl:text>Mac OS (CR)</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:text>Unix (LF)</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="@eol"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <option value="Unix (LF)">
+            <xsl:if test="$eol='Unix (LF)'">
+              <xsl:attribute name="selected">selected</xsl:attribute>
+            </xsl:if>
+          </option>
+          <option value="Windows (CR+LF)">
+            <xsl:if test="$eol='Windows (CR+LF)'">
+              <xsl:attribute name="selected">selected</xsl:attribute>
+            </xsl:if>
+          </option>
+          <option value="Mac OS (CR)">
+            <xsl:if test="$eol='Mac OS (CR)'">
+              <xsl:attribute name="selected">selected</xsl:attribute>
+            </xsl:if>
+          </option>
+        </Select>
       </Grid>
     </Title>
   </xsl:template>
@@ -194,14 +225,14 @@
           </Checkbox>
           <Panel gridx="5" gridy="1" weightx="1"/>
           <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-brackets}"/>
-	  <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-brackets}">
-	    <actionPerformed choose="brackets-highlightment">
-	      <xsl:call-template name="context"/>
-	    </actionPerformed>
-	    <option value="_(Filled)" key="Filled"/>
-	    <option value="_(Framed)" key="Framed"/>
-	    <option value="_(Underlined)" key="Underlined"/>
-	  </Select>
+          <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-brackets}">
+            <actionPerformed choose="brackets-highlightment">
+              <xsl:call-template name="context"/>
+            </actionPerformed>
+            <option value="_(Filled)" key="Filled"/>
+            <option value="_(Framed)" key="Framed"/>
+            <option value="_(Underlined)" key="Underlined"/>
+          </Select>
         </Grid>
         <Checkbox checked="{@highlight-keywords}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight corresponding keywords (e.g. if ... end))" gridx="1" gridy="4" fill="none" weightx="0" anchor="west">
           <actionPerformed choose="highlight-keywords">
@@ -223,13 +254,13 @@
           </Checkbox>
           <Panel gridx="5" gridy="1" weightx="1"/>
           <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-keywords}"/>
-	  <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-keywords}">
-	    <actionPerformed choose="keywords-highlightment">
-	      <xsl:call-template name="context"/>
-	    </actionPerformed>
-	    <option value="_(Filled)" key="Filled"/>
-	    <option value="_(Framed)" key="Framed"/>
-	  </Select>
+          <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-keywords}">
+            <actionPerformed choose="keywords-highlightment">
+              <xsl:call-template name="context"/>
+            </actionPerformed>
+            <option value="_(Filled)" key="Filled"/>
+            <option value="_(Framed)" key="Framed"/>
+          </Select>
         </Grid>
       </Grid>
     </Title>
@@ -407,20 +438,20 @@
           </actionPerformed>
         </Checkbox>
         <Panel gridx="2" gridy="1" gridheight="1" fill="both"/>
-	<TextArea gridx="1" gridy="2" weightx="1" gridwidth="2" weighty="0" anchor="west"
-		  editable="true"
-		  rows="15"
-		  scroll="true"
-		  listener="EntryListener"
-		  enable="{@enable}">
-	  <xsl:attribute name="text">
-	    <xsl:value-of select="string(child::node()[1])" disable-output-escaping="yes"/>
-	  </xsl:attribute>
-	  <entryChanged choose-child="1">
+        <TextArea gridx="1" gridy="2" weightx="1" gridwidth="2" weighty="0" anchor="west"
+                  editable="true"
+                  rows="15"
+                  scroll="true"
+                  listener="EntryListener"
+                  enable="{@enable}">
+          <xsl:attribute name="text">
+            <xsl:value-of select="string(child::node()[1])" disable-output-escaping="yes"/>
+          </xsl:attribute>
+          <entryChanged choose-child="1">
             <xsl:call-template name="context"/>
           </entryChanged>
-	</TextArea>
+        </TextArea>
       </Grid>
-      </Title>
-    </xsl:template> 
+    </Title>
+  </xsl:template>
 </xsl:stylesheet>
