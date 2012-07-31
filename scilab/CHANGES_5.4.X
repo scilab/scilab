@@ -248,6 +248,9 @@ Bug Fixes
 
 * Bug #11333 fixed - Missing argument number checking in comet added.
 
+* Bug #11343 fixed - The "isoview" figure property did not work when the axes
+                     margins had been modified.
+
 * Bug #11346 fixed - Error messages added in cosm function in case of bad
                      usage.
 
