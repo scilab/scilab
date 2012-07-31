@@ -231,6 +231,9 @@ Bug Fixes
 
 * Bug #11318 fixed - Order of uimenus in a figure changed when adding submenus.
 
+* Bug #11324 fixed - Restoring old files (< 5.4.0 format) could fail due to new
+                     mechanism in SOD file loading.
+
 * Bug #11326 fixed - set(h, "enable", "off") and set(h, "visible", "off") had no
                      effect after menu creation.
 

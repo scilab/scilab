@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function %_sodload(filename, varargin)
+function %_sodload(%__filename__, varargin)
 
 function [varValues] = %__convertHandles__(varValues)
         for i = 1:size(varValues)
@@ -759,56 +759,56 @@ function [varValues] = %__convertHandles__(varValues)
     endfunction
 
 
-    [lhs, rhs] = argn();
-    resumeList = list();
-    resumeVarlist = [];
-    if rhs < 1 then
+    [%__lhs__, %__rhs__] = argn();
+    %__resumeList__ = list();
+    %__resumeVarlist__ = [];
+    if %__rhs__ < 1 then
         error(999, msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "load", 1));
     end
 
-    if rhs >= 1 then
-        if typeof(filename) <> "string" | size(filename, "*") <> 1 then
+    if %__rhs__ >= 1 then
+        if typeof(%__filename__) <> "string" | size(%__filename__, "*") <> 1 then
             error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", 1));
         end
     end
 
-    if isfile(filename) & is_hdf5_file(filename) then
-        loadFunction = import_from_hdf5;
+    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
+        %__loadFunction__ = import_from_hdf5;
     else
-        loadFunction = %_load;
+        %__loadFunction__ = %_load;
     end
 
     //multiple output variables to prevent listinfile prints
-    [variableList, __varB__, __varC__, __varD__] = listvarinfile(filename);
+    [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
 
     //
     if size(varargin) <> 0 then
         for i = 1:size(varargin)
-            variableName = varargin(i);
-            if typeof(variableName) <> "string" | size(variableName, "*") <> 1 then
+            %__variableName__ = varargin(i);
+            if typeof(%__variableName__) <> "string" | size(%__variableName__, "*") <> 1 then
                 error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", i));
             end
 
-            if or(variableList == variableName) then
-                loadFunction(filename, variableName);
-                resumeList($+1) = evstr(variableName);
-                resumeVarlist($+1) = variableName;
+            if or(%__variableList__ == %__variableName__) then
+                %__loadFunction__(%__filename__, %__variableName__);
+                %__resumeList__($+1) = evstr(%__variableName__);
+                %__resumeVarlist__($+1) = %__variableName__;
             else
-                error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", variableName, filename));
+                error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
             end
         end
     else
-        for i = 1:size(variableList, "*")
-            variableName = variableList(i);
-            loadFunction(filename, variableName);
-            resumeList($+1) = evstr(variableName);
-            resumeVarlist($+1) = variableName;
+        for i = 1:size(%__variableList__, "*")
+            %__variableName__ = %__variableList__(i);
+            %__loadFunction__(%__filename__, %__variableName__);
+            %__resumeList__($+1) = evstr(%__variableName__);
+            %__resumeVarlist__($+1) = %__variableName__;
         end
     end
 
-    if isfile(filename) & is_hdf5_file(filename) then
-        resumeList = %__convertHandles__(resumeList);
+    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
+        %__resumeList__ = %__convertHandles__(%__resumeList__);
     end
 
-    execstr("[" + strcat(resumeVarlist, ",") + "] = resume(resumeList(:))");
+    execstr("[" + strcat(%__resumeVarlist__, ",") + "] = resume(%__resumeList__(:))");
 endfunction
