@@ -154,6 +154,7 @@ libsciexternal_objects_la_sci_gateway_DATA = sci_gateway/external_objects_gatewa
 #### external_objects : include files ####
 libsciexternal_objects_la_includedir=$(pkgincludedir)
 libsciexternal_objects_la_include_HEADERS = includes/ExternalObjects.h \
+includes/dynlib_external_objects_scilab.h \
 includes/OptionsHelper.hxx \
 includes/ScilabAbstractEnvironmentException.hxx \
 includes/ScilabAbstractInvoker.hxx \
