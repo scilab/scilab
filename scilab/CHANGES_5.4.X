@@ -229,7 +229,9 @@ Bug Fixes
 
 * Bug #11450 fixed - Logarithmic ticks were not sorted.
 
-* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting
+* Bug #11485 fixed - delete function kills reference to axes before use it.
+
+* Bug #11488 fixed - Due to browsevar, an error was displayed in the console when deleting 
                      a global var.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
