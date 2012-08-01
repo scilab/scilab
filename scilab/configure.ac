@@ -846,12 +846,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 fi
 
 
-				# scirenderer
-				AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
-				SCIRENDERER=$PACKAGE_JAR_FILE
-				AC_SUBST(SCIRENDERER)
+                # scirenderer
+                AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+                SCIRENDERER=$PACKAGE_JAR_FILE
+                AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.3],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.4],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])

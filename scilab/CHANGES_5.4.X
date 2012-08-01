@@ -70,7 +70,7 @@ Compilation
 
 * Switch to flexdock 1.2.0.
 
-* Switch to Scirenderer 0.5.3.
+* Switch to Scirenderer 0.5.4.
 
 * BLAS_LIBS variable can now be set by the user (See bug #9824).
 
