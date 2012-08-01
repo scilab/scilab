@@ -50,7 +50,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param language the language to use ('en_US', 'fr_FR', ...)
      */
     public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, String docWebsite, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
+        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.CHM);
         this.outName = new File(outName).getCanonicalPath() + File.separator;
         this.language = language;
         this.docWebsite = docWebsite;
