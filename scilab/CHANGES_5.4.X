@@ -84,7 +84,7 @@ GUI
 * Uicontrols tooltip can now be managed using the new "TooltipString" property.
 
 * Figure closure can now be managed by the user (confirmation, ...) through the
-  'closerequestfcn' property.
+  'CloseRequestFcn' property.
 
 * F5 and F6 change the focus of the docked element.
 
@@ -138,7 +138,7 @@ Bug Fixes
 
 * Bug #6154, #10850 fixed - arnoldi package help pages updated.
 
-* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was given,
+* Bug #6538 fixed - unobs ignored its 'tol' argument when it was given,
                     and always calculated its own, arbitrary, internal value.
 
 * Bug #6702 fixed - max and min functions returned a scalar in k when the input
@@ -227,8 +227,8 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
-* Bug #11244 fixed - Due to browsevar, an error was displayed in the console when deleting
-                     a global variable.
+* Bug #11244 fixed - Due to variable browser, an error was displayed in the console when
+                     deleting a global variable.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
 
@@ -245,7 +245,7 @@ Bug Fixes
 
 * Bug #11330 fixed - oldplot function removed.
 
-* Bug #11331 fixed - graypolarplot() returned an error about an unknown property.
+* Bug #11331 fixed - graypolarplot returned an error about an unknown property.
 
 * Bug #11332 fixed - Default usage of contour2d was producing some errors.
 
@@ -265,19 +265,19 @@ Bug Fixes
 
 * Bug #11369 fixed - colordef("black") returned an error about an unknown property.
 
-* Bug #11372 fixed - Calling odeoptions() returned an error.
+* Bug #11372 fixed - Calling odeoptions returned an error.
 
-* Bug #11385 fixed - length() returned a wrong error message when called without
+* Bug #11385 fixed - length returned a wrong error message when called without
                      input argument.
 
 * Bug #11388 fixed - Calling xsetech(frect=[0,0,100,100]) failed.
 
 * Bug #11396 fixed - Overloading: toto([])=[] with toto being an mlist failed.
 
-* Bug #11398 fixed - newest() produced an incomprehensible error message when
+* Bug #11398 fixed - newest produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
-* Bug #11403 fixed - toprint() and Print menu did not work.
+* Bug #11403 fixed - toprint and Print menu did not work.
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
@@ -385,7 +385,7 @@ Known Incompatibilities
   for the modulo function and x - y * floor(x / y). Now, they return an error and
   %nan with ieee(2). See bug #7216.
 
-* In previous versions, the newest() function could be called with a string vector
+* In previous versions, the newest function could be called with a string vector
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
