@@ -13,7 +13,7 @@
    y1=0;lb=l;hc=0.05;lc=0.1;teta=.25;r=0.013
    P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
    xsegs([-0.4 0.4],[y1-2*r y1-2*r]);
-   drawnow();//show_pixmap()
+   drawnow();
  endfunction
 
 
@@ -102,7 +102,6 @@ function P=set_pendulum(P,x,theta)
   e.data(2,:)=e.data(1,:)+[lb*sin(theta) lb*cos(theta)];
   P.user_data(1)=x
   drawnow();
-  //show_pixmap()
 endfunction
 
 
@@ -143,7 +142,6 @@ function draw1()
   P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
   xsegs([-0.4 0.4],[y1-2*r y1-2*r]);
 
-  //show_pixmap();
   drawnow()
 
   for k=1:size(y,2)
@@ -201,7 +199,6 @@ function draw2()
   P=build_pendulum([100*x(1),y1],[lc,hc,lb,100*theta(1),r])
   xsegs([-0.4 0.4],[y1-2*r y1-2*r]);
   drawnow()
-  //show_pixmap();
 
   for k=1:n
     drawlater();
