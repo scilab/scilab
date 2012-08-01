@@ -1,6 +1,11 @@
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
+Bug Fixes
+=========
+
+* Bug #11604 fixed - Some items were not localized in "Scilab Preferences" window.
+
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab

@@ -6,10 +6,11 @@
     <Title text="_(Editor)">
       <VBox>
         <HBox>
-          <xsl:call-template name="BooleanCheckBox">
-            <xsl:with-param name="text" select="'_(Use SciNotes)'"/>
-            <xsl:with-param name="attr-name" select="'scinotes'"/>
-          </xsl:call-template>
+	  <Checkbox checked="{@scinotes}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Use SciNotes)">
+	    <actionPerformed choose="scinotes">
+	      <xsl:call-template name="context"/>
+          </actionPerformed>
+	  </Checkbox>
           <Glue/>
         </HBox>
         <xsl:variable name="enable">

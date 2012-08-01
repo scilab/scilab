@@ -13,7 +13,7 @@
     </body>
   </edition>
 -->
-  <simulation title="Simulation">
+  <simulation title="_(Simulation)">
     <body>
       <xcos-simulation final-integration-time="1.0E05" real-time-scaling="0.0E00" integrator-absolute-tolerance="1.0E-06" integrator-relative-tolerance="1.0E-06" tolerance-on-time="1.0E-10" max-integration-interval="1.0E05" solver="2" max-step-size="0.0" trace="0">
         <!-- Available solver values list from scicos -->

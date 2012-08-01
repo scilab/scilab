@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<web title="Web">
+<web title="_(Web)">
   <body>
     <web default-browser="true" default-mailer="true" command-browser="" command-mailer=""/>
   </body>

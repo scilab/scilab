@@ -21,7 +21,7 @@
 	</xsl:choose>
       </xsl:variable>
       <Grid>
-	<Checkbox checked="{@adapt-to-display}" selected-value="true" unselected-value="false" listener="ActionListener" text="Automatically adapt the display to the console" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
+	<Checkbox checked="{@adapt-to-display}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Automatically adapt the display to the console)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
           <actionPerformed choose="adapt-to-display">
             <xsl:call-template name="context"/>
           </actionPerformed>
