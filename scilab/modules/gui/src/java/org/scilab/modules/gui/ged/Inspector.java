@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,9 +12,11 @@
 package org.scilab.modules.gui.ged;
 
 import javax.swing.SwingUtilities;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
 
@@ -22,7 +24,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 * Main properties window - Light GED.
 * Receive the classes of graphic objects (JPanels).
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Inspector {
     private static Inspector instance;
@@ -64,6 +66,14 @@ public class Inspector {
     }
 
     /**
+     * Get the inspector singleton
+     * @return the inspector
+     */
+    public static Inspector getInspector() {
+        return instance;
+    }
+
+    /**
     * Initializes the Inspector with the docking system.
     *
     * @param select Indicates which property window will open initially.
@@ -95,7 +105,6 @@ public class Inspector {
      */
     public static void closeInspector() {
         if (instance != null) {
-            instance.close();
             instance = null;
         }
     }
@@ -104,7 +113,7 @@ public class Inspector {
      * Close Inspector
      */
     public void close() {
-        instance = null;
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) inspectorTab);
     }
 
     /**

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,9 +16,12 @@ import org.scilab.modules.localization.Messages;
 /**
  * All messages used in GED.
  *
- * @author cardinot
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class MessagesGED {
+    //MenuBar
+    public static final String close = Messages.gettext("Close");
+    public static final String file = Messages.gettext("File");
     //Inspector - Labels
     public static final String quick_ged = Messages.gettext("Quick GED");
     public static final String hide = Messages.gettext("Hide");

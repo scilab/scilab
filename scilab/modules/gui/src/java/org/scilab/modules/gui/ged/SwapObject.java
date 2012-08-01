@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.gui.ged.actions.ShowHide;
 import org.scilab.modules.gui.ged.axes.Axes;
 import org.scilab.modules.gui.ged.curve.Curve;
 import org.scilab.modules.gui.ged.figure.Figure;

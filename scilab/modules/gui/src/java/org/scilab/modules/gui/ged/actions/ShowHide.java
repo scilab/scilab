@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,11 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged;
+package org.scilab.modules.gui.ged.actions;
 
 import javax.swing.ImageIcon;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.axes.HideAxis;
 import org.scilab.modules.gui.ged.curve.HideCurve;
 import org.scilab.modules.gui.ged.figure.HideFigure;
@@ -23,7 +25,7 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 /**
  * Show/Hide button class.
  *
- * @author Marcos Cardinot <mcardinot@gmail.com>
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class ShowHide extends CommonCallBack {
     public static boolean click = true;
