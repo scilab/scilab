@@ -227,7 +227,7 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
-* Bug #11244 fixed - Due to variable browser, an error was displayed in the console when
+* Bug #11244 fixed - Due to the variable browser, an error was displayed in the console when
                      deleting a global variable.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
@@ -385,7 +385,7 @@ Known Incompatibilities
   for the modulo function and x - y * floor(x / y). Now, they return an error and
   %nan with ieee(2). See bug #7216.
 
-* In previous versions, the newest function could be called with a string vector
+* In previous versions, newest function could be called with a string vector
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 
