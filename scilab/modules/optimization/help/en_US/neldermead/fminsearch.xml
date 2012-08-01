@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2009 - INRIA - Michael Baudin
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fminsearch" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="fminsearch" xml:lang="fr">
   <refnamediv>
     <refname>fminsearch</refname>
     <refpurpose>
@@ -326,11 +326,11 @@
       </varlistentry>
     </variablelist>
     <para>If both the following conditions</para>
-    <programlisting role="example">
+    <programlisting role="no-scilab-exec">
       ssize &lt; options.TolX
     </programlisting>
     <para>and</para>
-    <programlisting role="example">
+    <programlisting role="no-scilab-exec">
       shiftfv &lt; options.TolFun
     </programlisting>
     <para>are true, then the iterations stop.</para>
@@ -391,7 +391,7 @@
     <para>
       The output function is expected to have the following header:
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="scilab-no-exec"><![CDATA[ 
 stop = myoutputfun ( x , optimValues , state )
  ]]></programlisting>
     <para>
@@ -427,7 +427,7 @@ stop = myoutputfun ( x , optimValues , state )
     <para>
       The plot function is expected to have the following header:
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="scilab-no-exec"><![CDATA[ 
 myplotfun ( x , optimValues , state )
  ]]></programlisting>
     <para>
@@ -509,6 +509,13 @@ endfunction
 opt = optimset ( "PlotFcns" , optimplotfval );
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );
  ]]></programlisting>
+<scilab:image>
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "PlotFcns" , optimplotfval );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+</scilab:image>
     <para>
       In the previous example, we could replace the "optimplotfval"
       function with "optimplotx" or "optimplotfunccount" and obtain different
@@ -638,7 +645,7 @@ opt = optimset ( "OutputFcn" , outfun );
     <para>
       The previous script produces the following output.
     </para>
-    <programlisting role="example">
+    <programlisting role="no-scilab-exec">
       3 2.420000e+001 0 --
       3 2.005000e+001 1 -initial simplex-
       5 5.161796e+000 2 -expand-

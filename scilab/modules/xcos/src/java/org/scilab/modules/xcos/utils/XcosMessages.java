@@ -215,7 +215,7 @@ public final class XcosMessages {
     public static final String TOLERANCE_ON_TIME = Messages.gettext("Tolerance on time");
     public static final String MAX_INTEGRATION_TIME_INTERVAL = Messages.gettext("Max integration time interval");
     public static final String SOLVER_CHOICE = Messages.gettext("Solver kind");
-    public static final String MAXIMUN_STEP_SIZE = Messages.gettext("maximum step size (0 means no limit)");
+    public static final String MAXIMUN_STEP_SIZE = Messages.gettext("Maximum step size (0 means no limit)");
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String SETUP_TITLE = Messages.gettext("Set Parameters");
 

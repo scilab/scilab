@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-22 14:39+0000\n"
+"PO-Revision-Date: 2012-07-29 14:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ja\n"
 
 #, c-format
@@ -327,6 +327,9 @@ msgstr "自動保存"
 msgid "Editor"
 msgstr "エディタ"
 
+msgid "Use SciNotes"
+msgstr "SciNotesを使用"
+
 msgid "External editor: "
 msgstr "外部エディタ: "
 
@@ -374,6 +377,9 @@ msgstr "行を完了"
 
 msgid "Keywords"
 msgstr "キーワード"
+
+msgid "Enable keywords colorization"
+msgstr "キーワードの色分けを有効にする"
 
 msgid "Set syntax Colors"
 msgstr "構文色を設定"
@@ -669,7 +675,6 @@ msgstr "置換"
 msgid "Replace All"
 msgstr "全て置換"
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "正規表現が不正です: %s"
 
@@ -685,11 +690,9 @@ msgstr "文書の終端に達しました"
 msgid "You have reached the beginning of the document"
 msgstr "文書の先頭に達しました"
 
-#, c-format
 msgid "String %s not found"
 msgstr "文字列 %s は見つかりません"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -706,7 +709,6 @@ msgid ""
 "save it?"
 msgstr " は 直近の保存の後で修正されました. 保存しますか?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -791,14 +793,12 @@ msgstr "マクロのソースを開く "
 msgid "Show the definition of the macro "
 msgstr "マクロの定義を表示する "
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "%s 行, %s 列. 関数 '%s' (%s 行目)."
 
 msgid "Unknown function"
 msgstr "未知の関数"
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr "%s 行, %s 列目."
 
@@ -814,7 +814,6 @@ msgstr "ファイルは保存できませんでした."
 msgid "The file could not be converted."
 msgstr "ファイルは変換できませんでした."
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%s はディレクトリです"
 
@@ -839,7 +838,6 @@ msgstr "テキストが選択されていません."
 msgid "No text to execute."
 msgstr "実行するテキストがありません."
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr "ファイルエンコーディングは実際には %s で、 %s により保存されます. 続けますか ?"
@@ -850,14 +848,12 @@ msgstr "エンコーディングの問題"
 msgid "Cannot guess the file encoding."
 msgstr "ファイルのエンコーディングを推定できません."
 
-#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr "ファイル %s を保存できません... バックアップ処理を停止します"
 
 msgid "Backup finished..."
 msgstr "バックアップを終了しました..."
 
-#, c-format
 msgid "%s occurences found."
 msgstr "%s 回の発生が見つかりました."
 
@@ -975,15 +971,12 @@ msgstr "ファイルを検索..."
 msgid "Search in Files..."
 msgstr "ファイルを検索..."
 
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
 
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "経過時間: %s 秒."
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA
+ * Copyright (C) 2007 - Allan Layec - INRIA
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,7 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw_forget_wisdom">
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="en" xml:id="fftw_forget_wisdom">
   <refnamediv>
     <refname>fftw_forget_wisdom</refname>
     <refpurpose>Reset fftw wisdom</refpurpose>
@@ -26,6 +31,14 @@
     </para>
   </refsection>
   <refsection>
+    <title>Caveat</title>
+     <para> 
+       This function do nothing  in Scilab versions which use
+       the MKL intel library (Scilab official versions for windows in particular).
+     </para>
+ </refsection>
+
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 //return fftw wisdom
@@ -39,9 +52,6 @@ fftw_forget_wisdom();
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="fftw">fftw</link>
-      </member>
       <member>
         <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
       </member>

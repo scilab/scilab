@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA
+ * Copyright (C) 2007 - Allan Layec - INRIA
+ * Copyright (C) 2012 - Serge Steer - INRIA
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,7 +11,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="set_fftw_wisdom">
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="en" xml:id="set_fftw_wisdom">
   <refnamediv>
     <refname>set_fftw_wisdom</refname>
     <refpurpose>set fftw wisdom</refpurpose>
@@ -31,28 +37,50 @@
     </variablelist>
   </refsection>
   <refsection>
+    <title>Caveat</title>
+     <para> 
+       This function is not implemented in Scilab versions which use
+       the MKL intel library (Scilab official versions for windows in particular).
+     </para>
+ </refsection>
+  <refsection>
     <title>Description</title>
     <para>
-      This function set the fftw wisdom with a string matrix.
+      This function set the fftw wisdom with a string matrix.Using
+      <literal>get_fftw_wisdom</literal> and
+      <literal>set_fftw_wisdom</literal> allows to optimize fft
+      efficiency if many calls have to be done on with same data sizes
+      and same options for the <link linkend="fft">fft</link> function.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-//return fftw wisdom
-txt=get_fftw_wisdom();
-//set fftw wisdom
-set_fftw_wisdom(txt);
-//reset fftw wisdom
-fftw_forget_wisdom();
+sample_rate=1000;
+t = 0:1/sample_rate:40;
+N=size(t,'*'); //number of samples
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+fftw_forget_wisdom();  
+timer();y=fft(s);t1=timer() //first call
+timer();y=fft(s);t2=timer()  //second call uses preserved wisdom
+t1/t2
+wisdom1=get_fftw_wisdom(); //preserve current wisdom
+//realize a different fft
+A = zeros(256,256);
+A(5:24,13:17) = 1;
+X = fft(A);
+
+//Create a new signal with same size as s
+s1=sin(2*%pi*10*t)+sin(2*%pi*7*t+%pi/4)+5*grand(1,N,'nor',0,1);
+//restore preserved wisdom
+set_fftw_wisdom(wisdom1);
+timer();y=fft(s);t3=timer()
+t3/t2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="fftw">fftw</link>
-      </member>
       <member>
         <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
       </member>

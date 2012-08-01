@@ -34,7 +34,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>dispfiles</literal> displays properties of currently opened files.
+      <function>dispfiles</function> displays properties of currently opened files.
     </para>
   </refsection>
   <refsection>

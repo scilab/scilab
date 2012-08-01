@@ -37,7 +37,6 @@ AC_DEFUN([ACX_BLAS], [
 AC_PREREQ(2.50)
 AC_REQUIRE([AC_F77_LIBRARY_LDFLAGS])
 acx_blas_ok=no
-BLAS_LIBS=
 acx_blas_save_LIBS="$LIBS"
 
 AC_ARG_WITH(blas-library,

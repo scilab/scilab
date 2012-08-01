@@ -57,6 +57,7 @@ en_US.DescriptionUmfpack =UMFPACK for Scilab
 en_US.DescriptionCompatFunctions =Compatibility functions
 en_US.DescriptionM2sci =M2SCI Toolbox
 en_US.DescriptionMatio =MAT File Input/Output Toolbox
+en_US.DescriptionExternalObjects =External objects
 en_US.DescriptionSound =Sound file handling Toolbox
 en_US.DescriptionRandlib =Randlib Toolbox
 en_US.DescriptionMexlib =Mexlib Tools

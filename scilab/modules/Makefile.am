@@ -88,7 +88,8 @@ ui_data \
 history_browser \
 preferences \
 xml \
-types
+types \
+external_objects
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -189,6 +190,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 
 # These libraries are loaded dynamically from Scilab.

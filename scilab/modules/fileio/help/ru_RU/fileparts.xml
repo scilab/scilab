@@ -43,7 +43,7 @@
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>символьная строка; путь к директории, указанной в <literal>fullpath</literal></para>
+          <para>символьная строка; путь к директории, указанной в <varname>fullpath</varname>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,7 +51,7 @@
         <listitem>
           <para>
             символьная строка; часть, относящаяся к имени файла,
-          может быть любой или ''
+          может быть любой или <literal>''</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -59,15 +59,15 @@
         <term>extension</term>
         <listitem>
           <para>
-			символьная строка; часть, относящаяся к расширению, может
-			быть любой или ''
-		  </para>
+	    символьная строка; часть, относящаяся к расширению, может
+	    быть любой или <literal>''</literal>.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value</term>
         <listitem>
-          <para>символьная строка в зависимости от значения <literal>sel</literal></para>
+          <para>символьная строка в зависимости от значения <varname>sel</varname>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -75,8 +75,8 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>[path,fname,extension]=fileparts(fullpath)</literal> разделяет
-      символьную строку <literal>fullpath</literal> на три части:
+      <code>[path,fname,extension]=fileparts(fullpath)</code> разделяет
+      символьную строку <varname>fullpath</varname> на три части:
 	  часть, относящуюся к пути до директории, часть, относящуюся к
 	  имени файла и часть, относящуюся к расширению, включая точку.
     </para>

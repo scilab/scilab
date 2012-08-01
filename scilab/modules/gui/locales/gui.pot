@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -63,11 +63,11 @@ msgstr ""
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 113
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 67
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 98
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 162
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 186
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 226
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 119
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 143
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 152
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 175
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 215
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 109
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 131
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -91,12 +91,10 @@ msgstr ""
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 264
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 279
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 302
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 114
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 304
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 344
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 71
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 232
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 268
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 293
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 333
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 218
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 254
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 68
 #, c-format
 msgid "%s: No more memory.\n"
@@ -574,8 +572,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 41
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 84
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 138
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 272
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 201
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 261
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 187
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 60
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 78
 #, c-format
@@ -687,30 +685,30 @@ msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 124
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 81
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 116
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 106
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 140
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 97
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 171
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 195
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 128
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 152
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 160
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 184
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 117
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 139
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 235
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 224
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
@@ -1764,7 +1762,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1775,7 +1772,6 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 74
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 154
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 164
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -2079,7 +2075,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -2087,13 +2082,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 50
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 51
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -2185,7 +2178,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
-#, c-format
 msgid "All %s files"
 msgstr ""
 
@@ -2205,7 +2197,7 @@ msgid "Acknowledgements"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
+# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 39
 msgid "Could not open: "
 msgstr ""
 

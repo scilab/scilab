@@ -18,6 +18,7 @@
 typedef struct
 {
     const char * heapSize;
+    const char * adaptToDisplay;
     const char * columnsToDisplay;
     const char * linesToDisplay;
     const char * historySaveAfter;
@@ -31,6 +32,7 @@ typedef struct
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
+#define ADAPTTODISPLAY_XPATH (const xmlChar*)"//console/body/display/@adapt-to-display"
 #define COLUMNSTODISPLAY_XPATH (const xmlChar*)"//console/body/display/@columns-to-display"
 #define LINESTODISPLAY_XPATH (const xmlChar*)"//console/body/display/@lines-to-display"
 #define HISTORYSAVEAFTER_XPATH (const xmlChar*)"//command-history/body/history-save/@after"

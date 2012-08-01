@@ -25,7 +25,7 @@
         <term>b</term>
         <listitem>
           <para>
-	    логическое значение: <literal>%t</literal>, если операция <literal>chdir</literal> завершилась успешно
+	    логическое значение: <constant>%t</constant>, если операция <code>chdir</code> завершилась успешно
 	  </para>
         </listitem>
       </varlistentry>
@@ -50,9 +50,9 @@ xs    </variablelist>
     <title>Описание</title>
     <para>
       Изменение текущей директории Scilab'а на ту, которая указана в
-      <literal>path</literal>. Обратите внимание, что выполняется преобразование
+      <varname>path</varname>. Обратите внимание, что выполняется преобразование
       пути и, например, <literal>SCI/modules/core/macros</literal> является
-      корректным как для Unix, так и для Windows. Если путь не указан (пуст),
+      корректным как для Unix, так и для Windows. Если путь <varname>path</varname> не указан (пуст),
       то производится смена на "домашнюю" директорию.
     </para>
   </refsection>

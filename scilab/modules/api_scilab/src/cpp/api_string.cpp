@@ -350,8 +350,11 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		}
 		else
 		{
-			// it should not be here
-			_piwLength[i] = 0;
+            _piwLength[i] = 0;
+            addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to convert to wide string #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+            if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+            freeArrayOfString(pstStrings,strSize);
+            return sciErr;
 		}
 	}
 
@@ -387,6 +390,10 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 				// case to_wide_string fails
 				_pwstStrings[i] = NULL;
 				_piwLength[i] = 0;
+                addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to convert to wide string #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+                if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+                freeArrayOfString(pstStrings,strSize);
+                return sciErr;
 			}
 		}
 		else
@@ -542,6 +549,7 @@ int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
 
 	return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstData)
 {

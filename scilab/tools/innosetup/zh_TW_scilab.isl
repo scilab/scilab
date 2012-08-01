@@ -57,6 +57,7 @@ zh_TW.DescriptionUmfpack =UMFPACK for Scilab
 zh_TW.DescriptionCompatFunctions =Compatibility functions
 zh_TW.DescriptionM2sci =M2SCI Toolbox
 zh_TW.DescriptionMatio =MAT File Input/Output Toolbox
+zh_TW.DescriptionExternalObjects =External objects
 zh_TW.DescriptionSound =Sound file handling Toolbox
 zh_TW.DescriptionRandlib =Randlib Toolbox
 zh_TW.DescriptionMexlib =Mexlib Tools

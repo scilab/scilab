@@ -644,6 +644,35 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     // draw
     // ============================================
 
+    // Title
+    // ============================================
+
+    my_title_axes             = newaxes();
+    my_title_axes.axes_bounds = [1/3,0,2/3,1];
+    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
+
+    // make axes transparent
+    my_title_axes.filled = "off";
+
+    Rs = string(R);
+
+    if TypeDomain == "Square" then
+        end_title = " Function on [-"+Rs+","+Rs+"]x[-"+Rs+","+Rs+"]"
+    else
+        end_title = " Function on D(0,R="+Rs+")"
+    end
+
+    if StrFunc == "f" then
+        the_title = "Your Custom (named f) Complex" + end_title;
+    else
+        the_title = "The Complex " + StrFunc + end_title;
+    end
+
+    xtitle(the_title);
+
+    my_title_axes.title.text       = the_title;
+    my_title_axes.title.font_size  = 3;
+
     // plot Im(z)
     // ============================================
 
@@ -688,35 +717,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
         yellow_line.thickness = 3;
     end
 
-    // Title
-    // ============================================
-
-    my_title_axes             = newaxes();
-    my_title_axes.axes_bounds = [1/3,0,2/3,1];
-    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
-
-    // make axes transparent
-    my_title_axes.filled = "off";
-
-    Rs = string(R);
-
-    if TypeDomain == "Square" then
-        end_title = " Function on [-"+Rs+","+Rs+"]x[-"+Rs+","+Rs+"]"
-    else
-        end_title = " Function on D(0,R="+Rs+")"
-    end
-
-    if StrFunc == "f" then
-        the_title = "Your Custom (named f) Complex" + end_title;
-    else
-        the_title = "The Complex " + StrFunc + end_title;
-    end
-
-    xtitle(the_title);
-
-    my_title_axes.title.text       = the_title;
-    my_title_axes.title.font_size  = 3;
-
 endfunction
 
 function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
@@ -736,9 +736,9 @@ function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
     if TypeDomain == "Square" then
         if TypeCut == "Ox" then
             x1 = linspace(-R, R, n);
-            y1 = linspace( e, R, n/2);
+            y1 = linspace( e, R, int(n/2));
         else  // for TypeCut = "Oy" ...
-            x1 = linspace( e, R, n/2);
+            x1 = linspace( e, R, int(n/2));
             y1 = linspace(-R, R, n);
         end
         X1 = ones(y1')*x1 ; Y1 = y1'*ones(x1);

@@ -9,14 +9,14 @@
 
 //=============================================
 ff = fftw_flags();
-if ff <> 64 then pause,end;
+assert_checkequal(double(ff),64);
 //=============================================
 //change flags
 r = fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-if r <> 4 then pause,end;
+assert_checkequal(double(r),4);
 //=============================================
 //change flags and display current value of fftw flags (both integer and strings)
 [a,S]=fftw_flags("FFTW_PATIENT");
-if a <> 32 then pause,end;
-if S <>'FFTW_PATIENT' then pause,end;
+assert_checkequal(double(a),32);
+assert_checkequal(S,'FFTW_PATIENT');
 //=============================================

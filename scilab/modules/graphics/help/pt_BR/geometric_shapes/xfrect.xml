@@ -11,53 +11,52 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xfrect" xml:lang="en">
-  <refnamediv>
-    <refname>xfrect</refname>
-    <refpurpose>preenche um retângulo</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>xfrect(x,y,w,h)
-      xfrect(rect) // rect =[x,y,w,h]
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x,y,w,h</term>
-        <listitem>
-          <para>quatro valores reais definindo um retângulo</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>xrect</literal> preenche um retângulo definido por
-      <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura, altura)
-      usando a escala e o estilo correntes.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xfrect</refname>
+        <refpurpose>preenche um retângulo</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>xfrect(x,y,w,h)
+            xfrect(rect) // rect =[x,y,w,h]
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y,w,h</term>
+                <listitem>
+                    <para>quatro valores reais definindo um retângulo</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>xrect</literal> preenche um retângulo definido por
+            <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura, altura)
+            usando a escala e o estilo correntes.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfrect(-1,1,2,2)
-xset("default")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xrect">xrect</link>
-      </member>
-      <member>
-        <link linkend="xrects">xrects</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xrect">xrect</link>
+            </member>
+            <member>
+                <link linkend="xrects">xrects</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

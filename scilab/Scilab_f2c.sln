@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9A2020D-5541-44F2-B080-DF3C9426C409} = {A9A2020D-5541-44F2-B080-DF3C9426C409}
@@ -478,6 +478,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-JAVA-tests", "modul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcxproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parallel", "modules\parallel\src\c\parallel.vcxproj", "{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-settings\ant-all\ant-all.vcxproj", "{A9A2020D-5541-44F2-B080-DF3C9426C409}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
@@ -507,6 +509,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio-settings\test-level\test-level.vcxproj", "{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_objects", "modules\graphic_objects\src\nographic_objects\nographic_objects.vcxproj", "{A910BD0C-8FAF-4382-B06A-F767E4752733}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "external_objects", "modules\external_objects\external_objects.vcxproj", "{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1520,6 +1524,13 @@ Global
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|Win32.ActiveCfg = Debug|Win32
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|Win32.Build.0 = Debug|Win32
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|x64.ActiveCfg = Debug|x64
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|x64.Build.0 = Debug|x64
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|Win32.ActiveCfg = Release|Win32
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|x64.ActiveCfg = Release|x64
+		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|x64.Build.0 = Release|x64
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|Win32.Build.0 = Debug|Win32
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|x64.ActiveCfg = Debug|x64
@@ -1596,6 +1607,14 @@ Global
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|Win32.Build.0 = Release|Win32
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.ActiveCfg = Release|x64
 		{A910BD0C-8FAF-4382-B06A-F767E4752733}.Release|x64.Build.0 = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|Win32.Build.0 = Debug|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.ActiveCfg = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Debug|x64.Build.0 = Debug|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.ActiveCfg = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.Build.0 = Release|Win32
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.ActiveCfg = Release|x64
+		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

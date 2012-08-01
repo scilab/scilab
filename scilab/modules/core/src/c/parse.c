@@ -32,6 +32,7 @@
 #include "msgs.h"
 #include "eqid.h"
 #include "parserConstant.h"
+#include "ExternalObjectsFunction.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -1090,6 +1091,9 @@ L77:
                 Pt, r, p, Lpt[1], C2F(recu).niv, C2F(recu).macr, C2F(recu).paus);
         C2F(basout)(&io, &C2F(iop).wte, tmp, (long)strlen(tmp));
     }
+
+    ExternalObjects_goDown();
+
     if (C2F(errgst).err1 != 0)
     {
         /* a catched error has occurred */
@@ -1551,6 +1555,7 @@ L88:
         case 9:
             goto L85;
     }
+
     r = Rstk[Pt] / 100;
     switch ((int)r)
     {

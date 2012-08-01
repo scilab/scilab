@@ -18,29 +18,51 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>copyfile('source','destination')
-      [status,message] = copyfile('source','destination')
+    <synopsis>copyfile(source,destination)
+      [status,message] = copyfile(source,destination)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>source</term>
+        <listitem>
+          <para>
+	    a character string: a filename or a directory name.
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>destination</term>
+        <listitem>
+	  <para>a character string: a directory name.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
-      <literal>copyfile('source','destination')</literal> copies the file or 
-      directory <literal>'source'</literal> (and subdirectories) to the file or
-      directory <literal>'destination'</literal>.
+      <code>copyfile(source,destination)</code> copies the file or 
+      directory <varname>source</varname> (and subdirectories) to the file or
+      directory <varname>destination</varname>.
     </para>
     <para>If source is a directory, destination can not be a file. 
-    <literal>copyfile</literal> replaces existing files without warning.
+    <code>copyfile</code> replaces existing files without warning.
     </para>
     <para>
-      <literal>[status, message] = copyfile('source','destination')</literal>
+      <code>[status, message] = copyfile('source','destination')</code>
       copies source to destination, returning the status and a message. 
     </para>
-    <para>Whatever the operating system, if the copy succeeds, the status is 1
-      and the message is empty ; if the copy fails, the status is 0 and the
+    <para>
+      Whatever the operating system, if the copy succeeds, the status is 1
+      and the message is empty; if the copy fails, the status is 0 and the
       message is not empty.
     </para>
-    <para>The timestamp given to the destination file is identical to that
+    <para>
+      The timestamp given to the destination file is identical to that
       taken from source file.
     </para>
   </refsection>

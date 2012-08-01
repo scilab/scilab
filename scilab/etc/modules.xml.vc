@@ -90,5 +90,6 @@
 <module name="history_browser" activate="yes"/>
 <module name="preferences" activate="yes"/>
 <module name="xml" activate="yes"/>
+<module name="external_objects" activate="yes"/>
 <!-- comments -->
 </modules>

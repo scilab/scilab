@@ -22,12 +22,15 @@
 #include "sciCall.h"
 #include "BuildObjects.h"
 
+#include "HandleManagement.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
 {
+    char* psubwinUID = (char*)getOrCreateDefaultSubwin();
     int iStyle = 0;
     int m1 = 0, n1 = 0, l1 = 0;
     int m2 = 0, n2 = 0, l2 = 0;
@@ -55,7 +58,6 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
         int* piColorMapSize = &iColorMapSize;
         int iForeGround = 0;
         int* piForeGround = &iForeGround;
-        char* psubwinUID = (char*)getOrCreateDefaultSubwin();
         char* pstParentUID = NULL;
 
         //get color map size
@@ -80,6 +82,8 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
     }
 
     Objfpoly(stk(l1), stk(l2), m1 * n1, &iStyle, &hdl, 0);
+
+    setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
 
     LhsVar(1) = 0;
     PutLhsVar();

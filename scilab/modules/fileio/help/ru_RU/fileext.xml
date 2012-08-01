@@ -41,7 +41,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <literal>extension=fileext(fullpath)</literal> изымает из
+      <code>extension=fileext(fullpath)</code> изымает из
       символьной строки часть, относящуюся к расширению, включая точку.
     </para>
   </refsection>

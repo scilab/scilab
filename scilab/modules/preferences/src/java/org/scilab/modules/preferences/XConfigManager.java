@@ -109,7 +109,7 @@ public final class XConfigManager extends XCommonManager {
                 Dimension dimension = dialog.getSize();
                 int height = XConfigManager.getInt(element, "height", 0);
                 int width = XConfigManager.getInt(element, "width",  0);
-                if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 && Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
+                if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 || Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
                     element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
                     element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
                 }

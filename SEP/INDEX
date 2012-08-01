@@ -78,3 +78,7 @@ SEP #078: nthroot function
 SEP #079: arma2ss function
 SEP #080: xcorr & xcov functions
 SEP #081: new argument for test_run to generate a xunit report
+SEP #082: eigs function
+SEP #083: example_run function
+SEP #084: fft improvements
+SEP #085: conv improvements

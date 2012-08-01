@@ -46,6 +46,7 @@ const ScilabPreferences * getScilabPreferences()
 void initPrefs()
 {
     scilabPref.heapSize = NULL;
+    scilabPref.adaptToDisplay = NULL;
     scilabPref.columnsToDisplay = NULL;
     scilabPref.linesToDisplay = NULL;
     scilabPref.historySaveAfter = NULL;
@@ -69,6 +70,7 @@ void clearScilabPreferences()
     if (isInit == 1)
     {
         if (scilabPref.heapSize) FREE((void*)scilabPref.heapSize);
+        if (scilabPref.adaptToDisplay) FREE((void*)scilabPref.adaptToDisplay);
         if (scilabPref.columnsToDisplay) FREE((void*)scilabPref.columnsToDisplay);
         if (scilabPref.linesToDisplay) FREE((void*)scilabPref.linesToDisplay);
         if (scilabPref.historySaveAfter) FREE((void*)scilabPref.historySaveAfter);
@@ -131,6 +133,7 @@ void getPrefs()
         if (xpathCtxt)
         {
             scilabPref.heapSize = strdup(getAttribute(doc, xpathCtxt, HEAPSIZE_XPATH));
+            scilabPref.adaptToDisplay = strdup(getAttribute(doc, xpathCtxt, ADAPTTODISPLAY_XPATH));
             scilabPref.columnsToDisplay = strdup(getAttribute(doc, xpathCtxt, COLUMNSTODISPLAY_XPATH));
             scilabPref.linesToDisplay = strdup(getAttribute(doc, xpathCtxt, LINESTODISPLAY_XPATH));
             scilabPref.historySaveAfter = strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));

@@ -143,7 +143,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
          * Prevent the background RootPane to catch Focus.
          * Causes trouble with Scicos use xclick & co.
          */
-        this.setFocusable(false);
+        //this.setFocusable(false);
 
         // let the OS choose the window position if not specified by user.
         setLocationByPlatform(true);
@@ -430,14 +430,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             if (this.menuBar != null) {
                 this.menuBar = null;
                 super.setJMenuBar(null);
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
             if (this.menuBar != newMenuBar.getAsSimpleMenuBar()) {
                 this.menuBar = newMenuBar.getAsSimpleMenuBar();
                 super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }
@@ -455,7 +453,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 // Remove old InfoBar if already set
                 super.remove((SwingScilabToolBar) this.toolBar);
                 this.toolBar = null;
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
@@ -466,7 +463,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 }
                 this.toolBar = newToolBar.getAsSimpleToolBar();
                 super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }
@@ -484,7 +480,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 // Remove old InfoBar if already set
                 super.remove((SwingScilabTextBox) this.infoBar);
                 this.infoBar = null;
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
@@ -495,7 +490,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 }
                 this.infoBar = newInfoBar.getAsSimpleTextBox();
                 super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }

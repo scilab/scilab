@@ -38,7 +38,7 @@
         <term>flag, flagexpand</term>
         <listitem>
           <para>
-	    логические необязательные параметры. Значение по умолчанию <literal>%t</literal>.
+	    логические необязательные параметры. Значение по умолчанию <constant>%t</constant>.
           </para>
         </listitem>
       </varlistentry>
@@ -55,14 +55,14 @@
   <refsection>
     <title>Описание</title>
     <para>
-      Функция <literal>basename</literal> возвращает основное имя файлов, 
-      указанных в <literal>files</literal>.
+      Функция <code>basename(files)</code> возвращает основное имя файлов, 
+      указанных в <varname>files</varname>.
     </para>
     <para>
-      Если <literal>flag</literal> равен ИСТИНЕ, то файлы <literal>files</literal> сначала преобразуются
-      в целевой тип, указанный переменной <literal>getos() == 'Windows'</literal>.
-      Более того, если <literal>flagexpand</literal> равен ИСТИНЕ, то первые
-      строковые занчение, такие, как <literal>HOME</literal>, <literal>SCI</literal>
+      Если <varname>flag</varname> равен ИСТИНЕ, то файлы <varname>files</varname> сначала преобразуются
+      в целевой тип, указанный переменной <code>getos() == 'Windows'</code>.
+      Более того, если <varname>flagexpand</varname> равен ИСТИНЕ, то первые
+      строковые значение, такие, как <varname>SCIHOME</varname>, <varname>SCI</varname>
       или <literal>~</literal> разворачиваются с помощью переменных окружения.
     </para>
   </refsection>

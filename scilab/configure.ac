@@ -599,6 +599,8 @@ case "$CC" in
     ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
     ARCH_FFLAGS="-mmacosx-version-min=10.5"
     ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    # We need this to be passed to all linker commands
+    LDFLAGS="$LDFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
 
     case "$F77" in
          gfortran-*|gfortran)
@@ -659,6 +661,7 @@ case "$host" in
 esac
 ;; # end of not a gcc compiler
 esac
+
 
 # enable the code coverage
 if test "$enable_code_coverage" = yes; then
@@ -848,14 +851,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				SCIRENDERER=$PACKAGE_JAR_FILE
 				AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.1],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.3],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.1.1],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.0],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -1846,6 +1849,7 @@ modules/modules_manager/Makefile
 modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
+modules/external_objects/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

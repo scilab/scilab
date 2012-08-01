@@ -123,7 +123,7 @@ function y = A ( x )
               </listitem>
               <listitem>
                 <term>(A - sigma * I) \ x</term>
-                <para>for the standart eigenvalue problem, where I is the identity matrix.</para>
+                <para>for the standard eigenvalue problem, where I is the identity matrix.</para>
               </listitem>
               <listitem>
                 <term>(A - sigma * B) \ x</term>

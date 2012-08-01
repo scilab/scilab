@@ -47,10 +47,12 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>res = strchr(haystack,char)</literal> Returns the first occurrence
-      of character in the string str.
+      <literal>res = strchr(haystack,char)</literal> returns the first occurrence
+      of <literal>char</literal> in the string <literal>haystack</literal>.
     </para>
-    <para>num must have same dimensions than haystack or only one char.</para>
+    <para>
+      <literal>char</literal> must contain only one string or as many strings as in <literal>haystack</literal> (each one being one-character-long).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

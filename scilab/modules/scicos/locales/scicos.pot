@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-20 00:21+0100\n"
+"Revision-Date: 2012-07-25 19:17+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1748,8 +1748,8 @@ msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 86
 # File: macros/scicos_scicos/bad_connection.sci, line: 112
-# File: macros/scicos_scicos/c_pass2.sci, line: 2099
-# File: macros/scicos_scicos/c_pass2.sci, line: 2116
+# File: macros/scicos_scicos/c_pass2.sci, line: 2098
+# File: macros/scicos_scicos/c_pass2.sci, line: 2115
 #, c-format
 msgid "Output port %s size is: %s"
 msgstr ""
@@ -1757,9 +1757,9 @@ msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 88
 # File: macros/scicos_scicos/bad_connection.sci, line: 113
-# File: macros/scicos_scicos/c_pass2.sci, line: 2080
-# File: macros/scicos_scicos/c_pass2.sci, line: 2100
-# File: macros/scicos_scicos/c_pass2.sci, line: 2117
+# File: macros/scicos_scicos/c_pass2.sci, line: 2079
+# File: macros/scicos_scicos/c_pass2.sci, line: 2099
+# File: macros/scicos_scicos/c_pass2.sci, line: 2116
 #, c-format
 msgid "Input port %s size is: %s"
 msgstr ""
@@ -1800,62 +1800,62 @@ msgid "%s: Error: A scifunc block has not been defined."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2069
+# File: macros/scicos_scicos/c_pass2.sci, line: 2068
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2078
+# File: macros/scicos_scicos/c_pass2.sci, line: 2077
 msgid "Block input has negative size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2090
+# File: macros/scicos_scicos/c_pass2.sci, line: 2089
 msgid "Please compile the diagram to report the error."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2090
+# File: macros/scicos_scicos/c_pass2.sci, line: 2089
 msgid "Unable to report an error into a SuperBlock"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2097
+# File: macros/scicos_scicos/c_pass2.sci, line: 2096
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2102
+# File: macros/scicos_scicos/c_pass2.sci, line: 2101
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2104
-# File: macros/scicos_scicos/c_pass2.sci, line: 2121
+# File: macros/scicos_scicos/c_pass2.sci, line: 2103
+# File: macros/scicos_scicos/c_pass2.sci, line: 2120
 #, c-format
 msgid "Output port %s type."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2105
-# File: macros/scicos_scicos/c_pass2.sci, line: 2122
+# File: macros/scicos_scicos/c_pass2.sci, line: 2104
+# File: macros/scicos_scicos/c_pass2.sci, line: 2121
 #, c-format
 msgid "Input port %s type."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2114
+# File: macros/scicos_scicos/c_pass2.sci, line: 2113
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2119
+# File: macros/scicos_scicos/c_pass2.sci, line: 2118
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"

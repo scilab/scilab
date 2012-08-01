@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 #, c-format
@@ -329,6 +329,9 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
+msgid "Use SciNotes"
+msgstr ""
+
 msgid "External editor: "
 msgstr ""
 
@@ -375,6 +378,9 @@ msgid "Wrap lines"
 msgstr ""
 
 msgid "Keywords"
+msgstr ""
+
+msgid "Enable keywords colorization"
 msgstr ""
 
 msgid "Set syntax Colors"
@@ -671,7 +677,6 @@ msgstr "Ersetzen"
 msgid "Replace All"
 msgstr "Alle ersetzen"
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "ungültiger regulärer Ausdruck: %s"
 
@@ -687,11 +692,9 @@ msgstr "Sie haben das Ende des Dokuments erreicht"
 msgid "You have reached the beginning of the document"
 msgstr "Sie haben den Anfang des Dokument erreicht"
 
-#, c-format
 msgid "String %s not found"
 msgstr "Zeichenkette %s nicht gefunden"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -710,7 +713,6 @@ msgstr ""
 " wurde seit dem letzten Speichern geändert\n"
 "Speichern?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -799,14 +801,12 @@ msgstr ""
 msgid "Show the definition of the macro "
 msgstr ""
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Unknown function"
 msgstr ""
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
@@ -822,7 +822,6 @@ msgstr "Datei konnte nicht gespeichert werden."
 msgid "The file could not be converted."
 msgstr "Die Datei konnte nicht konvertiert werden."
 
-#, c-format
 msgid "%s is a directory."
 msgstr "»%s« ist ein Ordner."
 
@@ -847,7 +846,6 @@ msgstr ""
 msgid "No text to execute."
 msgstr ""
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -858,14 +856,12 @@ msgstr ""
 msgid "Cannot guess the file encoding."
 msgstr ""
 
-#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
-#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -983,15 +979,12 @@ msgstr ""
 msgid "Search in Files..."
 msgstr ""
 
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr ""
 

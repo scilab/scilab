@@ -61,10 +61,10 @@ int sci_mylhs(char * fname)
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="OutputArgument">OutputArgument</link>
+        <link linkend="getNbOutputArgument">getNbOutputArgument</link>
       </member>
       <member>
-        <link linkend="InputArgument">InputArgument</link>
+        <link linkend="getNbInputArgument">getNbInputArgument</link>
       </member>
       <member>
         <link linkend="sciprint">sciprint</link>

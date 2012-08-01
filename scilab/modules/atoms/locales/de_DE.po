@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 #, c-format
@@ -194,6 +194,28 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: m x 2 oder m x 3 "
+"Zeichenkettenmatrix erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: alle Module sollten eingerichtet "
+"sein.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: 'user' oder 'allusers' oder "
+"'all' erwartet.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
@@ -330,14 +352,6 @@ msgid ""
 msgstr ""
 "%s: Falsche Größe des Eingangsarguments #%d: Eine Boolesche Variable oder "
 "einzelner String erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
-msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: 'user' oder 'allusers' oder "
-"'all' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -657,9 +671,8 @@ msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
 msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: muß Atoms Paketname sein.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -903,20 +916,6 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: 1x2 Zeichenkettenmatrix "
 "erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-"%s: Falsche Größe für Eingangsargument #%d: m x 2 oder m x 3 "
-"Zeichenkettenmatrix erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: alle Module sollten eingerichtet "
-"sein.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"

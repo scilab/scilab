@@ -6,7 +6,7 @@
 // =============================================================================
 //
 // <-- Non-regression test for bug 11096 -->
-// <-- TEST WITH GRAPHICS -->
+// <-- TEST WITH GRAPHIC -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/11096

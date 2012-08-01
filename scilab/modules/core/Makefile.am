@@ -93,6 +93,7 @@ src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
 src/c/windowsChangeManagement.c \
 src/c/setieee.c \
+src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c
 
@@ -295,6 +296,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
+	-I$(top_srcdir)/modules/external_objects/includes/ \
 	$(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
@@ -377,7 +379,8 @@ includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
-includes/Thread_Wrapper.h
+includes/Thread_Wrapper.h \
+includes/backtrace_print.h
 
 if GUI
 USEANT=1

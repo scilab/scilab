@@ -31,19 +31,19 @@
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string, a path </para>
+	  <para>a character string, a path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>filespec</term>
         <listitem>
-          <para>a character stirng, a file specification, for example <literal>"*.sce"</literal> </para>
+          <para>a character stirng, a file specification, for example <literal>"*.sce"</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>a column vector of strings, filenames</para>
+          <para>a column vector of strings, filenames.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -52,7 +52,7 @@
     <title>Description</title>
     <para>
       Finding all files with a given file specification
-      <literal>filespec</literal>.
+      <varname>filespec</varname>.
     </para>
   </refsection>
   <refsection>

@@ -7,7 +7,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -46,9 +46,9 @@
   <refsection>
     <title>Description</title>
     <para>
-      This function provides a switch between the different drivers.
-      Direct rendering on the screen or off-screen export without any graphical user interface.
-      Use without any input argument, the driver function returns the current graphics driver name.
+      <para>This function provides a switch between the different drivers for export or display.</para>
+      <para>Direct rendering on the screen or off-screen export without any graphical user interface. This is available in the mode scilab-adv-cli (or also called -nw)</para>
+      <para>Used without any input argument, the driver function returns the current graphics driver name.</para>
     </para>
   </refsection>
   <refsection>

@@ -26,7 +26,8 @@
 #include "localization.h"
 
 #include "CurrentObject.h"
-
+#include "HandleManagement.h"
+#include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -45,12 +46,21 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
 
     char *pstSubWinUID = NULL;
     char *pstFigureUID = NULL;
+    char *pstCompoundUID = NULL;
     int iSubWinForeground = 0;
     int *piSubWinForeground = &iSubWinForeground;
 
     int iImmediateDrawing = 0;
     int *piImmediateDrawing = &iImmediateDrawing;
     int iFalse = 0;
+
+    int iColorMapSize = 0;
+    int* piColorMapSize = &iColorMapSize;
+    int iForeGround = 0;
+    int* piForeGround = &iForeGround;
+
+    int iVisible = 0;
+    int *piVisible = &iVisible;
 
     CheckRhs(2, 3);
 
@@ -104,26 +114,24 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     getGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
     setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
 
+    //get color map size
+    getGraphicObjectProperty(pstFigureUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
+
+    //get current foreground color
+    getGraphicObjectProperty(pstSubWinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
+
+    // Create compound.
+    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
+    /* Sets the parent-child relationship for the Compound */
+    setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
+
     for (i = 0; i < n1; ++i)
     {
         if (m3 == 1 || n3 == 1) /* color vector specified */
         {
             if (*istk(l3 + i) == 0)
             {
-                int iColorMapSize = 0;
-                int* piColorMapSize = &iColorMapSize;
-                int iForeGround = 0;
-                int* piForeGround = &iForeGround;
-                char* psubwinUID = (char*)getOrCreateDefaultSubwin();
-                char* pstParentUID = NULL;
-
-                //get color map size
-                getGraphicObjectProperty(psubwinUID, __GO_PARENT_FIGURE__, jni_int, (void**)&pstParentUID);
-                getGraphicObjectProperty(pstParentUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
-
-                //get current foreground color
-                getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
-
                 if (iForeGround == -1)
                 {
                     iSubWinForeground = iColorMapSize + 1;
@@ -148,18 +156,19 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         {
             Objfpoly(stk(l1 + (i * m1)), stk(l2 + (i * m1)), m1, istk(l3 + i * m3), &hdl, v1);
         }
+
+        // Add newly created object to Compound
+        setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
     }
 
 
-
-    /** Construct Compound and make it current object**/
-    {
-        char * o = ConstructCompoundSeq(n1);
-        setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
-    }
+    setCurrentObject(pstCompoundUID);
 
     setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &piImmediateDrawing, jni_bool, 1);
+    getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+
+    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+
 
     LhsVar(1) = 0;
     PutLhsVar();

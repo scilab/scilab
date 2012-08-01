@@ -4,7 +4,7 @@
  *
  * The following statement of license applies *only* to this header file,
  * and *not* to the other files distributed with FFTW or derived therefrom:
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -84,9 +84,9 @@ extern "C"
 #if defined(FFTW_DLL) && (defined(_WIN32) || defined(__WIN32__))
    /* annoying Windows syntax for shared-library declarations */
 #  if defined(COMPILING_FFTW) /* defined in api.h when compiling FFTW */
-#    define FFTW_EXTERN extern __declspec(dllexport) 
+#    define FFTW_EXTERN extern __declspec(dllexport)
 #  else /* user is calling FFTW; import symbol */
-#    define FFTW_EXTERN extern __declspec(dllimport) 
+#    define FFTW_EXTERN extern __declspec(dllimport)
 #  endif
 #else
 #  define FFTW_EXTERN extern
@@ -107,7 +107,7 @@ struct fftw_iodim_do_not_use_me {
 /*
   huge second-order macro that defines prototypes for all API
   functions.  We expand this macro for each supported precision
- 
+
   X: name-mangling macro
   R: real data type
   C: complex data type

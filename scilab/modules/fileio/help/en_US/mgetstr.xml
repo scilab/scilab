@@ -15,7 +15,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mgetstr" xml:lang="en">
   <refnamediv>
     <refname>mgetstr</refname>
-    <refpurpose>read a character string from a file</refpurpose>
+    <refpurpose>reads a character string from a file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -27,7 +27,7 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>Non negative integer: how many characters should be
+          <para>non-negative integer: how many characters should be
             read.
           </para>
         </listitem>
@@ -36,20 +36,15 @@
         <term>fd</term>
         <listitem>
           <para>
-            Integer file descriptor as returned by 
-            <link linkend="mopen">
-              <literal>mopen</literal>
-            </link>
-            :where
-            characters should be read. The value <literal>-1</literal>
-            stands for the last opened file and is the default.
+            an integer: file descriptor as returned by 
+            <link linkend="mopen">mopen</link>: where characters should be read. The value <literal>-1</literal> stands for the last opened file and is the default.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>The character string read.</para>
+          <para>the character string to be read.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,19 +52,19 @@
   <refsection>
     <title>Description</title>
     <para>
-      The <literal>mgetstr</literal> function attempts to read up
-      to <literal>n</literal> characters from a file. If end of file is
-      reached before <literal>n</literal> characters are read,
-      <literal>mgetstr</literal> returns the properly read values
+      The <function>mgetstr</function> function attempts to read up
+      to <varname>n</varname> characters from a file. If end of file is
+      reached before <varname>n</varname> characters are read,
+      <function>mgetstr</function> returns the properly read values
       only. As a consequence, when the read cursor is already at the end
-      of the file when <literal>mgetstr</literal> is called, it returns
+      of the file when <function>mgetstr</function> is called, it returns
       an empty string no matter what value is provided for
-      <literal>n</literal>.
+      <varname>n</varname>.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[
       fn = SCI + '/ACKNOWLEDGEMENTS'; // absolute path to some file
       details = fileinfo(fn);         // retrieve file details
       len = details(1);               // get file length
@@ -84,7 +79,7 @@
       str4 = mgetstr(10, fd)          // read 10 characters: returns empty string
       length(str4)                    // empty string
       mclose(fd);                     // close file descriptor
-    </programlisting>
+  ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -111,9 +106,6 @@
         <link linkend="mget">mget</link>
       </member>
       <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
         <link linkend="mopen">mopen</link>
       </member>
       <member>
@@ -124,9 +116,6 @@
       </member>
       <member>
         <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
       </member>
       <member>
         <link linkend="mseek">mseek</link>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 msgid "bike simulation, stable trajectory"
@@ -97,11 +97,6 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d или %d.\n"
-
-#, c-format
-msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: %s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

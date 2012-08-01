@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function colordef(varargin)
@@ -29,7 +29,7 @@ function colordef(varargin)
     if type(a1)==9 then //First argument is an handle
       f=a1;
       a1=a2;
-      if f.type<>'Figure' then 
+      if f.type<>'Figure' then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "colordef", 1,"handle on a figure, ""new"""));
       end
       scf(f);
@@ -51,20 +51,20 @@ function colordef(varargin)
   select convstr(a1)
   case 'white'
     f.color_map=[jetcolormap(64);[1 1 1]*0.8];
-    f.background=65;f.foreground=-1;
+    f.background=65;
     a.background=-2;a.foreground=-1;
     a.font_color=a.foreground;
     a.mark_foreground=a.foreground;
   case 'black'
     if getos() == 'Windows' then c=0.2, else c=0.35,end
     f.color_map=[jetcolormap(64);[1 1 1]*c];
-    f.background=65;f.foreground=-2;
+    f.background=65;
     a.background=-1;a.foreground=-2;
     a.font_color=a.foreground;
     a.mark_foreground=a.foreground;
   case 'none'
     f.color_map=[hsvcolormap(64)];
-    f.background=-1;f.foreground=-2;
+    f.background=-1;
     a.background=-1;a.foreground=-2;
     a.font_color=a.foreground;
     a.mark_foreground=a.foreground;

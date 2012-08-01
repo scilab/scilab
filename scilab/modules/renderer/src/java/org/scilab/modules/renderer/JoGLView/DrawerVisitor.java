@@ -16,7 +16,6 @@ import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.data.AbstractDataProvider;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
@@ -115,6 +114,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 GraphicObjectProperties.__GO_ID__,
             }));
 
+    private static final boolean DEBUG_MODE = false;
+
     private final Component component;
     private final Canvas canvas;
     private final Figure figure;
@@ -135,7 +136,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
 
-    private DrawingTools drawingTools = null;
+    private DrawingTools drawingTools;
     private Texture colorMapTexture;
     private ColorMap colorMap;
 
@@ -282,15 +283,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void askAcceptVisitor(String[] childrenId) {
         if (childrenId != null) {
 
-            for (int i = childrenId.length - 1 ; i >= 0 ; --i) {
+            for (int i = childrenId.length - 1; i >= 0; --i) {
                 GraphicObject child = GraphicController.getController().getObjectFromId(childrenId[i]);
                 if (child != null) {
                     try {
                         child.accept(this);
-                    } catch (Exception e) {
-                        System.err.println("[DEBUG] Try to draw an already removed object");
-                        System.err.println("[DEBUG] " + e);
-                        System.err.println("[DEBUG] Skipped...");
+                    } catch (ObjectRemovedException e) {
+                        if (DEBUG_MODE) {
+                            System.err.println("[DEBUG] Try to draw an already removed object");
+                            System.err.println("[DEBUG] " + e);
+                            System.err.println("[DEBUG] Skipped...");
+                        }
                     }
                 }
             }
@@ -311,7 +314,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 try {
                     currentAxes = axes;
                     axesDrawer.draw(axes);
-                } catch (Exception e) {
+                } catch (SciRendererException e) {
                     invalidate(axes, e);
                 }
             }
@@ -324,7 +327,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
                 contouredObjectDrawer.draw(arc, currentAxes.getViewAsEnum() == ViewType.VIEW_2D);
-            } catch (Exception e) {
+            } catch (OutOfMemoryException e) {
+                invalidate(arc, e);
+            } catch (SciRendererException e) {
+                invalidate(arc, e);
+            } catch (ObjectRemovedException e) {
                 invalidate(arc, e);
             }
             axesDrawer.disableClipping(arc.getClipProperty());
@@ -353,7 +360,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             axesDrawer.enableClipping(currentAxes, fec.getClipProperty());
             try {
                 fecDrawer.draw(fec);
-            } catch (Exception e) {
+            } catch (OutOfMemoryException e) {
                 invalidate(fec, e);
             }
             axesDrawer.disableClipping(fec.getClipProperty());
@@ -368,7 +375,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
             drawingTools.clearDepthBuffer();
-            if (figure.getVisible()) {
+            if (figure.getVisible() && figure.getImmediateDrawing()) {
                 askAcceptVisitor(figure.getChildren());
             }
         }
@@ -387,7 +394,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(grayplot, e);
+            } catch (SciRendererException e) {
+                invalidate(grayplot, e);
+            } catch (OutOfMemoryException e) {
                 invalidate(grayplot, e);
             }
             axesDrawer.disableClipping(grayplot.getClipProperty());
@@ -420,7 +431,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     modelViewStack.pop();
                     modelViewStack.pop();
                 }
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(matplot, e);
+            } catch (SciRendererException e) {
+                invalidate(matplot, e);
+            } catch (OutOfMemoryException e) {
                 invalidate(matplot, e);
             }
             axesDrawer.disableClipping(matplot.getClipProperty());
@@ -432,7 +447,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (label.isValid() && label.getVisible()) {
             try {
                 labelManager.draw(drawingTools, colorMap, label, axesDrawer);
-            } catch (Exception e) {
+            } catch (SciRendererException e) {
                 invalidate(label, e);
             }
         }
@@ -443,7 +458,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (legend.isValid() && legend.getVisible()) {
             try {
                 legendDrawer.draw(legend);
-            } catch (Exception e) {
+            } catch (SciRendererException e) {
                 invalidate(legend, e);
             }
         }
@@ -508,7 +523,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                     drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
                 }
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(polyline, e);
+            } catch (OutOfMemoryException e) {
+                invalidate(polyline, e);
+            } catch (SciRendererException e) {
                 invalidate(polyline, e);
             }
             axesDrawer.disableClipping(polyline.getClipProperty());
@@ -521,7 +540,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             axesDrawer.enableClipping(currentAxes, rectangle.getClipProperty());
             try {
                 contouredObjectDrawer.draw(rectangle, currentAxes.getCamera().getView() == ViewType.VIEW_2D);
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(rectangle, e);
+            } catch (OutOfMemoryException e) {
+                invalidate(rectangle, e);
+            } catch (SciRendererException e) {
                 invalidate(rectangle, e);
             }
             axesDrawer.disableClipping(rectangle.getClipProperty());
@@ -591,7 +614,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(fac3d, e);
+            } catch (OutOfMemoryException e) {
+                invalidate(fac3d, e);
+            } catch (SciRendererException e) {
                 invalidate(fac3d, e);
             }
             axesDrawer.disableClipping(fac3d.getClipProperty());
@@ -661,7 +688,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
-            } catch (Exception e) {
+            } catch (ObjectRemovedException e) {
+                invalidate(plot3d, e);
+            } catch (OutOfMemoryException e) {
+                invalidate(plot3d, e);
+            } catch (SciRendererException e) {
                 invalidate(plot3d, e);
             }
             axesDrawer.disableClipping(plot3d.getClipProperty());
@@ -725,7 +756,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
                                            champ.getColored(), champ.getLineColor());
                 }
-            } catch (Exception e) {
+            } catch (OutOfMemoryException e) {
+                invalidate(champ, e);
+            } catch (ObjectRemovedException e) {
+                invalidate(champ, e);
+            } catch (SciRendererException e) {
                 invalidate(champ, e);
             }
             axesDrawer.disableClipping(champ.getClipProperty());
@@ -768,7 +803,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
                                            true, segs.getLineColor());
                 }
-            } catch (Exception e) {
+            } catch (OutOfMemoryException e) {
+                invalidate(segs, e);
+            } catch (ObjectRemovedException e) {
+                invalidate(segs, e);
+            } catch (SciRendererException e) {
                 invalidate(segs, e);
             }
             axesDrawer.disableClipping(segs.getClipProperty());
@@ -914,8 +953,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param exception the cause of invalidation.
      */
     public void invalidate(GraphicObject graphicObject, Exception exception) {
-        System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier() + "\" has been invalidated: " + exception.getMessage());
-        exception.printStackTrace();
+        if (DEBUG_MODE) {
+            System.err.println("The " + graphicObject.getType() + " \"" + graphicObject.getIdentifier()
+                               + "\" has been invalidated: " + exception.getMessage());
+            exception.printStackTrace();
+        }
         GraphicController.getController().setProperty(graphicObject.getIdentifier(), GraphicObjectProperties.__GO_VALID__, false);
     }
 

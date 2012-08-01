@@ -92,7 +92,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     CheckScalar(5, pipo, unbis);
     if ((*istk(me) < 0) || (*istk(me) > n))
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: %s must be a integer in the range 0 to %d.\n"), fname, 5, "me", n);
+        Scierror(999, _("%s: Wrong value for input argument #%d: %s must be an integer in the range 0 to %d.\n"), fname, 5, "me", n);
         return 0;
     }
 

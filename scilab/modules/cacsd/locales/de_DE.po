@@ -14,8 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -532,6 +540,11 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: Iteration %s, Fehler=%s.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
@@ -825,6 +838,9 @@ msgid ""
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: lineares dynamisches System "
 "erwartet.\n"
+
+msgid "Phase (Deg)"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

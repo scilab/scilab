@@ -12,6 +12,7 @@
 
 package org.scilab.tests.modules.xcos.graph;
 
+import java.awt.GraphicsEnvironment;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
@@ -24,8 +25,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.junit.*;
 
 /**
  * Test the behavior of the {@link ScicosParameters} class.
@@ -37,6 +39,11 @@ public class ScicosParametersTest {
     private static final Field[] DEFAULT_VALUES;
     private static final Method[] GETTERS;
     private static final Method[] SETTERS;
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
 
     /**
      * Initialize FIELDS, GETTERS and SETTERS and DEFAULT_VALUES.
@@ -118,6 +125,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkInitValues() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
 
         for (int i = 0; i < DEFAULT_VALUES.length; i++) {
@@ -132,6 +143,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansNamedProperties() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         for (int i = 0; i < DEFAULT_VALUES.length; i++) {
             Field f = DEFAULT_VALUES[i];
             String field = FIELDS[i];
@@ -146,6 +161,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansPropertyChangeEvent() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
         final List<PropertyChangeEvent> receivedEvents = new ArrayList<PropertyChangeEvent>();
 
@@ -217,6 +236,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansVetoableChangeEvent() throws IllegalArgumentException, IllegalAccessException, InstantiationException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
         final List<PropertyVetoException> receivedExceptions = new ArrayList<PropertyVetoException>();
 

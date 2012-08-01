@@ -198,8 +198,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
   iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
-    messagebox(msprintf(_('Diagram contains implicit blocks,\n'+..
-	     'compiling for implicit Solver.')),"modal","info")
+    warning(_('Diagram contains implicit blocks, compiling for implicit Solver.'))
     %scicos_solver=100
   end
   if %scicos_solver==100 then xc0=[xc0;xcd0],end

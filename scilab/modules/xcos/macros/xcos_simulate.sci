@@ -57,6 +57,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     %cpr        = struct();
     %tcur       = 0;
     %cpr.state  = %state0;
+    alreadyran = %f;
   else
     %state0 = %cpr.state;
     alreadyran = %f;
@@ -140,7 +141,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   //** switch appropriate solver
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
-    message(["Diagram has been compiled for implicit solver"
+    warning(["Diagram has been compiled for implicit solver"
              "switching to implicit Solver"])
     solver = 100 ; //** Magic number
     tolerances(6) = solver ; //** save Magic number solver type

@@ -4,11 +4,11 @@
  * Copyright (C) 2001 - INRIA - François DELEBECQUE
  * Copyright (C) 2001 - ENPC - Jean-Philippe CHANCELIER
  * Copyright (C) 2005 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,9 +19,9 @@
    NAME
      sci_tools
    PURPOSE
-     
+
    NOTES
-     
+
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
@@ -97,96 +97,86 @@
 #include "localization.h"
 #include "Scierror.h"
 
-void 
-C2F(ccomplexf)(int *n, double **ip, double *op)
-{
-  memcpy(op, *ip, *n * sizeof(double));
-
-  /* int i */
-  /*   for (i = *n; --i >= 0; ) { */
-  /*     op[i] = (*ip)[i];*/		/* TODO: replace by memcpy */ 
-  /*   } */
-  
-  SET_TYPE_COMPLEX(op);		        /* type is complex */
-  SET_NB_ROW(op,  NB_ROW(op) / 2);	/* nb  row is halfed */
-
-  FREE((char*) (*ip));
-} /* ccomplexf */
-
 void SciToF77(double *ptr, int size, int lda)
 {
-  int i;
-  double *tab;
-  
-  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    Scierror(999,_("%s: No more memory.\n"),"SciToF77");
-    return;
-  }
+    int i;
+    double *tab;
 
-  /* for (i = size; --i >= 0; ) { */
-  /*     tab[i] = ptr[i]; */
-  /*   } */
+    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "SciToF77");
+        return;
+    }
 
-  memcpy(tab, ptr, size * sizeof(double));
+    /* for (i = size; --i >= 0; ) { */
+    /*     tab[i] = ptr[i]; */
+    /*   } */
 
-  for (i = 0; i < size; ++i) {
-    ptr[2*i] = tab[i];
-    ptr[2*i+1] = ptr[lda+i];
-  }
+    memcpy(tab, ptr, size * sizeof(double));
 
-  FREE(tab);
+    for (i = 0; i < size; ++i)
+    {
+        ptr[2 * i] = tab[i];
+        ptr[2 * i + 1] = ptr[lda + i];
+    }
+
+    FREE(tab);
 } /* SciToF77 */
 
 
 void F77ToSci(double *ptr, int size, int lda)
 {
-  int i;
-  double *tab;
-  
-  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    Scierror(999,_("%s: No more memory.\n"),"F77ToSci");
-    return;
-  }
-  
-  for (i = 0; i < size; ++i) {
-    tab[i] = ptr[2*i+1];
-    ptr[i] = ptr[2*i];
-  }
+    int i;
+    double *tab;
 
-  memcpy(ptr + lda, tab, size * sizeof(double));
+    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "F77ToSci");
+        return;
+    }
 
-  /*   for (i = size; --i >= 0; ) { */
-  /*     ptr[lda+i] = tab[i]; */
-  /*   } */
+    for (i = 0; i < size; ++i)
+    {
+        tab[i] = ptr[2 * i + 1];
+        ptr[i] = ptr[2 * i];
+    }
 
-  FREE(tab);
+    memcpy(ptr + lda, tab, size * sizeof(double));
+
+    /*   for (i = size; --i >= 0; ) { */
+    /*     ptr[lda+i] = tab[i]; */
+    /*   } */
+
+    FREE(tab);
 } /* F77ToSci */
 
 
-/* double2z and z2double : same as above with two pointers dest and src 
-   double2z ptr = src, ptr77z = dest (z format)     
-   z2double ptr = src (z format) , ptrsci = dest */  
+/* double2z and z2double : same as above with two pointers dest and src
+   double2z ptr = src, ptr77z = dest (z format)
+   z2double ptr = src (z format) , ptrsci = dest */
 
-void 
+void
 double2z(double *ptr, double *ptr77z, int size, int lda)
 {
-  int i;
-  double *tab;
-  
-  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    Scierror(999,_("%s: No more memory.\n"),"double2z");
-    return;
-  }
+    int i;
+    double *tab;
 
-  memcpy(tab, ptr, size * sizeof(double));
+    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "double2z");
+        return;
+    }
 
-  for (i = 0; i < size; ++i) {
-    ptr77z[2*i] = tab[i];
-    ptr77z[2*i+1] = ptr[lda+i];
-  }
+    memcpy(tab, ptr, size * sizeof(double));
 
-  FREE(tab);
-} 
+    for (i = 0; i < size; ++i)
+    {
+        ptr77z[2 * i] = tab[i];
+        ptr77z[2 * i + 1] = ptr[lda + i];
+    }
+
+    FREE(tab);
+}
 
 
 //
@@ -194,7 +184,7 @@ double2z(double *ptr, double *ptr77z, int size, int lda)
 //   Converts a memory space which stores a Fortran-like data
 //   in alternate order into the Scilab internal representation
 //   which is block-ordered.
-//   
+//
 // Note:
 //   Fortran representation is based on alternation of real
 //   and imaginary parts, that is R1, I1, R2, I2, etc...
@@ -202,25 +192,27 @@ double2z(double *ptr, double *ptr77z, int size, int lda)
 //   The Scilab internal representation is block-ordered, that is
 //   R1, ..., Rn, I1, ..., In.
 //
-void 
+void
 z2double(double *ptrz, double *ptrsci, int size, int lda)
 {
-  int i;
-  double *tab;
-  
-  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    Scierror(999,_("%s: No more memory.\n"),"z2double");
-    return;
-  }
-  // Put the real parts in place and stores the imaginary parts
-  // in the array tab.
-  for (i = 0; i < size; ++i) {
-    tab[i] = ptrz[2*i+1]; // imaginary part
-    ptrsci[i] = ptrz[2*i]; // real part
-  }
-  // Puts the imaginary parts in the imaginary block.
-  memcpy(ptrsci + lda, tab, size * sizeof(double));
+    int i;
+    double *tab;
 
-  FREE(tab);
-} 
+    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "z2double");
+        return;
+    }
+    // Put the real parts in place and stores the imaginary parts
+    // in the array tab.
+    for (i = 0; i < size; ++i)
+    {
+        tab[i] = ptrz[2 * i + 1]; // imaginary part
+        ptrsci[i] = ptrz[2 * i]; // real part
+    }
+    // Puts the imaginary parts in the imaginary block.
+    memcpy(ptrsci + lda, tab, size * sizeof(double));
+
+    FREE(tab);
+}
 

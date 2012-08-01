@@ -21,6 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
 
@@ -69,6 +70,8 @@ public final class SwingViewMenu {
             }
         } else if (property.equals(__GO_UI_ENABLE__)) {
             uimenu.setEnabled((Boolean) value);
+        } else if (property.equals(__GO_VISIBLE__)) {
+            uimenu.setVisible((Boolean) value);
         } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
             Double[] allColors = ((Double[]) value);
             uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),

@@ -39,7 +39,7 @@
         <listitem>
           <para>
             a <literal>tlist</literal> of type <literal>dir</literal> with fields :
-            <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> and <literal>isdir</literal>
+            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> and <varname>isdir</varname>
           </para>
         </listitem>
       </varlistentry>
@@ -48,34 +48,34 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>dir</literal> can be used to get the files which match 
+      <function>dir</function> can be used to get the files which match 
       the patterns given by the path argument. 
-      Patterns are given to the Unix <literal>ls</literal> or to the Windows
-      <literal>dir</literal> commands in order to get information about files. 
+      Patterns are given to the Unix <command>ls</command> or to the Windows
+      <command>dir</command> commands in order to get information about files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
       for both OS are to be given. Note that pathname conversion is
       performed and for example <literal>SCI/modules/core/macros/*.sci</literal>
 	  is a valid pattern for both Unix and Windows.
     </para>
     <para>
-      The <literal>name</literal> field of the returned variable is the column vector
+      The <varname>name</varname> field of the returned variable is the column vector
       of the file names.
     </para>
     <para>
-      The <literal>date</literal> field of the returned variable is the column vector
+      The <varname>date</varname> field of the returned variable is the column vector
       of integers containing a last modification date coded in second from 1 Jan 1970.
     </para>
     <para>
-      The <literal>bytes</literal> field of the returned variable is the column vector
+      The <varname>bytes</varname> field of the returned variable is the column vector
       of integers containing the size of the files in bytes.
     </para>
     <para>
-      The <literal>isdir</literal> field of the returned variable is the column vector
+      The <varname>isdir</varname> field of the returned variable is the column vector
       of boolean true if the corresponding name is a directory.
     </para>
     <para>
       The default display of the returned structure is a column formatted list
-      of files. It can be changed redefining the function <literal>%dir_p</literal>.
+      of files. It can be changed redefining the function <function>%dir_p</function>.
     </para>
     <para>
       Since Scilab 5.3.1, a trailing "/" or "\" (See <link linkend="filesep">filesep</link>) is displayed for each directory.

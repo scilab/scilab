@@ -101,8 +101,8 @@ indent() {
     do
         local ext=$(expr "$file" : ".*\(\..*\)")
         case $ext in
-        .xcos|.xml)
-            __indent_Xml;
+        .xcos|.xml|.xsl)
+            __indent_xml;
         ;;
         .h|.c|.hxx|.cpp)
             __indent_C;
@@ -117,7 +117,7 @@ indent() {
 }
 
 # Indent the file with xmlindent if this is an xcos file
-__indent_Xml() {
+__indent_xml() {
 
     if test ! -x "$XMLINDENT"
     then
@@ -140,8 +140,8 @@ __indent_Xml() {
     fi
 
     echo "Formatting" $file
-    "$XMLINDENT" -i 2 -o "$file" "$file" || return 4;
-    git add "$file" || return 5;
+    "$XMLINDENT" -i 4 -o "$file" "$file" || return 4;
+    git add "$file" || return 5;
 }
 
 # Pre process before the indent

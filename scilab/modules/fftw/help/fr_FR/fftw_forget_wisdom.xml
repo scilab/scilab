@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_forget_wisdom">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - Allan Layec - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_forget_wisdom">
   <refnamediv>
     <refname>fftw_forget_wisdom</refname>
     <refpurpose>Re-initialise le wisdom fftw</refpurpose>
@@ -8,6 +24,15 @@
     <title>Séquence d'appel</title>
     <synopsis>fftw_forget_wisdom()</synopsis>
   </refsynopsisdiv>
+  <refsection>
+    <title>Attention</title>
+     <para> 
+       Cette fonction n'est pas implémentée lorsque Scilab utilise la
+       bibliuthèque MKL d'Intel (c'est en particulier le cas des
+       binaires Windows officiels).
+     </para>
+ </refsection>
+
   <refsection>
     <title>Description</title>
     <para>
@@ -28,9 +53,6 @@ fftw_forget_wisdom();
   <refsection role="see also">
     <title>Voir aussi</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="fftw">fftw</link>
-      </member>
       <member>
         <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
       </member>

@@ -276,7 +276,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void addFocusListener(FocusListener listener) {
-        getParentAxes().addFocusListener(listener);
+        //        getParentAxes().addFocusListener(listener);
     }
 
     /**

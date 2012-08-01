@@ -43,6 +43,10 @@
 #include "getConsoleIdentifier.h"
 #include "CurrentSubwin.h"
 #include "sciprint.h"
+
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, unsigned long fname_len)
 {
@@ -144,6 +148,7 @@ int sci_delete(char *fname, unsigned long fname_len)
     }
     for (i = 0; i < nb_handles; i++)
     {
+        char* pstTemp = NULL;
         if (Rhs != 0)
         {
             hdl = (unsigned long) * hstk(l1 + i); /* Puts the value of the Handle to hdl */
@@ -178,6 +183,9 @@ int sci_delete(char *fname, unsigned long fname_len)
             Scierror(999, _("A Label object cannot be deleted.\n"));
             return 0;
         }
+
+        //bug #11485 : duplicate pobjUID before delete it.
+        pstTemp = strdup(pobjUID);
         deleteGraphicObject(pobjUID);
 
         /*
@@ -200,7 +208,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                 getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_string, (void **)&pstChildType);
                 if (strcmp(pstChildType, __GO_AXES__) == 0)
                 {
-                    if (strcmp(getCurrentSubWin(), pobjUID) == 0) // Current axes has been deleted
+                    if (strcmp(getCurrentSubWin(), pstTemp) == 0) // Current axes has been deleted
                     {
                         setCurrentSubWin(pstChildren[iChild]);
                     }
@@ -217,6 +225,8 @@ int sci_delete(char *fname, unsigned long fname_len)
                 cloneAxesModel(pstParentUID);
             }
         }
+
+        FREE(pstTemp);
     }
 
     if (!dont_overload)

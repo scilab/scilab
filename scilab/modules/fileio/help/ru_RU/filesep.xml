@@ -33,7 +33,9 @@
   </refsection>
   <refsection>
     <title>Описание</title>
-    <para>Возвращает разделитель директорий( '/' в GNU/Linux или '\' в Windows ).</para>
+    <para>
+      Функция <function>filesep</function> возвращает разделитель директорий(<literal>'/'</literal> в GNU/Linux или <literal>'\'</literal> в Windows).
+    </para>
   </refsection>
   <refsection>
     <title>Примеры</title>

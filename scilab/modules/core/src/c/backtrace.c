@@ -18,7 +18,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <assert.h>
+#include <assert.h>//
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +37,9 @@
 #endif
 
 #define __USE_GNU
+#ifndef _MSC_VER
 #include <dlfcn.h>
+#endif
 
 #include "backtrace.h"
 

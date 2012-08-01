@@ -162,7 +162,7 @@ static void initial_c1_local(void)
 #define VarType(n)   C2F(vartype)((c_local=n,&c_local))
 #define ElementType(n,m)   C2F(elementtype)((c_local=n,&c_local),(c1_local=m,&c1_local))
 
-#define OverLoad(n) C2F(overload)((c_local = n +Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
+#define OverLoad(n) C2F(overload)((c_local = (n == 0) ? n : n + Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
 
 /**
  * <long-description>

@@ -190,7 +190,7 @@
         <term>-nw</term>
         <listitem>
           <para>If this option is present, Scilab is started as command line
-            with advanced features (graphics...).
+            with advanced features still available (graphics, export, xcos, scinotes, help browser, ...).
           </para>
           <para>
             This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
@@ -215,7 +215,7 @@
         <term>-nwni / -nogui</term>
         <listitem>
           <para>If this option is present, Scilab is started as command line
-            without advanced features.
+            without advanced features (graphics, export, xcos, scinotes, help browser, ...).
           </para>
           <para>
             This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
@@ -224,8 +224,7 @@
           <itemizedlist>
             <listitem>
               <para>Scilab distribution also provides a dedicated binary which
-                is doing the same as <literal>-nwni</literal>: <literal>scilab-cli</literal> (Scilab Command Line
-                Interpreter).
+                is doing the same as <literal>-nwni</literal>: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
               </para>
             </listitem>
           </itemizedlist>
@@ -325,6 +324,7 @@
             value, check that the value does not exceed the memory available on
             the system.
           </para>
+          <para>Since Scilab 5.4.0, this value can be changed in the preferences menu.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

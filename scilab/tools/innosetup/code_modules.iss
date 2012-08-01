@@ -217,6 +217,11 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
             end;
 
+        if IsComponentSelected( ExpandConstant('{#COMPN_EXTERNAL_OBJECTS}') ) then
+            begin
+                ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
+            end;
+
         if IsComponentSelected( ExpandConstant('{#COMPN_RANDLIB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="randlib" activate="yes"/>'; i := i + 1;

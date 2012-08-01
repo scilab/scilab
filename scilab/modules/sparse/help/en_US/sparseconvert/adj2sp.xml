@@ -153,7 +153,7 @@ full(adj2sp(xadj,iadj,v))
     <para>
       The previous script produces the following output.
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 -->full(adj2sp(xadj,iadj,v))
  ans  =
     1.    0.    4.  

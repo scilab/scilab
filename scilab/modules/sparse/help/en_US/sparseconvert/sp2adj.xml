@@ -111,7 +111,7 @@ end
     <para>
       The previous script produces the following output.
     </para>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="no-scilab-exec"><![CDATA[ 
 Column #1:
   Rows  = [3;5]:
   Values= [1;2]:

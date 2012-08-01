@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-22 06:16+0000\n"
+"PO-Revision-Date: 2012-07-24 17:17+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1046,7 +1046,6 @@ msgstr "Цвет фона"
 msgid "No print service found."
 msgstr "Служба печати не найдена."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1056,7 +1055,6 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1082,7 +1080,7 @@ msgid "Clear Console"
 msgstr "Очистить командное окно"
 
 msgid "Are you sure you want to clear the console ?"
-msgstr "Вы действительно хотите очистить консоль?"
+msgstr "Вы действительно хотите очистить командное окно?"
 
 msgid "Do not show this message again"
 msgstr "Больше не показывать это сообщение"
@@ -1238,7 +1236,6 @@ msgstr "Сохранить и выполнить"
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1247,11 +1244,9 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
 
@@ -1306,7 +1301,6 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 

@@ -57,6 +57,7 @@ cs_CZ.DescriptionUmfpack =UMFPACK for Scilab
 cs_CZ.DescriptionCompatFunctions =Compatibility functions
 cs_CZ.DescriptionM2sci =M2SCI Toolbox
 cs_CZ.DescriptionMatio =MAT File Input/Output Toolbox
+cs_CZ.DescriptionExternalObjects =External objects
 cs_CZ.DescriptionSound =Sound file handling Toolbox
 cs_CZ.DescriptionRandlib =Randlib Toolbox
 cs_CZ.DescriptionMexlib =Mexlib Tools
