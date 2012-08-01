@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -140,6 +142,11 @@ public class Control extends BaseProperties {
                 cxpositionActionPerformed(evt);
             }
         });
+        cxposition.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cxpositionFocusLost(evt);
+            }
+        });
 
         //Components of the property: Position Y.
         lyposition.setBackground(new Color(255, 255, 255));
@@ -155,6 +162,11 @@ public class Control extends BaseProperties {
         cyposition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cypositionActionPerformed(evt);
+            }
+        });
+        cyposition.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cypositionFocusLost(evt);
             }
         });
 
@@ -174,6 +186,11 @@ public class Control extends BaseProperties {
                 cxsizeActionPerformed(evt);
             }
         });
+        cxsize.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cxsizeFocusLost(evt);
+            }
+        });
 
 	//Components of the property: Size Y.
         lysize.setBackground(new Color(255, 255, 255));
@@ -189,6 +206,11 @@ public class Control extends BaseProperties {
         cysize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cysizeActionPerformed(evt);
+            }
+        });
+        cysize.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cysizeFocusLost(evt);
             }
         });
    }
@@ -325,11 +347,9 @@ public class Control extends BaseProperties {
     }
 
     /**
-    * Updates the property: xPosition.
-    *
-    * @param evt ActionEvent.
+    * Updates the property: Position.
     */
-    private void cxpositionActionPerformed(ActionEvent evt) {
+    private void updatePosition() {
         int setXposition = Integer.parseInt(cxposition.getText());
         int setYposition = Integer.parseInt(cyposition.getText());
         Integer[] setPosition = new Integer[2];
@@ -340,20 +360,45 @@ public class Control extends BaseProperties {
     }
 
     /**
+    * Updates the property: xPosition.
+    *
+    * @param evt ActionEvent.
+    */
+    private void cxpositionActionPerformed(ActionEvent evt) {
+        updatePosition();
+    }
+
+    /**
+    * Updates the property: xPosition.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cxpositionFocusLost(FocusEvent evt) {
+        updatePosition();
+    }
+
+    /**
     * Updates the property: yPosition.
     *
     * @param evt ActionEvent.
     */
     private void cypositionActionPerformed(ActionEvent evt) {
-        cxpositionActionPerformed(evt);
+        updatePosition();
     }
 
     /**
-    * Updates the property: xSize.
+    * Updates the property: yPosition.
     *
-    * @param evt ActionEvent.
+    * @param evt FocusEvent.
     */
-    private void cxsizeActionPerformed(ActionEvent evt) {
+    private void cypositionFocusLost(FocusEvent evt) {
+        updatePosition();
+    }
+
+    /**
+    * Updates the property: Size.
+    */
+    private void updateSize() {
         int setXsize = Integer.parseInt(cxsize.getText());
         int setYsize = Integer.parseInt(cysize.getText());
         Integer[] setSize = new Integer[2];
@@ -364,11 +409,38 @@ public class Control extends BaseProperties {
     }
 
     /**
+    * Updates the property: xSize.
+    *
+    * @param evt ActionEvent.
+    */
+    private void cxsizeActionPerformed(ActionEvent evt) {
+        updateSize();
+    }
+
+    /**
+    * Updates the property: xSize.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cxsizeFocusLost(FocusEvent evt) {
+        updateSize();
+    }
+
+    /**
     * Updates the property: ySize.
     *
     * @param evt ActionEvent.
     */
     private void cysizeActionPerformed(ActionEvent evt) {
-        cxsizeActionPerformed(evt);
+        updateSize();
+    }
+
+    /**
+    * Updates the property: ySize.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cysizeFocusLost(FocusEvent evt) {
+        updateSize();
     }
 }

@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -124,6 +126,11 @@ public class Label extends AxisRulers {
                 cTitlePageActionPerformed(evt);
             }
         });
+        cTitlePage.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cTitlePageFocusLost(evt);
+            }
+        });
 
         //Components of the property: Axis Title.
         bAxisTitle.setSelected(true);
@@ -166,6 +173,11 @@ public class Label extends AxisRulers {
                 cTitleXActionPerformed(evt);
             }
         });
+        cTitleX.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cTitleXFocusLost(evt);
+            }
+        });
 
         lTitleY.setBackground(new Color(255, 255, 255));
         lTitleY.setText(" Y");
@@ -180,6 +192,11 @@ public class Label extends AxisRulers {
                 cTitleYActionPerformed(evt);
             }
         });
+        cTitleY.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cTitleYFocusLost(evt);
+            }
+        });
 
         lTitleZ.setBackground(new Color(255, 255, 255));
         lTitleZ.setText(" Z");
@@ -192,6 +209,11 @@ public class Label extends AxisRulers {
         cTitleZ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cTitleZActionPerformed(evt);
+            }
+        });
+        cTitleZ.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cTitleZFocusLost(evt);
             }
         });
 
@@ -364,19 +386,50 @@ public class Label extends AxisRulers {
     }
 
     /**
+    * Updates the property: Title Axis.
+    * x:0  y:1  z:2
+    */
+    private void axisTitle(int axis) {
+        String[] text = new String[1];
+        String axisLabel = null;
+        switch (axis){
+            case 0:
+                axisLabel = (String) GraphicController.getController()
+                         .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                text[0] = cTitleX.getText();
+                break;
+            case 1:
+                axisLabel = (String) GraphicController.getController()
+                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                text[0] = cTitleY.getText();
+                break;
+            case 2:
+                axisLabel = (String) GraphicController.getController()
+                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                text[0] = cTitleZ.getText();
+                break;
+        }
+        GraphicController.getController()
+                .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        titleAxis();
+    }
+
+    /**
     * Updates the property: x Title Axis.
     *
     * @param evt ActionEvent.
     */
     private void cTitleXActionPerformed(ActionEvent evt) {
-        String axisTitleX = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
-        String[] text = new String[1];
-        text[0] = cTitleX.getText();
-        GraphicController.getController()
-                .setProperty(axisTitleX, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        axisTitle(0);
+    }
 
-        titleAxis();
+    /**
+    * Updates the property: x Title Axis.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cTitleXFocusLost(FocusEvent evt) {
+        axisTitle(0);
     }
 
     /**
@@ -385,13 +438,16 @@ public class Label extends AxisRulers {
     * @param evt ActionEvent.
     */
     private void cTitleYActionPerformed(ActionEvent evt) {
-        String axisTitleY = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
-        String[] text = new String[1];
-        text[0] = cTitleY.getText();
-        GraphicController.getController()
-                .setProperty(axisTitleY, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
-        titleAxis();
+        axisTitle(1);
+    }
+
+    /**
+    * Updates the property: y Title Axis.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cTitleYFocusLost(FocusEvent evt) {
+        axisTitle(1);
     }
 
     /**
@@ -400,13 +456,28 @@ public class Label extends AxisRulers {
     * @param evt ActionEvent.
     */
     private void cTitleZActionPerformed(ActionEvent evt) {
-        String axisTitleZ = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+        axisTitle(2);
+    }
+
+    /**
+    * Updates the property: z Title Axis.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cTitleZFocusLost(FocusEvent evt) {
+        axisTitle(2);
+    }
+
+    /**
+    * Updates the property: Title Page.
+    */
+    private void TitlePage() {
+        String titlePage = (String) GraphicController.getController()
+                .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
         String[] text = new String[1];
-        text[0] = cTitleZ.getText();
+        text[0] = cTitlePage.getText();
         GraphicController.getController()
-                .setProperty(axisTitleZ, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
-        titleAxis();
+                .setProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
     }
 
     /**
@@ -415,11 +486,15 @@ public class Label extends AxisRulers {
     * @param evt ActionEvent.
     */
     private void cTitlePageActionPerformed(ActionEvent evt) {
-        String titlePage = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
-        String[] text = new String[1];
-        text[0] = cTitlePage.getText();
-        GraphicController.getController()
-                .setProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        TitlePage();
+    }
+
+    /**
+    * Updates the property: Title Page.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cTitlePageFocusLost(FocusEvent evt) {
+        TitlePage();
     }
 }

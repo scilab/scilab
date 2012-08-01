@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -174,6 +176,11 @@ public class Position extends Label {
                 cBoundsLeftActionPerformed(evt);
             }
         });
+        cBoundsLeft.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cBoundsLeftFocusLost(evt);
+            }
+        });
 
         lBoundsUp.setBackground(new Color(255, 255, 255));
         lBoundsUp.setText(" " + MessagesGED.up);
@@ -186,6 +193,11 @@ public class Position extends Label {
         cBoundsUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsUpActionPerformed(evt);
+            }
+        });
+        cBoundsUp.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cBoundsUpFocusLost(evt);
             }
         });
 
@@ -202,6 +214,11 @@ public class Position extends Label {
                 cBoundsWidthActionPerformed(evt);
             }
         });
+        cBoundsWidth.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cBoundsWidthFocusLost(evt);
+            }
+        });
 
         lBoundsHeight.setBackground(new Color(255, 255, 255));
         lBoundsHeight.setText(" " + MessagesGED.height);
@@ -214,6 +231,11 @@ public class Position extends Label {
         cBoundsHeight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cBoundsHeightActionPerformed(evt);
+            }
+        });
+        cBoundsHeight.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cBoundsHeightFocusLost(evt);
             }
         });
 
@@ -302,6 +324,11 @@ public class Position extends Label {
                 cMarginsLeftActionPerformed(evt);
             }
         });
+        cMarginsLeft.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cMarginsLeftFocusLost(evt);
+            }
+        });
 
         lMarginsRight.setBackground(new Color(255, 255, 255));
         lMarginsRight.setText(" " + MessagesGED.right);
@@ -314,6 +341,11 @@ public class Position extends Label {
         cMarginsRight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsRightActionPerformed(evt);
+            }
+        });
+        cMarginsRight.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cMarginsRightFocusLost(evt);
             }
         });
 
@@ -330,6 +362,11 @@ public class Position extends Label {
                 cMarginsTopActionPerformed(evt);
             }
         });
+        cMarginsTop.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cMarginsTopFocusLost(evt);
+            }
+        });
 
         lMarginsBottom.setBackground(new Color(255, 255, 255));
         lMarginsBottom.setText(" " + MessagesGED.bottom);
@@ -342,6 +379,11 @@ public class Position extends Label {
         cMarginsBottom.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarginsBottomActionPerformed(evt);
+            }
+        });
+        cMarginsBottom.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
+                cMarginsBottomFocusLost(evt);
             }
         });
 
@@ -560,11 +602,9 @@ public class Position extends Label {
     }
 
     /**
-    * Updates the property: Axes Bounds - Left.
-    *
-    * @param evt ActionEvent.
+    * Updates the property: Axes Bounds.
     */
-    private void cBoundsLeftActionPerformed(ActionEvent evt) {
+    private void updateBounds() {
         Double[] value = new Double[4];
         value[0] = Double.parseDouble(cBoundsLeft.getText());
         value[1] = Double.parseDouble(cBoundsUp.getText());
@@ -576,12 +616,39 @@ public class Position extends Label {
     }
 
     /**
+    * Updates the property: Axes Bounds - Left.
+    *
+    * @param evt ActionEvent.
+    */
+    private void cBoundsLeftActionPerformed(ActionEvent evt) {
+        updateBounds();
+    }
+
+    /**
+    * Updates the property: Axes Bounds - Left.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cBoundsLeftFocusLost(FocusEvent evt) {
+        updateBounds();
+    }
+
+    /**
     * Updates the property: Axes Bounds - Up.
     *
     * @param evt ActionEvent.
     */
     private void cBoundsUpActionPerformed(ActionEvent evt) {
-        cBoundsLeftActionPerformed(evt);
+        updateBounds();
+    }
+
+    /**
+    * Updates the property: Axes Bounds - Up.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cBoundsUpFocusLost(FocusEvent evt) {
+        updateBounds();
     }
 
     /**
@@ -590,7 +657,16 @@ public class Position extends Label {
     * @param evt ActionEvent.
     */
     private void cBoundsWidthActionPerformed(ActionEvent evt) {
-        cBoundsLeftActionPerformed(evt);
+        updateBounds();
+    }
+
+    /**
+    * Updates the property: Axes Bounds - Width.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cBoundsWidthFocusLost(FocusEvent evt) {
+        updateBounds();
     }
 
     /**
@@ -599,15 +675,22 @@ public class Position extends Label {
     * @param evt ActionEvent.
     */
     private void cBoundsHeightActionPerformed(ActionEvent evt) {
-        cBoundsLeftActionPerformed(evt);
+        updateBounds();
     }
 
     /**
-    * Updates the property: Margins - Left.
+    * Updates the property: Axes Bounds - Height.
     *
-    * @param evt ActionEvent.
+    * @param evt FocusEvent.
     */
-    private void cMarginsLeftActionPerformed(ActionEvent evt) {
+    private void cBoundsHeightFocusLost(FocusEvent evt) {
+        updateBounds();
+    }
+
+    /**
+    * Updates the property: Margins.
+    */
+    private void updateMargins() {
         Double[] value = new Double[4];
         value[0] = Double.parseDouble(cMarginsLeft.getText());
         value[1] = Double.parseDouble(cMarginsRight.getText());
@@ -620,12 +703,39 @@ public class Position extends Label {
     }
 
     /**
+    * Updates the property: Margins - Left.
+    *
+    * @param evt ActionEvent.
+    */
+    private void cMarginsLeftActionPerformed(ActionEvent evt) {
+        updateMargins();
+    }
+
+    /**
+    * Updates the property: Margins - Left.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cMarginsLeftFocusLost(FocusEvent evt) {
+        updateMargins();
+    }
+
+    /**
     * Updates the property: Margins - Right.
     *
     * @param evt ActionEvent.
     */
     private void cMarginsRightActionPerformed(ActionEvent evt) {
-        cMarginsLeftActionPerformed(evt);
+        updateMargins();
+    }
+
+    /**
+    * Updates the property: Margins - Right.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cMarginsRightFocusLost(FocusEvent evt) {
+        updateMargins();
     }
 
     /**
@@ -634,7 +744,16 @@ public class Position extends Label {
     * @param evt ActionEvent.
     */
     private void cMarginsTopActionPerformed(ActionEvent evt) {
-        cMarginsLeftActionPerformed(evt);
+        updateMargins();
+    }
+
+    /**
+    * Updates the property: Margins - Top.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cMarginsTopFocusLost(FocusEvent evt) {
+        updateMargins();
     }
 
     /**
@@ -643,6 +762,15 @@ public class Position extends Label {
     * @param evt ActionEvent.
     */
     private void cMarginsBottomActionPerformed(ActionEvent evt) {
-        cMarginsLeftActionPerformed(evt);
+        updateMargins();
+    }
+
+    /**
+    * Updates the property: Margins - Bottom.
+    *
+    * @param evt FocusEvent.
+    */
+    private void cMarginsBottomFocusLost(FocusEvent evt) {
+        updateMargins();
     }
 }
