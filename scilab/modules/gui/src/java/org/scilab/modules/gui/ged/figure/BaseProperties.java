@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,7 +35,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 /**
 * Construction and startup of all components of the section: Base Properties.
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class BaseProperties extends Roof {
     protected static JToggleButton bBaseProperties;
@@ -166,8 +166,10 @@ public class BaseProperties extends Roof {
     private void bBasePropertiesActionPerformed(ActionEvent evt) {
         if (bBaseProperties.isSelected()) {
             pBaseProperties.setVisible(false);
+            HideFigure.checkAllButtons();
         } else {
             pBaseProperties.setVisible(true);
+            HideFigure.checkAllButtons();
         }
     }
 

@@ -66,7 +66,7 @@ public class ShowHide extends CommonCallBack {
     /**
      * Implements a toggle button.
      */
-    public void toggleButton() {
+    public static void toggleButton() {
 	if (click) {
             //Hide all sections.
             action(true);

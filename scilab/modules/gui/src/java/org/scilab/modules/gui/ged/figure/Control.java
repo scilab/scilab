@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +36,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 /**
 * Construction and startup of all components of the section: Control.
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Control extends BaseProperties {
     protected static JToggleButton bControl;
@@ -303,8 +303,10 @@ public class Control extends BaseProperties {
     private void bControlActionPerformed(ActionEvent evt) {
         if (bControl.isSelected()) {
             pControl.setVisible(false);
+            HideFigure.checkAllButtons();
         } else {
             pControl.setVisible(true);
+            HideFigure.checkAllButtons();
         }
     }
 

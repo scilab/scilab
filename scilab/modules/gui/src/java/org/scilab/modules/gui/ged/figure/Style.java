@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -38,7 +38,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 /**
 * Construction and startup of all components of the section: Style/Appeareance.
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Style extends DataProperties {
     protected static JToggleButton bStyle;
@@ -329,8 +329,10 @@ public class Style extends DataProperties {
     private void bStyleActionPerformed(ActionEvent evt) {
         if (bStyle.isSelected()) {
             pStyle.setVisible(false);
+            HideFigure.checkAllButtons();
         } else {
             pStyle.setVisible(true);
+            HideFigure.checkAllButtons();
         }
     }
 

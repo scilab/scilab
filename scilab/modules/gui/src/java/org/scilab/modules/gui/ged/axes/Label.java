@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,7 +33,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 /**
 * Construction and startup of all components of the section: Label.
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Label extends AxisRulers {
     //Header - Label
@@ -332,8 +332,10 @@ public class Label extends AxisRulers {
     private void bLabelActionPerformed(ActionEvent evt) {
         if (bLabel.isSelected()) {
             pLabel.setVisible(false);
+            HideAxis.checkAllButtons();
         } else {
             pLabel.setVisible(true);
+            HideAxis.checkAllButtons();
         }
     }
 
