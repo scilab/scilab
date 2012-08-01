@@ -57,7 +57,7 @@ public final class TextBlock extends BasicBlock {
      * @return the fontNumber
      */
     private Font getFont() {
-        int number = Integer.parseInt(((ScilabString) getExprs()).getData()[1][0]);
+        int number = Integer.parseInt(getLocalExprs().getData()[1][0]);
         return Font.getFont(number);
     }
 
@@ -65,7 +65,7 @@ public final class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-        return Font.getSize(((ScilabString) getExprs()).getData()[2][0]);
+        return Font.getSize(getLocalExprs().getData()[2][0]);
     }
 
     /**
@@ -75,6 +75,13 @@ public final class TextBlock extends BasicBlock {
     public ScilabType getExprs() {
         final String[][] data = new String[][] { new String[] { getValue().toString(), "2", "1" } };
         return new ScilabString(data);
+    }
+
+    /**
+     * Exprs accessor
+     */
+    private ScilabString getLocalExprs() {
+        return (ScilabString) super.getExprs();
     }
 
     @Override
@@ -103,7 +110,7 @@ public final class TextBlock extends BasicBlock {
         map.put(mxConstants.STYLE_FONTSIZE, Integer.toString(getFontSize()));
         setStyle(map.toString());
 
-        setValue(((ScilabString) getExprs()).getData()[0][0]);
+        setValue(getLocalExprs().getData()[0][0]);
     }
 
     /**
