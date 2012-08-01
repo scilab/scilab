@@ -217,5 +217,14 @@ public class AxesHandler {
         return false;
     }
 
+    public static void pasteRotationAngles(String obj, String figure, Integer[] pos) {
+
+        String axesFrom = (new ObjectSearcher()).searchParent(obj, GraphicObjectProperties.__GO_AXES__);
+        String axesTo = AxesHandler.clickedAxes(figure, pos);
+
+        Double[] angles = (Double[])GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+    }
+
 }
 

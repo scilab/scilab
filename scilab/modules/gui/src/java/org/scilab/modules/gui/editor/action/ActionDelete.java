@@ -13,8 +13,6 @@
 package org.scilab.modules.gui.editor.action;
 
 import org.scilab.modules.gui.editor.action.BaseAction;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 /**
 * Implements the object to store delete related actions

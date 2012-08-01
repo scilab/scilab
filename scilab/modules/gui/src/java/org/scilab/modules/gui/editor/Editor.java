@@ -438,8 +438,8 @@ public class Editor {
         if (selected != null) {
             oriColor = CommonHandler.setColor(selected, -3);
 
-            boolean spl = selectedType == SelectionType.SURFACE ||selectedType == SelectionType.POLYLINE || selectedType == SelectionType.LEGEND;
-            boolean sp = selectedType == SelectionType.SURFACE ||selectedType == SelectionType.POLYLINE;
+            boolean spl = selectedType == SelectionType.SURFACE || selectedType == SelectionType.POLYLINE || selectedType == SelectionType.LEGEND;
+            boolean sp = selectedType == SelectionType.SURFACE || selectedType == SelectionType.POLYLINE;
             boolean p = selectedType == SelectionType.POLYLINE;
             /* Enable delete if object is surface or polyline or legend*/
             delete.setEnabled(true && spl);
@@ -530,15 +530,17 @@ public class Editor {
         currentParent = CommonHandler.getParent(currentObject);
         String oldFigure = CommonHandler.getParentFigure(currentObject);
         if (!CommonHandler.cmpColorMap(figureUid, oldFigure)) {
-            String msg=  "The colormap from source figure seems to be different from the destination figure." +
-                         "\nThis may influence the final appearence from the object." +
-                         "\nDo you want copy the color map too?";
+            String msg =  "The colormap from source figure seems to be different from the destination figure." +
+                          "\nThis may influence the final appearence from the object." +
+                          "\nDo you want copy the color map too?";
             int i = JOptionPane.showConfirmDialog(dialogComponent, msg, "Warning", JOptionPane.YES_NO_OPTION);
 
             if (i == JOptionPane.YES_OPTION) {
                 CommonHandler.cloneColorMap(oldFigure, figureUid);
             }
         }
+
+        AxesHandler.pasteRotationAngles(currentObject, figureUid, lastClick);
 
         newObject = ScilabClipboard.getInstance().paste(figureUid, lastClick);
         newParent = CommonHandler.getParent(newObject);
