@@ -115,6 +115,10 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
-        return "<img src=\'" + imageName + "\'/>";
+
+        /* Prepare the code for the html inclusion */
+        code = code.trim().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br />");
+
+        return " <div rel='tooltip' title='" + code + "'><img src=\'" + imageName + "\'/></div>";
     }
 }
