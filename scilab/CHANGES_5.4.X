@@ -4,8 +4,10 @@
 Bug Fixes
 =========
 
-* Bug #8157 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
+* Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
                     duplicates.
+
+* Bug #11592 fixed - In the documentation, example of bessel failed.
 
 * Bug #11597 fixed - On Mac OS X, the Preferences windows was not accessible
                      through the standard shortcut "CMD + ,".
