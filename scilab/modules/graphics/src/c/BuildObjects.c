@@ -542,16 +542,6 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&type);
-
-    if (strcmp(type, __GO_AXES__) != 0)
-    {
-        Scierror(999, _("The parent has to be a SUBWIN\n"));
-        releaseGraphicObjectProperty(__GO_TYPE__, type, jni_string, 1);
-        return NULL;
-    }
-    releaseGraphicObjectProperty(__GO_TYPE__, type, jni_string, 1);
-
     pobjUID = (char *) createGraphicObject(__GO_POLYLINE__);
     polylineID = (char *) createDataObject(pobjUID, __GO_POLYLINE__);
 
@@ -561,12 +551,6 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
         releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
         return NULL;
     }
-
-    /*
-     * Sets the polyline's parent in order to initialize the former's Contoured properties
-     * with the latter's values
-     */
-    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
     barWidth = 0.0;
     setGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
@@ -749,9 +733,6 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
         setGraphicObjectProperty(pobjUID, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
     }
 
-    /* Parent reset to the null object */
-    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
-
     visible = 1;
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -769,18 +750,6 @@ char * ConstructPolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, 
     char * pobjUID = allocatePolyline(pparentsubwinUID, pvecx, pvecy, pvecz, closed, n1, plot,
                                       foreground, background, mark_style, mark_foreground, mark_background,
                                       isline, isfilled, ismark, isinterpshaded);
-
-    if (pobjUID == NULL)
-    {
-        return NULL;
-    }
-
-    /*
-     * Sets the Axes as the polyline's parent and adds the polyline to
-     * its parent's list of children.
-     */
-    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
-
     return pobjUID;
 }
 
@@ -902,6 +871,8 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
+    int iMarkMode = 0;
+    int *piMarkMode = &iMarkMode;
 
     if (height < 0.0 || width < 0.0)
     {
@@ -941,6 +912,9 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_MARK_MODE__, jni_bool, (void **)&piMarkMode);
+    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &iMarkMode, jni_bool, 1);
 
     /*
      * Initializes the contour properties (background, foreground, etc)

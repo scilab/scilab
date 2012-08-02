@@ -25,6 +25,11 @@
   <ItemGroup>
     <ClCompile Include="graphics_gw.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj">
+      <Project>{dd8a0506-8d31-4cf8-856a-c10ece9c13a4}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{61B23D9B-3F73-4204-98F7-6F41218F4564}</ProjectGuid>
     <RootNamespace>graphics_gw</RootNamespace>

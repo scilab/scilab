@@ -33,6 +33,8 @@ import net.sourceforge.jeuclid.layout.JEuclidView;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.context.Parameter;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+
 /**
  * A MathML to PNG converter
  * @author Calixte DENIZET
@@ -41,8 +43,11 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
     private static final Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
     private static MathMLImageConverter instance;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private MathMLImageConverter() { }
+    private MathMLImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+        this.type = type;
+    }
 
     /**
      * {@inheritDoc}
@@ -55,9 +60,9 @@ public class MathMLImageConverter implements ExternalImageConverter {
      * Since it is a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance() {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-            instance = new MathMLImageConverter();
+            instance = new MathMLImageConverter(type);
         }
         return instance;
     }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -25,62 +25,115 @@ msgid "FFTW Library not found.\n"
 msgstr "没有找到FFTW库。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为实数或复数。\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的的值错误。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s：第 %d个输入参数的类型错误：应该为N维阵列。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的大小错误。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
-msgstr "%s：第%d个输入参数类型错误：应该为整数矩阵。\n"
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
-msgstr "%s：第%d个和第%d输入参数不兼容：应该为相同大小。\n"
+"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s：内存不足。\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为非负整数。\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为FFTW标志。\n"
+"%s: Wrong type for argument #%d: An integer or a floating point number "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：第%d个输入参数的类型错误。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：第%d个输入参数的大小错误。\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: An array of floating point or integer "
+"numbers expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s：内存不足。\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为FFTW标志。\n"
+
+#, c-format
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s：出现错误：%s\n"
-
-msgid "FFTW can't read wisdom."
-msgstr "FFTW无法读取wisdom。"
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr ""
 
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Scilab模块FFTW未安装。\n"

@@ -26,6 +26,8 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.forge.jlatexmath.ParseException;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+
 /**
  * A LaTeX to PNG converter
  * @author Calixte DENIZET
@@ -33,8 +35,11 @@ import org.scilab.forge.jlatexmath.ParseException;
 public class LaTeXImageConverter implements ExternalImageConverter {
 
     private static LaTeXImageConverter instance;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private LaTeXImageConverter() { }
+    private LaTeXImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+        this.type = type;
+    }
 
     /**
      * {@inheritDoc}
@@ -47,9 +52,9 @@ public class LaTeXImageConverter implements ExternalImageConverter {
      * Since it is a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance() {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-            instance = new LaTeXImageConverter();
+            instance = new LaTeXImageConverter(type);
         }
         return instance;
     }

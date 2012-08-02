@@ -9,9 +9,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_contr.c, line: 49
@@ -559,6 +567,11 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: 迭代 %s, 誤差 (error)=%s.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
@@ -895,6 +908,9 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統.\n"
+
+msgid "Phase (Deg)"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

@@ -85,7 +85,7 @@
             <varlistentry>
               <term>dim_i</term>
               <listitem>
-                <para>defines the size of the ith value it must be a integer or a 2-vector of integer, -1 stands for undefined dimension</para>
+                <para>defines the size of the ith value it must be an integer or a 2-vector of integer, -1 stands for undefined dimension</para>
               </listitem>
             </varlistentry>
           </variablelist>

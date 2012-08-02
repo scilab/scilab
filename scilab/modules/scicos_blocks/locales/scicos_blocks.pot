@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: src/c/convert.c, line: 769
 # File: src/c/convert.c, line: 784
@@ -295,6 +295,7 @@ msgstr ""
 # File: macros/Sources/RAMP.sci, line: 39
 # File: macros/Sources/READAU_f.sci, line: 48
 # File: macros/Sources/READC_f.sci, line: 57
+# File: macros/Sources/RFILE_f.sci, line: 63
 # File: macros/Sources/STEP.sci, line: 40
 #, c-format
 msgid "Set %s block parameters"
@@ -375,6 +376,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 110
 # File: macros/Sources/READC_f.sci, line: 118
 # File: macros/Sources/READC_f.sci, line: 126
+# File: macros/Sources/RFILE_f.sci, line: 105
+# File: macros/Sources/RFILE_f.sci, line: 108
 #, c-format
 msgid "Wrong value for '%s' parameter: %d."
 msgstr ""
@@ -575,6 +578,7 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 75
 # File: macros/Sinks/WRITEC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sources/RFILE_f.sci, line: 81
 #, c-format
 msgid "Wrong value for '%s' parameter: %s."
 msgstr ""
@@ -923,6 +927,7 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 107
 # File: macros/Sources/READC_f.sci, line: 119
 # File: macros/Sources/READC_f.sci, line: 127
+# File: macros/Sources/RFILE_f.sci, line: 86
 msgid "Strictly positive integer expected."
 msgstr ""
 
@@ -943,6 +948,7 @@ msgstr ""
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 44
+# File: macros/Sources/RFILE_f.sci, line: 64
 msgid "&nbsp; - A binary file if no format given"
 msgstr ""
 
@@ -986,6 +992,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 87
 # File: macros/Sources/READC_f.sci, line: 118
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 105
 msgid "Buffer Size"
 msgstr ""
 
@@ -1003,6 +1011,9 @@ msgstr ""
 # File: macros/Sources/READAU_f.sci, line: 67
 # File: macros/Sources/READC_f.sci, line: 84
 # File: macros/Sources/READC_f.sci, line: 92
+# File: macros/Sources/RFILE_f.sci, line: 90
+# File: macros/Sources/RFILE_f.sci, line: 93
+# File: macros/Sources/RFILE_f.sci, line: 96
 msgid "End current simulation first."
 msgstr ""
 
@@ -1027,6 +1038,7 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 63
 # File: macros/Sinks/WRITEC_f.sci, line: 71
 # File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sources/RFILE_f.sci, line: 99
 msgid "You must provide a filename."
 msgstr ""
 
@@ -1043,11 +1055,14 @@ msgstr ""
 # File: macros/Sinks/WRITEC_f.sci, line: 63
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 102
 msgid "Input Format"
 msgstr ""
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 76
+# File: macros/Sources/RFILE_f.sci, line: 103
 msgid "You must enclose the format's string between parentheses."
 msgstr ""
 
@@ -1342,6 +1357,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 83
 # File: macros/Sources/READC_f.sci, line: 95
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 99
 msgid "Input File Name"
 msgstr ""
 
@@ -1361,6 +1378,9 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 106
 # File: macros/Sources/READC_f.sci, line: 110
 # File: macros/Sources/READC_f.sci, line: 114
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 108
+# File: macros/Sources/RFILE_f.sci, line: 112
 msgid "Outputs Record Selection"
 msgstr ""
 
@@ -1374,6 +1394,9 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 75
 # File: macros/Sources/READC_f.sci, line: 91
 # File: macros/Sources/READC_f.sci, line: 102
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 81
+# File: macros/Sources/RFILE_f.sci, line: 85
 msgid "Time Record Selection"
 msgstr ""
 
@@ -1417,6 +1440,77 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 114
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 64
+msgid "Read from an input file"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 64
+msgid "Read is done on:"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 65
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 82
+msgid "Empty matrix or scalar expected."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 85
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 89
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 93
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 96
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 99
+# File: macros/Sources/RFILE_f.sci, line: 112
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 102
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 106
+msgid "Buffer size must be at least 2."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 109
+msgid "You must read at least one field in record."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 113
+msgid "Strictly positive indexes expected."
 msgstr ""
 
 #

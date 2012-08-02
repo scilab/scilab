@@ -140,8 +140,8 @@ __indent_xml() {
     fi
 
     echo "Formatting" $file
-    "$XMLINDENT" -i 2 -o "$file" "$file" || return 4;
-    git add "$file" || return 5;
+    "$XMLINDENT" -i 4 -o "$file" "$file" || return 4;
+    git add "$file" || return 5;
 }
 
 # Pre process before the indent

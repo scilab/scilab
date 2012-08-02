@@ -27,7 +27,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_addinter.cpp
 
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f 
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
 
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -104,6 +104,6 @@ src/scripts/missing \
 src/scripts/scicompile.sh
 
 # This is a cache file for the dynamic link (on use)
-CLEANFILES = src/scripts/Makefile.orig
+CLEANFILES = src/scripts/Makefile.orig src/scripts/config.log src/scripts/config.status src/scripts/libtool
 
 include $(top_srcdir)/Makefile.incl.am

@@ -27,6 +27,12 @@ using namespace org_scilab_modules_graphic_objects;
 
 void setGraphicObjectRelationship(char const* _parentId, char const* _childId)
 {
+    // do not perform anything if the id is undefined
+    if (_parentId == NULL || _childId == NULL)
+    {
+        return;
+    }
+
     CallGraphicController::setGraphicObjectRelationship(getScilabJavaVM(), _parentId, _childId);
 }
 
@@ -37,6 +43,13 @@ BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void con
     double doubleValue = 0.;
     int intValue = 0;
     BOOL boolValue = FALSE;
+
+    // do not perform anything if the id is undefined
+    if (_pstID == NULL)
+    {
+        return FALSE;
+    }
+
 
     // Special Case for data, no need to go through Java.
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)

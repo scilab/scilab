@@ -736,9 +736,9 @@ function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
     if TypeDomain == "Square" then
         if TypeCut == "Ox" then
             x1 = linspace(-R, R, n);
-            y1 = linspace( e, R, n/2);
+            y1 = linspace( e, R, int(n/2));
         else  // for TypeCut = "Oy" ...
-            x1 = linspace( e, R, n/2);
+            x1 = linspace( e, R, int(n/2));
             y1 = linspace(-R, R, n);
         end
         X1 = ones(y1')*x1 ; Y1 = y1'*ones(x1);

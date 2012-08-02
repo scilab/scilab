@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -41,7 +42,7 @@ x1=qpsolve(Q,p,C,b,[],[],me);
 if or(x1-[8;3]/11 >100*%eps) then bugmes();quit;end
 if abs(x1'*p+x1'*Q*x1/2-1/22)>100*%eps then bugmes();quit;end
 if abs(C*x1-b)>100*%eps then bugmes();quit;end
-//sparse
+//sparse 
 x1=qpsolve(Q,p,sparse(C),b,[],[],me);
 if or(x1-[8;3]/11 >100*%eps) then bugmes();quit;end
 if abs(x1'*p+x1'*Q*x1/2-1/22)>100*%eps then bugmes();quit;end

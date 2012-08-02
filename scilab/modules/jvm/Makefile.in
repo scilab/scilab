@@ -561,6 +561,7 @@ libscijvm_algo_la_CPPFLAGS = $(libscijvm_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(libscijvm_la_SOURCES)
 INCLUDE_FLAGS = $(libscijvm_la_CPPFLAGS)
+CLEANFILES = etc/jvm_options.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1189,6 +1190,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)

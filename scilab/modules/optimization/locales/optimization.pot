@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
@@ -56,7 +56,7 @@ msgstr ""
 # File: sci_gateway/c/sci_qp_solve.c, line: 95
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
 "to %d.\n"
 msgstr ""
 

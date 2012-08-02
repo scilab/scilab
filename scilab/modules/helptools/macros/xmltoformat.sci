@@ -509,7 +509,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
         if fileToExec ~= [] then
             exec(fileToExec, -1);
-	    buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
+            if output_format == "javaHelp" then
+              // We don't create the jar when building the online help
+              // or the PDF
+              buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
+            end
         end
 
         // Check if the help file has been generated

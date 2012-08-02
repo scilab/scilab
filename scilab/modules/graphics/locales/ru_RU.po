@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-22 06:29+0000\n"
+"PO-Revision-Date: 2012-07-26 15:37+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -786,8 +786,8 @@ msgstr ""
 "Неверное значение свойства «%s»: должен быть допустимый дескриптор.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a handle on a axes.\n"
-msgstr "Неверное значение свойства «%s»: должен быть дескриптор «Axes».\n"
+msgid "Wrong value for '%s' property: Must be a handle on axes.\n"
+msgstr "Неверное значение для свойства '%s': должен быть дескриптор осей.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A scalar expected.\n"
@@ -987,11 +987,14 @@ msgstr "Среднемесячные температуры во франзуз�
 msgid "Computing in progress..."
 msgstr "Идёт вычисление..."
 
-msgid "(here an area of the Mandelbrot set)"
-msgstr "(здесь область множества Мандельброта)"
-
-msgid "Matplot1(..) displays an area with SCALED AXES"
+msgid ""
+"Matplot1(..) displays a matrix\n"
+"(value => color#), with SCALED AXES\n"
+"(here is a part of the Mandelbrot set)"
 msgstr ""
+"Matplot1(..) отображает матрицу\n"
+"(Значение => № цвета), с МАСШТАБИРОВАННЫМИ ОСЯМИ\n"
+"(здесь -- часть множества Мандельброта)"
 
 msgid "Real part"
 msgstr "Вещественная часть"
@@ -1148,24 +1151,20 @@ msgid "White"
 msgstr "White"
 
 #, c-format
-msgid "Matplot(M)  with  size(M)=>(%d,%d)"
-msgstr "Matplot(M)  с  size(M)=>(%d,%d)"
-
-msgid "Color's number of pixel(i,j)"
-msgstr "Номер цвета элемента изображения pixel(i,j)"
-
-msgid "   = rounded value of M(i,j)"
-msgstr "   = округлённому значению M(i,j)"
-
-msgid "Matplot(M) scales axes with"
-msgstr "Matplot(M) масштабирует ось"
-
-msgid "indices of M's components"
-msgstr "индексами элементов M"
-
-msgid "For axes scaled with data, lease use Matplot1(..)"
+msgid ""
+"Matplot(M)  with  size(M)=>(%d,%d)\n"
+"The color's number of pixel(i,j)\n"
+"  = rounded value of M(i,j)"
 msgstr ""
-"Для оси, масштабированной данными, пожалуйста, используйте Matplot1(...)"
+"Matplot(M)  с  size(M)=>(%d,%d)\n"
+"Номер цвета элемента изображения (i,j)\n"
+"  равен округлённому значению M(i,j)"
+
+msgid "For data-scaled axes, please use Matplot1(..)"
+msgstr "Для осей, масштабированных по данным, используйте Matplot1(..)"
+
+msgid "Axes are scaled with M's indices"
+msgstr "Оси масштабированы индексами M"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
@@ -1689,6 +1688,23 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Matrices of same size expected.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов: ожидались матрицы одинакового "
+"размера.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр или "
+"вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор строк.\n"
+
+#, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr "%s: Ошибка : не удалось вычислить входную функцию «%s»."
 
@@ -1713,9 +1729,8 @@ msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr "%s: '%s' нельзя использовать с '%s'.\n"
 
 #, c-format
-msgid "%s: Input argument #%d must be a handle on a axes.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался дескриптор «Axes».\n"
+msgid "%s: Input argument #%d must be a handle on an axis.\n"
+msgstr "%s: Входной аргумент №%d должен быть дескриптором оси.\n"
 
 #, c-format
 msgid ""

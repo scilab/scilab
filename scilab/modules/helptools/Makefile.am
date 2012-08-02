@@ -135,5 +135,8 @@ data/pages/homepage-fr_FR.html \
 data/pages/ban-en_US.png \
 data/pages/ban-fr_FR.png
 
+mostlyclean-local:
+	rm -rf web javaHelp html pdf
+
 include $(top_srcdir)/Makefile.incl.am
 

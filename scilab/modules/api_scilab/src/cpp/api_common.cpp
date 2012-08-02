@@ -132,19 +132,20 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     GatewayStruct *pStr = (GatewayStruct*)_pvCtx;
     int iRhs            = *getNbInputArgument(_pvCtx);
 
-    if(iRhs > _iMax || iRhs < _iMin)
+    if (_iMin <= nbInputArgument(_pvCtx) && _iMax >= nbInputArgument(_pvCtx))
     {
-        if (_iMin == _iMax)
-        {/* No optional argument */
-            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
-        }
-        else
-        {
-            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
-        }
-        return 0;
+        return 1;
     }
-    return 1;
+    
+    if (_iMin == _iMax)
+    {/* No optional argument */
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
+    }
+    else
+    {
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
+    }
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -154,7 +155,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMin <= *getNbInputArgument(_pvCtx))
+    if (_iMin <= nbInputArgument(_pvCtx))
     {
         return 1;
     }
@@ -170,7 +171,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMax >= *getNbInputArgument(_pvCtx))
+    if (_iMax >= nbInputArgument(_pvCtx))
     {
         return 1;
     }
@@ -186,8 +187,7 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    int iLhs = *getNbOutputArgument(_pvCtx);
-    if(_iMin <= iLhs && _iMax >= iLhs)
+    if (_iMin <= nbOutputArgument(_pvCtx) && _iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
     }
@@ -211,7 +211,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMin <= *getNbOutputArgument(_pvCtx))
+    if (_iMin <= nbOutputArgument(_pvCtx))
     {
         return 1;
     }
@@ -227,7 +227,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if(_iMax >= *getNbOutputArgument(_pvCtx))
+    if (_iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
     }

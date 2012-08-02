@@ -100,10 +100,9 @@ function []=wheel_show(xx,t,p)
         break;
       end
 
-      drawlater();
-
       realtime(i);
 
+      drawlater();
       if is_handle_valid(wheel) then
         wheel.data  = [xu(:,i) yu(:,i) zu(:,i)];
       end
@@ -118,10 +117,10 @@ function []=wheel_show(xx,t,p)
 
       drawnow();
     end
-    
+
     if ~is_handle_valid(curAxe) then
       break;
-    end 
+    end
     [wheel_rti]=resume(wheel_rti);
 
 endfunction

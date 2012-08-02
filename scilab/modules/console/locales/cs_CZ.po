@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-22 20:50+0000\n"
+"PO-Revision-Date: 2012-07-26 20:05+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -316,8 +316,8 @@ msgstr "Otevřít nápoědu online"
 msgid "Open Scilab wiki"
 msgstr "Otevřít wiki Scilab"
 
-msgid "Open ATOM website"
-msgstr "Otevřít stránku ATOM"
+msgid "Open ATOMS website"
+msgstr "Otevřít stránku ATOMS"
 
 msgid "Open File Exchange website"
 msgstr "Otevřít stránku výměny souborů"
@@ -514,8 +514,8 @@ msgstr "Přepsat"
 msgid "Close all"
 msgstr "Zavřít vše"
 
-msgid "Close all but"
-msgstr "Zavřít vše kromě"
+msgid "Close all but this"
+msgstr "Zavřít vše kromě tohoto"
 
 msgid "Convert quote to double quote"
 msgstr "Převést uvozovky na dvojité"
@@ -523,8 +523,8 @@ msgstr "Převést uvozovky na dvojité"
 msgid "Line numbering"
 msgstr "Číslování řádků"
 
-msgid "Save diagramm"
-msgstr "Uložiz graf"
+msgid "Save diagram"
+msgstr "Uložit graf"
 
 msgid "Save variable"
 msgstr "Uložit proměnnou"
@@ -612,6 +612,13 @@ msgstr "Proměnná Scilabu"
 
 msgid "Graphics handle field"
 msgstr "Grafické ovládací pole"
+
+#, c-format
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"Příkaz je příliš dlouhý (více než %d znaků): nelze ho odeslat do Scilab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""

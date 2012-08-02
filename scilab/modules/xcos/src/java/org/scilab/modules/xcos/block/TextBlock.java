@@ -19,6 +19,7 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
@@ -53,18 +54,10 @@ public final class TextBlock extends BasicBlock {
     }
 
     /**
-     * @return the text
-     */
-    public String getText() {
-        return ((ScilabString) getExprs()).getData()[0][0];
-    }
-
-    /**
      * @return the fontNumber
      */
     private Font getFont() {
-        int number = Integer
-                .parseInt(((ScilabString) getExprs()).getData()[1][0]);
+        int number = Integer.parseInt(getLocalExprs().getData()[1][0]);
         return Font.getFont(number);
     }
 
@@ -72,12 +65,39 @@ public final class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-        return Font.getSize(((ScilabString) getExprs()).getData()[2][0]);
+        return Font.getSize(getLocalExprs().getData()[2][0]);
+    }
+
+    /**
+     * Format exprs as a Scilab valid one
+     */
+    @Override
+    public ScilabType getExprs() {
+        final String[][] data = new String[][] { new String[] { getValue().toString(), "2", "1" } };
+        return new ScilabString(data);
+    }
+
+    /**
+     * Exprs accessor
+     */
+    private ScilabString getLocalExprs() {
+        return (ScilabString) super.getExprs();
+    }
+
+    @Override
+    public ScilabType getRealParameters() {
+        return new ScilabString(getValue().toString());
+    }
+
+    @Override
+    public ScilabType getIntegerParameters() {
+        final double[][] data = new double[][] { new double[] { 2, 1 } };
+        return new ScilabDouble(data);
     }
 
     /**
      * Apply style on setExprs
-     * 
+     *
      * @param exprs
      *            the expression to be parsed
      */
@@ -85,16 +105,17 @@ public final class TextBlock extends BasicBlock {
     public void setExprs(ScilabType exprs) {
         super.setExprs(exprs);
 
-        StyleMap map = new StyleMap(getStyle());
+        final StyleMap map = new StyleMap(getStyle());
         map.put(mxConstants.STYLE_FONTFAMILY, getFont().getName());
         map.put(mxConstants.STYLE_FONTSIZE, Integer.toString(getFontSize()));
-
         setStyle(map.toString());
+
+        setValue(getLocalExprs().getData()[0][0]);
     }
 
     /**
      * Disabling BlockSettings action
-     * 
+     *
      * @param context
      *            the current context
      */
@@ -105,7 +126,7 @@ public final class TextBlock extends BasicBlock {
 
     /**
      * Disabling BlockSettings action
-     * 
+     *
      * @param modifiedBlock
      *            the updated block
      */
@@ -116,13 +137,12 @@ public final class TextBlock extends BasicBlock {
 
     /**
      * Customize menu
-     * 
+     *
      * @param menuList
      *            the menuList to work on
      */
     @Override
-    protected void customizeMenu(
-            Map<Class<? extends DefaultAction>, Menu> menuList) {
+    protected void customizeMenu(Map < Class <? extends DefaultAction > , Menu > menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
     }

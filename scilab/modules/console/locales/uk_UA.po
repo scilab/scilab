@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-23 12:47+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2012-07-26 16:53+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -326,7 +326,7 @@ msgstr "Відкрити інтернет-довідку"
 msgid "Open Scilab wiki"
 msgstr "Відкрити вікі Scilab"
 
-msgid "Open ATOM website"
+msgid "Open ATOMS website"
 msgstr "Відкрити сайт ATOMS"
 
 msgid "Open File Exchange website"
@@ -524,8 +524,8 @@ msgstr "Перезаписати"
 msgid "Close all"
 msgstr "Закрити всі"
 
-msgid "Close all but"
-msgstr "Закрити всі, окрім поточної"
+msgid "Close all but this"
+msgstr "Закрити все крім цього"
 
 msgid "Convert quote to double quote"
 msgstr "Перетворити одинарні лапки на подвійні"
@@ -533,7 +533,7 @@ msgstr "Перетворити одинарні лапки на подвійні
 msgid "Line numbering"
 msgstr "Нумерування рядків"
 
-msgid "Save diagramm"
+msgid "Save diagram"
 msgstr "Зберегти діаграму"
 
 msgid "Save variable"
@@ -622,6 +622,14 @@ msgstr "Змінна Scilab"
 
 msgid "Graphics handle field"
 msgstr "Поле елемента керування графіки"
+
+#, c-format
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"Команда є надто довгою (понад %d символів у довжину): надсилання такої "
+"команди до Scilab неможливе.\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""

@@ -1314,16 +1314,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     /**
-     * Get the displacement in pixel that should be used for rotating axes
-     * @param displacement out parameter, [x,y] array of displacement in pixels
-     * @return true if the displacement recording continue, false otherwise
-     */
-    @Override
-    public boolean getRotationDisplacement(int[] displacement) {
-        return contentPane.getRotationDisplacement(displacement);
-    }
-
-    /**
      * Close the tab and disable it.
      */
     public void close() {
@@ -1340,14 +1330,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         // without this children canvas are not released.
         Container dummyContainer = new Container();
         this.setContentPane(dummyContainer);
-    }
-
-    /**
-     * Asynchronous stop of rotation tracking.
-     */
-    @Override
-    public void stopRotationRecording() {
-        contentPane.stopRotationRecording();
     }
 
     /**

@@ -8,13 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-21 20:50+0000\n"
+"PO-Revision-Date: 2012-07-26 20:04+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -519,6 +527,13 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: Opakování %s. chyba=%s.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Nekonečné zesílení při nulové "
+"frekvenci.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván lineární systém.\n"
 
@@ -802,6 +817,9 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém.\n"
+
+msgid "Phase (Deg)"
+msgstr "Fáze (Stup)"
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

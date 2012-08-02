@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-22 14:22+0000\n"
+"PO-Revision-Date: 2012-07-29 14:46+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -899,7 +899,7 @@ msgid "Wrong value for '%s' property: Must be a valid handle.\n"
 msgstr "'%s' プロパティの値が間違っています: 有効なハンドルを指定してください.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be a handle on a axes.\n"
+msgid "Wrong value for '%s' property: Must be a handle on axes.\n"
 msgstr "'%s' プロパティの値が間違っています: 軸のハンドルを指定してください.\n"
 
 #, c-format
@@ -1264,11 +1264,13 @@ msgstr "フランス都市部の月単位の平均気温"
 msgid "Computing in progress..."
 msgstr "計算中..."
 
-msgid "(here an area of the Mandelbrot set)"
-msgstr "(マンデルブロ集合の面積)"
-
-msgid "Matplot1(..) displays an area with SCALED AXES"
-msgstr "Matplot1(..) は SCALED AXES の面積を表示します"
+msgid ""
+"Matplot1(..) displays a matrix\n"
+"(value => color#), with SCALED AXES\n"
+"(here is a part of the Mandelbrot set)"
+msgstr ""
+"Matplot1(..) は拡大縮小された軸で行列(value => color#)を表示します\n"
+"(ここではマンデルブロ集合)"
 
 msgid "Real part"
 msgstr "実部"
@@ -1460,23 +1462,20 @@ msgid "White"
 msgstr "白"
 
 #, c-format
-msgid "Matplot(M)  with  size(M)=>(%d,%d)"
-msgstr "size(M)=>(%d,%d) を指定した Matplot(M)"
+msgid ""
+"Matplot(M)  with  size(M)=>(%d,%d)\n"
+"The color's number of pixel(i,j)\n"
+"  = rounded value of M(i,j)"
+msgstr ""
+"size(M)=>(%d,%d) を指定したMatplot(M) \n"
+"pixel(i,j) の色数\n"
+"  = M(i,j)の丸め値"
 
-msgid "Color's number of pixel(i,j)"
-msgstr "pixel(i,j) の色数"
+msgid "For data-scaled axes, please use Matplot1(..)"
+msgstr "データ-拡大縮小された軸の場合, Matplot1(..)を使用してください"
 
-msgid "   = rounded value of M(i,j)"
-msgstr "   = M(i,j)　を丸めた値"
-
-msgid "Matplot(M) scales axes with"
-msgstr "以下でMatplot(M) の軸を調整"
-
-msgid "indices of M's components"
-msgstr "Mの要素の添字"
-
-msgid "For axes scaled with data, lease use Matplot1(..)"
-msgstr "データで調整された軸の場合, Matplot1(..) を使用してください"
+msgid "Axes are scaled with M's indices"
+msgstr "軸は Mの添字で拡大縮小されています"
 
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
@@ -1998,6 +1997,19 @@ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Matrices of same size expected.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさの行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数のスカラーまたはベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してください.\n"
+
+#, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr "%s: エラー : 入力関数 '%s' を評価できません。"
 
@@ -2024,20 +2036,9 @@ msgstr "%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s' �
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr "%s: '%s' は  '%s' と組み合わせて使用できません.\n"
 
-#
-# File: sci_gateway/c/sci_fec.c, line: 69
-# File: sci_gateway/c/sci_grayplot.c, line: 59
-# File: sci_gateway/c/sci_matplot.c, line: 61
-# File: sci_gateway/c/sci_param3d.c, line: 61
-# File: sci_gateway/c/sci_param3d1.c, line: 63
-# File: sci_gateway/c/sci_plot2d.c, line: 94
-# File: sci_gateway/c/sci_plot2d.c, line: 115
-# File: sci_gateway/c/sci_plot2d1.c, line: 121
-# File: sci_gateway/c/sci_plot2d1.c, line: 139
-# File: sci_gateway/c/sci_plot3d.c, line: 69
 #, c-format
-msgid "%s: Input argument #%d must be a handle on a axes.\n"
-msgstr "%s: 入力引数 #%d は軸のハンドルでなければなりません。\n"
+msgid "%s: Input argument #%d must be a handle on an axis.\n"
+msgstr "%s: 入力引数 #%d は軸のハンドルを指定してください.\n"
 
 #, c-format
 msgid ""

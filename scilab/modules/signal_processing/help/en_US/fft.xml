@@ -28,8 +28,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>X=fft(A [,sign] [,option])
-X=fft(A,sign,selection  [,option])
-X=fft(A,sign,dims,incr [,option] )</synopsis>
+      X=fft(A,sign,selection  [,option])
+      X=fft(A,sign,dims,incr [,option] )
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,7 +39,8 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
         <term>A</term>
         <listitem>
           <para>a real or complex vector or real or complex array
-          (vector, matrix or N-D array.</para>
+            (vector, matrix or N-D array.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,7 +65,7 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
           <literal>"symmetric"</literal> or
           <literal>"nonsymmetric"</literal>. Indicates if
           <literal>A</literal> is symmetric or not. If this argument
-          is ommitted the algorithm automatically determines if
+          is omitted the algorithm automatically determines if
           <literal>A</literal> is symmetric or not. See the
           Description part for details.
         </listitem>
@@ -75,7 +77,7 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
           dimensions.  See the Description part for details.
         </listitem>
       </varlistentry>
-
+      
       <varlistentry>
         <term>dims</term>
         <listitem>
@@ -98,14 +100,14 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
           vector of positive integers.  See the Description part for
           details.
           <para>
-           <literal>incr</literal> must have the same number of
-           elements than <literal>dims</literal>.
+            <literal>incr</literal> must have the same number of
+            elements than <literal>dims</literal>.
           </para>
-         <para>
+          <para>
             Each element must be a divisor of the total number of
             elements of <literal>A</literal>.
           </para>
-         <para>
+          <para>
             The <literal>incr</literal> elements must be in strictly
             increasing order.
           </para>
@@ -131,40 +133,48 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
                   <varlistentry>
                     <term>single variate</term>
                     <listitem>
-                      <para>If <literal>A</literal> is a vector a
-                      single variate direct FFT is computed that
-                      is:</para>
+                      <para>
+                        If <literal>A</literal> is a vector a
+                        single variate direct FFT is computed that
+                        is:
+                      </para>
                       <para>
                         <latex>
                           $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}
                           (m-1) (k-1)}$
                         </latex>
                       </para>
-                      <para>(the <literal>-1</literal> argument refers
-                      to the sign of the exponent..., NOT to
-                      "inverse"),</para>
+                      <para>
+                        (the <literal>-1</literal> argument refers
+                        to the sign of the exponent..., NOT to
+                        "inverse"),
+                      </para>
                     </listitem>
                   </varlistentry>
-
+                  
                   <varlistentry>
                     <term>multivariate</term>
                     <listitem>
-                      <para>If <literal>A</literal> is a matrix or
-                      a multidimensional array a multivariate direct
-                      FFT is performed.</para>
+                      <para>
+                        If <literal>A</literal> is a matrix or
+                        a multidimensional array a multivariate direct
+                        FFT is performed.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
-
+                
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>inverse</term>
               <listitem>
-                <para><literal>X=fft(A,1)</literal> or
-                <literal>X=ifft(A)</literal>performs the inverse
-                normalized transform, such
-                that<literal>A==ifft(fft(A))</literal>. </para>
+                <para>
+                  <literal>X=fft(A,1)</literal> or
+                  <literal>X=ifft(A)</literal>performs the inverse
+                  normalized transform, such
+                  that<literal>A==ifft(fft(A))</literal>. 
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>single variate</term>
@@ -182,9 +192,11 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
                   <varlistentry>
                     <term>multivariate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a matrix or or
-                      a multidimensionnal array a multivariate inverse
-                      FFT is performed.</para>
+                      <para>
+                        If <literal>a</literal> is a matrix or or
+                        a multidimensional array a multivariate inverse
+                        FFT is performed.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -193,7 +205,7 @@ X=fft(A,sign,dims,incr [,option] )</synopsis>
           </variablelist>
         </listitem>
       </varlistentry>
-
+      
       <varlistentry>
         <term>Long syntax for FFT along specified dimensions</term>
         <listitem>
@@ -252,7 +264,9 @@ end
         <literal>B</literal> with dimensions <literal>n1</literal>,
         ..., <literal>np</literal> is conjugate symmetric for the fft
         if and only if <literal>B==conj(B([1 n1:-1:2],[1
-        n2:-1:2],...,[1 np:-1:2])) </literal>.  In such a case the
+          n2:-1:2],...,[1 np:-1:2])) 
+        </literal>
+        .In such a case the
         result <literal>X</literal> is real and an efficient specific
         algorithm can be used.
         <listitem>
@@ -274,25 +288,25 @@ end
               <term>unspecified</term> If the option is omitted the
               fft algorithm automatically checks for exact symmetry.
             </listitem>
-
+            
           </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Optimizing fft</term>
-         <listitem>
-           <para>
-             Remark: fftw function automatically stores his last
-             parameters in memory to re-use it in a second time. This
-             improves greatly the time computation when consecutives
-             calls (with same parameters) are performed.
-           </para>
-           <para> 
-             It is possible to go further in fft optimization using
-             <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
+        <listitem>
+          <para>
+            Remark: fftw function automatically stores his last
+            parameters in memory to re-use it in a second time. This
+            improves greatly the time computation when consecutives
+            calls (with same parameters) are performed.
+          </para>
+          <para> 
+            It is possible to go further in fft optimization using
+            <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
              linkend="set_fftw_wisdom">set_fftw_wisdom</link> functions.
-           </para>
-         </listitem>
+          </para>
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -333,7 +347,7 @@ set(gcf(),"color_map",jetcolormap(128));
 clf;grayplot(0:255,0:255,abs(X)')
      ]]></programlisting>
     <para>mupliple fft</para>
-   <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 //simple case, 3 1-D fft at a time
 N=2048;
 t=linspace(0,10,2048);
@@ -362,7 +376,7 @@ for i1=1:Dims(1)
   end
 end
    ]]></programlisting>
-
+    
     <programlisting role="example"><![CDATA[ 
 //Using explicit formula for  1-D discrete Fourier transform
 //------------------------------------------------
@@ -408,10 +422,10 @@ timer();fft(a,-1);timer()
       </member>
     </simplelist>
   </refsection>
- <refsection>
+  <refsection>
     <title>Bibliography</title>
     <para>
-    Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+      Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
     </para>
   </refsection>
 </refentry>

@@ -23,6 +23,7 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 
+import org.scilab.modules.commons.OS;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.commons.xml.XConfiguration;
 
@@ -67,7 +68,19 @@ public class SciNotesOptions {
             this.numberOfRecentlyOpen = numberOfRecentlyOpen;
             this.encoding = encoding.toLowerCase();
 
-            if (eol.startsWith("Windows")) {
+	    if (eol.equals("")) {
+		switch (OS.get()) {
+		case WINDOWS:
+		    this.eol = ScilabDocument.EOLWIN;
+		    break;
+		case MAC:
+		    this.eol = ScilabDocument.EOLMAC;
+		    break;
+		default:
+		    this.eol = ScilabDocument.EOLUNIX;
+		    break;
+		}
+            } else if (eol.startsWith("Windows")) {
                 this.eol = ScilabDocument.EOLWIN;
             } else if (eol.startsWith("Mac")) {
                 this.eol = ScilabDocument.EOLMAC;

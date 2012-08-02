@@ -212,6 +212,7 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/translator/*/parser.mli \
 	$(BASE_PATH)/translator/*/lexer.mli \
 	$(BASE_PATH)/translator/*/parser.ml \
+	$(BASE_PATH)/translator/*/linenum.ml \
 	$(BASE_PATH)/translator/*/lexer.ml \
 	$(TARGET)
 

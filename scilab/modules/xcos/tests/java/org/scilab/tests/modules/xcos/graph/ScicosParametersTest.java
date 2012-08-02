@@ -143,6 +143,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansNamedProperties() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         for (int i = 0; i < DEFAULT_VALUES.length; i++) {
             Field f = DEFAULT_VALUES[i];
             String field = FIELDS[i];
@@ -157,6 +161,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansPropertyChangeEvent() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
         final List<PropertyChangeEvent> receivedEvents = new ArrayList<PropertyChangeEvent>();
 
@@ -228,6 +236,10 @@ public class ScicosParametersTest {
 
     @Test
     public void checkBeansVetoableChangeEvent() throws IllegalArgumentException, IllegalAccessException, InstantiationException {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         ScicosParameters obj = new ScicosParameters();
         final List<PropertyVetoException> receivedExceptions = new ArrayList<PropertyVetoException>();
 

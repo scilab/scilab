@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -60,10 +60,10 @@ msgstr ""
 # File: sci_gateway/c/sci_dec2base.c, line: 132
 # File: sci_gateway/c/sci_dec2base.c, line: 166
 # File: sci_gateway/c/sci_dec2base.c, line: 187
-# File: src/c/sci_tools.c, line: 122
-# File: src/c/sci_tools.c, line: 147
-# File: src/c/sci_tools.c, line: 177
-# File: src/c/sci_tools.c, line: 212
+# File: src/c/sci_tools.c, line: 107
+# File: src/c/sci_tools.c, line: 134
+# File: src/c/sci_tools.c, line: 166
+# File: src/c/sci_tools.c, line: 203
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -148,19 +148,7 @@ msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 121
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gsort.c, line: 134
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gsort.c, line: 140
+# File: sci_gateway/c/sci_gsort.c, line: 156
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -168,19 +156,19 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 165
+# File: sci_gateway/c/sci_gsort.c, line: 182
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 318
+# File: sci_gateway/c/sci_gsort.c, line: 335
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gsort.c, line: 389
+# File: sci_gateway/c/sci_gsort.c, line: 406
 # File: sci_gateway/c/sci_size.c, line: 148
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -238,7 +226,7 @@ msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
 msgstr ""
 
 #
-# File: macros/%sp_gsort.sci, line: 25
+# File: macros/%sp_gsort.sci, line: 24
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr ""
@@ -832,4 +820,10 @@ msgstr ""
 # File: macros/vectorfind.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: macros/vectorfind.sci, line: 57
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""

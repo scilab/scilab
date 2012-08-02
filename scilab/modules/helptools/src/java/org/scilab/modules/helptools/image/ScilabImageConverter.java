@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 
 /**
  * Scilab code to PNG converter
@@ -32,21 +33,23 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     private static ScilabImageConverter instance;
     private final StringBuilder buffer;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private ScilabImageConverter() {
+    private ScilabImageConverter(HTMLDocbookTagConverter.GenerationType type) {
         buffer = new StringBuilder(8192);
+        this.type = type;
     }
 
     public String getMimeType() {
         return "image/scilab";
     }
 
-    public String getFileWithScilabCode() {
-        if (buffer.length() != 0) {
+    public static String getFileWithScilabCode() {
+        if (instance.buffer.length() != 0) {
             try {
                 File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
-                byte[] arr = buffer.toString().getBytes();
+                byte[] arr = instance.buffer.toString().getBytes();
                 out.write(arr, 0, arr.length);
                 out.flush();
                 out.close();
@@ -68,9 +71,9 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ScilabImageConverter getInstance() {
+    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-            instance = new ScilabImageConverter();
+            instance = new ScilabImageConverter(type);
         }
 
         return instance;
@@ -115,6 +118,10 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
-        return "<img src=\'" + imageName + "\'/>";
+
+        /* Prepare the code for the html inclusion */
+        code = code.trim().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br />");
+
+        return " <div rel='tooltip' title='" + code + "'><img src=\'" + imageName + "\'/></div>";
     }
 }

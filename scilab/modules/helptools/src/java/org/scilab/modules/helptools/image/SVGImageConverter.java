@@ -28,14 +28,19 @@ import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+
 /**
  * SVG to PNG converter
  */
 public class SVGImageConverter implements ExternalImageConverter {
 
     private static SVGImageConverter instance;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private SVGImageConverter() { }
+    private SVGImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+        this.type = type;
+    }
 
     /**
      * {@inheritDoc}
@@ -48,9 +53,9 @@ public class SVGImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance() {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-            instance = new SVGImageConverter();
+            instance = new SVGImageConverter(type);
         }
 
         return instance;

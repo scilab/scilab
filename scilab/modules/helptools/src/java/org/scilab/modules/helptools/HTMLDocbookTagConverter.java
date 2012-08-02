@@ -44,6 +44,8 @@ import org.scilab.modules.localization.Messages;
  */
 public class HTMLDocbookTagConverter extends DocbookTagConverter implements TemplateFiller {
 
+    public static enum GenerationType { WEB, JAVAHELP, CHM, HTML };
+
     private static final String SCILAB_URI = "http://www.scilab.org";
     private static final String LATEXBASENAME = "Equation_LaTeX_";
     private static final String VERSION = Messages.gettext("Version");
@@ -88,6 +90,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
     protected boolean isToolbox;
+    protected final GenerationType type;
 
     /**
      * Constructor
@@ -101,7 +104,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param isToolbox is true when compile a toolbox' help
      * @param urlBase the base url for external link
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase) throws IOException, SAXException {
+    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, GenerationType type) throws IOException, SAXException {
         super(inName);
 
         this.version = version;
@@ -117,29 +120,30 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
         this.isToolbox = isToolbox;
+        this.type = type;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                public String getLink(String id) {
-                    if (id.length() > 0 && id.charAt(0) == '%') {
-                        id = id.replace("%", "percent");
+                    public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
+                        String link = mapId.get(id);
+                        if (link == null) {
+                            return HTMLDocbookTagConverter.this.urlBase + id;
+                        } else {
+                            return link;
+                        }
                     }
-                    String link = mapId.get(id);
-                    if (link == null) {
-                        return HTMLDocbookTagConverter.this.urlBase + id;
-                    } else {
-                        return link;
-                    }
-                }
-            });
+                });
         } else {// we generate Scilab's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                public String getLink(String id) {
-                    if (id.length() > 0 && id.charAt(0) == '%') {
-                        id = id.replace("%", "percent");
+                    public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
+                        return mapId.get(id);
                     }
-                    return mapId.get(id);
-                }
-            });
+                });
         }
 
         xmlLexer = new XMLLexer();
@@ -147,10 +151,18 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         javaLexer = new JavaLexer();
         File tpl = new File(template);
         templateHandler = new TemplateHandler(this, tpl);
-        ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance());
-        ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance());
-        ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance());
-        ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance());
+        ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance(type));
+        ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(type));
+        ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(type));
+        ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(type));
+    }
+
+    /**
+     * Get the type of the generation
+     * @return the generation type
+     */
+    public final GenerationType getGenerationType() {
+        return type;
     }
 
     /**

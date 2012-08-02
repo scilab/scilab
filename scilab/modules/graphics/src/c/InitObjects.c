@@ -281,7 +281,10 @@ int InitAxesModel()
     int clipState = 0;
     int tightLimits = 0;
     int arcDrawingMethod = 0;
+    int labelsFontStyle = 6;
+    int labelsFontColor = -1;
     int i = 0;
+    double labelsFontSize = 1;
     double axesBounds[4];
     double dataBounds[6];
     double rotationAngles[2];
@@ -317,6 +320,10 @@ int InitAxesModel()
 
     setGraphicObjectProperty(paxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
     setGraphicObjectProperty(paxesmdlUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+
+    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_SIZE__, &labelsFontSize, jni_double, 1);
+    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_COLOR__, &labelsFontColor, jni_int, 1);
+    setGraphicObjectProperty(paxesmdlUID, __GO_FONT_STYLE__, &labelsFontStyle, jni_int, 1);
 
     setGraphicObjectProperty(paxesmdlUID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
     setGraphicObjectProperty(paxesmdlUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);

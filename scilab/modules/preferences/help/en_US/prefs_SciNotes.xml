@@ -25,7 +25,7 @@
       </inlinemediaobject>
     </para>
     <para>
-      SciNotes is the default Scilab code editor. It is now possible to use an external editor using a system dependant command or a Scilab macro name.
+      SciNotes is the default Scilab code editor. It is now possible to use an external editor using a system dependent command or a Scilab macro name.
     </para>
     <para>
       <itemizedlist>

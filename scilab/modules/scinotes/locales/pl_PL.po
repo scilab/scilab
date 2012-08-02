@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pl\n"
 
 #, c-format
@@ -330,6 +330,9 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
+msgid "Use SciNotes"
+msgstr ""
+
 msgid "External editor: "
 msgstr ""
 
@@ -376,6 +379,9 @@ msgid "Wrap lines"
 msgstr ""
 
 msgid "Keywords"
+msgstr ""
+
+msgid "Enable keywords colorization"
 msgstr ""
 
 msgid "Set syntax Colors"
@@ -674,7 +680,6 @@ msgstr "Zastąp"
 msgid "Replace All"
 msgstr "Zastąp wszystko"
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Błędne wyrażenie regularne : %s"
 
@@ -690,11 +695,9 @@ msgstr "Jesteś na końcu dokumentu"
 msgid "You have reached the beginning of the document"
 msgstr "Jesteś na początku dokumentu"
 
-#, c-format
 msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -715,7 +718,6 @@ msgstr ""
 " został zmieniony.\n"
 "Czy chcesz go zapisać?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -800,14 +802,12 @@ msgstr "Otwórz plik źródłowy dla makra "
 msgid "Show the definition of the macro "
 msgstr "Pokaż definicję makra "
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Linia %s,  kolumna %s. funkcja '%s' w wierszu %s."
 
 msgid "Unknown function"
 msgstr "Nieznana funkcja"
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr "Linia %s, kolumna %s."
 
@@ -823,7 +823,6 @@ msgstr "Plik nie może być zapisany"
 msgid "The file could not be converted."
 msgstr "Plik nie może być przekonwertowany"
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%s jest katalogiem."
 
@@ -848,7 +847,6 @@ msgstr "Brak zaznaczonego tekstu"
 msgid "No text to execute."
 msgstr "Brak kodu do wykonania"
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -861,14 +859,12 @@ msgstr "Problemy z kodowaniem"
 msgid "Cannot guess the file encoding."
 msgstr "NIe rozpoznano kodowania pliku"
 
-#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
-#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -986,15 +982,12 @@ msgstr "Znajdź pliki..."
 msgid "Search in Files..."
 msgstr "Znajdź w plikach..."
 
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Minęło: %s sec."
 

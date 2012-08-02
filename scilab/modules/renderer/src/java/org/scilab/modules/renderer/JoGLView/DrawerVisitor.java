@@ -375,7 +375,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
             drawingTools.clearDepthBuffer();
-            if (figure.getVisible()) {
+            if (figure.getVisible() && figure.getImmediateDrawing()) {
                 askAcceptVisitor(figure.getChildren());
             }
         }

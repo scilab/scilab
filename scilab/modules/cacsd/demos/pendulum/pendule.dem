@@ -174,7 +174,6 @@ function demo_pendule()
     clf()
     black(pr,0.01,100,['position','theta'])
     g_margin(pr(1,1))
-    show_pixmap()
     mode(-1)
 
 

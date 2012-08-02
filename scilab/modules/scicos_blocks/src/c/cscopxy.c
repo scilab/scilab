@@ -309,6 +309,7 @@ static void freeScoData(scicos_block * block)
         FREE(sco->scope.cachedAxeUID);
 
         FREE(sco);
+        *(block->work) = NULL;
     }
 }
 
@@ -472,6 +473,12 @@ static char const* getFigure(scicos_block * block)
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
     // fast path for an existing object
     if (sco->scope.cachedFigureUID != NULL)
     {
@@ -528,6 +535,12 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
     int i;
     sco_data *sco = (sco_data *) * (block->work);
 
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
     // fast path for an existing object
     if (sco->scope.cachedAxeUID != NULL)
     {
@@ -579,6 +592,12 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     double lineThickness;
 
     sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
 
     // fast path for an existing object
     if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] != NULL)

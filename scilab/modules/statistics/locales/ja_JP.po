@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-10-05 14:18+0000\n"
+"PO-Revision-Date: 2012-07-29 14:53+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -398,10 +398,8 @@ msgstr "%s: グラフの指定値が範囲外です.\n"
 msgid "Correlations Circle"
 msgstr "相関円"
 
-#
-# File: macros/show_pca.sci, line: 66
-msgid "Eigenvalues (in percent)"
-msgstr "固有値(パーセント)"
+msgid "Eigenvalues"
+msgstr "固有値"
 
 #, c-format
 msgid ""

@@ -39,8 +39,8 @@ static BOOL loadedDep = FALSE;
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx);
-static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx);
+static int sci_toprint_one_rhs(void* _pvCtx, const char *fname);
+static int sci_toprint_two_rhs(void* _pvCtx, const char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_toprint(char *fname, void* pvApiCtx)
 {
@@ -55,35 +55,35 @@ int sci_toprint(char *fname, void* pvApiCtx)
 
     if (Rhs == 1)
     {
-        return sci_toprint_one_rhs(fname, pvApiCtx);
+        return sci_toprint_one_rhs(pvApiCtx, fname);
     }
     else
     {
-        return sci_toprint_two_rhs(fname, pvApiCtx);
+        return sci_toprint_two_rhs(pvApiCtx, fname);
     }
     return 0;
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx)
+static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(_pvCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(_pvCtx, piAddressVarOne))
     {
         char *fileName = NULL;
         BOOL iRet = FALSE;
 
-        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &fileName) == 0)
+        if (getAllocatedSingleString(_pvCtx, piAddressVarOne, &fileName) == 0)
         {
             char *fullName = getFullFilename(fileName);
 
@@ -117,21 +117,22 @@ static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx)
                 fullName = NULL;
             }
 
-            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
+            createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+            AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+            ReturnArguments(_pvCtx);
         }
         else
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
-    else if (isDoubleType(pvApiCtx, piAddressVarOne))
+    else if (isDoubleType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarOne))
+        if (isScalar(_pvCtx, piAddressVarOne))
         {
             double dValue = 0.;
-            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
+
+            if (!getScalarDouble(_pvCtx, piAddressVarOne, &dValue))
             {
                 int num_win = (int)dValue;
                 BOOL iRet = FALSE;
@@ -158,9 +159,9 @@ static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
+                createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                ReturnArguments(_pvCtx);
             }
             else
             {
@@ -180,14 +181,14 @@ static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx)
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
+static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(_pvCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -195,19 +196,19 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(_pvCtx, 2, &piAddressVarTwo);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
-    if (isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarTwo))
+        if (isScalar(_pvCtx, piAddressVarTwo))
         {
-            if (isStringType(pvApiCtx, piAddressVarTwo))
+            if (isStringType(_pvCtx, piAddressVarTwo))
             {
                 char *pageHeader = NULL;
                 char **pStVarOne = NULL;
@@ -218,9 +219,8 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                 int i = 0;
                 char *lines = NULL;
 
-
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, NULL, NULL);
-                if(sciErr.iErr)
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, NULL, NULL);
+                if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -242,8 +242,8 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, lenStVarOne, NULL);
-                if(sciErr.iErr)
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, NULL);
+                if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -280,7 +280,7 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                     }
                 }
 
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
                 if (lenStVarOne)
                 {
                     FREE(lenStVarOne);
@@ -315,7 +315,7 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                 }
                 freeArrayOfString(pStVarOne, mnOne);
 
-                if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pageHeader) == 0)
+                if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &pageHeader) == 0)
                 {
                     BOOL iRet = FALSE;
 
@@ -344,9 +344,9 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                         lines = NULL;
                     }
 
-                    createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                    LhsVar(1) = Rhs + 1;
-                    PutLhsVar();
+                    createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                    AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                    ReturnArguments(_pvCtx);
                 }
                 else
                 {
@@ -371,14 +371,14 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
             return 0;
         }
     }
-    else if (isDoubleType(pvApiCtx, piAddressVarOne))
+    else if (isDoubleType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarOne))
+        if (isScalar(_pvCtx, piAddressVarOne))
         {
             int num_win = 0;
             double dValue = 0.;
 
-            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
+            if (!getScalarDouble(_pvCtx, piAddressVarOne, &dValue))
             {
                 num_win = (int)dValue;
 
@@ -400,14 +400,15 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                 return 0;
             }
 
-            if (isStringType(pvApiCtx, piAddressVarTwo))
+            if (isStringType(_pvCtx, piAddressVarTwo))
             {
                 BOOL iRet = FALSE;
 
-                if (isScalar(pvApiCtx, piAddressVarTwo))
+                if (isScalar(_pvCtx, piAddressVarTwo))
                 {
                     char *outputType = NULL;
-                    if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &outputType) == 0)
+
+                    if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &outputType) == 0)
                     {
                         if ((strcmp(outputType, "pos") == 0) || (strcmp(outputType, "gdi") == 0))
                         {
@@ -430,9 +431,9 @@ static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
                                 return 0;
                             }
 
-                            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                            LhsVar(1) = Rhs + 1;
-                            PutLhsVar();
+                            createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                            AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                            ReturnArguments(_pvCtx);
                         }
                         else
                         {

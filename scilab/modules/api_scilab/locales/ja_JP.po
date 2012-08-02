@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-03-08 14:23+0000\n"
+"PO-Revision-Date: 2012-07-29 14:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ja\n"
 
 #, c-format
@@ -164,9 +164,9 @@ msgstr "%s: 引数の精度を取得できません"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
-msgstr "%s: 入力引数#%dの型が間違っています: 実数スカラーまたは整数スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは整数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""

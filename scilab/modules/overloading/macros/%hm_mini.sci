@@ -9,8 +9,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function [x,k] = %hm_mini(varargin)
     n=size(varargin)
-    m = varargin(1).dims
     if n==1 then
+        m = varargin(1).dims
         [x,k] = min(varargin(1).entries)
         if (argn(1) > 1 & (m(length(m)) <> size(varargin(1), "*"))) then
             k = ind2sub(m, k(1))
