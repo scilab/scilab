@@ -1181,7 +1181,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 mostlyclean: mostlyclean-am
 
 mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+	mostlyclean-libtool mostlyclean-local
 
 pdf: pdf-am
 
@@ -1230,8 +1230,8 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscihelptools_la_binDATA \
+	mostlyclean-libtool mostlyclean-local pdf pdf-am ps ps-am tags \
+	uninstall uninstall-am uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_data_configurationDATA \
 	uninstall-libscihelptools_la_data_cssDATA \
 	uninstall-libscihelptools_la_data_pagesDATA \
@@ -1244,6 +1244,9 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_xsl_foDATA \
 	uninstall-pkglibLTLIBRARIES
 
+
+mostlyclean-local:
+	rm -rf web javaHelp html pdf
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
