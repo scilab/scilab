@@ -309,7 +309,7 @@ public final class MenuBarBuilder {
                         } else if (attributes.item(i).getNodeName() == MACOSX) {
                             macosx = attributes.item(i).getNodeValue().equals(TRUE);
                             if (!macosx && OS.get() == OS.MAC) {
-                                GraphicController.getController().setProperty(menuId, __GO_VISIBLE__, false);
+                                GraphicController.getController().removeRelationShipAndDelete(menuId);
                                 separator = false;
                             }
                         }
