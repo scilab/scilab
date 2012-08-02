@@ -10,8 +10,8 @@
 
 function [x,k] = %hm_maxi(varargin)
     n=size(varargin)
-    m = varargin(1).dims
     if n==1 then
+        m = varargin(1).dims
         [x,k] = max(varargin(1).entries)
         if (argn(1) > 1 & (m(length(m)) <> size(varargin(1), "*"))) then
             k = ind2sub(m, k(1))
@@ -84,6 +84,10 @@ function [x,k]=%hm_oriented_max(m,d)
         k=hypermat(dims,matrix(k,-1,1))
     end
 endfunction
+
+
+
+
 
 
 
