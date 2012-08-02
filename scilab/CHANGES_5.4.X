@@ -4,7 +4,14 @@
 Bug Fixes
 =========
 
+* Bug #8157 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
+                    duplicates.
+
+* Bug #11597 fixed - On Mac OS X, the Preferences windows was not accessible
+                     through the standard shortcut "CMD + ,".
+
 * Bug #11604 fixed - Some items were not localized in "Scilab Preferences" window.
+
 
 
 

@@ -181,14 +181,30 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
 
     /**
      * This method is called by the OSXAdapter class when the specific Mac
-     * OS X about menu is called. It is the only case where this method
+     * OS X "About" menu is called. It is the only case where this method
      * should be used
      */
-    public void OSXabout() {
+    public void macosxAbout() {
         InterpreterManagement.requestScilabExec("about()");
     }
 
-    public void OSXquit() {
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Quit Scilab" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxQuit() {
         InterpreterManagement.requestScilabExec("exit()");
     }
+
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Preferences" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxPreferences() {
+        InterpreterManagement.requestScilabExec("preferences();");
+    }
+
+
 }
