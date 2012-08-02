@@ -40,6 +40,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -60,7 +61,7 @@ public final class MenuBarBuilder {
     private static final String FILE_NOT_FOUND = "Could not find file: ";
 
     private static final String CANNOT_CREATE_MENUBAR = "Cannot create MenuBar.\n"
-            + "Check if file *_menubar.xml is available and valid.";
+        + "Check if file *_menubar.xml is available and valid.";
 
     private static boolean isParentValid = true;;
 
@@ -100,8 +101,10 @@ public final class MenuBarBuilder {
      * @param figureId the figure
      */
     public static void buildFigureMenuBar(String figureId) {
-        MenuBarBuilder.isParentValid = false;
-        buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+        if (!SwingView.isHeadless()) {
+            MenuBarBuilder.isParentValid = false;
+            buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+        }
     }
 
     /**
@@ -187,7 +190,7 @@ public final class MenuBarBuilder {
          * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
          */
         public Object invoke(Object proxy, Method method, Object[] args)
-        throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+            throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
             if (internalMethodNames.contains(method.getName())) {
                 return getClass().getMethod(method.getName(), method.getParameterTypes()).invoke(this, args);
             } else {
@@ -201,7 +204,6 @@ public final class MenuBarBuilder {
          * @see org.scilab.modules.MenuBarConfiguration.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
          */
         public void addMenus(String parentId) {
-
             // delete old menus
             for (String childId : (String []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
                 if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__))
