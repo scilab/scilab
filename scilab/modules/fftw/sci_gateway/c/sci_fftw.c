@@ -572,8 +572,8 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     /* void or scalar input gives void output or scalar*/
     if (ndims == 0 )
     {
-        *assignOutputVariable(_pvCtx, 1) =  1;
-        returnArguments(_pvCtx);
+        AssignOutputVariable(_pvCtx, 1) =  1;
+        ReturnArguments(_pvCtx);
         return(0);
     }
 
@@ -608,7 +608,7 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     * Return results in lhs argument *
     ***********************************/
 
-    returnArguments(_pvCtx);
+    ReturnArguments(_pvCtx);
 ERR:
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
@@ -650,8 +650,8 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     /* void or scalar input gives void output or scalar*/
     if (ndims == 0 )
     {
-        *assignOutputVariable(_pvCtx, 1) =  1;
-        returnArguments(_pvCtx);
+        AssignOutputVariable(_pvCtx, 1) =  1;
+        ReturnArguments(_pvCtx);
         return(0);
     }
 
@@ -788,7 +788,7 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     * Return results in lhs argument *
     ***********************************/
 
-    returnArguments(_pvCtx);
+    ReturnArguments(_pvCtx);
 ERR:
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
@@ -827,8 +827,8 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     /* void or scalar input gives void output or scalar*/
     if (lA <= 1 )
     {
-        *assignOutputVariable(_pvCtx, 1) =  1;
-        returnArguments(_pvCtx);
+        AssignOutputVariable(_pvCtx, 1) =  1;
+        ReturnArguments(_pvCtx);
         return(0);
     }
 
@@ -1047,7 +1047,7 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     * Return results in lhs argument *
     ***********************************/
 
-    returnArguments(_pvCtx);
+    ReturnArguments(_pvCtx);
 ERR:
     FREE(Dim1);
     FREE(Incr);
@@ -1168,7 +1168,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         issymA = 0;
     }
 
-    *assignOutputVariable(_pvCtx, 1) =  1;/* assume inplace transform*/
+    AssignOutputVariable(_pvCtx, 1) =  1;/* assume inplace transform*/
 
     if (WITHMKL)
     {
@@ -1199,7 +1199,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
                 C2F(dcopy)(&lA, Ar, &one, ri, &one);
                 Ar = ri;
                 C2F(dset)(&lA, &dzero, Ai, &one);
-                *assignOutputVariable(_pvCtx, 1) =  *getNbInputArgument(_pvCtx) + 1;
+                AssignOutputVariable(_pvCtx, 1) =  nbInputArgument(_pvCtx) + 1;
                 isrealA = 0;
             }
         }
@@ -1216,7 +1216,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         }
         C2F(dcopy)(&lA, Ar, &one, ri, &one);
         Ar = ri;
-        *assignOutputVariable(pvApiCtx, 1) = *getNbInputArgument(_pvCtx) + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(_pvCtx) + 1;
     }
 
     /* Set pointers on real and imaginary part of the input */
@@ -1252,7 +1252,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
                 goto ERR;
             }
-            *assignOutputVariable(pvApiCtx, 1) = *getNbInputArgument(_pvCtx) + 1;
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(_pvCtx) + 1;
             type = R2C_PLAN; /* fftw_plan_guru_split_dft_r2c plans for an FFTW_FORWARD transform*/
             if (isn == FFTW_BACKWARD)
             {
