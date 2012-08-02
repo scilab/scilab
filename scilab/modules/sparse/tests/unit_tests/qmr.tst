@@ -131,7 +131,7 @@ function y = func_A(x)
     y = Amat*x;
 endfunction
 assert_checkfalse(execstr("qmr(func_A)","errcatch") == 0);
-lasterror(execstr("10000","errcatch") == 0)
+lasterror(execstr("10000","errcatch") == 0);
 
 // 2. Test with 2 input arguments and all output arguments
 // =======================================================
@@ -615,3 +615,4 @@ assert_checkalmostequal ( xcomputed , xexpected , %eps);
 
 
 
+
