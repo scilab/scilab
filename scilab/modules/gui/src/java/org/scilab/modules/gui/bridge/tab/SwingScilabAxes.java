@@ -28,7 +28,6 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -60,8 +59,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 
 	private ScilabEventListener eventHandler;
 
-	private AxesRotationTracker rotationTracker;
-
 	/** An axes may contain at most one canvas for now */
 	private SwingScilabCanvas graphicCanvas;
 
@@ -89,8 +86,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		// Enable mouse Events sensitivity...
 		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
-		// for rotations
-		rotationTracker = null;
 	}
 
 	/**
@@ -345,37 +340,10 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the displacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return getRotationTracker().getDisplacement(displacement);
-	}
-
-	/**
-	 * Asynchronous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		getRotationTracker().cancelRecording();
-	}
-
-	/**
 	 * @return the figureId
 	 */
 	public int getFigureId() {
 		return figureId;
-	}
-
-	/**
-	 * Singleton creation for rotation tracker
-	 * @return the instance of the rotation tracker
-	 */
-	private AxesRotationTracker getRotationTracker() {
-		if (rotationTracker == null) {
-			rotationTracker = new AxesRotationTracker(this);
-		}
-		return rotationTracker;
 	}
 
 	/**

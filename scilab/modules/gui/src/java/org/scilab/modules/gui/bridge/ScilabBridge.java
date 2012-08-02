@@ -1508,24 +1508,6 @@ public class ScilabBridge {
     }
 
     /**
-     * Get the displacement in pixel that should be used for rotating axes
-     * @param tab tab on which the displacement is recorded
-     * @param displacement out parameter, [x,y] array of displacement in pixels
-     * @return true if the displacement recording continue, false otherwise
-     */
-    public static boolean getRotationDisplacement(Tab tab, int[] displacement) {
-        return ScilabTabBridge.getRotationDisplacement(tab, displacement);
-    }
-
-    /**
-     * Asynchronous stop of rotation tracking.
-     * @param tab tab on which the displacement is recorded
-     */
-    public static void stopRotationRecording(Tab tab) {
-        ScilabTabBridge.stopRotationRecording(tab);
-    }
-
-    /**
      * Disable the canvas before closing
      * @param canvas canvas to close
      */
