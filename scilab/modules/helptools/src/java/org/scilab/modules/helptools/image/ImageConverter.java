@@ -105,14 +105,14 @@ public final class ImageConverter {
             current = new File(new URI(currentFile));
         } catch (URISyntaxException e) { }
 
-        if (current == null || current.lastModified() > imageFile.lastModified()) {
-            ExternalImageConverter conv = externalConverters.get(mime);
-            if (conv != null) {
-                return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
-            }
-
+        ExternalImageConverter conv = externalConverters.get(mime);
+        if (conv == null) {
             System.err.println("In file " + currentFile + "invalid code:\n" + code);
             return null;
+        }
+
+        if (conv.mustRegenerate() || current == null || current.lastModified() > imageFile.lastModified()) {
+            return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
         }
 
         return "<img src=\'" + imageName + "\'/>";

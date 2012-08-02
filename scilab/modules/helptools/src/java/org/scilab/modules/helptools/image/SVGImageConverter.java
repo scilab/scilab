@@ -50,6 +50,13 @@ public class SVGImageConverter implements ExternalImageConverter {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean mustRegenerate() {
+        return false;
+    }
+
+    /**
      * Since this a singleton class...
      * @return this
      */

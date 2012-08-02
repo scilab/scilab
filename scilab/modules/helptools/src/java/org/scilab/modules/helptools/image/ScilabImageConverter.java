@@ -44,6 +44,13 @@ public class ScilabImageConverter implements ExternalImageConverter {
         return "image/scilab";
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public boolean mustRegenerate() {
+        return false;
+    }
+
     public static String getFileWithScilabCode() {
         if (instance.buffer.length() != 0) {
             try {
@@ -76,6 +83,10 @@ public class ScilabImageConverter implements ExternalImageConverter {
             instance = new ScilabImageConverter(type);
         }
 
+        return instance;
+    }
+
+    public static ScilabImageConverter getInstance() {
         return instance;
     }
 
@@ -118,10 +129,76 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
+        return getHTMLCodeToReturn(code, "<img src=\'" + imageName + "\'/>");
+    }
 
-        /* Prepare the code for the html inclusion */
-        code = code.trim().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br />");
+    public String getHTMLCodeToReturn(String code, String imageTag) {
+        if (type == HTMLDocbookTagConverter.GenerationType.WEB) {
+            /* Prepare the code for the html inclusion */
+            code = convertCode(code);
+            /* Provide a tooltip */
+            return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
+        } else {
+            /* No tooltip in the javahelp browser ...
+             * too limited html capabilities */
+            return imageTag;
+        }
+    }
 
-        return " <div rel='tooltip' title='" + code + "'><img src=\'" + imageName + "\'/></div>";
+    private static final String convertCode(String code) {
+        if (code == null || code.length() == 0) {
+            return "";
+        }
+
+        StringBuffer buffer = new StringBuffer(2 * code.length());
+        int start = 0;
+        int end = code.length() - 1;
+        char c = code.charAt(0);
+
+        // first we trim
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (start < end) {
+                c = code.charAt(++start);
+            } else {
+                break;
+            }
+        }
+        c = code.charAt(end);
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (end > 0) {
+                c = code.charAt(--end);
+            } else {
+                break;
+            }
+        }
+
+        // replace chars by their html entities equivalent
+        for (int j = start; j <= end; j++) {
+            c = code.charAt(j);
+            switch (c) {
+            case '&':
+                buffer.append("&amp;");
+                break;
+            case '<':
+                buffer.append("&lt;");
+                break;
+            case '>':
+                buffer.append("&gt;");
+                break;
+            case '\n':
+                buffer.append("<br />");
+                break;
+            case '\'':
+                buffer.append("&#039;");
+                break;
+            case '\"':
+                buffer.append("&quot;");
+                break;
+            default:
+                buffer.append(c);
+            }
+        }
+
+        return buffer.toString();
     }
 }

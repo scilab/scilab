@@ -21,6 +21,7 @@ import java.util.Map;
 import org.xml.sax.Attributes;
 
 import org.scilab.modules.helptools.image.ImageConverter;
+import org.scilab.modules.helptools.image.ScilabImageConverter;
 
 /**
  * Handle the included SCILAB code
@@ -110,6 +111,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
                 ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName());
             } else {
                 ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".");
+                ret = ScilabImageConverter.getInstance().getHTMLCodeToReturn(buffer.toString(), ret);
             }
 
             buffer.setLength(0);
