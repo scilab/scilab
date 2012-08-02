@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -81,32 +81,32 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 71
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 71
-# File: src/c/sciCall.c, line: 161
-# File: src/c/sciCall.c, line: 230
-# File: src/c/sciCall.c, line: 267
-# File: src/c/sciCall.c, line: 323
-# File: src/c/sciCall.c, line: 488
-# File: src/c/sciCall.c, line: 814
-# File: src/c/sciCall.c, line: 881
-# File: src/c/sciCall.c, line: 955
+# File: src/c/sciCall.c, line: 160
+# File: src/c/sciCall.c, line: 228
+# File: src/c/sciCall.c, line: 265
+# File: src/c/sciCall.c, line: 321
+# File: src/c/sciCall.c, line: 486
+# File: src/c/sciCall.c, line: 812
+# File: src/c/sciCall.c, line: 879
+# File: src/c/sciCall.c, line: 954
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_Legend.c, line: 126
-#, c-format
-msgid "%s: Objects must have the same axes.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_Legend.c, line: 135
+# File: sci_gateway/c/sci_Legend.c, line: 114
 #, c-format
 msgid "%s: The handle is no more valid.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_Legend.c, line: 146
+# File: sci_gateway/c/sci_Legend.c, line: 134
+#, c-format
+msgid "%s: Objects must have the same axes.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_Legend.c, line: 145
 #, c-format
 msgid "%s: The %d th handle is not a polyline handle.\n"
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 105
-# File: sci_gateway/c/sci_delete.c, line: 156
+# File: sci_gateway/c/sci_delete.c, line: 161
 #, c-format
 msgid "%s: The handle is not valid.\n"
 msgstr ""
@@ -239,7 +239,7 @@ msgid "%s: Parent entity for destination should be an axes.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 134
+# File: sci_gateway/c/sci_delete.c, line: 138
 # File: sci_gateway/c/sci_move.c, line: 52
 # File: sci_gateway/c/sci_xstringb.c, line: 68
 #, c-format
@@ -247,12 +247,12 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 162
+# File: sci_gateway/c/sci_delete.c, line: 167
 msgid "This object cannot be deleted.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 178
+# File: sci_gateway/c/sci_delete.c, line: 183
 msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
@@ -541,7 +541,7 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xfpolys.c, line: 79
+# File: sci_gateway/c/sci_xfpolys.c, line: 89
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr ""
@@ -594,7 +594,7 @@ msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xpoly.c, line: 73
+# File: sci_gateway/c/sci_xpoly.c, line: 74
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -768,23 +768,22 @@ msgstr ""
 #
 # File: src/c/BuildObjects.c, line: 367
 # File: src/c/BuildObjects.c, line: 431
-# File: src/c/BuildObjects.c, line: 549
-# File: src/c/BuildObjects.c, line: 810
-# File: src/c/BuildObjects.c, line: 1057
-# File: src/c/BuildObjects.c, line: 1202
-# File: src/c/BuildObjects.c, line: 1339
-# File: src/c/BuildObjects.c, line: 1525
-# File: src/c/BuildObjects.c, line: 1915
+# File: src/c/BuildObjects.c, line: 779
+# File: src/c/BuildObjects.c, line: 1026
+# File: src/c/BuildObjects.c, line: 1171
+# File: src/c/BuildObjects.c, line: 1308
+# File: src/c/BuildObjects.c, line: 1494
+# File: src/c/BuildObjects.c, line: 1884
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 908
+# File: src/c/BuildObjects.c, line: 877
 msgid "Width and height must be positive.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 1455
+# File: src/c/BuildObjects.c, line: 1424
 msgid "Impossible case when building axis\n"
 msgstr ""
 
@@ -903,7 +902,7 @@ msgid "Default axes cannot be created.\n"
 msgstr ""
 
 #
-# File: src/c/InitObjects.c, line: 678
+# File: src/c/InitObjects.c, line: 685
 msgid "This object has not any graphic mode\n"
 msgstr ""
 
@@ -1786,20 +1785,21 @@ msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_parent_property.c, line: 57
-# File: src/c/getHandleProperty/set_parent_property.c, line: 76
+# File: src/c/getHandleProperty/set_parent_property.c, line: 59
+# File: src/c/getHandleProperty/set_parent_property.c, line: 90
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_parent_property.c, line: 64
+# File: src/c/getHandleProperty/set_parent_property.c, line: 66
+# File: src/c/getHandleProperty/set_parent_property.c, line: 77
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_parent_property.c, line: 86
+# File: src/c/getHandleProperty/set_parent_property.c, line: 100
 msgid "Parent property can not be modified directly.\n"
 msgstr ""
 
@@ -1857,13 +1857,13 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 770
+# File: src/c/sciCall.c, line: 768
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 801
+# File: src/c/sciCall.c, line: 799
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
@@ -1873,11 +1873,6 @@ msgstr ""
 msgid "Scilab Graphics module not installed.\n"
 msgstr ""
 
-# File: demos/2d_3d_plots/hist3d.dem.sce, line: 39
-msgid "Average monthly temperatures in french cities"
-msgstr ""
-
-#
 # File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 39
 msgid "Computing in progress..."
 msgstr ""
@@ -2162,6 +2157,19 @@ msgid "Axes are scaled with M's indices"
 msgstr ""
 
 #
+# File: macros/%_Matplot1.sci, line: 36
+#, c-format
+msgid ""
+"Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\n"
+"pixel(i,j) is drawn with color number int(M(i,j))"
+msgstr ""
+
+#
+# File: macros/%_Matplot1.sci, line: 37
+msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
+msgstr ""
+
+#
 # File: macros/%h_load.sci, line: 496
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
@@ -2436,7 +2444,7 @@ msgstr ""
 #
 # File: macros/comet.sci, line: 71
 # File: macros/comet3d.sci, line: 118
-# File: macros/histplot.sci, line: 87
+# File: macros/histplot.sci, line: 88
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
@@ -2488,7 +2496,7 @@ msgstr ""
 # File: macros/genfac3d.sci, line: 37
 # File: macros/graduate.sci, line: 39
 # File: macros/graypolarplot.sci, line: 27
-# File: macros/histplot.sci, line: 63
+# File: macros/histplot.sci, line: 64
 # File: macros/legend.sci, line: 12
 # File: macros/legends.sci, line: 22
 # File: macros/paramfplot2d.sci, line: 37
@@ -3046,35 +3054,40 @@ msgid "Name"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 55
+# File: macros/hist3d.sci, line: 46
+msgid "Average monthly temperatures in french cities"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 56
 msgid "histplot() : (normalized) histogram plot"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 57
+# File: macros/histplot.sci, line: 58
 msgid "Gaussian random sample histogram"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 58
+# File: macros/histplot.sci, line: 59
 msgid "Exact gaussian density"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 67
-# File: macros/histplot.sci, line: 69
+# File: macros/histplot.sci, line: 68
+# File: macros/histplot.sci, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 89
+# File: macros/histplot.sci, line: 90
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 95
+# File: macros/histplot.sci, line: 102
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "

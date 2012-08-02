@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 54
 #, c-format
@@ -71,6 +71,112 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
+# File: scilab_fake_localization_file.c, line: 833
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 203
+msgid "Straight"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 834
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 204
+msgid "Horizontal"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 835
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 205
+msgid "Vertical"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 839
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 85
+msgid "Simulation"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 851
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 242
+msgid "No trace nor debug printing"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 852
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 243
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 853
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 244
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 854
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 245
+msgid "Debug block calls without trace"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 895
+msgid "Default simulation settings"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 899
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 211
+msgid "Final integration time"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 911
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 212
+msgid "Real time scaling"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 923
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 213
+msgid "Integrator absolute tolerance"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 935
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 214
+msgid "Integrator relative tolerance"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 947
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
+msgid "Tolerance on time"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 959
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
+msgid "Max integration time interval"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 971
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 217
+msgid "Solver kind"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 999
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1022
+msgid "Default trace settings"
+msgstr ""
+
+#
 # File: src/cpp/xcosUtilities.cpp, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -83,7 +189,7 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 102
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 104
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -91,7 +197,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 104
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 106
 #, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
@@ -99,12 +205,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 105
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 107
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 106
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 108
 #, c-format
 msgid ""
 "Unable to load the Batik library. \n"
@@ -112,7 +218,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 998
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 1002
 msgid "parent diagram not found."
 msgstr ""
 
@@ -586,11 +692,6 @@ msgid "Show parent diagram"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 85
-msgid "Simulation"
-msgstr ""
-
-#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 86
 msgid "Setup"
 msgstr ""
@@ -1055,21 +1156,6 @@ msgid "Link Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 203
-msgid "Straight"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 204
-msgid "Horizontal"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 205
-msgid "Vertical"
-msgstr ""
-
-#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 207
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -1077,46 +1163,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 208
 msgid "Execution trace and Debug"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 211
-msgid "Final integration time"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 212
-msgid "Real time scaling"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 213
-msgid "Integrator absolute tolerance"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 214
-msgid "Integrator relative tolerance"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
-msgid "Tolerance on time"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
-msgid "Max integration time interval"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 217
-msgid "Solver kind"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
-msgid "maximum step size (0 means no limit)"
 msgstr ""
 
 #
@@ -1183,26 +1229,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
 msgid "Click on diagram to add link point or on a compatible target to finish"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 242
-msgid "No trace nor debug printing"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 243
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 244
-msgid "Per block execution trace and Debug block calls"
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 245
-msgid "Debug block calls without trace"
 msgstr ""
 
 #
@@ -1916,24 +1942,24 @@ msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 94
-# File: macros/xcos_simulate.sci, line: 96
+# File: macros/xcos_simulate.sci, line: 95
+# File: macros/xcos_simulate.sci, line: 97
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 102
+# File: macros/xcos_simulate.sci, line: 103
 #, c-format
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 328
+# File: macros/xcos_simulate.sci, line: 329
 msgid "Simulation problem"
 msgstr ""
 
 #
-# File: macros/xcos_simulate.sci, line: 354
+# File: macros/xcos_simulate.sci, line: 355
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
