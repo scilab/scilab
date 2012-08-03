@@ -44,9 +44,7 @@
 #include "CurrentSubwin.h"
 #include "sciprint.h"
 
-#ifdef _MSC_VER
 #include "os_strdup.h"
-#endif
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, unsigned long fname_len)
 {
