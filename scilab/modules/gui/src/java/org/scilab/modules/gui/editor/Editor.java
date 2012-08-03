@@ -220,13 +220,45 @@ public class Editor {
     }
 
     /**
-     * On ESC pressed if dataEditor is enabled,
-     * back to normal editor.
+     * Handles keyboard input
      * @param event The Key event.
      */
     void onKeyPressed(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            leaveDataEditor();
+
+        if (event.isControlDown()) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.VK_C:
+                    if (getSelected() != null) {
+                        onClickCopy();
+                    }
+                    break;
+                case KeyEvent.VK_V:
+                    if (ScilabClipboard.getInstance().canPaste()) {
+                        onClickPaste();
+                    }
+                    break;
+                case KeyEvent.VK_X:
+                    onClickCut();
+                    break;
+                case KeyEvent.VK_Z:
+                    if (editorHistory.isUndoEnabled()) {
+                        onClickUndo();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (event.getKeyCode()) {
+                case KeyEvent.VK_DELETE:
+                    onClickDelete();
+                    break;
+                case KeyEvent.VK_ESCAPE:
+                    leaveDataEditor();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
