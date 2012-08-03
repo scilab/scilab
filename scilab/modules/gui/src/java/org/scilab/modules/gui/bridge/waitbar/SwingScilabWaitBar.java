@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -41,7 +41,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private static final long serialVersionUID = -5208590743368628657L;
 
-    private static final int WIDTH = 300;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 150;
 
     private String uid;
@@ -63,13 +63,13 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
         setIconImage(scilabIcon.getImage());
 
         GridBagLayout gridbag = new GridBagLayout();
-        
+
         Insets insets = new Insets(8, 4, 8, 4);
-        
+
         JPanel pane = new JPanel(gridbag);
         pane.setOpaque(true);
         setContentPane(pane);
-        
+
 
         /* Scilab icon */
         GridBagConstraints iconConstraints = new GridBagConstraints();
@@ -110,15 +110,15 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
         pane.setVisible(true);
         pane.doLayout();
-        
+
         this.setSize(WIDTH, HEIGHT);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        
+
         if (ScilabConsole.isExistingConsole()) {
             setLocationRelativeTo((Component) ScilabConsole.getConsole().getAsSimpleConsole());
         }
-        
+
         this.setVisible(true);
         this.doLayout();
         this.pack();
