@@ -54,7 +54,7 @@ public class SwingInspector extends SwingScilabTab {
     * @param select Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public SwingInspector(String select , String objectID) {
+    public SwingInspector(String select , String objectID, Integer clickX, Integer clickY) {
         super(MessagesGED.quick_ged, INSPECTORUUID);
 
         setAssociatedXMLIDForHelp("quickged");
@@ -67,7 +67,7 @@ public class SwingInspector extends SwingScilabTab {
         toolBar.addSeparator();
 
         guiComponents();
-        new SwapObject(select, objectID, 1, 1);
+        new SwapObject(select, objectID, clickX, clickY);
 
         setContentPane(desktop);
         WindowsConfigurationManager.restorationFinished(this);

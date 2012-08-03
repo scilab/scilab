@@ -36,9 +36,9 @@ public class Inspector {
     * @param select Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public Inspector(String select , String objectID) {
+    public Inspector(String select , String objectID, Integer clickX, Integer clickY) {
         TextBox infobar = ScilabTextBox.createTextBox();
-	inspectorTab = new SwingInspector(select , objectID);
+        inspectorTab = new SwingInspector(select , objectID, clickX, clickY);
         inspectorTab.addInfoBar(infobar);
     }
 
@@ -48,9 +48,9 @@ public class Inspector {
      * @param objectID Enters the identification of object.
      * @return the instance.
      */
-    public static SwingInspector createInspectorTab(String select, String objectID) {
+    public static SwingInspector createInspectorTab(String select, String objectID, Integer clickX, Integer clickY) {
         if (instance == null) {
-            instance = new Inspector(select , objectID);
+            instance = new Inspector(select , objectID, clickX, clickY);
         }
 
         return inspectorTab;
@@ -80,11 +80,11 @@ public class Inspector {
     * @param objectID Enters the identification of object.
     * @return Shows the lightGED was generated.
     */
-    public static Inspector getInspector(String select, String objectID) {
+    public static Inspector getInspector(String select, String objectID, Integer clickX, Integer clickY) {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
-                InspectorTab.getInspectorInstance(select, objectID);
+                InspectorTab.getInspectorInstance(select, objectID, clickX, clickY);
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
@@ -92,11 +92,12 @@ public class Inspector {
                 window.setVisible(true);
             }
         } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingInspector) inspectorTab);
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass
+                                       (SwingScilabWindow.class, (SwingInspector) inspectorTab);
             window.setVisible(true);
             window.toFront();
+            new SwapObject(select, objectID, clickX, clickY);
         }
-        inspectorTab.setTitle(MessagesGED.quick_ged + ": " + select);
         return instance;
     }
 

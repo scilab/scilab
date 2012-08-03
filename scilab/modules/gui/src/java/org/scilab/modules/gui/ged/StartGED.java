@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,14 +17,14 @@ import org.scilab.modules.gui.editor.EditorEventListener;
 /**
  * Manages the action of the buttons on the toolbar and menubar.
  *
- * @author Marcos Cardinot
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
- public class StartGED {
+public class StartGED {
 
     /**
     * Initializes the lightGED.
     */
     public static void quickGED() {
-        Inspector.getInspector(MessagesGED.figure, EditorEventListener.windowUid);
+        Inspector.getInspector("figure", EditorEventListener.windowUid, 1, 1);
     }
 }

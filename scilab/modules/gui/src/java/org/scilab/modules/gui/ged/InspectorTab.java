@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,13 +21,13 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 /**
 * Class to create Inspector instances
 *
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class InspectorTab {
 
-    public static SwingScilabTab getInspectorInstance(String select, String objectID) {
+    public static SwingScilabTab getInspectorInstance(String select, String objectID, Integer clickX, Integer clickY) {
         final SwingScilabTab inspector = Inspector
-                                         .createInspectorTab(select, objectID);
+                                         .createInspectorTab(select, objectID, clickX, clickY);
         ScilabTabFactory.getInstance().addToCache(inspector);
 
         ClosingOperationsManager.registerClosingOperation(inspector,
