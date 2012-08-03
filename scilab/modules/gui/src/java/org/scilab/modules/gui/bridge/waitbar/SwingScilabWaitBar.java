@@ -15,8 +15,12 @@ package org.scilab.modules.gui.bridge.waitbar;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MESSAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.waitbar.SimpleWaitBar;
 
@@ -36,9 +41,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private static final long serialVersionUID = -5208590743368628657L;
 
-    private static final String SPACE = " ";
-
-    private static final int WIDTH = 200;
+    private static final int WIDTH = 300;
     private static final int HEIGHT = 150;
 
     private String uid;
@@ -60,59 +63,65 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
         setIconImage(scilabIcon.getImage());
 
         GridBagLayout gridbag = new GridBagLayout();
-        GridBagConstraints c = new GridBagConstraints();
-
-        JPanel pane = new JPanel();
-        pane.setLayout(gridbag);
+        
+        Insets insets = new Insets(8, 4, 8, 4);
+        
+        JPanel pane = new JPanel(gridbag);
+        pane.setOpaque(true);
         setContentPane(pane);
+        
 
         /* Scilab icon */
-        c.gridwidth = 2;
-        c.gridheight = 2;
-        c.weighty = 1.0;
+        GridBagConstraints iconConstraints = new GridBagConstraints();
+        iconConstraints.gridx = 0; // Top Left
+        iconConstraints.gridy = 0;
+        iconConstraints.fill = GridBagConstraints.BOTH;
+        iconConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        iconConstraints.insets = insets;
         JLabel icon = new JLabel();
-        gridbag.setConstraints(icon, c);
+        gridbag.setConstraints(icon, iconConstraints);
         icon.setIcon(scilabIcon);
         pane.add(icon);
-
-        /* Space between icon and text */
-        JLabel emptySpace = new JLabel(SPACE);
-        c.gridheight = 1;
-        c.gridwidth = 1;
-        gridbag.setConstraints(emptySpace, c);
-        pane.add(emptySpace);
+        icon.setVisible(true);
 
         /* Message */
-        c.gridwidth = GridBagConstraints.REMAINDER;	
-        c.gridheight = 2;
-        c.weighty = 0.0;
+        GridBagConstraints messageConstraints = new GridBagConstraints();
+        messageConstraints.gridx = 1;
+        messageConstraints.gridy = 0;
+        messageConstraints.insets = insets;
         messageLabel = new JLabel();
-        gridbag.setConstraints(messageLabel, c);
+        gridbag.setConstraints(messageLabel, messageConstraints);
         pane.add(messageLabel);
+        messageLabel.setVisible(true);
 
-        /* Empty space between message and progress bar */
-        emptySpace = new JLabel(SPACE);
-        c.gridheight = 1;
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints(emptySpace, c);
-        pane.add(emptySpace);
 
         /* ProgressBar */
         progressBar = new JProgressBar();
-
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints(progressBar, c);
+        GridBagConstraints progressBarConstraints = new GridBagConstraints();
+        progressBarConstraints.gridx = 0;
+        progressBarConstraints.gridy = 1;
+        progressBarConstraints.gridwidth = 2;
+        progressBarConstraints.fill = GridBagConstraints.BOTH;
+        progressBarConstraints.insets = insets;
+        progressBarConstraints.weightx = 1.0;
+        gridbag.setConstraints(progressBar, progressBarConstraints);
         pane.add(progressBar);
+        progressBar.setVisible(true);
 
-        /* Bottom empty space */
-        JLabel bottomEmptySpace = new JLabel(SPACE);
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints(bottomEmptySpace, c);
-        pane.add(bottomEmptySpace);
-
+        pane.setVisible(true);
+        pane.doLayout();
+        
         this.setSize(WIDTH, HEIGHT);
+        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        
+        if (ScilabConsole.isExistingConsole()) {
+            setLocationRelativeTo((Component) ScilabConsole.getConsole().getAsSimpleConsole());
+        }
+        
         this.setVisible(true);
         this.doLayout();
+        this.pack();
 
     }
 
