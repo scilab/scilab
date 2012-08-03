@@ -29,7 +29,6 @@ import java.util.Map;
 public class EditorManager {
 
     private static Map<String, Editor> allEditors = new HashMap<String, Editor>();
-    private static Editor instanceEditor;
 
     /**
      * Create an editor and put it on the map.
@@ -37,18 +36,10 @@ public class EditorManager {
      * @return The created editor instance.
      */
     public static Editor newEditor(String figureUid) {
-        instanceEditor = new Editor();
-        instanceEditor.setFigure(figureUid);
-        allEditors.put(figureUid, instanceEditor);
-        return instanceEditor;
-    }
-
-    /**
-     * Get instance
-     * @return the instance editor
-     */
-    public static Editor getEditor() {
-        return instanceEditor;
+        Editor editor = new Editor();
+        editor.setFigure(figureUid);
+        allEditors.put(figureUid, editor);
+        return editor;
     }
 
     /**
