@@ -12,7 +12,6 @@
 
 #include "gw_scicos.h"
 #include "stack-c.h"
-#include "api_common.h"
 
 /*
  * Stub function to load the gateway

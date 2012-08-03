@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,13 +14,14 @@
 #include "XMLNotHandledElement.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
-    extern const char * nodes_type[];
+extern "C"
+{
+    extern const char *nodes_type[];
 }
 
 namespace org_modules_xml
 {
-    XMLNotHandledElement::XMLNotHandledElement(const XMLObject & _parent, xmlNode * _node) : XMLObject(), parent(_parent)
+    XMLNotHandledElement::XMLNotHandledElement(const XMLObject & _parent, xmlNode * _node):XMLObject(), parent(_parent)
     {
         node = _node;
         scilabType = XMLNOTHANDLED;
@@ -34,7 +35,12 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
-    const XMLObject * XMLNotHandledElement::getXMLObjectParent() const
+    void *XMLNotHandledElement::getRealXMLPointer() const
+    {
+        return static_cast < void *>(node);
+    }
+
+    const XMLObject *XMLNotHandledElement::getXMLObjectParent() const
     {
         return &parent;
     }

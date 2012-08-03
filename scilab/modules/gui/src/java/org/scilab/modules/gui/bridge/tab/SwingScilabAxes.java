@@ -28,11 +28,9 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 /**
  * Class defining the content pane of the Tab.
@@ -61,8 +59,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 
 	private ScilabEventListener eventHandler;
 
-	private AxesRotationTracker rotationTracker;
-
 	/** An axes may contain at most one canvas for now */
 	private SwingScilabCanvas graphicCanvas;
 
@@ -90,8 +86,6 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		// Enable mouse Events sensitivity...
 		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
 
-		// for rotations
-		rotationTracker = null;
 	}
 
 	/**
@@ -101,7 +95,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void setSize(Dimension newSize) {
 
 		// get the greatest size we can use
-		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+		/*int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
 
 		// make sure size is not greater than the max size
 		Dimension finalDim = new Dimension(Math.min(newSize.width, maxSize[0]),
@@ -114,7 +108,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		// to be sure that the canvas has the same size as the axes
 		if (graphicCanvas != null) {
 			graphicCanvas.setSize(finalDim);
-		}
+			}*/
+	    Dimension finalDim = (Dimension) newSize.clone();//new Dimension((int) newSize.getWidth(), (int) newSize.getHeight());
+	    setSize(finalDim);
 	}
 
 	/**
@@ -250,22 +246,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public int addCanvas(SwingScilabCanvas canvas) {
 
-		if (graphicCanvas != null) {
-			// should not happen, no need for localization
-			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
-		}
 
-		// to be sure to have the same size
-		canvas.setSize(getSize());
-
-		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
-		// is resized. However, its imply to set the canvas size by hand.
-		//ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
-		this.add(canvas.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
-
-		graphicCanvas = canvas;
-
-		return getComponentZOrder(canvas.getAsComponent());
+		return 0;
 	}
 
 	/**
@@ -289,7 +271,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
 		}
 
-		ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
+		//ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
 
 		graphicCanvas = null;
 
@@ -358,37 +340,10 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	}
 	
 	/**
-	 * Get the displacement in pixel that should be used for rotating axes
-	 * @param displacement out parameter, [x,y] array of displacement in pixels
-	 * @return true if the displacement recording continue, false otherwise
-	 */
-	public boolean getRotationDisplacement(int[] displacement) {
-		return getRotationTracker().getDisplacement(displacement);
-	}
-
-	/**
-	 * Asynchronous stop of rotation tracking.
-	 */
-	public void stopRotationRecording() {
-		getRotationTracker().cancelRecording();
-	}
-
-	/**
 	 * @return the figureId
 	 */
 	public int getFigureId() {
 		return figureId;
-	}
-
-	/**
-	 * Singleton creation for rotation tracker
-	 * @return the instance of the rotation tracker
-	 */
-	private AxesRotationTracker getRotationTracker() {
-		if (rotationTracker == null) {
-			rotationTracker = new AxesRotationTracker(this);
-		}
-		return rotationTracker;
 	}
 
 	/**

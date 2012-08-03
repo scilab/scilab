@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
+// Copyright (C) 2010-2011 - INRIA - Serge Steer <serge.steer@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,10 +8,18 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipEventhandler(win,x,y,ibut)
+//datatip utility function
 //The event handler which rules the datatips interactive edition;
   fig=get_figure_handle(win);
   global datatipAngles zoom_box;
   if ibut<0 then
+    if ibut==-1000 then
+      global datatipGUIwin
+      if datatipGUIwin<>[]&or(datatipGUIwin==winsid()) then //the gui window isopened
+        delete(get_figure_handle(datatipGUIwin))
+        clearglobal datatipGUIHandles datatipGUICurve datatipGUIwin
+      end
+    end
     //     ax=getAxes([x,y],fig);
     //     if or(datatipAngles<>ax.rotation_angles)|or(zoom_box<>ax.zoom_box) then
     //       datatipRedraw();
@@ -25,9 +33,32 @@ function datatipEventhandler(win,x,y,ibut)
   ax=getAxes([x,y],fig);
   sca(ax);
   //change the pixel coordinates to user coordinates
-  [x,y]=xchange(x,y,'i2f');pt=[x,y]
 
-  if or(ibut==[0 3]) then //select a point on a curve
+  [x,y]=xchange(x,y,'i2f');pt=[x,y]
+  if or(ibut==[127 100]) then //delete current
+    curve_handles=datatipGetEntities(ax);
+    datatipDeleteSelected(curve_handles)
+  elseif or(ibut==[37 39]) then //left and right arrows
+    curve_handles=datatipGetEntities(ax);
+    [curve,ind]=datatipGetSelected(curve_handles)
+    if ind<>[] then
+      ud=datatipGetStruct(curve)
+      tip_handle=ud.tips.children(ind)
+      point_handle=tip_handle.children(1)
+
+      if ibut==39 then
+        k=point_handle.user_data(2)+1
+        if k<=size(curve.data,1) then
+          datatipSetTipPosition(ud,tip_handle,curve.data(k,:),k)
+        end
+      else
+        k=point_handle.user_data(2)-1
+        if k>=1 then
+          datatipSetTipPosition(ud,tip_handle,curve.data(k,:),k)
+        end
+      end
+    end
+  elseif or(ibut==[0 3]) then //select a point on a curve
 
     //find  curves in the current axes
     curve_handles=datatipGetEntities(ax);
@@ -51,9 +82,12 @@ function datatipEventhandler(win,x,y,ibut)
     //check for a text box present near the selected point
     [k,l]=datatipLookfor(curve_handles,pt);
     if k<>[] then;
-      ud=datatipGetStruct(curve_handles(k));
-      tip_handle=ud.tips(l);
-      datatipMove(tip_handle);
+      datatipSetSelected(curve_handles,[k,l])
+      if ibut==0 then
+        ud=datatipGetStruct(curve_handles(k));
+        tip_handle=ud.tips.children(l);
+        datatipMove(tip_handle);
+      end
       fig.event_handler_enable = "on";
       return,
     end
@@ -66,91 +100,40 @@ function datatipEventhandler(win,x,y,ibut)
         datatipInitStruct(curve);
         ud=datatipGetStruct(curve);
       end
-      if ud.replace then
-        datatipRemoveAll(curve);
-      end
-      if ud.interpolate then
-        datatipCreate(curve,ptmin);
+      if ud.replace&ud.tips.children<>[] then
+        tip_handle=ud.tips.children($)
+        if ud.interpolate then
+          datatipSetTipPosition(ud,tip_handle,ptmin,l)
+        else
+          datatipSetTipPosition(ud,tip_handle,curve.data(l,:),l)
+        end
       else
-        datatipCreate(curve,l); //
-      end
-    else
-      //      datatipRemoveAll(curve_handles)
-    end
-  elseif or(ibut==5) then
-    curve_handles=datatipGetEntities(ax);
-    [curve,dmin,ptmin,l]=datatipGetNearestEntity(pt,curve_handles)
-    if curve<>[] then
-      ud=datatipGetStruct(curve);
-      items=[_("Delete all datatips")
-             _("Delete all datatips for the selected curve")
-             _("Delete nearest datatip")
-             _("Delete last datatip")
-             _("Edit the curve tip display function")
-             _("select the curve tip display function")];
-      if ax.view=='3d' then
-        items=[items; _("Redraw all datatips")];
-      end
-      if ud.interpolate then
-        items=[items; _("Disable interpolation")];
-      else
-        items=[items;_("Enable interpolation")];
-      end
-      if ud.replace then
-        items=[items;_("Multiple datatips mode")];
-      else
-        items=[items; _("Unique datatip mode")];
-      end
-      sel=x_choose(items,'');
-      if sel>0 then
-        select items(sel)
-        case _("Delete all datatips") then
-          datatipRemoveAll(curve_handles);
-        case _("Delete all datatips for the selected curve") then;
-          datatipRemoveAll(curve);
-        case _("Delete nearest datatip") then
-          ud=datatipGetStruct(curve)
-          if typeof(ud)=='datatips' then
-            tips=ud.tips
-            dmin=%inf;l=[];
-            for tip_index=1:size(tips,'*')
-              d=norm(tips(tip_index).children(1).data(1:2)-pt(1:2))
-              if d<dmin then
-                l=tip_index;dmin=d;
-              end
-            end
-            if l<>[] then
-              datatipRemove(curve,l);
-            end
-          end
-        case _("Delete last datatip") then
-          l=size(ud.tips,'*');
-          if l<>0 then
-            datatipRemove(curve,l)
-          end
-        case _("Edit the curve tip display function") then
-          datatipSetDisplay(curve);
-        case _("select the curve tip display function")  then
-          datatipSelectFunction(curve);
-        case _("Enable interpolation") then
-          datatipSetInterp(curve,%T);
-        case _("Disable interpolation") then
-          datatipSetInterp(curve,%F);
-        case _("Multiple datatips mode") then
-          datatipSetReplaceMode(curve,%F);
-        case _("Unique datatip mode") then
-          datatipSetReplaceMode(curve,%t);
-        case _("Redraw all datatips") then
-          datatipRedraw(curve_handles);
+        if ud.interpolate then
+          datatipCreate(curve,ptmin);
+        else
+          datatipCreate(curve,l); //
         end
       end
+    else
+      //      unselect all
+      [curve,ind]=datatipGetSelected(curve_handles)
+      if ind<>[] then
+        ud=datatipGetStruct(curve);
+        tip_handle=ud.tips.children(ind);
+        datatipHilite(tip_handle) //unhilite
+        ud.selected=0
+        datatipSetStruct(curve,ud);
+      end
     end
+  elseif or(ibut==5) then
+    datatipContextMenu(ax)
+
   elseif or(ibut==[1 4]) then //middle button
     curve_handles=datatipGetEntities(ax);
     [k,l]=datatipLookfor(curve_handles,pt);
     if k<>[] then;
       ud=datatipGetStruct(curve_handles(k))// the curve datatips data structure
-      tip_handle=ud.tips(l);
+      tip_handle=ud.tips.children(l);
       orient=["automatic" "upper left" "upper right", "lower left", "lower right"];
       orientations=[_("automatic") _("upper left") _("upper right"), _("lower left"), _("lower right")];
       r=x_choose(orientations,_("Select tip orientation"));
@@ -158,9 +141,13 @@ function datatipEventhandler(win,x,y,ibut)
         datatipSetOrientation(tip_handle,orient(r));
       end
     end
+  elseif ibut==1004 then //Ctrl-D
+    curve_handles=datatipGetEntities(ax);
+    datatipDeleteSelected(curve_handles)
   end
   fig.event_handler_enable = "on";
 endfunction
+
 function [curve_index,tip_index]=datatipLookfor(curve_handles,pt)
 //looks for a datatip in the neighborhood of a given point
 //curve_handles:  a vector of curves which are supposed to have datatips
@@ -170,9 +157,9 @@ function [curve_index,tip_index]=datatipLookfor(curve_handles,pt)
   for curve_index=1:size(curve_handles,'*')
     ud=datatipGetStruct(curve_handles(curve_index));
     if typeof(ud)=='datatips' then
-      tips=ud.tips;
+      tips=ud.tips.children;
       for tip_index=1:size(tips,'*')
-        data=tips(tip_index).children(1).data;
+        data=tips(tip_index).children(1).data(1,:);
         if size(data,'*')==3 then
           [xx,yy]=geom3d(data(1),data(2),data(3));
           d=pixDist([xx,yy],pt)/2;
@@ -198,7 +185,7 @@ function [curve,dmin,ptmin,l]=datatipGetNearestEntity(pt,ax)
 
   dmin=%inf;
   l=0;
-  curve=[];kmin=[]
+  curve=[];
   ptmin=[];
   if argn(2)==1 then
     //only a point given look into the axes where the point lies
@@ -214,6 +201,7 @@ function [curve,dmin,ptmin,l]=datatipGetNearestEntity(pt,ax)
                      "datatipGetNearestEntity",2,"Polyline"))
     end
   end
+  kmin=[]
   for k=1:size(curves,'*')
     ck=curves(k)
     ax=ck.parent;
@@ -256,9 +244,7 @@ function [curve,dmin,ptmin,l]=datatipGetNearestEntity(pt,ax)
       end
     end
   end
-  if kmin<>[] then
-    curve=curves(kmin)
-  end
+  curve=curves(kmin)
 endfunction
 
 function datatipSelectFunction(curve)
@@ -285,7 +271,7 @@ function datatipSetReplaceMode(curve_handle,m)
   if argn(2)==1 then m=%f,end
   if type(curve_handle)<>9|or(curve_handle.type<>"Polyline") then
     error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
-                  "datatipCreate",1,"Polyline"))
+                   "datatipCreate",1,"Polyline"))
   end
 
   ud=datatipGetStruct(curve_handle);
@@ -309,6 +295,9 @@ function ax_handle=getAxes(pt,fig)
   if size(axes,'*')==1 then ax_handle=axes;return,end
   sz=fig.axes_size;
   for k=1:size(axes,'*')
+    if axes(k).type <> "Axes" then // uicontrol
+      continue
+    end
     ax_handle=axes(k);
     xbounds=ax_handle.axes_bounds(:,1)*sz(1);
     ybounds=ax_handle.axes_bounds(:,2)*sz(2);

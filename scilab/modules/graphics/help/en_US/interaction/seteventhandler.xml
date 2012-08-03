@@ -10,19 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="seteventhandler">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="seteventhandler">
   <refnamediv>
     <refname>seteventhandler</refname>
     <refpurpose> set an event handler for
-  the current graphic window</refpurpose>
+      the current graphic window
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>seteventhandler(sfun_name)
-seteventhandler('')</synopsis>
+      seteventhandler('')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -31,7 +30,8 @@ seteventhandler('')</synopsis>
         <term>sfun_name</term>
         <listitem>
           <para>a character string. The name of the Scilab function which is
-  intended to handle the events</para>
+            intended to handle the events
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,13 +39,13 @@ seteventhandler('')</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    The function allows the user to set a particular event handler for
-    the current graphic window. <literal>seteventhandler('') </literal>
-    removes the handler.
+      The function allows the user to set a particular event handler for
+      the current graphic window. <literal>seteventhandler('') </literal>
+      removes the handler.
     </para>
     <para>
-    For more information about event handler functions see the
-    <link linkend="eventhandlerfunctions">event handler functions</link> help.
+      For more information about event handler functions see the
+      <link linkend="eventhandlerfunctions">event handler functions</link> help.
     </para>
   </refsection>
   <refsection>
@@ -70,7 +70,7 @@ seteventhandler('') //suppress the event handler
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addmenu">addmenu</link>

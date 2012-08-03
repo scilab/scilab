@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:33+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-04-06 14:55+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -201,6 +201,12 @@ msgstr "%s をリンクします。\n"
 msgid "Dynamic link"
 msgstr "ダイナミックリンク"
 
+msgid "Call a C function"
+msgstr "C関数をコール"
+
+msgid "Call a Fortran subroutine"
+msgstr "Fortranサブルーチンをコール"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
@@ -230,6 +236,11 @@ msgstr "%s: この機能は, Microsoft Windows では使用できません.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr "Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされているのはWindows環境のみです."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -369,6 +380,12 @@ msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr "   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) です.\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr "%s: 引数 #%d の値が間違っています: 既存のファイルを指定してください. 以下が指定されています: %s\n"
+
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 123
 #, c-format
@@ -458,6 +475,10 @@ msgstr "%s: %s を実行中にエラーが発生しました.\n"
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr "%s: この機能には, Microsoft Visual Studio の C コンパイラが必要です.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

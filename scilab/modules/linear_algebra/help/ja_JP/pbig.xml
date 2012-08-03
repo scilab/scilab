@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pbig">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pbig</refname>
     <refpurpose>固有投影</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 (<literal>'c'</literal> または <literal>'d'</literal>)</para>
+          <para>
+            文字列 (<literal>'c'</literal> または <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,33 +53,39 @@
   <refsection>
     <title>説明</title>
     <para>
-	実部&gt;= <literal>thres</literal> (<literal>flag='c'</literal>)
-	または
-	大きさ&gt;= <literal>thres</literal>(<literal>flag='d'</literal>)
-	の固有値を有する固有値-部分空間への投影.</para>
+      実部&gt;= <literal>thres</literal> (<literal>flag='c'</literal>)
+      または
+      大きさ&gt;= <literal>thres</literal>(<literal>flag='d'</literal>)
+      の固有値を有する固有値-部分空間への投影.
+    </para>
     <para>
-	投影は<literal>Q*M</literal>により定義され,<literal>Q</literal>
-	は列フルランク, <literal>M</literal>は行フルランクおよび
-    <literal>M*Q=eye</literal>.</para>
+      投影は<literal>Q*M</literal>により定義され,<literal>Q</literal>
+      は列フルランク, <literal>M</literal>は行フルランクおよび
+      <literal>M*Q=eye</literal>.
+    </para>
     <para>
-    <literal>flag='c'</literal>の場合, 
-    <literal>M*A*Q</literal>の固有値 = 実部&gt;= <literal>thres</literal>
-	の<literal>A</literal>の固有値となります.</para>
+      <literal>flag='c'</literal>の場合, 
+      <literal>M*A*Q</literal>の固有値 = 実部&gt;= <literal>thres</literal>
+      の<literal>A</literal>の固有値となります.
+    </para>
     <para>
-    <literal>flag='d'</literal>の場合, 
-    <literal>M*A*Q</literal>の固有値 = 大きさ&gt;= <literal>thres</literal>の
-	<literal>A</literal>の固有値となります.</para>
+      <literal>flag='d'</literal>の場合, 
+      <literal>M*A*Q</literal>の固有値 = 大きさ&gt;= <literal>thres</literal>の
+      <literal>A</literal>の固有値となります.
+    </para>
     <para>
-    <literal>flag='c'</literal> の場合,そして
-	<literal>[Q1,M1]</literal> = <literal>eye()-Q*M</literal>の
-	フルランク分解 (<literal>fullrf</literal>)の場合,
-	<literal>M1*A*Q1</literal>の固有値 =
-    実部 &lt; <literal>thres</literal>の<literal>A</literal>の固有値となります.</para>
+      <literal>flag='c'</literal> の場合,そして
+      <literal>[Q1,M1]</literal> = <literal>eye()-Q*M</literal>の
+      フルランク分解 (<literal>fullrf</literal>)の場合,
+      <literal>M1*A*Q1</literal>の固有値 =
+      実部 &lt; <literal>thres</literal>の<literal>A</literal>の固有値となります.
+    </para>
     <para>
-    <literal>flag='d'</literal>の場合,そして <literal>[Q1,M1]</literal> =
-    <literal>eye()-Q*M</literal>のフルランク分解 (<literal>fullrf</literal>)の場合,
-	<literal>M1*A*Q1</literal>の固有値 =大きさ &lt;<literal>thres</literal>の
-    <literal>A</literal>の固有値となります.</para>
+      <literal>flag='d'</literal>の場合,そして <literal>[Q1,M1]</literal> =
+      <literal>eye()-Q*M</literal>のフルランク分解 (<literal>fullrf</literal>)の場合,
+      <literal>M1*A*Q1</literal>の固有値 =大きさ &lt;<literal>thres</literal>の
+      <literal>A</literal>の固有値となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -110,13 +115,11 @@ spec(M1*A*Q1)
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para>F. D. (1988); ;   </para>
-  </refsection>
-  <refsection>
     <title>使用される関数</title>
-    <para><literal>pbig</literal> は
-	ソートされた Schur 形式に基づいています
-	(Scilab関数 <literal>schur</literal>).</para>
+    <para>
+      <literal>pbig</literal> は
+      ソートされた Schur 形式に基づいています
+      (Scilab関数 <literal>schur</literal>).
+    </para>
   </refsection>
 </refentry>

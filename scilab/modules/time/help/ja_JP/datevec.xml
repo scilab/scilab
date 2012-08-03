@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datevec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>datevec</refname>
     <refpurpose>日付の要素</refpurpose>
@@ -21,22 +18,23 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>V=datevec(DT)
-[Y,M,D,H,MI,S]=datevec(DT)</synopsis>
+      [Y,M,D,H,MI,S]=datevec(DT)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>
-	V = datevec(DT) は,(datenumにより定義された)日数を
-	要素[year, month, day, hour, minute, second]を有する日付ベクトル V
-	に変換します.
-	最初の5個の要素は整数です.
-	DT は配列とすることができます.
-		</para>
+      V = datevec(DT) は,(datenumにより定義された)日数を
+      要素[year, month, day, hour, minute, second]を有する日付ベクトル V
+      に変換します.
+      最初の5個の要素は整数です.
+      DT は配列とすることができます.
+    </para>
     <para>
-	[Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
-	要素を別々の配列に返します.
-	DT は配列とすることができます.
-		</para>
+      [Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
+      要素を別々の配列に返します.
+      DT は配列とすることができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,12 +63,6 @@ datevec(A)
       <member>
         <link linkend="calendar">calendar</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

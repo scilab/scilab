@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matfile_listvar">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>matfile_listvar</refname>
     <refpurpose>Matlab V5 バイナリ MATファイルの中の変数の一覧を得る.</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>実数: ファイル記述子 ( <link linkend="matfile_open">matfile_open</link>いにより返された).</para>
+          <para>
+            実数: ファイル記述子 ( <link linkend="matfile_open">matfile_open</link>いにより返された).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,8 +53,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    <link linkend="matfile_open">matfile_open</link>により開かれた
-	MatlabバイナルMATファイルの中の変数の一覧を取得します.</para>
+      <link linkend="matfile_open">matfile_open</link>により開かれた
+      MatlabバイナルMATファイルの中の変数の一覧を取得します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -75,13 +75,13 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
-    <para>この関数はMATIOライブラリ (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>)を使用しています.</para>
+    <para>
+      この関数はMATIOライブラリ (
+      <literal>
+        <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
+      </literal>
+      )を使用しています.
+    </para>
   </refsection>
 </refentry>

@@ -12,14 +12,18 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -27,12 +31,12 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RedoAction class
  * @author Calixte DENIZET
  */
-public final class RedoAction extends CallBack {
+public final class RedoAction extends CommonCallBack {
 
-    private static final String KEY = "ctrl Y";
+    private static final String KEY = "OSSCKEY Y";
     private static final String REDO = "Redo";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -50,12 +54,13 @@ public final class RedoAction extends CallBack {
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
         table.getActionMap().put(REDO, new RedoAction(editor, REDO));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), REDO);
+        table.getInputMap().put(ScilabKeyStroke.getKeyStroke(KEY), REDO);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         ((SwingEditvarTableModel) table.getModel()).getUndoManager().redo();
@@ -71,9 +76,34 @@ public final class RedoAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RedoAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-redo.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-redo"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
+    }
+
+    /**
+     * Create a menu item
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static MenuItem createMenuItem(SwingScilabVariableEditor editor, String title) {
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setCallback(new RedoAction(editor, title));
+        menu.setText(title);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
+
+        return menu;
+    }
+
+    /**
+     * Create a menu item as a SwingScilabMenuItem
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabVariableEditor editor, String title) {
+        return (SwingScilabMenuItem) createMenuItem(editor, title).getAsSimpleMenuItem();
     }
 }

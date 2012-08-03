@@ -12,7 +12,7 @@
  *
  -->
 
-<Setting version="0.40">
+<Setting version="0.41">
 
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">

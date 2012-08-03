@@ -2,10 +2,7 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="comet">
-  <info>
-    <pubdate>$LastChangedDate: 11-03-2011 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="comet">
   <refnamediv>
     <refname>comet</refname>
     <refpurpose>2次元 comet アニメーションプロット. </refpurpose>
@@ -26,9 +23,9 @@
         <term>x</term>
         <listitem>
           <para>
-	    実数ベクトルまたは行列. 省略された場合,
-	    ベクトル <literal>1:ny</literal> が指定されたと仮定されます.
-	    ただし,<literal>ny</literal> は曲線の点の数(下記参照)です.
+            実数ベクトルまたは行列. 省略された場合,
+            ベクトル <literal>1:ny</literal> が指定されたと仮定されます.
+            ただし,<literal>ny</literal> は曲線の点の数(下記参照)です.
           </para>
         </listitem>
       </varlistentry>
@@ -36,37 +33,36 @@
         <term>y</term>
         <listitem>
           <para>
-	    長さの実数ベクトルまたは行列.
-           </para>
+            長さの実数ベクトルまたは行列.
+          </para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>p</term>
         <listitem>
           <para>
-	    範囲 <literal>[0 1[</literal> の実数スカラー.
-	    デフォルト値は 0.1です.
-           </para>
+            範囲 <literal>[0 1[</literal> の実数スカラー.
+            デフォルト値は 0.1です.
+          </para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>fun</term>
         <listitem>
           <para>
-	    呼び出し手順  <literal>y=fun(x)</literal> のScilab関数.
-	    <literal>fun</literal> は多項式または有理数とすることもできます.
-           </para>
+            呼び出し手順  <literal>y=fun(x)</literal> のScilab関数.
+            <literal>fun</literal> は多項式または有理数とすることもできます.
+          </para>
         </listitem>
       </varlistentry>
-    <varlistentry>
+      <varlistentry>
         <term>c</term>
         <listitem>
           <para>
             <literal>ny</literal> 色添字のベクトル.
-           </para>
+          </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
   <refsection>
@@ -81,64 +77,61 @@
     </para>
     <para>
       このプロットは以下の3つの部分から構成されます:
-         <variablelist>
-           <varlistentry>
-             <term>ヘッド</term> 
-	     カレントの位置<literal>(x(i),y(i))</literal>を示すマーカ.
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-           <varlistentry>
-             <term>ボディ</term> 
-	     ヘッドにつらなる曲線を表示します:曲線の一部
-	     <literal>(x(i-k:i),y(i-k:i)</literal>).
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-          <varlistentry>
-             <term>テール</term>
-	     曲線の<literal>(x(1:i-k),y(1:i-k))</literal>の部分を表示.
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-         </variablelist>
-       <para>
-         <literal>comet(x,fun,...)</literal>  は, <literal>comet(x,feval(x,fun),...)</literal> と等価です.
-         </para>
-         <para>
-         <literal>comet(...,p)</literal> はボディの相対的な長さを設定する
-	 際に使用することができます.
-	 <literal>k</literal> は
-         <literal>k = round(p*ny)</literal>のように定義できます.
-         </para>
-        <para>
-	  <literal>y</literal> が行列の場合,
-	  曲線のアニメーション表示は,
-	  <literal>(x,y(:,l))</literal>の各組について描画されます.
-	  この場合, <literal>ny</literal> は<literal>y</literal>の
-	  行の数です.
-        </para>
-        <para>
-	  <literal>x</literal> および <literal>y</literal> は
-	  同じ大きさの行列の場合,
-	  各組　 <literal>(x(:,l),y(:,l))</literal> 毎に.
-	  アニメーション表示された曲線が描画されます.
-	  この場合, <literal>ny</literal>は
-	  <literal>x</literal>および  <literal>y</literal>の
-	  行の数です.
-        </para>
-
-         <para>
-           <literal>comet(...,"colors",c)</literal> は
-	   各曲線の色を設定する際に私用できます.
-         </para>
-
+      <variablelist>
+        <varlistentry>
+          <term>ヘッド</term> 
+          カレントの位置<literal>(x(i),y(i))</literal>を示すマーカ.
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>ボディ</term> 
+          ヘッドにつらなる曲線を表示します:曲線の一部
+          <literal>(x(i-k:i),y(i-k:i)</literal>).
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>テール</term>
+          曲線の<literal>(x(1:i-k),y(1:i-k))</literal>の部分を表示.
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para>
+        <literal>comet(x,fun,...)</literal>  は, <literal>comet(x,feval(x,fun),...)</literal> と等価です.
+      </para>
+      <para>
+        <literal>comet(...,p)</literal> はボディの相対的な長さを設定する
+        際に使用することができます.
+        <literal>k</literal> は
+        <literal>k = round(p*ny)</literal>のように定義できます.
+      </para>
+      <para>
+        <literal>y</literal> が行列の場合,
+        曲線のアニメーション表示は,
+        <literal>(x,y(:,l))</literal>の各組について描画されます.
+        この場合, <literal>ny</literal> は<literal>y</literal>の
+        行の数です.
+      </para>
+      <para>
+        <literal>x</literal> および <literal>y</literal> は
+        同じ大きさの行列の場合,
+        各組　 <literal>(x(:,l),y(:,l))</literal> 毎に.
+        アニメーション表示された曲線が描画されます.
+        この場合, <literal>ny</literal>は
+        <literal>x</literal>および  <literal>y</literal>の
+        行の数です.
+      </para>
+      
+      <para>
+        <literal>comet(...,"colors",c)</literal> は
+        各曲線の色を設定する際に私用できます.
+      </para>
+      
     </para>
   </refsection>
   <refsection>
@@ -159,7 +152,6 @@ clf();comet(linspace(0,5,500),traj)
     <programlisting role="example"><![CDATA[
 clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
-
   </refsection>
   <refsection>
     <title>参照</title>
@@ -170,13 +162,6 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
       <member>
         <link linkend="paramfplot2d">paramfplot2d</link>
       </member>
-
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer</member>
     </simplelist>
   </refsection>
   <refsection>
@@ -185,5 +170,4 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
       <member>First version April 2011, for Scilab-5.3.2</member>
     </simplelist>
   </refsection>
-
 </refentry>

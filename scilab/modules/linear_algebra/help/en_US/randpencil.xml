@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="randpencil">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>randpencil</refname>
     <refpurpose> random pencil</refpurpose>
@@ -52,7 +49,9 @@
       <varlistentry>
         <term>F</term>
         <listitem>
-          <para>real matrix pencil <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)</para>
+          <para>
+            real matrix pencil <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,23 +59,28 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function.
-    <literal>F=randpencil(eps,infi,fin,eta)</literal> returns a random pencil <literal>F</literal>
-    with given Kronecker structure. The structure is given by:
-    <literal>eps=[eps1,...,epsk]</literal>: structure of epsilon blocks (size eps1x(eps1+1),....)
-    <literal>fin=[l1,...,ln]</literal>  set of finite eigenvalues (assumed real)  (possibly [])
-    <literal>infi=[k1,...,kp]</literal> size of J-blocks at infinity
-    <literal>ki&gt;=1</literal>  (infi=[] if no J blocks).
-    <literal>eta=[eta1,...,etap]</literal>: structure ofeta blocks (size eta1+1)xeta1,...)</para>
-    <para><literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should 
-    be &gt;=1.</para>
+      Utility function.
+      <literal>F=randpencil(eps,infi,fin,eta)</literal> returns a random pencil <literal>F</literal>
+      with given Kronecker structure. The structure is given by:
+      <literal>eps=[eps1,...,epsk]</literal>: structure of epsilon blocks (size eps1x(eps1+1),....)
+      <literal>fin=[l1,...,ln]</literal>  set of finite eigenvalues (assumed real)  (possibly [])
+      <literal>infi=[k1,...,kp]</literal> size of J-blocks at infinity
+      <literal>ki&gt;=1</literal>  (infi=[] if no J blocks).
+      <literal>eta=[eta1,...,etap]</literal>: structure ofeta blocks (size eta1+1)xeta1,...)
+    </para>
     <para>
-    If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of 
-    <literal>fin</literal> as eigenvalues.</para>
+      <literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should 
+      be &gt;=1.
+    </para>
     <para>
-    If <literal>fin</literal> is a vector of polynomial, they are the finite elementary
-    divisors of <literal>F</literal> i.e. the roots of <literal>p(i)</literal> are finite
-    eigenvalues of <literal>F</literal>.</para>
+      If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of 
+      <literal>fin</literal> as eigenvalues.
+    </para>
+    <para>
+      If <literal>fin</literal> is a vector of polynomial, they are the finite elementary
+      divisors of <literal>F</literal> i.e. the roots of <literal>p(i)</literal> are finite
+      eigenvalues of <literal>F</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -90,7 +94,7 @@ det(F)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="kroneck">kroneck</link>

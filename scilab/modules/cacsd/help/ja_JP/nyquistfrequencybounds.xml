@@ -2,10 +2,7 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nyquistfrequencybounds">
-  <info>
-    <pubdate>$LastChangedDate: 18-04-2011 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nyquistfrequencybounds">
   <refnamediv>
     <refname>nyquistfrequencybounds</refname>
     <refpurpose>ナイキスト軌跡が指定した矩形に入る周波数および出る周波数を計算する.
@@ -39,8 +36,8 @@
         <listitem>
           <para>
             実数: ナイキスト軌跡が指定した矩形に入る最小の周波数 (Hz)
-	    または 0 (矩形に 0 Hzの点が含まれる場合)または
-	    [] (軌跡が完全に矩形の外側).
+            または 0 (矩形に 0 Hzの点が含まれる場合)または
+            [] (軌跡が完全に矩形の外側).
           </para>
         </listitem>
       </varlistentry>
@@ -48,17 +45,16 @@
         <term>fmax</term>
         <listitem>
           <para>
-	    実数: ナイキスト軌跡が指定した矩形から出る最大の周波数 (Hz)
-	    または %inf (周波数に %inf (Hz)となる点が含まれる場合, 
-	    または軌跡が完全に矩形の外側にある場合).
+            実数: ナイキスト軌跡が指定した矩形から出る最大の周波数 (Hz)
+            または %inf (周波数に %inf (Hz)となる点が含まれる場合, 
+            または軌跡が完全に矩形の外側にある場合).
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>説明</title>
-    <para>
+    <title>説明</title><para>
       複素平面の矩形を指定すると,
       <literal>nyquistfrequencybounds</literal> は,
       ナイキスト軌跡が矩形に入る最小の周波数と,
@@ -101,7 +97,6 @@
     title("bounds:"+sci2exp(bounds,0));
 
     ]]></programlisting>
-
     <para>
       <mediaobject>
         <imageobject>
@@ -110,20 +105,12 @@
       </mediaobject>
     </para>
   </refsection>
-
   <refsection>
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="nyquist" >nyquist</link>
+        <link linkend="nyquist">nyquist</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

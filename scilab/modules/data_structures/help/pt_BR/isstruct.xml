@@ -10,63 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="isstruct" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isstruct" xml:lang="en">
   <refnamediv>
     <refname>isstruct</refname>
-
     <refpurpose>checa se uma variável é um struct array
-    (estrutura)</refpurpose>
+      (estrutura)
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>bool = isstruct(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>variável Scilab</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>bool</term>
-
         <listitem>
           <para>um booleano</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para><literal>isstruct(x)</literal> retorna %t (verdadeiro) se x é um
-    struct array e %f em caso contrário.</para>
+    <para>
+      <literal>isstruct(x)</literal> retorna %t (verdadeiro) se x é um
+      struct array e %f em caso contrário.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 isstruct(1)
 
@@ -80,22 +60,15 @@ info.module="help";
 isstruct(info)
  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Ver Também</title>
-
     <simplelist type="inline">
-      <member><link linkend="struct">struct</link></member>
-
-      <member><link linkend="iscell">iscell</link></member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <simplelist type="vert">
-      <member>V.C.</member>
+      <member>
+        <link linkend="struct">struct</link>
+      </member>
+      <member>
+        <link linkend="iscell">iscell</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

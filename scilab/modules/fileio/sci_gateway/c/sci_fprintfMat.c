@@ -13,7 +13,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -61,6 +60,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -68,6 +68,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -108,6 +109,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         {
             if (Format) {FREE(Format); Format = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -116,6 +118,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         {
             if (Format) {FREE(Format); Format = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -131,6 +134,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         {
             if (Format) {FREE(Format); Format = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -156,6 +160,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
             if (Format) {FREE(Format); Format = NULL;}
             if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -189,6 +194,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
             freeArrayOfString(textAdded, m4 * n4);
             if (Format) {FREE(Format); Format = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -205,6 +211,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 5);
             return 0;
         }
 
@@ -212,6 +219,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 5);
             return 0;
         }
 
@@ -222,6 +230,12 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarFive, &m5, &n5);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 5);
+            return 0;
+        }
 
         if ( (m5 != n5) && (n5 != 1) ) 
         {
@@ -247,6 +261,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if (Format) {FREE(Format); Format = NULL;}
         if (separator){FREE(separator); separator = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -257,6 +272,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if (Format) {FREE(Format); Format = NULL;}
         if (separator){FREE(separator); separator = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -285,6 +301,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if (Format) {FREE(Format); Format = NULL;}
         if (separator){FREE(separator); separator = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -295,6 +312,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if (Format) {FREE(Format); Format = NULL;}
         if (separator){FREE(separator); separator = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -305,6 +323,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
         if (Format) {FREE(Format); Format = NULL;}
         if (separator){FREE(separator); separator = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

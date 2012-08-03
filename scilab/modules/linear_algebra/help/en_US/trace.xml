@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trace">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>trace</refname>
     <refpurpose> trace</refpurpose>
@@ -35,9 +32,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>trace(X)</literal> is the trace of the matrix <literal>X</literal>.</para>
     <para>
-    Same as <literal>sum(diag(X))</literal>.</para>
+      <literal>trace(X)</literal> is the trace of the matrix <literal>X</literal>.
+    </para>
+    <para>
+      Same as <literal>sum(diag(X))</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -47,7 +47,7 @@ trace(A)-sum(spec(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

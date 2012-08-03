@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_gen_loader">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>ilib_gen_loader</refname>
     <refpurpose> utility for ilib_build: generates a loader file</refpurpose>
@@ -48,11 +45,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function used by <literal>ilib_build</literal>
-    This function generates a loader file.</para>
+      Utility function used by <literal>ilib_build</literal>
+      This function generates a loader file.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>
@@ -75,7 +73,9 @@
       <member>
         <link linkend="ilib_for_link">ilib_for_link</link>
       </member>
-      <member><link linkend="api_scilab">api_scilab</link></member>
+      <member>
+        <link linkend="api_scilab">api_scilab</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

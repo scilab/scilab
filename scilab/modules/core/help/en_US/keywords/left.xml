@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="left">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>left</refname>
     <refpurpose> ([) left bracket</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[a11,a12,...;a21,a22,...;...]
-[s1,s2,...]=func(...)</synopsis>
+      [s1,s2,...]=func(...)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -26,16 +24,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Left and right brackets are used for vector and matrix concatenation.
-    These symbols are also used to denote a multiple left-hand-side for a function call</para>
+      Left and right brackets are used for vector and matrix concatenation.
+      These symbols are also used to denote a multiple left-hand-side for a function call
+    </para>
     <para>
-    Inside concatenation brackets blank or comma characters mean "column concatenation", 
-    semicolon and carriage-return mean "row concatenation".</para>
+      Inside concatenation brackets blank or comma characters mean "column concatenation", 
+      semicolon and carriage-return mean "row concatenation".
+    </para>
     <para>
-    Note : to avoid confusions it is safer to use comma instead of blank to
-    separate columns.</para>
+      Note : to avoid confusions it is safer to use comma instead of blank to
+      separate columns.
+    </para>
     <para>
-    Within multiple lhs brackets variable names must be separated by comma.</para>
+      Within multiple lhs brackets variable names must be separated by comma.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -51,7 +53,7 @@ s=poly(0,'s');[1/s,2/s]
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="comma">comma</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contrss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>contrss</refname>
     <refpurpose> controllable part</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>is a threshold for controllability (see <literal>contr</literal>).  default value is <literal>sqrt(%eps)</literal>.</para>
+          <para>
+            is a threshold for controllability (see <literal>contr</literal>).  default value is <literal>sqrt(%eps)</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +43,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the controllable part of the linear 
-    system <literal>sl = (A,B,C,D)</literal> in state-space form.</para>
+      returns the controllable part of the linear 
+      system <literal>sl = (A,B,C,D)</literal> in state-space form.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +56,7 @@ sl1=ss2tf(sl);sl2=ss2tf(slc);      //Compare sl1 and sl2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cont_mat">cont_mat</link>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mput">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mput</refname>
     <refpurpose> 指定したバイナリ形式でバイトまたはワードを書き込む</refpurpose>
@@ -35,8 +32,10 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
-	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+          <para>
+            スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+            パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,39 +49,41 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>mput</literal> 関数は,
-    ストリームパラメータ <literal>fd</literal>で指定した出力先にデータを
-	を書き込みます.
-	データはポインタのカレントの位置に書き込まれ,
-	ポインタのインジケータは前に適当に前に移動されます.
-  </para>
+      <literal>mput</literal> 関数は,
+      ストリームパラメータ <literal>fd</literal>で指定した出力先にデータを
+      を書き込みます.
+      データはポインタのカレントの位置に書き込まれ,
+      ポインタのインジケータは前に適当に前に移動されます.
+    </para>
     <para>
-    <literal>type</literal> パラメータは変換指定子で,
-	以下のフラグ文字(デフォルト値: "l")
-	のどれかに設定されます:
-  </para>
+      <literal>type</literal> パラメータは変換指定子で,
+      以下のフラグ文字(デフォルト値: "l")
+      のどれかに設定されます:
+    </para>
     <variablelist>
       <varlistentry>
         <term>"l","i","s","ul","ui","us","d","f","c","uc"</term>
         <listitem>
           <para>
-	それぞれ long, int, short, unsigned long, unsigned int, unsigned short,
-	double, float, char, unsigned char を書き込みます.
-	書き込んだバイトは,(リトルインディアンモードで)マシンに依存するバイナリファイルを
-	出力するために
-	(リトルインディアンステータスを確認することにより)
-	必要に応じて自動的にスワップされます.
-	このデフォルトのスワップモードは<literal>mopen</literal>関数に
-	フラグを追加することにより抑制することができます.</para>
+            それぞれ long, int, short, unsigned long, unsigned int, unsigned short,
+            double, float, char, unsigned char を書き込みます.
+            書き込んだバイトは,(リトルインディアンモードで)マシンに依存するバイナリファイルを
+            出力するために
+            (リトルインディアンステータスを確認することにより)
+            必要に応じて自動的にスワップされます.
+            このデフォルトのスワップモードは<literal>mopen</literal>関数に
+            フラグを追加することにより抑制することができます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"..l" or "..b"</term>
         <listitem>
           <para>
-	'l'または'b'文字を型指定子の末尾に追加することにより,
-	リトルインディアンまたはビッグインディアンモードで書き込むことも可能です.
-	例えば,"db"はビッグインディアンモードでdoubleを書き込みます.</para>
+            'l'または'b'文字を型指定子の末尾に追加することにより,
+            リトルインディアンまたはビッグインディアンモードで書き込むことも可能です.
+            例えば,"db"はビッグインディアンモードでdoubleを書き込みます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

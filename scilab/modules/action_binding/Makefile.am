@@ -16,43 +16,34 @@ USEANT=1
 ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the c++ file
-ACTION_BINDING_CPP_SOURCES = src/jni/Signal.cpp \
-src/jni/Signal.hxx
+ACTION_BINDING_CXX_SOURCES = src/jni/Signal.cpp
 
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_action_binding.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_notify.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_notify.cpp
 
-#### SWIG Declaration ####
+endif
+
 SWIG_WRAPPERS = src/jni/InterpreterManagement.i
-endif
-
-if SWIG
-BUILT_SOURCES=swig
-endif
-
 GIWS_WRAPPERS = src/jni/Signal.giws.xml
 
+BUILT_SOURCES=
+if SWIG
+BUILT_SOURCES+=swig
+endif
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
 
 libsciaction_binding_disable_la_SOURCES = src/noaction_binding/noaction_binding.c
-libsciaction_binding_disable_la_CFLAGS = 	-I$(srcdir)/includes/ \
-											-I$(top_srcdir)/modules/output_stream/includes
-
-# Includes need for the compilation
-libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/jni/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+libsciaction_binding_disable_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
+											-I$(top_srcdir)/libs/MALLOC/includes/ \
+											-I$(top_srcdir)/modules/localization/includes/ \
+											-I$(top_srcdir)/modules/output_stream/includes \
+											$(AM_CPPFLAGS)
 
 # Includes need for the compilation
 libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -61,9 +52,11 @@ libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/commons/src/jni/ \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -74,18 +67,16 @@ pkglib_LTLIBRARIES += libsciaction_binding.la
 noinst_LTLIBRARIES = libsciaction_binding-algo.la
 endif
 
-libsciaction_binding_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 # All the sources needed by libsciaction_binding.la
-libsciaction_binding_algo_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_CPP_SOURCES) $(CONSOLE_C_JNI_SOURCES)
-libsciaction_binding_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciaction_binding_algo_la_CFLAGS = $(libsciaction_binding_la_CFLAGS)
+libsciaction_binding_algo_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_CXX_SOURCES) $(CONSOLE_C_JNI_SOURCES)
+libsciaction_binding_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libsciaction_binding_algo_la_CPPFLAGS = $(libsciaction_binding_la_CPPFLAGS)
 
 
 # For the code check (splint)
 CHECK_SRC= $(ACTION_BINDING_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciaction_binding_la_CPPFLAGS)
 
 ## Libraries necessary
 libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la

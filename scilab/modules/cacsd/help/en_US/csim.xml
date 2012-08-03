@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="csim">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>csim</refname>
     <refpurpose> simulation (time response) of linear system</refpurpose>
@@ -34,25 +31,33 @@
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real vector specifying times  with, <literal>t(1)</literal> is the initial  time (<literal>x0=x(t(1))</literal>).</para>
+          <para>
+            real vector specifying times  with, <literal>t(1)</literal> is the initial  time (<literal>x0=x(t(1))</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>list (<literal>syslin</literal>)</para>
+          <para>
+            list (<literal>syslin</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>a  matrix such that   <literal>y=[y(t(i)]</literal>, i=1,..,n</para>
+          <para>
+            a  matrix such that   <literal>y=[y(t(i)]</literal>, i=1,..,n
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>a  matrix such that   <literal>x=[x(t(i)]</literal>, i=1,..,n</para>
+          <para>
+            a  matrix such that   <literal>x=[x(t(i)]</literal>, i=1,..,n
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,27 +71,38 @@
   <refsection>
     <title>Description</title>
     <para>
-    simulation of the controlled linear system <literal>sl</literal>.
-    <literal>sl</literal> is assumed to be a continuous-time system 
-    represented by a <literal>syslin</literal> list.</para>
-    <para><literal>u</literal> is the control and <literal>x0</literal> the initial state.</para>
-    <para><literal>y</literal> is the output and <literal>x</literal> the state.</para>
+      simulation of the controlled linear system <literal>sl</literal>.
+      <literal>sl</literal> is assumed to be a continuous-time system 
+      represented by a <literal>syslin</literal> list.
+    </para>
     <para>
-    The control can be:</para>
+      <literal>u</literal> is the control and <literal>x0</literal> the initial state.
+    </para>
     <para>
-    1. a function : <literal>[inputs]=u(t)</literal></para>
+      <literal>y</literal> is the output and <literal>x</literal> the state.
+    </para>
     <para>
-    2. a list : <literal>list(ut,parameter1,....,parametern)</literal> such that:
-    <literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> is a function)</para>
+      The control can be:
+    </para>
     <para>
-    3. the string <literal>"impuls"</literal> for impulse response calculation
-    (here <literal>sl</literal> is assumed SISO without direct feed through and <literal>x0=0</literal>)</para>
+      1. a function : <literal>[inputs]=u(t)</literal>
+    </para>
     <para>
-    4. the string <literal>"step"</literal> for step response calculation 
-    (here <literal>sl</literal> is assumed SISO without direct feed-through and
-    <literal>x0=0</literal>)</para>
+      2. a list : <literal>list(ut,parameter1,....,parametern)</literal> such that:
+      <literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> is a function)
+    </para>
     <para>
-    5. a vector giving the values of u correponding to each t value.</para>
+      3. the string <literal>"impuls"</literal> for impulse response calculation
+      (here <literal>sl</literal> is assumed SISO without direct feed through and <literal>x0=0</literal>)
+    </para>
+    <para>
+      4. the string <literal>"step"</literal> for step response calculation 
+      (here <literal>sl</literal> is assumed SISO without direct feed-through and
+      <literal>x0=0</literal>)
+    </para>
+    <para>
+      5. a vector giving the values of u corresponding to each t value.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -110,7 +126,7 @@ clf();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bstap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bstap</refname>
     <refpurpose>ハンケル近似</refpurpose>
@@ -29,14 +26,17 @@
         <term>sl</term>
         <listitem>
           <para>
-	線形システム (<literal>syslin</literal> リスト)で,
-	連続時間,非安定と仮定されます.</para>
+            線形システム (<literal>syslin</literal> リスト)で,
+            連続時間,非安定と仮定されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q</term>
         <listitem>
-          <para><literal>Sl</literal>の最良の安定近似 (<literal>syslin</literal> リスト).</para>
+          <para>
+            <literal>Sl</literal>の最良の安定近似 (<literal>syslin</literal> リスト).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,14 +44,18 @@
   <refsection>
     <title>説明</title>
     <para>
-	線形システム<literal>Sl</literal>の最良の近似<literal>Q</literal>を
-	計算します.</para>
+      線形システム<literal>Sl</literal>の最良の近似<literal>Q</literal>を
+      計算します.
+    </para>
     <para>
-    ただし,</para>
+      ただし,
+    </para>
     <para>
-    ||T||</para>
+      ||T||
+    </para>
     <para>
-    は,<literal>Sl</literal>に関連するハンケル演算子のH無限大ノルムです.</para>
+      は,<literal>Sl</literal>に関連するハンケル演算子のH無限大ノルムです.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

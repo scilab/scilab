@@ -10,28 +10,12 @@
 
 //=============================================================================
 function [make_command, lib_name_make, lib_name, path, makename, files] = ..
-             dlwGetParamsIlibCompil(lib_name, makename, files)
+             dlwGetParamsIlibCompil(lib_name, files)
   
-  files = unique(files);
-  k = strindex(makename,['/','\']);
-  
-
-  if k~=[] then
-    path = part(makename,1:k($));
-    makename = part(makename,k($)+1:length(makename));
-  else
-     path='';
-  end
-
-  lib_name = lib_name+getdynlibext();
+  path='';
+  lib_name = lib_name + getdynlibext();
   lib_name_make = lib_name;
-
-  if (makename <> [] & makename <> '') then
-    makename = makename + dlwGetMakefileExt() ;
-  else
-    makename = dlwGetDefltMakefileName() + dlwGetMakefileExt() ;
-  end
-
+  makename = dlwGetDefltMakefileName() + dlwGetMakefileExt() ;
   make_command = 'nmake /Y /nologo /f ';
 
 endfunction

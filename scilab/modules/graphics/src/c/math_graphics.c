@@ -28,9 +28,8 @@
 
 double Mini(const double vect[], int n)
 {
-  int i;
-  double vmin;
-  vmin = LARGEST_REAL;
+  int i = 0;
+  double vmin = LARGEST_REAL;
   for (i = 0 ; i < n ; i++)
     /*    if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
     if ( finite(vect[i])== 1 && vect[i] < vmin) 
@@ -40,9 +39,8 @@ double Mini(const double vect[], int n)
 
 double Maxi(const double vect[], int n)
 {
-  int i;
-  double maxi;
-  maxi= - LARGEST_REAL;
+  int i = 0;
+  double maxi = - LARGEST_REAL;
   for (i =0 ; i < n ; i++)
     /* if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] > maxi) */
     if ( finite(vect[i])== 1 && vect[i] > maxi) 
@@ -203,8 +201,8 @@ void normalize3D( double vect[3] )
 /*----------------------------------------------------------------------------*/
 void setToIdentity(double mat4D[4][4])
 {
-  int i;
-  int j;
+  int i = 0;
+  int j = 0;
   for (i = 0; i < 4; i++)
   {
     for (j = 0; j < 4; j++)
@@ -217,7 +215,7 @@ void setToIdentity(double mat4D[4][4])
 /*----------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
-  int i;
+  int i = 0;
   double res4D[4];
   // w coordinate of the vector is supposed to be 1;
   for (i = 0; i < 4; i++) {

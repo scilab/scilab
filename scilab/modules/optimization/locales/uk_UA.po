@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:29+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-26 20:31+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -42,8 +42,17 @@ msgid "%s: The constraints are inconsistent.\n"
 msgstr "%s: суперечливі обмеження.\n"
 
 #, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s: параметр 3: помилкова кількість стовпчиків: мало бути %d\n"
+msgid ""
+"%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано %d "
+"стовпчиків для матриці %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
+"to %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -933,11 +942,15 @@ msgid ""
 "%s: The initial simplex method %s is not compatible with the restart simplex "
 "method %s"
 msgstr ""
+"%s: початковий симплекс-метод %s не сумісний з перезапущеним симплекс-"
+"методом %s"
 
 #, c-format
 msgid ""
 "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
+"%s: використовувати перезапущений симплекс з випадковими межами у задачі без "
+"обмежень не можна."
 
 #, c-format
 msgid "%s: Unknown restart simplex method %s"
@@ -1009,7 +1022,7 @@ msgstr "%s: якщо x0 є порожнім, перевірка функції �
 
 #, c-format
 msgid "%s: Cannot evaluate cost function with %s: %s"
-msgstr ""
+msgstr "%s: не вдалося обчислити функцію вартості за допомогою %s: %s"
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
@@ -1227,16 +1240,30 @@ msgstr "%s: у векторі індексів виключення %d рядк�
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
+"значень.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказувати "
+"невід’ємні цілі числа.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 #, c-format
-#~ msgid "%s: Cannot evaluate cost function with %s."
-#~ msgstr "%s: не вдалося обчислити функцію вартості за допомогою %s."
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
+#~ "to %d.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: %s мало бути цілим числом у "
+#~ "діапазоні від 0 до %d.\n"

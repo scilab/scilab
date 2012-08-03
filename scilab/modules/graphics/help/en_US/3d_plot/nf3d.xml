@@ -10,13 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nf3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="nf3d">
   <refnamediv>
     <refname>nf3d</refname>
-    <refpurpose> rectangular facets to plot3d parameters</refpurpose>
+    <refpurpose>Rectangular facets to plot3d parameters</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,8 +33,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function. Used for transforming rectangular facets coded 
-    in three matrices x,y,z to scilab code for facets accepted by plot3d.</para>
+      Utility function. Used for transforming rectangular facets coded 
+      in three matrices x,y,z to scilab code for facets accepted by plot3d.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +51,7 @@ z= sin(u)'*ones(v);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

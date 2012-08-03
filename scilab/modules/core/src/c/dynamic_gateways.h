@@ -1,21 +1,28 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
-/**
+/*
 * When we terminate Scilab, we freed dynamic gateways
 */
 void freeAllDynamicGateways(void);
+
+/**
+* graphic_objects gateway
+* graphic_objects is loaded dynamically at runtime
+* load gw_graphic_objects in SCI/modules/graphic_objects/sci_gateway/gw_graphic_objects.c
+*/
+int gw_dynamic_graphic_objects(void);
 
 /**
 * special_functions gateway
@@ -183,12 +190,27 @@ int gw_dynamic_mpi(void);
 int gw_dynamic_action_binding(void);
 
 /**
-* action_binding gateway
-* action_binding is loaded dynamically at runtime
-* load gw_action_binding in SCI/modules/xml/sci_gateway/gw_xml.c
+* preferences gateway
+* preferences is loaded dynamically at runtime
+* load gw_preferences in SCI/modules/preferences/sci_gateway/gw_preferences.c
+*/
+int gw_dynamic_preferences(void);
+
+/**
+* xml gateway
+* xml is loaded dynamically at runtime
+* load gw_xml in SCI/modules/xml/sci_gateway/gw_xml.c
 */
 int gw_dynamic_xml(void);
 
+/**
+* history_browser gateway
+* history_browser is loaded dynamically at runtime
+* load gw_history_browser in SCI/modules/history_browser/sci_gateway/gw_history_browser.c
+*/
+int gw_dynamic_history_browser(void);
+
+int gw_dynamic_external_objects(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setmenu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>setmenu</refname>
     <refpurpose> interactive button or menu activation</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>setmenu(button [,nsub])
-setmenu(gwin,button [,nsub])</synopsis>
+      setmenu(gwin,button [,nsub])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,7 +28,9 @@ setmenu(gwin,button [,nsub])</synopsis>
       <varlistentry>
         <term>nsub</term>
         <listitem>
-          <para>integer. The number of submenu to de-activate (if any). If button has no sub-menu, <literal>nsub</literal> is ignored</para>
+          <para>
+            integer. The number of submenu to de-activate (if any). If button has no sub-menu, <literal>nsub</literal> is ignored
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,8 +38,9 @@ setmenu(gwin,button [,nsub])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    The function allows the user to make active  buttons or menus created by
-    <literal>addmenu</literal> in the main or graphics windows command panels.</para>
+      The function allows the user to make active  buttons or menus created by
+      <literal>addmenu</literal> in the main or graphics windows command panels.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -50,7 +51,7 @@ setmenu('foo')   // button foo can be activated (black string)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="delmenu">delmenu</link>

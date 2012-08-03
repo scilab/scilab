@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="execstr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>execstr</refname>
     <refpurpose> exécution d'instructions Scilab contenues dans des chaînes de caractères</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>execstr(instr)
-ierr=execstr(instr,'errcatch' [,msg])</synopsis>
+      ierr=execstr(instr,'errcatch' [,msg])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -41,8 +39,10 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
       <varlistentry>
         <term>msg  </term>
         <listitem>
-          <para>chaîne de caractères (<literal>'m'</literal> ou <literal>'n'</literal>). La valeur
-	    par défaut est <literal>'n'</literal>. </para>
+          <para>
+            chaîne de caractères (<literal>'m'</literal> ou <literal>'n'</literal>). La valeur
+            par défaut est <literal>'n'</literal>. 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,7 +50,8 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   <refsection>
     <title>Description</title>
     <para>Exécute les instructions Scilab données dans l'argument
-      <literal>instr</literal>. </para>
+      <literal>instr</literal>. 
+    </para>
     <para>Note : les instructions ne doivent pas comporter de marques de suite (..). </para>
     <para> </para>
     <para>Si 'errcatch' n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.</para>
@@ -60,7 +61,8 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
       l'exécution des instructions stockées dans <literal>instr</literal> (au point
       où l'erreur s'est produite), et renvoie dans <literal>ierr</literal> le numéro
       de l'erreur. Dans ce cas l'affichage du message d'erreur est contrôlé par
-      l'option <literal>msg</literal> : </para>
+      l'option <literal>msg</literal> : 
+    </para>
     <variablelist>
       <varlistentry>
         <term>"m"</term>
@@ -72,14 +74,16 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
         <term>"n"</term>
         <listitem>
           <para>le message d'erreur n'est pas affiché mais il est enregistré
-	  (voir <literal>lasterror</literal>). Il s'agit du comportement par
-	  défaut. </para>
+            (voir <literal>lasterror</literal>). Il s'agit du comportement par
+            défaut. 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para> ierr=execstr(instr,'errcatch') peut gérer les erreurs de syntaxes. Ceci
       peut être utile pour évaluer les instructions obtenues par une requète à
-      l'utilisateur (interface homme-machine).</para>
+      l'utilisateur (interface homme-machine).
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -119,7 +123,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="try">try</link>

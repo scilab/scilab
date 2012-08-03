@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Interfacingfunction_DELAY_f">Fonction d'interfaçage</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_DELAY_f">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,8 +93,8 @@
   <refsection id="Description_DELAY_f">
     <title>Description</title>
     <para>
-Ce bloc implémente un retard à temps discret. Il est construit avec un registre à décalage et une horloge. Le retard est donnée par la pas de temps discret multiplié par le nombre d'états du registre moins un.
-</para>
+      Ce bloc implémente un retard à temps discret. Il est construit avec un registre à décalage et une horloge. Le retard est donnée par la pas de temps discret multiplié par le nombre d'états du registre moins un.
+    </para>
     <para>
       <latex><![CDATA[
 \left\{
@@ -122,8 +117,8 @@ Ce bloc implémente un retard à temps discret. Il est construit avec un registr
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -145,16 +140,24 @@ Ce bloc implémente un retard à temps discret. Il est construit avec un registr
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -173,19 +176,29 @@ Ce bloc implémente un retard à temps discret. Il est construit avec un registr
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -241,10 +254,5 @@ Ce bloc implémente un retard à temps discret. Il est construit avec un registr
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_DELAY_f">
-    <title>Auteurs</title>
-    <para>INRIA</para>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

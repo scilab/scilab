@@ -27,7 +27,6 @@ fr_FR.MsgBoxWebOpen =Can not open web page.
 fr_FR.MsgBoxDevToolsRequired1 =Vous avez choisi d'installer le module toolbox_skeleton mais vous n'avez pas selectionné le module development_tools.
 fr_FR.MsgBoxDevToolsRequired2 =Veuillez installer le module development_tools.
 fr_FR.MsgBoxDevToolsRequired3 =Vous avez choisi d'installer les tests mais vous n'avez pas selectionné le module development_tools.
-fr_FR.MsgBoxTclsciRequired1 =Vous avez choisi d'installer Scipad mais vous n'avez pas selectionné module tclsci.
 fr_FR.MsgBoxTclsciRequired2 =Veuillez installer le module tclsci.
 fr_FR.MsgBoxFftw1 =Vous avez choisi d'installer le module FFTW pour Scilab.
 fr_FR.MsgBoxFftw2 =Il est nécéssaire de télécharger la librairie FFTW (GPL).
@@ -58,16 +57,12 @@ fr_FR.DescriptionUmfpack =UMFPACK pour Scilab
 fr_FR.DescriptionCompatFunctions =Fonctions de Compatibilité
 fr_FR.DescriptionM2sci =Boite à outils M2SCI
 fr_FR.DescriptionMatio =Boite à outils Fichiers MAT Entree/Sortie
-fr_FR.DescriptionTexmacs =Interface pour Texmacs
+fr_FR.DescriptionExternalObjects =External objects
 fr_FR.DescriptionSound =Boite à outils Manipulation des fichiers son
 fr_FR.DescriptionRandlib =Boite à outils Randlib
-fr_FR.DescriptionJavasci =Interface Java vers Scilab
 fr_FR.DescriptionMexlib =Outils Mexlib
 fr_FR.DescriptionIntersci =Boite à outils Intersci
-fr_FR.DescriptionMaple2sci =Boite à outils Maple vers Scilab
-fr_FR.DescriptionFortran2sci =Boite à outils Scilab vers Fortran
 fr_FR.DescriptionTclTK =TCL/TK pour Scilab
-fr_FR.DescriptionScipad =Scipad Editeur pour Scilab
 fr_FR.DescriptionSpreadsheet =Boite à outils Feuille de Calculs
 fr_FR.DescriptionJVM =Java Runtime
 fr_FR.DescriptionAtlas =Librairie Atlas 3.8.0 optimisée selon le CPU
@@ -149,8 +144,6 @@ fr_FR.DescriptionAtoms =ATOMS
 fr_FR.DescriptionHelpScilabCHM =Aide Scilab
 fr_FR.ScilabCHM =modules\helptools\chm\scilab_fr_FR_help.chm
 ;
-fr_FR.DescriptionHelpScicosCHM =Aide Scicos
-fr_FR.ScicosCHM =modules\scicos\chm\scilab_fr_FR_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;

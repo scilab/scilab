@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +36,7 @@ public class UndoAction extends DefaultAction {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.UNDO;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "edit-undo.png";
+    public static final String SMALL_ICON = "edit-undo";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_Z;
 	/** Accelerator key for the action */
@@ -86,7 +86,8 @@ public class UndoAction extends DefaultAction {
 		 * @param evt the current event
 		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
 		 */
-		public void invoke(Object sender, mxEventObject evt) {
+		@Override
+        public void invoke(Object sender, mxEventObject evt) {
 			boolean canUndo = scilabGraph.getUndoManager().canUndo();
 			super.setEnabled(canUndo);
 		}
@@ -128,7 +129,8 @@ public class UndoAction extends DefaultAction {
 	 *            the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		final ScilabGraph graph = getGraph(e);
 
 		graph.removeUndoHandler();

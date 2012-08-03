@@ -14,11 +14,35 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafisches Modul von Scilab deaktiviert: -nogui oder -nwni Modus.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -33,6 +57,14 @@ msgstr "%s: Falsche Größe für Eingangsargument #%d: Skalar erwartet.\n"
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: Grafische Handhabung erwartet.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be a valid handle.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -62,40 +94,27 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr ""
 
+msgid "xinit must be called before xend."
+msgstr ""
+
+msgid "Unable to create export file, permission denied."
+msgstr ""
+
+msgid "Unable to create export file, invalid file."
+msgstr ""
+
+msgid ""
+"Unable to create export file, not enough memory. Decreasing the number of "
+"elements or the size of the figure should fix this error."
+msgstr ""
+
+msgid ""
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
+msgstr ""
+
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Grafischer Exportmodus von Scilab nicht installiert.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', '%s', '%s' "
-"oder '%s' erwartet.\n"
-
-#, c-format
-msgid "%s: %s must be called before any action.\n"
-msgstr "%s: %s muß vor jedem Vorgang aufgerufen werden.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments: Function has no input argument with "
-"'%s' or '%s' drivers.\n"
-msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: Funktion hat keine "
-"Eingangsargumente mit '%s' oder '%s' Treibern.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
-"'%s' drivers.\n"
-msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: Zeichenkette mit '%s', '%s', '%s' "
-"oder '%s' Treibern erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -104,6 +123,10 @@ msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -120,20 +143,3 @@ msgstr "%s: kann keine Datei zum Exportieren erzeugen, Vorgang abgelehnt.\n"
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: kann pstoedit nicht ausführen.\n"
-
-msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr ""
-
-msgid "Scilab error"
-msgstr ""
-
-msgid "error"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
-"to be able to use this feature.\n"
-msgstr ""
-"%s: kann pstoedit nicht lokalisieren. Installieren Sie pstoedit oder fügen "
-"Sie dies zu PFAD hinzu, um diese Funktionalität zu verwenden.\n"

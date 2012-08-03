@@ -14,5 +14,6 @@ umfpack
 zlib
 hdf5
 gl2ps
+Eigen
 *.lib
-
+Eigen

@@ -55,9 +55,10 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
 
     private static final long serialVersionUID = 5306766011092074961L;
 
-    private String jarExtension = "_help.jar";
-    private String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
-    private String defaultLanguage = "en_US";
+    private static String defaultLanguage = "en_US";
+    private static String jarExtension = "_help.jar";
+    private static String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
+
     private String currentLanguage = "";
     private JHelp jhelp;
     private HelpSet helpSet;
@@ -91,6 +92,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         super(new BorderLayout());
         jhelp = new JHelp();
         add(jhelp);
+        setFocusable(true);
         searchField = new HelpSearchField(this, null);
 
         /* Send information to the user using status bar and cursor */
@@ -115,8 +117,8 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         }
 
         if (!mainJar.exists()) {
-            String message = "'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. "
-                + "" + "Are you sure you built it? The help will not be available.";
+            String message = "'SCI/modules/helptools/jar/scilab_" + defaultLanguage + jarExtension + "' has not been found on the system.\n"
+                + "" + "Are you sure you built it?\nThe help will not be available.";
             if (ScilabConsole.isExistingConsole()) {
                 MessageBox messageBox = ScilabMessageBox.createMessageBox();
                 messageBox.setMessage(message);
@@ -239,6 +241,63 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     }
 
     /**
+     * @param language the preferred language
+     * @return true if the main help jar file exists
+     */
+    public static boolean isMainJarExists(String language) {
+        File mainJar = new File(mainJarPath + language + jarExtension);
+        if (!mainJar.exists()) {
+            mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
+            if (!mainJar.exists()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @return the current URL as String being displayed
+     */
+    public String getCurrentURL() {
+        return ((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).getCurrentURL();
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public String getCurrentID() {
+        if (jhelp.getModel().getCurrentID() != null) {
+            String id = jhelp.getModel().getCurrentID().toString();
+            int whitePos = id.indexOf(" ");
+            int commaPos = id.indexOf(",");
+
+            if (whitePos != -1 && commaPos != -1) {
+                id = id.substring(whitePos + 1, commaPos);
+            }
+
+            return id;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public void setCurrentID(final String id) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        jhelp.setCurrentID(id);
+                    } catch (BadIDException e) {
+                        jhelp.setCurrentURL(homePageURL);
+                    }
+                }
+            });
+    }
+
+    /**
      * Show the search field
      */
     public void showSearchField() {
@@ -279,8 +338,35 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      */
     public void displayHomePage() {
         if (homePageURL != null) {
-            jhelp.setCurrentURL(homePageURL);
+            setCurrentURL(homePageURL);
         }
+    }
+
+    /**
+     * Sets the current URL
+     * @param url the URL to display
+     */
+    public void setCurrentURL(final URL url) {
+        SwingUtilities.invokeLater(new Runnable() {
+
+                public void run() {
+                    jhelp.setCurrentURL(url);
+                }
+            });
+    }
+
+    /**
+     * Sets the current url
+     * @param url the url as String to display
+     */
+    public void setCurrentURL(String url) {
+        URL u = homePageURL;
+        try {
+            if (url != null) {
+                u = new URL(url);
+            }
+        } catch (MalformedURLException e) { }
+        setCurrentURL(u);
     }
 
     /**
@@ -293,6 +379,11 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      * @param keyword the keyword
      */
     public void searchKeywork(String keyword) {
+        if (keyword == null) {
+            displayHomePage();
+            return;
+        }
+
         if (keyword.length() > 0 && keyword.charAt(0) == '%') {
             keyword = keyword.replace("%", "percent");
         }

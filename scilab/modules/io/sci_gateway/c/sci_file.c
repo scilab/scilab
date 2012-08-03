@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_io.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "FileExist.h"
 #include "MALLOC.h"
@@ -63,6 +62,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -70,6 +70,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -77,6 +78,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -84,6 +86,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -91,6 +94,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -98,6 +102,7 @@ int sci_file(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -120,6 +125,7 @@ int sci_file(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -133,6 +139,7 @@ int sci_file(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 				return 0;
 			}
 
@@ -146,6 +153,7 @@ int sci_file(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 				return 0;
 			}
 
@@ -160,6 +168,7 @@ int sci_file(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -176,6 +185,7 @@ int sci_file(char *fname,unsigned long fname_len)
 			{
 				FREE(pStVarOne); pStVarOne = NULL;
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -188,6 +198,7 @@ int sci_file(char *fname,unsigned long fname_len)
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 					return 0;
 				}
 
@@ -204,6 +215,7 @@ int sci_file(char *fname,unsigned long fname_len)
 				{
 					FREE(pStVarThree); pStVarThree = NULL; 
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 					return 0;
 				}
 
@@ -216,6 +228,7 @@ int sci_file(char *fname,unsigned long fname_len)
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 						return 0;
 					}
 
@@ -232,6 +245,7 @@ int sci_file(char *fname,unsigned long fname_len)
 					{
 						FREE(pStVarTwo); pStVarTwo = NULL;
 						printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 						return 0;
 					}
 
@@ -246,6 +260,7 @@ int sci_file(char *fname,unsigned long fname_len)
 							if(sciErr.iErr)
 							{
 								printError(&sciErr, 0);
+                                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 								return 0;
 							}
 
@@ -253,6 +268,7 @@ int sci_file(char *fname,unsigned long fname_len)
 							if(sciErr.iErr)
 							{
 								printError(&sciErr, 0);
+                                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 								return 0;
 							}
 
@@ -315,6 +331,7 @@ static int sci_file_no_rhs(char *fname)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -334,6 +351,7 @@ static int sci_file_no_rhs(char *fname)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -354,6 +372,7 @@ static int sci_file_no_rhs(char *fname)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -374,6 +393,7 @@ static int sci_file_no_rhs(char *fname)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -395,6 +415,7 @@ static int sci_file_no_rhs(char *fname)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -424,6 +445,7 @@ static int sci_file_one_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -431,6 +453,7 @@ static int sci_file_one_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -445,6 +468,7 @@ static int sci_file_one_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -480,6 +504,7 @@ static int sci_file_one_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 
@@ -507,6 +532,7 @@ static int sci_file_one_rhs(char *fname)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -544,6 +570,7 @@ static int sci_file_one_rhs(char *fname)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -570,6 +597,7 @@ static int sci_file_one_rhs(char *fname)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -596,6 +624,7 @@ static int sci_file_one_rhs(char *fname)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 		LhsVar(5) = Rhs + 5; 

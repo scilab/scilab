@@ -15,7 +15,6 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-import java.util.Set;
 
 import org.scilab.modules.scinotes.ScilabContext;
 import org.scilab.modules.scinotes.ScilabEditorKit;

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -43,10 +43,10 @@
   <refsection id="Description_steadycos">
     <title>Description</title>
     <para>
-This function finds the steady state for a given system described by a xcos diagram or <link linkend="SUPER_f">sub-diagram</link>. The diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.The steady state concern only the continuous-time dynamics.  
-</para>
+      This function finds the steady state for a given system described by a xcos diagram or <link linkend="SUPER_f">sub-diagram</link>. The diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.The steady state concern only the continuous-time dynamics.  
+    </para>
     <para>
-</para>
+    </para>
     <programlisting role="example"><![CDATA[
 // loading data
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
@@ -74,43 +74,69 @@ end
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scs_m :</emphasis> a xcos data structure</para>
+        <para>
+          <emphasis role="bold">scs_m :</emphasis> a xcos data structure
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">X :</emphasis> column vector. Continuous state. Can be set to [] if zero.</para>
+        <para>
+          <emphasis role="bold">X:</emphasis> column vector. Continuous state. Can be set to [] if zero.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">U :</emphasis> column vector. Input. Can be set to [] if zero.</para>
+        <para>
+          <emphasis role="bold">U:</emphasis> column vector. Input. Can be set to [] if zero.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Y :</emphasis> column vector. Output. Can be set to [] if zero.</para>
+        <para>
+          <emphasis role="bold">Y:</emphasis> column vector. Output. Can be set to [] if zero.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Indx :</emphasis> index of entries of X that are not fixed. If all can vary, set to 1:$</para>
+        <para>
+          <emphasis role="bold">Indx :</emphasis> index of entries of X that are not fixed. If all can vary, set to 1:$
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Indu :</emphasis> index of entries of U that are not fixed. If all can vary, set to 1:$</para>
+        <para>
+          <emphasis role="bold">Indu :</emphasis> index of entries of U that are not fixed. If all can vary, set to 1:$
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Indy :</emphasis> index of entries of Y that are not fixed. If all can vary, set to 1:$</para>
+        <para>
+          <emphasis role="bold">Indy :</emphasis> index of entries of Y that are not fixed. If all can vary, set to 1:$
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Indxp :</emphasis> index of entries of XP (derivative of x) that need not be zero. If all can vary, set to 1:$. Default [].</para>
+        <para>
+          <emphasis role="bold">Indxp :</emphasis> index of entries of XP (derivative of x) that need not be zero. If all can vary, set to 1:$. Default [].
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">param :</emphasis> list with two elements (default list(1.d-6,0)). param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.</para>
+        <para>
+          <emphasis role="bold">param :</emphasis> list with two elements (default list(1.d-6,0)). param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">X :</emphasis> steady state X</para>
+        <para>
+          <emphasis role="bold">X:</emphasis> steady state X
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">U :</emphasis> stationary input U</para>
+        <para>
+          <emphasis role="bold">U:</emphasis> stationary input U
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Y :</emphasis> output corresponding to steady state found</para>
+        <para>
+          <emphasis role="bold">Y:</emphasis> output corresponding to steady state found
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">XP :</emphasis> derivative of the state corresponding to steady state found</para>
+        <para>
+          <emphasis role="bold">XP :</emphasis> derivative of the state corresponding to steady state found
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -141,10 +167,5 @@ end
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_steadycos">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

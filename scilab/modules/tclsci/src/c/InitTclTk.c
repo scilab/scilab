@@ -17,6 +17,7 @@
 #include <dirent.h>
 #include <ctype.h>
 #else
+#include <windows.h>
 #include "EnvTclTk.h"
 #include "strdup_windows.h"
 #endif

@@ -10,55 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="solve" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="solve" xml:lang="ja">
   <refnamediv>
     <refname>solve</refname>
-
     <refpurpose>代数線形システムのソルバ</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-
     <synopsis>[x]=solve(A,b)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>パラメータ</title>
-
     <variablelist>
       <varlistentry>
         <term>A,b,x</term>
-
         <listitem>
           <para>文字列行列の行列 (各ベクトル) </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>説明</title>
-
     <para>
-	<literal>A</literal> が文字列からなる上三角行列の時に,
-	<literal>A*x = b</literal>を解きます.
-	</para>
+      <literal>A</literal> が文字列からなる上三角行列の時に,
+      <literal>A*x = b</literal>を解きます.
+    </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-
     <programlisting role="example"><![CDATA[ 
 A=['1','a';'0','2'];   //上三角行列
 b=['x';'y'];
@@ -70,12 +50,12 @@ evstr(w)
 inv([1,1;0,2])*[2;5]
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>参照</title>
-
     <simplelist type="inline">
-      <member><link linkend="trianfml">trianfml</link></member>
+      <member>
+        <link linkend="trianfml">trianfml</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

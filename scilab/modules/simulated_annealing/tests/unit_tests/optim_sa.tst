@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 // Test that we can run with default values for parameters
@@ -116,7 +116,7 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
 // that the external loop never stops.
 // This allows to check that the output function really allows to 
 // stop the algorithm.
-[x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , %inf, 100, T0, %f, saparams);
+[x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , 1e6, 100, T0, %f, saparams);
 assert_checkalmostequal ( x_best , [4 3] ,  1.e-1 );
 assert_checkalmostequal ( f_best , 0 ,  [] , 1.e-1 );
 assert_checkequal ( iter > 0 , %t );

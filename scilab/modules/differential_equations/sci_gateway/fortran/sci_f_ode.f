@@ -579,7 +579,7 @@ c     lsdisc
          liw=1
       elseif(meth.eq.5) then
 c     lsrgk
-         lrw=3*ny
+         lrw=9*ny
          liw=1
       elseif(meth.eq.6) then
 c     rkf45
@@ -590,7 +590,6 @@ c     rksimp
          lrw=3+8*ny
          liw=1
       endif
-
 c     
 c     hot start
 c     
@@ -931,18 +930,18 @@ c     tcrit reached
 c     
 c     form results for output
  500  continue
-      if(lhs.ge.3) then
+c      if(lhs.ge.3) then
 c     preserve lsod* working spaces
-         lw=lyp+nn*(ny+1)
-         ilw=iadr(lw+lrw)
-         err=sadr(ilw+liw)-lstk(bot)
-         if(err.gt.0) then
-            call error(17)
-            return
-         endif
-         call unsfdcopy(lrw,stk(lc),1,stk(lw),1)
-         call icopy(liw,istk(ilc),1,istk(ilw),1)
-      endif
+c         lw=lyp+nn*(ny+1)
+c         ilw=iadr(lw+lrw)
+c         err=sadr(ilw+liw)-lstk(bot)
+c         if(err.gt.0) then
+c            call error(17)
+c            return
+c         endif
+c        call unsfdcopy(lrw,stk(lc),1,stk(lw),1)
+c        call icopy(liw,istk(ilc),1,istk(ilw),1)
+c     endif
 c     form state output
       ils=iadr(lstk(kynew))
       top=tope-rhs+1
@@ -1030,7 +1029,7 @@ c     w
       istk(il+3)=0
       l=sadr(il+4)
       lstk(top+1)=l+lrw+nsizd
-      call unsfdcopy(lrw,stk(lw),1,stk(l),1)
+      call unsfdcopy(lrw,stk(lc),1,stk(l),1)
       lsvs=l+lrw
 c     iw
       top=top+1
@@ -1042,7 +1041,7 @@ c     iw
       l=sadr(il+4)
       lstk(top+1)=l+liw+nsizi
       do 506 k=1,liw
-         stk(l+k-1)=dble(istk(ilw+k-1))
+         stk(l+k-1)=dble(istk(ilc+k-1))
  506  continue
       lsvi=l+liw
       if(meth.eq.0) then

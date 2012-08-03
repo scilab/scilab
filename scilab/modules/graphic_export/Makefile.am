@@ -24,18 +24,12 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 
 
 # List of the c files
-GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
+GRAPHIC_EXPORT_CXX_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
-src/cpp/GL2PSConstant.cpp \
-src/cpp/GL2PSWrapping.cpp \
-src/cpp/JoGLInterface.cpp  \
-src/jni/GL2PSToJOGL.cpp \
+src/jni/Driver.cpp \
 src/jni/JOGLConstant.cpp
 
-GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
-src/jni/GL2PSConstant_wrap.c \
-src/jni/GL2PSWrapping_wrap.c \
-src/c/gl2ps/gl2ps.c
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
@@ -45,34 +39,41 @@ sci_gateway/c/sci_xs2ppm.c \
 sci_gateway/c/sci_xs2ps.c \
 sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
-sci_gateway/c/sci_xs2png.c \
 sci_gateway/c/sci_xs2eps.c \
-sci_gateway/c/sci_xs2pdf.c
+sci_gateway/c/sci_xs2pdf.c \
+sci_gateway/c/sci_xs2png.c
 
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_driver.cpp \
+sci_gateway/cpp/sci_xinit.cpp \
+sci_gateway/cpp/sci_xend.cpp
 
 # Includes need for the compilation
-libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
+libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/renderer/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
-				-I$(top_srcdir)/libs/doublylinkedlist/includes
+				-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+				-I$(top_srcdir)/modules/graphic_objects/includes/ \
+				-I$(top_srcdir)/modules/gui/src/jni/ \
+				$(AM_CPPFLAGS)
 
 # All the sources needed by libscigraphic_export.la
-libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
-libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscigraphic_export_algo_la_CFLAGS = $(libscigraphic_export_la_CFLAGS)
+libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CXX_SOURCES)
+libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary
@@ -80,30 +81,23 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
-src/jni/GL2PSToJOGL.giws.xml \
-src/jni/JOGLConstant.giws.xml
+src/jni/JOGLConstant.giws.xml \
+src/jni/Driver.giws.xml
 
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
-endif
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
-src/jni/GL2PSWrapping.i
-
-if SWIG
-BUILT_SOURCES=swig
+BUILT_SOURCES+=giws
 endif
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 
-libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(srcdir)/includes/ 
+libscigraphic_export_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -115,7 +109,6 @@ pkglib_LTLIBRARIES += libscigraphic_export.la
 noinst_LTLIBRARIES = libscigraphic_export-algo.la 
 endif
 
-libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway

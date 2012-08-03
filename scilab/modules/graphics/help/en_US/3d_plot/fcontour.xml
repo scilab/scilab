@@ -10,27 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fcontour">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="fcontour">
   <refnamediv>
     <refname>fcontour</refname>
     <refpurpose>level curves on a 3D surface defined by a
-  function</refpurpose>
+      function (obsolete function)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
-fcontour(xr,yr,f,nz,&lt;opt_args&gt;)</synopsis>
+      fcontour(xr,yr,f,nz,&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>This function is obsolete. It is now included in the
-      <link linkend="contour">contour</link> function.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
+      <link linkend="contour">contour</link> function.
+    </para>
   </refsection>
 </refentry>

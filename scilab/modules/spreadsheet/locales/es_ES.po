@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:39+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-21 22:50+0000\n"
+"Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -231,39 +231,12 @@ msgstr ""
 "reemplazaba '%s' con '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"No se puede interpretar la opción \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Decodificando archivo=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE requiere un archivo de entrada para decodificar.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: No puede asignar memoria para un objeto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "No se pudo localizar el archivo de entrada '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "El archivo '%s' no está en formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "El archivo de entrada OLE '%s' es loco"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: la decodificación de %s terminó en un error %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
@@ -272,8 +245,11 @@ msgstr "ripOLE: la decodificación de %s terminó en un error %d.\n"
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "El módulo de hoja de cálculos de Scilab no está instalado.\n"
 
-msgid "Read a xls file"
+msgid "Spreadsheet"
 msgstr ""
+
+msgid "Read a xls file"
+msgstr "Leer archivo xls"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

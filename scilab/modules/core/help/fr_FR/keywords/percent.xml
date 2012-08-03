@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="percent">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>percent (%)</refname>
     <refpurpose> caractère spécial  </refpurpose>
@@ -10,19 +7,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    Certains noms de variables prédéfinies commencent par le caractère <literal>%</literal>, tels que <literal>%i</literal> (pour <literal>sqrt(-1)</literal>), <literal>%inf</literal> (pour <literal>Infinity</literal>), <literal>%pi</literal> (pour <literal>3.14...</literal>),
-    <literal>%T</literal> (pour la constante booléenne <literal>"true"="vrai"</literal>),...
-  </para>
+      Certains noms de variables prédéfinies commencent par le caractère <literal>%</literal>, tels que <literal>%i</literal> (pour <literal>sqrt(-1)</literal>), <literal>%inf</literal> (pour <literal>Infinity</literal>), <literal>%pi</literal> (pour <literal>3.14...</literal>),
+      <literal>%T</literal> (pour la constante booléenne <literal>"true"="vrai"</literal>),...
+    </para>
     <para>
-    De plus, les fonctions dont les noms commencent par <literal>%</literal> sont spéciales : 
-    elles sont utilisées pour surcharger les primitives et opérateurs usuels (voir <literal>overloading</literal>).
-  </para>
+      De plus, les fonctions dont les noms commencent par <literal>%</literal> sont spéciales : 
+      elles sont utilisées pour surcharger les primitives et opérateurs usuels (voir <literal>overloading</literal>).
+    </para>
     <para>
-    Par exemple la fonction <literal>%rmr</literal> calcule la multiplication (opérateur <literal>m</literal>)
-    <literal>x*y</literal> pour des matrices rationnelles <literal>x</literal> et <literal>y</literal> (type <literal>r</literal>).
-    Les conventions de codage sont précisées dans le fichier README du répertoire 
-    <literal>SCI/modules/overloading/macros</literal>.
-  </para>
+      Par exemple la fonction <literal>%rmr</literal> calcule la multiplication (opérateur <literal>m</literal>)
+      <literal>x*y</literal> pour des matrices rationnelles <literal>x</literal> et <literal>y</literal> (type <literal>r</literal>).
+      Les conventions de codage sont précisées dans le fichier README du répertoire 
+      <literal>SCI/modules/overloading/macros</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -34,7 +31,7 @@ x1*x2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="overloading">overloading</link>

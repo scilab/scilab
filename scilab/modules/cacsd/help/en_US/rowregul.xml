@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowregul">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rowregul</refname>
     <refpurpose> removing poles and zeros at infinity</refpurpose>
@@ -17,7 +14,9 @@
       <varlistentry>
         <term>Sl,Stmp</term>
         <listitem>
-          <para> <literal>syslin</literal> lists</para>
+          <para>
+            <literal>syslin</literal> lists
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -31,16 +30,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes a postfilter <literal>Ws</literal> such that <literal>Stmp=Ws*Sl</literal> is proper and 
-    with full rank <literal>D</literal> matrix.</para>
+      computes a postfilter <literal>Ws</literal> such that <literal>Stmp=Ws*Sl</literal> is proper and 
+      with full rank <literal>D</literal> matrix.
+    </para>
     <para>
-    Poles at infinity of <literal>Sl</literal> are moved to <literal>alfa</literal>;</para>
+      Poles at infinity of <literal>Sl</literal> are moved to <literal>alfa</literal>;
+    </para>
     <para>
-    Zeros at infinity of <literal>Sl</literal> are moved to <literal>beta</literal>;</para>
-    <para><literal>Sl</literal> is a assumed to be a right invertible linear system (<literal>syslin</literal> list)
-    in state-space representation with possibly a polynomial <literal>D</literal> matrix.</para>
+      Zeros at infinity of <literal>Sl</literal> are moved to <literal>beta</literal>;
+    </para>
     <para>
-    This function is the dual of colregul (see function code).</para>
+      <literal>Sl</literal> is assumed to be a right invertible linear system (<literal>syslin</literal> list)
+      in state-space representation with possibly a polynomial <literal>D</literal> matrix.
+    </para>
+    <para>
+      This function is the dual of colregul (see function code).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +59,7 @@ clean(ss2tf(Stmp))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="invsyslin">invsyslin</link>
@@ -63,9 +68,5 @@ clean(ss2tf(Stmp))
         <link linkend="colregul">colregul</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D. , R. N. ;   </para>
   </refsection>
 </refentry>

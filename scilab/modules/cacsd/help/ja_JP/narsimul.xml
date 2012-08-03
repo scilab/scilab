@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="narsimul">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>narsimul</refname>
     <refpurpose> armax シミュレーション ( rtitrを使用)   </refpurpose>
@@ -21,17 +18,15 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>[z]=narsimul(a,b,d,sig,u,[up,yp,ep])
-[z]=narsimul(ar,u,[up,yp,ep])</synopsis>
+      [z]=narsimul(ar,u,[up,yp,ep])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
     <para>
-    ARMAX シミュレーション. 
-	arsimul と同じだが, rtitr で作成されるシミュレーションとは
-	手法が異なります.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J-Ph. Chancelier ENPC Cergrene; ;   </para>
+      ARMAX シミュレーション. 
+      arsimul と同じだが, rtitr で作成されるシミュレーションとは
+      手法が異なります.
+    </para>
   </refsection>
 </refentry>

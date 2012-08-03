@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsDepTreeShow(module)
-	</synopsis>
+      atomsDepTreeShow(module)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -30,54 +30,46 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			<varlistentry>
+      <varlistentry>
         <term>module</term>
         <listitem>
-					
           <para>
-						1x1 or 1x2 Matrix of strings:
-					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
-								Mandatory
-							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
-								If this field is empty or is not present,
-								the most recent	version is used
-							</td>
-						</tr>
-						
-					</informaltable>
-				</listitem>
+            1x1 or 1x2 Matrix of strings:
+          </para>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+              <td>
+              </td>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                the most recent	version is used
+              </td>
+            </tr>
+          </informaltable>
+        </listitem>
       </varlistentry>
-			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -85,8 +77,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsDepTreeShow</literal> shows the dependency tree of an external module.
-	</para>
+    <para>
+      <literal>atomsDepTreeShow</literal> shows the dependency tree of an external module.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -102,7 +95,7 @@ atomsDepTreeShow("toolbox_6")
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsShow">atomsShow</link>
@@ -115,10 +108,4 @@ atomsDepTreeShow("toolbox_6")
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

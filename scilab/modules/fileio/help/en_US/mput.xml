@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mput">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mput</refname>
     <refpurpose> writes  byte or word in a given binary format</refpurpose>
@@ -35,7 +32,9 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function.  Default value is -1 which stands for the last (<literal>mopen</literal>) opened file.</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the function.  Default value is -1 which stands for the last (<literal>mopen</literal>) opened file.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,20 +48,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    The <literal>mput</literal> function writes data to the output specified by the
-    stream parameter <literal>fd</literal>. Data is written at the
-    position at which the file pointer is currently pointing and 
-    advances the indicator appropriately. 
-  </para>
+      The <literal>mput</literal> function writes data to the output specified by the
+      stream parameter <literal>fd</literal>. Data is written at the
+      position at which the file pointer is currently pointing and 
+      advances the indicator appropriately. 
+    </para>
     <para>
-    The <literal>type</literal> parameter is a conversion specifier which may be set to any of the
-    following flag characters (with default value "l"):
-  </para>
+      The <literal>type</literal> parameter is a conversion specifier which may be set to any of the
+      following flag characters (with default value "l"):
+    </para>
     <variablelist>
       <varlistentry>
         <term>"l","i","s","ul","ui","us","d","f","c","uc"</term>
         <listitem>
-          <para>for  writing respectively a long, an int, a short, an unsigned long, an unsigned int, an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files ( in little-endian mode). This default swapping mode can be suppressed by adding a flag in the <literal>mopen</literal> function.</para>
+          <para>
+            for  writing respectively a long, an int, a short, an unsigned long, an unsigned int, an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files ( in little-endian mode). This default swapping mode can be suppressed by adding a flag in the <literal>mopen</literal> function.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -109,7 +110,7 @@ mclose();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

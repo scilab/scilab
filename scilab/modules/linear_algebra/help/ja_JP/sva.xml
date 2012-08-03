@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sva">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sva</refname>
     <refpurpose>特異値近似</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[U,s,V]=sva(A,k)
-[U,s,V]=sva(A,tol)</synopsis>
+      [U,s,V]=sva(A,tol)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -49,18 +47,22 @@
   <refsection>
     <title>説明</title>
     <para>
-    特異値近似.</para>
+      特異値近似.
+    </para>
     <para>
-	<literal>k</literal>を&gt;=1の整数とするとき,
-	<literal>[U,S,V]=sva(A,k)</literal> は,
-	rank(<literal>B</literal>)=<literal>k</literal>として
-	<literal>B=U*S*V'</literal>が<literal>A</literal>の最良のL2近似となる
-	ような
-	<literal>U,S</literal> および<literal>V</literal>を返します.</para>
-    <para>実数<literal>tol</literal>を指定した<literal>[U,S,V]=sva(A,tol)</literal>は,
-	<literal>A-B</literal>のL2ノルムである<literal>B=U*S*V'</literal>の
-	最大値が<literal>tol</literal>となるような
-	<literal>U,S</literal> および <literal>V</literal> を返します.</para>
+      <literal>k</literal>を&gt;=1の整数とするとき,
+      <literal>[U,S,V]=sva(A,k)</literal> は,
+      rank(<literal>B</literal>)=<literal>k</literal>として
+      <literal>B=U*S*V'</literal>が<literal>A</literal>の最良のL2近似となる
+      ような
+      <literal>U,S</literal> および<literal>V</literal>を返します.
+    </para>
+    <para>
+      実数<literal>tol</literal>を指定した<literal>[U,S,V]=sva(A,tol)</literal>は,
+      <literal>A-B</literal>のL2ノルムである<literal>B=U*S*V'</literal>の
+      最大値が<literal>tol</literal>となるような
+      <literal>U,S</literal> および <literal>V</literal> を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

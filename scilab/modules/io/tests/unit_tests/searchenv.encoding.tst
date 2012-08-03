@@ -8,19 +8,11 @@
 
 ilib_verbose(0);
 
-mydir = TMPDIR + filesep() + "loadlib";
-createdir(mydir);
-chdir(mydir);
+chdir(TMPDIR);
 
-if getos() == 'Windows' then
-	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
-else
-	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
-end
+exec(SCI+"/modules/localization/tests/unit_tests/CreateDir.sce", -1);
 
 fileC = ['void test(){}'];
-
-
 
 tab_ref = [
 "世界您好",
@@ -36,25 +28,25 @@ PathOrigin = getenv("PATH");
 
 if getos() == 'Windows' then
 
-for i = 1 : size(tab_ref,'*')
-	sz = "dir_" + tab_ref(i);
-	a = chdir(sz);
-	if(a <> %T) then pause,	end
-	szTemp = getshortpathname(mydir + filesep() + sz);
-	NewPath = PathOrigin + ";" + szTemp;
-	setenv("PATH", NewPath);
-	mputl(fileC,'test.c');
-	ilib_for_link('test','test.c',[],"c");
-	chdir(SCI);
-	commandstr = "link(" + """libtest" + getdynlibext() +""")";
-	ierr = execstr(commandstr,"errcatch");
-	if(ierr <> 0) then pause, end
-	ulink();
-	setenv("PATH", PathOrigin);
-	chdir(mydir);
-end
+  for i = 1 : size(tab_ref,'*')
+    sz = "dir_" + tab_ref(i);
+    a = chdir(sz);
+    assert_checkequal(a, %T);
+    szTemp = getshortpathname(TMPDIR + filesep() + sz);
+    NewPath = PathOrigin + ";" + szTemp;
+    setenv("PATH", NewPath);
+    mputl(fileC,'test.c');
+    ilib_for_link('test','test.c',[],"c");
+    chdir(SCI);
+    commandstr = "link(" + """libtest" + getdynlibext() +""")";
+    ierr = execstr(commandstr, "errcatch");
+    assert_checkequal(ierr, 0);
+    ulink();
+    setenv("PATH", PathOrigin);
+    chdir(TMPDIR);
+  end
 
 end
 sleep(2000);
 chdir(TMPDIR);
-removedir(mydir);
+

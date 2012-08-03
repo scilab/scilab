@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,6 +17,5 @@
 //    parameter vector. SAys the parameters are out of bounds 
 //    whereas it is wrong
 
-err_number  = execstr('window(''ch'',128,[0.25 0.1])','errcatch');
-err_message = lasterror();
-if stripblanks(err_message,%T) <> msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "window", 3, "dp", "df") then pause,end
+msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: incorrect element #%d\n"), "window", 3, 2);
+assert_checkerror ( "window(''ch'',128,[0.25 0.1])" , msgerr);

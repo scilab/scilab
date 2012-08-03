@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="inv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>inv</refname>
     <refpurpose> inverse d'une matrice  </refpurpose>
@@ -29,15 +26,16 @@
         <term>X  </term>
         <listitem>
           <para>matrice carrée réelle, complexe, polynomiale ou rationnelle,
-	    liste de type "syslin"
-	  </para>
+            liste de type "syslin"
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>inv(X)</literal> est l'inverse de la matrice carrée
+    <para>
+      <literal>inv(X)</literal> est l'inverse de la matrice carrée
       <literal>X</literal>. Un message de mise en garde est affiché si <literal>X</literal>
       est mal équilibrée (termes très petits et termes très grands) ou
       singulière à la précision machine.
@@ -69,7 +67,7 @@ clean(ss2tf(W))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="slash">slash</link>

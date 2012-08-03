@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="block_parameter_error" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 15-Fév-2011 $</pubdate>
-  </info>
   <refnamediv>
     <refname>block_parameter_error</refname>
     <refpurpose>
@@ -23,7 +20,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    block_parameter_error(inform, expected)
+      block_parameter_error(inform, expected)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -50,14 +47,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">inform</emphasis>: it is reserved to the information for the
+        <para>
+          <emphasis role="bold">inform</emphasis>: it is reserved to the information for the
           user on his mistake. The better way to do this is to do a recall of the parameter name and of
           the wrong value provided by the user.
         </para>
         <para/>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">expected</emphasis>: a positive information to guide the user
+        <para>
+          <emphasis role="bold">expected</emphasis>: a positive information to guide the user
           to be in the way of the error correction. By example, if the parameter is an integer, the
           message may be "Must be an integer", for a range of values we can use a message like that:
         </para>
@@ -71,10 +70,10 @@
   <refsection>
     <title>Examples</title>
     <para>
-          The example below is a simple use case for the function. The user inputs a value
-          in the parameter dialog box. If the value is not valid, the example displays
-          this error box:
-      </para>
+      The example below is a simple use case for the function. The user inputs a value
+      in the parameter dialog box. If the value is not valid, the example displays
+      this error box:
+    </para>
     <para/>
     <mediaobject>
       <imageobject>
@@ -124,11 +123,5 @@
         <link linkend="x_mdialog">x_mdialog</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Bernard DUJARDIN</member>
-    </simplelist>
   </refsection>
 </refentry>

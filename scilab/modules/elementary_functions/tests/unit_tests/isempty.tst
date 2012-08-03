@@ -5,23 +5,23 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // unit tests for isempty function
 // =============================================================================
 
 // empty matrix
-if ~isempty([]) then pause, end
+assert_checktrue(isempty([]));
 
 // character string
-if ~isempty('') then pause, end
+assert_checktrue(isempty(''));
 
 // matrix of character string
-if ~isempty([ '' , '' ; '' , '' ]) then pause, end
-if isempty([ ' ' , '' ; '' , '' ]) then pause, end
+assert_checktrue(isempty([ '' , '' ; '' , '' ]));
+assert_checkfalse(isempty([ ' ' , '' ; '' , '' ]));
 
 // empty list
-if ~isempty(list()) then pause, end
+assert_checktrue(isempty(list()));
 
 // mlist is never empty
-if isempty(mlist('')) then pause, end
+assert_checkfalse(isempty(mlist('')));

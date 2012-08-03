@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_margins">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-06 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>show_margins</refname>
     <refpurpose>display gain and phase margin  and associated crossover frequencies</refpurpose>
@@ -32,7 +29,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>a SISO linear system (see :<link linkend="syslin">syslin</link>).</para>
+          <para>
+            a SISO linear system (see :<link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,11 +39,10 @@
   <refsection>
     <title>Description</title>
     <para>Given a SISO linear system in continuous or discrete time,
-    <literal>show_margins</literal> display gain and phase margin and
-    associated crossover frequencies on a bode (the defaut) or nyquist
-    representation of the frequency response of the system.</para>
-
-
+      <literal>show_margins</literal> display gain and phase margin and
+      associated crossover frequencies on a bode (the defaut) or nyquist
+      representation of the frequency response of the system.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,16 +60,20 @@ show_margins(h,'nyquist')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="p_margin">p_margin</link></member>
-      <member><link linkend="g_margin">g_margin</link></member>
-      <member><link linkend="bode">bode</link></member>
-      <member><link linkend="nyquist">nyquist</link></member>
+      <member>
+        <link linkend="p_margin">p_margin</link>
+      </member>
+      <member>
+        <link linkend="g_margin">g_margin</link>
+      </member>
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer, INRIA  </para>
   </refsection>
 </refentry>

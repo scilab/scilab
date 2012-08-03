@@ -16,7 +16,7 @@ REF_4_1_2 = 0;
 BEFORE_USED = BEFORE_TOTAL - BEFORE_FREE;
 
 for i=1:NB_LOOPS
-  r = code2str([-28 12 18 21 10 11]);
+  r = _code2str([-28 12 18 21 10 11]);
   clear r;
 end  
 

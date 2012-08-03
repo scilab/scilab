@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rowcomp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rowcomp</refname>
     <refpurpose> compression de lignes, image  </refpurpose>
@@ -35,15 +32,17 @@
         <term>flag  </term>
         <listitem>
           <para>chaîne de caractères optionnelle qui peut prendre les valeurs
-	    <literal>'svd'</literal> ou <literal>'qr'</literal>.  La valeur par
-	    défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+            <literal>'svd'</literal> ou <literal>'qr'</literal>.  La valeur par
+            défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
           <para>nombre réel non négatif. La valeur par
-	    défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+            défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,28 +54,40 @@
       <varlistentry>
         <term>rk  </term>
         <listitem>
-          <para>entier (rang de"<literal>A</literal>).</para>
+          <para>
+            entier (rang de"<literal>A</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Compression des colonnes de <literal>A</literal>. <literal>Ac = W*A</literal> est à
+    <para>
+      Compression des colonnes de <literal>A</literal>. <literal>Ac = W*A</literal> est à
       lignes compressées, c'est à dire
       <literal>Ac=[Af;0]</literal> et les lignes de <literal>Af</literal> sont linéairement
-      indépendantes.</para>
-    <para><literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels :
+      indépendantes.
+    </para>
+    <para>
+      <literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels :
       <literal>flag = 'qr'</literal> ou <literal>'svd'</literal>
-      (<literal>'svd'</literal> par défaut). </para>
-    <para><literal>tol</literal> = paramètre de tolérance (de l'ordre de
-      <literal>%eps</literal> par défaut).</para>
-    <para>Les <literal>rk</literal> premières colonnes de <literal>W'</literal> forment
-      une base de l'image de <literal>A</literal>. </para>
-    <para> Un vecteur non nul <literal>x</literal> appartient à Im(<literal>A</literal>) si
+      (<literal>'svd'</literal> par défaut). 
+    </para>
+    <para>
+      <literal>tol</literal> = paramètre de tolérance (de l'ordre de
+      <literal>%eps</literal> par défaut).
+    </para>
+    <para>
+      Les <literal>rk</literal> premières colonnes de <literal>W'</literal> forment
+      une base de l'image de <literal>A</literal>. 
+    </para>
+    <para>
+      Un vecteur non nul <literal>x</literal> appartient à Im(<literal>A</literal>) si
       <literal>W*x</literal> est à lignes compressées en accord avec <literal>Ac</literal>
       c'est à dire que la norme de ses dernières composantes est  nulle (à
-      la précision machine) par rapport à ses rk premières composantes.</para>
+      la précision machine) par rapport à ses rk premières composantes.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -90,7 +101,7 @@ norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="colcomp">colcomp</link>
@@ -104,12 +115,10 @@ norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>F. D.; INRIA  </para>
-  </refsection>
-  <refsection>
     <title>Fonctions Utilisées</title>
-    <para>La fonction <literal>rowcomp</literal> est basée sur les décompositions
-      <link linkend="svd">svd</link> ou <link linkend="qr">qr</link>.</para>
+    <para>
+      La fonction <literal>rowcomp</literal> est basée sur les décompositions
+      <link linkend="svd">svd</link> ou <link linkend="qr">qr</link>.
+    </para>
   </refsection>
 </refentry>

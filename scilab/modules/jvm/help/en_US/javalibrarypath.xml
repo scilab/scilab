@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="javalibrarypath">
-  <info>
-    <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
-  </info>
   <refnamediv>
     <refname>javalibrarypath</refname>
     <refpurpose>set and get dynamic java.library.path</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>res=javalibrarypath()
-javalibrarypath(path)</synopsis>
+      javalibrarypath(path)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,15 +46,11 @@ javalibrarypath([SCI,SCI+'/libs']);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="javaclasspath">javaclasspath</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

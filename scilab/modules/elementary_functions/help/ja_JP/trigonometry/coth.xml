@@ -10,40 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="coth" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="coth" xml:lang="ja">
   <refnamediv>
     <refname>coth</refname>
-
     <refpurpose>双曲線コタンジェント(余接)</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-
     <synopsis>[t]=coth(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>説明</title>
-
-    <para>ベクトル <literal>t</literal> の要素は
-	ベクトル<literal>x</literal>の要素の双曲線コタンジェント(余接)と
-	なります.</para>
+    <para>
+      ベクトル <literal>t</literal> の要素は
+      ベクトル<literal>x</literal>の要素の双曲線コタンジェント(余接)と
+      なります.
+    </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-
     <programlisting role="example"><![CDATA[ 
 x=[1,2*%i]
 t=exp(x);
@@ -51,12 +36,12 @@ t=exp(x);
 coth(x)
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>参照</title>
-
     <simplelist type="inline">
-      <member><link linkend="cotg">cotg</link></member>
+      <member>
+        <link linkend="cotg">cotg</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scanf_conversion">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scanf_conversion</refname>
     <refpurpose> scanf, sscanf, fscanf conversion specifications</refpurpose>
@@ -22,9 +19,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Each conversion specification in the format parameter
-    contains the following elements:
-  </para>
+      Each conversion specification in the format parameter
+      contains the following elements:
+    </para>
     <variablelist>
       <varlistentry>
         <term>+</term>
@@ -52,23 +49,24 @@
       </varlistentry>
     </variablelist>
     <para>
-    The conversion specification has the following syntax:
-  </para>
-    <para><literal>[*][width][size]convcode</literal>.
-  </para>
+      The conversion specification has the following syntax:
+    </para>
     <para>
-    The results from the conversion are placed in v_i arguments
-    unless you specify assignment suppression with * (asterisk). Assignment
-    suppression provides a way to describe an input field that is to be
-    skipped. The input field is a string of nonwhite-space characters.
-    It extends to the next inappropriate character or until the field
-    width, if specified, is exhausted.
-  </para>
+      <literal>[*][width][size]convcode</literal>.
+    </para>
     <para>
-    The conversion code indicates how to interpret the input field.
-     You should not specify the v_i parameter for a
-    suppressed field. You can use the following conversion codes:
-  </para>
+      The results from the conversion are placed in v_i arguments
+      unless you specify assignment suppression with * (asterisk). Assignment
+      suppression provides a way to describe an input field that is to be
+      skipped. The input field is a string of nonwhite-space characters.
+      It extends to the next inappropriate character or until the field
+      width, if specified, is exhausted.
+    </para>
+    <para>
+      The conversion code indicates how to interpret the input field.
+      You should not specify the v_i parameter for a
+      suppressed field. You can use the following conversion codes:
+    </para>
     <variablelist>
       <varlistentry>
         <term>%</term>
@@ -145,7 +143,7 @@
     </variablelist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="scanf">scanf</link>

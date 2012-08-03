@@ -15,8 +15,8 @@
 
 #include "machine.h"
 
-#ifndef API_SCILAB_VERSION
-#pragma message("Using stack-def.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-def.h API will be removed after Scilab 6.0.")
+#if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
+    #error Using stack-def.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-def.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #if _LCC_ & FORDLL 

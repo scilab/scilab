@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the relief property of an uicontrol
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,34 +14,22 @@
 
 #include "GetUicontrolRelief.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolRelief(sciPointObj* sciObj)
+int GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* relief = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_RELIEF__), jni_string, (void**) &relief);
+
+    if (relief == NULL)
     {
-      switch(pUICONTROL_FEATURE(sciObj)->relief)
-        {
-        case FLAT_RELIEF:
-          return sciReturnString("flat");
-        case GROOVE_RELIEF:
-          return sciReturnString("groove");
-        case RAISED_RELIEF:
-          return sciReturnString("raised");
-        case RIDGE_RELIEF:
-          return sciReturnString("ridge");
-        case SOLID_RELIEF:
-          return sciReturnString("solid");
-        case SUNKEN_RELIEF:
-          return sciReturnString("sunken");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Relief");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Relief");
-      return FALSE;
+        status = sciReturnString(_pvCtx, relief);
+        delete[] relief;
+        return status;
     }
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="remezb">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>remezb</refname>
     <refpurpose> Minimax approximation of magnitude response</refpurpose>
@@ -29,13 +26,17 @@
       <varlistentry>
         <term>ds</term>
         <listitem>
-          <para>Desired magnitude on grid <literal>fg</literal></para>
+          <para>
+            Desired magnitude on grid <literal>fg</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>wt</term>
         <listitem>
-          <para>Weighting function on error on grid <literal>fg</literal></para>
+          <para>
+            Weighting function on error on grid <literal>fg</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,13 +50,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Minimax approximation of a frequency domain
-    magnitude response. The approximation takes
-    the form <literal>h = sum[a(n)*cos(wn)]</literal>
-    for n=0,1,...,nc. An FIR, linear-phase filter
-    can be obtained from the the output of the function
-    by using the following commands</para>
-    <programlisting role = ""><![CDATA[ 
+      Minimax approximation of a frequency domain
+      magnitude response. The approximation takes
+      the form <literal>h = sum[a(n)*cos(wn)]</literal>
+      for n=0,1,...,nc. An FIR, linear-phase filter
+      can be obtained from the output of the function
+      by using the following commands
+    </para>
+    <programlisting role=""><![CDATA[ 
 hn(1:nc-1)=an(nc:-1:2)/2;
 hn(nc)=an(1);
 hn(nc+1:2*nc-1)=an(2:nc)/2;
@@ -112,15 +114,11 @@ plot(.5*(0:255)/256,frmag(hn,256));
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="eqfir">eqfir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
   </refsection>
 </refentry>

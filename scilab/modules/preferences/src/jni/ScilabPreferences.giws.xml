@@ -1,0 +1,13 @@
+<package name="org.scilab.modules.preferences">
+  <object name="ScilabPreferences">
+    <method name="addToolboxInfos" returnType="void" modifier="static">
+      <parameter name="name" type="String"/>
+      <parameter name="path" type="String"/>
+      <parameter name="prefFile" type="String"/>
+    </method>
+    <method name="removeToolboxInfos" returnType="void" modifier="static">
+      <parameter name="path" type="String"/>
+    </method>
+    <method name="openPreferences" returnType="void" modifier="static" />
+  </object>
+</package>

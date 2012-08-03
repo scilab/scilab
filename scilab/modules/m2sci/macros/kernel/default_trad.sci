@@ -34,7 +34,7 @@ if funptr(tree.name)<>0 then
   tree.name=name1
   ispriminame=%t;   
 end  
-//ismtlbfun is true if the the function is in a matlab toolboxe, mtlbpath is the path where is the function
+//ismtlbfun is true if the function is in a matlab toolbox, mtlbpath is the path where is the function
 [mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
 //Matlab reference functions
 if or(name==not_yet_converted()) then

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_gateway" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-09-19 14:01:22 +0200 $</pubdate>
-  </info>
   <refnamediv>
     <refname>tbx_build_gateway</refname>
     <refpurpose>Build a gateway (toolbox compilation process)</refpurpose>
@@ -75,7 +72,6 @@
           <para>character string. The path of the Makefile file without extension.</para>
           <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
           <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,7 +79,7 @@
         <listitem>
           <para>Internal variable to specify if we are working with mex or not.</para>
         </listitem>
-      </varlistentry>      
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -96,17 +92,11 @@ tbx_build_gateway('mytoolbox', ['c_sum','sci_csum';'c_sub','sci_csub'], ['sci_cs
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ilib_build">ilib_build</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
     </simplelist>
   </refsection>
 </refentry>

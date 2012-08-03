@@ -12,11 +12,10 @@
 
 // Evaluate a block with the context input.
 //
-// @param hdf5FileToLoad input block file
-// @param hdf5FileToSave output block file
 // @param interfaceAlias block interface function ( ex IN_f )
-// @param hdf5ContextFile input context file
-function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5ContextFile)
+// @param blk the block
+// @param context the context string
+function blk = xcosBlockEval(interfaceAlias, blk, context)
 
     //replace scicos_getvalue by setvalue (call by interfaceAlias)
     %mprt = funcprot()
@@ -35,18 +34,16 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
     %scicos_prob = %f
     %scicos_debug_gr = %f
     needcompile = 4;
+    [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // allocate the context
-    import_from_hdf5(hdf5ContextFile);
     %scicos_context = struct();
     [%scicos_context, ierr] = script2var(context, %scicos_context)
 
     // Every parameter settings is done, perform block update
 
-    import_from_hdf5(hdf5FileToLoad);
-
     //create a structure with the new context
-    [new_scs_m, y, typ] = interfaceAlias('set', scs_m, []);
-
-    export_to_hdf5(hdf5FileToSave, "new_scs_m");
+    [new_blk, y, typ] = interfaceAlias('set', blk, []);
+    blk = new_blk;
 endfunction
+

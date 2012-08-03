@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mputstr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mputstr</refname>
     <refpurpose>ファイルに文字列を書き込む</refpurpose>
@@ -29,8 +26,10 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-         <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
-	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+          <para>
+            スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+            パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,7 +43,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    mputstr 関数により文字列をバイナリファイルに書き込むことが可能です.</para>
+      mputstr 関数により文字列をバイナリファイルに書き込むことが可能です.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

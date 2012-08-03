@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,51 +18,48 @@ import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.xcos.graph.swing.handler.SelectionCellsHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
  * base class for changing the link style
  */
 public abstract class StyleAction extends DefaultAction {
-	/** Accelerator key for all children actions */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Accelerator key for all children actions */
+    public static final int ACCELERATOR_KEY = 0;
 
     /**
      * Default constructor
-     * @param scilabGraph the graph to associate
+     * 
+     * @param scilabGraph
+     *            the graph to associate
      */
     public StyleAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
-	
-	/**
-	 * @return the current selected links on the graph
-	 */
-	protected BasicLink[] getLinks() {
-		Object[] cells = getGraph(null).getSelectionModel().getCells();
-		List<BasicLink> links = new ArrayList<BasicLink>(cells.length);
-		
-		for (Object object : cells) {
-			if (object instanceof BasicLink) {
-				links.add((BasicLink) object);
-			}
-		}
-		
-		return links.toArray(new BasicLink[links.size()]);
-	}
-	
-	/**
-	 * Remove all point on the links
-	 * @param links the links to work on
-	 */
-	protected void removePointsOnLinks(BasicLink[] links) {
-		getGraph(null).getModel().beginUpdate();
-		for (BasicLink link : links) {
-			int numberOfPoints = link.getPointCount();
-			for (int j = numberOfPoints - 1; j >= 0; j--) {
-				link.removePoint(j);
-			}
-		}
-		getGraph(null).getModel().endUpdate();
-	}
+
+    /**
+     * @return the current selected links on the graph
+     */
+    protected BasicLink[] getLinks() {
+        Object[] cells = getGraph(null).getSelectionModel().getCells();
+        List<BasicLink> links = new ArrayList<BasicLink>();
+
+        for (Object object : cells) {
+            if (object instanceof BasicLink) {
+                links.add((BasicLink) object);
+            }
+        }
+
+        return links.toArray(new BasicLink[links.size()]);
+    }
+
+    protected void reset(final ScilabGraph graph, final Object[] edges) {
+        final SelectionCellsHandler selectionCellsHandler = (SelectionCellsHandler) graph.getAsComponent().getSelectionCellsHandler();
+
+        for (Object edge : edges) {
+            graph.resetEdge(edge);
+            selectionCellsHandler.clearCellHandler(edge);
+        }
+    }
 }

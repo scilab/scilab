@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,33 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_checkfilesequal" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_checkfilesequal" xml:lang="en">
   <refnamediv>
     <refname>assert_checkfilesequal</refname>
     <refpurpose>Check that two files are equal.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       flag = assert_checkfilesequal ( filecomp , fileref )
       flag = assert_checkfilesequal ( filecomp , fileref , compfun )
       [flag,errmsg] = assert_checkfilesequal ( ... )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -74,7 +60,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -85,8 +70,12 @@
     <para>
       If the files are not equal,
       <itemizedlist>
-        <listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem>
-        <listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem>
+        <listitem>
+          <para>if the errmsg output variable is not used, an error is generated,</para>
+        </listitem>
+        <listitem>
+          <para>if the errmsg output variable is used, no error is generated.</para>
+        </listitem>
       </itemizedlist>
     </para>
     <para>
@@ -100,11 +89,9 @@
     <para>
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 //
 // Prepare data for the tests
 // fileref1 : three lines of text.
@@ -147,7 +134,7 @@ flag = assert_checkfilesequal ( filecomp2 , fileref1 )
 // fileref2 == filecomp3, given that comment lines are ignored.
 // fileref2 <> filecomp4, given that comment lines are ignored.
 // Notice that the comments are inserted at different positions in the files:
-// sometimes at the begining, sometimes in the middle.
+// sometimes at the beginning, sometimes in the middle.
 fileref2 = fullfile(TMPDIR,"fileref2.txt");
 txt = [
 "// bla 2"
@@ -208,14 +195,16 @@ endfunction
 // A test which fails
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

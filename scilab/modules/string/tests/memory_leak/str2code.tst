@@ -16,7 +16,7 @@ REF_4_1_2 = 0;
 [BEFORE_FREE,BEFORE_TOTAL] = getmemory();
 
 for i=1:NB_LOOPS
-  r = str2code('0123456789');
+  r = _str2code('0123456789');
   clear r;
 end  
 

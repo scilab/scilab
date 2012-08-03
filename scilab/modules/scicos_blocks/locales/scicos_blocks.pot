@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: src/c/convert.c, line: 769
 # File: src/c/convert.c, line: 784
@@ -178,8 +178,8 @@ msgid "Allocation problem in spline.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 1492
-# File: src/c/fromws_c.c, line: 1504
+# File: src/c/fromws_c.c, line: 1523
+# File: src/c/fromws_c.c, line: 1535
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
 
@@ -210,52 +210,6 @@ msgstr ""
 # File: src/c/readau.c, line: 181
 # File: src/c/readc.c, line: 167
 msgid "Read error\n"
-msgstr ""
-
-#
-# File: src/c/scoMemoryScope.c, line: 280
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr ""
-
-#
-# File: src/c/scoMisc.c, line: 49
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-
-#
-# File: src/c/scoMisc.c, line: 52
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-
-#
-# File: src/c/scoMisc.c, line: 55
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr ""
-
-#
-# File: src/c/scoWindowScope.c, line: 172
-msgid "Incorrect value for dimension argument."
-msgstr ""
-
-#
-# File: src/c/scoWindowScope.c, line: 196
-msgid "This scope has the same window id than another."
-msgstr ""
-
-#
-# File: src/c/scoWindowScope.c, line: 287
-# File: src/c/scoWindowScope.c, line: 389
-# File: src/c/scoWindowScope.c, line: 422
-# File: src/c/scoWindowScope.c, line: 441
-# File: src/c/scoWindowScope.c, line: 500
-# File: src/c/scoWindowScope.c, line: 516
-# File: src/c/scoWindowScope.c, line: 548
-# File: src/c/scoWindowScope.c, line: 579
-#, c-format
-msgid "Cannot use %s with this type of object."
 msgstr ""
 
 #
@@ -295,13 +249,13 @@ msgid "Size of buffer or input size have changed!\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 64
+# File: src/c/variable_delay.c, line: 66
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 65
+# File: src/c/variable_delay.c, line: 67
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 
@@ -320,10 +274,10 @@ msgstr ""
 # File: macros/IntegerOp/CONVERT.sci, line: 43
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
 # File: macros/IntegerOp/INTMUL.sci, line: 42
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 51
 # File: macros/IntegerOp/LOGIC.sci, line: 39
 # File: macros/IntegerOp/SHIFT.sci, line: 43
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 50
 # File: macros/Sinks/CLKOUTV_f.sci, line: 87
 # File: macros/Sinks/OUTIMPL_f.sci, line: 40
 # File: macros/Sinks/OUT_f.sci, line: 107
@@ -331,7 +285,7 @@ msgstr ""
 # File: macros/Sinks/WRITEAU_f.sci, line: 42
 # File: macros/Sinks/WRITEC_f.sci, line: 44
 # File: macros/Sources/CLKINV_f.sci, line: 81
-# File: macros/Sources/CLOCK_c.sci, line: 44
+# File: macros/Sources/CLOCK_c.sci, line: 51
 # File: macros/Sources/CONST_m.sci, line: 40
 # File: macros/Sources/Counter.sci, line: 49
 # File: macros/Sources/GENSIN_f.sci, line: 39
@@ -341,6 +295,7 @@ msgstr ""
 # File: macros/Sources/RAMP.sci, line: 39
 # File: macros/Sources/READAU_f.sci, line: 48
 # File: macros/Sources/READC_f.sci, line: 57
+# File: macros/Sources/RFILE_f.sci, line: 63
 # File: macros/Sources/STEP.sci, line: 40
 #, c-format
 msgid "Set %s block parameters"
@@ -421,6 +376,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 110
 # File: macros/Sources/READC_f.sci, line: 118
 # File: macros/Sources/READC_f.sci, line: 126
+# File: macros/Sources/RFILE_f.sci, line: 105
+# File: macros/Sources/RFILE_f.sci, line: 108
 #, c-format
 msgid "Wrong value for '%s' parameter: %d."
 msgstr ""
@@ -621,6 +578,7 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 75
 # File: macros/Sinks/WRITEC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sources/RFILE_f.sci, line: 81
 #, c-format
 msgid "Wrong value for '%s' parameter: %s."
 msgstr ""
@@ -639,31 +597,31 @@ msgid "Integer matrix multiplication"
 msgstr ""
 
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 51
 msgid "JK flip-flop"
 msgstr ""
 
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 44
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 52
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 51
 msgid "The 'Initial Value' must be 0 or 1 of type int8"
 msgstr ""
 
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 53
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 51
 msgid "&nbsp;- Negative values are considered as int8(0)"
 msgstr ""
 
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 53
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 52
 msgid "&nbsp;- Positive values are considered as int8(1)"
 msgstr ""
 
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 46
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 54
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 53
 # File: macros/Sources/RAMP.sci, line: 40
 # File: macros/Sources/STEP.sci, line: 42
 msgid "Initial Value"
@@ -760,7 +718,7 @@ msgid "Shift Type"
 msgstr ""
 
 #
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 50
 msgid "SR flip-flop"
 msgstr ""
 
@@ -795,138 +753,138 @@ msgid "positive"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 82
+# File: macros/PDE/IHM_EDP.sci, line: 83
 msgid "PDE block"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 86
+# File: macros/PDE/IHM_EDP.sci, line: 87
 msgid "Domain"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 99
+# File: macros/PDE/IHM_EDP.sci, line: 100
 msgid "PDE Specification"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 105
+# File: macros/PDE/IHM_EDP.sci, line: 106
 msgid "PDE Expression:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 107
+# File: macros/PDE/IHM_EDP.sci, line: 108
 msgid "Display"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 232
+# File: macros/PDE/IHM_EDP.sci, line: 233
 msgid "Discriminant type:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 236
+# File: macros/PDE/IHM_EDP.sci, line: 237
 msgid "Constant discriminant"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 241
+# File: macros/PDE/IHM_EDP.sci, line: 242
 msgid "Variable discriminant:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 248
+# File: macros/PDE/IHM_EDP.sci, line: 249
 msgid "Spatial discretization method"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 250
+# File: macros/PDE/IHM_EDP.sci, line: 251
 msgid "Choice:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 257
+# File: macros/PDE/IHM_EDP.sci, line: 258
 msgid "Automatic"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 263
+# File: macros/PDE/IHM_EDP.sci, line: 264
 msgid "Manual"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 266
+# File: macros/PDE/IHM_EDP.sci, line: 267
 msgid "Type:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 271
+# File: macros/PDE/IHM_EDP.sci, line: 272
 msgid "Ordering:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 280
+# File: macros/PDE/IHM_EDP.sci, line: 281
 msgid "degree:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 285
+# File: macros/PDE/IHM_EDP.sci, line: 286
 msgid "Number of nodes:"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 290
+# File: macros/PDE/IHM_EDP.sci, line: 291
 msgid "Display step value"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 298
+# File: macros/PDE/IHM_EDP.sci, line: 299
 msgid "Initial conditions"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 310
+# File: macros/PDE/IHM_EDP.sci, line: 311
 msgid "Boundary condition on a"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 313
+# File: macros/PDE/IHM_EDP.sci, line: 314
 msgid "Boundary condition on b"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 323
-# File: macros/PDE/IHM_EDP.sci, line: 327
+# File: macros/PDE/IHM_EDP.sci, line: 324
+# File: macros/PDE/IHM_EDP.sci, line: 328
 msgid "Expression ="
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 335
+# File: macros/PDE/IHM_EDP.sci, line: 336
 msgid "Measurement points"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 339
+# File: macros/PDE/IHM_EDP.sci, line: 340
 msgid "The measurement points"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 345
+# File: macros/PDE/IHM_EDP.sci, line: 346
 msgid "Add"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 347
+# File: macros/PDE/IHM_EDP.sci, line: 348
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 349
+# File: macros/PDE/IHM_EDP.sci, line: 350
 msgid "Validate"
 msgstr ""
 
 #
-# File: macros/PDE/IHM_EDP.sci, line: 351
+# File: macros/PDE/IHM_EDP.sci, line: 352
 msgid "Cancel"
 msgstr ""
 
@@ -969,6 +927,7 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 107
 # File: macros/Sources/READC_f.sci, line: 119
 # File: macros/Sources/READC_f.sci, line: 127
+# File: macros/Sources/RFILE_f.sci, line: 86
 msgid "Strictly positive integer expected."
 msgstr ""
 
@@ -989,6 +948,7 @@ msgstr ""
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 44
+# File: macros/Sources/RFILE_f.sci, line: 64
 msgid "&nbsp; - A binary file if no format given"
 msgstr ""
 
@@ -1032,6 +992,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 87
 # File: macros/Sources/READC_f.sci, line: 118
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 105
 msgid "Buffer Size"
 msgstr ""
 
@@ -1049,6 +1011,9 @@ msgstr ""
 # File: macros/Sources/READAU_f.sci, line: 67
 # File: macros/Sources/READC_f.sci, line: 84
 # File: macros/Sources/READC_f.sci, line: 92
+# File: macros/Sources/RFILE_f.sci, line: 90
+# File: macros/Sources/RFILE_f.sci, line: 93
+# File: macros/Sources/RFILE_f.sci, line: 96
 msgid "End current simulation first."
 msgstr ""
 
@@ -1073,6 +1038,7 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 63
 # File: macros/Sinks/WRITEC_f.sci, line: 71
 # File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sources/RFILE_f.sci, line: 99
 msgid "You must provide a filename."
 msgstr ""
 
@@ -1089,11 +1055,14 @@ msgstr ""
 # File: macros/Sinks/WRITEC_f.sci, line: 63
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 102
 msgid "Input Format"
 msgstr ""
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 76
+# File: macros/Sources/RFILE_f.sci, line: 103
 msgid "You must enclose the format's string between parentheses."
 msgstr ""
 
@@ -1174,33 +1143,33 @@ msgid "Wrong values for 'Port Number' parameter: %d."
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 44
+# File: macros/Sources/CLOCK_c.sci, line: 51
 msgid "Event clock generator"
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 45
+# File: macros/Sources/CLOCK_c.sci, line: 52
 msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 45
+# File: macros/Sources/CLOCK_c.sci, line: 52
 msgid "Initialisation Time"
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 45
-# File: macros/Sources/CLOCK_c.sci, line: 49
+# File: macros/Sources/CLOCK_c.sci, line: 52
+# File: macros/Sources/CLOCK_c.sci, line: 56
 msgid "Period"
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 49
+# File: macros/Sources/CLOCK_c.sci, line: 56
 msgid "Strictly positive number expected."
 msgstr ""
 
 #
-# File: macros/Sources/CLOCK_c.sci, line: 49
+# File: macros/Sources/CLOCK_c.sci, line: 56
 #, c-format
 msgid "Wrong values for '%s' parameter: %5.1e."
 msgstr ""
@@ -1388,6 +1357,8 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 83
 # File: macros/Sources/READC_f.sci, line: 95
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 99
 msgid "Input File Name"
 msgstr ""
 
@@ -1407,6 +1378,9 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 106
 # File: macros/Sources/READC_f.sci, line: 110
 # File: macros/Sources/READC_f.sci, line: 114
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 108
+# File: macros/Sources/RFILE_f.sci, line: 112
 msgid "Outputs Record Selection"
 msgstr ""
 
@@ -1420,6 +1394,9 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 75
 # File: macros/Sources/READC_f.sci, line: 91
 # File: macros/Sources/READC_f.sci, line: 102
+# File: macros/Sources/RFILE_f.sci, line: 66
+# File: macros/Sources/RFILE_f.sci, line: 81
+# File: macros/Sources/RFILE_f.sci, line: 85
 msgid "Time Record Selection"
 msgstr ""
 
@@ -1463,6 +1440,77 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 114
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 64
+msgid "Read from an input file"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 64
+msgid "Read is done on:"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 65
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 82
+msgid "Empty matrix or scalar expected."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 85
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 89
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 93
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 96
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 99
+# File: macros/Sources/RFILE_f.sci, line: 112
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 102
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 106
+msgid "Buffer size must be at least 2."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 109
+msgid "You must read at least one field in record."
+msgstr ""
+
+#
+# File: macros/Sources/RFILE_f.sci, line: 113
+msgid "Strictly positive indexes expected."
 msgstr ""
 
 #

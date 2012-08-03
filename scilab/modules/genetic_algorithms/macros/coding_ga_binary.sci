@@ -29,7 +29,7 @@ if (direction=='code') then
   for i=1:length(pop_in)
     str_tmp = '';
     for j=1:Dimension
-      tmp = dec2bin(Max_Bin * (pop_in(i)(j) - MinBounds(j)) / (MaxBounds(j) - MinBounds(j)),BinLen);
+      tmp = dec2bin(int(Max_Bin * (pop_in(i)(j) - MinBounds(j)) / (MaxBounds(j) - MinBounds(j))),BinLen);
       tmp = strcat([part(template,1:BinLen-length(tmp)) tmp]);
       str_tmp = strcat([str_tmp, tmp]);
     end

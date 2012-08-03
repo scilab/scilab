@@ -24,9 +24,10 @@ int C2F(matlog)(void)
 	static int non = 61;
 
 	static int j= 0;
-	static double e1, e2;
+	static double e1 = 0.;
 
-	static int i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
+	static int i1 = 0, i2 = 0, l1 = 0, l2 = 0, m2 = 0, n2 = 0, m1 = 0, n1 = 0;
+    static int op = 0, lw = 0, il1 = 0, il2 = 0, mn2 = 0, it1 = 0, it2 = 0, mn1 = 0, top0 = 0;
 
 	top0 = Top;
 	op = Fin;

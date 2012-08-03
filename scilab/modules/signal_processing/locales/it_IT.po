@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 msgid "Simulation of an ARMAX process:"
 msgstr "Simulazione di un processo ARMAX:"
@@ -53,6 +77,24 @@ msgstr "valutazione spettrale"
 msgid "Press Return to continue ... \n"
 msgstr "Premere invio per continuare ... \n"
 
+msgid "filtered signal"
+msgstr ""
+
+msgid "given noisy signal"
+msgstr ""
+
+msgid "Signal"
+msgstr ""
+
+msgid "2 points convolution"
+msgstr ""
+
+msgid "3 points convolution"
+msgstr ""
+
+msgid "Signal derivative estimate"
+msgstr ""
+
 msgid "Minimax FIR filter"
 msgstr "Filtro FIR minimax"
 
@@ -85,6 +127,12 @@ msgstr "Diagrammi di Bode"
 
 msgid "Window FIR filters"
 msgstr "Filtri FIR window"
+
+msgid "1-D convolution"
+msgstr ""
+
+msgid "2-D convolution"
+msgstr ""
 
 msgid "Arma simulation and identification"
 msgstr "Simulazione e identificazione con ARMA"
@@ -183,6 +231,18 @@ msgstr ""
 "campionato alto a sufficienza.\n"
 
 #, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: Gli argomenti #%d e #%d devono avere le stesse dimensioni.\n"
 
@@ -215,6 +275,40 @@ msgstr ""
 "dinamico lineare o un vettore riga di numeri con la virgola.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
@@ -228,11 +322,6 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
 "essere nell'intervallo [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
@@ -273,10 +362,6 @@ msgstr ""
 "aray con %d elementi.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
 
@@ -298,61 +383,40 @@ msgstr ""
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 
-msgid "low pass"
+msgid "&File"
 msgstr ""
 
-msgid "high pass"
+msgid "&Tools"
 msgstr ""
 
-msgid "band pass"
+msgid "&Edit"
 msgstr ""
 
-msgid "Choose type of filter to be designed"
+msgid "&?"
 msgstr ""
 
-msgid "stop band"
+msgid "WFIR settings"
 msgstr ""
 
-msgid "Input filter characteristics"
+msgid "Filter type"
 msgstr ""
 
-msgid "cut-off frequency (0.<frequ<.5):"
+msgid "Band pass"
 msgstr ""
 
-msgid "filter length"
+msgid "High pass"
 msgstr ""
 
-msgid "Incorrect filter order"
+msgid "Low pass"
 msgstr ""
 
-msgid "Incorrect cut-off frequency"
+msgid "Stop Band"
 msgstr ""
 
-msgid "filter length (odd value)"
+msgid "Window type"
 msgstr ""
 
-msgid "low cut-off frequency (0.<flow<.5):"
-msgstr ""
-
-msgid "high cut-off frequency (0.<flow<fhi<.5):"
-msgstr ""
-
-msgid "Incorrect low cut-off frequency"
-msgstr ""
-
-msgid "Incorrect high cut-off frequency"
-msgstr ""
-
-msgid "Even length high pass and stop band filters not allowed"
-msgstr ""
-
-msgid "---Filter order is being incremented by 1"
-msgstr ""
-
-msgid "Kaiser"
-msgstr ""
-
-msgid "Chebyshev"
+msgid "Hanning"
 msgstr ""
 
 msgid "Rectangular"
@@ -361,43 +425,58 @@ msgstr ""
 msgid "Triangular"
 msgstr ""
 
+msgid "Chebychev main lobe"
+msgstr ""
+
+msgid "Chebychev side lobe"
+msgstr ""
+
 msgid "Hamming"
 msgstr ""
 
-msgid "Input window type"
+msgid "Kaiser"
 msgstr ""
 
-msgid "Input window characteristics"
+msgid "Sampling Frequency (Hz)"
 msgstr ""
 
-msgid "Incorrect beta value"
+msgid "Filter Order"
 msgstr ""
 
-msgid "Input window characteristics:"
+msgid "Low cutoff frequency (Hz)"
 msgstr ""
 
-msgid "dp (dp>0)   : the maximum value of the window side-lobe height"
+msgid "High cutoff frequency (Hz)"
 msgstr ""
 
-msgid "df (0<df<.5): the width of the window main lobe"
+msgid "Parameter"
 msgstr ""
 
-msgid "only one of this two values is to be defined,"
+msgid "View"
 msgstr ""
 
-msgid "the other one is automatically deduced"
+msgid "Ok"
 msgstr ""
 
-msgid "name of specified value"
+msgid "Cancel"
 msgstr ""
 
-msgid "value"
+msgid "Reset"
 msgstr ""
 
-msgid "Incorrect name of specified value"
+msgid "Help"
 msgstr ""
 
-msgid "Incorrect  value"
+msgid "Window main lobe width"
+msgstr ""
+
+msgid "maximum side-lobe height"
+msgstr ""
+
+msgid "frequency (Hz)"
+msgstr ""
+
+msgid "Magnitude (dB)"
 msgstr ""
 
 #, c-format
@@ -409,7 +488,18 @@ msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: incorrect element #d\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: an integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for argument #%d: the expected value must be greater than "
+"%d.\n"
 msgstr ""
 
 #, c-format

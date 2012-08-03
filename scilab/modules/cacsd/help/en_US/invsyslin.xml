@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="invsyslin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>invsyslin</refname>
     <refpurpose> system inversion</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl1,sl2</term>
         <listitem>
-          <para> <literal>syslin</literal> lists (linear systems in state space representation)</para>
+          <para>
+            <literal>syslin</literal> lists (linear systems in state space representation)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,14 +35,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function. Computes the state form of the inverse <literal>sl2</literal> of 
-    the linear system <literal>sl1</literal> (which is also given in state form).</para>
+      Utility function. Computes the state form of the inverse <literal>sl2</literal> of 
+      the linear system <literal>sl1</literal> (which is also given in state form).
+    </para>
     <para>
-    The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by 
-    <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.</para>
+      The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by 
+      <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowregul">rowregul</link>

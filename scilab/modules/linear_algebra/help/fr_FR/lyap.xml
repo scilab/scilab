@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lyap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lyap </refname>
     <refpurpose> Equation de Lyapunov  </refpurpose>
@@ -28,32 +25,34 @@
       <varlistentry>
         <term>A, C  </term>
         <listitem>
-          <para>matrices réelles, <literal>C</literal> doit être symétrique
-	  </para>
+          <para>
+            matrices réelles, <literal>C</literal> doit être symétrique
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
           <para>chaîne de caractères, 'c' ou 'd'
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = lyap(A,C,flag)</literal> résout l'équation matricielle de
+    <para>
+      <literal>X= lyap(A,C,flag)</literal> résout l'équation matricielle de
       Lyapunov en temps continu ou discret
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 A'*X + X*A = C       ( flag = 'c' )
 A'*X*A - X = C       ( flag = 'd' )
  ]]></programlisting>
     <para>
-    Une solution unique existe si <literal>A</literal> n'a pas de valeur propre
-    sur l'axe imaginaire (<literal>flag='c'</literal>) ou si 1 n'est pas
-    valeur propre de <literal>A</literal> (<literal>flag='d'</literal>).
+      Une solution unique existe si <literal>A</literal> n'a pas de valeur propre
+      sur l'axe imaginaire (<literal>flag='c'</literal>) ou si 1 n'est pas
+      valeur propre de <literal>A</literal> (<literal>flag='d'</literal>).
     </para>
   </refsection>
   <refsection>
@@ -67,7 +66,7 @@ A'*X*A - X -C
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="sylv">sylv</link>

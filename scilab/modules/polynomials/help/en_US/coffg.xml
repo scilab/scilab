@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coffg">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>coffg</refname>
     <refpurpose> inverse of polynomial matrix</refpurpose>
@@ -35,12 +32,19 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coffg</literal> computes <literal>Fs^-1</literal> where <literal>Fs</literal> is a polynomial
-    matrix by co-factors method.</para>
-    <para><literal>Fs</literal> inverse = <literal>Ns/d</literal></para>
-    <para><literal>d</literal> = common denominator; <literal>Ns</literal> =  numerator (a polynomial matrix)</para>
     <para>
-    (For large matrices,be patient...results are generally reliable)</para>
+      <literal>coffg</literal> computes <literal>Fs^-1</literal> where <literal>Fs</literal> is a polynomial
+      matrix by co-factors method.
+    </para>
+    <para>
+      <literal>Fs</literal> inverse = <literal>Ns/d</literal>
+    </para>
+    <para>
+      <literal>d</literal> = common denominator; <literal>Ns</literal> =  numerator (a polynomial matrix)
+    </para>
+    <para>
+      (For large matrices,be patient...results are generally reliable)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +56,7 @@ a=[ s, s^2+1; s  s^2-1];
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="determ">determ</link>
@@ -70,9 +74,5 @@ a=[ s, s^2+1; s  s^2-1];
         <link linkend="glever">glever</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pencan">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pencan</refname>
     <refpurpose> canonical form of matrix pencil</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Q,M,i1]=pencan(Fs)
-[Q,M,i1]=pencan(E,A)</synopsis>
+      [Q,M,i1]=pencan(E,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>Fs</term>
         <listitem>
-          <para>a regular pencil <literal>s*E-A</literal></para>
+          <para>
+            a regular pencil <literal>s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,18 +55,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the regular pencil <literal>Fs=s*E-A</literal>, <literal>pencan</literal> returns matrices <literal>Q</literal> 
-    and <literal>M</literal>
-    such than <literal>M*(s*E-A)*Q</literal> is in "canonical" form.</para>
-    <para><literal>M*E*Q</literal> is a block matrix</para>
-    <programlisting role = ""><![CDATA[ 
+      Given the regular pencil <literal>Fs=s*E-A</literal>, <literal>pencan</literal> returns matrices <literal>Q</literal> 
+      and <literal>M</literal>
+      such than <literal>M*(s*E-A)*Q</literal> is in "canonical" form.
+    </para>
+    <para>
+      <literal>M*E*Q</literal> is a block matrix
+    </para>
+    <programlisting role=""><![CDATA[ 
 [I,0;
  0,N]
  ]]></programlisting>
     <para>
-    with <literal>N</literal> nilpotent and <literal>i1</literal> = size of the <literal>I</literal> matrix above.</para>
-    <para><literal>M*A*Q</literal> is a block matrix:</para>
-    <programlisting role = ""><![CDATA[ 
+      with <literal>N</literal> nilpotent and <literal>i1</literal> = size of the <literal>I</literal> matrix above.
+    </para>
+    <para>
+      <literal>M*A*Q</literal> is a block matrix:
+    </para>
+    <programlisting role=""><![CDATA[ 
 [Ar,0;
  0,I]
  ]]></programlisting>
@@ -83,7 +89,7 @@ det(W($-2:$,$-2:$))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>
@@ -95,9 +101,5 @@ det(W($-2:$,$-2:$))
         <link linkend="rowshuff">rowshuff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

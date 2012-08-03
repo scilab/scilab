@@ -120,7 +120,7 @@ public class DropFilesListener implements DropTargetListener {
                 try {
                     java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
                     for (int i = 0; i < data.size(); i++) {
-                        SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
+                        SciNotes.getEditor().openFile(data.get(i).toString(), 0, null);
                     }
                     arg0.dropComplete(true);
                 } catch (UnsupportedFlavorException e) {
@@ -145,7 +145,7 @@ public class DropFilesListener implements DropTargetListener {
                 }
                 java.util.List data = textURIListToFileList(uriData);
                 for (int i = 0; i < data.size(); i++) {
-                    SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
+                    SciNotes.getEditor().openFile(data.get(i).toString(), 0, null);
                 }
                 arg0.dropComplete(true);
             } else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {

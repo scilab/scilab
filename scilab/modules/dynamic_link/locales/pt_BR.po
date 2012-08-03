@@ -8,25 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-11 23:46+0000\n"
+"Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um escalar.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"grandeza escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
-"texto.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
@@ -36,7 +37,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%sTipo errado para argumentos de entrada: Esperava-se texto.\n"
+msgstr ""
+"%s: Tipo incorreto para os argumentos de entrada: esperava-se textos.\n"
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
@@ -47,7 +49,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -84,21 +86,25 @@ msgstr "Esperava-se um nome único de biblioteca dinâmica."
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada. Esperava-se vetor de strings.\n"
+"%s: Tipo incorreto para o argumento de entrada: esperava-se vetor de "
+"textos.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: Tipo errado para argumento de entrada. Esperava-se strings.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada: esperava-se textos.\n"
 
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
+"%s Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
+"\"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid "Error: Not a valid internal routine number %d.\n"
@@ -136,15 +142,15 @@ msgstr "%s: Um erro ocorreu: %s\n"
 
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
+msgstr "%s: não é possível carregar uma dll x86 em um ambiente x64.\n"
 
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
+msgstr "%s: não é possível carregar uma dll x64 em um ambiente x86.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr ""
+msgstr "%s: O arquivo %s não existe no ambiente descrito em PATH.\n"
 
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"
@@ -201,12 +207,19 @@ msgstr "Realizando o linking de %s.\n"
 msgid "Dynamic link"
 msgstr "Linking dinâmico"
 
+msgid "Call a C function"
+msgstr "Chamar uma função de C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Chamar uma função de Fortran"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
+"Não foi possível encontrar um compilador Intel Fortran 9, 10, 11 ou 12."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -227,6 +240,13 @@ msgstr "%s: Recurso não disponível para o Microsoft Windows.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
+"Dada a natureza multifabricante do mundo Unix, a função \"haveacompiler\" só "
+"tem suporte no Windows."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -255,21 +275,26 @@ msgstr ""
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
 msgstr ""
+"%s: esperava-se uma extensão de arquivo gerenciada para o argumento de "
+"entrada #%d."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d:  ou [] esperado.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se arquivo(s) "
+"existente(s).\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr ""
+msgstr "%s: %s já está carregado no Scilab."
 
 msgid "You need to unload this library before."
-msgstr ""
+msgstr "Você precisa descarregar esta biblioteca antes."
 
 msgid "   Generate a gateway file\n"
 msgstr "   Gerar um arquivo de gateway\n"
@@ -328,11 +353,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
-msgstr ""
+msgstr "%s: Não foi possível localizar a biblioteca \"%s\".\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
 msgstr ""
+"%s: esperava-se uma extensão de arquivo gerenciada para o argumento de "
+"entrada #%d.\n"
 
 msgid "F2C cannot build fortran 90"
 msgstr "F2C não pode construir fortran 90"
@@ -357,6 +384,14 @@ msgstr "   %s: Copia %s para TMPDIR\n"
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr "   %s: Não copiou %s: Diretórios fonte e destino são o mesmo (%s).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um arquivo "
+"existente. O fornecido foi %s.\n"
 
 #, c-format
 msgid "   %s: File %s ignored.\n"
@@ -429,7 +464,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Failed to add include path : %s"
-msgstr ""
+msgstr "%s: Falhou em adicionar um caminho de inclusão: %s"
 
 msgid "   Compilation of "
 msgstr "   Compilação de "
@@ -439,11 +474,17 @@ msgstr "   Criando bibioleteca compartilhada (seja paciente)\n"
 
 #, c-format
 msgid "%s: Error while executing %s.\n"
-msgstr ""
+msgstr "%s: Erro durante a execução de %s.\n"
 
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr "%s: Este recurso exige o compilador C do Microsoft visual studio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"booleano.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

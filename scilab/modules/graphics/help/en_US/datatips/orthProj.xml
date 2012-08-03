@@ -8,10 +8,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="orthProj">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="orthProj">
   <refnamediv>
     <refname>orthProj</refname>
     <refpurpose>Computes the orthogonal projection of a point to a polyline in the plane. </refpurpose>
@@ -41,7 +38,6 @@
           </para>
         </listitem>
       </varlistentry>
-     
       <varlistentry>
         <term>d</term>
         <listitem>
@@ -50,7 +46,7 @@
           </para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>ptp</term>
         <listitem>
           <para>
@@ -61,17 +57,17 @@
       <varlistentry>
         <term>ind</term>
         <listitem>
-	  <para>
-	    The polyline closest point lies on the segment <literal>[ind ind+1]</literal>.
-	  </para>
+          <para>
+            The polyline closest point lies on the segment <literal>[ind ind+1]</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c</term>
         <listitem>
-	  <para>
-	    The interpolation coefficient of the orthonal projection.
-	  </para>
+          <para>
+            The interpolation coefficient of the orthonal projection.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -106,17 +102,10 @@
     ]]></programlisting>
     <para>
       <inlinemediaobject>
-	<imageobject>
-	  <imagedata fileref="../../images/orthProj.svg"/>
-	</imageobject>
+        <imageobject>
+          <imagedata fileref="../../images/orthProj.svg"/>
+        </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

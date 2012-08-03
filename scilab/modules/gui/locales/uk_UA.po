@@ -2,19 +2,19 @@
 # Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the scilab package.
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-05 04:39+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-07-23 09:03+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -136,6 +136,31 @@ msgstr ""
 
 msgid "Scilab Message"
 msgstr "Повідомлення Scilab"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: можливість %s є застарілою.\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: будь ласка, скористайтеся %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: цю можливість буде остаточно вилучено з Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор-"
+"рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -350,6 +375,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s: сталося виключення Java:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -357,6 +384,10 @@ msgstr "%s: Сталася помилка: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
 msgid ""
@@ -458,38 +489,38 @@ msgstr "&Зберегти…"
 msgid "&Export to..."
 msgstr "&Експортувати..."
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "Е&кспорт у векторному форматі"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr "Експортувати у &векторному форматі до..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr "&PS"
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
 
 msgid "&EPS"
 msgstr "&EPS"
-
-msgid "&FIG"
-msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "&Копіювати до буфера"
@@ -512,8 +543,8 @@ msgstr "Показати/Сховати п&анель інструментів"
 msgid "&Zoom"
 msgstr "З&більшити"
 
-msgid "&UnZoom"
-msgstr "З&меншити"
+msgid "&Original View"
+msgstr "&Початковий масштаб"
 
 msgid "2D/3D &Rotation"
 msgstr "&Обертання на площині/у просторі"
@@ -547,6 +578,18 @@ msgstr "&Керування позначками даних"
 
 msgid "Stop datatip manager"
 msgstr "Завершити роботу керування позначками даних"
+
+msgid "&MVC"
+msgstr "&MVC"
+
+msgid "&Log View (Trace all View notifications)"
+msgstr "&Перегляд журналу (стеження за всіма сповіщеннями)"
+
+msgid "&All Objects View (All objects with properties)"
+msgstr "П&анель всіх об’єктів (всі об’єкти з властивостями)"
+
+msgid "&Ged-like View (Future ged)"
+msgstr "Ged-п&одібний перегляд (майбутній ged)"
 
 msgid "&?"
 msgstr "&Довідка"
@@ -605,26 +648,14 @@ msgstr "Спо&рожнити буфер обміну даними"
 msgid "&Select all"
 msgstr "&Вибрати все"
 
-msgid "&Preferences"
-msgstr "П&араметри"
-
-msgid "&Colors"
-msgstr "&Кольори"
-
-msgid "Console &Background..."
-msgstr "&Тло консолі…"
-
-msgid "Console &Font..."
-msgstr "&Шрифт консолі…"
-
-msgid "&Font..."
-msgstr "&Шрифт…"
-
 msgid "Clear &History"
 msgstr "Спорожнити &журнал"
 
 msgid "Clear C&onsole"
 msgstr "Спорожнити &консоль"
+
+msgid "P&references"
+msgstr "Н&алаштування"
 
 msgid "&Control"
 msgstr "&Керування"
@@ -659,6 +690,9 @@ msgstr "Перегляд з&мінних"
 msgid "&Command History"
 msgstr "Журнал ко&манд"
 
+msgid "&File Browser"
+msgstr "Перегляд &файлів"
+
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
 
@@ -683,14 +717,20 @@ msgstr "В&еб-сайт ATOMS Scilab"
 msgid "&File Exchange"
 msgstr "&Обмін файлами"
 
-msgid "&Mailing lists"
+msgid "&Mailing Lists"
 msgstr "Списки &листування"
+
+msgid "Mailing Lists &Archives"
+msgstr "&Архіви списків листування"
 
 msgid "&Forge"
 msgstr "&Forge"
 
 msgid "&Bugs And Requests"
 msgstr "&База даних вад і запитів"
+
+msgid "&Scilab Enterprises"
+msgstr "&Комерційні проекти Scilab"
 
 msgid "Rotate"
 msgstr "Обернути"
@@ -722,12 +762,6 @@ msgstr "Копіювати"
 msgid "Paste"
 msgstr "Вставити"
 
-msgid "Change Current Directory"
-msgstr "Змінити поточний каталог"
-
-msgid "Choose Font..."
-msgstr "Вибрати шрифт…"
-
 msgid "Print..."
 msgstr "Надрукувати…"
 
@@ -737,59 +771,120 @@ msgstr "Керування модулями — ATOMS"
 msgid "Xcos"
 msgstr "Xcos"
 
+msgid "Scilab Preferences"
+msgstr "Налаштування Scilab"
+
 msgid "Scilab Demonstrations"
 msgstr "Демонстрації Scilab"
 
-#, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: Не вдалося створити uicontrol типу %s."
+msgid "Select a file to load"
+msgstr "Вкажіть файл для завантаження"
+
+msgid "Figure loaded.\n"
+msgstr "Рисунок завантажено.\n"
+
+msgid "Select a file to write"
+msgstr "Вкажіть файл для запису"
+
+msgid "Figure saved.\n"
+msgstr "Рисунок збережено.\n"
+
+msgid "Select a file name"
+msgstr "Вкажіть назву файла"
+
+msgid "Colors"
+msgstr "Кольори"
+
+msgid "Desktop color"
+msgstr "Стільничний колір"
+
+msgid "Use system color"
+msgstr "Використовувати колір системи"
+
+msgid "Text "
+msgstr "Текст "
+
+msgid "Background "
+msgstr "Тло "
+
+msgid "Cursor "
+msgstr "Курсор "
+
+msgid "Syntax highlighting colors"
+msgstr "Кольори підсвічування синтаксису"
+
+msgid "Keyword color "
+msgstr "Колір ключових слів "
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;b&gt;Жирний&lt;/b&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;i&gt;Курсив&lt;/i&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;u&gt;Підкреслений&lt;/u&gt;&lt;html&gt;"
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr "&lt;html&gt;&lt;s&gt;Перекреслений&lt;/s&gt;&lt;html&gt;"
+
+msgid "Fonts"
+msgstr "Шрифти"
+
+msgid "Desktop font"
+msgstr "Стільничний шрифт"
+
+msgid "Use system font"
+msgstr "Використовувати системний шрифт"
+
+msgid "Desktop text font: "
+msgstr "Шрифт тексту стільниці: "
+
+msgid "Custom font"
+msgstr "Нетиповий шрифт"
+
+msgid "Fonts to use:"
+msgstr "Використані шрифти:"
+
+msgid "Desktop text font"
+msgstr "Шрифт тексту стільниці"
+
+msgid "Custom:"
+msgstr "Нетипове:"
 
 #, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: Не вдалося знищити цей об'єкт.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Для цього елемента керування властивості «%s» не передбачено.\n"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "Властивість «%s» для цього об’єкта не визначено.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
 msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «%s», «%s» або "
-"«%s».\n"
+"%s: помилковий тип батьківського об’єкта: мало бути вказано елемент "
+"керування (handle) або 0.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: «%s», «%s», «%s», «%s» або «%s».\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: у цьому режимі неможливе додавання меню до консолі.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
 msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «light», «normal», "
-"«demi» або «bold».\n"
+"%s: помилковий тип батьківського об’єкта: мало бути вказано елемент "
+"керування (handle).\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: «%s», «%s», «%s», «%s», «%s» або «%s».\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «%s», «%s» або "
-"«%s».\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
 msgstr ""
 "%s: помилковий тип батьківського об’єкта: слід використовувати figure або "
-"uimenu.\n"
+"елемент керування (handle) uimenu.\n"
+
+#, c-format
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s: помилкове значення батьківського об’єкта: мало бути вказано 0.\n"
 
 #, c-format
 msgid ""
@@ -808,11 +903,6 @@ msgstr ""
 "значень 1 x 3 або рядок «R|G|B».\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати число між 0 і 1.\n"
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
@@ -821,16 +911,9 @@ msgstr ""
 "дійсних значень 1 x 3 або рядок «R|G|B».\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати «%s», «%s» "
-"або «%s».\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s» "
-"або «%s».\n"
+"Помилкове значення властивості «%s»: слід використовувати число між 0 і 1.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -843,10 +926,10 @@ msgstr ""
 "Помилковий розмір значення властивості «%s»: слід використовувати рядок.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати дійсне "
-"значення.\n"
+"Помилкове значення властивості «%s»: слід використовувати «%s», «%s» або "
+"«%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
@@ -855,34 +938,32 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
-"Помилковий розмір властивості «%s»: слід використовувати «%s», «%s», «%s», "
-"«%s» або «%s».\n"
+"Помилковий розмір значення властивості «%s»: слід використовувати дійсне "
+"значення.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s», "
-"«%s», «%s» або «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати «%s», "
-"«%s», «%s» або «%s».\n"
+"Помилкове значення властивості «%s»: «%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "Помилкове значення властивості «%s»: «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s», "
-"«%s» або «%s».\n"
+"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s» "
+"або «%s».\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Помилковий розмір значення властивості «%s»: слід використовувати «%s», «%s» "
+"або «%s».\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -896,22 +977,6 @@ msgid ""
 msgstr ""
 "Попередження: значення властивості «Value» «%s» має бути рівним значенню "
 "властивості «%s» або «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr ""
-"Помилковий розмір властивості «%s»: слід використовувати графічний елемент "
-"керування.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати елемент керування "
-"«%s» або «%s».\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Властивість «%s» не визначено для елементів керування стилю: %s.\n"
 
 #, c-format
 msgid ""
@@ -939,6 +1004,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s», "
+"«%s», «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
@@ -947,17 +1020,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s», "
-"«%s», «%s», «%s» або «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати вектор "
-"дійсних значень 1 x %d.\n"
+"Помилкове значення властивості «%s»: «%s», «%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -966,11 +1032,38 @@ msgstr ""
 "дійсних значень 1 x %d.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Помилковий розмір значення властивості «%s»: слід використовувати вектор "
+"дійсних значень 1 x %d.\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
 "Помилковий розмір значення властивості «%s»: слід використовувати рядок або "
 "вектор рядків.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+"Помилковий тип значення властивості «%s»: слід використовувати рядок або "
+"вектор рядків.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Помилковий розмір властивості «%s»: слід використовувати «%s», «%s», «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Помилковий тип значення властивості «%s»: слід використовувати «%s», «%s», "
+"«%s», «%s» або «%s».\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -994,10 +1087,12 @@ msgstr ""
 "або рядок.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
 msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати «%s», «%s» "
-"або «%s».\n"
+"Попередження: значенням властивості «Value» «%s» має бути ціле число. Формат "
+"значення буде обрізано до цілого.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -1006,27 +1101,16 @@ msgstr ""
 "або «%s».\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати «%s» або «%s».\n"
+"Помилковий розмір значення властивості «%s»: слід використовувати «%s», «%s» "
+"або «%s».\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Помилковий розмір значення властивості «%s»: слід використовувати список з "
-"двох елементів.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "Помилкове значення властивості «%s»: слід використовувати рядок.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: помилкове значення властивості «%s»: слід використовувати point, "
-"normalized, inch, centimeter або pixel.\n"
+"Помилкове значення властивості «%s»: слід використовувати «%s», «%s» або "
+"«%s».\n"
 
 msgid "Console Font..."
 msgstr "Шрифт консолі…"
@@ -1035,26 +1119,28 @@ msgid "Console Background..."
 msgstr "Тло консолі…"
 
 msgid "No print service found."
-msgstr "Не виявлено служби друку."
+msgstr "Службу друку не знайдено."
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"ПОПЕРЕДЖЕННЯ: через обмеження конфігурації вашого комп’ютера Scilab "
-"було перемкнуто у режим, у якому використання графічних елементів керування "
-"та графіки неможливе. Введіть команду «help usecanvas», щоб дізнатися "
-"більше.\")"
+"УВАГА: через обмеження вашої системи Scilab перемкнено у режим, у якому "
+"показ графічних елементів керування неможливий. Віддайте команду %s, щоб "
+"дізнатися більше."
+
+msgid "In some cases, %s fixes the issue"
+msgstr "Іноді, проблему можна усунути за допомогою команди %s"
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"ПОПЕРЕДЖЕННЯ: через обмеження вашої графічної картки та драйвера до "
-"неї, які не здатні обробляти команди OpenGL, Scilab не зможе відтворювати "
-"графічні елементи. Будь ласка, оновіть ваш драйвер.\")"
+"Через обмеження, пов’язані з драйверами до вашої відеокартки, які не здатні "
+"працювати у режимі OpenGL, Scilab не зможе працювати у графічному режимі. "
+"Будь ласка, оновіть драйвери."
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1065,11 +1151,17 @@ msgstr ""
 "використовувати додаткові графічні властивості. Введіть команду «help "
 "usecanvas», щоб дізнатися більше.\")"
 
-msgid "Clear History"
-msgstr "Спорожнити журнал"
-
 msgid "Clear Console"
 msgstr "Спорожнити консоль"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr "Ви справді бажаєте спорожнити консоль?"
+
+msgid "Do not show this message again"
+msgstr "Не показувати більше це повідомлення"
+
+msgid "Clear History"
+msgstr "Спорожнити журнал"
 
 msgid "Select All"
 msgstr "Позначити все"
@@ -1204,30 +1296,39 @@ msgstr "Вперед"
 msgid "Tree Overview"
 msgstr "Огляд відомостей"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr ""
-"Клацніть лівою кнопкою миші, щоб почати вибір області для збільшення. "
-"Клацніть правою, щоб скасувати."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr ""
-"Клацніть лівою кнопкою миші, щоб перервати вибирання. Клацніть правою, щоб "
-"скасувати."
-
 msgid "OK"
 msgstr "Гаразд"
-
-msgid "No"
-msgstr "Ні"
 
 msgid "Yes"
 msgstr "Так"
 
+msgid "No"
+msgstr "Ні"
+
 msgid "Save and execute"
 msgstr "Зберегти і виконати"
 
-msgid "An error occured: "
+msgid "Empty tab"
+msgstr "Порожня вкладка"
+
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+"Не вдалося відновити вкладку з uuid %s.\n"
+"Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
+"долученим файлом %s."
+
+msgid "Are you sure you want to close %s ?"
+msgstr "Ви справді бажаєте закрити %s ?"
+
+msgid "Are you sure you want to close %s and %s ?"
+msgstr "Ви справді бажаєте закрити %s і %s ?"
+
+msgid "Exit"
+msgstr "Вийти"
+
+msgid "An error occurred: "
 msgstr "Сталася помилка: "
 
 msgid "Scilab SCI files"
@@ -1278,26 +1379,14 @@ msgstr "Всі файли RTF (Rich Text Format)"
 msgid "All %s files"
 msgstr "Всі файли %s"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Консорціум Scilab (DIGITEO)"
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "© INRIA, 1989–2011"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Авторські права належать © 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Ліцензія CeCILL"
-
 msgid "About Scilab..."
 msgstr "Про Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Подяки"
-
 msgid "Close"
 msgstr "Закрити"
+
+msgid "Acknowledgements"
+msgstr "Подяки"
 
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "
@@ -1313,47 +1402,11 @@ msgstr "%s: можна використовувати лише у режимі �
 msgid "Error. A signal has been caught.\n"
 msgstr "Помилка. A signal has been caught.\n"
 
-msgid "Select a file to load"
-msgstr "Вкажіть файл для завантаження"
-
-msgid "Figure loaded.\n"
-msgstr "Рисунок завантажено.\n"
-
-msgid "Select a file to write"
-msgstr "Вкажіть файл для запису"
-
-msgid "Figure saved.\n"
-msgstr "Рисунок збережено.\n"
-
-msgid "Select a file name"
-msgstr "Вкажіть назву файла"
-
-msgid "Select a file to execute"
-msgstr "Вкажіть файл для виконання"
-
-msgid "Execution done.\n"
-msgstr "Виконання завершено.\n"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Виберіть файл, який слід відкрити у SciNotes"
-
-msgid "Environment loaded.\n"
-msgstr "Середовище завантажено.\n"
-
-msgid "Environment saved.\n"
-msgstr "Середовище збережено.\n"
-
-msgid "Select a directory"
-msgstr "Вкажіть каталог"
-
 msgid "Control Plot3d"
 msgstr "Керування Plot3d"
 
 msgid "File"
 msgstr "Файл"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 msgid "GUI"
 msgstr "Інтерфейс"
@@ -1369,6 +1422,9 @@ msgstr "Керування 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "Керування з LaTeX/MathML"
+
+msgid "Show images with uicontrols "
+msgstr "Показувати зображення з елементами керування "
 
 msgid "<Enter color name here>"
 msgstr "<Тут слід ввести назву кольору>"
@@ -1700,39 +1756,3 @@ msgstr "%s: помилковий тип для %s: слід використов
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
-
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Автори:\n"
-#~ "Консорціум Scilab / INRIA / ENPC / Учасники розробки\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr ""
-#~ "Scilab 5.0 та наступні версії випущено за умов дотримання ліцензії CeCILL.\n"
-
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Учасники розробки Scilab…"
-
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Деякі з модулів Scilab випущено за умов дотримання ліцензії GPLv2.\n"
-#~ "\n"
-
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Версія %s (%s)\n"
-#~ "\n"
-
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"

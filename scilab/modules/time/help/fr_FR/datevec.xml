@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="datevec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>datevec</refname>
     <refpurpose>Reconstruction d'un vecteur contenant une Date</refpurpose>
@@ -21,19 +18,20 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>V=datevec(DT)
-[Y,M,D,H,MI,S]=datevec(DT)</synopsis>
+      [Y,M,D,H,MI,S]=datevec(DT)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
-			contenant une date dont les éléments sont [year, month, day, hour, minute,
-			second]. DT peut être une matrice.
-		</para>
+      V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
+      contenant une date dont les éléments sont [year, month, day, hour, minute,
+      second]. DT peut être une matrice.
+    </para>
     <para>
-			[Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date dans 6 variables.
-			DT peut être une matrice.
-		</para>
+      [Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date dans 6 variables.
+      DT peut être une matrice.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -54,7 +52,7 @@ datevec(A)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="datenum">datenum</link>
@@ -62,12 +60,6 @@ datevec(A)
       <member>
         <link linkend="calendar">calendar</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

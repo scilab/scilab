@@ -12,22 +12,11 @@
 
 package org.scilab.modules.helptools;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
 import org.xml.sax.SAXException;
 
@@ -38,7 +27,6 @@ import org.xml.sax.SAXException;
 public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private static final String XMLSTRING = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n";
-    private static final String WHATSNEW = "What's new ?";
 
     private StringBuilder buffer = new StringBuilder(8192);
 
@@ -55,7 +43,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param urlBase the base url for external link
      */
     public JavaHelpDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
+        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.JAVAHELP);
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
         appendForExecToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td></td></tr></table>";

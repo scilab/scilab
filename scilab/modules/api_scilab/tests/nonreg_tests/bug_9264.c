@@ -6,11 +6,10 @@
 // =============================================================================
 
 #include <stdlib.h>
-#include <api_scilab.h>
-#include <Scierror.h>
-#include <stack-c.h>
-#include <MALLOC.h>
-#include <localization.h>
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "MALLOC.h"
+#include "localization.h"
 
 // =============================================================================
 // The aim of this function is just to retrieve from the stack an array of strings
@@ -22,8 +21,8 @@ int sci_bug9264(char *fname)
     int *piAddressVarOne = NULL;
     int rows = 0, cols = 0;
 
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (err.iErr)
@@ -34,6 +33,11 @@ int sci_bug9264(char *fname)
 
     if (isStringType(pvApiCtx, piAddressVarOne))
     {
+        int i           = 0;
+        int size        = 0;
+        int* lengths    = NULL;
+        char **str      = NULL;
+
         err = getVarDimension(pvApiCtx, piAddressVarOne, &rows, &cols);
         if (err.iErr)
         {
@@ -47,9 +51,8 @@ int sci_bug9264(char *fname)
             return 0;
         }
 
-        int size = rows * cols;
-
-        int *lengths = (int*)MALLOC(sizeof(int) * size);
+        size = rows * cols;
+        lengths = (int*)MALLOC(sizeof(int) * size);
         if (!lengths)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -64,8 +67,7 @@ int sci_bug9264(char *fname)
             return 0;
         }
 
-        int i = 0;
-        char **str = (char**)MALLOC(sizeof(char*) * size);
+        str = (char**)MALLOC(sizeof(char*) * size);
         for (; i < size; i++)
         {
             str[i] = (char*)MALLOC(sizeof(char) * (lengths[i] + 1));
@@ -83,5 +85,6 @@ int sci_bug9264(char *fname)
         freeArrayOfString(str, size);
     }
 
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     return 0;
 }

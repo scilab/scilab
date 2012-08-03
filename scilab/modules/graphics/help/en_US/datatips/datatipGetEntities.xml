@@ -8,15 +8,11 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipGetEntities">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipGetEntities">
   <refnamediv>
     <refname>datatipGetEntities</refname>
     <refpurpose>Get all the entities compatible with datatips in the given axes. </refpurpose>
   </refnamediv>
- 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
@@ -28,14 +24,14 @@
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-	<term>ax</term>
+        <term>ax</term>
         <listitem>
           <para>
             A handle on an axes entity. The default value is <literal>gca()</literal>
           </para>
         </listitem>
       </varlistentry>
- </variablelist>
+    </variablelist>
     <variablelist>
       <varlistentry>
         <term>curve_handles</term>
@@ -46,14 +42,13 @@
         </listitem>
       </varlistentry>
     </variablelist>
-   
   </refsection>
   <refsection>
     <title>Description</title>
     <para>
-        Get all the entities compatible with datatips in the given
-        axes. In the current version only polyline entities are
-        handled.
+      Get all the entities compatible with datatips in the given
+      axes. In the current version only polyline entities are
+      handled.
     </para>
   </refsection>
   <refsection>
@@ -67,18 +62,12 @@
     curve_handles.visible='on';
     ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="datatips" >datatips</link></member>
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

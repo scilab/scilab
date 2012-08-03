@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,6 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include <algorithm>
+#include <vector>
 
 #include "XMLObject.hxx"
 #include "XMLElement.hxx"
@@ -19,7 +22,6 @@ extern "C"
 {
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -29,18 +31,21 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
+int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
 {
-    XMLAttr * a;
+    XMLAttr *a;
     int lhsid;
     SciErr err;
-    int * prefixaddr = 0;
-    int * nameaddr = 0;
-    int * rhsaddr = 0;
-    int * lhsaddr = 0;
-    char * name = 0;
-    char * prefix = 0;
-    char * value = 0;
+    int *prefixaddr = 0;
+    int *nameaddr = 0;
+    double *indexes = 0;
+    int rows;
+    int cols;
+    int *rhsaddr = 0;
+    int *lhsaddr = 0;
+    char *name = 0;
+    char *prefix = 0;
+    char *value = 0;
 
     CheckLhs(1, 1);
     CheckRhs(3, 4);
@@ -49,66 +54,99 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, prefixaddr))
+    if (Rhs == 3 && isDoubleType(pvApiCtx, prefixaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
-        return 0;
+        err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
+        if (rows != 1 || cols != 1)
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected\n"), fname, 1);
+            return 0;
+        }
     }
-
-    getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
-
-    if (Rhs == 4)
+    else
     {
-        err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
-        if (err.iErr)
+        if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            freeAllocatedSingleString(prefix);
-            printError(&err, 0);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected.\n"), fname, 1);
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, nameaddr))
+        if (getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix) != 0)
         {
-            freeAllocatedSingleString(prefix);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+        if (Rhs == 4)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
+            if (err.iErr)
+            {
+                freeAllocatedSingleString(prefix);
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                return 0;
+            }
+
+            if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
+            {
+                freeAllocatedSingleString(prefix);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+        }
     }
 
     err = getVarAddressFromPosition(pvApiCtx, Rhs - 1, &rhsaddr);
     if (err.iErr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     err = getVarAddressFromPosition(pvApiCtx, Rhs, &lhsaddr);
     if (err.iErr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
         return 0;
     }
 
-    lhsid = getXMLObjectId(lhsaddr);
-    a = XMLObject::getFromId<XMLAttr>(lhsid);
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
+    a = XMLObject::getFromId < XMLAttr > (lhsid);
     if (!a)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
@@ -117,37 +155,54 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, rhsaddr))
+    if (!isStringType(pvApiCtx, rhsaddr) || !checkVarDimension(pvApiCtx, rhsaddr, 1, 1))
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, Rhs - 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, Rhs - 1);
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, rhsaddr, &value);
+    if (getAllocatedSingleString(pvApiCtx, rhsaddr, &value) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (Rhs == 3)
     {
-        name = prefix;
-        a->setAttributeValue(name, value);
+        if (indexes)
+        {
+            a->setAttributeValue((int)(*indexes), value);
+        }
+        else
+        {
+            name = prefix;
+            a->setAttributeValue(name, value);
+        }
     }
     else
     {
         a->setAttributeValue(prefix, name, value);
     }
 
-    freeAllocatedSingleString(prefix);
-    if (Rhs != 3)
+    if (prefix)
+    {
+        freeAllocatedSingleString(prefix);
+    }
+    if (Rhs != 3 && name)
     {
         freeAllocatedSingleString(name);
     }
     freeAllocatedSingleString(value);
 
-    a->createOnStack(Rhs + 1);
+    a->createOnStack(Rhs + 1, pvApiCtx);
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
 

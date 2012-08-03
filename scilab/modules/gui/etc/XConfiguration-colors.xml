@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<colors title="_(Colors)">
+  <body>
+    <desktop-colors use-system-color="true" text="#000000" background="#ffffff" cursor="#000000"/>
+    <syntax-highlighting-colors name="Default">
+      <item name="Default" color="#000000" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Special" color="#FFAA00" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Operator" color="#5C5C5C" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Primitive" color="#32B9B9" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Macro" color="#AE5CB0" bold="false" italic="false" underline="true" strike-through="false"/>
+      <item name="MacroInFile" color="#000000" bold="false" italic="false" underline="true" strike-through="false"/>
+      <item name="String" color="#BC8F8F" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="ExternalVariable" color="#FF0000" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="InputOutputArgs" color="#834310" bold="true" italic="false" underline="false" strike-through="false"/>
+      <item name="Identifier" color="#000000" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Comment" color="#64AE64" bold="false" italic="true" underline="false" strike-through="false"/>
+      <item name="Field" color="#AAAAAA" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="FunctionKwd" color="#B01813" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Url" color="#0000FF" bold="false" italic="false" underline="true" strike-through="false"/>
+      <item name="Mail" color="#0000FF" bold="false" italic="false" underline="true" strike-through="false"/>
+      <item name="Number" color="#BC8F8F" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Control" color="#5F9EA0" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Structure" color="#A020F0" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Constantes" color="#DA70D6" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="White" color="#DCDCDC" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="WhiteInComment" color="#90F790" bold="false" italic="true" underline="false" strike-through="false"/>
+      <item name="WhiteInString" color="#E9B1B1" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="Tabulation" color="#DCDCDC" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="TabulationInComment" color="#90F790" bold="false" italic="true" underline="false" strike-through="false"/>
+      <item name="TabulationInString" color="#E9B1B1" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="LaTeXInComment" color="#8B2252" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="LaTeXInString" color="#8B2252" bold="false" italic="false" underline="false" strike-through="false"/>
+      <item name="OpenClose" color="#4A55DB" bold="false" italic="false" underline="false" strike-through="false"/>
+    </syntax-highlighting-colors>
+  </body>
+</colors>

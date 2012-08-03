@@ -46,7 +46,8 @@
               </para>
             </listitem>
             <listitem>
-              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
+              <para>
+                <literal>3rd column</literal> : allusers/user, this parameter tell if
                 the external module has been installed for all users or only for the
                 current user.
               </para>
@@ -96,7 +97,7 @@ atomsRemove("toolbox_5");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsLoad">atomsLoad</link>
@@ -109,10 +110,4 @@ atomsRemove("toolbox_5");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

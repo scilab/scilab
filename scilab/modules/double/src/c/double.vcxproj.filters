@@ -31,13 +31,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\double.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="double_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\double.iss" />

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<expression step="expression">
+	<expression zero-crossing="true">
+		<outputs>
+			<item value="A*sin(u1)*cos(u2)"/>
+			<item value="tan(u1)"/>
+		</outputs>
+		<inputs>
+			<item value="[1 2]"/>
+			<item value="[2 3]"/>
+		</inputs>
+	</expression>
+
+
+	<!-- selectable pattern -->
+	<parameters item="1">
+		<!-- test -->
+		<item name="A"    type="double"  min="0.0" max="99.9"
+          test="5.15" tooltip="Gain" description="Gain"/>
+	</parameters>
+	<graphics item="1">
+		<item title="Title"     family="arial" size="11" face="plain" color="#facade"/>
+		<item title="Text"      family="arial" size="11" face="plain" color="#facade"/>
+		<item title="I/O label" family="arial" size="11" face="plain" color="#facade"/>
+		<item title="Border"                                          color="#facade"/>
+		<item title="Background"                                      color="#facade"/>
+	</graphics>
+	<documentation>
+		<short-description> Signal transformation
+		</short-description>
+		<long-description> Signal transformation
+		</long-description>
+		<exemple-description> Performed on a set of two values
+		</exemple-description>
+		<exemple-xcos-image src="none"/>
+		<exemple-png-image src="none"/>
+	</documentation>
+</expression>
+

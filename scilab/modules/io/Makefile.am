@@ -40,31 +40,32 @@ sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
-libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/core/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			$(AM_CPPFLAGS)
 
-libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/core/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes/
-
-
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciio.la
 noinst_LTLIBRARIES = libsciio-algo.la
+else
+noinst_LTLIBRARIES = libsciio-algo.la libsciio.la
+endif
 
-libsciio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+
 
 libsciio_algo_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES)
 libsciio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciio_algo_la_CFLAGS = $(libsciio_la_CFLAGS)
+libsciio_algo_la_CPPFLAGS = $(libsciio_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciio_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciio_la_CPPFLAGS)
 
 libsciio_la_LIBADD = libsciio-algo.la
 

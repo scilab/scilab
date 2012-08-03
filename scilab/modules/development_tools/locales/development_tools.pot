@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: macros/assert/assert_checkalmostequal.sci, line: 15
 # File: macros/assert/assert_checkfilesequal.sci, line: 15
@@ -31,7 +31,7 @@ msgstr ""
 # File: macros/assert/assert_checkalmostequal.sci, line: 32
 # File: macros/assert/assert_checkalmostequal.sci, line: 36
 # File: macros/assert/assert_checkalmostequal.sci, line: 40
-# File: macros/assert/assert_checkerror.sci, line: 33
+# File: macros/assert/assert_checkerror.sci, line: 36
 # File: macros/assert/assert_comparecomplex.sci, line: 27
 # File: macros/assert/assert_comparecomplex.sci, line: 31
 # File: macros/assert/assert_comparecomplex.sci, line: 35
@@ -45,27 +45,26 @@ msgstr ""
 # File: macros/assert/assert_cond2reqdigits.sci, line: 139
 # File: macros/assert/assert_generror.sci, line: 38
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
 # File: macros/assert/assert_checkalmostequal.sci, line: 44
-# File: macros/assert/assert_checkerror.sci, line: 25
-# File: macros/assert/assert_checkerror.sci, line: 29
+# File: macros/assert/assert_checkerror.sci, line: 26
+# File: macros/assert/assert_checkerror.sci, line: 31
 # File: macros/assert/assert_checkfilesequal.sci, line: 30
 # File: macros/assert/assert_checkfilesequal.sci, line: 34
 # File: macros/assert/assert_generror.sci, line: 21
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
 # File: macros/assert/assert_checkalmostequal.sci, line: 50
 # File: macros/assert/assert_checkalmostequal.sci, line: 54
 # File: macros/assert/assert_checkalmostequal.sci, line: 58
-# File: macros/assert/assert_checkerror.sci, line: 39
-# File: macros/assert/assert_checkerror.sci, line: 43
-# File: macros/assert/assert_checkerror.sci, line: 48
+# File: macros/assert/assert_checkerror.sci, line: 42
+# File: macros/assert/assert_checkerror.sci, line: 53
 # File: macros/assert/assert_checkfilesequal.sci, line: 46
 # File: macros/assert/assert_checkfilesequal.sci, line: 50
 # File: macros/assert/assert_comparecomplex.sci, line: 45
@@ -100,7 +99,7 @@ msgstr ""
 
 #
 # File: macros/assert/assert_checkalmostequal.sci, line: 80
-# File: macros/assert/assert_checkequal.sci, line: 62
+# File: macros/assert/assert_checkequal.sci, line: 70
 # File: macros/assert/assert_computedigits.sci, line: 34
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -108,7 +107,7 @@ msgstr ""
 
 #
 # File: macros/assert/assert_checkalmostequal.sci, line: 109
-# File: macros/assert/assert_checkequal.sci, line: 110
+# File: macros/assert/assert_checkequal.sci, line: 138
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr ""
@@ -134,25 +133,31 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 71
+# File: macros/assert/assert_checkequal.sci, line: 79
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 75
+# File: macros/assert/assert_checkequal.sci, line: 83
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 14
+# File: macros/assert/assert_checkerror.sci, line: 15
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 56
+# File: macros/assert/assert_checkerror.sci, line: 47
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+
+#
+# File: macros/assert/assert_checkerror.sci, line: 62
 # File: macros/assert/assert_generror.sci, line: 42
 #, c-format
 msgid ""
@@ -160,19 +165,25 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 66
+# File: macros/assert/assert_checkerror.sci, line: 70
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/assert/assert_checkerror.sci, line: 80
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 85
+# File: macros/assert/assert_checkerror.sci, line: 99
 #, c-format
 msgid "%s: Error while formatting the error message: %s"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 94
+# File: macros/assert/assert_checkerror.sci, line: 122
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
@@ -180,7 +191,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 108
+# File: macros/assert/assert_checkerror.sci, line: 137
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
@@ -191,7 +202,7 @@ msgstr ""
 # File: macros/assert/assert_checkfalse.sci, line: 21
 # File: macros/assert/assert_checktrue.sci, line: 21
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
@@ -280,9 +291,72 @@ msgstr ""
 #
 # File: macros/bench_run.sci, line: 106
 # File: macros/test_clean.sci, line: 135
-# File: macros/test_run.sci, line: 79
+# File: macros/test_run.sci, line: 372
 #, c-format
 msgid "The test %s is not available from the %s module"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 25
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 28
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 32
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 35
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 39
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 51
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 57
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+
+#
+# File: macros/example_run.sci, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
 msgstr ""
 
 #
@@ -317,21 +391,29 @@ msgstr ""
 
 #
 # File: macros/test_clean.sci, line: 116
-# File: macros/test_run.sci, line: 921
+# File: macros/test_run.sci, line: 226
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 33
+# File: macros/test_run.sci, line: 326
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 635
+# File: macros/test_run.sci, line: 1000
 #, c-format
 msgid "The ref file (%s) doesn't exist"
+msgstr ""
+
+#
+# File: macros/test_run.sci, line: 1143
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites'.\n"
 msgstr ""
 
 #

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getfield">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>getfield</refname>
     <refpurpose>  リストのフィールドの展開</refpurpose>
@@ -48,9 +45,10 @@
   <refsection>
     <title>説明</title>
     <para>
-    この関数は, フィールド展開用の <literal>[x,...]=l(i)</literal> 構文と等価ですが,
-	唯一の違いは, <literal>mlist</literal> オブジェクトにも適用できる
-	ことです.</para>
+      この関数は, フィールド展開用の <literal>[x,...]=l(i)</literal> 構文と等価ですが,
+      唯一の違いは, <literal>mlist</literal> オブジェクトにも適用できる
+      ことです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

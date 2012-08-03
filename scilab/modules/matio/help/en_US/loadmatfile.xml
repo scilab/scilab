@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="loadmatfile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>loadmatfile</refname>
     <refpurpose>loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</refpurpose>
@@ -22,8 +19,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>loadmatfile(format,filename[,var1[,var2[,...]]])
-loadmatfile(filename[,format[,var1[,var2[,...]]]])
-loadmatfile(filename[,var1[,var2,[,...[,format]]]])</synopsis>
+      loadmatfile(filename[,format[,var1[,var2[,...]]]])
+      loadmatfile(filename[,var1[,var2,[,...[,format]]]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -65,8 +63,9 @@ loadmatfile(filename[,var1[,var2,[,...[,format]]]])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    loads a Matlab MAT-file into Scilab. The Matlab data types are
-    converted into the Scilab equivalents.</para>
+      loads a Matlab MAT-file into Scilab. The Matlab data types are
+      converted into the Scilab equivalents.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -81,7 +80,7 @@ disp(B)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="load">load</link>
@@ -101,16 +100,12 @@ disp(B)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer (INRIA)</member>
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
-    <para>This function has been developped following the "MAT-File Format"
-  description: 
-<literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
+    <para>This function has been developed following the "MAT-File Format"
+      description: 
+      <literal>
+        <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+      </literal>
+    </para>
   </refsection>
 </refentry>

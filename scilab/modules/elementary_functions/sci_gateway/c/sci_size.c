@@ -1,18 +1,18 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
+ * Copyright (C) 2011 - INRIA - Serge STEER
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -21,7 +21,8 @@ extern int C2F(intsize) (int *id);
 
 /*--------------------------------------------------------------------------*/
 typedef enum
-{ I_SIZE_ROW = 1,
+{
+    I_SIZE_ROW = 1,
     I_SIZE_COL = 2,
     I_SIZE_ROWCOL = 0,
 } size_second_input_argument_int;
@@ -50,6 +51,7 @@ int sci_size(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -57,6 +59,7 @@ int sci_size(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -64,6 +67,7 @@ int sci_size(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -86,6 +90,18 @@ int sci_size(char *fname, unsigned long fname_len)
                     if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dValue) == 0)
                     {
                         iValue = (int)(dValue);
+
+                        if ((double)iValue != dValue)
+                        {
+                            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
+                            return 0;
+                        }
+
+                        if (iValue <= 0)
+                        {
+                            Scierror(44, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), fname, 2);
+                            return 0;
+                        }
                     }
                 }
                 else            // string
@@ -97,23 +113,28 @@ int sci_size(char *fname, unsigned long fname_len)
                         if (pStr)
                         {
                             if (strcmp(pStr, C_SIZE_ROW) == 0)
+                            {
                                 iValue = I_SIZE_ROW;
+                            }
                             if (strcmp(pStr, C_SIZE_COL) == 0)
+                            {
                                 iValue = I_SIZE_COL;
+                            }
                             if (strcmp(pStr, C_SIZE_ROWCOL) == 0)
+                            {
                                 iValue = I_SIZE_ROWCOL;
+                            }
                             freeAllocatedSingleString(pStr);
                             pStr = NULL;
+                            if ((iValue != I_SIZE_ROW) && (iValue != I_SIZE_COL) && (iValue != I_SIZE_ROWCOL))
+                            {
+                                /* compatibility with previous error code 44 */
+                                Scierror(44, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "*");
+                                return 0;
+                            }
+
                         }
-
                     }
-                }
-
-                if ((iValue != I_SIZE_ROW) && (iValue != I_SIZE_COL) && (iValue != I_SIZE_ROWCOL))
-                {
-                    /* compatilibity with previous error code 44 */
-                    Scierror(44, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "*");
-                    return 0;
                 }
             }
             else

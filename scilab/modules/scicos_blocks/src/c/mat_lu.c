@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -55,7 +56,7 @@ SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block,int flag)
  u=GetRealInPortPtrs(block,1);
  y1=GetRealOutPortPtrs(block,1);
  y2=GetRealOutPortPtrs(block,2);
- l=min(mu,nu);
+ l=Min(mu,nu);
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_lu_struct*) scicos_malloc(sizeof(mat_lu_struct)))==NULL)

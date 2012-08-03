@@ -4,16 +4,17 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 // We need a clean version
 // =============================================================================
 if ~isempty( atomsGetInstalled() ) then bugmes();quit;end 
+// If previous test did not end properly, restore, else backup config file
+atomsRestoreConfig(%T);
+atomsSaveConfig();
 // Set some parameters for the test
 // =============================================================================
-config_autoload = atomsGetConfig("autoloadAddAfterInstall");
-config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 // 1st test-case : Just install the toolbox 5
@@ -62,6 +63,5 @@ atomsRemove("toolbox_5");
 	the package toolbox_1 (1.0-1) is currently loaded, It will be removed at next Scilab start
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoloadAddAfterInstall",config_autoload);
-atomsSetConfig("Verbose" ,config_Verbose);
+atomsRestoreConfig(%T);
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

@@ -12,6 +12,7 @@
 
 package org.scilab.modules.ui_data.variableeditor;
 
+import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.gui.window.Window;
 
 /**
@@ -19,7 +20,7 @@ import org.scilab.modules.gui.window.Window;
  * Describes actions exposed to scilab.
  *
  */
-public interface VariableEditor extends Window {
+public interface VariableEditor extends SimpleWindow {
 
     /**
      * Close Variable Browser.
@@ -33,6 +34,14 @@ public interface VariableEditor extends Window {
      * @param data : the data to be stored.
      */
     void updateData(String name, String type, Object[][] data);
+
+    /**
+     * Set Data stored in JTable.
+     * @param name the name of the Scilab var
+     * @param type the type of the var
+     * @param data : the data to be stored.
+     */
+    void updateData(String name, String type, Object[][] data, double[] rowsIndex, double[] colsIndex);
 
     /**
      * Set the name of the variable being edited in Editvar

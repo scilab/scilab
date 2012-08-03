@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -22,21 +22,18 @@
 #ifndef __SCICOS_BLOCK4_H__
 #define __SCICOS_BLOCK4_H__
 
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-#ifndef WIN32
-#include <malloc.h>
-#endif
-#endif
-
 #ifndef NULL
 #define NULL 0
 #endif
 
-#include "scicos_math.h"
+#include <math.h>
+#include <stdlib.h>
 
+#ifdef _MSC_VER
 typedef void (*voidg) ();
+#else
+typedef void (*voidg) (void);
+#endif
 
 /* scicos_block structure definition
 * WARNING: take care that this sructure is
@@ -100,13 +97,15 @@ typedef enum
     Initialization = 4,
     Ending = 5,
     ReInitialization = 6,
+    ContinousPropertiesUpdate = 7,
     ZeroCrossing = 9,
+    Residute = 10
 } scicos_flag;
 
 /* utility function for block declaration */
 int get_block_error(void);
-int *get_pointer_xproperty();
-int get_npointer_xproperty();
+int *get_pointer_xproperty(void);
+int get_npointer_xproperty(void);
 double Get_Jacobian_cj(void);
 double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);
@@ -668,21 +667,5 @@ typedef enum
 \brief Get pointer of the block label
 */
 #define GetLabelPtrs(blk) (blk->label)
-
-#if _MSC_VER
-#ifdef min
-#undef min
-#endif
-#ifdef max
-#undef max
-#endif
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
 
 #endif /* __SCICOS_BLOCK_H__ */

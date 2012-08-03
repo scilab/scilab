@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bezout">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bezout</refname>
     <refpurpose> équation de Bezout pour les polynômes  </refpurpose>
@@ -18,24 +15,26 @@
         <term>p1, p2  </term>
         <listitem>
           <para>deux polynômes réels ou deux entiers (type égal à 8)
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[thegcd,U]=bezout(p1,p2)</literal> calcule le PGCD <literal>pgcd</literal> de <literal>p1</literal> et <literal>p2</literal> et de plus une matrice
-    unimodulaire (2x2) <literal>U</literal> telle que :
-  </para>
+    <para>
+      <literal>[thegcd,U]=bezout(p1,p2)</literal> calcule le PGCD <literal>pgcd</literal> de <literal>p1</literal> et <literal>p2</literal> et de plus une matrice
+      unimodulaire (2x2) <literal>U</literal> telle que :
+    </para>
     <para>
       <literal>[p1,p2]*U = [pgcd,0]</literal>
     </para>
     <para>
-    Le PPCM de <literal>p1</literal> et <literal>p2</literal> est donné par
-  </para>
-    <para><literal>p1*U(1,2)</literal> (ou <literal>-p2*U(2,2)</literal>)
-  </para>
+      Le PPCM de <literal>p1</literal> et <literal>p2</literal> est donné par
+    </para>
+    <para>
+      <literal>p1*U(1,2)</literal> (ou <literal>-p2*U(2,2)</literal>)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -59,7 +58,7 @@ lcm(V)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

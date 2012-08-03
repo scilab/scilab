@@ -75,7 +75,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      </PreBuildEvent>
+    </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>include;include/sundials;src/cvode;src/ida;src/kinsol;src/nvec_ser;src/sundials;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -89,7 +89,7 @@
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -103,13 +103,14 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      </PreBuildEvent>
+    </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
@@ -126,7 +127,7 @@ cd ..
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -140,13 +141,14 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      </PreBuildEvent>
+    </PreBuildEvent>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -163,7 +165,7 @@ cd ..
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -179,13 +181,14 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
-      </PreBuildEvent>
+    </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
@@ -205,7 +208,7 @@ cd ..
 cd $(ConfigurationName)
 set LIST_OBJ=
 for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
 copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
@@ -221,9 +224,10 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cvode\cvode.c" />

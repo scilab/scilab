@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="m_circle">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>m_circle</refname>
     <refpurpose> plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>m_circle()
-m_circle(gain)</synopsis>
+      m_circle(gain)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -44,15 +42,23 @@ m_circle(gain)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>m_circle</literal> draws the iso-gain contours
-    given by then <literal>gain</literal> argument in the complex
-    plane (Re,Im).</para>
-    <para>The default value for <literal>gain</literal> is:</para>
     <para>
-    <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+      <literal>m_circle</literal> draws the iso-gain contours
+      given by then <literal>gain</literal> argument in the complex
+      plane (Re,Im).
     </para>
-    <para><literal>m_circle</literal> is used with <literal>nyquist</literal>.</para>
-   <para>This function is superseeded by the <link linkend="hallchart">hallchart</link> function.</para>
+    <para>
+      The default value for <literal>gain</literal> is:
+    </para>
+    <para>
+      <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+    </para>
+    <para>
+      <literal>m_circle</literal> is used with <literal>nyquist</literal>.
+    </para>
+    <para>
+      This function is superseded by the <link linkend="hallchart">hallchart</link> function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +76,7 @@ m_circle([-8 -6 -4]);
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="nyquist">nyquist</link>
@@ -82,9 +88,5 @@ m_circle([-8 -6 -4]);
         <link linkend="black">black</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S.Steer.;   </para>
   </refsection>
 </refentry>

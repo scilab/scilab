@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -81,7 +81,7 @@ case 'set' then
         if clrs(i)>0 then
           mess=[mess;'Buffer size must be at least 2 or Change a color (must be >0)';' ']
           ok=%f
-	      end	
+	      end
       end
     end
     if vec_y(1)>=vec_y(2) then
@@ -109,6 +109,8 @@ case 'set' then
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
       break
+    else
+        message(mess);
     end
   end
 case 'define' then
@@ -134,7 +136,7 @@ case 'define' then
   model.ipar=[win;8;N;clrs(:);siz(:);8;wpos(:);wdim(:);nbr_curves]
   model.blocktype='d'
   model.dep_ut=[%f %f]
-  
+
   exprs=[string(nbr_curves);
 	strcat(string(clrs),' ');
 	strcat(string(siz),' ');

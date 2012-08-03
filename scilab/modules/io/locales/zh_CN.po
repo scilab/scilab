@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-06-23 08:19+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -34,28 +34,32 @@ msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
-msgstr ""
+msgstr "%s：文件“%s”不存在。\n"
 
 #, c-format
 msgid "%s: The file does not exist.\n"
-msgstr ""
+msgstr "%s：该文件不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：输入参数 #%d 类型错误：应该为一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
+msgstr "%s：输入参数 #%d 的值出错：应该是一个整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -70,15 +74,46 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s：未定义的环境变量%s。\n"
 
 #, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
+msgstr ""
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "未定义的环境变量%s。\n"
 
 msgid "Too many files opened!\n"
-msgstr ""
+msgstr "打开文件过多！\n"
 
 #, c-format
 msgid "File \"%s\" already exists.\n"
-msgstr ""
+msgstr "文件“%s”已经存在。\n"
 
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
@@ -86,22 +121,42 @@ msgstr "\"%s\"目录没有写入权限。\n"
 
 #, c-format
 msgid "File \"%s\" does not exist.\n"
-msgstr ""
+msgstr "文件“%s”不存在。\n"
 
 #, c-format
 msgid "File \"%s\" read access denied.\n"
-msgstr ""
+msgstr "读取文件“%s”被拒。\n"
 
 msgid "unmanaged error by v2cunit.\n"
-msgstr ""
+msgstr "v2cunit引起的非托管错误。\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s：无效的实体 %s\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: Legend 不适合目前的情况。跳过\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr "%s：变量‘%s’不存在于‘%s’中。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s：输入参数数目错误。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
+msgstr "%s: 第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

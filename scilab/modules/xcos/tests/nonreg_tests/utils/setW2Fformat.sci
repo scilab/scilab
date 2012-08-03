@@ -49,7 +49,7 @@ function scs_m = setW2Fformat(scs_m, idxBlock, formatStr)
 //      ipar(5:4+lfil) ............. character codes for filename
 //      ipar(5+lfil:4+lfil+lfmt) ... character codes for format if any
 //
-//    Tip: convert from ASCII to human-readable => code2str(ipar)
+//    Tip: convert from ASCII to human-readable => _code2str(ipar)
 //                                                                          
 //  2008/03/31  Laurent Vaylet    Creation
 //  YYYY/MM/DD  ???               Modification: ???
@@ -60,7 +60,7 @@ lfil = ipar(1);
 lfmt = ipar(2);
 
 //-- Set new format...
-ipar = [ipar(1:5+lfil-1) ; str2code(formatStr)];
+ipar = [ipar(1:5+lfil-1) ; _str2code(formatStr)];
 //-- ... and new format length
 ipar(2) = length(formatStr);
   

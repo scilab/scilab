@@ -10,14 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d1">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d1">
   <refnamediv>
     <refname>plot2d1</refname>
     <refpurpose>2D plot (logarithmic axes)
-  (obsolete)</refpurpose>
+      (obsolete)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,43 +27,51 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>is a string of length three <literal>"abc"</literal>.</para>
+          <para>
+            is a string of length three <literal>"abc"</literal>.
+          </para>
           <variablelist>
             <varlistentry>
               <term>a</term>
               <listitem>
-                <para>can have the following values: <literal>e</literal>,
-                <literal>o</literal> or <literal>g</literal>.</para>
+                <para>
+                  can have the following values: <literal>e</literal>,
+                  <literal>o</literal> or <literal>g</literal>.
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>e</term>
                     <listitem>
                       <para>means "empty". Itspecifies the fact that the value
-                      of <literal>x</literal> is not used (the <literal>x</literal> values
-                      are supposed to be regularly spaced, ie 1:&lt;number of
-                      rows of <literal>y</literal>&gt;). The user must anyway give a
-                      value for <literal>x</literal>, 1 for instance:
-                      <literal>plot2d1("enn",1,y)</literal>.</para>
+                        of <literal>x</literal> is not used (the <literal>x</literal> values
+                        are supposed to be regularly spaced, ie 1:&lt;number of
+                        rows of <literal>y</literal>&gt;). The user must anyway give a
+                        value for <literal>x</literal>, 1 for instance:
+                        <literal>plot2d1("enn",1,y)</literal>.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>o</term>
                     <listitem>
                       <para>means "one". If there are many curves, they all
-                      have the same x-values: <literal>x</literal> is a column
-                      vector of size nl and <literal>y</literal> is a matrix of size
-                      (nl,nc). For example : 
-                       <literal>x=[0:0.1:2*%pi]';plot2d1("onn",x,[sin(x) cos(x)])</literal>.</para>
+                        have the same x-values: <literal>x</literal> is a column
+                        vector of size nl and <literal>y</literal> is a matrix of size
+                        (nl,nc). For example : 
+                        <literal>x=[0:0.1:2*%pi]';plot2d1("onn",x,[sin(x) cos(x)])</literal>.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>g</term>
                     <listitem>
-                      <para>means "general". <literal>x</literal> and <literal>y</literal>
-                      must have the same size (nl,nc). Each column of
-                      <literal>y</literal> is plotted with respect to the
-                      corresponding column of <literal>x</literal>. <literal>nc</literal>
-                      curves are plotted using <literal>nl</literal> points.</para>
+                      <para>
+                        means "general". <literal>x</literal> and <literal>y</literal>
+                        must have the same size (nl,nc). Each column of
+                        <literal>y</literal> is plotted with respect to the
+                        corresponding column of <literal>x</literal>. <literal>nc</literal>
+                        curves are plotted using <literal>nl</literal> points.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -74,8 +80,10 @@
             <varlistentry>
               <term>b, c</term>
               <listitem>
-                <para>can have the values <literal>n</literal> (normal) or
-                <literal>l</literal> (logarithmic).</para>
+                <para>
+                  can have the values <literal>n</literal> (normal) or
+                  <literal>l</literal> (logarithmic).
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>b=l</term>
@@ -99,28 +107,41 @@
         <term>x,y,[style,strf,leg,rect,nax]</term>
         <listitem>
           <para>these arguments have the same meaning as in the
-          <literal>plot2d</literal> function.</para>
+            <literal>plot2d</literal> function.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>opt_args</term>
         <listitem>
           <para>these arguments have the same meaning as in the
-          <literal>plot2d</literal> function.</para>
+            <literal>plot2d</literal> function.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function is obsolete. USE <literal>plot2d</literal> INSTEAD !!</para>
-    <para><literal>plot2d1</literal> plots a set of 2D curves. It is the same as
-    <literal>plot2d</literal> but with one more argument <literal>str</literal> which
-    enables logarithmic axis. Moreover, it allows to specify only one column
-    vector for <literal>x</literal> when it is the same for all the curves.</para>
+    <para>
+      This function is obsolete. USE <literal>plot2d</literal> INSTEAD !!
+    </para>
+    <para>
+      <literal>plot2d1</literal> plots a set of 2D curves. It is the same as
+      <literal>plot2d</literal> but with one more argument <literal>str</literal> which
+      enables logarithmic axis. Moreover, it allows to specify only one column
+      vector for <literal>x</literal> when it is the same for all the curves.
+    </para>
     <para>By default, successive plots are superposed. To clear the previous
-    plot, use <literal>clf</literal>.</para>
-    <para>Enter the command <literal>plot2d1()</literal> to see a demo.</para>
+      plot, use <literal>clf</literal>.
+    </para>
+    <para>
+      Enter the command <literal>plot2d1()</literal> to see a demo.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>plot2d1();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -137,7 +158,7 @@ plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>
@@ -155,9 +176,5 @@ plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
         <link linkend="clf">clf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

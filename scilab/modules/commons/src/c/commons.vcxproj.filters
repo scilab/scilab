@@ -29,6 +29,12 @@
     <ClCompile Include="..\jni\ScilabCommons_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\CommonFileUtils_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\GiwsException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,19 +43,22 @@
     <ClInclude Include="..\..\includes\dynlib_commons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\fileutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="commons_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\commons.iss" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\commons.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="commons.rc">

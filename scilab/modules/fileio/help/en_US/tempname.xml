@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tempname">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>tempname</refname>
     <refpurpose>Unique name for temporary file</refpurpose>
@@ -56,9 +53,12 @@
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Author</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function tempname introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

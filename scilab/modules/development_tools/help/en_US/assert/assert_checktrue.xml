@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,33 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_checktrue" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_checktrue" xml:lang="en">
   <refnamediv>
     <refname>assert_checktrue</refname>
     <refpurpose>Check that condition is true.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       flag = assert_checktrue ( condition )
       flag = assert_checktrue ( condition )
       [flag,errmsg] = assert_checktrue ( condition )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -62,7 +48,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -76,18 +61,20 @@
     <para>
       If any entry in condition is false,
       <itemizedlist>
-        <listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem>
-        <listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem>
+        <listitem>
+          <para>if the errmsg output variable is not used, an error is generated,</para>
+        </listitem>
+        <listitem>
+          <para>if the errmsg output variable is used, no error is generated.</para>
+        </listitem>
       </itemizedlist>
     </para>
     <para>
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // Tests which pass
 assert_checktrue ( %t );
 flag = assert_checktrue ( %t )
@@ -103,14 +90,16 @@ flag = assert_checktrue ( [%t %f] )
 // Wrong calls
 assert_checktrue ( "a" )
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

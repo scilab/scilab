@@ -19,36 +19,8 @@
 // French (France) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
-#endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON_TEST           ICON                    "..\\resources\\icon_tst.ICO"
-IDI_ICON_BIN            ICON                    "..\\resources\\icon_bin.ICO"
-IDI_ICON_COS            ICON                    "..\\resources\\icon_cos.ICO"
-IDI_ICON_COSF           ICON                    "..\\resources\\icon_cosf.ICO"
-IDI_ICON_DEM            ICON                    "..\\resources\\icon_dem.ICO"
-IDI_ICON_GRAPH          ICON                    "..\\resources\\icon_graph.ICO"
-IDI_ICON_SAV            ICON                    "..\\resources\\icon_sav.ICO"
-IDI_ICON_SCE            ICON                    "..\\resources\\icon_sce.ICO"
-IDI_ICON_SCI            ICON                    "..\\resources\\icon_sci.ICO"
-IDI_ICON_SCILAB         ICON                    "..\\resources\\icon_scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -81,19 +53,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// DESIGNINFO
-//
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Version
 //
 
@@ -114,13 +73,13 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "CompanyName", "Consortium Scilab (DIGITEO)"
+            VALUE "CompanyName", "Scilab Enterprises"
             VALUE "FileDescription", "Scilab 5.4.0 (GUI)"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "WScilex"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "WScilex.exe"
-            VALUE "ProductName", "Scilab 5.3 Application"
+            VALUE "ProductName", "Scilab 5.x Application"
             VALUE "ProductVersion", "5, 4, 0, 0"
         END
     END
@@ -129,6 +88,28 @@ BEGIN
         VALUE "Translation", 0x40c, 1200
     END
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+IDI_ICON_SCILAB             ICON                    "..\\resources\\scilab.ico"
+IDI_ICON_BIN                ICON                    "..\\resources\\bin.ico"
+IDI_ICON_XCOS               ICON                    "..\\resources\\xcos.ico"
+IDI_ICON_COSF               ICON                    "..\\resources\\cosf.ico"
+IDI_ICON_DEM                ICON                    "..\\resources\\dem.ico"
+IDI_ICON_GRAPH              ICON                    "..\\resources\\graph.ico"
+IDI_ICON_SAV                ICON                    "..\\resources\\sav.ico"
+IDI_ICON_SCE                ICON                    "..\\resources\\sce.ico"
+IDI_ICON_SCI                ICON                    "..\\resources\\sci.ico"
+IDI_ICON_TST                ICON                    "..\\resources\\tst.ico"
+IDI_ICON_SOD                ICON                    "..\\resources\\sod.ico"
+IDI_ICON_ZCOS               ICON                    "..\\resources\\zcos.ico"
 
 #endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////

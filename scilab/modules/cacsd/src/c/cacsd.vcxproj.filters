@@ -111,13 +111,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\cacsd.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="cacsd_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Linpack_f_Import.def">
@@ -129,14 +126,13 @@
     <None Include="..\..\cacsd.iss" />
     <None Include="..\..\sci_gateway\cacsd_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\cacsd.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="cacsd.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

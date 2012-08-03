@@ -158,11 +158,9 @@
     <ClCompile Include="tpconv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="integer.rc">
+    <ClCompile Include="..\..\sci_gateway\c\sci_iconvert.c">
       <Filter>Source Files</Filter>
-    </ResourceCompile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\db2int.h">
@@ -305,13 +303,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\integer.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="integer_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Polynomials_f_Import.def">
@@ -320,5 +312,16 @@
     <None Include="..\..\integer.iss" />
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\integer.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="integer.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

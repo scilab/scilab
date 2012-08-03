@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="parrot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>parrot</refname>
     <refpurpose> Parrotの問題</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1X2 ベクトル (<literal>D</literal>の2,2部分の次元)</para>
+          <para>
+            1X2 ベクトル (<literal>D</literal>の2,2部分の次元)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,13 +41,14 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>[D11 D12; D21 D22]</literal>
-	のように分割された行列<literal>D</literal>
-	(ただし,<literal>size(D22)=r=[r1,r2]</literal>) を指定すると,
-	<literal>[D11 D12; D21 D22+K]</literal> の最大特異値が
-	最小となるような
-	行列 <literal>K</literal> を計算します
-	(Parrotの問題).</para>
+      <literal>[D11 D12; D21 D22]</literal>
+      のように分割された行列<literal>D</literal>
+      (ただし,<literal>size(D22)=r=[r1,r2]</literal>) を指定すると,
+      <literal>[D11 D12; D21 D22+K]</literal> の最大特異値が
+      最小となるような
+      行列 <literal>K</literal> を計算します
+      (Parrotの問題).
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

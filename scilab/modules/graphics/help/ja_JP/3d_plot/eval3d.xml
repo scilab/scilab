@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eval3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>eval3d</refname>
     <refpurpose>グリッド上の関数の値</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>大きさ (1,n1) および (1,n2)のベクトル. ( <literal>y</literal> のデフォルト値: <literal>y=x</literal>).</para>
+          <para>
+            大きさ (1,n1) および (1,n2)のベクトル. ( <literal>y</literal> のデフォルト値: <literal>y=x</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,9 +47,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は行列<literal>z(n1,n2)</literal>を返します. <literal>z(i,j)=fun(x(i),y(j))</literal>. 
-    関数 <literal>fun</literal> がベクトル型の引数を受け付けない場合は,
-	プリミティブ<literal>feval</literal>を使用してください.</para>
+      この関数は行列<literal>z(n1,n2)</literal>を返します. <literal>z(i,j)=fun(x(i),y(j))</literal>. 
+      関数 <literal>fun</literal> がベクトル型の引数を受け付けない場合は,
+      プリミティブ<literal>feval</literal>を使用してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -72,9 +72,5 @@ plot3d(x,y,z);
         <link linkend="feval">feval</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Steer S.; ; ;   </para>
   </refsection>
 </refentry>

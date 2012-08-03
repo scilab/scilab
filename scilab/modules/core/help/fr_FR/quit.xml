@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="quit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>quit</refname>
     <refpurpose>Quitte Scilab ou décrémente le niveau de pause  </refpurpose>
@@ -13,30 +10,39 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>La commande <literal>quit</literal> à deux significations
-    différentes selon le contexte d'appel: </para>
+    <para>
+      La commande <literal>quit</literal> à deux significations
+      différentes selon le contexte d'appel: 
+    </para>
     <variablelist>
       <varlistentry>
-        <term>S'il n'y a pas de <literal>pause</literal> active,</term>
+        <term>
+          S'il n'y a pas de <literal>pause</literal> active,
+        </term>
         <listitem>
-          <para> alors la commande <literal>quit</literal> provoque la sortie
-          de Scilab, même si la commande est appelée dans une
-          fonction.</para>
+          <para>
+            alors la commande <literal>quit</literal> provoque la sortie
+            de Scilab, même si la commande est appelée dans une
+            fonction.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-	<term>S'il y a une <literal>pause</literal> active,</term>
+        <term>
+          S'il y a une <literal>pause</literal> active,
+        </term>
         <listitem>
-          <para>alors la commande <literal>quit</literal> termine
-          cette pause, en avortant les instructions lancées depuis ce
-          niveau de pause.</para>
+          <para>
+            alors la commande <literal>quit</literal> termine
+            cette pause, en avortant les instructions lancées depuis ce
+            niveau de pause.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
- <refsection>
+  <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // Quitter Scilab
 function foo(x),if x then quit,end,endfunction
@@ -56,9 +62,8 @@ endfunction
 foo1(%t) //entrez l'instruction "quit" au prompt
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="pause">pause</link>

@@ -10,145 +10,136 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="list_sparse_reading_API"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-    <refnamediv>
-        <refname>Sparse reading (Scilab gateway)</refname>
-
-        <refpurpose>
-            How to read sparse in a list.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <para>Input argument profile:</para>
-        <synopsis>SciErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
-        <synopsis>SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
-        <para>Named variable profile:</para>
-        <synopsis>SciErr readSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-        <synopsis>SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piParent</term>
-                <listitem>
-                    <para>
-                        Address of the parent of the new item.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstName</term>
-                <listitem>
-                    <para>
-                        Name of the variable for "named" functions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iItemPos</term>
-                <listitem>
-                    <para>
-                        Position of the new item in the list.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piRows</term>
-                <listitem>
-                    <para>
-                        Return number of rows of the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piCols</term>
-                <listitem>
-                    <para>
-                        Return number of columns of the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piNbItem</term>
-                <listitem>
-                    <para>
-                        Return number of non zero value.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piNbItemRow</term>
-                <listitem>
-                    <para>
-                        Return number of item in each rows (size: _iRows).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piColPos</term>
-                <listitem>
-                    <para>
-                        Return column position for each item (size: _iNbItem).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pdblReal</term>
-                <listitem>
-                    <para>
-                        Return array on real part data (size: _iNbItem).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pdblImg</term>
-                <listitem>
-                    <para>
-                        Return array on imaginary part data (size: _iNbItem).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to read sparse in a list.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
-        <!--Lib_name: common_read-->
-        <!--Func_list: common_read-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="list_sparse_reading_API" xml:lang="en">
+  <refnamediv>
+    <refname>Sparse reading (Scilab gateway)</refname>
+    <refpurpose>
+      How to read sparse in a list.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <para>Input argument profile:</para>
+    <synopsis>SciErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
+    <synopsis>SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+    <para>Named variable profile:</para>
+    <synopsis>SciErr readSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
+    <synopsis>SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>_pvCtx</term>
+        <listitem>
+          <para>
+            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piParent</term>
+        <listitem>
+          <para>
+            Address of the parent of the new item.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pstName</term>
+        <listitem>
+          <para>
+            Name of the variable for "named" functions.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_iItemPos</term>
+        <listitem>
+          <para>
+            Position of the new item in the list.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piRows</term>
+        <listitem>
+          <para>
+            Return number of rows of the variable.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piCols</term>
+        <listitem>
+          <para>
+            Return number of columns of the variable.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piNbItem</term>
+        <listitem>
+          <para>
+            Return number of non zero value.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piNbItemRow</term>
+        <listitem>
+          <para>
+            Return number of item in each rows (size: _iRows).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piColPos</term>
+        <listitem>
+          <para>
+            Return column position for each item (size: _iNbItem).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pdblReal</term>
+        <listitem>
+          <para>
+            Return array on real part data (size: _iNbItem).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pdblImg</term>
+        <listitem>
+          <para>
+            Return array on imaginary part data (size: _iNbItem).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SciErr</term>
+        <listitem>
+          <para>
+            Error structure where is stored errors messages history and first error number.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This help describes how to read sparse in a list.</para>
+  </refsection>
+  <refsection>
+    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+    <!--Lib_name: common_read-->
+    <!--Func_list: common_read-->
+    <title>Gateway Source</title>
+    <programlisting role="code_gateway"><![CDATA[ 
+#include "api_scilab.h"
 static int iTab = 0;
-
 void insert_indent(void)
 {
 	int i = 0;
@@ -157,7 +148,6 @@ void insert_indent(void)
 		sciprint("\t");
 	}
 }
-
 
 int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
@@ -177,7 +167,7 @@ int common_read(char *fname,unsigned long fname_len)
 	int iRet        = 0;
 	int *piAddr     = NULL;
 
-	CheckRhs(1,1);
+	CheckInputArgument(pvApiCtx, 1, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -187,8 +177,7 @@ int common_read(char *fname,unsigned long fname_len)
 	}
 
 	get_info(1, NULL, piAddr, 0);
-
-	LhsVar(1) = 0;
+	AssignOutputVariable(1) = 0;
 	return 0;
 }
 
@@ -277,7 +266,6 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		iRet = get_info(_iRhs, _piAddr, piChild, i + 1);
 		iTab--;
 	}
-
 	return 0;;
 }
 
@@ -286,7 +274,6 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	SciErr sciErr;
 	int iRows           = 0;
 	int iCols           = 0;
-
 	double* pdblReal    = NULL;
 	double* pdblImg     = NULL;
 
@@ -321,7 +308,6 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Double (%d x %d)\n", iRows, iCols);
-
 	return 0;;
 }
 
@@ -332,7 +318,6 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iLen            = 0;
 	int iRows           = 0;
 	int iCols           = 0;
-
 	char pstVar[16];
 	int* piCoeff        = NULL;
 	double** pdblReal   = NULL;
@@ -364,6 +349,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
 		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -399,6 +385,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
+
 		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
@@ -408,6 +395,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
 		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -438,18 +426,17 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		free(pdblReal[i]);
 		free(pdblImg[i]);
 	}
+
 	free(pdblReal);
 	free(pdblImg);
 	free(piCoeff);
 	return 0;;
 }
-
 int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows       = 0;
 	int iCols       = 0;
-
 	int* piBool     = NULL;
 
 	if(_iItemPos == 0)
@@ -471,17 +458,14 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean (%d x %d)\n", iRows, iCols);
 	return 0;
 }
-
 int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows           = 0;
 	int iCols           = 0;
 	int iItem           = 0;
-
 	int* piNbRow        = NULL;
 	int* piColPos       = NULL;
-
 	double* pdblReal    = NULL;
 	double* pdblImg     = NULL;
 
@@ -519,7 +503,6 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iRows       = 0;
 	int iCols       = 0;
 	int iItem       = 0;
-
 	int* piNbRow    = NULL;
 	int* piColPos   = NULL;
 
@@ -542,14 +525,12 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
 	return 0;;
 }
-
 int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iPrec               = 0;
 	int iRows               = 0;
 	int iCols               = 0;
-
 	char* pcData            = NULL;
 	short* psData           = NULL;
 	int* piData             = NULL;
@@ -568,22 +549,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		switch(iPrec)
 		{
-		case SCI_INT8 : 
+		case SCI_INT8 :
 			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pcData);
 			break;
-		case SCI_INT16 : 
+		case SCI_INT16 :
 			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &psData);
 			break;
-		case SCI_INT32 : 
+		case SCI_INT32 :
 			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &piData);
 			break;
-		case SCI_UINT8 : 
+		case SCI_UINT8 :
 			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pucData);
 			break;
-		case SCI_UINT16 : 
+		case SCI_UINT16 :
 			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &pusData);
 			break;
-		case SCI_UINT32 : 
+		case SCI_UINT32 :
 			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &puiData);
 			break;
 		default :
@@ -601,22 +582,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		switch(iPrec)
 		{
-		case SCI_INT8 : 
+		case SCI_INT8 :
 			sciErr = getMatrixOfInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pcData);
 			break;
-		case SCI_INT16 : 
+		case SCI_INT16 :
 			sciErr = getMatrixOfInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &psData);
 			break;
-		case SCI_INT32 : 
+		case SCI_INT32 :
 			sciErr = getMatrixOfInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piData);
 			break;
-		case SCI_UINT8 : 
+		case SCI_UINT8 :
 			sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
 			break;
-		case SCI_UINT16 : 
+		case SCI_UINT16 :
 			sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pusData);
 			break;
-		case SCI_UINT32 : 
+		case SCI_UINT32 :
 			sciErr = getMatrixOfUnsignedInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &puiData);
 			break;
 		default :
@@ -631,16 +612,15 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	}
 
 	insert_indent();
+
 	if(iPrec > 10)
 	{
 		sciprint("Unsigned ");
 	}
 
 	sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
-
 	return 0;;
 }
-
 int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
@@ -648,7 +628,6 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iRows       = 0;
 	int iCols       = 0;
 	int* piLen      = NULL;
-
 	char **pstData  = NULL;
 
 	if(_iItemPos == 0)
@@ -669,6 +648,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
@@ -691,6 +671,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
 		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
 		if(sciErr.iErr)
 		{
@@ -699,6 +680,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
@@ -711,7 +693,6 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			return 0;
 		}
 	}
-
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -720,10 +701,8 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Strings (%d x %d)\n", iRows, iCols);
-
 	return 0;;
 }
-
 int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
@@ -746,17 +725,13 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Pointer : 0x%08X\n", pvPtr);
-
 	return 0;
 }
- ]]>
-        </programlisting>
-    </refsection>
-
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[ 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Scilab test script</title>
+    <programlisting role="code_scilab"><![CDATA[ 
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];common_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);
@@ -775,7 +750,6 @@ end
 common_read(l)
 endfunction
 read_all;
- ]]>
-        </programlisting>
-    </refsection>
+ ]]></programlisting>
+  </refsection>
 </refentry>

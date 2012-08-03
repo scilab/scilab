@@ -11,9 +11,6 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gainplot">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>gainplot</refname>
     <refpurpose>magnitude plot</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
-    gainplot(frq,db,phi [,comments])
-    gainplot(frq, repf [,comments])</synopsis>
+      gainplot(frq,db,phi [,comments])
+      gainplot(frq, repf [,comments])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,7 +28,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>list (<literal>syslin</literal> SIMO linear system).</para>
+          <para>
+            list (<literal>syslin</literal> SIMO linear system).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,7 +61,8 @@
         <term>db,phi</term>
         <listitem>
           <para>matrices (magnitudes and phases corresponding to
-          <literal>frq</literal>)</para>
+            <literal>frq</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -74,7 +75,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Same as <link linkend="bode">bode</link> but plots only the magnitude.</para>
+    <para>
+      Same as <link linkend="bode">bode</link> but plots only the magnitude.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -117,13 +120,6 @@
       <member>
         <link linkend="datatips">datatips</link>
       </member>
-   </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
-
 </refentry>

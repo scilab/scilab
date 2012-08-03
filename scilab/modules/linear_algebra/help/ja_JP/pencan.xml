@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pencan">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pencan</refname>
     <refpurpose>行列ペンシルの正準形</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Q,M,i1]=pencan(Fs)
-[Q,M,i1]=pencan(E,A)</synopsis>
+      [Q,M,i1]=pencan(E,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>Fs</term>
         <listitem>
-          <para>標準ペンシル <literal>s*E-A</literal></para>
+          <para>
+            標準ペンシル <literal>s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,21 +55,26 @@
   <refsection>
     <title>説明</title>
     <para>
-    標準ペンシル <literal>Fs=s*E-A</literal>を指定すると, 
-	<literal>pencan</literal> は,
-	<literal>M*(s*E-A)*Q</literal>が"正準"形となるような
-	行列<literal>Q</literal> および<literal>M</literal>を返します.
+      標準ペンシル <literal>Fs=s*E-A</literal>を指定すると, 
+      <literal>pencan</literal> は,
+      <literal>M*(s*E-A)*Q</literal>が"正準"形となるような
+      行列<literal>Q</literal> および<literal>M</literal>を返します.
     </para>
-    <para><literal>M*E*Q</literal> はブロック行列です.</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>M*E*Q</literal> はブロック行列です.
+    </para>
+    <programlisting role=""><![CDATA[ 
 [I,0;
  0,N]
  ]]></programlisting>
     <para>
-    ただし,冪零行列<literal>N</literal>および
-	 <literal>i1</literal> = 行列<literal>I</literal>の大きさ.</para>
-    <para><literal>M*A*Q</literal> はブロック行列です:</para>
-    <programlisting role = ""><![CDATA[ 
+      ただし,冪零行列<literal>N</literal>および
+      <literal>i1</literal> = 行列<literal>I</literal>の大きさ.
+    </para>
+    <para>
+      <literal>M*A*Q</literal> はブロック行列です:
+    </para>
+    <programlisting role=""><![CDATA[ 
 [Ar,0;
  0,I]
  ]]></programlisting>
@@ -98,9 +103,5 @@ det(W($-2:$,$-2:$))
         <link linkend="rowshuff">rowshuff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

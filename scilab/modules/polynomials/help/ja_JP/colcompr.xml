@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colcompr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colcompr</refname>
     <refpurpose>多項式行列の列圧縮 </refpurpose>
@@ -40,13 +37,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para><literal>A</literal>の通常ランク</para>
+          <para>
+            <literal>A</literal>の通常ランク
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=A*Y</literal>, 多項式行列</para>
+          <para>
+            <literal>Ac=A*Y</literal>, 多項式行列
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +55,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    多項式行列 <literal>A</literal>の列圧縮 (左への圧縮)</para>
+      多項式行列 <literal>A</literal>の列圧縮 (左への圧縮)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

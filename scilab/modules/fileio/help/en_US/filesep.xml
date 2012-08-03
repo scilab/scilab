@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="filesep">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>filesep</refname>
     <refpurpose>returns directory separator for current platform</refpurpose>
@@ -36,18 +33,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>returns directory separator. ( '/' on Linux or '\' on Windows )</para>
+    <para>The <function>filesep</function> returns directory separator (<literal>'/'</literal> on GNU/Linux or <literal>'\'</literal> on Windows).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 filesep()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

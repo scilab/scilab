@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,7 +18,7 @@
 namespace org_modules_xml
 {
 
-    XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns) : XMLObject(), parent(_parent)
+    XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns):XMLObject(), parent(_parent)
     {
         ns = _ns;
         scope->registerPointers(ns, this);
@@ -26,7 +26,7 @@ namespace org_modules_xml
         id = scope->getVariableId(*this);
     }
 
-    XMLNs::XMLNs(const XMLElement & elem, char * prefix, char * href) : XMLObject(), parent(elem)
+    XMLNs::XMLNs(const XMLElement & elem, char *prefix, char *href):XMLObject(), parent(elem)
     {
         ns = xmlNewNs(elem.getRealNode(), (const xmlChar *)href, (const xmlChar *)prefix);
         scope->registerPointers(ns, this);
@@ -40,7 +40,12 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
-    const XMLObject * XMLNs::getXMLObjectParent() const
+    void *XMLNs::getRealXMLPointer() const
+    {
+        return static_cast < void *>(ns);
+    }
+
+    const XMLObject *XMLNs::getXMLObjectParent() const
     {
         return &parent;
     }

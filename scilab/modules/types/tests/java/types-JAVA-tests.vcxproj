@@ -18,6 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Visual-Studio-settings\ant-all\ant-all.vcxproj">
+      <Project>{a9a2020d-5541-44f2-b080-df3c9426c409}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3F4504A3-1116-40BD-9612-F5E83D09CC99}</ProjectGuid>
     <RootNamespace>types-java-tests</RootNamespace>
@@ -137,20 +142,6 @@ call ant test
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\src\java\types-JAVA.vcxproj">
-      <Project>{abcb724e-8534-4420-ac12-7c33a606aba3}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

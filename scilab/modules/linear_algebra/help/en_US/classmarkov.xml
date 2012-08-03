@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="classmarkov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>classmarkov</refname>
     <refpurpose> recurrent and transient classes of Markov matrix</refpurpose>
@@ -54,8 +51,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns a permutation vector <literal>perm</literal> such that</para>
-    <programlisting role = ""><![CDATA[ 
+      Returns a permutation vector <literal>perm</literal> such that
+    </para>
+    <programlisting role=""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
@@ -64,12 +62,13 @@ M(perm,perm) = [M11 0 0 0 0   0]
                [* *        *  Q]
  ]]></programlisting>
     <para>
-    Each <literal>Mii</literal> is a Markov matrix of dimension <literal>rec(i)  i=1,..,r</literal>.
-    <literal>Q</literal> is sub-Markov matrix of dimension <literal>tr</literal>.
-    States 1 to sum(rec) are recurrent and states from r+1 to n
-    are transient. 
-    One has <literal>perm=[indsRec,indsT]</literal> where indsRec is a  vector of size sum(rec) 
-    and indsT is a vector of size tr.</para>
+      Each <literal>Mii</literal> is a Markov matrix of dimension <literal>rec(i)  i=1,..,r</literal>.
+      <literal>Q</literal> is sub-Markov matrix of dimension <literal>tr</literal>.
+      States 1 to sum(rec) are recurrent and states from r+1 to n
+      are transient. 
+      One has <literal>perm=[indsRec,indsT]</literal> where indsRec is a  vector of size sum(rec) 
+      and indsT is a vector of size tr.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -81,7 +80,7 @@ P(perm,perm)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="genmarkov">genmarkov</link>

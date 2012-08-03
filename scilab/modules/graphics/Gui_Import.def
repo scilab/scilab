@@ -5,11 +5,8 @@ EXPORTS
 ;--------------------------
 ; GUI
 ;--------------------------
-DestroyUicontrol
-DestroyUimenu
-GetUiobjectCallback
-GetUicontrolPosition
-GetUiobjectVisible
+GetConsoleShowHiddenHandles
+GetUimenuChecked
 GetUicontrolSliderStep
 GetUicontrolFontName
 GetUicontrolVerticalAlignment
@@ -18,7 +15,6 @@ GetUicontrolRelief
 GetUicontrolUnits
 GetUicontrolValue
 GetUicontrolListboxTop
-GetUiobjectTag
 GetUicontrolMax
 GetUicontrolMin
 GetUicontrolFontAngle
@@ -29,11 +25,11 @@ GetUiobjectForegroundColor
 GetUicontrolBackgroundColor
 GetUicontrolStyle
 GetUicontrolString
+GetUicontrolTooltipString
 GetUimenuLabel
 GetUiobjectEnable
-GetUimenuChecked
-DestroyWaitBar
 GetScreenProperty
+deleteJxclickString
 getJxclickMenuCallback
 getJxclickWindowID
 getJxclickYCoordinate
@@ -44,13 +40,12 @@ getJxgetmouseWindowsID
 getJxgetmouseYCoordinate
 getJxgetmouseXCoordinate
 getJxgetmouseMouseButtonNumber
-CallJxgetmouseWithOptions
 CallJxgetmouse
-SetUiobjectCallback
-SetUicontrolParent
+CallJxgetmouseWithOptions
 setMenuParent
 SetUicontrolPosition
-SetUiobjectVisible
+SetConsoleShowHiddenHandles
+SetUimenuChecked
 SetUicontrolSliderStep
 SetUicontrolFontName
 SetUicontrolVerticalAlignment
@@ -59,7 +54,6 @@ SetUicontrolRelief
 SetUicontrolUnits
 SetUicontrolValue
 SetUicontrolListboxTop
-SetUiobjectTag
 SetUicontrolMax
 SetUicontrolMin
 SetUicontrolFontAngle
@@ -69,10 +63,6 @@ SetUicontrolFontWeight
 SetUiobjectForegroundColor
 SetUicontrolBackgroundColor
 SetUicontrolString
+SetUicontrolTooltipString
 SetUimenuLabel
 SetUiobjectEnable
-SetUimenuChecked
-setFigureEventHandler
-setFigureEventHandlerEnabled
-deleteMenuCallBack
-destroyUiobjectTag

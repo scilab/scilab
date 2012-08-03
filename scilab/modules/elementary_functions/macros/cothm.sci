@@ -21,7 +21,9 @@ function x=cothm(a)
   end
   if a==[] then x=[],return,end
   [m,n]=size(a)
-  if m<>n then error(20),end
+  if m<>n then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"cothm",1));
+  end
   //diagonalization
   [x,t,bs]=bdiag(a+0*%i*ones(a),1/%eps)
   if find(bs>1)<>[] then

@@ -13,7 +13,7 @@
 // <-- Short Description -->
 //catching protected variable redefinition
 
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 if execstr('%pi=3','errcatch')==0 then pause,end
 
 r=%f;
@@ -53,4 +53,4 @@ if ~r then pause,end
 if exists('a')<>0 then pause,end
 
 
-funcprot(prot)
+funcprot(prot);

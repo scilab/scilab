@@ -13,16 +13,16 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#if _MSC_VER
+#include <windows.h>
+#include "strdup_windows.h"
+#endif
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "BOOL.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
 /*--------------------------------------------------------------------------*/
 #define BEEP_ON "on"
 #define BEEP_OFF "off"
@@ -57,6 +57,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -64,6 +65,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -77,6 +79,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -97,6 +100,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -134,6 +138,7 @@ int sci_beep(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 

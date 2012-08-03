@@ -17,7 +17,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -115,6 +115,7 @@ for k=1:n //loop on all objects
 	  else
 	    hilite_path([path,k], "There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
 	  end
+      disp(mprintf("%s: goto tag not unique", "scicos_flat"));
 	  ok=%f;return
 	end
       else
@@ -158,13 +159,15 @@ for k=1:n //loop on all objects
       //may be we can handle this blocks just as blocks_to_remove
       if ksup==0 then 
 	scs_m=scs_m_s
-	hilite_path([path,k],gettext('Port blocks must be only used in a Super Block'),%f)
+	hilite_path([path,k],gettext('I/O blocks must be only used in a Super Block'),%f)
+    disp(mprintf("%s: Port out of hierarchy", "scicos_flat"));
 	ok=%f;return
       end
       connected=get_connected(scs_m,k)
       if connected==[] then
 	scs_m=scs_m_s
 	hilite_path([path,k],gettext('This Super block input port is not connected.'),%t)
+    disp(mprintf("%s: Not connected super block input", "scicos_flat"));
 	ok=%f;return
       end
       if or(o.gui==['IN_f','INIMPL_f']) then
@@ -257,7 +260,10 @@ for k=1:n //loop on all objects
       
       //Analyze the superblock contents
       [cors,corinvs,lt,cur_fictitious,scop_mat,ok]=scicos_flat(o.model.rpar,cur_fictitious,MaxBlock)
-      if ~ok then return,end
+      if ~ok then 
+        disp(mprintf("%s: Invalid super block at %d", "scicos_flat", k));
+        return
+      end
       //shifting the scop_mat for regular blocks. Fady 08/11/2007
       if scop_mat<>[] then
 	v_mat=find(eval(scop_mat(:,1))<MaxBlock)
@@ -306,8 +312,9 @@ for k=1:n //loop on all objects
 end //end of loop on objects
 
 if ksup==0&nb==0 then
-  messagebox('Empty diagram','modal')
+  messagebox(mprintf(gettext("%s: Empty diagram"), "Xcos"),'modal')
   ok=%f
+  disp(mprintf("%s: Empty diagram", "scicos_flat"));
   return
 end
 //-------------- Analyse  links -------------- 
@@ -370,6 +377,7 @@ if tag_exprs<>[] then
       messagebox(["Error In Compilation. You cannot have multiple GotoTagVisibility";..
 	      " with the same tag value in the same scs_m"],'modal')
       ok=%f;
+      disp(mprintf("%s: Multiple GotoTagVisibility at the same level", "scicos_flat"));
       return
     end
   end 
@@ -380,6 +388,7 @@ if tag_exprs<>[] then
       if size(index,'*')>1 then
 	messagebox(["Error in compilation";"Multiple GOTO are taged by the same GotoTagVisibility"],'modal')
 	ok=%f
+    disp(mprintf("%s: Shared GotoTagVisibility across GOTO", "scicos_flat"));
 	return
       end
       index1=find((sco_mat(:,2)=='-1')&(sco_mat(:,3)==tag_exprs(i,1))&(sco_mat(:,5)==tag_exprs(i,2)))

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -64,6 +64,11 @@
           <listitem>
             <para>
               <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_AFFICH_m">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -207,6 +212,16 @@ the diagram) during simulation.
         </para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_AFFICH_m">
+    <title>Example</title>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/AFFICH_m_Example.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/sinks_pal/AFFICH_m_Example.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_AFFICH_m">
     <title>Interfacing function</title>

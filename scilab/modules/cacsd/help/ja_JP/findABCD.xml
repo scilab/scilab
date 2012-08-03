@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="findABCD">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findABCD</refname>
     <refpurpose>離散時間システムの部分空間の同定</refpurpose>
@@ -21,10 +18,11 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
-SYS = findABCD(S,N,L,R,METH)
-
-[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
-[SYS,RCND] = findABCD(S,N,L,R,METH)</synopsis>
+      SYS = findABCD(S,N,L,R,METH)
+      
+      [SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+      [SYS,RCND] = findABCD(S,N,L,R,METH)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -51,8 +49,9 @@ SYS = findABCD(S,N,L,R,METH)
         <term>R</term>
         <listitem>
           <para>行列, 
-		findrをコールすることにより計算される結合されたブロックハンケル行列
-		のR因子に関連.</para>
+            findrをコールすることにより計算される結合されたブロックハンケル行列
+            のR因子に関連.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -80,27 +79,29 @@ SYS = findABCD(S,N,L,R,METH)
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    METH = 3.
-  </para>
+            デフォルト:    METH = 3.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>NSMPL</term>
         <listitem>
           <para>整数, 
-		共分散およびカルマン予測ゲインを計算するために使用されるサンプルの総数.
-		共分散およびカルマン予測ゲインを必要としない場合,このパラメータは不要です.
-		NSMPL = 0の場合, K, Q, Ry, および S は計算されません. デフォルト:    NSMPL = 0.</para>
+            共分散およびカルマン予測ゲインを計算するために使用されるサンプルの総数.
+            共分散およびカルマン予測ゲインを必要としない場合,このパラメータは不要です.
+            NSMPL = 0の場合, K, Q, Ry, および S は計算されません. デフォルト:    NSMPL = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>TOL</term>
         <listitem>
           <para>
-	行列のランクを推定するために使用される許容誤差.
-	TOL &gt; 0 の場合, 指定した値 TOLが 条件数の逆数の下界として使用されます.
-	デフォルト: prod(size(matrix))*epsilon_machine 
-	ただし, epsilon_machine は相対機械精度です.</para>
+            行列のランクを推定するために使用される許容誤差.
+            TOL &gt; 0 の場合, 指定した値 TOLが 条件数の逆数の下界として使用されます.
+            デフォルト: prod(size(matrix))*epsilon_machine 
+            ただし, epsilon_machine は相対機械精度です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -122,8 +123,8 @@ SYS = findABCD(S,N,L,R,METH)
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    PRINTW = 0.
-  </para>
+            デフォルト:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -160,8 +161,8 @@ SYS = findABCD(S,N,L,R,METH)
         <term>RCND</term>
         <listitem>
           <para>ランク決定, 最小二乗またはリカッチ方程式の解に関わる行列の条件数の
-		逆数のベクトル
-	</para>
+            逆数のベクトル
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -169,47 +170,49 @@ SYS = findABCD(S,N,L,R,METH)
   <refsection>
     <title>説明</title>
     <para>
-	システム行列および離散時間システムのカルマンゲインを見つけます.
-	この際,システム次元および 
-	部分空間同定技術(MOESPまたはN4SID)を用いて
-	結合されたブロックハンケル行列のR因子の要部を指定します.
-  </para>
+      システム行列および離散時間システムのカルマンゲインを見つけます.
+      この際,システム次元および 
+      部分空間同定技術(MOESPまたはN4SID)を用いて
+      結合されたブロックハンケル行列のR因子の要部を指定します.
+    </para>
     <itemizedlist>
       <listitem>
         <para>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  
-	は,状態空間実現 SYS = (A,B,C,D) (ssオブジェクト)
-	およびカルマン予測子ゲイン K (NSMPL &gt; 0の場合)
-	を計算します.
-	モデルの構造は次のようになります:</para>
-        <programlisting role = ""><![CDATA[ 
+          は,状態空間実現 SYS = (A,B,C,D) (ssオブジェクト)
+          およびカルマン予測子ゲイン K (NSMPL &gt; 0の場合)
+          を計算します.
+          モデルの構造は次のようになります:
+        </para>
+        <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-    ただし,x(k) および y(k)はそれぞれ長さNおよびLのベクトルです.
-  </para>
+          ただし,x(k) および y(k)はそれぞれ長さNおよびLのベクトルです.
+        </para>
       </listitem>
       <listitem>
         <para>[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  
-	は, 状態量, 出力および(カルマンゲイン計算に使用される)状態出力 (相互)共分散行列 Q, Ry, S
-	を
-	ランク決定,最小二乗またはリカッチ方程式の解に使用される行列の条件数の逆数を含む
-	長さ lr のベクトル RCND と共に返します.
-	ただし,
-	</para>
+          は, 状態量, 出力および(カルマンゲイン計算に使用される)状態出力 (相互)共分散行列 Q, Ry, S
+          を
+          ランク決定,最小二乗またはリカッチ方程式の解に使用される行列の条件数の逆数を含む
+          長さ lr のベクトル RCND と共に返します.
+          ただし,
+        </para>
       </listitem>
     </itemizedlist>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 lr = 4  (カルマンゲイン行列 K が必要ない場合),
 lr = 12 (カルマンゲイン行列 K が必要な場合).
  ]]></programlisting>
     <para>
-	行列RはfindRにより計算され,適当な
-	引数 METH および JOBDにより定義されます.
-	findABCD で METH = 1 を指定した場合,
-	findR で METH = 1 かつ JOBD = 1, 
-	findABCD で METH = 3 を指定した場合,
-	findR で METH = 1 を使用する必要があります.</para>
+      行列RはfindRにより計算され,適当な
+      引数 METH および JOBDにより定義されます.
+      findABCD で METH = 1 を指定した場合,
+      findR で METH = 1 かつ JOBD = 1, 
+      findABCD で METH = 3 を指定した場合,
+      findR で METH = 1 を使用する必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

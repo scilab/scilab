@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-03 22:22+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2012-04-22 00:51+0000\n"
+"Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -22,8 +22,13 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+"%s: Número incorreto de argumentos de entrada: esperava-se %d, %d ou %d.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -38,15 +43,25 @@ msgstr ""
 
 #, c-format
 msgid "%s: ans cannot be edited.\n"
+msgstr "%s: ans não pode ser editado.\n"
+
+#, c-format
+msgid "%s: Undefined variable: %s.\n"
+msgstr "%s: variável indefinida: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se números "
+"reais.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Variável indefinida %s.\n"
-
-#, c-format
-msgid "%s: Java memory problem, cannot edit %s\n"
-msgstr "%s: Problema de memória no Java: não pode editar %s\n"
+msgid ""
+"%s: Java exception arisen:\n"
+"%s\n"
+msgstr ""
+"%s: Ocorreu uma exceção Java:\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Type not handle yet"
@@ -64,20 +79,29 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "Sobre o Scil&ab..."
 
-msgid "Icon"
-msgstr "Ícone"
-
 msgid "Name"
 msgstr "Nome"
 
-msgid "Bytes"
-msgstr "Bytes"
+msgid "Dimension"
+msgstr "Dimensões"
 
 msgid "Type"
 msgstr "Tipo"
 
 msgid "Visibility"
 msgstr "Visibilidade"
+
+msgid "Bytes"
+msgstr "Bytes"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Type int value"
+msgstr "valor do tipo int"
+
+msgid "Feature not available in this mode..."
+msgstr "O recurso não está disponível neste modo..."
 
 msgid "File"
 msgstr "Arquivo"
@@ -86,13 +110,16 @@ msgid "Close"
 msgstr "Fechar"
 
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
+
+msgid "Hide Scilab variables"
+msgstr "Ocultar as variáveis do Scilab"
 
 msgid "Double"
-msgstr ""
+msgstr "Real"
 
 msgid "Polynomial"
-msgstr ""
+msgstr "Polinômio"
 
 msgid "Boolean"
 msgstr "Boleano"
@@ -113,7 +140,7 @@ msgid "String"
 msgstr "Texto"
 
 msgid "Un-compiled function"
-msgstr ""
+msgstr "função não compilada"
 
 msgid "Compiled function"
 msgstr "Função compilada"
@@ -140,7 +167,7 @@ msgid "Matlab sparse"
 msgstr ""
 
 msgid "Implicit polynomial"
-msgstr ""
+msgstr "Polinômio implícito"
 
 msgid "Variable Editor"
 msgstr "Editor de variáveis"
@@ -150,6 +177,9 @@ msgstr "Navegador de variáveis"
 
 msgid "Global variables can not be edited."
 msgstr "Variáveis globais não podem ser editadas."
+
+msgid "Edition"
+msgstr "Edição"
 
 msgid "Refresh the variable "
 msgstr "Atualizar a variável "
@@ -163,11 +193,152 @@ msgstr "Colar"
 msgid "Cut"
 msgstr "Recortar"
 
+msgid "Clear"
+msgstr "Limpar"
+
 msgid "Undo"
 msgstr "Desfazer"
 
 msgid "Redo"
 msgstr "Refazer"
+
+msgid "Size columns to fit"
+msgstr "Dimensionar colunas para encaixar"
+
+msgid "Copy as Scilab command"
+msgstr "Copiar como comando do Scilab"
+
+msgid "Copy as Scilab matrix"
+msgstr "Copiar como matriz do Scilab"
+
+msgid "Copy as Scilab matrix with CR"
+msgstr "Copiar como matriz do Scilab com retorno de carro (CR)"
+
+msgid "Short format"
+msgstr "Formato Short"
+
+msgid "ShortE format"
+msgstr "Formato ShortE"
+
+msgid "Long format"
+msgstr "Formato Long"
+
+msgid "LongE format"
+msgstr "Formato LongE"
+
+msgid "Create variable from selection"
+msgstr "Criar variável a partir da seleção"
+
+msgid "Insert a row"
+msgstr "Inserir uma linha"
+
+msgid "Remove rows"
+msgstr "Remover linhas"
+
+msgid "Insert a column"
+msgstr "Inserir uma coluna"
+
+msgid "Remove columns"
+msgstr "Remover colunas"
+
+msgid "Plot the selection"
+msgstr "Plotar a seleção"
+
+msgid "Plot the matrix"
+msgstr "Plotar a matriz"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Variable name"
+msgstr "Nome da variável"
+
+msgid "Create new variable"
+msgstr "Criar uma nova variável"
+
+msgid "Duplicate the variable"
+msgstr "Duplicar a variável"
+
+msgid "Rows number"
+msgstr "Número de linhas"
+
+msgid "Columns number"
+msgstr "Número de colunas"
+
+msgid "Fill with"
+msgstr "Preencher com"
+
+msgid "File Browser"
+msgstr "Navegador de arquivos"
+
+msgid "Size"
+msgstr "Dimensões"
+
+msgid "Last modified"
+msgstr "Última modificação"
+
+msgid "Directory"
+msgstr "Diretório"
+
+#, c-format
+msgid "%s File"
+msgstr "Arquivo %s"
+
+msgid "File/directory filter"
+msgstr "Filtro de arquivo/diretório"
+
+msgid "Enter your working folder"
+msgstr "Informe sua pasta de trabalho"
+
+msgid "Case sensitive"
+msgstr "Diferenciar maiúsculas de minúsculas"
+
+msgid "Regular expression"
+msgstr "Expressão regular"
+
+msgid "Select a directory"
+msgstr "Selecione um diretório"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr "Não é possível editar o arquivo %s"
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr "Não é possível abrir o arquivo %s"
+
+msgid "Open with SciNotes"
+msgstr "Abrir com SciNotes"
+
+msgid "Execute in Scilab"
+msgstr "Executar no Scilab"
+
+msgid "Open with Xcos"
+msgstr "Abrir com Xcos"
+
+msgid "Load in Scilab"
+msgstr "Carregar no Scilab"
+
+msgid "Edit with default application"
+msgstr "Editar com o aplicativo padrão"
+
+msgid "Open with default application"
+msgstr "Abrir com o aplicativo padrão"
+
+msgid "Scilab type:"
+msgstr "Tipo Scilab"
+
+msgid "Bytes:"
+msgstr "Bytes:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

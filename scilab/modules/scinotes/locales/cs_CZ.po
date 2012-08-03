@@ -8,34 +8,39 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-23 19:43+0000\n"
+"PO-Revision-Date: 2012-07-28 20:58+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána řetězcová matice.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána reálná matice nebo 'readonly'\n"
+"%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo 'readonly'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid ""
@@ -45,8 +50,8 @@ msgstr ""
 "rozměry.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván jeden řetězec.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
 
 msgid "File"
 msgstr "Soubor"
@@ -58,7 +63,7 @@ msgid "Open"
 msgstr "Otevřít"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Otevřít nedávné"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Pracovní adresáře;Přidat adresář;Odstranit poslední adresář"
@@ -193,28 +198,13 @@ msgid "Code Navigator"
 msgstr "Navigátor Kódu"
 
 msgid "Format"
-msgstr ""
-
-msgid "Set Colors ..."
-msgstr "Nastavit barvy ..."
-
-msgid "Set Font"
-msgstr "Nastavit Písmo"
-
-msgid "Reset default font"
-msgstr "Resetovat výchozí písmo"
+msgstr "Formát"
 
 msgid "Shift Right"
 msgstr "Posun vpravo"
 
 msgid "Shift Left"
 msgstr "Posun vlevo"
-
-msgid "Configure Tabulation"
-msgstr "Nastavit Tabulaci"
-
-msgid "Horizontal wrapping"
-msgstr "Vodorovné"
 
 msgid "Correct Indentation"
 msgstr "Spravit odsazení"
@@ -232,7 +222,7 @@ msgid "Uncomment Selection"
 msgstr "Odkomentovat Výběr"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Změnit velikost"
 
 msgid "Make Selection Lowercase"
 msgstr "Změnit výběr na malá písmena"
@@ -252,21 +242,17 @@ msgstr "Možnosti"
 msgid "Current file encoding"
 msgstr "Kódování současného souboru"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Výchozí kódování souboru SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
 msgstr "Konce řádků"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Autodokončení zapnuto"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, funkce, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Číslování řádků;Vypnuto;Normální;Kompatibilní s Whereami"
@@ -331,6 +317,171 @@ msgstr "Vyhodnotit Výběr s odezvou;Vyhodnotit do stříšky, s odezvou"
 msgid "Complete"
 msgstr "Hotovo"
 
+msgid "Display"
+msgstr "Zobrazení"
+
+msgid "Header"
+msgstr "Záhlaví"
+
+msgid "Autosave"
+msgstr "Automatické ukládání"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "Use SciNotes"
+msgstr "Použít SciNotes"
+
+msgid "External editor: "
+msgstr "Externí editor: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
+
+msgid "Scilab command: "
+msgstr "Příkaz Scilab: "
+
+msgid "SciNotes General settings"
+msgstr "Obecná nastavení SciNotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Obnovit předchozí relaci při startu"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Přidat návrat vozíku na konec souboru."
+
+msgid "Number of recently opened files to display: "
+msgstr "Počet nedávno otevřených souborů k zobrazení: "
+
+msgid "Default file encoding: "
+msgstr "Výchozí kódování souboru: "
+
+msgid "Default End-Of-Line: "
+msgstr "Výchozí konec řádku: "
+
+msgid "General display options"
+msgstr "Obecné možnosti zobrazení"
+
+msgid "Highlight current line: "
+msgstr "Zvýraznit současný řádek: "
+
+msgid "Show line numbers: "
+msgstr "Zobrazit čísla řádku: "
+
+msgid "Whereami compatible"
+msgstr "Kompatibilní s whereami"
+
+msgid "Normal"
+msgstr "Normální"
+
+msgid "Wrap lines"
+msgstr "Zalamovat řádky"
+
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+msgid "Enable keywords colorization"
+msgstr "Povolit obarvení klíčových slov"
+
+msgid "Set syntax Colors"
+msgstr "Nastavit barvy syntakce"
+
+msgid "Highlight corresponding brackets"
+msgstr "Zvýraznit odpovídající závorky"
+
+msgid "Color: "
+msgstr "Barva: "
+
+msgid "Highlight on mouse over"
+msgstr "Zvýraznit při najetí myši"
+
+msgid "Style: "
+msgstr "Styl: "
+
+msgid "Filled"
+msgstr "Vyplněné"
+
+msgid "Framed"
+msgstr "V rámečku"
+
+msgid "Underlined"
+msgstr "Podtržené"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Zvýraznit odpovídající klíčová slova (např. if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Tabelace a odsazení"
+
+msgid "Tabulation size: "
+msgstr "Velikost tabelace: "
+
+msgid "Use space"
+msgstr "Použít mezeru"
+
+msgid "Representation: "
+msgstr "Znázornění: "
+
+msgid "Chevrons"
+msgstr "Ševrony"
+
+msgid "Horizontal rule"
+msgstr "Vodorovná čára"
+
+msgid "Vertical rule"
+msgstr "Svislá čára"
+
+msgid "Enable auto indentation"
+msgstr "Povolit automatické odsazování"
+
+msgid "Indent size: "
+msgstr "Velikost odsazení: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Povolit automatické ukládání ve Scinotes"
+
+msgid "Save options"
+msgstr "Možnosti ukládání"
+
+msgid "Save every "
+msgstr "Uložit každých "
+
+msgid " minutes "
+msgstr " minut "
+
+msgid "Close options"
+msgstr "Zavřít možnosti"
+
+msgid "Delete automatically saved files"
+msgstr "Smazat automaticky uložené soubory"
+
+msgid "Filename"
+msgstr "Název souboru"
+
+msgid "Append filename with: "
+msgstr "Připojit k souborům: "
+
+msgid "Replace extension with: "
+msgstr "Nahradit příponu tímto: "
+
+msgid "Location"
+msgstr "Umístění"
+
+msgid "Source file directory"
+msgstr "Adresář zdrojového souboru"
+
+msgid "Single directory"
+msgstr "Jeden adresář"
+
+msgid "Choose an autosave directory"
+msgstr "Zvolte adresář pro automatické uložení"
+
+msgid "Default header"
+msgstr "Výchozí hlavička"
+
+msgid "Add a default header to new file"
+msgstr "Přidat výchozí hlavičku do nového souboru"
+
 msgid "Graphics handle field"
 msgstr "Grafická obslužná rutina pole"
 
@@ -361,10 +512,10 @@ msgstr "Nemáte oprávnění zapsat tento soubor"
 msgid "You do not have the permissions to read this file"
 msgstr "Nemáte oprávnění přečíst tento soubor"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Při exportu kódu pomocí FOP nastala chyba"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Při tisku nastala chyba"
 
 msgid "Tools"
@@ -408,6 +559,12 @@ msgstr "Žádné číslování řádků"
 
 msgid "Set Colors"
 msgstr "Nastavit barvy"
+
+msgid "Set Font"
+msgstr "Nastavit Písmo"
+
+msgid "Reset default font"
+msgstr "Resetovat výchozí písmo"
 
 msgid "Split horizontally"
 msgstr "Rozdělit vodorovně"
@@ -520,7 +677,6 @@ msgstr "Nahradit"
 msgid "Replace All"
 msgstr "Nahradit vše"
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Neplatný regulární výraz : %s"
 
@@ -536,11 +692,9 @@ msgstr "Dosáhli jste konce dokumentu"
 msgid "You have reached the beginning of the document"
 msgstr "Dosáhli jste začátku dokumentu"
 
-#, c-format
 msgid "String %s not found"
 msgstr "Řetězec %s nenalezen"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -561,7 +715,6 @@ msgstr ""
 " bylo od posledního uložení změněno\n"
 "uložit?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -648,14 +801,12 @@ msgstr "Otevřít zdroj makra: "
 msgid "Show the definition of the macro "
 msgstr "Zobrazit určení makra "
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Řádek %s, Sloupec %s. Funkce '%s' na Řádku %s."
 
 msgid "Unknown function"
 msgstr "Neznámá funkce"
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr "Řádek %s, Sloupec %s."
 
@@ -671,7 +822,6 @@ msgstr "Soubor nemohl být uložen."
 msgid "The file could not be converted."
 msgstr "Soubor nelze převést."
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%s je adresář."
 
@@ -696,7 +846,6 @@ msgstr "Žádný text nevybrán."
 msgid "No text to execute."
 msgstr "Žádný text ke spuštění."
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -707,6 +856,15 @@ msgstr "Problémy s kódováním"
 
 msgid "Cannot guess the file encoding."
 msgstr "Nelze odhadnout kódování souboru."
+
+msgid "Cannot save the file %s... stop the backup process"
+msgstr "Nelze uložit soubor %s... zastavte proces zálohování"
+
+msgid "Backup finished..."
+msgstr "Zálohování dokončeno..."
+
+msgid "%s occurences found."
+msgstr "nalezeno %s výskytů."
 
 msgid "Change Colors"
 msgstr "Změnit Barvy"
@@ -792,6 +950,9 @@ msgstr "Obnovit soubory z Vaší poslední relace SciNotes ?"
 msgid "Restore the last sessions"
 msgstr "Obnovit poslední relace"
 
+msgid "Configure Tabulation"
+msgstr "Nastavit Tabulaci"
+
 msgid "Tab style"
 msgstr "Styl karty"
 
@@ -803,12 +964,6 @@ msgstr "Délka"
 
 msgid "Tab representation"
 msgstr "Zobrazení karty"
-
-msgid "Horizontal rule"
-msgstr "Vodorovná čára"
-
-msgid "Vertical rule"
-msgstr "Svislá čára"
 
 msgid "Double chevrons"
 msgstr "Dvojité krokve"
@@ -825,15 +980,12 @@ msgstr "Hledat Soubory..."
 msgid "Search in Files..."
 msgstr "Hledat v Souborech..."
 
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s schod)</i></html>"
 
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s schoda)</i></html>"
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Uplynulý čas: %s vte."
 
@@ -891,12 +1043,3 @@ msgstr "Zvolte základní adresář hledání"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
-
-#~ msgid "Auto-completion on if, function, ..."
-#~ msgstr "Auto-dokončení u if, funkce, ..."
-
-#~ msgid "Auto-completion on (, [, ..."
-#~ msgstr "Auto-dokončení u (, [, ..."
-
-#~ msgid "Preferences"
-#~ msgstr "Předvolby"

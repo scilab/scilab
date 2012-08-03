@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;../graphic_objects/includes;../gui/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -88,13 +88,12 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -102,6 +101,7 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;../graphic_objects/includes;../gui/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -118,13 +118,12 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -132,13 +131,14 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;../graphic_objects/includes;../gui/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -148,13 +148,12 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -163,6 +162,7 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,7 +172,7 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../commons/src/jni;../graphic_objects/includes;../gui/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -182,13 +182,12 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;libscilab.lib;scirenderer.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -197,20 +196,17 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_driver.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xend.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp" />
     <ClCompile Include="src\cpp\exportToFile.cpp" />
+    <ClCompile Include="src\jni\Driver.cpp" />
     <ClCompile Include="src\jni\FileExporter.cpp" />
-    <ClCompile Include="src\cpp\GL2PSConstant.cpp" />
-    <ClCompile Include="src\jni\GL2PSToJOGL.cpp" />
-    <ClCompile Include="src\cpp\GL2PSWrapping.cpp" />
-    <ClCompile Include="src\jni\JOGLConstant.cpp" />
-    <ClCompile Include="src\cpp\JoGLInterface.cpp" />
     <ClCompile Include="src\c\DllmainGraphics_export.c" />
-    <ClCompile Include="src\c\gl2ps\gl2ps.c" />
-    <ClCompile Include="src\jni\GL2PSConstant_wrap.c" />
-    <ClCompile Include="src\jni\GL2PSWrapping_wrap.c" />
     <ClCompile Include="sci_gateway\c\gw_graphic_export.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2bmp.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2eps.c" />
@@ -225,24 +221,20 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_graphic_export.h" />
-    <ClInclude Include="src\c\gl2ps\gl2ps.h" />
     <ClInclude Include="includes\gw_graphic_export.h" />
-    <ClInclude Include="src\cpp\JoGLInterface.h" />
     <ClInclude Include="includes\xs2file.h" />
     <ClInclude Include="src\cpp\exportToFile.hxx" />
+    <ClInclude Include="src\jni\Driver.hxx" />
     <ClInclude Include="src\jni\FileExporter.hxx" />
-    <ClInclude Include="src\cpp\GL2PSConstant.hxx" />
-    <ClInclude Include="src\cpp\GL2PSWrapping.hxx" />
-    <ClInclude Include="src\jni\JOGLConstant.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic_export.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics_Import.def" />
-    <None Include="LibScilab_Import.def" />
-    <None Include="renderer_Import.def" />
+    <None Include="core_import.def" />
     <None Include="graphic_export.iss" />
+    <None Include="locales\graphic_export.pot" />
     <None Include="sci_gateway\graphic_export_gateway.xml" />
     <None Include="Makefile.am" />
   </ItemGroup>
@@ -255,12 +247,21 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gui\src\c\gui.vcxproj">
+      <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
     </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>

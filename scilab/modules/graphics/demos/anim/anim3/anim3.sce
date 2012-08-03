@@ -46,7 +46,7 @@ function demo_anim3()
 
   curAxe = gca();
   curAxe.box = "off";
-  curAxe.axes_visible = "off";
+  curAxe.axes_visible = "on";
   curAxe.grid= [12,12,12];
   drawnow()
 

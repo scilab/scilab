@@ -1,0 +1,84 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// for.tst --
+//   Test "for" for several data types : integer, string, vector, matrix,
+//   polynomials, and complex polynomials.
+//
+// Loop over an integer range
+computed=0;
+for i=1:5
+  computed=computed+i;
+end
+assert_checkequal(computed, 1+2+3+4+5);
+// Loop over a vector of integers
+computed=0;
+values=[1 3 5 7 9];
+for i=values
+  computed=computed+i;
+end
+assert_checkequal(computed, 1+3+5+7+9);
+// Loop over an integer with n1:step:n2 syntax
+computed=0;
+step=2;
+for i=1:step:10
+  computed=computed+i;
+end
+assert_checkequal(computed, 1+3+5+7+9);
+// Loop over a vector of strings (test also concatenation of strings)
+computed="";
+values=["this+" "is+" "my+" "string"];
+for i=values
+  computed=computed+i;
+end
+assert_checkequal(computed, "this+is+my+string");
+// Loop over a row vector of real values
+computed=0.;
+values=[1. 2. 3. 4. 5.];
+for x=values
+  computed=computed+x;
+end
+assert_checkequal(computed, 1.+2.+3.+4.+5.);
+// Loop over a list of real vectors
+computed=[0. 0. 0.];
+mylist=list([1. 2. 3.],[4. 5. 6.],[7. 8. 9.]);
+for v=mylist
+  computed=computed+v;
+end
+assert_checkequal(computed, [(1.+4.+7.) (2.+5.+8.) (3.+6.+9.)]);
+// Loop over a vector of real polynomials
+computed=0.;
+myvector=[(1.+2*%s) (3.+4.*%s)];
+for v=myvector
+  computed=computed+v;
+end
+assert_checkequal(computed, 4.+6.*%s);
+// Loop over a vector of complex polynomials
+computed=0.;
+p1=1.+2.*%i+3*%s;
+p2=4.+5.*%i+6*%s;
+myvector=[p1 p2];
+for p=myvector
+  computed=computed+p;
+end
+assert_checkequal(computed, 5.+7*%i+9*%s);
+// Loop over a column vector of real values
+// Note : there is only one loop here
+computed=[0;0;0;0;0];
+values=[1.;2.;3.;4.;5.];
+for x=values
+  computed=computed+x;
+end
+assert_checkequal(computed, [1.;2.;3.;4.;5.]);
+// Loop over a matrix of real values
+// Note : the loop is over the columns
+computed=[0;0];
+values=[1. 2.;3. 4.];
+for x=values
+  computed=computed+x;
+end
+assert_checkequal(computed, [3.;7.]);

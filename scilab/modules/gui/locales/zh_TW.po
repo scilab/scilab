@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:27+0000\n"
+"PO-Revision-Date: 2012-07-16 15:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -106,6 +106,27 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或字串向量.\n"
 
 msgid "Scilab Message"
 msgstr "Scilab 訊息"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
@@ -275,6 +296,10 @@ msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
@@ -355,38 +380,38 @@ msgstr "儲存(&S)..."
 msgid "&Export to..."
 msgstr "匯出到...(&E)"
 
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&GIF"
-msgstr "&GIF"
+msgid "P&NG"
+msgstr "P&NG"
 
 msgid "&JPG"
 msgstr "&JPG"
 
-msgid "P&NG"
-msgstr "P&NG"
+msgid "&GIF"
+msgstr "&GIF"
 
 msgid "&PPM"
 msgstr "&PPM"
 
-msgid "&Vectorial export"
-msgstr "向量圖檔輸出(&V)"
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Vectorial export to..."
+msgstr ""
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PS"
+msgstr ""
+
+msgid "&SVG"
+msgstr "&SVG"
 
 msgid "&EMF"
 msgstr "&EMF"
 
 msgid "&EPS"
 msgstr "&EPS"
-
-msgid "&FIG"
-msgstr "&FIG"
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&SVG"
-msgstr "&SVG"
 
 msgid "&Copy to clipboard"
 msgstr "複製到剪貼簿(&C)"
@@ -409,8 +434,8 @@ msgstr "顯示/隱藏工具列(&T)"
 msgid "&Zoom"
 msgstr "&Zoom (對焦)"
 
-msgid "&UnZoom"
-msgstr "&UnZoom (回復正常)"
+msgid "&Original View"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "2維/3維旋轉(&R)"
@@ -444,6 +469,18 @@ msgstr "&Start datatip 管理員"
 
 msgid "Stop datatip manager"
 msgstr "停止 datatip 管理員"
+
+msgid "&MVC"
+msgstr ""
+
+msgid "&Log View (Trace all View notifications)"
+msgstr ""
+
+msgid "&All Objects View (All objects with properties)"
+msgstr ""
+
+msgid "&Ged-like View (Future ged)"
+msgstr ""
 
 msgid "&?"
 msgstr "&?"
@@ -502,26 +539,14 @@ msgstr "清空剪貼簿(&E)"
 msgid "&Select all"
 msgstr "全選 (&S)"
 
-msgid "&Preferences"
-msgstr "喜好設定(&P)"
-
-msgid "&Colors"
-msgstr "顏色"
-
-msgid "Console &Background..."
-msgstr "控制台背景...(&B)"
-
-msgid "Console &Font..."
-msgstr "控制台字型...(&B)"
-
-msgid "&Font..."
-msgstr "字體 (&F)..."
-
 msgid "Clear &History"
 msgstr "清除歷史紀錄(&H)"
 
 msgid "Clear C&onsole"
 msgstr "清除控制台(&o)"
+
+msgid "P&references"
+msgstr ""
 
 msgid "&Control"
 msgstr "控制(&C)"
@@ -556,6 +581,9 @@ msgstr ""
 msgid "&Command History"
 msgstr "& 之前的指令"
 
+msgid "&File Browser"
+msgstr ""
+
 msgid "Scilab &Help"
 msgstr "Scilab 線上手冊(&H)"
 
@@ -580,14 +608,20 @@ msgstr "Scilab &ATOMS 網站"
 msgid "&File Exchange"
 msgstr ""
 
-msgid "&Mailing lists"
-msgstr "郵件(&M) 列表"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr ""
 
 msgid "&Bugs And Requests"
 msgstr "臭蟲及開發需求資料庫(&B)"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "旋轉"
@@ -619,12 +653,6 @@ msgstr "複製"
 msgid "Paste"
 msgstr "貼上"
 
-msgid "Change Current Directory"
-msgstr "改變目前目錄"
-
-msgid "Choose Font..."
-msgstr "選擇字型..."
-
 msgid "Print..."
 msgstr "列印..."
 
@@ -634,49 +662,114 @@ msgstr "模組管理器 - ATOMS"
 msgid "Xcos"
 msgstr "Xcos"
 
+msgid "Scilab Preferences"
+msgstr ""
+
 msgid "Scilab Demonstrations"
 msgstr "Scilab 展示"
 
-#, c-format
-msgid "%s: Could not create uicontrol of type %s."
-msgstr "%s: 無法產生型態 %s 的 uicontrol."
+msgid "Select a file to load"
+msgstr "選擇一檔案以載入系統"
+
+msgid "Figure loaded.\n"
+msgstr "圖形已載入.\n"
+
+msgid "Select a file to write"
+msgstr "選擇一檔案以寫入"
+
+msgid "Figure saved.\n"
+msgstr "圖形已存起\n"
+
+msgid "Select a file name"
+msgstr "選擇一檔案名稱"
+
+msgid "Colors"
+msgstr ""
+
+msgid "Desktop color"
+msgstr ""
+
+msgid "Use system color"
+msgstr ""
+
+msgid "Text "
+msgstr ""
+
+msgid "Background "
+msgstr ""
+
+msgid "Cursor "
+msgstr ""
+
+msgid "Syntax highlighting colors"
+msgstr ""
+
+msgid "Keyword color "
+msgstr ""
+
+msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
+msgstr ""
+
+msgid "Fonts"
+msgstr ""
+
+msgid "Desktop font"
+msgstr ""
+
+msgid "Use system font"
+msgstr ""
+
+msgid "Desktop text font: "
+msgstr ""
+
+msgid "Custom font"
+msgstr ""
+
+msgid "Fonts to use:"
+msgstr ""
+
+msgid "Desktop text font"
+msgstr ""
+
+msgid "Custom:"
+msgstr ""
 
 #, c-format
-msgid "%s: Could not destroy this object.\n"
-msgstr "%s: 無法移除這個物件.\n"
+msgid "'%s' property does not exist for this handle.\n"
+msgstr ""
 
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "屬性 '%s' 不屬於此物件.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為 'light', 'normal', 'demi' 或 'bold'.\n"
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s: 父層(上一層)之型態錯誤: 應為 Figure 或 uimenu.\n"
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -691,22 +784,14 @@ msgid ""
 msgstr "'%s' 屬性數值錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr "'%s' 屬性型態錯誤 : 應為  1x3 之實數向量或 'R|G|B'  字串.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -717,34 +802,33 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr "屬性 '%s' 長度錯誤: 應為一字串.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一實數.\n"
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "屬性 '%s' 之型態錯誤: 應為一實數.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為一實數.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "屬性 '%s' 數值錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s' 或  '%s'.\n"
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
@@ -755,18 +839,6 @@ msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
 msgstr "警告: '%s’　之 'Value' 屬性 應為　'%s' 或 '%s' 屬性值.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A graphic handle expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為一圖形代碼 (handle).\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
-msgstr "'%s’　屬性錯誤: 應為　'%s' 或 '%s' 代碼 (handle).\n"
-
-#, c-format
-msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "屬性 '%s' 不屬於在  uicontrols 之型態: %s .\n"
 
 #, c-format
 msgid ""
@@ -788,28 +860,49 @@ msgstr "屬性 '%s' 型態錯誤:  應為一字串或 1 x %d 之實數行向量.
 
 #, c-format
 msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s', '%s'或 '%s'.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr "屬性 '%s' 長度錯誤:  應為 1 x %d 之實數行向量.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr "屬性 '%s' 型態錯誤:  應為 1 x %d 之實數行向量.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "屬性 '%s' 長度錯誤:  應為 1 x %d 之實數行向量.\n"
+
+#, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr "屬性 '%s' 長度錯誤: 應為一字串或字串向量d.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -827,31 +920,22 @@ msgid ""
 msgstr "屬性 '%s' 之型態錯誤: 應為實數行向量或字串.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 '%s' 長度錯誤:  應為 '%s', '%s', 或 '%s'.\n"
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', 或  '%s'.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "屬性 '%s' 數值錯誤: '%s' or 應為 '%s'.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "屬性 '%s' 長度錯誤:  應為 '%s', '%s', 或 '%s'.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: a 2-item list expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為具兩元素之串列 (list).\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為一字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
-msgstr ""
-"%s: 屬性 ''%s'' 數值錯誤: 應為 points, normalized, inches, centimeters 或 pixels.\n"
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
 
 msgid "Console Font..."
 msgstr "控制台字體 ...."
@@ -860,22 +944,22 @@ msgid "Console Background..."
 msgstr "控制台背景..."
 
 msgid "No print service found."
-msgstr "沒發現列印的服務."
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"警告: 在您執行限制設定時, Scilab 被切換至混合圖型介面控制項會無效. 請鍵入 \"\"help usecanvas\"\" "
-"取得更多資訊.\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"警告: 在您執行限制顯示卡驅動程式時,無法管理 OpenGL, Scilab 的繪圖功能將不會有作用. 請更新您顯示卡的驅動程式.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -883,11 +967,17 @@ msgid ""
 "information.\")"
 msgstr ""
 
-msgid "Clear History"
-msgstr "清除歷史紀錄"
-
 msgid "Clear Console"
 msgstr "清除主控台畫面"
+
+msgid "Are you sure you want to clear the console ?"
+msgstr ""
+
+msgid "Do not show this message again"
+msgstr ""
+
+msgid "Clear History"
+msgstr "清除歷史紀錄"
 
 msgid "Select All"
 msgstr "全選"
@@ -1020,26 +1110,36 @@ msgstr "往前"
 msgid "Tree Overview"
 msgstr "樹狀式概覽"
 
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
-msgstr "點擊滑鼠左鍵選擇要放大的區域. 點擊滑鼠右鍵取消."
-
-msgid "Left click to terminate selection. Right click to cancel."
-msgstr "點擊滑鼠左鍵中斷選擇. 按滑鼠右鍵取消."
-
 msgid "OK"
 msgstr "確定"
-
-msgid "No"
-msgstr "否"
 
 msgid "Yes"
 msgstr "是"
 
+msgid "No"
+msgstr "否"
+
 msgid "Save and execute"
 msgstr "儲存和執行"
 
-msgid "An error occured: "
+msgid "Empty tab"
+msgstr ""
+
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "An error occurred: "
 msgstr "錯誤發生了: "
 
 msgid "Scilab SCI files"
@@ -1090,26 +1190,14 @@ msgstr "所有RTF(Rich Text Format)檔案"
 msgid "All %s files"
 msgstr "所有 %s 檔案"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Scilab 集團組織 (DIGITEO)"
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2011 (INRIA)"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "版權所有 (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "CeCILL 授權"
-
 msgid "About Scilab..."
 msgstr "有關 Scilab ..."
 
-msgid "Acknowledgements"
-msgstr "致謝"
-
 msgid "Close"
 msgstr "關閉"
+
+msgid "Acknowledgements"
+msgstr "致謝"
 
 msgid "Could not open: "
 msgstr "無法開啟： "
@@ -1125,47 +1213,11 @@ msgstr "%s: 只在 'STANDARD' 模式下可用.\n"
 msgid "Error. A signal has been caught.\n"
 msgstr "錯誤. 捕捉到一錯誤訊號.\n"
 
-msgid "Select a file to load"
-msgstr "選擇一檔案以載入系統"
-
-msgid "Figure loaded.\n"
-msgstr "圖形已載入.\n"
-
-msgid "Select a file to write"
-msgstr "選擇一檔案以寫入"
-
-msgid "Figure saved.\n"
-msgstr "圖形已存起\n"
-
-msgid "Select a file name"
-msgstr "選擇一檔案名稱"
-
-msgid "Select a file to execute"
-msgstr "選擇執行之檔案"
-
-msgid "Execution done.\n"
-msgstr "結束執行.\n"
-
-msgid "Select a file to open with SciNotes"
-msgstr ""
-
-msgid "Environment loaded.\n"
-msgstr "將軟體環境載入.\n"
-
-msgid "Environment saved.\n"
-msgstr "將軟體環境存起.\n"
-
-msgid "Select a directory"
-msgstr "選擇一目錄"
-
 msgid "Control Plot3d"
 msgstr "控制 Plot3d"
 
 msgid "File"
 msgstr "檔案:"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 msgid "GUI"
 msgstr "圖形使用者介面"
@@ -1181,6 +1233,9 @@ msgstr "使用者操作控制項 2"
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "LaTeX/MathML 使用者操作控制項"
+
+msgid "Show images with uicontrols "
+msgstr ""
 
 msgid "<Enter color name here>"
 msgstr "<在此輸入顏色名稱>"
@@ -1480,38 +1535,3 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
-
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "作者:\n"
-#~ "Scilab 協會 / INRIA / ENPC / 其他貢獻者\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr "Scilab 5.0 及為來版本將以 CeCILL  版權方式發行.\n"
-
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Scilab 貢獻者..."
-
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "但部分 Scilab 模組以 GPLv2 版權形式發行.\n"
-#~ "\n"
-
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "版本 %s (%s)\n"
-#~ "\n"
-
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"

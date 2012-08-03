@@ -18,29 +18,30 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <assert.h>
+#include <assert.h>//
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "machine.h"
+#include "MALLOC.h"
 
 #if defined(HAVE_GLIBC_BACKTRACE)
 #include <memory.h>
 #include <execinfo.h>
 #endif
 
-#if defined(HAVE_GLIBC_BACKTRACE) && defined(HAVE_CPLUS_DEMANGLE)
-#include <demangle.h>
-#endif
-
 #if defined(HAVE_GLIBC_BACKTRACE) && defined(__GNUC__)
 #define _GNU_SOURCE
 #endif
 
-#include "backtrace.h"
+#define __USE_GNU
+#ifndef _MSC_VER
+#include <dlfcn.h>
+#endif
 
+#include "backtrace.h"
 
 /*-----------------------------------------------------------------------------
  * Local type definitions
@@ -82,14 +83,6 @@ sci_backtrace_t *sci_backtrace_create(void)
 
     sci_backtrace_t *bt = NULL;
 
-    /*
-    ** nbIgnoreCall
-    ** When signal is trapped, catching functions will be present
-    ** within call stack so we shift to remove them.
-    **
-    */
-    int nbIgnoredCall = 3;
-
     /* Create backtrace structure */
 
     bt = malloc(sizeof(sci_backtrace_t));
@@ -97,21 +90,20 @@ sci_backtrace_t *sci_backtrace_create(void)
     if (bt != NULL)
     {
 
-        void *tr_array[200];
+        void * tr_array[200];
         int tr_size = backtrace(tr_array, 200);
-        char **tr_strings = backtrace_symbols(tr_array, tr_size);
 
-       /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
-         * backtrace is useful mainly in case of severe errors, so we avoid
-         * higher level constructs as much as possible at this stage. */
+        /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
+          * backtrace is useful mainly in case of severe errors, so we avoid
+          * higher level constructs as much as possible at this stage. */
 
-        if (tr_size < 2 || tr_strings == NULL)
+        if (tr_size < 2)// || tr_strings == NULL)
         {
             free(bt);
             return NULL;
         }
 
-        bt->size = tr_size - nbIgnoredCall;
+        bt->size = tr_size;
 
         bt->s_file = malloc(tr_size * sizeof(char *));
         bt->s_func = malloc(tr_size * sizeof(char *));
@@ -140,61 +132,30 @@ sci_backtrace_t *sci_backtrace_create(void)
 
         }
 
+        Dl_info * infos = (Dl_info *)MALLOC(sizeof(Dl_info));
+
         for (i = 0; i < bt->size; i++)
         {
+            char buffer[32];
+            void * p = tr_array[i];
+
             bt->s_file[i] = NULL;
             bt->s_func[i] = NULL;
             bt->s_addr[i] = NULL;
+
+            if (dladdr(p, infos))
+            {
+                bt->s_func[i] = infos->dli_sname ? strdup(infos->dli_sname) : strdup(" ");
+                bt->s_file[i] = infos->dli_fname ? strdup(infos->dli_fname) : strdup(" ");
+
+                // we calculate the relative address in the library
+                snprintf(buffer, 32, "%p", p - infos->dli_fbase);
+                bt->s_addr[i] = strdup(buffer);
+            }
         }
 
-        /* Now parse backtrace strings and build arrays */
-
-        for (i = 0; i < bt->size; i++)
-        {
-
-            char *s = tr_strings[i+nbIgnoredCall];    /* Shift by nbIgnoredCall to ignore functions */
-
-            char *sLibName = NULL;
-            char *sAddr = NULL;
-            char *sFunName = NULL;
-
-            /*
-            ** Mac OS Backtrace are formated using spaces :
-            ** 0   my_backtrace                        0x0000000100001d79 bft_backtrace_create + 61
-            ** 1   my_backtrace                        0x0000000100000fc8 _cs_base_backtrace_print + 46
-            ** 2   my_backtrace                        0x0000000100002386 bft_backtrace_print + 35
-            **
-            ** Linux does it with special characters : [] ()
-            ** ./my_backtrace(bft_backtrace_create+0x41) [0x402055]
-            ** ./my_backtrace() [0x401474]
-            ** ./my_backtrace(bft_backtrace_print+0x25) [0x402645]
-            */
-#ifdef __APPLE__
-            /* Find executable or library name */
-            strtok(s, " "); // Will find first occurence
-            sLibName = strtok(NULL, " "); // retrieve second occurence.
-            /* Find adress */
-            sAddr = strtok(NULL, " "); // retrieve third occurence.
-            /* Find function name */
-            sFunName = strtok(NULL, " "); // retrieve fourth occurence.
-#else
-            strtok(s, "[]"); // Will find first occurence
-            sAddr = strtok(NULL, "[]"); // retrieve second occurence.
-            strtok(s, "()"); // Will find first occurence
-            sFunName = strtok(NULL, "()"); // retrieve second occurence.
-            sLibName = strtok(s, "("); // Will find first occurence
-#endif
-
-            bt->s_func[i] = (sFunName != NULL ? strdup(sFunName) : NULL);
-            bt->s_file[i] = (sLibName != NULL ? strdup(sLibName) : NULL);
-            bt->s_addr[i] = (sAddr != NULL ? strdup(sAddr) : NULL);
-        }
-
-        /* Free temporary memory
-         * (only main pointer needs to be freed according to glibc documentation) */
-
-        free((void *)tr_strings);
-
+        FREE(infos);
+        infos = NULL;
     }
 
     return bt;
@@ -265,37 +226,33 @@ sci_backtrace_t *sci_backtrace_destroy(sci_backtrace_t * bt)
 void sci_backtrace_demangle(sci_backtrace_t * bt)
 {
 #if defined(HAVE_GLIBC_BACKTRACE) && defined(HAVE_CPLUS_DEMANGLE)
-
     int i, j, l;
 
     if (bt != NULL)
     {
-
         for (i = 0; i < bt->size; i++)
         {
 
             char *s_cplus_func_p = NULL;
             char *s_cplus_func = NULL;
-            int l2 = 0;
+            size_t funcnamesize = 0;
+            int status = 0;
 
             if (bt->s_func[i] == NULL)
             {
                 continue;
             }
 
-            for (j = 0; bt->s_func[i][j] != '\0' && bt->s_func[i][j] != '+'; j++) ;
-
-            if (bt->s_func[i][j] == '+')
-            {
-                l2 = strlen(bt->s_func[i] + j);
-                bt->s_func[i][j] = '\0';
-            }
-
-            s_cplus_func_p = cplus_demangle(bt->s_func[i], auto_demangling);
-            printf("%s ; %s\n", bt->s_func[i], s_cplus_func_p);
+            s_cplus_func_p = sci_demangle(bt->s_func[i], NULL, &funcnamesize, &status);
 
             if (s_cplus_func_p == NULL)
             {
+                continue;
+            }
+
+            if (status)
+            {
+                free(s_cplus_func_p);
                 continue;
             }
 
@@ -303,25 +260,21 @@ void sci_backtrace_demangle(sci_backtrace_t * bt)
 
             if (l == 0)
             {
+                free(s_cplus_func_p);
                 continue;
             }
 
-            s_cplus_func = malloc(l + l2 + 1);
+            s_cplus_func = malloc(l + 1);
 
             if (s_cplus_func != NULL)
             {
                 strncpy(s_cplus_func, s_cplus_func_p, l + 1);
-                if (l2 > 0)
-                {
-                    bt->s_func[i][j] = '+';
-                    strcpy(s_cplus_func + l, bt->s_func[i] + j);
-                }
-                s_cplus_func[l + l2] = '\0';
+                s_cplus_func[l] = '\0';
                 free(bt->s_func[i]);
                 bt->s_func[i] = s_cplus_func;
-
             }
 
+            free(s_cplus_func_p);
         }
 
     }

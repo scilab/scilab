@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:46+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-02 19:40+0000\n"
+"Last-Translator: Juan Pablo <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -27,6 +27,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: los datos no se corresponden "
 "con el formato.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,10 +48,11 @@ msgstr ""
 "formato.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada %d: Los datos no entran en el "
-"formato.\n"
+"%s: Valor incorrecto para el argumento de entrada #%d: la información no se "
+"ajusta al formato.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -175,7 +180,7 @@ msgid "Incorrect assignment.\n"
 msgstr "Asignación incorrecta.\n"
 
 msgid "Invalid factor.\n"
-msgstr "factor invalido\n"
+msgstr "Factor inválido.\n"
 
 msgid "Waiting for right parenthesis.\n"
 msgstr "Esperando paréntesis derecho.\n"
@@ -395,7 +400,7 @@ msgstr ""
 "de entrada.\n"
 
 msgid "Wrong number of input arguments."
-msgstr ""
+msgstr "Número incorrecto de argumentos de entrada"
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
@@ -404,7 +409,7 @@ msgstr ""
 "de salida.\n"
 
 msgid "Wrong number of output arguments.\n"
-msgstr ""
+msgstr "Número incorrecto de argumentos de salida.\n"
 
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr "Tamaño incorrecto del argumento: dimensiones incompatibles.\n"
@@ -435,13 +440,13 @@ msgstr "Formato de archivo desconocido.\n"
 
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
-msgstr ""
+msgstr "¡¡¡Error falta!!! Sus variables fueron guardadas en el archivo: %s\n"
 
 msgid "Bad call to a scilab function ?\n"
-msgstr ""
+msgstr "¿llamó incorrectamente a una función de Scilab?\n"
 
 msgid "Otherwise, send a bug report to :"
-msgstr ""
+msgstr "En caso contrario, envíe un informe de error a:"
 
 msgid "Floating point exception.\n"
 msgstr "Excepción de punto flotante.\n"
@@ -608,7 +613,7 @@ msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 "Variable %s no es una representación de un espacio de estado válido.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Función indefinida.\n"
 
 msgid "Function name already used.\n"
@@ -1085,7 +1090,7 @@ msgstr ""
 "Los argumentos de entrada deben tener el mismo nombre formal de variable.\n"
 
 msgid "Unknown data.\n"
-msgstr ""
+msgstr "Datos desconocidos.\n"
 
 msgid "Warning :\n"
 msgstr "Advertencia :\n"
@@ -1522,6 +1527,29 @@ msgstr "%s: Formato de exportación incorrecto: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: Tipo %s no soportado : Defina la función %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una cadena "
+"de caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una cadena de "
+"caracteres.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un modelo "
+"estado-espacio.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

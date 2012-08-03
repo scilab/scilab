@@ -10,19 +10,19 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-function [status, message] = xcosValidateBlockSet(interfFunctionName)
+function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     status = %t;
-    message = "";
+    msg = "";
 
     if typeof(interfFunctionName) <> "string" | size(interfFunctionName) <> [1, 1]
-        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidate_blockSet", 1))
+        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidateBlockSet", 1))
     end
 
     // Check function is defined
     ierr = execstr("funType = typeof("+interfFunctionName+");", "errcatch")
     if ierr <> 0 | and(funType <> ["fptr", "function"])
         status = %f;
-        message = _("Interface function does not exist or can not be called.");
+        msg = _("Interface function does not exist or can not be called.");
         return
     end
 
@@ -30,7 +30,7 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
     vars=macrovar(evstr(interfFunctionName));
     if or([size(vars(1)) <> [3 1] , size(vars(2)) <> [3 1]]) then
         status = %f;
-        message = sprintf(_("%s is not a valid block descriptor."), interfFunctionName);
+        msg = sprintf(_("%s is not a valid block descriptor."), interfFunctionName);
         continue;
     end
 
@@ -46,20 +46,17 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
             vSize = size(labelsv, '*');
             hSize = size(labelsh, '*');
             if size(default_inputs_vector) <> [vSize, hSize] then
-                error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
+                error(999, sprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "x_mdialog", 4, vSize, hSize));
             end;
             result = default_inputs_vector;
         else
-            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
-        end;
+            error(999, sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "x_mdialog", 3, 4));
+        end
     endfunction
 
     // Stubbing the x_dialog method
     // checking it's arguments size only
     function [result]=x_dialog(labels, default_inputs_vector)
-        if(or(size(labels) <> size(default_inputs_vector))) then
-            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
-        end;
         result = default_inputs_vector;
     endfunction
 
@@ -73,22 +70,29 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
         end
     endfunction
 
-    // Stubbing the messagebox method
-    function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+    // Stubbing the msgbox method
+    function [btn] = msgbox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
         btn=1;
     endfunction
 
-    ierr=execstr("scs_m = "+interfFunctionName+"(""define"", [], [])",'errcatch')
+    // Stubbing the message method
+    function [btn] = message(strings ,buttons, modal)
+        btn=1;
+    endfunction
+
+    ierr = execstr("scs_m = "+interfFunctionName+"(""define"", [], [])", "errcatch");
     if ierr <> 0
         status = %f;
-        message = sprintf(_("Block definition with function [%s] failed."), interfFunctionName);
+        msg = sprintf(_("Block definition with function [%s] failed."), interfFunctionName);
         return
     end
 
-    ierr=execstr("scs_m = "+interfFunctionName+"(""set"", scs_m, [])",'errcatch')
+    ierr = execstr("scs_m = "+interfFunctionName+"(""set"", scs_m, [])", "errcatch")
     if ierr <> 0
+        errmsg = lasterror();
         status = %f;
-        message = sprintf(_("Block configuration with function [%s] failed."), interfFunctionName);
+        msg = sprintf(_("Block configuration with function [%s] failed."), interfFunctionName);
+        msg = [msg;errmsg];
         return
     end
 

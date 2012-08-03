@@ -115,7 +115,7 @@ function ilib_build(ilib_name, ..
   files = files(:)';
   files = unique([files, file_gw_name]);
 
-  ilib_gen_Make(ilib_name, table, files, libs, makename, %t, ldflags, cflags, fflags, cc);
+  makename = ilib_gen_Make(ilib_name, table, files, libs, makename, %t, ldflags, cflags, fflags, cc);
 
   // we call make
   if ( ilib_verbose() <> 0 ) then

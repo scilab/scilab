@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="faurre">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>faurre</refname>
     <refpurpose>Faurreアルゴリズムによりフィルタの計算</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>H, F, G</term>
         <listitem>
-          <para><literal>y</literal>系列の共分散から推定.</para>
+          <para>
+            <literal>y</literal>系列の共分散から推定.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,21 +48,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は代数リカッチ方程式の最小解を反復計算により求め,
-	フィルタモデルの行列<literal>R</literal> および <literal>T</literal>を
-	出力します.
-	このアルゴリズムは解Pを以下のような行列Pnの系列の上限値として計算します
-	</para>
-    <programlisting role = ""><![CDATA[ 
+      この関数は代数リカッチ方程式の最小解を反復計算により求め,
+      フィルタモデルの行列<literal>R</literal> および <literal>T</literal>を
+      出力します.
+      このアルゴリズムは解Pを以下のような行列Pnの系列の上限値として計算します
+    </para>
+    <programlisting role=""><![CDATA[ 
                                      -1
 Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
        -1
 P0=G*R0 *G'
  ]]></programlisting>
     <para>
-	この手法は特にFが単位円の近傍に極を有する時に
-	収束しないことに注意してください.
-	この場合には,srfaur関数を使用する方が良いでしょう.</para>
+      この手法は特にFが単位円の近傍に極を有する時に
+      収束しないことに注意してください.
+      この場合には,srfaur関数を使用する方が良いでしょう.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -78,9 +78,5 @@ P0=G*R0 *G'
         <link linkend="phc">phc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -26,15 +25,16 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDocument(char * fname, unsigned long fname_len)
+int sci_xmlDocument(char *fname, unsigned long fname_len)
 {
-    int * addr = 0;
+    int *addr = 0;
     SciErr err;
+
     org_modules_xml::XMLDocument * doc = 0;
-    char * uri = 0;
-    char * version = 0;
+    char *uri = 0;
+    char *version = 0;
     int i = 0;
-    char ** vars[] = {&uri, &version};
+    char **vars[] = { &uri, &version };
 
     CheckLhs(1, 1);
     CheckRhs(0, 2);
@@ -45,16 +45,21 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, addr))
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, i + 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i + 1);
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, addr, vars[i]);
+        if (getAllocatedSingleString(pvApiCtx, addr, vars[i]) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
     }
 
     doc = new org_modules_xml::XMLDocument(uri, version);
@@ -64,7 +69,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
         freeAllocatedSingleString(*(vars[i]));
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }
@@ -74,4 +79,5 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <link linkend="Switch">Modelica model</link>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_Switch">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,10 +93,10 @@
   <refsection id="Description_Switch">
     <title>Description</title>
     <para>
-This is a non-ideal two-pole switch. If the explicit input become positive, two pins are connected via a resistor of resistance RON). Otherwise, two pins are connected via ROFF resistance.  Note that using this block may result in a stiff model, so try to choose proper error tolerances.  
-</para>
+      This is a non-ideal two-pole switch. If the explicit input become positive, two pins are connected via a resistor of resistance RON). Otherwise, two pins are connected via ROFF resistance.  Note that using this block may result in a stiff model, so try to choose proper error tolerances.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_Switch">
     <title>Dialog box</title>
@@ -113,8 +108,8 @@ This is a non-ideal two-pole switch. If the explicit input become positive, two 
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -141,22 +136,24 @@ This is a non-ideal two-pole switch. If the explicit input become positive, two 
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'inp'
-</para>
             <para>
-Explicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'inp'
+            </para>
+            <para>
+              Explicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -166,13 +163,14 @@ Explicit <emphasis role="bold">variable.</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -182,29 +180,37 @@ Implicit <emphasis role="bold">variable.</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Ron'
-</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.01
-</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.
-
-
-</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Ron'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.01
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+              
+              
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Roff'
-</para>
-            <para><emphasis role="bold">Default value :</emphasis> 100000
-</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.
-
-
-</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Roff'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 100000
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+              
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Switch</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Switch
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -223,9 +229,5 @@ Implicit <emphasis role="bold">variable.</emphasis>
         <para> SCI/modules/scicos_blocks/macros/Electrical/Switch.mo</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_Switch">
-    <title>Authors</title>
-    <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>
 </refentry>

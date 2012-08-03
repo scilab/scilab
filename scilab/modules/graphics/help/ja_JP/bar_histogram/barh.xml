@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="barh">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>barh</refname>
     <refpurpose>棒ヒストグラムの水平表示</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>barh(y)
-barh(x,y)
-barh([h],x,y [,width [,color [,style]]])</synopsis>
+      barh(x,y)
+      barh([h],x,y [,width [,color [,style]]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -43,15 +41,17 @@ barh([h],x,y [,width [,color [,style]]])</synopsis>
         <term>x</term>
         <listitem>
           <para>実数スカラー, 大きさ Nのベクトル, (デフォルト:  y がベクトルの場合,
-		x はベクトルで xの長さはyの長さに等しくなります.
-		yが行列の場合,xはベクトルとなりxの長さはyの行数と等しくなります.</para>
+            x はベクトルで xの長さはyの長さに等しくなります.
+            yが行列の場合,xはベクトルとなりxの長さはyの行数と等しくなります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>width</term>
         <listitem>
           <para>(オプション), 実数スカラー, bar の幅 (利用可能な空間の割合) を定義
-	 (デフォルト: 0.8, すなわち 80%).</para>
+            (デフォルト: 0.8, すなわち 80%).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -70,34 +70,46 @@ barh([h],x,y [,width [,color [,style]]])</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>barh(y,...) :</literal> 
-	y がベクトルの場合, barh 関数は
-	<literal>polyline_style</literal>  6型を有するポリラインを描画します.
-	y がベクトルの場合, barh はベクトルyをベクトル1:size(y,'*')に対して
-	描画します. y が行列 N*M の場合, barh は M個のポリライン(6型)を描画し,
-	各ポリラインはyの列に対してベクトルx=1:size(y,1)に対応します.</para>
-    <para><literal>barh(x,y,...) :</literal> yがベクトルの場合, barh 関数は
-	<literal>polyline_style</literal> 6型 を有するポリラインを描画します.
-	ただし, xの長さ = yの長さとなります.
-	y が行列 NxMの場合, barh 関数は6型 を有するM本のポリラインを描画します.
-	各ポリラインはyの列に対するベクトルxに対応します.</para>
-    <para><literal>barh(h,...) :</literal> は描画を実行中のカレントの軸を定義します.</para>
-    <para><literal>barh(...,width,...) :</literal> 
-	は棒の幅をパーセント単位で
-	定義します(通常: 0&lt;width&lt;=1).</para>
-    <para><literal>barh(...,style,...) :</literal> は棒の描画方法を定義します.
-	y が行列 N*M の場合 (つまり, M本の6型ポリライン),
-	M個の棒を描画する方法が二種類あります.
-	styleオプション = 'grouped'により,
-	M個のポリラインをxの各要素に対して中心に置くことができます,
-	そして, style オプション 'stacked' によりこれらをスタックすることができます.</para>
-    <para><literal>barh(...,color,...) : </literal>は,棒の色を定義します.
-	barh関数は<literal>plot</literal>関数と同じカラーマップを使用します.</para>
+    <para>
+      <literal>barh(y,...) :</literal> 
+      y がベクトルの場合, barh 関数は
+      <literal>polyline_style</literal>  6型を有するポリラインを描画します.
+      y がベクトルの場合, barh はベクトルyをベクトル1:size(y,'*')に対して
+      描画します. y が行列 N*M の場合, barh は M個のポリライン(6型)を描画し,
+      各ポリラインはyの列に対してベクトルx=1:size(y,1)に対応します.
+    </para>
+    <para>
+      <literal>barh(x,y,...) :</literal> yがベクトルの場合, barh 関数は
+      <literal>polyline_style</literal> 6型 を有するポリラインを描画します.
+      ただし, xの長さ = yの長さとなります.
+      y が行列 NxMの場合, barh 関数は6型 を有するM本のポリラインを描画します.
+      各ポリラインはyの列に対するベクトルxに対応します.
+    </para>
+    <para>
+      <literal>barh(h,...) :</literal> は描画を実行中のカレントの軸を定義します.
+    </para>
+    <para>
+      <literal>barh(...,width,...) :</literal> 
+      は棒の幅をパーセント単位で
+      定義します(通常: 0&lt;width&lt;=1).
+    </para>
+    <para>
+      <literal>barh(...,style,...) :</literal> は棒の描画方法を定義します.
+      y が行列 N*M の場合 (つまり, M本の6型ポリライン),
+      M個の棒を描画する方法が二種類あります.
+      styleオプション = 'grouped'により,
+      M個のポリラインをxの各要素に対して中心に置くことができます,
+      そして, style オプション 'stacked' によりこれらをスタックすることができます.
+    </para>
+    <para>
+      <literal>barh(...,color,...) : </literal>は,棒の色を定義します.
+      barh関数は<literal>plot</literal>関数と同じカラーマップを使用します.
+    </para>
     <para>barhを複数回コールする場合,
-	<literal>barhomogenize</literal>関数により
-	カレントの軸に含まれる
-	全ての棒(すなわち,6型のポリライン)の幅とスタイルを均質化できます.
-	</para>
+      <literal>barhomogenize</literal>関数により
+      カレントの軸に含まれる
+      全ての棒(すなわち,6型のポリライン)の幅とスタイルを均質化できます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -140,9 +152,5 @@ barh(x,y,0.2,'green');
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Farid Belahcene</para>
   </refsection>
 </refentry>

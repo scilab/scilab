@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="horner">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>horner</refname>
     <refpurpose>多項式/有理数の評価</refpurpose>
@@ -42,17 +39,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	多項式の変数<literal>s</literal>が<literal>x</literal>で
-	置換される時,
-	多項式または有理数行列<literal>P = P(s)</literal>を評価します:</para>
-    <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
+      多項式の変数<literal>s</literal>が<literal>x</literal>で
+      置換される時,
+      多項式または有理数行列<literal>P = P(s)</literal>を評価します:
+    </para>
     <para>
-    例 (双一次変換): <literal>P = P(s)</literal> が有理行列と仮定すると,
-	有理行列<literal>P((1+s)/(1-s))</literal>は
-	<literal>horner(P,(1+s)/(1-s))</literal>により得られます.</para>
+      <literal>horner(P,x)</literal>=<literal>P(x)</literal>
+    </para>
     <para>
-	指定した周波数で有理行列を評価する場合は,
-	<literal>freq</literal>プリミティブを使用する方が良いでしょう.</para>
+      例 (双一次変換): <literal>P = P(s)</literal> が有理行列と仮定すると,
+      有理行列<literal>P((1+s)/(1-s))</literal>は
+      <literal>horner(P,(1+s)/(1-s))</literal>により得られます.
+    </para>
+    <para>
+      指定した周波数で有理行列を評価する場合は,
+      <literal>freq</literal>プリミティブを使用する方が良いでしょう.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

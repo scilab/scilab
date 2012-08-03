@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:46+0000\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -26,6 +26,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s : Nombre erroné d'arguments d'entrée : Les données ne correspondent pas "
 "au format.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,7 +48,8 @@ msgstr ""
 "au format.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Les données ne "
 "correspondent pas au format.\n"
@@ -603,7 +608,7 @@ msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 "La variable %s n'est pas dans une représentation espace d'état valide.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Fonction non définie.\n"
 
 msgid "Function name already used.\n"
@@ -876,7 +881,7 @@ msgstr "Échec de semi def.\n"
 
 msgid "Wrong type for first input argument: Single string expected.\n"
 msgstr ""
-"Type erroné du premier argument d'entrée : Une seule chaîne de caractères "
+"Type erroné du premier argument d'entrée : Une chaîne de caractères "
 "attendue.\n"
 
 msgid "Entry name not found.\n"
@@ -1484,7 +1489,7 @@ msgstr "     (fin) %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -1506,7 +1511,7 @@ msgstr "%s : Type erroné de l'argument n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s : Nombre erroné d'arguments d'entrée : De %d à %d attendu."
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus."
 
 #, c-format
 msgid "%s: Wrong export format: %s"
@@ -1515,6 +1520,29 @@ msgstr "%s : Format d'export erroné : %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s : Le type %s n'est pas géré : Veuillez définir la fonction %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un modèle d'espace d'état "
+"attendu.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

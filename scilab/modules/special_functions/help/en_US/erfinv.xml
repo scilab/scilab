@@ -11,15 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-          version="5.0-subset Scilab" xml:lang="en" xml:id="erfinv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="erfinv">
   <refnamediv>
     <refname>erfinv</refname>
     <refpurpose>inverse error function</refpurpose>
@@ -51,7 +43,9 @@
       The <literal>erfinv</literal> function computes the inverse of
       the <literal>erf</literal> error function. Thus, erf(erfinv(x))
       = x for all <literal>x</literal> such that <literal>-1 ≤ x ≤
-      1</literal>.
+        1
+      </literal>
+      .
     </para>
   </refsection>
   <refsection>
@@ -61,14 +55,27 @@ x = linspace(-0.99, 0.99, 100);
 y = erfinv(x);
 plot2d(x, y)
 ]]></programlisting>
+<scilab:image>
+x = linspace(-0.99, 0.99, 100);
+y = erfinv(x);
+plot2d(x, y);
+</scilab:image>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="cdfnor">cdfnor</link></member>
-      <member><link linkend="erf">erf</link></member>
-      <member><link linkend="erfc">erfc</link></member>
-      <member><link linkend="erfcx">erfcx</link></member>
+      <member>
+        <link linkend="cdfnor">cdfnor</link>
+      </member>
+      <member>
+        <link linkend="erf">erf</link>
+      </member>
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="erfcx">erfcx</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

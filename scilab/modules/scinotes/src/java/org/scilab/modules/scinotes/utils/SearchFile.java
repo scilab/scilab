@@ -15,17 +15,20 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -39,62 +42,89 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.flexdock.docking.event.DockingEvent;
-import org.flexdock.docking.defaults.DockingSplitPane;
-
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.UIElementMapper;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SearchManager;
+import org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
  * @author Calixte DENIZET
  */
-public class SearchFile extends SwingScilabTab implements Tab {
+public class SearchFile extends SwingScilabTab {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
-    private static SearchFile instance;
+    static {
+        ScilabTabFactory.getInstance().addTabFactory(SearchInFilesTabFactory.getInstance());
+    }
 
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
     private SciNotes editor;
+    private MyBackgroundSearch mySearch;
+    private JTree tree;
 
     /**
      * Default constructor
      * @param editor the editor where to open a file
-     * @param title the window title
+     * @param uuid the tab uuid
      */
-    private SearchFile(SciNotes editor, String title) {
-        super(title);
+    public SearchFile(SciNotes editor, String uuid) {
+        super(SciNotesMessages.SEARCHINFILES, uuid == null ? UUID.randomUUID().toString() : uuid);
         this.editor = editor;
-        parentWindow = ScilabWindow.createWindow();
-        instance = this;
+        editor.addSearchInFiles(this);
+        ConfigSciNotesManager.saveSearchInFilesState(editor.getPersistentId(), getPersistentId());
+        initTab();
+        restoreSearchFile();
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**
-     * Get the parent window id for this tab
-     * @return the id of the parent window
+     * Default constructor
+     * @param editor the editor where to open a file
      */
-    public Window getParentWindow() {
+    public SearchFile(SciNotes editor) {
+        this(editor, null);
+    }
+
+    /**
+     * Set the parent window
+     */
+    public void setParentWindow() {
+        parentWindow = new SwingScilabWindow();
+        parentWindow.addTab(this);
+        parentWindow.setVisible(true);
+    }
+
+    /**
+     * Get the parent window for this tab
+     * @return the parent window
+     */
+    public SwingScilabWindow getParentWindow() {
         return this.parentWindow;
     }
 
@@ -129,45 +159,186 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
-        /* Trick to always have the editor's toolbar when the navigator
-           is docked in the editor */
-        if (evt.getNewDockingPort().getDockedComponent() instanceof DockingSplitPane) {
-            DockingSplitPane dsp = (DockingSplitPane) evt.getNewDockingPort().getDockedComponent();
-            if (dsp.getElderComponent() instanceof SciNotes) {
-                addToolBar(editor.getToolBar());
-            }
-        }
+        changeToolBar();
     }
 
     /**
-     * Close the current window if it exists
+     * Try to add a SciNotes toolbar
      */
-    public static void closeCurrent() {
-        if (instance != null) {
-            instance.closeWindow();
+    public void changeToolBar() {
+        SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
+        Set<SwingScilabTab> set = win.getDockingPort().getDockables();
+        for (SwingScilabTab tab : set) {
+            if (tab == editor) {
+                addToolBar(editor.getToolBar());
+                break;
+            }
         }
     }
 
     /**
      * Close the current window
      */
-    public void closeWindow() {
-        ScilabWindow win = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
-        win.removeTab(this);
-        setVisible(false);
+    public void closeSearchInFiles() {
+        saveSearchFile();
+        editor.removeSearchInFiles();
+        editor = null;
         parentWindow = null;
-        instance = null;
-        close();
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void undockingComplete(DockingEvent evt) {
         super.undockingComplete(evt);
         addToolBar(null);
+    }
+
+    /**
+     * Set a MyBackgroundSearch to this SearchFile
+     * @param search a MyBackgroundSearch
+     */
+    public void setMyBackgroundSearch(MyBackgroundSearch search) {
+        mySearch = search;
+    }
+
+    private void saveSearchFile() {
+        if (mySearch != null) {
+            try {
+                FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
+                BufferedWriter buffer = new BufferedWriter(fwriter);
+                buffer.append("<SearchResults editor=\"" + editor.getUUID() + "\"");
+                buffer.append(" base=\"" + mySearch.base + "\"");
+                buffer.append(" recursive=\"" + mySearch.recursive + "\"");
+                buffer.append(" ignoreCR=\"" + mySearch.ignoreCR + "\"");
+                buffer.append(" filePattern=\"" + mySearch.filePattern.replaceAll("\"", "&quot;") + "\"");
+                buffer.append(" fileCaseSensitive=\"" + mySearch.fileCaseSensitive + "\"");
+                if (mySearch.wordPattern != null && !mySearch.wordPattern.isEmpty()) {
+                    buffer.append(" wordPattern=\"" + mySearch.wordPattern.replaceAll("\"", "&quot;") + "\"");
+                }
+                buffer.append(" wordCaseSensitive=\"" + mySearch.wordCaseSensitive + "\"");
+                buffer.append(" wholeWord=\"" + mySearch.wholeWord + "\"");
+                buffer.append(" regexp=\"" + mySearch.regexp + "\"");
+                buffer.append(">\n");
+                mySearch.getResults().toXML(buffer, 1);
+                buffer.append("</SearchResults>");
+                buffer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void restoreSearchFile() {
+        File f = new File(ScilabConstants.SCIHOME + File.separator + getPersistentId() + ".xml");
+        if (f.exists()) {
+            Document doc = ScilabXMLUtilities.readDocument(f.getAbsolutePath());
+            if (doc != null) {
+                Element root = doc.getDocumentElement();
+                NodeList list = root.getElementsByTagName("Position");
+                SearchManager.MatchingPositions pos;
+                if (list.getLength() != 0) {
+                    pos = new SearchManager.MatchingPositions((Element) list.item(0));
+                } else {
+                    return;
+                }
+
+                String base = root.getAttribute("base");
+                boolean recursive = Boolean.parseBoolean(root.getAttribute("recursive"));
+                boolean ignoreCR = Boolean.parseBoolean(root.getAttribute("ignoreCR"));
+                String filePattern = root.getAttribute("filePattern").replaceAll("&quot;", "\"");
+                boolean fileCaseSensitive = Boolean.parseBoolean(root.getAttribute("fileCaseSensitive"));
+                String wordPattern = root.getAttribute("filePattern").replaceAll("&quot;", "\"");
+                boolean wordCaseSensitive = Boolean.parseBoolean(root.getAttribute("wordCaseSensitive"));
+                boolean wholeWord = Boolean.parseBoolean(root.getAttribute("wholeWord"));
+                boolean regexp = Boolean.parseBoolean(root.getAttribute("regexp"));
+
+                fillTab(pos, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
+            }
+        }
+    }
+
+    public void fillTab(SearchManager.MatchingPositions pos, String base, boolean recursive, boolean ignoreCR,
+                        String filePattern, boolean fileCaseSensitive, String wordPattern,
+                        boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+        String title;
+
+        if (wordPattern == null || wordPattern.isEmpty()) {
+            title = SciNotesMessages.SEARCHFILES;
+        } else {
+            title = SciNotesMessages.SEARCHINFILES;
+        }
+
+        title += " " + SciNotesMessages.FILEPATTERN + ": " + filePattern;
+        title += ", " + SciNotesMessages.FILECASESENSITIVE + ": " + fileCaseSensitive;
+        title += ", " + SciNotesMessages.RECURSIVE + ": " + recursive;
+        if (wordPattern != null && !wordPattern.isEmpty()) {
+            title += ", " + SciNotesMessages.LINEBYLINE + ": " + !ignoreCR;
+            if (regexp) {
+                title += ", " + SciNotesMessages.REGEXPATTERN + ": " + wordPattern;
+            } else {
+                title += ", " + SciNotesMessages.WORD + ": " + wordPattern;
+            }
+            title += ", " + SciNotesMessages.WORDCASESENSITIVE + ": " + wordCaseSensitive;
+            title += ", " + SciNotesMessages.WHOLE_WORD + ": " + wholeWord;
+        }
+
+        tree = getJTree(pos, editor, getInfoBar(), base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
+
+        setTitle(title);
+        JScrollPane scrollpane = new JScrollPane();
+        setContentPane(scrollpane);
+        scrollpane.setViewportView(tree);
+        setVisible(true);
+    }
+
+    /**
+     * Initialize the tab
+     */
+    private void initTab() {
+        final TextBox infobar = ScilabTextBox.createTextBox();
+        setWindowIcon("system-search");
+        updateUI();
+
+        CommonCallBack callback = new CommonCallBack(null) {
+            @Override
+            public void callBack() {
+                ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        };
+
+        setCallback(callback);
+        MenuBar menubar = ScilabMenuBar.createMenuBar();
+        Menu fileMenu = ScilabMenu.createMenu();
+        fileMenu.setText(SciNotesMessages.FILE);
+        fileMenu.setMnemonic('F');
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setCallback(callback);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotes.getActionKeys().get("scinotes-exit"));
+        menu.setText(SciNotesMessages.EXIT);
+        fileMenu.add(menu);
+        menubar.add(fileMenu);
+
+        addMenuBar(menubar);
+        addInfoBar(infobar);
+
+        setPreferredSize(new Dimension(650, 250));
+    }
+
+    /**
+     * @return the JTree int this tab
+     */
+    public JTree getJTree() {
+        return tree;
     }
 
     /**
@@ -204,50 +375,53 @@ public class SearchFile extends SwingScilabTab implements Tab {
         files.setRoot();
         final JTree tree = new JTree(files.toDefaultMutableTreeNode());
         MouseListener ml = new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int row = tree.getRowForLocation(e.getX(), e.getY());
-                    if(row != -1) {
-                        if (e.getClickCount() == 2) {
-                            validNode(editor, p, tree.getPathForRow(row));
-                        }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int row = tree.getRowForLocation(e.getX(), e.getY());
+                if (row != -1) {
+                    if (e.getClickCount() == 2) {
+                        validNode(editor, p, tree.getPathForRow(row));
                     }
                 }
-            };
+            }
+        };
         tree.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "toggle");
         tree.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent e) {
-                    if (e.getKeyChar() == '\n') {
-                        int row = tree.getMinSelectionRow();
-                        if (row != -1) {
-                            validNode(editor, p, tree.getPathForRow(row));
-                        }
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == '\n') {
+                    int row = tree.getMinSelectionRow();
+                    if (row != -1) {
+                        validNode(editor, p, tree.getPathForRow(row));
+                    }
+                }
+            }
+        });
+        tree.addMouseListener(ml);
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+            @Override
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+            boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+                DefaultMutableTreeNode mtn = (DefaultMutableTreeNode) value;
+                SearchManager.Iconable pos = (SearchManager.Iconable) mtn.getUserObject();
+                this.setIcon(pos.getIcon());
+                return this;
+            }
+        };
+        if (statusbar != null) {
+            tree.addTreeSelectionListener(new TreeSelectionListener() {
+                @Override
+                public void valueChanged(TreeSelectionEvent e) {
+                    TreePath path = e.getNewLeadSelectionPath();
+                    Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
+                    if (userObj instanceof SearchManager.MatchingPositions) {
+                        statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
+                    } else if (userObj instanceof SearchManager.Line) {
+                        userObj = ((DefaultMutableTreeNode) ((DefaultMutableTreeNode) path.getLastPathComponent()).getParent()).getUserObject();
+                        statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
                     }
                 }
             });
-        tree.addMouseListener(ml);
-        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
-                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
-                                                              boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                    super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-                    DefaultMutableTreeNode mtn = (DefaultMutableTreeNode) value;
-                    SearchManager.Iconable pos = (SearchManager.Iconable) mtn.getUserObject();
-                    this.setIcon(pos.getIcon());
-                    return this;
-                }
-            };
-        if (statusbar != null) {
-            tree.addTreeSelectionListener(new TreeSelectionListener() {
-                    public void valueChanged(TreeSelectionEvent e) {
-                        TreePath path = e.getNewLeadSelectionPath();
-                        Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
-                        if (userObj instanceof SearchManager.MatchingPositions) {
-                            statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
-                        } else if (userObj instanceof SearchManager.Line) {
-                            userObj = ((DefaultMutableTreeNode) ((DefaultMutableTreeNode) path.getLastPathComponent()).getParent()).getUserObject();
-                            statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
-                        }
-                    }
-                });
         }
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setCellRenderer(renderer);
@@ -271,11 +445,11 @@ public class SearchFile extends SwingScilabTab implements Tab {
      * @return a key, can be used to stop the search
      */
     public static Object getSearchResultsWindow(JComponent component, SciNotes editor, String base,
-                                                boolean recursive, boolean ignoreCR,
-                                                String filePattern, boolean fileCaseSensitive,
-                                                String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
-        MyBackgroundSearch searcher = new MyBackgroundSearch();
-        searcher.start(component, editor, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
+            boolean recursive, boolean ignoreCR,
+            String filePattern, boolean fileCaseSensitive,
+            String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+        MyBackgroundSearch searcher = new MyBackgroundSearch(component, editor, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
+        searcher.start();
         return searcher;
     }
 
@@ -333,13 +507,14 @@ public class SearchFile extends SwingScilabTab implements Tab {
                 final ScilabEditorPane sep = editor.getTextPane();
                 if (sep.getName().equals(fileName)) {
                     SwingUtilities.invokeLater(new Runnable() {
-                            public void run() {
-                                sep.highlightWords(pat, fline);
-                                if (ln != 0) {
-                                    sep.scrollTextToLineNumber(ln, false, false, true);
-                                }
+                        @Override
+                        public void run() {
+                            sep.highlightWords(pat, fline);
+                            if (ln != 0) {
+                                sep.scrollTextToLineNumber(ln, false, false, true);
                             }
-                        });
+                        }
+                    });
                 }
             }
         }
@@ -365,13 +540,6 @@ public class SearchFile extends SwingScilabTab implements Tab {
 
         /**
          * Default constructor
-         */
-        public MyBackgroundSearch() {
-            super();
-        }
-
-        /**
-         * Starts the search
          * @param component the component which start the search. It is prevented that search is done via a firePropertyChange (SEARCHDONE).
          * @param editor the editor where to open a file
          * @param base the base directory
@@ -384,9 +552,10 @@ public class SearchFile extends SwingScilabTab implements Tab {
          * @param wholeWord, if true only whole word will be matched, e.g. in "foobar foo bar", if the pattern is "foo", then only the second "foo" will be matched
          * @param regexp, if true the word pattern is considered as a regex
          */
-        synchronized public void start(JComponent component, SciNotes editor, String base, boolean recursive, boolean ignoreCR,
-                                       String filePattern, boolean fileCaseSensitive,
-                                       String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+        public MyBackgroundSearch(JComponent component, SciNotes editor, String base, boolean recursive, boolean ignoreCR,
+                                  String filePattern, boolean fileCaseSensitive,
+                                  String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+            super();
             this.component = component;
             this.editor = editor;
             this.base = base;
@@ -398,12 +567,19 @@ public class SearchFile extends SwingScilabTab implements Tab {
             this.wordCaseSensitive = wordCaseSensitive;
             this.wholeWord = wholeWord;
             this.regexp = regexp;
+        }
+
+        /**
+         * Starts the search
+         */
+        synchronized public void start() {
             SearchManager.searchInFiles(this, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
         }
 
         /**
          * Stop the search and fire a propertyChange
          */
+        @Override
         synchronized public void stop() {
             super.stop();
             if (component != null) {
@@ -414,6 +590,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
         /**
          * Called when the results are available
          */
+        @Override
         synchronized public void done() {
             SearchManager.MatchingPositions pos = getResults();
             if (pos == null) {
@@ -423,91 +600,28 @@ public class SearchFile extends SwingScilabTab implements Tab {
                 return;
             }
 
-            final TextBox infobar = ScilabTextBox.createTextBox();
-            final JTree tree = getJTree(pos, editor, infobar, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
-
-            SearchFile tab;
-            String title;
-            boolean preexist = SearchFile.instance != null;
-            if (wordPattern == null || wordPattern.isEmpty()) {
-                title = SciNotesMessages.SEARCHFILES;
+            SearchFile searchFile = editor.getSearchInFiles();
+            final SearchFile sf;
+            if (searchFile == null) {
+                editor.addSearchInFiles();
+                sf = editor.getSearchInFiles();
             } else {
-                title = SciNotesMessages.SEARCHINFILES;
+                sf = searchFile;
             }
 
-            title += " " + SciNotesMessages.FILEPATTERN + ": " + filePattern;
-            title += ", " + SciNotesMessages.FILECASESENSITIVE + ": " + fileCaseSensitive;
-            title += ", " + SciNotesMessages.RECURSIVE + ": " + recursive;
-            if (wordPattern != null && !wordPattern.isEmpty()) {
-                title += ", " + SciNotesMessages.LINEBYLINE + ": " + !ignoreCR;
-                if (regexp) {
-                    title += ", " + SciNotesMessages.REGEXPATTERN + ": " + wordPattern;
-                } else {
-                    title += ", " + SciNotesMessages.WORD + ": " + wordPattern;
-                }
-                title += ", " + SciNotesMessages.WORDCASESENSITIVE + ": " + wordCaseSensitive;
-                title += ", " + SciNotesMessages.WHOLE_WORD + ": " + wholeWord;
-            }
-
-            Window parentWindow;
-
-            if (!preexist) {
-                tab = new SearchFile(editor, title);
-                parentWindow = tab.getParentWindow();
-                parentWindow.setTitle(title);
-                parentWindow.addTab(tab);
-                tab.setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
-            } else {
-                tab = instance;
-                parentWindow = tab.getParentWindow();
-            }
-
-            tab.updateUI();
-
-            final SearchFile ftab = tab;
-            CallBack callback = new CallBack(null) {
-                    public void callBack() {
-                        ftab.closeCurrent();
-                    }
-
-                    public void actionPerformed(ActionEvent e) {
-                        callBack();
-                    }
-                };
-
-            tab.setCallback(callback);
-            MenuBar menubar = ScilabMenuBar.createMenuBar();
-            Menu fileMenu = ScilabMenu.createMenu();
-            fileMenu.setText(SciNotesMessages.FILE);
-            fileMenu.setMnemonic('F');
-            MenuItem menu = ScilabMenuItem.createMenuItem();
-            menu.setCallback(callback);
-            ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotesGUI.getActionKeyMap().get("ExitAction"));
-            menu.setText(SciNotesMessages.EXIT);
-            fileMenu.add(menu);
-            menubar.add(fileMenu);
-
-            tab.addMenuBar(menubar);
-            tab.addInfoBar(infobar);
-
-            JScrollPane scrollpane = new JScrollPane();
-            scrollpane.setViewportView(tree);
-            tab.setContentPane(scrollpane);
-
-            if (!preexist) {
-                tab.setPreferredSize(new Dimension(650, 250));
-                ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).pack();
-                ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).setVisible(true);
-            }
+            sf.fillTab(pos, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
+            sf.setMyBackgroundSearch(this);
 
             SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        tree.addSelectionRow(0);
-                        tree.requestFocus();
-                        long time = getElapsedTime();
-                        infobar.setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
-                    }
-                });
+                @Override
+                public void run() {
+                    sf.getJTree().addSelectionRow(0);
+                    sf.getJTree().requestFocus();
+                    long time = getElapsedTime();
+
+                    sf.getInfoBar().setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
+                }
+            });
 
             if (component != null) {
                 component.firePropertyChange(SEARCHDONE, false, true);

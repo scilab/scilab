@@ -46,14 +46,12 @@
 
 #define COMPN_SCINOTES 'scinotes'
 
+#define COMPN_EXTERNAL_OBJECTS 'external_objects'
 #define COMPN_SOUND 'sound'
 #define COMPN_RANDLIB 'randlib'
 #define COMPN_MEXLIB 'mexlib'
-#define COMPN_TEXMACS 'texmacs'
 #define COMPN_M2SCI 'm2sci'
-#define COMPN_MAP2SCI 'maple2scilab'
 
-#define COMPN_JAVASCI 'javasci'
 #define COMPN_INTERSCI 'intersci'
 
 #define COMPN_FFTW 'FFTW'
@@ -91,6 +89,8 @@ Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: defaul
 ;
 Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default full custom; Flags: fixed;
 ;
+Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: default full custom; Flags: fixed;
+;
 Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
@@ -118,14 +118,12 @@ Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Ty
 Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: default full custom;
 Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: default full custom;
 ;
-Name: {#COMPN_TEXMACS}; Description: {cm:DescriptionTexmacs}; Types: default full custom;
+Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: default full custom;
 Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
 Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
 ;
-Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
 Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
 Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
-Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default full custom;
 ;
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
 ;
@@ -141,8 +139,6 @@ Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: default f
 Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full custom;
 Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full custom;
 Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full custom;
-;
-Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full custom;
 ;
 ;
 Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom; ExtraDiskSpaceRequired: {#TESTS_SIZE}

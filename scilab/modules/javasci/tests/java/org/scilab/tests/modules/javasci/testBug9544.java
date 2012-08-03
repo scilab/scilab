@@ -11,7 +11,9 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
+import org.junit.*;
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,6 +21,8 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.awt.GraphicsEnvironment;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -37,7 +41,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.SwingUtilities; 
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,32 +51,36 @@ public class testBug9544 {
     private Scilab sci;
     private Test_sci x;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab(true);
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void nonRegBug9544Working() throws NullPointerException, JavasciException, IOException {
-        x = new Test_sci();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x = new Test_sci();
+        }
     }
 
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
-        x.dispose();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x.dispose();
+        }
         sci.close();
-        
+
     }
 
     public class Test_sci extends JFrame {
@@ -80,52 +88,51 @@ public class testBug9544 {
         private JPanel container = new JPanel();
         private JButton b = new JButton ("Auto clicked button");
         private JLabel resultat;
-	
+
         private Scilab sci;
 
 
-        
-        public Test_sci() /*throws IOException*/ {
+
+        public Test_sci() { /*throws IOException*/
             try {
                 sci = new Scilab(true);
-            } 
-            catch (org.scilab.modules.javasci.JavasciException f) {
-                System.err.println("An exception occured: " + f.getLocalizedMessage());
+            } catch (org.scilab.modules.javasci.JavasciException f) {
+                System.err.println("An exception occurred: " + f.getLocalizedMessage());
             }
             this.setTitle("bug 9544 non reg test");
             this.setSize(200, 100);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
-            JPanel top = new JPanel();        
+
+            JPanel top = new JPanel();
             b.addActionListener(new BoutonListener());
-        	
+
             top.add(b);
-                                
+
             this.setContentPane(top);
             this.setVisible(true);
 
             new Thread(new Runnable() {
-                    public void run() {
-                        SwingUtilities.invokeLater(new Runnable() {
-                                public void run() {
-                                    b.doClick();
-                                }
-                            });
-                    }
-                }).start();
+                public void run() {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            b.doClick();
+                        }
+                    });
+                }
+            }).start();
 
         }
 
-        class BoutonListener implements ActionListener{
-       
+        class BoutonListener implements ActionListener {
+
             public void actionPerformed(ActionEvent g) {
                 List<String> commands = new ArrayList<String>();
                 commands.add("X = [1,2];");
                 commands.add("Y = [3,4];");
                 commands.add("plot(X,Y);");
-                assert sci.exec(commands.toArray(new String[commands.size()])) == true;
+                assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
             }
-                
+
         }
     }
 }

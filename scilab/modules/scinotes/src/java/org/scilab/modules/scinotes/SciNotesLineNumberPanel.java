@@ -68,7 +68,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private Color alternColor1 = new Color(246, 191, 246);
     private Color alternColor2 = new Color(246, 101, 246);
 
-    private int numbers;
+    private int numbers = 1;
     private int lastLine;
     private int state;
 
@@ -104,18 +104,51 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * @param state 0 for nothing, 1 for normal and 2 for whereami
      */
     public void setWhereamiLineNumbering(int state) {
-        if (state != 0) {
-            if (!display) {
-                textPane.getScrollPane().setRowHeaderView(this);
+        if (state != this.state) {
+            if (state != 0) {
+                if (!display) {
+                    textPane.getScrollPane().setRowHeaderView(this);
+                }
+                whereami = state == 2;
+                display = true;
+            } else {
+                textPane.getScrollPane().setRowHeaderView(null);
+                display = false;
             }
-            whereami = state == 2;
-            display = true;
-        } else {
-            textPane.getScrollPane().setRowHeaderView(null);
-            display = false;
+            updateLineNumber();
+            this.state = state;
         }
-        updateLineNumber();
-        this.state = state;
+    }
+
+    public static int getState(boolean showLinesNumber, boolean whereami) {
+        if (!showLinesNumber) {
+            return 0;
+        } else if (!whereami) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    public static boolean[] getState(int state) {
+        switch (state) {
+            case 0:
+                return new boolean[] { false, false };
+            case 1:
+                return new boolean[] { true, false };
+            case 2:
+                return new boolean[] { true, true };
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Set a line numbering compatible with the whereami function
+     * @param state 0 for nothing, 1 for normal and 2 for whereami
+     */
+    public void setWhereamiLineNumbering(boolean showLinesNumber, boolean whereami) {
+        setWhereamiLineNumbering(getState(showLinesNumber, whereami));
     }
 
     /**
@@ -177,8 +210,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setFont(font);
         metrics = textPane.getFontMetrics(font);
         ascent = metrics.getAscent();
-        numbers = 0;
-        updateWidth();
+        updateWidth(false);
     }
 
     /**
@@ -206,8 +238,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     /**
      * Update the width of this component in using the number of digits used
      */
-    public void updateWidth() {
-        ++numbers;
+    public void updateWidth(boolean inc) {
+        if (inc) {
+            ++numbers;
+        }
         Insets insets = getInsets();
         int width = metrics.charWidth('0') * numbers;
         availableWidth = width;
@@ -284,7 +318,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
 
                 int diff = (availableWidth - metrics.stringWidth(str)) / 2;
                 if (diff <= 0) {
-                    updateWidth();
+                    updateWidth(true);
                     diff = (availableWidth - metrics.stringWidth(str)) / 2;
                 }
 
@@ -329,25 +363,25 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
                 elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
                 int type = elem.getType();
                 switch (type) {
-                case ScilabDocument.ScilabLeafElement.NOTHING :
-                    lineNumber[i] = current++;
-                    lineLevel[i] = (byte) stk.size();
-                    break;
-                case ScilabDocument.ScilabLeafElement.FUN :
-                    stk.push(new Integer(current));
-                    lineLevel[i] = (byte) stk.size();
-                    current = 2;
-                    lineNumber[i] = 1;
-                    break;
-                case ScilabDocument.ScilabLeafElement.ENDFUN :
-                    lineNumber[i] = current++;
-                    lineLevel[i] = (byte) stk.size();
-                    if (!stk.empty()) {
-                        current = stk.pop().intValue() + lineNumber[i];
-                    }
-                    break;
-                default :
-                    break;
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        lineNumber[i] = current++;
+                        lineLevel[i] = (byte) stk.size();
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        stk.push(new Integer(current));
+                        lineLevel[i] = (byte) stk.size();
+                        current = 2;
+                        lineNumber[i] = 1;
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        lineNumber[i] = current++;
+                        lineLevel[i] = (byte) stk.size();
+                        if (!stk.empty()) {
+                            current = stk.pop().intValue() + lineNumber[i];
+                        }
+                        break;
+                    default :
+                        break;
                 }
             }
         }
@@ -405,7 +439,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             Element root = doc.getDefaultRootElement();
             DocumentEvent.ElementChange chg = e.getChange(root);
             if (chg == null) {
-                // change occured only in one line
+                // change occurred only in one line
                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
                 if (line.isFunction()) {
                     updateLineNumber();

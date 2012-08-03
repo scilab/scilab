@@ -15,7 +15,7 @@ function an=remezb(nc,fg,ds,wt)
 //          h = sum[a(n)cos(wn)]
 //
 //for n=0,1,...,nc.  An FIR, linear-phase filter
-//can be obtained from the the output of the macro
+//can be obtained from the output of the macro
 //by using the following Scilab commands
 //
 //          hn(1:nc-1)=an(nc:-1:2)/2;

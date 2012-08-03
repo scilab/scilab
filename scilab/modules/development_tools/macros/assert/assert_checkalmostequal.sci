@@ -1,5 +1,5 @@
 // Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009 - 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -24,11 +24,11 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
   comptype = argindefault ( rhs , varargin , 5 , "element" )
   //
   // Check types of variables
-  if ( typeof(computed) <> "constant" ) then
+  if ( and(typeof(computed) <> ["constant" "sparse" "hypermat"]) ) then
     errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
     error(errmsg)
   end
-  if ( typeof(expected) <> "constant" ) then
+  if ( and(typeof(expected) <> ["constant" "sparse" "hypermat"]) ) then
     errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
     error(errmsg)
   end

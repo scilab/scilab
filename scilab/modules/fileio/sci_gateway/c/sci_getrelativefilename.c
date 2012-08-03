@@ -27,7 +27,7 @@
 /* ================================================================================== */
 int sci_getrelativefilename(char *fname, unsigned long l)
 {
-	static int l1,n1,m1,l2,n2,m2;
+	static int n1 = 0,m1 = 0,n2 = 0,m2 = 0;
 
 	CheckRhs(2,2);
 	CheckLhs(1,1);

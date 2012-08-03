@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="squeeze">
-  <info>
-    <pubdate>$LastChangedDate: 2007-2-6 15:12:38 +0200 (mar, 6 fev 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>squeeze</refname>
     <refpurpose> squeeze</refpurpose>
@@ -42,11 +39,12 @@
   <refsection>
     <title>Description</title>
     <para> Elimine les dimensions de type "singleton" d'une hypermatrice,
-    c'est-à -dire toutes les dimensions de taille 1.
-    Les matrices sont quant à  elles inchangées. </para>
+      c'est-à -dire toutes les dimensions de taille 1.
+      Les matrices sont quant à  elles inchangées. 
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermat">hypermat</link>
@@ -55,9 +53,5 @@
         <link linkend="hypermatrices">hypermatrices</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Eric Dubois, Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

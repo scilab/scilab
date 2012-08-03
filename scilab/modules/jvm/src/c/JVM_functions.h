@@ -82,6 +82,12 @@ BOOL LoadFunctionsJVM(char *filedynlib);
  */
 char *getJniErrorFromStatusCode(long status);
 
+/**
+* Returns if jvm symbols (JNI_GetCreatedJavaVMs, JNI_CreateJavaVM, ...) are already loaded
+* @return TRUE or FALSE
+*/
+BOOL hasJvmSymbolsLoaded(void);
+
 #endif /* __JVM_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/ 
 

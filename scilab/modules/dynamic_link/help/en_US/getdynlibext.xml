@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getdynlibext">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>getdynlibext</refname>
     <refpurpose>get the extension of dynamic libraries on your operating system.</refpurpose>
@@ -32,9 +29,5 @@
     <programlisting role="example"><![CDATA[ 
 getdynlibext()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

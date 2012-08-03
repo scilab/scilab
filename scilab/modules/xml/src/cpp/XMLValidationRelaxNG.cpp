@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,8 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
+extern "C"
+{
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -26,10 +27,12 @@ extern "C" {
 namespace org_modules_xml
 {
 
-    XMLValidationRelaxNG::XMLValidationRelaxNG(const char * path, std::string * error) : XMLValidation()
+XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error): XMLValidation()
+{
+    char *expandedPath = expandPathVariable(const_cast < char *>(path));
+    if (expandedPath)
     {
-        char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        xmlRelaxNGParserCtxt * pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
+        xmlRelaxNGParserCtxt *pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
         FREE(expandedPath);
         if (!pctxt)
         {
@@ -58,95 +61,102 @@ namespace org_modules_xml
                 openValidationFiles.push_back(this);
             }
         }
-        scope->registerPointers(validationFile, this);
-        id = scope->getVariableId(*this);
     }
-
-    XMLValidationRelaxNG::~XMLValidationRelaxNG()
+    else
     {
-        scope->unregisterPointer(validationFile);
-        scope->removeId(id);
-        if (validationFile)
-        {
-            xmlRelaxNGFree((xmlRelaxNG *)validationFile);
-            openValidationFiles.remove(this);
-            if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
-            {
-                resetScope();
-            }
-        }
-
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-            errorBuffer = 0;
-        }
+        *error = std::string(gettext("Invalid file name: ")) + std::string(path);
     }
 
-    bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error) const
+    scope->registerPointers(validationFile, this);
+    id = scope->getVariableId(*this);
+}
+
+XMLValidationRelaxNG::~XMLValidationRelaxNG()
+{
+    scope->unregisterPointer(validationFile);
+    scope->removeId(id);
+    if (validationFile)
     {
-        bool ret;
-        xmlRelaxNGValidCtxt * vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *)validationFile);
-
-        if (errorBuffer)
+        xmlRelaxNGFree((xmlRelaxNG *) validationFile);
+        openValidationFiles.remove(this);
+        if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
         {
-            delete errorBuffer;
+            resetScope();
         }
-        errorBuffer = new std::string("");
-
-        if (!vctxt)
-        {
-            errorBuffer->append(gettext("Cannot create a validation context"));
-            *error = *errorBuffer;
-            return false;
-        }
-
-        xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
-
-        ret = BOOLtobool(xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument()));
-
-        xmlRelaxNGSetValidErrors(vctxt, 0, 0, 0);
-        xmlRelaxNGFreeValidCtxt(vctxt);
-
-        if (ret)
-        {
-            *error = *errorBuffer;
-        }
-
-        return ret == 0;
     }
 
-    bool XMLValidationRelaxNG::validate(xmlTextReader * reader, std::string * error) const
+    if (errorBuffer)
     {
-        int last;
-        int valid;
+        delete errorBuffer;
 
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-        }
-        errorBuffer = new std::string();
-
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc)XMLValidation::errorFunction, 0);
-        xmlTextReaderRelaxNGSetSchema(reader, getValidationFile<xmlRelaxNG>());
-
-        while ((last = xmlTextReaderRead(reader)) == 1);
-        valid = xmlTextReaderIsValid(reader);
-
-        xmlTextReaderSetErrorHandler(reader, 0, 0);
-        xmlFreeTextReader(reader);
-
-        if (last == -1 || valid != 1)
-        {
-            *error = *errorBuffer;
-            return false;
-        }
-
-        return true;
+        errorBuffer = 0;
     }
+}
 
-    const std::string XMLValidationRelaxNG::toString() const
+bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error) const
+{
+    bool ret;
+    xmlRelaxNGValidCtxt *vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *) validationFile);
+
+    if (errorBuffer)
     {
-        return std::string("XML Relax NG\nNo public informations");
+        delete errorBuffer;
     }
+    errorBuffer = new std::string("");
+
+    if (!vctxt)
+    {
+        errorBuffer->append(gettext("Cannot create a validation context"));
+        *error = *errorBuffer;
+        return false;
+    }
+
+    xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc) XMLValidation::errorFunction, 0, 0);
+
+    ret = BOOLtobool(xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument()));
+
+    xmlRelaxNGSetValidErrors(vctxt, 0, 0, 0);
+    xmlRelaxNGFreeValidCtxt(vctxt);
+
+    if (ret)
+    {
+        *error = *errorBuffer;
+    }
+
+    return ret == 0;
+}
+
+bool XMLValidationRelaxNG::validate(xmlTextReader * reader, std::string * error) const
+{
+    int last;
+    int valid;
+
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string();
+
+    xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
+    xmlTextReaderRelaxNGSetSchema(reader, getValidationFile < xmlRelaxNG > ());
+
+    while ((last = xmlTextReaderRead(reader)) == 1) ;
+    valid = xmlTextReaderIsValid(reader);
+
+    xmlTextReaderSetErrorHandler(reader, 0, 0);
+    xmlFreeTextReader(reader);
+
+    if (last == -1 || valid != 1)
+    {
+        *error = *errorBuffer;
+        return false;
+    }
+
+    return true;
+}
+
+const std::string XMLValidationRelaxNG::toString() const
+{
+    return std::string("XML Relax NG\nNo public information");
+}
 }

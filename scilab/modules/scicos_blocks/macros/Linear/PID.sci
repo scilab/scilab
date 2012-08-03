@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -30,14 +30,41 @@ function [x,y,typ]=PID(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
+    // look for the children blocks
+    ppath = list(0,0,0);
+    for i=1:length(arg1.model.rpar.objs) do
+      o = arg1.model.rpar.objs(i);
+      if typeof(o) == "Link" then
+        from = arg1.model.rpar.objs(o.from(1));
+        to = arg1.model.rpar.objs(o.to(1));
+
+        if from.gui == "GAINBLK" then
+          select to.gui,
+            case "SUMMATION" then ppath(1) = o.from(1),
+            case "INTEGRAL_m" then ppath(2) = o.from(1),
+            case "DERIV" then ppath(3) = o.from(1),
+          end
+        elseif to.gui == "GAINBLK" then
+          select from.gui,
+            case "SUMMATION" then ppath(1) = o.to(1),
+            case "INTEGRAL_m" then ppath(2) = o.to(1),
+            case "DERIV" then ppath(3) = o.to(1),
+          end
+        end
+        
+        if and(ppath <> list(0,0,0)) then
+          break;
+        end
+      end
+    end
     newpar=list();
-    xx1=arg1.model.rpar.objs(3)
+    xx1=arg1.model.rpar.objs(ppath(1))
     exprs(1)=xx1.graphics.exprs(1)
     p_old=xx1.model.rpar
-    xx2=arg1.model.rpar.objs(5)
+    xx2=arg1.model.rpar.objs(ppath(2))
     exprs(2)=xx2.graphics.exprs(1)
     i_old=xx2.model.rpar
-    xx3=arg1.model.rpar.objs(6)
+    xx3=arg1.model.rpar.objs(ppath(3))
     exprs(3)=xx3.graphics.exprs(1)
     d_old=xx3.model.rpar
     y=0
@@ -52,17 +79,17 @@ function [x,y,typ]=PID(job,arg1,arg2)
 	xx2.model.rpar=i
 	xx3.graphics.exprs=exprs0(3)
 	xx3.model.rpar=d
-	arg1.model.rpar.objs(3)=xx1
-	arg1.model.rpar.objs(5)=xx2
-	arg1.model.rpar.objs(6)=xx3	
+	arg1.model.rpar.objs(ppath(1))=xx1
+	arg1.model.rpar.objs(ppath(2))=xx2
+	arg1.model.rpar.objs(ppath(3))=xx3	
 	break
       end
      end
 	needcompile=0
         if ~(p_old==p & i_old==i & d_old==d) then
-		newpar(size(newpar)+1)=3
-		newpar(size(newpar)+1)=5
-		newpar(size(newpar)+1)=6
+		newpar(size(newpar)+1)=ppath(1)
+		newpar(size(newpar)+1)=ppath(2)
+		newpar(size(newpar)+1)=ppath(3)
 		needcompile=2
         end
 	x=arg1

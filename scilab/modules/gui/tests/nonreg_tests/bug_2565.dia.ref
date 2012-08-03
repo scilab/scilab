@@ -41,12 +41,14 @@ Relief = flat
 SliderStep = [0.01,0.1]
 String = "\Q\q"
 Style = listbox
+TooltipString = ""
 Units = pixels
-Value = []
+Value = 0
 VerticalAlignment = middle
 Visible = "on"
 Callback = 
-CallbackType = -1
+Callback_Type = -1
+Handle_Visible = "on"
 Userdata = []
 Tag = 
 if get(h,"string") <> "\Q\q" then bugmes();quit;end

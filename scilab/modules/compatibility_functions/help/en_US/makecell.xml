@@ -10,10 +10,7 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="makecell">
-  <info>
-    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="makecell">
   <refnamediv>
     <refname>makecell</refname>
     <refpurpose>Creates a cell array. </refpurpose>
@@ -54,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>s = makecell(dims,a1,a2,...an)</literal> creates a cell
+      <literal>s= makecell(dims,a1,a2,...an)</literal> creates a cell
       array of dimensions given by <literal>dims</literal> with the
       given input arguments. The <literal>ai</literal> are stored
       along the last dimension first.
@@ -67,18 +64,11 @@ makecell([2,3],1,2,3,'x','y','z')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="cell" >cell</link>
+        <link linkend="cell">cell</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Farid Belhacen, INRIA</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

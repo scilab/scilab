@@ -16,3 +16,11 @@ checkVarDimension
 getAllocatedSingleString
 createMatrixOfString
 freeAllocatedSingleString
+getNbInputArgument
+getNbOutputArgument
+checkOutputArgument
+checkInputArgument
+returnArguments
+assignOutputVariable
+callOverloadFunction
+ 

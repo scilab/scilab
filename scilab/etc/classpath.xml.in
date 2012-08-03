@@ -11,8 +11,8 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
-<!-- 
-Scilab Java dependencies can be load in different ways. 
+<!--
+Scilab Java dependencies can be load in different ways.
 It can be:
 * startup - Load immediatly the dep when Scilab starts (default behaviour)
 * background - After Scilab engine is loaded, load the dep in the background
@@ -21,8 +21,8 @@ It can be:
 Some deps can be also disabled only for a specific mode.
 The option is "disableUnderMode" and can be:
 * STD - Normal mode
-* NW - No Window mode (ie command line but with graphics 
-* API - Scilab as an API 
+* NW - No Window mode (ie command line but with graphics
+* API - Scilab as an API
 -->
 
 <classpaths>
@@ -46,34 +46,39 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="@JGRAPHX@" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
-<path value="@JOGL@" load="onUse">
+<path value="@SCIRENDERER@" load="onUse">
 	<load on="graphics"/>
-	<load on="graphic_export"/>
-	<load on="XCos"/>
+    <load on="graphic_ojects"/>
+    <load on="Xcos"/>
 </path>
 
-<path value="@GLUEGEN_RT@" load="onUse">
+<path value="@JOGL2@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
+</path>
+
+<path value="@GLUEGEN2_RT@" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- XCOS -->
 <path value="@JHDF5@" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 	<load on="HDF5"/>
 </path>
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
-<path value="$SCILAB/modules/output_stream/jar/org.scilab.modules.output_stream.jar" load="startup"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <!-- END -->
 
@@ -100,12 +105,12 @@ The option is "disableUnderMode" and can be:
 	<load on="graphics_mathml_textrendering"/>
 	<load on="svg_graphic_export"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <path value="@XML_APIS_EXT@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- PDF doc generation -->
@@ -113,7 +118,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="xcos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
@@ -121,7 +126,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <path value="@AVALON_FRAMEWORK@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -132,7 +137,7 @@ The option is "disableUnderMode" and can be:
   	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- helptools module doc generation -->
@@ -161,6 +166,8 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
 <path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
 
+<path value="$SCILAB/modules/preferences/jar/org.scilab.modules.preferences.jar"/>
+
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
@@ -172,8 +179,13 @@ The option is "disableUnderMode" and can be:
 	<load on="SciNotes"/>
 </path>
 
+
+<!-- TO DO Load only when we need -->
+<path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
+
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
+<path value="$SCILAB/modules/javasci/jar/org.scilab.modules.javasci.jar"/>
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar"/>

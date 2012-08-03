@@ -5,8 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 2085 -->
 //
@@ -17,6 +16,8 @@
 // this example fails on some pc ???
 
 // exec SCI/modules/dynamic_link/tests/nonreg_tests/bug_2085.tst;
+
+ilib_verbose(0);
 
 test_path = get_absolute_file_path('bug_2085.tst');
 
@@ -38,7 +39,7 @@ files=['bug_2085.c'];
 ilib_build('bug',['ex2c_1','intex2c'],files,[]);
 
 // load the shared library 
-exec loader.sce
+exec loader.sce;
 
 chdir(currentpath);
 
@@ -49,7 +50,7 @@ nr = [4,5,5];
 a = ex2c_1(r+%i*nr);
 res = (2 * r) +%i*(nr *3);
 
-if a <> res then pause,end;
+assert_checkequal(a, res);
 
 // ulink() all libraries
 ulink();

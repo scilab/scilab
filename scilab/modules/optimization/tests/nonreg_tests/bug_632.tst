@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 // <-- Non-regression test for bug 632 -->
@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=632
 //
 // <-- Short Description -->
-//    The function "lsqrsolve" makes the the whole Scilab crash.
+//    The function "lsqrsolve" makes the whole Scilab crash.
 //    It even does it with the example cited in the Scilab 
 //    documentation:
 //

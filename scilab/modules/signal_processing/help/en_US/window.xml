@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="window">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>window</refname>
     <refpurpose> compute symmetric window of various type</refpurpose>
@@ -10,11 +7,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>win_l=window('re',n)
-    win_l=window('tr',n)
-    win_l=window('hn',n)
-    win_l=window('hm',n)
-    win_l=window('kr',n,Beta)
-    [win_l,cwp]=window('ch',n,par)</synopsis>
+      win_l=window('tr',n)
+      win_l=window('hn',n)
+      win_l=window('hm',n)
+      win_l=window('kr',n,Beta)
+      [win_l,cwp]=window('ch',n,par)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -28,18 +26,23 @@
       <varlistentry>
         <term>par</term>
         <listitem>
-          <para>parameter 2-vector <literal>par=[dp,df])</literal>, where
-          <literal>dp</literal>  (<literal>0&lt;dp&lt;.5</literal>) rules the  main lobe
-          width and  <literal>df</literal> rules the side lobe height
-          (<literal>df&gt;0</literal>).</para>
+          <para>
+            parameter 2-vector <literal>par=[dp,df])</literal>, where
+            <literal>dp</literal>  (<literal>0&lt;dp&lt;.5</literal>) rules the  main lobe
+            width and  <literal>df</literal> rules the side lobe height
+            (<literal>df&gt;0</literal>).
+          </para>
           <para>Only one of these two value should be specified the other one
-          should set equal to a nonpostive value.</para>
+            should set equal to a nonpositive value.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Beta</term>
         <listitem>
-          <para>Kaiser window parameter <literal>Beta &gt;0</literal>). </para>
+          <para>
+            Kaiser window parameter <literal>Beta &gt;0</literal>). 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,54 +65,54 @@
       function which calculates various symmetric window for Digital signal processing.
     </para>
     <itemizedlist>
-      <listitem>    <para>
-        The Kaiser window is a nearly optimal window function. <literal>Beta</literal>
-        is an arbitrary positive real number that determines the shape of the
-        window,  and the integer  <literal>n</literal> is the length of the window.
-      </para>
-      <para>
-        By construction, this function peaks at unity for <literal> k = n/2</literal> ,
-        i.e. at the center of the window, and decays exponentially towards the 
-        window edges.   The larger the value of <literal>Beta</literal>, the narrower 
-        the window becomes; <literal>Beta = 0</literal> corresponds to a rectangular window.
-        Conversely, for larger <literal>Beta</literal> the width of the main lobe
-        increases in the Fourier transform, while the side lobes decrease in
-        amplitude. 
-        Thus, this parameter controls the tradeoff between main-lobe width and
-        side-lobe area.
-      </para>
-      <informaltable border="1">
-        <tr>
-          <td>Beta</td>
-          <td>window shape</td>
-        </tr>
-        <tr>
-          <td>0</td>
-          <td>Rectangular shape</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Similar to the Hamming window</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Similar to the Hann window</td>
-        </tr>
-        <tr>
-          <td>8.6</td>
-          <td>Similar to the Blackman window</td>
-        </tr>
-      </informaltable>
+      <listitem>
+        <para>
+          The Kaiser window is a nearly optimal window function. <literal>Beta</literal>
+          is an arbitrary positive real number that determines the shape of the
+          window,  and the integer  <literal>n</literal> is the length of the window.
+        </para>
+        <para>
+          By construction, this function peaks at unity for <literal> k = n/2</literal> ,
+          i.e. at the center of the window, and decays exponentially towards the 
+          window edges.   The larger the value of <literal>Beta</literal>, the narrower 
+          the window becomes; <literal>Beta = 0</literal> corresponds to a rectangular window.
+          Conversely, for larger <literal>Beta</literal> the width of the main lobe
+          increases in the Fourier transform, while the side lobes decrease in
+          amplitude. 
+          Thus, this parameter controls the tradeoff between main-lobe width and
+          side-lobe area.
+        </para>
+        <informaltable border="1">
+          <tr>
+            <td>Beta</td>
+            <td>window shape</td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>Rectangular shape</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Similar to the Hamming window</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Similar to the Hann window</td>
+          </tr>
+          <tr>
+            <td>8.6</td>
+            <td>Similar to the Blackman window</td>
+          </tr>
+        </informaltable>
       </listitem>
-      <listitem> 
+      <listitem>
         <para>
           The Chebyshev window minimizes the mainlobe width, given a particular sidelobe
           height. It is characterized by an equiripple behavior, that is, its
           sidelobes all have the same height.
         </para>
       </listitem>
-      <listitem> 
-
+      <listitem>
         <para>
           The Hann and Hamming windows are quite similar, they only differ in
           the choice of one parameter <literal>alpha</literal>: 
@@ -133,7 +136,7 @@
     set(gca(),'grid',[1 1]*color('gray'))
     xlabel("n")
     ylabel("w_n")
-    title(_("Profile plot"))
+    title(gettext("Profile plot"))
     //plot the magnitude of the frequency responses
     n=256;
     [Whm,fr]=frmag(whm,n);
@@ -141,10 +144,10 @@
     [Wch,fr]=frmag(wch,n);
     subplot(122);plot(fr,20*log10([Whm;Wkr;Wch]'))
     set(gca(),'grid',[1 1]*color('gray'))
-    xlabel(_("Pulsation (rd/s)"))
-    ylabel(_("Magnitude (dB)"))
+    xlabel(gettext("Pulsation (rd/s)"))
+    ylabel(gettext("Magnitude (dB)"))
     legend(["Hamming N=24";"Kaiser N=24, Beta=6";"Chebychev N=24, dp=0.005"]);
-    title(_("Magnitude plot"))
+    title(gettext("Magnitude plot"))
     ]]></programlisting>
     <para>
       <inlinemediaobject>
@@ -168,7 +171,7 @@
     legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
     ylabel("w_n")
-    title(_("Comparison of Kaiser window profiles"))
+    title(gettext("Comparison of Kaiser window profiles"))
     ]]></programlisting>
     <para>
       <inlinemediaobject>
@@ -177,7 +180,6 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-
     <programlisting role="example"><![CDATA[ 
     clf()
     N=140;
@@ -191,7 +193,7 @@
     //legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
     ylabel("w_n")
-    title(_("Comparison of Chebychev window profiles"))
+    title(gettext("Comparison of Chebychev window profiles"))
     //plot the magnitude of the frequency responses
     n=256;
     [W1,fr]=frmag(w1,n);
@@ -199,10 +201,10 @@
     [W3,fr]=frmag(w3,n);
     subplot(122);plot(fr,20*log10([W1;W2;W3]'))
     set(gca(),'grid',[1 1]*color('gray'))
-    xlabel(_("Pulsation (rd/s)"))
-    ylabel(_("Magnitude (dB)"))
+    xlabel(gettext("Pulsation (rd/s)"))
+    ylabel(gettext("Magnitude (dB)"))
     legend(["Chebychef dp=0.001";"Chebychef dp=0.05";"Chebychef df=0.4"]);
-    title(_("Chebychev window Magnitude plot"))
+    title(gettext("Chebychev window Magnitude plot"))
     ]]></programlisting>
     <para>
       <inlinemediaobject>
@@ -211,7 +213,6 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -228,13 +229,9 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para>Carey  Bunks, INRIA  </para>
-    <para>Serge Steer, INRIA (help improved) </para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>IEEE. Programs for Digital Signal Processing. IEEE Press. New York: John
-    Wiley and Sons, 1979. Program 5.2.</para>
+      Wiley and Sons, 1979. Program 5.2.
+    </para>
   </refsection>
 </refentry>

@@ -10,19 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot">
   <refnamediv>
     <refname>grayplot</refname>
     <refpurpose>2D plot of a surface using
-  colors</refpurpose>
+      colors
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>grayplot(x,y,z,[strf,rect,nax])
-grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
+      grayplot(x,y,z,&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -36,36 +35,51 @@ grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>z</term>
         <listitem>
-          <para>real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
-          of the surface at the point (x(i),y(j)).</para>
+          <para>
+            real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
+            of the surface at the point (x(i),y(j)).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
-          <para>This represents a sequence of statements <literal>key1=value1,
-          key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following: rect, nax, strf
-          or axesflag and frameflag (see <literal>plot2d</literal> and
-          <literal>plot2d_old_version</literal>).</para>
+          <para>
+            This represents a sequence of statements <literal>key1=value1,
+              key2=value2
+            </literal>
+            ,... where <literal>key1</literal>,
+            <literal>key2,...</literal> can be one of the following: rect, nax, strf
+            or axesflag and frameflag (see <literal>plot2d</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>strf,rect,nax</term>
         <listitem>
-          <para>see <literal>plot2d</literal>.</para>
+          <para>
+            see <literal>plot2d</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>grayplot</literal> makes a 2D plot of the surface given by
-    <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
-    Each rectangle on the grid is filled with a gray or color level depending
-    on the average value of <literal>z</literal> on the corners of the
-    rectangle. If z contains %nan values, the surounding rectangles are not displayed.</para>
-    <para>Enter the command <literal>grayplot()</literal> to see a demo.</para>
+    <para>
+      <literal>grayplot</literal> makes a 2D plot of the surface given by
+      <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
+      Each rectangle on the grid is filled with a gray or color level depending
+      on the average value of <literal>z</literal> on the corners of the
+      rectangle. If z contains %nan values, the surounding rectangles are not displayed.
+    </para>
+    <para>
+      Enter the command <literal>grayplot()</literal> to see a demo.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>grayplot();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -78,7 +92,7 @@ grayplot(t,t,m)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fgrayplot">fgrayplot</link>
@@ -93,9 +107,5 @@ grayplot(t,t,m)
         <link linkend="Sfgrayplot">Sfgrayplot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

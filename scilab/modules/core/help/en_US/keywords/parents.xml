@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="parents">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>parents</refname>
     <refpurpose>  ( ) left and right parenthesis</refpurpose>
@@ -10,11 +7,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>(expression)
-[...]=func(e1,e2,...)
-[x1,x2,...]=(e1,e2,...)
-x(i,j)
-v(i)
-[...]=l(i)</synopsis>
+      [...]=func(e1,e2,...)
+      [x1,x2,...]=(e1,e2,...)
+      x(i,j)
+      v(i)
+      [...]=l(i)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -54,23 +52,29 @@ v(i)
   <refsection>
     <title>Description</title>
     <para>
-    Left and right parenthesis are used to</para>
+      Left and right parenthesis are used to
+    </para>
     <para>
-     *
-    Specify evaluation order within expressions,</para>
+      *
+      specify evaluation order within expressions;
+    </para>
     <para>
-     *
-    Form right-hand-side functions argument list. Within multiple rhs
-    arguments must be separated by comma.</para>
+      *
+      form right-hand-side functions argument list. Within multiple rhs
+      arguments must be separated by comma;
+    </para>
     <para>
-     *
-    Select elements within vectors, matrices and lists.
-    see help on extraction and insertion for more precisions</para>
+      *
+      select elements within vectors, matrices and lists.
+      See help on <link linkend="extraction">extraction</link> and 
+      <link linkend="insertion">insertion</link> for more precisions;
+    </para>
     <para>
-     *
-    [x1,x2,...]=(e1,e2,...) is equivalent to first performing %t_1 = e1,
-    %t_2 = e2, ..., and then x1 = %t_1, x2 = %t_2, ..., where the
-    variables %t_i, i = 1, 2, ... are invisible to the user.</para>
+      <literal>[x1,x2,...]=(e1,e2,...)</literal> is equivalent to first performing 
+      <literal>%t_1 = e1, %t_2 = e2, ...</literal>, and then 
+      <literal> x1 = %t_1, x2 = %t_2, ...</literal>, where the
+      variables <literal>%t_i, i = 1, 2, ...</literal> are invisible to the user.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -101,7 +105,7 @@ v=%t([1 1 1 1 1])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colon">colon</link>

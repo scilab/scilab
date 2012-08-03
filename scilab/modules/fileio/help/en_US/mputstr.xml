@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mputstr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mputstr</refname>
     <refpurpose> write a character string in a file</refpurpose>
@@ -29,7 +26,9 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,10 +42,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    mputstr function allows to write a character string  in a binary file.</para>
+      mputstr function allows to write a character string  in a binary file.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

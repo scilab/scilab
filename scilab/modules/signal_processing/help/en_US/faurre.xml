@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="faurre">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>faurre</refname>
     <refpurpose> filter computation by simple Faurre algorithm</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>H, F, G</term>
         <listitem>
-          <para>estimated triple from the covariance sequence of <literal>y</literal>.</para>
+          <para>
+            estimated triple from the covariance sequence of <literal>y</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,23 +48,25 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function computes iteratively the minimal solution of the algebraic
-    Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
-    filter model.
-    The algorithm tries to compute the solution P as the growing limit of a
-    sequence of matrices Pn such that</para>
-    <programlisting role = ""><![CDATA[ 
+      This function computes iteratively the minimal solution of the algebraic
+      Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
+      filter model.
+      The algorithm tries to compute the solution P as the growing limit of a
+      sequence of matrices Pn such that
+    </para>
+    <programlisting role=""><![CDATA[ 
                                      -1
 Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
        -1
 P0=G*R0 *G'
  ]]></programlisting>
     <para>
-    Note that this method may not converge,especially when F has poles
-    near the unit circle. Use preferably the srfaur function.</para>
+      Note that this method may not converge,especially when F has poles
+      near the unit circle. Use preferably the srfaur function.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="srfaur">srfaur</link>
@@ -77,9 +78,5 @@ P0=G*R0 *G'
         <link linkend="phc">phc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

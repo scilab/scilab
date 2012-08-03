@@ -1,0 +1,7 @@
+LIBRARY    eispack_f.dll
+
+
+EXPORTS
+balbak_
+cdiv_
+hqror2_

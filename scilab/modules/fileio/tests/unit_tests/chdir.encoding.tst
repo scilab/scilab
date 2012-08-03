@@ -10,11 +10,7 @@
 a = chdir(TMPDIR);
 if(a <> %T) then pause, end
 
-if getos() == 'Windows' then
-	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
-else
-	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
-end
+exec(SCI+"/modules/localization/tests/unit_tests/CreateDir.sce", -1);
 
 b = chdir("dir_азеазея");
 if(b <> %T) then pause, end

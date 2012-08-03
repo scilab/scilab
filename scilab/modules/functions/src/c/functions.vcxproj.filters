@@ -90,18 +90,21 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\functions.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\functions.iss" />
     <None Include="..\..\sci_gateway\functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\functions.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="functions.rc">

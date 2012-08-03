@@ -13,19 +13,12 @@
 package org.scilab.modules.helptools;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
 import org.xml.sax.SAXException;
 
@@ -39,7 +32,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private StringBuilder buffer = new StringBuilder(8192);
     private String outName;
-    private List<String> filesList = new ArrayList();
+    private List<String> filesList = new ArrayList<String>();
     private String language;
     private String docWebsite;
 
@@ -57,7 +50,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param language the language to use ('en_US', 'fr_FR', ...)
      */
     public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, String docWebsite, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
+        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.CHM);
         this.outName = new File(outName).getCanonicalPath() + File.separator;
         this.language = language;
         this.docWebsite = docWebsite;

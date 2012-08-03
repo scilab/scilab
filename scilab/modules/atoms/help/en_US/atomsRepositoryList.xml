@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-			repositories = atomsRepositoryList([section])
-		</synopsis>
+      repositories = atomsRepositoryList([section])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -30,55 +30,55 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			<varlistentry>
+      <varlistentry>
         <term>section</term>
         <listitem>
           <para>
-						This argument controls the list of section where search URL(s).
-					</para>
+            This argument controls the list of section where search URL(s).
+          </para>
           <para>
-						<literal>section</literal> is a single-string and its value should be :
-					</para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"all"</literal>: URL(s) present in the "user", "allusers"
-								and "official" section are listed.
-							</para>
+                <literal>"all"</literal>: URL(s) present in the "user", "allusers"
+                and "official" section are listed.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: only URL(s) present in the "allusers"
-								section are listed.
-							</para>
+                <literal>"allusers"</literal>: only URL(s) present in the "allusers"
+                section are listed.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"user"</literal>: only URL(s) present in the "user"
-								section are listed.
-							</para>
+                <literal>"user"</literal>: only URL(s) present in the "user"
+                section are listed.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"official"</literal>: only URL(s) present in the "official"
-								section are listed.
-							</para>
+                <literal>"official"</literal>: only URL(s) present in the "official"
+                section are listed.
+              </para>
             </listitem>
           </itemizedlist>
-					<para>
-						The default value is "all".
-					</para>
+          <para>
+            The default value is "all".
+          </para>
         </listitem>
-			</varlistentry>
+      </varlistentry>
       <varlistentry>
         <term>repositories</term>
         <listitem>
           <para>
-						Matrix of strings : the first column give the list of repositories
-						managed by ATOMS and the second column indicate if the repository is
-						a official repository, if the repository has been added for all users
-						or only for the current user.
-					</para>
+            Matrix of strings : the first column give the list of repositories
+            managed by ATOMS and the second column indicate if the repository is
+            an official repository, if the repository has been added for all users
+            or only for the current user.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -88,9 +88,10 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsRepositoryList</literal> return a matrix that give the list of
-    available repositories.
-	</para>
+    <para>
+      <literal>atomsRepositoryList</literal> return a matrix that give the list of
+      available repositories.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -111,7 +112,7 @@ atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsRepositoryAdd">atomsRepositoryAdd</link>
@@ -124,10 +125,4 @@ atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

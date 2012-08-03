@@ -14,12 +14,14 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include <stdlib.h>
+#include "core_math.h"
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
@@ -65,11 +67,11 @@ SCICOS_BLOCKS_IMPEXP void minmax(scicos_block *block,int flag)
 				{
 					if(block->ipar[0]==1)
 					{
-						block->outptr[0][i]=min(block->inptr[0][i],block->inptr[1][i]);
+						block->outptr[0][i]=Min(block->inptr[0][i],block->inptr[1][i]);
 					} 
 					else 
 					{
-						block->outptr[0][i]=max(block->inptr[0][i],block->inptr[1][i]);
+						block->outptr[0][i]=Max(block->inptr[0][i],block->inptr[1][i]);
 					}
 				}
 				else

@@ -4,8 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
-funcprot(0)
+// <-- CLI SHELL MODE -->
+funcprot(0);
 // simple
 //
 deff('[x,y]=t1(a,b)','x=a+b,y=a-b','n')
@@ -523,25 +523,25 @@ deff('[f]=%p_r_p(p1,p2)',['[l,c]=size(p2);';
                         'if l*c <>1 then f=p1*invr(p2),return,end;';
                         '[l,c]=size(p1);';
                         '[p1 p2]=simp(p1,p2*ones(l,c));';
-                        'f=tlist([''r'',''num'',''den'',''dt''],p1,p2,[]);'],'n')
+                        'f=rlist(p1,p2,[]);'],'n')
 horn=horner;
 h=1/s;
-if cplist(h,tlist(['r','num','den','dt'],1,s,[]))==0 then bugmes();quit;end
+if cplist(h,rlist(1,s,[]))==0 then bugmes();quit;end
 h1=(z-1)/(z+1);
 hrn=horner(h,h1);
-if cplist(hrn , tlist(['r','num','den','dt'],z+1,z-1,[]))==0 then bugmes();quit;end
+if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 hrn=horner(h,h1);
-if cplist(hrn , tlist(['r','num','den','dt'],z+1,z-1,[]))==0 then bugmes();quit;end
+if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 h=1/s;
-if cplist(h,tlist(['r','num','den','dt'],1,s,[]))==0 then bugmes();quit;end
+if cplist(h,rlist(1,s,[]))==0 then bugmes();quit;end
 h1=(z-1)/(z+1);
 hrn=horn(h,h1);
-if cplist(hrn , tlist(['r','num','den','dt'],z+1,z-1,[]))==0 then bugmes();quit;end
+if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 hrn=horn(h,h1);
-if cplist(hrn , tlist(['r','num','den','dt'],z+1,z-1,[]))==0 then bugmes();quit;end
+if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 //
 //

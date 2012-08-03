@@ -491,8 +491,9 @@ function start_simu()
   curAxe = gca();
   traj_handle = curAxe.children(1).children(5);
   traj_handle.data = [x(1),y(1),z(1)];
-  
+
   for k=2:size(x,'*')
+    sleep(10)
     if is_handle_valid(my_figure_handle) then
       if execstr('fin=my_figure_handle.user_data','errcatch')<>0|fin then break,end
       if is_handle_valid(traj_handle) then
@@ -504,7 +505,7 @@ function start_simu()
       break;
     end
   end
-  
+
   if is_handle_valid(my_figure_handle) then
     my_figure_handle.user_data=%t;
   end

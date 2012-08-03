@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-14 01:05+0000\n"
+"PO-Revision-Date: 2012-07-22 14:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -87,6 +87,8 @@ msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
 msgstr ""
+"Разложение LU матрицы выполнено, но множитель U является вырожденным : "
+"U(%d,%d) равен нулю."
 
 msgid "Read error!\n"
 msgstr "Ошибка чтения!\n"
@@ -97,40 +99,12 @@ msgstr "Не удалось открыть файл!\n"
 msgid "Read error\n"
 msgstr "Ошибка чтения\n"
 
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr ""
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"SCOPE ERROR : нельзя выполнить sciDrawObj, по неизвестной причине pShortDraw "
-"является NULL !\n"
-" Может быть, вы уничтожили окна или какую-нибудь из родительских кривых\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "SCOPE ERROR : Неизвестный код ошибки!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Некорректное значение для параметра размерности."
-
-msgid "This scope has the same window id than another."
-msgstr ""
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Невозможно использовать %s с этим типом объекта."
-
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
-msgstr ""
+msgstr "задержанное время=%f, но последнее сохранённое время=%f \n"
 
 msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
+msgstr "Следует учесть увеличение длины буфера в блоке задержки \n"
 
 #, c-format
 msgid "Error when opening file '%s'.\n"
@@ -145,7 +119,7 @@ msgstr "Изменился размер буфера или входного р�
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
-msgstr ""
+msgstr "задержанное время=%f, но последнее сохранённое время=%f\n"
 
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr "Учтите увеличение длины буфера в блоке переменной задержки\n"
@@ -158,17 +132,17 @@ msgstr "Очистить бит"
 
 #, c-format
 msgid "Set %s block parameters"
-msgstr ""
+msgstr "Установите параметры блока %s"
 
 #, c-format
 msgid "Data Type %s"
 msgstr "Тип данных %s"
 
 msgid "Index of Bit (0 is least significant)"
-msgstr ""
+msgstr "Индекс битаt (0 является младшим значащим)"
 
 msgid "Index of Bit"
-msgstr ""
+msgstr "Индекс бита"
 
 #, c-format
 msgid "Wrong type for '%s' parameter: %5.1f."
@@ -189,28 +163,28 @@ msgid "Data Type"
 msgstr "Тип данных"
 
 msgid "Set a bit"
-msgstr ""
+msgstr "Установите бит"
 
 msgid "Type conversion"
 msgstr "Преобразование типов"
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "Тип на входе (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "Тип на выходе (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
 msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
-msgstr ""
+msgstr "Делать при переполнении (0:Ничего, 1:Ограничение, 2:Ошибка)"
 
 msgid "Do on Overflow"
-msgstr ""
+msgstr "Делать при переполнении"
 
 msgid "Input Type"
-msgstr ""
+msgstr "Тип на входе"
 
 msgid "Output Type"
-msgstr ""
+msgstr "Тип на выходе"
 
 msgid "Bits Extraction"
 msgstr "Выделение битов"
@@ -247,23 +221,23 @@ msgid "Bits to extract"
 msgstr "Биты для выделения"
 
 msgid "Number of Bits or Index of Bit"
-msgstr ""
+msgstr "Количество битов или индекс бита"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
-msgstr ""
+msgstr "Обрабатывать поле бита как целочисленное (0:Нет, 1:Да)"
 
 msgid "Bits to Extract"
 msgstr "Биты для выделения"
 
 msgid "Treat Bit Field as an Integer"
-msgstr ""
+msgstr "Обрабатывать поле бита как целочисленное"
 
 #, c-format
 msgid "Wrong size for '%s' parameter: %s."
 msgstr "Неверный размер параметра '%s': %s."
 
 msgid "Must be a single value."
-msgstr ""
+msgstr "Должно быть единственным значением."
 
 msgid "Must have this form: [Start, End]."
 msgstr "Должно иметь следующую форму: [Начало, Окончание]."
@@ -281,10 +255,10 @@ msgstr "Неверное значение параметра '%s': %s."
 
 #, c-format
 msgid "Indexes must be in the interval %s."
-msgstr ""
+msgstr "Индексы должны бить на интервале %s."
 
 msgid "Integer matrix multiplication"
-msgstr ""
+msgstr "Умножение матриц целочисленных значений."
 
 msgid "JK flip-flop"
 msgstr ""
@@ -317,7 +291,7 @@ msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "Принимает унаследованные события (0:Нет, 1:Да)"
 
 msgid "Truth Table (matrix of outputs)"
-msgstr ""
+msgstr "Таблица истинности (матрица значений на выходе)"
 
 msgid "Truth Table"
 msgstr "Таблица истинности"
@@ -341,10 +315,11 @@ msgid "Accepts Inherited Events"
 msgstr "Принимает унаследованные события"
 
 msgid "Shift/Rotates bits"
-msgstr ""
+msgstr "Сдвигать/Циклически сдвигать биты"
 
 msgid "Number of Bits to Shift Left (Negative number to shift right)"
 msgstr ""
+"Количество битов для сдвига влево (Отрицательное число для сдвига вправо)"
 
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Тип сдвига (0:арифметический, 1:круговой)"
@@ -359,10 +334,10 @@ msgid "Invalid masked block."
 msgstr ""
 
 msgid "Finite differences"
-msgstr ""
+msgstr "Конечные разности"
 
 msgid "Finite elements"
-msgstr ""
+msgstr "Конечные элементы"
 
 msgid "negative"
 msgstr "отрицательный"
@@ -398,7 +373,7 @@ msgid "Variable discriminant:"
 msgstr "Переменный дискриминант:"
 
 msgid "Spatial discretization method"
-msgstr ""
+msgstr "Метод пространственной дискретизации"
 
 msgid "Choice:"
 msgstr "Выбор:"
@@ -425,7 +400,7 @@ msgid "Display step value"
 msgstr ""
 
 msgid "Initial conditions"
-msgstr ""
+msgstr "Исходные условия"
 
 msgid "Boundary condition on a"
 msgstr "Граничное условие на a"
@@ -437,7 +412,7 @@ msgid "Expression ="
 msgstr "Выражение ="
 
 msgid "Measurement points"
-msgstr ""
+msgstr "Точки измерения"
 
 msgid "The measurement points"
 msgstr "Точки измерения"
@@ -449,7 +424,7 @@ msgid "Remove"
 msgstr "Удалить"
 
 msgid "Validate"
-msgstr ""
+msgstr "Утвердить"
 
 msgid "Cancel"
 msgstr "Отмена"
@@ -480,7 +455,7 @@ msgid "&nbsp; - A binary file if no format given"
 msgstr "&nbsp; - Двоичный файл, если формат не задан"
 
 msgid "Write is done on:"
-msgstr ""
+msgstr "Запись сделана в:"
 
 msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
 msgstr ""
@@ -505,6 +480,8 @@ msgid ""
 "Simulation running !!! You cannot switch<br />between formatted and "
 "unformatted when running"
 msgstr ""
+"Моделирование запущено!!! Вы не можете во время работы переключать<br "
+"/>между форматированным и неформатированным"
 
 msgid "You cannot modify 'Output File Name' when running."
 msgstr "Вы не можете изменить 'Имя файла вывода' во время выполнения."
@@ -513,7 +490,7 @@ msgid "Wrong value for 'Output File Name' parameter"
 msgstr "Неверное значение параметра 'Имя файла вывода'"
 
 msgid "You must provide a filename."
-msgstr ""
+msgstr "Вы должны указать имя файла."
 
 #, c-format
 msgid "Directory '%s' does not exist"
@@ -523,16 +500,16 @@ msgid "Input Format"
 msgstr ""
 
 msgid "You must enclose the format's string between parentheses."
-msgstr ""
+msgstr "Вы должны поместить строку формата между скобками."
 
 msgid "Must be greater than 1."
-msgstr ""
+msgstr "Должно быть больше 1."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
 
 msgid "Write '.au' sound file on audio device"
-msgstr ""
+msgstr "Записать звуковой файл '.au'  на аудио устройстве"
 
 #, c-format
 msgid "You cannot modify '%s' when running."
@@ -548,7 +525,7 @@ msgid "Write to C binary file"
 msgstr "Запись в двоичный C файл"
 
 msgid "Valid formats are: "
-msgstr ""
+msgstr "Допустимыми форматами являются: "
 
 #, c-format
 msgid "You cannot modify '%s' when running"
@@ -602,6 +579,7 @@ msgstr "Неверный тип параметра '%s'"
 
 msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
 msgstr ""
+"Тип значения должне быть числовым типом (double, complex, int, int8, ...)."
 
 msgid "Integer counter generator"
 msgstr ""
@@ -613,7 +591,7 @@ msgid "Minimum"
 msgstr "Минимум"
 
 msgid "Rule (1:Increment, 2:Decrement)"
-msgstr ""
+msgstr "Правило (1:увеличивать, 2:уменьшать)"
 
 #, c-format
 msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
@@ -624,7 +602,7 @@ msgstr "'Минимум' должен быть меньше чем 'Максим
 
 #, c-format
 msgid "Wrong value for 'Rule' parameter: %d"
-msgstr ""
+msgstr "Неверное значение для параметра «Правило»: %d"
 
 msgid "Sine wave generator"
 msgstr "Генератор синусоидальных колебаний"
@@ -633,7 +611,7 @@ msgid "Frequency (rad/s)"
 msgstr "Частота (рад/с)"
 
 msgid "Magnitude"
-msgstr ""
+msgstr "Абсолютная величина"
 
 msgid "Phase (rad)"
 msgstr "Фаза (рад)"
@@ -652,7 +630,7 @@ msgid "Modulo counter (0 to N counter)"
 msgstr ""
 
 msgid "Initial State (zero or positive number)"
-msgstr ""
+msgstr "Исходное состояие (ноль или положительное число)"
 
 msgid "Upper Limit (positive number)"
 msgstr "Верхний предел (положительное число)"
@@ -691,10 +669,10 @@ msgid "Buffer size"
 msgstr "Размер буфера"
 
 msgid "Input File Name"
-msgstr ""
+msgstr "Имя входного файла"
 
 msgid "Simulation running !!! You cannot modify Input file name"
-msgstr ""
+msgstr "Моделирование запущено !!! Вы не можете изменять имя входного файла"
 
 #, c-format
 msgid "Must be greater than %d."
@@ -707,30 +685,30 @@ msgid "Read from C binary file"
 msgstr ""
 
 msgid "Time Record Selection"
-msgstr ""
+msgstr "Выбор времени записи"
 
 msgid "Record Size"
-msgstr ""
+msgstr "Размер записи"
 
 msgid "Initial Record Index"
-msgstr ""
+msgstr "Исходный индекс записи"
 
 msgid "Must be a scalar or an empty matrix."
-msgstr ""
+msgstr "Должен быть скаляр или пустая матрица."
 
 msgid "You must provide a file name."
-msgstr ""
+msgstr "Вы должны указать имя файла."
 
 #, c-format
 msgid "Wrong value for  '%s' parameter: %d."
-msgstr ""
+msgstr "Неверное значение для параметра '%s': %d."
 
 msgid "[1, Record Size = "
-msgstr ""
+msgstr "[1, Размер записи = "
 
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
-msgstr ""
+msgstr "Неверное значение для индексов в параметре '%s': %s."
 
 msgid "Step Function"
 msgstr ""

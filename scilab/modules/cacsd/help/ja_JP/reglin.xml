@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="reglin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>reglin</refname>
     <refpurpose>線形回帰</refpurpose>
@@ -25,16 +22,18 @@
   <refsection>
     <title>説明</title>
     <para>
-	最小二乗解として回帰問題y=a*x+ bを解きます.
-    <literal>sig</literal> は残差の標準偏差です.
-	<literal>x</literal> および <literal>y</literal>
-	は大きさ <literal>x(p,n)</literal> および <literal>y(q,n)</literal>
-	の行列, ただし<literal>n</literal>はサンプル数,です.</para>
+      最小二乗解として回帰問題y=a*x+ bを解きます.
+      <literal>sig</literal> は残差の標準偏差です.
+      <literal>x</literal> および <literal>y</literal>
+      は大きさ <literal>x(p,n)</literal> および <literal>y(q,n)</literal>
+      の行列, ただし<literal>n</literal>はサンプル数,です.
+    </para>
     <para>
-    推定器 <literal>a</literal> は大きさ <literal>(q,p)</literal> の行列,
-	<literal>b</literal>は大きさ 
-    <literal>(q,1)</literal>のベクトルです.</para>
-    <programlisting role = ""><![CDATA[ 
+      推定器 <literal>a</literal> は大きさ <literal>(q,p)</literal> の行列,
+      <literal>b</literal>は大きさ 
+      <literal>(q,1)</literal>のベクトルです.
+    </para>
+    <programlisting role=""><![CDATA[ 
 // simulation of data for a(3,5) and b(3,1)
 x=rand(5,100);
 aa=testmatrix('magi',5);aa=aa(1:3,:);

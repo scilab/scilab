@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullrf</refname>
     <refpurpose> full rank factorization</refpurpose>
@@ -46,7 +43,9 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>integer (rank of <literal>A</literal>)</para>
+          <para>
+            integer (rank of <literal>A</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,16 +53,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Full rank factorization : <literal>fullrf</literal> returns <literal>Q</literal> and <literal>M</literal> such
-    that <literal>A = Q*M</literal>
-    with range(<literal>Q</literal>)=range(<literal>A</literal>) and ker(<literal>M</literal>)=ker(<literal>A</literal>),
-    <literal>Q</literal> full column rank , <literal>M</literal> full row rank,
-    <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>.</para>
-    <para><literal>tol</literal> is an optional real parameter (default value is <literal>sqrt(%eps)</literal>).
-    The rank <literal>rk</literal> of <literal>A</literal> is defined as the number of singular values
-    larger than <literal>norm(A)*tol</literal>.</para>
+      Full rank factorization : <literal>fullrf</literal> returns <literal>Q</literal> and <literal>M</literal> such
+      that <literal>A = Q*M</literal>
+      with range(<literal>Q</literal>)=range(<literal>A</literal>) and ker(<literal>M</literal>)=ker(<literal>A</literal>),
+      <literal>Q</literal> full column rank , <literal>M</literal> full row rank,
+      <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>.
+    </para>
     <para>
-    If A is symmetric, <literal>fullrf</literal> returns <literal>M=Q'</literal>.</para>
+      <literal>tol</literal> is an optional real parameter (default value is <literal>sqrt(%eps)</literal>).
+      The rank <literal>rk</literal> of <literal>A</literal> is defined as the number of singular values
+      larger than <literal>norm(A)*tol</literal>.
+    </para>
+    <para>
+      If A is symmetric, <literal>fullrf</literal> returns <literal>M=Q'</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +79,7 @@ svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="svd">svd</link>
@@ -94,9 +97,5 @@ svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
         <link linkend="colcomp">colcomp</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

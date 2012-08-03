@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 if size(y) <> [3 1] then pause,end

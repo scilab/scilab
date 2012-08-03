@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="proj">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>proj</refname>
     <refpurpose> projection</refpurpose>
@@ -34,14 +31,18 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>real projection matrix (<literal>P^2=P</literal>)</para>
+          <para>
+            real projection matrix (<literal>P^2=P</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>P</literal> is the projection on <literal>X2</literal> parallel to <literal>X1</literal>.</para>
+    <para>
+      <literal>P</literal> is the projection on <literal>X2</literal> parallel to <literal>X1</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -55,7 +56,7 @@ svd([Q,X2])   // span(Q) = span(X2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="projspec">projspec</link>
@@ -67,9 +68,5 @@ svd([Q,X2])   // span(Q) = span(X2)
         <link linkend="fullrf">fullrf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

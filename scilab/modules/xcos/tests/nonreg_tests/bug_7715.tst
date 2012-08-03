@@ -17,13 +17,13 @@
 
 
 timer();
-xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
 run1 = timer();
 
-xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
 
 timer();
-xcosDiagramToHDF5(SCI+"/modules/xcos/demos/susp.xcos",TMPDIR+"/out.h5",%t);
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
 run3 = timer();
 
 // If the computer slows for an other reasons, we might have this bug again.

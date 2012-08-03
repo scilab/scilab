@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 15:21+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2011-12-29 08:37+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 msgid "overflow error"
@@ -98,34 +98,6 @@ msgstr "¡No se pudo abrir el archivo!\n"
 msgid "Read error\n"
 msgstr "Error de lectura\n"
 
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERROR DE ENTORNO : Error en scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERROR DE ENTORNO : ¡sciDrawObj no pudo ejecutarse, pShortDraw es NULL por un "
-"motivo desconocidp!\n"
-" Tal vez haya destruido la ventana o alguna de las curvas padre\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "ERROR DE ENTORNO : Error en malloc - Revise la memoria\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERROR DE ENTORNO : ¡Código de error desconocido!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr ""
-
-msgid "This scope has the same window id than another."
-msgstr ""
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
 msgstr ""
@@ -208,10 +180,10 @@ msgid "Do on Overflow"
 msgstr "Hacer en desbordamiento"
 
 msgid "Input Type"
-msgstr ""
+msgstr "Tipo de entrada"
 
 msgid "Output Type"
-msgstr ""
+msgstr "Tipo de salida"
 
 msgid "Bits Extraction"
 msgstr "Extracción de bits"
@@ -254,7 +226,7 @@ msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Tratar al campo del bit como a un entero (0:No, 1:Sí)"
 
 msgid "Bits to Extract"
-msgstr ""
+msgstr "Bits a extraer"
 
 msgid "Treat Bit Field as an Integer"
 msgstr ""
@@ -321,7 +293,7 @@ msgid "Truth Table (matrix of outputs)"
 msgstr "Tabla de Verdad (matriz de salidas)"
 
 msgid "Truth Table"
-msgstr ""
+msgstr "Tabla de verdad"
 
 #, c-format
 msgid "Wrong size for '%s' parameter: %d."
@@ -336,10 +308,10 @@ msgstr ""
 
 #, c-format
 msgid "Elements must be in the interval %s."
-msgstr ""
+msgstr "Los elementos deben pertenecer al intervalo %s."
 
 msgid "Accepts Inherited Events"
-msgstr ""
+msgstr "Aceptar eventos heredados"
 
 msgid "Shift/Rotates bits"
 msgstr "Desplazar/rotar bits"
@@ -407,7 +379,7 @@ msgid "Choice:"
 msgstr "Elección:"
 
 msgid "Automatic"
-msgstr "Automático"
+msgstr "Automático"
 
 msgid "Manual"
 msgstr "Manual"
@@ -477,7 +449,7 @@ msgid "Regular output port"
 msgstr "Puerto de salida normal"
 
 msgid "Write to output file"
-msgstr ""
+msgstr "Escribir al archivo de salida"
 
 msgid "&nbsp; - A binary file if no format given"
 msgstr ""
@@ -489,19 +461,19 @@ msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
 msgstr ""
 
 msgid "Input Size"
-msgstr ""
+msgstr "Tamaño de entrada"
 
 msgid "Output File Name"
-msgstr ""
+msgstr "Nombre del archivo de salida"
 
 msgid "Buffer Size"
-msgstr ""
+msgstr "Tamaño del buffer"
 
 msgid "Output Format"
-msgstr ""
+msgstr "Formato de salida"
 
 msgid "End current simulation first."
-msgstr ""
+msgstr "Terminar primero la simulación actual."
 
 msgid ""
 "Simulation running !!! You cannot switch<br />between formatted and "
@@ -515,20 +487,20 @@ msgid "Wrong value for 'Output File Name' parameter"
 msgstr ""
 
 msgid "You must provide a filename."
-msgstr ""
+msgstr "Debe proporcionar un nombre de archivo."
 
 #, c-format
 msgid "Directory '%s' does not exist"
-msgstr ""
+msgstr "La carpeta '%s' no existe"
 
 msgid "Input Format"
-msgstr ""
+msgstr "Formato de entrada"
 
 msgid "You must enclose the format's string between parentheses."
 msgstr ""
 
 msgid "Must be greater than 1."
-msgstr ""
+msgstr "Debe ser mayor a 1."
 
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
@@ -550,14 +522,14 @@ msgid "Write to C binary file"
 msgstr ""
 
 msgid "Valid formats are: "
-msgstr ""
+msgstr "Los formatos válidos son: "
 
 #, c-format
 msgid "You cannot modify '%s' when running"
-msgstr ""
+msgstr "No puede modificar '%s' mientras se ejecuta"
 
 msgid "You cannot modify 'Buffer Size' when running."
-msgstr ""
+msgstr "No puede modificar 'Tamaño del buffer' mientras se ejecuta."
 
 msgid "Event input port"
 msgstr "Puerto de entrada de eventos"
@@ -567,32 +539,32 @@ msgid "Wrong values for 'Port Number' parameter: %d."
 msgstr "Valor incorrecto para el parámetro Puerto número: %d."
 
 msgid "Event clock generator"
-msgstr ""
+msgstr "Generador de eventos de reloj"
 
 msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
 msgstr ""
 
 msgid "Initialisation Time"
-msgstr ""
+msgstr "Tiempo de inicialización"
 
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 msgid "Strictly positive number expected."
-msgstr ""
+msgstr "Se esperaba un número estríctamente positivo"
 
 #, c-format
 msgid "Wrong values for '%s' parameter: %5.1e."
 msgstr ""
 
 msgid "Constant Value"
-msgstr ""
+msgstr "Valor constante"
 
 msgid "Constant value generator"
-msgstr ""
+msgstr "Generador de valores constantes"
 
 msgid "Constant value must have at least one element."
-msgstr ""
+msgstr "Un valor constante debe contener al menos un elemento"
 
 #, c-format
 msgid "Wrong size for '%s' parameter"
@@ -629,16 +601,16 @@ msgid "Wrong value for 'Rule' parameter: %d"
 msgstr ""
 
 msgid "Sine wave generator"
-msgstr ""
+msgstr "Generador de ondas senoidales"
 
 msgid "Frequency (rad/s)"
-msgstr ""
+msgstr "Frecuencia (rad/s)"
 
 msgid "Magnitude"
-msgstr ""
+msgstr "Magnitud"
 
 msgid "Phase (rad)"
-msgstr ""
+msgstr "Fase (rad)"
 
 #, c-format
 msgid "Wrong value for 'Frequency' parameter: %e."
@@ -690,7 +662,7 @@ msgid "Read is done on a binary '.au' file"
 msgstr ""
 
 msgid "Buffer size"
-msgstr ""
+msgstr "Tamaño del buffer"
 
 msgid "Input File Name"
 msgstr ""
@@ -738,7 +710,7 @@ msgid "Step Function"
 msgstr ""
 
 msgid "Final Value"
-msgstr ""
+msgstr "Valor final"
 
 msgid "Step Time"
 msgstr ""

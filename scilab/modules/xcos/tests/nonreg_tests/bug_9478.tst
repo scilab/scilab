@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH XCOS -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 9478 -->
 //
@@ -78,7 +79,7 @@ scs_m.objs(1)=scicos_block(..
               doc=list());
 
 
-tmpFileName = TMPDIR + "/bug_9478_scs_m.h5";
+tmpFileName = TMPDIR + "/bug_9478_scs_m.sod";
 
 assert_checktrue(export_to_hdf5(tmpFileName, "scs_m"))
 assert_checktrue(isfile(tmpFileName))

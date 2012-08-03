@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="locate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>locate</refname>
     <refpurpose>複数の点をマウスで選択する</refpurpose>
@@ -42,21 +39,27 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>locate</literal> はグラフィックウインドウにおいて
-	1つまたは複数の点の座標をマウスで取得する際に使用されます.
-	座標はカレントのグラフィックスケールで出力されます.</para>
     <para>
-    n&gt;0の場合, n個の点が選択され,その座標は行列<literal>x</literal>
-	に返されます.</para>
+      <literal>locate</literal> はグラフィックウインドウにおいて
+      1つまたは複数の点の座標をマウスで取得する際に使用されます.
+      座標はカレントのグラフィックスケールで出力されます.
+    </para>
     <para>
-    n&lt;=0の場合, ユーザが中断を意味するマウスの左ボタンをクリックするまで
-	点が選択されます.
-	(左ボタンでクリックされた)最後の点は返されません.</para>
+      n&gt;0の場合, n個の点が選択され,その座標は行列<literal>x</literal>
+      に返されます.
+    </para>
     <para>
-    x=locate() は <literal>x=locate(-1)</literal>と同じです.</para>
+      n&lt;=0の場合, ユーザが中断を意味するマウスの左ボタンをクリックするまで
+      点が選択されます.
+      (左ボタンでクリックされた)最後の点は返されません.
+    </para>
     <para>
-    <literal>flag=1</literal>の場合,マウスがクリックされた場所に
-	十字マーカが描画されます.</para>
+      x=locate() は <literal>x=locate(-1)</literal>と同じです.
+    </para>
+    <para>
+      <literal>flag=1</literal>の場合,マウスがクリックされた場所に
+      十字マーカが描画されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -68,9 +71,5 @@
         <link linkend="xgetmouse">xgetmouse</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S.S. &amp; J.Ph.C</para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spanplus">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spanplus</refname>
     <refpurpose> 部分空間の合計</refpurpose>
@@ -54,25 +51,31 @@
   <refsection>
     <title>説明</title>
     <para>
-	基底Xは以下を計算します:</para>
+      基底Xは以下を計算します:
+    </para>
     <para>
-	<literal>X</literal>の最初の<literal>dima</literal>列は,
-	range(<literal>A</literal>)に展開されます.
-	そして,これ以降の(<literal>dim-dima</literal>)列は,
-	<literal>A+B</literal> の<literal>A</literal>に関する
-	基底を構成します.</para>
+      <literal>X</literal>の最初の<literal>dima</literal>列は,
+      range(<literal>A</literal>)に展開されます.
+      そして,これ以降の(<literal>dim-dima</literal>)列は,
+      <literal>A+B</literal> の<literal>A</literal>に関する
+      基底を構成します.
+    </para>
     <para>
-	<literal>X</literal>の最初の<literal>dim</literal>列は,
-	<literal>A+B</literal>の基底を構成します.</para>
+      <literal>X</literal>の最初の<literal>dim</literal>列は,
+      <literal>A+B</literal>の基底を構成します.
+    </para>
     <para>
-	<literal>[A,B]</literal>に関する以下の正準形式が定義されます:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>[A,B]</literal>に関する以下の正準形式が定義されます:
+    </para>
+    <programlisting role=""><![CDATA[ 
          [*,*]    (dima 行)
 X'*[A,B]=[0,*]    (dim-dima 行)
          [0,0]    
  ]]></programlisting>
-    <para><literal>tol</literal> は
-	オプションの引数です(関数のコードを参照).</para>
+    <para>
+      <literal>tol</literal> は
+      オプションの引数です(関数のコードを参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -97,9 +100,5 @@ dim
         <link linkend="spantwo">spantwo</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

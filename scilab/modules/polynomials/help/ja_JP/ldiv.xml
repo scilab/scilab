@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ldiv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ldiv</refname>
     <refpurpose>多項式行列の長除算</refpurpose>
@@ -41,14 +38,17 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>x=ldiv(n,d,k)</literal> は,
-	<literal>n</literal>の<literal>d</literal>による長除算の
-	最初の<literal>k</literal>個の係数を出力します.
-	すなわち,有理行列<literal>[nij(z)/dij(z)]</literal>の無限大近傍での
-	テイラー展開を出力します.</para>
     <para>
-    <literal>nij/dij</literal>の展開の係数は
-    <literal>x((i-1)*n+k,j)  k=1:n</literal>に保存されます</para>
+      <literal>x=ldiv(n,d,k)</literal> は,
+      <literal>n</literal>の<literal>d</literal>による長除算の
+      最初の<literal>k</literal>個の係数を出力します.
+      すなわち,有理行列<literal>[nij(z)/dij(z)]</literal>の無限大近傍での
+      テイラー展開を出力します.
+    </para>
+    <para>
+      <literal>nij/dij</literal>の展開の係数は
+      <literal>x((i-1)*n+k,j)  k=1:n</literal>に保存されます
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

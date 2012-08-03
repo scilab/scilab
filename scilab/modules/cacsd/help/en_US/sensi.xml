@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sensi">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sensi</refname>
     <refpurpose> sensitivity functions</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Se,Re,Te]=sensi(G,K)
-[Si,Ri,Ti]=sensi(G,K,flag)</synopsis>
+      [Si,Ri,Ti]=sensi(G,K,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,51 +27,65 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>standard plant (<literal>syslin</literal> list)</para>
+          <para>
+            standard plant (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>compensator (<literal>syslin</literal> list)</para>
+          <para>
+            compensator (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string <literal>'o'</literal> (default value) or <literal>'i'</literal></para>
+          <para>
+            character string <literal>'o'</literal> (default value) or <literal>'i'</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Se</term>
         <listitem>
-          <para>output sensitivity function <literal>(I+G*K)^-1</literal></para>
+          <para>
+            output sensitivity function <literal>(I+G*K)^-1</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Re</term>
         <listitem>
-          <para> <literal>K*Se</literal></para>
+          <para>
+            <literal>K*Se</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Te</term>
         <listitem>
-          <para> <literal>G*K*Se</literal> (output complementary sensitivity function)</para>
+          <para>
+            <literal>G*K*Se</literal> (output complementary sensitivity function)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sensi</literal> computes sensitivity functions. If <literal>G</literal> and <literal>K</literal> are
-    given in state-space form, the systems returned are generically minimal. 
-    Calculation is made by <literal>lft</literal>, e.g., 
-    <literal>Se</literal> can be given by the commands 
-    <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>.
-    If <literal>flag</literal> = <literal>'i'</literal>, <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>
-    returns the input sensitivity functions.</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>sensi</literal> computes sensitivity functions. If <literal>G</literal> and <literal>K</literal> are
+      given in state-space form, the systems returned are generically minimal. 
+      Calculation is made by <literal>lft</literal>, e.g., 
+      <literal>Se</literal> can be given by the commands 
+      <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>.
+      If <literal>flag</literal> = <literal>'i'</literal>, <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>
+      returns the input sensitivity functions.
+    </para>
+    <programlisting role=""><![CDATA[ 
 [Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
 [Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
  ]]></programlisting>
@@ -95,7 +107,7 @@ clean(w1-w2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="augment">augment</link>

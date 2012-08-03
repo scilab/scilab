@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="narsimul">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>narsimul</refname>
     <refpurpose> armax simulation ( using rtitr)   </refpurpose>
@@ -21,16 +18,14 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[z]=narsimul(a,b,d,sig,u,[up,yp,ep])
-[z]=narsimul(ar,u,[up,yp,ep])</synopsis>
+      [z]=narsimul(ar,u,[up,yp,ep])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    ARMAX simulation. Same as arsimul but the method is different 
-    the simulation is made with rtitr</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J-Ph. Chancelier ENPC Cergrene; ;   </para>
+      ARMAX simulation. Same as arsimul but the method is different 
+      the simulation is made with rtitr
+    </para>
   </refsection>
 </refentry>

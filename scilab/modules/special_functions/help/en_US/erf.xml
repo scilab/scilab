@@ -10,16 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="erf" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="erf" xml:lang="en">
   <refnamediv>
     <refname>erf</refname>
     <refpurpose>The error function.</refpurpose>
@@ -47,11 +38,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>erf</literal> computes the error function:</para>
+    <para>
+      <literal>erf</literal> computes the error function:
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../mml/erf_equation1.mml" />
+          <imagedata align="center" fileref="../mml/erf_equation1.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -64,17 +57,23 @@ erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="calerf">calerf</link></member>
-      <member><link linkend="cdfnor">cdfnor</link></member>
-      <member><link linkend="erfc">erfc</link></member>
-      <member><link linkend="erfcx">erfcx</link></member>
-      <member><link linkend="erfinv">erfinv</link></member>
+      <member>
+        <link linkend="calerf">calerf</link>
+      </member>
+      <member>
+        <link linkend="cdfnor">cdfnor</link>
+      </member>
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="erfcx">erfcx</link>
+      </member>
+      <member>
+        <link linkend="erfinv">erfinv</link>
+      </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>W. J. Cody (code from Netlib (specfun))</para>
   </refsection>
 </refentry>

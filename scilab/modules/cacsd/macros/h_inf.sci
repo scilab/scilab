@@ -59,7 +59,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   if size(mumin,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",3))
   end
-  if or(mumin<=0) then
+  if or(mumin<0) then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",3))
   end
 
@@ -70,7 +70,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   if size(mumax,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",4))
   end
-  if mumax<=0 then
+  if mumax<0 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",4))
   end
   if typeof(nmax)<>"constant"|~isreal(nmax) then

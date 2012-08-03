@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 15:52+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-25 00:50+0000\n"
+"Last-Translator: gustavoreyes <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -116,6 +116,81 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: 'all' o 'main' esperado\n"
 
 #, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+"\n"
+"%s Instalando ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+"\n"
+"%s Cargando ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+"\n"
+"%s Probando ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+"\n"
+"%s Removiendo ...\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+"%s: Tipo de argumento de entrada erróneo #%d: se esperaba una matriz o una "
+"cadena.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+"%s: Tipo de argumento de entrada erróneo #%d: se esperaba un booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+"%s: Tamaño de argumento de entrada erróneo #%d: se esperaba un booleano.\n"
+
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr ""
+"%s: El módulo %s ya se encuentra instalado. Por favor bórrelo antes de "
+"verificarlo.\n"
+
+#, c-format
+msgid "%s: Module %s does not exist in current repositories.\n"
+msgstr "%s: El módulo %s no existe en los repositorios actuales.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+"%s: Valor(es) erróneos para el argumento de entrada #%d: se esperaba un "
+"nombre de módulo único.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
+"\n"
+"Número de módulos para verificar: %d\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 
@@ -127,10 +202,36 @@ msgstr ""
 "de strings de 1x1 o 1x2.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Valor errónea para el argumento de entrada #%d.\n"
+
+#, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
 "%s: El archivo de configuración ('%s') no tiene el formato correcto en la "
 "línea %d\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: se esperaba una matriz "
+"de strings mx2 ó mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Deben asignarse las "
+"versiones de todos los módulos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 'user' o "
+"'allusers' o 'all'.\n"
 
 #, c-format
 msgid ""
@@ -168,6 +269,13 @@ msgstr "%s: El archivo '%s' no existe o no puede ser leído\n"
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr ""
 "%s: No pudo encontrarse el archivo de DESCRIPCIÓN para el paquete '%s'\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"La opción offline de la configuración de ATOMS se ha establecido a True. "
+"atomsSystemUpdate no comprobará los módulos disponibles más recientes."
 
 #, c-format
 msgid ""
@@ -248,12 +356,33 @@ msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: Se produjo un error durante la carga de '%s-%s':\n"
 
 #, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr "%s: Se ha producido un error mientras '%s-%s' descargaba:\n"
+
+#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 'user' o "
-"'allusers' o 'all'.\n"
+"%s: Tipo de argumento de entrada erróneo #%d: Se esperaba un booleano o "
+"cadena simple.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para argumento de entrada #%d: Se espera un booleano o "
+"una cadena simple.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba una variable "
+"boleana\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -264,6 +393,14 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 "%s: No tiene permisos suficientes para borrar una versión del paquete %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"Removiendo %s(%s)(%s).\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -291,6 +428,14 @@ msgstr ""
 "favor revise si tiene acceso de escritura en este directorio : %s.\n"
 
 #, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"Eliminando archivos para %s\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: Valor incorrecto del argumento de entrada #%d: Este ("
 
@@ -303,10 +448,30 @@ msgstr ""
 "'all','user','allusers' o 'official'.\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+"El archivo %s no existe: no se pudo restaurar la configuración anterior."
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "Archivo de configuración guardado en %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
 "tamaño.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+"%s: Valor erróneo para el argumento de entrada de configuración: Se esperaba "
+"True o False.\n"
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr "%s: Clave inválida para el argumento de entrada de configuración.\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -360,11 +525,6 @@ msgstr "Directorio de Instalación"
 msgid "Description"
 msgstr "Descripción"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: '%s - %s' no está instalado.\n"
@@ -388,6 +548,8 @@ msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
+"El modulo ATOMS no esta disponible. Por favor revisar su conexión a internet "
+"o revisar si su sistema operativo es compatible con ATOMS"
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
@@ -412,7 +574,10 @@ msgid "File"
 msgstr "Archivo"
 
 msgid "Installed modules"
-msgstr ""
+msgstr "Módulos instalados"
+
+msgid "Update List of Packages"
+msgstr "Actualice la Lista de Paquetes."
 
 msgid "Close"
 msgstr "Cerrar"
@@ -527,10 +692,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Debe ser el nombre de un "
-"paquete de atoms.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -570,15 +733,19 @@ msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
+msgstr "%s: El archivo DESCRIPTION ('%s') no existe.\n"
 
 #, c-format
 msgid "%s: gzip not found.\n"
-msgstr ""
+msgstr "%s: gzip no encontrado.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Falló la extracción del archivo de DESCRIPCIÓN ('%s').\n"
+
+#, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr "%s: guardar ('%s') ha fallado.\n"
 
 #, c-format
 msgid ""
@@ -587,6 +754,14 @@ msgid ""
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba una "
 "cadena que contenga 'TOOLBOXES' o 'DESCRIPTION'.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: El archivo %s no existe.\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: El archivo %s está vacío.\n"
 
 #, c-format
 msgid ""
@@ -617,6 +792,22 @@ msgstr "%s: El archivo '%s' no puede ser escrito.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s eliminado\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s no existe.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -638,39 +829,39 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: Error: URL Inválida\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: Error: Internet abierta.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: Error: URL Abierta.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: Error: Crear archivo.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: Error: Tamaño de archivo inválido.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: Error: Leer archivo de Internet.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: Error: Escribir archivo.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: Error: Falló.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: Error: Sin Memoria.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -678,7 +869,7 @@ msgstr "%s: El siguiente archivo no fue descargado:\n"
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t - URL      : '%s'\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -690,7 +881,7 @@ msgstr "%s: El siguiente archivo no fue copiado:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t - fuente    : '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -702,7 +893,7 @@ msgstr "%s: El MD5SUM del archivo descargado no concuerda:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t - archivo      : '%s'\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
@@ -747,35 +938,10 @@ msgstr ""
 "una matriz de cadena\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba una variable "
-"boleana\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrad #%d: Se esperaba una matriz de "
 "strings de 1x2.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: se esperaba una matriz "
-"de strings mx2 ó mx3.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Deben asignarse las "
-"versiones de todos los módulos.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -794,6 +960,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
 "package name.\n"
 msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: %s debe ser un nombre "
+"de paquetes de átomos disponible.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -880,15 +1048,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ASC o DESC.\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - URL            : '%s'\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - archivo            : '%s'\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - fuente      : '%s'\n"

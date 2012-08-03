@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="macglov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>macglov</refname>
     <refpurpose> Mac Farlane Glover 問題</refpurpose>
@@ -28,37 +25,43 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト), ``拡張'' プラント</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト), ``拡張'' プラント
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 ベクトル, <literal>P22</literal>の次元</para>
+          <para>
+            1x2 ベクトル, <literal>P22</literal>の次元
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[P,r]=macglov(Sl)</literal> は,
-	Glover-McFarlane問題の
-	標準プラント<literal>P</literal>を返します.</para>
     <para>
-	この問題の場合,
-	ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
-    ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,</para>
+      <literal>[P,r]=macglov(Sl)</literal> は,
+      Glover-McFarlane問題の
+      標準プラント<literal>P</literal>を返します.
+    </para>
     <para>
-    gama_optimal = <literal>1/sqrt(ro_optimal)</literal></para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. Delebecque INRIA</para>
+      この問題の場合,
+      ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
+      ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,
+    </para>
+    <para>
+      gama_optimal = <literal>1/sqrt(ro_optimal)</literal>
+    </para>
   </refsection>
 </refentry>

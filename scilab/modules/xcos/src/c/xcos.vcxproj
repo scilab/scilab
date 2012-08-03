@@ -84,17 +84,18 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,17 +112,18 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,11 +140,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +153,7 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -170,11 +173,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -183,10 +186,10 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\callxcos.cpp" />
     <ClCompile Include="DllmainXCOS.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c" />
     <ClCompile Include="..\jni\Modelica.cpp" />
@@ -195,7 +198,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_warnBlockByUID.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_Xcos.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalDelete.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalDisable.cpp" />
@@ -203,20 +206,23 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalGenerateIcon.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalLoad.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalMove.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosAddToolsMenu.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosUpdateBlock.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_loadXcos.cpp" />
     <ClCompile Include="..\jni\Xcos.cpp" />
     <ClCompile Include="..\cpp\xcosUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callxcos.h" />
     <ClInclude Include="..\..\includes\dynlib_xcos.h" />
     <ClInclude Include="..\..\includes\gw_xcos.h" />
+    <ClInclude Include="..\..\includes\xcosUtilities.hxx" />
     <ClInclude Include="..\jni\Modelica.hxx" />
     <ClInclude Include="..\jni\Palette.hxx" />
     <ClInclude Include="..\jni\Xcos.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\xcos.pot" />
-    <None Include="LibScilab_Import.def" />
+    <None Include="..\..\locales\xcos.pot" />
+    <None Include="core_import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\xcos.iss" />
     <None Include="..\..\sci_gateway\xcos_gateway.xml" />

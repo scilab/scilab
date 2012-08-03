@@ -1,100 +1,131 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-0.5.2.jar
+flexdock.jar=${thirdparty.dir}/flexdock-1.2.0.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
-jogl.jar=${thirdparty.dir}/jogl.jar
+scirenderer.jar=${thirdparty.dir}/scirenderer-0.5.5.jar
+
+jogl2.jar=${thirdparty.dir}/jogl2.jar
 
 jhdf5.jar=${thirdparty.dir}/jhdf5.jar
 
 jhall.jar=${thirdparty.dir}/jhall.jar
 
-gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
+gluegen2.jar=${thirdparty.dir}/gluegen2-rt.jar
 
 jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.7.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.7.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
-testng.jar=${thirdparty.dir}/testng.jar
+junit4.jar=${thirdparty.dir}/junit4.jar
 
-qdox.jar=${thirdparty.dir}/qdox.jar
+cobertura.jar=${thirdparty.dir}/cobertura.jar
 
-bsh.jar=${thirdparty.dir}/bsh.jar
-
-junit.jar=${thirdparty.dir}/junit.jar
+asm3.jar=${thirdparty.dir}/asm3.jar
 
 ; To build the export through the Java
 avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
+library.jvm.src.dir=${modules.dir}/jvm/${library.src.path}
 library.jvm.name=org.scilab.modules.jvm.jar
 
 library.commons.dir=${modules.dir}/commons/${build.jar.dir}/
+library.commons.src.dir=${modules.dir}/commons/${library.src.path}
 library.commons.name=org.scilab.modules.commons.jar
 
 library.gui.dir=${modules.dir}/gui/${build.jar.dir}/
+library.gui.src.dir=${modules.dir}/gui/${library.src.path}
 library.gui.name=org.scilab.modules.gui.jar
 
 library.console.dir=${modules.dir}/console/${build.jar.dir}/
+library.console.src.dir=${modules.dir}/console/${library.src.path}
 library.console.name=org.scilab.modules.console.jar
 
 library.action_binding.dir=${modules.dir}/action_binding/${build.jar.dir}/
+library.action_binding.src.dir=${modules.dir}/action_binding/${library.src.path}
 library.action_binding.name=org.scilab.modules.action_binding.jar
 
 library.localization.dir=${modules.dir}/localization/${build.jar.dir}/
+library.localization.src.dir=${modules.dir}/localization/${library.src.path}
 library.localization.name=org.scilab.modules.localization.jar
 
 library.completion.dir=${modules.dir}/completion/${build.jar.dir}/
+library.completion.src.dir=${modules.dir}/completion/${library.src.path}
 library.completion.name=org.scilab.modules.completion.jar
 
 library.history_manager.dir=${modules.dir}/history_manager/${build.jar.dir}/
+library.history_manager.src.dir=${modules.dir}/history_manager/${library.src.path}
 library.history_manager.name=org.scilab.modules.history_manager.jar
 
 library.renderer.dir=${modules.dir}/renderer/${build.jar.dir}/
+library.renderer.src.dir=${modules.dir}/renderer/${library.src.path}
 library.renderer.name=org.scilab.modules.renderer.jar
 
 library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
+library.graphic_export.src.dir=${modules.dir}/graphic_export/${library.src.path}
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
 library.core.dir=${modules.dir}/core/${build.jar.dir}/
+library.core.src.dir=${modules.dir}/core/${library.src.path}
 library.core.name=org.scilab.modules.core.jar
 
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
+library.javasci.src.dir=${modules.dir}/javasci/${library.src.path}
 library.javasci-v1.name=javasci.jar
 library.javasci.name=org.scilab.modules.javasci.jar
 
-library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
-library.graphic_export.name=org.scilab.modules.graphic_export.jar
-
 library.types.dir=${modules.dir}/types/${build.jar.dir}/
+library.types.src.dir=${modules.dir}/types/${library.src.path}
 library.types.name=org.scilab.modules.types.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
+library.hdf5.src.dir=${modules.dir}/hdf5/${library.src.path}
 library.hdf5.name=org.scilab.modules.hdf5.jar
 
 library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
+library.xcos.src.dir=${modules.dir}/xcos/${library.src.path}
 library.xcos.name=org.scilab.modules.xcos.jar
 
 library.scinotes.dir=${modules.dir}/scinotes/${build.jar.dir}/
+library.scinotes.src.dir=${modules.dir}/scinotes/${library.src.path}
 library.scinotes.name=org.scilab.modules.scinotes.jar
 
 library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
+library.ui_data.src.dir=${modules.dir}/ui_data/${library.src.path}
 library.ui_data.name=org.scilab.modules.ui_data.jar
 
+library.graphic_objects.dir=${modules.dir}/graphic_objects/${build.jar.dir}/
+library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
+
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
+library.graph.src.dir=${modules.dir}/graph/${library.src.path}
 library.graph.name=org.scilab.modules.graph.jar
 
 library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
+library.history_browser.src.dir=${modules.dir}/history_browser/${library.src.path}
 library.history_browser.name=org.scilab.modules.history_browser.jar
 
 library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
+library.output_stream.src.dir=${modules.dir}/output_stream/${library.src.path}
 library.output_stream.name=org.scilab.modules.output_stream.jar
+
+library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
+library.preferences.src.dir=${modules.dir}/preferences/${library.src.path}
+library.preferences.name=org.scilab.modules.preferences.jar
+
+build_hdf5=true
+
+build_javasci=true
+
+build_xcos=true
+

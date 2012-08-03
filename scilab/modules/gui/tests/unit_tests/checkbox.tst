@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
+
 // Unitary tests for Scilab Java checkboxes
 
 // Exec tests common to all uicontrols

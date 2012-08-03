@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 msgid "overflow error"
 msgstr "溢位錯誤"
@@ -94,31 +94,6 @@ msgstr "無法關啟檔案!\n"
 
 msgid "Read error\n"
 msgstr "讀取錯誤\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "SCOPE 錯誤: 呼叫 scoReallocLongDraw() 函數時發生錯誤"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr "SCOPE 錯誤 : 無法執行 sciDrawObj , 不知為何 pShortDraw 是空值!\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "SCOPE 錯誤: 配置記憶體錯誤 - 請檢查記憶體\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "SCOPE 錯誤: 無法識別的程式碼!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "矩陣參數給定的數值無效."
-
-msgid "This scope has the same window id than another."
-msgstr "scope 的 window id 已經與另一相同."
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "此物件的型態無法使用 %s."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"

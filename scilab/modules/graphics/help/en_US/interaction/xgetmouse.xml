@@ -11,10 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgetmouse">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xgetmouse">
   <refnamediv>
     <refname>xgetmouse</refname>
     <refpurpose> get the mouse events and current position</refpurpose>
@@ -29,8 +26,10 @@
       <varlistentry>
         <term>sel</term>
         <listitem>
-          <para>boolean vector <literal>[getmotion, getrelease]</literal>. default
-  value is <literal>[%t, %f]</literal></para>
+          <para>
+            boolean vector <literal>[getmotion, getrelease]</literal>. default
+            value is <literal>[%t, %f]</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,11 +49,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    If the mouse pointer is located in the current graphics window, <literal>xgetmouse</literal> returns
-    in <literal>rep</literal> the current pointer position (x,y) and the value <literal>ibutton</literal>.
-
-    The <literal>ibutton</literal> value indicates the event type:
-  </para>
+      If the mouse pointer is located in the current graphics window, <literal>xgetmouse</literal> returns
+      in <literal>rep</literal> the current pointer position (x,y) and the value <literal>ibutton</literal>.
+      
+      The <literal>ibutton</literal> value indicates the event type:
+    </para>
     <variablelist>
       <varlistentry>
         <term>ibutton==0</term>
@@ -156,7 +155,8 @@
         <term>ibutton &gt; =1000+32</term>
         <listitem>
           <para>key with ascii code ascii(ibutton-1000) has been pressed while CTRL
-	    key pressed</para>
+            key pressed
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -167,8 +167,8 @@
       </varlistentry>
     </variablelist>
     <para>
-    WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
-    This option has been removed in Scilab 5.1.
+      WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
+      This option has been removed in Scilab 5.1.
     </para>
   </refsection>
   <refsection>
@@ -197,7 +197,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="locate">locate</link>
@@ -209,9 +209,5 @@ end
         <link linkend="seteventhandler">seteventhandler</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer</para>
   </refsection>
 </refentry>

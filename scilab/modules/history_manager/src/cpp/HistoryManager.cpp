@@ -25,6 +25,7 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "SCIHOME.h"
+#include "expandPathVariable.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "freeArrayOfString.h"
@@ -33,10 +34,12 @@ extern "C"
 #endif
 #include "CommandHistory_Wrap.h"
 };
+
 /*------------------------------------------------------------------------*/
 #define MAXBUF	1024
 /*------------------------------------------------------------------------*/
 static HistoryManager *ScilabHistory = NULL;
+
 /*------------------------------------------------------------------------*/
 BOOL historyIsEnabled(void)
 {
@@ -46,62 +49,66 @@ BOOL historyIsEnabled(void)
     }
     return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL InitializeHistoryManager(void)
 {
-    BOOL bOK = FALSE;
     if (!ScilabHistory)
     {
         ScilabHistory = new HistoryManager();
         if (ScilabHistory)
         {
-            bOK = TRUE;
+            return TRUE;
         }
     }
-    return bOK;
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL TerminateHistoryManager(void)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
         delete ScilabHistory;
+
         ScilabHistory = NULL;
-        bOK = TRUE;
+        return TRUE;
     }
-    return bOK;
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL setSearchedTokenInScilabHistory(char *token)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
-        bOK = ScilabHistory->setToken(token);
+        return ScilabHistory->setToken(token);
     }
-    return bOK;
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL resetSearchedTokenInScilabHistory(void)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
-        bOK = ScilabHistory->resetToken();
+        return ScilabHistory->resetToken();
     }
-    return bOK;
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 char *getSearchedTokenInScilabHistory(void)
 {
     char *token = NULL;
+
     if (ScilabHistory)
     {
         token = ScilabHistory->getToken();
     }
     return token;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL appendLineToScilabHistory(char *line)
 {
@@ -111,13 +118,22 @@ BOOL appendLineToScilabHistory(char *line)
     {
         int i = 0;
         char *cleanedline = NULL;
+
+        if (ScilabHistory && ScilabHistory->getNumberOfLines() == 0)
+        {
+            char * commentbeginsession = getCommentDateSession(FALSE);
+            ScilabHistory->appendLine(commentbeginsession);
+            FREE(commentbeginsession);
+            CommandHistoryExpandAll();
+        }
+
         /* remove space & carriage return at the end of line */
         cleanedline = strdup(line);
 
         /* remove carriage return at the end of line */
-        for (i = (int) strlen(cleanedline); i > 0 ; i--)
+        for (i = (int)strlen(cleanedline); i > 0; i--)
         {
-            if (cleanedline[i]=='\n')
+            if (cleanedline[i] == '\n')
             {
                 cleanedline[i] = '\0';
                 break;
@@ -126,9 +142,9 @@ BOOL appendLineToScilabHistory(char *line)
 
         /* remove spaces at the end of line */
         i = (int)strlen(cleanedline) - 1;
-        while (i>=0)
+        while (i >= 0)
         {
-            if ( cleanedline[i] == ' ')
+            if (cleanedline[i] == ' ')
             {
                 cleanedline[i] = '\0';
             }
@@ -154,15 +170,17 @@ BOOL appendLineToScilabHistory(char *line)
 
     return bOK;
 }
+
 /*------------------------------------------------------------------------*/
-BOOL appendLinesToScilabHistory(char **lines,int numberoflines)
+BOOL appendLinesToScilabHistory(char **lines, int numberoflines)
 {
     if (ScilabHistory)
     {
-        return ScilabHistory->appendLines(lines,numberoflines);
+        return ScilabHistory->appendLines(lines, numberoflines);
     }
     return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 void displayScilabHistory(void)
 {
@@ -171,6 +189,7 @@ void displayScilabHistory(void)
         ScilabHistory->displayHistory();
     }
 }
+
 /*------------------------------------------------------------------------*/
 BOOL writeScilabHistoryToFile(char *filename)
 {
@@ -180,16 +199,17 @@ BOOL writeScilabHistoryToFile(char *filename)
     }
     return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL loadScilabHistoryFromFile(char *filename)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
-        bOK = ScilabHistory->loadFromFile(filename);
+        return ScilabHistory->loadFromFile(filename);
     }
-    return bOK;
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL isScilabHistoryTruncated(void)
 {
@@ -203,140 +223,191 @@ BOOL isScilabHistoryTruncated(void)
 /*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
 {
+    char * expandedPath = NULL;
+
     if (filename)
     {
         if (ScilabHistory)
         {
-            ScilabHistory->setFilename(filename);
+            expandedPath = expandPathVariable(filename);
+            if (expandedPath)
+            {
+                ScilabHistory->setFilename(expandedPath);
+                FREE(expandedPath);
+            }
+            else
+            {
+                ScilabHistory->setFilename(filename);
+            }
+
             return TRUE;
         }
     }
     return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 char *getFilenameScilabHistory(void)
 {
     char *filename = NULL;
+
     if (ScilabHistory)
     {
         filename = ScilabHistory->getFilename();
     }
     return filename;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL setDefaultFilenameScilabHistory(void)
 {
-    BOOL bOK = FALSE;
-    if (ScilabHistory) bOK = ScilabHistory->setDefaultFilename();
-    return bOK;
+    if (ScilabHistory)
+    {
+        return ScilabHistory->setDefaultFilename();
+    }
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 void resetScilabHistory(void)
 {
-    if (ScilabHistory) ScilabHistory->reset();
+    if (ScilabHistory)
+        ScilabHistory->reset();
 }
+
 /*------------------------------------------------------------------------*/
 char **getAllLinesOfScilabHistory(void)
 {
     int nbElements = 0;
     char **lines = NULL;
-    if (ScilabHistory) 
+
+    if (ScilabHistory)
     {
         lines = ScilabHistory->getAllLines(&nbElements);
         /* SWIG need array finish with NULL */
         if (lines)
         {
-            lines = (char**)REALLOC(lines, sizeof(char*)*(nbElements + 1));
+            lines = (char **)REALLOC(lines, sizeof(char *) * (nbElements + 1));
             lines[nbElements] = NULL;
         }
     }
     return lines;
 }
+
 /*------------------------------------------------------------------------*/
 int getSizeAllLinesOfScilabHistory(void)
 {
     int nbElements = 0;
     char **lines = NULL;
 
-    if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
+    if (ScilabHistory)
+        lines = ScilabHistory->getAllLines(&nbElements);
 
     freeArrayOfString(lines, nbElements);
 
     return nbElements;
 }
+
 /*------------------------------------------------------------------------*/
 char *getLastLineInScilabHistory(void)
 {
     char *line = NULL;
-    if (ScilabHistory) line = ScilabHistory->getLastLine();
+
+    if (ScilabHistory)
+        line = ScilabHistory->getLastLine();
     return line;
 }
+
 /*------------------------------------------------------------------------*/
 char *getPreviousLineInScilabHistory(void)
 {
     char *line = NULL;
-    if (ScilabHistory) line = ScilabHistory->getPreviousLine();
+
+    if (ScilabHistory)
+        line = ScilabHistory->getPreviousLine();
     return line;
 }
+
 /*------------------------------------------------------------------------*/
 char *getNextLineInScilabHistory(void)
 {
     char *line = NULL;
-    if (ScilabHistory) line = ScilabHistory->getNextLine();
+
+    if (ScilabHistory)
+        line = ScilabHistory->getNextLine();
     return line;
 }
+
 /*------------------------------------------------------------------------*/
 int getNumberOfLinesInScilabHistory(void)
 {
     int val = 0;
-    if (ScilabHistory) val = ScilabHistory->getNumberOfLines();
+
+    if (ScilabHistory)
+        val = ScilabHistory->getNumberOfLines();
     return val;
 }
+
 /*------------------------------------------------------------------------*/
 void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit)
 {
-    if (ScilabHistory) ScilabHistory->setSaveConsecutiveDuplicateLines(doit);
+    if (ScilabHistory)
+        ScilabHistory->setSaveConsecutiveDuplicateLines(doit);
 }
+
 /*------------------------------------------------------------------------*/
 BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void)
 {
-    BOOL bOK = FALSE;
-    if (ScilabHistory) bOK = ScilabHistory->getSaveConsecutiveDuplicateLines();
-    return bOK;
+    if (ScilabHistory)
+        return ScilabHistory->getSaveConsecutiveDuplicateLines();
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 void setAfterHowManyLinesScilabHistoryIsSaved(int num)
 {
-    if (ScilabHistory) ScilabHistory->setAfterHowManyLinesHistoryIsSaved(num);
+    if (ScilabHistory)
+        ScilabHistory->setAfterHowManyLinesHistoryIsSaved(num);
 }
+
 /*------------------------------------------------------------------------*/
 int getAfterHowManyLinesScilabHistoryIsSaved(void)
 {
     int val = 0;
-    if (ScilabHistory) val = ScilabHistory->getAfterHowManyLinesHistoryIsSaved();
+
+    if (ScilabHistory)
+        val = ScilabHistory->getAfterHowManyLinesHistoryIsSaved();
     return val;
 }
+
 /*------------------------------------------------------------------------*/
 char *getNthLineInScilabHistory(int N)
 {
-    char *line = NULL;
-    if (ScilabHistory) line = ScilabHistory->getNthLine(N);
-    return line;
+    if (ScilabHistory)
+        return ScilabHistory->getNthLine(N);
+    return NULL;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL deleteNthLineScilabHistory(int N)
 {
-    BOOL bOK = FALSE;
-    if (ScilabHistory) bOK = ScilabHistory->deleteNthLine(N);
-    return bOK;
+    if (ScilabHistory)
+    {
+        return ScilabHistory->deleteNthLine(N);
+    }
+    return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 int getSizeScilabHistory(void)
 {
     int val = 0;
-    if (ScilabHistory) val = ScilabHistory->getNumberOfLines() - 1;
+
+    if (ScilabHistory)
+        val = ScilabHistory->getNumberOfLines() - 1;
     return val;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL setSizeMaxScilabHistory(int nbLinesMax)
 {
@@ -362,11 +433,13 @@ HistoryManager::HistoryManager()
 
     CommandHistoryInitialize();
 }
+
 /*------------------------------------------------------------------------*/
 HistoryManager::~HistoryManager()
 {
     CommandsList.clear();
 }
+
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::appendLine(char *cline)
 {
@@ -378,13 +451,14 @@ BOOL HistoryManager::appendLine(char *cline)
         {
             char *previousline = getLastLine();
 
-            if ( (previousline) && (strcmp(previousline,cline)== 0) )
+            if ((previousline) && (strcmp(previousline, cline) == 0))
             {
                 bOK = FALSE;
             }
             else
             {
                 CommandLine Line(cline);
+
                 CommandsList.push_back(Line);
                 numberoflinesbeforehistoryissaved++;
                 bOK = TRUE;
@@ -400,6 +474,7 @@ BOOL HistoryManager::appendLine(char *cline)
         else
         {
             CommandLine Line(cline);
+
             CommandsList.push_back(Line);
 
             numberoflinesbeforehistoryissaved++;
@@ -425,44 +500,50 @@ BOOL HistoryManager::appendLine(char *cline)
 
     return bOK;
 }
+
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::appendLines(char **lines,int nbrlines)
+BOOL HistoryManager::appendLines(char **lines, int nbrlines)
 {
     BOOL bOK = TRUE;
     int i = 0;
 
-    for (i = 0;i < nbrlines; i++)
+    for (i = 0; i < nbrlines; i++)
     {
-        if ( (lines[i] == NULL) || (!appendLine(lines[i])) ) bOK = FALSE;
+        if ((lines[i] == NULL) || (!appendLine(lines[i])))
+            bOK = FALSE;
     }
     return bOK;
 }
+
 /*------------------------------------------------------------------------*/
 void HistoryManager::displayHistory(void)
 {
     int nbline = 0;
-    list<CommandLine>::iterator it_commands;
-    for(it_commands=CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
+
+    list < CommandLine >::iterator it_commands;
+    for (it_commands = CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
     {
         std::string line = (*it_commands).get();
         if (!line.empty())
         {
-            sciprint("%d : %s\n",nbline,line.c_str());
+            sciprint("%d : %s\n", nbline, line.c_str());
             nbline++;
         }
     }
 }
+
 /*------------------------------------------------------------------------*/
 char *HistoryManager::getFilename(void)
 {
     char *filename = NULL;
 
-    if (! my_file.getFilename().empty())
+    if (!my_file.getFilename().empty())
     {
         filename = strdup(my_file.getFilename().c_str());
     }
     return filename;
 }
+
 /*------------------------------------------------------------------------*/
 void HistoryManager::setFilename(char *filename)
 {
@@ -473,11 +554,13 @@ void HistoryManager::setFilename(char *filename)
         my_file.setFilename(name);
     }
 }
+
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::setDefaultFilename(void)
 {
     return my_file.setDefaultFilename();
 }
+
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::writeToFile(char *filename)
 {
@@ -491,14 +574,15 @@ BOOL HistoryManager::writeToFile(char *filename)
     }
     return FALSE;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::loadFromFile(char *filename)
 {
-    BOOL bOK = FALSE;
 
     if (filename)
     {
         char *commentbeginsession = NULL;
+
         std::string name;
         name.assign(filename);
 
@@ -513,6 +597,7 @@ BOOL HistoryManager::loadFromFile(char *filename)
         if (CommandsList.size() > 0)
         {
             char *firstLine = getFirstLine();
+
             if (firstLine)
             {
                 if (!isBeginningSessionLine(firstLine))
@@ -525,17 +610,18 @@ BOOL HistoryManager::loadFromFile(char *filename)
         }
 
         /* add date & time @ begin session */
-        commentbeginsession = getCommentDateSession();
+        commentbeginsession = getCommentDateSession(FALSE);
         appendLine(commentbeginsession);
         FREE(commentbeginsession);
         commentbeginsession = NULL;
 
         CommandHistoryLoadFromFile();
 
-        bOK = TRUE;
+        return TRUE;
     }
-    return bOK;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void HistoryManager::reset(void)
 {
@@ -555,30 +641,35 @@ void HistoryManager::reset(void)
     CommandHistoryReset();
 
     /* Add date & time begin session */
-    commentbeginsession = getCommentDateSession();
+    commentbeginsession = getCommentDateSession(FALSE);
     if (commentbeginsession)
     {
         appendLine(commentbeginsession);
-        FREE(commentbeginsession);commentbeginsession=NULL;
+        FREE(commentbeginsession);
+        commentbeginsession = NULL;
     }
 
 }
+
 /*--------------------------------------------------------------------------*/
 char **HistoryManager::getAllLines(int *numberoflines)
 {
     char **lines = NULL;
+
     *numberoflines = 0;
 
-    if (CommandsList.empty()) return lines;
+    if (CommandsList.empty())
+        return lines;
     else
     {
-        list<CommandLine>::iterator it_commands;
+        list < CommandLine >::iterator it_commands;
         int i = 0;
 
-        lines = (char**)MALLOC((int)CommandsList.size()*(sizeof(char*)));
-        for(it_commands=CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
+        lines = (char **)MALLOC((int)CommandsList.size() * (sizeof(char *)));
+        for (it_commands = CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
         {
             string line = (*it_commands).get();
+
             if (!line.empty())
             {
                 lines[i] = strdup(line.c_str());
@@ -589,14 +680,16 @@ char **HistoryManager::getAllLines(int *numberoflines)
     }
     return lines;
 }
+
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getFirstLine(void)
 {
     char *line = NULL;
+
     if (!CommandsList.empty())
     {
         std::string str;
-        list<CommandLine>::iterator it_commands = CommandsList.begin();
+        list < CommandLine >::iterator it_commands = CommandsList.begin();
         str = (*it_commands).get();
         if (!str.empty())
         {
@@ -605,14 +698,16 @@ char *HistoryManager::getFirstLine(void)
     }
     return line;
 }
+
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getLastLine(void)
 {
     char *line = NULL;
+
     if (!CommandsList.empty())
     {
         std::string str;
-        list<CommandLine>::iterator it_commands = CommandsList.end();
+        list < CommandLine >::iterator it_commands = CommandsList.end();
         it_commands--;
         str = (*it_commands).get();
         if (!str.empty())
@@ -622,27 +717,32 @@ char *HistoryManager::getLastLine(void)
     }
     return line;
 }
+
 /*--------------------------------------------------------------------------*/
 int HistoryManager::getNumberOfLines(void)
 {
     return (int)CommandsList.size();
 }
+
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getNthLine(int N)
 {
     char *line = NULL;
 
-    if (N < 0) N = getNumberOfLines() + N;
+    if (N < 0)
+        N = getNumberOfLines() + N;
 
-    if ( (N >= 0) && (N <= getNumberOfLines()) )
+    if ((N >= 0) && (N <= getNumberOfLines()))
     {
         int i = 0;
-        list<CommandLine>::iterator it_commands;
-        for(it_commands=CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
+
+        list < CommandLine >::iterator it_commands;
+        for (it_commands = CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
         {
             if (i == N)
             {
                 string str;
+
                 str = (*it_commands).get();
                 if (!str.empty())
                 {
@@ -654,19 +754,22 @@ char *HistoryManager::getNthLine(int N)
     }
     return line;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::deleteNthLine(int N)
 {
     BOOL bOK = FALSE;
-    if ( (N >= 0) && (N <= getNumberOfLines()) )
+
+    if ((N >= 0) && (N <= getNumberOfLines()))
     {
         int i = 0;
-        list<CommandLine>::iterator it_commands;
-        for(it_commands=CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
+
+        list < CommandLine >::iterator it_commands;
+        for (it_commands = CommandsList.begin(); it_commands != CommandsList.end(); ++it_commands)
         {
             if (i == N)
             {
-                if ( it_commands != CommandsList.end() )
+                if (it_commands != CommandsList.end())
                 {
                     std::string str;
                     str.erase();
@@ -684,16 +787,19 @@ BOOL HistoryManager::deleteNthLine(int N)
     }
     return bOK;
 }
+
 /*--------------------------------------------------------------------------*/
 void HistoryManager::setSaveConsecutiveDuplicateLines(BOOL doit)
 {
     saveconsecutiveduplicatelines = doit;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::getSaveConsecutiveDuplicateLines(void)
 {
     return saveconsecutiveduplicatelines;
 }
+
 /*--------------------------------------------------------------------------*/
 void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
 {
@@ -703,11 +809,13 @@ void HistoryManager::setAfterHowManyLinesHistoryIsSaved(int num)
         numberoflinesbeforehistoryissaved = 0;
     }
 }
+
 /*--------------------------------------------------------------------------*/
 int HistoryManager::getAfterHowManyLinesHistoryIsSaved(void)
 {
     return afterhowmanylineshistoryissaved;
 }
+
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getPreviousLine(void)
 {
@@ -723,6 +831,7 @@ char *HistoryManager::getPreviousLine(void)
     }
     return returnedline;
 }
+
 /*--------------------------------------------------------------------------*/
 char *HistoryManager::getNextLine(void)
 {
@@ -735,20 +844,22 @@ char *HistoryManager::getNextLine(void)
     }
     return returnedline;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::setToken(char *token)
 {
-    BOOL bOK = FALSE;
     std::string Token;
-    if (token) Token.assign(token);
+    if (token)
+        Token.assign(token);
     my_search.setHistory(CommandsList);
-    bOK = my_search.setToken(Token);
-    return bOK;
+    return my_search.setToken(Token);
 }
+
 /*--------------------------------------------------------------------------*/
-char * HistoryManager::getToken(void)
+char *HistoryManager::getToken(void)
 {
     char *returnedtoken = NULL;
+
     std::string token = my_search.getToken();
 
     if (!token.empty())
@@ -757,11 +868,13 @@ char * HistoryManager::getToken(void)
     }
     return returnedtoken;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::resetToken(void)
 {
     return my_search.reset();
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::isBeginningSessionLine(char *line)
 {
@@ -772,10 +885,10 @@ BOOL HistoryManager::isBeginningSessionLine(char *line)
 #define STR_LEN_MAX 64
             char str_start[STR_LEN_MAX];
             char str_end[STR_LEN_MAX];
+
             strncpy(str_start, line, (int)strlen(SESSION_PRAGMA_BEGIN));
             strncpy(str_end, &line[strlen(line) - strlen(SESSION_PRAGMA_END)], (int)strlen(SESSION_PRAGMA_END));
-            if ((strcmp(str_start, SESSION_PRAGMA_BEGIN) == 0) &&
-                (strcmp(str_end, SESSION_PRAGMA_END) == 0))
+            if ((strcmp(str_start, SESSION_PRAGMA_BEGIN) == 0) && (strcmp(str_end, SESSION_PRAGMA_END) == 0))
             {
                 return TRUE;
             }
@@ -783,19 +896,23 @@ BOOL HistoryManager::isBeginningSessionLine(char *line)
     }
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void HistoryManager::fixHistorySession(void)
 {
     /* add date & time @ begin session */
-    char *commentbeginsession = getCommentDateSession();
+    char *commentbeginsession = getCommentDateSession(FALSE);
+
     if (commentbeginsession)
     {
         CommandLine Line(commentbeginsession);
+
         CommandsList.push_front(Line);
         FREE(commentbeginsession);
         commentbeginsession = NULL;
     }
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL HistoryManager::isTruncated(void)
 {

@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mdelete">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mdelete</refname>
-    <refpurpose>Delete file(s)</refpurpose>
+    <refpurpose>deletes file(s)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,22 +26,30 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>a character string. The pathname of the file(s) to delete.</para>
+          <para>
+            a character string: the pathname of the file(s) to delete.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>mdelete</literal> may be used to delete a file or a set of files if
-    <literal>filename</literal> contains meta-charaters.</para>
     <para>
-    Note that <literal>mdelete</literal> does not ask for confirmation when you enter the delete command.
-    To avoid accidentally losing files, make sure that you have accurately specified the items you want deleted.
+      <function>mdelete</function> may be used to delete a file or a set of files if
+      <varname>filename</varname> contains meta-charaters.
+    </para>
+    <para>
+      <warning>
+        Note that <function>mdelete</function> does not ask for confirmation 
+        when you enter the delete command.
+        To avoid accidentally losing files, make sure that you have 
+        accurately specified the items you want deleted.
+      </warning>
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mopen">mopen</link>

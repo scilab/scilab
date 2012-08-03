@@ -8,13 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-02 15:17+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2012-07-26 20:04+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -65,8 +73,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -92,6 +99,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr "%s : Špatný typ vstupního argumentu #%d: Očekáván systém armax.\n"
 
 #, c-format
 msgid ""
@@ -174,7 +185,7 @@ msgid ""
 "of floats expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém "
-"nebo řádkový vektor čísel s plovoucí čárkou.\n"
+"nebo řádkový vektor desetinných čísel.\n"
 
 #, c-format
 msgid ""
@@ -292,15 +303,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
+msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
-msgstr ""
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Prvky musí být kladné.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Amplituda a fáze jsou obrysy y/(1+y)"
@@ -320,8 +331,7 @@ msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
@@ -334,19 +344,20 @@ msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ argumentu %d: Očekáváno ve spojitém čase.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be a positive scalar.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Musí být kladný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr ""
+msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 
 #, c-format
 msgid ""
@@ -393,8 +404,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Array of floats or Polynomial "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou nebo polynom.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel "
+"nebo polynom.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -441,7 +452,7 @@ msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Očekávány řádné prv
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: transfer function expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána funkce převodu.\n"
 
 #, c-format
 msgid ""
@@ -516,8 +527,15 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: Opakování %s. chyba=%s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Nekonečné zesílení při nulové "
+"frekvenci.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván lineární systém.\n"
 
 #, c-format
 msgid ""
@@ -567,11 +585,11 @@ msgstr "%s: Francisovy rovnice nejsou uspokojeny.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
@@ -579,11 +597,12 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řádný syst
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno kladné celé číslo.\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -711,6 +730,7 @@ msgstr "%s: %s nesymetrické.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stav prostoru.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
@@ -731,7 +751,7 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: Spočítaná hodnota || G || může být nepřesná.\n"
 
 msgid "G is all-pass"
-msgstr ""
+msgstr "G je všeprůchodové"
 
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
@@ -798,6 +818,9 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém.\n"
 
+msgid "Phase (Deg)"
+msgstr "Fáze (Stup)"
+
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu %d: Očekáván řádný systém.\n"
@@ -842,8 +865,7 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
-"%s: Špatná typ vstupního argumentu #%d: Očekáváno reálné pole s plovoucí "
-"čárkou\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
 
 msgid "rad/sec"
 msgstr "rad/sek"
@@ -940,6 +962,14 @@ msgstr "%s: Nesprávná odpověď.\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: Zbytková norma = %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d až %d."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice."
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

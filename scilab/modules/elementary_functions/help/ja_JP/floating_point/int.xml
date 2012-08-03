@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="int">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int</refname>
     <refpurpose>整数部</refpurpose>
@@ -41,8 +38,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>int(X)</literal> は実数行列 <literal>X</literal>の整数部を返します.
-    <literal>fix</literal>と同じです.</para>
+    <para>
+      <literal>int(X)</literal> は実数行列 <literal>X</literal>の整数部を返します.
+      <literal>fix</literal>と同じです.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

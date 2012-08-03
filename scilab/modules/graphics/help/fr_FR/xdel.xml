@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xdel">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xdel</refname>
     <refpurpose> supprime des fenêtres graphiques  </refpurpose>
@@ -18,19 +15,16 @@
         <term>win-nums  </term>
         <listitem>
           <para>entier ou vecteur d'entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xdel</literal> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <literal>win-nums</literal> ou supprime la 
-    fenêtre graphique courante si aucun argument n'est donné.
-  </para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xdel</literal> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <literal>win-nums</literal> ou supprime la 
+      fenêtre graphique courante si aucun argument n'est donné.
+    </para>
   </refsection>
 </refentry>

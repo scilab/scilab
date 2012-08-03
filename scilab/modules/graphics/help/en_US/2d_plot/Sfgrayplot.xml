@@ -10,19 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Sfgrayplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="Sfgrayplot">
   <refnamediv>
     <refname>Sfgrayplot</refname>
     <refpurpose>smooth 2D plot of a surface defined by a function using colors
-  </refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
-Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
+      Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -42,32 +40,42 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
-          <para>This represents a sequence of statements <literal>key1=value1,
-          key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
-          (see <link linkend="plot2d">plot2d</link> for the 3 first and <link linkend="fec">fec</link> for the 4 last).</para>
+          <para>
+            This represents a sequence of statements <literal>key1=value1,
+              key2=value2
+            </literal>
+            ,... where <literal>key1</literal>,
+            <literal>key2,...</literal> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
+            (see <link linkend="plot2d">plot2d</link> for the 3 first and <link linkend="fec">fec</link> for the 4 last).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>strf,rect,nax</term>
         <listitem>
-          <para>see <link linkend="plot2d">plot2d</link>.</para>
+          <para>
+            see <link linkend="plot2d">plot2d</link>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>zminmax, colminmax, mesh, colout</term>
         <listitem>
-          <para>see <link linkend="fec">fec</link>.</para>
+          <para>
+            see <link linkend="fec">fec</link>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>Sfgrayplot</literal> is the same as <literal>fgrayplot</literal> but the
-    plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
-    surface is plotted assuming that it is linear on a set of triangles built
-    from the grid (here with n1=5, n2=3):</para>
+    <para>
+      <literal>Sfgrayplot</literal> is the same as <literal>fgrayplot</literal> but the
+      plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
+      surface is plotted assuming that it is linear on a set of triangles built
+      from the grid (here with n1=5, n2=3):
+    </para>
     <screen><![CDATA[ 
 _____________
 | /| /| /| /|
@@ -75,11 +83,21 @@ _____________
 | /| /| /| /| 
 |/_|/_|/_|/_|
  ]]></screen>
-    <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (but
-       you must know (or compute) the min and max values).</para>
-    <para>Instead of Sfgrayplot, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be
-       a little faster.</para>
-    <para>Enter the command <literal>Sfgrayplot()</literal> to see a demo.</para>
+    <para>
+      The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (but
+      you must know (or compute) the min and max values).
+    </para>
+    <para>
+      Instead of Sfgrayplot, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be
+      a little faster.
+    </para>
+    <para>
+      Enter the command <literal>Sfgrayplot()</literal> to see a demo.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>Sfgrayplot();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -145,7 +163,7 @@ show_window()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fec">fec</link>
@@ -160,9 +178,5 @@ show_window()
         <link linkend="Sgrayplot">Sgrayplot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

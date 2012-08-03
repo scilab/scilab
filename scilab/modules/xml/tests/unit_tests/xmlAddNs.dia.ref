@@ -33,4 +33,4 @@ assert_checktrue(grep(xmlDump(doc),"http://gro.ba")<>[])
  ans  =
  
   T  
-xmlClose(doc);
+xmlDelete(doc);

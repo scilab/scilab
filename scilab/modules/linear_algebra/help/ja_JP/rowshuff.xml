@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowshuff">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rowshuff</refname>
     <refpurpose>シャッフルアルゴリズム</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Fs</term>
         <listitem>
-          <para>正方実数ペンシル <literal>Fs = s*E-A</literal></para>
+          <para>
+            正方実数ペンシル <literal>Fs = s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,14 +40,17 @@
         <term>Fs1</term>
         <listitem>
           <para>
-	正方実数ペンシル <literal>F1s = s*E1 -A1</literal>,
-	ただし  <literal>E1</literal> は正則</para>
+            正方実数ペンシル <literal>F1s = s*E1 -A1</literal>,
+            ただし  <literal>E1</literal> は正則
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>alfa</term>
         <listitem>
-          <para>実数 (<literal>alfa = 0</literal> がデフォルト値)</para>
+          <para>
+            実数 (<literal>alfa = 0</literal> がデフォルト値)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,17 +58,23 @@
   <refsection>
     <title>説明</title>
     <para>
-    シャッフルアルゴリズム: ペンシル <literal>Fs=s*E-A</literal>を指定すると, 以下のような(正方多項式行列)
-	 Ws=W(s) を返します:</para>
-    <para><literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> は正則なペンシル行列 <literal>E1</literal> です.</para>
+      シャッフルアルゴリズム: ペンシル <literal>Fs=s*E-A</literal>を指定すると, 以下のような(正方多項式行列)
+      Ws=W(s) を返します:
+    </para>
     <para>
-	これは,ペンシル<literal>Fs = s*E-A</literal>が正則 (すなわち,可逆)の場合に限り可能です.
-    <literal>Ws</literal> の次数はペンシルの添字に等しくなります.</para>
+      <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> は正則なペンシル行列 <literal>E1</literal> です.
+    </para>
     <para>
-	<literal>Fs</literal>の無限大にある極は<literal>alfa</literal>に配置され,
-	<literal>Ws</literal>のゼロは<literal>alfa</literal>に配置されます.</para>
+      これは,ペンシル<literal>Fs = s*E-A</literal>が正則 (すなわち,可逆)の場合に限り可能です.
+      <literal>Ws</literal> の次数はペンシルの添字に等しくなります.
+    </para>
     <para>
-    Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal></para>
+      <literal>Fs</literal>の無限大にある極は<literal>alfa</literal>に配置され,
+      <literal>Ws</literal>のゼロは<literal>alfa</literal>に配置されます.
+    </para>
+    <para>
+      Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -93,9 +101,5 @@ clean(inv(F)-inv(F1)*Ws,1.d-7)
         <link linkend="penlaur">penlaur</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ; ; ; ;   </para>
   </refsection>
 </refentry>

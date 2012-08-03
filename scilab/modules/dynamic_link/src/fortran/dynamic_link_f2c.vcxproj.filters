@@ -16,11 +16,11 @@
     <Filter Include="Fortran files">
       <UniqueIdentifier>{dce0b5ed-6b93-43da-9912-c9ef6d58d404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Import">
-      <UniqueIdentifier>{f0f1c6a1-d374-425f-8ed2-5eb3de854a5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Librairies Dependencies">
       <UniqueIdentifier>{66bc8d2f-1ba7-4d73-9308-65ed76763bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Librairies Dependencies\Import">
+      <UniqueIdentifier>{f0f1c6a1-d374-425f-8ed2-5eb3de854a5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,22 +35,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dynamic_link_Import.def">
-      <Filter>Import</Filter>
+      <Filter>Librairies Dependencies\Import</Filter>
     </None>
     <None Include="Elementary_functions_Import.def">
-      <Filter>Import</Filter>
+      <Filter>Librairies Dependencies\Import</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Import</Filter>
+    <None Include="core_import.def">
+      <Filter>Librairies Dependencies\Import</Filter>
     </None>
     <None Include="output_stream_Import.def">
-      <Filter>Import</Filter>
+      <Filter>Librairies Dependencies\Import</Filter>
     </None>
     <None Include="string_Import.def">
-      <Filter>Import</Filter>
+      <Filter>Librairies Dependencies\Import</Filter>
     </None>
     <None Include="..\..\sci_gateway\dynamic_link_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="linpack_f_Import.def">
+      <Filter>Librairies Dependencies\Import</Filter>
+    </None>
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Librairies Dependencies\Import</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Librairies Dependencies\Import</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libf2c.lib" />

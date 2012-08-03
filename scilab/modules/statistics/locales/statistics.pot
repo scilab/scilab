@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -409,7 +409,7 @@ msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 
 #
-# File: macros/median.sci, line: 33
+# File: macros/median.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s','%s' or a positive number "
@@ -511,25 +511,25 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/show_pca.sci, line: 24
+# File: macros/show_pca.sci, line: 26
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
 msgstr ""
 
 #
-# File: macros/show_pca.sci, line: 29
+# File: macros/show_pca.sci, line: 31
 #, c-format
 msgid "%s: Graph demand out of bounds.\n"
 msgstr ""
 
 #
-# File: macros/show_pca.sci, line: 53
+# File: macros/show_pca.sci, line: 52
 msgid "Correlations Circle"
 msgstr ""
 
 #
-# File: macros/show_pca.sci, line: 66
-msgid "Eigenvalues (in percent)"
+# File: macros/show_pca.sci, line: 67
+msgid "Eigenvalues"
 msgstr ""
 
 #

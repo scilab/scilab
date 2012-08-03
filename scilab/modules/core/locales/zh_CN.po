@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:27+0000\n"
-"Last-Translator: ilinux <bnufl66@gmail.com>\n"
+"PO-Revision-Date: 2012-05-30 08:55+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为实的。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为一个比例。\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个 scilab 函数。\n"
+msgstr "%s：第%d个输入参数的类型出错：应该为Scilab函数。\n"
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -35,135 +35,131 @@ msgstr " 结果可能不精确。rcond=%s1\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr "%s：参数%d的大小错误：应该为实数标量。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s：内存不足。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：第%d个输入参数的类型错误。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s：输入参数的类型错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：第%d个输入参数的大小错误。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为大于0的值。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数 #%d 的类型出错。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s：输入参数的类型出错。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为大于0的值。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个标量。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该是一个整数。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为一个整数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s：输入参数 #%d 的值出错：必须在区间［%d，%d］中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串或标量。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“0”或“1”。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s：输入参数 #%d 的值出错：必须位于区间［%d，%d］中。\n"
+msgstr "%s：第%d个输入参数的值错误：必须位于[%d, %d]区间。\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s：输入参数的大小出错。\n"
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s：第%d个输入参数的值错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串或标量整数。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘0’或‘1’。\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
-msgstr "%s：输入参数的类型出错。\n"
+msgstr "%s：输入参数的类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该是1，2或3。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为1、2或3。\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s：文件 %s 不存在。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：文件%s不存在。\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为“%s”。\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s：输入参数 #%d 或 #%d 的类型出错：应该为字符串。\n"
+msgstr "%s：第%d个或第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr "警告：%s 发生问题。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
+msgstr "警告：%s发生问题。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
-msgstr ""
+msgstr "%s：文件version.xml错误%s。\n"
 
 #, c-format
 msgid "%s: Wrong module name %s.\n"
-msgstr "%s：模块名 %s 出错。\n"
+msgstr "%s：模块名%s错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-msgstr "%s：输入参数的 #%d 和参数 #%d 类型出错：应该为字符串。\n"
+msgstr "%s：第%d个和第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
@@ -171,27 +167,35 @@ msgstr "%s：不能分配内存。\n"
 
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr "%s：值溢出。不在 ［%lu,%lu］ 中。\n"
+msgstr "%s：值越出边界。不在[%lu,%lu] 中。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr "%s：输入参数 #%d 的类型出错：标量，“%s”或“%s”。\n"
+msgstr "%s：第%d个输入参数的类型错误：标量，‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为布尔值。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -199,12 +203,12 @@ msgstr "%s：函数名不正确。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr "%s：输入参数 #%d 的值出错：必须为 %s。\n"
+msgstr "%s：第%d个输入参数的值错误：必须为%s。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该是一个标量或者一个字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为标量或字符串。\n"
 
 #, c-format
 msgid "%s: Impossible to read %s gateway.\n"
@@ -212,19 +216,44 @@ msgstr "%s：无法读取路径 %s。\n"
 
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
-msgstr "%s：无效的模块名 %s。\n"
+msgstr "%s：无效的模块名%s。\n"
+
+#, c-format
+msgid ""
+"%s: Cannot allocate memory.\n"
+"%s\n"
+msgstr ""
+"%s：不能分配内存。\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Cannot allocate this quantity of memory.\n"
+msgstr "%s：不能分配这些数量的内存。\n"
+
+#, c-format
+msgid "%s: The requested size is smaller than the minimal one.\n"
+msgstr "%s：需要的大小小于最小值。\n"
+
+#, c-format
+msgid ""
+"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgstr "%s：无法创建（或调整）堆栈（可能是内存分配出错）。\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s：未知错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目出错：应该为 %d 个或 %d 个。\n"
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: '%s' already exists.\n"
-msgstr "%s：“%s”已经存在。\n"
+msgstr "%s：‘%s’已经存在。\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
-msgstr "%s：未知的错误。\n"
+msgstr "%s：未知错误。\n"
 
 #, c-format
 msgid "WARNING: %s"
@@ -238,42 +267,42 @@ msgid "Internal Functions:\n"
 msgstr "内部函数：\n"
 
 msgid "Commands:\n"
-msgstr "命令:\n"
+msgstr "命令：\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s：输入参数的数目出错。\n"
+msgstr "%s：输入参数的数目错误。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s：输出参数的数目出错：应该为 %d 个。\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”，“%s”或“%s”。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr "%s：输入参数 #%d 的值出错：“%s”，“%s”，“%s”或“%s”。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr "%s：输入参数 #%d 值出错：“%s”，“%s”或“%s”。\n"
+msgstr "%s：第%d个输入参数值错误：‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”，“%s”。输入参数 #%d 必须为“%s”。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’、‘%s’。第%d个输入参数必须为‘%s’。\n"
 
 #, c-format
 msgid " using %10d elements out of  %10d.\n"
-msgstr " 使用了 %10d 个元素中的 %10d。\n"
+msgstr " 使用%10d个元素中的%10d。\n"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr " and %10d 个变量中的 %10d 个。\n"
+msgstr " 和%10d个变量中的%10d个。\n"
 
 msgid "Your variables are:"
 msgstr "您的变量是："
@@ -282,39 +311,45 @@ msgid "Your global variables are:"
 msgstr "您的全局变量是："
 
 msgid "Fatal Error: Can't create table for scilab functions.\n"
-msgstr "严重出错：不能为 scilab 函数创建表格。\n"
+msgstr "致命错误：不能为Scilab函数创建表格。\n"
 
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
-msgstr "出错：不能定义环境变量 %s。\n"
+msgstr "错误：无法定义环境变量%s。\n"
+
+msgid "Scilab Enterprises\n"
+msgstr "Scilab Enterprises\n"
 
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab协会 (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr ""
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr "版权所有 (c) 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "版权所有 (c) 1989-2007 (ENPC)\n"
 
 #, c-format
 msgid "Impossible to load %s library: %s\n"
-msgstr "无法载入库%s：%s\n"
+msgstr "无法加载%s库：%s\n"
 
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
-msgstr "在库 %s 中无法装载函数 %s：%s\n"
+msgstr "在%s库中无法加载%s函数：%s\n"
 
 #, c-format
 msgid "Impossible to call %s in %s library: %s\n"
-msgstr "在库 %s 中无法调用 %s：%s\n"
+msgstr "在%s库中无法调用%s：%s\n"
 
 #, c-format
 msgid "Error: Not a valid primitive ID %d.\n"
-msgstr "出错：无效的 primitive ID %d。\n"
+msgstr "错误：不是有效的原始ID %d。\n"
 
 msgid "Aborting current computation\n"
-msgstr ""
+msgstr "中止当前计算\n"
 
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
@@ -329,7 +364,7 @@ msgstr "无法载入模块说明文件：%s。\n"
 
 #, c-format
 msgid "Warning: Could not find %s\n"
-msgstr ""
+msgstr "警告：找不到%s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -409,6 +444,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
+"错误：不是有效的版本文件%s（应该以<MODULE_VERSION>开头，并包含<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>）\n"
 
 #, c-format
 msgid ""
@@ -458,24 +495,21 @@ msgstr "无空间用来分配 Scilab 栈。\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
+"糟糕。Scilab检测到一个致命错误。\n"
+"你的实例可能即将崩溃。\n"
+"请按以下内容提交关于%s的bug：\n"
+"* 可再现此问题的样例代码\n"
+"* 结果之 [a, b] = getdebuginfo()\n"
+"* 一下信息:\n"
+"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -586,8 +620,8 @@ msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为多项式矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s：参数 %d 的类型出错：应该为多边形。\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s：参数%d的类型错误：应该为多项式。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -776,20 +810,20 @@ msgid "%s argument"
 msgstr "参数 %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "参数编号 %d"
+msgid "argument #%d"
+msgstr "第%d个输入参数"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "%s 和 %s 个参数"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "参数 %s 和参数 %d"
+msgid "%s argument and argument #%d"
+msgstr "%s参数和第%d个参数"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "参数 %d 和 %d"
+msgid "arguments #%d and #%d"
+msgstr "第%d和第%d个参数"
 
 msgid "should be square"
 msgstr "应该为方阵"
@@ -867,11 +901,19 @@ msgstr "%s：参数必须为一个字符串。\n"
 
 #, c-format
 msgid "Unqueuing %s - No option.\n"
-msgstr ""
+msgstr "移除队列中的%s - 无选项。\n"
 
 #, c-format
 msgid "Unqueuing %s - seq.\n"
+msgstr "移除队列中的%s - seq。\n"
+
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
 msgstr ""
+"请安装texmacs ATOMS模块：atomsInstall('texmacs')\n"
+"\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "没有找到 Windows 的临时路径（1）。"
@@ -885,7 +927,7 @@ msgstr "无法创建：%s"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
-msgstr ""
+msgstr "错误：不能创建%s：%s\n"
 
 #, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
@@ -902,16 +944,40 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "Scilab版本信息。"
 
-msgid "Scilab Console"
+msgid ""
+"\n"
+"Call stack:\n"
 msgstr ""
+"\n"
+"调用堆栈：\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"堆栈结束\n"
+"\n"
+
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+"不可用的控制台！\n"
+"请使用STD模式。"
+
+msgid "Empty tab"
+msgstr "空标签"
+
+msgid "Scilab Console"
+msgstr "Scilab控制台"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 msgid "Startup execution:"
 msgstr "开始执行："
@@ -944,7 +1010,11 @@ msgid "Introduction"
 msgstr "介绍"
 
 msgid "Getting started with Scilab"
-msgstr ""
+msgstr "开始使用Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+msgstr "%s：未能找到‘%s’：请检查宏是否已编译。\n"
 
 #, c-format
 msgid "Checking: %s\n"
@@ -959,16 +1029,12 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s：文件不存在：%s"
 
 #, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s：需要 scilab 编辑器。\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s：输入参数的数目出错：应该至少 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为双精度型。\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
@@ -1027,28 +1093,19 @@ msgstr "用户变量是："
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "使用%s中的%s个元素"
 
 msgid " by "
-msgstr ""
+msgstr " 由 "
 
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 msgid "Type"
-msgstr ""
+msgstr "类型："
 
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 msgid "Bytes"
-msgstr ""
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr "%s：输入参数 #%d 出错：应该为一个到 scilab 脚本文件的路径。\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "使用了 %s 个元素中的 %s"
+msgstr "字节"

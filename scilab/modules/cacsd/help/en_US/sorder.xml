@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sorder">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sorder</refname>
     <refpurpose> computing the order of a discrete-time system</refpurpose>
@@ -87,8 +84,8 @@
               <listitem>
                 <para>2 : the matrices B and D should not be computed using the MOESP approach.</para>
                 <para>
-    This parameter is not relevant for meth = 2.
-  </para>
+                  This parameter is not relevant for meth = 2.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -142,8 +139,8 @@
               <listitem>
                 <para>2 : there is no connection between the current data block and the previous and/or the next ones.</para>
                 <para>
-    This parameter is not used if batch = 4.
-  </para>
+                  This parameter is not used if batch = 4.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -172,11 +169,11 @@
         <listitem>
           <para>(optional) vector of length 2 containing tolerances: tol(1) - tolerance used for estimating the rank of matrices. If  tol(1) &gt; 0,  then the given value of  tol(1)  is used as a lower bound for the reciprocal condition number; an m-by-n matrix whose estimated condition number is less than  1/tol(1)  is considered to be of full rank. If  tol(1) &lt;= 0,  then a default value m*n*epsilon_machine is used, where epsilon_machine is the relative machine precision.</para>
           <para>
-    tol(2) - tolerance used for determining an estimate of the system order. If  tol(2) &gt;= 0,  the estimate is indicated by the index of the last singular value greater than or equal to  tol(2).  (Singular values less than  tol(2)  are considered as zero.) When  tol(2) = 0,  an internally computed default value,  tol(2) = s*epsilon_machine*sval(1), is used, where  sval(1)  is the maximal singular value, and epsilon_machine the relative machine precision. When  tol(2) &lt; 0,  the estimate is indicated by the index of the singular value that has the largest logarithmic gap to its successor.
-  </para>
+            tol(2) - tolerance used for determining an estimate of the system order. If  tol(2) &gt;= 0,  the estimate is indicated by the index of the last singular value greater than or equal to  tol(2).  (Singular values less than  tol(2)  are considered as zero.) When  tol(2) = 0,  an internally computed default value,  tol(2) = s*epsilon_machine*sval(1), is used, where  sval(1)  is the maximal singular value, and epsilon_machine the relative machine precision. When  tol(2) &lt; 0,  the estimate is indicated by the index of the singular value that has the largest logarithmic gap to its successor.
+          </para>
           <para>
-    Default:    tol(1:2) = [0,-1].
-  </para>
+            Default:    tol(1:2) = [0,-1].
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -198,15 +195,15 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    printw = 0.
-  </para>
+            Default:    printw = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ldwork</term>
         <listitem>
           <para>(optional) the workspace size. Default : computed by the formulas</para>
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 nr = 2*( m + l )*s
 LDWORK = ( t - 2*s + 3 + 64 )*nr
 if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
@@ -216,11 +213,11 @@ else
 end if
  ]]></programlisting>
           <para>
-    LDWORK = MAX( minimum workspace size needed, LDWORK ) where CSIZE is the cache size in double precision words.
-  </para>
+            LDWORK = MAX( minimum workspace size needed, LDWORK ) where CSIZE is the cache size in double precision words.
+          </para>
           <para>
-    If LDWORK is specified less than the minimum workspace size  needed, that minimum value is used instead.
-  </para>
+            If LDWORK is specified less than the minimum workspace size  needed, that minimum value is used instead.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -228,11 +225,11 @@ end if
         <listitem>
           <para>(optional) if batch = 2 or 3, the 2*(m+l)*s-by-2*(m+l)*s (upper triangular, if alg &lt;&gt; 2) part of  R  must contain the (upper triangular) matrix  R  computed at the previous call of this mexfile in sequential data processing. If conct = 1, R  has an additional column, also set at the previous call.</para>
           <para>
-    If alg = 2,  R  has m+l+1 additional columns, set at the previous call. 
-  </para>
+            If alg = 2,  R  has m+l+1 additional columns, set at the previous call. 
+          </para>
           <para>
-    This parameter is not used for batch = 1 or batch = 4.
-  </para>
+            This parameter is not used for batch = 1 or batch = 4.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -264,14 +261,17 @@ end if
   <refsection>
     <title>Description</title>
     <para>
-    sorder  - function for computing the order of a discrete-time
-    system using SLICOT routine IB01AD.</para>
+      sorder  - function for computing the order of a discrete-time
+      system using SLICOT routine IB01AD.
+    </para>
     <para>
-    For one block (data sequences Y, U):
-      [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);</para>
+      For one block (data sequences Y, U):
+      [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);
+    </para>
     <para>
-    For f blocks (data sequences Yj, Uj, j = 1 : f):</para>
-    <programlisting role = ""><![CDATA[ 
+      For f blocks (data sequences Yj, Uj, j = 1 : f):
+    </para>
+    <programlisting role=""><![CDATA[ 
 R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
 for j = 2 : f - 1
    R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
@@ -279,39 +279,49 @@ end
 [R,n,sval,rcnd] = sorder(meth,alg,jobd,3,conct,s,Yf,Uf,tol);
  ]]></programlisting>
     <para>
-    sorder preprocesses the input-output data for estimating the matrices 
-    of a linear time-invariant dynamical system, using Cholesky or (fast)
-    QR factorization and subspace identification techniques (MOESP and
-    N4SID), and then estimates the order of a discrete-time realization.</para>
+      sorder preprocesses the input-output data for estimating the matrices 
+      of a linear time-invariant dynamical system, using Cholesky or (fast)
+      QR factorization and subspace identification techniques (MOESP and
+      N4SID), and then estimates the order of a discrete-time realization.
+    </para>
     <para>
-    The model structure is :</para>
-    <programlisting role = ""><![CDATA[ 
+      The model structure is :
+    </para>
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
     <para>
-    where  
-    x(k)  is the  n-dimensional state vector (at time k),</para>
+      where  
+      x(k)  is the  n-dimensional state vector (at time k),
+    </para>
     <para>
-    u(k)  is the  m-dimensional input vector,</para>
+      u(k)  is the  m-dimensional input vector,
+    </para>
     <para>
-    y(k)  is the  l-dimensional output vector,</para>
+      y(k)  is the  l-dimensional output vector,
+    </para>
     <para>
-    w(k)  is the  n-dimensional state disturbance vector,</para>
+      w(k)  is the  n-dimensional state disturbance vector,
+    </para>
     <para>
-    e(k)  is the  l-dimensional output disturbance vector,</para>
+      e(k)  is the  l-dimensional output disturbance vector,
+    </para>
     <para>
-    and  A, B, C, and D  are real matrices of appropriate dimensions.</para>
+      and  A, B, C, and D  are real matrices of appropriate dimensions.
+    </para>
   </refsection>
   <refsection>
     <title>Comments</title>
     <para>
-    1. The Cholesy or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.</para>
+      1. The Cholesy or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.
+    </para>
     <para>
-    2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.</para>
+      2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findBD">findBD</link>
@@ -320,9 +330,5 @@ y(k)   = Cx(k) + Du(k) + e(k),
         <link linkend="sident">sident</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999.; ;  Revisions:;    V. Sima, May 2000, July 2000.  </para>
   </refsection>
 </refentry>

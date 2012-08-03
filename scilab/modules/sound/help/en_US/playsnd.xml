@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="playsnd">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>playsnd</refname>
     <refpurpose>sound player facility</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[]=playsnd(y)
-[]=playsnd(y,rate,bits [,command])</synopsis>
+      []=playsnd(y,rate,bits [,command])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,8 +46,9 @@
         <term>command</term>
         <listitem>
           <para>Only used on Unix systems it gives the name of the command to use for playing sound 
-          (wav) files. The defaut value is <literal>play</literal>. If set <literal>/dev/audio</literal> then 
-          a 8 bits mu-law raw sound file is created and send to <literal>/dev/audio</literal></para>
+            (wav) files. The defaut value is <literal>play</literal>. If set <literal>/dev/audio</literal> then 
+            a 8 bits mu-law raw sound file is created and send to <literal>/dev/audio</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,7 +56,8 @@
   <refsection>
     <title>Description</title>
     <para>Plays a multi channel signal given by a Scilab matrix were sound is sampled at rate given by
-    <literal>rate</literal>.</para>
+      <literal>rate</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,7 +68,7 @@ playsnd(y)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lin2mu">lin2mu</link>

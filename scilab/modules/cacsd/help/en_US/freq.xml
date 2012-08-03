@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="freq">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>freq</refname>
     <refpurpose> frequency response</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[x]=freq(A,B,C [,D],f)
-[x]=freq(NUM,DEN,f)</synopsis>
+      [x]=freq(NUM,DEN,f)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,13 +27,17 @@
       <varlistentry>
         <term>A, B, C, D</term>
         <listitem>
-          <para> real matrices of respective dimensions <literal>nxn, nxp, mxn, mxp</literal>.</para>
+          <para>
+            real matrices of respective dimensions <literal>nxn, nxp, mxn, mxp</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>NUM,DEN</term>
         <listitem>
-          <para>polynomial matrices of dimension <literal>mxp</literal></para>
+          <para>
+            polynomial matrices of dimension <literal>mxp</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,16 +50,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>x=freq(A,B,C [,D],f)</literal> returns a real or complex <literal>mxp*t</literal> matrix
-    such that:</para>
-    <para><literal>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</literal>.</para>
     <para>
-    Thus, for <literal>f</literal> taking values along the imaginary axis or
-    on the unit circle <literal>x</literal> is the continuous or discrete time 
-    frequency response of <literal>(A,B,C,D)</literal>.</para>
-    <para><literal>x=freq(NUM,DEN,f)</literal> returns a real or complex matrix <literal>x</literal> such
-    that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix  
-    <literal>NUM(f(k))./DEN(f(k))</literal></para>
+      <literal>x=freq(A,B,C [,D],f)</literal> returns a real or complex <literal>mxp*t</literal> matrix
+      such that:
+    </para>
+    <para>
+      <literal>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</literal>.
+    </para>
+    <para>
+      Thus, for <literal>f</literal> taking values along the imaginary axis or
+      on the unit circle <literal>x</literal> is the continuous or discrete time 
+      frequency response of <literal>(A,B,C,D)</literal>.
+    </para>
+    <para>
+      <literal>x=freq(NUM,DEN,f)</literal> returns a real or complex matrix <literal>x</literal> such
+      that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix  
+      <literal>NUM(f(k))./DEN(f(k))</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,7 +82,7 @@ freq(A,B,C,[0,0.9,1.1,2,3,10,20])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="repfreq">repfreq</link>

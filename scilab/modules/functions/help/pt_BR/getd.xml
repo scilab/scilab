@@ -10,62 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="getd" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getd" xml:lang="en">
   <refnamediv>
     <refname>getd</refname>
-
     <refpurpose>retorna todas as funções definidas em um
-    diretório</refpurpose>
+      diretório
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>getd(path)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>path</term>
-
         <listitem>
           <para>string Scilab. O endereço do diretório</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para>Carrega todos os arquivos <literal>.sci</literal> (contendo funções
-    Scilab) definidos no diretório <literal>path</literal>.</para>
+    <para>
+      Carrega todos os arquivos <literal>.sci</literal> (contendo funções
+      Scilab) definidos no diretório <literal>path</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>

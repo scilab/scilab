@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fileparts">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fileparts</refname>
     <refpurpose>ファイルパスのパス,ファイル名,拡張子を返す</refpurpose>
@@ -22,7 +19,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[path,fname,extension]=fileparts(fullpath)
-v=fileparts(fullpath,sel)</synopsis>
+      v=fileparts(fullpath,sel)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,7 +35,8 @@ v=fileparts(fullpath,sel)</synopsis>
         <term>sel</term>
         <listitem>
           <para>オプションの文字列セレクタ, 以下の値を指定可能:
-       'path' 'fname' または 'extension'</para>
+            <literal>'path'</literal>, <literal>'fname'</literal> または <literal>'extension'</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,17 +60,19 @@ v=fileparts(fullpath,sel)</synopsis>
       <varlistentry>
         <term>value</term>
         <listitem>
-          <para>文字列, selの値に依存</para>
+          <para>文字列, <literal>sel</literal>の値に依存</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[path,fname,extension]=fileparts(fullpath)</literal> は
-	フルパスの文字列を以下の3つの部分に分割します:
-	ディレクトリを指すパス, ファイル名の部分,
-	ドットを含む拡張子の部分.</para>
+    <para>
+      <literal>[path,fname,extension]=fileparts(fullpath)</literal> は
+      フルパスの文字列を以下の3つの部分に分割します:
+      ディレクトリを指すパス, ファイル名の部分,
+      ドットを含む拡張子の部分.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -93,11 +94,5 @@ fileparts('SCI/etc/scilab.start','extension')
         <link linkend="fullfile">fullfile</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Serge Steer, INRIA
-  </para>
   </refsection>
 </refentry>

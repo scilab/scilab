@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "lasterror.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -33,6 +32,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -40,7 +40,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         {
             double dValue = 0.;
             int iValue = 0;
-            int iLastErrorValue = getLastErrorValue();
+            int iLastErrorValue = getInternalLastErrorValue();
 
             if (!isScalar(pvApiCtx, piAddressVarOne))
             {
@@ -53,7 +53,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
 
              if ((double)iValue != dValue)
              {
-                 Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 1);
+                 Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                  return 0;
              }
 
@@ -63,7 +63,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
                 C2F(errgst).err2 = 0;
 
                 /* clear last error buffer (C) */
-                clearLastError();
+                clearInternalLastError();
              }
         }
         else
@@ -78,7 +78,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         C2F(errgst).err2 = 0;
 
         /* clear last error buffer (C) */
-        clearLastError();
+        clearInternalLastError();
     }
     LhsVar(1) = 0;
     PutLhsVar();

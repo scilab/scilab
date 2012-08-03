@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lstcat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lstcat</refname>
     <refpurpose> list concatenation</refpurpose>
@@ -41,9 +38,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lc=lstcat(l1,..ln)</literal> catenates components of <literal>li</literal> lists in a
-    single list. If the <literal>li</literal> are other type of variables they are simply
-    added to the resulting list.</para>
+    <para>
+      <literal>lc=lstcat(l1,..ln)</literal> catenates components of <literal>li</literal> lists in a
+      single list. If the <literal>li</literal> are other type of variables they are simply
+      added to the resulting list.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +52,7 @@ lstcat(1,2,3)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="list">list</link>

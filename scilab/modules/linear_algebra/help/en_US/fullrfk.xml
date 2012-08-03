@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrfk">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullrfk</refname>
     <refpurpose> full rank factorization of A^k</refpurpose>
@@ -48,11 +45,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function computes the full rank factorization of <literal>A^k</literal> i.e.
-    <literal>Bk*Ck=A^k</literal> where <literal>Bk</literal> is full column rank and <literal>Ck</literal> full row rank.
-    One has range(<literal>Bk</literal>)=range(<literal>A^k</literal>) and ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>).</para>
+      This function computes the full rank factorization of <literal>A^k</literal> i.e.
+      <literal>Bk*Ck=A^k</literal> where <literal>Bk</literal> is full column rank and <literal>Ck</literal> full row rank.
+      One has range(<literal>Bk</literal>)=range(<literal>A^k</literal>) and ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>).
+    </para>
     <para>
-    For <literal>k=1</literal>, <literal>fullrfk</literal> is equivalent to <literal>fullrf</literal>.</para>
+      For <literal>k=1</literal>, <literal>fullrfk</literal> is equivalent to <literal>fullrf</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +61,7 @@ norm(Bk*Ck-A^3,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fullrf">fullrf</link>
@@ -71,9 +70,5 @@ norm(Bk*Ck-A^3,1)
         <link linkend="range">range</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D (1990);   </para>
   </refsection>
 </refentry>

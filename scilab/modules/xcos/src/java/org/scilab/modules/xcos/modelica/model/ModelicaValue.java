@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,33 +18,30 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
-
 /**
  * Modelica String assignation.
  * 
- * The data is on the value property and the content doesn't
- * contains any data. 
+ * The data is on the value property and the content doesn't contains any data.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ModelicaValue")
 public final class ModelicaValue {
-	@XmlAttribute
+    @XmlAttribute
     private String value;
 
     /**
-	 * Default constructor.
-	 */
-	public ModelicaValue() {
-		value = "";
-	}
-	
-    /**
-     * @return
-     *     always empty String.
-     *     
+     * Default constructor.
      */
-	@XmlValue
-	@Deprecated
+    public ModelicaValue() {
+        value = "";
+    }
+
+    /**
+     * @return always empty String.
+     * 
+     */
+    @XmlValue
+    @Deprecated
     public String getContent() {
         return null;
     }
@@ -53,20 +50,18 @@ public final class ModelicaValue {
      * Empty implementation as the content is always null.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
-	@Deprecated
-    public void setContent(String value) { }
+    @Deprecated
+    public void setContent(String value) {
+    }
 
     /**
      * Gets the value of the value property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getValue() {
         return value;
@@ -76,9 +71,8 @@ public final class ModelicaValue {
      * Sets the value of the value property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setValue(String value) {
         this.value = value;

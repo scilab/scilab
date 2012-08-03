@@ -342,7 +342,6 @@ function draw_truck(C,pos)
   xy=[bigL/3  d2;0 0]'
   C(13).data=ones(xy)*diag([x;y])+bigL*xy*Rc
   drawnow()
-  show_pixmap();
 endfunction
 
 function h=polyline(xy)

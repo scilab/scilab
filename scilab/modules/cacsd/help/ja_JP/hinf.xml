@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hinf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hinf</refname>
     <refpurpose> 連続時間システムのH無限大設計</refpurpose>
@@ -65,9 +62,10 @@
         <term>gamma</term>
         <listitem>
           <para>
-	<literal>H_infinity</literal> 設計で使用されるパラメータ gamma. 
-	コントローラが存在できるように  
-	gamma は十分に大きい(gamma &gt;= 0)と仮定されます.</para>
+            <literal>H_infinity</literal> 設計で使用されるパラメータ gamma. 
+            コントローラが存在できるように  
+            gamma は十分に大きい(gamma &gt;= 0)と仮定されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -98,11 +96,11 @@
         <term>RCOND</term>
         <listitem>
           <para>
-	行列の条件数の逆数の推定値を含むベクトル.
-	この値は,
-	コントローラを計算する際に解くリカッチ方程式の条件数の逆数を推定します
-	([1]のアルゴリズムの説明を参照ください).
-	</para>
+            行列の条件数の逆数の推定値を含むベクトル.
+            この値は,
+            コントローラを計算する際に解くリカッチ方程式の条件数の逆数を推定します
+            ([1]のアルゴリズムの説明を参照ください).
+          </para>
           <variablelist>
             <varlistentry>
               <term>RCOND</term>
@@ -135,32 +133,36 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</literal>
-	H無限大 (準)最適n状態コントローラの行列を計算します
+    <para>
+      <literal>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</literal>
+      H無限大 (準)最適n状態コントローラの行列を計算します
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
     | AK | BK |
 K = |----|----|,
     | CK | DK |
  ]]></programlisting>
     <para>
-    (連続時間系の場合)</para>
-    <programlisting role = ""><![CDATA[
+      (連続時間系の場合)
+    </para>
+    <programlisting role=""><![CDATA[
     | A  | B1  B2  |   | A | B |
 P = |----|---------| = |---|---|,
     | C1 | D11 D12 |   | C | D | 
     | C2 | D21 D22 |
  ]]></programlisting>
     <para>
-	gamma の値を指定すると,
-	B2 が制御入力の数 (ncon) と同じ列の数を有し,
-	C2 が観測量の数 (nmeas) と同じ行の数を有するという条件の元で
-	コントローラが出力されます.</para>
+      gamma の値を指定すると,
+      B2 が制御入力の数 (ncon) と同じ列の数を有し,
+      C2 が観測量の数 (nmeas) と同じ行の数を有するという条件の元で
+      コントローラが出力されます.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines     for Hinf and H2 design of continuous-time linear control systems.     Report98-14, Department of Engineering, Leicester University,     August 1998.</para>
+      [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines     for Hinf and H2 design of continuous-time linear control systems.     Report98-14, Department of Engineering, Leicester University,     August 1998.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

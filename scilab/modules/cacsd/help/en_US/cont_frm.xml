@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cont_frm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cont_frm</refname>
     <refpurpose> transfer to controllable state-space</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.</para>
+          <para>
+            <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,7 +47,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    controllable state-space form of the transfer <literal>NUM/den</literal>.</para>
+      controllable state-space form of the transfer <literal>NUM/den</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -59,7 +59,7 @@ slss=ss2tf(sl);       //Compare with NUM/den
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tf2ss">tf2ss</link>

@@ -11,18 +11,17 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gethistory">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gethistory</refname>
     <refpurpose>returns current scilab history in a
-  string matrix </refpurpose>
+      string matrix 
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>matstr=gethistory()
-line=gethistory(N)</synopsis>
+      line=gethistory(N)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -52,7 +51,7 @@ line=gethistory(N)</synopsis>
     <para>returns current scilab history in a string matrix.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>
@@ -63,12 +62,6 @@ line=gethistory(N)</synopsis>
       <member>
         <link linkend="resethistory">resethistory</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

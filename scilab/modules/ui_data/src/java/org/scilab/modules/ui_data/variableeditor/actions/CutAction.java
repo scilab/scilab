@@ -14,15 +14,20 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import java.util.Vector;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -30,12 +35,12 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-public final class CutAction extends CallBack {
+public final class CutAction extends CommonCallBack {
 
-    private static final String KEY = "ctrl X";
+    private static final String KEY = "OSSCKEY X";
     private static final String CUT = "Cut";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -53,12 +58,13 @@ public final class CutAction extends CallBack {
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
         table.getActionMap().put(CUT, new CutAction(editor, CUT));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), CUT);
+        table.getInputMap().put(ScilabKeyStroke.getKeyStroke(KEY), CUT);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         int[] cols = table.getSelectedColumns();
@@ -67,17 +73,26 @@ public final class CutAction extends CallBack {
             table.setColumnSelectionInterval(cols[0], cols[cols.length - 1]);
             table.setRowSelectionInterval(rows[0], rows[rows.length - 1]);
             StringBuffer buf = new StringBuffer();
+            Object oldValue;
             SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
+            int oldRows = model.getScilabMatrixRowCount();
+            int oldCols = model.getScilabMatrixColCount();
+
+            if (rows[0] >= oldRows || cols[0] >= oldCols) {
+                return;
+            }
+
+            if ((cols.length == 1 && rows.length == 1) || (rows.length >= 2 && cols.length >= 2 && rows[1] >= oldRows && cols[1] >= oldCols)) {
+                oldValue = model.getValueAt(rows[0], cols[0]);
+            } else {
+                oldValue = (Vector) model.cloneDatas();
+            }
+
             for (int i = rows[0]; i <= rows[rows.length - 1]; i++) {
                 for (int j = cols[0]; j <= cols[cols.length - 1]; j++) {
-                    String exp = model.getCellEditor().getExpression(i, j);
-                    if (exp != null) {
-                        buf.append("=" + exp);
-                    } else {
-                        String val = model.getScilabValueAt(i, j, false);
-                        if (val != null) {
-                            buf.append(val);
-                        }
+                    String val = model.getScilabValueAt(i, j, false);
+                    if (val != null) {
+                        buf.append(val);
                     }
                     model.emptyValueAt(i, j);
                     if (j < cols[cols.length - 1]) {
@@ -90,10 +105,16 @@ public final class CutAction extends CallBack {
                 model.removeRow(i, cols[0], cols[cols.length - 1]);
             }
             for (int j = cols[cols.length - 1]; j >= cols[0]; j--) {
-                model.removeCol(table, j, rows[0], rows[rows.length - 1]);
+                model.removeCol(j, rows[0], rows[rows.length - 1]);
             }
-            model.updateMatrix();
-            StringSelection sel  = new StringSelection(buf.toString());
+
+            if (oldValue instanceof Vector) {
+                model.updateFullMatrix(oldValue, oldRows, oldCols);
+            } else {
+                model.updateMatrix(oldValue, rows[0], cols[0]);
+            }
+
+            StringSelection sel = new StringSelection(buf.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
         }
     }
@@ -108,9 +129,34 @@ public final class CutAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CutAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-cut.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-cut"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
+    }
+
+    /**
+     * Create a menu item
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static MenuItem createMenuItem(SwingScilabVariableEditor editor, String title) {
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setCallback(new CutAction(editor, title));
+        menu.setText(title);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
+
+        return menu;
+    }
+
+    /**
+     * Create a menu item as a SwingScilabMenuItem
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabVariableEditor editor, String title) {
+        return (SwingScilabMenuItem) createMenuItem(editor, title).getAsSimpleMenuItem();
     }
 }

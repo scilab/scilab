@@ -1,0 +1,353 @@
+# French translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-16 09:27+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire réel "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: XML object does not exist.\n"
+msgstr "%s : L'objet XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : %s attendu.\n"
+
+#, c-format
+msgid "%s: XML attribute does not exist.\n"
+msgstr "%s : L'attribut XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: XMLList does not exist.\n"
+msgstr "%s : XMLList n'existe pas.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères ou un double attendu.\n"
+
+#, c-format
+msgid "%s: Unknown field: %s\n"
+msgstr "%s : Champ inconnu : %s\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un double attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un double attendu.\n"
+
+#, c-format
+msgid "%s: Wrong index in the XMLList.\n"
+msgstr "%s : Index erroné dans la XMLList.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une XMLList ou un XMLSet "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"une valeur entière attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"une valeur entière attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d :  Un double attendu.\n"
+
+#, c-format
+msgid "%s: xmlFormat must return a string.\n"
+msgstr "%s : xmlFormat doit retourner une chaîne de caractères.\n"
+
+#, c-format
+msgid "%s: You must define %%s_xmlFormat function.\n"
+msgstr "%s : Veuillez définir la fonction %%s_xmlFormat.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
+
+#, c-format
+msgid "%s: XML Element does not exist.\n"
+msgstr "%s : L'élément XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: XML Namespace does not exist.\n"
+msgstr "%s : L'espace de nom XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%i : Un XMLSet ou une XMLList "
+"attendu.\n"
+
+#, c-format
+msgid "%s: XMLSet or XMLList does not exist.\n"
+msgstr "%s : Le XMLSet ou la XMLList n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: XML document does not exist.\n"
+msgstr "%s : Le document XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: XML validation file does not exist.\n"
+msgstr "%s : Le fichier de validation XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un %s attendu.\n"
+
+#, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr "%s : Le document XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
+msgstr "%s : Argument d'entrée n°%d erroné : Un nom XML valide attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de caractère "
+"non vide attendue.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr "%s : Impossible de lire l'argument nommé %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Cannot read the file:\n"
+"%s"
+msgstr ""
+"%s : Impossible de lire le fichier :\n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Cannot parse the string:\n"
+"%s"
+msgstr ""
+"%s : Impossible d'analyser la chaîne de caractères : \n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un XMLElem ou une XMLList ou "
+"un XMLSet attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
+"or a XMLSet expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un XMLAttr ou un XMLElem ou "
+"une XMLList ou un XMLSet attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
+"expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
+"de caractères nx2 ou nx3 attendue.\n"
+
+#, c-format
+msgid "%s: XML document does not exist\n"
+msgstr "%s : Le document XML n'existe pas.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères ou un XMLDoc attendu.\n"
+
+#, c-format
+msgid ""
+"The file %s is not valid:\n"
+"%s\n"
+msgstr ""
+"Le fichier %s est invalide :\n"
+"%s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"un booléen attendu.\n"
+
+#, c-format
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
+msgstr ""
+"%s : Le document XML n'a pas d'URI et le second argument d'entrée n'est pas "
+"renseigné.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Cannot write the file: %s\n"
+msgstr "%s : Impossible d'écrire le fichier : %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d :  Un XMLDoc ou un XMLElem "
+"attendu.\n"
+
+#, c-format
+msgid "%s: XML element does not exist.\n"
+msgstr "%s : L'élement XML n'existe pas.\n"
+
+#, c-format
+msgid "%s: Bad number of columns for argument #%d: two expected.\n"
+msgstr ""
+"%s : Nombre erroné de colonnes pour l'argument d'entrée n°%d : Deux colonnes "
+"attendues.\n"
+
+#, c-format
+msgid ""
+"%s: Bad XPath query:\n"
+"%s"
+msgstr ""
+"%s : Mauvaise requête XPath :\n"
+"%s"
+
+#, c-format
+msgid "%s: XPath query returned a not handled type: %i\n"
+msgstr "%s : La requête XPath a retourné un type non géré : %i\n"
+
+msgid "Invalid file name: "
+msgstr "Nom de fichier invalide : "
+
+msgid "Cannot create a parser context"
+msgstr "Impossible de créer le contexte d'analyse"
+
+msgid " at line "
+msgstr " à la ligne "
+
+msgid "Cannot create a buffer"
+msgstr "Impossible de créer une mémoire tampon"
+
+msgid "Cannot create a reader"
+msgstr "Impossible de créer un lecteur"
+
+msgid "Invalid file"
+msgstr "Fichier invalide"
+
+msgid "Cannot parse the DTD"
+msgstr "Impossible d'analyser la DTD"
+
+msgid "Cannot create a valid context"
+msgstr "Impossible de créer un contexte valide"
+
+msgid ""
+"Due to a libxml2 limitation, it is not possible to validate a document "
+"against an external DTD\n"
+"Please see help xmlValidate.\n"
+msgstr ""
+"À cause d'une limitation de la bibliothèque libxml2, il est impossible de "
+"valider un document avec une DTD externe.\n"
+"Veuillez consulter l'aide de xmlValidate.\n"
+
+msgid "Cannot create a validation context"
+msgstr "Impossible de créer un contexte de validation"
+
+msgid "Cannot parse the Relax NG grammar"
+msgstr "Impossible d'analyser la grammaire Relax NG"
+
+msgid "Cannot parse the schema"
+msgstr "Impossible d'analyser le schéma"
+
+msgid "Cannot read the stream"
+msgstr "Impossible de lire le flux"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "CML read"
+msgstr "Lecture d'un fichier CML"

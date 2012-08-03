@@ -10,66 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="ssprint" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>b$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ssprint" xml:lang="en">
   <refnamediv>
     <refname>ssprint</refname>
-
     <refpurpose>embelezador de sistemas lineares</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
-    <synopsis>ssprint(sl [,out])</synopsis>
+    <synopsis>ssprint(sl)
+      ssprint(sl, out]
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>sl</term>
-
         <listitem>
-          <para>lista (lista <literal>syslin</literal>)</para>
+          <para>
+            lista (lista <literal>syslin</literal>)
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>out</term>
-
         <listitem>
-          <para>saída (valor padrão <literal>out=%io(2)</literal>)</para>
+          <para>
+            saída (valor padrão <literal>out=%io(2)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Representação embelezada de uma sistema linear em lista syslin de
-    forma de espaço de estados <literal>sl=(A,B,C,D)</literal>.</para>
+      forma de espaço de estados <literal>sl=(A,B,C,D)</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
-    <programlisting role="example"><![CDATA[ 
-a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
-ssprint(syslin('c',a,b,c,d))
-ssprint(syslin('d',a,b,c,d))
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[a = [1 1;0 1];
+b = [0 1;1 0];
+c = [1, 1];
+d = [3, 2];
+modelC = syslin('c', a, b, c, d)
+modelD = syslin('d', a, b, c, d)
+ssprint(modelC)
+ssprint(modelD)]]></programlisting>
   </refsection>
-
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+      </member>
+      <member>
+        <link linkend="prettyprint">prettyprint</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

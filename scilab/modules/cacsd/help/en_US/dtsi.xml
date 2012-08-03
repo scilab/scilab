@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dtsi">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dtsi</refname>
     <refpurpose>Continuous time dynamical systems stable anti-stable decomposition</refpurpose>
@@ -34,7 +31,7 @@
       <varlistentry>
         <term>Ga</term>
         <listitem>
-           <para>a continuous time linear system antistable and strictly proper.</para>
+          <para>a continuous time linear system antistable and strictly proper.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,7 +49,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal></para>
+          <para>
+            optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,9 +59,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the stable-antistable decomposition of <literal>G</literal>:</para>
-    <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
-    <para><literal>G</literal> can be given in state-space form or in transfer form.</para>
+      returns the stable-antistable decomposition of <literal>G</literal>:
+    </para>
+    <para>
+      <literal>G= Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal>
+    </para>
+    <para>
+      <literal>G</literal> can be given in state-space form or in transfer form.
+    </para>
     <para>
       <literal>Ga</literal> and <literal>Gs</literal> are returned in the same
       representation (transfer function or state-space) than
@@ -70,7 +74,7 @@
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>
@@ -85,5 +89,17 @@
         <link linkend="pfss">pfss</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+          This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

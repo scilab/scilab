@@ -21,8 +21,14 @@ import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,6 +44,7 @@ import org.scilab.modules.localization.Messages;
 
 import org.xml.sax.SAXException;
 
+import com.artenum.rosetta.interfaces.core.ConsoleAction;
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
@@ -47,6 +54,9 @@ import com.artenum.rosetta.ui.Console;
 import com.artenum.rosetta.util.ConfigurationBuilder;
 import com.artenum.rosetta.util.ConsoleBuilder;
 import com.artenum.rosetta.util.StringConstants;
+
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
+import org.scilab.modules.commons.xml.XConfiguration;
 
 /**
  * Main class for Scilab Console based on Generic Console from Artenum
@@ -60,10 +70,21 @@ public abstract class SciConsole extends JPanel {
 
     private static final String BACKSLASH_R = "\r";
 
+    private static final String XPATH_CONSOLE_KEY = "//general/shortcuts/body/actions/action-folder[@name='Console']/action";
+    private static final String XPATH_CONSOLE_ACTION = "/map/console/entry";
+
     /**
      * Maximum length of a command send to Scilab
      */
-    private static final int MAX_CMD_LENGTH = 512;
+    private static final int MAX_CMD_LENGTH = 4096;
+
+    private static Map<KeyStroke, String> actionKeys;
+    private static final Map<String, String> actionToName;
+
+    static {
+        org.w3c.dom.Document doc = ScilabXMLUtilities.readDocument(System.getenv("SCI") + "/modules/console/etc/Actions-Configuration.xml");
+        actionToName = XConfiguration.get(doc, "name", String.class, "action", String.class, XPATH_CONSOLE_ACTION);
+    }
 
     /**
      * Configuration associated to the console oject
@@ -81,11 +102,6 @@ public abstract class SciConsole extends JPanel {
     private Console sciConsole;
 
     /**
-     * Flag indicating if the input command vieaw size has been forced to a value by a call to toHome
-     */
-    private boolean inputCommandViewSizeForced;
-
-    /**
      * Value used to get one char from user input (when using [more y or n ?])
      */
     private int userInputValue;
@@ -100,6 +116,10 @@ public abstract class SciConsole extends JPanel {
      */
     private boolean workDone;
 
+    private boolean atBottom;
+
+    private boolean isToHome;
+
     /**
      * Constructor
      * @param configFilePath the configuration file to use
@@ -110,35 +130,52 @@ public abstract class SciConsole extends JPanel {
         try {
             config = ConfigurationBuilder.buildConfiguration(configFilePath);
             config.setActiveProfile("scilab");
-            if (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
-                {
-                    ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
-                    configMac.setActiveProfile("macosx");
-                    for (KeyStroke key : config.getKeyMapping().keys()){
-                        config.getKeyMapping().put(key,"");
-                    }
-                    for (KeyStroke key : configMac.getKeyMapping().keys()){
-                        config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
-                    }
-                }
         } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (SAXException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         sciConsole = ConsoleBuilder.buildConsole(config, this);
+        XConfiguration.addXConfigurationListener(new org.scilab.modules.console.ConsoleConfiguration(this));
+        sciConsole.setForeground(ConsoleOptions.getConsoleColor().foreground);
+        sciConsole.setBackground(ConsoleOptions.getConsoleColor().background);
+        setCaretColor(ConsoleOptions.getConsoleColor().cursor);
+        sciConsole.setFont(ConsoleOptions.getConsoleFont().font);
+        setKeyStrokeAction();
+
         jSP = new JScrollPane(sciConsole);
-        /* This option is a good compromise for speed and rendering (bad display when several lines with default SIMPLE_SCROLL_MODE) */
-        jSP.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
+
+        BoundedRangeModel model = jSP.getVerticalScrollBar().getModel();
+        jSP.getVerticalScrollBar().setModel(new DefaultBoundedRangeModel(model.getValue(), model.getExtent(), model.getMinimum(), model.getMaximum()) {
+            public void setRangeProperties(int newValue, int newExtent, int newMin, int newMax, boolean adjusting) {
+                // This method is overriden to keep the knob at the bottom during viewport resize
+                // and to keep the knob at an other place if the user decided it.
+                if (newMax != getMaximum()) {
+                    if (!adjusting) {
+                        if (atBottom) {
+                            super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, false);
+                        } else {
+                            super.setRangeProperties(newValue, newExtent, newMin, newMax, false);
+                        }
+                    } else {
+                        double percent = (double) Math.abs(newMax - newValue - newExtent) / (double) newMax;
+                        if (atBottom && percent <= 0.03) {
+                            super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, true);
+                        } else {
+                            super.setRangeProperties(newValue, newExtent, newMin, newMax, true);
+                            atBottom = percent <= 0.01;
+                        }
+                    }
+                } else {
+                    super.setRangeProperties(newValue, newExtent, newMin, newMax, adjusting);
+                }
+            }
+        });
 
         this.add(jSP, BorderLayout.CENTER);
 
@@ -161,16 +198,92 @@ public abstract class SciConsole extends JPanel {
 
         // Bug 8055 : update the lines/columns only when the console is resized
         addComponentListener(new ComponentAdapter() {
-                public void componentResized(ComponentEvent evt) {
-                    SwingUtilities.invokeLater(new Runnable() {
-                            public void run() {
-                                scilabLinesUpdate();
-                                jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
-                                jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
-                            }
-                        });
+            public void componentResized(ComponentEvent evt) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scilabLinesUpdate();
+                        jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
+                        jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+                    }
+                });
+            }
+        });
+
+        sciConsole.invalidate();
+        sciConsole.doLayout();
+    }
+
+    public void configurationChanged(org.scilab.modules.console.ConsoleConfiguration.Conf conf) {
+        if (conf.color) {
+            sciConsole.setForeground(ConsoleOptions.getConsoleColor().foreground);
+            sciConsole.setBackground(ConsoleOptions.getConsoleColor().background);
+            setCaretColor(ConsoleOptions.getConsoleColor().cursor);
+        }
+        if (conf.font) {
+            sciConsole.setFont(ConsoleOptions.getConsoleFont().font);
+        }
+        if (conf.display) {
+            ((SciOutputView) config.getOutputView()).setMaxSize(ConsoleOptions.getConsoleDisplay().maxOutputLines);
+            scilabLinesUpdate();
+        }
+        if (conf.keymap) {
+            actionKeys = null;
+            setKeyStrokeAction();
+        }
+    }
+
+    public static Map<KeyStroke, String> getActionKeys() {
+        if (actionKeys == null) {
+            org.w3c.dom.Document doc = XConfiguration.getXConfigurationDocument();
+            actionKeys = XConfiguration.get(doc, "key", KeyStroke.class, "name", String.class, XPATH_CONSOLE_KEY);
+        }
+
+        return actionKeys;
+    }
+
+    public static Map<String, String> getActionName() {
+        return actionToName;
+    }
+
+    /**
+     * Set the shortcuts in the pane relatively to the file
+     * keysConfiguration.xml
+     *
+     * @param sep
+     *            the textpane
+     * @param ed
+     *            the SciNotes editor
+     */
+    private void setKeyStrokeAction() {
+        Map<KeyStroke, String> map = getActionKeys();
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        Iterator<KeyStroke> iter = map.keySet().iterator();
+
+        while (iter.hasNext()) {
+            KeyStroke key = iter.next();
+            String actionName = map.get(key);
+            String action = actionToName.get(actionName);
+            if (action != null) {
+                try {
+                    Class clazz = loader.loadClass(action);
+                    Constructor constructor = clazz.getConstructor(new Class[0]);
+                    Object act = constructor.newInstance(new Object[0]);
+                    ((ConsoleAction) act).setConfiguration(config);
+                    ((SciInputCommandView) config.getInputCommandView()).getInputMap().put(key, act);
+                } catch (ClassNotFoundException e) {
+                    System.err.println("No action: " + action);
+                } catch (InstantiationException e) {
+                    System.err.println("Problem to instantiate in action: " + action);
+                } catch (NoSuchMethodException e) {
+                    System.err.println("No valid constructor in action: " + action);
+                } catch (IllegalAccessException e) {
+                    System.err.println("The constructor must be public: " + action);
+                } catch (InvocationTargetException e) {
+                    System.err.println("The constructor in " + action + " threw an exception :");
+                    e.printStackTrace();
                 }
-            });
+            }
+        }
     }
 
     /**
@@ -194,29 +307,33 @@ public abstract class SciConsole extends JPanel {
      * These variables are used to format data before displaying it
      */
     public void scilabLinesUpdate() {
-        // Size of the console
-        int outputViewWidth = jSP.getWidth();
+        if (ConsoleOptions.getConsoleDisplay().adaptToDisplay) {
+            // Size of the console
+            int outputViewWidth = jSP.getViewport().getExtentSize().width;
 
-        // Size of a char
-        OutputView outputView = this.getConfiguration().getOutputView();
-        int[] charsWidth = ((JEditorPane) outputView).getFontMetrics(((JEditorPane) outputView).getFont()).getWidths();
+            // Size of a char
+            OutputView outputView = this.getConfiguration().getOutputView();
+            int[] charsWidth = ((JEditorPane) outputView).getFontMetrics(((JEditorPane) outputView).getFont()).getWidths();
 
-        // This loop is not needed for monospaced fonts !
-        int maxCharWidth = charsWidth[33];
-        // The range 33--126 corresponds to the usual characters in ASCII
-        for (int i = 34; i < 126; i++) {
-            if (charsWidth[i] > maxCharWidth) {
-                maxCharWidth = charsWidth[i];
+            // This loop is not needed for monospaced fonts !
+            int maxCharWidth = charsWidth[33];
+            // The range 33--126 corresponds to the usual characters in ASCII
+            for (int i = 34; i < 126; i++) {
+                if (charsWidth[i] > maxCharWidth) {
+                    maxCharWidth = charsWidth[i];
+                }
             }
+
+            int numberOfLines = Math.max(1, getNumberOfLines());
+            int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
+
+            int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
+            /* -1 because of the margin between text prompt and command line text */
+
+            GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
+        } else {
+            GuiManagement.forceScilabLines(ConsoleOptions.getConsoleDisplay().nbLines, ConsoleOptions.getConsoleDisplay().nbColumns);
         }
-
-        int numberOfLines = Math.max(1, getNumberOfLines());
-        int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
-
-        int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
-        /* -1 because of the margin between text prompt and command line text */
-
-        GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
     }
 
     /**
@@ -225,7 +342,7 @@ public abstract class SciConsole extends JPanel {
      */
     public int getNumberOfLines() {
         // Size of the console
-        int outputViewHeight = jSP.getHeight();
+        int outputViewHeight = jSP.getViewport().getExtentSize().height;
 
         // Size of a char
         OutputView outputView = this.getConfiguration().getOutputView();
@@ -247,25 +364,26 @@ public abstract class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-        SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-                }
-            });
-        //jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
-        //jSP.invalidate();
-        //jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-        //jSP.revalidate();
-
         // Update the scrollbar properties
         jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
         jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                jSP.getVerticalScrollBar().getModel().setValue(jSP.getVerticalScrollBar().getModel().getMaximum() - jSP.getVerticalScrollBar().getModel().getExtent());
+            }
+        });
     }
 
     /**
      * Clears the console and the output view
      */
     public void clear() {
+        if (sciConsole.isPreferredSizeSet()) {
+            sciConsole.setPreferredSize(null);
+            sciConsole.invalidate();
+            sciConsole.doLayout();
+        }
+
         try {
             config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
         } catch (BadLocationException e) {
@@ -285,6 +403,12 @@ public abstract class SciConsole extends JPanel {
      * @param nbLines the number of lines to be deleted
      */
     public void clear(int nbLines) {
+        if (sciConsole.isPreferredSizeSet()) {
+            sciConsole.setPreferredSize(null);
+            sciConsole.invalidate();
+            sciConsole.doLayout();
+        }
+
         if (nbLines == 0) {
             // Clear the prompt
             config.getInputCommandView().reset();
@@ -313,7 +437,6 @@ public abstract class SciConsole extends JPanel {
                     }
                 }
             } catch (BadLocationException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -323,28 +446,32 @@ public abstract class SciConsole extends JPanel {
      * Puts the prompt in the top left corner of the console
      */
     public void toHome() {
-        Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-        Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
-        ((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);
-        ((JTextPane) config.getInputCommandView()).invalidate();
-        ((JTextPane) config.getInputCommandView()).doLayout();
-        inputCommandViewSizeForced = true;
+        isToHome = true;
     }
 
-    /**
-     * Sets the flags indicating if the input command view has been resize by calling toHome()
-     * @param status the new status
-     */
-    public void setInputCommandViewSizeForced(boolean status) {
-        inputCommandViewSizeForced = status;
-    }
+    public void setToHome() {
+        if (isToHome) {
+            Dimension jSPExtSize = jSP.getViewport().getExtentSize();
+            int caretH = ((SciInputCommandView) config.getInputCommandView()).getCaretHeight();
+            int height = jSPExtSize.height + ((SciPromptView) config.getPromptView()).getParent().getBounds().y - caretH;
+            Dimension newDim = new Dimension(sciConsole.getSize().width, height);
+            sciConsole.setPreferredSize(newDim);
+            sciConsole.invalidate();
+            sciConsole.doLayout();
+            ((SciOutputView) config.getOutputView()).addComponentListener(new ComponentAdapter() {
+                public void componentResized(ComponentEvent evt) {
+                    if (evt.getComponent().getSize().height >= sciConsole.getSize().height) {
+                        evt.getComponent().removeComponentListener(this);
+                        sciConsole.setPreferredSize(null);
+                        sciConsole.invalidate();
+                        sciConsole.doLayout();
+                    }
+                }
+            });
 
-    /**
-     * Gets the flags indicating if the input command view has been resize by calling toHome()
-     * @return true if a toHome() call is still affecting the size of the input command view
-     */
-    public boolean getInputCommandViewSizeForced() {
-        return inputCommandViewSizeForced;
+            isToHome = false;
+            jSP.getVerticalScrollBar().getModel().setValue(jSP.getVerticalScrollBar().getModel().getMaximum() - jSP.getVerticalScrollBar().getModel().getExtent());
+        }
     }
 
     /**
@@ -387,7 +514,7 @@ public abstract class SciConsole extends JPanel {
         String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
         int nbStatements = 0;
 
-        // Display Cursor to show Scilab is busy
+        atBottom = true;
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         while (nbStatements < linesToExec.length) {
@@ -397,13 +524,14 @@ public abstract class SciConsole extends JPanel {
 
             // Reset command line
             inputParsingManager.reset();
-            promptView.updatePrompt();
 
             // Reset history settings
             config.getHistoryManager().setInHistory(false);
 
             // Hide the prompt and command line
             config.getInputCommandView().setEditable(false);
+            ((SciInputCommandView) config.getInputCommandView()).getCaret().setVisible(false);
+
             config.getPromptView().setVisible(false);
 
             // Remove the prompt if present at the beginning of the text to execute
@@ -413,14 +541,13 @@ public abstract class SciConsole extends JPanel {
 
             // Store the command in the buffer so that Scilab can read it
             if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
-                config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
-                                              + " characters long): could not send it to Scilab\n");
+                config.getOutputView().append(String.format(Messages.gettext("Command is too long (more than %d characters long): could not send it to Scilab\n"), MAX_CMD_LENGTH));
                 ((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("", false);
                 return;
             }
 
             ((SciInputCommandView) config.getInputCommandView())
-                .setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
+            .setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
             if (storeInHistory) {
                 ((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
             }
@@ -491,7 +618,7 @@ public abstract class SciConsole extends JPanel {
      * @param font the font to set
      */
     public void setFont(Font font) {
-        if (sciConsole != null) {
+        if (sciConsole != null && !font.equals(getFont())) {
             sciConsole.setFont(font);
 
             /* Have to update the output view contents with new font */
@@ -502,12 +629,12 @@ public abstract class SciConsole extends JPanel {
                 outputDoc.remove(0, outputDoc.getLength());
                 config.getOutputView().append(txt);
             } catch (BadLocationException e) {
-                System.out.println(Messages.gettext("Could not change the Console Font."));
+                System.err.println(Messages.gettext("Could not change the Console Font."));
                 return;
             }
 
             /* Update the prompt */
-            ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setFont(font);
+            ((SciPromptView) config.getPromptView()).getPromptUI().setFont(font);
             config.getPromptView().updatePrompt();
             scilabLinesUpdate();
         }
@@ -519,7 +646,7 @@ public abstract class SciConsole extends JPanel {
      */
     public Font getFont() {
         if (sciConsole != null) {
-            return ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).getFont();
+            return ((SciPromptView) config.getPromptView()).getPromptUI().getFont();
         } else {
             return null;
         }
@@ -570,7 +697,7 @@ public abstract class SciConsole extends JPanel {
             }
 
             /* Update the prompt */
-            ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setForeground(color);
+            ((SciPromptView) config.getPromptView()).getPromptUI().setForeground(color);
             config.getPromptView().updatePrompt();
         }
     }
@@ -582,6 +709,16 @@ public abstract class SciConsole extends JPanel {
     public void setBackground(Color color) {
         if (sciConsole != null) {
             sciConsole.setBackground(color);
+        }
+    }
+
+    /**
+     * Set the Background Color of the Console
+     * @param color the Background Color
+     */
+    public void setCaretColor(Color color) {
+        if (sciConsole != null) {
+            ((SciInputCommandView) config.getInputCommandView()).setCaretColor(color);
         }
     }
 }

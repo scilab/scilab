@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference title="_(Preferences)">
+  <body>
+    <backups restore-path="" save-path=""/>
+  </body>
+</preference>

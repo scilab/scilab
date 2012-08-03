@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_imp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mtlb_imp</refname>
     <refpurpose>Matlab colon emulation function</refpurpose>
@@ -24,32 +21,28 @@
     <itemizedlist>
       <listitem>
         <para>
-	With empty matrices: The <literal>:</literal> operator must be used with scalars in Scilab and  
-	gives an error message when used with empty matrices while Matlab returns [] in these cases.
-	</para>
+          With empty matrices: The <literal>:</literal> operator must be used with scalars in Scilab and  
+          gives an error message when used with empty matrices while Matlab returns [] in these cases.
+        </para>
       </listitem>
     </itemizedlist>
     <para>    
-    The function <literal>mtlb_imp(A,B[,C])</literal> is used by
-    <literal>mfile2sci</literal> to replace <literal>A:B[:C]</literal> when it was not
-    possible to know what were the operands while porting Matlab code to Scilab. This function will
-    determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <literal>mtlb_imp</literal> calls:
+      The function <literal>mtlb_imp(A,B[,C])</literal> is used by
+      <literal>mfile2sci</literal> to replace <literal>A:B[:C]</literal> when it was not
+      possible to know what were the operands while porting Matlab code to Scilab. This function will
+      determine the correct semantic at run time. If you want to have a
+      more efficient code it is possible to replace <literal>mtlb_imp</literal> calls:
     </para>
     <itemizedlist>
       <listitem>
         <para>    
-	If <literal>A</literal>, <literal>B</literal> and <literal>C</literal> are not empty matrices
-	<literal>mtlb_imp(A,B[,C])</literal> may be replaced by <literal>A:B[:C]</literal>
-	</para>
+          If <literal>A</literal>, <literal>B</literal> and <literal>C</literal> are not empty matrices
+          <literal>mtlb_imp(A,B[,C])</literal> may be replaced by <literal>A:B[:C]</literal>
+        </para>
       </listitem>
     </itemizedlist>
-    <para>Caution: <literal>mtlb_imp</literal> has not to be used for hand coded functions.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-    </simplelist>
+    <para>
+      Caution: <literal>mtlb_imp</literal> has not to be used for hand coded functions.
+    </para>
   </refsection>
 </refentry>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,16 +20,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * Describe an output of the modelica world.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Output", propOrder = {
-    "name",
-    "order",
-    "dependencies"
-})
+@XmlType(name = "Output", propOrder = { "name", "order", "dependencies" })
 public final class Output {
 
     @XmlElement(required = true)
@@ -40,17 +35,16 @@ public final class Output {
     private Output.Dependencies dependencies;
 
     /**
-	 * Default constructor.
-	 */
-	public Output() { }
-    
+     * Default constructor.
+     */
+    public Output() {
+    }
+
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getName() {
         return name;
@@ -60,9 +54,8 @@ public final class Output {
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setName(String value) {
         name = value;
@@ -71,10 +64,8 @@ public final class Output {
     /**
      * Gets the value of the order property.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     * @return possible object is {@link BigInteger }
+     * 
      */
     public BigInteger getOrder() {
         return order;
@@ -84,9 +75,8 @@ public final class Output {
      * Sets the value of the order property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *            allowed object is {@link BigInteger }
+     * 
      */
     public void setOrder(BigInteger value) {
         order = value;
@@ -95,10 +85,8 @@ public final class Output {
     /**
      * Gets the value of the dependencies property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Output.Dependencies }
-     *     
+     * @return possible object is {@link Output.Dependencies }
+     * 
      */
     public Output.Dependencies getDependencies() {
         return dependencies;
@@ -108,38 +96,33 @@ public final class Output {
      * Sets the value of the dependencies property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Output.Dependencies }
-     *     
+     *            allowed object is {@link Output.Dependencies }
+     * 
      */
     public void setDependencies(Output.Dependencies value) {
         dependencies = value;
     }
 
-
     /**
      * Dependency of an {@link Output}.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "variable"
-    })
+    @XmlType(name = "", propOrder = { "variable" })
     public static class Dependencies {
 
         private String variable;
 
         /**
-		 * Default constructor.
-		 */
-		public Dependencies() { }
-        
+         * Default constructor.
+         */
+        public Dependencies() {
+        }
+
         /**
          * Gets the value of the variable property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         * @return possible object is {@link String }
+         * 
          */
         public String getVariable() {
             return variable;
@@ -149,9 +132,8 @@ public final class Output {
          * Sets the value of the variable property.
          * 
          * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *            allowed object is {@link String }
+         * 
          */
         public void setVariable(String value) {
             variable = value;

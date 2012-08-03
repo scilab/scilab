@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="arma2p">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>arma2p</refname>
     <refpurpose>ar形式から多項式行列を展開</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>ar</term>
         <listitem>
-          <para>arma保持王のScilab 'ar' tlist (<literal>armac</literal>参照).</para>
+          <para>
+            arma保持王のScilab 'ar' tlist (<literal>armac</literal>参照).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +41,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,armax記述から多項式行列<literal>(A,B,D)</literal>を
-	展開します.</para>
+      この関数は,armax記述から多項式行列<literal>(A,B,D)</literal>を
+      展開します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

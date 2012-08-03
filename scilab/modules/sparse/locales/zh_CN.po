@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:39+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-06-23 08:52+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -189,7 +189,7 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误：应该介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -198,30 +198,30 @@ msgstr "%s：输入参数#%d的类型错误。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：%s大小为%d，但是应该为%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：%s=%d，但是应该为正数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
 "is expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：%s=%s，但是应该为浮点整数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：%s=%d，和%s不匹配：%d。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：%s=%d，和%s的大小不匹配：%d。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -233,7 +233,7 @@ msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为列向量。\n"
 
 #, c-format
 msgid ""
@@ -243,7 +243,7 @@ msgstr "%s：输入参数#%d的大小错误：应该与输入参数#%d的大小�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Did not converge.\n"
@@ -315,28 +315,42 @@ msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Transpose of the function %s "
-"expected.\n"
-msgstr ""
+"%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
+"matrix or a function expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为实数或复数矩阵，或稀疏矩阵，或函数。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
 "expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为函数%s的转置。\n"
+
+#, c-format
+msgid ""
+"%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
+"details.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为向量。\n"
+msgid ""
+"%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
+"more details.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
+"more details.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"

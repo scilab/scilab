@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+//
 
 //test of matelm functions
 //size

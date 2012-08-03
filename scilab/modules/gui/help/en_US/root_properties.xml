@@ -11,16 +11,15 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="root_properties">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>root_properties</refname>
     <refpurpose>description of the root object properties.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>The root object is a virtual object used to get the computer screen properties. Use <literal>get</literal> function with <emphasis>0</emphasis> as first argument to access its properties.</para>
+    <para>
+      The root object is a virtual object used to get the computer screen properties. Use <literal>get</literal> function with <emphasis>0</emphasis> as first argument to access its properties.
+    </para>
     <variablelist>
       <varlistentry>
         <term>Root properties</term>
@@ -81,15 +80,11 @@ get(0, "screendepth")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>Vincent COUVERT</para>
   </refsection>
 </refentry>

@@ -14,7 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_special_functions.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -40,6 +41,13 @@ int gw_special_functions(void)
         Scierror(999,"%s: Wrong value for input argument: Positive expected.\n", Tab[Fin-1].name);
         return 0;
     }
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

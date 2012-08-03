@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dhnorm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dhnorm</refname>
     <refpurpose> discrete H-infinity norm</refpurpose>
@@ -28,25 +25,33 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>the state space system (<literal>syslin</literal> list) (discrete-time)</para>
+          <para>
+            the state space system (<literal>syslin</literal> list) (discrete-time)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>tolerance in bisection step, default value <literal>0.01</literal></para>
+          <para>
+            tolerance in bisection step, default value <literal>0.01</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>normax</term>
         <listitem>
-          <para>upper bound for the norm , default value is <literal>1000</literal></para>
+          <para>
+            upper bound for the norm , default value is <literal>1000</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>hinfnorm</term>
         <listitem>
-          <para>the discrete infinity norm of <literal>Sl</literal></para>
+          <para>
+            the discrete infinity norm of <literal>Sl</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,11 +59,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    produces the discrete-time infinity norm  of a state-space system 
-    (the maximum over all frequencies on the unit circle of the maximum singular value).</para>
+      produces the discrete-time infinity norm  of a state-space system 
+      (the maximum over all frequencies on the unit circle of the maximum singular value).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="h_norm">h_norm</link>

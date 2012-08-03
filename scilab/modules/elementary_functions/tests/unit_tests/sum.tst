@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //empty matrices
 T=list(list(),list('native'),list('double'));
 for typ=T

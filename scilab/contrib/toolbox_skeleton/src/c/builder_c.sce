@@ -8,9 +8,9 @@ function builder_c()
 
   CFLAGS = ilib_include_flag(src_c_path);
 
-  tbx_build_src(["csum","csub","multiplybypi"],    ..
-                ["csum.c","csub.c","multiplybypi.c"],..
-                "c", ..             ..
+  tbx_build_src(["csum","csub","multiplybypi"],       ..
+                ["csum.c","csub.c","multiplybypi.c"], ..
+                "c",                ..
                 src_c_path,         ..
                 "",                 ..
                 "",                 ..

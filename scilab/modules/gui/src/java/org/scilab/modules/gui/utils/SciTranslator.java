@@ -97,7 +97,6 @@ public class SciTranslator {
 				wait(TIMETOSLEEP);
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return getClickAction();

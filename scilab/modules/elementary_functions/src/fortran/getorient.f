@@ -106,11 +106,9 @@ c     -------------------------------
       INCLUDE 'stack.h'
       integer type
       character*7 temp
-      integer iadr,sadr
+      integer iadr
 c     
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-
 
       il=iadr(lstk(k))
       if (istk(il).lt.0) il=iadr(istk(il+1))

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="equil1">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>equil1</refname>
     <refpurpose> balancing (nonnegative) pair of matrices</refpurpose>
@@ -53,12 +50,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>equil1</literal> computes <literal>t</literal> such that:</para>
-    <para><literal>P1=T*P*T'</literal>  and <literal>Q1=inv(T)'*Q*inv(T)</literal> are as follows:</para>
-    <para><literal>P1 = diag(S1,S2,0,0)</literal>  and <literal>Q1 = diag(S1,0,S3,0)</literal> with
-    <literal>S1,S2,S3</literal> positive and diagonal matrices with respective 
-    dimensions <literal>siz=[n1,n2,n3]</literal></para>
-    <para><literal>tol</literal> is a threshold for rank determination in SVD</para>
+    <para>
+      <literal>equil1</literal> computes <literal>t</literal> such that:
+    </para>
+    <para>
+      <literal>P1=T*P*T'</literal>  and <literal>Q1=inv(T)'*Q*inv(T)</literal> are as follows:
+    </para>
+    <para>
+      <literal>P1 = diag(S1,S2,0,0)</literal>  and <literal>Q1 = diag(S1,0,S3,0)</literal> with
+      <literal>S1,S2,S3</literal> positive and diagonal matrices with respective 
+      dimensions <literal>siz=[n1,n2,n3]</literal>
+    </para>
+    <para>
+      <literal>tol</literal> is a threshold for rank determination in SVD
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +81,7 @@ Q1=clean(inv(T)'*Q*inv(T))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="balreal">balreal</link>
@@ -91,9 +96,5 @@ Q1=clean(inv(T)'*Q*inv(T))
         <link linkend="hankelsv">hankelsv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer 1987</para>
   </refsection>
 </refentry>

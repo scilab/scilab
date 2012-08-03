@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hess">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hess</refname>
     <refpurpose> Hessenberg form</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>H = hess(A)
-[U,H] = hess(A)</synopsis>
+      [U,H] = hess(A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,20 +46,24 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[U,H] = hess(A)</literal> produces a unitary matrix
-    <literal>U</literal> and a Hessenberg matrix <literal>H</literal> so that
-    <literal>A = U*H*U'</literal> and <literal>U'*U</literal> =
-    Identity.  By itself, <literal>hess(A)</literal> returns <literal>H</literal>.</para>
     <para>
-    The Hessenberg form of a matrix is zero below the first
-    subdiagonal. If the matrix is symmetric or Hermitian, the form is
-    tridiagonal.</para>
+      <literal>[U,H] = hess(A)</literal> produces a unitary matrix
+      <literal>U</literal> and a Hessenberg matrix <literal>H</literal> so that
+      <literal>A = U*H*U'</literal> and <literal>U'*U</literal> =
+      Identity.  By itself, <literal>hess(A)</literal> returns <literal>H</literal>.
+    </para>
+    <para>
+      The Hessenberg form of a matrix is zero below the first
+      subdiagonal. If the matrix is symmetric or Hermitian, the form is
+      tridiagonal.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-  hess function is based on the Lapack routines
- DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the complex case.</para>
+      hess function is based on the Lapack routines
+      DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the complex case.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +73,7 @@ and( abs(U*H*U'-A)<1.d-10 )
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>
@@ -86,8 +88,10 @@ and( abs(U*H*U'-A)<1.d-10 )
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para><literal>hess</literal> function is based on the Lapack routines
-  DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the
-  complex  case.</para>
+    <para>
+      <literal>hess</literal> function is based on the Lapack routines
+      DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the
+      complex  case.
+    </para>
   </refsection>
 </refentry>

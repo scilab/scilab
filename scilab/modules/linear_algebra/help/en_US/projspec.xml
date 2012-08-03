@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="projspec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>projspec</refname>
     <refpurpose> spectral operators</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>i</term>
         <listitem>
-          <para>integer (index of the zero eigenvalue of <literal>A</literal>).</para>
+          <para>
+            integer (index of the zero eigenvalue of <literal>A</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,14 +47,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    Spectral characteristics of <literal>A</literal> at 0.</para>
-    <para><literal>S</literal> = reduced resolvent at 0 (<literal>S</literal> = -Drazin_inverse(<literal>A</literal>)).</para>
-    <para><literal>P</literal> = spectral projection at 0.</para>
-    <para><literal>D</literal> = nilpotent operator at 0.</para>
-    <para><literal>index</literal> = index of the 0 eigenvalue.</para>
+      Spectral characteristics of <literal>A</literal> at 0.
+    </para>
     <para>
-    One has <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</literal>
-    around the singularity s=0.</para>
+      <literal>S</literal> = reduced resolvent at 0 (<literal>S</literal> = -Drazin_inverse(<literal>A</literal>)).
+    </para>
+    <para>
+      <literal>P</literal> = spectral projection at 0.
+    </para>
+    <para>
+      <literal>D</literal> = nilpotent operator at 0.
+    </para>
+    <para>
+      <literal>index</literal> = index of the 0 eigenvalue.
+    </para>
+    <para>
+      One has <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</literal>
+      around the singularity s=0.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,15 +80,11 @@ norm(D^index,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="coff">coff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

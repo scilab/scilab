@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fileext">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-12 14:06:32 +0200 (mar., 12 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>fileext</refname>
     <refpurpose>ファイルパスの拡張子を返す</refpurpose>
@@ -42,8 +39,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>extension=fileext(fullpath)</literal> は
-	フルパス文字列をドットを含む拡張子部に分割します.</para>
+    <para>
+      <literal>extension=fileext(fullpath)</literal> は
+      フルパス文字列をドットを含む拡張子部に分割します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -59,9 +58,5 @@ extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
         <link linkend="fileparts">fileparts</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

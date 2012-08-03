@@ -18,23 +18,37 @@
   <refsection>
     <title>Matlab/Scilab equivalent</title>
     <informaltable border="1" width="100%">
-	<tr>
-	  <td>
-	    <para><emphasis role="strong">Equivalence table</emphasis></para>
-	  </td>
-	</tr>
-	<tr>
-	  <td><para> Matlab </para></td>
-	  <td><para> Scilab </para></td>
-	</tr>
-	<tr>
-	  <td><para> nargout </para></td>
-	  <td><para> argn(1) </para></td>
-	</tr>
-	<tr>
-	  <td><para> nargout('fun') </para></td>
-	  <td><para> size(getfield(2,macrovar(fun)),"*") </para></td>
-	</tr>
+      <tr>
+        <td>
+          <para>
+            <emphasis role="strong">Equivalence table</emphasis>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para> Matlab </para>
+        </td>
+        <td>
+          <para> Scilab </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para> nargout </para>
+        </td>
+        <td>
+          <para> argn(1) </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para> nargout('fun') </para>
+        </td>
+        <td>
+          <para> size(getfield(2,macrovar(fun)),"*") </para>
+        </td>
+      </tr>
     </informaltable>
   </refsection>
 </refentry>

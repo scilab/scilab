@@ -47,28 +47,29 @@ endif
 pkglib_LTLIBRARIES = libscitclsci.la
 noinst_LTLIBRARIES = libscitclsci-algo.la
 
-libscitclsci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
+libscitclsci_la_LDFLAGS = $(TCLTK_LIBS) $(AM_LDFLAGS)
 
-libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
+libscitclsci_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(srcdir)/sci_gateway/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \
-			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/call_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/localization/includes
+			-I$(top_srcdir)/modules/action_binding/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/call_scilab/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			$(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
 libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscitclsci_algo_la_CFLAGS = $(libscitclsci_la_CFLAGS)
+libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
-INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
+INCLUDE_FLAGS = $(libscitclsci_la_CPPFLAGS)
 
 libscitclsci_la_LIBADD = libscitclsci-algo.la 
 #### Target ######

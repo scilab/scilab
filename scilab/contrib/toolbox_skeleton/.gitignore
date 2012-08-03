@@ -2,6 +2,7 @@
 # Generated files (common)
 #
 loader.sce
+unloader.sce
 cleaner.sce
 loader_gateway.sce
 cleaner_gateway.sce
@@ -16,6 +17,14 @@ Makelib.mak
 master_help.xml
 skeleton_*.c
 scilab_*_help
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vfproj
+src/fortran/f2c.props
+src/fortran/f2c.targets
+src/fortran/f2c.xml
+src/fortran/fsum.c
 #
 # Generated files (Linux)
 #

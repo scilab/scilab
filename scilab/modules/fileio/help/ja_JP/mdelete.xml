@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mdelete">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mdelete</refname>
     <refpurpose>ファイルを削除</refpurpose>
@@ -36,14 +33,16 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>mdelete</literal> は
-	ファイルまたは<literal>filename</literal>がメタ文字を含む場合に
-	ファイルの集合を削除するために使用できます.</para>
     <para>
-	削除コマンドを入力する時,
-	<literal>mdelete</literal>は確認をしないことに注意してください.
-	ファイル失う事故を避けるため, 削除したいアイテムを正確に指定していることを
-	確認してください.
+      <literal>mdelete</literal> は
+      ファイルまたは<literal>filename</literal>がメタ文字を含む場合に
+      ファイルの集合を削除するために使用できます.
+    </para>
+    <para>
+      削除コマンドを入力する時,
+      <literal>mdelete</literal>は確認をしないことに注意してください.
+      ファイル失う事故を避けるため, 削除したいアイテムを正確に指定していることを
+      確認してください.
     </para>
   </refsection>
   <refsection role="see also">

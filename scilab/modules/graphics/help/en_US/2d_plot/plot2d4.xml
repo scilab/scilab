@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d4">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d4">
   <refnamediv>
     <refname>plot2d4</refname>
     <refpurpose>2D plot (arrows style)</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>plot2d4([logflag,] x,y,[style,strf,leg,rect,nax])
-plot2d4(y)
-plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
+      plot2d4(y)
+      plot2d4(x,y &lt;,opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,22 +28,33 @@ plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
       <varlistentry>
         <term>args</term>
         <listitem>
-          <para>see <literal>plot2d</literal> for a description of parameters.</para>
+          <para>
+            see <literal>plot2d</literal> for a description of parameters.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>plot2d4</literal> is the same as <literal>plot2d</literal> but curves are
-    plotted using arrows style. This can be useful when plotting solutions of
-    an ODE in a phase space.</para>
+    <para>
+      <literal>plot2d4</literal> is the same as <literal>plot2d</literal> but curves are
+      plotted using arrows style. This can be useful when plotting solutions of
+      an ODE in a phase space.
+    </para>
     <para>By default, successive plots are superposed. To clear the previous
-    plot, use <literal>clf()</literal>.</para>
-    <para>Enter the command <literal>plot2d4()</literal> to see a demo. Note that all
-    the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
-    using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
-    option to the corresponding number.</para>
+      plot, use <literal>clf()</literal>.
+    </para>
+    <para>
+      Enter the command <literal>plot2d4()</literal> to see a demo. Note that all
+      the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
+      using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
+      option to the corresponding number.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>plot2d4();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +71,7 @@ e.children(3).polyline_style=4;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fchamp">fchamp</link>
@@ -86,9 +95,5 @@ e.children(3).polyline_style=4;
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

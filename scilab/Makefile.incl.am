@@ -18,11 +18,23 @@
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir=$(pkgdatadir)/modules/$(modulename)
 
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS   = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS   = $(SCI_FFLAGS)
+AM_LDFLAGS  = $(SCI_LDFLAGS)
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS += -version-number $(SCILAB_LIBRARY_VERSION)
+# append includes to AM_FFLAGS to manage fortran includes
+AM_FFLAGS  += -I$(top_srcdir)/modules/core/includes/
+
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
-	@COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+	if test -d $(mydatadir)/tests; then \
+	  @COMMAND="try test_run('$(modulename)');catch exit(-1);end;exit(0)"; export LANG=C; $(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"; \
+	fi
 
 # splint options
 SPLINT_OPTIONS=-weak -booltype BOOL

@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_LOGICAL_OP">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_LOGICAL_OP">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,11 +93,11 @@
   <refsection id="Description_LOGICAL_OP">
     <title>Description</title>
     <para>
-The Logical Operator block performs the specified logical operation on
-its inputs. An input value is TRUE (1) if it is nonzero and FALSE (0)
-if it is zero. 
-
-</para>
+      The Logical Operator block performs the specified logical operation on
+      its inputs. An input value is TRUE (1) if it is nonzero and FALSE (0)
+      if it is zero. 
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_LOGICAL_OP">
     <title>Dialog box</title>
@@ -114,8 +109,8 @@ if it is zero.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -137,16 +132,24 @@ if it is zero.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -168,19 +171,29 @@ if it is zero.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -221,20 +234,6 @@ if it is zero.
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/logicalop_ui8.c</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_LOGICAL_OP">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

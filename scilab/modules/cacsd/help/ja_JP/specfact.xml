@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="specfact">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>specfact</refname>
     <refpurpose> スペクトル分解</refpurpose>
@@ -23,23 +20,25 @@
     <synopsis>[W0,L]=specfact(A,B,C,D)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>説明</title>
-    <para>
-    スペクトル密度行列 <literal>phi(s)</literal>を指定すると:</para>
-    <programlisting role = ""><![CDATA[ 
+    <title>説明</title><para>
+      スペクトル密度行列 <literal>phi(s)</literal>を指定すると:
+    </para>
+    <programlisting role=""><![CDATA[ 
             -1                   -1
 R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
  ]]></programlisting>
-    <para><literal>specfact</literal> は,
-	<literal>W(s)=W0+L*(s*I-A)^-1*B</literal> が
-	<literal>PHI(s)</literal> のスペクトル分解,すなわち,</para>
+    <para>
+      <literal>specfact</literal> は,
+      <literal>W(s)=W0+L*(s*I-A)^-1*B</literal> が
+      <literal>PHI(s)</literal> のスペクトル分解,すなわち,
+    </para>
     <para>
       <literal>phi(s)=W'(-s)*W(s)</literal>
     </para>
-　　	    <para>
-	となるような
-	  <literal>W0</literal> および <literal>L</literal> 
-	を計算します.
+    　　	    <para>
+      となるような
+      <literal>W0</literal> および <literal>L</literal> 
+      を計算します.
     </para>
   </refsection>
   <refsection>
@@ -70,9 +69,5 @@ horner(Ws,-s)*Ws
         <link linkend="fspecg">fspecg</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.   </para>
   </refsection>
 </refentry>

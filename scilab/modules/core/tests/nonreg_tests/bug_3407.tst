@@ -13,7 +13,7 @@
 // <-- Short Description -->
 //Invalid line numbering in compiled functions
 
-fprot=funcprot()
+fprot=funcprot();
 funcprot(0);
 
 function l=myfun()
@@ -294,4 +294,4 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>7 then pause,end
 
-funcprot(fprot)
+funcprot(fprot);

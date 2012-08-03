@@ -15,8 +15,11 @@ c
       include 'stack.h'
 c     --- for myback 
       integer lrecl,bkflag
-      parameter (lrecl=512) 
+      parameter (lrecl=4096) 
       character bckbuf*(lrecl)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/
+cDEC$ ENDIF            
       common / keepme / bkflag,bckbuf
 c     --- end 
       character string*(*),fmt*(*)
@@ -31,12 +34,12 @@ c
          call xscion(iflag)
          if (iflag.eq.0) then 
             if (intexmacs().eq.0) then
-               call zzledt(string,len(string),lline,status,menusflag,0)
+               call eventloopprompt(string, len(string), lline, status)
             else
-               call texmacsin(string,len(string),lline,status)
+               call texmacsin(string, len(string), lline, status)
             endif
          else
-            call zzledt(string,len(string),lline,status,menusflag,1)
+            call eventloopprompt(string, len(string), lline, status)
          endif
          if(status.ne.0) then
 c     .     status>0 : eof, status<0 :read interrupted (callbacks),
@@ -80,8 +83,11 @@ C     this routine is only used in getfun where lrecl
 C     is also set 
       include 'stack.h'
       integer lrecl,bkflag
-      parameter (lrecl=512) 
+      parameter (lrecl=4096) 
       character bckbuf*(lrecl)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /keepme/
+cDEC$ ENDIF            
       common / keepme / bkflag,bckbuf
       bckbuf = buf(1:lrecl)
       bkflag=1

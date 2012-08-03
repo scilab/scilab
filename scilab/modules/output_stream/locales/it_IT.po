@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:42+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-03-08 23:23+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
 
 #, c-format
@@ -28,6 +28,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: i dati non concordano "
 "con il formato.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -46,10 +50,9 @@ msgstr ""
 "con il formato.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: i dati non concordano "
-"con il formato.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -616,7 +619,7 @@ msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 "La variabile %s non è una rappresentazione dello spazio degli stati valida.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "La funzione non è definita.\n"
 
 msgid "Function name already used.\n"
@@ -1551,6 +1554,23 @@ msgstr "%s: Formato di esportazione sbagliato: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: Il tipo %s non è gestito : defnire la funzione %sa%s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

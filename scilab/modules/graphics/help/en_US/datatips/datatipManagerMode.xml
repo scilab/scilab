@@ -8,10 +8,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipManagerMode">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipManagerMode">
   <refnamediv>
     <refname>datatipManagerMode</refname>
     <refpurpose>Set or toggles the data tips mode. </refpurpose>
@@ -19,12 +16,13 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    datatipManagerMode()
-    datatipManagerMode('on')
-    datatipManagerMode('off')
-    datatipManagerMode(fig)
-    datatipManagerMode(fig,'on')
-    datatipManagerMode(fig,'off')</synopsis>
+      datatipManagerMode()
+      datatipManagerMode('on')
+      datatipManagerMode('off')
+      datatipManagerMode(fig)
+      datatipManagerMode(fig,'on')
+      datatipManagerMode(fig,'off')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,7 +31,7 @@
         <term>fig</term>
         <listitem>
           <para>
-           Graphic window handle or Graphic window id.
+            Graphic window handle or Graphic window id.
           </para>
         </listitem>
       </varlistentry>
@@ -43,7 +41,7 @@
     <title>Description</title>
     <para>
       When enabled, the data tips mode allow
-      to add and edit tips at selected points of curve. The selection is
+      to add and edit tips at selected points of polylines. The selection is
       made by a right click on the selected point.
     </para>
     <para>
@@ -58,15 +56,12 @@
       <literal>datatipManagerMode(fig,'on')</literal> enables the data tips mode
       for figure given by the handle <literal>fig</literal>.
     </para>
- 
     <para>
       <literal>datatipManagerMode('off')</literal>, disables the data tips mode
       for the current figure while
       <literal>datatipManagerMode(fig,'off')</literal> disables the data tips mode
       for figure given by the handle <literal>fig</literal>.
     </para>
- 
-
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -78,19 +73,11 @@
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="datatipToggle" >datatipToggle</link>
+        <link linkend="datatipToggle">datatipToggle</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-
-  
 </refentry>

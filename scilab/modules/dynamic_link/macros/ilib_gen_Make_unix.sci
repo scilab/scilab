@@ -149,8 +149,8 @@ function ilib_gen_Make_unix(names,   ..
                     end
                 end
                 
-                if ~isfile(file_name + file_extension) then
-                  error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
+                if ~isfile(pathFrom + "/" + file_name + file_extension) then
+                  error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected. Provided: %s\n"), "ilib_gen_Make_unix", 2, pathFrom + "/" + file_name + file_extension));
                 end
                 
                 filelist = filelist + " " + file_name + file_extension;
@@ -276,7 +276,7 @@ function generateConfigure(workingPath, ..
 
     if ierr <> 0 then
       if ( ilib_verbose() <> 0 ) then
-          mprintf(msg + " " + stderr);
+          mprintf("%s\n", msg + " " + stderr);
         end
         error(msprintf(gettext("%s: An error occurred during the detection of the compiler(s). Set ilib_verbose(2) for more information.\n"), "ilib_gen_Make"));
         return;

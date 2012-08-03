@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -88,20 +88,21 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;LibScilab.lib;scilab_windows.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,20 +119,21 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;LibScilab.lib;scilab_windows.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,14 +150,14 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;LibScilab.lib;scilab_windows.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -164,6 +166,7 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -183,14 +186,14 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;LibScilab.lib;scilab_windows.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -199,550 +202,26 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\BasicAlgos.cpp" />
-    <ClCompile Include="src\cpp\BuildDrawingObserver.cpp" />
     <ClCompile Include="src\c\DllmainRenderer.c" />
-    <ClCompile Include="src\cpp\DrawableClippedObject.cpp" />
-    <ClCompile Include="src\cpp\DrawableClippedObjectJoGL.cpp" />
-    <ClCompile Include="src\cpp\DrawableObject.cpp" />
-    <ClCompile Include="src\cpp\DrawableObjectFactory.cpp" />
-    <ClCompile Include="src\cpp\DrawableObjectJoGL.cpp" />
-    <ClCompile Include="src\cpp\DrawingBridge.cpp" />
-    <ClCompile Include="src\cpp\getHandleDrawer.cpp" />
     <ClCompile Include="src\cpp\GetJavaProperty.cpp" />
-    <ClCompile Include="src\cpp\HandleDrawingObserver.cpp" />
-    <ClCompile Include="src\cpp\HandleObserverManagement.cpp" />
     <ClCompile Include="src\cpp\JavaInteraction.cpp" />
-    <ClCompile Include="src\cpp\rendererBasicAlgos.cpp" />
     <ClCompile Include="src\cpp\RendererFontManager.cpp" />
     <ClCompile Include="src\cpp\SetJavaProperty.cpp" />
+    <ClCompile Include="src\jni\CallRenderer.cpp" />
     <ClCompile Include="src\jni\XlFontManager.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\ConcreteDrawableFigure.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigure.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableFigureGL.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJoGL.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\FigureScilabCall.cpp" />
-    <ClCompile Include="src\jni\FigureScilabCall_wrap.c" />
-    <ClCompile Include="src\jni\RenderingChecker.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\BarDecomposition.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolyline.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineBrirdgeFactory.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineFactory.cpp" />
-    <ClCompile Include="src\jni\DrawablePolylineGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineJoGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\HorizontalBarDecomposition.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\InterpolatedDecomposition.cpp" />
-    <ClCompile Include="src\jni\PolylineArrowDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineArrowDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\PolylineBarDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineBarDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\PolylineFillDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineFillDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\PolylineInterpColorDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\PolylineLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\PolylineMarkDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\StairCaseDecomposition.cpp" />
-    <ClCompile Include="src\cpp\polylineDrawing\VerticalBarDecomposition.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\AutoLogSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\AutoLogTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\AutomaticSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\AutomaticTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\AxisPositioner.cpp" />
-    <ClCompile Include="src\jni\BackTrihedronDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\BackTrihedronDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\BackTrihedronDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\BottomXAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\Camera.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\CameraBridge.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\CameraBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\CameraFactory.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\CameraJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\ConcreteDrawableSubwin.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\DrawableSubwin.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\DrawableSubwinBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\DrawableSubwinFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableSubwinGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\DrawableSubwinJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\DrawableSubwinJoGL.cpp" />
-    <ClCompile Include="src\jni\FullBoxDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\FullBoxDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\FullBoxDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\GridDrawer.cpp" />
-    <ClCompile Include="src\jni\GridDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\GridDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\GridDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\HalfBoxDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\HalfBoxDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\HalfBoxDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\IsometricCameraGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\IsometricCameraJavaMapper.cpp" />
-    <ClCompile Include="src\jni\IsoViewCameraGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\IsoViewCameraJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\LeftYAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\LinearBoundsComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\LogarithmicBoundsComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\MiddleXAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\MiddleYAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\OriginXAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\OriginYAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\RightYAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\SubwinAxisPositioner.cpp" />
-    <ClCompile Include="src\jni\SubwinBackgroundDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\SubwinBackgroundDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\SubwinBackgroundDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\TicksDrawer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\TicksDrawerFactory.cpp" />
-    <ClCompile Include="src\jni\TicksDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\TicksDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\TicksDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\TopXAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\UserDefinedSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\UserDefinedTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\UserDefLogSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\UserDefLogTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\XAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\XGridDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\YAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\YGridDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\ZAxisPositioner.cpp" />
-    <ClCompile Include="src\cpp\subwinDrawing\ZGridDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\ConcreteDrawableRectangle.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangle.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableRectangleGL.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleJoGL.cpp" />
-    <ClCompile Include="src\jni\RectangleFillDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\RectangleLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\RectangleMarkDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerInterface.cpp" />
-    <ClCompile Include="src\jni\GraphicSynchronizerJava.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp" />
-    <ClCompile Include="src\jni\ArcFillDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\ArcFillDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\ArcFillDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\ArcLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\ArcLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\ArcLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\ConcreteDrawableArc.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArc.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableArcGL.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcJoGL.cpp" />
-    <ClCompile Include="src\jni\CenteredTextDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\CenteredTextDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\CenteredTextDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\ConcreteDrawableText.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\DrawableText.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableTextGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextJoGL.cpp" />
-    <ClCompile Include="src\jni\FilledTextDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\FilledTextDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\FilledTextDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\StandardTextDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\textDrawing\TextContentDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabel.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabelFactory.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\LabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\TitlePositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\XLabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\YLabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\ZLabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurface.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableSurfaceGL.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceJoGL.cpp" />
-    <ClCompile Include="src\jni\SurfaceFacetDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\SurfaceLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\SurfaceMarkDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\compoundDrawing\DrawableCompound.cpp" />
-    <ClCompile Include="src\cpp\compoundDrawing\DrawableCompoundFactory.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\ChampDecomposer.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\ConcreteDrawableSegs.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DecomposeSegsStrategy.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegs.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableSegsGL.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsJoGL.cpp" />
-    <ClCompile Include="src\jni\SegsArrowDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsArrowDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsDecomposer.cpp" />
-    <ClCompile Include="src\jni\SegsLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\SegsMarkDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawabelGrayplotJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplot.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableGrayplotGL.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotJoGL.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\GrayplotDecomposer.cpp" />
-    <ClCompile Include="src\cpp\grayplotDrawing\MatplotDecomposer.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\ConcreteDrawableFec.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFec.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableFecGL.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecJoGL.cpp" />
-    <ClCompile Include="src\jni\FecFacetDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\FecFacetDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\FecFacetDrawerJoGL.cpp" />
-    <ClCompile Include="src\jni\FecLineDrawerGL.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\FecLineDrawerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\fecDrawing\FecLineDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\ConcreteDrawableLegend.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegend.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegendFactory.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\ConcreteDrawableAxes.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxes.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableAxesGL.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJoGL.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cpp\BasicAlgos.hxx" />
-    <ClInclude Include="includes\BuildDrawingObserver.h" />
-    <ClInclude Include="src\cpp\DrawableClippedObject.h" />
-    <ClInclude Include="src\cpp\DrawableClippedObjectBridge.h" />
-    <ClInclude Include="src\cpp\DrawableClippedObjectJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\DrawableClippedObjectJoGL.h" />
-    <ClInclude Include="src\cpp\DrawableObject.h" />
-    <ClInclude Include="src\cpp\DrawableObjectBridge.h" />
-    <ClInclude Include="src\cpp\DrawableObjectFactory.h" />
-    <ClInclude Include="src\cpp\DrawableObjectJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\DrawableObjectJoGL.h" />
-    <ClInclude Include="includes\DrawingBridge.h" />
     <ClInclude Include="includes\dynlib_renderer.h" />
-    <ClInclude Include="src\cpp\getHandleDrawer.h" />
     <ClInclude Include="includes\GetJavaProperty.h" />
-    <ClInclude Include="src\cpp\HandleDrawingObserver.h" />
-    <ClInclude Include="src\cpp\HandleObserver.h" />
-    <ClInclude Include="src\cpp\HandleObserverManagement.h" />
     <ClInclude Include="includes\JavaInteraction.h" />
-    <ClInclude Include="src\cpp\Observer.h" />
-    <ClInclude Include="includes\rendererBasicAlgos.h" />
     <ClInclude Include="includes\RendererFontManager.h" />
     <ClInclude Include="includes\SetJavaProperty.h" />
+    <ClInclude Include="src\jni\CallRenderer.hxx" />
     <ClInclude Include="src\jni\XlFontManager.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\BarDecomposition.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\DecomposeLineStrategy.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolyline.h" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineBridge.h" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineBridgeFactory.h" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineFactory.h" />
-    <ClInclude Include="src\jni\DrawablePolylineGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineJoGL.h" />
-    <ClInclude Include="src\cpp\polylineDrawing\DrawPolylineStrategy.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\HorizontalBarDecomposition.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\InterpolatedDecomposition.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\LinearBarDecomposition.hxx" />
-    <ClInclude Include="src\jni\PolylineArrowDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineArrowDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\PolylineBarDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineBarDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\PolylineFillDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineFillDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\PolylineInterpColorDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\PolylineLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineLineDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\PolylineMarkDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\StairCaseDecomposition.hxx" />
-    <ClInclude Include="src\cpp\polylineDrawing\VerticalBarDecomposition.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\AutoLogSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\AutoLogTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\AutomaticSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\AutomaticTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\AxisPositioner.hxx" />
-    <ClInclude Include="src\jni\BackTrihedronDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\BackTrihedronDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\BackTrihedronDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\BottomXAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\Camera.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\CameraBridge.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\CameraBridgeFactory.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\CameraFactory.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\CameraJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\CameraJoGL.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\ComputeBoundsStrategy.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\ComputeSubticksStrategy.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\ComputeTicksStrategy.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\ConcreteDrawableSubwin.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwin.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwinBridge.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwinBridgeFactory.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwinFactory.h" />
-    <ClInclude Include="src\jni\DrawableSubwinGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwinJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawableSubwinJoGL.h" />
-    <ClInclude Include="src\cpp\subwinDrawing\DrawAxesBoxStrategy.hxx" />
-    <ClInclude Include="src\jni\FullBoxDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\FullBoxDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\FullBoxDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\GridDrawer.hxx" />
-    <ClInclude Include="src\jni\GridDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\GridDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\GridDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\HalfBoxDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\HalfBoxDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\HalfBoxDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\IsometricCameraGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\IsometricCameraJavaMapper.hxx" />
-    <ClInclude Include="src\jni\IsoViewCameraGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\IsoViewCameraJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\LeftYAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\LinearBoundsComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\LogarithmicBoundsComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\MiddleXAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\MiddleYAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\RightYAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\SubwinAxisPositioner.hxx" />
-    <ClInclude Include="src\jni\SubwinBackgroundDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\SubwinBackgroundDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\SubwinBackgroundDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TicksDrawer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TicksDrawerBridge.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TicksDrawerFactory.hxx" />
-    <ClInclude Include="src\jni\TicksDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TicksDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TicksDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\TopXAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\UserDefinedSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\UserDefinedTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\UserDefLogSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\UserDefLogTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\XAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\XGridDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\YAxisPositioner.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\YGridDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\subwinDrawing\ZGridDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\ConcreteDrawableRectangle.h" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangle.h" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleBridge.h" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.h" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleFactory.h" />
-    <ClInclude Include="src\jni\DrawableRectangleGL.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleJoGL.h" />
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawRectangleStrategy.h" />
-    <ClInclude Include="src\jni\RectangleFillDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.h" />
-    <ClInclude Include="src\jni\RectangleLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleLineDrawerJoGL.h" />
-    <ClInclude Include="src\jni\RectangleMarkDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridge.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.h" />
-    <ClInclude Include="includes\GraphicSynchronizerInterface.h" />
-    <ClInclude Include="src\jni\GraphicSynchronizerJava.hxx" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\LocalSynchronizer.h" />
-    <ClInclude Include="src\jni\ArcFillDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\ArcFillDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\ArcFillDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\ArcLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\ArcLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\ArcLineDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\ConcreteDrawableArc.h" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArc.h" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcBridge.h" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcFactory.h" />
-    <ClInclude Include="src\jni\DrawableArcGL.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcJoGL.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h" />
-    <ClInclude Include="src\cpp\figureDrawing\ConcreteDrawableFigure.h" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigure.h" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigureBridge.h" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigureBridgeFactory.h" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigureFactory.h" />
-    <ClInclude Include="src\jni\DrawableFigureGL.hxx" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigureJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigureJoGL.h" />
-    <ClInclude Include="src\cpp\figureDrawing\FigureScilabCall.h" />
-    <ClInclude Include="src\jni\RenderingChecker.hxx" />
-    <ClInclude Include="src\jni\CenteredTextDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\CenteredTextDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\CenteredTextDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\ConcreteDrawableText.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableText.h" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextBridge.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextFactory.h" />
-    <ClInclude Include="src\jni\DrawableTextGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextJoGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\DrawTextContentStrategy.hxx" />
-    <ClInclude Include="src\jni\FilledTextDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\FilledTextDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\FilledTextDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\StandardTextDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\StandardTextDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\StandardTextDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabel.h" />
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabelFactory.h" />
-    <ClInclude Include="src\cpp\labelDrawing\LabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\TitlePositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\XLabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\YLabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\ZLabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurface.h" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceBridge.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceFactory.h" />
-    <ClInclude Include="src\jni\DrawableSurfaceGL.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceJoGL.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawSurfaceStrategy.hxx" />
-    <ClInclude Include="src\jni\SurfaceFacetDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\SurfaceLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\SurfaceMarkDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplot.h" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotBridge.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotFactory.h" />
-    <ClInclude Include="src\jni\DrawableGrayplotGL.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotJoGL.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\GrayplotDecomposer.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\GrayplotDecompositionStrategy.hxx" />
-    <ClInclude Include="src\cpp\grayplotDrawing\MatplotDecomposer.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\ChampDecomposer.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\ConcreteDrawableSegs.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DecomposeSegsStrategy.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegs.h" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsBridge.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsFactory.h" />
-    <ClInclude Include="src\jni\DrawableSegsGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsJoGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\DrawSegsStrategy.hxx" />
-    <ClInclude Include="src\jni\SegsArrowDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsArrowDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsDecomposer.hxx" />
-    <ClInclude Include="src\jni\SegsLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsLineDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\SegsMarkDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\compoundDrawing\DrawableCompound.h" />
-    <ClInclude Include="src\cpp\compoundDrawing\DrawableCompoundFactory.h" />
-    <ClInclude Include="src\cpp\fecDrawing\ConcreteDrawableFec.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFec.h" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecBridge.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecFactory.h" />
-    <ClInclude Include="src\jni\DrawableFecGL.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecJoGL.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\DrawFecStrategy.hxx" />
-    <ClInclude Include="src\jni\FecFacetDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\FecFacetDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\FecFacetDrawerJoGL.hxx" />
-    <ClInclude Include="src\jni\FecLineDrawerGL.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\FecLineDrawerJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\fecDrawing\FecLineDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\legendDrawing\ConcreteDrawableLegend.hxx" />
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegend.h" />
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegendFactory.h" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\ConcreteDrawableAxes.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxes.h" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridge.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesFactory.h" />
-    <ClInclude Include="src\jni\DrawableAxesGL.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesJoGL.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="renderer.rc" />
@@ -751,12 +230,10 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <None Include="locales\en_US\renderer.pot" />
     <None Include="renderer_header.def" />
     <None Include="graphics_Import.def" />
-    <None Include="gui_Import.def" />
-    <None Include="LibScilab_Import.def" />
+    <None Include="core_import.def" />
     <None Include="scilab_windows_Import.def" />
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
-    <None Include="sci_gateway\renderer_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\doublylinkedlist\doublylinkedlist.vcxproj">

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="milk_drop">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>milk_drop</refname>
     <refpurpose>ミルクドロップ3次元関数</refpurpose>
@@ -41,10 +38,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>milk_drop</literal> はミルクに落ちるミルクドロップの曲面を
-	表す関数です.
-	この関数は<literal>eval3d</literal> および <literal>plot3d</literal>のテスト用の
-	関数として使用できます.</para>
+    <para>
+      <literal>milk_drop</literal> はミルクに落ちるミルクドロップの曲面を
+      表す関数です.
+      この関数は<literal>eval3d</literal> および <literal>plot3d</literal>のテスト用の
+      関数として使用できます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -64,9 +63,5 @@ plot3d(x,y,z)
         <link linkend="plot3d">plot3d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

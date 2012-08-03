@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fsfirlin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fsfirlin</refname>
     <refpurpose>FIRの設計,線形位相フィルタ, 周波数標本法e</refpurpose>
@@ -30,7 +27,8 @@
         <term>hst</term>
         <listitem>
           <para>
-	周波数グリッドにおける近似的な連続応答を指定するベクトル</para>
+            周波数グリッドにおける近似的な連続応答を指定するベクトル
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,8 +36,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	周波数標本法による
-	FIR,線形位相フィルタの設計用関数です.</para>
+      周波数標本法による
+      FIR,線形位相フィルタの設計用関数です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -83,9 +82,5 @@ plot2d(fg(1:n)',hst2',[3],"000");
         <link linkend="wfir">wfir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>G. Le Vey</para>
   </refsection>
 </refentry>

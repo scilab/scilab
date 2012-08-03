@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="h_inf_st">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>h_inf_st</refname>
     <refpurpose> static H_infinity problem</refpurpose>
@@ -48,15 +45,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes a matrix <literal>Kopt</literal> such that largest singular value of:</para>
-    <para><literal>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</literal>
-    is minimal (Static <literal>H_infinity</literal> four blocks problem).</para>
+      computes a matrix <literal>Kopt</literal> such that largest singular value of:
+    </para>
     <para>
-    D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
-    where <literal>size(D22)=r=[r1 r2]</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D. ;   </para>
+      <literal>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</literal>
+      is minimal (Static <literal>H_infinity</literal> four blocks problem).
+    </para>
+    <para>
+      D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
+      where <literal>size(D22)=r=[r1 r2]</literal>
+    </para>
   </refsection>
 </refentry>

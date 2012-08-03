@@ -16,7 +16,6 @@
 #define __GW_DYNAMIC_LINK__
 
 #include "dynlib_dynamic_link.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 DYNAMIC_LINK_IMPEXP int gw_dynamic_link(void);
 /*--------------------------------------------------------------------------*/

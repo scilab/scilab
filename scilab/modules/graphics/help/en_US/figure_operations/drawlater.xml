@@ -11,14 +11,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawlater">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="drawlater">
   <refnamediv>
     <refname>drawlater</refname>
     <refpurpose>makes axes children
-  invisible.</refpurpose>
+      invisible.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -27,16 +25,22 @@
   <refsection>
     <title>Description</title>
     <para>This function can be used not to display immediatly onto the
-    <literal>current figure</literal> the next created graphics objects - i.e. by
-    calling high level functions such as plotting functions or setting
-    properties to existant objects. The <literal>immediate_drawing</literal>
-    property of the current figure is set to <literal>'off'</literal> in order to
-    postpon the next drawings.</para>
-    <para>It can specially be used with the <literal>drawnow</literal> function.</para>
-    <para>To enable back the <literal>immediate_drawing</literal> for the current
-    figure, you can use <literal>drawnow</literal> function.</para>
+      <literal>current figure</literal> the next created graphics objects - i.e. by
+      calling high level functions such as plotting functions or setting
+      properties to existant objects. The <literal>immediate_drawing</literal>
+      property of the current figure is set to <literal>'off'</literal> in order to
+      postpon the next drawings.
+    </para>
+    <para>
+      It can specially be used with the <literal>drawnow</literal> function.
+    </para>
+    <para>
+      To enable back the <literal>immediate_drawing</literal> for the current
+      figure, you can use <literal>drawnow</literal> function.
+    </para>
     <para>Warning : note that between drawlater and drawnow calls, the current
-    figure may have changed. Therefore, this must be used carefully.</para>
+      figure may have changed. Therefore, this must be used carefully.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -78,7 +82,7 @@ drawnow() // all is visible
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>
@@ -93,9 +97,5 @@ drawnow() // all is visible
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE, F.Leray</para>
   </refsection>
 </refentry>

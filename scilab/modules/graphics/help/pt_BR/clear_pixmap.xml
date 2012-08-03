@@ -10,60 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="clear_pixmap" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="clear_pixmap" xml:lang="en">
   <refnamediv>
     <refname>clear_pixmap</refname>
-
     <refpurpose>Apaga o buffer de pixmap ("mapa de píxeis")</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>clear_pixmap()</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Descrição</title>
-
-    <para>Se a propriedade de uma janela de gráficos <literal>pixmap</literal>
-    for <literal>"on"</literal> as gravuras são enviadas para uma memória
-    pixmap, ao invés de serem exibidas na tela. </para>
-
-    <para></para>
-
-    <para>A instrução <literal>clear_pixmap()</literal> apaga o pixmap, mas
-    não a tela.</para>
-
-    <para></para>
-
+    <para>
+      Se a propriedade de uma janela de gráficos <literal>pixmap</literal>
+      for <literal>"on"</literal> as gravuras são enviadas para uma memória
+      pixmap, ao invés de serem exibidas na tela. 
+    </para>
+    <para/>
+    <para>
+      A instrução <literal>clear_pixmap()</literal> apaga o pixmap, mas
+      não a tela.
+    </para>
+    <para/>
     <para>O modo pixmap pode ser usado para se obter animações suaves.</para>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link
-      linkend="figure_properties">figure_properties</link></member>
-
-      <member><link linkend="show_pixmap">show_pixmap</link></member>
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+      <member>
+        <link linkend="show_pixmap">show_pixmap</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

@@ -20,7 +20,7 @@ if ms==1&ns==1 then
     if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
       error(27)
     end
-    f=tlist(['r','num','den','dt'],ones(p),p.^(-s),[])
+    f=rlist(ones(p),p.^(-s),[])
   else // this case is in fact hard coded
     f=p.^s
   end
@@ -33,7 +33,7 @@ elseif m==1&n==1 then // Element wise exponentiation p.^s with p "scalar"
   p=1/p
   num(kn)=p(2).^(-s(kn))
   den(kn)=p(3).^(-s(kn))
-  f=tlist(['r','num','den','dt'],num,den,[])
+  f=rlist(num,den,[])
 elseif ms==m&ns==n then  // Element wise exponentiation
   p=p(:);s=s(:);
   kp=find(s>=0)
@@ -46,7 +46,7 @@ elseif ms==m&ns==n then  // Element wise exponentiation
   end
   num(kn)=ones(p(kn))
   den(kn)=p(kn).^(-s(kn))
-  f=tlist(['r','num','den','dt'],matrix(num,n,m),matrix(den,n,m),[])
+  f = rlist(matrix(num,n,m),matrix(den,n,m),[])
 else
   error(30)
 end

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 8468 -->
 //
@@ -32,8 +32,8 @@ if s3 <> 2 then pause, end
 s4 = size(M, 4);
 if s4 <> 2 then pause, end
 
-ierr = execstr("s5 = size(M, 5);", "errcatch");
-if ierr == 0 then pause, end
+s5 = size(M, 5);
+if s5 <> 1 then pause, end
 
 [n, m] = size(rand(3,2));
 if n <> 3 then pause, end

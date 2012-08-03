@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ssrand" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ssrand</refname>
     <refpurpose>random system generator</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>sl=ssrand(nout,nin,nstate)
-[sl,U]=ssrand(nout,nin,nstate,flag)</synopsis>
+      [sl,U]=ssrand(nout,nin,nstate,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,34 +46,43 @@
         <term>flag</term>
         <listitem>
           <para>list made of one character string and one or several
-          integers</para>
+            integers
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>list (<literal>syslin</literal> list)</para>
+          <para>
+            list (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para>square <literal>(nstate x nstate)</literal> nonsingular
-          matrix</para>
+          <para>
+            square <literal>(nstate x nstate)</literal> nonsingular
+            matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sl=ssrand(nout,nin,nstate)</literal> returns a random
-    strictly proper (<literal>D=0</literal>) state-space system of size
-    <literal>[nout,nint]</literal> represented by a <literal>syslin</literal>
-    list and with <literal>nstate</literal> state variables.</para>
-    <para><literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> returns a
-    test linear system with given properties specified by
-    <literal>flag</literal>. <literal>flag</literal> can be one of the
-    following:</para>
+    <para>
+      <literal>sl=ssrand(nout,nin,nstate)</literal> returns a random
+      strictly proper (<literal>D=0</literal>) state-space system of size
+      <literal>[nout,nint]</literal> represented by a <literal>syslin</literal>
+      list and with <literal>nstate</literal> state variables.
+    </para>
+    <para>
+      <literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> returns a
+      test linear system with given properties specified by
+      <literal>flag</literal>. <literal>flag</literal> can be one of the
+      following:
+    </para>
     <programlisting><![CDATA[ 
 flag=list('co',dim_cont_subs)  
 flag=list('uo',dim_unobs_subs)
@@ -85,21 +92,23 @@ flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
 flag=list('on',nr,ng,ng0,nv,rk)
 flag=list('ui',nw,nwu,nwui,nwuis,rk)
  ]]></programlisting>
-    <para>The complete description of the <literal>Sys</literal> is given in
-    the code of the <literal>ssrand</literal> function (in
-    <literal>SCI/modules/cacsd/macros/</literal>). For example with
-    <literal>flag=list('co',dim_cont_subs)</literal> a non-controllable system
-    is return and <literal>dim_cont_subs</literal> is the dimension of the
-    controllable subspace of <literal>Sys</literal>. The character strings
-    <literal>'co','uo','ncno','st','dt','on','ui'</literal> stand for
-    "controllable", "unobservable", "non-controllable-non-observable",
-    "stabilizable","detectable","output-nulling","unknown-input".</para>
+    <para>
+      The complete description of the <literal>Sys</literal> is given in
+      the code of the <literal>ssrand</literal> function (in
+      <literal>SCI/modules/cacsd/macros/</literal>). For example with
+      <literal>flag=list('co',dim_cont_subs)</literal> a non-controllable system
+      is return and <literal>dim_cont_subs</literal> is the dimension of the
+      controllable subspace of <literal>Sys</literal>. The character strings
+      <literal>'co','uo','ncno','st','dt','on','ui'</literal> stand for
+      "controllable", "unobservable", "non-controllable-non-observable",
+      "stabilizable","detectable","output-nulling","unknown-input".
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
-//dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0  
+//dim_cont_subs<=dim_stab_subs<=dim_stab0  
 //pair (A,B) U-similar to:
 //    [*,*,*,*;     [*;    
 //    [0,s,*,*;     [0;

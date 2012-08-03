@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="swap_handles">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>swap_handles</refname>
     <refpurpose>Permute deux handle dans la
-  hiérarchie graphique.</refpurpose>
+      hiérarchie graphique.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -32,16 +30,19 @@
   <refsection>
     <title>Description</title>
     <para>La fonction swap_handles permet de permuter deux handles dans la
-    hierarchie graphique. Le premier prend la place du second et
-    inversement.</para>
+      hierarchie graphique. Le premier prend la place du second et
+      inversement.
+    </para>
     <para>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant à   l'utilisation de la routine. Il est
-    par exemple impossible de permuter un handle polyline et un handle axes,
-    ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
-    plus d'information à   ce sujet, on peut se reporter à   la page
-    <link linkend="graphics_entities">graphics_entities</link> .</para>
+      existe des restrictions quant à l'utilisation de la routine. Il est
+      par exemple impossible de permuter un handle polyline et un handle axes,
+      ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
+      plus d'information à ce sujet, on peut se reporter à la page
+      <link linkend="graphics_entities">graphics_entities</link> .
+    </para>
     <para>La routine peut-être utilisée pour modifier les indices des enfants
-    d'un handle.</para>
+      d'un handle.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -93,7 +94,7 @@ swap_handles( axes1, axes2 ) ;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>
@@ -108,9 +109,5 @@ swap_handles( axes1, axes2 ) ;
         <link linkend="relocate_handle">relocate_handle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

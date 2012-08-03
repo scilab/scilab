@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_message">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_message</refname>
     <refpurpose> display a message </refpurpose>
@@ -25,9 +22,9 @@
   <refsection>
     <title>Description</title>
     <para>
-		The function demo_message displays the text message within the file 'fil' given 
-		in argument.
-		</para>
+      The function demo_message displays the text message within the file 'fil' given 
+      in argument.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -36,7 +33,7 @@ demo_message('SCI/demos/control/pid/pid_3.sce');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_run">demo_run</link>
@@ -50,12 +47,6 @@ demo_message('SCI/demos/control/pid/pid_3.sce');
       <member>
         <link linkend="demo_end">demo_end</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

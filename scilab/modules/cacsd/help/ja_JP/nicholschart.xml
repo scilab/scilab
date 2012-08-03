@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nicholschart">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-19 18:44:44 +0200 (jeu, 19 jun 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>nicholschart</refname>
     <refpurpose>ニコルス線図</refpurpose>
@@ -21,7 +18,7 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>nicholschart([ modules [,args [,colors]]])</synopsis>
-   <synopsis></synopsis>
+    <synopsis/>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -48,16 +45,24 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para> ニコルス線図をプロット: <literal>y</literal>の位相/ゲイン平面への
-	<literal>y/(1+y)</literal>の等モジュールおよび等引数等高線をプロット</para>
-    <para><literal>nicholschart</literal> は<link linkend="black">black</link>
-	と組み合わせて使用することができます.</para>
-    <para><literal>modules</literal>および<literal>args</literal>の
-	 デフォルト値はそれぞれ次のようになります :</para>
+    <para>
+      ニコルス線図をプロット: <literal>y</literal>の位相/ゲイン平面への
+      <literal>y/(1+y)</literal>の等モジュールおよび等引数等高線をプロット
+    </para>
+    <para>
+      <literal>nicholschart</literal> は<link linkend="black">black</link>
+      と組み合わせて使用することができます.
+    </para>
+    <para>
+      <literal>modules</literal>および<literal>args</literal>の
+      デフォルト値はそれぞれ次のようになります :
+    </para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para><literal>[-(1:10) , -(20:10:160)]</literal></para>
+    <para>
+      <literal>[-(1:10) , -(20:10:160)]</literal>
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -68,12 +73,12 @@
     ]]></programlisting>
     <para>
       <inlinemediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/nicholschart.svg"/>
-	</imageobject>
+        <imageobject>
+          <imagedata fileref="../images/nicholschart.svg"/>
+        </imageobject>
       </inlinemediaobject>
     </para>
-   <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[
     //ニコルス線図のグリッドを付けたブラック図
     s=poly(0,'s');
     Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
@@ -89,9 +94,9 @@
     ]]></programlisting>
     <para>
       <inlinemediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/black2.svg"/>
-	</imageobject>
+        <imageobject>
+          <imagedata fileref="../images/black2.svg"/>
+        </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>

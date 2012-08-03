@@ -10,189 +10,131 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="fftw_flags" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>October 2006</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:ns4="http://www.w3.org/1999/xhtml" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:id="fftw_flags" xml:lang="en">
   <refnamediv>
     <refname>fftw_flags</refname>
-
-    <refpurpose>set computation method of fast fourier transform of the fftw
-    function</refpurpose>
+    <refpurpose>set method for fft planner algorithm selection
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+    <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
-        <term>[x1;x2;...]</term>
-
+        <term>flag</term>
         <listitem>
-          <para>Matrix of string or integers. Entry to switch the method of
-          fft computation for fftw.</para>
+          <para>
+            a string or an integer. Specifies the planner
+            algorithm. See below.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>a</term>
-
         <listitem>
-          <para>Integer. Give the current value of the flag of the fftw
-          function.</para>
+          <para>an integer. The planner code. See below.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>S</term>
-
         <listitem>
-          <para>String matrix. Give the string value of the fftw flag.</para>
+          <para>a character string. The planner name.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>This function enables the change of the <literal>unsigned
-    flags</literal> parameter of the
-    <literal>fftw_plan_guru_split_dft</literal> function that is used in <link
-    linkend="fftw">fftw</link> function. </para>
-
-    <para>Default value is FFTW_ESTIMATE</para>
-
+    <para>
+      This function enables the selection of the algorithm used to
+      determine the fftw planner algorithm. The planner is used to
+      determine an efficient way to compute the fft.
+    </para>
+    <para>
+      Warning: the default value "FFTW_MEASURE" gives
+      quite efficient plans. Try to change it only if the fft efficiency is
+      really important and you have a lot of simmilar calls to do.
+    </para>
+   
     <para>Accepted entries are :</para>
-
     <itemizedlist>
       <listitem>
-        <para>FFTW_MEASURE or 0</para>
+        <para>FFTW_ESTIMATE or 64. Specifies that, instead of actual
+        measurements of different algorithms, a simple heuristic is
+        used to pick a (probably sub-optimal) plan quickly. With this
+        flag, the input/output arrays are not overwritten during
+        planning. It is the defailt value</para>
       </listitem>
-
       <listitem>
-        <para>FFTW_DESTROY_INPUT or 1</para>
+        <para>"FFTW_MEASURE" or 0. tells FFTW to find an optimized
+        plan by actually computing several FFTs and measuring their
+        execution time. Depending on your machine, this can take some
+        time (often a few seconds). 
+        planning option.</para>
       </listitem>
-
       <listitem>
-        <para>FFTW_UNALIGNED or 2</para>
+        <para>FFTW_PATIENT or 32. It is like "FFTW_MEASURE", but
+        considers a wider range of algorithms and often produces a
+        “more optimal” plan (especially for large transforms), but at
+        the expense of several times longer planning time (especially
+        for large transforms). </para>
       </listitem>
-
+    
       <listitem>
-        <para>FFTW_CONSERVE_MEMORY or 4</para>
+        <para>FFTW_EXHAUSTIVE or 8. It is like "FFTW_PATIENT", but
+        considers an even wider range of algorithms, including many
+        that we think are unlikely to be fast, to produce the most
+        optimal plan but with a substantially increased planning
+        time. </para>
       </listitem>
+   </itemizedlist>
+    
 
-      <listitem>
-        <para>FFTW_EXHAUSTIVE or 8</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_PRESERVE_INPUT or 16</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_PATIENT or 32</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_ESTIMATE or 64</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_ESTIMATE_PATIENT or 128</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_BELIEVE_PCOST or 256</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_DFT_R2HC or 512</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_NONTHREADED or 1024</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_BUFFERING or 2048</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_INDIRECT_OP or 4096</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_ALLOW_LARGE_GENERIC or 8192</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_RANK_SPLITS or 16384</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_VRANK_SPLITS or 32768</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_VRECURSE or 65536</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_SIMD or 131072</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_SLOW or 262144</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</para>
-      </listitem>
-
-      <listitem>
-        <para>FFTW_ALLOW_PRUNING or 1048576</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>Rmk : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
-    call two times fftw. (first call for initialisation, second and others
-    calls for computation)</para>
+    <para>Remark : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
+      call two times fftw. (first call for initialisation, second and others
+      calls for computation)
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
-//return the integer value of the flag
-fftw_flags()
+A=rand(1,2^9+2^15+2^17);
+fftw_forget_wisdom();
+fftw_flags("FFTW_ESTIMATE");
+timer();y=fft(A);timer()//first call determines the plan
+timer();y=fft(A);timer() //subsequent similar calls
+fftw_flags("FFTW_MEASURE");
+fftw_forget_wisdom();
+timer();y=fft(A);timer()//first call determines the plan
+timer();y=fft(A);timer() //subsequent similar calls
 
-//change flags
-fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-
-//change flags and display current value of fftw flags (both integer and strings)
-[a,S]=fftw_flags("FFTW_PATIENT")
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="fftw">fftw</link></member>
+      <member>
+        <link linkend="fft">fft</link>
+      </member>
+      <member>
+        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+      </member>
+     <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

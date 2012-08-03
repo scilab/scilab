@@ -16,10 +16,10 @@ xmlValidate(doc, rng);
 
 xmlValidate(doc, schema);
 
-xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml")
+xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml");
 //xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml")
 
-xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
+xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema);
 //xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
 
 // Commented because I don't know how to check that now
@@ -30,4 +30,7 @@ xmlValidate(doc, rng);
 xmlValidate(doc, schema);
 
 
-xmlClose(doc, dtd, schema, rng);
+xmlDelete(doc, dtd, schema, rng);
+
+// Used to crash
+assert_checktrue(size(xmlValidate("SCI/DO_NOT_EXIST.XML"))>0);

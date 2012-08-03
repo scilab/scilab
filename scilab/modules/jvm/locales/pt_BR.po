@@ -8,17 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-30 17:52+0000\n"
-"Last-Translator: Eberval Oliveira Castro <Unknown>\n"
+"PO-Revision-Date: 2012-07-16 15:58+0000\n"
+"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Interface JVM desabilitada nos modos -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
@@ -66,6 +74,15 @@ msgstr ""
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+"Se Scilab é usado no Java, certifique-se de que sua IDE (ex: Netbeans, etc) "
+"não está adicionando dependências extras que podem não ser encontradas na "
+"execução.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Não foi possível acessar a classe principal do Scilab:\n"
+
+msgid "Cannot execute initial hooks. Error:\n"
 msgstr ""
 
 #, c-format
@@ -193,15 +210,21 @@ msgstr "Código de erro indefinido na JNI. Problema estranho"
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr "Aviso: não foi possível encontrar o pacote Java '%s'.\n"
 
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "Não foi possível acessar a classe principal do Scilab:\n"
-
 msgid "Could not access to the constructor of the Main Scilab Class:\n"
 msgstr ""
 "Não foi possível acessar o construtor da classe principal do Scilab:\n"
 
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr "Não foi possível criar uma classe principal do Scilab. Erro:\n"
+
+msgid "Cannot execute final hooks. Error:\n"
+msgstr ""
+
+msgid "Error with Scilab.canClose():\n"
+msgstr "Erro com Scilab.canClose():\n"
+
+msgid "Error with Scilab.forceClose():\n"
+msgstr "Erro com Scilab.forceClose():\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -212,8 +235,8 @@ msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
-"Erro: Configuração inválida para o arquivo %s (a codificação não é '%s'). "
-"Codificação '%s' encontrada.\n"
+"Erro: o arquivo %s está codificado como '%s', mas devia estar codificado "
+"como %s.\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -239,7 +262,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Some problems during the loading of the Java libraries occured.\n"
+"Some problems during the loading of the Java libraries occurred.\n"
 "This could lead to inconsistent behaviours.\n"
 "Please check SCI/etc/classpath.xml.\n"
 msgstr ""

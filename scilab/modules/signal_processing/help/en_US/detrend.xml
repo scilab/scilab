@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="detrend">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>detrend</refname>
     <refpurpose>remove constant, linear or piecewise linear trend from a vector</refpurpose>
@@ -10,8 +7,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>y = detrend(x)
-y = detrend(x,flag)
-y = detrend(x,flag,bp)</synopsis>
+      y = detrend(x,flag)
+      y = detrend(x,flag,bp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -20,29 +18,29 @@ y = detrend(x,flag,bp)</synopsis>
         <term>x</term>
         <listitem>
           <para>vector or matrix of real or complex numbers (the signal to treat)
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
           <para>a string equal to "linear" (or "l") for linear or piecewise linear treatment  
-         or "constant" (or "c") for constant treatment.
-       </para>
+            or "constant" (or "c") for constant treatment.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bp</term>
         <listitem>
           <para>the breakpoints to provide if you want a piecewise linear treatment. 
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y</term>
         <listitem>
           <para>output, the signal x with the trend removed from it.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,19 +52,19 @@ y = detrend(x,flag,bp)</synopsis>
       piecewise linear trend from a vector <literal>x</literal>. In general
       this can be useful before a fourier analysis. If <literal>x</literal> is
       matrix this function removes the trend of each column of x.
-      </para>
+    </para>
     <para>
-     When <literal>flag</literal> = "constant" or "c"  <literal>detrend</literal> removes the constant trend 
-     (simply the mean of the signal) and when <literal>flag</literal> = "linear" or "l" the function
-     removes the linear trend. By adding a third argument <literal>bp</literal> it is possible to
-     remove a continuous <emphasis>piecewise linear</emphasis> trend. Note that the "instants" of the signal 
-     <literal>x</literal> goes from 0 to m-1  (m = length(x) if x is a vector and m = size(x,1) in case
-     x is a matrix). So the breakpoints <literal>bp(i)</literal> must be reals in <emphasis>[0 m-1]</emphasis> 
-     (breakpoints outside are simply removed from <literal>bp</literal> vector). 
-     </para>
+      When <literal>flag</literal> = "constant" or "c"  <literal>detrend</literal> removes the constant trend 
+      (simply the mean of the signal) and when <literal>flag</literal> = "linear" or "l" the function
+      removes the linear trend. By adding a third argument <literal>bp</literal> it is possible to
+      remove a continuous <emphasis>piecewise linear</emphasis> trend. Note that the "instants" of the signal 
+      <literal>x</literal> goes from 0 to m-1  (m = length(x) if x is a vector and m = size(x,1) in case
+      x is a matrix). So the breakpoints <literal>bp(i)</literal> must be reals in <emphasis>[0 m-1]</emphasis> 
+      (breakpoints outside are simply removed from <literal>bp</literal> vector). 
+    </para>
     <para>
-     The trend is got by a least square fit of <literal>x</literal> on the appropriate function space. 
-     </para>
+      The trend is got by a least square fit of <literal>x</literal> on the appropriate function space. 
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -89,11 +87,5 @@ plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Bruno Pincon
-  </para>
   </refsection>
 </refentry>

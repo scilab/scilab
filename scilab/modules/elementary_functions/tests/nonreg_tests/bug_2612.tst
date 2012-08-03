@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 ref = ["abc","abd";"aa","bxe"];
 A=gsort(['abc','abd';'aa','bxe'],'rc');

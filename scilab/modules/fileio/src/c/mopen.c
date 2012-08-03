@@ -34,12 +34,19 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	char	*endptr;
 	FILE * fa;
 
+    /* bug 4846 */
+    if (file == NULL)
+    {
+        *error = (int)MOPEN_INVALID_FILENAME;
+        return;
+    }
+
 	if ( getWarningMode() && IsAlreadyOpenedInScilab(file) )
 	{
 		sciprint(_("Warning: file '%s' already opened in Scilab.\n"),file);
 	}
 
-	swap =0;
+	swap = 0;
 	*error = (int)MOPEN_NO_ERROR;
 	endptr = (char *) &littlendian;
 	if ( (!*endptr) )
@@ -53,13 +60,6 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	if ( *fd == -1 )
 	{
 		*error = (int)MOPEN_NO_MORE_LOGICAL_UNIT;
-		return;
-	}
-
-	/* bug 4846 */
-	if (file == NULL)
-	{
-		*error = (int)MOPEN_INVALID_FILENAME;
 		return;
 	}
 

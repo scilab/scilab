@@ -67,12 +67,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Example_VARIABLE_DELAY">VARIABLE_DELAY : Exemple</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_VARIABLE_DELAY">Auteurs</xref>
+              <xref linkend="Example_VARIABLE_DELAY">Exemple</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -89,17 +84,30 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_VARIABLE_DELAY"><title>Description</title><para>Le bloc Retard pur variable peut être utilisé pour simuler un délai variable
-    entre une action et son effet. Le bloc est utilisé, par exemple, pour modéliser
-    un système avec un tube où la vitesse de pompage du fluide dans le tube est variable.
-    </para><para>Le bloc accepte deux entrées et une sortie : la première entrée est le
-    signal u(t) qui passe à travers le bloc (entrée de donnée); la seconde entrée
-    est le temps de retard variable τ(t).</para><para><inlinemediaobject><imageobject><imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/></imageobject></inlinemediaobject></para><para>A l'instant t, le bloc sort l'entrée retardée u(θ) où θ
-     est le temps de simulation courant t moins le paramètre de retard τ.</para>[]
-
+  <refsection id="Description_VARIABLE_DELAY">
+    <title>Description</title><para>Le bloc Retard pur variable peut être utilisé pour simuler un délai variable
+      entre une action et son effet. Le bloc est utilisé, par exemple, pour modéliser
+      un système avec un tube où la vitesse de pompage du fluide dans le tube est variable.
+    </para>
+    <para>Le bloc accepte deux entrées et une sortie : la première entrée est le
+      signal u(t) qui passe à travers le bloc (entrée de donnée); la seconde entrée
+      est le temps de retard variable τ(t).
+    </para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>A l'instant t, le bloc sort l'entrée retardée u(θ) où θ
+      est le temps de simulation courant t moins le paramètre de retard τ.
+    </para>
     <para>L'équation du signal de sortie est :</para>
-e est
-    <para><inlinemediaobject><imageobject><imagedata align="center" fileref="../../../examples/variable_delay_eq.gif" valign="middle"/></imageobject></inlinemediaobject></para>
+    e est
+    <para>
+      <latex>y(t) = y(θ) - u(t - τ(t))</latex>
+    </para>
   </refsection>
   <refsection id="Dialogbox_VARIABLE_DELAY">
     <title>Boîte de dialogue</title>
@@ -117,7 +125,8 @@ e est
           <emphasis role="bold">Max delay</emphasis>
         </para>
         <para>Il définit la plus grande valeur admissible sur l'entrée de retard. La
-	valeur ne peut pas être négative.</para>
+          valeur ne peut pas être négative.
+        </para>
         <para>Propriétés Type 'vec' de taille 1.</para>
       </listitem>
       <listitem>
@@ -125,7 +134,8 @@ e est
           <emphasis role="bold">initial input</emphasis>
         </para>
         <para>La sortie générée par le bloc jusqu'à ce que le temps de simulation
-	atteigne pour la première fois le temps donné sur l'entrée de retard.</para>
+          atteigne pour la première fois le temps donné sur l'entrée de retard.
+        </para>
         <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
       <listitem>
@@ -141,16 +151,24 @@ e est
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -172,19 +190,29 @@ e est
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -195,22 +223,27 @@ e est
     </itemizedlist>
   </refsection>
   <refsection id="Example_VARIABLE_DELAY">
-    <title>VARIABLE_DELAY Example</title>
+    <title>Exemple</title>
     <para>Dans cet exemple, le temps de retard maximum dans le dialogue des Paramètres de Bloc
-    est mis à 4. Le signal d'entrée est une onde sinusoïdale d'amplitude 1 et de fréquence 0,2 Hz.</para>
+      est mis à 4. Le signal d'entrée est une onde sinusoïdale d'amplitude 1 et de fréquence 0,2 Hz.
+    </para>
     <para>Le bloc constant est initialisé à 2 pour introduire un délai de 2 secondes. Les formes d'ondes en entrée et
-    en sortie du bloc VARIABLE_DELAY sont montrées ci-dessous :</para>
+      en sortie du bloc VARIABLE_DELAY sont montrées ci-dessous :
+    </para>
     <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_diagram_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_plot_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_diagram_fr_FR.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+      <para/>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_plot_fr_FR.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_VARIABLE_DELAY">
     <title>Fonction d'interfaçage</title>
@@ -227,11 +260,5 @@ e est
         <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_VARIABLE_DELAY">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Zhour MADINI-ZOUINE</emphasis> -
-    DIGITEO</para>
   </refsection>
 </refentry>

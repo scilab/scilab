@@ -19,6 +19,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         loadXcosLibs();
     end
   funcprot(prot);
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // Hook according to SEP066
     if isdef("pre_xcos_simulate") then
@@ -36,7 +37,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  xcos_workspace_init()
+  scicos_workspace_init()
 
 
 //** extract tolerances from scs_m.props.tol
@@ -56,6 +57,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     %cpr        = struct();
     %tcur       = 0;
     %cpr.state  = %state0;
+    alreadyran = %f;
   else
     %state0 = %cpr.state;
     alreadyran = %f;
@@ -90,7 +92,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
+      msg = msprintf(gettext("%s: Error during block parameters evaluation.\n"), "Xcos");
+      messagebox(msg, "Xcos", "error");
+      error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
   end
 
   //** update parameters or compilation results
@@ -137,7 +141,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   //** switch appropriate solver
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
-    message(["Diagram has been compiled for implicit solver"
+    warning(["Diagram has been compiled for implicit solver"
              "switching to implicit Solver"])
     solver = 100 ; //** Magic number
     tolerances(6) = solver ; //** save Magic number solver type
@@ -266,11 +270,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   end
 
   //** scicos simulation
-  //needreplay=%t
-  tf = scs_m.props.tf;
-  //setmenu(curwin,'Stop')
-  //timer()
-  needreplay = %t
+  tf = scs_m.props.tf
 
   //** run scicosim via 'start' flag
   ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
@@ -339,19 +339,30 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   n=size(files,1)
   for i=1:n
     load(TMPDIR+'/Workspace/'+files(i))
-    execstr(files(i)+'=struct('"values'",x,'"time'",t)')
-  end
-  execstr(txt)
-
-    // Hook according to SEP066
-    if isdef("post_xcos_simulate") then
-      try
-      post_xcos_simulate(%cpr, scs_m, needcompile);
-      catch
-      disp(_("Error in post_xcos_simulate: ending simulation."))
-      end
+    ierr = execstr(files(i)+'=struct('"values'",x,'"time'",t)', "errcatch")
+    if ierr <> 0
+       str_err = split_lasterror(lasterror());
+       message(['Simulation problem:';str_err]);
     end
 
-  needreplay = resume(needreplay);
+  end
+
+  // Hook according to SEP066
+  if isdef("post_xcos_simulate") then
+    try
+      post_xcos_simulate(%cpr, scs_m, needcompile);
+    catch
+      disp(_("Error in post_xcos_simulate: ending simulation."))
+    end
+  end
+
+  // finally restore the exported variables on the parent context
+  if ~isempty(txt) then
+    ierr = execstr(txt, "errcatch")
+    if ierr <> 0 then
+        str_err = split_lasterror(lasterror());
+        message(['Simulation problem while executing <'+txt+'>:';str_err]);
+    end
+  end
 endfunction
 

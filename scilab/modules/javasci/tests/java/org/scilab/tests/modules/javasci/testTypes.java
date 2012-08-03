@@ -11,7 +11,8 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -21,93 +22,98 @@ import org.scilab.modules.types.ScilabTypeEnum;
 public class testTypes {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
-    @Test(sequential = true) 
+    @Test()
     public void getVariableTypeTest() throws NullPointerException, JavasciException {
 
         sci.exec("a = 2*%pi");
-        assert sci.getVariableType("a") == ScilabTypeEnum.sci_matrix;
+        assertEquals(sci.getVariableType("a"), ScilabTypeEnum.sci_matrix);
 
         sci.exec("a = rand(10,10)");
-        assert sci.getVariableType("a") == ScilabTypeEnum.sci_matrix;
+        assertEquals(sci.getVariableType("a"), ScilabTypeEnum.sci_matrix);
 
         sci.exec("b = 'plop'");
-        assert sci.getVariableType("b") == ScilabTypeEnum.sci_strings;
+        assertEquals(sci.getVariableType("b"), ScilabTypeEnum.sci_strings);
 
         sci.exec("b = ['plop', plip]");
-        assert sci.getVariableType("b") == ScilabTypeEnum.sci_strings;
+        assertEquals(sci.getVariableType("b"), ScilabTypeEnum.sci_strings);
 
         sci.exec("s=poly(0,'s');p=1+s+2*s^2;");
-        assert sci.getVariableType("p") == ScilabTypeEnum.sci_poly;
+        assertEquals(sci.getVariableType("p"), ScilabTypeEnum.sci_poly);
 
         sci.exec("b=%t;");
-        assert sci.getVariableType("b") == ScilabTypeEnum.sci_boolean;
+        assertEquals(sci.getVariableType("b"), ScilabTypeEnum.sci_boolean);
 
         sci.exec("b=[%t, %f];");
-        assert sci.getVariableType("b") == ScilabTypeEnum.sci_boolean;
+        assertEquals(sci.getVariableType("b"), ScilabTypeEnum.sci_boolean);
 
         sci.exec("sp=sparse([1,2;4,5;3,10],[1,2,3])");
-        assert sci.getVariableType("sp") == ScilabTypeEnum.sci_sparse;
+        assertEquals(sci.getVariableType("sp"), ScilabTypeEnum.sci_sparse);
 
         sci.exec("a = sparse([%t, %f, %t ; %f, %t, %f ; %t, %f, %t]);");
-        assert sci.getVariableType("a") == ScilabTypeEnum.sci_boolean_sparse;
+        assertEquals(sci.getVariableType("a"), ScilabTypeEnum.sci_boolean_sparse);
 
         sci.exec("sp=sparse([1,2;4,5;3,10],[%t,%t,%t])");
-        assert sci.getVariableType("sp") == ScilabTypeEnum.sci_boolean_sparse;
+        assertEquals(sci.getVariableType("sp"), ScilabTypeEnum.sci_boolean_sparse);
 
         sci.exec("i8=int8([1 -120 127 312])");
-        assert sci.getVariableType("i8") == ScilabTypeEnum.sci_ints;
+        assertEquals(sci.getVariableType("i8"), ScilabTypeEnum.sci_ints);
 
         sci.exec("i8=uint8([1 -120 127 312])");
-        assert sci.getVariableType("i8") == ScilabTypeEnum.sci_ints;
+        assertEquals(sci.getVariableType("i8"), ScilabTypeEnum.sci_ints);
 
         sci.exec("x=int32(-200:100:400)");
-        assert sci.getVariableType("x") == ScilabTypeEnum.sci_ints;
+        assertEquals(sci.getVariableType("x"), ScilabTypeEnum.sci_ints);
 
         sci.exec("x=uint32(-200:100:400)");
-        assert sci.getVariableType("x") == ScilabTypeEnum.sci_ints;
+        assertEquals(sci.getVariableType("x"), ScilabTypeEnum.sci_ints);
 
         sci.exec("t = tlist(['listtype','field1','field2'], [], []);");
-        assert sci.getVariableType("t") == ScilabTypeEnum.sci_tlist;
+        assertEquals(sci.getVariableType("t"), ScilabTypeEnum.sci_tlist);
 
         sci.exec("t.field1(1);");
-        assert sci.getVariableType("t") == ScilabTypeEnum.sci_tlist;
+        assertEquals(sci.getVariableType("t"), ScilabTypeEnum.sci_tlist);
 
         sci.exec("l = list(1,['a' 'b'])");
-        assert sci.getVariableType("l") == ScilabTypeEnum.sci_list;
+        assertEquals(sci.getVariableType("l"), ScilabTypeEnum.sci_list);
 
         sci.exec("l(0) = 'foo'");
-        assert sci.getVariableType("l") == ScilabTypeEnum.sci_list;
+        assertEquals(sci.getVariableType("l"), ScilabTypeEnum.sci_list);
 
         sci.exec("M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);");
-        assert sci.getVariableType("M") == ScilabTypeEnum.sci_mlist;
+        assertEquals(sci.getVariableType("M"), ScilabTypeEnum.sci_mlist);
 
     }
 
-    @Test(sequential = true, expectedExceptions = UndefinedVariableException.class)
+    @Test( expected = UndefinedVariableException.class)
     public void failGetVariableTypeTest() throws NullPointerException, IllegalArgumentException, JavasciException {
         sci.getVariableType("nonexistingvariable");
 
     }
 
+    @Test( expected = UndefinedVariableException.class)
+    public void failGetVariableType2Test() throws NullPointerException, IllegalArgumentException, JavasciException {
+        sci.getVariableTypeInCurrentScilabSession("nonexistingvariable");
+
+    }
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

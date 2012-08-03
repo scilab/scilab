@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="whereami">
+  <refnamediv>
+    <refname>whereami</refname>
+    <refpurpose>выводит на экран текущую инструкцию дерева вызова</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>whereami()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Выводит на экран дерево вызова инструкции, которая содержит <literal>whereami()</literal>. Может быть использована на уровнях в режиме паузы (<literal>pause</literal>).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+deff('y=test(a)',['y=sin(a)+1';
+                  'y=t1(y)';
+                  'y=y+1'])
+deff('y=t1(y)',['y=y^2';'whereami()'])
+test(1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="where">where</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="etime">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>etime</refname>
     <refpurpose>Temps écoulé</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>e</term>
         <listitem>
-          <para>nombre de secondes entre <literal>t2</literal> et <literal>t1</literal>.</para>
+          <para>
+            nombre de secondes entre <literal>t2</literal> et <literal>t1</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,20 +50,28 @@
       <varlistentry>
         <term>t1 et t2 contenant 10 valeurs</term>
         <listitem>
-          <para> : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format retourné par <literal>getdate</literal>. 
-				Dans ce cas, leurs troisièmes, quatrièmes et cinquièmes valeurs sont ignorées.</para>
+          <para>
+            : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format retourné par <literal>getdate</literal>. 
+            Dans ce cas, leurs troisièmes, quatrièmes et cinquièmes valeurs sont ignorées.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t1 et t2 contenant 6 valeurs</term>
         <listitem>
-          <para> : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format : T = [Year Month Day Hour Minute Second]
-				avec Second un nombre de secondes et de millisecondes (e.g: 12.345).</para>
+          <para>
+            : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format : T = [Year Month Day Hour Minute Second]
+            avec Second un nombre de secondes et de millisecondes (e.g: 12.345).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>t2</literal> et <literal>t1</literal> doivent être de même taille.</para>
-    <para><literal>t2</literal> et <literal>t1</literal> peuvent être des matrices dont chaque ligne contient un format précisé ci-dessus (toutes les lignes du même format).</para>
+    <para>
+      <literal>t2</literal> et <literal>t1</literal> doivent être de même taille.
+    </para>
+    <para>
+      <literal>t2</literal> et <literal>t1</literal> peuvent être des matrices dont chaque ligne contient un format précisé ci-dessus (toutes les lignes du même format).
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -78,7 +85,7 @@ E2=etime(t2,t1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="tic">tic</link>
@@ -95,12 +102,6 @@ E2=etime(t2,t1)
       <member>
         <link linkend="datevec">datevec</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

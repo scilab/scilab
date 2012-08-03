@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -94,9 +94,17 @@
     <title>Description</title>
     <para>
       A resistor is a two-port electrical component that resists an electric
-      current (<emphasis role="bold"><emphasis>I</emphasis></emphasis>)
-      by producing a voltage drop (<emphasis role="bold"><emphasis>V
-      </emphasis></emphasis>) between its terminals according to the Ohm's law.
+      current (
+      <emphasis role="bold">
+        <emphasis>I</emphasis>
+      </emphasis>
+      )
+      by producing a voltage drop (
+      <emphasis role="bold">
+        <emphasis>V
+        </emphasis>
+      </emphasis>
+      )between its terminals according to the Ohm's law.
     </para>
     <para>
     </para>
@@ -108,12 +116,24 @@
       </inlinemediaobject>
     </para>
     <para>
-      The electrical resistance (<emphasis role="bold"><emphasis>R
-      </emphasis></emphasis>) is equal to the voltage drop across
-      (<emphasis role="bold"><emphasis>V</emphasis></emphasis>) the resistor divided
-      by the current (<emphasis role="bold"><emphasis>I</emphasis></emphasis>)
+      The electrical resistance (
+      <emphasis role="bold">
+        <emphasis>R
+        </emphasis>
+      </emphasis>
+      )is equal to the voltage drop across
+      (
+      <emphasis role="bold">
+        <emphasis>V</emphasis>
+      </emphasis>
+      )the resistor divided
+      by the current (
+      <emphasis role="bold">
+        <emphasis>I</emphasis>
+      </emphasis>
+      )
       through the resistor.
-  </para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_Resistor">
     <title>Dialog box</title>
@@ -145,20 +165,27 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Outputs :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -168,14 +195,22 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'R'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.01</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'R'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.01
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Resistor</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Resistor
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

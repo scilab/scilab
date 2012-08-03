@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="minreal">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>minreal</refname>
     <refpurpose> minimal balanced realization</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para> <literal>syslin</literal> lists</para>
+          <para>
+            <literal>syslin</literal> lists
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,11 +40,17 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
-    returns the balanced realization of linear 
-    system <literal>sl</literal> (<literal>syslin</literal> list).</para>
-    <para><literal>sl</literal> is assumed stable.</para>
-    <para><literal>tol</literal> threshold used in <literal>equil1</literal>.</para>
+    <para>
+      <literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
+      returns the balanced realization of linear 
+      system <literal>sl</literal> (<literal>syslin</literal> list).
+    </para>
+    <para>
+      <literal>sl</literal> is assumed stable.
+    </para>
+    <para>
+      <literal>tol</literal> threshold used in <literal>equil1</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +67,7 @@ clean(obs_gram(slb))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="minss">minss</link>
@@ -80,9 +85,5 @@ clean(obs_gram(slb))
         <link linkend="equil1">equil1</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer INRIA 1987</para>
   </refsection>
 </refentry>

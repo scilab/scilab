@@ -40,20 +40,26 @@ public final class UnCommentAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
-        int end   = sep.getSelectionEnd();
+        int end  = sep.getSelectionEnd();
+        int pos = sep.getCaretPosition();
         CommentManager com = sep.getCommentManager();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
+        int[] ret;
 
         doc.mergeEditsBegin();
         if (start == end) {
-            com.uncommentText(start);
+            ret = com.uncommentLines(start, start);
+            sep.setCaretPosition(ret[0]);
         } else {
-            int[] ret = com.uncommentLines(start, end - 1);
+            ret = com.uncommentLines(start, end);
             if (ret != null) {
-                sep.setSelectionStart(ret[0]);
-                sep.setSelectionEnd(ret[1]);
+                if (pos == start) {
+                    sep.select(ret[1], ret[0]);
+                } else {
+                    sep.select(ret[0], ret[1]);
+                }
             }
         }
         doc.mergeEditsEnd();

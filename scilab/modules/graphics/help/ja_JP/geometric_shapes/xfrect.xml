@@ -11,56 +11,51 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xfrect">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-  <refnamediv>
-    <refname>xfrect</refname>
-    <refpurpose>矩形を塗りつぶす</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>xfrect(x,y,w,h)
-xfrect(rect) // rect =[x,y,w,h]</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x,y,w,h</term>
-        <listitem>
-          <para>矩形を定義する実数値.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para><literal>xrect</literal>は, <literal>[x,y,w,h]</literal> 
-    (左上の点,幅, 高さ)でピクセル単位で定義される矩形を塗りつぶします.</para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xfrect</refname>
+        <refpurpose>矩形を塗りつぶす</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>xfrect(x,y,w,h)
+            xfrect(rect) // rect =[x,y,w,h]
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y,w,h</term>
+                <listitem>
+                    <para>矩形を定義する実数値.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>xrect</literal>は, <literal>[x,y,w,h]</literal> 
+            (左上の点,幅, 高さ)でピクセル単位で定義される矩形を塗りつぶします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfrect(-1,1,2,2)
-xset("default")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xrect">xrect</link>
-      </member>
-      <member>
-        <link linkend="xrects">xrects</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xrect">xrect</link>
+            </member>
+            <member>
+                <link linkend="xrects">xrects</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

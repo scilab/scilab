@@ -10,84 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xs2ps" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2ps" xml:lang="en">
   <refnamediv>
     <refname>xs2ps</refname>
-
     <refpurpose>Export graphics to PS.</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>xs2ps(win_num, file_name [,orientation])
-xs2ps(fig, file_name [,orientation])</synopsis>
+      xs2ps(fig, file_name [,orientation])
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>win_num</term>
-
         <listitem>
           <para>integer, id of the figure to export.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>fig</term>
-
         <listitem>
           <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>file_name</term>
-
         <listitem>
           <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>orientation</term>
-
         <listitem>
           <para>optional character, with possible values 'portrait' or
-          'landscape'. The default value is 'portrait'.</para>
+            'landscape'. The default value is 'portrait'.
+          </para>
         </listitem>
       </varlistentry>
-	</variablelist>
+    </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>xs2ps</literal> exports the display of a graphic window
-    into a PostScript file.</para>
-
+    <para>
+      <literal>xs2ps</literal> exports the display of a graphic window
+      into a PostScript file.
+    </para>
     <para>Note that the generated Postscript file cannot be direcly printed
-    since it requires a header file. The function <literal>xs2eps</literal>
-    can be used to directly produce an encapsulated Postscript file with a
-    header.</para>
+      since it requires a header file. The function <literal>xs2eps</literal>
+      can be used to directly produce an encapsulated Postscript file with a
+      header.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
@@ -96,36 +74,43 @@ filename='foo.ps';
 xs2ps(0,filename);
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>figure_size property</member>
-
-      <member><link linkend="toprint">toprint</link></member>
-
-      <member><link linkend="printfigure">printfigure</link></member>
-
-      <member><link linkend="xs2bmp">xs2bmp</link></member>
-
-      <member><link linkend="xs2gif">xs2gif</link></member>
-
-      <member><link linkend="xs2jpg">xs2jpg</link></member>
-
-      <member><link linkend="xs2png">xs2png</link></member>
-
-      <member><link linkend="xs2ppm">xs2ppm</link></member>
-
-      <member><link linkend="xs2eps">xs2eps</link></member>
-
-      <member><link linkend="xs2pdf">xs2pdf</link></member>
-
-      <member><link linkend="xs2svg">xs2svg</link></member>
-
-      <member><link linkend="xs2fig">xs2fig</link></member>
-
-      <member><link linkend="xs2emf">xs2emf</link></member>
+      <member>
+        <link linkend="toprint">toprint</link>
+      </member>
+      <member>
+        <link linkend="printfigure">printfigure</link>
+      </member>
+      <member>
+        <link linkend="xs2bmp">xs2bmp</link>
+      </member>
+      <member>
+        <link linkend="xs2gif">xs2gif</link>
+      </member>
+      <member>
+        <link linkend="xs2jpg">xs2jpg</link>
+      </member>
+      <member>
+        <link linkend="xs2png">xs2png</link>
+      </member>
+      <member>
+        <link linkend="xs2ppm">xs2ppm</link>
+      </member>
+      <member>
+        <link linkend="xs2eps">xs2eps</link>
+      </member>
+      <member>
+        <link linkend="xs2pdf">xs2pdf</link>
+      </member>
+      <member>
+        <link linkend="xs2svg">xs2svg</link>
+      </member>
+      <member>
+        <link linkend="xs2emf">xs2emf</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

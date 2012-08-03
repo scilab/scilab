@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xgetmouse">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xgetmouse</refname>
     <refpurpose>マウスのイベントおよびカレントの位置を取得する</refpurpose>
@@ -29,7 +26,9 @@
       <varlistentry>
         <term>sel</term>
         <listitem>
-          <para>論理値ベクトル <literal>[getmotion, getrelease]</literal>. デフォルト値は <literal>[%t, %f]</literal>です</para>
+          <para>
+            論理値ベクトル <literal>[getmotion, getrelease]</literal>. デフォルト値は <literal>[%t, %f]</literal>です
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,11 +48,11 @@
   <refsection>
     <title>説明</title>
     <para>
-	マウスポインタがカレントの図のウインドウ内に位置する場合,
-	<literal>xgetmouse</literal> は<literal>rep</literal>に
-	カレントのポインタの位置(x,y)と値<literal>ibutton</literal>を返します.
-	<literal>ibutton</literal>の値は以下のイベントの種類を示します:
-  </para>
+      マウスポインタがカレントの図のウインドウ内に位置する場合,
+      <literal>xgetmouse</literal> は<literal>rep</literal>に
+      カレントのポインタの位置(x,y)と値<literal>ibutton</literal>を返します.
+      <literal>ibutton</literal>の値は以下のイベントの種類を示します:
+    </para>
     <variablelist>
       <varlistentry>
         <term>ibutton==0</term>
@@ -155,7 +154,8 @@
         <term>ibutton &gt; =1000+32</term>
         <listitem>
           <para>ASCIIコードascii(ibutton-1000)を有するキーがCTRLキーが押されている間に
-		押されました</para>
+            押されました
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -166,9 +166,9 @@
       </varlistentry>
     </variablelist>
     <para>
-    警告: 前のバージョンの Scilab  (&lt;5.0)では, xgetmouseが入力された時点で
-	マウスクリックのイベントキューをクリアするかどうかを設定するフラグを
-	ユーザが設定できました. このオプションは, Scilab 5.1 で削除されています.
+      警告: 前のバージョンの Scilab  (&lt;5.0)では, xgetmouseが入力された時点で
+      マウスクリックのイベントキューをクリアするかどうかを設定するフラグを
+      ユーザが設定できました. このオプションは, Scilab 5.1 で削除されています.
     </para>
   </refsection>
   <refsection>
@@ -209,9 +209,5 @@ end
         <link linkend="seteventhandler">seteventhandler</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer</para>
   </refsection>
 </refentry>

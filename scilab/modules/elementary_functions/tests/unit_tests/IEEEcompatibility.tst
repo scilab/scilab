@@ -3,12 +3,13 @@
 // Copyright (C) 2008 - INRIA - Allan CORNET
 // Copyright (C) 2009 - INRIA - Michael Baudin, Antoine Elias
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- Bugzilla URL -->
 //
 
@@ -95,12 +96,12 @@ imult(%inf)
 %nan];
 
 expectedmodulo = [
-%nan  %nan  -%inf -%inf  %nan  %nan  %nan
-%nan     0.   -1.    -1.   0.  %nan  %nan
-%nan     0.    0.     0.   0.  %nan  %nan
-%nan     0.    0.     0.   0.  %nan  %nan
-%nan     0.    1.     1.   0.  %nan  %nan
-%nan  %nan   %inf  %inf  %nan  %nan  %nan
+%nan  %nan  %nan  %nan  %nan  %nan  %nan
+%nan     0. %nan  %nan     0. %nan  %nan
+%nan     0. %nan  %nan     0. %nan  %nan
+%nan     0. %nan  %nan     0. %nan  %nan
+%nan     0. %nan  %nan     0. %nan  %nan
+%nan  %nan   %nan  %nan  %nan  %nan  %nan
 %nan  %nan   %nan  %nan  %nan  %nan  %nan];
 
 left=[-%inf,-1,-0,+0,1,%inf,%nan];
@@ -116,16 +117,16 @@ computedsqrt = zeros(n);
 computedmodulo = zeros(n,n);
 ieee(2)
 for i=1:n
-  l=left(i);
-  computedsqrt (i) = sqrt(l);
-  for j=1:n
-    r=right(j);
-    computedadd (i,j)=l+r;
-    computedminus (i,j)=l-r;
-    computedmult (i,j)=l*r;
-    computeddiv (i,j)=l/r;
-    computedmodulo (i,j) = modulo(l , r);
-  end
+    l=left(i);
+    computedsqrt (i) = sqrt(l);
+    for j=1:n
+        r=right(j);
+        computedadd (i,j)=l+r;
+        computedminus (i,j)=l-r;
+        computedmult (i,j)=l*r;
+        computeddiv (i,j)=l/r;
+        computedmodulo (i,j) = modulo(l , r);
+    end
 end
 
 assert_checkequal ( computedadd    , expectedadd );
@@ -135,4 +136,5 @@ assert_checkequal ( computeddiv    , expecteddiv );
 assert_checkequal ( computedsqrt   , expectedsqrt );
 assert_checkequal ( computedmodulo , expectedmodulo );
 
-
+ieee(0)
+

@@ -11,25 +11,17 @@
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
-import org.scilab.modules.gui.window.Window;
-
 /**
  * Variable browser Interface
  * Describes actions exposed to scilab.
  *
  */
-public interface VariableBrowser extends Window {
+public interface VariableBrowser {
    
     /**
      * Close Variable Browser.
      */
     void close();
-    
-    /**
-     * Set columns titles.
-     * @param columnNames : the columns titles.
-     */
-    void setColumnNames(String[] columnNames);
     
     /**
      * Set Data stored in JTable.

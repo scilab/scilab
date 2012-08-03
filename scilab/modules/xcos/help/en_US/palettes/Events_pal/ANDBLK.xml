@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -71,11 +71,6 @@
               <link linkend="ANDBLK">Compiled Super Block content</link>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_ANDBLK">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -93,43 +88,61 @@
   <refsection id="Description_ANDBLK">
     <title>Description</title>
     <para>
-The Bus Creator block combines a set of signals, i.e., a
-group of signals represented by a single line in a block diagram. It
-allows you to reduce the number of lines required to route signals
-from one part of a diagram to another. This makes your easier to
-understand.  
-
-</para>
+      The Bus Creator block combines a set of signals, i.e., a
+      group of signals represented by a single line in a block diagram. It
+      allows you to reduce the number of lines required to route signals
+      from one part of a diagram to another. This makes your easier to
+      understand.  
+      
+    </para>
   </refsection>
   <refsection id="Defaultproperties_ANDBLK">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 2</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 2
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -156,9 +169,5 @@ understand.
         </imageobject>
       </inlinemediaobject>
     </para>
-  </refsection>
-  <refsection id="Authors_ANDBLK">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

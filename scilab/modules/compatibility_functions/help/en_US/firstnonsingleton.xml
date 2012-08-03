@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="firstnonsingleton">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>firstnonsingleton</refname>
     <refpurpose>Finds first dimension which is not 1</refpurpose>
@@ -62,9 +59,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is used by <literal>mfile2sci</literal> to emulate Matlab behavior under Scilab, particularly
-    for functions which treat the values along the first non-singleton dimension of A in Matlab
-    while in Scilab they treat all values of A.
+      This function is used by <literal>mfile2sci</literal> to emulate Matlab behavior under Scilab, particularly
+      for functions which treat the values along the first non-singleton dimension of A in Matlab
+      while in Scilab they treat all values of A.
     </para>
   </refsection>
   <refsection>
@@ -76,11 +73,5 @@ M = max(A)
 // Matlab max emulation
 M = max(A,firstnonsingleton(A))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-    </simplelist>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ctr_gram">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ctr_gram</refname>
     <refpurpose> controllability gramian</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Gc]=ctr_gram(A,B [,dom])
-[Gc]=ctr_gram(sl)</synopsis>
+      [Gc]=ctr_gram(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,13 +33,17 @@
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>character string (<literal>'c'</literal> (default value) or <literal>'d'</literal>)</para>
+          <para>
+            character string (<literal>'c'</literal> (default value) or <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system, <literal>syslin</literal> list</para>
+          <para>
+            linear system, <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,10 +51,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal> 
-    linear system).</para>
-    <para><literal>dom</literal> character string giving the time domain : <literal>"d"</literal> for a
-    discrete time system and <literal>"c"</literal> for continuous time (default case).</para>
+      Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal> 
+      linear system).
+    </para>
+    <para>
+      <literal>dom</literal> character string giving the time domain : <literal>"d"</literal> for a
+      discrete time system and <literal>"c"</literal> for continuous time (default case).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,7 +69,7 @@ Wc1=ctr_gram(A1,B1)    //Not invariant!
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="equil1">equil1</link>
@@ -85,9 +90,5 @@ Wc1=ctr_gram(A1,B1)    //Not invariant!
         <link linkend="contrss">contrss</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer INRIA 1988</para>
   </refsection>
 </refentry>

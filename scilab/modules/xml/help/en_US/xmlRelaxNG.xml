@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,33 +10,19 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlRelaxNG" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlRelaxNG" xml:lang="en">
   <refnamediv>
     <refname>xmlRelaxNG</refname>
     <refpurpose>Create a XML Relax NG object</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       schema = xmlRelaxNG(path)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -44,7 +30,6 @@
           <para>a string giving the path of the validation file</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>dtd</term>
         <listitem>
@@ -53,13 +38,10 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Useful to validate a document with a Relax NG.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -71,10 +53,9 @@
 
     xmlValidate(doc, rng);
 
-    xmlClose(doc, rng);
+    xmlDelete(doc, rng);
     ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -83,9 +64,13 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

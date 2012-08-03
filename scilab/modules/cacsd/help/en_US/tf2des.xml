@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tf2des</refname>
     <refpurpose> transfer function to descriptor</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>S=tf2des(G)
-S=tf2des(G,flag)</synopsis>
+      S=tf2des(G,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,13 +27,17 @@ S=tf2des(G,flag)</synopsis>
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) with possibly polynomial <literal>D</literal> matrix</para>
+          <para>
+            linear system (<literal>syslin</literal> list) with possibly polynomial <literal>D</literal> matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string <literal>"withD"</literal></para>
+          <para>
+            character string <literal>"withD"</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,15 +51,17 @@ S=tf2des(G,flag)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Transfer function to descriptor form: <literal>S=list('d',A,B,C,D,E)</literal></para>
-    <programlisting role = ""><![CDATA[ 
+      Transfer function to descriptor form: <literal>S=list('d',A,B,C,D,E)</literal>
+    </para>
+    <programlisting role=""><![CDATA[ 
 E*xdot = A*x+B*u
 y = C*x + D*u
  ]]></programlisting>
     <para>
-    Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
-    given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
-    entry of the list <literal>S</literal></para>
+      Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
+      given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
+      entry of the list <literal>S</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +73,7 @@ S2=tf2des(G,"withD");des2tf(S2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pol2des">pol2des</link>

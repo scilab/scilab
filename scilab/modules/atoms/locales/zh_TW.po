@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 15:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-07-28 09:00+0000\n"
+"Last-Translator: Alvin Tseng <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -98,6 +98,71 @@ msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 'all' or 'main' 才對.\n"
 
 #, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+"\n"
+"%s 安裝中 ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+"\n"
+"%s 讀取中 ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+"\n"
+"%s 測試中 ...\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+"\n"
+"%s 移除中 ...\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr "%s: 模組 %s 已經被安裝. 移除之前請再次做確認.\n"
+
+#, c-format
+msgid "%s: Module %s does not exist in current repositories.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 輸入參數個數錯誤: 應該有 %d 個.\n"
 
@@ -107,8 +172,28 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數值尺寸錯誤: 應該是 1x1 或 1x2 字串陣列.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s: 組態檔 ('%s') 在 %d 行的格式不符\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 mx2 或 mx3 字串矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 所有模組版本皆須設定 .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 'user' 或 'allusers' 或 'all'.\n"
 
 #, c-format
 msgid ""
@@ -138,6 +223,11 @@ msgstr "%s:  檔案 '%s' 不存在或無法讀取.\n"
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: 套件  '%s' 內未發現 DESCRIPTION 描述檔\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr "ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
 
 #, c-format
 msgid ""
@@ -208,10 +298,26 @@ msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: 載入 '%s-%s' 時產生錯誤:\n"
 
 #, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
-msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 'user' 或 'allusers' 或 'all'.\n"
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr "%s: 第 #%d 輸入參數的資料型別錯誤: 應該是布林值或是字串型別.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr "%s: 第 #%d 輸入參數的資料長度錯誤: 應該是布林值或是字串型別.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -221,6 +327,14 @@ msgstr "%s: 你沒有權限移除套件 %s (%s).\n"
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr "%s: 你沒有權限移除套件 %s 的任何版本.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"移除 %s (%s)(%s) 中.\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -241,6 +355,14 @@ msgid ""
 msgstr "%s: 套件 (%s-%s)  的根目錄未曾刪除, 請檢查你是否有寫入以下目錄的權限: %s.\n"
 
 #, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"刪除檔案夾 %s.\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: 第 %d 的輸入參數值錯誤: 這 ("
 
@@ -251,8 +373,25 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'all','user','allusers' 或'official' .\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "組態檔已儲存至 %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 第 %d 和 %d 個輸入參數不相容: 資料長度應該是相同.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -306,11 +445,6 @@ msgstr "安裝目錄"
 msgid "Description"
 msgstr "描述"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: '%s - %s' 未安裝.\n"
@@ -358,6 +492,9 @@ msgstr "檔案"
 
 msgid "Installed modules"
 msgstr "已經安裝的模組"
+
+msgid "Update List of Packages"
+msgstr ""
 
 msgid "Close"
 msgstr "關閉"
@@ -457,8 +594,8 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 須為  atmos 套件名稱 .\n"
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -490,21 +627,33 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是布林值.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
+msgstr "%s: 描述檔案 ('%s') 並不存在.\n"
 
 #, c-format
 msgid "%s: gzip not found.\n"
-msgstr ""
+msgstr "%s: gzip 不存在.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: 抽取 DESCRIPTION 描述檔 ('%s') 內資訊失敗.\n"
 
 #, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
 "'DESCRIPTION' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤:應為內含 'TOOLBOXES' 或'DESCRIPTION' 的字串 .\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: 檔案 %s 是空的.\n"
 
 #, c-format
 msgid ""
@@ -531,6 +680,22 @@ msgstr "%s:檔案 '%s' 無法寫入.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s 已經刪除.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s 不存在.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 'http://','ftp://' 或 'file://' 起頭的字串.\n"
@@ -547,39 +712,39 @@ msgstr "%s: Wget 及 Curl 接未安裝: 請安裝其中之一\n"
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: 錯誤: 無效網址 URL.\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: 錯誤: 開啟網際網路.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: 錯誤: 開啟網址 URL.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: 錯誤: 建立檔案.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: 錯誤: 無效的檔案長度.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: 錯誤: 讀取網際網路上的檔案.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: 錯誤: 檔案寫入.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: 錯誤: 失敗.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: 錯誤: 記憶體不足.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -587,7 +752,7 @@ msgstr "%s: 以下檔案未曾下載:\n"
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - URL: '%s'\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -599,7 +764,7 @@ msgstr "%s: 以下檔案未曾複製:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - 來源: '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -611,7 +776,7 @@ msgstr "%s: 下載之檔案無法檢查 MD5SUM:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - 檔案: '%s'\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
@@ -650,26 +815,8 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數長度錯誤:  1x1 or 1x2 string matrix 才對.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 1x2 矩陣字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 mx2 或 mx3 字串矩陣.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 所有模組版本皆須設定 .\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -755,15 +902,3 @@ msgstr "%s: 第  %d 輸入參數數值錯誤: 版本錯誤.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ASC  或 DESC .\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - URL   : '%s'\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - 檔案 : '%s'\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - 起源: '%s'\n"

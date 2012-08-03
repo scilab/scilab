@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // 1. Define the initial guess
@@ -79,7 +79,7 @@ Z=unpack(CZ,blocksizes);
 w=vec2list(Z,[blocksizes;blocksizes]);
 
 Z=sysdiag(w(1),w(2));
-// Check that info states that absolute convergence occured
+// Check that info states that absolute convergence occurred
 assert_checkequal(info(1),2);
 // Check that ul contains the expected values
 expectedUl1=c'*x;

@@ -1,0 +1,11 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+stack_
+vstk_

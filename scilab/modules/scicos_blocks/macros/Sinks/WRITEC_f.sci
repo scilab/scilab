@@ -15,7 +15,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -94,7 +94,7 @@ case 'set' then
     frmt1=part(frmt1,1:3)
 
     if ok then
-      ipar=[length(fname1);str2code(frmt1);N;swap;str2code(fname1)]
+      ipar=[length(fname1);_str2code(frmt1);N;swap;_str2code(fname1)]
       if prod(size(dstate))<>(nin+1)*N+2 then
           dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
@@ -119,7 +119,7 @@ case 'define' then
   model.in=in
   model.evtin=1
   model.dstate=[-1;lunit;zeros((nin+1)*N,1)]
-  model.ipar=[length(fname);str2code(frmt);N;swap;str2code(fname)]
+  model.ipar=[length(fname);_str2code(frmt);N;swap;_str2code(fname)]
   model.blocktype='d'
   model.dep_ut=[%t %f]
   

@@ -87,10 +87,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\randlib.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="randlib_f_Import.def">
@@ -99,14 +96,16 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\randlib.iss" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\randlib.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="randlib.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\randlib_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

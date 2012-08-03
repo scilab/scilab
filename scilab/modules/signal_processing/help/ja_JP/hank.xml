@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hank">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hank</refname>
     <refpurpose>共分散からハンケル行列を得る</refpurpose>
@@ -43,8 +40,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,ベクトル過程の共分散系列から
-	大きさ<literal>(m*d,n*d)</literal>のハンケル行列を構築します.
+      この関数は,ベクトル過程の共分散系列から
+      大きさ<literal>(m*d,n*d)</literal>のハンケル行列を構築します.
     </para>
   </refsection>
   <refsection>
@@ -80,9 +77,5 @@ H=hank(4,5,c);
         <link linkend="toeplitz">toeplitz</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>G. Le Vey</para>
   </refsection>
 </refentry>

@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -18,25 +19,19 @@ endfunction
 funcprot(prot);
 
 // variables
-hdf5FileToLoad = TMPDIR + "/hdf5FileToLoad.h5";
-hdf5FileToSave = TMPDIR + "/hdf5FileToSave.h5";
 interfaceAlias = BIGSOM_f;
 job = "set";
-hdf5ContextFile = TMPDIR + "/hdf5ContextFile.h5";
 
 // initialize the test
-execstr("scs_m = interfaceAlias(''define'', [], [])");
-export_to_hdf5(hdf5FileToLoad, "scs_m");
-clear scs_m;
-context = "";
-export_to_hdf5(hdf5ContextFile, "context");
+execstr("blk = interfaceAlias(''define'', [], [])");
+context = " ";
 
-// run the test
-xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, job, hdf5ContextFile)
+// run the test without modification
+new_blk = xcosBlockInterface(interfaceAlias, job, blk, context);
+assert_checkequal (new_blk, []);
 
-// clear test variables
-mdelete(hdf5FileToLoad);
-mdelete(hdf5FileToSave);
-mdelete(hdf5ContextFile);
-clear hdf5FileToLoad hdf5FileToSave interfaceAlias job hdf5ContextFile;
+// run the test with modification
+blk.graphics.exprs = "[-1;1]";
+new_blk = xcosBlockInterface(interfaceAlias, job, blk, context);
+assert_checkequal (new_blk.model.rpar, [-1 ; 1]);
 

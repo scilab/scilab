@@ -36,7 +36,7 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/GetStructVariable.c \
 		  src/c/GetSparseVariable.c
 
-libscimatio_la_LDFLAGS = $(MATIO_LIBS)
+libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
 
 else
 
@@ -44,24 +44,27 @@ MATIO_C_SOURCES = src/nomatio/nomatio.c
 
 endif
 
-libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
+libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/matio/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			$(MATIO_CFLAGS)
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			$(MATIO_CFLAGS) \
+			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la
 
 libscimatio_algo_la_SOURCES = $(MATIO_C_SOURCES)
 libscimatio_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscimatio_algo_la_CFLAGS = $(libscimatio_la_CFLAGS)
+libscimatio_algo_la_CPPFLAGS = $(libscimatio_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscimatio_la_SOURCES)
-INCLUDE_FLAGS = $(libscimatio_la_CFLAGS)
+INCLUDE_FLAGS = $(libscimatio_la_CPPFLAGS)
 
 #### Target ######
 modulename=matio

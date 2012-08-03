@@ -45,7 +45,7 @@ public final class DoubleQuoteStringAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         doc.getUndoManager().enableOneShot(true);
         doc.mergeEditsBegin();

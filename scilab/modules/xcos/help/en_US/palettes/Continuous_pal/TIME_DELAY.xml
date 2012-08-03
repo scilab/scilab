@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -78,7 +78,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_TIME_DELAY">Authors</xref>
+              <xref linkend="Example_TIME_DELAY">Example</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -98,16 +98,16 @@
   <refsection id="Description_TIME_DELAY">
     <title>Description</title>
     <para>
-The Transport Delay block delays the input by a specified amount of
-time. It can be used to simulate a time delay. At the start of the
-simulation, the block outputs the Initial input parameter until the
-simulation time exceeds the Time delay parameter, when the block
-begins generating the delayed input. 
-</para>
+      The Transport Delay block delays the input by a specified amount of
+      time. It can be used to simulate a time delay. At the start of the
+      simulation, the block outputs the Initial input parameter until the
+      simulation time exceeds the Time delay parameter, when the block
+      begins generating the delayed input. 
+    </para>
     <para>
-The Time delay parameter must be non-negative. 
-
-</para>
+      The Time delay parameter must be non-negative. 
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_TIME_DELAY">
     <title>Dialog box</title>
@@ -119,8 +119,8 @@ The Time delay parameter must be non-negative.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -149,16 +149,24 @@ The Time delay parameter must be non-negative.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -177,19 +185,29 @@ The Time delay parameter must be non-negative.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -215,8 +233,16 @@ The Time delay parameter must be non-negative.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_TIME_DELAY">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  <refsection id="Example_TIME_DELAY">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

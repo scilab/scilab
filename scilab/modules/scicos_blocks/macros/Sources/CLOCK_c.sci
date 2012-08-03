@@ -15,7 +15,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -32,9 +32,16 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
-    path = 2
+    // look for the evtdly block
+    for i=1:length(arg1.model.rpar.objs) do
+      o = arg1.model.rpar.objs(i);
+      if typeof(o) == "Block" & o.gui == "EVTDLY_c" then
+        path = i;
+        break;
+      end
+    end
     newpar=list();
-    xx=arg1.model.rpar.objs(path)// get the evtdly block
+    xx=arg1.model.rpar.objs(path)
     exprs=xx.graphics.exprs
     model=xx.model;
     t0_old=model.firing

@@ -56,8 +56,16 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
     end
     //
     // Check sizes of variables
-    ncom = size(computed)
-    nexp = size(expected)
+    if ( or(type(computed)==[16 17]) ) then
+        ncom = length(computed)
+    else
+        ncom = size(computed)
+    end
+    if ( or(type(expected)==[16 17]) ) then
+        nexp = length(expected)
+    else
+        nexp = size(expected)
+    end
     if ( or(ncom <> nexp) ) then
         errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n") , "assert_checkequal" , 1 , 2 )
         error(errmsg)
@@ -98,14 +106,34 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
     else
         // Change the message if the matrix contains more than one value
         if ( size(expected,"*") == 1 ) then
-            estr = string(expected)
+            if ( typeof(expected) == "sparse") then
+                val = full(expected)
+            else
+                val = expected
+            end
+            estr = string(val)
         else
-            estr = "[" + string(expected(1)) + " ...]"
+            if ( typeof(expected) == "sparse") then
+                val = full(expected(1))
+            else
+                val = expected(1)
+            end
+            estr = "[" + string(val) + " ...]"
         end
         if ( size(computed,"*") == 1 ) then
-            cstr = string(computed)
+            if ( typeof(computed) == "sparse") then
+                val = full(computed)
+            else
+                val = computed
+            end
+            cstr = string(val)
         else
-            cstr = "[" + string(computed(1)) + " ...]"
+            if ( typeof(computed) == "sparse") then
+                val = full(computed(1))
+            else
+                val = computed(1)
+            end
+            cstr = "[" + string(val) + " ...]"
         end
         errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s"),"assert_checkequal",estr,cstr)
         if ( lhs < 2 ) then

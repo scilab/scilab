@@ -12,11 +12,11 @@
 // <-- Short Description -->
 // Problem of completion with version 5.1:
 // (With NW mode).
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then bugmes();quit;end
-ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
+ierr = exec(TMPDIR + "/completion/loader.sce","errcatch",-1);
 if ierr<>0 then bugmes();quit;end
 // wavread("/ho[TAB]
 currentline = 'wavread(""/ho';

@@ -131,7 +131,6 @@ src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
 src/fortran/rilac.f \
-src/fortran/scaleg.f \
 src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
@@ -146,7 +145,6 @@ src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/dlslv.f \
 src/fortran/giv.f \
 src/fortran/storl2.f \
 src/fortran/calsca.f \
@@ -201,24 +199,31 @@ sci_gateway/fortran/sci_f_gspec.f \
 sci_gateway/fortran/sci_f_linmeq.f \
 sci_gateway/fortran/sci_f_rankqr.f
 
-libscicacsd_la_FFLAGS= -I$(srcdir)/includes/
-libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes/
+libscicacsd_la_CPPFLAGS= -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicacsd.la
 noinst_LTLIBRARIES = libscicacsd-algo.la
+else
+noinst_LTLIBRARIES = libscicacsd-algo.la libscicacsd.la
+endif
 
-libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
+
+libscicacsd_la_LDFLAGS = $(ATLAS_LIBS) $(AM_LDFLAGS)
 
 libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
 libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscicacsd_algo_la_CFLAGS = $(libscicacsd_la_CFLAGS)
+libscicacsd_algo_la_CPPFLAGS = $(libscicacsd_la_CPPFLAGS)
 
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicacsd_la_CPPFLAGS)
 
 
 libscicacsd_la_LIBADD = libscicacsd-algo.la 

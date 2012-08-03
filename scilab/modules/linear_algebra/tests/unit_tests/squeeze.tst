@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 C=cell(1,6);C.entries=list(1,%s+1,[3,4],[%f %t],int32(8),-24);
 S=[];S.a=1;S(6).a=33;

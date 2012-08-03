@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ricc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ricc</refname>
     <refpurpose> Riccati equation</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
-[X,RCOND,FERR]=ricc(F,G,H,"disc","method")</synopsis>
+      [X,RCOND,FERR]=ricc(F,G,H,"disc","method")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -61,43 +59,57 @@
   <refsection>
     <title>Description</title>
     <para>
-    Riccati solver.</para>
+      Riccati solver.
+    </para>
     <para>
-    Continuous time:</para>
-    <programlisting role = ""><![CDATA[ 
+      Continuous time:
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=ricc(A,B,C,'cont')
  ]]></programlisting>
     <para>
-    gives a solution to the continuous time ARE</para>
-    <programlisting role = ""><![CDATA[ 
+      gives a solution to the continuous time ARE
+    </para>
+    <programlisting role=""><![CDATA[ 
 A'*X+X*A-X*B*X+C=0 .
  ]]></programlisting>
-    <para><literal>B</literal> and <literal>C</literal> are assumed to be nonnegative definite.
-    <literal>(A,G)</literal> is assumed to be stabilizable with <literal>G*G'</literal> a full rank
-    factorization of <literal>B</literal>.</para>
-    <para><literal>(A,H)</literal> is assumed to be detectable with <literal>H*H'</literal> a full rank
-    factorization of <literal>C</literal>.</para>
     <para>
-    Discrete time:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>B</literal> and <literal>C</literal> are assumed to be nonnegative definite.
+      <literal>(A,G)</literal> is assumed to be stabilizable with <literal>G*G'</literal> a full rank
+      factorization of <literal>B</literal>.
+    </para>
+    <para>
+      <literal>(A,H)</literal> is assumed to be detectable with <literal>H*H'</literal> a full rank
+      factorization of <literal>C</literal>.
+    </para>
+    <para>
+      Discrete time:
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=ricc(F,G,H,'disc')
  ]]></programlisting>
     <para>
-    gives a solution  to the discrete time ARE</para>
-    <programlisting role = ""><![CDATA[ 
+      gives a solution  to the discrete time ARE
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
  ]]></programlisting>
-    <para><literal>F</literal> is assumed invertible and   <literal>G = G1*inv(G2)*G1'</literal>.</para>
     <para>
-    One  assumes  <literal>(F,G1)</literal> stabilizable and <literal>(C,F)</literal> detectable
-    with <literal>C'*C</literal> full rank factorization of <literal>H</literal>. Use preferably
-    <literal>ric_desc</literal>.</para>
+      <literal>F</literal> is assumed invertible and   <literal>G = G1*inv(G2)*G1'</literal>.
+    </para>
     <para>
-    C, D are symmetric .It is assumed that the matrices A, C and D are such that the corresponding matrix pencil has N eigenvalues with moduli less than one.</para>
+      One  assumes  <literal>(F,G1)</literal> stabilizable and <literal>(C,F)</literal> detectable
+      with <literal>C'*C</literal> full rank factorization of <literal>H</literal>. Use preferably
+      <literal>ric_desc</literal>.
+    </para>
     <para>
-    Error bound on the solution and a condition estimate are also provided.
-    It is assumed that the matrices A, C and D are such that the
-    corresponding Hamiltonian matrix has N eigenvalues with negative real parts.</para>
+      C, D are symmetric .It is assumed that the matrices A, C and D are such that the corresponding matrix pencil has N eigenvalues with moduli less than one.
+    </para>
+    <para>
+      Error bound on the solution and a condition estimate are also provided.
+      It is assumed that the matrices A, C and D are such that the
+      corresponding Hamiltonian matrix has N eigenvalues with negative real parts.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -132,7 +144,7 @@ norm(X2-X,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="riccati">riccati</link>
@@ -144,12 +156,6 @@ norm(X2-X,1)
         <link linkend="schur">schur</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
- P. Petkov
-</para>
   </refsection>
   <refsection>
     <title>Used Functions</title>

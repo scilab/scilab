@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="BACKLASH"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="BACKLASH" xml:lang="fr">
   <refnamediv>
     <refname>BACKLASH</refname>
     <refpurpose>Backlash (jeu)</refpurpose>
@@ -75,7 +67,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_BACKLASH">Auteurs</xref>
+              <xref linkend="Example_BACKLASH">Exemple</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -100,7 +92,9 @@
       Quand l'entrée augmente (diminue), une modification de  l'entrée du bloc Backlash provoque
       une modification égale sur sa sortie. Quand l'entrée change de direction, le système
       est désengagé pendant un court instant (le jeu est appelé <emphasis role="bold">
-      zone morte</emphasis> ou <emphasis role="bold">gap</emphasis>).
+        zone morte
+      </emphasis>
+      ou <emphasis role="bold">gap</emphasis>).
       Ainsi, au moment initial du changement, l'entrée n'a pas d'effet et la sortie reste constante.
       Ensuite, les modfication de l'entrée donne les mêmes modifcations sur la sortie, jusqu'au prochain
       changement de driection de l'entrée.
@@ -116,8 +110,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -146,16 +140,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -174,19 +176,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -212,8 +224,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_BACKLASH">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  <refsection id="Example_BACKLASH">
+    <title>Exemple</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/BACKLASH_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/discontinuities_pal/BACKLASH_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

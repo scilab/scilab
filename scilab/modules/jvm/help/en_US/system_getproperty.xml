@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system_getproperty">
-  <info>
-    <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
-  </info>
   <refnamediv>
     <refname>system_getproperty</refname>
     <refpurpose>gets the system property
-  indicated by a specified key.</refpurpose>
+      indicated by a specified key.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -212,9 +210,5 @@ system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

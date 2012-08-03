@@ -1,0 +1,29 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 10966 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=10966
+//
+// <-- Short Description -->
+// Numerical error in linspace
+//
+
+d1 = 0;
+d2 = %pi;
+n = 100;
+y = (d2-d1) * ((0:n-1) / (n-1)) + d1 * ones(0:n-1);
+assert_checkequal(0, y($)-d2);
+
+d1 = 0;
+d2 = %pi;
+n = 100;
+y = linspace(d1,d2,n);
+assert_checkequal(0, y($)-d2);

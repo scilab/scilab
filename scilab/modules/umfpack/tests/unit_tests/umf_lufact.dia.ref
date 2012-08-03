@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+// <-- CLI SHELL MODE -->
 // this is the small linear test system from UMFPACK
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2  3  0  0  0;
@@ -20,8 +21,6 @@ x = umf_lusolve(Lup,b,"A''x=b");
 if norm(A'*x - b) <> 0, then bugmes();quit;end
 // don't forget to clear memory with
 umf_ludel(Lup)
- ans  =
- 
 // a real (but small)  example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
@@ -37,5 +36,3 @@ secondNorm=norm(A*x - b);
 if firstNorm <> secondNorm then bugmes();quit;end
 // don't forget to clear memory
 umf_ludel(Lup)
- ans  =
- 

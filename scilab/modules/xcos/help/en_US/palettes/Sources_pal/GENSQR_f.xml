@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -81,11 +81,6 @@
               <xref linkend="Computationalfunction_GENSQR_f">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_GENSQR_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -103,15 +98,16 @@
   <refsection id="Description_GENSQR_f">
     <title>Description</title>
     <para>
-This block is a square wave generator: output takes values <emphasis>-M</emphasis> and  <emphasis>+M</emphasis>. Every time an event is received on the input event port, the output switches from <emphasis>-M</emphasis>  to <emphasis>M</emphasis>, or <emphasis>M</emphasis> to <emphasis>-M</emphasis>.</para>
+      This block is a square wave generator: output takes values <emphasis>-M</emphasis> and  <emphasis>+M</emphasis>. Every time an event is received on the input event port, the output switches from <emphasis>-M</emphasis>  to <emphasis>M</emphasis>, or <emphasis>M</emphasis> to <emphasis>-M</emphasis>.
+    </para>
     <para>
       <latex><![CDATA[
 v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
 ]]></latex>
     </para>
     <para>
-Typically the event input port is used to specify the signal period.
-</para>
+      Typically the event input port is used to specify the signal period.
+    </para>
   </refsection>
   <refsection id="Dialogbox_GENSQR_f">
     <title>Dialog box</title>
@@ -123,14 +119,16 @@ Typically the event input port is used to specify the signal period.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Amplitude</emphasis>
         </para>
-        <para> a scalar <emphasis>M</emphasis>.</para>
+        <para>
+          a scalar <emphasis>M</emphasis>.
+        </para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
     </itemizedlist>
@@ -139,16 +137,24 @@ Typically the event input port is used to specify the signal period.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -159,19 +165,29 @@ Typically the event input port is used to specify the signal period.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -182,10 +198,11 @@ Typically the event input port is used to specify the signal period.
     </itemizedlist>
   </refsection>
   <refsection id="Example_GENSQR_f">
-    <title>Square wave generator: Example</title>
+    <title>Example</title>
     <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
-          Open this exemple into Xcos
-      </link></para>
+        Open this exemple into Xcos
+      </link>
+    </para>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
         <inlinemediaobject>
@@ -200,14 +217,18 @@ Typically the event input port is used to specify the signal period.
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.</para>
     <para>
-The first source block (green) illustrate the typical use of this block. The period of each output level is set with a <link linkend="CLOCK_c">clock</link>. The signal edge is fast and should be accurate for most of the application with a edge speed ratio of <emphasis>1/10</emphasis>.
-</para>
+      First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.
+    </para>
     <para>
-The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
-</para>
-    <para>The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).</para>
+      The first source block (green) illustrate the typical use of this block. The period of each output level is set with a <link linkend="CLOCK_c">clock</link>. The signal edge is fast and should be accurate for most of the application with a edge speed ratio of <emphasis>1/10</emphasis>.
+    </para>
+    <para>
+      The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
+    </para>
+    <para>
+      The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
+    </para>
   </refsection>
   <refsection id="Interfacingfunction_GENSQR_f">
     <title>Interfacing function</title>
@@ -226,10 +247,5 @@ The second source block (blue) illustrate a much more problematic use case. The 
         <para> SCI/modules/scicos_blocks/src/fortran/gensqr.f (Type 0)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_GENSQR_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

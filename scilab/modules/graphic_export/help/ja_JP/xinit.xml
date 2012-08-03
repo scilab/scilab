@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xinit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xinit</refname>
     <refpurpose>グラフィックドライバの初期化</refpurpose>
@@ -22,8 +19,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>
-    xinit(FileName)
-    xinit()
+      xinit(FileName)
+      xinit()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -40,13 +37,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    Postscript, Xfig, Gif または PPM ドライバの場合, 
-	<literal>FileName</literal> を指定する必要があります. 
-	ファイル名で指定されたファイルに全てのグラフィック処理が記録されます.</para>
+      Postscript, Xfig, Gif または PPM ドライバの場合, 
+      <literal>FileName</literal> を指定する必要があります. 
+      ファイル名で指定されたファイルに全てのグラフィック処理が記録されます.
+    </para>
     <para>
-	画面ドライバ(X11またはRec)の場合,
-	<literal>xinit</literal> は引数を指定せずにコールする必要があり,
-	からの画面ウインドウがオープンされます.</para>
+      画面ドライバ(X11またはRec)の場合,
+      <literal>xinit</literal> は引数を指定せずにコールする必要があり,
+      からの画面ウインドウがオープンされます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -72,10 +71,4 @@ driver("X11")
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

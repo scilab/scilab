@@ -30,13 +30,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.graphic_export.ExportRenderer;
+import org.scilab.modules.graphic_export.ExportParams;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Window in which we can configure option for the selected format
@@ -48,9 +47,9 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
-    private ExportData exportData;
+    private final ExportData exportData;
     private Window parentWindow;
-    private Tab parentTab;
+    private SimpleTab parentTab;
     private JDialog optionDialog;
     private JRadioButton portrait;
     private JRadioButton landscape;
@@ -68,12 +67,12 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
     /**
      * Display the option window
      */
-    public void displayOptionWindow(Tab tab) {
+    public void displayOptionWindow(SimpleTab tab) {
         parentTab = tab;
-        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
+        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle("Option for " + exportData.getExportExtension().toUpperCase() + " format");
-        optionDialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         //Center the frame
         optionDialog.setLocationRelativeTo(parentWindow);
     }
@@ -129,6 +128,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
      * Action manager
      * @param evt ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         boolean b = portrait.isSelected();
         Vector<String> properties = new Vector<String>();
@@ -142,13 +142,12 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
             exportData.setExportProperties(properties);
             optionDialog.dispose();
 
-            int figId = exportData.getFigureId();
+            String figId = exportData.getFigureId();
             String fileName = exportData.getExportName();
-            int fileType = ExportRenderer.types.get(exportData.getExportExtension());
-            int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportRenderer.LANDSCAPE : ExportRenderer.PORTRAIT;
+            int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String err = FileExporter.fileExport(figId, fileName, fileType, 1f, orientation);// 1f is the jpeg quality compression and it is useless here
+            String err = FileExporter.fileExport(figId, fileName, exportData.getExportExtension(), 1f, orientation);// 1f is the jpeg quality compression and it is useless here
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
             if (err.length() != 0) {

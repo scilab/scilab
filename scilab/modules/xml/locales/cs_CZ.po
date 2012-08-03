@@ -1,0 +1,337 @@
+# Czech translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-13 20:24+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
+msgstr "%s: Špatný rozměr vstupního argumentu #%d: Očekáván reálný skalár.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: XML object does not exist.\n"
+msgstr "%s: Objekt XML neexistuje.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno %s.\n"
+
+#, c-format
+msgid "%s: XML attribute does not exist.\n"
+msgstr "%s: Vlastnost XML neexistuje.\n"
+
+#, c-format
+msgid "%s: XMLList does not exist.\n"
+msgstr "%s: XMLList neexistuje.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s: Špatný rozměr vstupního argumentu #%d: Očekáván řetězec nebo číslo s "
+"dvojitou přesností.\n"
+
+#, c-format
+msgid "%s: Unknown field: %s\n"
+msgstr "%s: Neznámé pole: %s\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
+msgstr ""
+"%s: Špatný rozměr vstupního argumentu #%d: Očekáváno jedno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván s dvojitou přesností.\n"
+
+#, c-format
+msgid "%s: Wrong index in the XMLList.\n"
+msgstr "%s: Špatný index ve XMLList.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno XMLList nebo XMLSet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo jedno celé "
+"číslo\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo jedno celé "
+"číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: xmlFormat must return a string.\n"
+msgstr "%s: xmlFormat musí vracet řetězec.\n"
+
+#, c-format
+msgid "%s: You must define %%s_xmlFormat function.\n"
+msgstr "%s: Musíte určit funkci %%s_xmlFormat.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: XML Element does not exist.\n"
+msgstr "%s: Prvek XML neexistuje.\n"
+
+#, c-format
+msgid "%s: XML Namespace does not exist.\n"
+msgstr "%s: Jmenný prostor XML neexistuje.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%i: Očekáván XMLSet nebo XMLList.\n"
+
+#, c-format
+msgid "%s: XMLSet or XMLList does not exist.\n"
+msgstr "%s: XMLSet nebo XMLList neexistuje.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný rozměr vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: XML document does not exist.\n"
+msgstr "%s: dokument XML neexistuje.\n"
+
+#, c-format
+msgid "%s: XML validation file does not exist.\n"
+msgstr "%s: Ověřovací soubor XML neexistuje.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno %s\n"
+
+#, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr "%s: Dokument XML neexistuje.\n"
+
+#, c-format
+msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
+msgstr "%s: Špatný vstupní argument #%d: Očekáván platný název XML.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván neprázdný řetězec.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr "%s: Nelze přečíst pojmenovaný argument %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid ""
+"%s: Cannot read the file:\n"
+"%s"
+msgstr ""
+"%s: Nelze přečíst soubor:\n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Cannot parse the string:\n"
+"%s"
+msgstr ""
+"%s: Nelze zpracovat řetězec:\n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván XMLElem nebo XMLList či "
+"XMLSet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
+"or a XMLSet expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván XMLAttr, XMLElem nebo "
+"XMLList či XMLSet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice řetězců nx2 "
+"nebo nx3.\n"
+
+#, c-format
+msgid "%s: XML document does not exist\n"
+msgstr "%s: dokument XML neexistuje\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců nebo "
+"XMLDoc.\n"
+
+#, c-format
+msgid ""
+"The file %s is not valid:\n"
+"%s\n"
+msgstr ""
+"Soubor %s není platný:\n"
+"%s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván boolean nebo řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
+msgstr "%s: Dokument XML nemá URI a neexistuje druhý argument.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný rozměr vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Cannot write the file: %s\n"
+msgstr "%s: Zde nelze soubor zapsat: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván XMLDoc nebo XMLElem.\n"
+
+#, c-format
+msgid "%s: XML element does not exist.\n"
+msgstr "%s: Prvek XML neexistuje.\n"
+
+#, c-format
+msgid "%s: Bad number of columns for argument #%d: two expected.\n"
+msgstr "%s: Špatný počet sloupců v argumentu #%d: Očekávány dva.\n"
+
+#, c-format
+msgid ""
+"%s: Bad XPath query:\n"
+"%s"
+msgstr ""
+"%s: Špatný dotaz XPath:\n"
+"%s"
+
+#, c-format
+msgid "%s: XPath query returned a not handled type: %i\n"
+msgstr "%s: Dotaz XPath vrátil neobsluhovatelný typ: %i\n"
+
+msgid "Invalid file name: "
+msgstr "Neplatný název souboru: "
+
+msgid "Cannot create a parser context"
+msgstr "Nelze vytvořit kontext zpracovatele"
+
+msgid " at line "
+msgstr " na řádku "
+
+msgid "Cannot create a buffer"
+msgstr "Nelze vytvořit mezipaměť"
+
+msgid "Cannot create a reader"
+msgstr "Nelze vytvořit čítače"
+
+msgid "Invalid file"
+msgstr "Neplatný soubor"
+
+msgid "Cannot parse the DTD"
+msgstr "Nelze zpracovat DTD"
+
+msgid "Cannot create a valid context"
+msgstr "Nelze vytvořit platný kontext"
+
+msgid ""
+"Due to a libxml2 limitation, it is not possible to validate a document "
+"against an external DTD\n"
+"Please see help xmlValidate.\n"
+msgstr ""
+"Kvůli omezení libxml2 není možné dokument ověřit pomocí externího DTD\n"
+"Podívejte se, prosím, na xmlValidate.\n"
+
+msgid "Cannot create a validation context"
+msgstr "Nelze vytvořit kontext ověření"
+
+msgid "Cannot parse the Relax NG grammar"
+msgstr "Nelze zpracovat gramatiku Relax NG"
+
+msgid "Cannot parse the schema"
+msgstr "Nelze zpracovat schéma"
+
+msgid "Cannot read the stream"
+msgstr "Nelze přečíst proud"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "CML read"
+msgstr "Čtení CML"

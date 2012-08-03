@@ -8,19 +8,27 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-10 13:58+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2012-07-16 15:53+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVMインターフェイスは -nogui または -nwni モードでは無効です.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
@@ -81,6 +89,12 @@ msgid ""
 "not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
 "javaからScilabを使用する場合, IDE (Netbeansなど)が実行時に解決できない外部への依存性を付加しないようにしてください.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Main Scilabクラスにアクセスできませんでした.\n"
+
+msgid "Cannot execute initial hooks. Error:\n"
+msgstr "初期フックを実行できません. エラー:\n"
 
 #, c-format
 msgid ""
@@ -219,14 +233,20 @@ msgstr "JNIで未定義のエラーコード. 奇妙な問題"
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr "警告: Javaパッケージ '%s' が見つかりません。\n"
 
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "Main Scilabクラスにアクセスできませんでした.\n"
-
 msgid "Could not access to the constructor of the Main Scilab Class:\n"
 msgstr "Main Scilabクラスのコンストラクタにアクセスできませんでした:\n"
 
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr "Scilab Mainクラスを作成できませんでした. エラー:\n"
+
+msgid "Cannot execute final hooks. Error:\n"
+msgstr "最終フックを実行できません. エラー:\n"
+
+msgid "Error with Scilab.canClose():\n"
+msgstr "Scilabエラー. canClose(実行中です.\n"
+
+msgid "Error with Scilab.forceClose():\n"
+msgstr "Scilab.forceClose() でエラーが発生しました:\n"
 
 #
 # File: src/c/getJvmOptions.c, line: 51
@@ -280,7 +300,7 @@ msgstr "警告: classpath定義ファイル %s が見つかりません。\n"
 # File: src/c/loadClasspath.c, line: 188
 #, c-format
 msgid ""
-"Some problems during the loading of the Java libraries occured.\n"
+"Some problems during the loading of the Java libraries occurred.\n"
 "This could lead to inconsistent behaviours.\n"
 "Please check SCI/etc/classpath.xml.\n"
 msgstr ""

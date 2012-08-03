@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sm2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sm2ss</refname>
     <refpurpose> system matrix to state-space</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,16 +41,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function: converts the system matrix:</para>
-    <programlisting role = ""><![CDATA[ 
+      Utility function: converts the system matrix:
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    to linear system in state-space representation (<literal>syslin</literal>) list.</para>
+      to linear system in state-space representation (<literal>syslin</literal>) list.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>

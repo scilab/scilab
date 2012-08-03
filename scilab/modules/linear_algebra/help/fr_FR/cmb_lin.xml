@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cmb_lin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cmb_lin</refname>
     <refpurpose> combinaison linéaire symbolique  </refpurpose>
@@ -25,11 +22,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Évalue <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaînes de caractères (routine de bas niveau).
-  </para>
+      Évalue <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaînes de caractères (routine de bas niveau).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

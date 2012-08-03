@@ -8,18 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-24 07:51+0000\n"
+"PO-Revision-Date: 2012-07-22 12:30+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Нельзя прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -28,6 +32,10 @@ msgstr "%s: Не осталось доступной памяти.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -65,14 +73,17 @@ msgstr ""
 "Не удалось загрузить библиотеку Batik.\n"
 "Ожидалась версия %s ; установлена версия %s ."
 
+msgid "parent diagram not found."
+msgstr ""
+
 msgid "Preview"
 msgstr "Предпросмотр"
 
-msgid "Please specify a file format"
-msgstr "Укажите формат файла"
-
 msgid "Error on export"
 msgstr "Ошибка при экспорте"
+
+msgid "Please specify a valid file format"
+msgstr "Пожалуйста, определите корректный формат файла"
 
 msgid "Incompatibility detected"
 msgstr "Обнаружена несовместимость"
@@ -151,11 +162,14 @@ msgstr "Общие"
 msgid "Equations"
 msgstr "Уравнения"
 
-msgid "Discrete"
-msgstr "Дискретные блоки"
+msgid "Discretes"
+msgstr ""
 
-msgid "Input"
-msgstr "Вход"
+msgid "Inputs"
+msgstr "Входы"
+
+msgid "Outputs"
+msgstr "Выходы"
 
 msgid "Solver"
 msgstr "Программа решения"
@@ -251,6 +265,9 @@ msgstr "Новая палитра"
 
 msgid "Open"
 msgstr "Открыть"
+
+msgid "Open file in Scilab current directory"
+msgstr "Открыть файл в текущей директории Scilab"
 
 msgid "Save"
 msgstr "Сохранить"
@@ -516,11 +533,18 @@ msgstr ""
 "Файл %s не существует.\n"
 "Создать файл?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr "Невозможно декодировать адрес : %s ."
+
 msgid "Ok"
 msgstr "ОК"
 
 msgid "Cancel"
 msgstr "Отменить"
+
+msgid "Reset to default"
+msgstr "Сбросить на значения по умолчанию"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -528,6 +552,10 @@ msgid ""
 "evaluated once confirmed (i.e. you click on OK and every time the diagram is "
 "loaded)."
 msgstr ""
+"Вы можете здесь ввести инструкции Scilab для определения символических "
+"параметров, используемых в определениях блока, использующего инструкции "
+"Scilab.<br/>Эти инструкции выполняются если только подтверждены (т. е. вы "
+"щёлкаете на ОК и каждый раз схема загружается)."
 
 msgid "Failed to load Diagram"
 msgstr "Не удалось загрузить диаграмму"
@@ -560,13 +588,13 @@ msgid "No block selected"
 msgstr "Нет выбранного блока"
 
 msgid "Export to XML"
-msgstr "Экспортировать в XML"
+msgstr "Экспорт в XML"
 
 msgid "Export in progress"
 msgstr "Идёт экспорт"
 
 msgid "Import from XML"
-msgstr "Импортировать из XML"
+msgstr "Импорт из XML"
 
 msgid "Add to"
 msgstr "Добавить к"
@@ -676,14 +704,8 @@ msgstr "Погрешность по времени"
 msgid "Max integration time interval"
 msgstr "Максимальный временной интервал интегрирования"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Метод решения"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "Вид программы решения"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "Максимальный размер шага (0 - без ограничений)"
@@ -721,7 +743,7 @@ msgstr "Выполняется моделирование"
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
-"Идёт компиляция, результаты будут сохранены в переменной «scicos_cpr»"
+"Идёт компиляция, результаты будут сохранены в переменной 'scicos_cpr'"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Генерация СуперБлока, пожалуйста, подождите"
@@ -744,14 +766,20 @@ msgstr "Трассировка всех блоков и вызовы блока 
 msgid "Debug block calls without trace"
 msgstr "Вызовы блока отладки без трассировки"
 
+msgid "All supported formats"
+msgstr "Все поддерживаемые форматы"
+
 msgid "Scicos file"
 msgstr "Файл Scicos"
 
 msgid "Xcos file"
 msgstr "Файл Xcos"
 
-msgid "Scilab file"
-msgstr "Файл Scilab"
+msgid "Xcos (zip) file"
+msgstr "Xcos (zip) файл"
+
+msgid "Scilab Open Data file"
+msgstr "Файл формата открытых данных Scilab"
 
 msgid "Masked SuperBlock editor"
 msgstr "Редактор маскированного суперблока"
@@ -818,19 +846,22 @@ msgstr "Настраивается компилятор Modelica"
 msgid "Modelica initialize"
 msgstr "Запускается Modelica"
 
-#, c-format
-msgid "From %s"
-msgstr "От %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Перейти к %s"
-
 msgid "Error: unable to compile this SuperBlock"
-msgstr ""
+msgstr "Ошибка: невозможно скомпилировать этот SuperBlock"
 
-msgid "Wrong port number"
-msgstr "Неверный номер порта"
+msgid "Evaluation problem: wrong port number."
+msgstr "Проблема выполнения: неверный номер порта."
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr "Ожидается '%d'."
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
+msgstr ""
+"<html><body>Ошибка компиляции: ссылка проигнорированна, поскольку она не "
+"подсоединена. <br/>Пожалуйста, подсоедините её.</body></html>"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -840,7 +871,7 @@ msgid "Basic controller"
 msgstr "основной контроллер"
 
 msgid "Water tank"
-msgstr ""
+msgstr "Резервуар для воды"
 
 msgid "Discrete Controller"
 msgstr ""
@@ -876,16 +907,16 @@ msgid "Differential amplifier"
 msgstr "Дифференциальный усилитель"
 
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "Операционный усилитель OpAmp"
 
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "Интегратор на переключаемых конденсаторах"
 
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "Понижающий преобразователь"
 
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "Повышающий преобразователь"
 
 msgid "Colpitts oscillator"
 msgstr "Генератор по схеме емкостной трёхточки"
@@ -897,7 +928,7 @@ msgid "Logic NOR gate"
 msgstr "Логический элемент НЕ - ИЛИ"
 
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "Автомобильная подвеска"
 
 msgid "Ball on a Platform"
 msgstr "Шар на платформе"
@@ -918,7 +949,7 @@ msgid "Old Gain Block"
 msgstr ""
 
 msgid "Standard demos"
-msgstr ""
+msgstr "Стандартные демонстрационные примеры"
 
 msgid "Control Systems"
 msgstr "Системы управления"
@@ -933,10 +964,10 @@ msgid "Modelica demos"
 msgstr ""
 
 msgid "Old demos"
-msgstr ""
+msgstr "Старые демонстрационные примеры"
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "Простой демонстрационный пример"
 
 msgid "Bouncing Balls"
 msgstr "Скачущие шары"
@@ -995,10 +1026,6 @@ msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидался дескриптор.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
@@ -1054,24 +1081,12 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: Неверное число входных аргуметов: ожидается %d."
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: Невозможно импортировать xcos-файл %s."
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr ""
 "%s: блок %s более недоступен, пожалуйста, обновите схему с помощью "
 "совместимого блока."
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: Не удалось импортировать данные из %s"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s:Не удалось экспортировать «XX» в %s"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1175,28 +1190,39 @@ msgstr "%s: Не удалось экспортировать палитру в h
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A String expected."
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидалась строка."
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "Функция интерфейса не существует или не может быть вызвана."
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s не является допустимым указателем блока."
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "Определение блока с помощью функции [%s] не получилось."
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "Настройка блока с помощью функции [%s] не получилась."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr "%s: Неверный тип аргумента №%d: Ожидался блок (Block)."
+
+#, c-format
+msgid "Field %s has different values."
+msgstr "Поле %s имеет разные значения."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Библиотеки Scicos не загружены"
@@ -1205,19 +1231,19 @@ msgstr "Библиотеки Scicos не загружены"
 msgid "Unable to simulate %s"
 msgstr "Не удалось моделировать %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
+msgstr "В pre_xcos_simulate произошла ошибка: отмена моделирования."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
-msgstr ""
+msgstr "%s: Ошибка во время вычисления параметров блока.\n"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
-msgstr ""
+msgstr "%s: Ошибка во время обновления параметров блока.\n"
 
 msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "В post_xcos_simulate ошибка: моделирование завершается."

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:23+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-06-18 12:33+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 msgid "bike simulation, stable trajectory"
@@ -99,11 +99,6 @@ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d или %d.\n"
 
 #, c-format
-msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: %s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
@@ -133,6 +128,11 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: синтаксическая ошибка в "
 "выражении\n"
 
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Определение переменной %ODEOPTIONS"
 
@@ -144,17 +144,16 @@ msgstr "1 : обычное вычисление в заданные момент
 
 msgid "2 : computation at mesh points (given in first row of output of ode)"
 msgstr ""
-"2 : вычисление в сеточных точках (заданных в первой строке вывода команды "
-"ode)"
+"2 : вычисление в точках сетки (заданных в первой строке вывода функции ode)"
 
 msgid "3 : one step at one internal mesh point and return"
-msgstr "3 : один шаг в одной внутренней сеточной точке и возврат"
+msgstr "3 : один шаг в одной внутренней точке сетки и возврат"
 
 msgid "4 : normal computation without overshooting tcrit"
 msgstr "4 : обычное вычисление без превышения tcrit"
 
 msgid "5 : one step, without passing tcrit, and return"
-msgstr "5 : один шаг без прохода tcrit и возврат"
+msgstr "5 : один шаг без первышения tcrit и возврат"
 
 msgid "Meaning of jactype:"
 msgstr "Значение элемента jactype:"
@@ -191,14 +190,15 @@ msgstr ""
 "половинными полосами"
 
 msgid "of the banded jacobian: the band is the i,j's with i-ml <= j <= ny-1"
-msgstr "ленточной матрицы Якоби, где лента: i,j's with i-ml <= j <= ny-1"
+msgstr "ленточной матрицы Якоби, где лентой являются i,j с i-ml <= j <= ny-1"
 
 msgid "If jactype = 4 the jacobian function must return"
 msgstr "- если jactype = 4, тогда функция Якоби должна возвращать"
 
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
 msgstr ""
-"матрицу J размерности ml+mu+1 x ny (где ny - это число элементов в y)"
+"матрицу J размерности ml+mu+1 x ny (где ny - это число элементов y в "
+"ydot=f(t,y))"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr ""
@@ -218,3 +218,27 @@ msgid "If the function is called without argument, default values are used"
 msgstr ""
 "Если функция вызывается без параметров, то будут использоваться значения по "
 "умолчанию"
+
+msgid "tcrit (assumes itask=4 or 5)"
+msgstr "tcrit (предполагает itask=4 или 5)"
+
+msgid "h0 (first step tried)"
+msgstr "h0 (первый подбираемый шаг)"
+
+msgid "hmax (max step size)"
+msgstr "hmax (максимальный размер шага)"
+
+msgid "hmin (min step size)"
+msgstr "hmin (минимальный размер шага)"
+
+msgid "mxstep (max number of steps allowed)"
+msgstr "mxstep (максимально разрешённое количество шагов)"
+
+msgid "maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr "maxordn (максимально разрешённый нежёсткий порядок, не более 12)"
+
+msgid "maxords (maximum stiff order allowed, at most 5)"
+msgstr "maxords (максимально разрешённый жёсткий порядок, не более 5)"
+
+msgid "ixpr (print level 0 or 1)"
+msgstr "ixpr (уровень печати 0 или 1)"

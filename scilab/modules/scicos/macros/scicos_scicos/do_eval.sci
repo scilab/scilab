@@ -15,7 +15,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -41,14 +41,20 @@ endfunction
 // This function is used to alert the user on setvalue
 // (invalid exprs we keep the previous parameters)
 function message(str)
-    uid = arg1.doc(1);
-    uid = [full_uids uid];
+    if length(arg1.doc) >= 1 then
+        uid = arg1.doc(1);
+        uid = [full_uids uid];
 
-    html = "<html><body>";
-    html = html + "<em>" + gettext("Evaluation problem: value not updated from context." + "<br/>") + "</em>";
-    html = html + strcat(str, "<br/>") + "<br/>"; 
-    html = html + "</body></html>";
-    warnBlockByUID(uid, html);
+        html = "<html><body>";
+        html = html + "<em>" + gettext("Evaluation problem: value not updated from context.") + "</em><br/>";
+        html = html + strcat(str, "<br/>") + "<br/>"; 
+        html = html + "</body></html>";
+        warnBlockByUID(uid, html);
+    else
+        txt = gettext("Evaluation problem: value not updated from context.");
+        txt = [txt ; str];
+        disp(txt);
+    end
 
     %scicos_prob = resume(%t)
 endfunction
@@ -96,7 +102,9 @@ for %kk=1:%nx
     xset('window',%now_win)
       else
         previous_full_uids = full_uids;
-        full_uids = [full_uids o.doc(1)];
+        if length(o.doc) >= 1 then
+            full_uids = [full_uids o.doc(1)];
+        end
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context1)
         needcompile1=max(needcompile1,needcompile2)
 	full_uids = previous_full_uids;
@@ -109,7 +117,16 @@ for %kk=1:%nx
     elseif o.model.sim(1)=='asuper' then
     else
       model=o.model
-// should we generate a message here?
+        if ~isdef(o.gui) | ~or(type(evstr(o.gui) == [13 11])) then
+            uid = o.doc(1)
+            uid = [full_uids uid];
+            
+            html = "<html><body>";
+            html = html + "<em>" + gettext("Evaluation problem: Unknown block") + "</em><br/>";
+            html = html + "</body></html>";
+            warnBlockByUID(uid, html);
+        end
+
       %scicos_prob=%f
       ier=execstr('o='+o.gui+'(''set'',o)','errcatch')
       if ier==0& %scicos_prob==%f then

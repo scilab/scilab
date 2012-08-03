@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 2509 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // execstr forgets to store the function name and line number when in the errcatch mode
 
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 
 
 //uncompiled macros
@@ -65,4 +65,4 @@ if execstr('foo()','errcatch')<>4 then pause,end
 if l<>1|f<>'' then pause,end
 
 
-funcprot(prot)
+funcprot(prot);

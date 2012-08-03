@@ -107,6 +107,18 @@ char *getOSRelease(void)
 	case OS_WIN32_WINDOWS_SEVEN_SERVER_64 :
 		return strdup("Seven Server x64");
 		break;
+    case OS_WIN32_WINDOWS_EIGHT:
+        return strdup("8");
+        break;
+    case OS_WIN32_WINDOWS_EIGHT_64:
+        return strdup("8 x64");
+        break;
+    case OS_WIN32_WINDOWS_EIGHT_SERVER:
+        return strdup("8 Server");
+        break;
+    case OS_WIN32_WINDOWS_EIGHT_SERVER_64:
+        return strdup("8 Server x64");
+        break;
 	}
 #endif
 }

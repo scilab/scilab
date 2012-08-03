@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coff">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>coff</refname>
     <refpurpose> resolvent (cofactor method)  </refpurpose>
@@ -40,24 +37,36 @@
       <varlistentry>
         <term>N</term>
         <listitem>
-          <para>polynomial matrix (same size as <literal>M</literal>)</para>
+          <para>
+            polynomial matrix (same size as <literal>M</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d</term>
         <listitem>
-          <para>polynomial (characteristic polynomial <literal>poly(A,'s')</literal>)</para>
+          <para>
+            polynomial (characteristic polynomial <literal>poly(A,'s')</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix. 
-    R is given by <literal>N/d</literal>.</para>
-    <para><literal>N</literal> = numerator polynomial matrix.</para>
-    <para><literal>d</literal> = common denominator.</para>
-    <para><literal>var</literal> character string ('<literal>s</literal>' if omitted)</para>
+    <para>
+      <literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix. 
+      R is given by <literal>N/d</literal>.
+    </para>
+    <para>
+      <literal>N</literal> = numerator polynomial matrix.
+    </para>
+    <para>
+      <literal>d</literal> = common denominator.
+    </para>
+    <para>
+      <literal>var</literal> character string ('<literal>s</literal>' if omitted)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +78,7 @@ inv(%s*eye()-M)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="coffg">coffg</link>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +20,9 @@ import java.awt.Rectangle;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraphView;
@@ -28,171 +31,182 @@ import com.mxgraph.view.mxGraphView;
  * Implement the default component for the {@link ScilabGraph}.
  */
 public class ScilabComponent extends mxGraphComponent {
-	/**
-	 * Color use to mask the graph when the graph is locked
-	 */
-	private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
-	
-	private static final double SCALE_MULTIPLIER = 1.1;
+    /**
+     * Color use to mask the graph when the graph is locked
+     */
+    private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
 
-	/**
-	 * Construct the component with the associated graph
-	 * 
-	 * @param graph
-	 *            The associated graph
-	 */
-	public ScilabComponent(ScilabGraph graph) {
-		super(graph);
-	}
+    private static final double SCALE_MULTIPLIER = 1.1;
 
-	/**
-	 * @return the associated graph control
-	 * @see com.mxgraph.swing.mxGraphComponent#createGraphControl()
-	 */
-	@Override
-	protected mxGraphControl createGraphControl() {
-		return new ScilabGraphControl();
-	}
-	
-	/**
-	 * Create the associated canvas
-	 * 
-	 * @return the canvas
-	 */
-	@Override
-	public ScilabCanvas createCanvas() {
-		return new ScilabCanvas();
-	}
+    /**
+     * Construct the component with the associated graph
+     *
+     * @param graph
+     *            The associated graph
+     */
+    public ScilabComponent(ScilabGraph graph) {
+        super(graph);
+    }
 
-	/**
-	 * Zoom the whole graph and center the view on it.
-	 */
-	public void zoomAndCenterToCells() {
-		mxGraphView view = graph.getView();
-		Rectangle preference = (Rectangle) getChildrenBounds(
-				graph.getChildCells(graph.getDefaultParent())).getRectangle();
+    /**
+     * @return the associated graph control
+     * @see com.mxgraph.swing.mxGraphComponent#createGraphControl()
+     */
+    @Override
+    protected mxGraphControl createGraphControl() {
+        return new ScilabGraphControl();
+    }
 
-		Dimension actual = getViewport().getSize();
+    /**
+     * Create the associated canvas
+     *
+     * @return the canvas
+     */
+    @Override
+    public ScilabCanvas createCanvas() {
+        return new ScilabCanvas();
+    }
 
-		double newScale;
-		double heightScale = actual.getHeight() / preference.getHeight();
-		double widthScale = actual.getWidth() / preference.getWidth();
+    /**
+     * Zoom the whole graph and center the view on it.
+     */
+    public void zoomAndCenterToCells() {
 
-		if (heightScale > 1.0) {
-			if (widthScale > 1.0) {
-				// We need to zoom in (the max applicable zoom is the lowest)
-				newScale = Math.min(heightScale, widthScale)
-						* (1.0 - (SCALE_MULTIPLIER - 1.0));
-			} else {
-				// we need to zoom out (only widthScale is < 1.0)
-				newScale = widthScale * SCALE_MULTIPLIER;
-			}
-		} else {
-			if (widthScale > 1.0) {
-				// we need to zoom out (only heightScale is < 1.0)
-				newScale = heightScale * SCALE_MULTIPLIER;
-			} else {
-				// We need to zoom out (the max applicable zoom is the lowest)
-				newScale = Math.min(heightScale, widthScale) * SCALE_MULTIPLIER;
-			}
-		}
+    }
 
-		zoom(newScale);
+    /**
+     * Zoom the whole graph and center the view on it.
+     *
+     * @param cells
+     *            the cells to center on
+     */
+    public void zoomAndCenterToCells(final Object[] cells) {
+        final mxGraphView view = graph.getView();
 
-		view.revalidate();
-		Rectangle orig = (Rectangle) getChildrenBounds(
-				graph.getChildCells(graph.getDefaultParent())).getRectangle();
-		getGraphControl().scrollRectToVisible(orig);
-	}
+        final Rectangle preference;
+        final Object[] c;
+        if (cells == null || cells.length == 0) {
+            c = graph.getChildCells(graph.getDefaultParent());
+        } else {
+            c = cells;
+        }
+        preference = getChildrenBounds(c).getRectangle();
 
-	/**
-	 * Get the children bound for the cells
-	 * 
-	 * @param cells
-	 *            the root of the graph
-	 * @return the rectangle or null if not applicable
-	 */
-	private mxRectangle getChildrenBounds(final Object[] cells) {
-		mxRectangle result = null;
+        Dimension actual = getViewport().getSize();
 
-		if (cells != null && cells.length > 0) {
-			final mxGraphView view = graph.getView();
-			final mxIGraphModel model = graph.getModel();
+        double newScale;
+        double heightScale = actual.getHeight() / preference.getHeight();
+        double widthScale = actual.getWidth() / preference.getWidth();
 
-			for (int i = 0; i < cells.length; i++) {
-				if (model.isVertex(cells[i]) || model.isEdge(cells[i])) {
-					final mxICell parent = ((mxICell) cells[i]);
-					final int childCount = parent.getChildCount();
+        if (heightScale > 1.0) {
+            if (widthScale > 1.0) {
+                // We need to zoom in (the max applicable zoom is the lowest)
+                newScale = Math.min(heightScale, widthScale) * (1.0 - (SCALE_MULTIPLIER - 1.0));
+            } else {
+                // we need to zoom out (only widthScale is < 1.0)
+                newScale = widthScale * SCALE_MULTIPLIER;
+            }
+        } else {
+            if (widthScale > 1.0) {
+                // we need to zoom out (only heightScale is < 1.0)
+                newScale = heightScale * SCALE_MULTIPLIER;
+            } else {
+                // We need to zoom out (the max applicable zoom is the lowest)
+                newScale = Math.min(heightScale, widthScale) * SCALE_MULTIPLIER;
+            }
+        }
 
-					for (int j = 0; j < childCount; j++) {
-						final mxICell child = parent.getChildAt(j);
+        zoom(newScale);
 
-						result = updateRectangle(result, view, child);
-					}
+        view.revalidate();
+        Rectangle orig = getChildrenBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle();
+        getGraphControl().scrollRectToVisible(orig);
+    }
 
-					result = updateRectangle(result, view, parent);
-				}
-			}
-		}
+    /**
+     * Get the children bound for the cells
+     *
+     * @param cells
+     *            the root of the graph
+     * @return the rectangle or null if not applicable
+     */
+    private mxRectangle getChildrenBounds(final Object[] cells) {
+        mxRectangle result = null;
 
-		return result;
-	}
+        if (cells != null && cells.length > 0) {
+            final mxGraphView view = graph.getView();
+            final mxIGraphModel model = graph.getModel();
 
-	/**
-	 * Update the rectangle parameter with the cell status
-	 * 
-	 * @param result
-	 *            the previous result
-	 * @param view
-	 *            the current view
-	 * @param child
-	 *            the child we have to work on
-	 * @return the updated rectangle
-	 */
-	private mxRectangle updateRectangle(mxRectangle result,
-			final mxGraphView view, final mxICell child) {
-		final mxCellState state = view.getState(child);
-		mxRectangle rect = result;
+            for (int i = 0; i < cells.length; i++) {
+                if (model.isVertex(cells[i]) || model.isEdge(cells[i])) {
+                    final mxICell parent = ((mxICell) cells[i]);
+                    final int childCount = parent.getChildCount();
 
-		if (state != null) {
-			if (rect == null) {
-				rect = new mxRectangle(state);
-			} else {
-				rect.add(state);
-			}
-		}
-		return rect;
-	}
+                    for (int j = 0; j < childCount; j++) {
+                        final mxICell child = parent.getChildAt(j);
 
-	/**
-	 * Implement a graph control which paint a foreground on top of the view
-	 * when the graph is locked.
-	 */
-	public class ScilabGraphControl extends mxGraphControl {
-		
-		/**
-		 * Default constructor 
-		 */
-		public ScilabGraphControl() {
-			super();
-		}
-		
-		/**
-		 * Paint the component and the foreground color
-		 * @param g the current graphic context
-		 * @see com.mxgraph.swing.mxGraphComponent.mxGraphControl#paintComponent(java.awt.Graphics)
-		 */
-		@Override
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			
-			if (getGraph().isCellsLocked()) {
-				g.setColor(MASK_COLOR);
-				
-				Rectangle b = getBounds();
-				
-				g.fillRect(b.x, b.y, b.width, b.height);
-			}
-		}
-	}
+                        result = updateRectangle(result, view, child);
+                    }
+
+                    result = updateRectangle(result, view, parent);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Update the rectangle parameter with the cell status
+     *
+     * @param result
+     *            the previous result
+     * @param view
+     *            the current view
+     * @param child
+     *            the child we have to work on
+     * @return the updated rectangle
+     */
+    private mxRectangle updateRectangle(mxRectangle result, final mxGraphView view, final mxICell child) {
+        final mxCellState state = view.getState(child);
+        mxRectangle rect = result;
+
+        if (state != null) {
+            if (rect == null) {
+                rect = new mxRectangle(state);
+            } else {
+                rect.add(state);
+            }
+        }
+        return rect;
+    }
+
+    /**
+     * Implement a graph control which paint a foreground on top of the view
+     * when the graph is locked.
+     */
+    public class ScilabGraphControl extends mxGraphControl {
+
+        /**
+         * Default constructor
+         */
+        public ScilabGraphControl() {
+            super();
+
+            // Paint the foreground color after the real paint
+            addListener(mxEvent.AFTER_PAINT, new mxEventSource.mxIEventListener() {
+                public void invoke(Object sender, mxEventObject evt) {
+
+                    Graphics g = (Graphics) evt.getProperty("g");
+                    if (getGraph().isCellsLocked()) {
+                        g.setColor(MASK_COLOR);
+
+                        Rectangle b = getBounds();
+
+                        g.fillRect(b.x, b.y, b.width, b.height);
+                    }
+                }
+            });
+        }
+    }
 }

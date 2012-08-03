@@ -1,114 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="eval_cshep2d" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="eval_cshep2d" xml:lang="en">
   <refnamediv>
     <refname>eval_cshep2d</refname>
-
     <refpurpose>bidimensional cubic shepard interpolation
-    evaluation</refpurpose>
+      evaluation
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>xp, yp</term>
-
         <listitem>
           <para>two real vectors (or matrices) of the same size</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>tl_coef</term>
-
         <listitem>
           <para>a tlist scilab structure (of type cshep2d) defining a cubic
-          Shepard interpolation function (named <literal>S</literal> in the
-          following)</para>
+            Shepard interpolation function (named <literal>S</literal> in the
+            following)
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>zp</term>
-
         <listitem>
-          <para>vector (or matrix) of the same size than <literal>xp</literal>
-          and <literal>yp</literal>, evaluation of the interpolant
-          <literal>S</literal> at these points</para>
+          <para>
+            vector (or matrix) of the same size than <literal>xp</literal>
+            and <literal>yp</literal>, evaluation of the interpolant
+            <literal>S</literal> at these points
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>dzpdx,dzpdy</term>
-
         <listitem>
           <para>vectors (or matrices) of the same size than
-          <literal>xp</literal> and <literal>yp</literal>, evaluation of the
-          first derivatives of <literal>S</literal> at these points</para>
+            <literal>xp</literal> and <literal>yp</literal>, evaluation of the
+            first derivatives of <literal>S</literal> at these points
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>d2zpdxx,d2zpdxy,d2zpdyy</term>
-
         <listitem>
           <para>vectors (or matrices) of the same size than
-          <literal>xp</literal> and <literal>yp</literal>, evaluation of the
-          second derivatives of <literal>S</literal> at these points</para>
+            <literal>xp</literal> and <literal>yp</literal>, evaluation of the
+            second derivatives of <literal>S</literal> at these points
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>This is the evaluation routine for cubic Shepard interpolation
-    function computed with <link linkend="cshep2d">cshep2d</link>, that is
-    :</para>
-
+      function computed with <link linkend="cshep2d">cshep2d</link>, that is
+      :
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../mml/eval_cshep2d_equation1.mml" />
+          <imagedata align="center" fileref="../mml/eval_cshep2d_equation1.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
   </refsection>
-
   <refsection>
     <title>Remark</title>
-
-    <para>The interpolant <emphasis>S</emphasis> is C2 (twice continuously
-    differentiable) but is also extended by zero for
-    <emphasis>(x,y)</emphasis> far enough the interpolation points. This leads
-    to a discontinuity in a region far outside the interpolation points, and
-    so, is not cumbersome in practice (in a general manner, evaluation outside
-    interpolation points (i.e. extrapolation) leads to very inacurate
-    results).</para>
+    <para>
+      The interpolant <emphasis>S</emphasis> is C2 (twice continuously
+      differentiable) but is also extended by zero for
+      <emphasis>(x,y)</emphasis> far enough the interpolation points. This leads
+      to a discontinuity in a region far outside the interpolation points, and
+      so, is not cumbersome in practice (in a general manner, evaluation outside
+      interpolation points (i.e. extrapolation) leads to very inacurate
+      results).
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // see example section of cshep2d
 
@@ -136,22 +113,21 @@ legends(["extrapolation region","interpolation region"],[2 3],1)
 show_window()
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="cshep2d">cshep2d</link></member>
+      <member>
+        <link linkend="cshep2d">cshep2d</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Robert J. Renka</member>
-
-      <member>B. Pincon (scilab interface)</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

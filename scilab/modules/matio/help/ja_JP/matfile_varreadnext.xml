@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matfile_varreadnext">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>matfile_varreadnext</refname>
     <refpurpose>Matlab V5バイナリ MATファイルの次の変数を読み込む.</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>実数: ファイル記述子 ( <link linkend="matfile_open">matfile_open</link>により返された).</para>
+          <para>
+            実数: ファイル記述子 ( <link linkend="matfile_open">matfile_open</link>により返された).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>name</term>
         <listitem>
-          <para>文字列: 読み込んだ変数の名前または <literal>""</literal> (読み込みに失敗した場合).</para>
+          <para>
+            文字列: 読み込んだ変数の名前または <literal>""</literal> (読み込みに失敗した場合).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,10 +50,14 @@
           <para>実数: 変数の型(読み込みに成功した場合)または:</para>
           <itemizedlist>
             <listitem>
-              <para><emphasis>0</emphasis>: 変数の型が不明の場合.</para>
+              <para>
+                <emphasis>0</emphasis>: 変数の型が不明の場合.
+              </para>
             </listitem>
             <listitem>
-              <para><emphasis>-1</emphasis>: ファイル終端に達した場合.</para>
+              <para>
+                <emphasis>-1</emphasis>: ファイル終端に達した場合.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -62,8 +67,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	<link linkend="matfile_open">matfile_open</link>により開かれた
-    Matlabバイナリ MATファイルの次の変数を読み込みます.</para>
+      <link linkend="matfile_open">matfile_open</link>により開かれた
+      Matlabバイナリ MATファイルの次の変数を読み込みます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -83,13 +89,13 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
-    <para>この関数はMATIOライブラリ (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>)を使用しています.</para>
+    <para>
+      この関数はMATIOライブラリ (
+      <literal>
+        <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
+      </literal>
+      )を使用しています.
+    </para>
   </refsection>
 </refentry>

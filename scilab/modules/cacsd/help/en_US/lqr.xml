@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lqr</refname>
     <refpurpose> LQ compensator (full state)  </refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>P12</term>
         <listitem>
-          <para> <literal>syslin</literal> list (state-space linear system)</para>
+          <para>
+            <literal>syslin</literal> list (state-space linear system)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,55 +40,69 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lqr</literal>  computes the linear optimal LQ full-state gain
-    for the plant <literal>P12=[A,B2,C1,D12]</literal> in continuous or
-    discrete time.</para>
-    <para><literal>P12</literal> is a <literal>syslin</literal> list (e.g. <literal>P12=syslin('c',A,B2,C1,D12)</literal>).</para>
     <para>
-    The cost function is l2-norm of <literal>z'*z</literal> with <literal>z=C1 x + D12 u</literal>
-    i.e. <literal>[x,u]' * BigQ * [x;u]</literal> where</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>lqr</literal>  computes the linear optimal LQ full-state gain
+      for the plant <literal>P12=[A,B2,C1,D12]</literal> in continuous or
+      discrete time.
+    </para>
+    <para>
+      <literal>P12</literal> is a <literal>syslin</literal> list (e.g. <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
+    </para>
+    <para>
+      The cost function is l2-norm of <literal>z'*z</literal> with <literal>z=C1 x + D12 u</literal>
+      i.e. <literal>[x,u]' * BigQ * [x;u]</literal> where
+    </para>
+    <programlisting role=""><![CDATA[ 
       [C1' ]               [Q  S]
 BigQ= [    ]  * [C1 D12] = [    ]
       [D12']               [S' R]
  ]]></programlisting>
     <para>
-    The gain <literal>K</literal> is such that <literal>A + B2*K</literal> is stable.</para>
-    <para><literal>X</literal> is the stabilizing solution of the Riccati equation.</para>
+      The gain <literal>K</literal> is such that <literal>A + B2*K</literal> is stable.
+    </para>
     <para>
-    For a continuous plant:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>X</literal> is the stabilizing solution of the Riccati equation.
+    </para>
+    <para>
+      For a continuous plant:
+    </para>
+    <programlisting role=""><![CDATA[ 
 (A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*B2*inv(R)*B2'*X+Q-S*inv(R)*S'=0
  ]]></programlisting>
-    <programlisting role = ""><![CDATA[
+    <programlisting role=""><![CDATA[
 K=-inv(R)*(B2'*X+S)
  ]]></programlisting>
     <para>
-    For a discrete plant:</para>
-    <programlisting role = ""><![CDATA[ 
+      For a discrete plant:
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=A'*X*A-(A'*X*B2+C1'*D12)*pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)+C1'*C1;
  ]]></programlisting>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 K=-pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)
  ]]></programlisting>
     <para>
-    An equivalent form for <literal>X</literal> is</para>
-    <programlisting role = ""><![CDATA[ 
+      An equivalent form for <literal>X</literal> is
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
  ]]></programlisting>
     <para>
-    with <literal>Abar=A-B2*inv(R)*S'</literal> and <literal>Qbar=Q-S*inv(R)*S'</literal></para>
+      with <literal>Abar=A-B2*inv(R)*S'</literal> and <literal>Qbar=Q-S*inv(R)*S'</literal>
+    </para>
     <para>
-    The 3-blocks matrix pencils associated with these Riccati equations are:</para>
-    <programlisting role = ""><![CDATA[ 
+      The 3-blocks matrix pencils associated with these Riccati equations are:
+    </para>
+    <programlisting role=""><![CDATA[ 
              discrete                           continuous
  |I   0    0|   | A    0    B2|         |I   0   0|   | A    0    B2|
 z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
  |0   B2'  0|   | S'   0     R|         |0   0   0|   | S'  -B2'   R|
  ]]></programlisting>
     <para>
-    Caution: It is assumed that matrix R is non singular. In particular,
-    the plant must be tall (number of outputs &gt;= number of inputs).</para>
+      Caution: It is assumed that matrix R is non singular. In particular,
+      the plant must be tall (number of outputs &gt;= number of inputs).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -109,7 +122,7 @@ norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqe">lqe</link>
@@ -121,9 +134,5 @@ norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
         <link linkend="leqr">leqr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

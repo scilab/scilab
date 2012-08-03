@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="gsort" xml:lang="ru">
+  <refnamediv>
+    <refname>gsort</refname>
+    <refpurpose>сортировка по алгоритму быстрой сортировки</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[B [,k]]=gsort(A)
+      [B [,k]]=gsort(A,option)
+      [B [,k]]=gsort(A,option,direction)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>вещественный, целочисленный или строковый вектор.матрица, либо разрежённый вектор.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>option</term>
+        <listitem>
+          <para>символьная строка. Она задаёт тип требуемой сортировки:
+          </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                'r' : сортируется каждый столбец <literal>A</literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                'c': сортируется каждая строка <literal>A</literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                'g': сортируются все элементы <literal>A</literal>. Это значение по умолчанию.
+              </para>
+            </listitem>
+            <listitem>
+              <para>'lr': лексикографическая сортировка строк 
+                <literal>A</literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para>'lc': лексикографическая сортировка столбцов 
+                <literal>A</literal>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>direction</term>
+        <listitem>
+          <para>символьная строка. Она задаёт направление сортировки:
+            <literal>'i'</literal> устанавливает порядок возрастания, а 
+            <literal>'d'</literal> устанавливает порядок убывания (по умолчанию).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>B</term>
+        <listitem>
+          <para>
+            массив того же типа и размеров, что и <literal>A</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>вещественный массив целочисленных значений тех же размеров, что и 
+            <literal>A</literal>. Содержит исходные индексы.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      <literal>gsort</literal> использует алгоритм "быстрой сортировки" для различных типов данных.
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <literal>B=gsort(A,'g')</literal>,
+          <literal>B=gsort(A,'g','d')</literal> и
+          <literal>B=gsort(A)</literal> сортируют элементы массива
+          <literal>A</literal>, который рассматривается как <literal>A(:)</literal> в порядке убывания.
+        </para>
+        <para>
+          <literal>B=gsort(A,'g','i')</literal> сортирует элементы массива <literal>A</literal> в порядке возрастания.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>B=gsort(A,'lr')</literal> сортирует строки
+          <literal>A</literal> в лексическом порядке убывания. <literal>B</literal>
+          получается перестановкой строк матрицы <literal>A</literal> таким образом, чтобы строки <literal>B</literal> удовлетворяли <literal>B(i,:)&gt;=B(j,:)</literal>, если <literal>i&lt;j</literal>.
+        </para>
+        <para>
+          <literal>B=gsort(A,'lr','i')</literal> работает аналогично для лексического порядка возрастания.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>B=gsort(A,'lc')</literal> сортирует столбцы <literal>A</literal> в лексическом порядке убывания. <literal>B</literal> получается перестановкой столбцов матрицы <literal>A</literal> таким образом, чтобы столбцы           <literal>B</literal> удовлетворяли <literal>B(:,i)&gt;=B(:,j)</literal>, если
+          <literal>i&lt;j</literal>.
+        </para>
+        <para>
+          <literal>B=gsort(A,'lc','i')</literal> работает аналогично для лексического порядка возрастания.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Если требуется, то второй возвращаемый аргумент <literal>k</literal> содержит индексы отсортированных значений в <literal>A</literal>. Если <literal>[B,k]=gsort(A,'g')</literal>, то  <literal>B==A(k)</literal>.
+      <emphasis role="bold">
+        Алгоритм сохраняет относительный порядок записей с одинаковыми значениями. 
+      </emphasis>
+    </para>
+    <para>
+      Когда <literal>v</literal> является комплексным, элементы сортируются по амплитуде, т. е. abs(<literal>v</literal>). Только <literal>'g'</literal> в качестве второго аргумента работает с комплексными значениями.
+    </para>
+    <para>
+      С комплексными числами <literal>gsort</literal> может быть перегружена
+    </para>
+    <para>смотрите макрос:
+      SCI/modules/elementary_functions/macros/%_gsort.sci
+    </para>
+    <para>
+      Можно делать перегрузку для типов, которые не управляются (отличные от матриц/векторов вещественных, целочисленных или символьных значений, либо разрежённого вектора).
+    </para>
+    <para>
+      Если <literal>v</literal> содержит элементы <literal>%nan</literal> или
+      <literal>%inf</literal>, то <literal>gsort</literal> помещает их в начало с аргументом <literal>'i'</literal>, либо в конец с аргументом <literal>'d'</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"> 
+      alr=[1,2,2;
+      1,2,1;
+      1,1,2;
+      1,1,1];
+      [alr1,k]=gsort(alr,'lr','i')
+      [alr1,k]=gsort(alr,'lc','i')
+      
+      v=int32(alr)
+      
+      gsort(v)
+      gsort(v,'lr','i')
+      gsort(v,'lc','i')
+      
+      v=['Scilab' '2.6'
+      'Scilab' '2.7'
+      'xcos' '2.7'
+      'Scilab' '3.1'
+      'xcos' '3.1'
+      'xcos' '4.0'
+      'Scilab' '4.0']
+      
+      gsort(v,'lr','i')
+      gsort(v,'lc','i')
+    </programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+    </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Литература</title>
+    <para>Quick sort algorithm from Bentley &amp; McIlroy's "Engineering a
+      Sort Function". Software---Practice and Experience,
+      23(11):1249-1265
+    </para>
+  </refsection>
+  <refsection>
+    <title>История</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark> 
+          Эта функция позволяет делать перегрузку для типов, которые не управляются (отличные от матриц/векторов вещественных, целочисленных или символьных значений, либо разрежённого вектора).
+        </revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+</refentry>

@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH XCOS -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 9478 -->
 //
@@ -43,7 +44,7 @@ scs_m.objs(1)=scicos_block(..
                        peout=[],..
                        gr_i=list(..
                        ["dx=sz(1)/5;dy=sz(2)/10;";
-tmpFileName = TMPDIR + "/bug_9478_scs_m.h5";
+tmpFileName = TMPDIR + "/bug_9478_scs_m.sod";
 assert_checktrue(export_to_hdf5(tmpFileName, "scs_m"))
  ans  =
  

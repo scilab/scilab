@@ -20,8 +20,10 @@
 %{
 #include "../../../core/includes/SCIHOME.h"
 #include "../../../core/includes/tmpdir.h"
-
 #include "../../../fileio/includes/createtempfilename.h"
+#include "../../../localization/includes/setgetlanguage.h"
+#include "../../../core/includes/setieee.h"
+#include "../../../core/includes/setformat.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
@@ -106,6 +108,16 @@ char *getTMPDIR(void);
 
 
 /* JavaDoc */
+%javamethodmodifiers getScilabLanguage() "
+ /**
+   * returns Scilab current language
+   * @return language
+   */
+public";
+char *getlanguage(void);
+
+
+/* JavaDoc */
 %javamethodmodifiers createTempFileName() "
  /**
   * Create file with unique file name in TMPDIR
@@ -117,3 +129,45 @@ char *getTMPDIR(void);
 public";
 char *createtempfilename(const char* prefix, int bShortFormat);
 
+/* JavaDoc */
+%javamethodmodifiers getScilabIeeeMode() "
+ /**
+   * returns the Scilab ieee mode 
+   * @return ieee mode
+   */
+public";
+int getieee(void);
+
+/* JavaDoc */
+%javamethodmodifiers setScilabIeeeMode(int) "
+ /**
+   * Set the Scilab ieee mode 
+   */
+public";
+void setieee(int);
+
+/* JavaDoc */
+%javamethodmodifiers setformat(const char *, int) "
+ /**
+   * Set the Scilab ieee mode 
+   */
+public";
+void setformat(const char * format, int width);
+
+/* JavaDoc */
+%javamethodmodifiers getformat() "
+ /**
+   * returns the Scilab format (\"v\" or \"e\") 
+   * @return format
+   */
+public";
+char * getformat();
+
+/* JavaDoc */
+%javamethodmodifiers getformatwidth() "
+ /**
+   * returns the Scilab format width 
+   * @return format
+   */
+public";
+int getformatwidth();

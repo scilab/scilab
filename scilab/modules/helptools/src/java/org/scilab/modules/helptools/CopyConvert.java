@@ -18,11 +18,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.Writer;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
-import java.net.URI;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -48,12 +46,10 @@ import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 
 import net.sourceforge.jeuclid.context.Parameter;
-import net.sourceforge.jeuclid.LayoutContext;
 import net.sourceforge.jeuclid.MutableLayoutContext;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.converter.Converter;
 
-import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.forge.jlatexmath.TeXConstants; 
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.ParseException;
@@ -66,7 +62,6 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     private static final String MATHML_NS =
         "http://www.w3.org/1998/Math/MathML";
-    private static final String SVG_NS = "http://www.w3.org/2000/svg";
 
     /**
      * The tmp directory

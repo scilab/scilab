@@ -8,16 +8,32 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:48+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-15 14:26+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Can not create a mlist with input argument #%d.\n"
+msgstr "%s: mlist 入力引数 #%d を指定して mlist を作成することはできません.\n"
+
+#, c-format
+msgid "%s: Can not create a tlist with input argument #%d.\n"
+msgstr "%s: mlist 入力引数 #%d を指定して tlist を作成することはできません.\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " ハイパー行列の展開には,最低2つの引数が必要です. "

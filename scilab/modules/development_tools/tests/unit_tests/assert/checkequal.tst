@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 function flag = MY_assert_equal ( computed , expected )
@@ -108,3 +108,67 @@ checkassert ( flag , errmsg , "success" );
 //
 [flag , errmsg] = assert_checkequal(complex(%inf,%nan),complex(%inf,%nan));
 checkassert ( flag , errmsg , "success" );
+//
+////////////////////////////////////////////////////////
+// Check various types
+//
+//  Mlist
+s=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+t=s; 
+assert_checkequal(s, t);
+//
+//  Tlist
+s=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+t=s; 
+assert_checkequal(s, t);
+//
+// Polynomial
+s=poly(0,"s");
+t=s;
+assert_checkequal(s, t);
+//
+// Sparse
+s=spzeros(3,5);
+t=s;
+assert_checkequal(s, t);
+//
+// Boolean
+s=(ones(3,5)==ones(3,5));
+t=s;
+assert_checkequal(s, t);
+//
+// Sparse Boolean
+s=(spzeros(3,5)==spzeros(3,5));
+t=s;
+assert_checkequal(s, t);
+//
+// Integer  8
+s=int8(3);
+t=s;
+assert_checkequal(s, t);
+//
+// String
+s="foo";
+t=s;
+assert_checkequal(s, t);
+//
+// List
+s=list("foo",2);
+t=s;
+assert_checkequal(s, t);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

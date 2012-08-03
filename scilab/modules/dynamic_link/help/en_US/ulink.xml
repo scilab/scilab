@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ulink">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ulink</refname>
     <refpurpose> unlink a dynamically linked shared object</refpurpose>
@@ -21,26 +18,33 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>ulink(x)
-ulink()</synopsis>
+      ulink()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>a ID returned by <literal>link</literal></para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+    <refsection>
+      <title>Arguments</title>
+      <variablelist>
+        <varlistentry>
+          <term>x</term>
+          <listitem>
+            <para>
+              a ID returned by <literal>link</literal>
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </refsection>
     <title>Description</title>
-    <para>see <literal>link</literal></para>
-    <para>If you plan to use <literal>valgrind</literal> to profile
-    your module, you must first set the environment
-    variable <literal>PROFILE_SCILAB_DYNAMIC_LINK</literal> before
-    starting scilab:</para>
+    <para>
+      see <literal>link</literal>
+    </para>
+    <para>
+      If you plan to use <literal>valgrind</literal> to profile
+      your module, you must first set the environment
+      variable <literal>PROFILE_SCILAB_DYNAMIC_LINK</literal> before
+      starting scilab:
+    </para>
     <programlisting role="example"><![CDATA[
 # under bash shell:
 export PROFILE_SCILAB_DYNAMIC_LINK=1
@@ -48,11 +52,12 @@ export SCILAB_VALGRIND_OPT="--db-attach=no --show-below-main=yes  --log-fd=2 --l
 scilab -nwni -profile
  ]]></programlisting>
     <para>This environment variable force Scilab not to release the
-    loaded dynamic libraries. This will
-    allow <literal>valgrind</literal> to perform its sum-up analysis.</para>
+      loaded dynamic libraries. This will
+      allow <literal>valgrind</literal> to perform its sum-up analysis.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="link">link</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lcmdiag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lcmdiag</refname>
     <refpurpose>最小公倍数対角分解</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[N,D]=lcmdiag(H)
-[N,D]=lcmdiag(H,flag)</synopsis>
+      [N,D]=lcmdiag(H,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -47,21 +45,26 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列: <literal>'row'</literal> または <literal>'col'</literal> (デフォルト)</para>
+          <para>
+            文字列: <literal>'row'</literal> または <literal>'col'</literal> (デフォルト)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[N,D]=lcmdiag(H,'row')</literal> は,
-	分解<literal>D*H=N</literal>,
-	すなわち,<literal>H=D^(-1)*N</literal>を計算します
-	ただし, D は D(k,k)= H('den')のk行目の最小公倍数となる
-	対角行列です.</para>
-    <para><literal>[N,D]=lcmdiag(H)</literal> または <literal>[N,D]=lcmdiag(H,'col)</literal> 
-	は,D(k,k)=H('den')のk列目の最小公倍数となる<literal>H=N*D^(-1)</literal>を返します.
-	</para>
+    <para>
+      <literal>[N,D]=lcmdiag(H,'row')</literal> は,
+      分解<literal>D*H=N</literal>,
+      すなわち,<literal>H=D^(-1)*N</literal>を計算します
+      ただし, D は D(k,k)= H('den')のk行目の最小公倍数となる
+      対角行列です.
+    </para>
+    <para>
+      <literal>[N,D]=lcmdiag(H)</literal> または <literal>[N,D]=lcmdiag(H,'col)</literal> 
+      は,D(k,k)=H('den')のk列目の最小公倍数となる<literal>H=N*D^(-1)</literal>を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -61,10 +61,7 @@ function scs_m_new = update_scs_m(scs_m,version)
           end
         end
         T_txt = 'sprops=scicos_params(' + T_txt + ')';
-        ierr  = execstr(T_txt,'errcatch')
-        if ierr<>0 then
-           error("Problem in convertion of props in diagram.")
-        end
+        execstr(T_txt)
         scs_m_new.props = sprops;
       //*********************************************//
 
@@ -98,10 +95,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                       end
                     end
                     G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
-                    ierr  = execstr(G_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of graphics in block.")
-                    end
+                    execstr(G_txt)
                     o_new.graphics = ogra;
                   //*******************************//
 
@@ -118,10 +112,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                       end
                     end
                     M_txt = 'omod=scicos_model(' + M_txt + ')';
-                    ierr  = execstr(M_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of model in block.")
-                    end
+                    execstr(M_txt)
                     //******** super block case ********//
                     if omod.sim=='super'|omod.sim=='csuper' then
                       rpar=update_scs_m(omod.rpar,version)
@@ -130,14 +121,16 @@ function scs_m_new = update_scs_m(scs_m,version)
                     o_new.model = omod;
                   //*******************************//
 
+                  //************* doc ***********//
+                  case 'doc' then
+                    o_new.doc = list();
+                  //*******************************//
+
                   //************* other ***********//
                   else
                     T_txt = "o."+T(k);
                     T_txt = "o_new." + T(k) + "=" + T_txt;
-                    ierr  = execstr(T_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion in objs.")
-                    end
+                    execstr(T_txt)
                   //*******************************//
 
                 end  //end of select T(k)
@@ -158,10 +151,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                 end
               end
               T_txt = 'o_new=scicos_link(' + T_txt + ')';
-              ierr  = execstr(T_txt,'errcatch')
-              if ierr<>0 then
-                error("Problem in convertion of link in objs.")
-              end
+              execstr(T_txt)
               scs_m_new.objs(j) = o_new;
             //************************************//
 
@@ -187,10 +177,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                       end
                     end
                     G_txt = 'ogra=scicos_graphics(' + G_txt + ')';
-                    ierr  = execstr(G_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of graphics in text.")
-                    end
+                    execstr(G_txt)
                     o_new.graphics = ogra;
                   //*******************************//
 
@@ -207,10 +194,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                       end
                     end
                     M_txt = 'omod=scicos_model(' + M_txt + ')';
-                    ierr  = execstr(M_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion of model in text.")
-                    end
+                    execstr(M_txt)
                     //******** super block case ********//
                     if omod.sim=='super'|omod.sim=='csuper' then
                       rpar=update_scs_m(omod.rpar,version)
@@ -223,10 +207,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                   else
                     T_txt = "o."+T(k);
                     T_txt = "o_new." + T(k) + "=" + T_txt;
-                    ierr  = execstr(T_txt,'errcatch')
-                    if ierr<>0 then
-                      error("Problem in convertion in objs.")
-                    end
+                    execstr(T_txt)
                   //*******************************//
 
                 end  //end of select T(k)

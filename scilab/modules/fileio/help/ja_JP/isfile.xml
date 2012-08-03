@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isfile" xml:lang="ja">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>isfile</refname>
     <refpurpose>引数がファイルかどうか調べる</refpurpose>
@@ -42,20 +39,21 @@
   <refsection>
     <title>説明</title>
     <para>b = isfile(filenames) は, filenames が
-	既存のファイルかどうかを調べます.
-	(ディレクトリはファイルではありません. isdir を参照ください.)</para>
+      既存のファイルかどうかを調べます.
+      (ディレクトリはファイルではありません. isdir を参照ください.)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example">cd SCI
-filenames = ls()
-isfile(filenames)
-
-isfile(filenames)
-
-isfile(SCI + '/etc')
-isdir(SCI + '/etc')
- </programlisting>
+      filenames = ls()
+      isfile(filenames)
+      
+      isfile(filenames)
+      
+      isfile(SCI + '/etc')
+      isdir(SCI + '/etc')
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -67,9 +65,5 @@ isdir(SCI + '/etc')
         <link linkend="isdir">isdir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

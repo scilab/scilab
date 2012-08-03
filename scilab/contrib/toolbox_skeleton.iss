@@ -36,6 +36,7 @@ Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\builder_gateway_c.sce; DestDir
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_csum.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_csub.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_multiplybypi.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_foo.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp\sci_cpp_find.cxx; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp\builder_gateway_cpp.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran\builder_gateway_fortran.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
@@ -60,12 +61,12 @@ Source: contrib\{#XCOS_TOOLBOX_SKELETON}\demos\{#XCOS_TOOLBOX_SKELETON}.dem.gate
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\etc\{#XCOS_TOOLBOX_SKELETON}.quit; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\etc; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\etc\{#XCOS_TOOLBOX_SKELETON}.start; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\etc; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\builder_help.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US\tbx_sum.xml; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US\*.xml; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US\build_help.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\fr_FR\build_help.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\fr_FR; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\images\gif\TBX_SUM_c.gif; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\images\gif; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\images\svg\TBX_SUM_c.svg; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\images\svg; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\macros\TBX_SUM_c.sci; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\macros; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\images\gif\*.gif; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\images\gif; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\images\svg\*.svg; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\images\svg; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\macros\*.sci; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\macros; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\macros\buildmacros.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\macros; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\macros\cleanmacros.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\macros; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\sci_gateway\builder_gateway.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\sci_gateway; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}

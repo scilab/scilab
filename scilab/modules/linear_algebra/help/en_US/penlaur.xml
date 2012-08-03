@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="penlaur">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>penlaur</refname>
     <refpurpose> Laurent coefficients of matrix pencil</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Si,Pi,Di,order]=penlaur(Fs)
-[Si,Pi,Di,order]=penlaur(E,A)</synopsis>
+      [Si,Pi,Di,order]=penlaur(E,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>Fs</term>
         <listitem>
-          <para>a regular pencil <literal>s*E-A</literal></para>
+          <para>
+            a regular pencil <literal>s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,25 +54,38 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>penlaur</literal> computes the first Laurent coefficients of <literal>(s*E-A)^-1</literal> at
-    infinity.</para>
-    <para><literal>(s*E-A)^-1 = ... + Si/s - Pi - s*Di + ...</literal> at <literal>s</literal> = infinity.</para>
-    <para><literal>order</literal> = order of the singularity (order=index-1).</para>
     <para>
-    The matrix pencil <literal>Fs=s*E-A</literal> should be invertible.</para>
+      <literal>penlaur</literal> computes the first Laurent coefficients of <literal>(s*E-A)^-1</literal> at
+      infinity.
+    </para>
     <para>
-    For a index-zero pencil, <literal>Pi, Di,...</literal> are zero and <literal>Si=inv(E)</literal>.</para>
+      <literal>(s*E-A)^-1 = ... + Si/s - Pi - s*Di + ...</literal> at <literal>s</literal> = infinity.
+    </para>
     <para>
-    For a index-one pencil (order=0),<literal>Di</literal> =0.</para>
+      <literal>order</literal> = order of the singularity (order=index-1).
+    </para>
     <para>
-    For higher-index pencils, the terms <literal> -s^2 Di(2), -s^3    Di(3),... </literal> are given by:</para>
-    <para><literal> Di(2)=Di*A*Di</literal>, <literal> Di(3)=Di*A*Di*A*Di</literal> (up
-    to <literal>Di(order)</literal>).</para>
+      The matrix pencil <literal>Fs=s*E-A</literal> should be invertible.
+    </para>
+    <para>
+      For a index-zero pencil, <literal>Pi, Di,...</literal> are zero and <literal>Si=inv(E)</literal>.
+    </para>
+    <para>
+      For a index-one pencil (order=0),<literal>Di</literal> =0.
+    </para>
+    <para>
+      For higher-index pencils, the terms <literal> -s^2 Di(2), -s^3    Di(3),... </literal> are given by:
+    </para>
+    <para>
+      <literal> Di(2)=Di*A*Di</literal>, <literal> Di(3)=Di*A*Di*A*Di</literal> (up
+      to <literal>Di(order)</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Remark</title>
     <para>
-    Experimental version: troubles when bad conditioning of <literal>so*E-A</literal></para>
+      Experimental version: troubles when bad conditioning of <literal>so*E-A</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -85,7 +98,7 @@ norm(coeff(Bis,1)-Di,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>
@@ -97,9 +110,5 @@ norm(coeff(Bis,1)-Di,1)
         <link linkend="rowshuff">rowshuff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA(1988,1990) ;   </para>
   </refsection>
 </refentry>

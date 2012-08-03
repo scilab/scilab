@@ -15,8 +15,8 @@
 #ifndef STACK_SCI
 #define STACK_SCI
 
-#ifndef API_SCILAB_VERSION
-#pragma message("Using stack-c.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-c.h API will be removed after Scilab 6.0.")
+#if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
+    #error Using stack-c.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-c.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include <string.h>
@@ -106,6 +106,10 @@ static void initial_c1_local(void)
 #define sadr(l) (((l)/2)+1)
 #define cadr(l) ((l)+(l)+(l)+(l)-3)
 
+/* Top is a variable used in Windows.h */
+#ifdef Top
+#undef Top
+#endif
 #define Top C2F(vstk).top
 #define Fin C2F(com).fin
 #define Rhs C2F(com).rhs
@@ -158,7 +162,7 @@ static void initial_c1_local(void)
 #define VarType(n)   C2F(vartype)((c_local=n,&c_local))
 #define ElementType(n,m)   C2F(elementtype)((c_local=n,&c_local),(c1_local=m,&c1_local))
 
-#define OverLoad(n) C2F(overload)((c_local = n +Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
+#define OverLoad(n) C2F(overload)((c_local = (n == 0) ? n : n + Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
 
 /**
  * <long-description>

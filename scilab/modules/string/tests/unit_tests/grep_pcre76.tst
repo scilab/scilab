@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Comments about PCRE 7.6 see changelog PCRE
 //7.  Patterns such as (?(1)a|b) (a pattern that contains fewer subpatterns

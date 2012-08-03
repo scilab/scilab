@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 //===============================
 // unit tests string
@@ -13,6 +13,22 @@
 assert_checkequal(string(1), '1');
 //===============================
 assert_checkequal(string(1.5), '1.5');
+//===============================
+// Special display cases :
+assert_checkequal(string(0+%i), "%i");
+assert_checkequal(string(0-%i), "-%i");
+assert_checkequal(string(0+0*%i), "0");
+assert_checkequal(string(-1+%i), "-1+%i");
+assert_checkequal(string(-1-%i), "-1-%i");
+assert_checkequal(string(0+2*%i), "%i*2");
+assert_checkequal(string(0-2*%i), "-%i*2");
+assert_checkequal(string(-2+2*%i), "-2+%i*2");
+assert_checkequal(string(-2-2*%i), "-2-%i*2");
+// BUG #10082
+//assert_checkequal(string(1+%i), "1+%i");
+//assert_checkequal(string(1-%i), "1-%i");
+//assert_checkequal(string(2+2*%i), "2+%i*2");
+//assert_checkequal(string(2-2*%i), "2-%i*2");
 //===============================
 assert_checkequal(string([]), []);
 //===============================

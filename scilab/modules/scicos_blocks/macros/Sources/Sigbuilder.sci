@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -37,8 +37,15 @@ case "getorigin" then
   [x,y] = standard_origin(arg1);
 
 case "set" then
-  // paths to updatable parameters or states
-  ppath  = list(1,3)
+  // look for the internal curve block
+  ppath = list(0);
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "CURVE_c" then
+      ppath(1) = i;
+      break;
+    end
+  end
   newpar = list();
   y = 0;
   for path = ppath do

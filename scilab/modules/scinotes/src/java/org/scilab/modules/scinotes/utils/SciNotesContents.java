@@ -14,6 +14,8 @@ package org.scilab.modules.scinotes.utils;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JPanel;
 
@@ -32,10 +34,17 @@ public class SciNotesContents extends JPanel {
      * Default constructor
      * @param editor the editor where to put this pane
      */
-    public SciNotesContents(SciNotes editor) {
+    public SciNotesContents(final SciNotes editor) {
         super(new BorderLayout());
         stp = new ScilabTabbedPane(editor);
         add(stp);
+	addFocusListener(new FocusListener() {
+                public void focusGained(FocusEvent e) {
+                    editor.getTextPane().requestFocus();
+                }
+		
+                public void focusLost(FocusEvent e) { }
+            });
     }
 
     /**

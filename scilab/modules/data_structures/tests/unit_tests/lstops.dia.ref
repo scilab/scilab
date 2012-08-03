@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 mode(5);
 funcprot(0);
 //-----------------------
@@ -22,7 +23,7 @@ if x1<>l(1)|x2<>l(3) then bugmes();quit;end
 if x1<>l(1)|x2<>l(3) then bugmes();quit;end
 [x1,x2,x3]=l(:);
 if x1<>l(1)|x2<>l(2)|x3<>l(3) then bugmes();quit;end
-//with full tlists
+//with full tlists 
 l=tlist(['t','a','b','c'],1,-2,5);
 if l(2)<>1 then bugmes();quit;end
 if l(4)<>5 then bugmes();quit;end
@@ -101,7 +102,7 @@ if %l_n_l(l,tlist('t',[1 2 3],'a',-1)) then bugmes();quit;end
 l(2)=33;
 if %l_n_l(l,tlist('t',33,'a',-1)) then bugmes();quit;end
 l(2)=33;
-if %l_n_l(l,tlist('t',33,'a',-1)) then bugmes();quit;end
+if %l_n_l(l,tlist('t',33,'a',-1)) then bugmes();quit;end 
 l(4)=[1 2];
 if %l_n_l(l,tlist('t',33,'a',[1,2])) then bugmes();quit;end
 l(2)=null();

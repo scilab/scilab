@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="poly">
+  <refnamediv>
+    <refname>poly</refname>
+    <refpurpose>определение полинома</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>p=poly(a,vname, ["flag"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>матрица или вещественной число</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vname</term>
+        <listitem>
+          <para>
+            Строка, имя символьной переменной. Если строка больше 4 символов, то из них 
+            учитываются только 4 первых.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"flag"  </term>
+        <listitem>
+          <para>
+            строка ("roots", "coeff"), значение по умолчанию <literal>"roots"</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          Если <literal>a</literal> -- матрица, то
+        </term>
+        <listitem>
+          <para>
+            <literal>p</literal> является характеристическим полиномом, то есть 
+            <literal>determinant(x*eye()-a)</literal>, где <literal>x</literal> является 
+            символьной переменной.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          Если <literal>v</literal> -- вектор, то
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <literal>poly(v,"x",["roots"])</literal> является полиномом с корнями 
+                <literal>roots</literal>, элементами <literal>v</literal> и
+                <literal>"x"</literal> в качестве формальной переменной. (В этом случае
+                <literal>roots</literal> и <literal>poly</literal> являются обратными функциями). 
+                Заметьте, что бесконечные корни дают нулевые коэффициенты наивысшей степени.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>poly(v,"x","coeff")</literal> создаёт полином с символом  
+                <literal>"x"</literal> и с коэффициентами, хранящимися в элементах 
+                <literal>v</literal> (<literal>v(1)</literal> -- постоянный член полинома). Здесь
+                <literal>poly</literal> и <literal>coeff</literal> являются обратными функциями.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      <literal>s=poly(0,"s")</literal> является семенем для определения полиномов с символом 
+      <literal>"s"</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,"s");
+p=1+s+2*s^2;
+A=rand(2,2);
+poly(A,"x")
+//рациональные дроби
+h=(1+2*%s)/poly(1:4,'s','c')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="varn">varn</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="derivat">derivat</link>
+      </member>
+      <member>
+        <link linkend="matrices">матрицы</link>
+      </member>
+      <member>
+        <link linkend="rational">рациональное число</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

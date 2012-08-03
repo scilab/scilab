@@ -8,146 +8,190 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:22+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2012-05-06 00:13+0000\n"
+"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
-msgstr ""
+msgstr "%s: Número errado de argumentos de entrada: %d de %d é esperado."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Tamanho errado para argumento de entrada #%d: matriz %d-por-%d é "
+"esperada.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar no conjunto "
+"{%s}.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
+"mesmas dimensões.\n"
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
-msgstr ""
+msgstr "%s: Declaração falhou: esperado = %s ao passo que calculado = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
+"%s: argumentos de entrada #%d e #%d incompatíveis: mesmos tipos são "
+"esperados.\n"
 
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
-msgstr ""
+msgstr "%s: o calculado é real, mas o esperado é complexo."
 
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
-msgstr ""
+msgstr "%s: o calculado é complexo, mas o esperado é real."
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: tamanho errado para argumento de entrada #%d: um vetor string é "
+"esperado.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Valor errado para argumento de entrada #%d: inteiros não-negativos são "
+"esperados.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz não vazia.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
-msgstr ""
+msgstr "%s: Nenhum erro foi produzido durante a avaliação de %s."
 
 #, c-format
 msgid "%s: Error while formatting the error message: %s"
-msgstr ""
+msgstr "%s: Erro durante a formatação da mensagem de erro: %s."
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
 "message = %s."
 msgstr ""
+"%s: Suposição falhou: mensagem de erro esperada = %s, enquanto mensagem de "
+"erro calculada = %s."
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
 "= %d."
 msgstr ""
+"%s: Suposição falhou: número de erro esperado = %d, enquanto número de erro "
+"calculado = %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
+"%s: Tipo errado para argumento de entrada #%d: matriz Booleana é esperada.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr ""
+msgstr "%s: Suposição falhou: entrada falsa encontrada na condição = %s"
 
 #, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
 msgstr ""
+"%s: Tipo %s ou %s esperado para argumento %s de entrada #%d, mas o recebido "
+"foi %s."
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: O arquivo %s não existe.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s: Não é possível abrir o arquivo %s.\n"
 
 #, c-format
 msgid ""
 "%s: The content of computed file %s is different from the content of "
 "reference file %s."
 msgstr ""
+"%s: O conteúdo do arquivo %s calculado é diferente do conteúdo do arquivo %s "
+"de referência."
 
 #, c-format
 msgid "%s: Cannot close file %s.\n"
-msgstr ""
+msgstr "%s: Impossível fechar arquivo %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid ""
 "%s: The number of output arguments %d do not match the number of input "
 "arguments %d."
 msgstr ""
+"%s: O número %d de argumentos de saída não coincide com o número %d de "
+"argumentos de entrada."
 
 #, c-format
 msgid ""
 "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
+"%s: Esperada %d linhas no argumento de entrada #%d, mas %d linhas foram "
+"encontradas."
 
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
 msgstr ""
+"%s: Esperada %d colunas no argumento de entrada #%d, mas %d colunas foram "
+"encontradas."
 
 #, c-format
 msgid "%s is not an installed module"
@@ -192,6 +236,12 @@ msgstr "%s não é um módulo ou uma caixa de ferramentas instalado"
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "O arquivo ref (%s) não existe"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr ""
 
 #, c-format
 msgid "No variable %s_ref in reference file"

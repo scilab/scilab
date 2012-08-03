@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clock">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>clock</refname>
     <refpurpose>現在の時間を日付ベクトルとして返す</refpurpose>
@@ -25,7 +22,8 @@
   <refsection>
     <title>説明</title>
     <para>c = clock は,現在の10進形式の日付と時間を有する要素数6の日付ベクトル
-	を返します:</para>
+      を返します:
+    </para>
     <para>c = [年 月 日 時間 分 秒]</para>
     <para>最初の5つの要素は整数です.2番目の要素は小数点以下数桁まで正確です.</para>
   </refsection>
@@ -56,12 +54,6 @@ clock
       <member>
         <link linkend="toc">toc</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

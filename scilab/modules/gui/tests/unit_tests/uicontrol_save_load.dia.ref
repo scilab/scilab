@@ -30,6 +30,7 @@ h.position = [100 100 200 200]; // Default is [20 20 80 40]
 h.relief = "sunken"; // Default is "ridge" for frames
 h.sliderstep = [1 2]; // Default is [0.01,0.1]
 h.string = "titi"; // Default is ""
+h.tooltipstring = "Tooltip"; // Default is ""
 h.units = "points"; // Default is pixels
 h.value = 10; // Default is []
 h.verticalalignment = "top"; // Default is "center"
@@ -39,7 +40,7 @@ h.callback_type = 1; // Default is 0
 h.user_data = list("hello", "Scilab", 5);
 h.tag = "My uimenu tag"; // Default is ""
 // Save figure contents
-save(TMPDIR + "/uicontrol.scg", h);
+save(TMPDIR + "/uicontrol.scg", "h");
 hsaved = h;
 clear h;
 // Load saved handle
@@ -62,6 +63,7 @@ if abs(sum(h.position-hsaved.position)) > 4 then bugmes();quit;end // TODO FIX M
 if or(h.relief<>hsaved.relief) then bugmes();quit;end
 if or(h.sliderstep<>hsaved.sliderstep) then bugmes();quit;end
 if or(h.string<>hsaved.string) then bugmes();quit;end
+if or(h.tooltipstring<>hsaved.tooltipstring) then bugmes();quit;end
 if or(h.units<>hsaved.units) then bugmes();quit;end
 if or(h.value<>hsaved.value) then bugmes();quit;end
 if or(h.verticalalignment<>hsaved.verticalalignment) then bugmes();quit;end

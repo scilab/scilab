@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 3674 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Scilab 5.0.2 has issues with the new "MAT-file Format" (functions "savematfile" and "loadmatfile") : 
 // - loading a same variable from different files: the existing variables are not erased.
-// - saving file on a other one is always on an appending mode: the existing files are not erased.
+// - saving file on another one is always on an appending mode: the existing files are not erased.
 
 //
 // Test savematfile

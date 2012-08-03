@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_ExistArray">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>TCL_ExistArray</refname>
     <refpurpose>Return %T if a tcl array
-  exists</refpurpose>
+      exists
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,16 +28,18 @@
         <term>arrayname</term>
         <listitem>
           <para>character string. Contains the name of the tcl/tk
-          array.</para>
+            array.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>interp</term>
         <listitem>
           <para>optional character string parameter. Name of the slave tcl
-          interpreter in which the operation has to be performed. If not
-          provided, it defaults to the main tcl interpreter created by
-          Scilab.</para>
+            interpreter in which the operation has to be performed. If not
+            provided, it defaults to the main tcl interpreter created by
+            Scilab.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,7 +53,9 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to test if a tcl array exists.</para>
-    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
+    <para>
+      More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +68,7 @@ TCL_ExistArray("A")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>
@@ -93,9 +95,5 @@ TCL_ExistArray("A")
         <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

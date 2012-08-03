@@ -10,97 +10,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="length" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="length" xml:lang="en">
   <refnamediv>
     <refname>length</refname>
-
     <refpurpose>length of object</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>n=length(M)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>M</term>
-
         <listitem>
           <para>matrix (usual or polynomial or character string) or
-          list</para>
+            list
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>n</term>
-
         <listitem>
           <para>integer or integer matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>For usual or polynomial matrix <literal>n</literal> is the integer
-    equal to number of rows times number of columns of <literal>M</literal>.
-    (Also valid for <literal>M</literal> a boolean matrix)</para>
-
+    <para>
+      For usual or polynomial matrix <literal>n</literal> is the integer
+      equal to number of rows times number of columns of <literal>M</literal>.
+      (Also valid for <literal>M</literal> a boolean matrix)
+    </para>
     <para>For matrices made of character strings (and in particular for a
-    character string) <literal>length</literal> returns in
-    <literal>n</literal> the length of entries of the matrix of character
-    strings <literal>M</literal>.</para>
-
+      character string) <literal>length</literal> returns in
+      <literal>n</literal> the length of entries of the matrix of character
+      strings <literal>M</literal>.
+    </para>
     <para>The length of a list is the number of elements in the list (also
-    given by <literal>size</literal>).</para>
-    
+      given by <literal>size</literal>).
+    </para>
     <para>The length of a mlist is by default the number of elements in the mlist, 
-    but you can overload it (see example).</para>
-
-    <para><literal>length('123')</literal> is <literal>3</literal>.
-    <literal>length([1,2;3,4])</literal> is <literal>4</literal>.</para>
-
+      but you can overload it (see example).
+    </para>
+    <para>
+      <literal>length('123')</literal> is <literal>3</literal>.
+      <literal>length([1,2;3,4])</literal> is <literal>4</literal>.
+    </para>
     <para>WARNING : length of a sparse matrix returns the max of dimensions
-    and not the product of the dimensions. (example :
-    length(sparse(eye(12,2))) returns max(12,2) and not 24)</para>
-
+      and not the product of the dimensions. (example :
+      length(sparse(eye(12,2))) returns max(12,2) and not 24)
+    </para>
     <para>please use size(...,'*') with sparse matrix.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 length([123 ; 456 ])
 length(['hello world',SCI])
 
  ]]></programlisting>
- 
-<programlisting role="example"><![CDATA[  
+    <programlisting role="example"><![CDATA[  
 
 a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
 length(a) 
 // returns 3 default behaviour if length not overloaded for MList
 
-// we create a overload function for MList of type myMlistT
+// we create an overload function for MList of type myMlistT
 function r = %myMlistT_length(M)
   r = length(M.field1)
 endfunction
@@ -109,12 +88,21 @@ length(a)
 // returns 8 result of length(a.field1) 
   ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="size">size</link></member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>This function allows overloading for mlist type.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

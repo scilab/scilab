@@ -11,7 +11,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     ==================================================
       subroutine sciint16(fname)
       character*(*) fname
-      call stack_convert(2)
+      call stackconvert(2)
       end
 c     ==================================================
 

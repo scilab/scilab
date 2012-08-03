@@ -333,7 +333,7 @@ else
     end
   end
   if ( (mtlb_opts <> []) & (strindex("-tabs",mtlb_opts)<>[]) ) then
-    sep=code2str(-40)
+    sep = ascii(9);
   else
     sep=" "
   end

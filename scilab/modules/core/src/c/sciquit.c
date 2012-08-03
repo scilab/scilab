@@ -1,27 +1,28 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-#ifdef sun 
-	#ifndef SYSV
-	#include <sys/ieeefp.h>
-	#endif
+#ifdef sun
+#ifndef SYSV
+#include <sys/ieeefp.h>
+#endif
 #endif
 #include "sciquit.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "TerminateCore.h"
 #include "../../../graphics/includes/TerminateGraphics.h"
 #include "dynamic_tclsci.h"
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../jvm/includes/TerminateJVM.h"
+#include "getScilabPreference.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
 #include "../../../windows_tools/includes/MutexClosingScilab.h"
@@ -29,52 +30,68 @@
 #endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
-/*--------------------------------------------------------------------------*/ 
+#ifndef _MSC_VER
+#include "initConsoleMode.h"
+#endif
+/*--------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-	TerminateCorePart1();
-  
-	if ( getScilabMode() != SCILAB_NWNI ) 
-	{
-		dynamic_TerminateTclTk();
-		TerminateGraphics();
-		TerminateGUI();
-		TerminateJVM();
-	}
+    scilabMode CurrentScilabMode;
 
-	TerminateCorePart2();
+    clearScilabPreferences();
+    TerminateCorePart1();
 
-	#ifdef _MSC_VER
-	TerminateWindows_tools();
-	#endif
+    CurrentScilabMode = getScilabMode();
+    if (CurrentScilabMode != SCILAB_NWNI)
+    {
+        dynamic_TerminateTclTk();
+        TerminateGraphics();
+        TerminateJVM();
+    }
 
-	return 0;
+    TerminateCorePart2();
+
+#ifdef _MSC_VER
+    TerminateWindows_tools();
+#endif
+
+#ifndef _MSC_VER
+    /* Reset Shell Settings before leaving Scilab. */
+    if (CurrentScilabMode == SCILAB_NWNI || CurrentScilabMode == SCILAB_NW)
+    {
+        initConsoleMode(ATTR_RESET);
+    }
+#endif
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+
+/*--------------------------------------------------------------------------*/
 void sciquit(void)
 {
 #ifdef _MSC_VER
-	/* bug 3672 */
-	/* Create a Mutex (closing scilab)
-	used by files association 
-	*/
-	createMutexClosingScilab();
+    /* bug 3672 */
+    /* Create a Mutex (closing scilab)
+     * used by files association
+     */
+    createMutexClosingScilab();
 #endif
 
-	ExitScilab();
+    ExitScilab();
 
-#ifdef sun 
+#ifdef sun
 #ifndef SYSV
-	char **out;
-	ieee_flags("clearall","exception","all", &out);
-#endif 
-#endif 
+    char **out;
+
+    ieee_flags("clearall", "exception", "all", &out);
+#endif
+#endif
 
 #ifdef _MSC_VER
-	/* close mutex (closing scilab)
-	used by files association 
-	*/
-	terminateMutexClosingScilab();
+    /* close mutex (closing scilab)
+     * used by files association
+     */
+    terminateMutexClosingScilab();
 #endif
 }
+
 /*--------------------------------------------------------------------------*/

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cond2sp">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>cond2sp</refname>
     <refpurpose> computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix  </refpurpose>
@@ -47,7 +44,9 @@
       <varlistentry>
         <term>K2  </term>
         <listitem>
-          <para>estimated 2-norm condition number <literal>K2 = ||A||_2 ||A^(-1)||_2 = lM/lm</literal></para>
+          <para>
+            estimated 2-norm condition number <literal>K2 = ||A||_2 ||A^(-1)||_2 = lM/lm</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -79,47 +78,52 @@
   <refsection>
     <title>Description</title>
     <para>
-    This quick and dirty function computes <literal>(lM,vM)</literal> using the iterative 
-    power method and <literal>(lm,vm)</literal> with the inverse iterative power method, then 
-    <literal>K2 = lM/lm</literal>. For each method the iterations are stopped until the following
-    condition is met :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      This quick and dirty function computes <literal>(lM,vM)</literal> using the iterative 
+      power method and <literal>(lm,vm)</literal> with the inverse iterative power method, then 
+      <literal>K2 = lM/lm</literal>. For each method the iterations are stopped until the following
+      condition is met :
+    </para>
+    <programlisting role=""><![CDATA[ 
 | (l_new - l_old)/l_new | < rtol
  ]]></programlisting>
     <para>
-    but 4 iterations are nevertheless required and also the iterations are stopped
-    if itermax is reached (and a warning message is issued). As the matrix is symmetric
-    this is the rayleigh quotient which gives the estimated eigenvalue at each step
-    (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for 
-    instance if you want to see the intermediary result without setting yourself the 
-    rtol and itermax parameters you may called this function with the syntax :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      but 4 iterations are nevertheless required and also the iterations are stopped
+      if itermax is reached (and a warning message is issued). As the matrix is symmetric
+      this is the rayleigh quotient which gives the estimated eigenvalue at each step
+      (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for 
+      instance if you want to see the intermediary result without setting yourself the 
+      rtol and itermax parameters you may called this function with the syntax :
+    </para>
+    <programlisting role=""><![CDATA[ 
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, verb=%t )
  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Caution</title>
     <para>
-    Currently there is no verification for the input parameters !
-  </para>
+      Currently there is no verification for the input parameters !
+    </para>
   </refsection>
   <refsection>
     <title>Remark</title>
     <para>
-    This function is intended to get an approximation of the 2-norm condition number (K2) and 
-    with the methods used, the precision on the obtained eigenvectors (vM and vm) are generally 
-    not very good. If you look for a smaller residual <literal>||Av - l*v||</literal>, you may apply some inverse 
-    power iterations  from v0 with the matrix :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      This function is intended to get an approximation of the 2-norm condition number (K2) and 
+      with the methods used, the precision on the obtained eigenvectors (vM and vm) are generally 
+      not very good. If you look for a smaller residual <literal>||Av - l*v||</literal>, you may apply some inverse 
+      power iterations  from v0 with the matrix :
+    </para>
+    <programlisting role=""><![CDATA[ 
 B = A - l0*speye(A)
  ]]></programlisting>
     <para>
-    For instance, applied 5 such iterations for <literal>(lm,vm)</literal> is done with :
-  </para>
-    <programlisting role = "example"><![CDATA[ 
+      For instance, applied 5 such iterations for <literal>(lm,vm)</literal> is done with :
+    </para>
+    <programlisting role="example"><![CDATA[ 
+
+[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+[K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
+taucs_chdel(C_ptr)
 l0 = lm ; v0 = vm;  // or l0 = lM ; v0 = vM;  // to polish (lM,vM)
 B = A - l0*speye(A);
 LUp = umf_lufact(B);
@@ -146,7 +150,7 @@ taucs_chdel(C_ptr)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="condestsp">condestsp</link>
@@ -158,9 +162,5 @@ taucs_chdel(C_ptr)
         <link linkend="rcond">rcond</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bruno Pincon  &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </para>
   </refsection>
 </refentry>

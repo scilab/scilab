@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -39,65 +39,66 @@
   <refsection id="diagram_scicos_diagram">
     <title>diagram</title>
     <para>
-Size : 4.
-</para>
+      Size : 4.
+    </para>
     <para>
-Type : scilab list.
-</para>
+      Type : scilab list.
+    </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">props</emphasis>
         </para>
         <para> Diagram properties.</para>
-        <para> This entry contains various informations such some main diagram initials values.</para>
+        <para> This entry contains various information such some main diagram initials values.</para>
         <para> 
-This variable is a tlist of type 
-and
+          This variable is a tlist of type 
+          and
           contains wpar, title, tol, tf, context,
           options and doc.
-</para>
+        </para>
         <para>
-</para>
+        </para>
         <para> 
-Size : 11.
-</para>
+          Size : 11.
+        </para>
         <para>
-Type : Scilab tlist of type .
-</para>
+          Type : Scilab tlist of type .
+        </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">objs</emphasis>
         </para>
-        <para> List of objects included in the Scicos diagram.</para>
-        <para> The objects used in scicos are<link linkend="scicos_block">block</link> ,<link linkend="scicos_link">link</link> and Text.</para>
+        <para> List of objects included in the Xcos diagram.</para>
+        <para>
+           The objects used in Xcos are <link linkend="scicos_block">block</link>, <link linkend="scicos_link">link</link> and Text.
+        </para>
         <para> The objects can also be deleted object data structure.</para>
         <para> Deleted object data structure is marked list('Deleted').</para>
         <para> 
-Size : total number of objects in the diagram.
-</para>
+          Size : total number of objects in the diagram.
+        </para>
         <para>
-Type : Scilab tlist of type , 
-or Text.
-</para>
+          Type : Scilab tlist of type, or Text.
+        </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">version</emphasis>
         </para>
-        <para> A string that gives the version of the Scicos diagram.</para>
+        <para> A string that gives the version of the Xcos diagram.</para>
         <para> This is used to provide compatibility with old diagram.</para>
-        <para> Note that you can get the current version of Scicos by using the entry 'About scicos' in the help menu or by using the function get_scicos_version().</para>
+        <para> Note that you can get the current version of Xcos by using the entry 'About Xcos' in the help menu or by using the function get_scicos_version().</para>
         <para> 
-Size : 1.
-</para>
+          Size : 1.
+        </para>
         <para>
-Type : String.
-</para>
+          Type : String.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

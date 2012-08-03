@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="x_mdialog">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>x_mdialog</refname>
     <refpurpose>Dialog for interactive vector/matrix input.</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>result=x_mdialog(title,labels,default_inputs_vector)
-result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
+      result=x_mdialog(title,labelsv,labelsh,default_input_matrix)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -24,45 +22,54 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
       <varlistentry>
         <term>labels</term>
         <listitem>
-          <para>n column vector of strings, <literal>labels(i)</literal> is the
-          label of the ith required value</para>
+          <para>
+            n column vector of strings, <literal>labels(i)</literal> is the
+            label of the ith required value
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_vector</term>
         <listitem>
           <para>n column vector of strings,
-          <literal>default_input_vector(i)</literal> is the initial value of the ith
-          required value</para>
+            <literal>default_input_vector(i)</literal> is the initial value of the ith
+            required value
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsv</term>
         <listitem>
-          <para>n vector of strings, <literal>labelsv(i)</literal> is the label of
-          the ith line of the required matrix</para>
+          <para>
+            n vector of strings, <literal>labelsv(i)</literal> is the label of
+            the ith line of the required matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsh</term>
         <listitem>
-          <para>m vector of strings, <literal>labelsh(j)</literal> is the label of
-          the jth column of the required matrix</para>
+          <para>
+            m vector of strings, <literal>labelsh(j)</literal> is the label of
+            the jth column of the required matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_matrix</term>
         <listitem>
           <para>n x m matrix of strings,
-          <literal>default_input_matrix(i,j)</literal> is the initial value of the
-          (i,j) element of then required matrix</para>
+            <literal>default_input_matrix(i,j)</literal> is the initial value of the
+            (i,j) element of then required matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>n x m matrix of string if returned with "Ok" button or [] if
-          returned with "Cancel" button</para>
+            returned with "Cancel" button
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -85,7 +92,7 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="editvar">editvar</link>

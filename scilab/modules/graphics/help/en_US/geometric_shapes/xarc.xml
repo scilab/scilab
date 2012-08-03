@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xarc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xarc">
   <refnamediv>
     <refname>xarc</refname>
     <refpurpose> draw a part of an ellipse</refpurpose>
@@ -41,13 +38,24 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xarc</literal> draws a part of an ellipse contained in the rectangle 
-    <literal>(x,y,w,h)</literal> (upper-left point, width, height), and in the sector 
-    defined by 
-    the angle <literal>alpha1</literal> and the angle <literal>alpha1+alpha2</literal>. 
-    <literal>alpha1</literal> and <literal>alpha2</literal> are 
-    given respectively by <literal>a1/64</literal> degrees and <literal>a2/64</literal> degrees.
-    This function uses the current graphics color and user coordinates.</para>
+    <para>
+      <literal>xarc</literal> draws a part of an ellipse contained in the rectangle 
+      <literal>(x,y,w,h)</literal> (upper-left point, width, height), and in the sector 
+      defined by 
+      the angle <literal>alpha1</literal> and the angle <literal>alpha1+alpha2</literal>. 
+      <literal>alpha1</literal> and <literal>alpha2</literal> are 
+      given respectively by <literal>a1/64</literal> degrees and <literal>a2/64</literal> degrees.
+      This function uses the current graphics color and user coordinates.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+      xset("color",3)
+      xarc(-1,1,2,2,0,90*64)
+      xarc(-1.5,1.5,3,3,0,360*64)
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +68,7 @@ xarc(-1.5,1.5,3,3,0,360*64)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xarcs">xarcs</link>
@@ -72,9 +80,5 @@ xarc(-1.5,1.5,3,3,0,360*64)
         <link linkend="xfarcs">xfarcs</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

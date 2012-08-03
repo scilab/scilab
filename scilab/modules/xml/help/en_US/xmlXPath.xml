@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,65 +10,53 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlXPath" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlXPath" xml:lang="en">
   <refnamediv>
     <refname>xmlXPath</refname>
     <refpurpose>Make an XPath query on a XML document</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
-      xmlNodeSet = xmlXPath(xmlDoc, queryStr [, namespaces])
+      result = xmlXPath(xmlObj, queryStr [, namespaces])
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
-        <term>xmlDoc</term>
+        <term>xmlObj</term>
         <listitem>
-          <para>xmlDoc, a XML mlist typed XMLDoc</para>
+          <para>a XML mlist typed XMLDoc or XMLElem</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>queryStr</term>
         <listitem>
-          <para>queryStr, a string</para>
+          <para>a Xpath query</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>namespaces</term>
         <listitem>
-          <para>namespaces, an optional matrix nx2 of strings</para>
+          <para>An optional matrix nx2 of strings</para>
         </listitem>
       </varlistentry>
-
+      <varlistentry>
+        <term>result</term>
+        <listitem>
+          <para>result can be a set of XMLElements or a number or a string or a boolean</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>Make an XPath query on a document. If you need to use namespaces, then you must define them in using the optional argument.</para>
-    <para>For more informations about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
+    <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
+    <para>
+      For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -98,21 +86,40 @@
         xmlDump(xp(1))
     end
 
-    xmlClose(doc);
+    // Get the name and the content of all the attributes of nodes named 'emph'
+    xp = xmlXPath(doc, "//emph/@*");
+    xp.name
+    xp.content
+
+    xmlDelete(doc);
 
     // Query using namespaces
     doc = xmlReadStr("<root xmlns:scilab=""http://www.scilab.org""><scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>");
 
     // We search for element named a
     xmlXPath(doc, "//a") // => nothing
-    xmlXPath(doc, "//scilab:a") // => error
     xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
 
-    xmlClose(doc);
+    // This code will fail:
+    // xmlXPath(doc, "//scilab:a") // => error
+
+    xmlDelete(doc);
+
+    // Query starting on an element
+    doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
+    e = doc.root.children(1);
+
+    // Get the attributes of e
+    xp = xmlXPath(e, "@*");
+    xmlAsText(xp)
+
+    // Get the 'b' from e
+    xp = xmlXPath(e, "b");
+    xmlAsText(xp)
+
+    xmlDelete(doc);
     ]]></programlisting>
-
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -124,9 +131,13 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

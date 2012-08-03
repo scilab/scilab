@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the vertical alignment property of an uicontrol 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,28 +14,22 @@
 
 #include "GetUicontrolVerticalAlignment.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolVerticalAlignment(sciPointObj* sciObj)
+int GetUicontrolVerticalAlignment(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* alignment = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VERTICALALIGNMENT__), jni_string, (void**) &alignment);
+
+    if (alignment == NULL)
     {
-      switch(pUICONTROL_FEATURE(sciObj)->verticalAlignment)
-        {
-        case TOP_ALIGNMENT:
-          return sciReturnString("top");
-        case MIDDLE_ALIGNMENT:
-          return sciReturnString("middle");
-        case BOTTOM_ALIGNMENT:
-          return sciReturnString("bottom");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n")), "VerticalAlignment", "top", "middle", "bottom");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "VerticalAlignment");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "VerticalAlignment");
-      return FALSE;
+        status = sciReturnString(_pvCtx, alignment);
+        delete[] alignment;
+        return status;
     }
 }

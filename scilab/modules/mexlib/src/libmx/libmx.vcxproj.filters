@@ -39,15 +39,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib">
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\lapack.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\LibScilab.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
+    </None>
   </ItemGroup>
 </Project>

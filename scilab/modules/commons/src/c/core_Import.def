@@ -1,0 +1,14 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+getSCIHOME
+getTMPDIR
+setieee
+setformat
+getieee
+getformat
+getformatwidth

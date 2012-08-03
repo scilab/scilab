@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="kalm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>kalm</refname>
     <refpurpose>カルマン更新</refpurpose>
@@ -42,16 +39,17 @@
         <term>x1,p1</term>
         <listitem>
           <para>t=0までのデータに基づくt=1における
-	更新後の推定状態量および誤差共分散</para>
+            更新後の推定状態量および誤差共分散
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
           <para>
-	t=0までのデータに基づくt=0における
-	更新後の推定状態量および誤差共分散
-	</para>
+            t=0までのデータに基づくt=0における
+            更新後の推定状態量および誤差共分散
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,10 +57,7 @@
   <refsection>
     <title>説明</title>
     <para>
-    カルマン更新および共分散を出力する関数</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      カルマン更新および共分散を出力する関数
+    </para>
   </refsection>
 </refentry>

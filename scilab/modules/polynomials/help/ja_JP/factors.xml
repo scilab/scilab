@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="factors">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>factors</refname>
     <refpurpose>実数因数分解</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[lnum,g]=factors(pol [,'flag'])
-[lnum,lden,g]=factors(rat [,'flag'])
-rat=factors(rat,'flag')</synopsis>
+      [lnum,lden,g]=factors(rat [,'flag'])
+      rat=factors(rat,'flag')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -36,7 +34,9 @@ rat=factors(rat,'flag')</synopsis>
       <varlistentry>
         <term>rat</term>
         <listitem>
-          <para>実数有理多項式 (<literal>rat=pol1/pol2</literal>)</para>
+          <para>
+            実数有理多項式 (<literal>rat=pol1/pol2</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,7 +60,9 @@ rat=factors(rat,'flag')</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>'c'</literal>または <literal>'d'</literal></para>
+          <para>
+            文字列 <literal>'c'</literal>または <literal>'d'</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,39 +70,44 @@ rat=factors(rat,'flag')</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	多項式<literal>pol</literal>の因数を
-	リスト<literal>lnum</literal>および"ゲイン" gに返します.</para>
+      多項式<literal>pol</literal>の因数を
+      リスト<literal>lnum</literal>および"ゲイン" gに返します.
+    </para>
     <para>
-	(<literal>flag</literal>が指定されない場合,)
-	pol= g にリスト<literal>lnum</literal>のエントリの積を乗じることになります.
-	<literal>flag='c'</literal>が指定された暴い,
-	<literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>
-	となります.
-	<literal>flag='d'</literal>が指定された場合,
-	<literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>
-	となります.
-	<literal>factors</literal>の引数が 1x1 有理数 <literal>rat=pol1/pol2</literal>の場合,
-	分子<literal>pol1</literal> および分母 the denominator <literal>pol2</literal>の因数
-	がそれぞれリスト<literal>lnum</literal> および <literal>lden</literal>に返されます.</para>
+      (<literal>flag</literal>が指定されない場合,)
+      pol= g にリスト<literal>lnum</literal>のエントリの積を乗じることになります.
+      <literal>flag='c'</literal>が指定された暴い,
+      <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>
+      となります.
+      <literal>flag='d'</literal>が指定された場合,
+      <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>
+      となります.
+      <literal>factors</literal>の引数が 1x1 有理数 <literal>rat=pol1/pol2</literal>の場合,
+      分子<literal>pol1</literal> および分母 the denominator <literal>pol2</literal>の因数
+      がそれぞれリスト<literal>lnum</literal> および <literal>lden</literal>に返されます.
+    </para>
     <para>
-    "gain" は <literal>g</literal>に返されます.
-	すなわち:
-    rat= g times (lnumのエントリの積) / (ldenのエントリの積).</para>
+      "gain" は <literal>g</literal>に返されます.
+      すなわち:
+      rat= g times (lnumのエントリの積) / (ldenのエントリの積).
+    </para>
     <para>
-    <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合, 
-	<literal>pol</literal>の根は虚軸(または単位円)に関して折り返されます.
-	すなわち,<literal>lnum</literal>の因数は安定な多項式となります.</para>
+      <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合, 
+      <literal>pol</literal>の根は虚軸(または単位円)に関して折り返されます.
+      すなわち,<literal>lnum</literal>の因数は安定な多項式となります.
+    </para>
     <para>
-	有理数の引数を指定して<literal>factors</literal>がコールされた場合:
-	<literal>lnum</literal>および <literal>lden</literal>のエントリは,
-	<literal>flag</literal>が指定された場合に
-	安定な多項式となります.
-	有理関数<literal>R1</literal>またはSISOリスト<literal>syslin</literal>を指定する
-	<literal>R2=factors(R1,'c')</literal> または <literal>R2=factors(R1,'d')</literal>
-	の場合,
-	出力<literal>R2</literal>は,安定な分子および分母を有し,
-	虚軸(<literal>'c'</literal>)または単位円(<literal>'d'</literal>)に沿った
-	<literal>R1</literal>と同じ大きさの伝達関数となります.</para>
+      有理数の引数を指定して<literal>factors</literal>がコールされた場合:
+      <literal>lnum</literal>および <literal>lden</literal>のエントリは,
+      <literal>flag</literal>が指定された場合に
+      安定な多項式となります.
+      有理関数<literal>R1</literal>またはSISOリスト<literal>syslin</literal>を指定する
+      <literal>R2=factors(R1,'c')</literal> または <literal>R2=factors(R1,'d')</literal>
+      の場合,
+      出力<literal>R2</literal>は,安定な分子および分母を有し,
+      虚軸(<literal>'c'</literal>)または単位円(<literal>'d'</literal>)に沿った
+      <literal>R1</literal>と同じ大きさの伝達関数となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

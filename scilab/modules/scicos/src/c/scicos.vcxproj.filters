@@ -232,24 +232,21 @@
     <ClInclude Include="var2sci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sciblk2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sciblk4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\scicos.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="Action_binding_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Dynamic_link_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Graphics_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Intersci_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Output_stream_Import.def">
@@ -273,16 +270,19 @@
     <None Include="Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\scicos.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\scicos_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
-    <Library Include="..\..\..\..\bin\scicos_blocks_f.lib" />
   </ItemGroup>
 </Project>

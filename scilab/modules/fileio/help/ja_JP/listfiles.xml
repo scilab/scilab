@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="listfiles">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>listfiles</refname>
     <refpurpose>ファイルのリスト</refpurpose>
@@ -30,14 +27,16 @@
         <term>paths</term>
         <listitem>
           <para>パス名の集合を指定する文字列の行列 
-	(多くの場合, 末尾が <literal>*</literal> のパターンとなります)
-	</para>
+            (多くの場合, 末尾が <literal>*</literal> のパターンとなります)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag,flagexpand</term>
         <listitem>
-          <para>オプションの論理値パラメータ(デフォルト値 <literal>%t</literal>).</para>
+          <para>
+            オプションの論理値パラメータ(デフォルト値 <literal>%t</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,23 +49,26 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>listfiles</literal> は,
-	パスエントリの指定したパターンのどれかに一致するファイル
-	の一覧を得るために使用されます.
-	パターンは,ファイルに関する情報を取得するために
-	Unixでは<literal>ls</literal>,Windowsでは
-	<literal>dir</literal>コマンドに指定されます.
-	このため, ポータブルなScilabスクリプトを書くためには,
-	両方のOSに有効なワイルドカードパターンを指定する必要があります.
-	パス名の変換が行われ,例えば<literal>SCI/core/macros/*.sci</literal>
-	はUnixとWindowsの両方で有効なパターンであることに注意してください.</para>
     <para>
-    <literal>flag</literal> が真の場合,<literal>paths</literal>で
-	指定したパス名は getos() == "Windows" の値に基づき変換されます
-	(<literal>pathconvert</literal>参照). 
-    さらに, <literal>flagexpand</literal> が真の場合,
-    <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal> のような
-	先頭文字列は環境変数により展開されます.</para>
+      <literal>listfiles</literal> は,
+      パスエントリの指定したパターンのどれかに一致するファイル
+      の一覧を得るために使用されます.
+      パターンは,ファイルに関する情報を取得するために
+      Unixでは<literal>ls</literal>,Windowsでは
+      <literal>dir</literal>コマンドに指定されます.
+      このため, ポータブルなScilabスクリプトを書くためには,
+      両方のOSに有効なワイルドカードパターンを指定する必要があります.
+      パス名の変換が行われ,例えば<literal>SCI/core/macros/*.sci</literal>
+      はUnixとWindowsの両方で有効なパターンであることに注意してください.
+    </para>
+    <para>
+      <literal>flag</literal> が真の場合,<literal>paths</literal>で
+      指定したパス名は getos() == "Windows" の値に基づき変換されます
+      (<literal>pathconvert</literal>参照). 
+      さらに, <literal>flagexpand</literal> が真の場合,
+      <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal> のような
+      先頭文字列は環境変数により展開されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

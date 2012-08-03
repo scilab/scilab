@@ -4,11 +4,12 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,20 +25,17 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
-#include "GraphicSynchronizerInterface.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
-  int status;
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
-    return SET_PROPERTY_ERROR ;
-  }
+  BOOL status = FALSE;
+  int intValues[2];
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -51,12 +49,19 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
     return SET_PROPERTY_ERROR ;
   }
 
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
-  enableFigureSynchronization(pobj);
+  intValues[0] = (int)values[0];
+  intValues[1] = (int)values[1];
 
-  /* return set property unchanged since repaint is not really needed */
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+  status = setGraphicObjectProperty(pobjUID, __GO_SIZE__, intValues, jni_int_vector, 2);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
+    return SET_PROPERTY_ERROR;
+  }
 }
 /*------------------------------------------------------------------------*/

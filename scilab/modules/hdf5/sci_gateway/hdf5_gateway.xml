@@ -31,5 +31,7 @@
 -->
 <PRIMITIVE gatewayId="62" primitiveId="1" primitiveName="export_to_hdf5" />
 <PRIMITIVE gatewayId="62" primitiveId="2" primitiveName="import_from_hdf5" />
+<PRIMITIVE gatewayId="62" primitiveId="3" primitiveName="listvar_in_hdf5" />
+<PRIMITIVE gatewayId="62" primitiveId="4" primitiveName="is_hdf5_file" />
 
 </GATEWAY>

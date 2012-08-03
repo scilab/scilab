@@ -124,7 +124,7 @@ namespace
 #endif
     };
     /*
-    * Handles scheduling. Could be done in parallel_wrapper, but it would a a very long applyWithProcesses() member function
+    * Handles scheduling. Could be done in parallel_wrapper, but it would a very long applyWithProcesses() member function
     * breaking it would involve adding many member variables in the wrapper, so I chose an utility class with friend access to a parallel_wrapper
     * taken by ref.
     *
@@ -302,14 +302,18 @@ namespace
             }
             if (dynamic_scheduling)
             {
+#ifdef _OPENMP
 #pragma omp parallel for private(i) schedule(dynamic, chunk_size)
-                for(i=0; i < n; ++i)
+#endif
+                for(i=0; i < (signed int)n; ++i)
                 {
                     callF(i);
                 }
             } else {
+#ifdef _OPENMP
 #pragma omp parallel for private(i)  schedule(static, chunk_size)
-                for(i=0; i < n; ++i)
+#endif
+                for(i=0; i < (signed int)n; ++i)
                 {
                     callF(i);
                 }

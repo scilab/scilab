@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bool2s">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bool2s</refname>
     <refpurpose> convertit une matrice booléenne en une matrice 0-1  </refpurpose>
@@ -29,7 +26,7 @@
         <term>x  </term>
         <listitem>
           <para>matrice réelle, complexe ou booléenne
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,15 +34,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Si <literal>x</literal> est une matrice booléenne,
-    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
-  </para>
+      Si <literal>x</literal> est une matrice booléenne,
+      <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
+    </para>
     <para>
-    Si <literal>x</literal> n'est pas une matrice booléenne,
-    <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
-  </para>
+      Si <literal>x</literal> n'est pas une matrice booléenne,
+      <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
+    </para>
     <para>
-  </para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +52,7 @@ bool2s([2.3 0 10 -1])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="boolean">boolean</link>

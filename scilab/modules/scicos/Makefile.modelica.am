@@ -162,7 +162,7 @@ generate-parser: $(PARSER_SRC)
 	$(OCAMLYACC) $(<)
 	$(RM) -f $(<:.mly=.mli)
 # Crappy workaround to avoid bug 8013
-	touch src/modelica_compiler/scicosCodeGeneration.mli
+	touch src/modelica_compiler/*.mli
 
 # Call the lexer
 generate-lexer: $(LEXER_SRC)
@@ -212,6 +212,7 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/translator/*/parser.mli \
 	$(BASE_PATH)/translator/*/lexer.mli \
 	$(BASE_PATH)/translator/*/parser.ml \
+	$(BASE_PATH)/translator/*/linenum.ml \
 	$(BASE_PATH)/translator/*/lexer.ml \
 	$(TARGET)
 

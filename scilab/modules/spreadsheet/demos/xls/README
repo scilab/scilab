@@ -9,10 +9,10 @@ OpenOffice does not set the formula value
 
 - Test1.xls and Testo1.xls 
    contain 1  Excel sheet (20x4). First 2 rows contain text, 
-   for the other rows, Columns 2:4 datas are defined by formulas.
+   for the other rows, Columns 2:4 data are defined by formulas.
 
 - Testbig.xls and Testobig.xls 
    contain 1  Excel sheet (1000x4). First 2 rows contain text, 
-   for the other rows, Columns 2:4 datas are defined by formulas.
+   for the other rows, Columns 2:4 data are defined by formulas.
 
 

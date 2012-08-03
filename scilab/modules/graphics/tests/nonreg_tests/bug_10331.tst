@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - INRIA - Serge Steer
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
+
+// <-- Non-regression test for bug 10331 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=10331
+//
+// <-- Short Description -->
+// datatipCreate produces a warning and an error instead of a warning if the curve user_data is not a struct
+plot(1:10);
+e=gce();p=e.children;
+p.user_data=3;
+assert_checktrue(execstr("h=datatipCreate(p,5)","errcatch")==0);
+assert_checkequal(h,[]);
+

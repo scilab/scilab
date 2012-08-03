@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -94,13 +94,25 @@
     <title>Description</title>
     <para>
       This component consists of a simple diode parallel with an ohmic
-      resistance (<emphasis role="bold"><emphasis>R</emphasis></emphasis>).
-      The current (<emphasis role="bold"><emphasis>I</emphasis></emphasis>)
+      resistance (
+      <emphasis role="bold">
+        <emphasis>R</emphasis>
+      </emphasis>
+      ).
+      The current (
+      <emphasis role="bold">
+        <emphasis>I</emphasis>
+      </emphasis>
+      )
       passing through this component is defined as a function of the voltage across
-      the ports (<emphasis role="bold"><emphasis>V</emphasis></emphasis>) :
-</para>
+      the ports (
+      <emphasis role="bold">
+        <emphasis>V</emphasis>
+      </emphasis>
+      ):
+    </para>
     <para>
-</para>
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -109,13 +121,19 @@
       </inlinemediaobject>
     </para>
     <para>
-      where <emphasis role="bold"><emphasis>Ids</emphasis></emphasis> and
-      <emphasis role="bold"><emphasis>Vt</emphasis></emphasis> are the saturation
+      where 
+      <emphasis role="bold">
+        <emphasis>Ids</emphasis>
+      </emphasis>
+      and
+      <emphasis role="bold">
+        <emphasis>Vt</emphasis>
+      </emphasis>
+      are the saturation
       current and the voltage equivalent of temperature, respectively. If the exponent
       reaches a certain limit (<emphasis role="bold">Max exponent for linear continuation</emphasis>),
       the diode characteristic becomes linear to avoid overflow.
     </para>
-
   </refsection>
   <refsection id="Dialogbox_Diode">
     <title>Dialog box</title>
@@ -127,8 +145,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -169,9 +187,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis></para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -181,8 +202,12 @@ Implicit <emphasis role="bold">variable.</emphasis></para>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -192,29 +217,55 @@ Implicit <emphasis role="bold">variable.</emphasis></para>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Ids'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.000001</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Ids'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.000001
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Vt'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.04</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Vt'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.04
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Maxexp'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 15</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Maxexp'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 15
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'R'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E+08</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'R'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 1.000E+08
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Diode</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Diode
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

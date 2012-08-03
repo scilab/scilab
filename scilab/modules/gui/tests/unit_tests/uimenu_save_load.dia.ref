@@ -22,7 +22,7 @@ h.callback = "disp(1)"; // Default is ""
 h.callback_type = 1; // Default is 0
 h.tag = "My uimenu tag"; // Default is ""
 // Save figure contents
-save(TMPDIR + "/uimenu.scg", h);
+save(TMPDIR + "/uimenu.scg", "h");
 hsaved = h;
 clear h;
 // Load saved handle

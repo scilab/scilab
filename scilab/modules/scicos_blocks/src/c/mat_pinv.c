@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -63,8 +64,8 @@ SCICOS_BLOCKS_IMPEXP void mat_pinv(scicos_block *block,int flag)
  y=GetRealOutPortPtrs(block,1);
 
  /* for lapack 3.1 (2006)*/
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
- lwork=max(1,lwork); 
+ lwork=Max(3*Min(mu,nu)+Max(mu,nu),5*Min(mu,nu));
+ lwork=Max(1,lwork); 
 
              /*init : initialization*/
 if (flag==4)
@@ -94,7 +95,7 @@ if (flag==4)
 	 scicos_free(ptr->l0);
 	 scicos_free(ptr);
 	 return;}
-    if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(min(mu,nu))))==NULL)
+    if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(Min(mu,nu))))==NULL)
 	{set_block_error(-16);
 	 scicos_free(ptr->LS);
 	 scicos_free(ptr->LC);
@@ -102,7 +103,7 @@ if (flag==4)
 	 scicos_free(ptr->l0);
 	 scicos_free(ptr);
 	 return;}
-    if((ptr->LSW=(double*) scicos_malloc(sizeof(double)*(min(mu,nu))))==NULL)
+    if((ptr->LSW=(double*) scicos_malloc(sizeof(double)*(Min(mu,nu))))==NULL)
 	{set_block_error(-16);
 	 scicos_free(ptr->LSV);
 	 scicos_free(ptr->LS);
@@ -202,14 +203,14 @@ else
        {if (flag!=6)
    	{set_block_error(-7);
         return;}}
-    for (i=0;i<min(mu,nu);i++)  
+    for (i=0;i<Min(mu,nu);i++)  
 	 {if (*(ptr->LSV+i)!=0)
 	      {*(ptr->LSW+i)=1/(*(ptr->LSV+i));}
 	 else 
 	      {*(ptr->LSW+i)=0;}}
     *(ptr->l0)=0;
      C2F(dlaset)("F",&nu,&mu,ptr->l0,ptr->l0,ptr->LS,&nu);
-    for (i=0;i<min(mu,nu);i++)
+    for (i=0;i<Min(mu,nu);i++)
 	{ii=i+i*nu;
 	 *(ptr->LS+ii)=*(ptr->LSW+i);}
     for (j=0;j<mu;j++)

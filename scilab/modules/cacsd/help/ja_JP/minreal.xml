@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="minreal">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>minreal</refname>
     <refpurpose>最小平衡実現</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,11 +40,17 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
-    は線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)
-	の平衡実現を返します.</para>
-    <para><literal>sl</literal> は安定であると仮定されます.</para>
-    <para><literal>tol</literal> 閾値は <literal>equil1</literal>で使用されます.</para>
+    <para>
+      <literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
+      は線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)
+      の平衡実現を返します.
+    </para>
+    <para>
+      <literal>sl</literal> は安定であると仮定されます.
+    </para>
+    <para>
+      <literal>tol</literal> 閾値は <literal>equil1</literal>で使用されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -80,9 +85,5 @@ clean(obs_gram(slb))
         <link linkend="equil1">equil1</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer INRIA 1987</para>
   </refsection>
 </refentry>

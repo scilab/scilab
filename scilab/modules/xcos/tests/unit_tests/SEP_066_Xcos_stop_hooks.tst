@@ -26,7 +26,7 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
         f=gcf();
         a=gca();
         p=a.children(1);
-        assert_checkalmostequal(p.data($,1), 29.9);
+        assert_checkalmostequal(p.data($,1), 29.9, 0.1, 0.1);
 
         status = [status 'post_called'];
 endfunction
@@ -34,5 +34,5 @@ endfunction
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
 xcos_simulate(scs_m, 4);
 
-assert_checkequal(status, ["pre_called"])
+assert_checkequal(status, ["pre_called"]);
 

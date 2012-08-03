@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: includes/spDefs.h, line: 379
 #, c-format
@@ -240,10 +240,10 @@ msgid ""
 msgstr ""
 
 # File: macros/adj2sp.sci, line: 19
-# File: macros/gmres.sci, line: 151
+# File: macros/gmres.sci, line: 148
 # File: macros/pcg.sci, line: 62
 # File: macros/pcg.sci, line: 65
-# File: macros/qmr.sci, line: 261
+# File: macros/qmr.sci, line: 254
 # File: macros/sp2adj.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -263,7 +263,6 @@ msgstr ""
 # File: macros/pcg.sci, line: 112
 # File: macros/pcg.sci, line: 155
 # File: macros/pcg.sci, line: 184
-# File: macros/qmr.sci, line: 73
 # File: macros/sp2adj.sci, line: 29
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -319,17 +318,17 @@ msgstr ""
 # File: macros/gmres.sci, line: 66
 # File: macros/gmres.sci, line: 122
 # File: macros/qmr.sci, line: 79
-# File: macros/qmr.sci, line: 140
-# File: macros/qmr.sci, line: 191
+# File: macros/qmr.sci, line: 146
+# File: macros/qmr.sci, line: 193
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
 # File: macros/gmres.sci, line: 71
-# File: macros/gmres.sci, line: 141
-# File: macros/qmr.sci, line: 105
-# File: macros/qmr.sci, line: 115
+# File: macros/gmres.sci, line: 138
+# File: macros/qmr.sci, line: 111
+# File: macros/qmr.sci, line: 119
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -337,14 +336,14 @@ msgstr ""
 #
 # File: macros/gmres.sci, line: 75
 # File: macros/gmres.sci, line: 127
-# File: macros/gmres.sci, line: 144
+# File: macros/gmres.sci, line: 141
 # File: macros/pcg.sci, line: 126
 # File: macros/pcg.sci, line: 162
 # File: macros/pcg.sci, line: 191
 # File: macros/pcg.sci, line: 199
-# File: macros/qmr.sci, line: 118
-# File: macros/qmr.sci, line: 143
-# File: macros/qmr.sci, line: 194
+# File: macros/qmr.sci, line: 122
+# File: macros/qmr.sci, line: 149
+# File: macros/qmr.sci, line: 196
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
@@ -355,14 +354,14 @@ msgstr ""
 # File: macros/gmres.sci, line: 83
 # File: macros/gmres.sci, line: 93
 # File: macros/gmres.sci, line: 103
-# File: macros/qmr.sci, line: 235
-# File: macros/qmr.sci, line: 249
+# File: macros/qmr.sci, line: 230
+# File: macros/qmr.sci, line: 243
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/gmres.sci, line: 289
+# File: macros/gmres.sci, line: 286
 #, c-format
 msgid "%s: Did not converge.\n"
 msgstr ""
@@ -467,19 +466,15 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/qmr.sci, line: 89
-# File: macros/qmr.sci, line: 164
-# File: macros/qmr.sci, line: 167
-# File: macros/qmr.sci, line: 215
-# File: macros/qmr.sci, line: 219
+# File: macros/qmr.sci, line: 73
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Transpose of the function %s "
-"expected.\n"
+"%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
+"matrix or a function expected.\n"
 msgstr ""
 
 #
-# File: macros/qmr.sci, line: 97
+# File: macros/qmr.sci, line: 91
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
@@ -487,9 +482,27 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/qmr.sci, line: 108
+# File: macros/qmr.sci, line: 102
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgid ""
+"%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
+"details.\n"
+msgstr ""
+
+#
+# File: macros/qmr.sci, line: 165
+#, c-format
+msgid ""
+"%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
+"more details.\n"
+msgstr ""
+
+#
+# File: macros/qmr.sci, line: 212
+#, c-format
+msgid ""
+"%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
+"more details.\n"
 msgstr ""
 
 #

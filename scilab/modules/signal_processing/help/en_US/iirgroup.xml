@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iirgroup">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>iirgroup</refname>
     <refpurpose> group delay Lp IIR filter optimization</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
-[cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)</synopsis>
+      [cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -56,7 +54,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    optimization of IIR filters for the Lp criterium for the
-    the group delay. (Rabiner &amp; Gold pp270-273).</para>
+      optimization of IIR filters for the Lp criterium for the
+      the group delay. (Rabiner &amp; Gold pp270-273).
+    </para>
   </refsection>
 </refentry>

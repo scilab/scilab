@@ -8,25 +8,27 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-02 08:23+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-12-17 00:35+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
+"%s: Неверный размер первого входного аргумента: ожидается единственное "
+"значение типа double.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип первого входного аргумента: ожидается тип double.\n"
 
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
-msgstr ""
+msgstr "%s: Не удалось установить указатель в начало файла %s.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -35,14 +37,20 @@ msgstr "%s: Недостаточно памяти.\n"
 #, c-format
 msgid "%s: Wrong size for first input argument: Single string expected.\n"
 msgstr ""
+"%s: Неверный размер первого входного аргумента: ожидается единственное "
+"строковое значение.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Single string expected.\n"
 msgstr ""
+"%s: Неверный тип первого входного аргумента: ожидается единственное "
+"строковое значение.\n"
 
 #, c-format
 msgid "%s: Wrong size for second input argument: Single string expected.\n"
 msgstr ""
+"%s: Неверный размер второго входного аргумента: ожидается единственное "
+"строковое значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
@@ -52,6 +60,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for second input argument: Single string expected.\n"
 msgstr ""
+"%s: Неверный тип второго входного аргумента: Ожидалось единственное "
+"строковое значение.\n"
 
 #, c-format
 msgid "%s: Invalid file identifier.\n"
@@ -60,14 +70,18 @@ msgstr "%s: Неверный идентификатор файла.\n"
 #, c-format
 msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
 msgstr ""
+"%s: Неверный размер четвёртого входного аргумента: ожидается единственное "
+"логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
 msgstr ""
+"%s: Неверный тип четвертого входного аргумента: Ожидалось единственное "
+"логическое значение.\n"
 
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
-msgstr ""
+msgstr "%s: N-мерные массивы строковых значений не реализованы.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Mlist expected.\n"
@@ -75,7 +89,7 @@ msgstr "%s: Неверный тип первого входного аргуме
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
-msgstr ""
+msgstr "%s: Не осуществлено сохранение массива-строки строковых значений.\n"
 
 #, c-format
 msgid ""
@@ -95,6 +109,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
+"%s: Неверный тип первого входного аргумента: ожидается матрица значений типа "
+"double.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
@@ -128,7 +144,7 @@ msgid "Invalid level 5 binary MAT-file!."
 msgstr "Неверный уровень 5 бинарного MAT-файла!."
 
 msgid "Scilab string matrix saved as Matlab Cell."
-msgstr "Матрица строк Scilabсохранена как Matlab Cell."
+msgstr "Матрица строк Scilab сохранена как ячейка (Cell) Matlab''аl."
 
 #, c-format
 msgid "Unknown integer type: %s."
@@ -184,7 +200,7 @@ msgstr ""
 
 #, c-format
 msgid "Name conflict: it is not possible to save variable with name %s."
-msgstr "Конфликт имён: не возможно сохранить переменную с именем %s."
+msgstr "Конфликт имён: невозможно сохранить переменную с именем %s."
 
 msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr "Попытка записи неподдерживаемого типа данных в ASCII файл."

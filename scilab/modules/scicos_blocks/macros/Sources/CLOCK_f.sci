@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,11 +31,15 @@ function [x,y,typ]=CLOCK_f(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
-    if arg1.model.rpar.objs(1)==mlist('Deleted') then
-      path = 3  //compatibility with translated blocks
-    else
-      path = 2
+    // look for the internal edge trigger block
+    for i=1:length(arg1.model.rpar.objs) do
+      o = arg1.model.rpar.objs(i);
+      if typeof(o) == "Block" & o.gui == "EVTDLY_f" then
+        path = i;
+        break;
+      end
     end
+
     newpar=list();
     xx=arg1.model.rpar.objs(path)// get the evtdly block
     exprs=xx.graphics.exprs

@@ -17,11 +17,12 @@
 
 clf()
 plot([0.01,100],[1,10]);a=gca();a.log_flags='lln';
+sleep(200)//Wait for MVC update
 
 // check that ticks loacations are right
 if ( a.x_ticks.locations <> [0.01;0.1;1;10;100] ) then pause; end
 if ( a.y_ticks.locations <> [1;10] ) then pause; end
 
- 
+
 
 

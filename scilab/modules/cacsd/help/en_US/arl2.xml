@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arl2">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>arl2</refname>
     <refpurpose> SISO model realization by L2 transfer approximation</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>h=arl2(y,den0,n [,imp])
-h=arl2(y,den0,n [,imp],'all')
-[den,num,err]=arl2(y,den0,n [,imp])
-[den,num,err]=arl2(y,den0,n [,imp],'all')</synopsis>
+      h=arl2(y,den0,n [,imp],'all')
+      [den,num,err]=arl2(y,den0,n [,imp])
+      [den,num,err]=arl2(y,den0,n [,imp],'all')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -31,13 +29,17 @@ h=arl2(y,den0,n [,imp],'all')
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>real vector or polynomial in <literal>z^-1</literal>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)</para>
+          <para>
+            real vector or polynomial in <literal>z^-1</literal>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>den0</term>
         <listitem>
-          <para>a polynomial which gives an initial guess of the solution, it may be <literal>poly(1,'z','c')</literal></para>
+          <para>
+            a polynomial which gives an initial guess of the solution, it may be <literal>poly(1,'z','c')</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,13 +51,17 @@ h=arl2(y,den0,n [,imp],'all')
       <varlistentry>
         <term>imp</term>
         <listitem>
-          <para>integer in <literal>(0,1,2)</literal> (verbose mode)</para>
+          <para>
+            integer in <literal>(0,1,2)</literal> (verbose mode)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>transfer function <literal>num/den</literal> or transfer matrix (column vector) when flag <literal>'all'</literal> is given.</para>
+          <para>
+            transfer function <literal>num/den</literal> or transfer matrix (column vector) when flag <literal>'all'</literal> is given.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -80,26 +86,36 @@ h=arl2(y,den0,n [,imp],'all')
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[den,num,err]=arl2(y,den0,n [,imp]) </literal> finds a pair of polynomials
-    <literal>num</literal> and <literal>den</literal> such that the transfer function <literal>num/den</literal>
-    is stable and its impulse response approximates (with a minimal l2
-    norm) the vector <literal>y</literal> assumed to be completed by an infinite number
-    of zeros.</para>
     <para>
-    If <literal>y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</literal></para>
+      <literal>[den,num,err]=arl2(y,den0,n [,imp]) </literal> finds a pair of polynomials
+      <literal>num</literal> and <literal>den</literal> such that the transfer function <literal>num/den</literal>
+      is stable and its impulse response approximates (with a minimal l2
+      norm) the vector <literal>y</literal> assumed to be completed by an infinite number
+      of zeros.
+    </para>
     <para>
-    then l2-norm of <literal>num/den - y(z)</literal> is <literal>err</literal>.</para>
-    <para><literal>n</literal> is the degree of the polynomial <literal>den</literal>.</para>
+      If <literal>y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</literal>
+    </para>
     <para>
-    The <literal>num/den</literal>  transfer function is a L2 approximant of the
-    Fourier's series of the rational system.</para>
+      then l2-norm of <literal>num/den - y(z)</literal> is <literal>err</literal>.
+    </para>
     <para>
-    Various intermediate results are printed according to <literal>imp</literal>.</para>
-    <para><literal>[den,num,err]=arl2(y,den0,n [,imp],'all') </literal>  returns in the
-    vectors of polynomials <literal>num</literal> and <literal>den</literal>  a set of local
-    optimums for the problem. The solutions are sorted with increasing
-    errors <literal>err</literal>. In this case <literal>den0</literal> is already assumed to be 
-    <literal>poly(1,'z','c')</literal></para>
+      <literal>n</literal> is the degree of the polynomial <literal>den</literal>.
+    </para>
+    <para>
+      The <literal>num/den</literal>  transfer function is a L2 approximant of the
+      Fourier's series of the rational system.
+    </para>
+    <para>
+      Various intermediate results are printed according to <literal>imp</literal>.
+    </para>
+    <para>
+      <literal>[den,num,err]=arl2(y,den0,n [,imp],'all') </literal>  returns in the
+      vectors of polynomials <literal>num</literal> and <literal>den</literal>  a set of local
+      optimums for the problem. The solutions are sorted with increasing
+      errors <literal>err</literal>. In this case <literal>den0</literal> is already assumed to be 
+      <literal>poly(1,'z','c')</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -120,7 +136,7 @@ plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ldiv">ldiv</link>

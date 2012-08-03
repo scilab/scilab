@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="psmall">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>psmall</refname>
     <refpurpose> spectral projection</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string (<literal>'c'</literal> or <literal>'d'</literal>)</para>
+          <para>
+            character string (<literal>'c'</literal> or <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,34 +53,40 @@
   <refsection>
     <title>Description</title>
     <para>
-    Projection on eigen-subspace associated with eigenvalues with real
-    part &lt; <literal>thres</literal> (<literal>flag='c'</literal>) or
-    with modulus &lt; <literal>thres</literal>
-    (<literal>flag='d'</literal>).</para>
+      Projection on eigen-subspace associated with eigenvalues with real
+      part &lt; <literal>thres</literal> (<literal>flag='c'</literal>) or
+      with modulus &lt; <literal>thres</literal>
+      (<literal>flag='d'</literal>).
+    </para>
     <para>
-    The projection is defined by <literal>Q*M</literal>, <literal>Q</literal> is
-    full column rank, <literal>M</literal> is full row rank and
-    <literal>M*Q=eye</literal>.</para>
+      The projection is defined by <literal>Q*M</literal>, <literal>Q</literal> is
+      full column rank, <literal>M</literal> is full row rank and
+      <literal>M*Q=eye</literal>.
+    </para>
     <para>
-    If <literal>flag='c'</literal>, the eigenvalues of
-    <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with real part
-    &lt; <literal>thres</literal>.</para>
+      If <literal>flag='c'</literal>, the eigenvalues of
+      <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with real part
+      &lt; <literal>thres</literal>.
+    </para>
     <para>
-    If <literal>flag='d'</literal>, the eigenvalues of
-    <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with magnitude
-    &lt; <literal>thres</literal>.</para>
+      If <literal>flag='d'</literal>, the eigenvalues of
+      <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with magnitude
+      &lt; <literal>thres</literal>.
+    </para>
     <para>
-    If <literal>flag='c'</literal> and if <literal>[Q1,M1]</literal> =
-    full rank factorization (<literal>fullrf</literal>) of
-    <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-    eigenvalues of <literal>A</literal> with real part &gt;=
-    <literal>thres</literal>.</para>
+      If <literal>flag='c'</literal> and if <literal>[Q1,M1]</literal> =
+      full rank factorization (<literal>fullrf</literal>) of
+      <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
+      eigenvalues of <literal>A</literal> with real part &gt;=
+      <literal>thres</literal>.
+    </para>
     <para>
-    If <literal>flag='d'</literal> and if <literal>[Q1,M1]</literal> =
-    full rank factorization (<literal>fullrf</literal>) of
-    <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-    eigenvalues of <literal>A</literal> with magnitude &gt;=
-    <literal>thres</literal>.</para>
+      If <literal>flag='d'</literal> and if <literal>[Q1,M1]</literal> =
+      full rank factorization (<literal>fullrf</literal>) of
+      <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
+      eigenvalues of <literal>A</literal> with magnitude &gt;=
+      <literal>thres</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -94,7 +99,7 @@ spec(M1*A*Q1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pbig">pbig</link>
@@ -108,13 +113,10 @@ spec(M1*A*Q1)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA. (1988);   </para>
-  </refsection>
-  <refsection>
     <title>Used Functions</title>
     <para>
-   This function is  based on the ordered schur form (scilab
-   function <literal>schur</literal>).</para>
+      This function is  based on the ordered schur form (scilab
+      function <literal>schur</literal>).
+    </para>
   </refsection>
 </refentry>

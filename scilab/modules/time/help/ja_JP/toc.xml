@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="toc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>toc</refname>
     <refpurpose>ストップウォッチタイマーを読む</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>toc()
-t = toc()</synopsis>
+      t = toc()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,8 +28,9 @@ t = toc()</synopsis>
         <term>t</term>
         <listitem>
           <para>
-	<literal>tic()</literal>への最後のコール以降の経過秒数
-	(精度はミリ秒レベル).</para>
+            <literal>tic()</literal>への最後のコール以降の経過秒数
+            (精度はミリ秒レベル).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,8 +38,9 @@ t = toc()</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	一連のコマンド <literal>tic(); 処理; toc();</literal> は,
-	処理に要した秒数を出力します.</para>
+      一連のコマンド <literal>tic(); 処理; toc();</literal> は,
+      処理に要した秒数を出力します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -64,13 +64,6 @@ toc();
       <member>
         <link linkend="etime">etime</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

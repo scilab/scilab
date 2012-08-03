@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 4675 -->
 //
@@ -20,7 +20,8 @@
 ilib_verbose(0)
 cd TMPDIR;
 //creating the interface file
-c_code = ['#include <stack-c.h>'
+c_code = ['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include <stack-c.h>'
    '#include <api_scilab.h>'
    'int sci_funxxx(char *fname)' 
    '{'

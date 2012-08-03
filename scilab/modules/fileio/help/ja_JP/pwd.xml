@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pwd">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pwd</refname>
     <refpurpose> Scilab カレントディレクトリを出力</refpurpose>
@@ -14,12 +11,15 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>pwd
-x=pwd()</synopsis>
+      x=pwd()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para><literal>pwd</literal> は, Scilab カレントディレクトリ を <literal>ans</literal> に返します. 
-    <literal>x=pwd()</literal> は <literal>x</literal> にScilab カレントディレクトリを返します.</para>
+    <para>
+      <literal>pwd</literal> は, Scilab カレントディレクトリ を <literal>ans</literal> に返します. 
+      <literal>x=pwd()</literal> は <literal>x</literal> にScilab カレントディレクトリを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

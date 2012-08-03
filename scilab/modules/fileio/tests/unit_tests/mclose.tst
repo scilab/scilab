@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 fd = mopen(TMPDIR + filesep() + 'mclose_tst','wt');
 mclose(TMPDIR + filesep() + 'mclose_tst');

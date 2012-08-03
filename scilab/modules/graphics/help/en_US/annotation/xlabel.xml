@@ -10,17 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xlabel" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="xlabel" xml:lang="en">
   <refnamediv>
     <refname>xlabel</refname>
     <refpurpose>label x-axis</refpurpose>
@@ -33,26 +23,17 @@
     <refname>zlabel</refname>
     <refpurpose>label z-axis</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>xlabel("string label")</synopsis>
-
     <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
-
     <synopsis>ylabel("string label")</synopsis>
-
     <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
-
     <synopsis>zlabel("string label")</synopsis>
-
     <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>"string label"</term>
@@ -60,14 +41,12 @@
           <para>a string: labels the axis of the current axes</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"PropertyName"</term>
         <listitem>
           <para>a string: a property name</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>PropertyValue</term>
         <listitem>
@@ -76,30 +55,35 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Each axes graphics object can have one label for the x-, y-, and
-    z-axis.</para>
-
+      z-axis.
+    </para>
     <para>The label appears beneath its respective axis in a two-dimensional
-    plot and to the side or beneath the axis in a three-dimensional
-    plot.</para>
+      plot and to the side or beneath the axis in a three-dimensional
+      plot.
+    </para>
   </refsection>
-
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      xlabel(["first line";"second line"])
+      ylabel("A label on y axis", "fontsize", 6)
+    </scilab:image>
+  </refsection>
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">xlabel(["first line";"second line"])
-ylabel("A label on y axis", "fontsize", 6)</programlisting>
+      ylabel("A label on y axis", "fontsize", 6)
+    </programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="title">title</link></member>
+      <member>
+        <link linkend="title">title</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="diag" xml:lang="ru">
+  <refnamediv>
+    <refname>diag</refname>
+    <refpurpose>включение или исключение диагонали</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[y]=diag(vm, [k])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>vm</term>
+        <listitem>
+          <para>вектор или матрица (полная или разрежённая)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>целое число (значение по умолчанию: 0)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>вектор или матрица</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Для <literal>vm</literal>, вектора-строки (или вектора-столбца) с <literal>n</literal> элементами, <literal>diag(vm)</literal> возвращает диагональную матрицу с элементами из <literal>vm</literal> вдоль главной диагонали.
+    </para>
+    <para>
+      <literal>diag(vm,k)</literal> является матрицей 
+      <literal>(n+abs(k))x(n+abs(k))</literal> с элементами из <literal>vm</literal>
+      вдоль <literal>k</literal>-той диагонали. <literal>k=0</literal> является главной диагональю; для верхних диагоналей <literal>k&gt;0</literal>; для нижних диагоналей
+      <literal>k&lt;0</literal>.
+    </para>
+    <para>
+      Для матрицы <literal>vm</literal>, <literal>diag(vm,k)</literal> является вектором-столбцом, составленным из элементов <literal>k</literal>-той диагонали в    <literal>vm</literal>. <literal>diag(vm)</literal> является главной диагональю     <literal>vm</literal>. <literal>diag(diag(x))</literal> является диагональной матрицей.
+    </para>
+    <para>
+      Если <literal>vm</literal> является разрежённой матрицей, то    <literal>diag(vm,k)</literal> возвращает разряжённую матрицу.
+    </para>
+    <para>
+      Чтобы построить диагональную линейную систему, используйте    <literal>sysdiag</literal>.
+    </para>
+    <para>
+      Заметьте, что <literal>eye(A).*A</literal> возвращает диагональную матрицу, построенную с диагональными элементами из <literal>A</literal>. Это правильно для любой матрицы (констант, полиномиальной, рациональной, линейной системы пространств-состояний, ...).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+diag([1,2])
+ 
+A=[1,2;3,4];
+diag(A)  // главная диагональ
+diag(A,1) 
+ 
+diag(sparse(1:10))  // разряжённую диагональная матрица
+ 
+// формируем трёхдиагональную матрицу размером 2*m+1
+m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sysdiag">sysdiag</link>
+      </member>
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>polar</refname>
     <refpurpose> polar form</refpurpose>
@@ -47,9 +44,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[Ro,Theta]=polar(A)</literal> returns the polar form of
-   <literal>A</literal> i.e.  <literal>A=Ro*expm(%i*Theta)</literal><literal>Ro</literal> symmetric &gt;=0 and <literal>Theta</literal> hermitian
-   &gt;=0.</para>
+    <para>
+      <literal>[Ro,Theta]=polar(A)</literal> returns the polar form of
+      <literal>A</literal> i.e.  <literal>A=Ro*expm(%i*Theta)</literal><literal>Ro</literal> symmetric &gt;=0 and <literal>Theta</literal> hermitian
+      &gt;=0.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +59,7 @@ norm(A-Ro*expm(%i*Theta),1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="expm">expm</link>
@@ -69,9 +68,5 @@ norm(A-Ro*expm(%i*Theta),1)
         <link linkend="svd">svd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA; ;   </para>
   </refsection>
 </refentry>

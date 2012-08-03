@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-02-18 05:40+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -28,8 +28,36 @@ msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr "%s: 入力引数の型が間違っています： スカラー値で指定してください.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが発生しました: %s\n"
+msgid "%s: An error occurred.\n"
+msgstr "%s: エラーが発生しました.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ割当エラー.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -39,18 +67,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: エラーが発生しました.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より小さい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"

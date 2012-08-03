@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="svd">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>svd</refname>
     <refpurpose>  singular value decomposition</refpurpose>
@@ -21,10 +18,11 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>s=svd(X)
-[U,S,V]=svd(X)
-[U,S,V]=svd(X,0) (obsolete)
-[U,S,V]=svd(X,"e")
-[U,S,V,rk]=svd(X [,tol])</synopsis>
+      [U,S,V]=svd(X)
+      [U,S,V]=svd(X,0) (obsolete)
+      [U,S,V]=svd(X,"e")
+      [U,S,V,rk]=svd(X [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -63,20 +61,29 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[U,S,V] = svd(X)</literal> produces a diagonal matrix
-    <literal>S</literal> , of the same dimension as <literal>X</literal> and with
-    nonnegative diagonal elements in decreasing order, and unitary
-    matrices <literal>U</literal> and <literal>V</literal> so that <literal>X = U*S*V'</literal>.</para>
-    <para><literal>[U,S,V] = svd(X,0)</literal> produces the "economy
-    size" decomposition. If <literal>X</literal> is m-by-n with m &gt;
-    n, then only the first n columns of <literal>U</literal> are computed
-    and <literal>S</literal> is n-by-n.</para>
-    <para><literal>s = svd(X)</literal> by itself, returns a vector <literal>s</literal>
-    containing the singular values.</para>
-    <para><literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
-    singular values larger than <literal>tol</literal>.</para>
     <para>
-    The default value of <literal>tol</literal> is the same as in <literal>rank</literal>.</para>
+      <literal>[U,S,V] = svd(X)</literal> produces a diagonal matrix
+      <literal>S</literal> , of the same dimension as <literal>X</literal> and with
+      nonnegative diagonal elements in decreasing order, and unitary
+      matrices <literal>U</literal> and <literal>V</literal> so that <literal>X = U*S*V'</literal>.
+    </para>
+    <para>
+      <literal>[U,S,V] = svd(X,0)</literal> produces the "economy
+      size" decomposition. If <literal>X</literal> is m-by-n with m &gt;
+      n, then only the first n columns of <literal>U</literal> are computed
+      and <literal>S</literal> is n-by-n.
+    </para>
+    <para>
+      <literal>s= svd(X)</literal> by itself, returns a vector <literal>s</literal>
+      containing the singular values.
+    </para>
+    <para>
+      <literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
+      singular values larger than <literal>tol</literal>.
+    </para>
+    <para>
+      The default value of <literal>tol</literal> is the same as in <literal>rank</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -87,7 +94,7 @@ sqrt(spec(X*X'))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rank">rank</link>
@@ -112,7 +119,8 @@ sqrt(spec(X*X'))
   <refsection>
     <title>Used Functions</title>
     <para>
-   svd decompositions are based on  the Lapack routines DGESVD for
-   real matrices and  ZGESVD for the complex case.</para>
+      svd decompositions are based on  the Lapack routines DGESVD for
+      real matrices and  ZGESVD for the complex case.
+    </para>
   </refsection>
 </refentry>

@@ -1,0 +1,62 @@
+# German translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-03-31 17:49+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+msgid "History loading in progress..."
+msgstr "Laden der Chronik läuft"
+
+msgid "Command History"
+msgstr "Chronik der Befehle"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Cut"
+msgstr "Ausschneiden"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Clear history"
+msgstr "Lösche Verlauf"
+
+msgid "?"
+msgstr "?"
+
+msgid "Scilab Help"
+msgstr "Scilab Hilfe"
+
+msgid "Evaluate Selection"
+msgstr "Auswahl evaluieren"
+
+msgid "Edit in SciNotes"
+msgstr "In SciNotes bearbeiten"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Cannot delete current session beginning line."
+msgstr "Kann die Anfangszeile der aktuellen Sitzung nicht löschen."

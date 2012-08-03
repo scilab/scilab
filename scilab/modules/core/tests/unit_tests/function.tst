@@ -7,7 +7,7 @@
 // =============================================================================
 
 //Checks syntactical aspects  related to functions
-funcprot(0)
+funcprot(0);
 //
 //               Various calling sequences
 //               -------------------------

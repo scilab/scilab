@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="polar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>polar</refname>
     <refpurpose>極座標形式</refpurpose>
@@ -47,12 +44,13 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[Ro,Theta]=polar(A)</literal> は
-   <literal>A</literal>の極座標形式,すなわち,
-	<literal>A=Ro*expm(%i*Theta)</literal>,
-	対称行列 <literal>Ro</literal> &gt;=0
-	およびエルミート行列 <literal>Theta</literal> &gt;=0 を返します.
-	</para>
+    <para>
+      <literal>[Ro,Theta]=polar(A)</literal> は
+      <literal>A</literal>の極座標形式,すなわち,
+      <literal>A=Ro*expm(%i*Theta)</literal>,
+      対称行列 <literal>Ro</literal> &gt;=0
+      およびエルミート行列 <literal>Theta</literal> &gt;=0 を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -72,9 +70,5 @@ norm(A-Ro*expm(%i*Theta),1)
         <link linkend="svd">svd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. Delebecque INRIA; ;   </para>
   </refsection>
 </refentry>

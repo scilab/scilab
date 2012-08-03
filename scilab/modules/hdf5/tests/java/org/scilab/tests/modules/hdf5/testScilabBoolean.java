@@ -10,8 +10,7 @@ package org.scilab.tests.modules.hdf5;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.junit.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -27,10 +26,10 @@ public class testScilabBoolean {
     public final static boolean myBoolean = true;
     private final static String tempDir = System.getProperty("java.io.tmpdir");
 
-    @Test  
+    @Test
     public void testSingleBoolean() throws NullPointerException, HDF5Exception {
         ScilabBoolean scilabSingleboolean = new ScilabBoolean(myBoolean);
-        String fileName = tempDir+"/singleBooleanFromJava.h5";
+        String fileName = tempDir + "/singleBooleanFromJava.sod";
 
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "SingleBoolean", scilabSingleboolean);
@@ -50,10 +49,10 @@ public class testScilabBoolean {
     public void testBooleanMatrix() throws NullPointerException, HDF5Exception {
         boolean[][] dataBooleanMatix = {
             {true, true},
-            {false, true}, 
+            {false, true},
             {false, false}
         };
-        String fileName = tempDir+"/matrixbooleanFromJava.h5";
+        String fileName = tempDir + "/matrixbooleanFromJava.sod";
         int ROWS = dataBooleanMatix.length;
         int COLS = dataBooleanMatix[0].length;
 

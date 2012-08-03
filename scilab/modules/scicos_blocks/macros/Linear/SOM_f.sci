@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -101,13 +101,16 @@ case 'set' then
     labs=['down','right','up']
   end
 
-  message(['This sum block is obsolete'
+  str = ['This sum block is obsolete'
       'parameters cannot be modified. Please replace it with new sum block';
       'and gain blocks in the linear palette'
       ' '
       'Input ports are located at up, side and  down positions.'
-      'Current gains are:' 
-      part(labs(:),1:7)+'  '+exprs(:)])
+      'Current gains are:'];
+   
+   str = [str ; (part(labs(:),1:7)+exprs(:))];
+   message(str);
+   
 case 'define' then
   sgn=[1;1;1]
 

@@ -14,10 +14,10 @@
 #define __SCIMEM_H__
 #include "machine.h"
 
-int C2F(scimem)(int *n, int *ptr);
-int C2F(scigmem)(int *n, int *ptr);
+int C2F(scimem) (int *newsize, int *ptr);
+int C2F(scigmem) (int *newsize, int *ptr);
 
-void C2F(freegmem)(void);
-void C2F(freemem)(void);
+void C2F(freegmem) (void);
+void C2F(freemem) (void);
 #endif /* __SCIMEM_H_ */
 /*--------------------------------------------------------------------------*/

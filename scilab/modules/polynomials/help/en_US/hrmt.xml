@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hrmt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hrmt</refname>
     <refpurpose> gcd of polynomials</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>row of polynomials i.e. <literal>1</literal>x<literal>k</literal> polynomial matrix</para>
+          <para>
+            row of polynomials i.e. <literal>1</literal>x<literal>k</literal> polynomial matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,8 +46,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[pg,U]=hrmt(v)</literal> returns a unimodular matrix <literal>U</literal> and  <literal>pg</literal> = gcd of row of
-    polynomials <literal>v</literal> such that <literal>v*U = [pg,0]</literal>.</para>
+    <para>
+      <literal>[pg,U]=hrmt(v)</literal> returns a unimodular matrix <literal>U</literal> and  <literal>pg</literal> = gcd of row of
+      polynomials <literal>v</literal> such that <literal>v*U = [pg,0]</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +61,7 @@ det(U)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcd">gcd</link>
@@ -69,9 +70,5 @@ det(U)
         <link linkend="htrianr">htrianr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

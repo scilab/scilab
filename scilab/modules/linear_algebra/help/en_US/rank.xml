@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rank">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rank</refname>
     <refpurpose> rank</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[i]=rank(X)
-[i]=rank(X,tol)</synopsis>
+      [i]=rank(X,tol)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -42,15 +40,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>rank(X)</literal> is the numerical rank of <literal>X</literal>
-    i.e. the number of singular values of X that are larger than
-    <literal>norm(size(X),'inf') * norm(X) * %eps</literal>.</para>
-    <para><literal>rank(X,tol)</literal> is the number of singular values of
-    <literal>X</literal> that are larger than <literal>tol</literal>.</para>
     <para>
-    Note that the default value of <literal>tol</literal> is proportional to
-    <literal>norm(X)</literal>. As a consequence
-    <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.</para>
+      <literal>rank(X)</literal> is the numerical rank of <literal>X</literal>
+      i.e. the number of singular values of X that are larger than
+      <literal>norm(size(X),'inf') * norm(X) * %eps</literal>.
+    </para>
+    <para>
+      <literal>rank(X,tol)</literal> is the number of singular values of
+      <literal>X</literal> that are larger than <literal>tol</literal>.
+    </para>
+    <para>
+      Note that the default value of <literal>tol</literal> is proportional to
+      <literal>norm(X)</literal>. As a consequence
+      <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +63,7 @@ rank([1,0;0,1.d-80])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="svd">svd</link>

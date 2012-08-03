@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="geom3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>geom3d</refname>
     <refpurpose>projection 3D vers 2D après une instruction
-  de dessin 3D</refpurpose>
+      de dessin 3D
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -24,8 +22,10 @@
       <varlistentry>
         <term>x,y</term>
         <listitem>
-          <para>vecteurs réels de même taille que <literal>x1</literal>,
-          <literal>y1</literal> et <literal>z1</literal>.</para>
+          <para>
+            vecteurs réels de même taille que <literal>x1</literal>,
+            <literal>y1</literal> et <literal>z1</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -33,12 +33,13 @@
   <refsection>
     <title>Description</title>
     <para>Après l'utilisation d'une instruction de dessin 3D du type
-    <literal>plot3d</literal>, <literal>plot3d1</literal> ou <literal>param3d</literal>,
-    <literal>geom3d</literal> permet de faire la correspondance entre un point de
-    l'espace 3D <literal>(x1(i),y1(i),z1(i))</literal> et le point correspondant
-    <literal>(x(i),y(i))</literal> dans le plan projeté 2D. On peut ainsi utiliser
-    les primitives graphiques avec <literal>(x,y)</literal> pour superposer des
-    dessins.</para>
+      <literal>plot3d</literal>, <literal>plot3d1</literal> ou <literal>param3d</literal>,
+      <literal>geom3d</literal> permet de faire la correspondance entre un point de
+      l'espace 3D <literal>(x1(i),y1(i),z1(i))</literal> et le point correspondant
+      <literal>(x(i),y(i))</literal> dans le plan projeté 2D. On peut ainsi utiliser
+      les primitives graphiques avec <literal>(x,y)</literal> pour superposer des
+      dessins.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -51,9 +52,5 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_builder_gateway_lang" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-08-19 17:44:43 +0200 $</pubdate>
-  </info>
   <refnamediv>
     <refname>tbx_builder_gateway_lang</refname>
     <refpurpose>Run builder_gateway_(language).sce script if it exists (toolbox compilation process)</refpurpose>
@@ -21,8 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_builder_gateway_lang(lang)
-	  tbx_builder_gateway_lang(lang, gw_path)
+      tbx_builder_gateway_lang(lang)
+      tbx_builder_gateway_lang(lang, gw_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -48,11 +45,5 @@
 // Recommended usage
 tbx_builder_gateway_lang("fortran", get_absolute_file_path('builder_gateway.sce'))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
-    </simplelist>
   </refsection>
 </refentry>

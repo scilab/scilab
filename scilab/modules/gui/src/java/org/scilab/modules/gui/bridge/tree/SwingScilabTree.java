@@ -27,11 +27,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.SimpleTree;
@@ -39,8 +39,6 @@ import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -50,290 +48,315 @@ import org.scilab.modules.localization.Messages;
  */
 public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Icon icon;
-	private CallBack callback;
-	private JScrollPane scrollPane = new JScrollPane();
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor
-	 * @param tree structure to display
-	 */
-	public SwingScilabTree(Tree tree) {
-		super(tree.getLabel());
-		this.setIcon(tree.getIcon());
-		this.setCallback(tree.getCallback());
-		
-		Vector<Tree> children = tree.getChildren();
-		
-		for (int i = 0; i < children.size(); ++i)	{
-			SwingScilabTree swingScilabTree = new SwingScilabTree(children.get(i));
-			this.add(swingScilabTree);
-		}
-	}
-	
-	/**
-	 * Getter for icon
-	 * @return an icon
-	 */
-	public Icon getIcon() {
-		return icon;
-	}
+    private Icon icon;
+    private CommonCallBack callback;
+    private JScrollPane scrollPane = new JScrollPane();
 
-	/**
-	 * Setter for icon
-	 * @param icon an Icon
-	 */
-	public void setIcon(Icon icon) {
-		this.icon = icon;
-	}
-	
-	/**
-	 * Getter for callback
-	 * @return a callback
-	 */
-	public CallBack getCallback() {
-		return callback;
-	}
+    /**
+     * Default constructor
+     * @param tree structure to display
+     */
+    public SwingScilabTree(Tree tree) {
+        super(tree.getLabel());
+        this.setIcon(tree.getIcon());
+        this.setCallback(tree.getCallback());
 
-	/**
-	 * Setter for callback
-	 * @param callback a callback
-	 */
-	public void setCallback(CallBack callback) {
-		this.callback = callback;
-	}
+        Vector<Tree> children = tree.getChildren();
 
-	/**
-	 *  This is a private class to embed the JTree inside its Mouse Listener
-	 *  in order we can figure out on which leaff the user clicked on.
-	 */
-	private class ClickListener extends MouseAdapter {
-	    private JTree myJtree;
-	    
-	    /**
-	     * Constructor
-	     * @param jtree a Jtree
-	     */
-	    public ClickListener(JTree jtree) {
-		myJtree = jtree;
-	    }
-	    
-	    /**
-	     * Mouse clicked actions
-	     * @param arg0 event
-	     */
-	    public void mouseClicked(MouseEvent arg0) {
-		TreePath path = myJtree.getPathForLocation(arg0.getX(), arg0.getY());
-		/* We only want double click to do something */
-		if (path != null && arg0.getClickCount() >= 2) {
-		    ((SwingScilabTree) path.getLastPathComponent()).getCallback().actionPerformed(null);
-		}
+        for (int i = 0; i < children.size(); ++i)	{
+            SwingScilabTree swingScilabTree = new SwingScilabTree(children.get(i));
+            this.add(swingScilabTree);
+        }
+    }
 
-	    }
-	}
-	
-	/**
-	 * Get as Component
-	 * @return a component
-	 */
-	public JComponent getAsComponent() {
-		// Tree Model
-		DefaultTreeModel model = new DefaultTreeModel(this);		
-		// Renderer
-		ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
-		// Swing tree component
-		JTree jtree = new JTree();	
-		// Show Root Handles
-		jtree.setShowsRootHandles(true);
-		// Set model to the JTree
-		jtree.setModel(model);		
-		// Set renderer
-		jtree.setCellRenderer(renderer);
+    /**
+     * Getter for icon
+     * @return an icon
+     */
+    public Icon getIcon() {
+        return icon;
+    }
 
-		jtree.addMouseListener(new ClickListener(jtree));
-		jtree.setVisible(true);
-		
-		
-		scrollPane.getViewport().add(jtree);
-		return scrollPane;
-	}
-	
-	/**
-	 * Display the tree
-	 * @param tree a tree
-	 */
-	public static void  showTree(Tree tree) {
-		
-		// Scilab tree
-		SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
-		
-		Window window = ScilabWindow.createWindow();
-		final Tab tab = ScilabTab.createTab(Messages.gettext("Tree Overview"));
-		tab.setCallback(new CallBack(null) {
-			private static final long serialVersionUID = 8418506008885202932L;
+    /**
+     * Setter for icon
+     * @param icon an Icon
+     */
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+    }
 
-			public void callBack() {
-				tab.close();
-			}
-		});
-		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
-		window.addTab(tab);
-		tab.setVisible(true);
-		window.setVisible(true);
-	}
+    /**
+     * Getter for callback
+     * @return a callback
+     */
+    public CommonCallBack getCallback() {
+        return callback;
+    }
 
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * Setter for callback
+     * @param callback a callback
+     */
+    public void setCallback(CommonCallBack callback) {
+        this.callback = callback;
+    }
 
-	public Color getBackground() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     *  This is a private class to embed the JTree inside its Mouse Listener
+     *  in order we can figure out on which leaff the user clicked on.
+     */
+    private class ClickListener extends MouseAdapter {
+        private JTree myJtree;
 
-	public Font getFont() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        /**
+         * Constructor
+         * @param jtree a Jtree
+         */
+        public ClickListener(JTree jtree) {
+            myJtree = jtree;
+        }
 
-	public Color getForeground() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        /**
+         * Mouse clicked actions
+         * @param arg0 event
+         */
+        public void mouseClicked(MouseEvent arg0) {
+            TreePath path = myJtree.getPathForLocation(arg0.getX(), arg0.getY());
+            /* We only want double click to do something */
+            if (path != null && arg0.getClickCount() >= 2) {
+                ((SwingScilabTree) path.getLastPathComponent()).getCallback().actionPerformed(null);
+            }
 
-	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        }
+    }
 
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    /**
+     * Get as Component
+     * @return a component
+     */
+    public JComponent getAsComponent() {
+        // Tree Model
+        DefaultTreeModel model = new DefaultTreeModel(this);
+        // Renderer
+        ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
+        // Swing tree component
+        JTree jtree = new JTree();
+        // Show Root Handles
+        jtree.setShowsRootHandles(true);
+        // Set model to the JTree
+        jtree.setModel(model);
+        // Set renderer
+        jtree.setCellRenderer(renderer);
 
-	public void requestFocus() {
-		// TODO Auto-generated method stub
-		
-	}
+        jtree.addMouseListener(new ClickListener(jtree));
+        jtree.setVisible(true);
 
-	public void setBackground(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void setEnabled(boolean status) {
-		// TODO Auto-generated method stub
-		
-	}
+        scrollPane.getViewport().add(jtree);
+        return scrollPane;
+    }
 
-	public void setFont(Font font) {
-		// TODO Auto-generated method stub
-		
-	}
+    public JTree getJTree() {
+        // Tree Model
+        DefaultTreeModel model = new DefaultTreeModel(this);
+        // Renderer
+        ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
+        // Swing tree component
+        JTree jtree = new JTree();
+        // Show Root Handles
+        jtree.setShowsRootHandles(true);
+        // Set model to the JTree
+        jtree.setModel(model);
+        // Set renderer
+        jtree.setCellRenderer(renderer);
 
-	public void setForeground(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
+        jtree.addMouseListener(new ClickListener(jtree));
+        jtree.setVisible(true);
 
-	public void setHorizontalAlignment(String alignment) {
-		// TODO Auto-generated method stub
-		
-	}
+        return jtree;
+    }
 
-	public void setRelief(String reliefType) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * Display the tree
+     * @param tree a tree
+     */
+    public static void  showTree(Tree tree) {
 
-	public void setText(String text) {
-		// TODO Auto-generated method stub
-		
-	}
+        // Scilab tree
+        SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 
-	public void setVerticalAlignment(String alignment) {
-		// TODO Auto-generated method stub
-		
-	}
+        SwingScilabWindow window = new SwingScilabWindow();
+        final SwingScilabTab tab = new SwingScilabTab(Messages.gettext("Tree Overview"));
+        tab.setCallback(new CommonCallBack("", CallBack.UNTYPED) {
+            private static final long serialVersionUID = 8418506008885202932L;
 
-	public void addInfoBar(TextBox infoBarToAdd) {
-		// TODO Auto-generated method stub
-		
-	}
+            public void callBack() {
+                tab.close();
+            }
+        });
+        tab.addTree(swingScilabTree);
+        window.addTab(tab);
+        tab.setVisible(true);
+        window.setVisible(true);
+    }
 
-	public void addMenuBar(MenuBar menuBarToAdd) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void destroy() {
+        // TODO Auto-generated method stub
 
-	public void addToolBar(ToolBar toolBarToAdd) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+    public Color getBackground() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * Get size
-	 * @return the size
-	 */
-	public Size getDims() {
-	    return new Size(scrollPane.getSize().width, scrollPane.getSize().height);
-	}
+    public Font getFont() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public TextBox getInfoBar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Color getForeground() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public MenuBar getMenuBar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getText() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/**
-	 * Get position
-	 * @return the position
-	 */
-	public Position getPosition() {
-	    return PositionConverter.javaToScilab(scrollPane.getLocation(), scrollPane.getSize(), scrollPane.getParent());
-	}
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public ToolBar getToolBar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void requestFocus() {
+        // TODO Auto-generated method stub
 
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    }
 
-	/**
-	 * Set size
-	 * @param newSize a new size
-	 */
-	public void setDims(Size newSize) {
-	    scrollPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-	}
+    public void setBackground(Color color) {
+        // TODO Auto-generated method stub
 
-	/**
-	 * Set position
-	 * @param newPosition a new position
-	 */
-	public void setPosition(Position newPosition) {
-	    Position javaPosition = PositionConverter.scilabToJava(newPosition, this.getDims(), scrollPane.getParent());
-	    scrollPane.setLocation(javaPosition.getX(), javaPosition.getY());
-	}
+    }
 
-	public void setVisible(boolean newVisibleState) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setEnabled(boolean status) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setFont(Font font) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setForeground(Color color) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setHorizontalAlignment(String alignment) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setRelief(String reliefType) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setText(String text) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void setVerticalAlignment(String alignment) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void addInfoBar(TextBox infoBarToAdd) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void addToolBar(ToolBar toolBarToAdd) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void draw() {
+        // TODO Auto-generated method stub
+
+    }
+
+    /**
+     * Get size
+     * @return the size
+     */
+    public Size getDims() {
+        return new Size(scrollPane.getSize().width, scrollPane.getSize().height);
+    }
+
+    public TextBox getInfoBar() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public MenuBar getMenuBar() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
+     * Get position
+     * @return the position
+     */
+    public Position getPosition() {
+        return PositionConverter.javaToScilab(scrollPane.getLocation(), scrollPane.getSize(), scrollPane.getParent());
+    }
+
+    public ToolBar getToolBar() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public boolean isVisible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /**
+     * Set size
+     * @param newSize a new size
+     */
+    public void setDims(Size newSize) {
+        scrollPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+    }
+
+    /**
+     * Set position
+     * @param newPosition a new position
+     */
+    public void setPosition(Position newPosition) {
+        Position javaPosition = PositionConverter.scilabToJava(newPosition, this.getDims(), scrollPane.getParent());
+        scrollPane.setLocation(javaPosition.getX(), javaPosition.getY());
+    }
+
+    public void setVisible(boolean newVisibleState) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setToolTipText(String tooltipText) {
+        // TODO Auto-generated method stub
+    }
 }

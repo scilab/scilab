@@ -18,15 +18,15 @@ public class Debug {
      * DEBUG function
      */
     public static void DEBUG(String callingClass, String msg) {
-	if (enableDebug) {
-	    System.err.println("[DEBUG] __"+callingClass+"__ "+Thread.currentThread().toString()+" : "+msg);
-	}
+        if (enableDebug) {
+            System.err.println("[DEBUG] <"+callingClass+">: "+msg);
+        }
     }
 
     public static void DEBUG(String msg) {
-	if (enableDebug) {
-	    System.err.println("[DEBUG] __unknown_class__ "+Thread.currentThread().toString()+" : "+msg);
-	}
+        if (enableDebug) {
+            System.err.println("[DEBUG] __unknown_class__ "+Thread.currentThread().toString()+" : "+msg);
+        }
     }
 
 }

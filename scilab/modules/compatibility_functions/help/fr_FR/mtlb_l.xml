@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_l">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mtlb_l</refname>
     <refpurpose>Fonction d'émulation de la division à gauche de Matlab</refpurpose>
@@ -24,34 +21,30 @@
     <itemizedlist>
       <listitem>
         <para>
-	Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal> 
-	ne peut pas être utilisé dans Scilab avec des chaînes de caractères, alors que
-	dans Matlab c'est possible. Et dans ce cas, le résultat donné par matlab est
-	tranposé d'une manière très floue...
+          Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal> 
+          ne peut pas être utilisé dans Scilab avec des chaînes de caractères, alors que
+          dans Matlab c'est possible. Et dans ce cas, le résultat donné par matlab est
+          tranposé d'une manière très floue...
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_l(a,b)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_l</literal> :
+      La fonction <literal>mtlb_l(a,b)</literal> est utilisée par
+      <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'était pas
+      possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+      déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+      on peut remplacer les appels à <literal>mtlb_l</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères
-        <literal>mtlb_l(A,B)</literal> peut être remplacé par <literal>A\B</literal>
+          Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères
+          <literal>mtlb_l(A,B)</literal> peut être remplacé par <literal>A\B</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_l</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-    </simplelist>
+    <para>
+      Attention : <literal>mtlb_l</literal> ne doit pas être utilisée pour une programmation manuelle.
+    </para>
   </refsection>
 </refentry>

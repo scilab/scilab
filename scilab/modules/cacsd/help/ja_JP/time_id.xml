@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="time_id">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>time_id</refname>
     <refpurpose> SISO 最小二乗同定</refpurpose>
@@ -67,18 +64,20 @@
         <term>H</term>
         <listitem>
           <para>
-	y(1)==0 の場合は分母がn次，分子がn-1次の有理関数,
-	y(1)&lt;&gt;0 の場合, 分母と分子が n次の有理関数.
-	</para>
+            y(1)==0 の場合は分母がn次，分子がn-1次の有理関数,
+            y(1)&lt;&gt;0 の場合, 分母と分子が n次の有理関数.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para> <literal>||y - impuls(H,npt)||^2</literal>, ただし,
-	 <literal>impuls(H,npt)</literal> は
-	<literal>H</literal>のインパルス応答の最初の
-	<literal>npt</literal>個の係数です.</para>
+          <para>
+            <literal>||y - impuls(H,npt)||^2</literal>, ただし,
+            <literal>impuls(H,npt)</literal> は
+            <literal>H</literal>のインパルス応答の最初の
+            <literal>npt</literal>個の係数です.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -86,15 +85,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	離散時間応答の同定.
-	<literal>y</literal>が厳密にプロパーの場合(<literal>y(1)=0</literal>) ,
-	<literal>time_id</literal>は線形方程式に関する以下の最小二乗解
-	を計算します: <literal>coeff(Den,n):=1</literal> を拘束条件とする
-	<literal>Den*y-Num*u=0</literal>.
-	<literal>y(1)~=0</literal>の場合,
-	アルゴリズムはまず解のプロパーな部分を計算した後,y(1)を
-	解に追加します.
-	</para>
+      離散時間応答の同定.
+      <literal>y</literal>が厳密にプロパーの場合(<literal>y(1)=0</literal>) ,
+      <literal>time_id</literal>は線形方程式に関する以下の最小二乗解
+      を計算します: <literal>coeff(Den,n):=1</literal> を拘束条件とする
+      <literal>Den*y-Num*u=0</literal>.
+      <literal>y(1)~=0</literal>の場合,
+      アルゴリズムはまず解のプロパーな部分を計算した後,y(1)を
+      解に追加します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -130,9 +129,5 @@ H=time_id(3,u,rep)    // uを入力として指定, 高次過ぎる系を指定
         <link linkend="frep2tf">frep2tf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

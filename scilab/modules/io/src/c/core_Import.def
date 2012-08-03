@@ -1,0 +1,25 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+getRecursionFunctionToCall
+isRecursionCallToFunction
+putlhsvar_
+intersci_
+freeArrayOfString
+checklhs_
+checkrhs_
+createvarfromptr_
+iop_
+stack_
+createvar_ 
+getrhsvar_
+vartype_
+dynamic_setenvtcl
+overload_
+getWarningMode

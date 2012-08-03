@@ -11,14 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eventhandlerfunctions">
-  <info>
-    <pubdate>$LastChangedDate: 2007-03-08 08:05:42 +0200 (jeu, 08 mar 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>event handler functions</refname>
     <refpurpose>
-    イベントハンドラとして使用できる関数のプロトタイプ.
-  </refpurpose>
+      イベントハンドラとして使用できる関数のプロトタイプ.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -56,16 +53,16 @@
   <refsection>
     <title>説明</title>
     <para>
-	イベントハンドラモードが有効な場合, Scilab は指定したイベントハンドラ関数を
-	グラフィックウインドウにイベントが発生する度にコールします.
-	イベントハンドラ関数は前記のプロトタイプに適合している必要があります.
-	イベントが発生する度に, 関数がコールされ, その4つのパラメータが
-	ウインドウ番号,マウスの位置およびイベントの型に設定されます.
-  </para>
+      イベントハンドラモードが有効な場合, Scilab は指定したイベントハンドラ関数を
+      グラフィックウインドウにイベントが発生する度にコールします.
+      イベントハンドラ関数は前記のプロトタイプに適合している必要があります.
+      イベントが発生する度に, 関数がコールされ, その4つのパラメータが
+      ウインドウ番号,マウスの位置およびイベントの型に設定されます.
+    </para>
     <para>
-    <literal>ibut</literal>パラメータはイベント型に依存した以下の値のどれかと
-	なります:
-  </para>
+      <literal>ibut</literal>パラメータはイベント型に依存した以下の値のどれかと
+      なります:
+    </para>
     <variablelist>
       <varlistentry>
         <term>ibut==0</term>
@@ -177,15 +174,15 @@
       </varlistentry>
     </variablelist>
     <para>
-	例えば, ウインドウ番号0のイベントハンドラ関数の名前をfooHandlerとしましょう.
-	このウインドウの位置 [100,150] (単位:ピクセル)で左クリックをすると,
-	fooHandler( 0, 100, 150, 3 ) をコールするのと等価となります.
-  </para>
+      例えば, ウインドウ番号0のイベントハンドラ関数の名前をfooHandlerとしましょう.
+      このウインドウの位置 [100,150] (単位:ピクセル)で左クリックをすると,
+      fooHandler( 0, 100, 150, 3 ) をコールするのと等価となります.
+    </para>
     <para>
-	イベントハンドラの名前の指定方法に関する情報については
-  <link linkend="figure_properties">figure_properties</link> または
-	 <link linkend="seteventhandler">seteventhandler</link> を参照ください.
-  </para>
+      イベントハンドラの名前の指定方法に関する情報については
+      <link linkend="figure_properties">figure_properties</link> または
+      <link linkend="seteventhandler">seteventhandler</link> を参照ください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -226,9 +223,5 @@ fig.event_handler_enable = "off" ; //イベントハンドラを停止
         <link linkend="xclick">xclick</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Jean-Baptiste Silvy </para>
   </refsection>
 </refentry>

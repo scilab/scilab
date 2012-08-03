@@ -10,53 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="routh_t" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="routh_t" xml:lang="en">
   <refnamediv>
     <refname>routh_t</refname>
-
     <refpurpose>tabela de Routh</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>r=routh_t(h [,k]).</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>matriz quadrada de razões de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para><literal>r=routh_t(h,k)</literal> computa a tabela de Routh do
-    denominador do sistema descrito pela matriz de transferência SISO
-    <literal>h</literal> com a resposta pelo ganho
-    <literal>k</literal>.</para>
-
-    <para>se <literal>k=poly(0,'k')</literal> teremos uma matriz de polinômios
-    com variável livre <literal>k</literal>, expressão formal da tabela de
-    Routh.</para>
+    <para>
+      <literal>r=routh_t(h,k)</literal> computa a tabela de Routh do
+      denominador do sistema descrito pela matriz de transferência SISO
+      <literal>h</literal> com a resposta pelo ganho
+      <literal>k</literal>.
+    </para>
+    <para>
+      se <literal>k=poly(0,'k')</literal> teremos uma matriz de polinômios
+      com variável livre <literal>k</literal>, expressão formal da tabela de
+      Routh.
+    </para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="legends">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>legends</refname>
     <refpurpose>グラフの凡例を描画</refpurpose>
@@ -21,7 +18,7 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>legends(strings,style,&lt;opt_args&gt;)
-</synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,35 +26,41 @@
       <varlistentry>
         <term>strings</term>
         <listitem>
-         <para>文字列のベクトルで, strings(i) は i番目の曲線の凡例となります.</para>
-         <para>Scilab 5.2 以降, 
-	   <link linkend="math_rendering_features_in_graphic">LaTeX または
-	     MathML 式</link>を記述することが可能です.</para>
+          <para>文字列のベクトルで, strings(i) は i番目の曲線の凡例となります.</para>
+          <para>Scilab 5.2 以降, 
+            <link linkend="math_rendering_features_in_graphic">LaTeX または
+              MathML 式
+            </link>
+            を記述することが可能です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>style</term>
         <listitem>
           <para>大きさnの整数行ベクトル (プロット形式, plot2d の3番目のパラメータ)
-	または 2 x n の整数行列. 後者の場合, style(1,k)はk番目の曲線のプロット形式,
-	style(2,k) は線の種類(style(1,k)&gt;0 の場合) またはマーカの色 ( style(1,k)&lt;0の場合)
-	です.</para>
+            または 2 x n の整数行列. 後者の場合, style(1,k)はk番目の曲線のプロット形式,
+            style(2,k) は線の種類(style(1,k)&gt;0 の場合) またはマーカの色 ( style(1,k)&lt;0の場合)
+            です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
           <para>一連の命令
-          <literal>key1=value1,key2=value2</literal>,...を表し, <literal>key1</literal>,
-          <literal>key2,...</literal> には以下のどれかを指定できます:</para>
+            <literal>key1=value1,key2=value2</literal>,...を表し, <literal>key1</literal>,
+            <literal>key2,...</literal> には以下のどれかを指定できます:
+          </para>
           <variablelist>
             <varlistentry>
               <term>opt</term>
               <listitem>
                 <para>凡例を描画する場所を指定します;
-		このパラメータは整数フラグ(または等価な文字列フラグ)または
-		凡例ボックスの左上隅の座標を指定するベクトル [x,y] とすることができます.
-		最初の場合,以下の値を指定可能です:</para>
+                  このパラメータは整数フラグ(または等価な文字列フラグ)または
+                  凡例ボックスの左上隅の座標を指定するベクトル [x,y] とすることができます.
+                  最初の場合,以下の値を指定可能です:
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>1 または "ur"</term>
@@ -118,12 +121,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	カレントのプロットに指定された文字列をラベルとする凡例を表示します.</para>
+      カレントのプロットに指定された文字列をラベルとする凡例を表示します.
+    </para>
     <para>
-	対話的な配置(opt=5 または opt="?")ではマウスで凡例ボックスを移動し,
-	左ボタンを押すことでリリースします.</para>
+      対話的な配置(opt=5 または opt="?")ではマウスで凡例ボックスを移動し,
+      左ボタンを押すことでリリースします.
+    </para>
     <para>
-	この関数は plot2d の leg 引数よりも柔軟に凡例を配置することができます.</para>
+      この関数は plot2d の leg 引数よりも柔軟に凡例を配置することができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

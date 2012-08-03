@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gtild">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gtild</refname>
     <refpurpose> tilde operation</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>Gt=gtild(G)
-Gt=gtild(G,flag)</synopsis>
+      Gt=gtild(G,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@ Gt=gtild(G,flag)</synopsis>
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>either a polynomial or a linear system (<literal>syslin</literal> list) or a rational matrix</para>
+          <para>
+            either a polynomial or a linear system (<literal>syslin</literal> list) or a rational matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,7 +41,9 @@ Gt=gtild(G,flag)</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string: either <literal>'c'</literal> or <literal>'d'</literal> (optional parameter).</para>
+          <para>
+            character string: either <literal>'c'</literal> or <literal>'d'</literal> (optional parameter).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,30 +51,36 @@ Gt=gtild(G,flag)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    If <literal>G</literal> is a polynomial matrix (or a polynomial), <literal>Gt=gtild(G,'c')</literal>
-    returns the polynomial matrix <literal>Gt(s)=G(-s)'</literal>.</para>
+      If <literal>G</literal> is a polynomial matrix (or a polynomial), <literal>Gt=gtild(G,'c')</literal>
+      returns the polynomial matrix <literal>Gt(s)=G(-s)'</literal>.
+    </para>
     <para>
-    If <literal>G</literal> is a polynomial matrix (or a polynomial),  <literal>Gt=gtild(G,'d')</literal> 
-    returns the polynomial matrix <literal>Gt=G(1/z)*z^n</literal> where n is the maximum
-    degree of <literal>G</literal>.</para>
+      If <literal>G</literal> is a polynomial matrix (or a polynomial),  <literal>Gt=gtild(G,'d')</literal> 
+      returns the polynomial matrix <literal>Gt=G(1/z)*z^n</literal> where n is the maximum
+      degree of <literal>G</literal>.
+    </para>
     <para>
-    For continuous-time systems represented in state-space by a <literal>syslin</literal> list,
-    <literal>Gt = gtild(G,'c')</literal> returns a state-space representation
-    of <literal>G(-s)'</literal> i.e the <literal>ABCD</literal> matrices of <literal>Gt</literal> are
-    <literal>A',-C', B', D'</literal>. If <literal>G</literal> is improper (<literal> D= D(s)</literal>) 
-    the <literal>D</literal> matrix of <literal>Gt</literal> is <literal>D(-s)'</literal>.</para>
+      For continuous-time systems represented in state-space by a <literal>syslin</literal> list,
+      <literal>Gt = gtild(G,'c')</literal> returns a state-space representation
+      of <literal>G(-s)'</literal> i.e the <literal>ABCD</literal> matrices of <literal>Gt</literal> are
+      <literal>A',-C', B', D'</literal>. If <literal>G</literal> is improper (<literal> D= D(s)</literal>) 
+      the <literal>D</literal> matrix of <literal>Gt</literal> is <literal>D(-s)'</literal>.
+    </para>
     <para>
-    For  discrete-time systems represented in state-space by a <literal>syslin</literal> list,
-    <literal>Gt = gtild(G,'d')</literal> returns a state-space representation
-    of <literal>G(-1/z)'</literal> i.e the (possibly improper) state-space 
-    representation of <literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>.</para>
+      For  discrete-time systems represented in state-space by a <literal>syslin</literal> list,
+      <literal>Gt = gtild(G,'d')</literal> returns a state-space representation
+      of <literal>G(-1/z)'</literal> i.e the (possibly improper) state-space 
+      representation of <literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>.
+    </para>
     <para>
-    For rational matrices, <literal>Gt = gtild(G,'c')</literal> returns the rational
-    matrix <literal>Gt(s)=G(-s)</literal> and <literal>Gt = gtild(G,'d')</literal> returns the
-    rational matrix <literal>Gt(z)= G(1/z)'</literal>.</para>
+      For rational matrices, <literal>Gt = gtild(G,'c')</literal> returns the rational
+      matrix <literal>Gt(s)=G(-s)</literal> and <literal>Gt = gtild(G,'d')</literal> returns the
+      rational matrix <literal>Gt(z)= G(1/z)'</literal>.
+    </para>
     <para>
-    The parameter <literal>flag</literal> is necessary when <literal>gtild</literal> is called with
-    a polynomial argument.</para>
+      The parameter <literal>flag</literal> is necessary when <literal>gtild</literal> is called with
+      a polynomial argument.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -104,7 +112,7 @@ Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

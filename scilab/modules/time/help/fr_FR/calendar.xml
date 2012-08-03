@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="calendar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>calendar</refname>
     <refpurpose>Calendrier</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>c = calendar()
-c = calendar(y,m)</synopsis>
+      c = calendar(y,m)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -36,7 +34,7 @@ calendar(1973,8)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="datevec">datevec</link>
@@ -44,12 +42,6 @@ calendar(1973,8)
       <member>
         <link linkend="datenum">datenum</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>Allan CORNET</member>
     </simplelist>
   </refsection>
 </refentry>

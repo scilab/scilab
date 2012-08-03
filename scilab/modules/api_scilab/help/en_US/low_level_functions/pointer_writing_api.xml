@@ -10,200 +10,183 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Pointer_writing_API"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-    <refnamediv>
-        <refname>Pointer writing (Scilab gateway)</refname>
-        <refpurpose>
-            How to write pointer in a gateway.
-        </refpurpose>
-    </refnamediv>
-	<refsynopsisdiv>
-		<refsection>
-			Create from existing data.
-		</refsection>
-		<title>Calling Sequence</title>
-        <para>Input argument profile:</para>
-        <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)</synopsis>
-        <para>Named variable profile:</para>
-        <synopsis>SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
-    </refsynopsisdiv>
-	<refsection>
-        <title>Arguments</title>
-        <variablelist>
-			<varlistentry>
-				<term>_pvCtx</term>
-				<listitem>
-					<para>
-						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
-					</para>
-				</listitem>
-			</varlistentry>
-            <varlistentry>
-                <term>_iVar</term>
-                <listitem>
-                    <para>
-                        Position in the Scilab memory where you want to put the variable
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstName</term>
-                <listitem>
-                    <para>
-                        Name of the variable for "named" functions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pvPtr</term>
-                <listitem>
-                    <para>
-                        Address of pointer.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Pointer_writing_API" xml:lang="en">
+  <refnamediv>
+    <refname>Pointer writing (Scilab gateway)</refname>
+    <refpurpose>
+      How to write pointer in a gateway.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <refsection>
+      Create from existing data.
     </refsection>
-	<refsynopsisdiv>
-		<refsection>
-			Write directly in Scilab memory.
-		</refsection>
-		<title>Calling Sequence</title>
-		<synopsis>SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)</synopsis>
-	</refsynopsisdiv>
-	<refsection>
-        <title>Arguments</title>
-        <variablelist>
-			<varlistentry>
-				<term>_pvCtx</term>
-				<listitem>
-					<para>
-						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-					</para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the Scilab variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pvPtr</term>
-                <listitem>
-                    <para>
-                        Return address of pointer.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+    <title>Calling Sequence</title>
+    <para>Input argument profile:</para>
+    <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)</synopsis>
+    <para>Named variable profile:</para>
+    <synopsis>SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>_pvCtx</term>
+        <listitem>
+          <para>
+            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_iVar</term>
+        <listitem>
+          <para>
+            Position in the Scilab memory where you want to put the variable
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pstName</term>
+        <listitem>
+          <para>
+            Name of the variable for "named" functions.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pvPtr</term>
+        <listitem>
+          <para>
+            Address of pointer.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SciErr</term>
+        <listitem>
+          <para>
+            Error structure where is stored errors messages history and first error number.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsynopsisdiv>
+    <refsection>
+      Write directly in Scilab memory.
     </refsection>
-	<refsection>
-		<title>Description</title>
-		<para>This help describes how pointer can be handled through the Scilab API.</para>
-		<para>Two types of functions can be used to write in the memory of Scilab.</para>
-	</refsection>
-	<refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
-        <!--Lib_name: pointer_reading-->
-        <!--Func_list: read_pointer-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-			<![CDATA[ 
+    <title>Calling Sequence</title>
+    <synopsis>SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>_pvCtx</term>
+        <listitem>
+          <para>
+            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piAddress</term>
+        <listitem>
+          <para>
+            Address of the Scilab variable.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_pvPtr</term>
+        <listitem>
+          <para>
+            Return address of pointer.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SciErr</term>
+        <listitem>
+          <para>
+            Error structure where is stored errors messages history and first error number.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This help describes how pointer can be handled through the Scilab API.</para>
+    <para>Two types of functions can be used to write in the memory of Scilab.</para>
+  </refsection>
+  <refsection>
+    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
+    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
+    <!--Lib_name: pointer_reading-->
+    <!--Func_list: read_pointer-->
+    <title>Gateway Source</title>
+    <programlisting role="code_gateway"><![CDATA[ 
+#include "api_scilab.h"
 int read_pointer(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
-	CheckRhs(0,1);
-	CheckLhs(1,1);
 
-	if(Rhs == 0)
+	CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+	if(nbInputArgument == 0)
 	{//create mode
-		double* pdblData	= (double*)malloc(sizeof(double) * 2 * 2);
+		double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
 		pdblData[0]			= 1;
 		pdblData[1]			= 3;
 		pdblData[2]			= 2;
 		pdblData[3]			= 4;
-
-		sciErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
+		sciErr = createPointer(pvApiCtx, nbInputArgument + 1, (void*)pdblData);
 	}
-	else if(Rhs == 1)
+	else if(nbInputArgument == 1)
 	{//read mode
 		int iType			= 0;
 		int* piAddr			= NULL;
 		void* pvPtr			= NULL;
 		double* pdblData	= NULL;
-
 		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
-
 		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
-
 		pdblData = (double*)pvPtr;
-
-		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
+		sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, 2, 2, pdblData);
 	}
 	else
 	{
 		return 0;
 	}
-
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-
-	LhsVar(1) = Rhs + 1;
+	AssignOutputVariable(1) = nbInputArgument + 1;
 	return 0;
 }
- ]]>
-		</programlisting>
-	</refsection>
-
-	<refsection>
-		<title>Scilab test script</title>
-		<programlisting role="code_scilab">
-			<![CDATA[ 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Scilab test script</title>
+    <programlisting role="code_scilab"><![CDATA[ 
 b_ref = [1,2;3,4];
 a = read_pointer();
 b = read_pointer(a);
 if or(b <> b_ref) then error("failed"), end
- ]]>
-		</programlisting>
-	</refsection>
+ ]]></programlisting>
+  </refsection>
 </refentry>

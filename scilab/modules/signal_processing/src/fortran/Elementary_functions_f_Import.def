@@ -1,0 +1,13 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;elementary_functions_f
+arcosh_
+arsinh_
+coshin_
+dset_
+entier_
+iset_
+lnblnk_
+simple_

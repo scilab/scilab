@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findfileassociation">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>findfileassociation</refname>
-    <refpurpose>Searches for and retrieves a file association-related string from the registry.(Windows only)</refpurpose>
+    <refpurpose>Searches for and retrieves a file association-related string from the registry (Windows only)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -24,7 +21,9 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>findfileassociation('A file name extension, such as .txt')</literal> Searches for and retrieves a file association-related string from the registry.</para>
+    <para>
+      <literal>findfileassociation('A file name extension, such as .txt')</literal> Searches for and retrieves a file association-related string from the registry.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -36,17 +35,11 @@ findfileassociation('.toto')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="winopen">winopen</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM

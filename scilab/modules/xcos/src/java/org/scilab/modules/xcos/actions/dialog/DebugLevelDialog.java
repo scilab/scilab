@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,11 +21,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,9 +34,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction.DebugLevel;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -44,7 +44,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog for the {@link DebugLevelAction}.
- * 
+ *
  * Note that this dialog break the Data Abstraction Coupling metric because of
  * the numbers of graphical components involved in the GUI creation. For the
  * same reason (GUI class), constants are not used on this code.
@@ -52,97 +52,99 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: MagicNumber
 public class DebugLevelDialog extends JDialog {
-	private final ScicosParameters parameters;
-	
-	private JList debugList;
-	
-	/**
-	 * Default contructor
-	 * @param parent the parent component
-	 * @param parameters the associated parameters
-	 */
-	public DebugLevelDialog(Component parent, ScicosParameters parameters) {
-		this.parameters = parameters;
-		
-		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
-		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
-		setLayout(new GridBagLayout());
-		setIconImage(imageForIcon);
-		setTitle(XcosMessages.SET_DEBUG);
-		setModal(true);
-		setLocationRelativeTo(parent);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		initComponents();
-	}
+    private final ScicosParameters parameters;
 
-	/**
-	 * Initialize the components
-	 */
-	private void initComponents() {
-		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
-		debugList = new JList(DebugLevel.values());
-		debugList.setSelectedIndex(parameters.getDebugLevel());
-		debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    private JList debugList;
 
-		JButton cancelButton = new JButton(XcosMessages.CANCEL);
-		JButton okButton = new JButton(XcosMessages.OK);
-		okButton.setPreferredSize(cancelButton.getPreferredSize());
+    /**
+     * Default contructor
+     *
+     * @param parent
+     *            the parent component
+     * @param parameters
+     *            the associated parameters
+     */
+    public DebugLevelDialog(Component parent, ScicosParameters parameters) {
+        this.parameters = parameters;
 
-		JPanel buttonPane = new JPanel();
-		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
-		buttonPane.add(okButton);
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		buttonPane.add(cancelButton);
+        ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        Image imageForIcon = scilabIcon.getImage();
+        setLayout(new GridBagLayout());
+        setIconImage(imageForIcon);
+        setTitle(XcosMessages.SET_DEBUG);
+        setModal(true);
+        setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.insets = new Insets(10, 10, 10, 10);
-		add(textLabel, gbc);
-		
-		gbc.gridy = GridBagConstraints.RELATIVE;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weighty = 1.0;
-		add(debugList, gbc);
-		
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.anchor = GridBagConstraints.LAST_LINE_END;
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.weighty = 0;
-		gbc.insets = new Insets(5, 0, 10, 10);
-		add(buttonPane, gbc);
+        initComponents();
+    }
 
+    /**
+     * Initialize the components
+     */
+    private void initComponents() {
+        JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
+        debugList = new JList(DebugLevel.values());
+        debugList.setSelectedIndex(parameters.getDebugLevel());
+        debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		cancelButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+        JButton cancelButton = new JButton(XcosMessages.CANCEL);
+        JButton okButton = new JButton(XcosMessages.OK);
+        okButton.setPreferredSize(cancelButton.getPreferredSize());
 
-		okButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
-				try {
-					parameters.setDebugLevel(value);
-					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
-					dispose();
-				} catch (InterpreterException e1) {
-					LogFactory.getLog(DebugLevelAction.class).error(e1);
-				} catch (PropertyVetoException e2) {
-					LogFactory.getLog(DebugLevelAction.class).error(e2);
-				}
-			}
-		});
-	}
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        buttonPane.add(okButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(cancelButton);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        add(textLabel, gbc);
+
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1.0;
+        add(debugList, gbc);
+
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weighty = 0;
+        gbc.insets = new Insets(5, 0, 10, 10);
+        add(buttonPane, gbc);
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
+                try {
+                    parameters.setDebugLevel(value);
+                    ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
+                    dispose();
+                } catch (InterpreterException e1) {
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e1.toString());
+                } catch (PropertyVetoException e2) {
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e2.toString());
+                }
+            }
+        });
+    }
 }
-//CSON: ClassDataAbstractionCoupling
-//CSON: MagicNumber
+// CSON: ClassDataAbstractionCoupling
+// CSON: MagicNumber

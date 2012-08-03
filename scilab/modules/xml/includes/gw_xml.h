@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,11 +16,12 @@
 #include "dynlib_xml_scilab.h"
 /*--------------------------------------------------------------------------*/
 XML_SCILAB_IMPEXP int gw_xml(void);
+
 /*--------------------------------------------------------------------------*/
 int sci_xmlRead(char *fname, unsigned long fname_len);
-int sci_xmlClose(char *fname, unsigned long fname_len);
+int sci_xmlDelete(char *fname, unsigned long fname_len);
 int sci_xmlDump(char *fname, unsigned long fname_len);
-int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len);
+int sci_xmlGetOpenDocs(char *fname, unsigned long fname_len);
 int sci_xmlXPath(char *fname, unsigned long fname_len);
 int sci_percent_XMLDoc_e(char *fname, unsigned long fname_len);
 int sci_percent_XMLElem_e(char *fname, unsigned long fname_len);
@@ -66,6 +67,12 @@ int sci_xmlSchema(char *fname, unsigned long fname_len);
 int sci_xmlRelaxNG(char *fname, unsigned long fname_len);
 int sci_xmlValidate(char *fname, unsigned long fname_len);
 int sci_percent_XMLValid_p(char *fname, unsigned long fname_len);
+int sci_xmlIsValidObject(char *fname, unsigned long fname_len);
+int sci_xmlAsNumber(char *fname, unsigned long fname_len);
+int sci_xmlAsText(char *fname, unsigned long fname_len);
+int sci_xmlRemove(char *fname, unsigned long fname_len);
+int sci_xmlSetAttributes(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */
 /*--------------------------------------------------------------------------*/

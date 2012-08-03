@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mfile2sci">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mfile2sci</refname>
     <refpurpose> Fonction de conversion de M-file Matlab vers Scilab</refpurpose>
@@ -93,18 +90,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
-    à chaque fois que c'est possible de remplacer l'appel à une fonction Matlab par la
-    primitive ou la fonction Scilab équivalente.
-  </para>
+      M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
+      à chaque fois que c'est possible de remplacer l'appel à une fonction Matlab par la
+      primitive ou la fonction Scilab équivalente.
+    </para>
     <para>
-    Pour convertir un M-file, entrer l'instruction Scilab :
-    mfile2sci(fichier)
-  </para>
+      Pour convertir un M-file, entrer l'instruction Scilab :
+      mfile2sci(fichier)
+    </para>
     <para>
-    où fichier est une chaîne de caractère qui donne le chemin du M-file.
-    mfile2sci va générer trois fichiers dans le même répertoire :
-  </para>
+      où fichier est une chaîne de caractère qui donne le chemin du M-file.
+      mfile2sci va générer trois fichiers dans le même répertoire :
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;function-name&gt;.sci</term>
@@ -126,26 +123,26 @@
       </varlistentry>
     </variablelist>
     <para>
-    Des fonctions comme eye, ones, size, sum,... se comportent différemment
-    selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
-    inférer les dimensions, il remplace ces fonctions par un appel à une
-    fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
-    ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
-    Pour avoir des informations sur le remplacement, entrer :
-    help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
+      Des fonctions comme eye, ones, size, sum,... se comportent différemment
+      selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
+      inférer les dimensions, il remplace ces fonctions par un appel à une
+      fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
+      ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
+      Pour avoir des informations sur le remplacement, entrer :
+      help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
     </para>
     <para>
-    D'autres fonctions comme plot, n'ont pas d'équivalent direct en
-    Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
-     mtlb_&lt;function_name&gt;.
+      D'autres fonctions comme plot, n'ont pas d'équivalent direct en
+      Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
+      mtlb_&lt;function_name&gt;.
     </para>
     <para>
-    Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
-    des commentaires qui commencent par "//!" (suivant verbose-mode).
-  </para>
+      Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
+      des commentaires qui commencent par "//!" (suivant verbose-mode).
+    </para>
     <para>
-  Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
-  </para>
+      Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -197,18 +194,11 @@ rot90(m,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="translatepaths">translatepaths</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V. Couvert</member>
-      <member>S. Steer</member>
     </simplelist>
   </refsection>
 </refentry>

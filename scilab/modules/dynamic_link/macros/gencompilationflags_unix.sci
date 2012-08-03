@@ -23,16 +23,26 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     return
   end
 
-  cmd=''
+  cmd = "";
+  tbxFlag = " -D__SCILAB_TOOLBOX__ ";
+  envFlag = "";
+
+  if getenv('__USE_DEPRECATED_STACK_FUNCTIONS__', 'NO') == "YES" then
+    envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
+  end
+  
+  if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+     envFlag = envFlag + " -g ";
+  end
 
   // CFLAGS
   if cflags <> '' then
-    cmd = cmd +" CFLAGS="""+cflags+""""
+    cmd = cmd + " CFLAGS="""+tbxFlag+envFlag+cflags+""""
   end
 
   // CXXFLAGS ... use the same as C
   if cflags <> '' then
-    cmd = cmd +" CXXFLAGS="""+cflags+""""
+    cmd = cmd +" CXXFLAGS="""+tbxFlag+envFlag+cflags+""""
   end
 
   // LDFLAGS

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bdiag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bdiag</refname>
     <refpurpose> block diagonalization, generalized eigenvectors</refpurpose>
@@ -59,21 +56,25 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
  ]]></programlisting>
     <para>
-    performs the block-diagonalization of matrix <literal>A</literal>.  bs
-    gives the structure of the blocks (respective sizes of the
-    blocks).  <literal>X</literal> is the change of basis i.e 
-    <literal>Ab = inv(X)*A*X</literal>is block diagonal.</para>
-    <para><literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
-    default value is the l1 norm of <literal>A</literal>.</para>
+      performs the block-diagonalization of matrix <literal>A</literal>.  bs
+      gives the structure of the blocks (respective sizes of the
+      blocks).  <literal>X</literal> is the change of basis i.e 
+      <literal>Ab = inv(X)*A*X</literal>is block diagonal.
+    </para>
     <para>
-    To get a diagonal form (if it exists) choose a large value for
-    <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
-    Generically (for real random A) the blocks are (1x1) and (2x2) and
-    <literal>X</literal> is the matrix of eigenvectors.</para>
+      <literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
+      default value is the l1 norm of <literal>A</literal>.
+    </para>
+    <para>
+      To get a diagonal form (if it exists) choose a large value for
+      <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
+      Generically (for real random A) the blocks are (1x1) and (2x2) and
+      <literal>X</literal> is the matrix of eigenvectors.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -86,7 +87,7 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="schur">schur</link>

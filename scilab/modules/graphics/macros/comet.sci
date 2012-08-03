@@ -21,13 +21,13 @@ function comet(varargin)
 //       clf();comet(linspace(0,5,500),traj)
 //
 //       clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
-  
+
   nv=size(varargin)
-  if varargin(nv-1)=='colors' then
+  if nv>=3&varargin(nv-1)=='colors' then
     c=round(varargin(nv))
     if type(c)<>1|~isreal(c) then
-    error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet",nv))
-  end
+      error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet",nv))
+    end
     varargin=list(varargin(1:$-2))
   else
     c=[]
@@ -70,7 +70,7 @@ function comet(varargin)
   if p<0|p>=1 then
     error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"comet",3,"[0 1["))
   end
-  
+
   if or(size(x)==1) then
     x=x(:)
     n=size(x,1)
@@ -82,7 +82,7 @@ function comet(varargin)
       m=1
     else
       m=size(y,2)
-      if size(y,1)<>n then 
+      if size(y,1)<>n then
         error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"),"comet",1,2))
       end
       x=x*ones(1,m)
@@ -98,11 +98,11 @@ function comet(varargin)
   if c==[] then
     c=1:m
   else
-    if size(c,'*')<>m then 
+    if size(c,'*')<>m then
       error(msprintf(_("%s: Wrong size for argument %d: %d expected.\n"),"comet",nv,m))
     end
     if min(c)<1|max(c)>size(fig.color_map,1) then
-       error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))
+      error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))
     end
   end
   axes=gca();
@@ -136,10 +136,10 @@ function anim()
 //animation loop
   k = round(p*n);
   step=ceil(n/200); //used to speed up the drawing
-  
+
   for i=1:n
     for l=1:m
-      head(l).data=[x(i),y(i,l)];
+      head(l).data=[x(i,l),y(i,l)];
       if i<=k then
         body(l).data= [body(l).data;[x(i,l),y(i,l)]];
       else
@@ -147,7 +147,7 @@ function anim()
         tail(l).data=[ tail(l).data;[x(i-k+1,l),y(i-k+1,l)]];
       end
     end
-    if modulo(i,step)==0 then 
+    if modulo(i,step)==0 then
       fig.immediate_drawing = "on"
       fig.immediate_drawing = "off"
     end
@@ -159,7 +159,7 @@ function anim()
       body(l).data= body(l).data(2:$,:);
       tail(l).data=[tail(l).data;[x(n-k+i,l),y(n-k+i,l)]];
     end
-    if modulo(i,step)==0 then 
+    if modulo(i,step)==0 then
       //draw(axes),
       fig.immediate_drawing = "on"
       fig.immediate_drawing = "off"

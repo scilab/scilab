@@ -143,11 +143,32 @@ AC_DEFUN([AC_PROG_JAVAC], [
 AC_DEFUN([AC_JAVA_TRY_COMPILE], [
     cat << \EOF > conftest.java
 // [#]line __oline__ "configure"
+import java.util.regex.Pattern;
+
 [$1]
 
 public class conftest {
     public static void main(String[[]] argv) {
         [$2]
+    }
+    
+    private static int compare(String v1, String v2) {
+        String s1 = normalisedVersion(v1);
+        String s2 = normalisedVersion(v2);
+        return s1.compareTo(s2);
+    }
+
+    private static String normalisedVersion(String version) {
+        return normalisedVersion(version, ".", 4);
+    }
+
+    private static String normalisedVersion(String version, String sep, int maxWidth) {
+        String[[]] split = Pattern.compile(sep, Pattern.LITERAL).split(version);
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            sb.append(String.format("%" + maxWidth + 's', s));
+        }
+        return sb.toString();
     }
 }
 EOF
@@ -456,9 +477,6 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         armv*)
           machine=arm
           ;;
-        s390x) # s390 arch can also returns s390x
-          machine=s390
-          ;;
         sh*)
             machine=sh
           ;;
@@ -501,7 +519,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
                 if test -d $D; then
                   ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D"
                 fi
             fi
         fi
@@ -604,7 +622,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
                 if test -d $D; then
                   ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D"
                 fi
             fi
         fi
@@ -823,38 +841,27 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null)  $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
+
 # TODO check the behaviour when spaces
-    jars_resolved=`ls $jar 2>/dev/null`
-    for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-          AC_JAVA_TRY_COMPILE([import $2;], , "no", [
-            AC_MSG_RESULT([$jar_resolved])
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-          ], [
+        jars_resolved=`ls $jar 2>/dev/null`
+        for jar_resolved in $jars_resolved; do # If several jars matches
+          if test -e "$jar_resolved"; then
+            export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+            AC_JAVA_TRY_COMPILE([import $2;], , "no", [
+              AC_MSG_RESULT([$jar_resolved])
+              found_jar=yes
+              PACKAGE_JAR_FILE=$jar_resolved
+              break 3
+            ], [
             ac_java_classpath=$saved_ac_java_classpath
 
-          ])
-        fi
+            ])
+          fi
+        done
       done
-      # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-      # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
     done
     if test "$found_jar" = "no"; then
       AC_MSG_RESULT([no])

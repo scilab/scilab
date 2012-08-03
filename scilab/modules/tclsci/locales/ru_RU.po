@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:51+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-12-17 00:21+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -135,7 +135,7 @@ msgstr "Ошибка Tcl: Ошибка во время инициализаци�
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
-msgstr "Ошибка Tcl: Ошибка в процесс инициализации TK (Tk_Init): %s\n"
+msgstr "Ошибка Tcl: Ошибка в процессе инициализации TK (Tk_Init): %s\n"
 
 #, c-format
 msgid ""

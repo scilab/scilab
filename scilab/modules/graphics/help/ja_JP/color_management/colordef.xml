@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colordef">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colordef</refname>
     <refpurpose>異なる色スキームで表示するためのデフォルト色の値を設定する</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>colordef(color_scheme)
-colordef(f,color_scheme)
-colordef('new',color_scheme)</synopsis>
+      colordef(f,color_scheme)
+      colordef('new',color_scheme)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -31,14 +29,14 @@ colordef('new',color_scheme)</synopsis>
         <term>color_scheme</term>
         <listitem>
           <para>文字列で, 以下の値を指定: 'white', 'black','none'
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
           <para>グラフィック図のハンドル
-       </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,34 +45,44 @@ colordef('new',color_scheme)</synopsis>
     <title>説明</title>
     <itemizedlist>
       <listitem>
-        <para><literal>colordef('white')</literal> は,デフォルトの
-	図(<link linkend="gdf">gdf</link>参照)カラーマップを
-	<literal>jetcolormap(64)</literal>,
-	デフォルトの図の背景色をライトグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
-	背景色を白, 軸の線の前景色とフォントの色を黒に設定します.</para>
+        <para>
+          <literal>colordef('white')</literal> は,デフォルトの
+          図(<link linkend="gdf">gdf</link>参照)カラーマップを
+          <literal>jetcolormap(64)</literal>,
+          デフォルトの図の背景色をライトグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
+          背景色を白, 軸の線の前景色とフォントの色を黒に設定します.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>colordef('black')</literal> は,デフォルトの
-	図(<link linkend="gdf">gdf</link>参照)カラーマップを
-	<literal>jetcolormap(64)</literal>,
-	デフォルトの図の背景色をダークグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
-	背景色を黒, 軸の線の前景色とフォントの色を白に設定します.</para>
+        <para>
+          <literal>colordef('black')</literal> は,デフォルトの
+          図(<link linkend="gdf">gdf</link>参照)カラーマップを
+          <literal>jetcolormap(64)</literal>,
+          デフォルトの図の背景色をダークグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
+          背景色を黒, 軸の線の前景色とフォントの色を白に設定します.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>colordef('none')</literal> は,デフォルトの
-	図(<link linkend="gdf">gdf</link>参照)カラーマップを
-	<literal>hsvcolormap(64)</literal>,
-	デフォルトの図の背景色をダークグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
-	背景色を黒, 軸の線の前景色とフォントの色を白に設定します.</para>
+        <para>
+          <literal>colordef('none')</literal> は,デフォルトの
+          図(<link linkend="gdf">gdf</link>参照)カラーマップを
+          <literal>hsvcolormap(64)</literal>,
+          デフォルトの図の背景色をダークグレー, デフォルトの軸 (<link linkend="gda">gda</link>参照)
+          背景色を黒, 軸の線の前景色とフォントの色を白に設定します.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>colordef(f,color_scheme)</literal> はハンドル<literal>f</literal>
-	で指定した図の色プロパティを設定し,同時に
-	そのカレントの軸の色プロパティも設定します.</para>
+        <para>
+          <literal>colordef(f,color_scheme)</literal> はハンドル<literal>f</literal>
+          で指定した図の色プロパティを設定し,同時に
+          そのカレントの軸の色プロパティも設定します.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>colordef('new',color_scheme)</literal> は,新しいグラフィックウインドウおよび
-	その色プロパティを軸プロパティと共に作成します.</para>
+        <para>
+          <literal>colordef('new',color_scheme)</literal> は,新しいグラフィックウインドウおよび
+          その色プロパティを軸プロパティと共に作成します.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -99,18 +107,5 @@ colordef('new',color_scheme)</synopsis>
         <link linkend="axes_properties"> axes_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <variablelist>
-      <varlistentry>
-        <term>S. Steer</term>
-        <listitem>
-          <para>
-       INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

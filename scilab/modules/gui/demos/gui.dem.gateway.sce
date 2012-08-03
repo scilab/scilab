@@ -14,13 +14,14 @@ function subdemolist = demo_gateway()
   subdemolist = [_("Dialogs")   ,"dialog.dem.sce" ; ..
                  _("Uicontrols 1") ,"uicontrol.dem.sce" ];
 
-  if ~ usecanvas() then
-    subdemolist = [ subdemolist ; 
-                  _("Uicontrols 2") ,"uicontrol_plot3d.dem.sce" ];
-  end
+  subdemolist = [ subdemolist ; 
+                 _("Uicontrols 2") ,"uicontrol_plot3d.dem.sce" ];
 
   subdemolist = [ subdemolist ; 
                  _("Uicontrols with LaTeX/MathML") ,  "uicontrol_LaTeX.dem.sce" ];
+
+  subdemolist = [ subdemolist ; 
+                 _("Show images with uicontrols ") ,  "uicontrol_image.dem.sce" ];
 
   subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
 
 msgid "overflow error"
@@ -99,36 +99,6 @@ msgstr "Non è possibile aprire il file!\n"
 
 msgid "Read error\n"
 msgstr "Errore di lettura\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERRORE DI SCOPE: Errore in scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERRORE DI SCOPE: sciDrawObj non può essere eseguita, pShortDraw è NULL per "
-"una ragione sconosciuta!\n"
-" È possibile che siano state distrutte le finestre o alcuni genitori delle "
-"curve\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-"ERRORE DI SCOPE: Errore durante l'uso di malloc - Controllare la memoria\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERRORE DI SCOPE: Codice di errore sconosciuto!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Il valore dell'argomento dimensione non è corretto."
-
-msgid "This scope has the same window id than another."
-msgstr "Questo scope ha lo stesso id di finestra di un altro."
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Non è possibile usare %s con questo tipo di oggetto."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"

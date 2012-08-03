@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:23+0000\n"
+"PO-Revision-Date: 2012-07-23 05:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -23,13 +23,15 @@ msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: помилковий тип параметра %d: слід було вказати матрицю.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з рядків.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -89,11 +91,23 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор-"
+"рядок.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід було вказувати "
 "невід’ємні цілі числа.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати непорожню "
+"матрицю.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
@@ -120,10 +134,10 @@ msgstr ""
 "— %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
-"значень.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з "
+"булевих значень.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
@@ -224,6 +238,14 @@ msgstr "%s не належить до встановлених модулів а
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "Еталонного файла (%s) не існує"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr ""
+"Форматування файла «%s» не відповідає специфікації XML XUnit. Кореневим "
+"теґом мав бути 'testsuites"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

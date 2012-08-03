@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cls2dls">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cls2dls</refname>
     <refpurpose>双線形変換</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,sl1</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,10 +47,11 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> リスト),
-	連続時間システム
-    <literal>cls2dls</literal> は双線形変換<literal>s=(2/T)*(z-1)/(z+1)</literal>
-	により得られたサンプル値システムを返します.</para>
+      <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> リスト),
+      連続時間システム
+      <literal>cls2dls</literal> は双線形変換<literal>s=(2/T)*(z-1)/(z+1)</literal>
+      により得られたサンプル値システムを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

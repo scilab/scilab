@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,33 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_cond2reqdigits" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_cond2reqdigits" xml:lang="en">
   <refnamediv>
     <refname>assert_cond2reqdigits</refname>
     <refpurpose>Suggests the number of required digits, given the condition number.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       d = assert_cond2reqdigits ( condition )
       d = assert_cond2reqdigits ( condition , offset )
       d = assert_cond2reqdigits ( condition , offset , b )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -68,7 +54,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -110,11 +95,9 @@
     <para>
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 assert_cond2reqdigits ( 0 ) // 15.95459
 assert_cond2reqdigits ( 1 ) // 15.95459
 assert_cond2reqdigits ( 1.e1 ) // 14.95459
@@ -179,14 +162,16 @@ d = assert_cond2reqdigits ( condition , -10 , 2 );
 plot(condition,d,"g")
 legend(["Offset=0","Offset=+10","Offset=-10"]);
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

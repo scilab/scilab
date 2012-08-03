@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface version="0.06" path="1/" width="800" height="550">
+  <general/>
+  <web/>
+  <preference/>
+  <fonts/>
+  <colors/>
+  <console/>
+  <command-history/>
+  <scinotes/>
+  <xcos/>
+</interface>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
 
 msgid "X,Y,A and B"
@@ -374,8 +374,8 @@ msgstr "%s: Grafico della richiesta fuori dai limiti.\n"
 msgid "Correlations Circle"
 msgstr "Cerchio delle correlazioni"
 
-msgid "Eigenvalues (in percent)"
-msgstr "Autovalori (in percentuale)"
+msgid "Eigenvalues"
+msgstr ""
 
 #, c-format
 msgid ""

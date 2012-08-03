@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hsvcolormap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="hsvcolormap">
   <refnamediv>
     <refname>hsvcolormap</refname>
     <refpurpose>  Hue-saturation-value colormap</refpurpose>
@@ -29,25 +26,36 @@
         <term>n</term>
         <listitem>
           <para> integer &gt;= 1, the colormap size.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cmap</term>
         <listitem>
-          <para>matrix with 3 columns <literal>[R,G,B]</literal>.
-       </para>
+          <para>
+            matrix with 3 columns <literal>[R,G,B]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>hsvcolormap</literal> computes a colormap with
+    <para>
+      <literal>hsvcolormap</literal> computes a colormap with
       <literal>n</literal>colors. This colormap  varies the hue component of the
       hsv color model.  The colors begin with red, pass through yellow, green,
-    cyan, blue, magenta, and return to red.  The map is particularly
-    useful for displaying periodic functions. </para>
+      cyan, blue, magenta, and return to red.  The map is particularly
+      useful for displaying periodic functions. 
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image> 
+      t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+      f=gcf();f.color_map=hsvcolormap(64);
+      plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,21 +65,8 @@ f=gcf();f.color_map=hsvcolormap(64);
 plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>Serge Steer</term>
-        <listitem>
-          <para>
-      INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>

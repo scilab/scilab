@@ -142,24 +142,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\console.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\jni\DropFiles.i">
       <Filter>Swig Files</Filter>
     </None>
     <None Include="..\jni\GuiManagement.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="libjvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\console.iss" />
-    <None Include="..\..\console.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\console.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="console.rc">

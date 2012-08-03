@@ -11,19 +11,11 @@
 
 function graphic_exportlib = startModule()
 
-//Load  functions libraries
-// =============================================================================
+  //Load  functions libraries
+  // =============================================================================
   load(SCI+"/modules/graphic_export/macros/lib");
 
-// global variable for export
-// =============================================================================
-  global %driverName;
-  global %exportFileName;
-
-  %driverName = "Rec";
-  %exportFileName = [];
 endfunction
-
 
 if (getscilabmode() <> 'NWNI') then
   graphic_exportlib = startModule();

@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isoview">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="isoview">
   <refnamediv>
     <refname>isoview</refname>
     <refpurpose> set scales for isometric plot (do not change the size of the window)  </refpurpose>
@@ -36,14 +33,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is obsolete, use preferably the <literal>frameflag=4</literal> plot2d
-    option which enable window resizing.</para>
-    <para><literal>isoview</literal> is used to have isometric scales on the x and y axes. 
-    It does not change the size of the graphics window. The rectangle
-    <literal>xmin, xmax, ymin, ymax</literal> will be contained in the computed frame of 
-    the graphics window. <literal>isoview</literal> set the current graphics scales 
-    and can be used in conjunction with graphics routines which request
-    the current graphics scale (for instance <literal>strf="x0z"</literal> in <literal>plot2d</literal>).</para>
+      This function is obsolete, use preferably the <literal>frameflag=4</literal> plot2d
+      option which enable window resizing.
+    </para>
+    <para>
+      <literal>isoview</literal> is used to have isometric scales on the x and y axes. 
+      It does not change the size of the graphics window. The rectangle
+      <literal>xmin, xmax, ymin, ymax</literal> will be contained in the computed frame of 
+      the graphics window. <literal>isoview</literal> set the current graphics scales 
+      and can be used in conjunction with graphics routines which request
+      the current graphics scale (for instance <literal>strf="x0z"</literal> in <literal>plot2d</literal>).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      isoview(-1,1,-1,1)
+      plot2d(sin(t),cos(t),1,"001")      
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,13 +60,12 @@ plot2d(sin(t),cos(t))
 clf()
 isoview(-1,1,-1,1)
 plot2d(sin(t),cos(t),1,"001")
-xset("default")
 
 plot2d(sin(t),cos(t),frameflag=4)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="square">square</link>
@@ -68,9 +74,5 @@ plot2d(sin(t),cos(t),frameflag=4)
         <link linkend="xsetech">xsetech</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

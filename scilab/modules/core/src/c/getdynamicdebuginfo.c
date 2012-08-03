@@ -16,13 +16,6 @@
 #include <errno.h>
 #endif
 
-
-// UNAME 
-#ifdef HAVE_UNAME
-#include <sys/utsname.h>
-#endif
-
-
 #ifndef _MSC_VER
 #include <fcntl.h>
 #include <getopt.h>
@@ -37,6 +30,10 @@
 #include "getdynamicdebuginfo.h"
 #include "api_scilab.h"
 
+// UNAME 
+#ifdef HAVE_UNAME
+#include <sys/utsname.h>
+#endif
 
 /**
 * Set a debug element
@@ -427,6 +424,30 @@ char **getDynamicDebugInfo(int *sizeArray)
 		}
 	}
 
+	sciErr = getNamedVarType(pvApiCtx, "TMPDIR", &iType);
+	if ((sciErr.iErr == 0) && (iType == 10))
+	{
+		char * TMPDIR_value = NULL;
+		int TMPDIR_length = 0;
+		int m = 0, n = 0;
+
+		sciErr = readNamedMatrixOfString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+		if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+		{
+			TMPDIR_value = (char*)MALLOC(sizeof(char)*(TMPDIR_length + 1));
+			if (TMPDIR_value)
+			{
+				sciErr = readNamedMatrixOfString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+				if(sciErr.iErr == 0)
+				{
+					SetDebugMsg(&dynamicDebug[position],"TMPDIR",TMPDIR_value);
+					position++;
+				}
+				FREE(TMPDIR_value);
+				TMPDIR_value = NULL;
+			}
+		}
+	}
 
 	outputDynamicList=(char**)MALLOC(sizeof(char*)*(position+1));
 

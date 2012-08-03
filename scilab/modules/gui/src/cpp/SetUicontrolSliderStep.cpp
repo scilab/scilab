@@ -1,71 +1,58 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Sets the slider step property of an uicontrol object  
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ * Sets the slider step property of an uicontrol object
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetUicontrolSliderStep.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int SetUicontrolSliderStep(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  double *allValues = NULL;
-  
-  if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
+    BOOL status = FALSE;
+
+    if (valueType != sci_matrix)
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "SliderStep");
-      return SET_PROPERTY_ERROR;
+        /* Wrong datatype */
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
+        return SET_PROPERTY_ERROR;
     }
 
-  if (valueType == sci_matrix)
+    if( nbRow == 1 && nbCol == 1)
     {
-      if((nbRow > 1) || (nbCol != 2))
-        {
-          /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
-          return SET_PROPERTY_ERROR;
-        }
-      
-      /* Store the value in Scilab */
-      allValues = getDoubleMatrixFromStack(stackPointer);
+        double pdblStep[2];
+        double* pdblStackVal = getDoubleMatrixFromStack(stackPointer);
 
-      /* SliderStep field is allocated if necessary */
-      if (pUICONTROL_FEATURE(sciObj)->sliderStep == NULL)
-        {
-          pUICONTROL_FEATURE(sciObj)->sliderStep = new double[2];
-        }
-      pUICONTROL_FEATURE(sciObj)->sliderStep[0] = allValues[0];
-      pUICONTROL_FEATURE(sciObj)->sliderStep[1] = allValues[1];
-
-      // Set the Java object property for sliders
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
-        {
-          /* BEGIN If sliderstep is a value */
-          CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0]);
-          
-          CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1]);
-          /* END If sliderstep is a value */
-        }
-      return SET_PROPERTY_SUCCEED;
+        pdblStep[0] = pdblStackVal[0];
+        pdblStep[1] = 0.1;// default big value : 10%
+        
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), pdblStep, jni_double_vector, 2);
     }
-  else
+    else if(nbRow == 1 && nbCol == 2)
     {
-      /* Wrong datatype */
-      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
-      return SET_PROPERTY_ERROR;
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), getDoubleMatrixFromStack(stackPointer), jni_double_vector, 2);
+    }
+    else
+    {
+        /* Wrong value size */
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
+        return SET_PROPERTY_ERROR;
     }
 
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "SliderStep");
+        return SET_PROPERTY_ERROR;
+    }
 }
-

@@ -11,19 +11,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>scf</refname>
     <refpurpose>カレントの図に指定する
-  (window)</refpurpose>
+      (window)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>f = scf()
-f = scf(h)
-f = scf(num)</synopsis>
+      f = scf(h)
+      f = scf(num)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -51,18 +50,25 @@ f = scf(num)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	カレントの図が描画対象となります.
-    <literal>scf</literal>関数によりカレントの図を変更したり,
-	まだ存在しない場合には作成することができます.</para>
+      カレントの図が描画対象となります.
+      <literal>scf</literal>関数によりカレントの図を変更したり,
+      まだ存在しない場合には作成することができます.
+    </para>
     <para/>
-    <para><literal>scf(num)</literal> は<literal>figure_id==num</literal>の図を
-	カレントの図に指定します.
-	まだ存在しない場合には作成されます.</para>
+    <para>
+      <literal>scf(num)</literal> は<literal>figure_id==num</literal>の図を
+      カレントの図に指定します.
+      まだ存在しない場合には作成されます.
+    </para>
     <para/>
-    <para><literal>scf(h)</literal> はハンドル<literal>h</literal>が指す
-	図をカレントの図に指定します.まだ存在しない場合には作成されます.</para>
-    <para><literal>scf()</literal> は <literal>scf(max(winsid())+1) </literal>と等価で,
-	新規にグラフィックウインドウを作成する際にしようすることができます</para>
+    <para>
+      <literal>scf(h)</literal> はハンドル<literal>h</literal>が指す
+      図をカレントの図に指定します.まだ存在しない場合には作成されます.
+    </para>
+    <para>
+      <literal>scf()</literal> は <literal>scf(max(winsid())+1) </literal>と等価で,
+      新規にグラフィックウインドウを作成する際にしようすることができます
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -96,9 +102,5 @@ plot3d() //カレントの図 (id=4)に描画
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer INRIA</para>
   </refsection>
 </refentry>

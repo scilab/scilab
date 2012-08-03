@@ -107,33 +107,32 @@ sci_gateway/c/sci_mputl.c \
 sci_gateway/c/sci_tempname.c
 
 
-libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
+libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/io/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/string/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
-libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/localization/includes
-
-noinst_LTLIBRARIES = libscifileio-algo.la
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifileio.la
+noinst_LTLIBRARIES = libscifileio-algo.la
+else
+noinst_LTLIBRARIES = libscifileio-algo.la libscifileio.la
+endif
 
-libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+
 
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
-libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscifileio_algo_la_CFLAGS = $(libscifileio_la_CFLAGS)
+libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CXX_SOURCES)
+libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
-INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
+INCLUDE_FLAGS = $(libscifileio_la_CPPFLAGS)
 
 # pb of order $(top_builddir)/modules/console/libsciconsole.la
 libscifileio_la_LIBADD = libscifileio-algo.la

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>system</refname>
     <refpurpose> observation update</refpurpose>
@@ -67,19 +64,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    define system function which generates the next
-    observation given the old state.
-    System recursively calculated</para>
-    <programlisting role = ""><![CDATA[ 
+      define system function which generates the next
+      observation given the old state.
+      System recursively calculated
+    </para>
+    <programlisting role=""><![CDATA[ 
 x1=f*x0+g*u
 y=h*x0+v
  ]]></programlisting>
     <para>
-    where <literal>u</literal> is distributed <literal>N(0,q)</literal>
-    and <literal>v</literal> is distribute <literal>N(0,r)</literal>.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      where <literal>u</literal> is distributed <literal>N(0,q)</literal>
+      and <literal>v</literal> is distribute <literal>N(0,r)</literal>.
+    </para>
   </refsection>
 </refentry>

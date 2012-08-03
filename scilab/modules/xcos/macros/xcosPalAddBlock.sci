@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Clément DAVID
+// Copyright (C) - 2011 - Scilab Enterprises - Clément DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -35,8 +36,8 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //  loadXcosLibs();
 //  pal = xcosPal();
 //
-//  sumPath = TMPDIR + "/sum.h5";
-//  bigSomPath = TMPDIR + "/sum.h5";
+//  sumPath = TMPDIR + "/sum.sod";
+//  bigSomPath = TMPDIR + "/sum.sod";
 //
 //  scs_m = SUM_f("define");
 //  export_to_hdf5(sumPath, "scs_m");
@@ -73,7 +74,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     // check and tranform block argument
 
     if typeof(block) == "Block" then
-        path = TMPDIR + "/" + block.gui + ".h5";
+        path = TMPDIR + "/" + block.gui + ".sod";
         scs_m = block;
         err = export_to_hdf5(path, "scs_m");
         if err <> %T then
@@ -86,7 +87,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     if typeof(block) == "string" then
         if exists(block) <> 0 & typeof(evstr(block)) == "function" then
             execstr("scs_m = " + block + "(""define"");");
-            path = TMPDIR + "/" + block + ".h5";
+            path = TMPDIR + "/" + block + ".sod";
             err = export_to_hdf5(path, "scs_m");
             if err <> %T then
                 error(msprintf(gettext("%s: Unable to export ""%s"" to ""%s"".\n"), "xcosPalAddBlock", "block", path));
@@ -148,11 +149,17 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         pal_block_img = fullpath(pathconvert(pal_block_img, %f));
     end
 
+    
+
     // now handle style argument
     if ~exists("style", 'l') | isempty(style) then
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
-        style = "noLabel=1;image=" + block_img + ";";
+        // protect drive letter
+        if getos() == "Windows" then
+            block_img = "/" + block_img;
+        end
+        style = "noLabel=1;image=file://" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg", withPort=%f);
         if ~status then
             error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
@@ -176,7 +183,11 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             style = formattedStyle;
         elseif typeof(style) == "string" then
             if isfile(style) then
-                style = "shape=label;image=" + style + ";";
+                // protect drive letter
+                if getos() == "Windows" then
+                    style = "/" + style;
+                end
+                style = "shape=label;image=file://" + style + ";";
 //          else
 //              assume a well formatted string, do nothing
             end

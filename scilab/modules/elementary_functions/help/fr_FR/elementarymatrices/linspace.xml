@@ -1,83 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="linspace" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="linspace" xml:lang="fr">
   <refnamediv>
     <refname>linspace</refname>
-
     <refpurpose>vecteur de valeurs équidistantes</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-
     <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Paramètres</title>
-
     <variablelist>
       <varlistentry>
         <term>x1,x2</term>
-
         <listitem>
-          <para>scalaire réel ou complexe</para>
+          <para>scalaire réel ou complexe ou vecteur colonne</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>n</term>
-
         <listitem>
           <para>entier (nombre de valeurs, 100 par défaut)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>v</term>
-
         <listitem>
           <para>vecteur ligne réel ou complexe</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
-    valeurs régulièrement espacées entre <literal>x1</literal> et
-    <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
-    sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
-    ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
-    sont regulierement espacées entre les partie réels (resp. imaginaires) de
-    x1 et x2.</para>
+    <para>
+      <literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
+      valeurs régulièrement espacées entre <literal>x1</literal> et
+      <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
+      sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
+      ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
+      sont regulierement espacées entre les partie réels (resp. imaginaires) de
+      x1 et x2.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemples</title>
-
     <programlisting role="example"><![CDATA[ 
 linspace(1,2,10)
 linspace(1+1*%i,2+2*%i,10)
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Voir aussi</title>
-
+    <title>Voir aussi</title>
     <simplelist type="inline">
-      <member><link linkend="logspace">logspace</link></member>
+      <member>
+        <link linkend="logspace">logspace</link>
+      </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Historique</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <itemizedlist>
+            <listitem>La fonction linspace accepte les vecteurs colonnes pour les deux premiers arguments d'entrée. Merci à Guillaume AZEMA pour l'implémentation.</listitem>
+            <listitem>Le troisième argument d'entrée (n) doit être une valeur entière.
+            </listitem>
+          </itemizedlist>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

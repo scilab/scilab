@@ -9,6 +9,7 @@
 // Test the toolbox skeleton in SCI/contrib/
 //  - Building/Compilation
 //  - Loading
+//  - Tests
 // Scilab external module skeleton
 status = copyfile(SCI + "/contrib/toolbox_skeleton/", TMPDIR + "/toolbox_skeleton/");
 assert_checkequal(status, 1);
@@ -52,6 +53,7 @@ Building gateway...
    ilib_gen_Make: Copy libskeleton_c.c to TMPDIR
    ilib_gen_Make: Copy sci_csub.c to TMPDIR
    ilib_gen_Make: Copy sci_csum.c to TMPDIR
+   ilib_gen_Make: Copy sci_foo.c to TMPDIR
    ilib_gen_Make: Copy sci_multiplybypi.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
@@ -80,6 +82,7 @@ Building the master document:
 
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
 Generating loader.sce...
+Generating unloader.sce...
 Generating cleaner.sce...
 exec("TMPDIR/toolbox_skeleton/loader.sce");
 Start Toolbox skeleton
@@ -87,3 +90,14 @@ Start Toolbox skeleton
 	Load gateways
 	Load help
 	Load demos
+test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
+   001/001 - [TMPDIR/toolbox_skeleton/] : 
+
+   001/003 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
+   002/003 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
+   003/003 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------

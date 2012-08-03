@@ -29,6 +29,7 @@
 #include "LaunchScilabSignal.h"
 #include "setenvc.h"
 #include "signal_mgmt.h"
+#include "cliDisplayManagement.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -41,6 +42,11 @@
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
+
+/*
+ * Private function to check any linker errors
+ */
+static void checkForLinkerErrors(void);
 
 /*
  * see http://www.gnu.org/software/autoconf/manual/autoconf.html and
@@ -98,13 +104,14 @@ int main(int argc, char **argv)
     InitializeLaunchScilabSignal();
 
 /* Management of the signals (seg fault, floating point exception, etc) */
+
     if (getenv("SCI_DISABLE_EXCEPTION_CATCHING") == NULL)
     {
         base_error_init();
     }
 
 #if defined(netbsd) || defined(freebsd)
-/* floating point exceptions */
+    /* floating point exceptions */
     fpsetmask(0);
 #endif
 
@@ -140,13 +147,15 @@ int main(int argc, char **argv)
             /* Export the locale. This is going to be used by setlanguage("") in
              * modules/localization/src/c/InitializeLocalization.c */
             if (strcmp(argLang, "en") == 0)
-            {                   /* backward compatiblity en => en_US */
+            {
+                /* backward compatiblity en => en_US */
                 setenvc("LANG", "en_US");
             }
             else
             {
                 if (strcmp(argLang, "fr") == 0)
-                {               /* backward compatiblity fr => fr_FR */
+                {
+                    /* backward compatiblity fr => fr_FR */
                     setenvc("LANG", "fr_FR");
                 }
                 else
@@ -154,6 +163,9 @@ int main(int argc, char **argv)
                     setenvc("LANG", argLang);
                 }
             }
+
+	    free(argLang);
+
         }
         else if (strcmp(argv[i], "-ns") == 0)
         {
@@ -178,6 +190,10 @@ int main(int argc, char **argv)
             setScilabMode(SCILAB_NW);
             settexmacs();
         }
+        else if (strcmp(argv[i], "-nocolor") == 0)
+        {
+            setCLIColor(FALSE);
+        }
         else if (strcmp(argv[i], "-version") == 0)
         {
             disp_scilab_version();
@@ -187,8 +203,8 @@ int main(int argc, char **argv)
 
     if (!isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD)
     {
-
-        /* if not an interactive terminal
+        /*
+         * if not an interactive terminal
          * then, we are disabling the banner
          * Since the banner is disabled in the scilab script checking
          * with the function sciargs is -nb is present, I add this argument
@@ -202,14 +218,18 @@ int main(int argc, char **argv)
             pNewArgv[i] = (char *)malloc((strlen(argv[i]) + 1) * sizeof(char));
             strcpy(pNewArgv[i], argv[i]);
         }
-        pNewArgv[i] = (char *)malloc((strlen("-nb") + 1) * sizeof(char));
-        strcpy(pNewArgv[i], "-nb");
-        setCommandLineArgs(pNewArgv, argc + 1);
+
+#define NB_ARG "-nb"
+        pNewArgv[i] = (char *)malloc((strlen(NB_ARG) + 1) * sizeof(char));
+        strcpy(pNewArgv[i], NB_ARG);
+        i++;
+
+        argv = pNewArgv;
+        argc = argc + 1;
+
     }
-    else
-    {
-        setCommandLineArgs(argv, argc);
-    }
+
+    setCommandLineArgs(argv, argc);
 
 #ifndef WITH_GUI
     if (getScilabMode() != SCILAB_NWNI)
@@ -218,6 +238,8 @@ int main(int argc, char **argv)
         exit(1);
     }
 #endif
+
+    checkForLinkerErrors();
 
 #ifndef __APPLE__
     return realmain(no_startup_flag, initial_script, initial_script_type, memory);
@@ -234,3 +256,41 @@ int main(int argc, char **argv)
 }
 
 /*--------------------------------------------------------------------------*/
+
+/* Defined without include to avoid useless header dependency */
+BOOL isItTheDisabledLib(void);
+
+static void checkForLinkerErrors(void)
+{
+    /*
+       Depending on the linking order, sometime, libs are not loaded the right way.
+       This can cause painful debugging tasks for packager or developer, we are
+       doing the check to help them.
+    */
+#define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
+#define LINKER_ERROR_2 "If you do not know what it means, please report a bug on http://bugzilla.scilab.org/. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
+    if (getScilabMode() != SCILAB_NWNI)
+    {
+        if (isItTheDisabledLib())
+        {
+            fprintf(stderr, LINKER_ERROR_1);
+            fprintf(stderr, "Here, Scilab should have 'libscijvm' defined but gets 'libscijvm-disable' instead.\n");
+            fprintf(stderr, LINKER_ERROR_2);
+            exit(1);
+
+        }
+    }
+    else
+    {
+        /* NWNI mode */
+        if (!isItTheDisabledLib())
+        {
+            fprintf(stderr, LINKER_ERROR_1);
+            fprintf(stderr, "Here, Scilab should have 'libscijvm-disable' defined but gets 'libscijvm' instead.\n");
+            fprintf(stderr, LINKER_ERROR_2);
+            exit(1);
+        }
+    }
+#undef LINKER_ERROR_1
+#undef LINKER_ERROR_2
+}

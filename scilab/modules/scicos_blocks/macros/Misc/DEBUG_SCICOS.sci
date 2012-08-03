@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -44,7 +44,10 @@ function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
 	tt=['block=debug_scicos(block,flag)']
 
 	if execstr('deff(tt,txt)','errcatch')==0 then
-	  save(TMPDIR+'/debug_scicos',debug_scicos)
+      warnMode = warning("query");
+      warning("off");
+	  save(TMPDIR+'/debug_scicos', debug_scicos)
+      warning(warnMode);
 	  exprs(2)=txt
           if (scicos_debug()<>2 & scicos_debug()<>3) then
 	   scicos_debug(2)

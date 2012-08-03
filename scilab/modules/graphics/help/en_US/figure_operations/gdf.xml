@@ -10,19 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gdf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="gdf">
   <refnamediv>
     <refname>gdf</refname>
     <refpurpose>Return handle of default
-  figure.</refpurpose>
+      figure.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>f = gdf()
-f = get("default_figure")</synopsis>
+      f = get("default_figure")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,13 +37,17 @@ f = get("default_figure")</synopsis>
   <refsection>
     <title>Description</title>
     <para>The default figure is a graphic entity which is never drawn. It is used
-    as a reference for the figure properties default values. These default
-    properties values are used to initialize new figures.</para>
-    <para>The <literal>gdf</literal> function returns the handle on the default figure.
-    The user can use this handle to set or get the figure properties default
-    values.</para>
+      as a reference for the figure properties default values. These default
+      properties values are used to initialize new figures.
+    </para>
+    <para>
+      The <literal>gdf</literal> function returns the handle on the default figure.
+      The user can use this handle to set or get the figure properties default
+      values.
+    </para>
     <para>Note that an equivalent default graphic entity exists for axes entities
-    too (see <literal>gda</literal>).</para>
+      too (see <literal>gda</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +70,7 @@ plot2d()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gda">gda</link>
@@ -94,9 +97,5 @@ plot2d()
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

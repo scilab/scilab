@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tf2ss</refname>
     <refpurpose> transfer to state-space</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>may be the constant rtol or the 2 vector <literal>[rtol atol]</literal></para>
+          <para>
+            may be the constant rtol or the 2 vector <literal>[rtol atol]</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>rtol</term>
@@ -54,7 +53,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)</para>
+          <para>
+            linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,7 +63,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    transfer to state-space conversion:</para>
+      transfer to state-space conversion:
+    </para>
     <para>
       <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
     </para>
@@ -77,7 +79,7 @@ clean(ss2tf(Sys))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2tf">ss2tf</link>

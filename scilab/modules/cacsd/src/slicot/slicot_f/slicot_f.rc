@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "slicot_f module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "slicot_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "slicot_f.dll"
             VALUE "ProductName", "slicot_f module"
             VALUE "ProductVersion", "5, 4, 0, 0"

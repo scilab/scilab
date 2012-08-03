@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsVersion()
-	</synopsis>
+      atomsVersion()
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Description -->
@@ -30,16 +30,15 @@
   <refsection>
     <title>Description</title>
     <para>
-			Show the ATOMS's module version
-	</para>
+      Show the ATOMS's module version
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 atomsVersion();
 ]]></programlisting>
   </refsection>
@@ -47,15 +46,9 @@ atomsVersion();
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

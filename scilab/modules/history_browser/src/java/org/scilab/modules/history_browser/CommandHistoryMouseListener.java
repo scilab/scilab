@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.history_browser.actions.ClearAction;
 import org.scilab.modules.history_browser.actions.CopyAction;
 import org.scilab.modules.history_browser.actions.CutAction;
@@ -59,7 +59,7 @@ public class CommandHistoryMouseListener implements MouseListener {
 		
 		if ((e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e))) {
 			// Executed the leaf command
-			CallBack action = new EvaluateAction();
+			CommonCallBack action = new EvaluateAction();
 			action.callBack();
 		}
 	}

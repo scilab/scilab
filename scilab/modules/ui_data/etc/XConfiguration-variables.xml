@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variables title="Variables">
+  <body>
+    <variable-browser maximum-array-size="500000"/>
+    <variable-editor default-array-format="short" move-selection-after-enter="true" direction="Down" decimal-separator=","/>
+  </body>
+</variables>

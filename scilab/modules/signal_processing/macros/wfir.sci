@@ -34,10 +34,16 @@ FT=["lp","hp","bp","sb"]
 
 if rhs<=0 then,
     //if macro called with no arguments query user for values
-    [ftype,forder,cfreq,wtype,fpar]=wfir_gui()
-    if ftype==[] then return,end //canceled by user
-    fl=cfreq(1);
-    fh=cfreq(2);
+    [ok,values,exprs]=wfir_gui(exprs)
+    if ~ok then return,end
+    ftype=values.ftype
+    forder=values.forder
+    cfreq=[values.low,values.high]/values.freq_ech;
+    wtype=values.wtype
+    fpar=values.fpar
+ 
+    fl=values.low/values.freq_ech;
+    fh=values.high/values.freq_ech;
 else
     //check arguments of macro call
     if and(ftype<>FT) then
@@ -47,7 +53,7 @@ else
         error(msprintf(_("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"wfir",2))
     end
     if or(ftype==["hp" "sb"]) then
-        if 2*int(forder/2)<>forder then
+        if 2*int(forder/2)==forder then
             error(msprintf(_("%s:  Wrong value for input argument #%d: Must be odd.\n"),"wfir",2))
         end
     end

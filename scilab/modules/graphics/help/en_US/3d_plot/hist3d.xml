@@ -11,93 +11,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="hist3d" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="hist3d" xml:lang="en">
   <refnamediv>
     <refname>hist3d</refname>
-
     <refpurpose>3D representation of a histogram</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
-hist3d(f,&lt;opt_args&gt;)
-hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
-hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
+    <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
+      hist3d(mtx,&lt;opt_args&gt;)
+      hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
+      hist3d(list(mtx,x,y),&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>mtx</term>
-
         <listitem>
           <para>matrix of size (m,n) defining the histogram
-          <literal>mtx(i,j)=F(x(i),y(j))</literal>, where <literal>x</literal>
-          and <literal>y</literal> are taken as <literal>0:m</literal> and
-          <literal>0:n</literal>.</para>
+            <literal>mtx(i,j)=F(x(i),y(j))</literal>, where <literal>x</literal>
+            and <literal>y</literal> are taken as <literal>0:m</literal> and
+            <literal>0:n</literal>.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>list(mtx,x,y)</term>
-
         <listitem>
           <para>where mtx is a matrix of size (m,n)defining the histogram
-          <literal>mtx(i,j)=F(x(i),y(j))</literal>, with <literal>x</literal>
-          and <literal>y</literal> vectors of size (1,m+1) and (1,n+1).</para>
+            <literal>mtx(i,j)=F(x(i),y(j))</literal>, with <literal>x</literal>
+            and <literal>y</literal> vectors of size (1,m+1) and (1,n+1).
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
-
         <listitem>
-          <para>This represents a sequence of statements <literal>key1=value1,
-          key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following: theta,
-          alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.</para>
+          <para>
+            This represents a sequence of statements <literal>key1=value1,
+              key2=value2
+            </literal>
+            ,... where <literal>key1</literal>,
+            <literal>key2,...</literal> can be one of the following: theta,
+            alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>theta,alpha,leg,flag,ebox</term>
-
         <listitem>
-          <para>see <link linkend="plot3d">plot3d</link>.</para>
+          <para>
+            see <link linkend="plot3d">plot3d</link>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>hist3d</literal> represents a 2d histogram as a 3D plot.
-    The values are associated to the intervals <literal>[x(i) x(i+1)[ X [y(i)
-    y(i+1)[</literal>.</para>
-
-    <para>Enter the command <literal>hist3d()</literal> to see a demo.</para>
+    <para>
+      <literal>hist3d</literal> represents a 2d histogram as a 3D plot.
+      The values are associated to the intervals <literal>[x(i) x(i+1)[ X [y(i)
+        y(i+1)[
+      </literal>
+      .
+    </para>
+    <para>
+      Enter the command <literal>hist3d()</literal> to see a demo.
+    </para>
   </refsection>
-
   <refsection>
-  <title>Examples</title>
-
-  <programlisting role="example"><![CDATA[ 
+    <title>Sample</title>
+    <scilab:image>hist3d();</scilab:image>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
 hist3d(10*rand(10,10));
 
 Z = zeros(100,5);
@@ -117,24 +108,15 @@ scf();
 hist3d(Z); 
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="histplot">histplot</link>
       </member>
-
       <member>
         <link linkend="plot3d">plot3d</link>
       </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <para>Steer S. &amp; JPhilippe C.</para>
   </refsection>
 </refentry>

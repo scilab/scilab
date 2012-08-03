@@ -17,11 +17,11 @@ function [modelica_path, modelica_directory] = getModelicaPath()
 //  [modelica_path, modelica_directory] = getModelicaPath()
 //
 // Parameters
-//  modelica_path:          Indicates path for generic modelica blocks, user 
+//  modelica_path:          Indicates path for generic modelica blocks, user
 //                          can add paths with %MODELICA_USER_LIBS for his own
 //                          blocks.
 //  modelica_directory:     output directory for generated modelica files
-//  %MODELICA_USER_LIBS:    string path global variable used by the user to 
+//  %MODELICA_USER_LIBS:    string path global variable used by the user to
 //                          modify modelica_path. All paths should exist.
 
     // Init
@@ -29,7 +29,8 @@ function [modelica_path, modelica_directory] = getModelicaPath()
     modelica_directory = pathconvert(TMPDIR+"/modelica/",%T,%T);
 
     // user-defined %MODELICA_USER_LIBS
-    if exists("%MODELICA_USER_LIBS") then
+    global %MODELICA_USER_LIBS
+    if exists("%MODELICA_USER_LIBS") & ~isempty(%MODELICA_USER_LIBS) then
 
         if type(%MODELICA_USER_LIBS)<>10 then
             error(msprintf(gettext("%s: Wrong type for %s variable: A string array expected.\n"),"getModelicaPath","%MODELICA_USER_LIBS"));

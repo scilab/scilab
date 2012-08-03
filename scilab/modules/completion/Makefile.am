@@ -9,7 +9,7 @@
 
 if GUI
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 USEANT=1
 
 endif
@@ -25,48 +25,58 @@ src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
 src/c/getCommonPart.c \
 src/c/completeLine.c \
-src/c/completeLine_wrap_java.c 
+src/c/completeLine_wrap_java.c
+
+COMPLETION_CXX_SOURCES = src/cpp/FieldsManager.cpp \
+                         src/cpp/XMLFieldsGetter.cpp \
+                         src/cpp/getfields.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
 
 # Includes need for the compilation
-libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/graphics/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/functions/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libscicompletion_la_CPPFLAGS = -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/functions/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/graphics/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/xml/includes/ \
+    -I$(top_srcdir)/modules/xml/src/cpp \
+    $(JAVA_JNI_INCLUDE) \
+    $(XML_FLAGS) \
+    $(COMPLETION_FLAGS) \
+    $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
 noinst_LTLIBRARIES = libscicompletion-algo.la
 
-libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
-libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES)
+libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(COMPLETION_CXX_SOURCES)
 libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
+libscicompletion_algo_la_CPPFLAGS = $(libscicompletion_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicompletion_la_CPPFLAGS)
 
 ## Libraries necessary
-libscicompletion_la_LIBADD = libscicompletion-algo.la 
+libscicompletion_la_LIBADD = libscicompletion-algo.la
 
 #### Name of the module and the path ######
 modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt 
+libscicompletion_la_root_DATA =  license.txt
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
@@ -95,7 +105,7 @@ tests/utilities/sci_getfilepartlevel.c \
 tests/utilities/sci_getpartlevel.c
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i 
+SWIG_WRAPPERS = src/jni/Completion.i
 
 if SWIG
 BUILT_SOURCES=swig

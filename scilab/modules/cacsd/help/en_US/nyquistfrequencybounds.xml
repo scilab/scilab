@@ -2,10 +2,7 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="nyquistfrequencybounds">
-  <info>
-    <pubdate>$LastChangedDate: 18-04-2011 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="nyquistfrequencybounds">
   <refnamediv>
     <refname>nyquistfrequencybounds</refname>
     <refpurpose>Computes the frequencies for which the nyquist locus enters and leaves a given rectangle. </refpurpose>
@@ -58,8 +55,7 @@
     </variablelist>
   </refsection>
   <refsection>
-    <title>Description</title>
-    <para>
+    <title>Description</title><para>
       Given a C plane rectangle,
       <literal>nyquistfrequencybounds</literal> Computes the lowest
       frequency for which the nyquist locus enters the rectangle and
@@ -103,7 +99,6 @@
     title("bounds:"+sci2exp(bounds,0));
 
     ]]></programlisting>
-
     <para>
       <mediaobject>
         <imageobject>
@@ -112,20 +107,12 @@
       </mediaobject>
     </para>
   </refsection>
-
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="nyquist" >nyquist</link>
+        <link linkend="nyquist">nyquist</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

@@ -13,7 +13,8 @@
 package org.scilab.modules.ui_data.variableeditor.undo;
 
 import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.HashMap;
+import java.util.Vector;
 
 import javax.swing.undo.AbstractUndoableEdit;
 
@@ -25,24 +26,27 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
  */
 public class CellsUndoableEdit extends AbstractUndoableEdit {
 
-    private static Map<String, String> previousCommand = new WeakHashMap();
-
-    private String oldCommand;
-    private String newCommand;
+    private Object oldValue;
+    private Object newValue;
+    private int row;
+    private int col;
+    private int newRow;
+    private int newCol;
     private SwingEditvarTableModel model;
 
     /**
      * Constructor
-     * @param model the model where the edit occured
+     * @param model the model where the edit occurred
      */
-    public CellsUndoableEdit(SwingEditvarTableModel model) {
+    public CellsUndoableEdit(SwingEditvarTableModel model, Object newValue, Object oldValue, int row, int col) {
         this.model = model;
-        if (!previousCommand.containsKey(model.getVarName())) {
-            previousCommand.put(model.getVarName(), model.getUndoManager().getInitCommand());
-        }
-        this.oldCommand = previousCommand.get(model.getVarName());
-        this.newCommand = model.getCommandFromMatrix();
-        previousCommand.put(model.getVarName(), newCommand);
+        this.oldValue = oldValue;
+        this.newValue = newValue;
+        this.row = row;
+        this.col = col;
+        this.newRow = model.getScilabMatrixRowCount();
+        this.newCol = model.getScilabMatrixColCount();
+
     }
 
     /**
@@ -50,7 +54,11 @@ public class CellsUndoableEdit extends AbstractUndoableEdit {
      */
     public void undo() {
         super.undo();
-        model.updateCommand(oldCommand);
+        if (oldValue instanceof Vector) {
+            model.changeData((Vector) oldValue, row, col);
+        } else {
+            model.setValueAtAndUpdate(true, false, oldValue, row, col);
+        }
     }
 
     /**
@@ -58,20 +66,10 @@ public class CellsUndoableEdit extends AbstractUndoableEdit {
      */
     public void redo() {
         super.redo();
-        model.updateCommand(newCommand);
-    }
-
-    /**
-     * @param var the variable to remove
-     */
-    public static void removeVar(String var) {
-        previousCommand.remove(var);
-    }
-
-    /**
-     * Clear the previous commands
-     */
-    public static void clear() {
-        previousCommand.clear();
+        if (newValue instanceof Vector) {
+            model.changeData((Vector) newValue, newRow, newCol);
+        } else {
+            model.setValueAtAndUpdate(true, false, newValue, row, col);
+        }
     }
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="eval3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>eval3d</refname>
     <refpurpose> valeurs d'une fonction sur une grille  </refpurpose>
@@ -18,21 +15,22 @@
         <term>fun  </term>
         <listitem>
           <para>fonction acceptant des arguments vectoriels
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x,y  </term>
         <listitem>
-          <para>2 vecteurs de tailles (1,n1) et (1,n2) (par défaut <literal>y=x</literal>).
-</para>
+          <para>
+            2 vecteurs de tailles (1,n1) et (1,n2) (par défaut <literal>y=x</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>z  </term>
         <listitem>
           <para>matrice de taille (n1,n2).
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,10 +38,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction renvoie une matrice <literal>z(n1,n2)</literal> où <literal>z(i,j)=fun(x(i),y(j))</literal>. 
-    Si la fonction <literal>fun</literal> n'accepte pas d'arguments vectoriels utiliser
-    la primitive <literal>feval</literal>.
-  </para>
+      Cette fonction renvoie une matrice <literal>z(n1,n2)</literal> où <literal>z(i,j)=fun(x(i),y(j))</literal>. 
+      Si la fonction <literal>fun</literal> n'accepte pas d'arguments vectoriels utiliser
+      la primitive <literal>feval</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -59,15 +57,11 @@ plot3d(x,y,z);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="feval">feval</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Steer S.; ; ;   </para>
   </refsection>
 </refentry>

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
+ * Copyright (C) 2012 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,27 +11,7 @@
  *
  */
 
-#ifdef _MSC_VER
-#include "stack-def.h"
-
-/* Force some definitions "globals" (linear_algebra)*/
-
-SCIGSCH_struct C2F(scigsch);
-SCISCH_struct C2F(scisch);
-SCIZGSCH_union C2F(scizgsch);
-
-IERODE_struct C2F(ierode);
-
-/* manages CTRL-C event */
-BASBRK_struct C2F(basbrk);
-
-/** 
-* simpmd : rational fraction simplification mode
-* used in polynomials and inisci.f (core)
-*/
-CSIMP_struct C2F(csimp);
-
-#else
+#ifndef _MSC_VER
 /***********************************************************
 * Unused function just here to force linker to load some 
 * functions 

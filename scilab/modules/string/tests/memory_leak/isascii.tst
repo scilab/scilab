@@ -17,7 +17,7 @@ REF_4_1_2 = 0;
 
 
 for i=1:NB_LOOPS 
-  r = isascii(code2str(200:350));
+  r = isascii(ascii(100:250));
   clear r;
 end  
 

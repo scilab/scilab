@@ -67,6 +67,8 @@ int sci_spones(char *fname,unsigned long fname_len);
 int sci_gsort(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
 int sci_rat(char *fname, unsigned long fname_len);
+int sci_base2dec(char *fname, unsigned long fname_len);
+int sci_dec2base(char *fname, unsigned long fname_len);
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/
 

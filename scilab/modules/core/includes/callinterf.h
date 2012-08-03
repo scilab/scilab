@@ -45,7 +45,7 @@
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
 /* 24  gw_user2(); RESERVED to gw_user (see callinter.h) */
-                                #include "gw_user2.h"
+#include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
 /* 26 */						#include "../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../sparse/includes/gw_sparse.h"
@@ -63,7 +63,7 @@
 /* 39 */						#include "dynamic_gateways.h" /* special_functions */
 /* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
-/* 42 gw_user(); FREE */
+/* 42 */						#include "dynamic_gateways.h" /* history_browser */
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 /* 45 */						#include "dynamic_gateways.h" /* scicos */
@@ -90,15 +90,18 @@
 /* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 /* 68 */                        #include "dynamic_gateways.h" /* xml */
-/* 69 */						#include "dynamic_gateways.h" /* MPI */
-
+/* 69 */                        #include "dynamic_gateways.h" /* preferences */
+/* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
+/* 71 */                        #include "dynamic_gateways.h" /* external_objects */
+/* 72 */			            #include "dynamic_gateways.h" /* MPI */
 
 
 
 /** table of interfaces **/
 
-typedef struct {
-	int  (*fonc)(void);
+typedef struct
+{
+    int  (*fonc)(void);
 } OpTab ;
 
 /**

@@ -16,9 +16,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,6 +30,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.w3c.dom.Document;
@@ -63,16 +63,18 @@ public final class ConfigManager {
     private static final String HELPWINPOSITION = "HelpWindowPosition";
     private static final String HELPWINSIZE = "HelpWindowSize";
     private static final String HELPFONTSIZE = "HelpFontSize";
+    private static final String HELPBROWSER = "HelpBrowser";
     private static final String PROFILE = "Profile";
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
     private static final String COLORPREFIX = "#";
     private static final String MAXOUTPUTSIZE = "MaxOutputSize";
     private static final String LASTOPENEDDIR = "LastOpenedDirectory";
+    private static final String INDEX = "index";
 
     private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 
-    private static final String USER_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/configuration.xml";
+    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/configuration.xml";
 
     private static final int DEFAULT_WIDTH = 650;
     private static final int DEFAULT_HEIGHT = 550;
@@ -98,12 +100,7 @@ public final class ConfigManager {
         File fileConfig = new File(USER_CONFIG_FILE);
         if (!fileConfig.exists() || (fileConfig.length() == 0) || checkVersion()) {
             /* Create a local copy of the configuration file */
-            try {
-                copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
-                updated = true;
-            } catch (FileNotFoundException e) {
-                System.out.println(ERROR_READ + USER_CONFIG_FILE);
-            }
+            updated = ScilabCommonsUtils.copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
         }
     }
 
@@ -117,14 +114,14 @@ public final class ConfigManager {
 
         File fileConfig = new File(USER_CONFIG_FILE);
         if (fileConfig.exists()) {
-            Document doc = readDocument(USER_CONFIG_FILE);
+            Document doc = ScilabXMLUtilities.readDocument(USER_CONFIG_FILE);
             Element setting = doc.getDocumentElement();
-            String str = ((Element) setting).getAttribute(VERSION);
+            String str = setting.getAttribute(VERSION);
             if (str != null && str.length() != 0) {
                 float userVersion = Float.parseFloat(str);
-                doc = readDocument(SCILAB_CONFIG_FILE);
+                doc = ScilabXMLUtilities.readDocument(SCILAB_CONFIG_FILE);
                 setting = doc.getDocumentElement();
-                str = ((Element) setting).getAttribute(VERSION);
+                str = setting.getAttribute(VERSION);
 
                 if (str != null && str.length() != 0) {
                     float scilabVersion = Float.parseFloat(str);
@@ -149,62 +146,25 @@ public final class ConfigManager {
      * @param font the new font
      */
     public static void saveFont(Font font) {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontSize", new Object[] {VALUE, font.getSize()});
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontName", new Object[] {VALUE, font.getFontName()});
 
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList fontSizeElement = scilabProfile.getElementsByTagName("FontSize");
-            Element fontSize = (Element) fontSizeElement.item(0);
-            fontSize.setAttribute(VALUE, Integer.toString(font.getSize()));
-
-            NodeList fontNameElement = scilabProfile.getElementsByTagName("FontName");
-            Element fontName = (Element) fontNameElement.item(0);
-            fontName.setAttribute(VALUE, font.getFontName());
-
-            NodeList fontStyleElement = scilabProfile.getElementsByTagName("FontStyle");
-            Element fontStyle = (Element) fontStyleElement.item(0);
-
+            String style;
             if (!font.isBold() && !font.isItalic()) {
-                fontStyle.setAttribute(VALUE, "0");
+                style = "0";
             } else if (font.isBold() && font.isItalic()) {
-                fontStyle.setAttribute(VALUE, "3");
+                style = "3";
             } else if (font.isBold()) {
-                fontStyle.setAttribute(VALUE, "1");
+                style = "1";
             } else {
-                fontStyle.setAttribute(VALUE, "2");
+                style = "2";
             }
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, "FontStyle", new Object[] {VALUE, style});
 
-            /* Save changes */
             writeDocument();
-        }
-    }
-
-    /**
-     * Copy a file
-     * @param in src file
-     * @param out dest file
-     * @throws FileNotFoundException
-     */
-    private static void copyFile(File in, File out) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream(in);
-        FileOutputStream fos = new FileOutputStream(out);;
-
-        byte[] buf = new byte[BUFSIZE];
-        int i = 0;
-        try {
-            while ((i = fis.read(buf)) != -1) {
-                fos.write(buf, 0, i);
-            }
-            fis.close();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -213,22 +173,17 @@ public final class ConfigManager {
      * @return the nulber of lines
      */
     public static int getMaxOutputSize() {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
+            Object[] attr = new Object[] {VALUE, int.class};
+            Element elem = ScilabXMLUtilities.readNodeAttributes(document, MAXOUTPUTSIZE, attr);
 
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(MAXOUTPUTSIZE);
-            Element maxOutputSize = (Element) allPositionElements.item(0);
-            if (maxOutputSize != null) {
-                return Integer.parseInt(maxOutputSize.getAttribute(VALUE));
+            if (elem != null) {
+                return ((Integer) attr[1]).intValue();
             }
         }
+
         return DEFAULT_MAXOUTPUTSIZE;
     }
 
@@ -237,22 +192,17 @@ public final class ConfigManager {
      * @return the font size
      */
     public static int getHelpFontSize() {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
+            Object[] attr = new Object[] {VALUE, int.class};
+            Element elem = ScilabXMLUtilities.readNodeAttributes(document, HELPFONTSIZE, attr);
 
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPFONTSIZE);
-            Element helpFontSize = (Element) allPositionElements.item(0);
-            if (helpFontSize != null) {
-                return Integer.parseInt(helpFontSize.getAttribute(VALUE));
+            if (elem != null) {
+                return ((Integer) attr[1]).intValue();
             }
         }
+
         return DEFAULT_HELPFONTSIZE;
     }
 
@@ -261,284 +211,55 @@ public final class ConfigManager {
      * @return the font size
      */
     public static void setHelpFontSize(int size) {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPFONTSIZE);
-            Element helpFontSize = (Element) allPositionElements.item(0);
-            if (helpFontSize == null) {
-                helpFontSize = document.createElement(HELPFONTSIZE);
-                scilabProfile.appendChild(helpFontSize);
-            }
-
-            helpFontSize.setAttribute(VALUE, Integer.toString(size));
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPFONTSIZE, new Object[] {VALUE, size});
             writeDocument();
         }
     }
 
     /**
-     * Get the position of Scilab Main Window
-     * @return the position
+     * Save the help browser current page
+     * @param index the address
      */
-    public static Position getMainWindowPosition() {
-
-        /* Load file */
+    public static void saveHelpBrowserState(String index) {
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(MAINWINPOSITION);
-            Element mainWindowPosition = (Element) allPositionElements.item(0);
-            if (mainWindowPosition != null) {
-                int x = Integer.parseInt(mainWindowPosition.getAttribute(XCOORD));
-                int y = Integer.parseInt(mainWindowPosition.getAttribute(YCOORD));
-                /* Avoid Scilab Main Window to be out of the screen */
-                if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
-                    && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
-                    return new Position(x, y);
-                }
-            }
-        }
-        return new Position(0, 0);
-    }
-
-    /**
-     * Save the position of Scilab Main Window
-     * @param position the position of Scilab main Window
-     */
-    public static void saveMainWindowPosition(Position position) {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(MAINWINPOSITION);
-            Element mainWindowPosition = (Element) allPositionElements.item(0);
-
-            // Ascendant compatibility
-            if (mainWindowPosition == null) {
-                mainWindowPosition = document.createElement(MAINWINPOSITION);
-                scilabProfile.appendChild(mainWindowPosition);
-            }
-
-            mainWindowPosition.setAttribute(XCOORD, Integer.toString(position.getX()));
-            mainWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
-
-            /* Save changes */
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, HELPBROWSER, new Object[] {INDEX, index});
             writeDocument();
         }
     }
 
     /**
-     * Save the size of Scilab Main Window
-     * @param size the size of Scilab main Window
+     * Get the previous index to restore
+     * @return the previous index
      */
-    public static void saveMainWindowSize(Size size) {
-
-        /* Load file */
+    public static String getHelpBrowserState() {
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
+            Object[] attr = new Object[] {INDEX, String.class};
+            Element elem = ScilabXMLUtilities.readNodeAttributes(document, HELPBROWSER, attr);
 
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(MAINWINSIZE);
-            Element mainWindowSize = (Element) allPositionElements.item(0);
-
-            // Ascendant compatibility
-            if (mainWindowSize == null) {
-                mainWindowSize = document.createElement(MAINWINSIZE);
-                scilabProfile.appendChild(mainWindowSize);
-            }
-
-            mainWindowSize.setAttribute(WIDTH, Integer.toString(size.getWidth()));
-            mainWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
-
-            /* Save changes */
-            writeDocument();
-        }
-    }
-
-    /**
-     * Get the size of Scilab Main Window
-     * @return the size
-     */
-    public static Size getMainWindowSize() {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(MAINWINSIZE);
-            Element mainWindowSize = (Element) allSizeElements.item(0);
-            if (mainWindowSize != null) {
-                return new Size(Integer.parseInt(mainWindowSize.getAttribute(WIDTH)), Integer.parseInt(mainWindowSize.getAttribute(HEIGHT)));
+            if (elem != null) {
+                return (String) attr[1];
             }
         }
-        return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    }
 
-    /**
-     * Get the position of Scilab Help Window
-     * @return the position
-     */
-    public static Position getHelpWindowPosition() {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINPOSITION);
-            Element helpWindowPosition = (Element) allPositionElements.item(0);
-            if (helpWindowPosition != null) {
-                int x = Integer.parseInt(helpWindowPosition.getAttribute(XCOORD));
-                int y = Integer.parseInt(helpWindowPosition.getAttribute(YCOORD));
-                /* Avoid Scilab Help Window to be out of the screen */
-                if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
-                    && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
-                    return new Position(x, y);
-                }
-            }
-        }
-        return new Position(0, 0);
-    }
-
-    /**
-     * Save the position of Scilab Help Window
-     * @param position the position of Scilab help Window
-     */
-    public static void saveHelpWindowPosition(Position position) {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINPOSITION);
-            Element helpWindowPosition = (Element) allPositionElements.item(0);
-
-            // Ascendant compatibility
-            if (helpWindowPosition == null) {
-                helpWindowPosition = document.createElement(HELPWINPOSITION);
-                scilabProfile.appendChild(helpWindowPosition);
-            }
-
-            helpWindowPosition.setAttribute(XCOORD, Integer.toString(position.getX()));
-            helpWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
-
-            /* Save changes */
-            writeDocument();
-        }
-    }
-
-    /**
-     * Save the size of Scilab Help Window
-     * @param size the size of Scilab help Window
-     */
-    public static void saveHelpWindowSize(Size size) {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINSIZE);
-            Element helpWindowSize = (Element) allPositionElements.item(0);
-
-            // Ascendant compatibility
-            if (helpWindowSize == null) {
-                helpWindowSize = document.createElement(HELPWINSIZE);
-                scilabProfile.appendChild(helpWindowSize);
-            }
-
-            helpWindowSize.setAttribute(WIDTH, Integer.toString(size.getWidth()));
-            helpWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
-
-            /* Save changes */
-            writeDocument();
-        }
-    }
-
-    /**
-     * Get the size of Scilab Help Window
-     * @return the size
-     */
-    public static Size getHelpWindowSize() {
-
-        /* Load file */
-        readDocument();
-
-        if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(HELPWINSIZE);
-            Element helpWindowSize = (Element) allSizeElements.item(0);
-            if (helpWindowSize != null) {
-                return new Size(Integer.parseInt(helpWindowSize.getAttribute(WIDTH)), Integer.parseInt(helpWindowSize.getAttribute(HEIGHT)));
-            }
-        }
-        return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        return null;
     }
 
     /**
      * Save the Last Opened Directory in Scilab
      * @param the directory's path
      */
-
-    public static void saveLastOpenedDirectory(String path ){
-        /* Load file */
+    public static void saveLastOpenedDirectory(String path ) {
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
-            Element lastOpenedDir = (Element) allSizeElements.item(0);
-
-            lastOpenedDir.setAttribute(VALUE, path);
-
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[] {VALUE, path});
             writeDocument();
         }
     }
@@ -548,39 +269,26 @@ public final class ConfigManager {
      * @return the directory's path
      */
 
-    public static String getLastOpenedDirectory(){
-        /* Load file */
+    public static String getLastOpenedDirectory() {
         /*System.getProperty("user.dir") if no path*/
         readDocument();
         String path = new String() ;
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
+            Object[] attr = new Object[] {VALUE, String.class};
+            Element elem = ScilabXMLUtilities.readNodeAttributes(document, LASTOPENEDDIR, attr);
 
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
+            if (elem != null) {
+                path = (String) attr[1];
+            }
 
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
-            Element lastOpenedDir = (Element) allSizeElements.item(0);
-
-            if (lastOpenedDir != null){
-
-                path = lastOpenedDir.getAttribute(VALUE);
-
-                if (path.length() == 0){
-                    path = System.getProperty("user.dir") ;
-                }
-            }else{
-                Element newLastOpenedDir =  document.createElement(LASTOPENEDDIR);
+            if (elem == null || path.isEmpty()) {
                 path = System.getProperty("user.dir") ;
-                newLastOpenedDir.setAttribute("useCache","true");
-                newLastOpenedDir.setAttribute(VALUE, path);
-
-                scilabProfile.appendChild(newLastOpenedDir);
-
+                ScilabXMLUtilities.replaceNamedNode(document, PROFILE, LASTOPENEDDIR, new Object[] {VALUE, path, "useCache", "true"});
                 writeDocument();
             }
         }
+
         return path ;
     }
 
@@ -589,23 +297,11 @@ public final class ConfigManager {
      * @param color the new Color
      */
     public static void saveConsoleForeground(Color color) {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(FOREGROUNDCOLOR);
-            Element consoleForeground = (Element) allSizeElements.item(0);
-
             String rgb = Integer.toHexString(color.getRGB());
-            consoleForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-            /* Save changes */
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, FOREGROUNDCOLOR, new Object[] {VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
             writeDocument();
         }
     }
@@ -615,23 +311,11 @@ public final class ConfigManager {
      * @param color the new Color
      */
     public static void saveConsoleBackground(Color color) {
-
-        /* Load file */
         readDocument();
 
         if (document != null) {
-            Element racine = document.getDocumentElement();
-
-            NodeList profiles = racine.getElementsByTagName(PROFILE);
-            Element scilabProfile = (Element) profiles.item(0);
-
-            NodeList allSizeElements = scilabProfile.getElementsByTagName(BACKGROUNDCOLOR);
-            Element consoleBackground = (Element) allSizeElements.item(0);
-
             String rgb = Integer.toHexString(color.getRGB());
-            consoleBackground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-            /* Save changes */
+            ScilabXMLUtilities.replaceNamedNode(document, PROFILE, BACKGROUNDCOLOR, new Object[] {VALUE, COLORPREFIX + rgb.substring(2, rgb.length())});
             writeDocument();
         }
     }
@@ -639,57 +323,15 @@ public final class ConfigManager {
     /**
      * Read the file to modify
      */
-    private static Document readDocument(String fileName) {
-        File xml = null;
-        DocumentBuilder docBuilder = null;
-
-        try {
-            DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
-            docBuilder = factory.newDocumentBuilder();
-
-            // lecture du contenu d'un fichier XML avec DOM
-            xml = new File(fileName);
-            return docBuilder.parse(xml);
-        } catch (ParserConfigurationException pce) {
-            System.out.println(ERROR_READ + fileName);
-        } catch (SAXException se) {
-            System.out.println(ERROR_READ + fileName);
-        } catch (IOException ioe) {
-            System.out.println(ERROR_READ + fileName);
-        }
-        return null;
-    }
-
-    /**
-     * Read the file to modify
-     */
     private static void readDocument() {
         createUserCopy();
-        document = readDocument(USER_CONFIG_FILE);
+        document = ScilabXMLUtilities.readDocument(USER_CONFIG_FILE);
     }
 
     /**
      * Save the modifications
      */
     private static void writeDocument() {
-        Transformer transformer = null;
-        try {
-            transformer = ScilabTransformerFactory.newInstance().newTransformer();
-        } catch (TransformerConfigurationException e1) {
-            System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
-        } catch (TransformerFactoryConfigurationError e1) {
-            System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
-        }
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        StreamResult result = new StreamResult(new File(USER_CONFIG_FILE));
-        DOMSource source = new DOMSource(document);
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException e) {
-            System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
-        }
-
+        ScilabXMLUtilities.writeDocument(document, USER_CONFIG_FILE);
     }
-
 }

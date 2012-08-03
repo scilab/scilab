@@ -13,7 +13,7 @@ function r=checknyquist(Args,leg)
   [frq,rf,splitf]=repfreq(Args(:));repi=imag(rf);repf=real(rf);
   [mn,n]=size(rf);
   splitf($+1)=n+1;
-  
+
   ksplit=1;sel=splitf(ksplit):splitf(ksplit+1)-1;
   R=[repf(:,sel)];  I=[repi(:,sel)];
   for ksplit=2:size(splitf,'*')-1
@@ -24,12 +24,12 @@ function r=checknyquist(Args,leg)
   //use symetry
   R=[R R(:,$:-1:1)];
   I=[I -I(:,$:-1:1)];
-  
+
   l=find(~isnan(R(1,:)))
   fig=gcf();
   r=0
   a=fig.children;
- 
+
   if a.log_flags<>'nnn' then r=1;return,end
   if or(a.axes_visible<>["on","on","on"]) then r=2;return,end
 
@@ -60,9 +60,9 @@ function r=checknyquist(Args,leg)
 endfunction
 
 
-s=poly(0,'s')
+s=poly(0,'s');
 n=1+s;d=1+2*s;
-h=syslin('c',n,d)
+h=syslin('c',n,d);
 sl=tf2ss(h);
 sld=dscr(sl,0.01);
 hd=ss2tf(sld);
@@ -144,6 +144,15 @@ clf();nyquist(sld,0.01,100,0.01)
 if checknyquist(list(sld,0.01,100,0.01)) then pause,end
 
 //nyquist given by precmputed freqency response
- 
+
 clf(); nyquist(w,rf)
 clf(); nyquist(w,20*log(abs(rf))/log(10),(180/%pi)*atan(imag(rf),real(rf)))
+
+// check legend color
+clf();
+F1=syslin('c',(2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+F2=syslin('c',(0.88*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+F3=syslin('c',(100*2.5*0.8)/((0.25*%s+1)*(0.8*%s+1)));
+nyquist ([F1;F2;F3],0.0 ,1000,["F1(Kr=1)";"F2(Kr=0,88)";"F3(Kr=10)"],%f)
+a=gca();
+assert_checkequal(a.children(1).links.foreground, [3, 2, 1]); // [green blue black]

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xcos title="Xcos">
+  <body>
+    <xcos-preferences />
+  </body>
+  <!-- deactivate on beta2
+  <edition title="Edition">
+    <body>
+      <xcos-edition edge-style="0"/>
+      <edge-style code="0" description="_(Straight)"/>
+      <edge-style code="1" description="_(Horizontal)"/>
+      <edge-style code="2" description="_(Vertical)"/>
+    </body>
+  </edition>
+-->
+  <simulation title="_(Simulation)">
+    <body>
+      <xcos-simulation final-integration-time="1.0E05" real-time-scaling="0.0E00" integrator-absolute-tolerance="1.0E-06" integrator-relative-tolerance="1.0E-06" tolerance-on-time="1.0E-10" max-integration-interval="1.0E05" solver="2" max-step-size="0.0" trace="0">
+        <!-- Available solver values list from scicos -->
+        <!-- <solver code="0" description="lsodar - BDF - NEWTON "/> -->
+        <solver code="1" description="Sundials/CVODE - BDF - NEWTON"/>
+        <solver code="2" description="Sundials/CVODE - BDF - FUNCTIONAL"/>
+        <solver code="3" description="Sundials/CVODE - ADAMS - NEWTON"/>
+        <solver code="4" description="Sundials/CVODE - ADAMS - FUNCTIONAL"/>
+        <!-- <solver code="5" description="DOPRI5 - Runge-Kutta 4(5)"/> -->
+        <solver code="100" description="Sundials/IDA"/>
+        <!-- Available trace values lists from scicos -->        
+        <trace code="0" description="_(No trace nor debug printing)"/>
+        <trace code="1" description="_(Light Simulation trace (Discrete and Continuous part switches))"/>
+        <trace code="2" description="_(Per block execution trace and Debug block calls)"/>
+        <trace code="3" description="_(Debug block calls without trace)"/>
+      </xcos-simulation>
+    </body>
+  </simulation>
+</xcos>
+

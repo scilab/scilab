@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="determ">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>determ</refname>
     <refpurpose> determinant of polynomial matrix</refpurpose>
@@ -42,16 +39,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the determinant of a real polynomial matrix
-    (computation made by FFT if W size is greater than 2*2).</para>
-    <para><literal>res=determ(W [,k])</literal><literal>k</literal> is an integer larger than the actual degree of the determinant
-    of <literal>W</literal>.</para>
+      returns the determinant of a real polynomial matrix
+      (computation made by FFT if W size is greater than 2*2).
+    </para>
     <para>
-    The default value of <literal>k</literal> is the smallest power of 2 which is larger
-    than <literal>n*max(degree(W))</literal>.</para>
+      <literal>res=determ(W [,k])</literal><literal>k</literal> is an integer larger than the actual degree of the determinant
+      of <literal>W</literal>.
+    </para>
     <para>
-    Method (Only if W size is greater than 2*2) : evaluate the determinant of <literal>W</literal> for the Fourier frequencies
-    and apply inverse FFT to the coefficients of the determinant.</para>
+      The default value of <literal>k</literal> is the smallest power of 2 which is larger
+      than <literal>n*max(degree(W))</literal>.
+    </para>
+    <para>
+      Method (Only if W size is greater than 2*2) : evaluate the determinant of <literal>W</literal> for the Fourier frequencies
+      and apply inverse FFT to the coefficients of the determinant.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +65,7 @@ det(coeff(w,1))*s^10
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>
@@ -75,9 +77,5 @@ det(coeff(w,1))*s^10
         <link linkend="coffg">coffg</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

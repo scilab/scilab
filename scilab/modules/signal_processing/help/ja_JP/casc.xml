@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="casc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>casc</refname>
     <refpurpose>係数からフィルタのカスケード実現を作成</refpurpose>
@@ -18,11 +15,12 @@
         <term>x</term>
         <listitem>
           <para>
-	
-
-	(4xN)-行列. この各列は1つのカスケード要素で,
-	その最初の2列のエントリは分子の係数,次の2列のエントリは
-	分母の係数です</para>
+            
+            
+            (4xN)-行列. この各列は1つのカスケード要素で,
+            その最初の2列のエントリは分子の係数,次の2列のエントリは
+            分母の係数です
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,8 +40,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	係数の行列からフィルタのカスケード実現を作成します
-    (ユーティリティ関数).</para>
+      係数の行列からフィルタのカスケード実現を作成します
+      (ユーティリティ関数).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

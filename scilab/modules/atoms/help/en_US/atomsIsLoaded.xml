@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsLoaded">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsIsLoaded</refname>
     <refpurpose>determines whether a module is loaded or not</refpurpose>
@@ -24,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsIsLoaded(modules)
-	</synopsis>
+      result = atomsIsLoaded(modules)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -33,83 +30,70 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			
-			<!-- 1st input parameter -->
-			
-			<varlistentry>
+      <!-- 1st input parameter -->
+      <varlistentry>
         <term>modules</term>
         <listitem>
-					
           <para>
-						mx1, mx2 Matrix of strings:
-					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
-								Mandatory
-							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
-								If this field is empty or is not present,
-								module's version is ignored.
-							</td>
-						</tr>
-						
-						<!-- Section -->
-						
-						<tr>
-							<td>
-								<emphasis>3rd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Section</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
-								If this field is empty or is not present,
-								module's section is ignored.
-							</td>
-						</tr>
-						
-					</informaltable>
-				</listitem>
+            mx1, mx2 Matrix of strings:
+          </para>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+              <td>
+              </td>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                module's version is ignored.
+              </td>
+            </tr>
+            <!-- Section -->
+            <tr>
+              <td>
+                <emphasis>3rd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Section</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                module's section is ignored.
+              </td>
+            </tr>
+          </informaltable>
+        </listitem>
       </varlistentry>
-			
-			<!-- Output parameter -->
-			
+      <!-- Output parameter -->
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>
-						mx1 boolean matrix
-					</para>
+            mx1 boolean matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -119,8 +103,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
-	</para>
+    <para>
+      <literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -158,7 +143,7 @@ atomsRemove("toolbox_2");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsLoad">atomsLoad</link>
@@ -171,10 +156,4 @@ atomsRemove("toolbox_2");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

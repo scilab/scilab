@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,26 +27,43 @@
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
 
+#include "CurrentFigure.h"
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_unzoom(char *fname,unsigned long fname_len)
 {
+  /* number of object to unzoom */
+  int nbObjects = 0;
+
+  /* ids of object to unzoom */
+  char** objectsId = NULL;
+
+  char* objectUID = NULL;
+
+  /* object type */
+  char *pstType = NULL;
+
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
   if ( Rhs == 0 )
   {
-    sciUnzoomAll();
+    objectUID = (char*)getCurrentFigure();
+    if (objectUID != NULL)
+    {
+      sciUnzoomFigure(objectUID);
+    }
   }
   else
   {
-    int nbUnzoomedObjects = 0;
-    int m,n,i;
+    int m = 0,n = 0,i = 0;
     size_t stackPointer = 0;
-    sciPointObj ** zoomedObjects = NULL; /* array of object to unzoom */
-    GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m,&n,&stackPointer);
-    
-    nbUnzoomedObjects = m * n;
-    zoomedObjects = MALLOC(nbUnzoomedObjects * sizeof(sciPointObj *));
-    if (zoomedObjects == NULL)
+    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer);
+
+    nbObjects = m * n;
+    objectsId = MALLOC(nbObjects * sizeof(char*));
+    if (objectsId == NULL)
     {
       Scierror(999, _("%s: No more memory.\n"),fname);
       return -1;
@@ -54,26 +71,27 @@ int sci_unzoom(char *fname,unsigned long fname_len)
 
     /* first pass, check that all the handles are subwindows or figures */
     /* and copy them into an array of objects */
-    for ( i = 0 ; i < nbUnzoomedObjects ; i++ )
+    for (i = 0; i < nbObjects; i++ )
     {
-      zoomedObjects[i] = sciGetPointerFromHandle(getHandleFromStack(stackPointer + i));
-      if (sciGetEntityType(zoomedObjects[i]) != SCI_SUBWIN && sciGetEntityType(zoomedObjects[i]) != SCI_FIGURE)
+      objectUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer + i));
+      getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_string, (void **) &pstType);
+      if ((strcmp(pstType, __GO_FIGURE__) != 0) && (strcmp(pstType, __GO_AXES__) != 0))
       {
-        FREE(zoomedObjects);
+        FREE(objectsId);
         Scierror(999, _("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);
         return -1;
       }
+      objectsId[i] = objectUID;
     }
 
-    /* second pass draw the objects */
-    sciUnzoomArray(zoomedObjects, nbUnzoomedObjects);
+    /* second pass un zoom the objects */
+    sciUnzoomArray(objectsId, nbObjects);
 
-    FREE(zoomedObjects);
-
+    FREE(objectsId);
   }
-  
 
-  LhsVar(1)=0; 
+
+  LhsVar(1)=0;
   PutLhsVar();
   return 0;
 }

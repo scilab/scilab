@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 12:09+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2012-07-20 14:24+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -22,14 +22,15 @@ msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s : Nombre erroné d'arguments d'entrée : entre %d et %d attendus."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice attendue.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice de chaîne de caractères "
-"attendue.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -59,11 +60,11 @@ msgstr "%s : Échec de l'assertion : attendu = %s, cependant calculé = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
@@ -85,11 +86,23 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : Au moins %d attendu.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de chaîne de "
+"caractères attendu.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Des entiers positifs "
 "attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice non vide "
+"attendue.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
@@ -116,9 +129,10 @@ msgstr ""
 "d'erreur calculé = %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de booléens "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
@@ -218,6 +232,12 @@ msgstr "%s n'est pas une boîte-à-outils ou un module installé"
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "Le fichier ref (%s) n'existe pas"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr ""
 
 #, c-format
 msgid "No variable %s_ref in reference file"

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="squeeze">
-  <info>
-    <pubdate>$LastChangedDate: 2007-2-6 15:12:38 +0200 (mar, 6 fev 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>squeeze</refname>
     <refpurpose>スクイズ</refpurpose>
@@ -42,10 +39,10 @@
   <refsection>
     <title>説明</title>
     <para> 
-	ハイパー行列の単一次元,つまり,
-	大きさが1の次元を削除します.
-	入力が行列の場合,変更されません.
-	</para>
+      ハイパー行列の単一次元,つまり,
+      大きさが1の次元を削除します.
+      入力が行列の場合,変更されません.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -57,9 +54,5 @@
         <link linkend="hypermatrices">hypermatrices</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Eric Dubois, Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

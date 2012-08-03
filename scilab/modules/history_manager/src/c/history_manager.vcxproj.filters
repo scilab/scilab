@@ -123,9 +123,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\history_manager.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\jni\HistoryManagement.i">
       <Filter>Swig Files</Filter>
     </None>
@@ -135,10 +132,7 @@
     <None Include="History_browser_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="jvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="localization_Import.def">
@@ -150,6 +144,9 @@
     <None Include="..\..\history_manager.iss" />
     <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\history_manager.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_manager.rc">

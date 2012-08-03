@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * See the file ./license.txt
  -->
@@ -78,7 +78,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_IdealTransformer">Authors</xref>
+              <xref linkend="Example_IdealTransformer">Example</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -98,10 +98,10 @@
   <refsection id="Description_IdealTransformer">
     <title>Description</title>
     <para>
-The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.
-</para>
+      The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_IdealTransformer">
     <title>Dialog box</title>
@@ -113,8 +113,8 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -134,40 +134,44 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p1'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p1'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n1'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n1'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p2'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p2'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n2'
-</para>
             <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n2'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+              
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -177,19 +181,24 @@ Implicit <emphasis role="bold">variable.</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'N'
-</para>
-            <para><emphasis role="bold">Default value :</emphasis> 1
-</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.
-
-
-</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'N'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 1
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+              
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> IdealTransformer</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> IdealTransformer
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -210,21 +219,15 @@ Implicit <emphasis role="bold">variable.</emphasis>
     </itemizedlist>
   </refsection>
   <refsection id="Example_IdealTransformer">
-     <title>IdealTransformer Example</title>
+    <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/electrical_pal/IdealTransformer_Example.xcos">
         <inlinemediaobject>
           <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/electrical_pal/IdealTransformer_Example.png"
-                       valign="middle" />
+            <imagedata align="center" fileref="../../../examples/electrical_pal/IdealTransformer_Example.png" valign="middle"/>
           </imageobject>
         </inlinemediaobject>
       </link>
     </para>
-  </refsection>
-  <refsection id="Authors_IdealTransformer">
-    <title>Authors</title>
-    <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>
 </refentry>

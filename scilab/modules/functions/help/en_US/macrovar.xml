@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macrovar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>macrovar</refname>
     <refpurpose> variables of function</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>vars</term>
         <listitem>
-          <para>list  <literal>list(in,out,nolocal,called,locals)</literal></para>
+          <para>
+            list  <literal>list(in,out,nolocal,called,locals)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,13 +41,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns in a list the set of variables used by a function.
-    <literal>vars</literal> is a list made of five column vectors of character strings</para>
-    <para><literal>in</literal> input variables (<literal>vars(1)</literal>)</para>
-    <para><literal>out</literal> output variables (<literal>vars(2)</literal>)</para>
-    <para><literal>nolocal</literal>referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)</para>
-    <para><literal>called</literal> names of functions called (<literal>vars(4)</literal>)</para>
-    <para><literal>locals</literal> local variables (<literal>vars(5)</literal>)</para>
+      Returns in a list the set of variables used by a function.
+      <literal>vars</literal> is a list made of five column vectors of character strings
+    </para>
+    <para>
+      <literal>in</literal> input variables (<literal>vars(1)</literal>)
+    </para>
+    <para>
+      <literal>out</literal> output variables (<literal>vars(2)</literal>)
+    </para>
+    <para>
+      <literal>nolocal</literal>referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)
+    </para>
+    <para>
+      <literal>called</literal> names of functions called (<literal>vars(4)</literal>)
+    </para>
+    <para>
+      <literal>locals</literal> local variables (<literal>vars(5)</literal>)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -58,7 +68,7 @@ vars=macrovar(f)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="string">string</link>

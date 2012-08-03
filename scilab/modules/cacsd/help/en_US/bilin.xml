@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bilin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bilin</refname>
     <refpurpose> general bilinear transform</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>sl,sl1</term>
         <listitem>
-          <para>linear systems (<literal>syslin</literal> lists)</para>
+          <para>
+            linear systems (<literal>syslin</literal> lists)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>real vector with 4 entries (<literal>v=[a,b,c,d]</literal>)</para>
+          <para>
+            real vector with 4 entries (<literal>v=[a,b,c,d]</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,13 +43,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given a linear system in state space form, <literal>sl=syslin(dom,A,B,C,D)</literal> 
-    (<literal>syslin</literal> list), <literal>sl1=bilin(sl,v)</literal>  returns in <literal>sl1</literal> a 
-    linear system with matrices <literal>[A1,B1,C1,D1]</literal> such that
-    the transfer function <literal>H1(s)=C1*inv(s*eye()-A1)*B1+D1</literal> is
-    obtained from <literal>H(z)=C*inv(z*eye()-A)*B+D</literal> by replacing <literal>z</literal>
-    by <literal>z=(a*s+b)/(c*s+d)</literal>.
-    One has <literal>w=bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a])</literal></para>
+      Given a linear system in state space form, <literal>sl=syslin(dom,A,B,C,D)</literal> 
+      (<literal>syslin</literal> list), <literal>sl1=bilin(sl,v)</literal>  returns in <literal>sl1</literal> a 
+      linear system with matrices <literal>[A1,B1,C1,D1]</literal> such that
+      the transfer function <literal>H1(s)=C1*inv(s*eye()-A1)*B1+D1</literal> is
+      obtained from <literal>H(z)=C*inv(z*eye()-A)*B+D</literal> by replacing <literal>z</literal>
+      by <literal>z=(a*s+b)/(c*s+d)</literal>.
+      One has <literal>w=bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a])</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -61,7 +63,7 @@ clean(ss2tf(bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a]))-wtf)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="horner">horner</link>

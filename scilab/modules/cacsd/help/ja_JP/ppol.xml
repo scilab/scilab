@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ppol">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ppol</refname>
     <refpurpose> 極配置</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>A,B</term>
         <listitem>
-          <para>次元 <literal>nxn</literal> および <literal>nxm</literal>の実数行列.</para>
+          <para>
+            次元 <literal>nxn</literal> および <literal>nxm</literal>の実数行列.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>poles</term>
         <listitem>
-          <para><literal>n</literal>次の実数または虚数ベクトル.</para>
+          <para>
+            <literal>n</literal>次の実数または虚数ベクトル.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,19 +48,23 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>K=ppol(A,B,poles)</literal> は,
+    <para>
+      <literal>K=ppol(A,B,poles)</literal> は,
       <literal>A-B*K</literal>の固有値が<literal>poles</literal>となるような
-       mxn 次のゲイン行列 <literal>K</literal> を返す.
+      mxn 次のゲイン行列 <literal>K</literal> を返す.
       <literal>(A,B)</literal> は可制御である必要がある.
-      <literal>poles</literal>が複素数の場合,共役の組で指定する必要がある.</para>
+      <literal>poles</literal>が複素数の場合,共役の組で指定する必要がある.
+    </para>
     <para>
       <literal>(A,C)</literal>の出力ゲイン <literal>F</literal> は
-      以下のように得られる:</para>
+      以下のように得られる:
+    </para>
     <para>
       <literal>Ft=ppol(A',C',poles);  F=Ft'</literal>
     </para>
     <para>
-      本アルゴリズムは P.H. Petkovによるものである.</para>
+      本アルゴリズムは P.H. Petkovによるものである.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

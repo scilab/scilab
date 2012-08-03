@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dragrect">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dragrect</refname>
     <refpurpose>マウスで矩形をドラッグ</refpurpose>
@@ -29,8 +26,9 @@
         <term>initial_rect</term>
         <listitem>
           <para>矩形の初期位置を有する4xn 行列.
-	各列は[x_left; y_top; width; height]を有します.
-	矩形が一つだけ存在する場合,initial_rectもベクトルになります.</para>
+            各列は[x_left; y_top; width; height]を有します.
+            矩形が一つだけ存在する場合,initial_rectもベクトルになります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,13 +47,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>dragrect</literal> は一つまたは複数の矩形を画面上の任意の場所に
-	ドラッグします.
-	4xn 行列 rect がこの矩形を定義します.
-	<literal>initial_rect</literal> の各列には,
-	値[left;top;width;height]で矩形の初期位置を指定する必要があります.
-	ボタンがクリックされると<literal>dragrect</literal>は
-	最終的な矩形の定義を<literal>final_Rect</literal>に返します.</para>
+    <para>
+      <literal>dragrect</literal> は一つまたは複数の矩形を画面上の任意の場所に
+      ドラッグします.
+      4xn 行列 rect がこの矩形を定義します.
+      <literal>initial_rect</literal> の各列には,
+      値[left;top;width;height]で矩形の初期位置を指定する必要があります.
+      ボタンがクリックされると<literal>dragrect</literal>は
+      最終的な矩形の定義を<literal>final_Rect</literal>に返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

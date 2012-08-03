@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,336 +22,514 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.xcos.actions.OpenAction;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.model.ObjectFactory;
 import org.scilab.modules.xcos.configuration.model.SettingType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.xml.sax.SAXException;
 
+import com.mxgraph.model.mxGraphModel;
+
 /**
  * Entry point to manage the configuration
  */
 public final class ConfigurationManager {
-	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
-	private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.configuration.model";
-	private static final String SCHEMA_FILENAME = "/XcosConfiguration.xsd";
-	private static final String INSTANCE_FILENAME = "/xcos.xml";
+    private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
+    private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.configuration.model";
+    private static final String SCHEMA_FILENAME = "/XcosConfiguration.xsd";
+    private static final String INSTANCE_FILENAME = "/xcos.xml";
 
-	private static ConfigurationManager instance;
-	private static Marshaller marshaller;
-	private static Unmarshaller unmarshaller;
+    private static ConfigurationManager instance;
+    private static Marshaller marshaller;
+    private static Unmarshaller unmarshaller;
 
-	private final SettingType settings;
-	private final PropertyChangeSupport changeSupport;
+    private final SettingType settings;
+    private final PropertyChangeSupport changeSupport;
 
-	/**
-	 * Default constructor
-	 */
-	private ConfigurationManager() {
-		settings = loadConfig();
-		changeSupport = new PropertyChangeSupport(this);
-	}
-
-	/**
-	 * The only manager instance
-	 * 
-	 * @return the instance
-	 */
-	public static ConfigurationManager getInstance() {
-		if (instance == null) {
-			instance = new ConfigurationManager();
-		}
-		return instance;
-	}
-
-	/**
-	 * @return the settings
-	 */
-	public SettingType getSettings() {
-		return settings;
-	}
-	
-	/**
-	 * Load the configuration file and return the root object.
-	 * 
-	 * @return the configuration instance
-	 */
-	public SettingType loadConfig() {
-		try {
-			if (unmarshaller == null) {
-				initUnmarshaller();
-			}
-			
-			File f;
-			try {
-				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
-						+ INSTANCE_FILENAME);
-				
-				if (!f.exists()) {
-					File base = new File(ScilabConstants.SCI.getAbsoluteFile()
-							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
-					FileUtils.forceCopy(base, f);
-				}
-				
-				return (SettingType) unmarshaller.unmarshal(f);
-			} catch (JAXBException e) {
-				LogFactory.getLog(ConfigurationManager.class).warn(
-						"user configuration file is not valid.\n"
-								+ "Switching to the default one."
-								+ e);
-
-				ScilabModalDialog.show(null,
-						XcosMessages.ERR_CONFIG_INVALID,
-						XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
-				
-				try {
-					f = new File(ScilabConstants.SCI.getAbsoluteFile()
-							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
-					return (SettingType) unmarshaller.unmarshal(f);
-				} catch (JAXBException ex) {
-					LogFactory.getLog(ConfigurationManager.class).error(
-							"base configuration file corrupted.\n"
-							+ ex);
-					return null;
-				}
-			}
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	/**
-	 * Initialize the shared unmarshaller instance
-	 * @throws JAXBException when an unsupported error has occured
-	 */
-	private void initUnmarshaller() throws JAXBException {
-		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
-		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
-		
-		JAXBContext jaxbContext = JAXBContext
-				.newInstance(MODEL_CLASS_PACKAGE);
-		unmarshaller = jaxbContext.createUnmarshaller();
-
-		try {
-			Schema schema;
-			schema = SchemaFactory.newInstance(
-					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-					new File(schemaPath));
-			unmarshaller.setSchema(schema);
-		} catch (SAXException e) {
-			LogFactory.getLog(ConfigurationManager.class).error(
-					UNABLE_TO_VALIDATE_CONFIG
-							+ e);
-		}
-	}
-
-	/**
-	 * Save settings on the configuration file.
-	 */
-	public void saveConfig() {
-		try {
-			if (marshaller == null) {
-				initMarshaller();
-			}
-
-			File f;
-			try {
-				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
-						+ INSTANCE_FILENAME);
-				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				marshaller.marshal(getSettings(), f);
-			} catch (JAXBException e) {
-				LogFactory.getLog(ConfigurationManager.class).warn(
-						"Unable to save user configuration file.\n"
-						+ e);
-			}
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-			return;
-		}
-	}
-
-	/**
-	 * Initialize the shared marshaller instance
-	 * @throws JAXBException when an unsupported error has occured
-	 */
-	private void initMarshaller() throws JAXBException {
-		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
-		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
-		
-		JAXBContext jaxbContext = JAXBContext
-				.newInstance(MODEL_CLASS_PACKAGE);
-		marshaller = jaxbContext.createMarshaller();
-
-		try {
-			Schema schema;
-			schema = SchemaFactory.newInstance(
-					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-					new File(schemaPath));
-			marshaller.setSchema(schema);
-		} catch (SAXException e) {
-			LogFactory.getLog(ConfigurationManager.class).warn(
-					UNABLE_TO_VALIDATE_CONFIG
-							+ e);
-		}
-	}
-	
-	/**
-	 * Update the configuration by adding a file.
-	 * 
-	 * This method doesn't perform the save.
-	 * 
-	 * @param string the file path to add
-	 */
-	public void addToRecentFiles(File string) {
-		List<DocumentType> files = getSettings().getRecentFiles().getDocument();
-		
-		/*
-		 * Create the url
-		 */
-		String url;
-		try {
-			url = string.toURI().toURL().toExternalForm();
-		} catch (MalformedURLException e1) {
-			LogFactory.getLog(ConfigurationManager.class).error(e1);
-			return;
-		}
-		
-		/*
-		 * Create the date
-		 */
-		DatatypeFactory factory;
-		try {
-			factory = DatatypeFactory.newInstance();
-		} catch (DatatypeConfigurationException e) {
-			LogFactory.getLog(OpenAction.class).error(e);
-			return;
-		} 
-		
-		/*
-		 * Initialize the new element
-		 */
-		DocumentType element = (new ObjectFactory()).createDocumentType();
-		element.setUrl(url);
-		element.setDate(factory.newXMLGregorianCalendar(new GregorianCalendar()));
-		
-		/*
-		 * Create an arrays sorted by name.
-		 */
-		DocumentType[] perNameSortedFiles = files.toArray(new DocumentType[files.size()]);
-		Arrays.sort(perNameSortedFiles, ConfigurationConstants.FILENAME_COMPARATOR);		
-		
-		/*
-		 * Insert the element 
-		 */
-		DocumentType oldElement = null;
-		int search = Arrays.binarySearch(perNameSortedFiles, element,
-				ConfigurationConstants.FILENAME_COMPARATOR);
-		
-		if (search >= 0) {
-			// Element found, remove the old element
-			oldElement = perNameSortedFiles[search];
-			files.remove(oldElement);
-		} else {
-			// Element not found, remove the last element if
-			// there is no more place.
-			if (files.size() == ConfigurationConstants.MAX_RECENT_FILES) {
-				oldElement = files.remove(ConfigurationConstants.MAX_RECENT_FILES - 1);
-			}
-		}
-		
-		files.add(0, element);
-		
-		/*
-		 * Fire the associated event
-		 */
-		firePropertyChange(ConfigurationConstants.RECENT_FILES_CHANGED,
-				oldElement, element);
-	}
-	
-	/**
-	 * Configure the file chooser to use the Xcos current directory 
-	 * (path of the last saved directory). 
-	 * @param fc any file chooser
-	 */
-	public static void configureCurrentDirectory(JFileChooser fc) {
-		final ConfigurationManager manager = ConfigurationManager.getInstance();
-		final Iterator<DocumentType> recentFiles = manager.getSettings()
-				.getRecentFiles().getDocument().iterator();
-
-		File lastFile = null;
-		if (recentFiles.hasNext()) {
-			try {
-				lastFile = new File(
-						new URL(recentFiles.next().getUrl()).toURI());
-			} catch (MalformedURLException e) {
-			} catch (URISyntaxException e) {
-			}
-		}
-
-		fc.setCurrentDirectory(lastFile);
-	}
-	
-	/*
-	 * Change support methods
-	 */
-	
     /**
-     * Add a PropertyChangeListener for a specific property.  The listener
-     * will be invoked only when a call on firePropertyChange names that
-     * specific property.
-     * The same listener object may be added more than once.  For each
-     * property,  the listener will be invoked the number of times it was added
-     * for that property.
-     * If <code>propertyName</code> or <code>listener</code> is null, no
-     * exception is thrown and no action is taken.
-     *
-     * @param propertyName  The name of the property to listen on.
-     * @param listener  The PropertyChangeListener to be added
+     * Default constructor
      */
-	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-		changeSupport.addPropertyChangeListener(propertyName, listener);
-	}
-	
+    private ConfigurationManager() {
+        settings = loadConfig();
+        changeSupport = new PropertyChangeSupport(this);
+    }
+
     /**
-     * Report a bound property update to any registered listeners.
-     * No event is fired if old and new are equal and non-null.
+     * The only manager instance
+     *
+     * @return the instance
+     */
+    public static ConfigurationManager getInstance() {
+        if (instance == null) {
+            instance = new ConfigurationManager();
+        }
+        return instance;
+    }
+
+    /**
+     * @return the settings
+     */
+    public SettingType getSettings() {
+        return settings;
+    }
+
+    /**
+     * Load the configuration file and return the root object.
+     *
+     * @return the configuration instance
+     */
+    public SettingType loadConfig() {
+        try {
+            if (unmarshaller == null) {
+                initUnmarshaller();
+            }
+
+            File f;
+            try {
+                f = new File(ScilabConstants.SCIHOME.getAbsoluteFile() + INSTANCE_FILENAME);
+
+                if (!f.exists()) {
+                    File base = new File(ScilabConstants.SCI.getAbsoluteFile() + XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
+                    FileUtils.forceCopy(base, f);
+                }
+
+                final JAXBElement<SettingType> config = unmarshaller.unmarshal(new StreamSource(f), SettingType.class);
+                return config.getValue();
+            } catch (JAXBException e) {
+                Logger.getLogger(ConfigurationManager.class.getName()).warning("user configuration file is not valid.\n" + "Switching to the default one." + e);
+
+                ScilabModalDialog.show(null, XcosMessages.ERR_CONFIG_INVALID, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+
+                try {
+                    f = new File(ScilabConstants.SCI.getAbsoluteFile() + XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
+                    final JAXBElement<SettingType> config = unmarshaller.unmarshal(new StreamSource(f), SettingType.class);
+                    return config.getValue();
+                } catch (JAXBException ex) {
+                    Logger.getLogger(ConfigurationManager.class.getName()).severe("base configuration file corrupted.\n" + ex);
+                }
+            }
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        // in case of error, create an empty configuration
+        return new org.scilab.modules.xcos.configuration.model.ObjectFactory().createSettingType();
+    }
+
+    /**
+     * Initialize the shared unmarshaller instance
+     *
+     * @throws JAXBException
+     *             when an unsupported error has occurred
+     */
+    private void initUnmarshaller() throws JAXBException {
+        final String schemaPath = ScilabConstants.SCI.getAbsolutePath() + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(MODEL_CLASS_PACKAGE);
+        unmarshaller = jaxbContext.createUnmarshaller();
+
+        try {
+            Schema schema;
+            schema = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(schemaPath));
+            unmarshaller.setSchema(schema);
+        } catch (SAXException e) {
+            Logger.getLogger(ConfigurationManager.class.getName()).severe(UNABLE_TO_VALIDATE_CONFIG + e);
+        }
+    }
+
+    /**
+     * Save settings on the configuration file.
+     */
+    public void saveConfig() {
+        try {
+            if (marshaller == null) {
+                initMarshaller();
+            }
+
+            File f;
+            try {
+                f = new File(ScilabConstants.SCIHOME.getAbsoluteFile() + INSTANCE_FILENAME);
+                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                marshaller.marshal(new ObjectFactory().createSettings(getSettings()), f);
+            } catch (JAXBException e) {
+                Logger.getLogger(ConfigurationManager.class.getName()).warning("Unable to save user configuration file.\n" + e);
+            }
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    /**
+     * Initialize the shared marshaller instance
+     *
+     * @throws JAXBException
+     *             when an unsupported error has occurred
+     */
+    private void initMarshaller() throws JAXBException {
+        final String schemaPath = ScilabConstants.SCI.getAbsolutePath() + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(MODEL_CLASS_PACKAGE);
+        marshaller = jaxbContext.createMarshaller();
+
+        try {
+            Schema schema;
+            schema = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(schemaPath));
+            marshaller.setSchema(schema);
+        } catch (SAXException e) {
+            Logger.getLogger(ConfigurationManager.class.getName()).warning(UNABLE_TO_VALIDATE_CONFIG + e);
+        }
+    }
+
+    /**
+     * Update the configuration by adding a file.
+     *
+     * This method doesn't perform the save.
+     *
+     * @param string
+     *            the file path to add
+     */
+    public void addToRecentFiles(File string) {
+        List<DocumentType> files = getSettings().getRecent();
+
+        /*
+         * Create the url
+         */
+        String url;
+        try {
+            url = string.toURI().toURL().toExternalForm();
+        } catch (MalformedURLException e1) {
+            Logger.getLogger(ConfigurationManager.class.getName()).severe(e1.toString());
+            return;
+        }
+
+        /*
+         * Create the date
+         */
+        DatatypeFactory factory;
+        try {
+            factory = DatatypeFactory.newInstance();
+        } catch (DatatypeConfigurationException e) {
+            Logger.getLogger(ConfigurationManager.class.getName()).severe(e.toString());
+            return;
+        }
+
+        /*
+         * Initialize the new element
+         */
+        DocumentType element = (new ObjectFactory()).createDocumentType();
+        element.setUrl(url);
+        element.setDate(factory.newXMLGregorianCalendar(new GregorianCalendar()));
+
+        /*
+         * Create an arrays sorted by name.
+         */
+        DocumentType[] perNameSortedFiles = files.toArray(new DocumentType[files.size()]);
+        Arrays.sort(perNameSortedFiles, ConfigurationConstants.FILENAME_COMPARATOR);
+
+        /*
+         * Insert the element
+         */
+        DocumentType oldElement = null;
+        int search = Arrays.binarySearch(perNameSortedFiles, element, ConfigurationConstants.FILENAME_COMPARATOR);
+
+        if (search >= 0) {
+            // Element found, remove the old element
+            oldElement = perNameSortedFiles[search];
+            files.remove(oldElement);
+        } else {
+            // Element not found, remove the last element if
+            // there is no more place.
+            if (files.size() == ConfigurationConstants.MAX_RECENT_FILES) {
+                oldElement = files.remove(ConfigurationConstants.MAX_RECENT_FILES - 1);
+            }
+        }
+
+        files.add(0, element);
+
+        /*
+         * Fire the associated event
+         */
+        firePropertyChange(ConfigurationConstants.RECENT_FILES_CHANGED, oldElement, element);
+    }
+
+    /**
+     * Add the graph to the recent tab file saved.
+     *
+     * @param graph
+     *            the graph configuration to store
+     */
+    public void addToRecentTabs(XcosDiagram graph) {
+        final DocumentType doc = allocate(graph);
+
+        /*
+         * Store the file name
+         */
+        if (graph.getSavedFile() != null) {
+            try {
+                doc.setUrl(graph.getSavedFile().toURI().toURL().toExternalForm());
+            } catch (MalformedURLException e) {
+            }
+        }
+
+        /*
+         * Store the internal path if applicable
+         */
+        savePath(graph, doc);
+
+        /*
+         * Store uuids
+         */
+        doc.setUuid(graph.getGraphTab());
+        doc.setViewport(graph.getViewPortTab());
+    }
+
+    private DocumentType allocate(XcosDiagram graph) {
+        final List<DocumentType> tabs = getSettings().getTab();
+        DocumentType doc = null;
+
+        for (DocumentType d : tabs) {
+            if (d.getUuid().equals(graph.getGraphTab())) {
+                doc = d;
+                break;
+            }
+        }
+
+        if (doc == null) {
+            doc = new ObjectFactory().createDocumentType();
+            tabs.add(doc);
+        }
+
+        return doc;
+    }
+
+    /**
+     * Remove an uuid from the last opened tab list
+     *
+     * @param uuid
+     *            the uuid (xcos or viewport)
+     */
+    public void removeFromRecentTabs(final String uuid) {
+        final List<DocumentType> tabs = getSettings().getTab();
+
+        boolean isTab = false;
+        boolean isViewport = false;
+
+        DocumentType doc = null;
+        for (DocumentType d : tabs) {
+            isTab = uuid.equals(d.getUuid());
+            isViewport = uuid.equals(d.getViewport());
+
+            if (isTab || isViewport) {
+                doc = d;
+                break;
+            }
+        }
+
+        /*
+         * Removing it
+         */
+        if (isTab) {
+            doc.setUuid(null);
+        } else if (isViewport) {
+            doc.setViewport(null);
+        }
+
+        /*
+         * Clear the doc if empty
+         */
+        if (doc != null && doc.getUuid() == null && doc.getViewport() == null) {
+            tabs.remove(doc);
+        }
+    }
+
+    /**
+     * Load the diagram according to the doc
+     *
+     * @param doc
+     *            the document to load
+     * @return the loaded diagram or null on error
+     */
+    public XcosDiagram loadDiagram(DocumentType doc) {
+        final File f = getFile(doc);
+
+        XcosDiagram graph;
+        try {
+            graph = new XcosDiagram();
+            graph.installListeners();
+
+            if (f != null) {
+                final String filename = f.getCanonicalPath();
+                final XcosFileType filetype = XcosFileType.findFileType(f);
+
+                filetype.load(filename, graph);
+                graph.postLoad(f);
+            }
+            Xcos.getInstance().addDiagram(f, graph);
+
+            graph = loadPath(doc, graph);
+
+            graph.setGraphTab(doc.getUuid());
+        } catch (Exception e) {
+            Logger.getLogger(ConfigurationManager.class.getName()).log(Level.SEVERE, null, e);
+            graph = null;
+        }
+
+        return graph;
+    }
+
+    /**
+     * Get the dile for the document
+     *
+     * @param doc
+     *            the doc
+     * @return the associated file
+     */
+    public File getFile(DocumentType doc) {
+        final URL url;
+        final File f;
+        try {
+            url = new URL(doc.getUrl());
+            f = new File(url.toURI());
+        } catch (Exception e) {
+            return null;
+        }
+        return f;
+    }
+
+    private XcosDiagram loadPath(final DocumentType doc, final XcosDiagram root) {
+        final String path = doc.getPath();
+        if (path == null || path.isEmpty()) {
+            return root;
+        }
+
+        XcosDiagram graph = root;
+        for (String id : path.split("/")) {
+            if (graph == null) {
+                break;
+            }
+            final Object cell = ((mxGraphModel) graph.getModel()).getCell(id);
+
+            if (cell instanceof SuperBlock) {
+                SuperBlock b = (SuperBlock) cell;
+
+                b.createChildDiagram(false);
+                graph = b.getChild();
+            }
+        }
+        return graph;
+    }
+
+    private void savePath(XcosDiagram graph, final DocumentType doc) {
+        if (!(graph instanceof SuperBlockDiagram)) {
+            return;
+        }
+
+        SuperBlock block = ((SuperBlockDiagram) graph).getContainer();
+        XcosDiagram parent = block.getParentDiagram();
+
+        final StringBuilder str = new StringBuilder(block.getId());
+        while (parent instanceof SuperBlockDiagram) {
+            block = ((SuperBlockDiagram) parent).getContainer();
+
+            str.insert(0, "/");
+            str.insert(0, block.getId());
+
+            parent = block.getParentDiagram();
+        }
+
+        doc.setPath(str.toString());
+    }
+
+    /**
+     * Configure the file chooser to use the Xcos current directory (path of the
+     * last saved directory).
+     *
+     * @param fc
+     *            any file chooser
+     */
+    public static void configureCurrentDirectory(JFileChooser fc) {
+        final ConfigurationManager manager = ConfigurationManager.getInstance();
+        final Iterator<DocumentType> recentFiles = manager.getSettings().getRecent().iterator();
+
+        File lastFile = null;
+        if (recentFiles.hasNext()) {
+            try {
+                lastFile = new File(new URL(recentFiles.next().getUrl()).toURI());
+            } catch (MalformedURLException e) {
+            } catch (URISyntaxException e) {
+            }
+        }
+
+        fc.setCurrentDirectory(lastFile);
+    }
+
+    /*
+     * Change support methods
+     */
+
+    /**
+     * Add a PropertyChangeListener for a specific property. The listener will
+     * be invoked only when a call on firePropertyChange names that specific
+     * property. The same listener object may be added more than once. For each
+     * property, the listener will be invoked the number of times it was added
+     * for that property. If <code>propertyName</code> or <code>listener</code>
+     * is null, no exception is thrown and no action is taken.
+     *
+     * @param propertyName
+     *            The name of the property to listen on.
+     * @param listener
+     *            The PropertyChangeListener to be added
+     */
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(propertyName, listener);
+    }
+
+    /**
+     * Report a bound property update to any registered listeners. No event is
+     * fired if old and new are equal and non-null.
      *
      * <p>
      * This is merely a convenience wrapper around the more general
-     * firePropertyChange method that takes {@code
-     * PropertyChangeEvent} value.
+     * firePropertyChange method that takes {@code PropertyChangeEvent} value.
      *
-     * @param propertyName  The programmatic name of the property
-     *          that was changed.
-     * @param oldValue  The old value of the property.
-     * @param newValue  The new value of the property.
+     * @param propertyName
+     *            The programmatic name of the property that was changed.
+     * @param oldValue
+     *            The old value of the property.
+     * @param newValue
+     *            The new value of the property.
      */
-    public void firePropertyChange(String propertyName,
-                                        Object oldValue, Object newValue) {
-    	changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+    public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+        changeSupport.firePropertyChange(propertyName, oldValue, newValue);
     }
 }

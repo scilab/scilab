@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="phasemag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>phasemag</refname>
     <refpurpose>phase and magnitude
-  computation</refpurpose>
+      computation
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -41,7 +39,8 @@
               <term>mod='c'</term>
               <listitem>
                 <para>"continuous" representation between -infinity and +360
-                degrees (default)</para>
+                  degrees (default)
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -56,7 +55,9 @@
       <varlistentry>
         <term>phi</term>
         <listitem>
-          <para>phases (in degree) of <literal>z</literal>.</para>
+          <para>
+            phases (in degree) of <literal>z</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -69,13 +70,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>phasemag</literal> computes the phases and magnitudes of the entries
-    of a complex matrix. For <literal>mod='c'</literal><literal>phasemag</literal>
-    computes <literal>phi(:,i+1)</literal> to minimize the distance with
-    <literal>phi(:,i)</literal>, i.e. it tries to obtain a "continuous
-    representation" of the phase.</para>
+    <para>
+      <literal>phasemag</literal> computes the phases and magnitudes of the entries
+      of a complex matrix. For <literal>mod='c'</literal><literal>phasemag</literal>
+      computes <literal>phi(:,i+1)</literal> to minimize the distance with
+      <literal>phi(:,i)</literal>, i.e. it tries to obtain a "continuous
+      representation" of the phase.
+    </para>
     <para>To obtain the phase between -%pi and %pi use
-    <literal>phi=atan(imag(z),real(z))</literal></para>
+      <literal>phi=atan(imag(z),real(z))</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -90,7 +94,7 @@ plot2d(frq',phasemag(rf,'m')');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="repfreq">repfreq</link>

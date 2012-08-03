@@ -14,15 +14,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
-# File: sci_gateway/c/sci_contr.c, line: 48
+# File: sci_gateway/c/sci_contr.c, line: 72
+# File: sci_gateway/c/sci_contr.c, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_contr.c, line: 86
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_contr.c, line: 102
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_contr.c, line: 55
+# File: sci_gateway/c/sci_contr.c, line: 109
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
@@ -79,7 +92,7 @@ msgstr ""
 # File: macros/h_norm.sci, line: 34
 # File: macros/nyquistfrequencybounds.sci, line: 22
 # File: macros/obsv_mat.sci, line: 26
-# File: macros/plzr.sci, line: 42
+# File: macros/plzr.sci, line: 52
 # File: macros/repfreq.sci, line: 17
 #, c-format
 msgid ""
@@ -90,8 +103,8 @@ msgstr ""
 # File: macros/abinv.sci, line: 60
 # File: macros/abinv.sci, line: 66
 # File: macros/abinv.sci, line: 70
-# File: macros/plzr.sci, line: 36
-# File: macros/plzr.sci, line: 48
+# File: macros/plzr.sci, line: 46
+# File: macros/plzr.sci, line: 58
 # File: macros/syslin.sci, line: 79
 # File: macros/syslin.sci, line: 86
 # File: macros/syslin.sci, line: 93
@@ -170,6 +183,12 @@ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
 #
+# File: macros/arma2ss.sci, line: 16
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr ""
+
+#
 # File: macros/armac.sci, line: 25
 # File: macros/armac.sci, line: 31
 # File: macros/armac.sci, line: 42
@@ -219,18 +238,20 @@ msgstr ""
 # File: macros/arsimul.sci, line: 18
 # File: macros/black.sci, line: 69
 # File: macros/black.sci, line: 99
-# File: macros/bode.sci, line: 34
-# File: macros/bode.sci, line: 64
+# File: macros/bode.sci, line: 46
+# File: macros/bode.sci, line: 76
 # File: macros/findABCD.sci, line: 84
 # File: macros/findAC.sci, line: 60
 # File: macros/findBDK.sci, line: 90
 # File: macros/findx0BD.sci, line: 61
-# File: macros/gainplot.sci, line: 34
-# File: macros/gainplot.sci, line: 60
+# File: macros/gainplot.sci, line: 46
+# File: macros/gainplot.sci, line: 72
 # File: macros/narsimul.sci, line: 29
 # File: macros/narsimul.sci, line: 44
-# File: macros/nyquist.sci, line: 40
-# File: macros/nyquist.sci, line: 70
+# File: macros/nyquist.sci, line: 56
+# File: macros/nyquist.sci, line: 86
+# File: macros/phaseplot.sci, line: 34
+# File: macros/phaseplot.sci, line: 60
 # File: macros/repfreq.sci, line: 45
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -274,12 +295,14 @@ msgstr ""
 #
 # File: macros/black.sci, line: 62
 # File: macros/black.sci, line: 80
-# File: macros/bode.sci, line: 27
-# File: macros/bode.sci, line: 45
-# File: macros/gainplot.sci, line: 27
-# File: macros/gainplot.sci, line: 44
-# File: macros/nyquist.sci, line: 34
-# File: macros/nyquist.sci, line: 53
+# File: macros/bode.sci, line: 39
+# File: macros/bode.sci, line: 57
+# File: macros/gainplot.sci, line: 39
+# File: macros/gainplot.sci, line: 56
+# File: macros/nyquist.sci, line: 50
+# File: macros/nyquist.sci, line: 69
+# File: macros/phaseplot.sci, line: 27
+# File: macros/phaseplot.sci, line: 44
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row vector with length>%d "
@@ -290,15 +313,17 @@ msgstr ""
 # File: macros/black.sci, line: 84
 # File: macros/black.sci, line: 91
 # File: macros/black.sci, line: 95
-# File: macros/bode.sci, line: 49
-# File: macros/bode.sci, line: 56
-# File: macros/bode.sci, line: 60
+# File: macros/bode.sci, line: 61
+# File: macros/bode.sci, line: 68
+# File: macros/bode.sci, line: 72
 # File: macros/csim.sci, line: 91
-# File: macros/gainplot.sci, line: 48
-# File: macros/gainplot.sci, line: 56
-# File: macros/nyquist.sci, line: 56
-# File: macros/nyquist.sci, line: 62
-# File: macros/nyquist.sci, line: 65
+# File: macros/gainplot.sci, line: 60
+# File: macros/gainplot.sci, line: 68
+# File: macros/nyquist.sci, line: 72
+# File: macros/nyquist.sci, line: 78
+# File: macros/nyquist.sci, line: 81
+# File: macros/phaseplot.sci, line: 48
+# File: macros/phaseplot.sci, line: 56
 # File: macros/reglin.sci, line: 23
 # File: macros/sylv.sci, line: 19
 # File: macros/syslin.sci, line: 97
@@ -311,9 +336,10 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 102
-# File: macros/bode.sci, line: 67
-# File: macros/gainplot.sci, line: 63
-# File: macros/nyquist.sci, line: 73
+# File: macros/bode.sci, line: 79
+# File: macros/gainplot.sci, line: 75
+# File: macros/nyquist.sci, line: 89
+# File: macros/phaseplot.sci, line: 63
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
@@ -322,9 +348,10 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 113
-# File: macros/bode.sci, line: 76
-# File: macros/gainplot.sci, line: 70
-# File: macros/nyquist.sci, line: 83
+# File: macros/bode.sci, line: 88
+# File: macros/gainplot.sci, line: 82
+# File: macros/nyquist.sci, line: 99
+# File: macros/phaseplot.sci, line: 70
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of elements "
@@ -338,25 +365,25 @@ msgstr ""
 
 #
 # File: macros/black.sci, line: 151
-# File: macros/bode.sci, line: 114
-# File: macros/gainplot.sci, line: 83
+# File: macros/bode.sci, line: 126
+# File: macros/gainplot.sci, line: 95
 msgid "Magnitude (dB)"
 msgstr ""
 
 #
-# File: macros/black.sci, line: 230
-# File: macros/bode.sci, line: 155
-# File: macros/bode.sci, line: 161
-# File: macros/gainplot.sci, line: 112
-# File: macros/nyquist.sci, line: 269
+# File: macros/black.sci, line: 233
+# File: macros/bode.sci, line: 167
+# File: macros/bode.sci, line: 173
+# File: macros/gainplot.sci, line: 124
+# File: macros/nyquist.sci, line: 285
+# File: macros/phaseplot.sci, line: 111
 msgid "Hz"
 msgstr ""
 
 #
-# File: macros/black.sci, line: 230
-# File: macros/bode.sci, line: 155
-# File: macros/bode.sci, line: 161
-# File: macros/gainplot.sci, line: 112
+# File: macros/black.sci, line: 233
+# File: macros/bode.sci, line: 167
+# File: macros/gainplot.sci, line: 124
 # File: macros/hallchart.sci, line: 87
 # File: macros/hallchart.sci, line: 130
 # File: macros/nicholschart.sci, line: 191
@@ -436,14 +463,15 @@ msgid "%s: No input found.\n"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 114
-# File: macros/bode.sci, line: 140
-# File: macros/gainplot.sci, line: 82
+# File: macros/bode.sci, line: 126
+# File: macros/bode.sci, line: 152
+# File: macros/gainplot.sci, line: 94
+# File: macros/phaseplot.sci, line: 82
 msgid "Frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 140
+# File: macros/bode.sci, line: 152
 msgid "Phase (degree)"
 msgstr ""
 
@@ -512,8 +540,8 @@ msgstr ""
 # File: macros/gfare.sci, line: 16
 # File: macros/h_inf.sci, line: 35
 # File: macros/macglov.sci, line: 18
-# File: macros/plzr.sci, line: 16
-# File: macros/plzr.sci, line: 25
+# File: macros/plzr.sci, line: 26
+# File: macros/plzr.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -622,7 +650,7 @@ msgstr ""
 # File: macros/obs_gram.sci, line: 52
 # File: macros/obsv_mat.sci, line: 28
 # File: macros/obsvss.sci, line: 42
-# File: macros/plzr.sci, line: 44
+# File: macros/plzr.sci, line: 54
 #, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
@@ -869,34 +897,34 @@ msgstr ""
 #
 # File: macros/evans.sci, line: 133
 # File: macros/hallchart.sci, line: 50
-# File: macros/plzr.sci, line: 102
+# File: macros/plzr.sci, line: 112
 msgid "Real axis"
 msgstr ""
 
 #
 # File: macros/evans.sci, line: 134
 # File: macros/hallchart.sci, line: 51
-# File: macros/plzr.sci, line: 103
+# File: macros/plzr.sci, line: 113
 msgid "Imaginary axis"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 143
+# File: macros/evans.sci, line: 145
 msgid "open loop zeroes"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 150
+# File: macros/evans.sci, line: 152
 msgid "open loop poles"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 178
+# File: macros/evans.sci, line: 179
 msgid "asymptotic directions"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 217
+# File: macros/evans.sci, line: 215
 #, c-format
 msgid "%s: Curve truncated to the first %d discretization points.\n"
 msgstr ""
@@ -938,6 +966,13 @@ msgstr ""
 # File: macros/frep2tf.sci, line: 43
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
+msgstr ""
+
+#
+# File: macros/freson.sci, line: 17
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
 msgstr ""
 
 #
@@ -1323,37 +1358,37 @@ msgid "magnitude(y) (dB)"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 114
+# File: macros/nyquist.sci, line: 130
 msgid "Nyquist plot"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 116
+# File: macros/nyquist.sci, line: 132
 msgid "Re(h(2if))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 117
+# File: macros/nyquist.sci, line: 133
 msgid "Im(h(2if))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 119
+# File: macros/nyquist.sci, line: 135
 msgid "Re"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 120
+# File: macros/nyquist.sci, line: 136
 msgid "Im"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 122
+# File: macros/nyquist.sci, line: 138
 msgid "Re(h(exp(2if*dt)))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 123
+# File: macros/nyquist.sci, line: 139
 msgid "Im(h(exp(2if*dt)))"
 msgstr ""
 
@@ -1385,30 +1420,35 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 21
-# File: macros/plzr.sci, line: 29
+# File: macros/phaseplot.sci, line: 83
+msgid "Phase (Deg)"
+msgstr ""
+
+#
+# File: macros/plzr.sci, line: 31
+# File: macros/plzr.sci, line: 39
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 33
+# File: macros/plzr.sci, line: 43
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 89
+# File: macros/plzr.sci, line: 99
 msgid "Zeros"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 96
+# File: macros/plzr.sci, line: 106
 msgid "Poles"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 102
+# File: macros/plzr.sci, line: 112
 msgid "Transmission zeros and poles"
 msgstr ""
 
@@ -1587,6 +1627,19 @@ msgstr ""
 # File: macros/ui_observer.sci, line: 96
 #, c-format
 msgid "%s: Residual norm = %g\n"
+msgstr ""
+
+#
+# File: macros/unobs.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr ""
+
+#
+# File: macros/unobs.sci, line: 28
+# File: macros/unobs.sci, line: 32
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
 msgstr ""
 
 #

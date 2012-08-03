@@ -10,7 +10,7 @@
 // =============================================================================
 //
 // <-- INTERACTIVE TEST -->
-// interactive test since it send to a printer some datas.
+// interactive test since it send to a printer some data.
 //
 
 ierr = execstr("toprint()", "errcatch");

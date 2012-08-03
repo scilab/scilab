@@ -12,6 +12,10 @@ function []=xload(fil,num)
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
   end
 
+  if ~isfile(fil) then
+    error(msprintf(gettext("%s: file %s does not exist.\n"), "xload", fil));
+  end
+
   if  argn(2)==2 then scf(num),end
   f=gcf()
   res = execstr('load(fil)','errcatch') ;

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="proj">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>proj</refname>
     <refpurpose> 投影</refpurpose>
@@ -34,15 +31,19 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>実数の投影行列 (<literal>P^2=P</literal>)</para>
+          <para>
+            実数の投影行列 (<literal>P^2=P</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>P</literal> は<literal>X1</literal>に平行な
-	<literal>X2</literal>への投影です.</para>
+    <para>
+      <literal>P</literal> は<literal>X1</literal>に平行な
+      <literal>X2</literal>への投影です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -68,9 +69,5 @@ svd([Q,X2])   // span(Q) = span(X2)
         <link linkend="fullrf">fullrf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

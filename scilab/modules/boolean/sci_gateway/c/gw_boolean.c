@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,18 +15,26 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_boolean.h"
 #include "callFunctionFromGateway.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_find),"find"},
-	{C2F(sci_bool2s),"bool2s"},
-	{C2F(intor),"or"},
-	{C2F(intand),"and"}
+    {C2F(sci_find), "find"},
+    {C2F(sci_bool2s), "bool2s"},
+    {sci_or, "or"},
+    {sci_and, "and"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_boolean(void)
 {  
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    if(pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
+
+    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

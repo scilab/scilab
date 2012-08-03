@@ -1,0 +1,8 @@
+	LIBRARY    string.dll
+
+
+EXPORTS
+; string
+cvstr_
+cvstr1_
+getfastcode_

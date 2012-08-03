@@ -18,8 +18,6 @@
 ;
 #define OUTPUT_STREAM "output_stream"
 ;
-Source: modules\{#OUTPUT_STREAM}\jar\org.scilab.modules.{#OUTPUT_STREAM}.jar;DestDir: {app}\modules\{#OUTPUT_STREAM}\jar; Components: {#COMPN_SCILAB}
-;
 Source: bin\{#OUTPUT_STREAM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

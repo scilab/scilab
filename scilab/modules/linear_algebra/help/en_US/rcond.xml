@@ -11,18 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry 
-  xmlns="http://docbook.org/ns/docbook" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  xmlns:svg="http://www.w3.org/2000/svg" 
-  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-  xmlns:db="http://docbook.org/ns/docbook" 
-  version="5.0-subset Scilab" 
-  xml:lang="en" 
-  xml:id="rcond">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rcond">
   <refnamediv>
     <refname>rcond</refname>
     <refpurpose>  inverse condition number</refpurpose>
@@ -59,30 +48,25 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 A=diag([1:10]);
 rcond(A)
 A(1,1)=0.000001;
 rcond(A)
- ]]>
-    </programlisting>
+ ]]></programlisting>
     <para>
       Estimating the 1-norm inverse condition number with <literal>rcond</literal> is 
       much faster than computing the 2-norm condition number with <literal>cond</literal>.
       As a trade-off, <literal>rcond</literal> may be less reliable.
     </para>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
     A=ones(1000,1000);
     timer();cond(A);timer()
     timer();1/rcond(A);timer()
- ]]>
-  </programlisting>
-
-</refsection>
+ ]]></programlisting>
+  </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="svd">svd</link>

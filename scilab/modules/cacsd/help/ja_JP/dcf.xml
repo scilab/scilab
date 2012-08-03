@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dcf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dcf</refname>
     <refpurpose>2重既約分解</refpurpose>
@@ -28,27 +25,34 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (連続時間線形システム)</para>
+          <para>
+            <literal>syslin</literal> リスト (連続時間線形システム)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>polf, polc</term>
         <listitem>
-	<para>
-	それぞれ,<literal>XT</literal>と<literal>YT</literal>の極と,
-	<literal>N</literal>  と <literal>M</literal>の極 (デフォルト値=-1).</para>
+          <para>
+            それぞれ,<literal>XT</literal>と<literal>YT</literal>の極と,
+            <literal>N</literal>  と <literal>M</literal>の極 (デフォルト値=-1).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>安定な極を検出するための閾値(実数) (デフォルト値 <literal>100*%eps</literal>).</para>
+          <para>
+            安定な極を検出するための閾値(実数) (デフォルト値 <literal>100*%eps</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>N,M,XT,YT,NT,MT,X,Y</term>
         <listitem>
-          <para><literal>syslin</literal> リストで表された線形システム</para>
+          <para>
+            <literal>syslin</literal> リストで表された線形システム
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,9 +60,12 @@
   <refsection>
     <title>説明</title>
     <para>
-	は2重既約分解により,8個の安定なシステム<literal>(N,M,X,Y,NT,MT,XT,YT) </literal>
-	を返します.</para>
-    <para><literal>G</literal> は可安定で可検出である必要があります.</para>
+      は2重既約分解により,8個の安定なシステム<literal>(N,M,X,Y,NT,MT,XT,YT) </literal>
+      を返します.
+    </para>
+    <para>
+      <literal>G</literal> は可安定で可検出である必要があります.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="manedit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>manedit</refname>
     <refpurpose>editing a manual item</refpurpose>
@@ -35,12 +32,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>edit(manitem)</literal> opens the xml file associated to <literal>manitem</literal>
-    in the scilab editor.</para>
-    <para>If there is no xml file associated with <literal>manitem</literal> and
+    <para>
+      <literal>edit(manitem)</literal> opens the xml file associated to <literal>manitem</literal>
+      in the scilab editor.
+    </para>
+    <para>
+      If there is no xml file associated with <literal>manitem</literal> and
       <literal>manitem</literal> is the name of a Scilab function, editor opens with
       the skeleton of the xml file produced by <link linkend="help_skeleton">help_skeleton</link>. This
-    file is located in TMPDIR.</para>
+      file is located in TMPDIR.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +55,7 @@ manedit foo123
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

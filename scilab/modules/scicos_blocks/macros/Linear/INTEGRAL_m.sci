@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -55,7 +55,7 @@ case 'set' then
              message('Upper limits must be > Lower limits')
              ok=%f
          elseif or(x0>maxp)|or(x0<lowp) then
-             message('Inital condition x0 should be inside the limits')
+             message('Initial condition x0 should be inside the limits')
              ok=%f
          else
              rpar=[real(maxp(:));real(lowp(:))]

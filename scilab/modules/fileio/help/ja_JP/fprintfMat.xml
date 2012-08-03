@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fprintfMat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fprintfMat</refname>
     <refpurpose>行列をファイルに書き込む .  </refpurpose>
@@ -42,15 +39,17 @@
         <term>format</term>
         <listitem>
           <para>文字列, C言語に似た形式. オプションのパラメータで, 
-	デフォルト値は<literal>"%f"</literal></para>
+            デフォルト値は<literal>"%f"</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>text</term>
         <listitem>
           <para>
-	ファイルの先頭に保存される
-	数値以外のコメントを指定する文字列行列.</para>
+            ファイルの先頭に保存される
+            数値以外のコメントを指定する文字列行列.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,14 +57,14 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>fprintfMat</literal> 関数は,整形済みのファイルに
-	行列を書き込みます.
-	行列の各行はファイルの行となります.
-	<literal>text</literal> が指定された場合,
-	<literal>text</literal>の要素は,
-	ファイルｎ先頭に列単位で行毎に1個の要素を
-	挿入します.
-	</para>
+      <literal>fprintfMat</literal> 関数は,整形済みのファイルに
+      行列を書き込みます.
+      行列の各行はファイルの行となります.
+      <literal>text</literal> が指定された場合,
+      <literal>text</literal>の要素は,
+      ファイルｎ先頭に列単位で行毎に1個の要素を
+      挿入します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

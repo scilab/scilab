@@ -1,0 +1,597 @@
+# Localization of the module xml
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
+
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 53
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 87
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 118
+# File: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp, line: 43
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 46
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 71
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 52
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 60
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 68
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 90
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 175
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 183
+# File: sci_gateway/cpp/sci_percent_XMLList_length.cpp, line: 43
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 46
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 70
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 57
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 91
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 122
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 138
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 61
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 77
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 85
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 112
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 53
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 69
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 77
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 93
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 113
+# File: sci_gateway/cpp/sci_print.cpp, line: 46
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 48
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 71
+# File: sci_gateway/cpp/sci_xmlAsNumber.cpp, line: 44
+# File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 43
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 51
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 83
+# File: sci_gateway/cpp/sci_xmlDocument.cpp, line: 48
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 55
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 80
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 45
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 66
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 44
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 65
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 44
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 65
+# File: sci_gateway/cpp/sci_xmlIsValidObject.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 47
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 70
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 73
+# File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 47
+# File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 70
+# File: sci_gateway/cpp/sci_xmlRemove.cpp, line: 43
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 45
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 67
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 55
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 89
+# File: sci_gateway/cpp/sci_xmlValidationFile.cpp, line: 51
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 54
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 78
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 144
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 57
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 94
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 117
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 133
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 62
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 70
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 94
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 77
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 76
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 98
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 168
+# File: sci_gateway/cpp/sci_xmlDocument.cpp, line: 54
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 72
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 71
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 71
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 76
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 56
+# File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 53
+# File: sci_gateway/cpp/sci_xmlValidationFile.cpp, line: 57
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 90
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 100
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 124
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 76
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 100
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 82
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 82
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 81
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 80
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 104
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 174
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 124
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 125
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 65
+# File: sci_gateway/cpp/sci_xmlDocument.cpp, line: 60
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 78
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 77
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 77
+# File: sci_gateway/cpp/sci_xmlIsValidObject.cpp, line: 58
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 82
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 62
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 63
+# File: sci_gateway/cpp/sci_xmlValidationFile.cpp, line: 63
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 104
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 106
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 146
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 135
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 99
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 191
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 154
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 93
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 85
+# File: sci_gateway/cpp/sci_print.cpp, line: 54
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 70
+# File: sci_gateway/cpp/sci_xmlRemove.cpp, line: 57
+#, c-format
+msgid "%s: XML object does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 176
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 124
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 126
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 143
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 123
+# File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 72
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 118
+# File: sci_gateway/cpp/sci_xmlGetOpenDocs.cpp, line: 45
+# File: sci_gateway/cpp/sci_xmlIsValidObject.cpp, line: 96
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 165
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp, line: 49
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 52
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 54
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 77
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 62
+# File: sci_gateway/cpp/sci_xmlDump.cpp, line: 86
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 51
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 53
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 95
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp, line: 58
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 59
+#, c-format
+msgid "%s: XML attribute does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 61
+# File: sci_gateway/cpp/sci_percent_XMLList_length.cpp, line: 58
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 60
+#, c-format
+msgid "%s: XMLList does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 89
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 88
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 76
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 152
+#, c-format
+msgid "%s: Unknown field: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 161
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 167
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 199
+#, c-format
+msgid "%s: Wrong index in the XMLList.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_XMLList_length.cpp, line: 49
+# File: sci_gateway/cpp/sci_percent_XMLList_size.cpp, line: 52
+#, c-format
+msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 66
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_c_i_XMLAttr.cpp, line: 74
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 67
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 59
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 118
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 119
+#, c-format
+msgid "%s: xmlFormat must return a string.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp, line: 137
+# File: sci_gateway/cpp/sci_percent_s_i_XMLList.cpp, line: 138
+#, c-format
+msgid "%s: You must define %%s_xmlFormat function.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 40
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 43
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 61
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 57
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 57
+# File: sci_gateway/cpp/sci_xmlNs.cpp, line: 60
+#, c-format
+msgid "%s: XML Element does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 84
+#, c-format
+msgid "%s: XML Namespace does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlAsNumber.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 49
+#, c-format
+msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlAsNumber.cpp, line: 58
+# File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 57
+#, c-format
+msgid "%s: XMLSet or XMLList does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 59
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 98
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 93
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 85
+#, c-format
+msgid "%s: XML document does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 104
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 103
+#, c-format
+msgid "%s: XML validation file does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 111
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 58
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 67
+#, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 85
+#, c-format
+msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlGetNsByHref.cpp, line: 84
+# File: sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp, line: 83
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 111
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlIsValidObject.cpp, line: 72
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 80
+# File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 78
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 151
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlRead.cpp, line: 95
+# File: sci_gateway/cpp/sci_xmlValidationFile.cpp, line: 74
+#, c-format
+msgid ""
+"%s: Cannot read the file:\n"
+"%s"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlReadStr.cpp, line: 93
+#, c-format
+msgid ""
+"%s: Cannot parse the string:\n"
+"%s"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlRemove.cpp, line: 49
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 51
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
+"or a XMLSet expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 73
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 85
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 73
+#, c-format
+msgid "%s: XML document does not exist\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 79
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 120
+# File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 122
+#, c-format
+msgid ""
+"The file %s is not valid:\n"
+"%s\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 84
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 123
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 162
+#, c-format
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 129
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 172
+#, c-format
+msgid "%s: Cannot write the file: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 65
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 75
+#, c-format
+msgid "%s: XML element does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 140
+#, c-format
+msgid "%s: Bad number of columns for argument #%d: two expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 160
+#, c-format
+msgid ""
+"%s: Bad XPath query:\n"
+"%s"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 201
+#, c-format
+msgid "%s: XPath query returned a not handled type: %i\n"
+msgstr ""
+
+#
+# File: src/cpp/XMLDocument.cpp, line: 53
+# File: src/cpp/XMLValidation.cpp, line: 103
+# File: src/cpp/XMLValidationDTD.cpp, line: 54
+# File: src/cpp/XMLValidationRelaxNG.cpp, line: 67
+# File: src/cpp/XMLValidationSchema.cpp, line: 67
+msgid "Invalid file name: "
+msgstr ""
+
+#
+# File: src/cpp/XMLDocument.cpp, line: 140
+# File: src/cpp/XMLDocument.cpp, line: 369
+msgid "Cannot create a parser context"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidation.cpp, line: 55
+msgid " at line "
+msgstr ""
+
+#
+# File: src/cpp/XMLValidation.cpp, line: 68
+msgid "Cannot create a buffer"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidation.cpp, line: 76
+msgid "Cannot create a reader"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidation.cpp, line: 95
+msgid "Invalid file"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationDTD.cpp, line: 43
+msgid "Cannot parse the DTD"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationDTD.cpp, line: 109
+msgid "Cannot create a valid context"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationDTD.cpp, line: 142
+msgid ""
+"Due to a libxml2 limitation, it is not possible to validate a document "
+"against an external DTD\n"
+"Please see help xmlValidate.\n"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationRelaxNG.cpp, line: 43
+# File: src/cpp/XMLValidationRelaxNG.cpp, line: 109
+# File: src/cpp/XMLValidationSchema.cpp, line: 43
+# File: src/cpp/XMLValidationSchema.cpp, line: 108
+# File: src/cpp/XMLValidationSchema.cpp, line: 150
+msgid "Cannot create a validation context"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationRelaxNG.cpp, line: 56
+msgid "Cannot parse the Relax NG grammar"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationSchema.cpp, line: 56
+msgid "Cannot parse the schema"
+msgstr ""
+
+#
+# File: src/cpp/XMLValidationSchema.cpp, line: 142
+msgid "Cannot read the stream"
+msgstr ""
+
+# File: demos/xml.dem.gateway.sce, line: 10
+msgid "XML"
+msgstr ""
+
+#
+# File: demos/xml.dem.gateway.sce, line: 12
+msgid "CML read"
+msgstr ""

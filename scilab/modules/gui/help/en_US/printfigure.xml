@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="printfigure">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>printfigure</refname>
     <refpurpose>Opens a printing dialog and prints a figure.</refpurpose>
@@ -21,8 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-printfigure(figid)
-status = printfigure(figid)
+      printfigure(figid)
+      status = printfigure(figid)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -37,7 +34,9 @@ status = printfigure(figid)
       <varlistentry>
         <term>status</term>
         <listitem>
-          <para>Boolean: <emphasis>%T</emphasis> if the printing succeeds, <emphasis>%F</emphasis> otherwise.</para>
+          <para>
+            Boolean: <emphasis>%T</emphasis> if the printing succeeds, <emphasis>%F</emphasis> otherwise.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +53,7 @@ printfigure(get(gcf(), "figure_id"));
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toprint">toprint</link>
@@ -62,12 +61,6 @@ printfigure(get(gcf(), "figure_id"));
       <member>
         <link linkend="printsetupbox">printsetupbox</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

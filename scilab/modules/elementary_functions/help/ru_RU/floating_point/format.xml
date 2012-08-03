@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="format" xml:lang="ru">
+  <refnamediv>
+    <refname>format</refname>
+    <refpurpose>формат числа распечатываемого и выводимого на экран</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>
+      format([type],[long])
+      v = format()
+      format(m)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>type</term>
+        <listitem>
+          <para>символьная строка</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>long</term>
+        <listitem>
+          <para>целое число (максимальное число знаков (по умолчанию 10))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>
+            вектор текущего формата
+          </para>
+          <para>
+            <literal>v(1)</literal> -- тип формата : 0 для 'e'
+            и 1 для 'v';
+          </para>
+          <para>
+            <literal>v(2)</literal> количество знаков. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>вектор для установки в новый формат</para>
+          <para>m(1) -- количество знаков;</para>
+          <para>m(2) -- тип формата: 0 для 'e' и 1 для 'v'</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Устанавливает текущий формат отображения с помощью параметра
+      <literal>type</literal>; он может быть одним из:
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>"v"</term>
+        <listitem>
+          <para>для переменного формата (по умолчанию);</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"e"</term>
+        <listitem>
+          <para>для e-формата.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      Значение <literal>long</literal> определяет максимальное число знаков (по умолчанию 10). 
+      <literal>format()</literal> возвращает вектор текущего формата:
+      первый элемент -- это тип формата (1, если "v" ; 0, если "e"; второй элемент -- это число знаков.
+    </para>
+    <para>
+      В старых версиях Scilab'а в режиме "переменный формат" элементы вектора, которые меньше 
+      максимального абсолютного значения элемента в <literal>%eps</literal> раз, будут 
+      отображены как "0". Теперь не так. Функция <literal>clean</literal> может быть использована для установки отбрасываемых элементов в нули.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+x=rand(1,5);
+format('v',10);x
+format(20);x
+format('e',10);x
+format(20);x
+ 
+x=[100 %eps];
+format('e',10);x
+format('v',10);x
+ 
+format("v")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="disp">disp</link>
+      </member>
+      <member>
+        <link linkend="print">print</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

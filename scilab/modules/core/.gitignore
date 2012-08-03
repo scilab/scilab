@@ -7,3 +7,8 @@ includes/version.h
 # Need to keep this one
 #
 !demos/intro/Makefile
+
+#generated on windows
+src/fortran/core_f.def
+src/c/core.def
+src/core.def

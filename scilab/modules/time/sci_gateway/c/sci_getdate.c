@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,147 +10,189 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 /*--------------------------------------------------------------------------*/
-#include <time.h>
-#include <locale.h>
 #include <stdio.h>
 #include <string.h>
-
-#ifdef _MSC_VER
-#include <sys/types.h>
-#include <sys/timeb.h>
-#else
-#include <sys/time.h>
-#endif
 #include "gw_time.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "getdate.h"
-#include "transposeMatrix.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int sci_getdate(char *fname,unsigned long fname_len)
 {
-	static int l1,n1,m1;
-	int i=0;
-	int *DATEMATRIX=NULL;
-	Rhs=Max(Rhs,0);
-	CheckRhs(0,1) ;
-	CheckLhs(0,1) ;
+    SciErr sciErr;
 
-	DATEMATRIX=(int *)MALLOC( (10)*sizeof(int) );
-	for (i=0;i<10;i++) DATEMATRIX[i]=0;
+    Rhs = Max(Rhs, 0);
+    CheckRhs(0, 1) ;
+    CheckLhs(0, 1) ;
 
-	if (Rhs == 0)
-	{
-		time_t dt;
-		int ierr=0;
-		C2F(scigetdate)(&dt,&ierr);
-		if (ierr)
-		{
-			Scierror(999,_("%s: An error occurred: %s\n"),fname,strerror(ierr));
-			return 0;
-		}
-		else
-		{
-			C2F(convertdate)(&dt,DATEMATRIX);
-			m1=1;
-			n1=10;
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEMATRIX);
-		}
+    if (Rhs == 0)
+    {
+        int iErr = 0;
+        double *dDate = getCurrentDateAsDoubleVector(&iErr);
 
-	}
-	else /* Rhs == 1 */
-	{
-		if (GetType(1) == sci_strings)
-		{
-			char *Param1=NULL;
-			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-			Param1=cstk(l1);
+        if (iErr)
+        {
+            Scierror(999,_("%s: An error occurred.\n"), fname);
+            if (dDate)
+            {
+                FREE(dDate);
+                dDate = NULL;
+            }
+            return 0;
+        }
 
-			if (strcmp("s",Param1)==0)
-			{
-				time_t dt;
-				int ierr=0;
-				C2F(scigetdate)(&dt,&ierr);
-				DATEMATRIX[0]=(int)dt;
-				m1=1;
-				n1=1;
-				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEMATRIX);
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"),fname,1,"s");
-				return 0;
-			}
-		}
-		else
-		{
-			if ( GetType(1) == sci_matrix )
-			{
-				int li=0;
-				int k=0;
-				int l=0;
-				double *param=NULL;
+        if (dDate)
+        {
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, NB_ELEMNT_ARRAY_GETDATE, dDate);
+            FREE(dDate);
+            dDate = NULL;
 
-				int *DATEARRAY=NULL;
-				int *DATEARRAYtmp=NULL;
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+        }
+        else
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
+    else /* Rhs == 1 */
+    {
+        int *piAddressVarOne = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
 
-				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-				param=stk(l1);
+        if (isStringType(pvApiCtx, piAddressVarOne))
+        {
+            if (isScalar(pvApiCtx, piAddressVarOne))
+            {
+                double dTime = 0.;
 
-				l=10*m1*n1;
-				DATEARRAY=(int *)MALLOC( (l)*sizeof(int) );
-				for (k=0;k<l;k++) DATEARRAY[k]=0;
+                char *pStr = NULL;
+                if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStr) != 0)
+                {
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
+                }
 
-				for(li=0;li<m1*n1;li++)
-				{
-					int j=0;
-					time_t paramtemp=(int)param[li];
-					double millisecondes=param[li]-paramtemp;
-					C2F(convertdate)(&paramtemp,DATEMATRIX);
-					for (j=0;j<10;j++)
-					{
-						DATEARRAY[(li*10)+j]=DATEMATRIX[j];
-					}
-					if (millisecondes>0)
-					{
-						if (millisecondes>0.999) millisecondes=0.999;
-						DATEARRAY[(li*10)+9]=(int)(millisecondes*1000);
-					}
-				}
+                if (strcmp(pStr, "s") != 0)
+                {
+                    freeAllocatedSingleString(pStr);
+                    pStr = NULL;
+                    Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"s");
+                    return 0;
+                }
 
-				m1=l/10;
-				n1=10;
-				DATEARRAYtmp=DATEARRAY;
-				DATEARRAY = transposeMatrixInt(n1,m1,DATEARRAY);
-				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEARRAY);
+                freeAllocatedSingleString(pStr);
+                pStr = NULL;
 
-				LhsVar(1)=Rhs+1;
-				
-				if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
-				if (DATEARRAY) {FREE(DATEARRAY);DATEARRAY=NULL;}
-				if (DATEARRAYtmp) {FREE(DATEARRAYtmp);DATEARRAYtmp=NULL;}
+                dTime = getCurrentDateAsUnixTimeConvention();
 
-                PutLhsVar();
+                if (createScalarDouble(pvApiCtx, Rhs + 1, dTime) != 0)
+                {
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                return 0;
+            }
+        }
+        else if (isDoubleType(pvApiCtx, piAddressVarOne))
+        {
+            if (isEmptyMatrix(pvApiCtx, piAddressVarOne))
+            {
+                if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
+                {
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+            else if (!isVarComplex(pvApiCtx, piAddressVarOne))
+            {
+                int iErr = 0;
+                double *dValues = NULL;
+                double *dResults = NULL;
+                int m = 0, n = 0;
+                int nbElements = 0;
+                int i = 0;
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m, &n, &dValues);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
 
-				return 0;
+                nbElements = m * n;
 
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"),fname,1,"s");
-				return 0;
-			}
-		}
-	}
+                for (i = 0; i < nbElements; i++)
+                {
+                    if (dValues[i] < 0.)
+                    {
+                        Scierror(999,_("%s: Wrong value for input argument #%d: Must be > %d.\n"), fname, 1, 0);
+                        return 0;
+                    }
+                }
 
-	LhsVar(1)=Rhs+1;
-    if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
-	PutLhsVar();
-	
-	return 0;
+                dResults = getConvertedDateAsMatrixOfDouble(dValues, nbElements, &iErr);
+
+                if (iErr == 2)
+                {
+                    FREE(dResults);
+                    Scierror(999,_("%s: An error occurred.\n"), fname);
+                    return 0;
+                }
+
+                if (dResults == NULL)
+                {
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+
+
+                sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, nbElements, NB_ELEMNT_ARRAY_GETDATE, dResults);
+
+                FREE(dResults);
+                dResults = NULL;
+
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: A real expected.\n"), fname, 1);
+                return 0;
+            }
+        }
+        else
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"), fname, 1, "s");
+            return 0;
+        }
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
+

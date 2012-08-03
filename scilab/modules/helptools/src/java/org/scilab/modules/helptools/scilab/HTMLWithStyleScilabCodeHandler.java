@@ -71,7 +71,7 @@ public class HTMLWithStyleScilabCodeHandler extends AbstractScilabCodeHandler {
         buffer.append("<pre>\n");
         String s = lexer.convert(this, in, false);
         if (s == null) {
-            out.append("An error occured during the conversion");
+            out.append("An error occurred during the conversion");
         }
         buffer.append("\n</pre>\n");
         out.flush();

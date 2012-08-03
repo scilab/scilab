@@ -17,6 +17,6 @@
 * read line from commandline 
 */
 
-char * TermReadAndProcess(void);
+char *getCmdLine(void);
 
 #endif /* __TERMREADANDPROCESS_H__ */

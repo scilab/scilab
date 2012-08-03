@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="classmarkov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>classmarkov</refname>
     <refpurpose>マルコフ行列の再帰的(recurrent)および一時的(transient)なクラス</refpurpose>
@@ -29,7 +26,8 @@
         <term>M</term>
         <listitem>
           <para>実数 N x N マルコフ行列. 各行のエントリの合計を
-	1に加えたもの</para>
+            1に加えたもの
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,7 +40,8 @@
         <term>rec, tr</term>
         <listitem>
           <para>整数ベクトル, 数値 (各再帰的クラスにおける状態量の数,
-	一時的な状態量の数).</para>
+            一時的な状態量の数).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,9 +55,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	以下のような置換ベクトル<literal>perm</literal>を返します
+      以下のような置換ベクトル<literal>perm</literal>を返します
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
@@ -67,14 +66,15 @@ M(perm,perm) = [M11 0 0 0 0   0]
                [* *        *  Q]
  ]]></programlisting>
     <para>
-    各 <literal>Mii</literal> は<literal>rec(i)  i=1,..,r</literal>次の
-	マルコフ行列です.
-    <literal>Q</literal> は<literal>tr</literal>次のサブマルコフ行列です.
-	1 から sum(rec)の状態量は再帰的で,
-	r+1からnは一時的な状態量です.
-	<literal>perm=[indsRec,indsT]</literal>となります.
-	ただし, indsRec は大きさ sum(rec)のベクトル,
-	indsT は大きさ trのベクトルです.</para>
+      各 <literal>Mii</literal> は<literal>rec(i)  i=1,..,r</literal>次の
+      マルコフ行列です.
+      <literal>Q</literal> は<literal>tr</literal>次のサブマルコフ行列です.
+      1 から sum(rec)の状態量は再帰的で,
+      r+1からnは一時的な状態量です.
+      <literal>perm=[indsRec,indsT]</literal>となります.
+      ただし, indsRec は大きさ sum(rec)のベクトル,
+      indsT は大きさ trのベクトルです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

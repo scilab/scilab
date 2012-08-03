@@ -13,18 +13,23 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
-#include "api_poly.h"
 #include "localization.h"
 
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 extern "C" {
 #include "code2str.h"
 };
+
+
+static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+
 
 SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
@@ -166,11 +171,23 @@ SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int
 SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int *piAddr				= NULL;
-	int iSize					= _iRows * _iCols;
-	int iNewPos				= Top - Rhs + _iVar;
-	int iAddr					= *Lstk(iNewPos);
-	int iTotalLen			= 0;
+	int *piAddr     = NULL;
+	int iSize       = _iRows * _iCols;
+	int iNewPos     = Top - Rhs + _iVar;
+	int iAddr       = *Lstk(iNewPos);
+	int iTotalLen   = 0;
+
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 	sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
@@ -259,10 +276,22 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	int *piAddr				= NULL;
-	int iTotalLen			= 0;
+    int iSaveRhs    = Rhs;
+	int iSaveTop    = Top;
+	int *piAddr     = NULL;
+	int iTotalLen   = 0;
+
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
@@ -292,7 +321,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 	createNamedVariable(iVarID);
 
 	Top = iSaveTop;
-  Rhs = iSaveRhs;
+    Rhs = iSaveRhs;
 
 	return sciErr;
 }
@@ -362,7 +391,7 @@ int getAllocatedSingleComplexPoly(void* _pvCtx, int* _piAddress, int* _piNbCoef,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -411,7 +440,7 @@ int getAllocatedNamedSingleComplexPoly(void* _pvCtx, const char* _pstName, int* 
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -456,7 +485,7 @@ int getAllocatedMatrixOfComplexPoly(void* _pvCtx, int* _piAddress, int* _piRows,
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = getCommonMatrixOfPoly(_pvCtx, _piAddress, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
 	if(sciErr.iErr)
@@ -514,8 +543,7 @@ int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, const char* _pstName, int
 /*--------------------------------------------------------------------------*/
 static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
-	SciErr sciErr;
-	int iCols	= 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
 	if(sciErr.iErr)

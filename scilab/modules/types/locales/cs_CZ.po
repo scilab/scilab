@@ -1,0 +1,74 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-12-28 21:45+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+msgid "Double"
+msgstr "Double"
+
+msgid "Polynomial"
+msgstr "Polynom"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "Sparse"
+msgstr "Řídké"
+
+msgid "Boolean Sparse"
+msgstr "Řídký boolean"
+
+msgid "Matlab Sparse"
+msgstr "Řídký Matlab"
+
+msgid "Integer"
+msgstr "Celé číslo"
+
+msgid "Graphic handle"
+msgstr "Grafická obslužná rutina"
+
+msgid "String"
+msgstr "Řetězec"
+
+msgid "User function"
+msgstr "Funkce uživatele"
+
+msgid "Compiled function"
+msgstr "Zkompilovaná funkce"
+
+msgid "Function library"
+msgstr "Knihovna funkce"
+
+msgid "List"
+msgstr "Seznam"
+
+msgid "Tlist"
+msgstr "Tlist"
+
+msgid "Mlist"
+msgstr "Mlist"
+
+msgid "Pointer"
+msgstr "Ukazatel"
+
+msgid "Implicit polynomial"
+msgstr "Implicitní polynom"
+
+msgid "Intrinsic function"
+msgstr "Přirozená funkce"
+
+msgid "Unknown datatype"
+msgstr "Neznámý datový typ"

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="obsv_mat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>obsv_mat</refname>
     <refpurpose> observability matrix</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[O]=obsv_mat(A,C)
-[O]=obsv_mat(sl)</synopsis>
+      [O]=obsv_mat(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,20 +33,24 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>obsv_mat</literal> returns the observability matrix:</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>obsv_mat</literal> returns the observability matrix:
+    </para>
+    <programlisting role=""><![CDATA[ 
 O=[C; CA; CA^2;...; CA^(n-1) ]
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contrss">contrss</link>

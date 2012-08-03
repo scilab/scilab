@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,12 +24,13 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
@@ -38,118 +39,136 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /** Implement the default mouse listener for the block */
 public final class PaletteBlockMouseListener implements MouseListener {
-	/** Default constructor */
-	public PaletteBlockMouseListener() { }
+    /** Default constructor */
+    public PaletteBlockMouseListener() {
+    }
 
-	/**
-	 * Load and perform display update on mouse click
-	 * @param e The associated event 
-	 */
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-				|| e.isPopupTrigger()
-				|| XcosMessages.isMacOsPopupTrigger(e)) {
+    /**
+     * Load and perform display update on mouse click
+     * 
+     * @param e
+     *            The associated event
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+                || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
 
-			ContextMenu menu = ScilabContextMenu.createContextMenu();
+            ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-			final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
-			final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
-			
-			// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
-			assert allDiagrams.size() != 0;
-			
-			if (allDiagrams.size() == 1) {
-				// A single diagram opened: add to this diagram
-				MenuItem addTo = ScilabMenuItem.createMenuItem();
+            final List<XcosDiagram> allDiagrams = Xcos.getInstance()
+                    .openedDiagrams();
+            final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource())
+                    .getController();
 
-				addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
-				final XcosDiagram theDiagram = allDiagrams.get(0);
-				addTo.setCallback(new CallBack(e.toString()) {
-					@Override
-					public void callBack() {
-						BasicBlock current = control.getBlock();
-						theDiagram.addCell(current);
-					}
-				});
+            // No diagram opened: should never happen as Xcos opens an empty
+            // diagram when it is launched
+            assert allDiagrams.size() != 0;
 
-				menu.add(addTo);
+            if (allDiagrams.size() == 1) {
+                // A single diagram opened: add to this diagram
+                MenuItem addTo = ScilabMenuItem.createMenuItem();
 
-			} else {
-				// The user has to choose
-				Menu addTo = ScilabMenu.createMenu();
+                addTo.setText(XcosMessages.ADDTO + " "
+                        + XcosTab.get(allDiagrams.get(0)).getName());
+                final XcosDiagram theDiagram = allDiagrams.get(0);
+                addTo.setCallback(new CommonCallBack(e.toString()) {
+                    @Override
+                    public void callBack() {
+                        BasicBlock current = control.getBlock();
+                        theDiagram.addCell(current);
+                    }
+                });
 
-				addTo.setText(XcosMessages.ADDTO);
+                menu.add(addTo);
 
-				for (int i = 0; i < allDiagrams.size(); i++) {
-					MenuItem diagram = ScilabMenuItem.createMenuItem();
-					final XcosDiagram theDiagram = allDiagrams.get(i);
-					diagram.setText(allDiagrams.get(i).getParentTab().getName());
-					diagram.setCallback(new CallBack(e.toString()) {
-						@Override
-						public void callBack() {
-							BasicBlock current = control.getBlock();
-							theDiagram.addCell(current);
-						}
-					});
-					addTo.add(diagram);
-				}
+            } else {
+                // The user has to choose
+                Menu addTo = ScilabMenu.createMenu();
 
-				menu.add(addTo);
-			}
+                addTo.setText(XcosMessages.ADDTO);
 
+                for (int i = 0; i < allDiagrams.size(); i++) {
+                    MenuItem diagram = ScilabMenuItem.createMenuItem();
+                    final XcosDiagram theDiagram = allDiagrams.get(i);
+                    diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
+                    diagram.setCallback(new CommonCallBack(e.toString()) {
+                        @Override
+                        public void callBack() {
+                            BasicBlock current = control.getBlock();
+                            theDiagram.addCell(current);
+                        }
+                    });
+                    addTo.add(diagram);
+                }
 
-			menu.getAsSimpleContextMenu().addSeparator();
+                menu.add(addTo);
+            }
 
-			MenuItem help = ScilabMenuItem.createMenuItem();
-			help.setText("Block help");
-			help.setCallback(new CallBack(e.toString()) {
-				@Override
-				public void callBack() {
-					try {
-						ScilabInterpreterManagement.asynchronousScilabExec(null, "help", control.getModel().getName());
-					} catch (InterpreterException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			menu.add(help);
+            menu.getAsSimpleContextMenu().addSeparator();
 
-			menu.setVisible(true);
+            MenuItem help = ScilabMenuItem.createMenuItem();
+            help.setText("Block help");
+            help.setCallback(new CommonCallBack(e.toString()) {
+                @Override
+                public void callBack() {
+                    try {
+                        ScilabInterpreterManagement.asynchronousScilabExec(
+                                null, "help", control.getModel().getName());
+                    } catch (InterpreterException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            menu.add(help);
 
-			((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-					MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-		}
-	}
+            menu.setVisible(true);
 
-	/**
-	 * Not used
-	 * @param e Not used
-	 */
-	@Override
-	public void mouseEntered(MouseEvent e) { }
+            ((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
+                    .setLocation(MouseInfo.getPointerInfo().getLocation().x,
+                            MouseInfo.getPointerInfo().getLocation().y);
+        }
+    }
 
-	/**
-	 * Not used
-	 * @param e Not used
-	 */
-	@Override
-	public void mouseExited(MouseEvent e) { }
+    /**
+     * Not used
+     * 
+     * @param e
+     *            Not used
+     */
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
 
-	/**
-	 * Select on mouse press
-	 * @param e The associated event
-	 */
-	@Override
-	public void mousePressed(MouseEvent e) {
-		PaletteBlockView view = (PaletteBlockView) e.getSource();
-		view.getController().setSelected(true);
-	}
+    /**
+     * Not used
+     * 
+     * @param e
+     *            Not used
+     */
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 
-	/**
-	 * Not used
-	 * @param e Not used
-	 */
-	@Override
-	public void mouseReleased(MouseEvent e) { }
+    /**
+     * Select on mouse press
+     * 
+     * @param e
+     *            The associated event
+     */
+    @Override
+    public void mousePressed(MouseEvent e) {
+        PaletteBlockView view = (PaletteBlockView) e.getSource();
+        view.getController().setSelected(true);
+    }
+
+    /**
+     * Not used
+     * 
+     * @param e
+     *            Not used
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
 }

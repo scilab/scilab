@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hermit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hermit</refname>
     <refpurpose> forme d'Hermite  </refpurpose>
@@ -18,21 +15,21 @@
         <term>A  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ar  </term>
         <listitem>
           <para>matrice triangulaire de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
           <para>matrice unimodulaire de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,15 +37,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Forme d'Hermite : <literal>U</literal> est une matrice unimodulaire telle que <literal>A*U</literal> est sous la
-    forme d'Hermite triangulaire :
-  </para>
+      Forme d'Hermite : <literal>U</literal> est une matrice unimodulaire telle que <literal>A*U</literal> est sous la
+      forme d'Hermite triangulaire :
+    </para>
     <para>
-    La variable de sortie est <literal>Ar=A*U</literal>.
-  </para>
+      La variable de sortie est <literal>Ar=A*U</literal>.
+    </para>
     <para>
-    Attention : version expérimentale
-  </para>
+      Attention : version expérimentale
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -60,7 +57,7 @@ clean(p'*p*U), det(U)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

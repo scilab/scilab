@@ -10,7 +10,7 @@
  *
  */
 #include "gw_symbolic.h"
-#include "stack-c.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scimulf)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

@@ -109,7 +109,7 @@ function demo_custom()
 
     my_exptext_string = my_exptext_string + " To draw your own complex  function :";
 
-    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px''>";
+    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px; width:260;''>";
 
     my_exptext_string = my_exptext_string + "1. define the  function by a correct ";
     my_exptext_string = my_exptext_string + "string where  the complex var must ";
@@ -124,17 +124,17 @@ function demo_custom()
     my_exptext_string = my_exptext_string + "<pre>z.^2     (z+1).*(z-1)   (1)./(z+2)</pre>";
     my_exptext_string = my_exptext_string + "<pre>sqrt(z)  (z+%i).*(z-%i) 1+2*z+z.^2</pre>";
 
-    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px;''>";
+    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px; width:260;''>";
     my_exptext_string = my_exptext_string + "2. define the type of the domain string Square or Disk";
     my_exptext_string = my_exptext_string + "</div>";
 
 
-    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px;''>";
+    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px; width:260;''>";
     my_exptext_string = my_exptext_string + "3. define the ""radius"" R of the domain"+ "<br />";
     my_exptext_string = my_exptext_string + "</div>";
 
 
-    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px;''>";
+    my_exptext_string = my_exptext_string + "<div style=''text-align:justify; margin-top:5px; width:260;''>";
     my_exptext_string = my_exptext_string + "4. may be your function has a kind of ";
     my_exptext_string = my_exptext_string + "discontinuity on Ox  or  Oy => put ";
     my_exptext_string = my_exptext_string + "the string Ox or Oy or No if not";
@@ -644,50 +644,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     // draw
     // ============================================
 
-    // plot Im(z)
-    // ============================================
-
-    my_IM_axes = newaxes();
-    my_IM_axes.axes_bounds = [1/3+0.05,0,1/3,1];
-    my_IM_axes.margins     = [ 0.2 0.2 0.2 0.2 ];
-
-    plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
-
-    my_IM_plot             = my_IM_axes.children;
-    my_IM_plot.color_flag  = 1;
-
-    xtitle("Im("+StrFunc+"(z))");
-
-    // plot Re(z) + the real restriction
-    // ============================================
-
-    my_RE_axes = newaxes();
-    my_RE_axes.axes_bounds = [2/3+0.05,0,1/3,1];
-    my_RE_axes.margins     = [ 0.2 0.2 0.2 0.2 ];
-
-    plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
-
-    my_RE_plot             = my_RE_axes.children;
-    my_RE_plot.color_flag  = 1;
-
-    xtitle("Re("+StrFunc+"(z))");
-
-    // real function in yellow
-    // ============================================
-
-    if DomReal(2) > DomReal(1) then
-        xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
-    end
-
-    if DomReal(2) > DomReal(1) then
-        xx = linspace(DomReal(1),DomReal(2),40)';
-        yy = zeros(xx);
-        zz = evstr(StrFunc+"(xx)");
-        param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
-        yellow_line = get('hdl');
-        yellow_line.thickness = 3;
-    end
-
     // Title
     // ============================================
 
@@ -717,6 +673,50 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     my_title_axes.title.text       = the_title;
     my_title_axes.title.font_size  = 3;
 
+    // plot Im(z)
+    // ============================================
+
+    subplot(211)
+    plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
+
+    my_IM_axes = gca();
+    my_IM_axes.axes_bounds = [0.1, 0.05, 1, 0.5];
+    my_IM_axes.margins     = [0.2, 0.2, 0.2, 0.2];
+    my_IM_plot             = my_IM_axes.children;
+    my_IM_plot.color_flag  = 1;
+
+    xtitle("Im("+StrFunc+"(z))");
+
+    // plot Re(z) + the real restriction
+    // ============================================
+
+    subplot(212)
+    plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
+
+    my_RE_axes = gca();
+    my_RE_axes.axes_bounds = [0.1, 0.5, 1, 0.5];
+    my_RE_axes.margins     = [ 0.2 0.2 0.2 0.2 ];
+    my_RE_plot             = my_RE_axes.children;
+    my_RE_plot.color_flag  = 1;
+
+    xtitle("Re("+StrFunc+"(z))");
+
+    // real function in yellow
+    // ============================================
+
+    if DomReal(2) > DomReal(1) then
+        xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
+    end
+
+    if DomReal(2) > DomReal(1) then
+        xx = linspace(DomReal(1),DomReal(2),40)';
+        yy = zeros(xx);
+        zz = evstr(StrFunc+"(xx)");
+        param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
+        yellow_line = get('hdl');
+        yellow_line.thickness = 3;
+    end
+
 endfunction
 
 function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
@@ -736,9 +736,9 @@ function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
     if TypeDomain == "Square" then
         if TypeCut == "Ox" then
             x1 = linspace(-R, R, n);
-            y1 = linspace( e, R, n/2);
+            y1 = linspace( e, R, int(n/2));
         else  // for TypeCut = "Oy" ...
-            x1 = linspace( e, R, n/2);
+            x1 = linspace( e, R, int(n/2));
             y1 = linspace(-R, R, n);
         end
         X1 = ones(y1')*x1 ; Y1 = y1'*ones(x1);

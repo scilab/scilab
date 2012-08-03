@@ -12,19 +12,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="get">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>get</refname>
     <refpurpose>グラフィックエンティティまたはユーザーインターフェイスオブジェクト
-	からプロパティの値を取得する.</refpurpose>
+      からプロパティの値を取得する.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>h=get(prop)
-val=get(h,prop)
-val=h.prop</synopsis>
+      val=get(h,prop)
+      val=h.prop
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -33,10 +32,11 @@ val=h.prop</synopsis>
         <term>h</term>
         <listitem>
           <para>ハンドル, プロパティを取得するエンティティのハンドル.
-          <literal>h</literal> はハンドルのベクトルとすることができ,この場合,
-	 h に含まれる全てのオブジェクトに関するプロパティの値を返します.
-	<literal>h</literal> に<emphasis>0</emphasis> を指定することができ,
-	この場合,ルートオブジェクトのプロパティが取得されます..</para>
+            <literal>h</literal> はハンドルのベクトルとすることができ,この場合,
+            h に含まれる全てのオブジェクトに関するプロパティの値を返します.
+            <literal>h</literal> に<emphasis>0</emphasis> を指定することができ,
+            この場合,ルートオブジェクトのプロパティが取得されます..
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,69 +56,71 @@ val=h.prop</synopsis>
   <refsection>
     <title>説明</title>
     <para>このルーチンはグラフィクエンティティまたはGUIオブジェクトから指定したプロパティの
-	値を取得するために使用されます.
-	この場合,ハンドルのドット演算子を使用することと等価です.
-	例えば,  <literal>get(h,"background")</literal> は <literal>h.background</literal>と等価です.
-	</para>
-	<para>
-	プロパティ名は文字列です.存在する全てのプロパティの一覧を得るには,
-	<link linkend="graphics_entities">graphics_entities</link>,もしくは
-	ユーザインターフェイスオブジェクトについては<link linkend="uicontrol">uicontrol</link>
-	を参照ください.</para>
-	
-	<para>
-	<literal>get</literal> 関数はプロパティのみを引数に指定してコールすることも
-	可能です.この場合,そのプロパティは以下のどれかとする必要がありますg:</para>
-	<variablelist>
+      値を取得するために使用されます.
+      この場合,ハンドルのドット演算子を使用することと等価です.
+      例えば,  <literal>get(h,"background")</literal> は <literal>h.background</literal>と等価です.
+    </para>
+    <para>
+      プロパティ名は文字列です.存在する全てのプロパティの一覧を得るには,
+      <link linkend="graphics_entities">graphics_entities</link>,もしくは
+      ユーザインターフェイスオブジェクトについては<link linkend="uicontrol">uicontrol</link>
+      を参照ください.
+    </para>
+    <para>
+      <literal>get</literal> 関数はプロパティのみを引数に指定してコールすることも
+      可能です.この場合,そのプロパティは以下のどれかとする必要がありますg:
+    </para>
+    <variablelist>
       <varlistentry>
         <term>current_entity or hdl</term>
         <listitem>
           <para>直近に作成された(そしてまだ存在する)エンティティのハンドルを返します.
-	<literal>get('current_entity')</literal> および <literal>get('hdl')</literal> 
-	は<link linkend="gce">gce</link>と等価です.</para>
+            <literal>get('current_entity')</literal> および <literal>get('hdl')</literal> 
+            は<link linkend="gce">gce</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	  <varlistentry>
+      <varlistentry>
         <term>current_figure</term>
         <listitem>
           <para>カレントのグラフィック図のハンドルを返します.
-		  <literal>get('current_figure')</literal> は <link linkend="gcf">gcf</link>と等価です.
-		  </para>
+            <literal>get('current_figure')</literal> は <link linkend="gcf">gcf</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	  <varlistentry>
+      <varlistentry>
         <term>current_axes</term>
         <listitem>
           <para>カレントの軸のハンドルを返します.
-		  <literal>get('current_axes')</literal> は <link linkend="gca">gca</link>と等価です.
-		  </para>
+            <literal>get('current_axes')</literal> は <link linkend="gca">gca</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	  <varlistentry>
+      <varlistentry>
         <term>default_figure</term>
         <listitem>
           <para>デフォルトの図のエンティティのハンドルを返します.
-		  <literal>get('default_figure')</literal> は <link linkend="gdf">gdf</link>と等価です.
-		  </para>
+            <literal>get('default_figure')</literal> は <link linkend="gdf">gdf</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	  <varlistentry>
+      <varlistentry>
         <term>default_axes</term>
         <listitem>
           <para>デフォルトの軸のエンティティのハンドルを返します.
-		  <literal>get('default_axes')</literal> は <link linkend="gda">gda</link>と等価です.
-		  </para>
+            <literal>get('default_axes')</literal> は <link linkend="gda">gda</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	  <varlistentry>
+      <varlistentry>
         <term>figures_id</term>
         <listitem>
           <para>オープンした全てのグラフィク図のIDを有する行ベクトルを返します.
-		  <literal>get('figures_id')</literal> は <link linkend="winsid">winsid</link>と等価です.
-		  </para>
+            <literal>get('figures_id')</literal> は <link linkend="winsid">winsid</link>と等価です.
+          </para>
         </listitem>
       </varlistentry>
-	</variablelist>
+    </variablelist>
   </refsection>
   <refsection>
     <title>例</title>
@@ -169,16 +171,12 @@ close(); // close figure
       <member>
         <link linkend="root_properties">root_properties</link>
       </member>
-	  <member>
+      <member>
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
       <member>
         <link linkend="set">set</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

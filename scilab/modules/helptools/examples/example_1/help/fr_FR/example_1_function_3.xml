@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="example_1_function_3">
-  <info>
-    <pubdate>01-08-2006</pubdate>
-  </info>
   <refnamediv>
     <refname>example_1_function_3</refname>
     <refpurpose>Description rapide de la fonction "example_1_function_3"</refpurpose>
@@ -19,7 +16,7 @@
         <listitem>
           <para>
             Description du paramètre "b"
-         </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -27,7 +24,7 @@
         <listitem>
           <para>
             Description du paramètre "c"
-         </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -35,7 +32,7 @@
         <listitem>
           <para>
             Description du paramètre "a"
-         </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,7 +59,7 @@ a = example_1_function_3(b,c);
   ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="example_1_function_1">example_1_function_1</link>
@@ -70,14 +67,6 @@ a = example_1_function_3(b,c);
       <member>
         <link linkend="example_1_function_2">example_1_function_2</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>
-      Scilab Team
-    </member>
     </simplelist>
   </refsection>
 </refentry>

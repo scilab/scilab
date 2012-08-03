@@ -14,86 +14,128 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
-# File: sci_gateway/c/sci_exec.c, line: 112
+# File: sci_gateway/c/sci_exec.c, line: 52
+# File: sci_gateway/c/sci_exec.c, line: 60
+# File: sci_gateway/c/sci_exec.c, line: 70
+# File: sci_gateway/c/sci_exec.c, line: 78
+# File: sci_gateway/c/sci_exec.c, line: 89
+# File: sci_gateway/c/sci_exec.c, line: 97
+# File: sci_gateway/c/sci_exec.c, line: 113
+# File: sci_gateway/c/sci_exec.c, line: 143
+# File: sci_gateway/c/sci_exec.c, line: 170
+# File: sci_gateway/c/sci_exec.c, line: 181
+# File: sci_gateway/c/sci_exec.c, line: 225
+# File: sci_gateway/c/sci_exec.c, line: 252
+# File: sci_gateway/c/sci_exec.c, line: 263
+# File: sci_gateway/c/sci_execstr.c, line: 49
+# File: sci_gateway/c/sci_execstr.c, line: 57
+# File: sci_gateway/c/sci_execstr.c, line: 70
+# File: sci_gateway/c/sci_execstr.c, line: 114
+# File: sci_gateway/c/sci_execstr.c, line: 122
+# File: sci_gateway/c/sci_execstr.c, line: 136
+# File: sci_gateway/c/sci_execstr.c, line: 153
+# File: sci_gateway/c/sci_execstr.c, line: 187
+# File: sci_gateway/c/sci_execstr.c, line: 195
+# File: sci_gateway/c/sci_execstr.c, line: 209
+# File: sci_gateway/c/sci_execstr.c, line: 226
+# File: sci_gateway/c/sci_lib.c, line: 53
+# File: sci_gateway/c/sci_lib.c, line: 61
+# File: sci_gateway/c/sci_lib.c, line: 75
+# File: sci_gateway/c/sci_lib.c, line: 99
+# File: sci_gateway/c/sci_libraryinfo.c, line: 33
+# File: sci_gateway/c/sci_whereis.c, line: 39
+# File: sci_gateway/c/sci_whereis.c, line: 47
+# File: sci_gateway/c/sci_whereis.c, line: 90
+# File: sci_gateway/c/sci_whereis.c, line: 111
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_exec.c, line: 119
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 121
-# File: sci_gateway/c/sci_exec.c, line: 200
-# File: sci_gateway/c/sci_exec.c, line: 288
+# File: sci_gateway/c/sci_exec.c, line: 128
+# File: sci_gateway/c/sci_exec.c, line: 210
+# File: sci_gateway/c/sci_exec.c, line: 301
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 141
-# File: sci_gateway/c/sci_exec.c, line: 220
+# File: sci_gateway/c/sci_exec.c, line: 149
+# File: sci_gateway/c/sci_exec.c, line: 231
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 148
-# File: sci_gateway/c/sci_exec.c, line: 227
+# File: sci_gateway/c/sci_exec.c, line: 156
+# File: sci_gateway/c/sci_exec.c, line: 238
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 177
-# File: sci_gateway/c/sci_exec.c, line: 256
-# File: sci_gateway/c/sci_execstr.c, line: 151
+# File: sci_gateway/c/sci_exec.c, line: 187
+# File: sci_gateway/c/sci_exec.c, line: 269
+# File: sci_gateway/c/sci_execstr.c, line: 159
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 188
-# File: sci_gateway/c/sci_execstr.c, line: 162
-# File: sci_gateway/c/sci_execstr.c, line: 231
-# File: sci_gateway/c/sci_libraryinfo.c, line: 111
-# File: sci_gateway/c/sci_libraryinfo.c, line: 116
-# File: sci_gateway/c/sci_whereis.c, line: 101
+# File: sci_gateway/c/sci_exec.c, line: 198
+# File: sci_gateway/c/sci_execstr.c, line: 80
+# File: sci_gateway/c/sci_execstr.c, line: 170
+# File: sci_gateway/c/sci_execstr.c, line: 243
+# File: sci_gateway/c/sci_libraryinfo.c, line: 77
+# File: sci_gateway/c/sci_libraryinfo.c, line: 112
+# File: sci_gateway/c/sci_libraryinfo.c, line: 117
+# File: sci_gateway/c/sci_whereis.c, line: 103
+# File: sci_gateway/c/sci_whereis.c, line: 124
+# File: sci_gateway/c/sci_whereis.c, line: 137
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 267
+# File: sci_gateway/c/sci_exec.c, line: 280
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_exec.c, line: 278
+# File: sci_gateway/c/sci_exec.c, line: 291
 #, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_execstr.c, line: 87
-# File: sci_gateway/c/sci_execstr.c, line: 94
-# File: sci_gateway/c/sci_execstr.c, line: 122
-# File: sci_gateway/c/sci_execstr.c, line: 191
-# File: sci_gateway/c/sci_lib.c, line: 66
+# File: sci_gateway/c/sci_execstr.c, line: 91
+# File: sci_gateway/c/sci_execstr.c, line: 98
+# File: sci_gateway/c/sci_execstr.c, line: 128
+# File: sci_gateway/c/sci_execstr.c, line: 201
+# File: sci_gateway/c/sci_lib.c, line: 67
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_execstr.c, line: 135
-# File: sci_gateway/c/sci_execstr.c, line: 204
-# File: sci_gateway/c/sci_whereis.c, line: 94
+# File: sci_gateway/c/sci_execstr.c, line: 142
+# File: sci_gateway/c/sci_execstr.c, line: 215
+# File: sci_gateway/c/sci_whereis.c, line: 96
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_execstr.c, line: 220
+# File: sci_gateway/c/sci_execstr.c, line: 232
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
 msgstr ""
@@ -105,19 +147,19 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_libraryinfo.c, line: 100
+# File: sci_gateway/c/sci_libraryinfo.c, line: 101
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_libraryinfo.c, line: 121
+# File: sci_gateway/c/sci_libraryinfo.c, line: 122
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_whereis.c, line: 146
+# File: sci_gateway/c/sci_whereis.c, line: 151
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -148,47 +190,67 @@ msgstr ""
 
 #
 # File: macros/genlib.sci, line: 28
+# File: macros/genlib.sci, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: macros/genlib.sci, line: 32
+# File: macros/genlib.sci, line: 44
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: macros/genlib.sci, line: 58
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 77
+# File: macros/genlib.sci, line: 119
 # File: macros/genlib_old.sci, line: 52
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 101
+# File: macros/genlib.sci, line: 127
+#, c-format
+msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgstr ""
+
+#
+# File: macros/genlib.sci, line: 147
 # File: macros/genlib_old.sci, line: 72
 #, c-format
 msgid "%s: %s file compilation forced\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 125
+# File: macros/genlib.sci, line: 171
 # File: macros/genlib_old.sci, line: 93
 #, c-format
 msgid "%s: Processing file: %s\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 145
+# File: macros/genlib.sci, line: 191
 # File: macros/genlib_old.sci, line: 104
 #, c-format
 msgid "%s: Regenerate names and lib\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 158
+# File: macros/genlib.sci, line: 207
 # File: macros/genlib_old.sci, line: 114
 #, c-format
 msgid "%s: %s file cannot be created\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 168
+# File: macros/genlib.sci, line: 218
 # File: macros/genlib_old.sci, line: 123
 #, c-format
 msgid ""
@@ -197,21 +259,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 189
+# File: macros/genlib.sci, line: 239
 # File: macros/genlib_old.sci, line: 139
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 211
+# File: macros/genlib.sci, line: 261
 # File: macros/genlib_old.sci, line: 153
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr ""
 
 #
-# File: macros/genlib.sci, line: 220
+# File: macros/genlib.sci, line: 273
 # File: macros/genlib_old.sci, line: 159
 #, c-format
 msgid "%s: File %s does not contain any function.\n"

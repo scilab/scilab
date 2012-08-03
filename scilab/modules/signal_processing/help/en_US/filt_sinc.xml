@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="filt_sinc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>filt_sinc</refname>
     <refpurpose>  samples of sinc function</refpurpose>
@@ -37,8 +34,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calculate n samples of the function <literal>sin(2*pi*fl*t)/(pi*t)</literal>
-    for <literal>t=-(n-1)/2:(n-1)/2</literal> (i.e. centred around the origin).</para>
+      Calculate n samples of the function <literal>sin(2*pi*fl*t)/(pi*t)</literal>
+      for <literal>t=-(n-1)/2:(n-1)/2</literal> (i.e. centred around the origin).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -47,15 +45,11 @@ plot(filt_sinc(100,0.1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sincd">sincd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.;   </para>
   </refsection>
 </refentry>

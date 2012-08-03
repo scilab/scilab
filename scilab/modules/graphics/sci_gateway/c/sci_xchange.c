@@ -25,13 +25,13 @@
 /*--------------------------------------------------------------------------*/
 int sci_xchange( char * fname, unsigned long fname_len )
 {
-  int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5;
+  int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,l3 = 0,l4 = 0,l5 = 0;
   int four = VIEWING_RECT_SIZE ;
   int one  = 1 ;
-  int * xPixCoords;
-  int * yPixCoords;
-  double * xCoords;
-  double * yCoords;
+  int * xPixCoords = NULL;
+  int * yPixCoords = NULL;
+  double * xCoords = NULL;
+  double * yCoords = NULL;
   int viewingRect[VIEWING_RECT_SIZE];
 
   CheckRhs(3,3);

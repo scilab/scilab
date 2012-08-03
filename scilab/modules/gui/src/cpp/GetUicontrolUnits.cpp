@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the units of an uicontrol 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,33 +14,27 @@
 
 #include "GetUicontrolUnits.hxx"
 
+extern "C"
+{
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
+}
+
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolUnits(sciPointObj* sciObj)
+int GetUicontrolUnits(void* _pvCtx, char *sciObjUID)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    char* units = NULL;
+    char* type = NULL;
+
+    /* Handle must be a uicontrol */
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**) &type);
+    if (strcmp(type, __GO_UICONTROL__) != 0)
     {
-      // Get the font units from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->units)
-        {
-        case POINTS_UNITS:
-          return sciReturnString("points");
-        case NORMALIZED_UNITS:
-          return sciReturnString("normalized");
-        case INCHES_UNITS:
-          return sciReturnString("inches");
-        case CENTIMETERS_UNITS:
-          return sciReturnString("centimeters");
-        case PIXELS_UNITS:
-          return sciReturnString("pixels");
-        default:
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
-          return FALSE;
-        }
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
+        return FALSE;
     }
-  else
-    {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Units");
-      return FALSE;
-    }
+
+    getGraphicObjectProperty(sciObjUID, __GO_UI_UNITS__, jni_string, (void**) &units);
+    return sciReturnString(_pvCtx, units);
 }

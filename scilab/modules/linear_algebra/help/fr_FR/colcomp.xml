@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="colcomp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colcomp</refname>
     <refpurpose> compression de colonnes, noyau  </refpurpose>
@@ -29,35 +26,36 @@
         <term>A  </term>
         <listitem>
           <para>matrice réelle ou complexe
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
           <para>chaîne de caractères
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
           <para>nombre réel
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>W  </term>
         <listitem>
           <para>matrice carré régulière (matrice de changement de base)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rk  </term>
         <listitem>
-          <para>entier (rang de"<literal>A</literal>)
-</para>
+          <para>
+            entier (rang de"<literal>A</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -65,19 +63,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    Compression des colonnes de <literal>A</literal> : <literal>Ac = A*W</literal> est à colonnes compressées, c'est à dire
-  </para>
-    <para><literal>Ac=[0,Af]</literal> et <literal>Af</literal> est de rang maximal
-    rank(<literal>Af</literal>) = rank(<literal>A</literal>) = <literal>rk</literal>.
-  </para>
-    <para><literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels : <literal>flag = 'qr'</literal> 
-    ou <literal>'svd'</literal> (<literal>'svd'</literal> par défaut).
-  </para>
-    <para><literal>tol</literal> = paramètre de tolérance (de l'ordre de <literal>%eps</literal> par défaut).
-  </para>
+      Compression des colonnes de <literal>A</literal> : <literal>Ac = A*W</literal> est à colonnes compressées, c'est à dire
+    </para>
     <para>
-    Les <literal>ma-rk</literal> premières colonnes de <literal>W</literal> forment une base du noyau de <literal>A</literal> quand <literal>size(A)=[na,ma]</literal>.
-  </para>
+      <literal>Ac=[0,Af]</literal> et <literal>Af</literal> est de rang maximal
+      rank(<literal>Af</literal>) = rank(<literal>A</literal>) = <literal>rk</literal>.
+    </para>
+    <para>
+      <literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels : <literal>flag = 'qr'</literal> 
+      ou <literal>'svd'</literal> (<literal>'svd'</literal> par défaut).
+    </para>
+    <para>
+      <literal>tol</literal> = paramètre de tolérance (de l'ordre de <literal>%eps</literal> par défaut).
+    </para>
+    <para>
+      Les <literal>ma-rk</literal> premières colonnes de <literal>W</literal> forment une base du noyau de <literal>A</literal> quand <literal>size(A)=[na,ma]</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -88,7 +89,7 @@ norm(A*X(:,1:$-r),1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcomp">rowcomp</link>
@@ -103,9 +104,5 @@ norm(A*X(:,1:$-r),1)
         <link linkend="kernel">kernel</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

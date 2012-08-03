@@ -13,7 +13,7 @@
 // Return -1 if version_2 is superior than version_1
 // Return  0 if version_1 and version_2 are equal
 
-// version can be a array
+// version can be an array
 
 function result = atomsVersionCompare( version_1 , version_2 )
 

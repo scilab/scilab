@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="historymanager">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>historymanager</refname>
     <refpurpose>enable or disable history manager</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>state1=historymanager(state2)
-state1=historymanager()</synopsis>
+      state1=historymanager()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -59,7 +57,7 @@ historymanager(backupstate)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getscilabmode">getscilabmode</link>
@@ -67,7 +65,6 @@ historymanager(backupstate)
       <member>
         <link linkend="call_scilab">call_scilab</link>
       </member>
-      
     </simplelist>
-  </refsection>  
+  </refsection>
 </refentry>

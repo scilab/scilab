@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rtitr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rtitr</refname>
     <refpurpose> discrete time response (transfer matrix)  </refpurpose>
@@ -28,21 +25,27 @@
       <varlistentry>
         <term>Num,Den</term>
         <listitem>
-          <para>polynomial  matrices (resp. dimensions : <literal>n</literal>x<literal>m</literal> and <literal>n</literal>x<literal>n</literal>)</para>
+          <para>
+            polynomial  matrices (resp. dimensions : <literal>n</literal>x<literal>m</literal> and <literal>n</literal>x<literal>n</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>u</term>
         <listitem>
-          <para>real matrix (dimension <literal>m</literal>x<literal>(t+1)</literal></para>
+          <para>
+            real matrix (dimension <literal>m</literal>x<literal>(t+1)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>up,yp</term>
         <listitem>
-          <para>real matrices (<literal>up</literal> dimension <literal>m</literal>x<literal>(max(degree(Den)))</literal> (default values=<literal>0</literal>) ,
-  <literal>yp</literal> dimension <literal>n</literal>x 
-  <literal>(max(degree(Den)))</literal>)</para>
+          <para>
+            real matrices (<literal>up</literal> dimension <literal>m</literal>x<literal>(max(degree(Den)))</literal> (default values=<literal>0</literal>) ,
+            <literal>yp</literal> dimension <literal>n</literal>x 
+            <literal>(max(degree(Den)))</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,43 +58,53 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>y=rtitr(Num,Den,u [,up,yp])</literal> returns the time response of
-    the discrete time linear system with transfer matrix <literal>Den^-1 Num</literal> 
-    for the input <literal>u</literal>, i.e <literal>y</literal> and <literal>u</literal> are such that <literal>Den y = Num u</literal> at t=0,1,...</para>
     <para>
-    If <literal>d1=max(degree(Den))</literal>, and <literal>d2=max(degree(Num))</literal> the polynomial 
-    matrices  <literal>Den(z)</literal> and <literal>Num(z)</literal> may be written respectively as:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>y=rtitr(Num,Den,u [,up,yp])</literal> returns the time response of
+      the discrete time linear system with transfer matrix <literal>Den^-1 Num</literal> 
+      for the input <literal>u</literal>, i.e <literal>y</literal> and <literal>u</literal> are such that <literal>Den y = Num u</literal> at t=0,1,...
+    </para>
+    <para>
+      If <literal>d1=max(degree(Den))</literal>, and <literal>d2=max(degree(Num))</literal> the polynomial 
+      matrices  <literal>Den(z)</literal> and <literal>Num(z)</literal> may be written respectively as:
+    </para>
+    <programlisting role=""><![CDATA[ 
 D(z) = D_0  + D_1  z + ... + D_d1   z^d1
 N(z) = N_0  + N_1  z + ... + N_d2   z^d2
  ]]></programlisting>
     <para>
-    and <literal>Den y = Num u</literal> is interpreted as the recursion:</para>
-    <programlisting role = ""><![CDATA[ 
+      and <literal>Den y = Num u</literal> is interpreted as the recursion:
+    </para>
+    <programlisting role=""><![CDATA[ 
 D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
  ]]></programlisting>
     <para>
-    It is assumed that <literal>D(d1)</literal> is non singular.</para>
+      It is assumed that <literal>D(d1)</literal> is non singular.
+    </para>
     <para>
-    The columns of u are the inputs of the system at t=0,1,...,T:</para>
-    <programlisting role = ""><![CDATA[ 
+      The columns of u are the inputs of the system at t=0,1,...,T:
+    </para>
+    <programlisting role=""><![CDATA[ 
 u=[u(0) , u(1),...,u(T)]
  ]]></programlisting>
     <para>
-    The outputs at <literal>t=0,1,...,T+d1-d2</literal> are the columns of the matrix <literal>y</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+      The outputs at <literal>t=0,1,...,T+d1-d2</literal> are the columns of the matrix <literal>y</literal>:
+    </para>
+    <programlisting role=""><![CDATA[ 
 y = [y(0), y(1),  .... y(T+d1-d2)]
  ]]></programlisting>
-    <para><literal>up</literal> and <literal>yp</literal> define the initial conditions for t &lt; 0 i.e</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>up</literal> and <literal>yp</literal> define the initial conditions for t &lt; 0 i.e
+    </para>
+    <programlisting role=""><![CDATA[ 
 up = [u(-d1), ..., u(-1)  ]
 yp = [y(-d1), ...  y(-1)  ]
  ]]></programlisting>
     <para>
-    Depending on the relative values of <literal>d1</literal> and <literal>d2</literal>, some of the
-    leftmost components of <literal>up</literal>, <literal>yp</literal> are ignored.
-    The default values of <literal>up</literal> and <literal>yp</literal> are zero:
-    <literal>up = 0*ones(m,d1), yp=0*ones(n,d1)</literal></para>
+      Depending on the relative values of <literal>d1</literal> and <literal>d2</literal>, some of the
+      leftmost components of <literal>up</literal>, <literal>yp</literal> are ignored.
+      The default values of <literal>up</literal> and <literal>yp</literal> are zero:
+      <literal>up = 0*ones(m,d1), yp=0*ones(n,d1)</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -155,7 +168,7 @@ r=rtitr(num,den,u);norm(r3-r,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ltitr">ltitr</link>

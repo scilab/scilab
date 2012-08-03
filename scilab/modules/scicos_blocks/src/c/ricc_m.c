@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -22,6 +22,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
@@ -67,7 +68,7 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block,int flag)
 	{
 		if (ipar[1]==1)
 		{
-			lw=9*nu*nu+4*nu+max(1,6*nu);
+			lw=9*nu*nu+4*nu+Max(1,6*nu);
 		}
 		else
 		{
@@ -78,11 +79,11 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block,int flag)
 	{
 		if (ipar[1]==1)
 		{
-			lw=12*nu*nu+22*nu+max(21,4*nu);
+			lw=12*nu*nu+22*nu+Max(21,4*nu);
 		}
 		else
 		{
-			lw=28*nu*nu+2*nu+max(1,2*nu);
+			lw=28*nu*nu+2*nu+Max(1,2*nu);
 		}
 	}
 
@@ -101,7 +102,7 @@ SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block,int flag)
 			scicos_free(ptr);
 			return;
 		}
-		if((ptr->iwork=(int*) scicos_malloc(sizeof(int)*max(2*nu,nu*nu)))==NULL)
+		if((ptr->iwork=(int*) scicos_malloc(sizeof(int)*Max(2*nu,nu*nu)))==NULL)
 		{
 			set_block_error(-16);
 			scicos_free(ptr->bwork);

@@ -1,28 +1,24 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be
- * still available and supported in Scilab 6.
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+* Please note that piece of code will be rewrited for the Scilab 6 family
+* However, the API (profile of the functions in the header files) will be
+* still available and supported in Scilab 6.
+*/
 
 #include <string>
 #include <stdlib.h>
-#include "machine.h"
-#include "call_scilab.h"
-#include "api_common.h"
+//#include "api_stack.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
-#include "api_int.h"
-#include "api_string.h"
-#include "stack-c.h"
+#include "call_scilab.h"
 #include "stackinfo.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -39,23 +35,184 @@ extern "C"
 extern "C"
 {
     extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
-/* *jobptr==0: Get Scilab codes from C-string */
-/* *jobptr==1: Get C-string from Scilab codes */
+    extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
+    /* *jobptr==0: Get Scilab codes from C-string */
+    /* *jobptr==1: Get C-string from Scilab codes */
 
     extern int C2F(stackp) (int *, int *);
+    extern int C2F(funs) (int *);
 };
 
 /*--------------------------------------------------------------------------*/
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
+/* Replaces Rhs */
+int* getNbInputArgument(void* _pvCtx)
+{
+    return &C2F(com).rhs;
+}
 
+/* Replaces Top */
+int* getNbArgumentOnStack(void* _pvCtx)
+{
+    return &C2F(vstk).top;
+}
+
+/* Replaces Lhs */
+int* getNbOutputArgument(void* _pvCtx)
+{
+    return &C2F(com).lhs;
+}
+
+int* assignOutputVariable(void* _pvCtx, int _iVal)
+{
+    return &(C2F(intersci).lhsvar[_iVal - 1]);
+}
+
+int returnArguments(void* _pvCtx)
+{
+    return C2F(putlhsvar)();
+}
+
+int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    /*
+    * store the name in recu array, fname can be a non null terminated char array
+    * Get_Iname() can be used in other function to get the interface name
+    */
+    int cx0 = 0;
+    C2F(cvname) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz],  ((StrCtx *) _pvCtx)->pstName, &cx0, (unsigned long int)strlen(((StrCtx *)_pvCtx)->pstName));
+
+    if (_iMin <= nbInputArgument(_pvCtx) && _iMax >= nbInputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    if (_iMax == _iMin)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    }
+    else
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
+    }
+
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if (_iMin <= nbInputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if (_iMax >= nbInputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+
+    if (_iMin <= nbOutputArgument(_pvCtx) && _iMax >= nbOutputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    if (_iMax == _iMin)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    }
+    else
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
+    }
+
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if (_iMin <= nbOutputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if (_iMax >= nbOutputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
+{
+    int iVar = 0;
+    if(_iVar != 0)
+    {
+        iVar = _iVar + Top - Rhs;
+    }
+
+    return C2F(overload)(&iVar, _pstName, _iNameLen);
+}
+
+/*--------------------------------------------------------------------------*/
 SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
+
     if (_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
     {
         *_piRows = _piAddress[1];
@@ -81,7 +238,6 @@ SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols
 SciErr getNamedVarDimension(void *_pvCtx, const char *_pstName, int *_piRows, int *_piCols)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int *piAddr = NULL;
@@ -107,7 +263,6 @@ SciErr getNamedVarDimension(void *_pvCtx, const char *_pstName, int *_piRows, in
 SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iAddr = 0;
@@ -137,7 +292,6 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iNameLen = 0;
@@ -158,7 +312,6 @@ SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 int getNewVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 {
     int iAddr = iadr(*Lstk(_iVar));
-
     *_piAddress = istk(iAddr);
     return 0;
 }
@@ -167,7 +320,6 @@ int getNewVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddress)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iVarID[nsiz];
@@ -177,7 +329,7 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
     C2F(str2name) (_pstName, iVarID, (int)strlen(_pstName));
 
     //define scope of search
-    Fin = -1;
+    Fin = -6;
     Err = 0;
     //search variable
     C2F(stackg) (iVarID);
@@ -197,7 +349,8 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
     //get variable address
     getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
     if (piAddr[0] < 0)
-    {                           //get address from reference
+    {
+        //get address from reference
         int iStackRef = *Lstk(Fin);
         int iStackAddr = iadr(iStackRef);
         int iNewStackRef = iStackAddr + 1;
@@ -214,9 +367,9 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
 SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
+
     if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
@@ -231,7 +384,6 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
 SciErr getNamedVarType(void *_pvCtx, const char *_pstName, int *_piType)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int *piAddr = NULL;
@@ -266,13 +418,13 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
     getVarType(_pvCtx, _piAddress, &iType);
     switch (iType)
     {
-    case sci_matrix:
-    case sci_poly:
-    case sci_sparse:
-        iComplex = _piAddress[3];
-        break;
-    default:
-        iComplex = 0;
+        case sci_matrix:
+        case sci_poly:
+        case sci_sparse:
+            iComplex = _piAddress[3];
+            break;
+        default:
+            iComplex = 0;
     }
     return iComplex;
 }
@@ -281,7 +433,6 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
 int isNamedVarComplex(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int *piAddr = NULL;
@@ -298,7 +449,6 @@ int isNamedVarComplex(void *_pvCtx, const char *_pstName)
 void createNamedVariable(int *_piVarID)
 {
     int iOne = 1;
-
     C2F(stackp) (_piVarID, &iOne);
 }
 
@@ -329,18 +479,18 @@ int isVarMatrixType(void *_pvCtx, int *_piAddress)
 
         switch (iType)
         {
-        case sci_matrix:
-        case sci_poly:
-        case sci_boolean:
-        case sci_sparse:
-        case sci_boolean_sparse:
-        case sci_matlab_sparse:
-        case sci_ints:
-        case sci_handles:
-        case sci_strings:
-            return 1;
-        default:
-            return 0;
+            case sci_matrix:
+            case sci_poly:
+            case sci_boolean:
+            case sci_sparse:
+            case sci_boolean_sparse:
+            case sci_matlab_sparse:
+            case sci_ints:
+            case sci_handles:
+            case sci_strings:
+                return 1;
+            default:
+                return 0;
         }
     }
     else
@@ -354,7 +504,6 @@ int isVarMatrixType(void *_pvCtx, int *_piAddress)
 int isNamedVarMatrixType(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int *piAddr = NULL;
@@ -371,7 +520,6 @@ int isNamedVarMatrixType(void *_pvCtx, const char *_pstName)
 SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iRows1 = 0;
@@ -494,7 +642,6 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iType = 0;
@@ -554,7 +701,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 
         switch (iPrec)
         {
-        case SCI_INT8:
+            case SCI_INT8:
             {
                 char *pcData = NULL;
 
@@ -567,7 +714,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pcData[0];
             }
             break;
-        case SCI_UINT8:
+            case SCI_UINT8:
             {
                 unsigned char *pucData = NULL;
 
@@ -580,7 +727,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pucData[0];
             }
             break;
-        case SCI_INT16:
+            case SCI_INT16:
             {
                 short *psData = NULL;
 
@@ -593,7 +740,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = psData[0];
             }
             break;
-        case SCI_UINT16:
+            case SCI_UINT16:
             {
                 unsigned short *pusData = NULL;
 
@@ -606,7 +753,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = pusData[0];
             }
             break;
-        case SCI_INT32:
+            case SCI_INT32:
             {
                 int *piData = NULL;
 
@@ -619,7 +766,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
                 *_piVal = piData[0];
             }
             break;
-        case SCI_UINT32:
+            case SCI_UINT32:
             {
                 unsigned int *puiData = NULL;
 
@@ -636,7 +783,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
     }
     else
     {
-        addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or a integer scalar expected.\n"),
+        addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for input argument #%d: A real scalar or an integer scalar expected.\n"),
                         "getDimFromVar", getRhsFromAddress(_pvCtx, _piAddress));
         return sciErr;
     }
@@ -647,7 +794,6 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 SciErr getDimFromNamedVar(void *_pvCtx, const char *_pstName, int *_piVal)
 {
     SciErr sciErr;
-
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int *piAddr = NULL;
@@ -694,6 +840,8 @@ int getRhsFromAddress(void *_pvCtx, int *_piAddress)
 int isRowVector(void *_pvCtx, int *_piAddress)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -727,6 +875,8 @@ int isRowVector(void *_pvCtx, int *_piAddress)
 int isNamedRowVector(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -755,6 +905,8 @@ int isNamedRowVector(void *_pvCtx, const char *_pstName)
 int isColumnVector(void *_pvCtx, int *_piAddress)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -788,6 +940,8 @@ int isColumnVector(void *_pvCtx, int *_piAddress)
 int isNamedColumnVector(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -828,6 +982,8 @@ int isNamedVector(void *_pvCtx, const char *_pstName)
 int isScalar(void *_pvCtx, int *_piAddress)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -861,6 +1017,8 @@ int isScalar(void *_pvCtx, int *_piAddress)
 int isNamedScalar(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -889,6 +1047,8 @@ int isNamedScalar(void *_pvCtx, const char *_pstName)
 int isSquareMatrix(void *_pvCtx, int *_piAddress)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -922,6 +1082,8 @@ int isSquareMatrix(void *_pvCtx, int *_piAddress)
 int isNamedSquareMatrix(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -950,6 +1112,8 @@ int isNamedSquareMatrix(void *_pvCtx, const char *_pstName)
 int checkVarDimension(void *_pvCtx, int *_piAddress, int _iRows, int _iCols)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -983,6 +1147,8 @@ int checkVarDimension(void *_pvCtx, int *_piAddress, int _iRows, int _iCols)
 int checkNamedVarDimension(void *_pvCtx, const char *_pstName, int _iRows, int _iCols)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iRows = 0;
     int iCols = 0;
 
@@ -1011,6 +1177,8 @@ int checkNamedVarDimension(void *_pvCtx, const char *_pstName, int _iRows, int _
 int checkVarType(void *_pvCtx, int *_piAddress, int _iType)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iType = 0;
 
     if (_piAddress == NULL)
@@ -1036,6 +1204,8 @@ int checkVarType(void *_pvCtx, int *_piAddress, int _iType)
 int checkNamedVarType(void *_pvCtx, const char *_pstName, int _iType)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iType = 0;
 
     sciErr = getNamedVarType(_pvCtx, _pstName, &iType);
@@ -1076,6 +1246,8 @@ int isNamedEmptyMatrix(void *_pvCtx, const char *_pstName)
 int createEmptyMatrix(void *_pvCtx, int _iVar)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     double dblReal = 0;
 
     sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
@@ -1093,6 +1265,8 @@ int createEmptyMatrix(void *_pvCtx, int _iVar)
 int createNamedEmptyMatrix(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     double dblOne = 0;
 
     sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblOne);
@@ -1110,11 +1284,25 @@ int createNamedEmptyMatrix(void *_pvCtx, const char *_pstName)
 int isNamedVarExist(void *_pvCtx, const char *_pstName)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int iVarID[nsiz];
     int *piAddr = NULL;
+    int funs = C2F(com).fun;
 
     sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr || piAddr == NULL)
     {
+        Fin = -1;
+        C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+        C2F(funs)(iVarID);
+        if (Fin > 0)
+        {
+            Fin = 1;
+            C2F(com).fun = funs;
+            return 1;
+        }
+
         return 0;
     }
 
@@ -1124,7 +1312,7 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
 {
-    #define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
+#define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
     int iRet = 1;
 
     // check pointer
@@ -1149,5 +1337,53 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     // add here some others rules
 
     return iRet;
+}
+/*--------------------------------------------------------------------------*/
+int deleteNamedVariable(void* _pvCtx, const char* _pstName)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int iVarID[nsiz];
+    int iZero = 0;
+    int il;
+    int sRhs = Rhs;
+    int sLhs = Lhs;
+    int sTop = Top;
+
+    if (isNamedVarExist(_pvCtx, _pstName) == 0)
+    {
+        return 0;
+    }
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedComplexZMatrixOfDouble");
+        return 0;
+    }
+
+    //get varId from varName
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+
+    //create a null matrix a the Top of the stack
+    Top = Top + 1;
+    il = iadr(*Lstk(Top));
+    *istk(il) = 0;
+    *Lstk(Top + 1) = *Lstk(Top) + 1;
+    Rhs = 0;
+
+    //Replace existing value by null matrix to delete it
+    C2F(stackp) (iVarID, &iZero);
+    Rhs = sRhs;
+    Lhs = sLhs;
+    Top = sTop ;
+    if (C2F(iop).err > 0/* || C2F(errgst).err1 > 0*/)
+    {
+        return 0;
+    }
+
+    //No Idea :x
+    Fin = 1;
+    return 1;
 }
 /*--------------------------------------------------------------------------*/

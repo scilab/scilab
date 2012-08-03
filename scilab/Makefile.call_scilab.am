@@ -9,8 +9,10 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
-CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/
-CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
+CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/ $(FLIBS)
+
+CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la $(COMPILER_LDFLAGS)
+
 
 # These binaries are built here and not in the call_scilab module because 
 # we do need libscilab.so to exist before building these files
@@ -18,6 +20,20 @@ CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/
 # To run them, see the help of call Scilab in particular 
 # "Compile and run with Call Scilab"
 check_PROGRAMS = call_scilab_c_simple call_scilab_c call_scilab_c_getlastjob call_scilab_c_DisableInteractiveMode call_scilab_readwriteboolean call_scilab_readwritecomplexmatrix call_scilab_readwritematrix call_scilab_readwritestring
+
+# Construct the LD_LIBRARY_PATH from the variable detected previously
+# Run the unitary test of call_scilab
+check-call_scilab: $(check_PROGRAMS)
+	@for a in $(JAVA_JNI_LIBS); do \
+		LD_PATH=`echo $$a|grep '^-L'|sed -e 's|-L\(.*\)|\1|g'`;\
+		LOCAL_LD="$$LOCAL_LD:$$LD_PATH:$$LD_LIBRARY_PATH"; \
+	done; \
+	for f in $(check_PROGRAMS); do \
+		if test "$$f" != "call_scilab_c"; then \
+			echo "Run: LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(top_srcdir) ./$$f"; \
+			LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(abs_top_builddir) ./$$f || exit 1; \
+		fi \
+	done
 
 call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
 call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
@@ -51,3 +67,4 @@ call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
 call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
 call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
 call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+

@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xls_open">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xls_open</refname>
-    <refpurpose>Open an Excel file for reading</refpurpose>
+    <refpurpose>opens an Excel file for reading</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,36 +27,36 @@
         <term>file_path</term>
         <listitem>
           <para>a character string: the path of the Excel file.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>a number, the logical unit on the Excel stream.
-       </para>
+          <para>a number: the logical unit on the Excel stream.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>SST</term>
         <listitem>
           <para>A vector of all character strings which appear in the Excel sheets.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Sheetnames</term>
         <listitem>
           <para>a vector of strings: the sheet names.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Sheetpos</term>
         <listitem>
           <para>a vector of numbers: the position of the beginning of sheets in the
-	    Excel stream.
-       </para>
+            Excel stream.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -72,14 +69,23 @@
       and opened. The <literal>fd</literal> logical unit points to this temporary
       file. Then the  first sheet in this stream is read to get the global information
       like number of sheets, sheet names <literal>Sheetnames</literal>, sheet
-      adresses within the stream <literal>Sheetpos</literal> and the
+      addresses within the stream <literal>Sheetpos</literal> and the
       <literal>SST</literal> which contains all the strings used in the following
-      sheets.</para>
-    <para>The <literal>fd</literal> and <literal>Sheetpos</literal> data have to be passed to
-      <link linkend="xls_read">xls_read</link> to read the data sheets.</para>
-    <para>The <link linkend="readxls">readxls</link> function can be used to read all an Excel file
-      in one function with a single function call.</para>
-    <para> Warning only BIFF8 Excel files (last Excel file version (2003)) are handled  </para>
+      sheets.
+    </para>
+    <para>
+      The <literal>fd</literal> and <literal>Sheetpos</literal> data have to be passed to
+      <link linkend="xls_read">xls_read</link> to read the data sheets.
+    </para>
+    <para>
+      The <link linkend="readxls">readxls</link> function can be used to read all an Excel file
+      in one function with a single function call.
+    </para>
+    <para> 
+      <warning>
+	Only BIFF8 Excel files (last Excel file version (2003)) are handled.
+      </warning>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -93,7 +99,7 @@ mclose(fd)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xls_read">xls_read</link>
@@ -104,35 +110,16 @@ mclose(fd)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>Pierrick Mode</term>
-        <listitem>
-          <para>
-    INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Serge Steer</term>
-        <listitem>
-          <para>
-    INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>This function is based on the Microsoft ole2 file documentation
       (<ulink url="http://chicago.sourceforge.net/devel/docs/ole/">http://chicago.sourceforge.net/devel/docs/ole/</ulink>) and on Excel
-      stream description from OpenOffice (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).</para>
+      stream description from OpenOffice (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
+    </para>
   </refsection>
   <refsection>
     <title>Used Functions</title>
-    <para>The ripole-0.1.4 procedure (http://www.pldaniels.com/ripole)  is used
-      to extract the spreadsheet stream out of the ole file. </para>
+    <para>The ripole-0.1.4 procedure (<ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>)  is used
+      to extract the spreadsheet stream out of the ole file. 
+    </para>
   </refsection>
 </refentry>

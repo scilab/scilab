@@ -42,7 +42,7 @@ sparse
   </refsection>
   <refsection>
     <title>Particular cases</title>
-    <informaltable  border="1" width="100%">
+    <informaltable border="1" width="100%">
       <tr>
         <td align="center">
           <para>
@@ -91,9 +91,11 @@ sparse
           <para> sparse([i,j],s) </para>
         </td>
         <td>
-          <para>This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
-          and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
-          <emphasis role="strong">j</emphasis> are column vectors.</para>
+          <para>
+            This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
+            and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+            <emphasis role="strong">j</emphasis> are column vectors.
+          </para>
         </td>
       </tr>
       <tr>
@@ -104,12 +106,16 @@ sparse
           <para> sparse([i,j],s,[m,n]) </para>
         </td>
         <td>
-          <para>This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
-          and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
-          <emphasis role="strong">j</emphasis> are column vectors.</para>
+          <para>
+            This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
+            and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+            <emphasis role="strong">j</emphasis> are column vectors.
+          </para>
         </td>
       </tr>
     </informaltable>
-    <para>sparse(i,j,s,m,n,nzmax) : There is no Scilab equivalent for this use of Matlab <emphasis role="strong">sparse</emphasis>.</para>
+    <para>
+      sparse(i,j,s,m,n,nzmax) : There is no Scilab equivalent for this use of Matlab <emphasis role="strong">sparse</emphasis>.
+    </para>
   </refsection>
 </refentry>

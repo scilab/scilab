@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="specfact">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>specfact</refname>
     <refpurpose> spectral factor</refpurpose>
@@ -25,14 +22,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given a spectral density matrix <literal>phi(s)</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+      Given a spectral density matrix <literal>phi(s)</literal>:
+    </para>
+    <programlisting role=""><![CDATA[ 
             -1                   -1
 R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
  ]]></programlisting>
-    <para><literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such 
-    that  <literal>W(s)=W0+L*(s*I-A)^-1*B</literal>  is a
-    spectral factor of of <literal>PHI(s)</literal>, i.e.</para>
+    <para>
+      <literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such 
+      that  <literal>W(s)=W0+L*(s*I-A)^-1*B</literal>  is a
+      spectral factor of of <literal>PHI(s)</literal>, i.e.
+    </para>
     <para>
       <literal>phi(s)=W'(-s)*W(s)</literal>
     </para>
@@ -53,7 +53,7 @@ horner(Ws,-s)*Ws
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gtild">gtild</link>
@@ -65,9 +65,5 @@ horner(Ws,-s)*Ws
         <link linkend="fspecg">fspecg</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.   </para>
   </refsection>
 </refentry>

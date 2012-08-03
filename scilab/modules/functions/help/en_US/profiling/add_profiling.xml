@@ -9,32 +9,17 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry version="5.0-subset Scilab" xml:id="add_profiling" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="add_profiling" xml:lang="fr">
   <refnamediv>
     <refname>add_profiling</refname>
-
     <refpurpose>Adds profiling instructions to a function.</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>add_profiling(funname)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>funname</term>
@@ -44,14 +29,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-    <para><literal>add_profiling(funname)</literal> Adds profiling instructions to the function
-    named <literal>funname</literal>. Then when this function is run the number of calls, the
-    time spent is stored for each function line.</para>
+    <para>
+      <literal>add_profiling(funname)</literal> Adds profiling instructions to the function
+      named <literal>funname</literal>. Then when this function is run the number of calls, the
+      time spent is stored for each function line.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -70,31 +55,30 @@ endfunction
 add_profiling("foo")
 foo(0.1,100) //run the function
 profile(foo) //extract profile information
- ]]> </programlisting>
+ ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="profile">profile</link></member>
-      <member><link linkend="plotprofile">plotprofile</link></member>
-      <member><link linkend="remove_profiling">remove_profiling</link></member>
-      <member><link linkend="reset_profiling">reset_profiling</link></member>
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+      <member>
+        <link linkend="plotprofile">plotprofile</link>
+      </member>
+      <member>
+        <link linkend="remove_profiling">remove_profiling</link>
+      </member>
+      <member>
+        <link linkend="reset_profiling">reset_profiling</link>
+      </member>
     </simplelist>
   </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-
   <refsection>
     <title>Used Functions</title>
-    <para>This function uses the Scilab functions <literal>bytecode</literal>  and
-    <literal>walkbytecode</literal> </para>
+    <para>
+      This function uses the Scilab functions <literal>bytecode</literal>  and
+      <literal>walkbytecode</literal> 
+    </para>
   </refsection>
 </refentry>

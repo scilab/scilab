@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "lasterror.h"
 #include "BOOL.h"
 #include "localization.h"
@@ -39,6 +38,7 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -59,7 +59,7 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
         }
     }
 
-    errorMessage = getLastErrorMessage(&NbLines);
+    errorMessage = getInternalLastErrorMessage(&NbLines);
 
     if ((NbLines <= 0) || (errorMessage == NULL))
     {
@@ -71,6 +71,7 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
@@ -78,27 +79,27 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
 
     if (Lhs >= 2)
     {
-        double dLastErrorValue = (double) getLastErrorValue();
+        double dLastErrorValue = (double) getInternalLastErrorValue();
         createScalarDouble(pvApiCtx, Rhs + 2, dLastErrorValue);
         LhsVar(2) = Rhs + 2;
     }
 
     if (Lhs >= 3)
     {
-        double dLinePosition = (double)  getLastErrorLinePosition();
+        double dLinePosition = (double)  getInternalLastErrorLinePosition();
         createScalarDouble(pvApiCtx, Rhs + 3, dLinePosition);
         LhsVar(3) = Rhs + 3;
     }
 
     if (Lhs == 4)
     {
-        createSingleString(pvApiCtx, Rhs + 4, (char*)getLastErrorFunctionName());
+        createSingleString(pvApiCtx, Rhs + 4, (char*)getInternalLastErrorFunctionName());
         LhsVar(4) = Rhs + 4;
     }
 
     if (bClearLastError)
     {
-        clearLastError();
+        clearInternalLastError();
     }
 
     PutLhsVar();

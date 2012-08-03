@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hrmt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hrmt</refname>
     <refpurpose>多項式の最大公約数</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>多項式の行,すなわち,<literal>1</literal>x<literal>k</literal> 多項式行列</para>
+          <para>
+            多項式の行,すなわち,<literal>1</literal>x<literal>k</literal> 多項式行列
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,10 +46,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[pg,U]=hrmt(v)</literal> は,多項式<literal>v</literal>について
-	ユニモジュラ行列<literal>U</literal>および
-	<literal>v*U = [pg,0]</literal>となるような,
-	<literal>pg</literal> = 多項式の行の最大公約数を返します.</para>
+    <para>
+      <literal>[pg,U]=hrmt(v)</literal> は,多項式<literal>v</literal>について
+      ユニモジュラ行列<literal>U</literal>および
+      <literal>v*U = [pg,0]</literal>となるような,
+      <literal>pg</literal> = 多項式の行の最大公約数を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -71,9 +72,5 @@ det(U)
         <link linkend="htrianr">htrianr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

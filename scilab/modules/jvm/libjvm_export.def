@@ -11,3 +11,5 @@ addToClasspath
 addToLibrarypath
 getScilabObject
 ; --------------------------------------- 
+canCloseMainScilabObject
+forceCloseMainScilabObject

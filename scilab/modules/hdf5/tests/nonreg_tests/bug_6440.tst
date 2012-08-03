@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 6440 -->
 //
@@ -18,7 +18,7 @@
 
 dataDirP1 = TMPDIR + '/世界您好';
 dataDirP2 = TMPDIR + '/世界您好/JOSÉDO~1/';
-dataFile = dataDirP2 + '/my_data.h5";
+dataFile = dataDirP2 + '/my_data.sod";
 
 mkdir(dataDirP1);
 mkdir(dataDirP2);

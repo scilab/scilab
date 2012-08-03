@@ -74,6 +74,9 @@
     <ClInclude Include="includes\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\c\getdate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\time.rc">
@@ -81,10 +84,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\time.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="time_export.def">
@@ -93,5 +93,8 @@
     <None Include="Makefile.am" />
     <None Include="time.iss" />
     <None Include="sci_gateway\time_gateway.xml" />
+    <None Include="locales\time.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

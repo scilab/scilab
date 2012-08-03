@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xchange">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xchange</refname>
     <refpurpose> transformation de coordonnées de l'échelle courante en pixels et inversement  </refpurpose>
@@ -43,15 +40,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
-    "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
-    signifie pixel vers réel.
-    <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
-    définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
-  </para>
-    <para><literal>rect</literal> sont les coordonnées en pixels
-    du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
-  </para>
+      Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
+      "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
+      signifie pixel vers réel.
+      <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
+      définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
+    </para>
+    <para>
+      <literal>rect</literal> sont les coordonnées en pixels
+      du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -61,9 +59,5 @@ plot2d(t,sin(t))
 [x,y,rect]=xchange(1,1,"f2i")
 [x,y,rect]=xchange(0,0,"i2f")
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="paramfplot2d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="paramfplot2d">
   <refnamediv>
     <refname>paramfplot2d</refname>
     <refpurpose> animated plot of a 2D parametrized curve.</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>paramfplot2d(f,x,theta)
-paramfplot2d(f,x,theta,flag)
-paramfplot2d(f,x,theta,flag,rect)</synopsis>
+      paramfplot2d(f,x,theta,flag)
+      paramfplot2d(f,x,theta,flag,rect)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -36,7 +34,9 @@ paramfplot2d(f,x,theta,flag,rect)</synopsis>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>function <literal>y=f(x,t)</literal> . f is a Scilab function or a dynamically linked routine (referred to as a string).</para>
+          <para>
+            function <literal>y=f(x,t)</literal> . f is a Scilab function or a dynamically linked routine (referred to as a string).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,7 +48,9 @@ paramfplot2d(f,x,theta,flag,rect)</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>string <literal>'no'</literal> or <literal>'yes'</literal>: If "yes" screen is not cleared  between two consecutive plots.</para>
+          <para>
+            string <literal>'no'</literal> or <literal>'yes'</literal>: If "yes" screen is not cleared  between two consecutive plots.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,20 +64,19 @@ paramfplot2d(f,x,theta,flag,rect)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Animated plot of the function <literal>x</literal>,
-    <literal>t</literal>--&gt;<literal>f(x,t)</literal> for
-    <literal>t=theta(1),theta(2),etc</literal>.  <literal>f</literal>
-    can be a either Scilab function or a dynamically linked routine
-    since <literal>y=f(x,t)</literal> is evaluated as
-    <literal>y=feval(x(:),t,f)</literal>. See <link
-    linkend="feval">feval</link>.
-  </para>
-  <para>
-    <literal>f</literal> is a mapping <literal>x</literal>,
-    <literal>t</literal>--&gt; <literal>f(x,t) = R^N</literal> valued
-    function for <literal>x</literal> a vector of
-    <literal>R^N</literal> and <literal>t</literal> a real number.
-  </para>
+      Animated plot of the function <literal>x</literal>,
+      <literal>t</literal>--&gt;<literal>f(x,t)</literal> for
+      <literal>t=theta(1),theta(2),etc</literal>.  <literal>f</literal>
+      can be a either Scilab function or a dynamically linked routine
+      since <literal>y=f(x,t)</literal> is evaluated as
+      <literal>y=feval(x(:),t,f)</literal>. See <link linkend="feval">feval</link>.
+    </para>
+    <para>
+      <literal>f</literal> is a mapping <literal>x</literal>,
+      <literal>t</literal>--&gt; <literal>f(x,t) = R^N</literal> valued
+      function for <literal>x</literal> a vector of
+      <literal>R^N</literal> and <literal>t</literal> a real number.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -99,12 +100,11 @@ clf;paramfplot2d(twosoliton,x,0:0.05:3);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-     <member>
+      <member>
         <link linkend="comet">comet</link>
       </member>
-
       <member>
         <link linkend="plot2d">plot2d</link>
       </member>

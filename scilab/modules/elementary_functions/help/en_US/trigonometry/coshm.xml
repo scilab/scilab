@@ -10,67 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="coshm" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="coshm" xml:lang="en">
   <refnamediv>
     <refname>coshm</refname>
-
     <refpurpose>matrix hyperbolic cosine</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>t=coshm(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>x,t</term>
-
         <listitem>
           <para>real or complex square matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>coshm is the matrix hyperbolic cosine of the matrix x.
-    <literal>t=(expm(x)+expm(-x))/2</literal>. Result may be inaccurate for
-    nonsymmetric matrix.</para>
+      <literal>t=(expm(x)+expm(-x))/2</literal>. Result may be inaccurate for
+      nonsymmetric matrix.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 A=[1,2;2,4]
 acoshm(coshm(A))
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="cosh">cosh</link></member>
-
-      <member><link linkend="expm">expm</link></member>
+      <member>
+        <link linkend="cosh">cosh</link>
+      </member>
+      <member>
+        <link linkend="expm">expm</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

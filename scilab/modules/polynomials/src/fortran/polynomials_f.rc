@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "polynomials_f module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "polynomials_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "polynomials_f.dll"
             VALUE "ProductName", "polynomials_f module"
             VALUE "ProductVersion", "5, 4, 0, 0"

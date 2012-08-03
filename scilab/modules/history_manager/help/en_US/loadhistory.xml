@@ -11,75 +11,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="loadhistory" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="loadhistory" xml:lang="en">
   <refnamediv>
     <refname>loadhistory</refname>
-
     <refpurpose>load a history file</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>loadhistory()
-loadhistory(f)</synopsis>
+      loadhistory(f)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>f</term>
-
         <listitem>
           <para>file pathname</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>load a history file.</para>
-
     <para>by default, history filename is SCIHOME+'/.history.scilab'</para>
-
     <para>by default, loadhistory read last 20000 lines of history file(to
-    reduce time loading).</para>
-
-    <para>see <link linkend="historysize">historysize(value)</link> to modify
-    this value.</para>
+      reduce time loading).
+    </para>
+    <para>
+      see <link linkend="historysize">historysize(value)</link> to modify
+      this value.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"> loadhistory(SCI+'/session.scilab')  </programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="savehistory">savehistory</link></member>
-
-      <member><link linkend="resethistory">resethistory</link></member>
-
-      <member><link linkend="historysize">historysize</link></member>
-
-      <member><link linkend="gethistory">gethistory</link></member>
+      <member>
+        <link linkend="savehistory">savehistory</link>
+      </member>
+      <member>
+        <link linkend="resethistory">resethistory</link>
+      </member>
+      <member>
+        <link linkend="historysize">historysize</link>
+      </member>
+      <member>
+        <link linkend="gethistory">gethistory</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

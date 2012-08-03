@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="projspec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>projspec</refname>
     <refpurpose>スペクトル演算子</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>i</term>
         <listitem>
-          <para>整数 (<literal>A</literal>のゼロ固有値の添字).</para>
+          <para>
+            整数 (<literal>A</literal>のゼロ固有値の添字).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,16 +47,26 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>A</literal>の0におけるスペクトル特性.</para>
-    <para><literal>S</literal> = 0における縮小レゾルベント 
-	(<literal>S</literal> = -Drazin_inverse(<literal>A</literal>)).</para>
-    <para><literal>P</literal> = 0におけるスペクトル投影.</para>
-    <para><literal>D</literal> = 0における冪零演算子.</para>
-    <para><literal>index</literal> = 0固有値の添字.</para>
+      <literal>A</literal>の0におけるスペクトル特性.
+    </para>
     <para>
-	特異点s=0の周りでの
-    	<literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</literal>
-	が出力されます.</para>
+      <literal>S</literal> = 0における縮小レゾルベント 
+      (<literal>S</literal> = -Drazin_inverse(<literal>A</literal>)).
+    </para>
+    <para>
+      <literal>P</literal> = 0におけるスペクトル投影.
+    </para>
+    <para>
+      <literal>D</literal> = 0における冪零演算子.
+    </para>
+    <para>
+      <literal>index</literal> = 0固有値の添字.
+    </para>
+    <para>
+      特異点s=0の周りでの
+      <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</literal>
+      が出力されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -79,9 +88,5 @@ norm(D^index,1)
         <link linkend="coff">coff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

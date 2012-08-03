@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 15:21+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2011-10-05 14:16+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -85,7 +85,7 @@ msgstr "変数型に誤りがあります: ハイパー行列に関するScilab�
 msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
-msgstr ""
+msgstr "LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
 
 msgid "Read error!\n"
 msgstr "読込エラー!\n"
@@ -95,31 +95,6 @@ msgstr "ファイルをオープンできません!\n"
 
 msgid "Read error\n"
 msgstr "読込エラー\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "スコープエラー:  scoReallocLongDraw()でエラーを発生しました"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr "スコープエラー:  sciDrawObj を実行できません, 原因不明ですがpShortDrawがNULLとなっています!\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "スコープエラー:  malloc時にエラーを発生しました - メモリを確認してください\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "スコープエラー:  不明なコードによるエラーを発生しました!\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "次元引数の値が間違っています."
-
-msgid "This scope has the same window id than another."
-msgstr "このスコープは同じウインドウIDを有しています."
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "この型のオブジェクトでは %s を使用できません."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"

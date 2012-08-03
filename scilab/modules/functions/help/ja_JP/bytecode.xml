@@ -9,16 +9,13 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *-->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bytecode">
-  <info>
-    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bytecode">
   <refnamediv>
     <refname>bytecode</refname>
     <refpurpose>
-	Scilab関数を指定すると"バイトコード"をScilab配列に返す,
-	またはその逆の処理を行う.
-	</refpurpose>
+      Scilab関数を指定すると"バイトコード"をScilab配列に返す,
+      またはその逆の処理を行う.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -42,7 +39,7 @@
         <term>x</term>
         <listitem>
           <para>
-             int32 行ベクトル
+            int32 行ベクトル
           </para>
         </listitem>
       </varlistentry>
@@ -51,24 +48,24 @@
   <refsection>
     <title>説明</title>
     <para>
-        <literal>x = bytecode(f) </literal> は,
-        Scilab関数 <literal>f</literal> の "バイトコード"を
-	整数配列<literal>x</literal>に返します.
+      <literal>x= bytecode(f) </literal> は,
+      Scilab関数 <literal>f</literal> の "バイトコード"を
+      整数配列<literal>x</literal>に返します.
     </para>
     <para>
-        <literal>f = bytecode(x) </literal> は,
-	Scilabの整数配列 <literal>x</literal> で指定した
-	"バイトコード"が示す関数 <literal>f</literal> を
-	返します.
-	<literal>x</literal> の有効性は確認されないことに
-	注意してください.
+      <literal>f= bytecode(x) </literal> は,
+      Scilabの整数配列 <literal>x</literal> で指定した
+      "バイトコード"が示す関数 <literal>f</literal> を
+      返します.
+      <literal>x</literal> の有効性は確認されないことに
+      注意してください.
     </para>
   </refsection>
   <refsection>
     <title>注意</title>
     <para>
-	Scilab関数のバイトコードは,将来劇的に進化すると予想されるため,
-	この関数はプロファイル命令の処理に限って使用するべきです.
+      Scilab関数のバイトコードは,将来劇的に進化すると予想されるため,
+      この関数はプロファイル命令の処理に限って使用するべきです.
     </para>
   </refsection>
   <refsection>
@@ -93,12 +90,6 @@ bytecode(foo)
       <member>
         <link linkend="macr2tree">macr2tree</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

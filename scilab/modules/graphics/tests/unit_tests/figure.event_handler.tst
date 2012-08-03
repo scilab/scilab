@@ -15,52 +15,52 @@
 my_figure = scf();
 
 // check default values
-if (my_figure.event_handler <> "") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // setEventhandler("mypersonnaleventhanlder") test
 seteventhandler("mypersonnaleventhanlder");
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "on") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "on");
 
 // setEventhandler("") test
 seteventhandler("");
-if (my_figure.event_handler <> "") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // my_figure.event_handler = "mypersonnaleventhanlder"
 my_figure.event_handler = "mypersonnaleventhanlder";
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // my_figure.event_handler_enable = "on"
 my_figure.event_handler_enable = "on";
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "on") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "on");
 
 // my_figure.event_handler = ""
 // Erasing event_handler make enable flag go 'off'
  my_figure.event_handler = "";
-if (my_figure.event_handler <> "") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // my_figure.event_handler_enable = "on";
 // Forcing event handler enable without event handler raise a warning
-if (my_figure.event_handler <> "") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // my_figure.event_handler = "mypersonnaleventhanlder"
 // then enable
 // then disable
 my_figure.event_handler = "mypersonnaleventhanlder";
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "off");
 my_figure.event_handler_enable = "on";
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "on") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "on");
 my_figure.event_handler_enable = "off";
-if (my_figure.event_handler <> "mypersonnaleventhanlder") then pause; end
-if (my_figure.event_handler_enable <> "off") then pause; end
+assert_checkequal(my_figure.event_handler, "mypersonnaleventhanlder");
+assert_checkequal(my_figure.event_handler_enable, "off");
 
 // Delete
 delete(my_figure);

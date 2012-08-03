@@ -37,4 +37,5 @@
 <PRIMITIVE gatewayId="18" primitiveId="7" primitiveName="delip" />
 <PRIMITIVE gatewayId="18" primitiveId="8" primitiveName="remez" />
 <PRIMITIVE gatewayId="18" primitiveId="9" primitiveName="syredi" />
+<PRIMITIVE gatewayId="18" primitiveId="10" primitiveName="conv2" />
 </GATEWAY>

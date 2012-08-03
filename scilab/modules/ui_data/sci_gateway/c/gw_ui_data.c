@@ -11,13 +11,13 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_ui_data.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 /*static BOOL loadedDep = FALSE;*/
@@ -25,7 +25,9 @@
 static gw_generic_table Tab[]=
 {
     {sci_editvar, "editvar"},
-    {sci_browsevar, "browsevar"}
+    {sci_browsevar, "browsevar"},
+    {sci_filebrowser, "filebrowser"},
+    {sci_updatebrowsevar, "updatebrowsevar"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
@@ -44,6 +46,13 @@ int gw_ui_data(void)
 		loadedDep = TRUE;
 	}
 */
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

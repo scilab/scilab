@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xstringb">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xstringb</refname>
     <refpurpose>文字列をボックス内に描画</refpurpose>
@@ -35,8 +32,11 @@
         <term>str</term>
         <listitem>
           <para>文字列の行列.</para>
-         <para>Scilab 5.2以降,<link linkend="math_rendering_features_in_graphic">
-	LaTeXまたはMathML式</link>を書くことができます.</para>
+          <para>Scilab 5.2以降,<link linkend="math_rendering_features_in_graphic">
+              LaTeXまたはMathML式
+            </link>
+            を書くことができます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,17 +49,20 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xstringb</literal>はユーザ座標で
-	<literal>rect=[x,y,w,h]</literal>
-    	(左下の点, 幅, 高さ)の矩形の中の中心に
-	文字列<literal>str</literal>の行列を描画します.
+    <para>
+      <literal>xstringb</literal>はユーザ座標で
+      <literal>rect=[x,y,w,h]</literal>
+      (左下の点, 幅, 高さ)の矩形の中の中心に
+      文字列<literal>str</literal>の行列を描画します.
     </para>
     <para>
-    <literal>option</literal>に<literal>"fill"</literal>が
-	指定された場合,
-	矩形の中をできるだけ埋めるように文字の大きさが計算されます.</para>
+      <literal>option</literal>に<literal>"fill"</literal>が
+      指定された場合,
+      矩形の中をできるだけ埋めるように文字の大きさが計算されます.
+    </para>
     <para>
-    コマンド <literal>xstringb()</literal> を入力するとデモを参照できます.</para>
+      コマンド <literal>xstringb()</literal> を入力するとデモを参照できます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -96,9 +99,5 @@ xstringb(r(1),r(2),str,r(3),r(4),"fill");
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

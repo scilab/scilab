@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_conv">
   <refnamediv>
     <refname>conv (Matlab function)</refname>
-    <refpurpose>Convolution</refpurpose>
+    <refpurpose>1-D Convolution</refpurpose>
   </refnamediv>
   <refsection>
     <title>Matlab/Scilab equivalent</title>
@@ -34,19 +34,10 @@ conv
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-convol
+conv
 ]]></programlisting>
         </td>
       </tr>
     </informaltable>
-  </refsection>
-  <refsection>
-    <title>Particular cases</title>
-    <para>
-Scilab <emphasis role="bold">convol</emphasis> output value is always a row vector while Matlab <emphasis role="bold">conv</emphasis> output value is a column vector if at least one input is a column vector.
-</para>
-    <para>
-To have a closer result, replace Matlab <emphasis role="bold">conv(A)</emphasis> by <emphasis role="bold">clean(convol(A))</emphasis> in Scilab.
-</para>
   </refsection>
 </refentry>

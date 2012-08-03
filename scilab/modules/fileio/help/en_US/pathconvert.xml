@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pathconvert">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pathconvert</refname>
     <refpurpose> pathnames convertion between POSIX and windows.  </refpurpose>
@@ -47,34 +44,41 @@
       <varlistentry>
         <term>type</term>
         <listitem>
-          <para>a string <literal>'u'</literal> or <literal>'w'</literal>.</para>
+          <para>
+            a string <literal>'u'</literal> or <literal>'w'</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>pathconvert</literal> can be used to convert a set of pathnames
-    (given by a string matrix <literal>paths</literal>) from windows native 
-    filename to POSIX-style pathnames and back. The target style 
-    is given by the optional string <literal>type</literal> which can be 
-    <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
-    style is set according to the value of <literal>getos() == 'Windows'</literal>. 
-    If <literal>getos() == 'Windows'</literal> is TRUE (resp. FALSE ) then default type is <literal>'w'</literal>
-    (resp.  <literal>'u'</literal>).</para>
     <para>
-    Windows pathnames starting with <literal>name:</literal> are converted to 
-    pathnames starting with <literal>/cygdrive/name/</literal> using the cygwin 
-    convention.</para>
+      <literal>pathconvert</literal> can be used to convert a set of pathnames
+      (given by a string matrix <literal>paths</literal>) from windows native 
+      filename to POSIX-style pathnames and back. The target style 
+      is given by the optional string <literal>type</literal> which can be 
+      <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
+      style is set according to the value of <literal>getos() == 'Windows'</literal>. 
+      If <literal>getos() == 'Windows'</literal> is TRUE (resp. FALSE ) then default type is <literal>'w'</literal>
+      (resp.  <literal>'u'</literal>).
+    </para>
+    <para>
+      Windows pathnames starting with <literal>name:</literal> are converted to 
+      pathnames starting with <literal>/cygdrive/name/</literal> using the cygwin 
+      convention.
+    </para>
     <para>
       <literal>flagtrail</literal> is an optional boolean parameter. When its value 
       is TRUE (default value) a trailing separator (<literal>'\'</literal> or <literal>'/'</literal>) is added 
       at the end of the path if it was missing.  If <literal>flagtrail</literal> is
       set to FALSE, the trailing separator is removed.
     </para>
-    <para><literal>flagexpand</literal> is an optional boolean parameter. When its value 
-    is TRUE leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
-    expanded using environment variables.</para>
+    <para>
+      <literal>flagexpand</literal> is an optional boolean parameter. When its value 
+      is TRUE leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
+      expanded using environment variables.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,7 +92,7 @@ pathconvert("/cygdrive/c/tmp",%f,%f,"w")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="basename">basename</link>

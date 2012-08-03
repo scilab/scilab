@@ -27,9 +27,8 @@ Source: modules\{#SCINOTES}\sci_gateway\{#SCINOTES}_gateway.xml; DestDir: {app}\
 ;
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}.quit; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}.start; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\etc\{#SCINOTES}Configuration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\etc\keysConfiguration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\etc\{#SCINOTES}GUIConfiguration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\*.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\*.xsl; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\macros\lib; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\names; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}

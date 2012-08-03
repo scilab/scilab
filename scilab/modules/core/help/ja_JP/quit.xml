@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="quit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>quit</refname>
     <refpurpose>Scilabを終了またはpauseレベルを減らす</refpurpose>
@@ -13,31 +10,37 @@
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para><literal>quit</literal> コマンドには,コールするコンテキストに依存して
-	以下の2種類の意味があります:</para>
+    <para>
+      <literal>quit</literal> コマンドには,コールするコンテキストに依存して
+      以下の2種類の意味があります:
+    </para>
     <variablelist>
       <varlistentry>
-        <term>アクティブな <literal>pause</literal> がない場合,</term>
+        <term>
+          アクティブな <literal>pause</literal> がない場合,
+        </term>
         <listitem>
           <para>
-	コマンドが関数の内部でコールされた場合であっても
-          <literal>quit</literal>コマンドはScilab を終了します.</para>
+            コマンドが関数の内部でコールされた場合であっても
+            <literal>quit</literal>コマンドはScilab を終了します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-	<term>アクティブな<literal>pause</literal> がある場合,</term>
+        <term>
+          アクティブな<literal>pause</literal> がある場合,
+        </term>
         <listitem>
           <para>
-          <literal>quit</literal>コマンドはこのpauseレベルで開始された命令を
-	破棄し,カレントのpauseレベルを終了します.</para>
+            <literal>quit</literal>コマンドはこのpauseレベルで開始された命令を
+            破棄し,カレントのpauseレベルを終了します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
- <refsection>
+  <refsection>
     <title>例</title>
-
     <programlisting role="example"><![CDATA[ 
 // Scilabを終了
 function foo(x),if x then quit,end,endfunction
@@ -57,7 +60,6 @@ endfunction
 foo1(%t) //以下のプロンプトでquitを入力してください
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">

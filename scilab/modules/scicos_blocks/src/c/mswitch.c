@@ -14,13 +14,14 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <math.h>
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
@@ -75,18 +76,18 @@ SCICOS_BLOCKS_IMPEXP void  mswitch(scicos_block *block,int flag)
 			j=(int)floor(*u1);
 		}
 		j=j+1-*ipar;
-		j=max(j,1);
+		j=Max(j,1);
 		if (nin==2) 
 		{
 			mu=GetInPortRows(block,2);
 			nu=GetInPortCols(block,2);
 			uj=GetInPortPtrs(block,2);
-			j=min(j,mu*nu);
+			j=Min(j,mu*nu);
 			memcpy(y,(char *)uj+(j-1)*my*ny*so,my*ny*so);
 		}
 		else
 		{
-			j=min(j,nin-1);
+			j=Min(j,nin-1);
 			uj=GetInPortPtrs(block,j+1);
 			memcpy(y,uj,my*ny*so);
 		}

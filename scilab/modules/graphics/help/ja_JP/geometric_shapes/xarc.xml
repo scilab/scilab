@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xarc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xarc</refname>
     <refpurpose>楕円の一部を描画する</refpurpose>
@@ -41,14 +38,16 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xarc</literal> は,矩形<literal>(x,y,w,h)</literal>
-	(左上の点,幅,高さ)の中,および 
-    	角度 <literal>alpha1</literal> および角度 <literal>alpha1+alpha2</literal>
-	で定義される扇形の中に含まれる楕円の一部を描画します.
-    <literal>alpha1</literal>および <literal>alpha2</literal> は
-	<literal>a1/64</literal> 度および <literal>a2/64</literal>度
-	によりそれぞれ指定されます.
-	この関数はカレントのグラフィック色およびユーザ座標を使用します.</para>
+    <para>
+      <literal>xarc</literal> は,矩形<literal>(x,y,w,h)</literal>
+      (左上の点,幅,高さ)の中,および 
+      角度 <literal>alpha1</literal> および角度 <literal>alpha1+alpha2</literal>
+      で定義される扇形の中に含まれる楕円の一部を描画します.
+      <literal>alpha1</literal>および <literal>alpha2</literal> は
+      <literal>a1/64</literal> 度および <literal>a2/64</literal>度
+      によりそれぞれ指定されます.
+      この関数はカレントのグラフィック色およびユーザ座標を使用します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -73,9 +72,5 @@ xarc(-1.5,1.5,3,3,0,360*64)
         <link linkend="xfarcs">xfarcs</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

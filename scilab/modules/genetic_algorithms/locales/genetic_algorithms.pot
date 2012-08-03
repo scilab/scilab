@@ -14,16 +14,41 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
-# File: demos/GAIsing2ddemo.sce, line: 62
-# File: demos/GAdemo.sce, line: 81
-# File: demos/GAdemo.sce, line: 125
+# File: demos/GAIsing2ddemo.sce, line: 63
+# File: demos/GAdemo.sce, line: 86
+# File: demos/GAdemo.sce, line: 132
 # File: demos/MOGAdemo.sce, line: 83
-# File: demos/NSGA2demo.sce, line: 81
+# File: demos/NSGA2demo.sce, line: 83
 # File: demos/NSGAdemo.sce, line: 85
 #, c-format
 msgid "%s: optimization starting, please wait ...\n"
+msgstr ""
+
+#
+# File: demos/genetic_algorithms.dem.gateway.sce, line: 12
+msgid "Genetic algorithms"
+msgstr ""
+
+#
+# File: demos/genetic_algorithms.dem.gateway.sce, line: 13
+msgid "Genetic algorithms and Ising problem"
+msgstr ""
+
+#
+# File: demos/genetic_algorithms.dem.gateway.sce, line: 14
+msgid "MultiObjective Genetic Algorithm"
+msgstr ""
+
+#
+# File: demos/genetic_algorithms.dem.gateway.sce, line: 15
+msgid "Niched Sharing Genetic Algorithm"
+msgstr ""
+
+#
+# File: demos/genetic_algorithms.dem.gateway.sce, line: 16
+msgid "Niched Sharing Genetic Algorithm II"
 msgstr ""
 
 #

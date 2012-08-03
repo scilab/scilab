@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fullfile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullfile</refname>
     <refpurpose>Construit un nom de fichier complet</refpurpose>
@@ -30,17 +27,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>f = fullfile(varargin)</literal> construit un nom de fichier complet en prenant en compte la plateforme actuelle et en gérant les cas où les noms de répertoires commencent ou finissent par un séparateur de répertoire.</para>
+    <para>
+      <literal>f= fullfile(varargin)</literal> construit un nom de fichier complet en prenant en compte la plateforme actuelle et en gérant les cas où les noms de répertoires commencent ou finissent par un séparateur de répertoire.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
-f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
-f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[f = fullfile("/home/", "\scilab", "macros", "\util", "fullfile.sci")
+f = fullfile("C:", "\scilab", "macros", "\util", "fullfile.sci")
+r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>
@@ -48,12 +46,6 @@ f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
       <member>
         <link linkend="fileparts">fileparts</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

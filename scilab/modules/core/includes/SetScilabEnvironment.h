@@ -18,11 +18,7 @@
 #ifndef __SCIENV_H__
 #define __SCIENV_H__
 
-#ifdef _MSC_VER
-#include <windows.h>
-#else
 #include <stdio.h>
-#endif
 
 /**
  * Set the set Scilab mandatory variable like SCI or SCIHOME

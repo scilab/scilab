@@ -1,6 +1,3 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Allan CORNET
-// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 

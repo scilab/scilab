@@ -13,15 +13,13 @@ HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-	sci_gateway/cpp/sci_buildDocv2.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDocv2.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
 libscihelptools_la_LIBADD = libscihelptools-algo.la
 libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
-libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
 libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 noinst_LTLIBRARIES = libscihelptools-algo.la
 
@@ -39,23 +37,19 @@ endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
-libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/jvm/includes
-
-
 libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes/
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 
-libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 
 
 # For the code check (splint)
@@ -90,7 +84,10 @@ libscihelptools_la_data_configuration_DATA = data/configuration/scilab_primitive
 data/configuration/scilab_macros.txt
 
 libscihelptools_la_data_templatedir = $(mydatadir)/data/template
-libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
+libscihelptools_la_data_template_DATA = data/template/template_chm.html \
+data/template/template_html.html \
+data/template/template_javahelp.html \
+data/template/template_web.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/c_code.css \
@@ -126,6 +123,9 @@ data/pages/homepage-en_US.html \
 data/pages/homepage-fr_FR.html \
 data/pages/ban-en_US.png \
 data/pages/ban-fr_FR.png
+
+mostlyclean-local:
+	rm -rf web javaHelp html pdf
 
 include $(top_srcdir)/Makefile.incl.am
 

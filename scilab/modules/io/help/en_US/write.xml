@@ -10,104 +10,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="write" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="write" xml:lang="en">
   <refnamediv>
     <refname>write</refname>
-
     <refpurpose>write in a formatted file</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>write(file-desc,a,[format])
-write(file-desc,a,k,format)</synopsis>
+      write(file-desc,a,k,format)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>file-desc</term>
-
         <listitem>
           <para>character string specifying the file name or integer value
-          specifying logical unit (see file).</para>
-
+            specifying logical unit (see file).
+          </para>
           <para>This function can not open a UTF filename. In this case,
-          please uses mopen.</para>
+            please uses mopen.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>a</term>
-
         <listitem>
           <para>real matrix or column vector of character strings.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>format</term>
-
         <listitem>
           <para>character string, specifies a "Fortran" format. This character
-          string must begin with a right parenthesis and end with a left
-          parenthesis. Formats cannot mix floating point , integer or
-          character edition modes</para>
+            string must begin with a right parenthesis and end with a left
+            parenthesis. Formats cannot mix floating point , integer or
+            character edition modes
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>k</term>
-
         <listitem>
           <para>integer vector</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>writes row-by-row a real matrix or a column vector of character
-    strings in a formatted file. Each row of the <literal>a</literal> argument
-    begin in a new line of <literal>file-desc</literal> file. Depending on
-    <literal>format</literal> a given row of the <literal>a</literal> argument
-    may be written in more than one line of <literal>file-desc</literal>
-    file.</para>
-
-    <para>Format examples : <literal>(1x,e10.3,5x,3(f3.0))</literal> ,
-    <literal>(10x,a20)</literal> ;</para>
-
+      strings in a formatted file. Each row of the <literal>a</literal> argument
+      begin in a new line of <literal>file-desc</literal> file. Depending on
+      <literal>format</literal> a given row of the <literal>a</literal> argument
+      may be written in more than one line of <literal>file-desc</literal>
+      file.
+    </para>
+    <para>
+      Format examples : <literal>(1x,e10.3,5x,3(f3.0))</literal> ,
+      <literal>(10x,a20)</literal> ;
+    </para>
     <para>See a Fortran book for more precision.</para>
-
     <para>Direct access files :
-    <literal>x=write(file_desc,a,k,format)</literal>. Here
-    <literal>k</literal> is the vector of records (one record by row, i.e.
-    <literal>m=prod(size(k)</literal>)</para>
-
-    <para><literal>write(%io(2),....)</literal> writes on Scilab's window.
-    Note that in this case <literal>format</literal> should produce one output
-    line per matrix row. If this contraint is not verified unpredictable
-    behavior could happen.</para>
+      <literal>x=write(file_desc,a,k,format)</literal>. Here
+      <literal>k</literal> is the vector of records (one record by row, i.e.
+      <literal>m=prod(size(k)</literal>)
+    </para>
+    <para>
+      <literal>write(%io(2),....)</literal> writes on Scilab's window.
+      Note that in this case <literal>format</literal> should produce one output
+      line per matrix row. If this contraint is not verified unpredictable
+      behavior could happen.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 if getos() == 'Windows' then unix('del asave');
 else unix('rm -f asave'); end
@@ -122,10 +101,8 @@ else unix('rm -f foo'); end
 write('foo',A)
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="read">read</link>

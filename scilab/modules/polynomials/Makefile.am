@@ -13,10 +13,8 @@ src/fortran/dmpcnc.f \
 src/fortran/wmpmu.f \
 src/fortran/mpinsp.f \
 src/fortran/impext.f \
-src/fortran/bezout.f \
 src/fortran/recbez.f \
 src/fortran/sfact1.f \
-src/fortran/dmptld.f \
 src/fortran/dpodiv.f \
 src/fortran/dmptra.f \
 src/fortran/dmpins.f \
@@ -37,7 +35,6 @@ src/fortran/horner.f \
 src/fortran/idegre.f \
 src/fortran/fxshfr.f \
 src/fortran/mpdiag.f \
-src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
 src/fortran/wpodiv.f \
@@ -61,7 +58,8 @@ src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/quad.f \
 src/fortran/calcsc.f \
-src/fortran/writebufsfact.f
+src/fortran/writebufsfact.f \
+src/fortran/chkvar.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
@@ -102,22 +100,29 @@ sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
 
-libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libscipolynomials_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				$(AM_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscipolynomials.la
 noinst_LTLIBRARIES = libscipolynomials-algo.la
+else
+noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
+endif
 
-libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+
 
 libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
+libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
+INCLUDE_FLAGS = $(libscipolynomials_la_CPPFLAGS)
 
 libscipolynomials_la_LIBADD = libscipolynomials-algo.la
 

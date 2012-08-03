@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exportUI">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>exportUI</refname>
     <refpurpose>Appel de l'interface graphique d'export.</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>exportUI(figId)
-exportUI(fig)</synopsis>
+      exportUI(fig)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -42,12 +40,13 @@ exportUI(fig)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La routine <literal>exportUI</literal>
-	   lance l'interface graphique dediée à l'export de fenêtre graphique sous forme de fichier image.
+    <para>
+      La routine <literal>exportUI</literal>
+      lance l'interface graphique dediée à l'export de fenêtre graphique sous forme de fichier image.
     </para>
   </refsection>
- <refsection role="see also">
-<title>Voir aussi</title>
+  <refsection role="see also">
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xs2jpg">xs2jpg</link>
@@ -66,9 +65,4 @@ exportUI(fig)</synopsis>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteur</title>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

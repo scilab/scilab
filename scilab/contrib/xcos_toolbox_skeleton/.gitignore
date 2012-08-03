@@ -1,8 +1,36 @@
+#
+# Generated files (common)
+#
 cleaner.sce
 loader.sce
+unloader.sce
 jar/
+sci_gateway/c/xcos_toolbox_skeleton_c.c
+libxcos_toolbox_skeleton*.*
+cleaner_gateway.sce
+*.bin
+macros/lib
+macros/names
+images/h5/*.h5
+images/h5/*.sod
+help/*/master_help.xml
+help/*/scilab_*_help
+
+
+#
+# Generated files (Linux/MacOs)
+#
+*.so
+*.dylib
+
+#
+# Generated files (Windows)
+#
 *.dll
 *.lib
 *.def
 *.mak
-sci_gateway/c/xcos_toolbox_skeleton_c.c
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vfproj

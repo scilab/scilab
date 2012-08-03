@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -22,38 +23,37 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "WindowList.h"
+#include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-int get_figures_id_property( sciPointObj * pobj )
+int get_figures_id_property(void* _pvCtx, char* pobjUID)
 {
-  int   nbFig  = 0    ;
-  int * ids    = NULL ;
-  int   status = -1   ;
+    int   nbFig  = 0    ;
+    int * ids    = NULL ;
+    int   status = -1   ;
 
-	if (pobj != NULL)
-	{
-		/* This property should not be called on an handle */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
-		return -1;
-	}
+    if (pobjUID != NULL)
+    {
+        /* This property should not be called on an handle */
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
+        return -1;
+    }
 
-  nbFig = sciGetNbFigure() ; /* get the number of opened windows */
-  
-  ids = MALLOC( nbFig * sizeof(int) ) ;
-  if ( ids == NULL )
-  { 
-	  Scierror(999, _("%s: No more memory.\n"),"get_figures_id_property");
-	  return -1 ;
-  }
+    nbFig = sciGetNbFigure() ; /* get the number of opened windows */
 
-  sciGetFiguresId( ids ) ;
+    ids = MALLOC( nbFig * sizeof(int) ) ;
+    if ( ids == NULL )
+    {
+        Scierror(999, _("%s: No more memory.\n"),"get_figures_id_property");
+        return -1 ;
+    }
 
-  status = sciReturnRowIntVector( ids, nbFig ) ;
+    sciGetFiguresId( ids ) ;
 
-  FREE( ids ) ;
+    status = sciReturnRowIntVector(_pvCtx, ids, nbFig);
 
-  return status ;
+    FREE( ids ) ;
 
+    return status ;
 }
 /*------------------------------------------------------------------------*/

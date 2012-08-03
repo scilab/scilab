@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,25 +20,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * Terminal node of a {@link Struct} tree. This node is always a leaf.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Terminal", propOrder = {
-    "name",
-    "kind",
-    "id",
-    "fixed",
-    "initialValue",
-    "weight",
-    "max",
-    "min",
-    "nominalValue",
-    "comment",
-    "selected",
-    "output"
-})
+@XmlType(name = "Terminal", propOrder = { "name", "kind", "id", "fixed",
+        "initialValue", "weight", "max", "min", "nominalValue", "comment",
+        "selected", "output" })
 public final class Terminal {
 
     @XmlElement(required = true)
@@ -60,18 +48,16 @@ public final class Terminal {
     private List<Output> output;
 
     /**
-	 * Default constructor.
-	 */
-	public Terminal() {
-	}
-    
+     * Default constructor.
+     */
+    public Terminal() {
+    }
+
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getName() {
         return name;
@@ -81,9 +67,8 @@ public final class Terminal {
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setName(String value) {
         name = value;
@@ -92,10 +77,8 @@ public final class Terminal {
     /**
      * Gets the value of the kind property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getKind() {
         return kind;
@@ -105,9 +88,8 @@ public final class Terminal {
      * Sets the value of the kind property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setKind(String value) {
         kind = value;
@@ -116,10 +98,8 @@ public final class Terminal {
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getId() {
         return id;
@@ -129,9 +109,8 @@ public final class Terminal {
      * Sets the value of the id property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setId(String value) {
         id = value;
@@ -140,10 +119,8 @@ public final class Terminal {
     /**
      * Gets the value of the fixed property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getFixed() {
         return fixed;
@@ -153,9 +130,8 @@ public final class Terminal {
      * Sets the value of the fixed property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setFixed(ModelicaValue value) {
         fixed = value;
@@ -164,10 +140,8 @@ public final class Terminal {
     /**
      * Gets the value of the initialValue property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getInitialValue() {
         return initialValue;
@@ -177,9 +151,8 @@ public final class Terminal {
      * Sets the value of the initialValue property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setInitialValue(ModelicaValue value) {
         initialValue = value;
@@ -188,10 +161,8 @@ public final class Terminal {
     /**
      * Gets the value of the weight property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getWeight() {
         return weight;
@@ -201,9 +172,8 @@ public final class Terminal {
      * Sets the value of the weight property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setWeight(ModelicaValue value) {
         weight = value;
@@ -212,10 +182,8 @@ public final class Terminal {
     /**
      * Gets the value of the max property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getMax() {
         return max;
@@ -225,9 +193,8 @@ public final class Terminal {
      * Sets the value of the max property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setMax(ModelicaValue value) {
         max = value;
@@ -236,10 +203,8 @@ public final class Terminal {
     /**
      * Gets the value of the min property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getMin() {
         return min;
@@ -249,9 +214,8 @@ public final class Terminal {
      * Sets the value of the min property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setMin(ModelicaValue value) {
         min = value;
@@ -260,10 +224,8 @@ public final class Terminal {
     /**
      * Gets the value of the nominalValue property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getNominalValue() {
         return nominalValue;
@@ -273,9 +235,8 @@ public final class Terminal {
      * Sets the value of the nominalValue property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setNominalValue(ModelicaValue value) {
         nominalValue = value;
@@ -284,10 +245,8 @@ public final class Terminal {
     /**
      * Gets the value of the comment property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getComment() {
         return comment;
@@ -297,9 +256,8 @@ public final class Terminal {
      * Sets the value of the comment property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setComment(ModelicaValue value) {
         comment = value;
@@ -308,10 +266,8 @@ public final class Terminal {
     /**
      * Gets the value of the selected property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ModelicaValue }
-     *     
+     * @return possible object is {@link ModelicaValue }
+     * 
      */
     public ModelicaValue getSelected() {
         return selected;
@@ -321,9 +277,8 @@ public final class Terminal {
      * Sets the value of the selected property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ModelicaValue }
-     *     
+     *            allowed object is {@link ModelicaValue }
+     * 
      */
     public void setSelected(ModelicaValue value) {
         selected = value;
@@ -333,29 +288,29 @@ public final class Terminal {
      * Gets the value of the output property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the output property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the output property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getOutput().add(newItem);
+     * getOutput().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Output }
+     * Objects of the following type(s) are allowed in the list {@link Output }
      * 
      * @return the value of the output property.
      */
     public List<Output> getOutput() {
-    	if (output == null) {
-    		output = new ArrayList<Output>();
-    	}
-    	
+        if (output == null) {
+            output = new ArrayList<Output>();
+        }
+
         return output;
     }
 
@@ -365,6 +320,6 @@ public final class Terminal {
      */
     @Override
     public String toString() {
-    	return getId();
+        return getId();
     }
 }

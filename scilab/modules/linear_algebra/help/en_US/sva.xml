@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sva">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sva</refname>
     <refpurpose> singular value approximation</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[U,s,V]=sva(A,k)
-[U,s,V]=sva(A,tol)</synopsis>
+      [U,s,V]=sva(A,tol)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -49,15 +47,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Singular value approximation.</para>
-    <para><literal>[U,S,V]=sva(A,k)</literal> with <literal>k</literal> an integer
-    &gt;=1, returns <literal>U,S</literal> and <literal>V</literal> such that
-    <literal>B=U*S*V'</literal> is the best L2 approximation of
-    <literal>A</literal> with rank(<literal>B</literal>)=<literal>k</literal>.</para>
-    <para><literal>[U,S,V]=sva(A,tol)</literal> with <literal>tol</literal> a real
-    number, returns <literal>U,S</literal> and <literal>V</literal> such that
-    <literal>B=U*S*V'</literal> such that L2-norm of <literal>A-B</literal>
-    is at most <literal>tol</literal>.</para>
+      Singular value approximation.
+    </para>
+    <para>
+      <literal>[U,S,V]=sva(A,k)</literal> with <literal>k</literal> an integer
+      &gt;=1, returns <literal>U,S</literal> and <literal>V</literal> such that
+      <literal>B=U*S*V'</literal> is the best L2 approximation of
+      <literal>A</literal> with rank(<literal>B</literal>)=<literal>k</literal>.
+    </para>
+    <para>
+      <literal>[U,S,V]=sva(A,tol)</literal> with <literal>tol</literal> a real
+      number, returns <literal>U,S</literal> and <literal>V</literal> such that
+      <literal>B=U*S*V'</literal> such that L2-norm of <literal>A-B</literal>
+      is at most <literal>tol</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +74,7 @@ clean(svd(A-B))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="svd">svd</link>

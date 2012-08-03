@@ -15,10 +15,6 @@
 #define __CREATEMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "MALLOC.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "sciprint.h"
 
 /*
  * Create a Scilab variable on stack from a Matlab variable

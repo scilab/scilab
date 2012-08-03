@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kpure">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>kpure</refname>
     <refpurpose> continuous SISO system limit feedback gain</refpurpose>
@@ -21,9 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-  K=kpure(sys [,tol])
-  [K,R]=kpure(sys [,tol])
-</synopsis>
+      K=kpure(sys [,tol])
+      [K,R]=kpure(sys [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,30 +35,35 @@
         <term>tol</term>
         <listitem>
           <para>a positive scalar.  tolerance used to determine if a
-          root is imaginary or not. The default value is
-          <literal>1e-6</literal> </para>
+            root is imaginary or not. The default value is
+            <literal>1e-6</literal> 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
           <para>Real vector, the vector of gains for which at least
-          one closed loop pole is imaginary. </para>
+            one closed loop pole is imaginary. 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>R</term>
         <listitem>
           <para>Complex vector, the imaginary closed loop poles
-          associated with the values of <literal>K</literal>.</para>
+            associated with the values of <literal>K</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>K=kpure(sys)</literal> computes the gains <literal>K</literal> such that the system
-    <literal>sys</literal> feedback by <literal>K(i)</literal> (<literal>sys/.K(i)</literal>) has  poles on imaginary axis.</para>
+    <para>
+      <literal>K=kpure(sys)</literal> computes the gains <literal>K</literal> such that the system
+      <literal>sys</literal> feedback by <literal>K(i)</literal> (<literal>sys/.K(i)</literal>) has  poles on imaginary axis.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -87,12 +89,8 @@ plot(real(Y),imag(Y),'+r')
 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>Serge Steer, INRIA</para>
-  </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="evans">evans</link>

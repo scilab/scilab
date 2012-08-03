@@ -81,7 +81,6 @@ function Makename = ilib_gen_Make(name, ..
                                  files, ..
                                  libs, ..
                                  library_name, ..
-                                 makename, ..
                                  with_gateway, ..
                                  ldflags, ..
                                  cflags, ..

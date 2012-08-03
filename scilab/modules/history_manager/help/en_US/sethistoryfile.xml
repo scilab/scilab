@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sethistoryfile">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>sethistoryfile</refname>
     <refpurpose>set filename for scilab history</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>sethistoryfile(filename)
-sethistoryfile()</synopsis>
+      sethistoryfile()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,7 +36,8 @@ sethistoryfile()</synopsis>
     <title>Description</title>
     <para>set filename for scilab history.</para>
     <para>sethistoryfile() without parameters will use the default filename
-    (SCIHOME/history.scilab)</para>
+      (SCIHOME/history.scilab)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,11 +45,5 @@ sethistoryfile()</synopsis>
 gethistoryfile()
 sethistoryfile(gethistoryfile())
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

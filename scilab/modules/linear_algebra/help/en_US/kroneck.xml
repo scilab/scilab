@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kroneck">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>kroneck</refname>
     <refpurpose> Kronecker form of matrix pencil</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
-[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)</synopsis>
+      [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>F</term>
         <listitem>
-          <para>real matrix pencil <literal>F=s*E-A</literal></para>
+          <para>
+            real matrix pencil <literal>F=s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,10 +61,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Kronecker form of matrix pencil: <literal>kroneck</literal> computes two
-    orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
-    upper-triangular form:</para>
-    <programlisting role = ""><![CDATA[ 
+      Kronecker form of matrix pencil: <literal>kroneck</literal> computes two
+      orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
+      upper-triangular form:
+    </para>
+    <programlisting role=""><![CDATA[ 
            | sE(eps)-A(eps) |        X       |      X     |      X        |
            |----------------|----------------|------------|---------------|
            |        O       | sE(inf)-A(inf) |      X     |      X        |
@@ -76,25 +77,44 @@ Q(sE-A)Z = |---------------------------------|----------------------------|
            |        0       |       0        |      0     | sE(eta)-A(eta)|
  ]]></programlisting>
     <para>
-    The dimensions of the four blocks are given by:</para>
-    <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
-    <literal>f = Qd(3) x Zd(3)</literal>, <literal>eta=Qd(4)xZd(4)</literal></para>
+      The dimensions of the four blocks are given by:
+    </para>
     <para>
-    The <literal>inf</literal> block contains the infinite modes of
-    the pencil.</para>
+      <literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
+      <literal>f = Qd(3) x Zd(3)</literal>, <literal>eta=Qd(4)xZd(4)</literal>
+    </para>
     <para>
-    The <literal>f</literal> block contains the finite modes of
-    the pencil</para>
+      The <literal>inf</literal> block contains the infinite modes of
+      the pencil.
+    </para>
     <para>
-    The structure of epsilon and eta blocks are given by:</para>
-    <para><literal>numbeps(1)</literal> = <literal>#</literal> of eps blocks of size 0 x 1</para>
-    <para><literal>numbeps(2)</literal> = <literal>#</literal> of eps blocks of size 1 x 2</para>
-    <para><literal>numbeps(3)</literal> = <literal>#</literal> of eps blocks of size 2 x 3     etc...</para>
-    <para><literal>numbeta(1)</literal> = <literal>#</literal> of eta blocks of size 1 x 0</para>
-    <para><literal>numbeta(2)</literal> = <literal>#</literal> of eta blocks of size 2 x 1</para>
-    <para><literal>numbeta(3)</literal> = <literal>#</literal> of eta blocks of size 3 x 2     etc...</para>
+      The <literal>f</literal> block contains the finite modes of
+      the pencil
+    </para>
     <para>
-    The code is taken from T. Beelen (Slicot-WGS group).</para>
+      The structure of epsilon and eta blocks are given by:
+    </para>
+    <para>
+      <literal>numbeps(1)</literal> = <literal>#</literal> of eps blocks of size 0 x 1
+    </para>
+    <para>
+      <literal>numbeps(2)</literal> = <literal>#</literal> of eps blocks of size 1 x 2
+    </para>
+    <para>
+      <literal>numbeps(3)</literal> = <literal>#</literal> of eps blocks of size 2 x 3     etc...
+    </para>
+    <para>
+      <literal>numbeta(1)</literal> = <literal>#</literal> of eta blocks of size 1 x 0
+    </para>
+    <para>
+      <literal>numbeta(2)</literal> = <literal>#</literal> of eta blocks of size 2 x 1
+    </para>
+    <para>
+      <literal>numbeta(3)</literal> = <literal>#</literal> of eta blocks of size 3 x 2     etc...
+    </para>
+    <para>
+      The code is taken from T. Beelen (Slicot-WGS group).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -114,7 +134,7 @@ numbeta
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gschur">gschur</link>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-05 17:32+0000\n"
+"PO-Revision-Date: 2012-07-26 20:24+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid ""
@@ -40,8 +40,17 @@ msgid "%s: The constraints are inconsistent.\n"
 msgstr "%s: Omezení jsou nestálá.\n"
 
 #, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s: Argument 3: očekáván špatný počet sloupců %d\n"
+msgid ""
+"%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno %d sloupců v matici "
+"%s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
+"to %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -554,7 +563,7 @@ msgid ""
 "integer."
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. maxiter musí být celé číslo s "
-"plovoucí čárkou."
+"plovoucí desetinnou čárkou."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 is not positive."
@@ -816,8 +825,8 @@ msgid ""
 "%s: Expected floating point integer for input argument %s at input #%d, but "
 "entry #%d is equal to %s."
 msgstr ""
-"%s: Očekáváno celé číslo s plovoucí čárkou pro vstupní argument %s u vstupu "
-"#%d, ale záznam #%d se rovná %s."
+"%s: Očekáváno celé číslo s plovoucí desetinnou čárkou pro vstupní argument "
+"%s u vstupu #%d, ale záznam #%d se rovná %s."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -897,11 +906,13 @@ msgid ""
 "%s: The initial simplex method %s is not compatible with the restart simplex "
 "method %s"
 msgstr ""
+"%s: Počáteční simplexová metoda %s není kompatibilní se simplexovou metodou "
+"restartu %s"
 
 #, c-format
 msgid ""
 "%s: Randomized bounds restart simplex is not available without bounds."
-msgstr ""
+msgstr "%s: Simplex restartu s náhodnými hranicemi není bez nich dostupný."
 
 #, c-format
 msgid "%s: Unknown restart simplex method %s"
@@ -971,7 +982,7 @@ msgstr "%s: Nelze zkontrolovat nákladovou funkci když je x0 prázdné"
 
 #, c-format
 msgid "%s: Cannot evaluate cost function with %s: %s"
-msgstr ""
+msgstr "%s: Nelze vyhodnotit nákladovou funkci pomocí %s: %s"
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
@@ -1179,17 +1190,27 @@ msgstr "%s: Vektor vyloučení indexu má %d řádků místo 1."
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávány nezáporné řetězce.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"
 
 #, c-format
-#~ msgid "%s: Cannot evaluate cost function with %s."
-#~ msgstr "%s: Nelze vyhodnotit nákladovou funkci pomocí %s."
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
+#~ "to %d.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: %s musí být celé číslo v rozsahu "
+#~ "od 0 do %d.\n"

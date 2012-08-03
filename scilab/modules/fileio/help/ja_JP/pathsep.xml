@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pathsep">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>pathsep</refname>
     <refpurpose>カレントのプラットフォームのパスセパレータを返す</refpurpose>
@@ -43,11 +40,5 @@
     <programlisting role="example"><![CDATA[ 
 pathsep() 
 ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

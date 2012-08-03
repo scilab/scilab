@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ccontrg">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ccontrg</refname>
     <refpurpose>Central H-infinity continuous time controller</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>a two elements vector with integer values: the dimension of the 2,2 part of <literal>P</literal></para>
+          <para>
+            a two elements vector with integer values: the dimension of the 2,2 part of <literal>P</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,22 +47,27 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns a realization <literal>K</literal> of the central controller for the
-    general standard problem in state-space form.</para>
+      returns a realization <literal>K</literal> of the central controller for the
+      general standard problem in state-space form.
+    </para>
     <para>
-    Note that gamma must be &gt; gopt (ouput of <literal>gamitg</literal>)</para>
+      Note that gamma must be &gt; gopt (ouput of <literal>gamitg</literal>)
+    </para>
     <para>
-    P contains the parameters of plant realization <literal>(A,B,C,D)</literal>
-    (<literal>syslin</literal> list) with</para>
-    <programlisting role = ""><![CDATA[ 
+      P contains the parameters of plant realization <literal>(A,B,C,D)</literal>
+      (<literal>syslin</literal> list) with
+    </para>
+    <programlisting role=""><![CDATA[ 
 B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
                             ( C2 )          ( D21  D22)
  ]]></programlisting>
-    <para><literal>r(1)</literal> and <literal>r(2)</literal> are the
-    dimensions of <literal>D22</literal> (rows x columns)</para>
+    <para>
+      <literal>r(1)</literal> and <literal>r(2)</literal> are the
+      dimensions of <literal>D22</literal> (rows x columns)
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gamitg">gamitg</link>
@@ -76,5 +80,17 @@ B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
   <refsection>
     <title>Authors</title>
     <para>P. Gahinet (INRIA);   </para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+          This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

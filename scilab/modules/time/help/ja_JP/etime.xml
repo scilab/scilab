@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="etime">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>etime</refname>
     <refpurpose>経過時間</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>e</term>
         <listitem>
-          <para><literal>t2</literal> および <literal>t1</literal>の間の秒数.</para>
+          <para>
+            <literal>t2</literal> および <literal>t1</literal>の間の秒数.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,25 +50,33 @@
       <varlistentry>
         <term>t1 および t2 が10個の値を有する場合</term>
         <listitem>
-          <para> <literal>t2</literal> および <literal>t1</literal> は,
-	<literal>getdate</literal>により返された形式である必要があります.
-	この場合,その3番目,4番目および5番目の値は無視されます.</para>
+          <para>
+            <literal>t2</literal> および <literal>t1</literal> は,
+            <literal>getdate</literal>により返された形式である必要があります.
+            この場合,その3番目,4番目および5番目の値は無視されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t1 および t2 が6個の値を有する場合</term>
         <listitem>
-          <para> <literal>t2</literal> および <literal>t1</literal> は,
-	以下の形式である必要があります: T = [年 月 日 時間 分 秒]
-	ただし,秒はミリ秒単位(例: 12.345)です.</para>
+          <para>
+            <literal>t2</literal> および <literal>t1</literal> は,
+            以下の形式である必要があります: T = [年 月 日 時間 分 秒]
+            ただし,秒はミリ秒単位(例: 12.345)です.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>t2</literal> および <literal>t1</literal> は,
-	同じ大きさである必要があります..</para>
-    <para><literal>t2</literal> および <literal>t1</literal> は,
-	各行に上記の形式のデータを有する行列とすることができます
-	(全ての行は同じ形式とします).</para>
+    <para>
+      <literal>t2</literal> および <literal>t1</literal> は,
+      同じ大きさである必要があります..
+    </para>
+    <para>
+      <literal>t2</literal> および <literal>t1</literal> は,
+      各行に上記の形式のデータを有する行列とすることができます
+      (全ての行は同じ形式とします).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -100,12 +107,6 @@ E2=etime(t2,t1)
       <member>
         <link linkend="datevec">datevec</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

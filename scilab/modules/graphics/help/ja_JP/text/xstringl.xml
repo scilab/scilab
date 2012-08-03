@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xstringl">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xstringl</refname>
     <refpurpose>文字列を囲うボックスを計算</refpurpose>
@@ -41,8 +38,11 @@
         <term>str</term>
         <listitem>
           <para>文字列の行列.</para>
-         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">
-	LaTeX または MathML 式</link>を書くことができます.</para>
+          <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">
+              LaTeX または MathML 式
+            </link>
+            を書くことができます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,13 +61,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xstringl</literal> は,
-	位置<literal>x,y</literal> (左下の点)にある文字列<literal>str</literal>を囲う
-	矩形の大きさをカレントのグラフィックスケールで
-	<literal>rect=[x,y,w,h]</literal>(左下の点, 幅, 高さ)に返します.
-	</para>
+    <para>
+      <literal>xstringl</literal> は,
+      位置<literal>x,y</literal> (左下の点)にある文字列<literal>str</literal>を囲う
+      矩形の大きさをカレントのグラフィックスケールで
+      <literal>rect=[x,y,w,h]</literal>(左下の点, 幅, 高さ)に返します.
+    </para>
     <para>ポストスクリプトドライバを使用する場合,
-	この結果の近似精度は十分でない可能性があります.</para>
+      この結果の近似精度は十分でない可能性があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -91,8 +93,6 @@ txt2.font_style = 2;
 plot2d([0;1],[0;1],0)
 // Scilab 5.2以降でのみ有効
 mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
-txt2=gce();
-txt2.font_size = 5;
 a=gca(); 
 a.margins=[0,0;0,0];
 str=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
@@ -122,9 +122,5 @@ xstring(r2(1),r2(2),str)
         <link linkend="stringbox">stringbox</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

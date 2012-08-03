@@ -59,6 +59,12 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_syredi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="conv2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_conv2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h">
@@ -67,12 +73,12 @@
     <ClInclude Include="..\..\includes\gw_signal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="conv2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\signal_processing.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="signal_processing_f_Import.def">
@@ -81,6 +87,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\signal_processing.iss" />
     <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
+    <None Include="..\..\locales\signal_processing.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="signal_processing.rc">

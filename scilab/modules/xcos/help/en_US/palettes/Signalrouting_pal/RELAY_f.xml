@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -78,7 +78,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_RELAY_f">Authors</xref>
+              <xref linkend="Example_RELAY_f">Example</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -98,13 +98,13 @@
   <refsection id="Description_RELAY_f">
     <title>Description</title>
     <para>
-This block routes one of the regular inputs to the unique regular
-output. the choice of which input is to be routed is done, initially
-by the "initial connected input" parameter. Then, every time an input
-event arrives on the i-th input event port, the i-th regular input
-port is routed to the regular output.   
-
-</para>
+      This block routes one of the regular inputs to the unique regular
+      output. the choice of which input is to be routed is done, initially
+      by the "initial connected input" parameter. Then, every time an input
+      event arrives on the i-th input event port, the i-th regular input
+      port is routed to the regular output.   
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_RELAY_f">
     <title>Dialog box</title>
@@ -116,8 +116,8 @@ port is routed to the regular output.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -139,16 +139,24 @@ port is routed to the regular output.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -170,19 +178,29 @@ port is routed to the regular output.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 2</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 2
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -208,8 +226,16 @@ port is routed to the regular output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_RELAY_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  <refsection id="Example_RELAY_f">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/RELAY_f_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/RELAY_f_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

@@ -14,37 +14,28 @@ package org.scilab.modules.ui_data.actions;
 
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Default action for a BrowseVar
  */
-public abstract class DefaultAction extends CallBack {
-	private static final Set<String> ICON_PATH = new HashSet<String>();
-
-	static {
-		addIconPath(System.getenv("SCI") + "/modules/gui/images/icons/");
-	}
-
+public abstract class DefaultAction extends CommonCallBack {
 
 	/**
 	 * Default constructor.
@@ -65,18 +56,9 @@ public abstract class DefaultAction extends CallBack {
 	 *            corresponding scilabVariableBrowser
 	 */
 	public DefaultAction() {
-		super("");
+		super("", CallBack.UNTYPED);
 
 		installProperties();
-	}
-	
-	/**
-	 * Add an icon path to the default icon path.
-	 * 
-	 * @param path the icon path (with the trailing /)
-	 */
-	public static void addIconPath(String path) {
-		ICON_PATH.add(path);
 	}
 
 	/**
@@ -84,7 +66,7 @@ public abstract class DefaultAction extends CallBack {
 	 */
 	private void installProperties() {
 		String name = "";
-		String icon = "";
+        ImageIcon icon = null;
 		int mnemonic = 0;
 		int accelerator = 0;
 		try {
@@ -93,13 +75,10 @@ public abstract class DefaultAction extends CallBack {
 			/*
 			 * Getting icon from the registered icon path
 			 */
-			final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
-			for (String path : ICON_PATH) {
-				if (new File(path + iconName).exists()) {
-					icon = path + iconName;
-					break;
-				}
-			}
+            final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
+            if (iconName != null && !iconName.isEmpty()) {
+                icon = new ImageIcon(ScilabSwingUtilities.findIcon(iconName));
+            }
 			
 			mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
 			accelerator = getClass().getField("ACCELERATOR_KEY").getInt(null);
@@ -117,8 +96,8 @@ public abstract class DefaultAction extends CallBack {
 		putValue(Action.NAME, name);
 		putValue(Action.SHORT_DESCRIPTION, name);
 		putValue(Action.LONG_DESCRIPTION, name);
-		if (!ICON_PATH.equals(icon)) {
-			putValue(Action.SMALL_ICON, new ImageIcon(icon));
+        if (icon != null) {
+            putValue(Action.SMALL_ICON, icon);
 		}
 
 		/*
@@ -142,7 +121,7 @@ public abstract class DefaultAction extends CallBack {
 	 *            the associated callBack
 	 * @return the menu item
 	 */
-	protected static MenuItem createMenu(CallBack callBack) {
+	protected static MenuItem createMenu(CommonCallBack callBack) {
 		MenuItem item = ScilabMenuItem.createMenuItem();
 
 		SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
@@ -159,7 +138,7 @@ public abstract class DefaultAction extends CallBack {
 	 *            the associated callback
 	 * @return the push button
 	 */
-	protected static PushButton createButton(CallBack callback) {
+	protected static PushButton createButton(CommonCallBack callback) {
 		PushButton item = ScilabPushButton.createPushButton();
 
 		SwingScilabPushButton swingItem = (SwingScilabPushButton) item
@@ -181,7 +160,7 @@ public abstract class DefaultAction extends CallBack {
 	 *            the associated callback
 	 * @return the checkbox item
 	 */
-	protected static CheckBoxMenuItem createCheckBoxMenu(CallBack callback) {
+	protected static CheckBoxMenuItem createCheckBoxMenu(CommonCallBack callback) {
 		CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
 		SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item

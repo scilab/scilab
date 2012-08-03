@@ -10,62 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="iscell" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="iscell" xml:lang="en">
   <refnamediv>
     <refname>iscell</refname>
-
     <refpurpose>Check if a variable is a cell array</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>bool = iscell(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>Scilab variable</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>bool</term>
-
         <listitem>
           <para>A boolean</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>iscell(x)</literal> returns true if x is a cell array
-    and false otherwise.</para>
+    <para>
+      <literal>iscell(x)</literal> returns true if x is a cell array
+      and false otherwise.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 iscell(1)
 
@@ -77,22 +56,15 @@ c(2).entries=datenum();
 iscell(c)
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="cell">cell</link></member>
-
-      <member><link linkend="isstruct">isstruct</link></member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Author</title>
-
-    <simplelist type="vert">
-      <member>V.C.</member>
+      <member>
+        <link linkend="cell">cell</link>
+      </member>
+      <member>
+        <link linkend="isstruct">isstruct</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

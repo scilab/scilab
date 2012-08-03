@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfile2sci">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mfile2sci</refname>
     <refpurpose> Matlab M-file to Scilab conversion function</refpurpose>
@@ -93,18 +90,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools. It
-    tries whenever possible to replace call to Matlab functions by the
-    equivalent Scilab primitives and functions.
-  </para>
+      M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools. It
+      tries whenever possible to replace call to Matlab functions by the
+      equivalent Scilab primitives and functions.
+    </para>
     <para>
-    To convert a Matlab M-file just enter the Scilab instruction:
-    mfile2sci(file)
-  </para>
+      To convert a Matlab M-file just enter the Scilab instruction:
+      mfile2sci(file)
+    </para>
     <para>
-    where file is a character string giving the path name of the M-file
-    mfile2sci will generate three files in the same directory
-  </para>
+      where file is a character string giving the path name of the M-file
+      mfile2sci will generate three files in the same directory
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;function-name&gt;.sci</term>
@@ -126,26 +123,26 @@
       </varlistentry>
     </variablelist>
     <para>
-    Some functions like eye, ones, size, sum,... behave differently
-    according to the dimension of their arguments. When mfile2sci cannot
-    infer dimensions it replaces these function call by a call to an
-    emulation function named mtlb_&lt;function_name&gt;. For efficiency these
-    functions may be replaced by the proper scilab equivalent instructions.
-    To get information about replacement, enter:
-    help mtlb_&lt;function_name&gt; in Scilab command window
-  </para>
+      Some functions like eye, ones, size, sum,... behave differently
+      according to the dimension of their arguments. When mfile2sci cannot
+      infer dimensions it replaces these function call by a call to an
+      emulation function named mtlb_&lt;function_name&gt;. For efficiency these
+      functions may be replaced by the proper scilab equivalent instructions.
+      To get information about replacement, enter:
+      help mtlb_&lt;function_name&gt; in Scilab command window
+    </para>
     <para>
-    Some other functions like plot, has no straightforward ï¿½quivalent in
-    scilab. They are also replaced by an emulation function named
-    mtlb_&lt;function_name&gt;.
-  </para>
+      Some other functions like plot, has no straightforward ï¿½quivalent in
+      scilab. They are also replaced by an emulation function named
+      mtlb_&lt;function_name&gt;.
+    </para>
     <para>
-    When translation may be incorrect or may be improved mfile2sci adds a
-    comment which begins by "//!" (according to verbose-mode)
-  </para>
+      When translation may be incorrect or may be improved mfile2sci adds a
+      comment which begins by "//!" (according to verbose-mode)
+    </para>
     <para>
-  When called without rhs, <literal>mfile2sci()</literal> launches a GUI to help to select a file/directory and options.
-  </para>
+      When called without rhs, <literal>mfile2sci()</literal> launches a GUI to help to select a file/directory and options.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -197,18 +194,11 @@ rot90(m,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="translatepaths">translatepaths</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V. Couvert</member>
-      <member>S. Steer</member>
     </simplelist>
   </refsection>
 </refentry>

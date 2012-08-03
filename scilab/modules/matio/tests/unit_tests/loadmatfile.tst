@@ -227,24 +227,23 @@ end
 
     // TODO: uint64 tests ?
 
-  
+
     //
     // TESTS FOR ND-ARRAYS
     //
-    sciemptyNDarray = hypermat([0 0 0], []);
-    if or(emptyNDarray.dims <> sciemptyNDarray.dims) | or(emptyNDarray.entries <> sciemptyNDarray.entries) then pause, end
+    if or(emptyNDarray.dims <> [0 0 0]) | or(emptyNDarray.entries <> []) then pause, end
     if or(realdoubleNDarray <> matrix(1:24, 2, 3, 4)) then pause, end
     if or(complexdoubleNDarray <> matrix((1:24) + (1:24)*%i, 2, 3, 4)) then pause, end
-    
-    clear sciemptyNDarray emptyNDarray realdoubleNDarray complexdoubleNDarray
-  
+
+    clear emptyNDarray realdoubleNDarray complexdoubleNDarray
+
   end
 
   //
   // MISC
   //
   if or(eye100x100 <> eye(100,100)) then pause, end
-  
+
 end
 
 // TODO: read all variables from a single file ?

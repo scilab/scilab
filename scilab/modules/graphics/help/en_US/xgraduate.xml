@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgraduate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xgraduate">
   <refnamediv>
     <refname>xgraduate</refname>
     <refpurpose> axis graduation</refpurpose>
@@ -47,12 +44,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xgraduate</literal> returns the axis graduations which are used by the plot
-    routines (with pretty print flag enabled). It returns an interval <literal>[xi,xa]</literal> which contains the
-    given interval <literal>[xmi,xma]</literal> and such that</para>
-    <para><literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> and the interval can 
-    be divided into <literal>np2</literal> intervals and each interval is divided in
-    <literal>np1</literal> sub-intervals.</para>
+    <para>
+      <literal>xgraduate</literal> returns the axis graduations which are used by the plot
+      routines (with pretty print flag enabled). It returns an interval <literal>[xi,xa]</literal> which contains the
+      given interval <literal>[xmi,xma]</literal> and such that
+    </para>
+    <para>
+      <literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> and the interval can 
+      be divided into <literal>np2</literal> intervals and each interval is divided in
+      <literal>np1</literal> sub-intervals.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -61,7 +62,7 @@
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graduate">graduate</link>
@@ -70,9 +71,5 @@
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.P.C ; ;   </para>
   </refsection>
 </refentry>

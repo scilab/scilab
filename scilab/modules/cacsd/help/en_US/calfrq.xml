@@ -10,95 +10,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="calfrq" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="calfrq" xml:lang="en">
   <refnamediv>
     <refname>calfrq</refname>
-
     <refpurpose>frequency response discretization</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>[frq,bnds,split]=calfrq(h,fmin,fmax)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>Linear system in state space or transfer representation
-          (<literal>see <link linkend="syslin">syslin</link></literal>)</para>
+            (
+            <literal>
+              see <link linkend="syslin">syslin</link>
+            </literal>
+            )
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>fmin,fmax</term>
-
         <listitem>
           <para>real scalars (min and max frequencies in Hz)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>frq</term>
-
         <listitem>
           <para>row vector (discretization of the frequency interval)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>bnds</term>
-
         <listitem>
-          <para>vector <literal>[Rmin Rmax Imin Imax]</literal> where
-          <literal>Rmin</literal> and <literal>Rmax</literal> are the lower
-          and upper bounds of the frequency response real part,
-          <literal>Imin</literal> and <literal>Imax</literal> are the lower
-          and upper bounds of the frequency response imaginary part,</para>
+          <para>
+            vector <literal>[Rmin Rmax Imin Imax]</literal> where
+            <literal>Rmin</literal> and <literal>Rmax</literal> are the lower
+            and upper bounds of the frequency response real part,
+            <literal>Imin</literal> and <literal>Imax</literal> are the lower
+            and upper bounds of the frequency response imaginary part,
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>split</term>
-
         <listitem>
           <para>vector of frq splitting points indexes</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>frequency response discretization; <literal>frq</literal> is the
-    discretization of <literal>[fmin,fmax]</literal> such that the peaks in
-    the frequency response are well represented.</para>
-
-    <para>Singularities are located between <literal>frq(split(k)-1)</literal>
-    and <literal>frq(split(k))</literal> for <literal>k&gt;1</literal>.</para>
+    <para>
+      frequency response discretization; <literal>frq</literal> is the
+      discretization of <literal>[fmin,fmax]</literal> such that the peaks in
+      the frequency response are well represented.
+    </para>
+    <para>
+      Singularities are located between <literal>frq(split(k)-1)</literal>
+      and <literal>frq(split(k))</literal> for <literal>k&gt;1</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
@@ -108,22 +89,27 @@ rf=repfreq(h1,f1);
 plot2d(real(rf)',imag(rf)')
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="bode">bode</link></member>
-
-      <member><link linkend="black">black</link></member>
-
-      <member><link linkend="nyquist">nyquist</link></member>
-
-      <member><link linkend="freq">freq</link></member>
-
-      <member><link linkend="repfreq">repfreq</link></member>
-
-      <member><link linkend="logspace">logspace</link></member>
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+      <member>
+        <link linkend="freq">freq</link>
+      </member>
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="logspace">logspace</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

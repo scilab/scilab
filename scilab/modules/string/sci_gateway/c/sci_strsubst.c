@@ -13,7 +13,6 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
@@ -41,12 +40,14 @@ int sci_strsubst(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -81,6 +82,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
 
@@ -88,6 +90,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
 
@@ -101,6 +104,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
 
@@ -117,6 +121,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                     return 0;
                 }
 
@@ -152,6 +157,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -160,6 +166,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -174,6 +181,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -187,6 +195,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -195,6 +204,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -209,6 +219,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -222,6 +233,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -238,6 +250,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -249,6 +262,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
                 return 0;
             }
 
@@ -257,6 +271,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 0;
             }
 
@@ -268,6 +283,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     return 0;
                 }
 
@@ -275,6 +291,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -285,6 +302,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                         return 0;
                     }
 
@@ -316,6 +334,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                         if (sciErr.iErr)
                         {
                             printError(&sciErr, 0);
+                            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                             return 0;
                         }
 
@@ -353,6 +372,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
                         if (sciErr.iErr)
                         {
                             printError(&sciErr, 0);
+                            Scierror(999,_("%s: Memory allocation error.\n"), fname);
                             return 0;
                         }
 
@@ -402,6 +422,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -411,6 +432,7 @@ int sci_strsubst(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 

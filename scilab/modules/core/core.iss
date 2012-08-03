@@ -18,6 +18,12 @@
 ;
 #define CORE "core"
 ;
+Source: bin\{#CORE}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#CORE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
+;
 Source: modules\{#CORE}\jar\org.scilab.modules.{#CORE}.jar;DestDir: {app}\modules\{#CORE}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#CORE}\license.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
@@ -57,6 +63,7 @@ Source: modules\{#CORE}\includes\version.h; DestDir: {app}\modules\{#CORE}\inclu
 Source: modules\{#CORE}\includes\warningmode.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\getversion.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\Thread_Wrapper.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\backtrace_print.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 
 ;
 Source: modules\{#CORE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CORE}\macros; Components: {#COMPN_SCILAB}

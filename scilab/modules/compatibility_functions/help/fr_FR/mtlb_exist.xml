@@ -11,46 +11,41 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_exist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mtlb_exist</refname>
     <refpurpose>Fonction d'émulation de la fonction Matlab exist</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>exist</literal> sauf si l'entrée est une variable.
-    La fonction Scilab <literal>mtlb_exist</literal> est une émulation partielle de cette fonction.</para>
     <para>
-    La fonction <literal>r = mtlb_exist(nam[,tp])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>exist(nam[,tp])</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_exist</literal> :
+      Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>exist</literal> sauf si l'entrée est une variable.
+      La fonction Scilab <literal>mtlb_exist</literal> est une émulation partielle de cette fonction.
+    </para>
+    <para>
+      La fonction <literal>r = mtlb_exist(nam[,tp])</literal> est utilisée par
+      <literal>mfile2sci</literal> pour remplacer <literal>exist(nam[,tp])</literal> quand il n'était pas
+      possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+      déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+      on peut remplacer les appels à <literal>mtlb_exist</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec une entrée et si <literal>nam</literal> est un nom de variable,
-        <literal>mtlb_exist(nam)</literal> peut être remplacé par <literal>exists(nam)</literal>
+          Avec une entrée et si <literal>nam</literal> est un nom de variable,
+          <literal>mtlb_exist(nam)</literal> peut être remplacé par <literal>exists(nam)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_exist</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>
+      Attention : <literal>mtlb_exist</literal> ne doit pas être utilisée pour une programmation manuelle.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="exists">exists</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

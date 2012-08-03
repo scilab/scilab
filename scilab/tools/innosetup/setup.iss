@@ -13,9 +13,7 @@
 ;
 ;-------------------------------------------------------------------------------
 
-;Minimun O.S version : Windows XP
-MinVersion=5.01,5.01
-; datas to modify with version
+; data to modify with version
 #ifdef SCILAB_X64
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
@@ -49,7 +47,7 @@ WizardSmallImageFile=tools\innosetup\ScilabLogoSmall.bmp
 BackColor=clGray
 BackColor2=clBlack
 BackColorDirection=lefttoright
-AppCopyright=Consortium Scilab (DIGITEO) - Copyright © {#CurrentYear}
+AppCopyright=Scilab Enterprises - Copyright © {#CurrentYear}
 UninstallDisplayIcon={app}\bin\wscilex.exe
 Compression=lzma/ultra64
 InternalCompressLevel=ultra64

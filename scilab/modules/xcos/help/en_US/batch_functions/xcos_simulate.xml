@@ -36,10 +36,14 @@
     <title>Description</title>
     This function is used to simulate xcos diagrams in batch
     mode. It requires the <link linkend="scicos_diagram">scs_m
-    structure</link>which can be obtained by loading in Scilab the
+      structure
+    </link>
+    which can be obtained by loading in Scilab the
     <literal>.xcos</literal> file (see <link linkend="importXcosDiagram">
-    importXcosDiagram</link>).
-
+      importXcosDiagram
+    </link>
+    ).
+    
     <para>
       User can also define <literal>pre_xcos_simulate</literal>
       function that will run before simulation.
@@ -75,7 +79,11 @@
     <title>Examples</title>
     <para>
       The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
-      <mediaobject><imageobject><imagedata align="center" fileref="../../images/batch_simulation.png"/></imageobject></mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+        </imageobject>
+      </mediaobject>
       Simulate this diagram in batch mode and change some context values.
       <programlisting role="example"><![CDATA[
       importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
@@ -148,7 +156,11 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
     </para>
     <para>
       The xcos diagram: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
-      <mediaobject><imageobject><imagedata align="center" fileref="../../images/Command.png"/></imageobject></mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/Command.png"/>
+        </imageobject>
+      </mediaobject>
       Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
       <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command.xcos")
@@ -190,9 +202,13 @@ xcos_simulate(scs_m, 4);
 
       ]]></programlisting>
     </para>
-   <para>
+    <para>
       The xcos diagram: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
-      <mediaobject><imageobject><imagedata align="center" fileref="../../images/Command_bode.png"/></imageobject></mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/Command_bode.png"/>
+        </imageobject>
+      </mediaobject>
       Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
       <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command_bode.xcos")

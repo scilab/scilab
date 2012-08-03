@@ -52,17 +52,17 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     private static final String TAB = "tab";
     private static final String F3 = "f3";
     private static final ImageIcon CLOSEICON = new ImageIcon(SCI + "/modules/gui/images/icons/close-tab.png");
-    private static final ImageIcon TOPICON = new ImageIcon(SCI + "/modules/gui/images/icons/16x16/actions/go-top.png");
-    private static final ImageIcon BOTICON = new ImageIcon(SCI + "/modules/gui/images/icons/16x16/actions/go-bottom.png");
+    private static final ImageIcon TOPICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-top"));
+    private static final ImageIcon BOTICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-bottom"));
     private static final int BUTTONSIZE = 28;
 
     private String text;
-    private JTextField field;
-    private JPanel parent;
+    private final JTextField field;
+    private final JPanel parent;
     private JTextComponent textcomp;
-    private TopBotButtons[] buttons = new TopBotButtons[2];
+    private final TopBotButtons[] buttons = new TopBotButtons[2];
 
-    private DefaultHighlighter.DefaultHighlightPainter highlighter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+    private final DefaultHighlighter.DefaultHighlightPainter highlighter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
     private int currentPos;
 
     /**
@@ -76,6 +76,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
         field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
         field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
         field.getActionMap().put(TAB, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     HelpSearchField.this.textcomp.requestFocus();
                 }
@@ -97,6 +98,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
         this.textcomp = textcomp;
         textcomp.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), F3);
         textcomp.getActionMap().put(F3, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     HelpSearchField.this.showField();
                 }
@@ -123,6 +125,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     /**
      * {@inheritDoc}
      */
+    @Override
     public void requestFocus() {
         field.requestFocus();
     }
@@ -130,6 +133,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     /**
      * {@inheritDoc}
      */
+    @Override
     public void focusGained(FocusEvent e) {
         getText();
         field.select(0, field.getText().length());
@@ -138,6 +142,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     /**
      * {@inheritDoc}
      */
+    @Override
     public void focusLost(FocusEvent e) {
         text = null;
         textcomp.getHighlighter().removeAllHighlights();
@@ -193,6 +198,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
                     final int value = sb.getValue();
                     final int h = sb.getHeight();
                     SwingUtilities.invokeLater(new Runnable() {
+                            @Override
                             public void run() {
                                 if (rect.y < value || rect.y > value + h) {
                                     sb.setValue(Math.max(0, rect.y - h / 2));
@@ -214,6 +220,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     /**
      * {@inheritDoc}
      */
+    @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_ESCAPE) {
@@ -246,11 +253,13 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     /**
      * {@inheritDoc}
      */
+    @Override
     public void keyTyped(KeyEvent e) { }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void keyPressed(KeyEvent e) { }
 
     /**
@@ -270,6 +279,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         hideField();
                     }
@@ -295,6 +305,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         String str = field.getText();
                         String txt = "";

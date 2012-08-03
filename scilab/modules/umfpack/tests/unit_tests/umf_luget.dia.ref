@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+// <-- CLI SHELL MODE -->
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6;
@@ -42,5 +43,3 @@ B(p,q) - L*U;  // must be a (quasi) nul matrix
 if nnz(B(p,q)) <> 12 then bugmes();quit;end
 if nnz(L*U) <> 13 then bugmes();quit;end
 umf_ludel(Lup) // clear memory
- ans  =
- 

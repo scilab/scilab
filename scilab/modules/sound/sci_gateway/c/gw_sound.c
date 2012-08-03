@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"

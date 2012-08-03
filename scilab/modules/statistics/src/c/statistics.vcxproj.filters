@@ -84,23 +84,22 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\statistics.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />
+    <None Include="..\..\locales\statistics.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="dcd_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="statistics.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\dcd_f.lib" />
   </ItemGroup>
 </Project>

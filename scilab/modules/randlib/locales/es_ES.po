@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-22 15:55+0000\n"
+"Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -238,6 +238,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument. Low < High expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada. Se esperaba Low < High.\n"
 
 msgid "Missing Low and High for Uniform int law\n"
 msgstr "Faltan Bajo y Alto para la ley Uniforme Entera\n"
@@ -316,8 +317,8 @@ msgid "X0 is empty\n"
 msgstr "X0 está vacío\n"
 
 #, c-format
-msgid "%s: X0(%d) must be in the range [1,%d]\n"
-msgstr "%s: X0(%d) debe estar en el intervalo [1,%d]\n"
+msgid "%s: X0(%d) must be in the range [1,%d[\n"
+msgstr ""
 
 #, c-format
 msgid "P(%d,%d) < 0\n"
@@ -492,22 +493,22 @@ msgid "discrete random variable"
 msgstr "Variable aleatoria discreta"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "variable discreta aleatoria uniformemente distribuida"
 
 msgid "geometric random variable"
 msgstr "Variable aleatoria geométrica"
 
 msgid "Poisson random variable"
-msgstr ""
+msgstr "Variable aleatoria de Poisson"
 
 msgid "Exponential random variable"
 msgstr "Variable aleatoria exponencial"
 
 msgid "Weibull random variable"
-msgstr ""
+msgstr "Variable aleatoria de Weibull"
 
 msgid "Hyper geometric random variable"
 msgstr "Variable aleatoria hipergeométrica"
 
 msgid "Erlang random variable"
-msgstr ""
+msgstr "Variable aleatoria de Erlang"

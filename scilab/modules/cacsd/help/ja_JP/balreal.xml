@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="balreal">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>balreal</refname>
     <refpurpose>平衡実現</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,15 +35,19 @@
   <refsection>
     <title>説明</title>
     <para>
-	線形システムの平衡実現 <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
-    は連続時間または離散時間状態空間システムとすることができます. 
-    sl は安定と仮定されます.</para>
-    <programlisting role = ""><![CDATA[ 
+      線形システムの平衡実現 <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
+      は連続時間または離散時間状態空間システムとすることができます. 
+      sl は安定と仮定されます.
+    </para>
+    <programlisting role=""><![CDATA[ 
 slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
  ]]></programlisting>
     <para>
-    は平衡実現です.</para>
-    <para>戻り値<literal>slb</literal> は<literal>syslin</literal> リストです.</para>
+      は平衡実現です.
+    </para>
+    <para>
+      戻り値<literal>slb</literal> は<literal>syslin</literal> リストです.
+    </para>
   </refsection>
   <refsection>
     <title>例s</title>

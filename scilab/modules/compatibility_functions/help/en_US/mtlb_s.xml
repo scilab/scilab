@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_s">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mtlb_s</refname>
     <refpurpose>Matlab substraction emulation function</refpurpose>
@@ -24,65 +21,61 @@
     <itemizedlist>
       <listitem>
         <para>
-	With character string operands: The <literal>-</literal> 
-	operator can not be used into Scilab with character strings, while
-	Matlab realizes the substraction of the operands ASCII codes.
-	</para>
+          With character string operands: The <literal>-</literal> 
+          operator can not be used into Scilab with character strings, while
+          Matlab realizes the substraction of the operands ASCII codes.
+        </para>
       </listitem>
       <listitem>
         <para>
-	With empty matrix: In Scilab, if one of the
-	operands is an empty matrix the result of the substraction is the
-	other operand. In Matlab if one of the operand is an empty
-	matrix the result of the substraction should be an error or an empty
-	matrix.
-	</para>
+          With empty matrix: In Scilab, if one of the
+          operands is an empty matrix the result of the substraction is the
+          other operand. In Matlab if one of the operand is an empty
+          matrix the result of the substraction should be an error or an empty
+          matrix.
+        </para>
       </listitem>
     </itemizedlist>
     <para>
-    The function <literal>mtlb_s(A,B)</literal> is used by
-    <literal>mfile2sci</literal> to replace <literal>A-B</literal> when it was not
-    possible to know what were the operands while porting Matlab code to Scilab. This function will
-    determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <literal>mtlb_s</literal> calls:
+      The function <literal>mtlb_s(A,B)</literal> is used by
+      <literal>mfile2sci</literal> to replace <literal>A-B</literal> when it was not
+      possible to know what were the operands while porting Matlab code to Scilab. This function will
+      determine the correct semantic at run time. If you want to have a
+      more efficient code it is possible to replace <literal>mtlb_s</literal> calls:
     </para>
     <itemizedlist>
       <listitem>
         <para>
-	If <literal>A</literal> and <literal>B</literal> are character strings, 
-	<literal>mtlb_s(A,B)</literal> may be replaced by <literal>asciimat(A)-asciimat(B)</literal>
-	</para>
+          If <literal>A</literal> and <literal>B</literal> are character strings, 
+          <literal>mtlb_s(A,B)</literal> may be replaced by <literal>asciimat(A)-asciimat(B)</literal>
+        </para>
       </listitem>
       <listitem>
         <para>
-	If both <literal>A</literal> and <literal>B</literal> are not empty matrices
-	<literal>mtlb_s(A,B)</literal> may be replaced by <literal>A-B</literal>,
-	else <literal>mtlb_s(A,B)</literal> may be replaced by
-	<literal>[]</literal>.
-	</para>
+          If both <literal>A</literal> and <literal>B</literal> are not empty matrices
+          <literal>mtlb_s(A,B)</literal> may be replaced by <literal>A-B</literal>,
+          else <literal>mtlb_s(A,B)</literal> may be replaced by
+          <literal>[]</literal>.
+        </para>
       </listitem>
       <listitem>
         <para>
-	If mtlb_mode()==%T, then <literal>mtlb_s(A,B)</literal>
-	may be replaced by <literal>A-B</literal> in any case where
-	<literal>A</literal> and <literal>B</literal> are not character string matrices.
-	</para>
+          If mtlb_mode()==%T, then <literal>mtlb_s(A,B)</literal>
+          may be replaced by <literal>A-B</literal> in any case where
+          <literal>A</literal> and <literal>B</literal> are not character string matrices.
+        </para>
       </listitem>
     </itemizedlist>
-    <para>Caution: <literal>mtlb_s</literal> has not to be used for hand coded functions.</para>
+    <para>
+      Caution: <literal>mtlb_s</literal> has not to be used for hand coded functions.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mtlb_mode">mtlb_mode</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

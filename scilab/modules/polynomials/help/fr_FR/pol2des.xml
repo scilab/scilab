@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pol2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pol2des</refname>
     <refpurpose> conversion matrice de polynômes vers forme descripteur  </refpurpose>
@@ -18,14 +15,14 @@
         <term>Ds  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>N, B, C  </term>
         <listitem>
           <para>3 matrices réelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -33,10 +30,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Etant donnée la matrice de polynômes <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>,
-    <literal>pol2des</literal> renvoie 3 matrices <literal>N, B, C</literal>, avec <literal>N</literal> nilpotente 
-    telles que :
-  </para>
+      Etant donnée la matrice de polynômes <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>,
+      <literal>pol2des</literal> renvoie 3 matrices <literal>N, B, C</literal>, avec <literal>N</literal> nilpotente 
+      telles que :
+    </para>
     <para>
       <literal>Ds = C (s*N-eye())^-1 B </literal>
     </para>
@@ -50,7 +47,7 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>
@@ -59,9 +56,5 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
         <link linkend="tf2des">tf2des</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

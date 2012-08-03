@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rank">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rank</refname>
     <refpurpose>階数</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[i]=rank(X)
-[i]=rank(X,tol)</synopsis>
+      [i]=rank(X,tol)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -42,15 +40,20 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>rank(X)</literal> は, <literal>X</literal>の数値的な階数(ランク),
-	すなわち <literal>norm(size(X),'inf') * norm(X) * %eps</literal> より大きな
-	X の特異値の数です.</para>
-    <para><literal>rank(X,tol)</literal> は,<literal>tol</literal>
-	より大きな<literal>X</literal>の特異値の数です.</para>
     <para>
-    <literal>tol</literal> のデフォルト値は
-	<literal>norm(X)</literal>に比例することに注意してください. 
-	結果として,<literal>rank([1.d-80,0;0,1.d-80])</literal> は 2 になります!.</para>
+      <literal>rank(X)</literal> は, <literal>X</literal>の数値的な階数(ランク),
+      すなわち <literal>norm(size(X),'inf') * norm(X) * %eps</literal> より大きな
+      X の特異値の数です.
+    </para>
+    <para>
+      <literal>rank(X,tol)</literal> は,<literal>tol</literal>
+      より大きな<literal>X</literal>の特異値の数です.
+    </para>
+    <para>
+      <literal>tol</literal> のデフォルト値は
+      <literal>norm(X)</literal>に比例することに注意してください. 
+      結果として,<literal>rank([1.d-80,0;0,1.d-80])</literal> は 2 になります!.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

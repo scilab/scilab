@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="amell">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>amell</refname>
     <refpurpose> Fonction am de Jacobi  </refpurpose>
@@ -18,21 +15,21 @@
         <term>u  </term>
         <listitem>
           <para>scalaire ou vecteur réel
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k  </term>
         <listitem>
           <para>scalaire
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sn  </term>
         <listitem>
           <para>scalaire ou vecteur réel
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,14 +37,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calcule la fonction elliptique de Jacobi <literal>am(u,k)</literal>
-    où <literal>k</literal> est le paramètre et <literal>u</literal> l'argument. Si <literal>u</literal> 
-    est un vecteur <literal>sn</literal> est le vecteur des valeurs calculées (élément par élément).
-    Utilisé dans la fonction <literal>%sn</literal>.
-  </para>
+      Calcule la fonction elliptique de Jacobi <literal>am(u,k)</literal>
+      où <literal>k</literal> est le paramètre et <literal>u</literal> l'argument. Si <literal>u</literal> 
+      est un vecteur <literal>sn</literal> est le vecteur des valeurs calculées (élément par élément).
+      Utilisé dans la fonction <literal>%sn</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="delip">delip</link>

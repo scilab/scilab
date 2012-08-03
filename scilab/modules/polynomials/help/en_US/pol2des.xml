@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pol2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pol2des</refname>
     <refpurpose> polynomial matrix to descriptor form</refpurpose>
@@ -42,9 +39,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the polynomial matrix <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>,
-    <literal>pol2des</literal> returns three  matrices <literal>N, B, C</literal>, with <literal>N</literal> nilpotent
-    such that:</para>
+      Given the polynomial matrix <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>,
+      <literal>pol2des</literal> returns three  matrices <literal>N, B, C</literal>, with <literal>N</literal> nilpotent
+      such that:
+    </para>
     <para>
       <literal>Ds = C (s*N-eye())^-1 B</literal>
     </para>
@@ -58,7 +56,7 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>
@@ -67,9 +65,5 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
         <link linkend="tf2des">tf2des</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

@@ -74,5 +74,5 @@ end
 cmd = "[ok" + strcat(argout) + "] = scicos_getvalue(''non reg test for 7908'', labels, typ, values);";
 execstr(cmd);
 
-funcprot(prot)
+funcprot(prot);
 

@@ -1,0 +1,42 @@
+# Polish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2011-10-20 14:34+0000\n"
+"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: Numery kolumn nie są "
+"zgodne "
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana jest wartość "
+"typu string.\n"
+
+#, c-format
+msgid "%s: This function is forbidden in a concurrent execution context.\n"
+msgstr "%s: Ta funkcja jest zabroniona przy wykonywaniu współbieżnym.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
+
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s: moduł %s nie jest zainstalowany.\n"

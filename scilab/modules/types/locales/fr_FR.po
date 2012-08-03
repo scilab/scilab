@@ -1,0 +1,74 @@
+# French translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2012-01-11 15:36+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+msgid "Double"
+msgstr "Double"
+
+msgid "Polynomial"
+msgstr "Polynôme"
+
+msgid "Boolean"
+msgstr "Booléen"
+
+msgid "Sparse"
+msgstr "Matrice creuse"
+
+msgid "Boolean Sparse"
+msgstr "Matrice creuse booléenne"
+
+msgid "Matlab Sparse"
+msgstr "Matrice creuse Matlab"
+
+msgid "Integer"
+msgstr "Entier"
+
+msgid "Graphic handle"
+msgstr "Handle graphique"
+
+msgid "String"
+msgstr "Chaîne de caractères"
+
+msgid "User function"
+msgstr "Fonction utilisateur"
+
+msgid "Compiled function"
+msgstr "Fonction compilée"
+
+msgid "Function library"
+msgstr "Bibliothèque de fonctions"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Tlist"
+msgstr "Tlist"
+
+msgid "Mlist"
+msgstr "Mlist"
+
+msgid "Pointer"
+msgstr "Pointeur"
+
+msgid "Implicit polynomial"
+msgstr "Polynôme implicite"
+
+msgid "Intrinsic function"
+msgstr "Fonction intrinsèque"
+
+msgid "Unknown datatype"
+msgstr "Type de données inconnu"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-14 05:21+0000\n"
+"PO-Revision-Date: 2012-07-08 01:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ja\n"
 
 #, c-format
@@ -22,8 +22,12 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -38,12 +42,20 @@ msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans は編集できません.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: 未定義の変数 %s.\n"
+msgid "%s: Undefined variable: %s.\n"
+msgstr "%s: 変数が未定義です: %s.\n"
 
 #, c-format
-msgid "%s: Java memory problem, cannot edit %s\n"
-msgstr "%s: Java メモリに問題があります,  %s　を編集できません\n"
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Java exception arisen:\n"
+"%s\n"
+msgstr ""
+"%s: Java 例外が発生しました:\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Type not handle yet"
@@ -61,20 +73,29 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "Scilabバージョン情報(&A)..."
 
-msgid "Icon"
-msgstr "アイコン"
-
 msgid "Name"
 msgstr "名前"
 
-msgid "Bytes"
-msgstr "バイト数"
+msgid "Dimension"
+msgstr "次元"
 
 msgid "Type"
 msgstr "型"
 
 msgid "Visibility"
 msgstr "可視性"
+
+msgid "Bytes"
+msgstr "バイト数"
+
+msgid "User"
+msgstr "ユーザ"
+
+msgid "Type int value"
+msgstr "int値を入力"
+
+msgid "Feature not available in this mode..."
+msgstr "この機能はこのモードでは利用できません."
 
 msgid "File"
 msgstr "ファイル"
@@ -85,8 +106,11 @@ msgstr "閉じる"
 msgid "Filter"
 msgstr "フィルタ"
 
+msgid "Hide Scilab variables"
+msgstr "Scilab変数を隠す"
+
 msgid "Double"
-msgstr "二重化"
+msgstr "倍精度実数"
 
 msgid "Polynomial"
 msgstr "多項式"
@@ -148,6 +172,9 @@ msgstr "変数ブラウザ"
 msgid "Global variables can not be edited."
 msgstr "グローバル変数は編集できません"
 
+msgid "Edition"
+msgstr "版"
+
 msgid "Refresh the variable "
 msgstr "変数を確認 "
 
@@ -160,11 +187,152 @@ msgstr "貼り付け"
 msgid "Cut"
 msgstr "切り取る"
 
+msgid "Clear"
+msgstr "消去"
+
 msgid "Undo"
 msgstr "元に戻す"
 
 msgid "Redo"
 msgstr "やり直す"
+
+msgid "Size columns to fit"
+msgstr "列幅を調整"
+
+msgid "Copy as Scilab command"
+msgstr "Scilabコマンドとしてコピー"
+
+msgid "Copy as Scilab matrix"
+msgstr "Scilab行列としてコピー"
+
+msgid "Copy as Scilab matrix with CR"
+msgstr "Scilab行列としてCRを付けてコピー"
+
+msgid "Short format"
+msgstr "短縮形式"
+
+msgid "ShortE format"
+msgstr "短縮E形式"
+
+msgid "Long format"
+msgstr "ロング形式"
+
+msgid "LongE format"
+msgstr "ロングE形式"
+
+msgid "Create variable from selection"
+msgstr "選択内容から変数を作成"
+
+msgid "Insert a row"
+msgstr "行を挿入"
+
+msgid "Remove rows"
+msgstr "行を削除"
+
+msgid "Insert a column"
+msgstr "列を挿入"
+
+msgid "Remove columns"
+msgstr "列を削除"
+
+msgid "Plot the selection"
+msgstr "選択部をプロット"
+
+msgid "Plot the matrix"
+msgstr "行列をプロット"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Variable name"
+msgstr "変数名"
+
+msgid "Create new variable"
+msgstr "変数を作成"
+
+msgid "Duplicate the variable"
+msgstr "変数を二重化"
+
+msgid "Rows number"
+msgstr "行番号"
+
+msgid "Columns number"
+msgstr "列番号"
+
+msgid "Fill with"
+msgstr "塗りつぶす"
+
+msgid "File Browser"
+msgstr "ファイル ブラウザ"
+
+msgid "Size"
+msgstr "大きさ"
+
+msgid "Last modified"
+msgstr "最終更新日"
+
+msgid "Directory"
+msgstr "ディレクトリ"
+
+#, c-format
+msgid "%s File"
+msgstr "%s ファイル"
+
+msgid "File/directory filter"
+msgstr "ファイル/ディレクトリフィルタ"
+
+msgid "Enter your working folder"
+msgstr "作業フォルダを入力"
+
+msgid "Case sensitive"
+msgstr "大文字/小文字を区別"
+
+msgid "Regular expression"
+msgstr "正規表現"
+
+msgid "Select a directory"
+msgstr "ディレクトリ選択"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr "ファイル %s を編集できません"
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr "ファイル %s をオープンできません"
+
+msgid "Open with SciNotes"
+msgstr "SciNoteで開く"
+
+msgid "Execute in Scilab"
+msgstr "Scilabで実行"
+
+msgid "Open with Xcos"
+msgstr "Xcosで開く"
+
+msgid "Load in Scilab"
+msgstr "Scilabにロード"
+
+msgid "Edit with default application"
+msgstr "デフォルトアプリケーションで編集"
+
+msgid "Open with default application"
+msgstr "デフォルトアプリケーションで開く"
+
+msgid "Scilab type:"
+msgstr "Scilab型:"
+
+msgid "Bytes:"
+msgstr "バイト数:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

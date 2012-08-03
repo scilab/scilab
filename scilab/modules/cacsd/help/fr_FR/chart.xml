@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="chart">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>chart</refname>
     <refpurpose> diagramme de Nichols  </refpurpose>
@@ -10,8 +7,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>chart([flags])
-chart(gain [,flags])
-chart(gain,phase [,flags])</synopsis>
+      chart(gain [,flags])
+      chart(gain,phase [,flags])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -20,48 +18,48 @@ chart(gain,phase [,flags])</synopsis>
         <term>gain  </term>
         <listitem>
           <para>valeurs réelles ( gains (en DB))
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>phase  </term>
         <listitem>
           <para>valeurs réelles (phases (en degrés))
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flags  </term>
         <listitem>
           <para>une liste de 4 termes list(sup [,leg [,cm [,cphi]]])
-</para>
+          </para>
           <variablelist>
             <varlistentry>
               <term>sup  </term>
               <listitem>
                 <para>1 -&gt; superposition sur le dessin précédent   0 -&gt; pas de superposition
-</para>
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>leg  </term>
               <listitem>
                 <para>1 indique que les légendes sont dessinées, 0 : pas de légendes
-</para>
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>cm  </term>
               <listitem>
                 <para>numéro de couleur  pour les courbes de gain
-</para>
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>cphi  </term>
               <listitem>
                 <para>numéro de couleur  pour les courbes de phase
-</para>
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -71,19 +69,23 @@ chart(gain,phase [,flags])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-
     <para>Dessine un diagramme de Nichols: c'est à dire les contours
-    iso-gain et iso-phase contour de y/(1+y) dans le plan phase/gain.</para>
-
-    <para> <literal>chart</literal> peut être utilisé avec
-     <link linkend="black">black</link> </para> 
-
-    <para> Les valeurs par défaut pour <literal>gain</literal> et
-    <literal>phase</literal> sont respectivement : </para>
+      iso-gain et iso-phase contour de y/(1+y) dans le plan phase/gain.
+    </para>
+    <para>
+      <literal>chart</literal> peut être utilisé avec
+      <link linkend="black">black</link> 
+    </para>
+    <para>
+      Les valeurs par défaut pour <literal>gain</literal> et
+      <literal>phase</literal> sont respectivement : 
+    </para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para> <literal>[-(1:10) , -(20:10:160)]</literal></para>
+    <para>
+      <literal>[-(1:10) , -(20:10:160)]</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

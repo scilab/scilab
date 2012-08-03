@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="is_handle_valid">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>is_handle_valid</refname>
     <refpurpose>Vérifie si un ensemble de handles graphiques est valide.</refpurpose>
@@ -34,14 +31,17 @@
       <varlistentry>
         <term>isValid</term>
         <listitem>
-	  <para>Matrice de booléens de même taille que <literal>h</literal></para>
+          <para>
+            Matrice de booléens de même taille que <literal>h</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
+    <para>
+      La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
       Un handle considéré comme valide s'il n'a pas été détruit.
       Le résultat est la matrice de booléens <literal>isValid</literal>.
       <literal>isValid(i,j)</literal> est vrai si <literal>h(i,j)</literal> est valide
@@ -69,7 +69,7 @@ is_handle_valid(polylines)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="delete">delete</link>
@@ -79,11 +79,4 @@ is_handle_valid(polylines)
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-
-
-

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="chart">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-19 18:44:44 +0200 (jeu, 19 jun 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>chart</refname>
     <refpurpose>ニコルス線図における等高線プロット</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>chart([flags])
-chart(gain [,flags])
-chart(gain,phase [,flags])</synopsis>
+      chart(gain [,flags])
+      chart(gain,phase [,flags])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -48,7 +46,8 @@ chart(gain,phase [,flags])</synopsis>
               <term>sup</term>
               <listitem>
                 <para>1は前のプロットへ重ね合わせを行うこと,
-		0 は重ね合わせを行わないことを示します.</para>
+                  0 は重ね合わせを行わないことを示します.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -77,18 +76,24 @@ chart(gain,phase [,flags])</synopsis>
   <refsection>
     <title>説明</title>
     <para>ニコルス線図,つまり,
-	位相/ゲイン平面におけるy/(1+y)の等ゲイン,等位相の等高線
-	をプロットします.
-	</para>
-    <para><literal>chart</literal> は
-    <link linkend="black">black</link>と組み合わせて
-	使用することができます.</para>
-    <para><literal>gain</literal> および
-    <literal>phase</literal> のデフォルト値はそれぞれ以下のようになっています :</para>
+      位相/ゲイン平面におけるy/(1+y)の等ゲイン,等位相の等高線
+      をプロットします.
+    </para>
+    <para>
+      <literal>chart</literal> は
+      <link linkend="black">black</link>と組み合わせて
+      使用することができます.
+    </para>
+    <para>
+      <literal>gain</literal> および
+      <literal>phase</literal> のデフォルト値はそれぞれ以下のようになっています :
+    </para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para><literal>[-(1:10) , -(20:10:160)]</literal></para>
+    <para>
+      <literal>[-(1:10) , -(20:10:160)]</literal>
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

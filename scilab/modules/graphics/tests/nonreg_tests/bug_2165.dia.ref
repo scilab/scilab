@@ -15,5 +15,6 @@
 // Impossible to save Scilab variables when there are no more existing handles.
 f = gcf();
 delete(f);
+warning("off");
 if execstr("save(TMPDIR+""/bug_2165.tst"");", "errcatch")<>0 then bugmes();quit;end
-WARNING: save_graphichandle: handle no more valid ignored.
+warning("on");

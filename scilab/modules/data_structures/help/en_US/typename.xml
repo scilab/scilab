@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="typename">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>typename</refname>
     <refpurpose> associates a name to variable type</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[types [ [,names]]=typename()
-typename(name,type)</synopsis>
+      typename(name,type)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -44,25 +42,28 @@ typename(name,type)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    The function and operator overloading make use of a formal name
-    associated to data types to form the name of the overloading function
-    (see overloading). The <literal>typename</literal> can be used to handle this
-    formal names for hard coded data types (the <literal>tlist</literal> or <literal>mlist</literal>
-    coded data types formal names are defined in an other way, see <literal>overloading</literal>).</para>
+      The function and operator overloading make use of a formal name
+      associated to data types to form the name of the overloading function
+      (see overloading). The <literal>typename</literal> can be used to handle this
+      formal names for hard coded data types (the <literal>tlist</literal> or <literal>mlist</literal>
+      coded data types formal names are defined in an other way, see <literal>overloading</literal>).
+    </para>
     <para>
-    Called without right hand side argument, <literal>typename</literal> returns
-    information on defined data types.</para>
+      Called without right hand side argument, <literal>typename</literal> returns
+      information on defined data types.
+    </para>
     <para>
-    Called with right hand side argument, <literal>typename</literal> associates a name
-    to a data type code.</para>
-    <para><literal>typename('',type)</literal> suppress the data type given by its code
-    <literal>type</literal> out of the table of known data types.</para>
-    
+      Called with right hand side argument, <literal>typename</literal> associates a name
+      to a data type code.
+    </para>
+    <para>
+      <literal>typename('',type)</literal> suppress the data type given by its code
+      <literal>type</literal> out of the table of known data types.
+    </para>
     <para>Number max. of defined types is 50.</para>
-    
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="type">type</link>

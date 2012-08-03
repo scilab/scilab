@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trfmod">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>trfmod</refname>
     <refpurpose> poles and zeros display</refpurpose>
@@ -25,9 +22,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    To visualize the pole-zero structure of a SISO transfer 
-    function <literal>h</literal> .
-  </para>
+      To visualize the pole-zero structure of a SISO transfer 
+      function <literal>h</literal> .
+    </para>
     <variablelist>
       <varlistentry>
         <term>job='p'</term>
@@ -43,11 +40,12 @@
       </varlistentry>
     </variablelist>
     <para>
-    Interactive simplification of <literal>h</literal>. <literal>trfmod</literal> opens
-    a dialog window.</para>
+      Interactive simplification of <literal>h</literal>. <literal>trfmod</literal> opens
+      a dialog window.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

@@ -7,12 +7,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    [btn] = messagebox(msg)
-    [btn] = messagebox(msg, msgboxtitle)
-    [btn] = messagebox(msg, msgboxtitle, msgboxicon)
-    [btn] = messagebox(msg, msgboxtitle, msgboxicon)
-    [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons)
-    [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+      [btn] = messagebox(msg)
+      [btn] = messagebox(msg, msgboxtitle)
+      [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+      [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+      [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons)
+      [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -101,9 +101,5 @@ messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"]
 // "modal" given as fifth input argument
 messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Vincent COUVERT</para>
   </refsection>
 </refentry>

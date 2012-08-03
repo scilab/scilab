@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -78,12 +78,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Seealso_CMATVIEW">See also</xref>
+              <xref linkend="Example_CMATVIEW">Example</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_CMATVIEW">Authors</xref>
+              <xref linkend="Seealso_CMATVIEW">See also</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -103,10 +103,10 @@
   <refsection id="Description_CMATVIEW">
     <title>Description</title>
     <para>
-CMATVIEW is a scope that shows matrix values on a colormapped grid.  
-</para>
+      CMATVIEW is a scope that shows matrix values on a colormapped grid.  
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_CMATVIEW">
     <title>Dialog box</title>
@@ -118,15 +118,23 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">ColorMap</emphasis>
         </para>
         <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
-        <para> Properties : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/CMATVIEW_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
+        <para>
+          Properties : Must be a mx3 matrix and m
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../../help/images/CMATVIEW_img3_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          = 3 
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -148,16 +156,24 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -168,19 +184,29 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -206,28 +232,24 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_CMATVIEW">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+  </refsection>
   <refsection id="Seealso_CMATVIEW">
     <title>See also</title>
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="CMAT3D">CMAT3D - Matrix z values 3D viewer</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CMATVIEW">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Benoit Bayol</emphasis>
         </para>
       </listitem>
     </itemizedlist>

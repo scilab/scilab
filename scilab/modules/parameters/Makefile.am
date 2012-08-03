@@ -11,23 +11,28 @@
 
 PARAMETERS_C_SOURCES = src/c/parameters.c
 
-libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
+libsciparameters_la_CPPFLAGS=-I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/core/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes 
+-I$(top_srcdir)/modules/localization/includes/ \
+$(AM_CPPFLAGS) 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciparameters.la
+else
+noinst_LTLIBRARIES = libsciparameters.la
+endif
 
-libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+
 
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciparameters_la_SOURCES)
-INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciparameters_la_CPPFLAGS) 
 
 #### Target ######
 modulename=parameters

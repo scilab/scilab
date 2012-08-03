@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="phc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>phc</refname>
     <refpurpose> Markovian representation</refpurpose>
@@ -43,10 +40,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
-    representation by the principal hankel
-    component approximation method, from the hankel matrix built
-    from the covariance sequence of a stochastic process.</para>
+      Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
+      representation by the principal hankel
+      component approximation method, from the hankel matrix built
+      from the covariance sequence of a stochastic process.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -97,7 +95,7 @@ imag(s),
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="levin">levin</link>

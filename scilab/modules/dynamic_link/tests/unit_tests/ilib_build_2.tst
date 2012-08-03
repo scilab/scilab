@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if getos() == 'Windows' then
   TMP_OS_DIR = getenv('TMP','err');
@@ -39,7 +39,8 @@ f2=['void c_sub(double *a,double *b, double *sub)'
 mputl(f2,TMP_DIR+filesep()+'c_sub.c');
 
 //creating the interface file
-i=['#include ""stack-c.h""'
+i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
    'extern void c_sum(double *a,double *b, double *sum);'
    'int sci_csum(char *fname)' 
    '{'
@@ -59,7 +60,8 @@ i=['#include ""stack-c.h""'
 mputl(i,TMP_DIR+filesep()+'sci_csum.c');
 
 //creating the interface file
-j=['#include ""stack-c.h""'
+j=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
    'extern void c_sub(double *a,double *b, double *sum);'
    'int sci_csub(char *fname)' 
    '{'
@@ -90,7 +92,7 @@ ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
 
 
 // load the shared library 
-exec loader.sce 
+exec loader.sce;
 
 if c_sum(3,5) <> 8 then pause,end
 if c_sub(3,5) <> -2 then pause,end

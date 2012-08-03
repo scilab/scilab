@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 4734 -->
 //
 // <-- Bugzilla URL -->
@@ -17,6 +17,7 @@ for i=1:1000
   t = [t string(i)];
 end
 t = t';
+warning("off");
 save(TMPDIR + filesep() + 'pb.dat',t);
 clear t;
 load(TMPDIR + filesep() + 'pb.dat');

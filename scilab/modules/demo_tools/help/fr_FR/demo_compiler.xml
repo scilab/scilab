@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_compiler">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_compiler</refname>
     <refpurpose> teste la présence d'un compilateur </refpurpose>
@@ -25,10 +22,10 @@
   <refsection>
     <title>Description</title>
     <para>
-			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
-			compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
-			compilateur.
-		</para>
+      La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
+      compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+      compilateur.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -50,17 +47,11 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="findmsvccompiler">findmsvccompiler</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

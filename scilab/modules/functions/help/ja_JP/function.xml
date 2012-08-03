@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="function">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>function</refname>
     <refpurpose>関数定義をオープンする</refpurpose>
@@ -30,8 +27,8 @@ function <lhs_arguments>=<function_name><rhs_arguments>
 endfunction
  ]]></programlisting>
     <para>
-    ただし,
-  </para>
+      ただし,
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;function_name&gt;</term>
@@ -45,13 +42,17 @@ endfunction
           <para>は入力引数のリストを意味します.</para>
           <itemizedlist>
             <listitem>
-              <para>これは,<literal>(x1,...,xm)</literal>のように括弧で括った
-		カンマ区切りの変数名の一覧となります.
-		最後の変数名はキーワード<literal>varargin</literal>とすることも可能です
-	(varargin 参照)</para>
+              <para>
+                これは,<literal>(x1,...,xm)</literal>のように括弧で括った
+                カンマ区切りの変数名の一覧となります.
+                最後の変数名はキーワード<literal>varargin</literal>とすることも可能です
+                (varargin 参照)
+              </para>
             </listitem>
             <listitem>
-              <para>関数に入力引数がない場合, <literal>()</literal> または何も付けません.</para>
+              <para>
+                関数に入力引数がない場合, <literal>()</literal> または何も付けません.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -62,15 +63,19 @@ endfunction
           <para>は出力引数のリストを意味します.</para>
           <itemizedlist>
             <listitem>
-              <para>これは,<literal>[y1,...,yn]</literal>のように角括弧で括ったカンマ区切りの
-		変数名の一覧となります.
-		最後の変数名はキーワード <literal>varargout</literal> ( varargout 参照)とすること
-		が可能です.</para>
+              <para>
+                これは,<literal>[y1,...,yn]</literal>のように角括弧で括ったカンマ区切りの
+                変数名の一覧となります.
+                最後の変数名はキーワード <literal>varargout</literal> ( varargout 参照)とすること
+                が可能です.
+              </para>
             </listitem>
             <listitem>
-              <para>関数が出力引数を持たない場合,<literal>[]</literal> を指定します.
-		この場合,構文を以下のようにすることも可能です:
-		 <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+              <para>
+                関数が出力引数を持たない場合,<literal>[]</literal> を指定します.
+                この場合,構文を以下のようにすることも可能です:
+                <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -79,22 +84,24 @@ endfunction
         <term>&lt;statements&gt;</term>
         <listitem>
           <para>Scilab命令(ステートメント)の集合を意味します.
-	この構文は,インラインまたはスクリプトファイル(exec 参照)の中で
-	関数を定義する (functions 参照)ために使用できます.
-	古いバージョンのScilabとの互換性のため,
-	function 定義のみを含むスクリプトファイルで定義された関数は,
-	<literal>exec</literal>関数によりScilabに"ロードする"ことができます.</para>
+            この構文は,インラインまたはスクリプトファイル(exec 参照)の中で
+            関数を定義する (functions 参照)ために使用できます.
+            古いバージョンのScilabとの互換性のため,
+            function 定義のみを含むスクリプトファイルで定義された関数は,
+            <literal>exec</literal>関数によりScilabに"ロードする"ことができます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-    <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
-	のシーケンスは複数の行に分割することができません.
-	このシーケンスはカンマまたはセミコロンを終端に付けることにより,
-	同じ行に命令を続けることができます.
-	</para>
+      <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+      のシーケンスは複数の行に分割することができません.
+      このシーケンスはカンマまたはセミコロンを終端に付けることにより,
+      同じ行に命令を続けることができます.
+    </para>
     <para>
-    function の定義はネストすることが可能です.</para>
+      function の定義はネストすることが可能です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

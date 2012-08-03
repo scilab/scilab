@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
 ssprint(syslin('c',a,b,c,d));

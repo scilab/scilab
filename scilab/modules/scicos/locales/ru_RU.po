@@ -8,38 +8,42 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-13 15:54+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
 msgstr ""
+"%s : аргумент lnksz должен быть двойной точности (double) или "
+"целочисленным.\n"
 
 #, c-format
 msgid "%s : lnktyp argument must be double or integer.\n"
 msgstr ""
+"%s : аргумент lnktyp должен быть двойной точности (double) или "
+"целочисленным.\n"
 
 #, c-format
 msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
-msgstr ""
+msgstr "%s : lnksz несовместим с lnktyp по размерноти.\n"
 
 #, c-format
 msgid "%s : bad dimension for lnksz argument.\n"
-msgstr ""
+msgstr "%s : неверная размерность для аргумента lnksz.\n"
 
 #, c-format
 msgid "%s : bad dimension for lnktyp argument.\n"
-msgstr ""
+msgstr "%s : неверная размерность для аргумента lnktyp.\n"
 
 #, c-format
 msgid "%s : lnksz and lnktyp argument must have the same length.\n"
-msgstr ""
+msgstr "%s : аргументы lnksz и lnktyp должны иметь одинаковую длину.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -48,10 +52,13 @@ msgstr "%s : Не осталось свободной памяти.\n"
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
 msgstr ""
+"%s : Первым аргументом должен быть типизированный список scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
 msgstr ""
+"%s : Первым элементом должен быть корректный типизированный список "
+"scicos_block.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -67,17 +74,19 @@ msgstr "%s : Третий элемент должен быть скаляром.
 
 #, c-format
 msgid "%s: scicosim is not running.\n"
-msgstr ""
+msgstr "%s: scicosim не запущен.\n"
 
 #, c-format
 msgid "%s : First argument must be a string.\n"
-msgstr ""
+msgstr "%s : Первым аргументом должна быть строка.\n"
 
 #, c-format
 msgid ""
 "%s : First argument must be a matrix or an hypermatrix\n"
 "of real, complex or integer numbers.\n"
 msgstr ""
+"%s : Первым аргументом должна быть матрица или гиперматрица \n"
+"действительных, комплексных или целых чисел.\n"
 
 #, c-format
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
@@ -85,15 +94,15 @@ msgstr "%s : Разрешена только трёхмерная гиперма
 
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
-msgstr ""
+msgstr "%s : Второй аргумент должен быть скаляром.\n"
 
 #, c-format
 msgid "%s : Second argument must be a real.\n"
-msgstr ""
+msgstr "%s : Второй аргумент должен быть действительным числом.\n"
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
-msgstr ""
+msgstr "%s: 1-й и 2-й аргументы должны быть равных размеров.\n"
 
 msgid ""
 "\n"
@@ -106,6 +115,8 @@ msgid ""
 "                scicos arrays during simulation.\n"
 "\n"
 msgstr ""
+"                массивов scicos во время моделирования\n"
+"\n"
 
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
@@ -116,20 +127,21 @@ msgstr ""
 
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
 msgstr ""
+"- myvar : матрица чисел типа int32 или двойной точности (double) или Tlist.\n"
 
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
 msgstr "- [\"str1\";\"str2\",...] является матрицей строк\n"
 
 msgid "  that must be informed with the following values :\n"
-msgstr ""
+msgstr "  которой нужно передать следующие значения:\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
-msgstr ""
+msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s : Undefined field in string matrix position : %d.\n"
-msgstr ""
+msgstr "%s : Неопределённое поле в позиции %d матрицы строк.\n"
 
 #, c-format
 msgid "%s : Error.\n"
@@ -137,11 +149,11 @@ msgstr "%s : Ошибка.\n"
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
-msgstr ""
+msgstr "%s : Первый аргумент должен быть Типизированным списком.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos model.\n"
-msgstr ""
+msgstr "%s : Первым аргументом должна быть модель scicos.\n"
 
 #, c-format
 msgid "%s : unknown block : %s\n"
@@ -149,15 +161,15 @@ msgstr "%s : неизвестный блок : %s\n"
 
 #, c-format
 msgid "%s : type 1 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s : в блоках scilab не разрешена функция типа 1\n"
 
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "%s : в блоках scilab не разрешена функция типа 2\n"
 
 #, c-format
 msgid "%s : Undefined Function type\n"
-msgstr ""
+msgstr "%s : Неопределённый тип функции\n"
 
 #, c-format
 msgid "%s : Function not found\n"
@@ -166,10 +178,12 @@ msgstr "%s : Функция не найдена\n"
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
 msgstr ""
+"%s : Неопределённая размерность. in(%d)=%d. Пожалуйста, проверьте свою "
+"модель.\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
-msgstr ""
+msgstr "%s : Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
@@ -201,11 +215,11 @@ msgstr ""
 
 #, c-format
 msgid "%s : oz element of state must be a list.\n"
-msgstr ""
+msgstr "%s : элемент состояния  oz должен быть списком.\n"
 
 #, c-format
 msgid "%s : outtb element of state must be a list.\n"
-msgstr ""
+msgstr "%s : элемент состояния  outtb должен быть списком.\n"
 
 #, c-format
 msgid "%s : Third argument must be a scalar.\n"
@@ -213,19 +227,19 @@ msgstr "%s : Третий элемент должен быть скаляром.
 
 #, c-format
 msgid "%s : Fourth argument must be a Tlist.\n"
-msgstr ""
+msgstr "%s : Четвёртым аргументом должен быть Tlist.\n"
 
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
-msgstr ""
+msgstr "%s : Второй элемент sim должен быть списком.\n"
 
 #, c-format
 msgid "%s : sim.opar must be a list.\n"
-msgstr ""
+msgstr "%s : sim.opar должен быть списком.\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
-msgstr ""
+msgstr "%s : Несовместимый правосторонний параметр (RHS) sim.nb.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have at least four elements.\n"
@@ -237,7 +251,7 @@ msgstr "%s : Шестой аргумент должен иметь максим�
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
-msgstr ""
+msgstr "%s : ошибка в перекрёстной проверке размерности переменной : %d\n"
 
 #, c-format
 msgid "%s : error\n"
@@ -247,15 +261,19 @@ msgstr "%s : ошибка\n"
 msgid ""
 "%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
 msgstr ""
+"%s : ошибка. Тип %d матрицы числовых значений двойной точности (double) для "
+"outtb ещё не поддерживается.\n"
 
 #, c-format
 msgid ""
 "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
+"%s : ошибка. Тип %d матрицы целочисленных значений (int) для outtb ещё не "
+"поддерживается.\n"
 
 #, c-format
 msgid "%s : error. Type %d not yet supported for outtb.\n"
-msgstr ""
+msgstr "%s : ошибка. Тип %d для outtb ещё не поддерживается.\n"
 
 msgid "scheduling problem"
 msgstr "ошибка составления расписания"
@@ -274,7 +292,7 @@ msgstr "нельзя распределить память"
 
 #, c-format
 msgid "the block %d has been called with input out of its domain"
-msgstr ""
+msgstr "блок %d был вызван с входными данными вне его диапазона работы"
 
 msgid "singularity in a block"
 msgstr "сингулярность в блоке"
@@ -294,6 +312,8 @@ msgstr "условие скользящего режима, нельзя инт�
 
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
+"Невозможно найти исходный режим, может быть имеются условия скользящего "
+"режима"
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -301,6 +321,10 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
+"Вы изменили параметр в своей модели, но модель была скомпилирована для "
+"использования XML-файла, содержащего начальные значения и параметры. Поэтому "
+"вам следует либо перекомпилировать вашу схему Scicos либо [пере]запустить "
+"интерфейс инициализации для переформирования XML-файла с новыми параметрами."
 
 msgid "Undefined data type."
 msgstr "Неопределённый тип данных."
@@ -311,9 +335,13 @@ msgid ""
 "relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
 "model. This will be corrected in the next version"
 msgstr ""
+"Число параметров, выданных блоками Scicos отличается от числа, ожидаемого "
+"кодом, формируемым компилятором Modelica. Должно быть вы допустили лишний "
+"параметр с помощью свойства FIXED (т. е., fixed=false) в модели Modelica. "
+"Это будет исправлено в следующей версии"
 
 msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
-msgstr ""
+msgstr "IDA_MEM_NULL: Аргумент ida_mem был пустым значением (NULL)"
 
 msgid ""
 "IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
@@ -321,9 +349,14 @@ msgid ""
 "user after calling IDACreate) failed to set the linear solver-specific "
 "lsolve field in ida_mem."
 msgstr ""
+"IDA_ILL_INPUT: Один из входных аргументов был недопустим. Это сообщение об "
+"ошибке может быть выдано если инициализация функции решения линейных "
+"уравнений (вызванная пользователем после вызова IDACreate) не смогла "
+"установить значение поля lsolve, специфичное для решения линейных уравнений, "
+"в ida_mem."
 
 msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
-msgstr ""
+msgstr "IDA_NO_MALLOC: указание, что ida_mem не была выделена."
 
 msgid ""
 "IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
@@ -337,6 +370,8 @@ msgid ""
 "IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
 "user for some internal step."
 msgstr ""
+"IDA_TOO_MUCH_ACC: Программа решения не смогла удовлетворить точности, "
+"затребованной пользователем для некоторого внутреннего шага."
 
 msgid ""
 "IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
@@ -357,16 +392,22 @@ msgstr ""
 
 msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
 msgstr ""
+"IDA_LINIT_FAIL: Ошибка в подпрограмме инициализации программы решения "
+"линейных уравнений."
 
 msgid ""
 "IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
 "error."
 msgstr ""
+"IDA_LSETUP_FAIL: Критическая ошибка в подпрограмме установки программы "
+"решения линейных уравнений."
 
 msgid ""
 "IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
 "error."
 msgstr ""
+"IDA_LSOLVE_FAIL: Критическая ошибка в подпрограмме решения программы решения "
+"линейных уравнений."
 
 msgid ""
 "IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
@@ -386,6 +427,8 @@ msgid ""
 "IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
 "recoverable error flag, but the solver was unable to recover."
 msgstr ""
+"IDA_REP_RES_ERR: Пользовательская функция невязки постоянно возвращает "
+"признак некритической ошибки, но программа решения не смогла восстановиться."
 
 msgid "IDA_MEM_FAIL: A memory allocation failed."
 msgstr "IDA_MEM_FAIL: Ошибка распределения памяти."
@@ -397,6 +440,8 @@ msgid ""
 "IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
 "either for the input value of y0 or a corrected value."
 msgstr ""
+"IDA_BAD_EWT: Один из компонентов вектора взвешенной ошибки равен нулю "
+"(недопустимо) либо для входного значения y0 либо для исправленного значения."
 
 msgid ""
 "IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
@@ -410,6 +455,8 @@ msgid ""
 "IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
 "a step larger than steptol in weighted RMS norm."
 msgstr ""
+"IDA_LINESEARCH_FAIL: Алгоритм линейного поиска не смог найти решение с шагом "
+"больше, чем steptol в взвешенной среднеквадратичной норме."
 
 msgid ""
 "IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
@@ -446,24 +493,32 @@ msgid ""
 "IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
 "integration."
 msgstr ""
+"IDA_BAD_TSTOP: tstop прежде текущего времени моделирования в направлении "
+"интегрирования."
 
 msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
 msgstr "IDA_BAD_INIT_ROOT: Корень найден очень близко от исходного t."
 
 msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
-msgstr ""
+msgstr "IDA_NO_EFUN: itol = IDA_WF, но функция EwtSet не была указана."
 
 msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr ""
+"IDA_EWT_FAIL: Критическая ошибка в указанной пользователем функции EwtSet."
 
 msgid ""
 "IDACalc cannot find the initial condition at this point. If you are using a "
 "Modelica model, you can try with the initialization GUI to try with other "
 "nonlinear solvers."
 msgstr ""
+"IDACalc не может найти начальное условие в этой точке. Если вы используете "
+"модель Modelica, то можете попробовать графический пользовательский "
+"интерфейс, чтобы попробовать другие программы решения нелинейных уравнений."
 
 msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
 msgstr ""
+"IDA_LSOLVE_NULL: Подпрограмма решения программы решения линейных уравнений "
+"является пустым значением (NULL.)"
 
 msgid "IDA_NULL_Y0: y0 = NULL illegal."
 msgstr "IDA_NULL_Y0: недопустимое значение y0 = NULL."
@@ -477,18 +532,23 @@ msgstr ""
 
 msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
 msgstr ""
+"IDA_NULL_F: Указанная пользователем подпрограмма решения ОДУ является "
+"недопустимой (NULL)."
 
 msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
 msgstr "IDA_BAD_NVECTOR: Требуемая операция над векторами не реализована."
 
 msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
 msgstr ""
+"IDA_NULL_ABSTOL: Значение абсолютного допуска = NULL, это недопустимо."
 
 msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
 msgstr "IDA_BAD_RELTOL: недопустимый относительный допуск reltol < 0."
 
 msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr ""
+"IDA_BAD_ABSTOL: abstol имеет один или несколько отрицательных компонентов "
+"(недопустимо)."
 
 msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
 msgstr ""
@@ -499,18 +559,20 @@ msgid ""
 "IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
 "integration"
 msgstr ""
+"IDA_BAD_TOUT: Проблема интерполяции. ''tout'' по времени слишком рано в "
+"направлении интегрирования"
 
 msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
 msgstr "IDA_YP0_NULL: Недопустимое значение производной yp0 = NULL."
 
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr ""
+msgstr "IDA_RES_NULL: возвращённая невязка res = NULL является недопустимой."
 
 msgid "IDA_YRET_NULL: yret = NULL illegal.."
 msgstr "IDA_YRET_NULL: Недопустимое значение yret = NULL."
 
 msgid "IDA_YPRET_NULL: yret = NULL illegal.."
-msgstr ""
+msgstr "IDA_YPRET_NULL: Недопустимое значение ypret = NULL."
 
 msgid "IDA_BAD_HINIT: yret = NULL illegal.."
 msgstr "IDA_BAD_HINIT: Недопустимое значение yret = NULL."
@@ -519,12 +581,15 @@ msgid ""
 "IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
 "but suppressalg option on."
 msgstr ""
+"IDA_MISSING_ID : id = NULL (''id'' определяет алгебраическое и "
+"дифференциальное состояния),  но опция подавления включена."
 
 msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
-msgstr ""
+msgstr "IDA_Y0_FAIL_CONSTR: y0 не смогла удовлетворить условиям ограничения."
 
 msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
 msgstr ""
+"IDA_TOO_CLOSE: ''tout'' слишком близко к ''t0'' чтобы начать интегрирование."
 
 msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
 msgstr "IDA_CLOSE_ROOTS: Корень найден слишком близко к начальному времени."
@@ -547,24 +612,34 @@ msgid ""
 "CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
 "user for some internal step"
 msgstr ""
+"CV_TOO_MUCH_ACC: Программа поиска решения не может удовлетворить требованиям "
+"точности, указанным пользователем для некоторого внутреннего шага"
 
 msgid ""
 "CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
 "during one internal step or occurred with |h|=h_min "
 msgstr ""
+"CV_ERR_FAILURE: Слишком много раз происходили неудачные проверки на ошибки "
+"(=MXETF = 7) во время одного шага на интервале или произошли при |h|=h_min "
 
 msgid ""
 "CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
 "= 10) during one internal time step or occurred with |h| = hmin."
 msgstr ""
+"CV_CONV_FAILURE: Слишком много раз происходили неудачные проверки сходимости "
+"(= MXNCF = 10) во время одного шага на интервале времени или произошли при "
+"|h| = hmin."
 
 msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
 msgstr ""
+"CV_LINIT_FAIL: Ошибка в функции инициализации решения линейных уравнений."
 
 msgid ""
 "CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
 "unrecoverable manner."
 msgstr ""
+"CV_LSETUP_FAIL: Критическая ошибка при установке программы решения линейных "
+"уравнений."
 
 msgid ""
 "CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
@@ -577,11 +652,15 @@ msgid ""
 "CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
 "an unrecoverable manner"
 msgstr ""
+"CV_RHSFUNC_FAIL: Ошибка правосторонней функции (указанного пользователем "
+"ОДУ) по неизвестной причине."
 
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error at the first call"
 msgstr ""
+"CV_FIRST_RHSFUNC_ERR: Правосторонняя функция (заданного пользователем ОДУ) "
+"имела при первом вызове некритичную ошибку"
 
 msgid ""
 "CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
@@ -589,23 +668,31 @@ msgid ""
 "ODE). This error may be raised due to repeated  recoverable errors during "
 "the estimation of an initial step size."
 msgstr ""
+"CV_REPTD_RHSFUNC_ERR: Слишком много раз происходили проверки на сходимость "
+"из-за повторяющихся некритичных ошибок в правосторонней функции (указанного "
+"пользователем ОДУ). Эта ошибка может возникать из-за повторяющейся "
+"некритичной ошибки  во время оценки начального размера шага."
 
 msgid ""
 "CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error, but no recovery was possible."
 msgstr ""
+"CV_UNREC_RHSFUNC_ERR: В правосторонней функции (указанного пользователем "
+"ОДУ) возникла некритичная ошибка, однако восстановление невозможно."
 
 msgid ""
 "CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
+"CV_RTFUNC_FAIL: Ошибка подпрограммы поиска корней по неизвестной причине."
 
 msgid ""
 "CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
 "maxord"
 msgstr ""
+"CV_MEM_FAIL: ошибка распределения памяти, даже при попытке увеличить maxord"
 
 msgid "CV_MEM_NULL: the cvode memory was NULL"
-msgstr ""
+msgstr "CV_MEM_NULL: память cvode была NULL"
 
 msgid ""
 "CV_ILL_INPUT: indicating an input argument was illegal. This include the "
@@ -629,11 +716,15 @@ msgid ""
 "CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
 "CVodeMalloc has not been called)."
 msgstr ""
+"CV_NO_MALLOC: указание, что cvode_mem не было размещено в памяти (т.е., "
+"CVodeMalloc не был вызван)."
 
 msgid ""
 "CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
 "range 0, 1, ..., qu, where qu is the order last used"
 msgstr ""
+"CV_BAD_K: k (порядок производной y, которую нужно вычислить) не лежит в "
+"диапазоне 0, 1, ..., qu, где qu - это порядок, используемый в последний раз"
 
 msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
 msgstr "CV_BAD_T: t не лежит на интервале [tn-hu,tn]."
@@ -642,6 +733,8 @@ msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
 "[((d/dt)^k)y](t)."
 msgstr ""
+"CV_BAD_DKY:  Аргумент dky был NULL. dky является выходным вектором "
+"производных [((d/dt)^k)y](t)."
 
 msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
 msgstr ""
@@ -670,21 +763,26 @@ msgid ""
 "CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
 "integration."
 msgstr ""
+"CV_BAD_TSTOP: Время tstop идёт прежде текущего времени моделирования в "
+"направлении интеграции."
 
 msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr ""
+msgstr "CV_BAD_INIT_ROOT: Корень найден слишком близко от исходного t."
 
 msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
 msgstr "CV_NO_EFUN: itol = CV_WF, но функция EwtSet не была указана."
 
 msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr ""
+msgstr "CV_EWT_FAIL: Ошибка функции EwtSet, предоставленной пользователем ."
 
 msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
 msgstr ""
+"CV_BAD_EWT: Исходный ewt имеет компонент(ы) равный(е) нулю (недопустимо)."
 
 msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
 msgstr ""
+"CV_LSOLVE_NULL: Подпрограмма решения программы решения линейных уравнений "
+"является NULL."
 
 msgid "CV_NULL_Y0: y0 = NULL illegal."
 msgstr "CV_NULL_Y0: некорректное значение y0 = NULL."
@@ -698,18 +796,23 @@ msgstr ""
 
 msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
 msgstr ""
+"CV_NULL_F: указанная пользоваетелм подпрограмма решения ОДУ является "
+"недопустимой (NULL)."
 
 msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr ""
+msgstr "CV_BAD_NVECTOR: Указанная векторная операция не реализована."
 
 msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
 msgstr "CV_NULL_ABSTOL: значение абсолютного допуска = NULL недопустимо."
 
 msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
 msgstr ""
+"CV_BAD_RELTOL: значение относительного допуска reltol < 0 является "
+"недопустимым."
 
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr ""
+"CV_BAD_ABSTOL: abstol имеет отрицательный(е) компонент(ы) (недопустимо)."
 
 msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
 msgstr ""
@@ -720,12 +823,16 @@ msgid ""
 "CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
 "integration"
 msgstr ""
+"CV_BAD_TOUT: Проблема интерполяции. Время ''tout'' слишком рано в "
+"направлении интегрирования"
 
 msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr ""
+msgstr "CV_CLOSE_ROOTS: Найденный корень очень близок к начальному времени."
 
 msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
 msgstr ""
+"CV_Derivative_NAN: Производные, выданные блоками являются нечисловыми "
+"значениями (NAN)."
 
 msgid "CV_Rootfunction_NAN: The Root function returns NAN."
 msgstr "CV_Rootfunction_NAN: Функция поиска корней вернула NAN."
@@ -743,12 +850,16 @@ msgid ""
 "KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
 "vector storage (forgot to call the  KINMalloc routine)"
 msgstr ""
+"KIN_NO_MALLOC: Дополнительная системная память ещё не была выделена для "
+"хранения векторов (забыли вызвать подпрограмму KINMalloc)"
 
 msgid ""
 "KIN_MEM_FAIL: An error occurred during memory allocation (either "
 "insufficient system resources are available or the vector kernel has not yet "
 "been initialized "
 msgstr ""
+"KIN_MEM_FAIL: Во время распределения памяти произошла ошибка (либо "
+"недостаточно системных ресурсов либо вектор ядра ещё не был инициализирован "
 
 msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
@@ -778,6 +889,12 @@ msgid ""
 "step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
 "above to a finite value, or the real scalar mxnewtstep is too small "
 msgstr ""
+"KIN_MXNEWT_5X_EXCEEDE: Было сделано пять последовательных шагов, которые "
+"удовлетворяют следующему неравенству:  ||uscale*p||_L2 > 0.99*mxnewtstep, "
+"где p означает текущий шаг, а mxnewtstep является вещественным скаляром, "
+"указывающим верхнюю границу масштабируемой длины шага, Причиной такой ошибки "
+"может быть то, что ||fscale*func(u)||_L2 асимптотически приближается сверху "
+"к конечному значению, или что вещественный скаляр mxnewtstep слишком мал "
 
 msgid ""
 "KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
@@ -794,6 +911,9 @@ msgid ""
 "KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
 "recoverable error, but the preconditioner is already current"
 msgstr ""
+"KIN_LINSOLV_NO_RECOVERY: Указанная пользователем подпрограмма psolve "
+"неожиданно столкнулась с некритической ошибкой, однако средство "
+"предварительной обработки уже работает"
 
 msgid ""
 "KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
@@ -806,12 +926,19 @@ msgid ""
 "KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
 "preconditioner) encountered an unrecoverable error ."
 msgstr ""
+"KIN_LSETUP_FAIL: Указанная пользователем подпрограмма pset (используемая для "
+"вычисления матрицы предобусловливания) неожиданно столкнулась с критической "
+"ошибкой."
 
 msgid ""
 "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
 "preconditioned linear system) encountered an unrecoverable error, or the "
 "linear solver routine (lsolve) encountered an error condition."
 msgstr ""
+"KIN_LSOLVE_FAIL: Либо указанная пользователем подпрограмма psolve "
+"(используемая для решения предобусловленной системы линейных уравнений) "
+"неожиданно столкнулась с критической ошибкой, либо подпрограмма решения "
+"линейных уравнений (lsolve) неожиданно столкнулась с ошибочным условием."
 
 msgid ""
 "KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
@@ -861,31 +988,34 @@ msgstr "%s : Первым аргументом должна быть струк�
 
 #, c-format
 msgid "%s : First argument must be a scicos signal structure.\n"
-msgstr ""
+msgstr "%s : Первым аргументом должна быть структура сигналов scicos.\n"
 
 #, c-format
 msgid "%s: error %d. Stack is full.\n"
-msgstr ""
+msgstr "%s: ошибка %d. Стек полон.\n"
 
 #, c-format
 msgid "%s: error %d. No more space on the stack for new data.\n"
-msgstr ""
+msgstr "%s: ошибка %d. Для новых данных не осталось места в стеке.\n"
 
 #, c-format
 msgid "%s: error %d. Undefined error.\n"
-msgstr ""
+msgstr "%s: ошибка %d. Неизвестная ошибка.\n"
 
 #, c-format
 msgid "%s: error %d. Only int or double object are accepted.\n"
 msgstr ""
+"%s: ошибка %d. Допустимы только целочисленные (int) объекты или объекты "
+"двойной точности (double).\n"
 
 #, c-format
 msgid "%s: error %d. Bad double object sub_type.\n"
 msgstr ""
+"%s: ошибка %d. Ошибочный объект двойной точности (double) sub_type.\n"
 
 #, c-format
 msgid "%s: error %d. Bad int object sub_type.\n"
-msgstr ""
+msgstr "%s: ошибка %d. Ошибочный целочисленный (int) объект sub_type.\n"
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -936,21 +1066,23 @@ msgstr ""
 
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
-msgstr ""
+msgstr "****SUNDIALS.Cvode от %f до %f hot= %d  \n"
 
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
-msgstr ""
+msgstr "****SUNDIALS.Cvode достигнуто: %f\n"
 
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
+"****SUNDIALS.Cvode: слишком много работы за время=%g (фиксированный "
+"диапазон, смените RTOL и ATOL)\n"
 
 #, c-format
 msgid "root found at t=: %f\n"
-msgstr ""
+msgstr "корень найден в t=: %f\n"
 
 #, c-format
 msgid "Event: %d activated at t=%f\n"
@@ -967,24 +1099,28 @@ msgid "End of activation\n"
 msgstr "Конец активации\n"
 
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
-msgstr ""
+msgstr "**** SUNDIALS.IDA успешно проинициализирована *****\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
+"**** не удалось проинициализировать SUNDIALS.IDA ->попытайтесь ещё раз "
+"*****\n"
 
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
-msgstr ""
+msgstr "****daskr от %f до %f hot= %d  \n"
 
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
-msgstr ""
+msgstr "****SUNDIALS.Ida достигнуто: %f\n"
 
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
+"**** SUNDIALS.Ida: слишком много работы за время=%g (фиксированный диапазон, "
+"смените RTOL и ATOL)\n"
 
 msgid "End of activation"
 msgstr "Конец активации"
@@ -1024,18 +1160,24 @@ msgid ""
 "\n"
 "Warning: The zero_crossing function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Предупреждение: Функция пересечения нуля №%d возвращает NaN/Inf"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The zero-crossing function #%d returns a NaN"
 msgstr ""
+"\n"
+"Предупреждение: Функция пересечения нуля №%d возвращает NaN"
 
 #, c-format
 msgid ""
 "\n"
 " Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
+"\n"
+" Предупреждение: событие перепрограммировано в t=%g через удаление другого"
 
 msgid ""
 "\n"
@@ -1059,8 +1201,8 @@ msgstr ""
 " ошибка в якобиане"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Error: невозможно найти '%s'  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Ошибка: Невозможно найти файл '%s'.\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1079,6 +1221,8 @@ msgid ""
 "\n"
 "Warning: The residual function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Предупреждение: Функция вычета №%d возвращает NaN/Inf"
 
 msgid ""
 "\n"
@@ -1126,10 +1270,12 @@ msgstr "%s: Диаграмма не скомпилирована в %d прох�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Empty matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входого аргумента №%d: ожидалась пустая матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась матрица %d на %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
@@ -1196,14 +1342,14 @@ msgid "Simulation problem: "
 msgstr "Проблема моделирования: "
 
 msgid "End problem: "
-msgstr ""
+msgstr "Проблема завершения: "
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 msgid "Problem with the block generated from modelica blocks."
-msgstr ""
+msgstr "Проблема с блоком, сформированным в блоках modelica."
 
 msgid "Block has connected output port<br />with incompatible size:"
 msgstr "У блока подсоединённый выходной порт<br />с несовместимым размером:"
@@ -1217,7 +1363,7 @@ msgid "Input port %s size is: %s"
 msgstr "Размер входного порта %s равен: %s"
 
 msgid "Block has connected output port<br />with incompatible type."
-msgstr ""
+msgstr "Блок подключил выходной порт<br />с несовместимым типом."
 
 #, c-format
 msgid "Output port %s type is: %s"
@@ -1228,10 +1374,10 @@ msgid "Input port %s type is: %s"
 msgstr "У входного порта %s тип: %s"
 
 msgid "Block has connected input port<br />with incompatible size:"
-msgstr ""
+msgstr "Блок подключил входной порт<br />с несовместимым размером:"
 
 msgid "Block has connected input port<br />with incompatible type:"
-msgstr ""
+msgstr "Блок подключил входной порт<br />с несовместимым типом:"
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
@@ -1246,10 +1392,10 @@ msgid "Block input has negative size:"
 msgstr "Вход блока имеет отрицательный размер:"
 
 msgid "Please compile the diagram to report the error."
-msgstr ""
+msgstr "Пожалуйста, скомпилируйте схему, чтобы сообщить об ошибке."
 
 msgid "Unable to report an error into a SuperBlock"
-msgstr ""
+msgstr "Невозможно сообщить об ошибке в SuperBlock"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
@@ -1291,13 +1437,20 @@ msgid "Type not recognized"
 msgstr "Тип не опознан"
 
 msgid "Evaluation problem: value not updated from context."
-msgstr ""
+msgstr "Проблема вычисления: значение не обновлено из контекста."
+
+msgid "Evaluation problem: Unknown block"
+msgstr "Проблема выполнения: Неизвестный блок"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Извините: поддерживаются только языки C или FORTRAN"
 
 msgid "Sorry file name not defined in "
 msgstr "Извините, имя файла не определено в "
+
+#, c-format
+msgid "%s: Empty diagram"
+msgstr ""
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
@@ -1356,7 +1509,3 @@ msgid ""
 msgstr ""
 "Ответ, данный для %s, \n"
 " неверен: %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-#~ msgstr "%s: Неверный размер входных параметров №%d и №%d.\n"

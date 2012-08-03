@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_help" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-08-20 09:53:02 +0200 $</pubdate>
-  </info>
   <refnamediv>
     <refname>tbx_build_help</refname>
     <refpurpose>Generate help files (toolbox compilation process)</refpurpose>
@@ -21,8 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_build_help(title)
-	  tbx_build_help(title, help_path)
+      tbx_build_help(title)
+      tbx_build_help(title, help_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -44,7 +41,9 @@
   </refsection>
   <refsection>
     <title>Remark:</title>
-    <para>If you call <literal>tbx_build_help</literal> in scilab CLI (=NWNI) mode, help files will not be generated.</para>
+    <para>
+      If you call <literal>tbx_build_help</literal> in scilab CLI (=NWNI) mode, help files will not be generated.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +53,7 @@ tbx_build_help("Toolbox Example", get_absolute_file_path('build_help.sce'))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>
@@ -65,13 +64,6 @@ tbx_build_help("Toolbox Example", get_absolute_file_path('build_help.sce'))
       <member>
         <link linkend="tbx_builder_help">tbx_builder_help</link>
       </member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
     </simplelist>
   </refsection>
 </refentry>

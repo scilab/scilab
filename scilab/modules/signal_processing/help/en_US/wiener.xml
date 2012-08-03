@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wiener">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>wiener</refname>
     <refpurpose>  Wiener estimate</refpurpose>
@@ -17,24 +14,32 @@
       <varlistentry>
         <term>f, g, h</term>
         <listitem>
-          <para>system matrices in the interval <literal>[t0,tf]</literal></para>
+          <para>
+            system matrices in the interval <literal>[t0,tf]</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>f</term>
               <listitem>
-                <para>=<literal>[f0,f1,...,ff]</literal>, and <literal>fk</literal> is a nxn matrix</para>
+                <para>
+                  =<literal>[f0,f1,...,ff]</literal>, and <literal>fk</literal> is a nxn matrix
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>g</term>
               <listitem>
-                <para>=<literal>[g0,g1,...,gf]</literal>, and <literal>gk</literal> is a nxn matrix</para>
+                <para>
+                  =<literal>[g0,g1,...,gf]</literal>, and <literal>gk</literal> is a nxn matrix
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>h</term>
               <listitem>
-                <para>=<literal>[h0,h1,...,hf]</literal>, and <literal>hk</literal> is a mxn matrix</para>
+                <para>
+                  =<literal>[h0,h1,...,hf]</literal>, and <literal>hk</literal> is a mxn matrix
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -48,13 +53,17 @@
             <varlistentry>
               <term>q</term>
               <listitem>
-                <para>=<literal>[q0,q1,...,qf]</literal>, and <literal>qk</literal> is a nxn matrix</para>
+                <para>
+                  =<literal>[q0,q1,...,qf]</literal>, and <literal>qk</literal> is a nxn matrix
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>r</term>
               <listitem>
-                <para>=<literal>[r0,r1,...,rf]</literal>, and <literal>gk</literal> is a mxm matrix</para>
+                <para>
+                  =<literal>[r0,r1,...,rf]</literal>, and <literal>gk</literal> is a mxm matrix
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -69,31 +78,41 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>observations in the interval <literal>[t0,tf]</literal>. <literal>y=[y0,y1,...,yf]</literal>, and <literal>yk</literal> is a column m-vector</para>
+          <para>
+            observations in the interval <literal>[t0,tf]</literal>. <literal>y=[y0,y1,...,yf]</literal>, and <literal>yk</literal> is a column m-vector
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xs</term>
         <listitem>
-          <para>Smoothed state estimate <literal>xs= [xs0,xs1,...,xsf]</literal>, and <literal>xsk</literal> is a column n-vector</para>
+          <para>
+            Smoothed state estimate <literal>xs= [xs0,xs1,...,xsf]</literal>, and <literal>xsk</literal> is a column n-vector
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ps</term>
         <listitem>
-          <para>Error covariance of smoothed estimate <literal>ps=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix</para>
+          <para>
+            Error covariance of smoothed estimate <literal>ps=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xf</term>
         <listitem>
-          <para>Filtered state estimate <literal>xf= [xf0,xf1,...,xff]</literal>, and <literal>xfk</literal> is a column n-vector</para>
+          <para>
+            Filtered state estimate <literal>xf= [xf0,xf1,...,xff]</literal>, and <literal>xfk</literal> is a column n-vector
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pf</term>
         <listitem>
-          <para>Error covariance of filtered estimate <literal>pf=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix</para>
+          <para>
+            Error covariance of filtered estimate <literal>pf=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -101,11 +120,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    function which gives the Wiener estimate using
-    the forward-backward Kalman filter formulation</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      function which gives the Wiener estimate using
+      the forward-backward Kalman filter formulation
+    </para>
   </refsection>
 </refentry>

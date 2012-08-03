@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zeropen">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>zeropen</refname>
     <refpurpose> zero pencil</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>a linear system (<literal>syslin</literal> list in state-space form <literal>[A,B,C,D]</literal>)</para>
+          <para>
+            a linear system (<literal>syslin</literal> list in state-space form <literal>[A,B,C,D]</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Z</term>
         <listitem>
-          <para>matrix pencil <literal>Z=s*E-A</literal></para>
+          <para>
+            matrix pencil <literal>Z=s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,19 +48,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>Z = sE - F</literal>  is the zero pencil of the linear system <literal>Sl</literal> with 
-    matrices <literal>[A,B,C,D]</literal>. Utility function.</para>
     <para>
-    With <literal>U</literal> row compression of <literal>[B;D]</literal> i.e, <literal>U*[B;D]=[0;*]</literal>; one has:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>Z= sE - F</literal>  is the zero pencil of the linear system <literal>Sl</literal> with 
+      matrices <literal>[A,B,C,D]</literal>. Utility function.
+    </para>
+    <para>
+      With <literal>U</literal> row compression of <literal>[B;D]</literal> i.e, <literal>U*[B;D]=[0;*]</literal>; one has:
+    </para>
+    <programlisting role=""><![CDATA[ 
 U*[-sI+A |B;   [ Z |0;      
       C  |D] = [ * |*]
  ]]></programlisting>
     <para>
-    The zeros of <literal>Z</literal> are the zeros of <literal>Sl</literal>.</para>
+      The zeros of <literal>Z</literal> are the zeros of <literal>Sl</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="systmat">systmat</link>

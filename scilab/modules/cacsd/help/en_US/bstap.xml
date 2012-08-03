@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bstap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bstap</refname>
     <refpurpose> hankel approximant</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) assumed continuous-time and anti-stable.</para>
+          <para>
+            linear system (<literal>syslin</literal> list) assumed continuous-time and anti-stable.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q</term>
         <listitem>
-          <para>best stable approximation of <literal>Sl</literal> (<literal>syslin</literal> list).</para>
+          <para>
+            best stable approximation of <literal>Sl</literal> (<literal>syslin</literal> list).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,16 +43,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Computes the best approximant <literal>Q</literal> of the linear system <literal>Sl</literal></para>
+      Computes the best approximant <literal>Q</literal> of the linear system <literal>Sl</literal>
+    </para>
     <para>
-    where</para>
+      where
+    </para>
     <para>
-    ||T||</para>
+      ||T||
+    </para>
     <para>
-    is the  H-infinity norm of the Hankel operator associated with <literal>Sl</literal>.</para>
+      is the  H-infinity norm of the Hankel operator associated with <literal>Sl</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

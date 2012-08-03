@@ -12,6 +12,6 @@
 // <-- BENCH NB RUN : 1000000 -->
 
 // <-- BENCH START -->
-a = code2str(-(10:35));
+a = _code2str(-(10:35));
 // <-- BENCH END -->
 

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="isdir">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>isdir</refname>
     <refpurpose>引数がディレクトリパスかどうかを調べる</refpurpose>
@@ -35,21 +32,26 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>論理値, <literal>path</literal> がディレクトリへのパスの場合に真.</para>
+          <para>
+            論理値, <literal>path</literal> がディレクトリへのパスの場合に真.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>r=isdir(path)</literal> は, <literal>path</literal> がディレクトリへのパスかどうかを調べます.</para>
+    <para>
+      <literal>r=isdir(path)</literal> は, <literal>path</literal> がディレクトリへのパスかどうかを調べます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
     <para>
-    この関数はC関数 stat に基づいています. <literal>SCI</literal> および  
-	Scilabディレクトリに関するショートカット<literal>~</literal>
-	およびホームディレクトリが処理されます.</para>
+      この関数はC関数 stat に基づいています. <literal>SCI</literal> および  
+      Scilabディレクトリに関するショートカット<literal>~</literal>
+      およびホームディレクトリが処理されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,9 +67,5 @@ isdir SCI/etc/scilab.start
         <link linkend="fileinfo">fileinfo</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer INRIA</para>
   </refsection>
 </refentry>

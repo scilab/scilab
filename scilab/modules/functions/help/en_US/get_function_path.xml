@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_function_path">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>get_function_path</refname>
     <refpurpose> get source file path of a library function</refpurpose>
@@ -42,10 +39,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the name of a function get_function_path returns the absolute
-    pathname of the function source file if the function is defined in a
-    Scilab library (see lib) or [] if name does not match any library
-    function.</para>
+      Given the name of a function get_function_path returns the absolute
+      pathname of the function source file if the function is defined in a
+      Scilab library (see lib) or [] if name does not match any library
+      function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +52,7 @@ get_function_path('median')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lib">lib</link>

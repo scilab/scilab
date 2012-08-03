@@ -13,23 +13,25 @@
 package org.scilab.modules.scinotes.utils;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -43,66 +45,67 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.tree.TreePath;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.text.Element;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.text.Element;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeExpansionEvent;
+import javax.swing.tree.TreePath;
 
 import org.flexdock.docking.event.DockingEvent;
-import org.flexdock.docking.defaults.DockingSplitPane;
-
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.UIElementMapper;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
 
 /**
  *
  * @author Calixte DENIZET
  */
-public final class NavigatorWindow extends SwingScilabTab implements Tab, DocumentListener,
-                                                               TreeExpansionListener {
+public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
+    TreeExpansionListener {
 
     private static final String EMPTY = "";
 
-    private static JTree functionNavigator;
-    private static DefaultTreeModel model;
-    private static ScilabEditorPane pane;
-    private static ScilabDocument doc;
-    private static NavigatorWindow navigator;
-    private static boolean alphaOrder;
-    private static Map<ScilabEditorPane, DefaultMutableTreeNode> mapNode = new HashMap();
-    private static Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap();
-    private static Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap();
+    private Map<ScilabEditorPane, DefaultMutableTreeNode> mapNode = new HashMap();
+    private Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap();
+    private Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap();
+    private List<ScilabEditorPane> panes = new ArrayList<ScilabEditorPane>();
 
-    private Window parentWindow;
+    private SciNotes editor;
+
+    private JTree functionNavigator;
+    private DefaultTreeModel model;
+    private ScilabEditorPane pane;
+    private ScilabDocument doc;
+    private boolean alphaOrder;
+
     private boolean isAbsolute = true;
     private boolean lineNumberActive = true;
     private boolean locked;
+    private boolean init;
 
     private JSeparator jSeparator1;
     private JLabel labelGotoLine;
@@ -111,28 +114,50 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     private JComboBox numType;
     private JScrollPane scrollPane;
 
+    private SwingScilabWindow parentWindow;
+
+    static {
+        ScilabTabFactory.getInstance().addTabFactory(CodeNavigatorTabFactory.getInstance());
+    }
+
     /**
      * Creates new Navigator Window
      */
-    private NavigatorWindow() {
-        super(SciNotesMessages.CODE_NAVIGATOR);
-        initComponents();
-        functionNavigator.addTreeExpansionListener(this);
+    public NavigatorWindow(SciNotes editor, String uuid) {
+        super(SciNotesMessages.CODE_NAVIGATOR, uuid == null ? UUID.randomUUID().toString() : uuid);
+        this.editor = editor;
+        editor.addNavigator(this);
+        ConfigSciNotesManager.saveCodeNavigatorState(editor.getPersistentId(), getPersistentId());
+        WindowsConfigurationManager.restorationFinished(this);
+    }
+
+    /**
+     * Creates new Navigator Window
+     */
+    public NavigatorWindow(SciNotes editor) {
+        this(editor, null);
     }
 
     /**
      * @param doc the doc to update
      */
-    public static void updateNavigator(ScilabDocument doc) {
-        if (navigator != null) {
-            if (NavigatorWindow.doc != null) {
-                NavigatorWindow.doc.removeDocumentListener(navigator);
+    public void update(ScilabDocument doc) {
+        if (!init) {
+            initTree();
+            initComponents();
+            functionNavigator.addTreeExpansionListener(this);
+            init = true;
+        }
+
+        if (doc != null) {
+            if (this.doc != null) {
+                this.doc.removeDocumentListener(this);
             }
 
-            NavigatorWindow.doc = doc;
-            NavigatorWindow.pane = doc.getEditorPane();
+            this.doc = doc;
+            this.pane = doc.getEditorPane();
 
-            doc.addDocumentListener(navigator);
+            this.doc.addDocumentListener(this);
 
             if (!mapNode.containsKey(pane)) {
                 initTree();
@@ -142,32 +167,40 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         }
     }
 
+    public void addEditorPane(ScilabEditorPane pane) {
+        panes.add(pane);
+        update((ScilabDocument) pane.getDocument());
+    }
+
     /**
      * Update the navigator
      */
-    public static void updateNavigator() {
-        if (navigator != null) {
-            updateTree();
-        }
+    public void update() {
+        updateTree();
     }
 
     /**
      * @param doc to use
      */
-    public static void activateNavigator(ScilabDocument doc) {
+    public void activateNavigator(ScilabDocument doc) {
         initTree();
-        if (navigator == null) {
-            navigator = new NavigatorWindow();
-        }
+        update(doc);
+    }
 
-        updateNavigator(doc);
+    /**
+     * Set the parent window
+     */
+    public void setParentWindow() {
+        this.parentWindow = new SwingScilabWindow();
+        parentWindow.addTab(this);
+        parentWindow.setVisible(true);
     }
 
     /**
      * Get the parent window id for this tab
      * @return the id of the parent window
      */
-    public Window getParentWindow() {
+    public SwingScilabWindow getParentWindow() {
         return this.parentWindow;
     }
 
@@ -199,28 +232,22 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         setToolBar(toolBarToAdd);
     }
 
-    public static void closeCurrent() {
-        if (navigator != null) {
-            navigator.closeNavigator();
-        }
-    }
-
     /**
      * Close this Navigator.
      */
     public void closeNavigator() {
-        ScilabWindow win = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
-        win.removeTab(this);
-        setVisible(false);
-        close();
+        editor.removeNavigator();
         mapNode.clear();
         mapFunPath.clear();
         mapAnchorPath.clear();
-        navigator = null;
         functionNavigator = null;
         model = null;
         pane = null;
         doc = null;
+        for (ScilabEditorPane p : panes) {
+            ((ScilabDocument) p.getDocument()).removeDocumentListener(this);
+        }
+        panes.clear();
     }
 
     /**
@@ -250,12 +277,21 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      */
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
-        /* Trick to always have the editor's toolbar when the navigator
-           is docked in the editor */
-        if (evt.getNewDockingPort().getDockedComponent() instanceof DockingSplitPane) {
-            DockingSplitPane dsp = (DockingSplitPane) evt.getNewDockingPort().getDockedComponent();
-            if (dsp.getElderComponent() instanceof SciNotes) {
-                addToolBar(pane.getEditor().getToolBar());
+        changeToolBar();
+    }
+
+    /**
+     * Try to add a SciNotes toolbar
+     */
+    public void changeToolBar() {
+        SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
+        if (win != null && win.getDockingPort() != null) {
+            Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+            for (SwingScilabTab tab : set) {
+                if (tab == editor) {
+                    addToolBar(editor.getToolBar());
+                    break;
+                }
             }
         }
     }
@@ -321,7 +357,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * @param pane the pane which has been splitted
      * @param split the new pane
      */
-    public static void changePaneOnSplit(ScilabEditorPane pane, ScilabEditorPane split) {
+    public void changePaneOnSplit(ScilabEditorPane pane, ScilabEditorPane split) {
         if (mapNode.containsKey(pane)) {
             DefaultMutableTreeNode node = mapNode.get(pane);
             node.setUserObject(split);
@@ -337,7 +373,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * @param pane to remove
      */
-    public static void removePane(ScilabEditorPane pane) {
+    public void removePane(ScilabEditorPane pane) {
         if (mapNode.containsKey(pane)) {
             DefaultMutableTreeNode node = mapNode.get(pane);
             ((DefaultMutableTreeNode) model.getRoot()).remove(node);
@@ -345,6 +381,9 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
             mapNode.remove(pane);
             mapFunPath.remove(pane);
             mapAnchorPath.remove(pane);
+            panes.remove(pane);
+            this.pane = null;
+            this.doc = null;
         }
     }
 
@@ -353,8 +392,6 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * initialize the form.
      */
     private void initComponents() {
-        parentWindow = ScilabWindow.createWindow();
-        parentWindow.addTab(this);
         labelNumerotation = new JLabel();
         lineNumber = new JTextField();
         numType = new JComboBox();
@@ -362,65 +399,65 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         labelGotoLine = new JLabel();
         scrollPane = new JScrollPane();
 
-        parentWindow.setTitle(SciNotesMessages.CODE_NAVIGATOR);
+        setTitle(SciNotesMessages.CODE_NAVIGATOR);
         updateUI();
 
         labelNumerotation.setText(SciNotesMessages.NUMEROTATION);
         labelNumerotation.setFocusable(false);
 
         lineNumber.addKeyListener(new KeyListener() {
-                public void keyTyped(KeyEvent ke) { }
-                public void keyPressed(KeyEvent ke) { }
+            public void keyTyped(KeyEvent ke) { }
+            public void keyPressed(KeyEvent ke) { }
 
-                public void keyReleased(KeyEvent ke) {
-                    updateCaretPosition();
-                }
-            });
+            public void keyReleased(KeyEvent ke) {
+                updateCaretPosition();
+            }
+        });
 
         lineNumber.addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateCaretPosition();
-                }
+            public void focusGained(FocusEvent e) {
+                updateCaretPosition();
+            }
 
-                public void focusLost(FocusEvent e) {
-                }
-            });
+            public void focusLost(FocusEvent e) {
+            }
+        });
 
         numType.setModel(new DefaultComboBoxModel(new String[] {SciNotesMessages.ABSOLUTE, SciNotesMessages.RELATIVE}));
         numType.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    int i = numType.getSelectedIndex();
-                    if (i == 0 && !isAbsolute) {
-                        lineNumber.setText(EMPTY);
-                        isAbsolute = true;
-                    } else if (i == 1 && isAbsolute) {
-                        lineNumber.setText(EMPTY);
-                        isAbsolute = false;
-                    }
+            public void actionPerformed(ActionEvent evt) {
+                int i = numType.getSelectedIndex();
+                if (i == 0 && !isAbsolute) {
+                    lineNumber.setText(EMPTY);
+                    isAbsolute = true;
+                } else if (i == 1 && isAbsolute) {
+                    lineNumber.setText(EMPTY);
+                    isAbsolute = false;
                 }
-            });
+            }
+        });
 
         labelGotoLine.setText(SciNotesMessages.GO_TO_LINE);
         labelGotoLine.setFocusable(false);
 
         functionNavigator.addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int row = functionNavigator.getRowForLocation(e.getX(), e.getY());
-                    if (e.getClickCount() == 2) {
-                        handleSelectedItem(row);
-                    }
+            public void mousePressed(MouseEvent e) {
+                int row = functionNavigator.getRowForLocation(e.getX(), e.getY());
+                if (e.getClickCount() == 2) {
+                    handleSelectedItem(row);
                 }
-            });
+            }
+        });
 
         functionNavigator.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "toggle");
         functionNavigator.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent e) {
-                    if (e.getKeyChar() == '\n') {
-                        int row = functionNavigator.getMinSelectionRow();
-                        handleSelectedItem(row);
-                    }
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == '\n') {
+                    int row = functionNavigator.getMinSelectionRow();
+                    handleSelectedItem(row);
                 }
-            });
+            }
+        });
         createPopupMenuOnJTree();
 
         scrollPane.setViewportView(functionNavigator);
@@ -432,18 +469,18 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                   .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
                                             .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                      .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                      .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                      .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                                          .addComponent(labelGotoLine)
-                                                                          .addComponent(labelNumerotation))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                                                          .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                                                                          .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(labelGotoLine)
+                                                                    .addComponent(labelNumerotation))
+                                                            .addGap(18, 18, 18)
+                                                            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                    .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                                                    .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                             .addContainerGap())
-                                  );
+                                 );
         layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                                           .addContainerGap()
@@ -452,14 +489,14 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                           .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
                                           .addPreferredGap(ComponentPlacement.RELATED)
                                           .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                    .addComponent(labelGotoLine)
-                                                    .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                  .addComponent(labelGotoLine)
+                                                  .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                           .addGap(4, 4, 4)
                                           .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                                    .addComponent(labelNumerotation)
-                                                    .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                  .addComponent(labelNumerotation)
+                                                  .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                           .addContainerGap())
-                                );
+                               );
         /* End NetBeans */
 
         List<Component> components = new ArrayList(3);
@@ -472,26 +509,24 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
 
         setMinimumSize(new Dimension(224, 0));
         setPreferredSize(new Dimension(224, 543));
-        ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).pack();
-        ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).setVisible(true);
 
-        CallBack callback = new CallBack(null) {
-                public void callBack() {
-                    NavigatorWindow.this.closeNavigator();
-                }
+        CommonCallBack callback = new CommonCallBack(null) {
+            public void callBack() {
+                ClosingOperationsManager.startClosingOperation((SwingScilabTab) NavigatorWindow.this);
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            };
-        setCallback(callback);
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        };
+
         MenuBar menubar = ScilabMenuBar.createMenuBar();
         Menu fileMenu = ScilabMenu.createMenu();
         fileMenu.setText(SciNotesMessages.FILE);
         fileMenu.setMnemonic('F');
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(callback);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotesGUI.getActionKeyMap().get("ExitAction"));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(SciNotes.getActionKeys().get("scinotes-exit"));
         menu.setText(SciNotesMessages.EXIT);
         fileMenu.add(menu);
         menubar.add(fileMenu);
@@ -500,31 +535,31 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         orderMenu.setText(SciNotesMessages.ORDER);
         orderMenu.setMnemonic('O');
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
-                public void callBack() {
-                    doc.setAlphaOrderInTree(true);
-                    updateTree();
-                }
+        menu.setCallback(new CommonCallBack(null) {
+            public void callBack() {
+                doc.setAlphaOrderInTree(true);
+                updateTree();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
         menu.setText(SciNotesMessages.ALPHABETIC_ORDER);
         ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(KeyStroke.getKeyStroke("alt A"));
         orderMenu.add(menu);
 
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
-                public void callBack() {
-                    doc.setAlphaOrderInTree(false);
-                    updateTree();
-                }
+        menu.setCallback(new CommonCallBack(null) {
+            public void callBack() {
+                doc.setAlphaOrderInTree(false);
+                updateTree();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
         ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(KeyStroke.getKeyStroke("alt N"));
         menu.setText(SciNotesMessages.NATURAL_ORDER);
         orderMenu.add(menu);
@@ -539,33 +574,28 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * Init the tree
      */
-    private static void initTree() {
+    public void initTree() {
         mapNode.clear();
         mapFunPath.clear();
-        List<SciNotes> eds = SciNotes.getSciNotesList();
         if (functionNavigator == null) {
             functionNavigator = new JTree();
         }
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
         model = new DefaultTreeModel(root);
 
-        for (SciNotes ed : eds) {
-            int count = ed.getTabPane().getTabCount();
-            for (int i = 0; i < count; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
-                DefaultMutableTreeNode base = new DefaultMutableTreeNode(sep);
-                mapNode.put(sep, base);
-                DefaultMutableTreeNode funs = new DefaultMutableTreeNode(SciNotesMessages.FUNCTIONS);
-                ScilabDocument scidoc = (ScilabDocument) sep.getDocument();
-                scidoc.fillTreeFuns(funs);
-                DefaultMutableTreeNode anchors = new DefaultMutableTreeNode(SciNotesMessages.ANCHORS);
-                scidoc.fillTreeAnchors(anchors);
-                base.add(funs);
-                base.add(anchors);
-                root.add(base);
-                mapFunPath.put(sep, new TreePath(model.getPathToRoot(funs)));
-                mapAnchorPath.put(sep, new TreePath(model.getPathToRoot(anchors)));
-            }
+        for (ScilabEditorPane sep : panes) {
+            DefaultMutableTreeNode base = new DefaultMutableTreeNode(sep);
+            mapNode.put(sep, base);
+            DefaultMutableTreeNode funs = new DefaultMutableTreeNode(SciNotesMessages.FUNCTIONS);
+            ScilabDocument scidoc = (ScilabDocument) sep.getDocument();
+            scidoc.fillTreeFuns(funs);
+            DefaultMutableTreeNode anchors = new DefaultMutableTreeNode(SciNotesMessages.ANCHORS);
+            scidoc.fillTreeAnchors(anchors);
+            base.add(funs);
+            base.add(anchors);
+            root.add(base);
+            mapFunPath.put(sep, new TreePath(model.getPathToRoot(funs)));
+            mapAnchorPath.put(sep, new TreePath(model.getPathToRoot(anchors)));
         }
 
         functionNavigator.setModel(model);
@@ -575,7 +605,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * Update the tree
      */
-    private static void updateTree() {
+    public void updateTree() {
         DefaultMutableTreeNode current = mapNode.get(pane);
         TreePath funPath = mapFunPath.get(pane);
         TreePath anchorPath = mapAnchorPath.get(pane);
@@ -607,6 +637,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         if (expFuns) {
             functionNavigator.expandPath(funPath);
         }
+
         if (expAnchors) {
             functionNavigator.expandPath(anchorPath);
         }
@@ -615,7 +646,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * Update a branch Functions in the tree
      */
-    private static void updateFunctions() {
+    private void updateFunctions() {
         DefaultMutableTreeNode current = mapNode.get(pane);
         DefaultMutableTreeNode funs = (DefaultMutableTreeNode) current.getFirstChild();
         DefaultMutableTreeNode anchors = (DefaultMutableTreeNode) current.getChildAt(1);
@@ -630,7 +661,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * Update a branch Anchors in the tree
      */
-    private static void updateAnchors() {
+    private void updateAnchors() {
         DefaultMutableTreeNode current = mapNode.get(pane);
         DefaultMutableTreeNode funs = (DefaultMutableTreeNode) current.getFirstChild();
         DefaultMutableTreeNode anchors = (DefaultMutableTreeNode) current.getChildAt(1);
@@ -652,17 +683,17 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         final JMenuItem natural = new JMenuItem(SciNotesMessages.NATURAL_ORDER);
 
         alpha.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    handleOrder(true);
-                }
-            });
+            public void actionPerformed(ActionEvent actionEvent) {
+                handleOrder(true);
+            }
+        });
         popup.add(alpha);
 
         natural.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent actionEvent) {
-                    handleOrder(false);
-                }
-            });
+            public void actionPerformed(ActionEvent actionEvent) {
+                handleOrder(false);
+            }
+        });
         popup.add(natural);
         functionNavigator.setComponentPopupMenu(popup);
     }
@@ -670,7 +701,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * @param alpha true for alphabetic order
      */
-    private static void handleOrder(boolean alpha) {
+    private void handleOrder(boolean alpha) {
         int row = functionNavigator.getMinSelectionRow();
         if (row == -1) {
             functionNavigator.setSelectionRow(0);
@@ -690,7 +721,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
 
     /**
      * Update the line numbering on a change in the document
-     * @param offset offset where the event occured
+     * @param offset offset where the event occurred
      * @param length length of inserted or removed text
      */
     private void handleEvent(int offset, int length) {
@@ -770,7 +801,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     /**
      * @param node corresponding to the pane to select
      */
-    private static void updatePaneDoc(DefaultMutableTreeNode node) {
+    private void updatePaneDoc(DefaultMutableTreeNode node) {
         if (node != null) {
             ScilabEditorPane sep = getPaneInNode(node);
             if (sep != pane) {
@@ -785,7 +816,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * @param node corresponding to the document to get
      * @return the doc
      */
-    private static ScilabDocument getDocumentInNode(DefaultMutableTreeNode node) {
+    private ScilabDocument getDocumentInNode(DefaultMutableTreeNode node) {
         return (ScilabDocument) getPaneInNode(node).getDocument();
     }
 
@@ -793,7 +824,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * @param node corresponding to the pane to get
      * @return the pane
      */
-    private static ScilabEditorPane getPaneInNode(DefaultMutableTreeNode node) {
+    private ScilabEditorPane getPaneInNode(DefaultMutableTreeNode node) {
         if (node.isLeaf()) {
             DefaultMutableTreeNode node1 = (DefaultMutableTreeNode) node.getParent();
             if (node1 != null) {

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="obsvss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>obsvss</refname>
     <refpurpose>可観測な部分</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Ao,Bo,Co]=obsvss(A,B,C [,tol])
-[slo]=obsvss(sl [,tol])</synopsis>
+      [slo]=obsvss(sl [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -35,25 +33,33 @@
       <varlistentry>
         <term>sl,slo</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>実数 (閾値) (デフォルト <literal>100*%eps</literal>)</para>
+          <para>
+            実数 (閾値) (デフォルト <literal>100*%eps</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>slo=(Ao,Bo,Co)</literal> は線形システム
-	<literal>sl=(A,B,C)</literal> (<literal>syslin</literal> リスト)の
-	可観測な部分です.</para>
-    <para><literal>tol</literal> は可制御性を調べる際の閾値です
-	(<literal>contr</literal>参照); 
-    デフォルト値 = <literal>100*%eps</literal></para>
+    <para>
+      <literal>slo=(Ao,Bo,Co)</literal> は線形システム
+      <literal>sl=(A,B,C)</literal> (<literal>syslin</literal> リスト)の
+      可観測な部分です.
+    </para>
+    <para>
+      <literal>tol</literal> は可制御性を調べる際の閾値です
+      (<literal>contr</literal>参照); 
+      デフォルト値 = <literal>100*%eps</literal>
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

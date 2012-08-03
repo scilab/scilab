@@ -91,12 +91,12 @@
     <ClInclude Include="..\..\includes\with_umfpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="common_umfpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\umfpack.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Sparse_f_Import.def">
@@ -105,6 +105,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\umfpack.iss" />
     <None Include="..\..\sci_gateway\umfpack_gateway.xml" />
+    <None Include="..\..\locales\umfpack.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="umfpack.rc">

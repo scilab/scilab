@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="execstr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>execstr</refname>
     <refpurpose> execute Scilab code in strings</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>execstr(instr)
-ierr=execstr(instr,'errcatch' [,msg])</synopsis>
+      ierr=execstr(instr,'errcatch' [,msg])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -41,7 +39,9 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
       <varlistentry>
         <term>msg</term>
         <listitem>
-          <para>character string with values <literal>'m'</literal> or <literal>'n'</literal>.  Default value is <literal>'n'</literal>.</para>
+          <para>
+            character string with values <literal>'m'</literal> or <literal>'n'</literal>.  Default value is <literal>'n'</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,7 +49,8 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   <refsection>
     <title>Description</title>
     <para>Executes the Scilab instructions given in argument
-      <literal>instr</literal>.</para>
+      <literal>instr</literal>.
+    </para>
     <para>Note that instr should not make use of continuation marks (..) </para>
     <para> </para>
     <para>If the 'errcatch' flag is not present, error handling works as usual.</para>
@@ -58,7 +59,8 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
       issues no error message, but aborts execution of the <literal>instr</literal>
       instructions (at the point where the error occurred), and resumes with
       <literal>ierr</literal> equal to the error number.  In this case the display of the
-      error message is controlled by the <literal>msg</literal> option:</para>
+      error message is controlled by the <literal>msg</literal> option:
+    </para>
     <variablelist>
       <varlistentry>
         <term>"m"</term>
@@ -69,12 +71,15 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
       <varlistentry>
         <term>"n"</term>
         <listitem>
-          <para>no error message is displayed, but the error message is recorded (see <literal>lasterror</literal>).  This is the default.</para>
+          <para>
+            no error message is displayed, but the error message is recorded (see <literal>lasterror</literal>).  This is the default.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para> ierr=execstr(instr,'errcatch') can handle syntactical errors. This is
-      useful for evalution of instruction obtained by a query to the user.</para>
+      useful for evalution of instruction obtained by a query to the user.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -112,7 +117,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="evstr">evstr</link>

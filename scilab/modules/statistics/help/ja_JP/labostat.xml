@@ -11,16 +11,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="labostat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>labostat</refname>
     <refpurpose>Scilab統計ツールボックス</refpurpose>
   </refnamediv>
   <refsection>
     <title>内容</title>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 center: 変数を中心化
 centrered: 変数を中心化および縮減
 cmoment: 全ての次数の中心モーメント
@@ -62,8 +59,10 @@ varf: 頻度表の分散
   <refsection>
     <title>参考文献</title>
     <para>
-     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.
+    </para>
     <para>
-     Saporta,  Gilbert, Probabilites, Analyse  des Donnees  et Statistique, Editions Technip, Paris, 1990.</para>
+      Saporta,  Gilbert, Probabilites, Analyse  des Donnees  et Statistique, Editions Technip, Paris, 1990.
+    </para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xgetech">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xgetech</refname>
     <refpurpose>カレントのグラフィックスケールを取得</refpurpose>
@@ -41,28 +38,40 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xgetech</literal> は(カレントのウインドウの)カレントのグラフィックスケール
-	を返します.
-	<literal>frect</literal>により指定される矩形[xmin,ymin,xmax,ymax]は
-	グラフィックウインドウ全体の大きさです.
-	プロットは<literal>wrect</literal>により指定されるカレントのグラフィックウインドウの
-	領域に対して行われます.</para>
-    <para><literal>wrect=[x,y,w,h]</literal> (左上の点, 幅, 高さ) はグラフィックウインドウ内の
-	領域を記述します.
-	<literal>wrect</literal>の値はグラフィックウインドウの幅と高さの比により指定されます:</para>
-    <para><literal>wrect=[0 0 1 1]</literal> はグラフィックウインドウ全体が使用されることを意味します.</para>
-    <para><literal>wrect=[0.5 0 0.5 1]</literal> はグラフィック領域が
-	グラフィックウインドウの右半分となることを意味します.</para>
-    <para><literal>logflag</literal>は大きさ2の文字列 "xy" で,
-	x および y は "n" または "l" とすることができます.
-	"n"は通常(線形)スケール, "l" はログスケールを意味します.
-	x はx軸, y はy軸を意味します.</para>
-    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> はサブウインドウ内の
-	フレームの大きさを指定します.
-	グラフィックフレームは( <literal>wrect</literal>のように)
-	カレントのグラフィックサブウインドウの幅または高さとの比により指定されます.
-	デフォルト値は<literal>1/8*[1,1,1,1]</literal>です.
-	<literal>arect</literal> が指定されない場合,カレントの値は変更されません. </para>
+    <para>
+      <literal>xgetech</literal> は(カレントのウインドウの)カレントのグラフィックスケール
+      を返します.
+      <literal>frect</literal>により指定される矩形[xmin,ymin,xmax,ymax]は
+      グラフィックウインドウ全体の大きさです.
+      プロットは<literal>wrect</literal>により指定されるカレントのグラフィックウインドウの
+      領域に対して行われます.
+    </para>
+    <para>
+      <literal>wrect=[x,y,w,h]</literal> (左上の点, 幅, 高さ) はグラフィックウインドウ内の
+      領域を記述します.
+      <literal>wrect</literal>の値はグラフィックウインドウの幅と高さの比により指定されます:
+    </para>
+    <para>
+      <literal>wrect=[0 0 1 1]</literal> はグラフィックウインドウ全体が使用されることを意味します.
+    </para>
+    <para>
+      <literal>wrect=[0.5 0 0.5 1]</literal> はグラフィック領域が
+      グラフィックウインドウの右半分となることを意味します.
+    </para>
+    <para>
+      <literal>logflag</literal>は大きさ2の文字列 "xy" で,
+      x および y は "n" または "l" とすることができます.
+      "n"は通常(線形)スケール, "l" はログスケールを意味します.
+      x はx軸, y はy軸を意味します.
+    </para>
+    <para>
+      <literal>arect=[x_left, x_right,y_up,y_down]</literal> はサブウインドウ内の
+      フレームの大きさを指定します.
+      グラフィックフレームは( <literal>wrect</literal>のように)
+      カレントのグラフィックサブウインドウの幅または高さとの比により指定されます.
+      デフォルト値は<literal>1/8*[1,1,1,1]</literal>です.
+      <literal>arect</literal> が指定されない場合,カレントの値は変更されません. 
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -90,9 +99,5 @@ xset('default')
         <link linkend="xsetech">xsetech</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.;   </para>
   </refsection>
 </refentry>

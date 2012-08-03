@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="realtime">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv xml:id="realtimeinit">
     <refname>realtimeinit</refname>
     <refpurpose>時間の単位を設定</refpurpose>
@@ -25,7 +22,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>realtimeinit(time_unit)
-realtime(t)</synopsis>
+      realtime(t)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -33,7 +31,9 @@ realtime(t)</synopsis>
       <varlistentry>
         <term>time_unit</term>
         <listitem>
-          <para>実数. <literal>realtime</literal> の引数に関連する秒数</para>
+          <para>
+            実数. <literal>realtime</literal> の引数に関連する秒数
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,17 +47,19 @@ realtime(t)</synopsis>
   <refsection>
     <title>説明</title>
     <para>   
-	これら2つの関数はScilabで実時間を処理する際に使用できます.
-	</para>
-    <para><literal>realtimeinit(time_unit)</literal>  は,
-	<literal>realtime</literal> の引数 <literal>t</literal>に
-	関する時間の単位を定義します.
-	</para>
+      これら2つの関数はScilabで実時間を処理する際に使用できます.
+    </para>
     <para>
-   <literal>realtime(t0)</literal>を最初にコールした際,
-	カレントの日付が<literal>t0</literal>に設定されます.
-	これ以降のコール<literal>realtime(t)</literal>では,
-	日付<literal>t</literal>に達するまで待機します.</para>
+      <literal>realtimeinit(time_unit)</literal>  は,
+      <literal>realtime</literal> の引数 <literal>t</literal>に
+      関する時間の単位を定義します.
+    </para>
+    <para>
+      <literal>realtime(t0)</literal>を最初にコールした際,
+      カレントの日付が<literal>t0</literal>に設定されます.
+      これ以降のコール<literal>realtime(t)</literal>では,
+      日付<literal>t</literal>に達するまで待機します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

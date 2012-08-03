@@ -1,0 +1,6 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+dset_
+isort_

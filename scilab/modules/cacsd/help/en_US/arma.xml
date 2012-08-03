@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arma">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>arma</refname>
     <refpurpose> Scilab arma library</refpurpose>
@@ -21,17 +18,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>. 
-    <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal> 
-    tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>. 
-  </para>
+      Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>. 
+      <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal> 
+      tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>. 
+    </para>
     <variablelist>
       <varlistentry>
         <term>armac</term>
         <listitem>
           <para>this function creates a Scilab tlist which code an  Armax
-  process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal></para>
-          <programlisting role = ""><![CDATA[ 
+            process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+          </para>
+          <programlisting role=""><![CDATA[ 
 -->ar=armac([1,2],[3,4],1,1,1,sig);
  
 -->ar('a')   
@@ -48,13 +46,17 @@
       <varlistentry>
         <term>armap(ar [,out])</term>
         <listitem>
-          <para>Display the armax equation associated with <literal>ar</literal></para>
+          <para>
+            Display the armax equation associated with <literal>ar</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>armap_p(ar [,out])</term>
         <listitem>
-          <para>Display the armax equation associated with <literal>ar</literal>  using polynomial matrix display.</para>
+          <para>
+            Display the armax equation associated with <literal>ar</literal>  using polynomial matrix display.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,14 +68,17 @@
       <varlistentry>
         <term>armax</term>
         <listitem>
-          <para>is used to identify the coefficients of a n-dimensional  ARX process   <literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal></para>
+          <para>
+            is used to identify the coefficients of a n-dimensional  ARX process   <literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>armax1</term>
         <listitem>
           <para>armax1 is used to identify the coefficients of a 1-dimensional  ARX process    
-         <literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal></para>
+            <literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -149,10 +154,5 @@ plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1
 legend(["Using macro mese";"Theoretical value";"Arma identification"])
 xtitle("Spectral power","frequency","spectral estimate")
  ]]></programlisting>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <para>J.P.C ; ;   </para>
   </refsection>
 </refentry>

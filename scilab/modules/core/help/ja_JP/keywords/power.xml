@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="power">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>power</refname>
     <refpurpose> 指数演算子 (^,.^)   </refpurpose>
@@ -10,8 +7,9 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>t=A^b
-t=A**b
-t=A.^b</synopsis>
+      t=A**b
+      t=A.^b
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -34,42 +32,49 @@ t=A.^b</synopsis>
     <title>説明</title>
     <itemizedlist>
       <listitem>
-        <para><literal>"(A:square)^(b:scalar)"</literal>
-	<literal>A</literal> が正方行列で<literal>b</literal> がスカラーの場合,
-	<literal>A^b</literal>ｇは行列<literal>A</literal>の <literal>b</literal>乗に
-	なります.</para>
+        <para>
+          <literal>"(A:square)^(b:scalar)"</literal><literal>A</literal> が正方行列で<literal>b</literal> がスカラーの場合,
+          <literal>A^b</literal>ｇは行列<literal>A</literal>の <literal>b</literal>乗に
+          なります.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>"(A:matrix).^(b:scalar)"</literal>
-	<literal>b</literal> がスカラーで<literal>A</literal>が行列の場合,
-	<literal>A.^b</literal>は<literal>A</literal>の各要素を<literal>b</literal>乗
-	(要素毎の累乗)にした行列となります.
-	<literal>A</literal> がベクトルで <literal>b</literal> がスカラーの場合,
-    	<literal>A^b</literal> と <literal>A.^b</literal> は同じ意味となります
-	(すなわち,要素毎の累乗).</para>
+        <para>
+          <literal>"(A:matrix).^(b:scalar)"</literal><literal>b</literal> がスカラーで<literal>A</literal>が行列の場合,
+          <literal>A.^b</literal>は<literal>A</literal>の各要素を<literal>b</literal>乗
+          (要素毎の累乗)にした行列となります.
+          <literal>A</literal> がベクトルで <literal>b</literal> がスカラーの場合,
+          <literal>A^b</literal> と <literal>A.^b</literal> は同じ意味となります
+          (すなわち,要素毎の累乗).
+        </para>
       </listitem>
       <listitem>
-        <para><literal>"(A:scalar).^(b:matrix)"</literal>
-        <literal>A</literal> がスカラーで <literal>b</literal> が行列 (またはベクトル)の場合,
-	 <literal>A^b</literal> および <literal>A.^b</literal> は,
-	<literal> a^(b(i,j))</literal> により構成される行列 (またはベクトル) となります.</para>
+        <para>
+          <literal>"(A:scalar).^(b:matrix)"</literal><literal>A</literal> がスカラーで <literal>b</literal> が行列 (またはベクトル)の場合,
+          <literal>A^b</literal> および <literal>A.^b</literal> は,
+          <literal> a^(b(i,j))</literal> により構成される行列 (またはベクトル) となります.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>"(A:matrix).^(b:matrix)"</literal>
-        <literal>A</literal> および <literal>b</literal>  が同じ大きさのベクトル (行列) の場合,
-	<literal>A.^b</literal> はベクトル <literal>A(i)^b(i)</literal>  (行列<literal>A(i,j)^b(i,j)</literal>)
-	となります.</para>
+        <para>
+          <literal>"(A:matrix).^(b:matrix)"</literal><literal>A</literal> および <literal>b</literal>  が同じ大きさのベクトル (行列) の場合,
+          <literal>A.^b</literal> はベクトル <literal>A(i)^b(i)</literal>  (行列<literal>A(i,j)^b(i,j)</literal>)
+          となります.
+        </para>
       </listitem>
     </itemizedlist>
     <para>
-    注記:</para>
+      注記:
+    </para>
     <para>
-     -
-	正方行列の場合, <literal>A^p</literal>は,<literal>p</literal>が正の整数の場合,
-	行列の逐次乗算により計算され,それ以外の場合,対角化により計算されます.</para>
+      -
+      正方行列の場合, <literal>A^p</literal>は,<literal>p</literal>が正の整数の場合,
+      行列の逐次乗算により計算され,それ以外の場合,対角化により計算されます.
+    </para>
     <para>
-     -
-    <literal>**</literal> および <literal>^</literal> 演算子は同義です.</para>
+      -
+      <literal>**</literal> および <literal>^</literal> 演算子は同義です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_mdialog">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_mdialog</refname>
     <refpurpose> create a dialog box </refpurpose>
@@ -25,15 +22,15 @@
   <refsection>
     <title>Description</title>
     <para>
-			The function demo_mdialog create a dialog box. It takes as argument a binary 
-			file. This file is built by a .sce file written like below. It shall contain 
-			the variables 'titl', the title a the dialog box, 'namevar', the name of the 
-			fields to fill, and 'value', the values written by default. After this, these 
-			three variables shall be saved in the binary file.
-			The use of demo_mdialog shall be preceded by the execution of the .sce 
-			associated.
-			The function demo_mdialog returns 'resp', the values chosen by the user.
-		</para>
+      The function demo_mdialog create a dialog box. It takes as argument a binary 
+      file. This file is built by a .sce file written like below. It shall contain 
+      the variables 'titl', the title a the dialog box, 'namevar', the name of the 
+      fields to fill, and 'value', the values written by default. After this, these 
+      three variables shall be saved in the binary file.
+      The use of demo_mdialog shall be preceded by the execution of the .sce 
+      associated.
+      The function demo_mdialog returns 'resp', the values chosen by the user.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -45,7 +42,7 @@ if defv==[] then warning('Demo stops!');return;end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_choose">demo_choose</link>
@@ -56,12 +53,6 @@ if defv==[] then warning('Demo stops!');return;end
       <member>
         <link linkend="x_dialog">x_dialog</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

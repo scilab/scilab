@@ -1,0 +1,35 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+; core
+stack_
+com_
+vstk_
+listentry
+createdata_
+str2sci 
+cha1_
+callFunctionFromGateway
+createlistcvarfromptr_
+createvar_
+putlhsvar_
+intersci_
+GetData
+getrhsvar_
+vartype_
+checkrhs_
+checklhs_
+iop_
+namstr_
+createvarfromptr_
+errgst_
+check_dims
+check_scalar
+ierode_
+syncexec
+GetCommand 
+ismenu
+xscion_
+createlistvarfromptr_

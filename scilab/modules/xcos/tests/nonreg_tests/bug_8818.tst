@@ -33,7 +33,7 @@ endfunction
 function result = x_dialog(labels, valueini)
 	result = valueini;
 endfunction
-funcprot(fprot)
+funcprot(fprot);
 
 scs_m = MBLOCK("set", scs_m);
 

@@ -17,7 +17,7 @@
 //    or 'playsnd' functions.
 //
 //       The sound card is working properly with all other
-//    softwares.all other wave funstions are working such as
+//    software. All other wave functions are working such as
 //    wavread loadwave etc...
 
 disp("activate your sound card, and run this file");

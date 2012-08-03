@@ -11,18 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry 
-  xmlns="http://docbook.org/ns/docbook" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  xmlns:svg="http://www.w3.org/2000/svg" 
-  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-  xmlns:db="http://docbook.org/ns/docbook" 
-  version="5.0-subset Scilab" 
-  xml:lang="en" 
-  xml:id="readmps">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readmps">
   <refnamediv>
     <refname>readmps</refname>
     <refpurpose>Reads a Linear Program from a MPS file.</refpurpose>
@@ -59,7 +48,7 @@
         <listitem>
           <para>
             3-vector <literal>[maxm,maxn,maxnza]</literal>
-            Maximum number of contraints and variables, maximum number of
+            Maximum number of constraints and variables, maximum number of
             nonzeros entries in the LP constraint matrix. If omitted readmps
             reads the file once just to compute these numbers.
           </para>
@@ -331,8 +320,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 //Let the LP problem:
 //objective:
 //   min     XONE + 4 YTWO + 9 ZTHREE
@@ -357,10 +345,8 @@ path = fullfile(SCI,"modules","optimization","tests","unit_tests");
 filename = fullfile(path,"25FV47.SIF");
 huge = number_properties("huge");
 P=readmps(filename,[-huge huge])
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Implementation notes</title>
     <para>
@@ -368,7 +354,6 @@ P=readmps(filename,[-huge huge])
       hopdm (J. Gondzio).
     </para>
   </refsection>
-
   <refsection>
     <title>References</title>
     <para>

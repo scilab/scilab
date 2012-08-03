@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="des2tf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>des2tf</refname>
     <refpurpose> descriptor to transfer function conversion</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[S]=des2tf(sl)
-[Bfs,Bis,chis]=des2tf(sl)</synopsis>
+      [Bfs,Bis,chis]=des2tf(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -55,20 +53,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the linear system in descriptor form i.e.
-    <literal>Sl=list('des',A,B,C,D,E)</literal>, <literal>des2tf</literal> converts <literal>sl</literal> into
-    its transfer function representation:</para>
-    <programlisting role = ""><![CDATA[ 
+      Given the linear system in descriptor form i.e.
+      <literal>Sl=list('des',A,B,C,D,E)</literal>, <literal>des2tf</literal> converts <literal>sl</literal> into
+      its transfer function representation:
+    </para>
+    <programlisting role=""><![CDATA[ 
 S=C*(s*E-A)^(-1)*B+D
  ]]></programlisting>
     <para>
-    Called with 3 outputs arguments <literal>des2tf</literal> returns
-    <literal>Bfs</literal> and <literal>Bis</literal> two polynomial matrices, and <literal>chis</literal>
-    polynomial such that:</para>
-    <programlisting role = ""><![CDATA[ 
+      Called with 3 outputs arguments <literal>des2tf</literal> returns
+      <literal>Bfs</literal> and <literal>Bis</literal> two polynomial matrices, and <literal>chis</literal>
+      polynomial such that:
+    </para>
+    <programlisting role=""><![CDATA[ 
 S=Bfs/chis - Bis
  ]]></programlisting>
-    <para><literal>chis</literal> is the determinant of <literal>(s*E-A)</literal> (up to a xcative constant);</para>
+    <para>
+      <literal>chis</literal> is the determinant of <literal>(s*E-A)</literal> (up to a xcative constant);
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -81,7 +83,7 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>
@@ -102,9 +104,5 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
         <link linkend="rowshuff">rowshuff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

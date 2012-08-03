@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="htrianr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>htrianr</refname>
     <refpurpose> triangularization of polynomial matrix</refpurpose>
@@ -46,7 +43,9 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>integer, normal rank of <literal>A</literal></para>
+          <para>
+            integer, normal rank of <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,13 +53,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    triangularization of polynomial matrix <literal>A</literal>.</para>
-    <para><literal>A</literal> is <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>.</para>
+      triangularization of polynomial matrix <literal>A</literal>.
+    </para>
+    <para>
+      <literal>A</literal> is <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>.
+    </para>
     <para>
       <literal>Ar=A*U</literal>
     </para>
     <para>
-    Warning: there is an elimination of "small" terms (see function code).</para>
+      Warning: there is an elimination of "small" terms (see function code).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,7 +76,7 @@ M*U(:,1:2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

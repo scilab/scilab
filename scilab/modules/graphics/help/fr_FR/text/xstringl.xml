@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xstringl">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xstringl</refname>
     <refpurpose>calcule les dimensions d'une boîte
-  entourant des chaînes de caractères</refpurpose>
+      entourant des chaînes de caractères
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -25,14 +23,17 @@
         <term>x,y</term>
         <listitem>
           <para>scalaires réels, coordonnées du point en bas à
-          gauche des chaînes de caractères.</para>
+            gauche des chaînes de caractères.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
           <para>matrice de chaînes de caractères.</para>
-<para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions <link linkend="math_rendering_features_in_graphic">LaTeX ou MathML</link></para>
+          <para>
+            A partir de la version Scilab 5.2, il est possible d'utiliser les expressions <link linkend="math_rendering_features_in_graphic">LaTeX ou MathML</link>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,11 +52,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xstringl</literal> renvoie dans <literal>rect=[x,y,w,h]</literal> (point
-    en haut à gauche, largeur, hauteur) les dimensions d'un
-    rectangle dans l'échelle graphique courante entourant les chaînes de
-    caractères <literal>str</literal> dessinées à la position
-    <literal>x,y</literal> (point en bas à gauche).</para>
+    <para>
+      <literal>xstringl</literal> renvoie dans <literal>rect=[x,y,w,h]</literal> (point
+      en haut à gauche, largeur, hauteur) les dimensions d'un
+      rectangle dans l'échelle graphique courante entourant les chaînes de
+      caractères <literal>str</literal> dessinées à la position
+      <literal>x,y</literal> (point en bas à gauche).
+    </para>
     <para>Le résultat est approximatif avec le pilote PostScript.</para>
   </refsection>
   <refsection>
@@ -79,7 +82,7 @@ txt2.font_style = 2;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>
@@ -97,9 +100,5 @@ txt2.font_style = 2;
         <link linkend="stringbox">stringbox</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

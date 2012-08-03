@@ -11,13 +11,11 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="soundsec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>soundsec</refname>
     <refpurpose>generates n sampled seconds of time
-  parameter</refpurpose>
+      parameter
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -42,8 +40,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>generates a vector coding time from 0 to <literal>n</literal>seconds at
-    sampled rate <literal>rate</literal>.</para>
+    <para>
+      generates a vector coding time from 0 to <literal>n</literal>seconds at
+      sampled rate <literal>rate</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +57,7 @@ analyze(s,200,600,22050);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="playsnd">playsnd</link>

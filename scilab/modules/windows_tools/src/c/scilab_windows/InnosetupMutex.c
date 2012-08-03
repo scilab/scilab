@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - 2008 - Allan CORNET
+* Copyright (C) DIGITEO - 2012 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -29,5 +30,16 @@ void closeInnosetupMutex(void)
 {
 	/* close named mutex */
 	CloseHandle(hMutexScilabID);
+}
+/*--------------------------------------------------------------------------*/
+BOOL haveInnosetupMutex(void)
+{
+    HANDLE hMutex = OpenMutex(MUTEX_ALL_ACCESS, FALSE, SCI_VERSION_STRING);
+    if (hMutex)
+    {
+        CloseHandle(hMutex);
+        return TRUE;
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/

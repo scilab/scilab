@@ -327,6 +327,43 @@ set_embedded_java_vm () {
 
 }
 
+# If enabled, disable se_linux
+check_and_disable_selinux() {
+    if test -x /usr/sbin/selinuxenabled -a $IS_SCILAB_BINARY -eq 1; then
+        /usr/sbin/selinuxenabled
+        if test $? = 0; then
+            if test $SCIVERBOSE -ne 0; then
+                echo "Disabling SELinux on Scilab"
+            fi
+            
+            JVMLIB_32=$SCIBINARYBASE/java/lib/i386/server/libjvm.so
+            if test -f $JVMLIB_32; then
+                /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_32"
+                if test $? != 0; then
+                    echo "Error: Cannot chcon $JVMLIB_32"
+                fi
+            fi
+            JVMLIB_64=$SCIBINARYBASE/java/lib/amd64/server/libjvm.so
+            if test -f $JVMLIB_64; then
+                /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_64"
+                if test $? != 0; then
+                    echo "Error: Cannot chcon $JVMLIB_64"
+                fi
+            fi
+            /usr/bin/chcon -t execmem_exec_t "$SCIBINARYBASE/bin/scilab-bin"
+            if test $? != 0; then
+                echo "Error: Cannot chcon 'scilab-bin'"
+            fi
+
+            /usr/bin/chcon -t execmem_exec_t "$SCIBINARYBASE/bin/scilab-cli-bin"
+            if test $? != 0; then
+                echo "Error: Cannot chcon 'scilab-cli-bin'"
+            fi
+
+        fi
+    fi
+}
+
 detect_java_vm() {
 
     JAVA_SHLIB="libjava.so"
@@ -356,81 +393,78 @@ detect_java_vm() {
 # uname -m Darwin
 
 # If the user has the variable JAVA_HOME in the ENV
-    if test -n "$JAVA_HOME" ; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Using specified vm: $JAVA_HOME"
-            fi
-            if test ! -x "$JAVA_HOME/bin/java" ; then
-                echo "Cannot find $JAVA_HOME/bin/java"
-                exit 1
-            fi
+        if test -n "$JAVA_HOME" ; then
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using specified vm: $JAVA_HOME"
+                fi
+                if test ! -x "$JAVA_HOME/bin/java" ; then
+                    echo "Cannot find $JAVA_HOME/bin/java"
+                    exit 1
+                fi
         else
 
-        case $OS in
-            *darwin* | *Darwin*)
-                set_macosx_java_vm
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Using default Mac OS X vm: $JAVA_HOME"
-                    echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-                    echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
-                fi
-                ;;
-            *)
-                ;;
-        esac
+            case $OS in
+                *darwin* | *Darwin*)
+                    set_macosx_java_vm
+                    if test $SCIVERBOSE -ne 0; then
+                        echo "Using default Mac OS X vm: $JAVA_HOME"
+                        echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+                        echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+                    fi
+                    ;;
+                *)
+                    ;;
+            esac
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
-        if test -z "$JAVA_HOME"; then
-            JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
-            for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Trying to find Java in $JAVA_HOME "
-                fi
-                if test -x "${JAVA_HOME}/bin/java" ; then
-                    export JAVA_HOME
+            if test -z "$JAVA_HOME"; then
+                JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+                for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
-                        echo "found"
+                        echo "Trying to find Java in $DIR "
                     fi
-                    break
-                fi
-            done
-        fi
-
-# JAVA_HOME still haven't been found. Well, we can now try to find it in the path
-        if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Have not been able to find any Java VM on this computer. Some features may be broken."
-            fi
-        else
-
-            PATH_SEPARATOR=:
-            as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-            if test $SCIVERBOSE -ne 0; then
-                echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
-            fi
-            for DIR in $PATH; do
-                if test -f $DIR/java; then
-
-                    _cur=$DIR/java
-            # resolve symlink
-            # Will probably bug if a file contains -> in the name
-                    while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-                        _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
-                    done
-            # symlink resolved to the real file
-
-            # Now, create JAVA_HOME
-                    TMP=$(dirname $_cur)
-                    JAVA_HOME=$(dirname $TMP)
-                    if test ! -z "$JAVA_HOME"; then
-                        break;
+                    if test -x "${DIR}/bin/java" ; then
+                        JAVA_HOME=$DIR
+                        export JAVA_HOME
+                        if test $SCIVERBOSE -ne 0; then
+                            echo "found"
+                        fi
+                        break
                     fi
+                done
+            fi
+
+# if JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+            if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
+
+                PATH_SEPARATOR=:
+                as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Look for the java binary in the PATH. If it is a symlink, try to resolve it"
                 fi
-            done
-            IFS=$as_save_IFS
+                for DIR in $PATH; do
+                    if test -f $DIR/java; then
+
+                        _cur=$DIR/java
+                # resolve symlink
+                # Will probably bug if a file contains -> in the name
+                        while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+                            _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
+                        done
+                # symlink resolved to the real file
+
+                # Now, create JAVA_HOME
+                        TMP=$(dirname $_cur)
+                        JAVA_HOME=$(dirname $TMP)
+                        if test ! -z "$JAVA_HOME"; then
+                            break;
+                        fi
+                    fi
+                done
+                IFS=$as_save_IFS
+            fi
         fi
-    fi
         if test ! -z "$JAVA_HOME"; then
             if test $SCIVERBOSE -ne 0; then
                 echo "JAVA_HOME : $JAVA_HOME"
@@ -481,8 +515,11 @@ detect_java_vm() {
                         "ppc"|"powerpc"|"ppc64")
                             proc="ppc"
                             ;;
-                        "s390"|"s390x")
+                        "s390")
                             proc="s390"
+                            ;;
+                        "s390x")
+                            proc="s390x"
                             ;;
                         armv*)
                             proc="arm"
@@ -530,11 +567,10 @@ detect_java_vm() {
                     proc=$MODEL
                     ;;
             esac
-        fi # JAVA_HOME provided but wrong
+        fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
-# Check if the lib exists or not (we should manage system where .so is not the
-# ext for library
+# Check if the lib exists or not
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
     if test ! -f $LIBJAVA; then
         if test $SCIVERBOSE -ne 0; then
@@ -614,11 +650,7 @@ cd "$LOCALOLDPWD"
 #export DISPLAY
 
 
-#
-# Scilab will not work on some Mac OSX version
-# Check version number and ask user if he wants to go on.
-#
-check_macosx_version()
+detect_macosx_version()
 {
     macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
     if test "${macosxVersion}" = ""; then
@@ -632,30 +664,69 @@ check_macosx_version()
         echo "Found MacOSX Version: $macosxVersion"
     fi
 
+}
+
+set_macox_specific_path()
+{
+
+    PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
+    PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
+
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                7)
+                6)
+		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                 5)
+                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+            esac
+            ;;
+    esac
+
+}
+
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                7|8)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request
-
-                   # We remove if it exists with 10.7
-		               rm -rf $BINPATH/../lib/thirdparty/libiconv.2.4.0.dylib
                    ;;
-
                 6)
+
                     if test $macosxBuildVersion -le 4; then
                         # Version <= 10.6.4
                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
                     fi
                     ;;
-# Does not work under 10.5 binary for now. Fail by default
-#                 5)
-#                     if test $macosxBuildVersion -ge 8; then
-#                         # Version <= 10.5.8
-#                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
-#                         fi
-#                    ;;
+                 5)
+                     if test $macosxBuildVersion -le 7; then
+                         # Version <= 10.5.8
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
+                     fi
+                     # Check if the default java is not 1.5 (magic)
+                     VERSION=$(/usr/libexec/java_home -v 1.5|grep 1.5.0)
+                     if test "$VERSION"; then
+                         open /Applications/Utilities/Java\ Preferences.app/ &
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu. An other workaround is to rename /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib to libjava.jnilib_" || exit 128
+                     fi
+
+                     ;;
                 *)
                     osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
                     ;;
@@ -667,7 +738,8 @@ check_macosx_version()
     esac
 }
 
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+# . is used by the dynamic link. The build lib are copied into the PWD
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in
@@ -688,13 +760,26 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
         BINPATH=$(dirname $0)
         # Do not perform the check with Scilab is started in CLI mode
+
+        detect_macosx_version
+        set_macox_specific_path
+
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
+
+        # When started as an Application, the default path was "/"
+        # It is not really useful. Changing to HOME.
+        # See bugs 8339 and 10575 for rational
+        if test "$(pwd)" == "/"; then
+            cd $HOME
+        fi
+
         ;;
     *)
 esac
@@ -709,10 +794,17 @@ fi
 export LD_LIBRARY_PATH
 export PATH
 
+# Scilab does not support the LANGUAGE variable.
+# Unset to avoid some weird issue. CF bug #10032
+unset LANGUAGE
+
 if test $IS_SCILAB_BINARY -ne 1; then
 # We are not using the Scilab binary, find out where docbook is.
     find_docbook_path
 fi
+
+# Check if SELINUX is enable. If it is the case, disable it for Scilab
+check_and_disable_selinux
 
 do_scilex()
 {
@@ -723,49 +815,54 @@ do_help()
 {
     echo "Usage:"
     echo     "scilab <arguments>"
+    echo     "scilab-cli <arguments>"
+    echo     "scilab-adv-cli <arguments>"
     echo     " "
-    echo     "      Possible arguments are:"
-    echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
-    echo     "      -d Display      : equivalent to -display Display."
-    echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-    echo     "                        -e and -f arguments are mutually exclusive."
-    echo     "      -f File         : execute the scilab script given in File argument."
-    echo     "                        -e and -f arguments are mutually exclusive."
-    echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-    echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
-    echo     "      -nb             : do not display the Scilab banner at starting time."
-    echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
-    echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-    echo     "      -nw             : start Scilab without dedicated Scilab Window."
-    echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
-    echo     "      -nogui          : See -nwni"
-    echo     "      -args           : accept all extra arguments and make them available through sciargs"
-    echo     "      -version        : print product version and exit."
-    echo     "      -h/--help       : display help about this command."
-    echo     "      --texmacs       : reserved for TeXMacs."
+    echo     "  Possible arguments are:"
+    echo     "  -display Display: for use under Xwindow systems to set a specific X server display."
+    echo     "  -d Display      : equivalent to -display Display."
+    echo     "  -e Instruction  : execute the scilab instruction given in Instruction argument."
+    echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -f File         : execute the scilab script given in File argument."
+    echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
+    echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
+    echo     "  -nb             : do not display the Scilab banner at starting time."
+    echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
+    echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "  -noatomsautoload: do not load ATOMS installed module."
+    echo     "  -nw             : start Scilab without dedicated Scilab Window."
+    echo     "  -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
+    echo     "  -nogui          : See -nwni"
+    echo     "  -nocolor        : Remove the color in the cli and adv-cli modes"
+    echo     "  -args           : accept all extra arguments and make them available through sciargs"
+    echo     "  -version        : print product version and exit."
+    echo     "  -h/--help       : display help about this command."
+    echo     "  --texmacs       : reserved for TeXMacs."
     echo     " "
-    if test $IS_SCILAB_BINARY -eq 0; then
-        echo     "Developer arguments:"
-        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        valgrind (and override the existing valgrind arguments)."
-        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-        echo     "                        callgrind (and override the existing callgrind arguments)."
-        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
-        echo     " "
-    fi
-    echo     "      All these arguments can be retrieved by the Scilab function sciargs."
+
+    echo     "Developer arguments:"
+    echo     "  -debug          : Start Scilab under gdb (Unix/linux only)."
+    echo     "                    define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+    echo     "  -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+    echo     "  -profiling      : Start Scilab under valgrind (Unix/linux only)."
+    echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                    valgrind (and override the existing valgrind arguments)."
+    echo     "  -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+    echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+    echo     "                    callgrind (and override the existing callgrind arguments)."
+    echo     "  -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+    echo     "  -disable-exception-catching : Disable Scilab exception catching system."
     echo     " "
-    echo     "      Several environment variables can be declared."
-    echo     "      SCIVERBOSE               Provides debugging information of the startup"
-    echo     "      JAVA_HOME                Declares which Java Virtual Machine to use"
-    echo     "      SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
-    echo     "      SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+    echo     "  All these arguments can be retrieved by the Scilab function sciargs."
+    echo     " "
+
+    echo     "  Several environment variables can be declared:"
+    echo     "  SCIVERBOSE               Provides debugging information of the startup"
+    echo     "  JAVA_HOME                Declares which Java Virtual Machine to use"
+    echo     "  SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
+    echo     "  SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+    echo     "  SCI_DISABLE_EXCEPTION_CATCHING Disable the catch by Scilab of exception (segfault, ...)"
 
     exit
 }
@@ -863,7 +960,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|-nocolor|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then
@@ -878,8 +975,8 @@ if test "$rest" = "yes"; then
                 fi
                 ;;
             -psn_*)
-        # Under Mac OS X, .app is adding the arg -psn_0_xxxx
-        # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+            # Under Mac OS X, .app is adding the arg -psn_0_xxxx
+            # (psn = ProcessSerialNumber). It is not used (but could be in the future)
                 ;;
             -display|-f|-l|-e|-d|-mem)
                 prevarg=1

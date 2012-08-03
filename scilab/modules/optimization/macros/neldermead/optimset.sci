@@ -40,7 +40,7 @@ function options = optimset (varargin)
     //   options = optimset ( options , key , value )
     //   options = optimset ( options , key1 , value1 , key2 , value2 , ... )
     // If the number of arguments is odd,
-    // the first argument is expected to be a optimset struct.
+    // the first argument is expected to be an optimset struct.
     //
     options = varargin(1);
     t1 = typeof(options);
@@ -84,7 +84,7 @@ endfunction
 // optimset_configure --
 //   Configure the given key with the given value.
 // Arguments
-//   options : a optimset struct
+//   options : an optimset struct
 //   key : a string, the key to configure
 //   value : the value
 //

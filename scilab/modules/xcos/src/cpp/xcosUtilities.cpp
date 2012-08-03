@@ -41,6 +41,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -49,6 +50,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -63,6 +65,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -94,6 +97,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -102,6 +106,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -116,6 +121,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -127,6 +133,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     {
         FREE(value);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -160,6 +167,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -168,6 +176,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -183,6 +192,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 
@@ -204,6 +214,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
         }
         FREE(value);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
 

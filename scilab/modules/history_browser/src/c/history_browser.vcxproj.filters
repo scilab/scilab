@@ -35,6 +35,12 @@
     <ClCompile Include="DllmainHISTORY_BROWSER.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_history_browser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_browsehistory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CommandHistory.hxx">
@@ -46,13 +52,20 @@
     <ClInclude Include="..\..\includes\dynlib_history_browser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gw_history_browser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\history_browser_gateway.xml" />
+    <None Include="..\..\locales\history_browser.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_browser.rc">

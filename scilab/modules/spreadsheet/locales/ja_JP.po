@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-12-30 06:37+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -255,17 +255,6 @@ msgid ""
 msgstr ""
 "%1$s:%2$d:PLD_strreplace_general: '%4$s' で '%3$s' の置換の間に割り当てたメモリがなくなりました。"
 
-#
-# File: src/c/ripole/ripole.c, line: 130
-# File: src/c/ripole/ripole.c, line: 139
-#, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"オプション \"%s\" を解釈することができません\n"
-"%s\n"
-
 #, c-format
 msgid "Decoding filename=%s"
 msgstr "ファイル名=%s をデコード中"
@@ -276,33 +265,6 @@ msgstr "ファイル名=%s をデコード中"
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLEは、復号化するべき入力ファイルを必要とします。\n"
 
-#
-# File: src/c/ripole/ripole.c, line: 319
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: OLDオブジェクトへメモリの割り当てができません。"
-
-#
-# File: src/c/ripole/ripole.c, line: 346
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "入力ファイル '%s' を置くことができません"
-
-#
-# File: src/c/ripole/ripole.c, line: 349
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "ファイル '%s' は、OLE2フォーマットではありません"
-
-#
-# File: src/c/ripole/ripole.c, line: 352
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "OLE入力ファイル '%s' は、正しくありません"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: %s のデコード時にエラー %d を発生しました\n"
-
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"
@@ -311,6 +273,9 @@ msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"
 # File: src/nospreadsheet/nospreadsheet.c, line: 19
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab スプレッドシート・モジュールはインストールされていません。\n"
+
+msgid "Spreadsheet"
+msgstr "表計算"
 
 msgid "Read a xls file"
 msgstr "xlsファイルを読み込む"

@@ -27,7 +27,6 @@ en_US.MsgBoxWebOpen =Can not open web page.
 en_US.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but development_tools module is not selected.
 en_US.MsgBoxDevToolsRequired2 =Please install development_tools module.
 en_US.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
-en_US.MsgBoxTclsciRequired1 =You choose to install Scipad but tclsci module is not selected.
 en_US.MsgBoxTclsciRequired2 =Please install tclsci module.
 en_US.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
 en_US.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
@@ -58,16 +57,12 @@ en_US.DescriptionUmfpack =UMFPACK for Scilab
 en_US.DescriptionCompatFunctions =Compatibility functions
 en_US.DescriptionM2sci =M2SCI Toolbox
 en_US.DescriptionMatio =MAT File Input/Output Toolbox
-en_US.DescriptionTexmacs =Texmacs Interface
+en_US.DescriptionExternalObjects =External objects
 en_US.DescriptionSound =Sound file handling Toolbox
 en_US.DescriptionRandlib =Randlib Toolbox
-en_US.DescriptionJavasci =Java Interface with Scilab
 en_US.DescriptionMexlib =Mexlib Tools
 en_US.DescriptionIntersci =Intersci Toolbox
-en_US.DescriptionMaple2sci =Maple to Scilab Toolbox
-en_US.DescriptionFortran2sci =Scilab to Fortran Toolbox
 en_US.DescriptionTclTK =TCL/TK in Scilab
-en_US.DescriptionScipad =Scipad Editor for Scilab
 en_US.DescriptionSpreadsheet =Spreadsheet Toolbox
 en_US.DescriptionJVM =Java Runtime
 en_US.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
@@ -149,8 +144,6 @@ en_US.DescriptionAtoms =ATOMS
 en_US.DescriptionHelpScilabCHM =Scilab Help
 en_US.ScilabCHM =modules\helptools\chm\scilab_en_US_help.chm
 ;
-en_US.DescriptionHelpScicosCHM =Scicos Help
-en_US.ScicosCHM =modules\scicos\chm\scilab_en_US_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fourplan">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fourplan</refname>
     <refpurpose> augmented plant to four plants</refpurpose>
@@ -28,19 +25,25 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> <literal>syslin</literal> list (linear system)</para>
+          <para>
+            <literal>syslin</literal> list (linear system)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 row vector, dimension of <literal>P22</literal></para>
+          <para>
+            1x2 row vector, dimension of <literal>P22</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P11,P12,P21,P22</term>
         <listitem>
-          <para> <literal>syslin</literal> lists.</para>
+          <para>
+            <literal>syslin</literal> lists.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,17 +51,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function.</para>
-    <para><literal>P</literal> being partitioned as follows:</para>
-    <programlisting role =""><![CDATA[ 
+      Utility function.
+    </para>
+    <para>
+      <literal>P</literal> being partitioned as follows:
+    </para>
+    <programlisting role=""><![CDATA[ 
 P=[ P11 P12;
     P21 P22]  
  ]]></programlisting>
     <para>
-    with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.</para>
+      with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqg">lqg</link>

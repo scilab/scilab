@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowcompr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rowcompr</refname>
     <refpurpose>多項式行列の行圧縮</refpurpose>
@@ -40,13 +37,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para><literal>A</literal>の通常のランク</para>
+          <para>
+            <literal>A</literal>の通常のランク
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=X*A</literal>, 多項式行列</para>
+          <para>
+            <literal>Ac=X*A</literal>, 多項式行列
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,13 +55,17 @@
   <refsection>
     <title>説明</title>
     <para>
-	多項式行列<literal>A</literal>の行圧縮.</para>
-    <para><literal>X</literal> は,
-	行圧縮された<literal>A</literal>の行である
-	左多項式ユニモジュラ基底です.
-	<literal>rk</literal> は Aの通常ランクです.</para>
+      多項式行列<literal>A</literal>の行圧縮.
+    </para>
     <para>
-    警告: "小さい"項は削除されます (注意して使用してください!).</para>
+      <literal>X</literal> は,
+      行圧縮された<literal>A</literal>の行である
+      左多項式ユニモジュラ基底です.
+      <literal>rk</literal> は Aの通常ランクです.
+    </para>
+    <para>
+      警告: "小さい"項は削除されます (注意して使用してください!).
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

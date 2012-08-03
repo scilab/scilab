@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:36+0000\n"
-"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"PO-Revision-Date: 2012-04-19 17:54+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
 
 #, c-format
@@ -238,39 +238,12 @@ msgstr ""
 "reemplaçant '%s' per '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"No es pot interpretar l'operació \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "S'està decodificant el nom de fitxer=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "El ripOLE necessita un fitxer d'entrada per a decodificar.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: No es pot assignar la memòria per a l'objecte OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "No es troba el fitxer d'entrada '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "El fitxer '%s' no té el format OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "El fitxer OLE d'entrada '%s' és incorrecte"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: La decodificació de %s ha acabat en error %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
@@ -279,8 +252,11 @@ msgstr "ripOLE: La decodificació de %s ha acabat en error %d.\n"
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "El mòdul de fulla de càlcul del Scilab no està instal·lat.\n"
 
+msgid "Spreadsheet"
+msgstr "Full de càlcul"
+
 msgid "Read a xls file"
-msgstr ""
+msgstr "Llegeix un fitxer xls"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

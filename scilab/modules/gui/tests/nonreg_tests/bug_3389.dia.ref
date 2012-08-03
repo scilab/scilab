@@ -14,35 +14,41 @@
 //    if figure() is called with non-existing properties, Scilab crashes
 // try to set uicontrol/uimenu properties to a figure ...
 f = figure();
-execstr("f.enable = ""on""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Enable") then bugmes();quit;end
-execstr("f.label = ""toto""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Label") then bugmes();quit;end
-execstr("f.string = ""toto""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "String") then bugmes();quit;end
-execstr("f.backgroundcolor = [0.5 0.5 0.5]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "BackgroundColor") then bugmes();quit;end
-execstr("f.foregroundcolor = [0.5 0.5 0.5]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "ForegroundColor") then bugmes();quit;end
-execstr("f.fontweight = ""bold""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontWeight") then bugmes();quit;end
-f.fontunits = "pixels";
-execstr("f.fontsize = 12", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontSize") then bugmes();quit;end
-execstr("f.fontangle = ""italic""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontAngle") then bugmes();quit;end
-f.min = 10;
-f.max = 20;
-f.tag = "toto";
-f.listboxtop = 1;
-f.value = 1;
-execstr("f.relief = ""raised""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Relief") then bugmes();quit;end
-execstr("f.horizontalalignment = ""right""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "HorizontalAlignment") then bugmes();quit;end
-execstr("f.verticalalignment = ""left""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "VerticalAlignment") then bugmes();quit;end
-execstr("f.fontname = ""arial""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontName") then bugmes();quit;end
-execstr("f.sliderstep = [1 2]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "SliderStep") then bugmes();quit;end
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Enable");
+assert_checkerror("set(f, ""enable"", ""on"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Label");
+assert_checkerror("set(f, ""label"", ""toto"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "String");
+assert_checkerror("set(f, ""string"", ""toto"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "BackgroundColor");
+assert_checkerror("set(f, ""backgroundcolor"", [0.5 0.5 0.5])", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "ForegroundColor");
+assert_checkerror("set(f, ""foregroundcolor"", [0.5 0.5 0.5])", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontWeight");
+assert_checkerror("set(f, ""fontweight"", ""bold"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontUnits");
+assert_checkerror("set(f, ""fontunits"", ""pixels"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontSize");
+assert_checkerror("set(f, ""fontsize"", 12)", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontAngle");
+assert_checkerror("set(f, ""fontangle"", ""italic"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Min");
+assert_checkerror("set(f, ""min"", 10)", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Max");
+assert_checkerror("set(f, ""max"", 20)", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "ListboxTop");
+assert_checkerror("set(f, ""listboxtop"", 1)", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Value");
+assert_checkerror("set(f, ""value"", 1)", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Relief");
+assert_checkerror("set(f, ""relief"", ""raised"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "HorizontalAlignment");
+assert_checkerror("set(f, ""horizontalalignment"", ""right"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "VerticalAlignment");
+assert_checkerror("set(f, ""verticalalignment"", ""top"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontName");
+assert_checkerror("set(f, ""fontname"", ""arial"")", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "SliderStep");
+assert_checkerror("set(f, ""sliderstep"", [1 2])", refmsg);
+refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "Units");
+assert_checkerror("set(f, ""units"", ""pixels"")", refmsg);

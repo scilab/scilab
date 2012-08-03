@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cepstrum">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cepstrum</refname>
     <refpurpose> cepstrum calculation</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>mag</term>
         <listitem>
-          <para>real vector of magnitudes (same size as <literal>w</literal>)</para>
+          <para>
+            real vector of magnitudes (same size as <literal>w</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -36,11 +35,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>fresp = cepstrum(w,mag)</literal> returns a frequency response <literal>fresp(i)</literal>
-    whose magnitude at frequency <literal>w(i)</literal> equals <literal>mag(i)</literal>  and such
-    that the phase of <literal>freq</literal> corresponds to a stable and minimum phase
-    system. <literal>w</literal> needs not to be sorted, but  minimal entry should not be
-    close to zero and all the entries of <literal>w</literal> should be different.</para>
+    <para>
+      <literal>fresp = cepstrum(w,mag)</literal> returns a frequency response <literal>fresp(i)</literal>
+      whose magnitude at frequency <literal>w(i)</literal> equals <literal>mag(i)</literal>  and such
+      that the phase of <literal>freq</literal> corresponds to a stable and minimum phase
+      system. <literal>w</literal> needs not to be sorted, but  minimal entry should not be
+      close to zero and all the entries of <literal>w</literal> should be different.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -51,7 +52,7 @@ plot2d([w',w'],[mag(:),abs(fresp)])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="frfit">frfit</link>

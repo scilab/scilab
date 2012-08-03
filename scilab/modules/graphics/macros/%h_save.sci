@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-  version=[5 2 0 0]
+  version=[5 4 0 0]
   mput(version,'uc',fd)
   
   // There are issues when saving characters with 'c' format
@@ -75,6 +75,11 @@ function save_graphichandle(h,fd)
     mput(length(h.event_handler_enable),characterFormat,fd); // even_handler_enable
     mput(ascii(h.event_handler_enable),characterFormat,fd); // need to be put after event_handler
     
+    mput(length(ascii(h.resizefcn)),characterFormat,fd) ; // resizefcn
+    mput(ascii(h.resizefcn),characterFormat,fd) ;
+    mput(length(ascii(h.closerequestfcn)),characterFormat,fd) ; // closerequestfcn
+    mput(ascii(h.closerequestfcn),characterFormat,fd) ;
+
     // children
     c=h.children;
     n=size(c,'*')
@@ -666,6 +671,7 @@ function save_graphichandle(h,fd)
     mput(size(h.sliderstep,'*'),"il",fd); // SliderStep (size)
     mput(h.sliderstep,"dl",fd); // SliderStep (data)
     save_text_matrix( h.string, fd ) ; // String
+    save_text_matrix( h.tooltipstring, fd ) ; // TooltipString
     mput(length(h.units),"c",fd);mput(ascii(h.units),"c",fd); // Units
     mput(size(h.value,'*'),"il",fd); // Value (size)
     mput(h.value,"dl",fd); // Value (data)
@@ -683,8 +689,8 @@ function save_graphichandle(h,fd)
 endfunction
 
 function save_text_vector(t,fd)
-    t=strcat(t,ascii(10))
-    mput(length(t),'il',fd);mput(ascii(t),characterFormat,fd);
+    t=ascii(strcat(t,ascii(10)));
+    mput(length(t),'il',fd);mput(t,characterFormat,fd);
 endfunction
 
 // save a text matrix

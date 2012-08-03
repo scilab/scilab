@@ -16,24 +16,29 @@ sci_gateway/c/sci_sleep.c \
 sci_gateway/c/sci_getdate.c \
 sci_gateway/c/gw_time.c
 
-libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscitime_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscitime.la
 noinst_LTLIBRARIES = libscitime-algo.la
+else
+noinst_LTLIBRARIES = libscitime-algo.la libscitime.la
+endif
 
-libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscitime_algo_la_SOURCES = $(TIME_C_SOURCES)
 libscitime_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
+libscitime_algo_la_CPPFLAGS = $(libscitime_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitime_la_SOURCES)
-INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
+INCLUDE_FLAGS = $(libscitime_la_CPPFLAGS)
 
 libscitime_la_LIBADD = libscitime-algo.la
 

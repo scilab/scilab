@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frep2tf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>frep2tf</refname>
     <refpurpose> transfer function realization from frequency response</refpurpose>
@@ -46,13 +43,17 @@
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>time domain (<literal>'c'</literal> or <literal>'d'</literal> or <literal>dt</literal>)</para>
+          <para>
+            time domain (<literal>'c'</literal> or <literal>'d'</literal> or <literal>dt</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tols</term>
         <listitem>
-          <para>a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <literal>rtol=1.e-2; atol=1.e-4, N=10</literal>).</para>
+          <para>
+            a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <literal>rtol=1.e-2; atol=1.e-4, N=10</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -70,7 +71,9 @@
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para>error (for example if <literal>dom='c'</literal> <literal>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</literal>)</para>
+          <para>
+            error (for example if <literal>dom='c'</literal> <literal>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -78,17 +81,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Frequency response to  transfer function conversion. The order of <literal>h</literal>
-    is a priori given in <literal>dg</literal> which must be provided.
-    The following linear system is solved in the least square sense.</para>
-    <programlisting role = ""><![CDATA[ 
+      Frequency response to  transfer function conversion. The order of <literal>h</literal>
+      is a priori given in <literal>dg</literal> which must be provided.
+      The following linear system is solved in the least square sense.
+    </para>
+    <programlisting role=""><![CDATA[ 
  weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
  ]]></programlisting>
     <para>
-    where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal> vector is not given a default 
-    penalization is used (when <literal>dom='c'</literal>).</para>
+      where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal> vector is not given a default 
+      penalization is used (when <literal>dom='c'</literal>).
+    </para>
     <para>
-    A stable and minimum phase system can be obtained by using function <literal>factors</literal>.</para>
+      A stable and minimum phase system can be obtained by using function <literal>factors</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -117,7 +123,7 @@ clf();plot2d1("onn",frq',abs([repf;rep2])');
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>

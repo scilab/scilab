@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,19 +36,17 @@ namespace org_modules_xml
     class VariableScope
     {
 
-        //XMLObject ** scope;
-        std::vector<XMLObject *> * scope;
+        std::vector < XMLObject * >*scope;
         int position;
         int initialSize;
-        std::stack<int> * freePlaces;
-        std::map<const XMLObject *, std::vector<const XMLObject *> *> * parentToChildren;
+          std::stack < int >*freePlaces;
 
-        static std::map<void *, XMLObject *> * mapLibXMLToXMLObject;
-        static std::map<void *, XMLNodeList *> * mapLibXMLToXMLNodeList;
+        static std::map < const XMLObject *, std::vector < const XMLObject *>*>*parentToChildren;
+        static std::map < void *, XMLObject * >*mapLibXMLToXMLObject;
+        static std::map < void *, XMLNodeList * >*mapLibXMLToXMLNodeList;
         static xmlFreeFunc XMLFreeFunc;
 
-    public :
-
+public:
         /**
          * Registers a pointer and its associated object.
          * The aim of this mapping is to delete an existing object when a pointer
@@ -56,21 +54,21 @@ namespace org_modules_xml
          * @param libxml a pointer in the xml tree
          * @param obj the corresponding object
          */
-        static void registerPointers(void * libxml, XMLObject * obj);
+        static void registerPointers(void *libxml, XMLObject * obj);
 
         /**
          * Unregisters a pointer. It can be used when a pointer in the tree is freed or
          * locally to avoid cyclic dependencies on removal.
          * @param libxml a pointer in the xml tree
          */
-        static void unregisterPointer(void * libxml);
+        static void unregisterPointer(void *libxml);
 
         /**
          * Unregisters a pointer. It can be used when a pointer in the tree is freed or
          * locally to avoid cyclic dependencies on removal.
          * @param libxml a pointer in the xml tree
          */
-        static void unregisterNodeListPointer(void * libxml);
+        static void unregisterNodeListPointer(void *libxml);
 
         /**
          * Registers a pointer and its associated object.
@@ -79,18 +77,18 @@ namespace org_modules_xml
          * @param libxml a pointer in the xml tree
          * @param nodeList the corresponding nodeList
          */
-        static void registerPointers(void * libxml, XMLNodeList * nodeList);
+        static void registerPointers(void *libxml, XMLNodeList * nodeList);
 
         /**
          * Default constructor
          * @param initialSize the default size of the scope
          */
-        VariableScope(int initialSize);
+          VariableScope(int initialSize);
 
         /**
          * Destructor
          */
-        ~VariableScope();
+         ~VariableScope();
 
         /**
          * Gets the variable id from the object
@@ -104,7 +102,7 @@ namespace org_modules_xml
          * @param id the object id
          * @return the object pointer or 0 if not found
          */
-        XMLObject * getVariableFromId(int id);
+        XMLObject *getVariableFromId(int id);
 
         /**
          * Removes an id from the scope
@@ -117,19 +115,20 @@ namespace org_modules_xml
          * @param libxml the libxml pointer
          * @return the XMLObject pointer
          */
-        XMLObject * getXMLObjectFromLibXMLPtr(void * libxml) const;
+        XMLObject *getXMLObjectFromLibXMLPtr(void *libxml) const;
 
         /**
          * Gets the XMLNodeList associated with a libxml pointer
          * @param libxml the libxml pointer
          * @return the XMLNodeList pointer
          */
-        XMLNodeList * getXMLNodeListFromLibXMLPtr(void * libxml) const;
+        XMLNodeList *getXMLNodeListFromLibXMLPtr(void *libxml) const;
 
-    private :
-        static void _xmlFreeFunc(void * mem);
+private:static void _xmlFreeFunc(void *mem);
         static void initXMLMemory();
         static xmlFreeFunc getFreeFunc(xmlFreeFunc freeFunc);
+
+        static void removeChildFromParent(const XMLObject * child);
 
         /**
          * Removes the object dependencies if they exist

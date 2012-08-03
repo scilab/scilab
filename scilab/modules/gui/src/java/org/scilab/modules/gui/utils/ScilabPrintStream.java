@@ -62,7 +62,7 @@ public final class ScilabPrintStream extends PrintStream {
     }
 
     /**
-     * Inner class to simulate an outputstream which display datas in console
+     * Inner class to simulate an outputstream which display data in console
      */
     private static final class SciOutputStream extends OutputStream {
 

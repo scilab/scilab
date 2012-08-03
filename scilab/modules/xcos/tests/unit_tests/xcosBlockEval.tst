@@ -23,25 +23,17 @@ ioBlocks = ["IN_f", "OUT_f", "INIMPL_f", "OUTIMPL_f", "CLKIN_f", "CLKOUT_f", ..
             "CLKINV_f", "CLKOUTV_f"];
 
 for index = 1:size(ioBlocks, '*')
-    cmd = "scs_m = " + ioBlocks(index) + "(""define"");";
+    cmd = "blk = " + ioBlocks(index) + "(""define"");";
     if (execstr(cmd, "errcatch") <> 0) then pause, end;
-    
-    fileToLoad = TMPDIR + "/in.h5";
-    fileToSave = TMPDIR + "/out.h5";
-    fileContext = TMPDIR + "/context.h5";
     
     // context and block settings
     context = ["myVariable = 42;"];
-    scs_m.graphics.exprs = "myVariable";
+    blk.graphics.exprs = "myVariable";
     
-    // call xcosBlockEval
-    export_to_hdf5(fileToLoad, "scs_m");
-    export_to_hdf5(fileContext, "context");
-    xcosBlockEval(fileToLoad, fileToSave, evstr(ioBlocks(index)), fileContext);
-    import_from_hdf5(fileToSave);
+    new_blk = xcosBlockEval(evstr(ioBlocks(index)), blk, context);
     
     // check settings
-    if (new_scs_m.graphics.exprs <> "myVariable") then pause, end;
-    if (new_scs_m.model.ipar <> 42) then pause, end;
+    if (new_blk.graphics.exprs <> "myVariable") then pause, end;
+    if (new_blk.model.ipar <> 42) then pause, end;
 end
 

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stabil">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>stabil</refname>
     <refpurpose> stabilization</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>F=stabil(A,B,alfa)
-K=stabil(Sys,alfa,beta)</synopsis>
+      K=stabil(Sys,alfa,beta)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,13 +27,17 @@ K=stabil(Sys,alfa,beta)</synopsis>
       <varlistentry>
         <term>A</term>
         <listitem>
-          <para>square real matrix (<literal>nx x nx</literal>)</para>
+          <para>
+            square real matrix (<literal>nx x nx</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>B</term>
         <listitem>
-          <para> real matrix (<literal>nx x nu</literal>)</para>
+          <para>
+            real matrix (<literal>nx x nu</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,39 +49,50 @@ K=stabil(Sys,alfa,beta)</synopsis>
       <varlistentry>
         <term>F</term>
         <listitem>
-          <para>real matrix (<literal>nx x nu</literal>)</para>
+          <para>
+            real matrix (<literal>nx x nu</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) (<literal>m</literal> inputs, <literal>p</literal> outputs).</para>
+          <para>
+            linear system (<literal>syslin</literal> list) (<literal>m</literal> inputs, <literal>p</literal> outputs).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>linear system (<literal>p</literal> inputs, <literal>m</literal> outputs)</para>
+          <para>
+            linear system (<literal>p</literal> inputs, <literal>m</literal> outputs)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>F=stabil(A,B,alfa)</literal> returns a gain matrix <literal>F</literal> such that
-    <literal>A+B*F</literal> is stable if pair <literal>(A,B)</literal> is stabilizable. 
-    Assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
-    If <literal>(A,B)</literal> is not stabilizable a warning is given
-    and assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
-    If <literal>alfa</literal> is a number all eigenvalues are set to this
-    <literal>alfa</literal> (default value is <literal>alfa=-1</literal>).</para>
-    <para><literal>K=stabil(Sys,alfa,beta)</literal> returns <literal>K</literal>, a compensator for <literal>Sys</literal>
-    such that <literal>(A,B)</literal>-controllable eigenvalues are set to 
-    <literal>alfa</literal> and <literal>(C,A)</literal>-observable eigenvalues are set to <literal>beta</literal>.</para>
     <para>
-    All assignable closed loop poles (which are given by the 
-    eigenvalues of <literal>Aclosed=h_cl(Sys,K)</literal> are set to <literal>alfa(i)</literal>'s
-    and <literal>beta(j)</literal>'s.</para>
+      <literal>F=stabil(A,B,alfa)</literal> returns a gain matrix <literal>F</literal> such that
+      <literal>A+B*F</literal> is stable if pair <literal>(A,B)</literal> is stabilizable. 
+      Assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
+      If <literal>(A,B)</literal> is not stabilizable a warning is given
+      and assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
+      If <literal>alfa</literal> is a number all eigenvalues are set to this
+      <literal>alfa</literal> (default value is <literal>alfa=-1</literal>).
+    </para>
+    <para>
+      <literal>K=stabil(Sys,alfa,beta)</literal> returns <literal>K</literal>, a compensator for <literal>Sys</literal>
+      such that <literal>(A,B)</literal>-controllable eigenvalues are set to 
+      <literal>alfa</literal> and <literal>(C,A)</literal>-observable eigenvalues are set to <literal>beta</literal>.
+    </para>
+    <para>
+      All assignable closed loop poles (which are given by the 
+      eigenvalues of <literal>Aclosed=h_cl(Sys,K)</literal> are set to <literal>alfa(i)</literal>'s
+      and <literal>beta(j)</literal>'s.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -99,7 +112,7 @@ spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="st_ility">st_ility</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getdate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>getdate</refname>
     <refpurpose>renvoie la date et l'heure</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>dt=getdate()
-x=getdate("s")
-dt=getdate(x)</synopsis>
+      x=getdate("s")
+      dt=getdate(x)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -116,13 +114,17 @@ dt=getdate(x)</synopsis>
         <term>x = getdate("s")</term>
         <listitem>
           <para> renvoie un entier contenant le nombre de secondes écoulées depuis le 1er Janvier 1970, 00:00 UTC (Unix Time Convention).</para>
+          <para>
+            L'entier retourné prend en compte <ulink url="http://fr.wikipedia.org/wiki/Seconde_intercalaire">seconde intercalaire</ulink>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dt = getdate(x)</term>
         <listitem>
           <para> renvoie dt au format ci-dessus, à partir de x (nombre de secondes depuis le 1er Janvier 1970). 
-        Dans ce cas, dt(10) est toujours égal à 0.</para>
+            Dans ce cas, dt(10) est toujours égal à 0.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,7 +140,7 @@ getdate(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="date">date</link>
@@ -146,12 +148,6 @@ getdate(x)
       <member>
         <link linkend="timer">timer</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

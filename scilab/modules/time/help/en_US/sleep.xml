@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sleep">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sleep</refname>
     <refpurpose>suspend Scilab</refpurpose>
@@ -24,10 +21,12 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>sleep</literal> : Sleep process for specified number of miliseconds
-    specified by the argument. The actual suspension time may be longer
-    because of other activities in the system, or because of the time spent in
-    processing the call.</para>
+    <para>
+      <literal>sleep</literal> : Sleep process for specified number of miliseconds
+      specified by the argument. The actual suspension time may be longer
+      because of other activities in the system, or because of the time spent in
+      processing the call.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -36,7 +35,7 @@ tic;sleep(6000);toc
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xpause">xpause</link>
@@ -45,9 +44,5 @@ tic;sleep(6000);toc
         <link linkend="pause">pause</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

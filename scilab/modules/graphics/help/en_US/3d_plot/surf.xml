@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="surf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="surf">
   <refnamediv>
     <refname>surf</refname>
     <refpurpose>3D surface plot</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>surf(Z,&lt;GlobalProperty&gt;)
-surf(Z,color,&lt;GlobalProperty&gt;)
-surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)
-surf(&lt;axes_handle&gt;,...)</synopsis>
+      surf(Z,color,&lt;GlobalProperty&gt;)
+      surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)
+      surf(&lt;axes_handle&gt;,...)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,81 +30,98 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
         <term>Z</term>
         <listitem>
           <para>a real matrix defining the surface height. It can not be
-          omitted. The Z data is a<literal> m</literal>x<literal>n</literal> matrix.</para>
+            omitted. The Z data is a<literal> m</literal>x<literal>n</literal> matrix.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X,Y</term>
         <listitem>
           <para>two real matrices or vectors: always set together, these data
-          defines a new standard grid. This new <literal>X</literal> and
-          <literal>Y</literal> components of the grid must match <literal>Z</literal>
-          dimensions (see description below).</para>
+            defines a new standard grid. This new <literal>X</literal> and
+            <literal>Y</literal> components of the grid must match <literal>Z</literal>
+            dimensions (see description below).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>color</term>
         <listitem>
           <para>an optional real matrix defining a color value for each
-          <literal>(X(j),Y(i))</literal> point of the grid (see description
-          below).</para>
+            <literal>(X(j),Y(i))</literal> point of the grid (see description
+            below).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;GlobalProperty&gt;</term>
         <listitem>
           <para>This optional argument represents a sequence of couple
-          statements <literal>{PropertyName,PropertyValue}</literal> that defines
-          global objects' properties applied to all the curves created by this
-          plot. For a complete view of the available properties (see
-          <link linkend="GlobalProperty">GlobalProperty</link>).</para>
+            statements <literal>{PropertyName,PropertyValue}</literal> that defines
+            global objects' properties applied to all the curves created by this
+            plot. For a complete view of the available properties (see
+            <link linkend="GlobalProperty">GlobalProperty</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;axes_handle&gt;</term>
         <listitem>
           <para>This optional argument forces the plot to appear inside the
-          selected axes given by <literal>axes_handle</literal> rather than the
-          current axes (see <link linkend="gca">gca</link>).</para>
+            selected axes given by <literal>axes_handle</literal> rather than the
+            current axes (see <link linkend="gca">gca</link>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>surf</literal> draws a colored parametric surface using a
-    rectangular grid defined by <literal>X</literal> and <literal>Y</literal> coordinates
-    (if <literal>{X,Y}</literal> are not specified, this grid is determined using
-    the dimensions of the <literal>Z</literal> matrix) ; at each point of this grid,
-    a Z coordinate is given using the <literal>Z</literal> matrix (only obligatory
-    data). <literal>surf</literal> has been created to better handle Matlab syntax.
-    To improve graphical compatibility, Matlab users should use
-    <literal>surf</literal> (rather than <link linkend="plot3d">plot3d</link>).</para>
+    <para>
+      <literal>surf</literal> draws a colored parametric surface using a
+      rectangular grid defined by <literal>X</literal> and <literal>Y</literal> coordinates
+      (if <literal>{X,Y}</literal> are not specified, this grid is determined using
+      the dimensions of the <literal>Z</literal> matrix) ; at each point of this grid,
+      a Z coordinate is given using the <literal>Z</literal> matrix (only obligatory
+      data). <literal>surf</literal> has been created to better handle Matlab syntax.
+      To improve graphical compatibility, Matlab users should use
+      <literal>surf</literal> (rather than <link linkend="plot3d">plot3d</link>).
+    </para>
     <para>Data entry specification :</para>
     <para>In this paragraph and to be more clear, we won't mention
-    <literal>GlobalProperty</literal> optional arguments as they do not interfer
-    with entry data (except for <literal>"Xdata"</literal>, <literal>"Ydata"</literal> and
-    <literal>"Zdata"</literal> property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
-    assumed that all those optional arguments could be present too.</para>
-    <para>If <literal>Z</literal> is the only matrix specified, surf(Z) plots the
-    matrix <literal>Z</literal> versus the grid defined by <literal>1:size(Z,2)</literal>
-    along the x axis and <literal>1:size(Z,1)</literal> along the y axis.</para>
-    <para>If a <literal>{X,Y,Z}</literal> triplet is given, <literal>Z</literal> must be a
-    matrix with size(<literal>Z</literal>)= [<literal>m</literal>x<literal>n</literal>],
-    <literal>X</literal> or <literal>Y</literal> can be :</para>
+      <literal>GlobalProperty</literal> optional arguments as they do not interfer
+      with entry data (except for <literal>"Xdata"</literal>, <literal>"Ydata"</literal> and
+      <literal>"Zdata"</literal> property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
+      assumed that all those optional arguments could be present too.
+    </para>
+    <para>
+      If <literal>Z</literal> is the only matrix specified, surf(Z) plots the
+      matrix <literal>Z</literal> versus the grid defined by <literal>1:size(Z,2)</literal>
+      along the x axis and <literal>1:size(Z,1)</literal> along the y axis.
+    </para>
+    <para>
+      If a <literal>{X,Y,Z}</literal> triplet is given, <literal>Z</literal> must be a
+      matrix with size(<literal>Z</literal>)= [<literal>m</literal>x<literal>n</literal>],
+      <literal>X</literal> or <literal>Y</literal> can be :
+    </para>
     <itemizedlist>
       <listitem>
-        <para>a) a vector : if <literal>X</literal> is a vector,
-        length(<literal>X</literal>)=<literal>n</literal>. Respectively, if <literal>Y</literal>
-        is a vector, length(<literal>Y</literal>)=<literal>m</literal>.</para>
-        <para>b) a matrix : in this case, size(<literal>X</literal>) (or
-        size(<literal>Y</literal>)) must equal size(<literal>Z</literal>).</para>
+        <para>
+          a) a vector : if <literal>X</literal> is a vector,
+          length(<literal>X</literal>)=<literal>n</literal>. Respectively, if <literal>Y</literal>
+          is a vector, length(<literal>Y</literal>)=<literal>m</literal>.
+        </para>
+        <para>
+          b) a matrix : in this case, size(<literal>X</literal>) (or
+          size(<literal>Y</literal>)) must equal size(<literal>Z</literal>).
+        </para>
       </listitem>
     </itemizedlist>
     <para>Color entry specification :</para>
     <para>As stated before, the surface is created over a rectangular grid
-    support. Let consider two independant variables <literal>i</literal> and
-    <literal>j</literal> such as :</para>
+      support. Let consider two independent variables <literal>i</literal> and
+      <literal>j</literal> such as :
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,56 +130,71 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
       </inlinemediaobject>
     </para>
     <para>This imaginary rectangular grid is used to build the real surface
-    support onto the <literal>XY</literal> plane. Indeed,
-    <literal>X</literal>,<literal>Y</literal> and <literal>Z</literal> data have the same size
-    (even if <literal>X</literal> or <literal>Y</literal> is vector, see below) and can be
-    considered as 3 functions <literal>x(i,j)</literal>, <literal>y(i,j)</literal> and
-    <literal>z(i,j)</literal> specifying the desired surface. If <literal>X</literal> or
-    <literal>Y</literal> are vectors, they are internally treated to produce good
-    matrices matching the <literal>Z</literal> matrix dimension (and the grid is
-    forcibly a rectangular region).</para>
-    <para>Considering the 3 functions <literal>x(i,j)</literal>, <literal>y(i,j)</literal>
-    and <literal>z(i,j)</literal>, the portion of surface defining between two
-    consecutive <literal>i</literal> and <literal>j</literal> is called a patch.</para>
+      support onto the <literal>XY</literal> plane. Indeed,
+      <literal>X</literal>,<literal>Y</literal> and <literal>Z</literal> data have the same size
+      (even if <literal>X</literal> or <literal>Y</literal> is vector, see below) and can be
+      considered as 3 functions <literal>x(i,j)</literal>, <literal>y(i,j)</literal> and
+      <literal>z(i,j)</literal> specifying the desired surface. If <literal>X</literal> or
+      <literal>Y</literal> are vectors, they are internally treated to produce good
+      matrices matching the <literal>Z</literal> matrix dimension (and the grid is
+      forcibly a rectangular region).
+    </para>
+    <para>
+      Considering the 3 functions <literal>x(i,j)</literal>, <literal>y(i,j)</literal>
+      and <literal>z(i,j)</literal>, the portion of surface defining between two
+      consecutive <literal>i</literal> and <literal>j</literal> is called a patch.
+    </para>
     <para>By default, when no color matrix is added to a surf call, the color
-    parameter is linked to the <literal>Z</literal> data. When a <literal>color</literal>
-    matrix is given, it can be applied to the patch in two different ways : at
-    the vertices or at the center of each patch.</para>
-    <para>That is why, if <literal>Z</literal> is a [<literal>m</literal>x<literal>n</literal>]
-    matrix, the <literal>C color</literal> matrix dimension can be
-    [<literal>m</literal>x<literal>n</literal>] (one color defined per vertex) or
-    [<literal>m-1</literal>x<literal>n-1</literal>] (one color per patch).</para>
+      parameter is linked to the <literal>Z</literal> data. When a <literal>color</literal>
+      matrix is given, it can be applied to the patch in two different ways : at
+      the vertices or at the center of each patch.
+    </para>
+    <para>
+      That is why, if <literal>Z</literal> is a [<literal>m</literal>x<literal>n</literal>]
+      matrix, the <literal>C color</literal> matrix dimension can be
+      [<literal>m</literal>x<literal>n</literal>] (one color defined per vertex) or
+      [<literal>m-1</literal>x<literal>n-1</literal>] (one color per patch).
+    </para>
     <para>Color representation also varies when specifying some
-    GlobalPropery:</para>
-    <para>The <literal>FaceColor</literal> property sets the shading mode : it can
-    be<literal> 'interp'</literal> or <literal>'flat'</literal> (default mode). When
-    <literal>'interp'</literal> is selected, we perform a bilinear color
-    interpolation onto the patch. If size(<literal>C</literal>) equals
-    size(<literal>Z</literal>)-1 (i.e. we provided only one color per patch) then
-    the color of the vertices defining the patch is set to the given color of
-    the patch.</para>
-    <para>When <literal>'flat'</literal> (default mode) is enabled we use a color
-    faceted representation (one color per patch). If size(<literal>C</literal>)
-    equals size(<literal>Z</literal>) (i.e. we provided only one color per
-    vertices), the last row and column of <literal>C</literal> are ignored.</para>
+      GlobalPropery:
+    </para>
+    <para>
+      The <literal>FaceColor</literal> property sets the shading mode : it can
+      be<literal> 'interp'</literal> or <literal>'flat'</literal> (default mode). When
+      <literal>'interp'</literal> is selected, we perform a bilinear color
+      interpolation onto the patch. If size(<literal>C</literal>) equals
+      size(<literal>Z</literal>)-1 (i.e. we provided only one color per patch) then
+      the color of the vertices defining the patch is set to the given color of
+      the patch.
+    </para>
+    <para>
+      When <literal>'flat'</literal> (default mode) is enabled we use a color
+      faceted representation (one color per patch). If size(<literal>C</literal>)
+      equals size(<literal>Z</literal>) (i.e. we provided only one color per
+      vertices), the last row and column of <literal>C</literal> are ignored.
+    </para>
     <para/>
-    <para>The <literal>GlobalProperty</literal> arguments sould be used to customize
-    the surface. Here is a brief description on how it works:</para>
+    <para>
+      The <literal>GlobalProperty</literal> arguments sould be used to customize
+      the surface. Here is a brief description on how it works:
+    </para>
     <variablelist>
       <varlistentry>
         <term>GlobalProperty</term>
         <listitem>
           <para>This option may be used to specify how all the surfaces are
-        drawn. It must always be a couple statement constituted of a string
-        defining the <literal>PropertyName</literal>, and its associated value
-        <literal>PropertyValue</literal> (which can be a string or an integer or...
-        as well depending on the type of the <literal>PropertyName</literal>). Note
-        that you can set multiple properties : the face &amp; edge color,
-        color data, color data mapping, marker color (foreground and
-        background), the visibility, clipping and thickness of the edges of
-        the surface... (see <link linkend="GlobalProperty">GlobalProperty</link> )</para>
-          <para>Note that all these properties can be (re-)set throught the surface
-        entity properties (see <link linkend="surface_properties">surface_properties</link>).</para>
+            drawn. It must always be a couple statement constituted of a string
+            defining the <literal>PropertyName</literal>, and its associated value
+            <literal>PropertyValue</literal> (which can be a string or an integer or...
+            as well depending on the type of the <literal>PropertyName</literal>). Note
+            that you can set multiple properties : the face &amp; edge color,
+            color data, color data mapping, marker color (foreground and
+            background), the visibility, clipping and thickness of the edges of
+            the surface... (see <link linkend="GlobalProperty">GlobalProperty</link> )
+          </para>
+          <para>Note that all these properties can be (re-)set through the surface
+            entity properties (see <link linkend="surface_properties">surface_properties</link>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -172,11 +202,18 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
   <refsection>
     <title>Remarks</title>
     <para>By default, successive surface plots are superposed. To clear the
-    previous plot, use <literal>clf()</literal>. To enable <literal>auto_clear</literal>
-    mode as the default mode, edit your default axes doing:</para>
+      previous plot, use <literal>clf()</literal>. To enable <literal>auto_clear</literal>
+      mode as the default mode, edit your default axes doing:
+    </para>
     <para>da=gda();</para>
     <para>da.auto_clear = 'on'</para>
-    <para>Enter the command <literal>surf</literal> to see a demo.</para>
+    <para>
+      Enter the command <literal>surf</literal> to see a demo.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>surf();</scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -269,7 +306,7 @@ xdel(winsid())
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>
@@ -290,9 +327,5 @@ xdel(winsid())
         <link linkend="GlobalProperty">GlobalProperty</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.Leray</para>
   </refsection>
 </refentry>

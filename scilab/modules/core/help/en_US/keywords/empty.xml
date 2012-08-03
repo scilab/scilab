@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="empty">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>empty</refname>
     <refpurpose> ([]) empty matrix</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para><literal> [] </literal> denotes the empty matrix. It is uniquely defined
-    and has 0 row and 0 column, i.e. <literal> size([]) =[0,0] </literal>.
-    The following convenient conventions are made:</para>
+    <para>
+      <literal> [] </literal> denotes the empty matrix. It is uniquely defined
+      and has 0 row and 0 column, i.e. <literal> size([]) =[0,0] </literal>.
+      The following convenient conventions are made:
+    </para>
     <para>
       <literal> [] * A = A * [] = [] </literal>
     </para>
@@ -19,15 +18,17 @@
       <literal> [] + A = A + [] = A</literal>
     </para>
     <para>
-    [ [], A] = [A, []] = A
-    <literal> inv([]) =[] </literal></para>
+      <literal>[ [], A] = [A, []] = A </literal>
+      <literal> inv([]) =[] </literal>
+    </para>
     <para>
       <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
     </para>
     <para>
-    Matrix functions return <literal>[]</literal> or an error message
-    when there is no obvious answer. Empty linear systems 
-    (<literal> syslin</literal> lists) may have several rows or columns.</para>
+      Matrix functions return <literal>[]</literal> or an error message
+      when there is no obvious answer. Empty linear systems 
+      (<literal> syslin</literal> lists) may have several rows or columns.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -44,7 +45,7 @@ size(wr), w1=ss2tf(wr), size(w1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="matrices">matrices</link>

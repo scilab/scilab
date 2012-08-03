@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ltitr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ltitr</refname>
     <refpurpose> 離散時間応答 (状態空間)  </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>[X]=ltitr(A,B,U,[x0])
-[xf,X]=ltitr(A,B,U,[x0])</synopsis>
+      [xf,X]=ltitr(A,B,U,[x0])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -41,7 +39,9 @@
       <varlistentry>
         <term>x0,xf</term>
         <listitem>
-          <para>実数ベクトル (<literal>x0</literal>のデフォルト=0)</para>
+          <para>
+            実数ベクトル (<literal>x0</literal>のデフォルト=0)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,22 +49,30 @@
   <refsection>
     <title>説明</title>
     <para>
-    離散時間システムの時間応答を計算します</para>
-    <programlisting role = ""><![CDATA[ 
+      離散時間システムの時間応答を計算します
+    </para>
+    <programlisting role=""><![CDATA[ 
 x[t+1] = Ax[t] + Bu[t].
  ]]></programlisting>
     <para>
-    入力 <literal>ui</literal>は<literal>U</literal>行列の
-	列です.</para>
-    <programlisting role = ""><![CDATA[ 
+      入力 <literal>ui</literal>は<literal>U</literal>行列の
+      列です.
+    </para>
+    <programlisting role=""><![CDATA[ 
 U=[u0,u1,...,un];
  ]]></programlisting>
-    <para><literal>x0</literal> は状態量の初期値のベクトルです (デフォルト値 : 0) ;</para>
-    <para><literal>X</literal> は出力行列です(<literal>U</literal>と同じ列の数).</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>x0</literal> は状態量の初期値のベクトルです (デフォルト値 : 0) ;
+    </para>
+    <para>
+      <literal>X</literal> は出力行列です(<literal>U</literal>と同じ列の数).
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=[x0,x1,x2,...,xn] 
  ]]></programlisting>
-    <para><literal>xf</literal> は状態量の終端値 <literal>xf=X[n+1]</literal>です.</para>
+    <para>
+      <literal>xf</literal> は状態量の終端値 <literal>xf=X[n+1]</literal>です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

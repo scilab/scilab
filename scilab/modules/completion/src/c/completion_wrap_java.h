@@ -20,42 +20,42 @@
 /**
 * completion function on all types for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchAllDictionaries(char *somechars);
 
 /**
 * completion function on Functions for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchFunctionsDictionary(char *somechars);
 
 /**
 * completion function on command words for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchCommandsDictionary(char *somechars);
 
 /**
 * completion function on Macros in libraries for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchMacrosDictionary(char *somechars);
 
 /**
 * completion function on Variables for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchVariablesDictionary(char *somechars);
 
 /**
 * completion function on files for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchFilesDictionary(char *somechars);
 
@@ -63,14 +63,14 @@ char **searchFilesDictionary(char *somechars);
 * completion function on files for scilab
 * @param[in] the line before the caret
 * @param[in] the part
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern);
 
 /**
 * completion handle graphics properties for scilab
 * @param[in] somechars first characters of a word
-* @return a array of chars 
+* @return an array of chars 
 */
 char **searchHandleGraphicsPropertiesDictionary(char *somechars);
 /*--------------------------------------------------------------------------*/

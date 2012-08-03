@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pinv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pinv</refname>
     <refpurpose> pseudo-inverse  </refpurpose>
@@ -29,23 +26,25 @@
         <term>A  </term>
         <listitem>
           <para>matrice réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
           <para>nombre réel
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = pinv(A)</literal>  renvoie une matrice <literal>X</literal> de mêmes dimensions que <literal>A'</literal> telle que :
+    <para>
+      <literal>X= pinv(A)</literal>  renvoie une matrice <literal>X</literal> de mêmes dimensions que <literal>A'</literal> telle que :
     </para>
-    <para><literal>A*X*A = A, X*A*X = X</literal> avec
+    <para>
+      <literal>A*X*A = A, X*A*X = X</literal> avec
       <literal>A*X</literal> et <literal>X*A</literal> Hermitiennes.
     </para>
     <para>
@@ -63,7 +62,7 @@ norm(A*pinv(A)*A-A,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rank">rank</link>
@@ -78,7 +77,9 @@ norm(A*pinv(A)*A-A,1)
   </refsection>
   <refsection>
     <title>Fonctions Utilisées</title>
-    <para>La fonction <literal>pinv</literal> est basée sur la decomposition en valeurs
-      singulières (fonction Scilab  <literal>svd</literal>).</para>
+    <para>
+      La fonction <literal>pinv</literal> est basée sur la decomposition en valeurs
+      singulières (fonction Scilab  <literal>svd</literal>).
+    </para>
   </refsection>
 </refentry>

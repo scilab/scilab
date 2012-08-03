@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_file_choice">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_file_choice</refname>
     <refpurpose> choose and executes an item within a list </refpurpose>
@@ -25,18 +22,18 @@
   <refsection>
     <title>Description</title>
     <para>
-		The function demo_file_choice choose and executes an item chosen in the 
-		'demolist' variable, that shall be written above. The variable 'demolist' is a 
-		text matrix whose first column contains names of items displayed in an options 
-		window and whose second column contains the names of the files that will be 
-		executed. The title of the options window is 'Choose a demo'.
-		The 'path' variable is the access to the files called in the second column.
-		The 'ch' variable allows to avoid the special cases 'root' and 'anim' that are 
-		used in peculiar demonstrations of Scilab. Then you have to enter another word 
-		than 'root' or 'ch', 'no' for example.
-		If you choose to cancel the options window, the console is put back to its 
-		previous width.
-		</para>
+      The function demo_file_choice choose and executes an item chosen in the 
+      'demolist' variable, that shall be written above. The variable 'demolist' is a 
+      text matrix whose first column contains names of items displayed in an options 
+      window and whose second column contains the names of the files that will be 
+      executed. The title of the options window is 'Choose a demo'.
+      The 'path' variable is the access to the files called in the second column.
+      The 'ch' variable allows to avoid the special cases 'root' and 'anim' that are 
+      used in peculiar demonstrations of Scilab. Then you have to enter another word 
+      than 'root' or 'ch', 'no' for example.
+      If you choose to cancel the options window, the console is put back to its 
+      previous width.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -51,17 +48,11 @@ demo_file_choice('SCI/demos/simulation/','no');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_function_choice">demo_function_choice</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

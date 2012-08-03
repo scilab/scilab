@@ -19,21 +19,25 @@ sci_gateway/fortran/sci_f_mulf.f \
 sci_gateway/fortran/sci_f_ldivf.f \
 sci_gateway/fortran/sci_f_rdivf.f
 
-libscisymbolic_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+FORTRAN_SOURCES = src/fortran/atome.f
+
+libscisymbolic_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
 noinst_LTLIBRARIES = libscisymbolic-algo.la
 
-libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(FORTRAN_SOURCES)
 libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
+libscisymbolic_algo_la_CPPFLAGS = $(libscisymbolic_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
+INCLUDE_FLAGS = $(libscisymbolic_la_CPPFLAGS)
 
 libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 

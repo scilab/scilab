@@ -1,13 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function hz=iir(n,ftype,fdesign,frq,delta)
+function [hz,zz,gz]=iir(n,ftype,fdesign,frq,delta)
 // hz=iir(n,ftype,fdesign,frq,delta)
 //macro which designs an iir digital filter
 //using analog filter designs.
@@ -34,8 +34,10 @@ function hz=iir(n,ftype,fdesign,frq,delta)
 //           :                    0<ripple<delta(2)   in stopband
 //
 //!
-
-//select analog filter design for low-pass filter with fc=.25
+  if and(argn(1)<>[1 3]) then
+    error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"),'iir',1,3))
+  end
+  //select analog filter design for low-pass filter with fc=.25
   if type(n)<>1 then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',1))
   end
@@ -59,10 +61,10 @@ function hz=iir(n,ftype,fdesign,frq,delta)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',5))
   end
 
-  if max(abs(frq))>0.5 then 
+  if max(abs(frq))>0.5 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),'iir',4,"0","0.5"));
   end
-  if delta(1)<0|delta(2)>1 then 
+  if delta(1)<0|delta(2)>1 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),'iir',4,"0","1"));
   end
 
@@ -70,5 +72,10 @@ function hz=iir(n,ftype,fdesign,frq,delta)
   //make digital low-pass filter from analog low-pass filter
   z=poly(0,'z');[pd,zd,gd]=bilt(pc,zc,gc,2*(z-1),(z+1));
   //do change of variables to obtain general digital filter
-  hz=trans(pd,zd,gd,ftype,frq);
+  if argn(1)==1 then
+    hz=trans(pd,zd,gd,ftype,frq);
+  else
+    [pz,zz,gz]=trans(pd,zd,gd,ftype,frq);
+    hz=pz
+  end
 endfunction

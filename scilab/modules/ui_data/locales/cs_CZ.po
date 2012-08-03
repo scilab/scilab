@@ -8,21 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-21 19:35+0000\n"
+"PO-Revision-Date: 2012-02-22 21:00+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d, %d, nebo %d.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -37,12 +41,21 @@ msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans nemůže být upraven.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Neurčená proměnná %s.\n"
+msgid "%s: Undefined variable: %s.\n"
+msgstr "%s: Neurčená proměnná: %s.\n"
 
 #, c-format
-msgid "%s: Java memory problem, cannot edit %s\n"
-msgstr "%s: Problém s pamětí Java, %s nelze upravit.\n"
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván s dvojitou přesností.\n"
+
+#, c-format
+msgid ""
+"%s: Java exception arisen:\n"
+"%s\n"
+msgstr ""
+"%s: Vyskytla se výjimka Java:\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Type not handle yet"
@@ -60,20 +73,29 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "&O Scilabu..."
 
-msgid "Icon"
-msgstr "Ikona"
-
 msgid "Name"
 msgstr "Jméno"
 
-msgid "Bytes"
-msgstr "Bajty"
+msgid "Dimension"
+msgstr "Rozměr"
 
 msgid "Type"
 msgstr "Typ"
 
 msgid "Visibility"
 msgstr "Viditelnost"
+
+msgid "Bytes"
+msgstr "Bajty"
+
+msgid "User"
+msgstr "Uživatel"
+
+msgid "Type int value"
+msgstr "Zadejte celočíselnou hodnotu"
+
+msgid "Feature not available in this mode..."
+msgstr "Funkce není v tomto režimu dostupná..."
 
 msgid "File"
 msgstr "Soubor"
@@ -83,6 +105,9 @@ msgstr "Zavřít"
 
 msgid "Filter"
 msgstr "Filtr"
+
+msgid "Hide Scilab variables"
+msgstr "Skrýt proměnné Scilab"
 
 msgid "Double"
 msgstr "Double"
@@ -147,6 +172,9 @@ msgstr "Prohlížeč Proměnných"
 msgid "Global variables can not be edited."
 msgstr "Globální proměnné nemůžou být upraveny"
 
+msgid "Edition"
+msgstr "Vydání"
+
 msgid "Refresh the variable "
 msgstr "Obnovit proměnnou "
 
@@ -159,11 +187,152 @@ msgstr "Vložit"
 msgid "Cut"
 msgstr "Vyjmout"
 
+msgid "Clear"
+msgstr "Vyčistit"
+
 msgid "Undo"
 msgstr "Zpět"
 
 msgid "Redo"
 msgstr "Znovu"
+
+msgid "Size columns to fit"
+msgstr "Přizpůsobit velikost sloupců"
+
+msgid "Copy as Scilab command"
+msgstr "Kopírovat jako příkaz Scilab"
+
+msgid "Copy as Scilab matrix"
+msgstr "Kopírovat jako matici Scilab"
+
+msgid "Copy as Scilab matrix with CR"
+msgstr "Kopírovat jako matici Scilab s CR"
+
+msgid "Short format"
+msgstr "Formát short"
+
+msgid "ShortE format"
+msgstr "Formát shortE"
+
+msgid "Long format"
+msgstr "Formát long"
+
+msgid "LongE format"
+msgstr "Formát longE"
+
+msgid "Create variable from selection"
+msgstr "Vytvořit proměnnou z výběru"
+
+msgid "Insert a row"
+msgstr "Vložit řádek"
+
+msgid "Remove rows"
+msgstr "Odstranit řádky"
+
+msgid "Insert a column"
+msgstr "Vložit sloupec"
+
+msgid "Remove columns"
+msgstr "Odstranit sloupce"
+
+msgid "Plot the selection"
+msgstr "Nakreslit výběr"
+
+msgid "Plot the matrix"
+msgstr "Nakreslit matici"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Variable name"
+msgstr "Název proměnné"
+
+msgid "Create new variable"
+msgstr "Vytvořit novou proměnnou"
+
+msgid "Duplicate the variable"
+msgstr "Zdvojit proměnnou"
+
+msgid "Rows number"
+msgstr "Čísla řádků"
+
+msgid "Columns number"
+msgstr "Čísla sloupců"
+
+msgid "Fill with"
+msgstr "Naplnit s"
+
+msgid "File Browser"
+msgstr "Průzkumník souborů"
+
+msgid "Size"
+msgstr "Velikost"
+
+msgid "Last modified"
+msgstr "Naposledy upraveno"
+
+msgid "Directory"
+msgstr "Adresář"
+
+#, c-format
+msgid "%s File"
+msgstr "Soubor %s"
+
+msgid "File/directory filter"
+msgstr "Filtr souboru/adresáře"
+
+msgid "Enter your working folder"
+msgstr "Zadejte Váš pracovní adresář"
+
+msgid "Case sensitive"
+msgstr "Citlivost na velikost písmen"
+
+msgid "Regular expression"
+msgstr "Regulární výraz"
+
+msgid "Select a directory"
+msgstr "Zvolte adresář"
+
+msgid "Home"
+msgstr "Domů"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr "Nelze upravit soubor %s"
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr "Nelze otevřít soubor %s"
+
+msgid "Open with SciNotes"
+msgstr "Otevřít pomocí SciNotes"
+
+msgid "Execute in Scilab"
+msgstr "Spustit v Scilab"
+
+msgid "Open with Xcos"
+msgstr "Otevřít pomocí Xcos"
+
+msgid "Load in Scilab"
+msgstr "Načíst v Scilab"
+
+msgid "Edit with default application"
+msgstr "Upravit pomocí výchozí aplikace"
+
+msgid "Open with default application"
+msgstr "Otevřít pomocí výchozí aplikace"
+
+msgid "Scilab type:"
+msgstr "Typ Scilab:"
+
+msgid "Bytes:"
+msgstr "Bajty:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

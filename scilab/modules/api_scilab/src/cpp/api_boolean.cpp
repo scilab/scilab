@@ -13,16 +13,13 @@
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_boolean.h"
 #include "localization.h"
 
 #include "Scierror.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 
 
 /********************************/
@@ -64,10 +61,22 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr	= NULL;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
+	int iNewPos = Top - Rhs + _iVar;
+	int iAddr   = *Lstk(iNewPos);
 
-	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
 	if (iMemSize > iFreeSpace)
 	{
@@ -100,7 +109,18 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piBool		= NULL;
 
-	sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
@@ -119,6 +139,18 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
 	int iSaveTop			= Top;
 	int* piBool				= NULL;
 	int *piAddr				= NULL;
+
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
@@ -204,7 +236,7 @@ int isNamedBooleanType(void* _pvCtx, const char* _pstName)
 /*--------------------------------------------------------------------------*/
 int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -235,7 +267,7 @@ int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)
 /*--------------------------------------------------------------------------*/
 int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -266,7 +298,7 @@ int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)
 /*--------------------------------------------------------------------------*/
 int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piBool = NULL;
 
 	sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, 1, 1, &piBool);
@@ -283,7 +315,7 @@ int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool)
 /*--------------------------------------------------------------------------*/
 int createNamedScalarBoolean(void* _pvCtx, const char* _pstName, int _iBool)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
 	sciErr = createNamedMatrixOfBoolean(_pvCtx, _pstName, 1, 1, &_iBool);
 	if(sciErr.iErr)

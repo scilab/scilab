@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unix</refname>
     <refpurpose> exécution d'une commande Unix ou DOS  </refpurpose>
@@ -42,13 +39,14 @@
   <refsection>
     <title>Description</title>
     <para>
-			Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-			(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
-			l'interpréteur de commande.
-		</para>
-    <para><literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
-			alors le code de sortie de l'interpréteur de commande.
-		</para>
+      Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
+      (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
+      l'interpréteur de commande.
+    </para>
+    <para>
+      <literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
+      alors le code de sortie de l'interpréteur de commande.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -70,7 +68,7 @@ wd=directory()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

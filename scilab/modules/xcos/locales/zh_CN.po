@@ -14,11 +14,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -28,6 +32,10 @@ msgstr "%s: 内存不足。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -58,13 +66,16 @@ msgid ""
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
+msgid "parent diagram not found."
+msgstr ""
+
 msgid "Preview"
 msgstr ""
 
-msgid "Please specify a file format"
+msgid "Error on export"
 msgstr ""
 
-msgid "Error on export"
+msgid "Please specify a valid file format"
 msgstr ""
 
 msgid "Incompatibility detected"
@@ -144,10 +155,13 @@ msgstr ""
 msgid "Equations"
 msgstr ""
 
-msgid "Discrete"
+msgid "Discretes"
 msgstr ""
 
-msgid "Input"
+msgid "Inputs"
+msgstr ""
+
+msgid "Outputs"
 msgstr ""
 
 msgid "Solver"
@@ -240,6 +254,9 @@ msgstr "新组件盘"
 
 msgid "Open"
 msgstr "打开"
+
+msgid "Open file in Scilab current directory"
+msgstr ""
 
 msgid "Save"
 msgstr "保存"
@@ -505,11 +522,18 @@ msgstr ""
 "文件 %s 不存在\n"
 " 你希望创建它么？"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "确定"
 
 msgid "Cancel"
 msgstr "取消"
+
+msgid "Reset to default"
+msgstr ""
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -549,13 +573,13 @@ msgid "No block selected"
 msgstr ""
 
 msgid "Export to XML"
-msgstr "导出到XML"
+msgstr ""
 
 msgid "Export in progress"
 msgstr ""
 
 msgid "Import from XML"
-msgstr "从XML导入"
+msgstr ""
 
 msgid "Add to"
 msgstr "添加到"
@@ -655,13 +679,7 @@ msgstr ""
 msgid "Max integration time interval"
 msgstr ""
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr ""
-
-msgid "CVODE"
-msgstr ""
-
-msgid "IDA"
+msgid "Solver kind"
 msgstr ""
 
 msgid "maximum step size (0 means no limit)"
@@ -720,13 +738,19 @@ msgstr ""
 msgid "Debug block calls without trace"
 msgstr ""
 
+msgid "All supported formats"
+msgstr ""
+
 msgid "Scicos file"
 msgstr ""
 
 msgid "Xcos file"
 msgstr ""
 
-msgid "Scilab file"
+msgid "Xcos (zip) file"
+msgstr ""
+
+msgid "Scilab Open Data file"
 msgstr ""
 
 msgid "Masked SuperBlock editor"
@@ -790,18 +814,19 @@ msgstr ""
 msgid "Modelica initialize"
 msgstr ""
 
-#, c-format
-msgid "From %s"
-msgstr ""
-
-#, c-format
-msgid "Goto %s"
-msgstr ""
-
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
-msgid "Wrong port number"
+msgid "Evaluation problem: wrong port number."
+msgstr ""
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr ""
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
 
 #, c-format
@@ -966,10 +991,6 @@ msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d。\n"
 
@@ -1020,21 +1041,9 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
 msgstr ""
 
 #, c-format
@@ -1138,9 +1147,11 @@ msgid "%s is not a valid block descriptor."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -1151,6 +1162,14 @@ msgstr ""
 msgid "Block configuration with function [%s] failed."
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr ""
+
+#, c-format
+msgid "Field %s has different values."
+msgstr ""
+
 msgid "The Scicos libraries are not loaded"
 msgstr ""
 
@@ -1158,7 +1177,7 @@ msgstr ""
 msgid "Unable to simulate %s"
 msgstr ""
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format

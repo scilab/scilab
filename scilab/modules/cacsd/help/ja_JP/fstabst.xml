@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fstabst">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fstabst</refname>
     <refpurpose>ユーラ(Youla)・パラメトリゼーション</refpurpose>
@@ -28,19 +25,25 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (線形システム)</para>
+          <para>
+            <literal>syslin</literal> リスト (線形システム)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 行ベクトル, <literal>P22</literal>の次元</para>
+          <para>
+            1x2 行ベクトル, <literal>P22</literal>の次元
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (状態空間表現の線形システム)</para>
+          <para>
+            <literal>syslin</literal> リスト (状態空間表現の線形システム)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,38 +51,46 @@
   <refsection>
     <title>説明</title>
     <para>
-	安定化フィードバックのパラメトリゼーション.</para>
-    <para><literal>P</literal> は以下のように分割されます:</para>
-    <programlisting role = ""><![CDATA[ 
+      安定化フィードバックのパラメトリゼーション.
+    </para>
+    <para>
+      <literal>P</literal> は以下のように分割されます:
+    </para>
+    <programlisting role=""><![CDATA[ 
 P=[ P11 P12;
     P21 P22]  
  ]]></programlisting>
     <para>
-    (状態空間形式または伝達関数形式: 計算時に状態空間形式の
-	自動変換が行われます)</para>
-    <para><literal>r</literal> = <literal>P22</literal> サブシステムの大きさ,  
-<literal>P</literal>の(2,2)ブロック</para>
-    <programlisting role = ""><![CDATA[ 
+      (状態空間形式または伝達関数形式: 計算時に状態空間形式の
+      自動変換が行われます)
+    </para>
+    <para>
+      <literal>r</literal> = <literal>P22</literal> サブシステムの大きさ,  
+      <literal>P</literal>の(2,2)ブロック
+    </para>
+    <programlisting role=""><![CDATA[ 
 J =[J11 J12;
     J21 J22]
  ]]></programlisting>
     <para>
-	<literal>K</literal> は，
-	安定な<literal>Q</literal>により
-	<literal>K=lft(J,r,Q)</literal>である時に限り,
-	<literal>P</literal>(すなわち<literal>P22</literal>)の
-	安定化コントローラです.</para>
+      <literal>K</literal> は，
+      安定な<literal>Q</literal>により
+      <literal>K=lft(J,r,Q)</literal>である時に限り,
+      <literal>P</literal>(すなわち<literal>P22</literal>)の
+      安定化コントローラです.
+    </para>
     <para>
-    <literal>J</literal>の中心部である , <literal>J11</literal> は
-	<literal>P</literal>のLQGレギュレータです.</para>
+      <literal>J</literal>の中心部である , <literal>J11</literal> は
+      <literal>P</literal>のLQGレギュレータです.
+    </para>
     <para>
-    この <literal>J</literal> は,
-	<literal>P</literal> および <literal>J</literal> の
-	2ポート <literal>lft</literal> として以下のように <literal>T</literal>
-	を定義するものです: <literal>[T,rt]=lft(P,r,J,r)</literal>
-	この時,	<literal>T12</literal> はインナ(inner)，
-	<literal>T21</literal>はコ・インナ(co-inner)となります.
-	</para>
+      この <literal>J</literal> は,
+      <literal>P</literal> および <literal>J</literal> の
+      2ポート <literal>lft</literal> として以下のように <literal>T</literal>
+      を定義するものです: <literal>[T,rt]=lft(P,r,J,r)</literal>
+      この時,	<literal>T12</literal> はインナ(inner)，
+      <literal>T21</literal>はコ・インナ(co-inner)となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

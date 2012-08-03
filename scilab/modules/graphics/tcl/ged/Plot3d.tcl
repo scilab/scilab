@@ -19,7 +19,7 @@ set MySciPath [file join  "$env(SCIPATH)"]
 
 variable DEMODIR
 
-lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0"]
+lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget"]
 namespace inscope :: package require BWidget
 package require BWidget
 
@@ -538,7 +538,7 @@ label $w.scicomCOLOR.label1 -text "Color Data:" -font $gedFont -anchor e -width 
 pack  $w.scicomCOLOR.label1 -in $w.scicomCOLOR -side left
 
 entry $w.scicomCOLOR.text1 -relief sunken -textvariable scicomint_dataCOLOR -width 10 -font $gedFont
-set_balloon $w.scicomCOLOR.text1 "Enter a variable defined in Scilab Console representing\n a integer matrix or use a macro call (defining a matrix)\n to initialize the \"Color data\" field."
+set_balloon $w.scicomCOLOR.text1 "Enter a variable defined in Scilab Console representing\n an integer matrix or use a macro call (defining a matrix)\n to initialize the \"Color data\" field."
 bind  $w.scicomCOLOR.text1 <Return> "sciCommandData"
 bind  $w.scicomCOLOR.text1 <KP_Enter> "sciCommandData"
 

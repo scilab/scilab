@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getcolor">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="getcolor">
   <refnamediv>
     <refname>getcolor</refname>
     <refpurpose> opens a dialog to show colors in the current colormap</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>c=getcolor(title,[cini])
-c=getcolor()</synopsis>
+      c=getcolor()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,12 +46,14 @@ c=getcolor()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
-    The user can click on a color to show its id and RGB values.
-    <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.</para>
+    <para>
+      <literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
+      The user can click on a color to show its id and RGB values.
+      <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="color">color</link>

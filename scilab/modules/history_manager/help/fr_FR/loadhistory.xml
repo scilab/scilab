@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="loadhistory">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>loadhistory</refname>
     <refpurpose>charge un fichier contenant l'historique</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>loadhistory()
-loadhistory(f)</synopsis>
+      loadhistory(f)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -46,7 +44,7 @@ loadhistory(SCI+'/session.scilab')
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>
@@ -57,12 +55,6 @@ loadhistory(SCI+'/session.scilab')
       <member>
         <link linkend="gethistory">gethistory</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

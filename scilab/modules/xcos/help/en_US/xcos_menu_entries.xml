@@ -17,29 +17,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * See the file ./license.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xcos_menu_entries"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
->
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcos_menu_entries">
   <refnamediv>
     <refname>Menu_Entries</refname>
-
     <refpurpose>Xcos editor menu entries</refpurpose>
   </refnamediv>
-
   <refsection id="Contents_xcos_menu_entries">
     <title>Contents</title>
     <para>
@@ -49,69 +36,71 @@
     </para>
     <itemizedlist>
       <listitem>
-        <para><link linkend="xcos_menu_entries">Xcos editor menu entries</link></para>
+        <para>
+          <link linkend="xcos_menu_entries">Xcos editor menu entries</link>
+        </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
-
           <listitem>
-            <para><xref linkend="Filemenu_Menu_entries">File menu</xref></para>
+            <para>
+              <xref linkend="Filemenu_Menu_entries">File menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Editmenu_Menu_entries">Edit menu</xref></para>
+            <para>
+              <xref linkend="Editmenu_Menu_entries">Edit menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Viewmenu_Menu_entries">View menu</xref></para>
+            <para>
+              <xref linkend="Viewmenu_Menu_entries">View menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Simulatemenu_Menu_entries">Simulate menu</xref></para>
+            <para>
+              <xref linkend="Simulatemenu_Menu_entries">Simulate menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Formatmenu_Menu_entries">Format menu</xref></para>
+            <para>
+              <xref linkend="Formatmenu_Menu_entries">Format menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Toolsmenu_Menu_entries">Tools menu</xref></para>
+            <para>
+              <xref linkend="Toolsmenu_Menu_entries">Tools menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Helpmenu_Menu_entries">? menu</xref></para>
+            <para>
+              <xref linkend="Helpmenu_Menu_entries">? menu</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Seealso_Menu_entries">See Also</xref></para>
-          </listitem>
-
-          <listitem>
-            <para><xref linkend="Authors_Menu_entries">Authors</xref></para>
+            <para>
+              <xref linkend="Seealso_Menu_entries">See Also</xref>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
-
   </refsection>
-
   <refsection id="Filemenu_Menu_entries">
     <title>File menu</title>
-
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_file.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_file.png"/>
       </imageobject>
     </mediaobject>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold"> File:New (Ctrl+N)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/document-new.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/document-new.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -119,31 +108,30 @@
           Clicking on the <emphasis>New</emphasis> menu item open a new empty <emphasis>Xcos</emphasis> diagram in a new
           window. With this menu, you can open a new diagram or a new palette.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">File:Open (Ctrl+O)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/document-open.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/document-open.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>
           Select the <emphasis>Open</emphasis> menu item to load an XML (<emphasis>.xcos</emphasis>) or a binary file
-           (<emphasis>.cos</emphasis>) which contain saved block diagram or a palette. The command open a dialog box allows
-           you to choose the folder and the file.</para>
-        <para />
+          (<emphasis>.cos</emphasis>) which contain saved block diagram or a palette. The command open a dialog box allows
+          you to choose the folder and the file.
+        </para>
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">File:Save (Ctrl+S)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/media-floppy.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/devices/media-floppy.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -157,19 +145,17 @@
           specify a file name without extension. The default extension is <emphasis>.xcos</emphasis>.
         </para>
         <para>The diagram takes the name of the file (without the extension).</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">File:Save As (Ctrl+Shift+S)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/document-save-as.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/document-save-as.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>
           Select the <emphasis>Save As</emphasis> menu item to save the block diagram or palette in a file with a new name.
         </para>
@@ -178,55 +164,53 @@
           The default extension is <emphasis>.xcos</emphasis>.
         </para>
         <para>The diagram takes the name of the file (without the extension).</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">File:Export (Ctrl+E)</emphasis></para>
-
+        <para>
+          <emphasis role="bold">File:Export (Ctrl+E)</emphasis>
+        </para>
         <para>
           This item is used to export a figure of the current <emphasis>Xcos</emphasis> diagram. The export can be done
           in the WBMP, GIF, HTML, JPEG, JPG, PNG, SVG or VML formats.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">File:Recent Files</emphasis></para>
-
+        <para>
+          <emphasis role="bold">File:Recent Files</emphasis>
+        </para>
         <para>Via this menu, you have a quick access to the recent opened files.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">File:Print (Ctrl+P)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/document-print.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/document-print.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>Print the current diagram onto a printer.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">File:Close (Ctrl+W)</emphasis></para>
-
+        <para>
+          <emphasis role="bold">File:Close (Ctrl+W)</emphasis>
+        </para>
         <para>
           If several diagrams are opened, the <emphasis>Close</emphasis> action the current diagram. If only one diagram is
           opened, the <emphasis>Close</emphasis> action will close <emphasis>Xcos</emphasis>. The auxiliary windows as
           viewport, palettes, etc are also closed if
           necessary.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">File:Quit (Ctrl+Q)</emphasis></para>
-
+        <para>
+          <emphasis role="bold">File:Quit (Ctrl+Q)</emphasis>
+        </para>
         <para>
           The <emphasis>Quit</emphasis> action will close <emphasis>Xcos</emphasis>.
           The auxiliary windows as viewport, palettes, etc are also closed if necessary.
@@ -234,23 +218,21 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Editmenu_Menu_entries">
     <title>Edit menu</title>
-
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_edit.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_edit.png"/>
       </imageobject>
     </mediaobject>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Edit:Undo (Ctrl+Z)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-undo.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-undo.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -263,20 +245,21 @@
           <emphasis role="bold">Edit:Redo (Ctrl+Y)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-redo.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-redo.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-        <para>Select the <emphasis>Redo</emphasis> menu item to redo the last undo edit operation.</para>
-        <para />
+        <para>
+          Select the <emphasis>Redo</emphasis> menu item to redo the last undo edit operation.
+        </para>
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Edit:Cut (Ctrl+X)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-cut.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-cut.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -284,45 +267,42 @@
           <emphasis>Cut</emphasis> is used to remove the selected objects from the diagram and to copy them in the clipboard.
           When you cut a block all links connected to it are deleted as well.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Edit:Copy (Ctrl+C)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-copy.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-copy.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>
           <emphasis>Copy</emphasis> is used to place a copy of the selected in the clipboard.
         </para>
-        <para />
+        <para/>
       </listitem>
-
-      <listitem >
+      <listitem>
         <para>
           <emphasis role="bold">Edit:Paste (Ctrl+V)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-paste.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-paste.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>
           <emphasis>Paste</emphasis> places the content of the clipboard in the current diagram.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Edit:Delete (Delete)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/edit-delete.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/edit-delete.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -330,45 +310,45 @@
           To delete blocks or links, select objects to be deleted and then the <emphasis>Delete</emphasis> menu item.
           When you delete a block all links connected to it are deleted as well.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Edit:Select all (Ctrl+A)</emphasis></para>
-
-        <para><emphasis>Select all</emphasis> the blocks in the current diagram.</para>
-        <para />
+        <para>
+          <emphasis role="bold">Edit:Select all (Ctrl+A)</emphasis>
+        </para>
+        <para>
+          <emphasis>Select all</emphasis> the blocks in the current diagram.
+        </para>
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Edit:Invert selection</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Edit:Invert selection</emphasis>
+        </para>
         <para>Invert the current selection.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Edit:Block Parameters (Ctrl+B)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/applications-system.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/categories/applications-system.png"/>
             </imageobject>
-            </inlinemediaobject>
+          </inlinemediaobject>
         </para>
         <para>
           Open the block configuration dialog for the current selected block. The configuration depends of the used block
           (see the block help to obtain more information on its configuration).
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Edit:Region to superblock</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/object-group.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/object-group.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -376,110 +356,106 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Viewmenu_Menu_entries">
     <title>View menu</title>
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_view.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_view.png"/>
       </imageobject>
     </mediaobject>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">View:Zoom in (Ctrl+Plus)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/zoom-in.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-in.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>When you select this menu item the diagram is zoomed in by a factor of 10%.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">View:Zoom out (Ctrl+Minus)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/zoom-out.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-out.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>When you select this menu item the diagram is zoomed out by a factor of 10%.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">View:Fit diagram to view</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/zoom-fit-drawing.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-fit-drawing.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>When you select this menu item the diagram is fit to the size of the current window.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">View:Normal 100%</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/zoom-original.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-original.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>Resize the diagram components at their normal displaying dimensions.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">View:Palette browser</emphasis></para>
-
+        <para>
+          <emphasis role="bold">View:Palette browser</emphasis>
+        </para>
         <para>Open the palette browser.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">View:Diagram browser</emphasis></para>
-
+        <para>
+          <emphasis role="bold">View:Diagram browser</emphasis>
+        </para>
         <para>
           Displays a window which lists the global properties of a diagram and all its objects (blocks and links). It presents in
           a tree form the <emphasis>scs_m</emphasis> structure content of the diagram.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">View:Viewport</emphasis></para>
-
+        <para>
+          <emphasis role="bold">View:Viewport</emphasis>
+        </para>
         <para>
           Display the <emphasis>Viewport</emphasis> window. This window is a complete image of the current diagram. With
           the <emphasis>Viewport</emphasis>, you can move the displaying working area onto a part of the diagram.
           You can zoom and unzoom part of a diagram.
         </para>
-        <para />
+        <para/>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../gui/xcos_menu_entries/en_US/xcos_menu_viewport.png" />
+            <imagedata fileref="../gui/xcos_menu_entries/en_US/xcos_menu_viewport.png"/>
           </imageobject>
         </mediaobject>
-        <para />
+        <para/>
         <para>
           Above, you have an example of the viewport docked in the <emphasis>Xcos</emphasis> which is used to zoom on a
           part of a diagram. On the left the editor window presents the zoomed part of the diagram.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">View:Details</emphasis></para>
-
+        <para>
+          <emphasis role="bold">View:Details</emphasis>
+        </para>
         <para>
           Displays a window by selected block which list properties of block. It presents in a tree form
           the <emphasis>scicos_block</emphasis> structure content of the blocks.
@@ -487,79 +463,71 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Simulatemenu_Menu_entries">
     <title>Simulation menu</title>
-
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_simulation.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_simulation.png"/>
       </imageobject>
     </mediaobject>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Simulation:Setup</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/preferences-desktop.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/categories/preferences-desktop.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-        <para />
+        <para/>
         <para>
           In the main <emphasis>Xcos</emphasis> window, clicking on the <emphasis>Setup</emphasis> menu item invokes
           the dialog box below that allows you to change integration (simulation) parameters:
         </para>
-        <para />
+        <para/>
         <mediaobject>
           <imageobject>
-            <imagedata align="center"
-                       fileref="../gui/xcos_menu_entries/en_US/xcos_set_simulation_parameters_gui.png" />
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_set_simulation_parameters_gui.png"/>
           </imageobject>
         </mediaobject>
-        <para />
+        <para/>
         <itemizedlist>
           <listitem>
             <para>
               <emphasis role="bold">Final integration time</emphasis>: integration (simulation)
               ends at this time, it always starts from 0
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Real time scaling</emphasis>: forces real time simulation
               by setting <emphasis>Xcos</emphasis> simulation in unit of time to 1 second.
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Absolute and relative error tolerances</emphasis>: solver
               properties.
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Time tolerance</emphasis>: the smallest time interval for which
               the ode solver is used to update continuous states.
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
             <para>
-            <emphasis role="bold">Max integration time interval</emphasis>: the maximum time
-            interval for each call to solver.it must be reduced if the error message "Too many calls" is encountered
+              <emphasis role="bold">Max integration time interval</emphasis>: the maximum time
+              interval for each call to solver.it must be reduced if the error message "Too many calls" is encountered
             </para>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Solver</emphasis>: select the numerical solver to be used. You have the
@@ -568,9 +536,8 @@
               solver, <emphasis> Xcos</emphasis> displays an information box on the automatic switching to
               the IDA solver.
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Max step size</emphasis>: maximum time step taken by the solver. This parameter is useful
@@ -578,53 +545,54 @@
               increase automatically the step size for decrease the calculation time. If you think that your system is in this
               case, decrease the value of this parameter.
             </para>
-            <para />
+            <para/>
           </listitem>
-
           <listitem>
-           <para><emphasis role="bold">Set context</emphasis>: see explanation below</para>
-            <para />
+            <para>
+              <emphasis role="bold">Set context</emphasis>: see explanation below
+            </para>
+            <para/>
           </listitem>
-
           <listitem>
             <para>
               <emphasis role="bold">Default</emphasis>: this button reset the simulation parameters
               to their factory values.
             </para>
-            <para />
+            <para/>
           </listitem>
-
         </itemizedlist>
         <para>
           For more information on the solver look at the <xref linkend="Seealso_Menu_entries">
-          See Also</xref> section.
+            See Also
+          </xref>
+          section.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Execution Trace and Debug</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Execution Trace and Debug</emphasis>
+        </para>
         <para>
           Set <emphasis>Xcos</emphasis> in debug mode. This item opens the following dialog box in which you can choose
           the debugging mode. For more information, see the command <link linkend="scicos_debug">scicos_debug</link>
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Simulation:Set Context</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Simulation:Set Context</emphasis>
+        </para>
         <para>
           When you select this menu item you obtain this dialog:
         </para>
-        <para />
+        <para/>
         <mediaobject>
           <imageobject>
-            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_set_context_gui.png" />
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_set_context_gui.png"/>
           </imageobject>
         </mediaobject>
-        <para />
+        <para/>
         <para>
           You can enter here <emphasis>Scilab</emphasis> instructions for defining the symbolic <emphasis>Xcos</emphasis>
           parameters used in block definitions or to do whatever you want.
@@ -641,13 +609,13 @@
               We have three GAINBLK_f blocks, open the <emphasis>Set context</emphasis> dialog and
               writes the symbolic variables:
             </para>
-            <para />
+            <para/>
             <programlisting><![CDATA[
               A = 1.5;
               B = 2*A;
               C = 3*A;
             ]]></programlisting>
-            <para />
+            <para/>
           </listitem>
           <listitem>
             <para>
@@ -657,12 +625,12 @@
             </para>
           </listitem>
         </orderedlist>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Simulate:Compile</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Simulate:Compile</emphasis>
+        </para>
         <para>
           Select the <emphasis>Compile</emphasis> menu item to compile the block diagram. This
           menu item need never be used since compilation is performed automatically, if necessary,
@@ -677,9 +645,8 @@
             Report bugs and wishes about <emphasis>Scilab</emphasis>
           </ulink>
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Simulate:Modelica initialize</emphasis>
@@ -690,38 +657,34 @@
           <emphasis>Ida</emphasis>, <emphasis>Fsolve</emphasis>, <emphasis>Optim</emphasis>,
           <emphasis>Nelder Mead</emphasis> and <emphasis>Hompack</emphasis> solvers.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Simulate:Start</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/media-playback-start.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/media-playback-start.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>
           Select the <emphasis>Start</emphasis> menu item to start the simulation. If the system
           has already been simulated, a dialog box appears where you can choose to
           <emphasis>Continue</emphasis>, <emphasis>Restart</emphasis> or <emphasis>End</emphasis>
           the simulation.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Simulation:Stop</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/process-stop.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/process-stop.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>
           You may interrupt the simulation by clicking on the <emphasis>Stop</emphasis> menu item
           or on the toolbar button. You can change any of the block parameters and continue the
@@ -730,129 +693,122 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Formatmenu_Menu_entries">
     <title>Format menu</title>
-
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format.png"/>
       </imageobject>
     </mediaobject>
-
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Format:Rotate (Ctrl+R)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/transform-rotate.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/actions/transform-rotate.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>
           Rotate allows to turn a block on the left with an of 90°. Rotation affects all the selected blocks.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Format:Flip (Ctrl+F)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/transform-flip.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/transform-flip.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>
           To reverse the positions of the activation inputs and outputs set at the top and the bottom of a block, select a block
           and select the <emphasis>Flip</emphasis> menu item. This does not affect the order, nor the position of the input and
           output event ports which are numbered from left to right. Flipping affects all the selected blocks.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Format:Mirror (Ctrl+M)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/transform-mirror.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/transform-mirror.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
-
         <para>
           To reverse the positions of the (regular) inputs and outputs set on the left and the right of a block, select a
           block and select the <emphasis>Mirror</emphasis> menu item. This does not affect the order, nor the position of
           the input and output ports which are numbered from top to bottom. Mirroring affects all the selected blocks.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Format:Show/Hide shadow</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Format:Show/Hide shadow</emphasis>
+        </para>
         <para>This menu allows to select 3D shape for selected blocks and associated parameters.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Format:Align Blocks</emphasis></para>
-        <para />
+        <para>
+          <emphasis role="bold">Format:Align Blocks</emphasis>
+        </para>
+        <para/>
         <mediaobject>
           <imageobject>
-            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_align.png" />
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_align.png"/>
           </imageobject>
         </mediaobject>
-        <para />
+        <para/>
         <para>
           When you select several blocks, it is possible to align them on horizontal axis (<emphasis>Top</emphasis>,
           <emphasis>Bottom</emphasis> and <emphasis>Middle</emphasis>) or on vertical axis (<emphasis>Left</emphasis>,
           <emphasis>Right</emphasis>, <emphasis>Center</emphasis>).
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Format: Border Color</emphasis>
-            <inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="../../images/icons/draw-brush.png" />
-              </imageobject>
-            </inlinemediaobject>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/draw-brush.png"/>
+            </imageobject>
+          </inlinemediaobject>
         </para>
         <para>
           This menu allows to change the border color of the selected blocks.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Format:Fill Color</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../images/icons/color-fill.png" />
+              <imagedata fileref="../../../xcos/images/icons/16x16/actions/color-fill.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>This menu allows to change the fill color of the selected blocks.</para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Format:Link Style</emphasis></para>
-        <para />
+        <para>
+          <emphasis role="bold">Format:Link Style</emphasis>
+        </para>
+        <para/>
         <mediaobject>
           <imageobject>
-            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_link_style.png" />
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_link_style.png"/>
           </imageobject>
         </mediaobject>
-        <para />
+        <para/>
         <para>
           This menu allows to change the style of the link.
         </para>
@@ -863,39 +819,48 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para>Horizontal (<emphasis>H</emphasis>)</para>
-              <mediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_horizontal_en_US.png" />
-                </imageobject>
-              </mediaobject>
+            <para>
+              Horizontal (<emphasis>H</emphasis>)
+            </para>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_horizontal_en_US.png"/>
+              </imageobject>
+            </mediaobject>
           </listitem>
           <listitem>
-            <para>Straight (<emphasis>S</emphasis>)</para>
-              <mediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_straight_en_US.png" />
-                </imageobject>
-              </mediaobject>
+            <para>
+              Straight (<emphasis>S</emphasis>)
+            </para>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_straight_en_US.png"/>
+              </imageobject>
+            </mediaobject>
           </listitem>
           <listitem>
-            <para>Vertical (<emphasis>V</emphasis>)</para>
-              <mediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_vertical_en_US.png" />
-                </imageobject>
-              </mediaobject>
+            <para>
+              Vertical (<emphasis>V</emphasis>)
+            </para>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_vertical_en_US.png"/>
+              </imageobject>
+            </mediaobject>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Format: Diagram background</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Format: Diagram background</emphasis>
+        </para>
         <para>This menu allows to change the background color.</para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Format:Grid</emphasis></para>
+        <para>
+          <emphasis role="bold">Format:Grid</emphasis>
+        </para>
         <para>
           This menu allows to activate / deactivate the grid. With the grid, the block and link placement on the working area
           is more easy and you obtain a more readable diagram.
@@ -903,17 +868,18 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Toolsmenu_Menu_entries">
     <title>Tools menu</title>
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_tools.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_tools.png"/>
       </imageobject>
     </mediaobject>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">Tools:Code generation</emphasis></para>
+        <para>
+          <emphasis role="bold">Tools:Code generation</emphasis>
+        </para>
         <para>
           This menu allows to generate the simulation code associated with a discrete time Super Block. The code generation
           is obtained simply by selecting the Super Block and then this menu.
@@ -930,22 +896,21 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Helpmenu_Menu_entries">
     <title>Help menu</title>
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_help.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_help.png"/>
       </imageobject>
     </mediaobject>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Help:Xcos Help (F1)</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/help-browser.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/apps/help-browser.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -953,29 +918,28 @@
           This menu opens the main help browser (if it is not open) on the <emphasis>Xcos</emphasis>
           help chapter.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Help:Block Help</emphasis>
+        <para>
+          <emphasis role="bold">Help:Block Help</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/help-browser.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/apps/help-browser.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
         <para>
           To get help on a <emphasis>Xcos</emphasis> block, select the block and then click on this menu item.
         </para>
-        <para />
+        <para/>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Help:Xcos Demos</emphasis>
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="../../../gui/images/icons/applications-system.png" />
+              <imagedata fileref="../../../gui/images/icons/16x16/categories/applications-system.png"/>
             </imageobject>
           </inlinemediaobject>
         </para>
@@ -983,37 +947,28 @@
           The item allows to open some examples of <emphasis>Xcos</emphasis> diagram.
         </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Help:About Xcos</emphasis></para>
+        <para>
+          <emphasis role="bold">Help:About Xcos</emphasis>
+        </para>
         <para>
           <emphasis>About Xcos</emphasis> item display the current version of <emphasis>Xcos</emphasis> in a dialog.
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_Menu_entries">
     <title>See Also</title>
     <itemizedlist>
-       <listitem>
-           <link linkend="scicos_debug">scicos_debug</link>
-       </listitem>
-       <listitem>
-           <link linkend="ode">ode</link>
-       </listitem>
-       <listitem>
-           <link linkend="dassl">dassl</link>
-       </listitem>
+      <listitem>
+        <link linkend="scicos_debug">scicos_debug</link>
+      </listitem>
+      <listitem>
+        <link linkend="ode">ode</link>
+      </listitem>
+      <listitem>
+        <link linkend="dassl">dassl</link>
+      </listitem>
     </itemizedlist>
   </refsection>
-
-  <refsection id="Authors_Menu_entries">
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>DIGITEO</member>
-      <member>Bernard DUJARDIN - Contributor</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

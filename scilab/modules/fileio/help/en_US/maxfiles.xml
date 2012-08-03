@@ -12,16 +12,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="maxfiles">
-  <info>
-    <pubdate>$LastChangedDate: 2007-04-22 18:20:07 +0200 (dim., 22 avr. 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>maxfiles</refname>
-    <refpurpose>sets the limit for the number of files a scilab is allowed to have open simultaneously.</refpurpose>
+    <refpurpose>sets the limit for the number of files a Scilab is allowed to have open simultaneously</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>r= maxfiles(newnumbermax)</synopsis>
+    <synopsis>r = maxfiles(newnumbermax)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,32 +26,34 @@
       <varlistentry>
         <term>newnumbermax</term>
         <listitem>
-          <para>a integer the new value</para>
+          <para>an integer the new value.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>effective new value.</para>
+          <para>an integer: effective new value.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>sets the limit for the number of files a scilab is allowed to have open simultaneously.</para>
+    <para>
+      <function>maxfiles</function> sets the limit for the number of files a Scilab is allowed to have open simultaneously.
+    </para>
     <para>Minimum : 20</para>
     <para>Maximum : 100</para>
     <para>Default : 20</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-r=maxfiles(50);
+    <programlisting role="example"><![CDATA[
+r = maxfiles(50);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mopen">mopen</link>

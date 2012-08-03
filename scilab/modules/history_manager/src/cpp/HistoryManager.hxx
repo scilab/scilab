@@ -105,7 +105,7 @@ public:
     /**
     * Get all lines in history
     * @param output size of the array of string
-    * @return a array of string
+    * @return an array of strings
     */
     char **getAllLines(int *numberoflines);
 
@@ -193,7 +193,7 @@ public:
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
-    * after a appendLine iterator go to end
+    * after an appendLine iterator go to end
     */
     char *getNextLine(void);
 

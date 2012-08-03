@@ -10,36 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" 
-          xml:id="pack" 
-          xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="pack" xml:lang="en">
   <refnamediv>
     <refname>pack</refname>
-
     <refpurpose>Compress a list of block-diagonal symmetric matrices.</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
-    CA = pack(A,blocksizes)
-    [CA,sel] = pack(A,blocksizes)
+      CA = pack(A,blocksizes)
+      [CA,sel] = pack(A,blocksizes)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
-	
       <varlistentry>
         <term>A</term>
         <listitem>
@@ -49,7 +34,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>blocksizes</term>
         <listitem>
@@ -58,7 +42,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>CA</term>
         <listitem>
@@ -67,48 +50,41 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>sel</term>
         <listitem>
           <para>
             1-by-s real matrix of doubles, the indices of the rows of <literal>A</literal> 
-			which have been selected in <literal>CA</literal>. 
+            which have been selected in <literal>CA</literal>. 
           </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>
       This function takes as input argument a list of 
-	  block-diagonal matrices stored in the m-by-n matrix <literal>A</literal>. 
-	  Only the non-zero entries of the block-diagonal matrices are stored. 
-	  The integer <literal>n</literal> is the number of block-diagonal matrices, 
-	  while the integer <literal>m</literal> is the number of nonzero entries of 
-	  one single block-diagonal matrix. 
-	  The function removes the symmetric entries, and returns in <literal>CA</literal>
-	  the compressed representation of <literal>A</literal>.
+      block-diagonal matrices stored in the m-by-n matrix <literal>A</literal>. 
+      Only the non-zero entries of the block-diagonal matrices are stored. 
+      The integer <literal>n</literal> is the number of block-diagonal matrices, 
+      while the integer <literal>m</literal> is the number of nonzero entries of 
+      one single block-diagonal matrix. 
+      The function removes the symmetric entries, and returns in <literal>CA</literal>
+      the compressed representation of <literal>A</literal>.
     </para>
-	
     <para>
       In the <literal>CA</literal> matrix, the symmetric entries stored in <literal>A</literal> 
-	  have been removed. 
-	  The rows which have been selected in <literal>CA</literal> are stored in the vector 
-	  <literal>sel</literal>, so that, on output, we have 
-	  <literal>CA == A(sel,:)</literal>.
+      have been removed. 
+      The rows which have been selected in <literal>CA</literal> are stored in the vector 
+      <literal>sel</literal>, so that, on output, we have 
+      <literal>CA == A(sel,:)</literal>.
     </para>
-
     <para>
       For example, the matrix  
     </para>
     <para>
-      <latex>
-      <![CDATA[ 
+      <latex><![CDATA[ 
         \begin{eqnarray}
         Z = \left(
         \begin{array}{cccccc}
@@ -121,40 +97,30 @@
         \end{array}
         \right)
         \end{eqnarray}
- ]]>
-      </latex>
+ ]]></latex>
     </para>
-
     <para>
       is stored as
     </para>
-
     <screen>
-    [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+      [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
     </screen>
-
     <para>
       with <literal>blocksizes=[2,3,1]</literal>.
     </para>
-
     <para>
       This function is designed to be used when preparing the input arguments of the 
-	  <literal>semidef</literal> function.
+      <literal>semidef</literal> function.
     </para>
-
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <para>
       In the following example, we compress a single block-diagonal symmetric matrix <literal>Z</literal>. 
       This is the example presented in "SP: Software for Semidefinite Programming, User's Guide, Beta Version", 
       November 1994, L. Vandenberghe and S. Boyd, 1994, on page 5.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 Z = [
 1 2 0 0 0 0
 2 3 0 0 0 0
@@ -169,16 +135,12 @@ Z2 = Z(3:5,3:5);
 Z3 = Z(6,6);
 A = list2vec(list(Z1,Z2,Z3));
 [CA,sel] = pack(A,blocksizes)
- ]]>
-    </programlisting>
-
+ ]]></programlisting>
     <para>
       In the following example, we compress three block-diagonal symmetric matrices <literal>F0</literal>, 
-	  <literal>F1</literal> and <literal>F2</literal>. 
+      <literal>F1</literal> and <literal>F2</literal>. 
     </para>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 // Define 3 symmetric block-diagonal matrices: F0, F1, F2
 F0=[2,1,0,0;
     1,2,0,0;
@@ -215,38 +177,32 @@ A=[F0nnz,F1nnz,F2nnz]
 [CA,sel] = pack(A,blocksizes)
 // Check that CA == A(sel,:)
 A(sel,:)
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>References</title>
-
     <para>
       L. Vandenberghe and S. Boyd, " Semidefinite Programming,"
       Informations Systems Laboratory, Stanford University, 1994.
     </para>
-
     <para>
       Ju. E. Nesterov and M. J. Todd, "Self-Scaled Cones and
       Interior-Point Methods in Nonlinear Programming," Working Paper, CORE,
       Catholic University of Louvain, Louvain-la-Neuve, Belgium, April
       1994.
     </para>
-
     <para>
       SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994, 
-	  L. Vandenberghe and S. Boyd, 1994
-	  <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
+      L. Vandenberghe and S. Boyd, 1994
+      <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
     </para>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="unpack">unpack</link></member>
+      <member>
+        <link linkend="unpack">unpack</link>
+      </member>
     </simplelist>
   </refsection>
-
 </refentry>

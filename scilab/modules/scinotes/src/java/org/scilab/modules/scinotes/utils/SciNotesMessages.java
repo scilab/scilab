@@ -52,8 +52,8 @@ public class SciNotesMessages {
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
-    public static final String EXPORTERROR = Messages.gettext("An error occured when exporting the code using FOP");
-    public static final String PRINTERERROR = Messages.gettext("An error occured when printing");
+    public static final String EXPORTERROR = Messages.gettext("An error occurred when exporting the code using FOP");
+    public static final String PRINTERERROR = Messages.gettext("An error occurred when printing");
     public static final String CLOSE = Messages.gettext("Close");
     public static final String CLOSEALL = Messages.gettext("Close All");
     public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
@@ -205,8 +205,7 @@ public class SciNotesMessages {
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
-    public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2011";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2012";
 
     public static final String SCINOTES_ERROR = Messages.gettext("SciNotes error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
@@ -226,6 +225,10 @@ public class SciNotesMessages {
     public static final String DIFFERENT_ENCODINGS = Messages.gettext("The file encoding is actually %s and it will be saved in using %s. Continue ?");
     public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
     public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
+
+    public static final String AUTOSAVE_ERROR = Messages.gettext("Cannot save the file %s... stop the backup process");
+    public static final String AUTOSAVE_FINISHED = Messages.gettext("Backup finished...");
+    public static final String OCCURENCES_FOUND = Messages.gettext("%s occurences found.");
 
     /**
      * "Change Colors" message

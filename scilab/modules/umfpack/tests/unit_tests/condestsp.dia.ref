@@ -5,6 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+// <-- CLI SHELL MODE -->
 warning("off");
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6;
@@ -23,7 +24,6 @@ K1 = condestsp(A);
 if round(K1) <> 10798708075 then bugmes();quit;end
 // this example is not so big so that we can do the verif
 K1e = norm(A,1)*norm(inv(full(A)),1);
-
 if round(K1e) <> 10798708075 then bugmes();quit;end
 if round(K1) <> round(K1e) then bugmes();quit;end
 // if you have already the lu factors condestsp(A,Lup) is faster
@@ -32,5 +32,3 @@ Lup = umf_lufact(A);
 K1 = condestsp(A,Lup);
 if round(K1) <> 10798708075 then bugmes();quit;end
 umf_ludel(Lup)         // clear memory
- ans  =
- 

@@ -20,8 +20,8 @@
 ;
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
-Source: thirdparty\jlatexmath-0.9.4.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
-Source: thirdparty\jlatexmath-fop-0.9.4.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-0.9.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-fop-0.9.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\{#GRAPHICS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;

@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dae" xml:lang="ru">
+  <refnamediv>
+    <refname>dae</refname>
+    <refpurpose>программа решения дифференциальных алгебраических уравнений
+      (ДАУ)
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis> 
+      y=dae(initial,t0,t,res) 
+      [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
+      [y,rd]=dae("root",initial,t0,t,res,ng,surface)
+      [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>initial</term>
+        <listitem>
+          <para>
+            вектор-столбец. Он может быть равен <literal>x0</literal> или
+            <literal>[x0;xdot0]</literal>, где <literal>x0</literal> -- это
+            значение состояния в начальный момент времени <literal>t0</literal>,
+            а <literal>xdot0</literal> -- значение производной исходного
+            состояния или его оценка (см. ниже).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t0</term>
+        <listitem>
+          <para>вещественное число, исходный момент времени.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>Вещественный скаляр или вектор. Указывает моменты времени для
+            которых нужно найти решение. Заметьте, что вы можете получить
+            решение в каждой точке шага ДАУ с помощью установки 
+            <literal>
+              <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1 
+            </literal>
+            .
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rtol</term>
+        <listitem>
+          <para>вещественный скаляр или вектор-столбец того же размера, что и
+            <literal>x0</literal>, допуск относительной ошибки. Если
+            <literal>rtol</literal> является вектором, то допуски определяются
+            для каждой составляющей состояния.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>atol</term>
+        <listitem>
+          <para>вещественный скаляр или вектор-столбец того же размера, что и
+            <literal>x0</literal>, допуск абсолютной ошибки. Если
+            <literal>atol</literal> является вектором, то допуски определяются
+            для каждой составляющей состояния.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>
+            <link linkend="external">внешняя</link> функция, которая
+            вычисляет значение <literal>g(t,y,ydot)</literal>. Она может
+            быть:
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>функцией Scilab'а</term>
+              <listitem>
+                <para>В этом случае последовательность вызова должна быть
+                  <literal>[r,ires]=res(t,x,xdot)</literal>, а
+                  <literal>res</literal> должна возвращать остаток
+                  <literal>r=g(t,x,xdot)</literal> и флаг ошибки
+                  <literal>ires</literal>.
+                </para>
+                <para>
+                  <literal>ires = 0</literal>, если <literal>res</literal>
+                  смогла вычислить <literal>r</literal>;
+                </para>
+                <para>
+                  <literal>ires = -1</literal>, если остаток для
+                  <literal>g(t,x,xdot)</literal> локально не определён;
+                </para>
+                <para>
+                  <literal>ires =-2</literal>, если параметры находятся
+                  вне допустимого диапазона.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>списком</term>
+              <listitem>
+                <para>Эта форма внешней функции используется для передачи
+                  параметров в функцию. Она может иметь следующий вид:
+                </para>
+                <programlisting role="no-scilab-exec"> 
+                  list(res,p1,p2,...)
+                </programlisting>
+                <para>где последовательность вызова функции
+                  <literal>res</literal> теперь
+                </para>
+                <programlisting role="no-scilab-exec"> 
+                  r=res(t,y,ydot,p1,p2,...)
+                </programlisting>
+                <para>
+                  Функция <literal>res</literal> по-прежнему возвращает
+                  значение остатка в виде функции от
+                  <literal>(t,x,xdot,x1,x2,...)</literal>, а <literal>p1,
+                    p2,...
+                  </literal>
+                  являются параметрами функции.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>символьной строкой</term>
+              <listitem>
+                <para>она должна ссылаться на имя подпрограммы на языке C или
+                  fortran, в предположении, что
+                  &lt;<literal>r_name</literal>&gt; является заданным
+                  именем.
+                </para>
+                <itemizedlist>
+                  <listitem>
+                    <para>Последовательность вызова Fortran должна быть</para>
+                    <para>
+                      <literal>&lt;r_name&gt;(t, x, xdot, res, ires, rpar,
+                        ipar)
+                      </literal>
+                    </para>
+                    <para>
+                      <literal>t, x(*), xdot(*), res(*), rpar(*)</literal>
+                      имеют удвоенную точность;
+                    </para>
+                    <para>
+                      <literal>ires, ipar(*)</literal> являются
+                      целочисленными.
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>Последовательность вызова C должна быть</para>
+                    <para>
+                      <literal>C2F(&lt;r_name&gt;)(double *t, double *x,
+                        double *xdot, double *res, integer *ires, double *rpar,
+                        integer *ipar)
+                      </literal>
+                      ,
+                    </para>
+                  </listitem>
+                </itemizedlist>
+                <para>где</para>
+                <itemizedlist>
+                  <listitem>
+                    <para>
+                      <literal>t</literal> -- текущее значение
+                      времени;
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>x</literal> -- массив состояния;
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>xdot</literal> -- массив производных
+                      состояния;
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>res</literal> -- массив остатков;
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>ires</literal> -- индикатор
+                      выполнения;
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>rpar</literal> -- массив целочисленных
+                      значений параметров с плавающей запятой, которые нужны, но
+                      не могут быть установлены с помощью функции
+                      <literal>dae</literal>.
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <literal>ipar</literal> -- массив целочисленных
+                      значений параметров с плавающей запятой, которые нужны, но
+                      не могут быть установлены с помощью функции
+                      <literal>dae</literal>.
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>jac</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя</link> функция вычисляет
+            значение <literal>dg/dx+cj*dg/dxdot</literal> для заданного значения
+            параметра <literal>cj</literal>. Она может быть
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>функцией Scilab'а</term>
+              <listitem>
+                <para>В этом случае последовательность вызова должна быть
+                  <literal>r=jac(t,x,xdot,cj)</literal>, а
+                  <literal>jac</literal> должна возвращать
+                  <literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>,
+                  где <literal>cj</literal> -- вещественный скаляр.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>списком</term>
+              <listitem>
+                <para>Эта форма внешней функции используется для передачи
+                  параметров в функцию. Она может иметь следующий вид:
+                </para>
+                <programlisting role="no-scilab-exec">  
+                  list(jac,p1,p2,...)               
+                </programlisting>
+                <para>где последовательность вызова функции
+                  <literal>jac</literal> теперь
+                </para>
+                <programlisting role="no-scilab-exec"> 
+                  r=jac(t,x,xdot,p1,p2,...)      
+                </programlisting>
+                <para>
+                  Функция <literal>jac</literal> по-прежнему возвращает
+                  <literal>dg/dx+cj*dg/dxdot</literal> как функцию от
+                  <literal>(t, x, xdot, cj, p1, p2,...)</literal>.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>символьной строкой</term>
+              <listitem>
+                <para>она должна ссылаться на имя подпрограммы на языке C или
+                  fortran, в предположении, что
+                  &lt;<literal>j_name</literal>&gt; является заданным
+                  именем.
+                </para>
+                <itemizedlist>
+                  <listitem>
+                    <para>Последовательность вызова Fortran должна быть</para>
+                    <para>
+                      <literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
+                        rpar, ipar) 
+                      </literal>
+                    </para>
+                    <para>
+                      <literal>t, x(*), xdot(*), r(*), ci,
+                        rpar(*)
+                      </literal>
+                      имеют удвоенную точность;
+                    </para>
+                    <para>
+                      <literal>ires, ipar(*)</literal> являются
+                      целочисленными.
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>Последовательность вызова C должна быть</para>
+                    <para>
+                      <literal>C2F(&lt;j_name&gt;)(double *t, double *x,
+                        double *xdot, double *r, double *cj, integer *ires, double
+                        *rpar, integer *ipar)
+                      </literal>
+                      ,
+                    </para>
+                  </listitem>
+                </itemizedlist>
+                <para>
+                  где <literal>t, x, xdot, ires, rpar, ipar</literal>
+                  имеют аналогичное определение, что и выше,
+                  <literal>r</literal> -- массив результатов
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>surface</term>
+        <listitem>
+          <para>
+            <link linkend="external">Внешняя</link> функция вычисляет
+            значение вектор-столбца <literal>surface(t,x)</literal> с
+            количеством элементов <literal>ng</literal>. Каждый элемент
+            определяет поверхность.
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>функцией Scilab'а</term>
+              <listitem>
+                <para>В этом случае последовательность вызова должна быть
+                  <literal>r=surface(t,x)</literal>. Эта функция должна вернуть
+                  вектор с <literal>ng</literal> элементами.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>списком</term>
+              <listitem>
+                <para>Эта форма внешней функции используется для передачи
+                  параметров в функцию. Она может иметь следующий вид:
+                </para>
+                <programlisting role="no-scilab-exec">  
+                  list(surface,p1,p2,...)
+                </programlisting>
+                <para>где последовательность вызова функции
+                  <literal>surface</literal> теперь имеет вид:
+                </para>
+                <programlisting role="no-scilab-exec"> 
+                  r=surface(t,x,p1,p2,...)
+                </programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>символьной строкой</term>
+              <listitem>
+                <para>она должна ссылаться на имя подпрограммы на языке C или
+                  fortran, в предположении, что
+                  &lt;<literal>s_name</literal>&gt; является заданным
+                  именем.
+                </para>
+                <itemizedlist>
+                  <listitem>
+                    <para>Последовательность вызова Fortran должна быть</para>
+                    <para>
+                      <literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
+                        rpar, ipar) 
+                      </literal>
+                    </para>
+                    <para>
+                      <literal>t, x(*), xdot(*), r(*), ci,
+                        rpar(*)
+                      </literal>
+                      имеют удвоенную точность;
+                    </para>
+                    <para>
+                      <literal>ires, ipar(*)</literal> являются
+                      целочисленными.
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>Последовательность вызова C должна быть</para>
+                    <para>
+                      <literal>C2F(&lt;j_name&gt;)(double *t, double *x,
+                        double *xdot, double *r, double *cj, integer *ires, double
+                        *rpar, integer *ipar)
+                      </literal>
+                      ,
+                    </para>
+                  </listitem>
+                </itemizedlist>
+                <para>
+                  где <literal>t, x, xdot, ires, rpar, ipar</literal>
+                  имеют аналогичное определение, что и выше,
+                  <literal>ng</literal> -- количество поверхностей,
+                  <literal>nx</literal> -- размерность состояния и
+                  <literal>r</literal> -- массив результатов.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rd</term>
+        <listitem>
+          <para>
+            вектор с двумя элементами <literal>[times num]</literal>, где
+            <literal>times</literal> -- значение момента времени пересечения
+            поверхности, <literal>num</literal> -- число пересечённых
+            поверхностей
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hd</term>
+        <listitem>
+          <para>вещественный вектор, в качестве аргумента на выходе он хранит
+            контекст <literal>dae</literal>. Он может быть использован в
+            качестве входного аргумента для возобновления интегрирования
+            (горячий перезапуск).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>
+            вещественная матрица. Если 
+            <literal>
+              <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
+            </literal>
+            ,то каждый
+            столбец является вектором вида <literal>[t;x(t);xdot(t)]</literal>,
+            где <literal>t</literal> -- индекс времени для которого вычислено
+            решение. В противном случае <literal>y</literal> -- вектор вида
+            <literal>[x(t);xdot(t)]</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Функция <literal>dae</literal> является шлюзом, построенным над
+      функциями <link linkend="dassl">dassl</link> и <link linkend="dasrt">dasrt</link>, разработанными для явного интегрирования
+      дифференциальных уравнений.
+    </para>
+    <programlisting role="no-scilab-exec"> 
+      g(t,x,xdot)=0
+      x(t0)=x0  and   xdot(t0)=xdot0
+    </programlisting>
+    <para>
+      Если <literal>xdot0</literal> не указан в
+      <emphasis>исходном</emphasis> аргументе, то функция <literal>dae</literal>
+      пытается вычислить его решая уравнение
+      <literal>g(t,x0,xdot0)=0</literal>/
+    </para>
+    <para>
+      Если <literal>xdot0</literal> указан в <emphasis>исходном</emphasis>
+      аргументе, то он может быть либо совместимой производной (compatible
+      derivative), удовлетворяющей условию <literal>g(t,x0,xdot0)=0</literal>,
+      либо приближённым значением. В последнем случае <link linkend="daeoptions">%DAEOPTIONS</link>(7) должен быть установлен в
+      1.
+    </para>
+    <para>Конкретные примеры использования внешних функций, написанных на
+      языке Scilab и C, представлены в
+      <literal>modules/differential_equations/tests/unit_tests/dassldasrt.tst</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"> 
+      //Пример с кодом Scilab
+      function [r,ires]=chemres(t,y,yd)
+      r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
+      r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
+      r(3) =       y(1) +     y(2)      + y(3)-1;
+      ires =  0;
+      endfunction
+      function pd=chemjac(x,y,yd,cj)
+      pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+      0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+      1       , 1                      , 1       ]
+      endfunction
+      
+      x0=[1; 0; 0];
+      xd0=[-0.04; 0.04; 0];
+      t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+      
+      y=dae([x0,xd0],0,t,chemres);// возвращает запрошенные моменты времени наблюдения
+      
+      %DAEOPTIONS=list([],1,[],[],[],0,0); // просит вернуть сетку точек dae
+      y=dae([x0,xd0],0,4d10,chemres); // без якобиана
+      y=dae([x0,xd0],0,4d10,chemres,chemjac); // с якобианом
+      
+      //пример с кодом C (необходим C-компилятор) --------------------------------------------------
+      //-1- создать C-код в TMPDIR - Уравнение Вандерпола, неявная форма
+      code=['#include &lt;math.h&gt;'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+      mputl(code,TMPDIR+'/t22.c') 
+      
+      //-2- скомпилировать и загрузить его
+      ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+      exec(TMPDIR+'/t22loader.sce')
+      
+      //-3- запустить
+      rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+      t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+      
+      //простое моделирование
+      t=0:0.003:300;
+      yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+      clf();plot(yy(1,:),yy(2,:))
+      
+      // найти первую точку, где yy(1)=0
+      [yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+      plot(yy(1,1),yy(2,1),'r+')
+      xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+      
+      // горячий перезапуск для следующей точки
+      t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+      [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+      plot(yy(1,1),yy(2,1),'r+')
+      xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+    </programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="daeoptions">daeoptions</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+      <member>
+        <link linkend="impl">impl</link>
+      </member>
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

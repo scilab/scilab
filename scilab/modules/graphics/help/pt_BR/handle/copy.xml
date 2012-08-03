@@ -10,74 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="copy" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="copy" xml:lang="en">
   <refnamediv>
     <refname>copy</refname>
-
     <refpurpose>Copia uma entidade de gráficos </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>copy(h)
-copy(h,h_axes)
-h_copy=copy(h)</synopsis>
+      copy(h,h_axes)
+      h_copy=copy(h)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>manipulador da entidade a ser copiada </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>h_axes</term>
-
         <listitem>
           <para>manipulador da entidade raiz para destino. Deve ser uma
-          entidade Axes (de eixos). </para>
+            entidade Axes (de eixos). 
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>h_copy</term>
-
         <listitem>
           <para>manipulador da entidade copiada.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Esta rotina pode ser usada para copiar uma entidade de gráficos com
-    todos os seus valores de propriedades, retornando o manipulador da nova
-    entidade. Se <literal>h_axes</literal> for omitido, a entidade gráfica é
-    clonada e copiada no mesmo na mesma entidade Axes raiz.</para>
+      todos os seus valores de propriedades, retornando o manipulador da nova
+      entidade. Se <literal>h_axes</literal> for omitido, a entidade gráfica é
+      clonada e copiada no mesmo na mesma entidade Axes raiz.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 subplot(211);a1=gca();
 plot2d()
@@ -89,27 +68,24 @@ a2.data_bounds=a1.data_bounds;
 copy(p1,a2);
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="get">get</link></member>
-
-      <member><link linkend="set">set</link></member>
-
-      <member><link linkend="delete">delete</link></member>
-
-      <member><link linkend="move">move</link></member>
-
-      <member><link
-      linkend="graphics_entities">graphics_entities</link></member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

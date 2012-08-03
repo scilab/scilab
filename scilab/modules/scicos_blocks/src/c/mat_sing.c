@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -54,8 +55,8 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block,int flag)
  u = GetRealInPortPtrs(block,1);
  y = GetRealOutPortPtrs(block,1);
  /* for lapack 3.1 (2006)*/
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
- lwork=max(1,lwork); 
+ lwork=Max(3*Min(mu,nu)+Max(mu,nu),5*Min(mu,nu));
+ lwork=Max(1,lwork); 
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct)))==NULL)

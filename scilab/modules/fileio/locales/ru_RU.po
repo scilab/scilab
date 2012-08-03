@@ -8,14 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-13 22:47+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2012-02-24 17:18+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -28,12 +32,12 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -42,6 +46,10 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr "%s: Не могу прочитать именованный аргумент %s.\n"
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -437,7 +445,7 @@ msgstr "%s: Нет открытых в Scilab файлов.\n"
 msgid ""
 "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d («%s«): формат не распознан.\n"
+"%s: Неверное значение входного параметра №%d («%s»): формат не распознан.\n"
 
 #, c-format
 msgid "%s: Error while opening, reading or writing '%s'.\n"
@@ -464,11 +472,11 @@ msgstr "Внимание: ошибка при открытии %s: %s\n"
 
 #, c-format
 msgid "Warning: Could not remove file %s: %s\n"
-msgstr "Внимание: не возможно удалить файл %s: %s\n"
+msgstr "Внимание: невозможно удалить файл %s: %s\n"
 
 #, c-format
 msgid "Warning: Could not remove directory %s: %s\n"
-msgstr "Внимание: не возможно удалить каталог %s: %s\n"
+msgstr "Внимание: невозможно удалить каталог %s: %s\n"
 
 #, c-format
 msgid "%s: Too many directives in scanf.\n"
@@ -490,6 +498,13 @@ msgstr "Неизвестная ошибка.\n"
 
 msgid "Can't get current directory.\n"
 msgstr "Не удалось получить текущий каталог.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+"%s: Неверный тип переменной (%s) обнаружен в «%s». Файл может быть ошибочным "
+"или повреждённым.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -537,11 +552,17 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался дескриптор файла.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Неверный тип переменной (%s) обнаружен в «%s». Файл может быть ошибочным "
-"или повреждённым.\n"
+"%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Options ignored.\n"

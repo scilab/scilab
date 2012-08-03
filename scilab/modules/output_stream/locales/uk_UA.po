@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 10:13+0000\n"
+"PO-Revision-Date: 2012-03-08 23:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -28,6 +28,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: вказані дані не збігаються за "
 "форматом.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,9 +48,11 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: дані не відповідають формату.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра %d: дані не відповідають формату.\n"
+"%s: помилкове значення вхідного параметра №%d: формат даних є "
+"невідповідним.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -604,7 +610,7 @@ msgstr "Змінна %s не є коректною раціональною фу
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "Змінна %s не є коректним відтворенням простору станів.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Невизначена функція.\n"
 
 msgid "Function name already used.\n"
@@ -1510,6 +1516,29 @@ msgstr "%s: помилковий формат експорту: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: обробка типу %s неможлива: визначте функцію %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати рядок "
+"з символів.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
+"символів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано модель простору "
+"станів.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

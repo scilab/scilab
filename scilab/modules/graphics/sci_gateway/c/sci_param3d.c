@@ -26,14 +26,14 @@
 /*------------------------------------------------------------------------*/
 int sci_param3d( char * fname, unsigned long fname_len )
 {
-  int izcol, isfac;
+  int izcol = 0, isfac = 0;
   static double  ebox_def[6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static int iflag_def[3]= {1,2,4};
-  int iflag[3], *ifl, ix1, one=1;
+  int iflag[3], *ifl = NULL, ix1 = 0, one = 1;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
-  int m1, n1, l1, m2, n2, l2, m3, n3, l3;
+  int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
   int m3n = 0, n3n = 0; /* F.Leray 19.03.04*/
 
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
@@ -86,7 +86,8 @@ int sci_param3d( char * fname, unsigned long fname_len )
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
   GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
-  SciWin();
+  getOrCreateDefaultSubwin();
+
   ix1 = m1 * n1;
 
   /* NG beg */

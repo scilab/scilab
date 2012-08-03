@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_x">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unix_x</refname>
     <refpurpose>exécution d'une commande Unix ou DOS,
-	sortie redirigée vers une fenêtre</refpurpose>
+      sortie redirigée vers une fenêtre
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -37,13 +35,13 @@
   <refsection>
     <title>Description</title>
     <para>
-			Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
-			de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
-			les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
-			l'interpréteur de commande sont interceptées; notez que la *dernière erreur
-			uniquement* est signalée quand <literal>command-name</literal> est une suite de
-			commandes séparées par des ";"
-		</para>
+      Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
+      de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
+      les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
+      l'interpréteur de commande sont interceptées; notez que la *dernière erreur
+      uniquement* est signalée quand <literal>command-name</literal> est une suite de
+      commandes séparées par des ";"
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +54,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

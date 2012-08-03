@@ -13,7 +13,7 @@
 /* desc : interface for tohome primitive                                  */
 /*------------------------------------------------------------------------*/
 #include "gw_console.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "tohome.h"
 #include "sciprint.h"

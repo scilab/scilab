@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,33 +10,19 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlReadStr" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlReadStr" xml:lang="en">
   <refnamediv>
     <refname>xmlReadStr</refname>
     <refpurpose>Read a XML tree from a string</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       doc = xmlReadStr(string [, validateDTD])
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>string</term>
@@ -44,14 +30,12 @@
           <para>a string, containing XML code.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>validateDTD</term>
         <listitem>
           <para>a boolean to indicate if the document must be validated.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>doc</term>
         <listitem>
@@ -60,16 +44,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Read and parse a XML string. The returned document allows to access to the DOM tree which is kept in memory.</para>
     <para>If validateDTD is set to true, the document will be validated or not during the parsing operation.</para>
-
-    <para>It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlClose">xmlClose</link>.</para>
+    <para>
+      It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlDelete">xmlDelete</link>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -86,11 +68,10 @@
     doc.root.children(1).attributes.rib = "machin"
     xmlDump(doc.root.children(1))
 
-    // We close the doc
-    xmlClose(doc);
+    // We delete the doc
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -98,10 +79,10 @@
         <link linkend="xmlRead">xmlRead</link>
       </member>
       <member>
-        <link linkend="xmlGetOpenStreams">xmlGetOpenStreams</link>
+        <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
       </member>
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlDelete">xmlDelete</link>
       </member>
       <member>
         <link linkend="xmlDocument">xmlDocument</link>
@@ -111,9 +92,13 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

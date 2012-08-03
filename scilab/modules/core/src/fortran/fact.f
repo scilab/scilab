@@ -26,7 +26,7 @@ c
       logical recurs,compil,dotsep,nullarg,ok
       integer setgetmode
       integer minus,plus
-      integer iadr,sadr
+      integer iadr
       character tmpbuf * (bsiz)      
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
@@ -39,7 +39,6 @@ c
       
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 
       r = rstk(pt)
 c     
@@ -206,7 +205,12 @@ c     *call* allops(rconc)
  29   if (sym .eq. eol) then
          if(comp(1).ne.0) call seteol
          if(lpt(4).eq.lpt(6))  then
-            call getlin(0,0) 
+            call getlin(2,0) 
+            if (fin.eq.-2) then
+C     .        end of function reached before ]
+               call error(2)
+               return
+            endif
          else
             lpt(4)=lpt(4)+1
             call getsym
@@ -399,7 +403,7 @@ c     check for a==
          goto 42
       endif
       if(ids(1,pt).eq.blank) then 
-c     .  (x=2) syntax for a a factor ->(x==2)
+c     .  (x=2) syntax for an a factor ->(x==2)
          lpt(4)=lpt4
          char1=equal
          goto 42

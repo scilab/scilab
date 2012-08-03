@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="find">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>find</refname>
     <refpurpose> find indices of boolean vector or matrix true elements</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[ii]=find(x [,nmax])
-[i1,i2,..]=find(x [,nmax])</synopsis>
+      [i1,i2,..]=find(x [,nmax])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,7 +28,8 @@
         <term>x</term>
         <listitem>
           <para>may be a boolean vector,  a boolean matrix, a boolean
-  hypermatrix, a "standard" matrix or hypermatrix</para>
+            hypermatrix, a "standard" matrix or hypermatrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,18 +49,26 @@
   <refsection>
     <title>Description</title>
     <para>
-    If <literal>x</literal> is a boolean matrix,</para>
-    <para><literal>ii=find(x)</literal> returns the vector
-    of indices <literal>i</literal> for which <literal>x(i)</literal> is "true". If no true element
-    found find returns an empty matrix.</para>
-    <para><literal>[i1,i2,..]=find(x)</literal> returns vectors of indices <literal>i1</literal> (for rows) and <literal>i2</literal> (for columns),..
-    such that <literal>x(i1(n),i2(n),..)</literal> is "true". If no true element
-    found find returns  empty matrices in <literal>i1</literal>,
-    <literal>i2</literal>, ...</para>
+      If <literal>x</literal> is a boolean matrix,
+    </para>
     <para>
-    if <literal>x</literal> is a standard matrix or hypermatrix <literal>find(x)</literal> is interpreted as
-    <literal>find(x&lt;&gt;0)</literal></para>
-    <para><literal>find([])</literal> returns <literal>[]</literal></para>
+      <literal>ii=find(x)</literal> returns the vector
+      of indices <literal>i</literal> for which <literal>x(i)</literal> is "true". If no true element
+      found find returns an empty matrix.
+    </para>
+    <para>
+      <literal>[i1,i2,..]=find(x)</literal> returns vectors of indices <literal>i1</literal> (for rows) and <literal>i2</literal> (for columns),..
+      such that <literal>x(i1(n),i2(n),..)</literal> is "true". If no true element
+      found find returns  empty matrices in <literal>i1</literal>,
+      <literal>i2</literal>, ...
+    </para>
+    <para>
+      if <literal>x</literal> is a standard matrix or hypermatrix <literal>find(x)</literal> is interpreted as
+      <literal>find(x&lt;&gt;0)</literal>
+    </para>
+    <para>
+      <literal>find([])</literal> returns <literal>[]</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,7 +95,7 @@ H(i(1),j(1),k(1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="boolean">boolean</link>

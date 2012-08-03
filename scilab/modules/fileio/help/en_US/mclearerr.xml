@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mclearerr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mclearerr</refname>
-    <refpurpose> reset binary file access errors</refpurpose>
+    <refpurpose>resets binary file access errors</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,20 +26,24 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function
-  <literal>mopen</literal>. -1 stands for last opened file. Default value is
-  -1.</para>
+          <para>
+            a scalar: the <varname>fd</varname> parameter returned by the 
+            function <function>mopen</function>. -1 stands for last opened 
+            file. Default value is -1.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>The function <literal>clearerr</literal> is used to resets the error indicator and
-    EOF  indicator to zero.</para>
+    <para>
+      The function <function>mclearerr</function> is used to reset the error 
+      indicator and EOF indicator to zero.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="merror">merror</link>

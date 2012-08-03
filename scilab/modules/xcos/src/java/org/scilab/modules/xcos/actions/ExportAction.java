@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
- * 
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -22,17 +22,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphRenderer;
@@ -44,6 +47,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -57,215 +61,253 @@ import com.mxgraph.util.mxUtils;
  * Diagram export management
  */
 public final class ExportAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.EXPORT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-	
-	private static final String HTML = "html";
-	private static final String VML = "vml";
-	private static final String SVG = "svg";
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Scilab Graph
-	 */
-	public ExportAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.EXPORT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-	/**
-	 * Create export menu
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, ExportAction.class);
-	}
+    private static final String HTML = "html";
+    private static final String VML = "vml";
+    private static final String SVG = "svg";
 
-	/**
-	 * Action !!!
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
+    /**
+     * Constructor
+     *
+     * @param scilabGraph
+     *            associated Scilab Graph
+     */
+    public ExportAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	    XcosDiagram graph = (XcosDiagram) getGraph(null);
+    /**
+     * Create export menu
+     *
+     * @param scilabGraph
+     *            associated Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, ExportAction.class);
+    }
 
-		// Adds a filter for each supported image format
-		Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFileSuffixes());
+    /**
+     * Action !!!
+     *
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-		// The mask ordered collection
-		Set<String> mask = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
-		
-		mask.add(SVG);
-		mask.add(HTML);
-		mask.add(VML);
-		mask.addAll(imageFormats);
-		
-		JFileChooser fc = new JFileChooser();
-		fc.setDialogTitle(XcosMessages.EXPORT);
-		fc.setApproveButtonText(XcosMessages.EXPORT);
-		fc.setAcceptAllFileFilterUsed(true);
-		
-		for (String string : mask) {
-			fc.addChoosableFileFilter(new FileMask(string, string.toUpperCase()));
-		}
+        XcosDiagram graph = (XcosDiagram) getGraph(null);
 
-		ConfigurationManager.configureCurrentDirectory(fc);
-		
-		JPanel panelPreview = new JPanel();
-		
-        //Title for preview panel
+        // Adds a filter for each supported image format
+        Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFileSuffixes());
+
+        // The mask ordered collection
+        Set<String> mask = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+
+        mask.add(SVG);
+        mask.add(HTML);
+        mask.add(VML);
+        mask.addAll(imageFormats);
+
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle(XcosMessages.EXPORT);
+        fc.setApproveButtonText(XcosMessages.EXPORT);
+        fc.setAcceptAllFileFilterUsed(true);
+
+        for (String string : mask) {
+            fc.addChoosableFileFilter(new FileMask(string, string.toUpperCase()));
+        }
+
+        ConfigurationManager.configureCurrentDirectory(fc);
+
+        JPanel panelPreview = new JPanel();
+
+        // Title for preview panel
         TitledBorder titlePreview;
         titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview"));
         panelPreview.setBorder(titlePreview);
-        
-        //add preview image
-		panelPreview.add(new ImagePreview(fc));		
-		
-		//Main panel contains extensionTable panel & preview panel
-		JPanel accessoryPanel = new JPanel();
-		
-		//accessoryPanel.add(scrollPane);		
-		accessoryPanel.add(panelPreview);
-		accessoryPanel.setVisible(true);	
-		fc.setAccessory(accessoryPanel);
-		
-		int selection = fc.showSaveDialog(graph.getAsComponent());
-		if (selection == JFileChooser.APPROVE_OPTION) {
-			File selected = fc.getSelectedFile();
-			
-			/* getting the format */
-			String format = getFormat(graph, fc, selected);
-			while (format == null) {
-				selection = fc.showSaveDialog(graph.getAsComponent());
-				if (selection == JFileChooser.APPROVE_OPTION) {
-					selected = fc.getSelectedFile();
-					format = getFormat(graph, fc, selected);
-				} else {
-					return;
-				}
-			}
-			
-			try  {
-				/* Add an extension if no one is set */
-				if (FileMask.getExtension(selected) == null
-						|| FileMask.getExtension(selected).isEmpty()) {
-					selected = new File(selected.getCanonicalPath() + '.' + format);
-				}
-			
-				/* Export the file */
-				if (selected.exists()) {
-					final boolean overwrite = ScilabModalDialog.show(
-							graph.getParentTab(),
-							XcosMessages.OVERWRITE_EXISTING_FILE,
-							XcosMessages.XCOS, IconType.QUESTION_ICON,
-							ButtonType.YES_NO) == AnswerOption.YES_OPTION;
-					
-					if (overwrite) {
-						export(graph, selected, format);
-					} else {
-						return;
-					}
-				} else {
-					export(graph, selected, format);
-				}
-			} catch (IOException ex) {
-				LogFactory.getLog(ExportAction.class).error(ex);
-			}
-		}
-	}
 
-	/**
-	 * Get the file format
-	 * 
-	 * @param graph the current graph
-	 * @param fc the file chooser
-	 * @param selected the selected file
-	 * @return the format or null
-	 */
-	private String getFormat(XcosDiagram graph, JFileChooser fc,
-			final File selected) {
-		final String format;
-		if (fc.getFileFilter() == fc.getAcceptAllFileFilter()) { // reference equality works here
-			if (FileMask.getExtension(selected) == null
-					|| FileMask.getExtension(selected).isEmpty()) {
-				JOptionPane.showMessageDialog(graph.getAsComponent(),
-						Messages.gettext("Please specify a file format"),
-						Messages.gettext("Error on export"),
-						JOptionPane.ERROR_MESSAGE);
-				return null;
-			} else {
-				format = FileMask.getExtension(selected);
-			}
-		} else {
-			format = ((FileMask) fc.getFileFilter()).getExtensionFromFilter();
-		}
-		return format;
-	}
+        // add preview image
+        panelPreview.add(new ImagePreview(fc));
 
-	/**
-	 * Export the graph into the filename.
-	 * 
-	 * The filename extension is used find export format.
-	 * 
-	 * @param graph the current graph
-	 * @param filename the filename
-	 * @param fileFormat the format to save
-	 * @throws IOException when a write problem occurs. 
-	 */
-	private void export(XcosDiagram graph, File filename, String fileFormat) throws IOException {
-		if (fileFormat.equalsIgnoreCase(SVG)) {
-		    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename.getCanonicalPath());
-		} else if (fileFormat.equalsIgnoreCase(VML)) {
-		    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
-		    if (doc != null) {
-			mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
-		    }
-		} else if (fileFormat.equalsIgnoreCase(HTML)) {
-		    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
-		    if (doc != null) {
-			mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
-		    }
-		} else 	{
-			exportBufferedImage(graph, filename, fileFormat);
-		}
-	}
+        // Main panel contains extensionTable panel & preview panel
+        JPanel accessoryPanel = new JPanel();
 
-	/**
-	 * Use the Java image capabilities to export the diagram
-	 * 
-	 * @param graph the current diagram
-	 * @param filename the current filename
-	 * @param fileFormat the file format
-	 * @throws IOException when an error occurs
-	 */
-	private void exportBufferedImage(XcosDiagram graph, File filename, String fileFormat)
-			throws IOException {
-		final mxGraphComponent graphComponent = graph.getAsComponent();
-		
-		Color bg = null;
+        // accessoryPanel.add(scrollPane);
+        accessoryPanel.add(panelPreview);
+        accessoryPanel.setVisible(true);
+        fc.setAccessory(accessoryPanel);
 
-		if ((!fileFormat.equalsIgnoreCase("png"))
-			|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
-				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
-			bg = graphComponent.getBackground();
-		}
+        int selection = fc.showSaveDialog(graph.getAsComponent());
+        if (selection == JFileChooser.APPROVE_OPTION) {
+            File selected = fc.getSelectedFile();
 
-		BufferedImage image = mxCellRenderer.createBufferedImage(
-				graph, null, 1, bg, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+            /* getting the format */
+            String format = getFormat(graph, fc, selected);
+            while (format == null) {
+                selection = fc.showSaveDialog(graph.getAsComponent());
+                if (selection == JFileChooser.APPROVE_OPTION) {
+                    selected = fc.getSelectedFile();
+                    format = getFormat(graph, fc, selected);
+                } else {
+                    return;
+                }
+            }
 
-		if (image != null) {
-			ImageIO.write(image, fileFormat, filename);
-		} else  {
-			JOptionPane.showMessageDialog(graphComponent, XcosMessages.NO_IMAGE_DATA);
-		}
-	}
+            try {
+                /* Add an extension if no one is set */
+                if (FileMask.getExtension(selected) == null || FileMask.getExtension(selected).isEmpty()) {
+                    selected = new File(selected.getCanonicalPath() + '.' + format);
+                }
+
+                /* Export the file */
+                if (selected.exists()) {
+                    final boolean overwrite = ScilabModalDialog.show(XcosTab.get(graph), XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
+                                              IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION;
+
+                    if (overwrite) {
+                        export(graph, selected, format);
+                    } else {
+                        return;
+                    }
+                } else {
+                    export(graph, selected, format);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ExportAction.class.getName()).severe(e.toString());
+            }
+        }
+    }
+
+    /**
+     * Get the file format
+     *
+     * @param graph
+     *            the current graph
+     * @param fc
+     *            the file chooser
+     * @param selected
+     *            the selected file
+     * @return the format or null
+     */
+    private String getFormat(XcosDiagram graph, JFileChooser fc, final File selected) {
+        final String format;
+        final FileFilter fileFilter = fc.getFileFilter();
+
+        // accept all file filter or any custom file filter (generated
+        // by a <TAB> press)
+        if (!(fileFilter instanceof FileMask)) {
+
+            /*
+             * Get the extension from the file name. Fail safely.
+             */
+            if (FileMask.getExtension(selected) == null || FileMask.getExtension(selected).isEmpty()) {
+                format = null;
+            } else {
+                format = FileMask.getExtension(selected);
+            }
+
+        } else {
+            /*
+             * Get the format from the file mask
+             */
+            format = ((FileMask) fileFilter).getExtensionFromFilter();
+
+        }
+        final boolean validFormat = isValidFormat(format);
+
+        /*
+         * When the format is unspecified, popup an error dialog
+         */
+        if (format == null || !validFormat) {
+            JOptionPane.showMessageDialog(graph.getAsComponent(), Messages.gettext("Please specify a valid file format"), Messages.gettext("Error on export"),
+                                          JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (validFormat) {
+            return format;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean isValidFormat(String format) {
+        Iterator<ImageWriter> it = ImageIO.getImageWritersBySuffix(format);
+        Collection<String> externals = Arrays.asList(SVG, HTML, VML);
+
+        return it.hasNext() || externals.contains(format.toLowerCase());
+    }
+
+    /**
+     * Export the graph into the filename.
+     *
+     * The filename extension is used find export format.
+     *
+     * @param graph
+     *            the current graph
+     * @param filename
+     *            the filename
+     * @param fileFormat
+     *            the format to save
+     * @throws IOException
+     *             when a write problem occurs.
+     */
+    private void export(XcosDiagram graph, File filename, String fileFormat) throws IOException {
+        if (fileFormat.equalsIgnoreCase(SVG)) {
+            ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename.getCanonicalPath());
+        } else if (fileFormat.equalsIgnoreCase(VML)) {
+            Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
+            if (doc != null) {
+                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
+            }
+        } else if (fileFormat.equalsIgnoreCase(HTML)) {
+            Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
+            if (doc != null) {
+                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
+            }
+        } else {
+            exportBufferedImage(graph, filename, fileFormat);
+        }
+    }
+
+    /**
+     * Use the Java image capabilities to export the diagram
+     *
+     * @param graph
+     *            the current diagram
+     * @param filename
+     *            the current filename
+     * @param fileFormat
+     *            the file format
+     * @throws IOException
+     *             when an error occurs
+     */
+    private void exportBufferedImage(XcosDiagram graph, File filename, String fileFormat) throws IOException {
+        final mxGraphComponent graphComponent = graph.getAsComponent();
+
+        Color bg = null;
+
+        if ((!fileFormat.equalsIgnoreCase("png"))
+                || ScilabModalDialog
+                .show(XcosTab.get(graph), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
+            bg = graphComponent.getBackground();
+        }
+
+        BufferedImage image = mxCellRenderer.createBufferedImage(graph, null, 1, bg, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+
+        if (image != null) {
+            ImageIO.write(image, fileFormat, filename);
+        } else {
+            JOptionPane.showMessageDialog(graphComponent, XcosMessages.NO_IMAGE_DATA);
+        }
+    }
 }
-

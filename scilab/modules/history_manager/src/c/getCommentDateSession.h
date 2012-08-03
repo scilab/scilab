@@ -16,19 +16,20 @@
 #define __GETCOMMENTDATESESSION_H__
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 /*------------------------------------------------------------------------*/
-#include "BOOL.h" /* BOOL */
+#include "BOOL.h"               /* BOOL */
 /*------------------------------------------------------------------------*/
 #define SESSION_PRAGMA_BEGIN "// -- "
 #define SESSION_PRAGMA_END " -- //"
 /*------------------------------------------------------------------------*/
-char *getCommentDateSession(void);
+    char *getCommentDateSession(BOOL longFormat);
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }
 #endif
 /*------------------------------------------------------------------------*/
-#endif /* __GETCOMMENTDATESESSION_H__ */
+#endif                          /* __GETCOMMENTDATESESSION_H__ */
 /*------------------------------------------------------------------------*/

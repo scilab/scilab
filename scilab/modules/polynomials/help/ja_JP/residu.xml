@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="residu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>residu</refname>
     <refpurpose>残差</refpurpose>
@@ -35,13 +32,17 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>V=residu(P,Q1,Q2)</literal> は,
-	<literal>V(i,j)</literal>が
-	<literal>Q1(i,j)</literal>のゼロで計算される
-	有理数<literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
-	の残差の合計となるような行列<literal>V</literal>を返します.</para>
-    <para><literal>Q1(i,j)</literal> および <literal>Q2(i,j)</literal> は,
-	共通の根を有さない必要があります.</para>
+    <para>
+      <literal>V=residu(P,Q1,Q2)</literal> は,
+      <literal>V(i,j)</literal>が
+      <literal>Q1(i,j)</literal>のゼロで計算される
+      有理数<literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
+      の残差の合計となるような行列<literal>V</literal>を返します.
+    </para>
+    <para>
+      <literal>Q1(i,j)</literal> および <literal>Q2(i,j)</literal> は,
+      共通の根を有さない必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -81,9 +82,5 @@ real(residu(b*btild,z*a,atild)-2.9488038) //複素数の場合
         <link linkend="gtild">gtild</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> F.Delebecque INRIA</para>
   </refsection>
 </refentry>

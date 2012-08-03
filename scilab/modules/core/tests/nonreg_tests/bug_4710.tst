@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 4710 -->
 //
@@ -21,6 +21,7 @@ cd(TMPDIR);
 
 i=['#include <string>'
 'extern ""C"" {'
+'#define __USE_DEPRECATED_STACK_FUNCTIONS__'
 '#include ""stack-c.h""'
 'int sci_bug4710(char *fname) {'
 '  int m1 = 0, n1 = 0, l1 = 0;'

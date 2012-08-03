@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unix_x">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unix_x</refname>
     <refpurpose>shell (sh) command execution, output
-  redirected to a window</refpurpose>
+      redirected to a window
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,10 +34,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Sends a string <literal>cmd</literal> to Unix for execution by the sh shell.
-    The standard output is redirected to a window. Unix execution errors are
-    trapped; *NOTE* that only the last shell command error is reported when a
-    list of command separated by ";" is sent: this is not recommended.</para>
+    <para>
+      Sends a string <literal>cmd</literal> to Unix for execution by the sh shell.
+      The standard output is redirected to a window. Unix execution errors are
+      trapped; *NOTE* that only the last shell command error is reported when a
+      list of command separated by ";" is sent: this is not recommended.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +52,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

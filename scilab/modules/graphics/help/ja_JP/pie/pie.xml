@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pie">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pie</refname>
     <refpurpose>円グラフを描画</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>pie(x)
-pie(x[,sp[,txt]])</synopsis>
+      pie(x[,sp[,txt]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -49,21 +47,26 @@ pie(x[,sp[,txt]])</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	<literal>pie(x):</literal> xの大きさがNの場合,
-	pie 関数はN個の要素からなる円グラフを描画します.この際,
-	i番目の要素の面積は(x(i)/sum(x))*(単位円の面積)となります.</para>
-    <para><literal>pie(x,sp):</literal>
-		spベクトルにより円グラフに一つまたは複数の要素を切り出すことが
-		できます(spの大きさをNとする必要があります).
-		spのi番目のインデクスの値が0以外の場合,i番目の要素は
-		その他の要素から空間的に切り出されます.
-		そうでない場合, この値は 0 となり,
-		その他の要素に結合されます.</para>
-    <para><literal>pie(x,txt):</literal> txt ベクトルにより
-		円グラフの各部分のテキストを書くことができます.
-		txtのi番目の要素はi番目の要素に対応します.
-		(デフォルト: その部分の面積に対応するパーセンテージで描画されます).
-		txt の大きさは N に等しくする必要があります.</para>
+      <literal>pie(x):</literal> xの大きさがNの場合,
+      pie 関数はN個の要素からなる円グラフを描画します.この際,
+      i番目の要素の面積は(x(i)/sum(x))*(単位円の面積)となります.
+    </para>
+    <para>
+      <literal>pie(x,sp):</literal>
+      spベクトルにより円グラフに一つまたは複数の要素を切り出すことが
+      できます(spの大きさをNとする必要があります).
+      spのi番目のインデクスの値が0以外の場合,i番目の要素は
+      その他の要素から空間的に切り出されます.
+      そうでない場合, この値は 0 となり,
+      その他の要素に結合されます.
+    </para>
+    <para>
+      <literal>pie(x,txt):</literal> txt ベクトルにより
+      円グラフの各部分のテキストを書くことができます.
+      txtのi番目の要素はi番目の要素に対応します.
+      (デフォルト: その部分の面積に対応するパーセンテージで描画されます).
+      txt の大きさは N に等しくする必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -89,9 +92,5 @@ pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
         <link linkend="xfpolys">xfpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Farid Belahcene</para>
   </refsection>
 </refentry>

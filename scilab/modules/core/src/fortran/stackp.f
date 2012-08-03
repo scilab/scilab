@@ -14,6 +14,9 @@ c     ======================================================================
 c
       INCLUDE 'stack.h'
       integer iadr
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mprot/
+cDEC$ ENDIF            
       common /mprot/ macprt
       integer id(nsiz)
 c

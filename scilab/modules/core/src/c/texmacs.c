@@ -16,6 +16,10 @@
 #include "texmacs.h"
 #include "prompt.h"
 #include "readline.h"
+#include "api_scilab.h"
+#include "sciprint.h"
+#include "localization.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -59,9 +63,18 @@ void next_input (void)
 void C2F(texmacsin)(char buffer[], int *buf_size, int *len_line, int *eof, long int dummy1)
 {
     #define STDIN_ID 5
+    #define TEXMACSLIB "texmacslib"
     int nr = 0, info = 0;
     if (first == 1) 
     {
+        if (isNamedVarExist(pvApiCtx, TEXMACSLIB) == 0)
+        {
+            if (getWarningMode())
+            {
+                fprintf(stdout, _("Please install texmacs ATOMS module: atomsInstall('texmacs')\n\n"), _("Warning"));
+            }
+
+        }
         fprintf(stdout, "%cverbatim:", DATA_BEGIN);
     }
     next_input ();

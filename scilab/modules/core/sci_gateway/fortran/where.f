@@ -20,7 +20,7 @@ c     cette routine est issue de la fin du sous programme error
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
-c     preserve datas
+c     preserve data
       call icopy(6,lpt,1,lpts,1)
       lcts=lct(8)
       p=pt
@@ -157,7 +157,7 @@ c     pause
          lct(8)=lin(k+12+nsiz)
          goto 1001
       endif
-c     restaure datas
+c     restaure data
  1010 call icopy(6,lpts,1,lpt,1)
       lct(8)=lcts
       rio=rios

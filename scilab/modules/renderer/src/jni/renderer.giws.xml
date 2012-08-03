@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package name="org.scilab.modules.renderer">
+  <object name="CallRenderer">
+    <method name="startInteractiveZoom" returnType="void" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
+
+    <method name="clickRubberBox" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="startRectangle" type="double[]"/>
+    </method>
+
+    <method name="dragRubberBox" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
+
+
+    <method name="updateTextBounds" returnType="void" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
+    <method name="updateSubwinScale" returnType="void" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
+    <method name="get2dViewCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
+    <method name="getPixelFrom2dViewCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
+    <method name="get2dViewFromPixelCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
+    <method name="getViewingArea" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
+  </object>
+</package>

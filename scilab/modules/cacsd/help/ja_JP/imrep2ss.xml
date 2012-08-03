@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="imrep2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>imrep2ss</refname>
     <refpurpose>インパルス応答の状態空間実現</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>インパルス応答のベクトル係数, <literal>v(:,k)</literal> はk番目のサンプル</para>
+          <para>
+            インパルス応答のベクトル係数, <literal>v(:,k)</literal> はk番目のサンプル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,8 +49,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    インパルス応答の線形システムへの変換 (1入力).
-    <literal>v</literal> の列数は偶数である必要があります.</para>
+      インパルス応答の線形システムへの変換 (1入力).
+      <literal>v</literal> の列数は偶数である必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

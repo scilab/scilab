@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,32 +11,19 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_computedigits" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_computedigits" xml:lang="en">
   <refnamediv>
     <refname>assert_computedigits</refname>
     <refpurpose>Returns the number of significant digits in computed result.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       d = assert_computedigits ( computed , expected )
       d = assert_computedigits ( computed , expected , basis )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -67,7 +53,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -115,7 +100,7 @@
       real and imaginary parts.
     </para>
     <para>
-      TODO : use computedigits inside a assert_digits ( computed , expected , dmin ) function
+      TODO : use computedigits inside an assert_digits ( computed , expected , dmin ) function
     </para>
     <para>
       TODO : add a comptype option to make the comparison "matrix" (current is "element")
@@ -123,11 +108,9 @@
     <para>
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 d = assert_computedigits ( 1 , 1 ) // d ~ 16
 d = assert_computedigits ( 1 , 1 , 2 ) // d = 53
 d = assert_computedigits ( 0 , 0 ) // d ~ 16
@@ -152,14 +135,16 @@ d = assert_computedigits([0 0 0 0],[%nan %inf -%inf 0])
 // Check complex values
 d = assert_computedigits ( 1.2345 + %i*6.7891 , 1.23456789 + %i*6.789123456 ) // d ~ 4
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

@@ -85,7 +85,7 @@ function importScicosPal(palFiles, outPath)
 
     // export the blocks
     for i = 1:size(varsToLoad, '*')
-      block_name = varsToLoad(i) + ".h5";
+      block_name = varsToLoad(i) + ".sod";
       blockFile = outPath + '/' + block_name
 
       // instanciate a block

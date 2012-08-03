@@ -1,4 +1,4 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN
@@ -10,17 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
-  version="5.0-subset Scilab"
-  xml:lang="fr" xml:id="find"
->
-  <info >
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="find">
   <refnamediv>
     <refname>find</refname>
     <refpurpose> trouve les indices des éléments vrais d'un vecteur ou d'une matrice de booléens</refpurpose>
@@ -28,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[ii]=find(x [,nmax])
-[i1,i2,..]=find(x [,nmax])</synopsis>
+      [i1,i2,..]=find(x [,nmax])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -36,13 +27,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>peut être un vecteur booléen, une matrice booléenne, une hypermatrice booléenne, une matrice ou une hypermatrice &quot;standard&quot;.</para>
+          <para>peut être un vecteur booléen, une matrice booléenne, une hypermatrice booléenne, une matrice ou une hypermatrice "standard".</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>nmax</term>
         <listitem>
-          <para>un entier donnant le nombre maximal d'indices à retourner. La valeur par défaut est -1 qui signifie &quot;tous&quot;. Cette option peut être utilisée dans un but d'efficacité en évitant la recherche de tous les indices.</para>
+          <para>un entier donnant le nombre maximal d'indices à retourner. La valeur par défaut est -1 qui signifie "tous". Cette option peut être utilisée dans un but d'efficacité en évitant la recherche de tous les indices.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,18 +47,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    Si <literal>x</literal> est une matrice booléenne,</para>
+      Si <literal>x</literal> est une matrice booléenne,
+    </para>
     <para>
-      <literal>ii=find(x)</literal> retourne le vecteur des indices <literal>i</literal> pour lesquels <literal>x(i)</literal> est &quot;vrai&quot;. Si aucun élément vrai
-    n'est trouvé find retourne une matrice vide.</para>
+      <literal>ii=find(x)</literal> retourne le vecteur des indices <literal>i</literal> pour lesquels <literal>x(i)</literal> est "vrai". Si aucun élément vrai
+      n'est trouvé find retourne une matrice vide.
+    </para>
     <para>
       <literal>[i1,i2,..]=find(x)</literal> retourne le vecteur des indices <literal>i1</literal> (pour les lignes) et <literal>i2</literal> (pour les colonnes),..
-    tel que <literal>x(i1(n),i2(n),..)</literal> est &quot;vrai&quot;. Si aucun élément vrai n'est
-    trouvé find retourne des matrices vides dans <literal>i1</literal>,
-    <literal>i2</literal>, ...</para>
+      tel que <literal>x(i1(n),i2(n),..)</literal> est "vrai". Si aucun élément vrai n'est
+      trouvé find retourne des matrices vides dans <literal>i1</literal>,
+      <literal>i2</literal>, ...
+    </para>
     <para>
-    Si <literal>x</literal> est une matrice standard ou une hypermatrice <literal>find(x)</literal> est interprété comme
-    <literal>find(x&lt;&gt;0).</literal>
+      Si <literal>x</literal> est une matrice standard ou une hypermatrice <literal>find(x)</literal> est interprété comme
+      <literal>find(x&lt;&gt;0).</literal>
     </para>
     <para>
       <literal>find([])</literal> retourne <literal>[].</literal>
@@ -75,7 +69,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example" ><![CDATA[
+    <programlisting role="example"><![CDATA[
 beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
 find(beers=="Leffe") // OK
 find(beers=="1664") // KO
@@ -98,19 +92,19 @@ H(i(1),j(1),k(1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
-    <simplelist type="inline" >
+    <title>Voir aussi</title>
+    <simplelist type="inline">
       <member>
-        <link linkend="boolean" >boolean</link>
+        <link linkend="boolean">boolean</link>
       </member>
       <member>
-        <link linkend="extraction" >extraction</link>
+        <link linkend="extraction">extraction</link>
       </member>
       <member>
-        <link linkend="insertion" >insertion</link>
+        <link linkend="insertion">insertion</link>
       </member>
       <member>
-        <link linkend="vectorfind" >recherche de vecteur</link>
+        <link linkend="vectorfind">recherche de vecteur</link>
       </member>
     </simplelist>
   </refsection>

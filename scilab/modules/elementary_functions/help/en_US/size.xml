@@ -2,6 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - INRIA - Serge STEER
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,179 +12,163 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="size" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="size" xml:lang="en">
   <refnamediv>
     <refname>size</refname>
-
     <refpurpose>size of objects</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>y=size(x [,sel])
-[nr,nc]=size(x)</synopsis>
+    <synopsis>
+      sz = size(x)
+      [n1, n2] = size(x)
+      [n1, n2, n3, ...] = size(x)
+      n = size(x, sel)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
-          <para>matrix (including transfer matrix) or list or linear system
-          (<literal>syslin</literal>)</para>
+          <para>a 2-D or n-D array of any type or a list</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
-        <term>y</term>
-
+        <term>sz</term>
         <listitem>
-          <para> <literal> 1x2</literal> integer vector or integer
-          number</para>
+          <para>
+            <literal>1</literal> by <link linkend="ndims">ndims(x)</link>
+            integer vector.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>sel</term>
-
         <listitem>
-          <para>a scalar or a character string</para>
+          <para>a positive scalar with integer value or one of the character
+            strings 'r', 'c' or '*'
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
-        <term>nr,nc</term>
-
+        <term>n1, n2, ...</term>
         <listitem>
-          <para>two integers</para>
+          <para>numbers with integer values</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>a number with integer value</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <variablelist>
       <varlistentry>
         <term>Applied to :</term>
-
         <listitem>
-          <para>a matrix (constant, polynomial, string, boolean, rational)
-          <literal>x</literal>, with only one lhs argument
-          <literal>size</literal> returns a
-          <literal>1</literal>x<literal>2</literal> vector [number of rows,
-          number of columns]. Called with LHS=2, returns
-          <literal>nr,nc</literal> = [number of rows, number of columns].
-          <literal>sel</literal> may be used to specify what dimension to
-          get:</para>
+          <para>an array or n-D array (constant, polynomial, string, boolean,
+            rational)
+          </para>
+          <itemizedlist>
+            <listitem>
+              <literal>sz = size(x)</literal> returns a <literal>1</literal>-by-<literal>ndims(x)</literal> vector. Each entry gives the corresponding dimension value. 
+            </listitem>
+            <listitem>
+              <literal>[n1, n2, ...] = size(x)</literal>, the function returns in each argument the corresponding dimension value. 
+            </listitem>
+            <listitem>
+              The syntax <literal>n = size(x, sel)</literal> 
+              may be used to specify what dimension to get: 
+              
+              <itemizedlist mark="dash"><listitem>
+                  Set <literal>sel</literal> to 1 or <literal>'r'</literal> to get the
+                  number of rows.
+                </listitem>
+                <listitem>
+                  Set <literal>sel</literal> to 2 or <literal>'c'</literal> to get the
+                  number of columns.
+                </listitem>
+                <listitem>
+                  Set <literal>sel</literal> to <literal>m</literal>,
+                  where <literal>m</literal> is a positive integer to get the
+                  <literal>m</literal>th dimension. If <literal>m</literal> is
+                  greater than <literal>ndims(x)</literal>, then <literal>size(x,m)</literal> returns 1.
+                </listitem>
+                <listitem>
+                  Set <literal>sel</literal> to <literal>'*'</literal> to get the product of
+                  the dimensions.
+                </listitem>
+              </itemizedlist>
+              
+              
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
-
-      <varlistentry>
-        <term>1 or 'r'</term>
-
-        <listitem>
-          <para>to get the number of rows</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>2 or 'c'</term>
-
-        <listitem>
-          <para>to get the number of columns</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>'*'</term>
-
-        <listitem>
-          <para>to get the product of rows and column numbers</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Applied to:</term>
-
-        <listitem>
-          <para>a list it returns the number of elements. In this case only
-          <literal>y=size(x)</literal> syntax can be used</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Applied to:</term>
-
-        <listitem>
-          <para>a linear system, <literal>y=size(x)</literal> returns in
-          <literal>y</literal> the (row) vector [number of outputs, number if
-          inputs] i.e. the dimension of the corresponding transfer matrix. The
-          syntax <literal>[nr,nc]=size(x)</literal> is also valid (with
-          <literal>(nr,nc)=(y(1),y(2)</literal>). If <literal>x</literal> is a
-          linear system in state-space form, then
-          <literal>[nr,nc,nx]=size(x)</literal> returns in addition the
-          dimension <literal>nx</literal> of the <literal>A</literal> matrix
-          of <literal>x</literal>.</para>
-        </listitem>
-      </varlistentry>
-
       <varlistentry>
         <term>Applied to:</term>
         <listitem>
-          <para>an hypermatrix, <literal> y=size(x)
-          </literal> returns the vector of hypermatrix dimensions. <literal>
-          [n1,n2,...nn]=size(x) </literal> returns the hypermatrix dimensions.
-          <literal> ni=size(x,i) </literal> returns the ith dimension and
-          <literal>size(x,'*') </literal> returns the product of
-          dimensions.</para>
+          <para>a list; it returns the number of elements. In this case only
+            <literal>y = size(x)</literal> syntax can be used.
+          </para>
         </listitem>
       </varlistentry>
-      
+      <varlistentry>
+        <term>Applied to:</term>
+        <listitem>
+          <para>
+            a linear system; <literal>y= size(x)</literal> returns in
+            <literal>y</literal> the (row) vector [number of outputs, number of
+            inputs] i.e. the dimension of the corresponding transfer matrix. The
+            syntax <literal>[nr, nc] = size(x)</literal> is also valid (with
+            <literal>(nr, nc) = (y(1), y(2))</literal>). If <literal>x</literal>
+            is a linear system in state-space form, then <literal>[nr, nc, nx] = 
+              size(x)
+            </literal>
+            returns in addition the dimension <literal>nx</literal> of matrix 
+            <literal>x</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example"><![CDATA[ 
-[n,m]=size(rand(3,2))
-[n,m]=size(['a','b';'c','d'])
-x=ssrand(3,2,4);[ny,nu]=size(x)
-[ny,nu]=size(ss2tf(x))
-[ny,nu,nx]=size(x)
-
-// Returns the number of rows
-n=size(rand(3,2),"r")
-// Returns the number of columns
-m=size(rand(3,2),"c")
-// Returns the product of the dimensions
-nm=size(rand(3,2),"*")
- ]]></programlisting>
+    <programlisting role="example">
+      [n, m] = size(rand(3, 2))
+      [n, m] = size(['a', 'b'; 'c', 'd'])
+      
+      x = ssrand(3, 2, 4);
+      [ny, nu] = size(x)
+      [ny, nu] = size(ss2tf(x))
+      [ny, nu, nx] = size(x)
+      
+      // Returns the number of rows
+      n = size(rand(3, 2), "r")
+      // Returns the number of columns
+      m = size(rand(3, 2), "c")
+      // Returns the product of the dimensions
+      nm = size(rand(3, 2), "*")
+    </programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="length">length</link></member>
-
-      <member><link linkend="syslin">syslin</link></member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="ndims">ndims</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -62,7 +62,7 @@ function elements = atomsGetLeftListboxElts(category)
 
         thisItem  =            "<html>";
         thisItem  = thisItem + "<table style=""background-color:#ffffff;color:#000000;""><tr>";
-        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/user-home.png"" /></td>";
+        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/user-home.png"" /></td>";
         thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;font-weight:bold;"">"+gettext("All modules")+"</div></td>";
         thisItem  = thisItem + "</tr></table>";
         thisItem  = thisItem + "</html>";
@@ -80,7 +80,7 @@ function elements = atomsGetLeftListboxElts(category)
 
             thisItem  =            "<html>";
             thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/folder.png"" /></td>";
+            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/folder.png"" /></td>";
             thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
             thisItem  = thisItem + "</tr></table>";
             thisItem  = thisItem + "</html>";
@@ -121,7 +121,7 @@ function elements = atomsGetLeftListboxElts(category)
 
         thisItem  =            "<html>";
         thisItem  = thisItem + "<table style=""background-color:#ffffff;color:#000000;"" ><tr>";
-        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/user-home.png"" /></td>";
+        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/user-home.png"" /></td>";
         thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;font-weight:bold;"">"+top_str+"</div></td>";
 
         thisItem  = thisItem + "</tr></table>";
@@ -140,7 +140,7 @@ function elements = atomsGetLeftListboxElts(category)
 
             thisItem  =            "<html>";
             thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/folder.png"" /></td>";
+            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/folder.png"" /></td>";
             thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
             thisItem  = thisItem + "</tr></table>";
             thisItem  = thisItem + "</html>";
@@ -171,14 +171,14 @@ function elements = atomsGetLeftListboxElts(category)
 
                 if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
                     // Not up-to-date
-                    icon = "notuptodate.png";
+                    icon = "software-update-notuptodate.png";
                 else
                     // The Most Recent Version is already installed
-                    icon = "installed.png";
+                    icon = "software-update-installed.png";
                 end
 
             else
-                icon = "notinstalled.png";
+                icon = "software-update-notinstalled.png";
             end
 
             if background == "#eeeeee" then
@@ -189,7 +189,7 @@ function elements = atomsGetLeftListboxElts(category)
 
             thisItem =            "<html>";
             thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+            thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
             thisItem = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+thisModuleTitle+"</div></td>";
             thisItem = thisItem + "</tr></table>";
             thisItem = thisItem + "</html>";

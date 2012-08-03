@@ -21,11 +21,12 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -34,11 +35,11 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class DefaultAction extends CallBack {
+public class DefaultAction extends CommonCallBack {
 
     private static final long serialVersionUID = 3597772070169671017L;
 
-    private SciNotes editor;
+    private final SciNotes editor;
 
     /**
      * Constructor
@@ -81,8 +82,7 @@ public class DefaultAction extends CallBack {
         if (icon == null) {
             button.setText(title);
         } else {
-            ((SwingScilabPushButton) button.getAsSimplePushButton())
-            .setIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/" + icon));
+            ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(icon)));
         }
         return button;
     }

@@ -1,11 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2012 - Scilab Enterprises - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,41 +21,61 @@
 #define __SCI_AXES_H__
 
 #include "dynlib_graphics.h"
-#include "ObjectStructure.h"
-
+#include "BOOL.h"
 
 /*-----------------------------------------------------------------------------*/
 
-/* clear a subwindow from all of its children */
-GRAPHICS_IMPEXP void clearSubWin( sciPointObj * pSubWin ) ;
-
-/* reinit a subwindow (but don't change position) */
-GRAPHICS_IMPEXP void reinitSubWin( sciPointObj * pSubWin ) ;
-
-/* reinit the viewing angles of a subwindow */
-GRAPHICS_IMPEXP void initSubWinAngles( sciPointObj * pSubWin ) ;
-
-/* set the size and position of the subwindow to the default */
-GRAPHICS_IMPEXP void initSubWinSize( sciPointObj * pSubWin ) ;
-
-/* set the data_bounds of the axes to the default value */
-GRAPHICS_IMPEXP void initSubWinBounds( sciPointObj * pSubWin ) ;
-
 /* reinit the selected subwindow if the auto_clear property is set to on */
 /* return TRUE if the window has been redrawn */
-GRAPHICS_IMPEXP BOOL checkRedrawing( void ) ;
+GRAPHICS_IMPEXP BOOL checkRedrawing(void);
 
 /**
- * Find which subwindow is selected by clincking at pixel coordinates (xCoord, yCoord).
- * @param pFigure index of parent figure in which the subwindow will be selected
- * @return NULL if no subwindow could be selected, the seleceted subwindow otherwise
+ * Enumeration used to specify the title place relative to parent subwindow
+ * Matches the MVC Legend object's LegendLocation enum.
  */
-GRAPHICS_IMPEXP sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord);
+typedef enum
+{
+    /** */
+    SCI_LEGEND_POSITION_UNSPECIFIED = -1,
+    /** */
+    SCI_LEGEND_IN_UPPER_RIGHT = 0,
+    /** */
+    SCI_LEGEND_IN_UPPER_LEFT = 1,
+    /** */
+    SCI_LEGEND_IN_LOWER_RIGHT = 2,
+    /** */
+    SCI_LEGEND_IN_LOWER_LEFT = 3,
+    /** */
+    SCI_LEGEND_OUT_UPPER_RIGHT = 4,
+    /** */
+    SCI_LEGEND_OUT_UPPER_LEFT = 5,
+    /** */
+    SCI_LEGEND_OUT_LOWER_RIGHT = 6,
+    /** */
+    SCI_LEGEND_OUT_LOWER_LEFT = 7,
+    /** */
+    SCI_LEGEND_UPPER_CAPTION = 8,
+    /** */
+    SCI_LEGEND_LOWER_CAPTION = 9,
+    /** */
+    SCI_LEGEND_BY_COORDINATES = 10
+}  /** */
+sciLegendPlace;
 
 /**
  * Convert property name into a sciLegendPlace
  */
 GRAPHICS_IMPEXP sciLegendPlace propertyNameToLegendPlace(const char * string);
+
+/*
+ * Converts a boolean log flag to the character format
+ */
+GRAPHICS_IMPEXP char getTextLogFlag(int logFlag);
+
+/*
+ * Converts a character log flag to the equivalent boolean
+ */
+GRAPHICS_IMPEXP int getBooleanLogFlag(char logFlag);
 
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

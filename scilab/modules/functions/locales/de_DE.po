@@ -8,14 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:46+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2012-05-12 14:45+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -100,12 +104,25 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Datei %s ist nicht vorhanden.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "--Erzeugung von [%s] (Makros) --\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Es wurden keine Dateien mit der Erweiterung %s in %s gefunden.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s file compilation forced\n"
@@ -246,7 +263,7 @@ msgstr "Funktion %s ist unnötig."
 
 #, c-format
 msgid "Please use %s instead."
-msgstr "Verwenden Sie %s anstatt dessen"
+msgstr "Bitte verwenden Sie stattdessen %s."
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"

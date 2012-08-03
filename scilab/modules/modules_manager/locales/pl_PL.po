@@ -1,0 +1,145 @@
+# Polish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-03-09 22:53+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana jest wartość "
+"typu string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
+"znaków.\n"
+
+#, c-format
+msgid "%s: The directory '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s: Folder '%s' nie istnieje lub nie może zostać odczytany.\n"
+
+msgid "Building blocks...\n"
+msgstr "Budowanie bloków...\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Nie udało się eksportować %s do %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+msgid "Generating cleaner.sce...\n"
+msgstr "Tworzenie cleaner.sce...\n"
+
+#, c-format
+msgid ""
+"%s: The file %s cannot been created, please check if you have write access "
+"on this file.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
+"is not read accessible.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: oczekiwano typ boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s:  Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano wartości "
+"logicznej.\n"
+
+#, c-format
+msgid "%s: Can't go to directory '%s'.\n"
+msgstr ""
+
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr "Tworzenie cleaner_gateway.sce...\n"
+
+msgid "Generating loader_gateway.sce...\n"
+msgstr "Tworzenie loader_gateway.sce...\n"
+
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr ""
+
+msgid "Generating loader.sce...\n"
+msgstr "Tworzenie loader.sce...\n"
+
+msgid "Generating unloader.sce...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr ""
+
+msgid "Building gateway...\n"
+msgstr ""
+
+msgid "Building help...\n"
+msgstr ""
+
+msgid "Building macros...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr ""
+
+msgid "Building sources...\n"
+msgstr ""

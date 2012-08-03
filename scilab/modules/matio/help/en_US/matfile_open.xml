@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile_open">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>matfile_open</refname>
     <refpurpose>Opens a Matlab V5 binary MAT-file.</refpurpose>
@@ -34,13 +31,19 @@
       <varlistentry>
         <term>mode</term>
         <listitem>
-          <para>String: file access type (<literal>"r"</literal> by default).</para>
+          <para>
+            String: file access type (<literal>"r"</literal> by default).
+          </para>
           <itemizedlist>
             <listitem>
-              <para><emphasis>"r"</emphasis>: opens the file for reading.</para>
+              <para>
+                <emphasis>"r"</emphasis>: opens the file for reading.
+              </para>
             </listitem>
             <listitem>
-              <para><emphasis>"w"</emphasis>: opens the file for writing.</para>
+              <para>
+                <emphasis>"w"</emphasis>: opens the file for writing.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -56,10 +59,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Opens a Matlab binary MAT-file for reading or writing data.</para>
+      Opens a Matlab binary MAT-file for reading or writing data.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="matfile_close">matfile_close</link>
@@ -76,13 +80,13 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
-    <para>This function uses MATIO library (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>).</para>
+    <para>
+      This function uses MATIO library (
+      <literal>
+        <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
+      </literal>
+      ).
+    </para>
   </refsection>
 </refentry>

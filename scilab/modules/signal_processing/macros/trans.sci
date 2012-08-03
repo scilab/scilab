@@ -1,13 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [hzt]=trans(pd,zd,gd,tr_type,frq)
+function [hzt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
 //hzt=trans(pd,zd,gd,tr_type,frq)
 //macro for transforming standardized low-pass filter into
 //one of the following filters:
@@ -17,6 +17,9 @@ function [hzt]=trans(pd,zd,gd,tr_type,frq)
 // frq     :frequency values
 // hzt     :output polynomial
 //!
+  if and(argn(1)<>[1 3]) then
+    error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"),'trans',1,3))
+  end
   select argn(2)
   case 3 then //trans(hz,tr_type,frq): filter given by a siso tranfer function
     hz=pd
@@ -46,7 +49,7 @@ function [hzt]=trans(pd,zd,gd,tr_type,frq)
   else
     error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"),"trans",3,5))
   end
-  if and(tr_type<>['lp','hp','bp','sb']) then 
+  if and(tr_type<>['lp','hp','bp','sb']) then
     error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"trans",tr_pos,"''lp'',''hp'',''bp'',''sb''"))
   end
   if type(frq)<>1 then
@@ -87,5 +90,10 @@ function [hzt]=trans(pd,zd,gd,tr_type,frq)
     den=(k+1)*z^2-2*alpha*z+(1-k);
   end
   [pt,zt,gt]=bilt(pd,zd,gd,num,den);
-  hzt=rlist(gt*real(poly(zt,'z')),real(poly(pt,'z')),'d');
+  if argn(1)==1 then
+    hzt=rlist(gt*real(poly(zt,'z')),real(poly(pt,'z')),'d');
+  else
+    hzt=pt(:)
+    zt=zt(:)
+  end
 endfunction

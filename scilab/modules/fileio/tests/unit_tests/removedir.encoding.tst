@@ -18,11 +18,7 @@ a = createdir("test_removedir");
 if(a <> %T) then pause, end
 
 cd("test_removedir");
-if getos() == 'Windows' then
-	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
-else
-	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
-end
+exec(SCI+"/modules/localization/tests/unit_tests/CreateDir.sce", -1);
 
 chdir(TMPDIR);
 b = removedir("test_removedir");

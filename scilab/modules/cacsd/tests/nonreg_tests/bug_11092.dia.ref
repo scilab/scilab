@@ -1,0 +1,43 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - INRIA - Serge Steer
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+//
+//
+// <-- Non-regression test for bug 11092 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=11092 
+//
+// <-- Short Description -->
+//Incorrect argument check in h_inf
+G=syslin("c",1/%s^3);
+[P,r]=macglov(G);
+assert_checktrue(execstr("[K,ro]=h_inf(P,r,0,1,30)","errcatch")==0); 
+h_inf: P22 is stabilizable.
+h_inf: P22 is detectable.
+ gama =       1.4142135624 Unfeasible (Hx hamiltonian)   test =     0.30000E+01
+ gama =       2.0000000000 Unfeasible (Hx hamiltonian)   test =     0.15613E+01
+ gama =       2.8284271247 Unfeasible (Hx hamiltonian)   test =     0.13582E+01
+ gama =       4.0000000000 Unfeasible (Hx hamiltonian)   test =     0.20258E+01
+ gama =       5.6568542495 Unfeasible (Hx hamiltonian)   test =     0.16526E+02
+ gama =       5.8423739467 Unfeasible (Hx hamiltonian)   test =     0.60242E+02
+ gama =       5.8916775545 Unfeasible (Hx hamiltonian)   test =     0.19635E+03
+ gama =       5.9041997314 Unfeasible (Hx hamiltonian)   test =     0.45849E+03
+ gama =       5.9104908357 Unfeasible (Hx hamiltonian)   test =     0.13893E+04
+ gama =       5.9120667565 Unfeasible (Hx hamiltonian)   test =     0.28256E+04
+ gama =       5.9128551898 Unfeasible (Hx hamiltonian)   test =     0.58522E+04
+ gama =       5.9132495247 Unfeasible (Hx hamiltonian)   test =     0.12603E+05
+ gama =       5.9134467218 Unfeasible (Hx hamiltonian)   test =     0.29787E+05
+ gama =       5.9135453277 Unfeasible (Hx hamiltonian)   test =     0.93598E+05
+ gama =       5.9135699799 Unfeasible (Hx hamiltonian)   test =     0.20153E+06
+ gama =       5.9135823062 Unfeasible (Hx hamiltonian)   test =     0.47597E+06
+ gama =       5.9135884693 Unfeasible (Hx hamiltonian)   test =     0.14915E+07
+ gama =       5.9135900101 Unfeasible (Hx hamiltonian)   test =     0.31966E+07
+ gama =       5.9135907805 Unfeasible (Hx hamiltonian)   test =     0.74615E+07
+ gama =       5.9135911657 Unfeasible (Hx hamiltonian)   test =     0.22414E+08
+ gama =       5.9135912620 Unfeasible (Hx hamiltonian)   test =     0.44919E+08

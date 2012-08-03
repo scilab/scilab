@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="javaclasspath">
-  <info>
-    <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
-  </info>
   <refnamediv>
     <refname>javaclasspath</refname>
     <refpurpose>set and get dynamic Java class path</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>res=javaclasspath()
-javaclasspath(path)</synopsis>
+      javaclasspath(path)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -37,7 +35,8 @@ javaclasspath(path)</synopsis>
   <refsection>
     <title>Description</title>
     <para>set and get the dynamic Java path to one or more directory or file
-    specifications given in path.</para>
+      specifications given in path.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,9 +45,5 @@ res=javaclasspath();
 javaclasspath(SCI);
 javaclasspath([SCI,SCI+'/java']);
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

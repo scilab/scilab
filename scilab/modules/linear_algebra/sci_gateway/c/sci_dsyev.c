@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "stack-c.h" 
+#include "stack-c.h"
 #include "elementary_functions.h"
 #include "vfinite.h"
 #include "do_error_number.h"
@@ -17,9 +17,9 @@
 #include "assembleEigenvectors.h"
 #include "gw_linear_algebra.h"
 
-extern int C2F(dsyev)();
-extern int C2F(dlaset)();
-extern int C2F(dcopy)();
+extern int C2F(dsyev) ();
+extern int C2F(dlaset) ();
+extern int C2F(dcopy) ();
 
 //
 // intdsyev --
@@ -38,97 +38,97 @@ extern int C2F(dcopy)();
 //       eigenvectors : matrix of size NxN, type real
 //
 int sci_dsyev(char *fname, unsigned long fname_len)
-{	
-	int totalsize;
+{
+    int totalsize;
 
-	int iRows = 0;
-	int iCols = 0;
-	int ONE = 1;
-	int INFO;
-	int iWorkSize;
+    int iRows = 0;
+    int iCols = 0;
+    int ONE = 1;
+    int INFO;
+    int iWorkSize;
 
-	char UPLO;
-	char JOBZ;
+    char UPLO;
+    char JOBZ;
 
-	double *pdblRealData	= NULL;
-	double *pdblWork = NULL;
-	double *pdblFinalEigenvalues = NULL; //SCILAB return Var
-	double *pdblEigenValues	= NULL; //return by LAPACK
+    double *pdblRealData = NULL;
+    double *pdblWork = NULL;
+    double *pdblFinalEigenvalues = NULL;    //SCILAB return Var
+    double *pdblEigenValues = NULL; //return by LAPACK
 
-	CheckRhs(1,1) ;
-	CheckLhs(1,2) ;
+    CheckRhs(1, 1);
+    CheckLhs(1, 2);
 
-	GetRhsVarMatrixDouble(1, &iRows, &iCols, &pdblRealData);
-	totalsize = iRows * iCols;
-	
-	if (iRows!=iCols)
-	{
-		SciError(20);
-		return 0;
-	}
-	if (iCols==0)
-	{
-		if (Lhs==1)
-		{
-			LhsVar(1) = 1;
-			return 0;
-		}
-		else if (Lhs==2)
-		{
-			int lV;
-			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&iCols,&iCols,&lV);
-			LhsVar(1) = 2;
-			LhsVar(2) = 1;
-			return 0;
-		}
-	}
-	if (C2F(vfinite)(&totalsize,pdblRealData)==0)
-	{
-		SciError(264);
-		return 0;
-	}
-	if (Lhs==1)
-	{
-		iAllocMatrixOfDouble(2, iCols, ONE, &pdblFinalEigenvalues);
-	}
-	else
-	{
-		iAllocMatrixOfDouble(2, iCols, iCols, &pdblFinalEigenvalues);
-	}
+    GetRhsVarMatrixDouble(1, &iRows, &iCols, &pdblRealData);
+    totalsize = iRows * iCols;
 
-	iAllocMatrixOfDouble(3, iCols, ONE, &pdblEigenValues);
+    if (iRows != iCols)
+    {
+        Err = 1;
+        SciError(20);
+        return 0;
+    }
+    if (iCols == 0)
+    {
+        if (Lhs == 1)
+        {
+            LhsVar(1) = 1;
+            return 0;
+        }
+        else if (Lhs == 2)
+        {
+            int lV;
 
-	iWorkSize = Max(1,3*iCols - 1);
-	pdblWork = (double*)MALLOC(iWorkSize * sizeof(double));
+            CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iCols, &iCols, &lV);
+            LhsVar(1) = 2;
+            LhsVar(2) = 1;
+            return 0;
+        }
+    }
+    if (C2F(vfinite) (&totalsize, pdblRealData) == 0)
+    {
+        SciError(264);
+        return 0;
+    }
+    if (Lhs == 1)
+    {
+        iAllocMatrixOfDouble(2, iCols, ONE, &pdblFinalEigenvalues);
+    }
+    else
+    {
+        iAllocMatrixOfDouble(2, iCols, iCols, &pdblFinalEigenvalues);
+    }
 
-	if (Lhs==1)
-	{
-		JOBZ = 'N'; // Compute eigenvalues only;
-	}
-	else
-	{
-		JOBZ = 'V'; // Compute eigenvalues and eigenvectors.
-	}
-	UPLO = 'U';
-	C2F(dsyev)( &JOBZ, &UPLO, &iCols, pdblRealData, &iCols, pdblEigenValues,
-	     pdblWork, &iWorkSize, &INFO );
-	//     SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO )
-	FREE(pdblWork);
-	if (INFO!=0)
-	{
-		SciError(24);
-	}
-	if(Lhs==1)
-	{
-		C2F(dcopy)(&iCols, pdblEigenValues, &ONE, pdblFinalEigenvalues, &ONE);
-		LhsVar(1)=2;
-	}
-	else
-	{
-		assembleEigenvaluesFromDoublePointer(iRows, pdblEigenValues, pdblFinalEigenvalues);
-		LhsVar(1)=1; // Eigenvectors are stored in matrix A, which is variable #1
-		LhsVar(2)=2; // Eigenvalues are stored in variable #2
-	}
-	return 0;
+    iAllocMatrixOfDouble(3, iCols, ONE, &pdblEigenValues);
+
+    iWorkSize = Max(1, 3 * iCols - 1);
+    pdblWork = (double *)MALLOC(iWorkSize * sizeof(double));
+
+    if (Lhs == 1)
+    {
+        JOBZ = 'N';             // Compute eigenvalues only;
+    }
+    else
+    {
+        JOBZ = 'V';             // Compute eigenvalues and eigenvectors.
+    }
+    UPLO = 'U';
+    C2F(dsyev) (&JOBZ, &UPLO, &iCols, pdblRealData, &iCols, pdblEigenValues, pdblWork, &iWorkSize, &INFO);
+    //     SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO )
+    FREE(pdblWork);
+    if (INFO != 0)
+    {
+        SciError(24);
+    }
+    if (Lhs == 1)
+    {
+        C2F(dcopy) (&iCols, pdblEigenValues, &ONE, pdblFinalEigenvalues, &ONE);
+        LhsVar(1) = 2;
+    }
+    else
+    {
+        assembleEigenvaluesFromDoublePointer(iRows, pdblEigenValues, pdblFinalEigenvalues);
+        LhsVar(1) = 1;          // Eigenvectors are stored in matrix A, which is variable #1
+        LhsVar(2) = 2;          // Eigenvalues are stored in variable #2
+    }
+    return 0;
 }
-

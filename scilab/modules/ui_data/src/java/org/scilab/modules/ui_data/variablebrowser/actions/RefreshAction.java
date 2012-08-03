@@ -16,17 +16,17 @@ import javax.swing.ImageIcon;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * RefreshAction class
  * @author Calixte DENIZET
  */
-public final class RefreshAction extends CallBack {
+public final class RefreshAction extends CommonCallBack {
 
     /**
      * Constructor
@@ -40,6 +40,7 @@ public final class RefreshAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         try {
             ScilabInterpreterManagement.asynchronousScilabExec(null, "browsevar");
@@ -58,7 +59,7 @@ public final class RefreshAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RefreshAction(title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/actions/view-refresh.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

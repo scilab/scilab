@@ -32,7 +32,8 @@
         <term>value1, value2, ..</term>
         <listitem>
           <para>all data type (double, char, int, ...), represents the fields
-          values</para>
+            values
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,8 +41,9 @@
   <refsection>
     <title>Description</title>
     <para>This function returns a struct with the fields names
-    <literal>fields1</literal>, <literal>field2</literal>, ..., and the fields values
-    corresponding <literal>value1</literal>, <literal>value2</literal>, ...</para>
+      <literal>fields1</literal>, <literal>field2</literal>, ..., and the fields values
+      corresponding <literal>value1</literal>, <literal>value2</literal>, ...
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +65,7 @@ date_st.semaine=32
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cell">cell</link>

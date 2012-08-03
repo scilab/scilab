@@ -11,6 +11,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     ippty: interfaces properties
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
+cDEC$ ENDIF            
       common /ippty/ byptr,nbyptr
 
       if(n.eq.0) then 

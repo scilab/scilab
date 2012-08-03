@@ -16,7 +16,7 @@ function loadXcosLibs()
 
   // list of scicos libraries that we need at xcos launch
   listlibsname = [];
-  
+
   for theLib = scicos_pal_libs
     if isfile("SCI/modules/scicos_blocks/macros/" + theLib + "/lib") then
       load("SCI/modules/scicos_blocks/macros/" + theLib + "/lib");
@@ -30,11 +30,11 @@ function loadXcosLibs()
     listlibsname = [listlibsname, 'scicos_scicos'];
   end
 
-  // name and libname 
+  // name and libname
   listlibsname(listlibsname == 'MatrixOp') = 'Matrixop';
   listlibsname(listlibsname == 'NonLinear') = 'Nonlinear';
   listlibsname(listlibsname == 'IntegerOp') = 'Integerop';
-  
+
   if listlibsname <> [] then
     resumedLibs = listlibsname + 'lib';
   else
@@ -60,21 +60,13 @@ function loadXcosLibs()
   funcprot(0);
   execstr(strcat(removed + "=COMPAT_BLOCK; "));
   funcprot(prot);
-  
-  resumedBlocks = removed';
 
-  [modelica_libs, scicos_pal_libs, ..
-   %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-   
-  resumedVars = [
-"modelica_libs"
-"scicos_pal_libs"
-"%scicos_with_grid"
-"%scs_wgrid"]';
+  resumedBlocks = removed';
 
 
   // put all resumed symbols into the parent scope
   prot = funcprot();
-  execstr("funcprot(0); [" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "); funcprot(" + string(prot) + ");");
+  protVar = predef();
+  execstr("predef(0); funcprot(0); [" + strcat([resumedLibs resumedBlocks], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks], ", ") + "); funcprot(" + string(prot) + "); predef("+string(protVar)+")");
 endfunction
 

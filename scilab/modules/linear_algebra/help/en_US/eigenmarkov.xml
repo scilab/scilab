@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eigenmarkov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>eigenmarkov</refname>
     <refpurpose> normalized left and right Markov eigenvectors</refpurpose>
@@ -48,16 +45,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns normalized left and right eigenvectors
-    associated with the eigenvalue 1 of the Markov transition matrix P.
-    If the multiplicity of this eigenvalue is m and P
-    is N x N, M is a m x N matrix and Q a N x m matrix.
-    M(k,:) is the probability distribution vector associated with the kth
-    ergodic set (recurrent class). M(k,x) is zero if x is not in the
-    k-th recurrent class.
-    Q(x,k) is the probability to end in the k-th recurrent class starting
-    from x. If <literal>P^k</literal> converges for large <literal>k</literal> (no eigenvalues on the
-    unit circle except 1), then the limit is <literal>Q*M</literal> (eigenprojection).</para>
+      Returns normalized left and right eigenvectors
+      associated with the eigenvalue 1 of the Markov transition matrix P.
+      If the multiplicity of this eigenvalue is m and P
+      is N x N, M is a m x N matrix and Q a N x m matrix.
+      M(k,:) is the probability distribution vector associated with the kth
+      ergodic set (recurrent class). M(k,x) is zero if x is not in the
+      k-th recurrent class.
+      Q(x,k) is the probability to end in the k-th recurrent class starting
+      from x. If <literal>P^k</literal> converges for large <literal>k</literal> (no eigenvalues on the
+      unit circle except 1), then the limit is <literal>Q*M</literal> (eigenprojection).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +68,7 @@ Q*M-P^20
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="genmarkov">genmarkov</link>

@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="replot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>replot</refname>
     <refpurpose>カレントのグラフィックウインドウを新しい境界に
-	再描画</refpurpose>
+      再描画
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -36,26 +34,30 @@
         <term>handle</term>
         <listitem>
           <para>オプションの引数. 一つまたは複数のAxesを選択するための
-	Axes型のグラフィックハンドル.</para>
+            Axes型のグラフィックハンドル.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>replot</literal> はカレントのグラフィックウインドウの内容を
-	<literal>rect=[xmin,ymin,xmax,ymax]</literal>で定義した新しい境界内に
-	再描画する際に使用されます.
-	古いグラフィック構文では,<literal>"Rec"</literal>ドライバでのみ
-	動作します.</para>
+    <para>
+      <literal>replot</literal> はカレントのグラフィックウインドウの内容を
+      <literal>rect=[xmin,ymin,xmax,ymax]</literal>で定義した新しい境界内に
+      再描画する際に使用されます.
+      古いグラフィック構文では,<literal>"Rec"</literal>ドライバでのみ
+      動作します.
+    </para>
     <para>この変換はhandle引数でAxesグラフィックハンドルにより指定された特定の軸に	
-	適用されます.
-	新しい境界はカレントの図のカレントの軸に適用されます.
-	変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
-	axesのプロパティ<literal>tight_limits</literal>も
-	これらの境界を厳密に選択するために "on" に設定する必要があります
-	 (
-    <link linkend="axes_properties">axes_properties</link>を参照ください).</para>
+      適用されます.
+      新しい境界はカレントの図のカレントの軸に適用されます.
+      変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
+      axesのプロパティ<literal>tight_limits</literal>も
+      これらの境界を厳密に選択するために "on" に設定する必要があります
+      (
+      <link linkend="axes_properties">axes_properties</link>を参照ください).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -85,9 +87,5 @@ replot([-3,-2,8,4],f.children(2))
         <link linkend="clf">clf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

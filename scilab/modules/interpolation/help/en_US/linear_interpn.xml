@@ -1,176 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="linear_interpn" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="linear_interpn" xml:lang="en">
   <refnamediv>
     <refname>linear_interpn</refname>
-
     <refpurpose>n dimensional linear interpolation</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>xp1, xp2, .., xpn</term>
-
         <listitem>
           <para>real vectors (or matrices) of same size</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x1 ,x2, ..., xn</term>
-
         <listitem>
           <para>strictly increasing row vectors (with at least 2 components)
-          defining the n dimensional interpolation grid</para>
+            defining the n dimensional interpolation grid
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>v</term>
-
         <listitem>
           <para>vector (case n=1), matrix (case n=2) or hypermatrix (case n
-          &gt; 2) with the values of the underlying interpolated function at
-          the grid points.</para>
+            &gt; 2) with the values of the underlying interpolated function at
+            the grid points.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>out_mode</term>
-
         <listitem>
           <para>(optional) string defining the evaluation outside the grid
-          (extrapolation)</para>
+            (extrapolation)
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>vp</term>
-
         <listitem>
-          <para>vector or matrix of same size than <literal>xp1, ...,
-          xpn</literal></para>
+          <para>
+            vector or matrix of same size than <literal>xp1, ...,
+              xpn
+            </literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>Given a n dimensional grid defined by the n vectors <literal>x1 ,x2,
-    ..., xn</literal> and the values <literal>v</literal> of a function (says
-    <emphasis>f</emphasis>) at the grid points :</para>
-
+    <para>
+      Given a n dimensional grid defined by the n vectors <literal>x1 ,x2,
+        ..., xn
+      </literal>
+      and the values <literal>v</literal> of a function (says
+      <emphasis>f</emphasis>) at the grid points :
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../mml/linear_interpn_equation1.mml" />
+          <imagedata align="center" fileref="../mml/linear_interpn_equation1.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
-
     <para>this function computes the linear interpolant of
-    <emphasis>f</emphasis> from the grid (called <emphasis>s</emphasis> in the
-    following) at the points which coordinates are defined by the vectors (or
-    matrices) <literal>xp1, xp2, ..., xpn</literal>:</para>
-
+      <emphasis>f</emphasis> from the grid (called <emphasis>s</emphasis> in the
+      following) at the points which coordinates are defined by the vectors (or
+      matrices) <literal>xp1, xp2, ..., xpn</literal>:
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../mml/linear_interpn_equation2.mml" />
+          <imagedata align="center" fileref="../mml/linear_interpn_equation2.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
-
-    <para>The <literal>out_mode</literal> parameter set the evaluation rule
-    for extrapolation: if we note
-    <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> then
-    <literal>out_mode</literal> defines the evaluation rule when:</para>
-
+    <para>
+      The <literal>out_mode</literal> parameter set the evaluation rule
+      for extrapolation: if we note
+      <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> then
+      <literal>out_mode</literal> defines the evaluation rule when:
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../mml/linear_interpn_equation3.mml" />
+          <imagedata align="center" fileref="../mml/linear_interpn_equation3.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
-
     <para>The different choices are:</para>
-
     <variablelist>
       <varlistentry>
         <term>"by_zero"</term>
-
         <listitem>
           <para>an extrapolation by zero is done</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"by_nan"</term>
-
         <listitem>
           <para>extrapolation by Nan</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"C0"</term>
-
         <listitem>
           <para>the extrapolation is defined as follows:</para>
-
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 s(P) = s(proj(P)) where proj(P) is nearest point from P 
                   located on the grid boundary.
  ]]></programlisting>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"natural"</term>
-
         <listitem>
           <para>the extrapolation is done by using the nearest n-linear patch
-          from the point.</para>
+            from the point.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"periodic"</term>
-
         <listitem>
-          <para> <literal>s</literal> is extended by periodicity.</para>
+          <para>
+            <literal>s</literal> is extended by periodicity.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // example 1 : 1d linear interpolation
 x = linspace(0,2*%pi,11);
@@ -237,7 +205,7 @@ show_window()
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
 //             tricubic spline interpolation)
-exec("SCI/demos/interp/interp_demo.sci") 
+exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 
@@ -272,24 +240,30 @@ xtitle("tri-linear interpolation of "+func)
 show_window()
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="interpln">interpln</link></member>
-
-      <member><link linkend="splin">splin</link></member>
-
-      <member><link linkend="splin2d">splin2d</link></member>
-
-      <member><link linkend="splin3d">splin3d</link></member>
+      <member>
+        <link linkend="interpln">interpln</link>
+      </member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="splin2d">splin2d</link>
+      </member>
+      <member>
+        <link linkend="splin3d">splin3d</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-
-    <para>B. Pincon</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pol2str">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pol2str</refname>
     <refpurpose> polynomial to string conversion</refpurpose>
@@ -28,7 +25,7 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>real polynomial</para>
+          <para>matrix of real polynomial</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,16 +39,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    converts polynomial to character string (utility function).</para>
+      converts polynomial to character string (utility function).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="string">string</link>
       </member>
       <member>
-        <member><link linkend="prettyprint">prettyprint</link></member>
+        <member>
+          <link linkend="prettyprint">prettyprint</link>
+        </member>
       </member>
     </simplelist>
   </refsection>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="findBDK">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findBDK</refname>
     <refpurpose>カルマンゲインおよび離散時間システムの B, D システム行列</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
-[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
-[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)</synopsis>
+      [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
+      [B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータs</title>
@@ -49,7 +47,8 @@
         <term>R</term>
         <listitem>
           <para>行列, findR をコールすることにより計算される結合されたブロックハンケル行列の
-	R因子に関係する部分</para>
+            R因子に関係する部分
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,8 +82,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    METH = 2.
-  </para>
+            デフォルト:    METH = 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -106,30 +105,32 @@
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    JOB = 2.
-  </para>
+            デフォルト:    JOB = 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>NSMPL</term>
         <listitem>
           <para>整数, 
-	共分散行列およびカルマン予測ゲインを計算する際に使用される
-	サンプルの総数.
-	このパラメータは,共分散行列とカルマン予測ゲインが必要ない
-	場合には,不要です.NSMPL = 0の場合, K, Q, Ry, および S は計算されません. 
-	デフォルト:    NSMPL = 0.</para>
+            共分散行列およびカルマン予測ゲインを計算する際に使用される
+            サンプルの総数.
+            このパラメータは,共分散行列とカルマン予測ゲインが必要ない
+            場合には,不要です.NSMPL = 0の場合, K, Q, Ry, および S は計算されません. 
+            デフォルト:    NSMPL = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>TOL</term>
         <listitem>
           <para>
-	行列のランクを推定する際に使用される許容誤差.
-	TOL &gt; 0 の場合, TOL に指定した値が, 条件数の逆数の下界として
-	使用されます.
-	デフォルト: prod(size(matrix))*epsilon_machine ただし,
-	epsilon_machine は相対機械精度です.</para>
+            行列のランクを推定する際に使用される許容誤差.
+            TOL &gt; 0 の場合, TOL に指定した値が, 条件数の逆数の下界として
+            使用されます.
+            デフォルト: prod(size(matrix))*epsilon_machine ただし,
+            epsilon_machine は相対機械精度です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,8 +152,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    デフォルト:    PRINTW = 0.
-  </para>
+            デフォルト:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -189,9 +190,9 @@
         <term>RCND</term>
         <listitem>
           <para>
-	長さ12のベクトルで,
-	ランク決定, 最小二乗またはリカッチ方程式の解に関わる行列の条件数の逆数が含まれます.
-	</para>
+            長さ12のベクトルで,
+            ランク決定, 最小二乗またはリカッチ方程式の解に関わる行列の条件数の逆数が含まれます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -199,48 +200,53 @@
   <refsection>
     <title>説明</title>
     <para>
-	システムの次数,行列AおよびCおよび関連する
-	結合ブロックハンケル行列のR因子を指定すると,
-	部分空間同定法 (MOESP または N4SID) により,
-	離散時間システムのシステム行列BおよびDとカルマンゲインを返します.
-  </para>
+      システムの次数,行列AおよびCおよび関連する
+      結合ブロックハンケル行列のR因子を指定すると,
+      部分空間同定法 (MOESP または N4SID) により,
+      離散時間システムのシステム行列BおよびDとカルマンゲインを返します.
+    </para>
     <itemizedlist>
       <listitem>
         <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
-	システム行列 B (JOB = 1の場合), 
-	システム行列 BおよびD (JOB = 2の場合),
-	カルマン予測ゲイン K (NSMPL &gt; 0の場合) を計算します.
-	モデルの構造は次のようになります:</para>
-        <programlisting role = ""><![CDATA[ 
+          システム行列 B (JOB = 1の場合), 
+          システム行列 BおよびD (JOB = 2の場合),
+          カルマン予測ゲイン K (NSMPL &gt; 0の場合) を計算します.
+          モデルの構造は次のようになります:
+        </para>
+        <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-    ただし, x(k) および y(k) はそれぞれ長さ N および Lのベクトルです.</para>
+          ただし, x(k) および y(k) はそれぞれ長さ N および Lのベクトルです.
+        </para>
       </listitem>
       <listitem>
         <para>[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)  は,
-	長さ 4 のベクトル RCND も返します.
-	このベクトルには,ランク決定に関連する条件数の逆数が含まれます.</para>
+          長さ 4 のベクトル RCND も返します.
+          このベクトルには,ランク決定に関連する条件数の逆数が含まれます.
+        </para>
       </listitem>
       <listitem>
         <para>[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
-	長さ 12 の RCNDベクトルと共に,
-	状態量, 出力, 出力状態 (相互)共分散行列 Q, Ry, および S 
-	(カルマンゲイン計算で使用される)も返します.
-	RCNDベクトルには,ランク決定, 最小二乗またはリカッチ方程式の解に関連する
-	行列の条件数の逆数が含まれます.
-	</para>
+          長さ 12 の RCNDベクトルと共に,
+          状態量, 出力, 出力状態 (相互)共分散行列 Q, Ry, および S 
+          (カルマンゲイン計算で使用される)も返します.
+          RCNDベクトルには,ランク決定, 最小二乗またはリカッチ方程式の解に関連する
+          行列の条件数の逆数が含まれます.
+        </para>
       </listitem>
     </itemizedlist>
     <para>
-	findR により計算される行列 Rは, 
-	適当な引数 METH および JOBDで定義されます.
-	findR ではMETH = 1かつJOBD = 1,findBDKではMETH = 1を使用しますす.
-	FINDR では METH = 1, findBDK では METH = 2 を使用することができます.</para>
+      findR により計算される行列 Rは, 
+      適当な引数 METH および JOBDで定義されます.
+      findR ではMETH = 1かつJOBD = 1,findBDKではMETH = 1を使用しますす.
+      FINDR では METH = 1, findBDK では METH = 2 を使用することができます.
+    </para>
     <para>
-	出力引数の数は変換しますが,次のように入力引数に対応します,</para>
-    <programlisting role = ""><![CDATA[ 
+      出力引数の数は変換しますが,次のように入力引数に対応します,
+    </para>
+    <programlisting role=""><![CDATA[ 
          B = findBDK(S,N,L,R,A,C,METH,1)  または
      [B,D] = findBDK(S,N,L,R,A,C,METH,2)  または
 [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winclose">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>winclose</refname>
     <refpurpose> close windows created by sciGUI</refpurpose>
@@ -36,7 +33,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>winclose(winIds)</literal> close windows created by sciGUI.</para>
+    <para>
+      <literal>winclose(winIds)</literal> close windows created by sciGUI.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,9 +45,5 @@ win1=waitbar('This is an example');
 win2=waitbar('HELLO!');
 winclose([win1,win2]);
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
   </refsection>
 </refentry>

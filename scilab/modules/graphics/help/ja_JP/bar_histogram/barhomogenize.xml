@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="barhomogenize">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>barhomogenize</refname>
     <refpurpose>カレントの軸に含まれる棒グラフを均質化する</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>barhomogenize()
-barhomogenize([h[,'style'[,'width']]])</synopsis>
+      barhomogenize([h[,'style'[,'width']]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -41,8 +39,9 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
       <varlistentry>
         <term>width</term>
         <listitem>
-         <para>(オプション), 実数スカラー, bar の幅 (利用可能な空間の割合) を定義
-	 (デフォルト: 0.8).</para>
+          <para>(オプション), 実数スカラー, bar の幅 (利用可能な空間の割合) を定義
+            (デフォルト: 0.8).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,24 +49,33 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	bar を複数回コールする場合,
-	<literal>barhomogenize</literal> 関数は,カレントの軸に含まれる
-	全ての棒(すなわち,<literal>polyline_style</literal> 6型)の幅とスタイルを
-	均質化します.
-	これらの棒は同じxデータを有する必要があります</para>
-    <para><literal>barhomogenize( ) :</literal> この場合,
-	デフォルト値,h=gca(),
-		width=0.8, style='grouped' が使用されます. <literal/></para>
-    <para><literal>barhomogenize(h,...) :</literal> 
-		描画対象のカレントの軸を定義します.</para>
-    <para><literal>barhomogenize(...,width,...) :</literal> 
-		棒の幅をパーセント単位で定義します
-		 (通常: 0&lt;width&lt;=1).</para>
-    <para><literal>barhomogenize(...,style,...) :</literal> 
-	棒の描画方法を定義します.
-	オプション = 'grouped'により,
-	M個のポリラインをxの各要素に対して中心に置くことができ,
-	そして, オプション 'stacked' によりこれらをスタックすることができます.</para>
+      bar を複数回コールする場合,
+      <literal>barhomogenize</literal> 関数は,カレントの軸に含まれる
+      全ての棒(すなわち,<literal>polyline_style</literal> 6型)の幅とスタイルを
+      均質化します.
+      これらの棒は同じxデータを有する必要があります
+    </para>
+    <para>
+      <literal>barhomogenize( ) :</literal> この場合,
+      デフォルト値,h=gca(),
+      width=0.8, style='grouped' が使用されます. <literal/>
+    </para>
+    <para>
+      <literal>barhomogenize(h,...) :</literal> 
+      描画対象のカレントの軸を定義します.
+    </para>
+    <para>
+      <literal>barhomogenize(...,width,...) :</literal> 
+      棒の幅をパーセント単位で定義します
+      (通常: 0&lt;width&lt;=1).
+    </para>
+    <para>
+      <literal>barhomogenize(...,style,...) :</literal> 
+      棒の描画方法を定義します.
+      オプション = 'grouped'により,
+      M個のポリラインをxの各要素に対して中心に置くことができ,
+      そして, オプション 'stacked' によりこれらをスタックすることができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -129,9 +137,5 @@ barhomogenize();
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Farid Belacehne</para>
   </refsection>
 </refentry>

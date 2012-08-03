@@ -8,14 +8,51 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:21+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2012-07-18 13:54+0000\n"
+"Last-Translator: ptia <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Impossibile leggere l'argomento di input #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso uno scalare "
+"reale.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+"%s: La grandezza dell'argomento in ingresso %d è di tipo sbagliato: era "
+"atteso uno scalare reale.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso un'intero.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere "
+"nell'insieme {%s}.\n"
 
 #, c-format
 msgid ""

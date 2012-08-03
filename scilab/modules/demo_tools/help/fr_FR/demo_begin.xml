@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_begin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_begin</refname>
     <refpurpose>Commence une démonstration</refpurpose>
@@ -25,15 +22,15 @@
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_begin() sert à commencer une démonstration.
-		Elle place le script et les valeurs en mode de non affichage à la console,
-		enregistre les variables de l'environnement dans un fichier temporaire et
-		sauvegarde la largeur de la console.
-		Elle doit être utilisée avec la function demo_end.
-		</para>
+      La fonction demo_begin() sert à commencer une démonstration.
+      Elle place le script et les valeurs en mode de non affichage à la console,
+      enregistre les variables de l'environnement dans un fichier temporaire et
+      sauvegarde la largeur de la console.
+      Elle doit être utilisée avec la function demo_end.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_end">demo_end</link>
@@ -44,12 +41,6 @@
       <member>
         <link linkend="demo_message">demo_message</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

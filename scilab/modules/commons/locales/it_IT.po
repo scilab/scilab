@@ -1,0 +1,38 @@
+# Italian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-16 15:46+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+msgid "Could not save file: "
+msgstr "Non è stato possibile salvare il file: "
+
+msgid "Could not load file: "
+msgstr "Non è stato possibile caricare il file: "
+
+msgid "Could not write the file: "
+msgstr "Impossibile scrivere il file: "
+
+msgid "A severe error occurred: cannot load the preferences file."
+msgstr ""
+"Si è verificato un errore grave: impossibile caricare il file delle "
+"preferenze."
+
+msgid ""
+"An error occurred when loading the preferences file, try to reload the "
+"default one."
+msgstr ""
+"Si è verificato un errore caricando il file delle preferenze, prova a "
+"ricaricare quello predefinito."

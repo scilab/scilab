@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="res_with_prec">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>res_with_prec</refname>
     <refpurpose> computes the residual r = Ax-b with precision  </refpurpose>
@@ -49,16 +46,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function computes the residual of a linear system <literal>r = Ax - b</literal> (together
-    with its 2-norm) with the additionnal precision provided on "Intel like" 
-    FPU (80 bits in place of 64) if the compiler translate "long double" to 
-    use it. Else one must get the same than using <literal>A*x - b</literal> at the scilab level. 
-    In both cases using <literal>[r, nr] = res_with_prec(A,x,b)</literal> is 
-    faster than  <literal>r = A*x - b</literal> (and faster than <literal>r = A*x - b; nr = norm(r)</literal>).
-  </para>
+      This function computes the residual of a linear system <literal>r = Ax - b</literal> (together
+      with its 2-norm) with the additionnal precision provided on "Intel like" 
+      FPU (80 bits in place of 64) if the compiler translate "long double" to 
+      use it. Else one must get the same than using <literal>A*x - b</literal> at the scilab level. 
+      In both cases using <literal>[r, nr] = res_with_prec(A,x,b)</literal> is 
+      faster than  <literal>r = A*x - b</literal> (and faster than <literal>r = A*x - b; nr = norm(r)</literal>).
+    </para>
     <para>
-    When <literal>p &gt; 1</literal>, <literal>norm2_r(i)</literal> is the 2-norm of the vector <literal>r(:,i)</literal>.
-  </para>
+      When <literal>p &gt; 1</literal>, <literal>norm2_r(i)</literal> is the 2-norm of the vector <literal>r(:,i)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -72,15 +69,11 @@ norm(res_with_prec(A, x0, b))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rafiter">rafiter</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt; </para>
   </refsection>
 </refentry>

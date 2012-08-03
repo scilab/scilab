@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:47+0000\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -202,6 +202,12 @@ msgstr "Édition de liens %s.\n"
 msgid "Dynamic link"
 msgstr "Lien dynamique"
 
+msgid "Call a C function"
+msgstr "Appeler une fonction C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Appeler une sous-routine Fortran"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
@@ -228,7 +234,14 @@ msgstr "%s : Fonction non disponible sous Microsoft Windows.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
+"En raison de la nature multiconstructeur du monde Unix, la fonction 'have a "
+"compiler' est uniquement supportée sous Windows."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -368,6 +381,14 @@ msgstr ""
 "(%s).\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un ou des fichier(s) "
+"existant(s) attendu(s). %s fourni\n"
+
+#, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr "   %s : Fichier %s ignoré.\n"
 
@@ -426,7 +447,8 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
@@ -454,5 +476,10 @@ msgstr ""
 "%s : Cette fonction requiert le compilateur C Microsoft visual studio.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entré(s) : au moins %d attendu.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"

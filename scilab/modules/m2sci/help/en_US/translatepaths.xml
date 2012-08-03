@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="translatepaths">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>translatepaths</refname>
     <refpurpose> convert a set of Matlab M-files directories to Scilab</refpurpose>
@@ -42,28 +39,24 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>translatepaths</literal>, converts all Matlab M-file contained in a set of directories to
-    Scilab functions. Each function is converted by <literal>mfile2sci</literal>.</para>
     <para>
-    Trace of conversion information is stored in a file named <literal>"log"</literal> in
-    the <literal>res_path</literal> directory</para>
+      <literal>translatepaths</literal>, converts all Matlab M-file contained in a set of directories to
+      Scilab functions. Each function is converted by <literal>mfile2sci</literal>.
+    </para>
     <para>
-    When called without rhs, <literal>translatepaths()</literal> launches a GUI to help to select a file/directory and options.
+      Trace of conversion information is stored in a file named <literal>"log"</literal> in
+      the <literal>res_path</literal> directory
+    </para>
+    <para>
+      When called without rhs, <literal>translatepaths()</literal> launches a GUI to help to select a file/directory and options.
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfile2sci">mfile2sci</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V. Couvert</member>
-      <member>S. Steer</member>
     </simplelist>
   </refsection>
 </refentry>

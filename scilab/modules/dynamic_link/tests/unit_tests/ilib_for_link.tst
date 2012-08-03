@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if getos() == 'Windows' then
   TMP_OS_DIR = getenv('TMP','err');
@@ -41,7 +41,7 @@ chdir(TMP_DIR);
 ilib_for_link('ext1c','fun1.c',[],"c") 
 
 // load the shared library 
-exec loader.sce 
+exec loader.sce;
 
 chdir(cur_dir);
 

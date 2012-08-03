@@ -8,10 +8,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetInterp">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetInterp">
   <refnamediv>
     <refname>datatipSetInterp</refname>
     <refpurpose>Set the interpolation mode for tip location. </refpurpose>
@@ -29,19 +26,19 @@
         <term>curve_handle</term>
         <listitem>
           <para>
-            A handle on a curve or surface. 
+            A handle on a polyline. 
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <variablelist>
       <varlistentry>
-	<term>interp_mode</term>
+        <term>interp_mode</term>
         <listitem>
           <para>
             A boolean, if false the tips can only be located at the
             mesh points, if true interpolation is made between mesh
-            points. The defaul value is false.
+            points. The default value is false.
           </para>
         </listitem>
       </varlistentry>
@@ -50,7 +47,7 @@
   <refsection>
     <title>Description</title>
     <para>
-        Set the interpolation mode for tip location.
+      Set the interpolation mode for tip location.
     </para>
   </refsection>
   <refsection>
@@ -68,17 +65,14 @@
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="datatips" >datatips</link></member>
-      <member><link linkend="datatipMove" >datatipMove</link></member>
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
+      <member>
+        <link linkend="datatipMove">datatipMove</link>
+      </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

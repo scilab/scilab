@@ -51,10 +51,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\sound.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="scilab_windows_Import.def">
@@ -63,5 +60,8 @@
     <None Include="Makefile.am" />
     <None Include="sound.iss" />
     <None Include="sci_gateway\sound_gateway.xml" />
+    <None Include="locales\sound.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -17,24 +17,25 @@
 #include "dynlib_io.h"
 /*--------------------------------------------------------------------------*/
 IO_IMPEXP int gw_io(void);
+
 /*--------------------------------------------------------------------------*/
-int sci_read(char *fname,unsigned long fname_len);
-int sci_oldsave(char *fname,unsigned long fname_len);
-int sci_write(char *fname,unsigned long fname_len);
-int sci_file(char *fname,unsigned long fname_len);
-int sci_host(char *fname,unsigned long fname_len);
-int sci_unix(char *fname,unsigned long fname_len);
-int sci_readb(char *fname,unsigned long fname_len);
-int sci_writb(char *fname,unsigned long fname_len);
-int sci_getpid(char *fname,unsigned long fname_len);
-int sci_getenv(char *fname,unsigned long fname_len);
-int sci_read4b(char *fname,unsigned long fname_len);
-int sci_write4b(char *fname,unsigned long fname_len);
-int sci_save(char *fname,unsigned long fname_len);
-int sci_load(char *fname,unsigned long fname_len);
-int sci_getio(char *fname,unsigned long fname_len);
-int sci_setenv(char *fname,unsigned long fname_len);
+int sci_read(char *fname, unsigned long fname_len);
+int sci_write(char *fname, unsigned long fname_len);
+int sci_file(char *fname, unsigned long fname_len);
+int sci_host(char *fname, unsigned long fname_len);
+int sci_unix(char *fname, unsigned long fname_len);
+int sci_readb(char *fname, unsigned long fname_len);
+int sci_writb(char *fname, unsigned long fname_len);
+int sci_getpid(char *fname, unsigned long fname_len);
+int sci_getenv(char *fname, unsigned long fname_len);
+int sci_read4b(char *fname, unsigned long fname_len);
+int sci_write4b(char *fname, unsigned long fname_len);
+int sci_save(char *fname, unsigned long fname_len);
+int sci_load(char *fname, unsigned long fname_len);
+int sci_percent_load(char *fname, unsigned long fname_len);
+int sci_getio(char *fname, unsigned long fname_len);
+int sci_setenv(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */
 /*--------------------------------------------------------------------------*/
-

@@ -8,13 +8,13 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
+OUTPUT_STREAM_CXX_SOURCES = src/cpp/Diary.cpp \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getFullFilename.cpp
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_diary.cpp
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_diary.cpp
 
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/cerro.c \
@@ -61,49 +61,42 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
 			sci_gateway/fortran/intdisp.f
 
-libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/console/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/string/includes
-
 libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+$(AM_CPPFLAGS)
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la
-
-if GUI
-USEANT=1
+else
+noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
 endif
 
-libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
-libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
-libscioutput_stream_algo_la_CFLAGS = $(libscioutput_stream_la_CFLAGS)
+libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CXX_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
+INCLUDE_FLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
-libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la 
+libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la
 
 #### Target ######
 modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA =  license.txt 
+libscioutput_stream_la_root_DATA =  license.txt
 
 
 #### output_stream : init scripts ####

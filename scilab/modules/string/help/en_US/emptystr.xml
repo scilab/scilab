@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="emptystr">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>emptystr</refname>
     <refpurpose> zero length string</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>s = emptystr()
-s = emptystr(a)
-s = emptystr(m, n)</synopsis>
+      s = emptystr(a)
+      s = emptystr(m, n)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -50,15 +48,19 @@ s = emptystr(m, n)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Returns a matrix of zero length character strings</para>
+      Returns a matrix of zero length character strings
+    </para>
     <para>
-    With no input argument returns a zero length character string.</para>
+      With no input argument returns a zero length character string.
+    </para>
     <para>
-    With a matrix for input argument returns a zero length character strings 
-    matrix of the same size.</para>
+      With a matrix for input argument returns a zero length character strings 
+      matrix of the same size.
+    </para>
     <para>
-    With two integer arguments returns a m x n zero length character strings 
-    matrix</para>
+      With two integer arguments returns a m x n zero length character strings 
+      matrix
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +69,7 @@ x=emptystr();for k=1:10, x=x+','+string(k);end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="part">part</link>

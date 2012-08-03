@@ -12,7 +12,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_output_stream.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"

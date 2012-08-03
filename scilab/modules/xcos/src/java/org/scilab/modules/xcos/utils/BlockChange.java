@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,33 +22,34 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
  */
 public class BlockChange implements mxUndoableChange {
 
-	private final BasicBlock updated;
-	private BasicBlock old;
+    private final BasicBlock updated;
+    private BasicBlock old;
 
-	/**
-	 * Construct a new undoable edit with the given source
-	 * 
-	 * @param updated
-	 *            The new state
-	 * @param old
-	 *            The old state
-	 */
-	public BlockChange(BasicBlock updated, BasicBlock old) {
-		this.updated = updated;
-		this.old = old;
-	}
+    /**
+     * Construct a new undoable edit with the given source
+     * 
+     * @param updated
+     *            The new state
+     * @param old
+     *            The old state
+     */
+    public BlockChange(BasicBlock updated, BasicBlock old) {
+        this.updated = updated;
+        this.old = old;
+    }
 
-	/**
-	 * Execute the current change.
-	 * 
-	 * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
-	 */
-	public void execute() {
-		BasicBlock var;
+    /**
+     * Execute the current change.
+     * 
+     * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
+     */
+    @Override
+    public void execute() {
+        BasicBlock var;
 
-		var = (BasicBlock) BlockFactory.createClone(updated);
-		updated.updateBlockSettings(old);
-		old = var;
+        var = (BasicBlock) BlockFactory.createClone(updated);
+        updated.updateBlockSettings(old);
+        old = var;
 
-	}
+    }
 }

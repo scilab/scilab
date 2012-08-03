@@ -18,9 +18,14 @@
 /* required to fix warnings about strdup */
 
 #ifdef _MSC_VER
+    #include <string.h>
 	#ifdef strdup
 	#undef strdup
 	#endif
+    #ifdef wstrdup
+    #undef wstrdup
+    #endif
+
 	#define strdup	strdup_windows
 	#define wstrdup wstrdup_windows
 

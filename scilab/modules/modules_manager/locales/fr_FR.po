@@ -8,18 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-02 08:22+0000\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Au plus %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -114,6 +118,9 @@ msgstr ""
 msgid "Generating loader.sce...\n"
 msgstr "Génération de loader.sce...\n"
 
+msgid "Generating unloader.sce...\n"
+msgstr "unloader.sce en cours de génération...\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
@@ -124,6 +131,10 @@ msgstr ""
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
 "%s : Le fichier '%s' n'existe pas ou n'est pas accessible en lecture.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- LONG TIME EXECUTION --> 
 //
 // <-- Non-regression test for bug 6485 -->
@@ -17,6 +17,6 @@
 // We lost available memory from Scilab-5.2.0 to Scilab master nighty build.
 // version with bug never published
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 stacksize('max'); tic;a=rand(3000,3000);b=a*a';[c,d]=lu(b);inv(a);[u,s,v]=svd(a);toc;

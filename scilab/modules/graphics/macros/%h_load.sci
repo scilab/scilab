@@ -52,19 +52,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
   end
 //  mprintf('----------------------------- %s ----------------------\n',typ)
-  select typ
-  case "Figure"
-    xload_mode = %f;
-
     // Determines whether %h_load has been called by the xload macro
     // in which case xload_mode is set to true
     [lnums, fnames] = where();
     ind = grep(fnames, 'xload');
+    xload_mode = (ind ~= []);
 
-    if (ind <> []) then
-      xload_mode = %t;
-    end;
-
+  select typ
+  case "Figure"
     if xload_mode then
       h=gcf()
       visible=toggle(mget(1,characterFormat,fd)); // visible
@@ -136,6 +131,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if ( is_higher_than([4 1 2 0]) ) then
       h.event_handler = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // event_handler
       h.event_handler_enable = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // event_handler_enable
+    end
+
+    if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
+        h.resizefcn = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // resizefcn
+        h.closerequestfcn = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // closerequestfcn
     end
 
     // children
@@ -419,7 +419,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     set(a,"hiddencolor"          , mget(1,'il',fd)), // hidden_color
     set(a,"line_mode"            , toggle(mget(1,characterFormat,fd))), // line_mode
-    set(a,"line_style"           , mget(1,characterFormat,fd)) // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(a,"line_style"           , line_style) // line_style
     set(a,"thickness"            , mget(1,'sl',fd)), // thickness
     set(a,"mark_mode"            , toggle(mget(1,characterFormat,fd))), //mark_mode
     set(a,"mark_style"           , mget(1,characterFormat,fd)) // mark_style
@@ -507,6 +511,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       fill_mode      = toggle(mget(1,characterFormat,fd)) // fill_mode
     end
     line_style     = mget(1,characterFormat,fd); // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
     thickness      = mget(1,'sl',fd); // thickness
     if is_higher_than([3 1 0 1]) then
       arrow_size_factor = mget(1,'sl',fd); // arrow_size_factor
@@ -595,9 +602,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
 
     if is_higher_than([3 1 0 1]) then
-      set(h,"interp_color_mode",interp_color_mode);
-      if interp_color_mode == 'on' then
-	set(h,"interp_color_vector",interp_color_vector);
+      if interp_color_mode == 'on' & interp_color_vector~=[] then
+          set(h,"interp_color_vector",interp_color_vector);
+          set(h,"interp_color_mode","on");
+      else
+          if interp_color_vector~=[]
+              h.interp_color_vector = interp_color_vector
+          end
+          h.interp_color_mode = interp_color_mode
       end
       set(h,"bar_width",bar_width);
     end
@@ -619,9 +631,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
-	msu='tabulated' ;
+          msu='tabulated' ;
       else
-	msu='point';
+          msu='point';
       end
       mark_foreground=mget(1,'il',fd) // mark_foreground
       mark_background=mget(1,'il',fd) // mark_background
@@ -886,6 +898,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     line_mode      = toggle(mget(1,characterFormat,fd)) ; // line_mode
     line_style     = mget(1,characterFormat,fd); // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
     fill_mode      = toggle(mget(1,characterFormat,fd)) ; // fill_mode
     foreground     = mget(1,'il',fd); // foreground
 
@@ -940,6 +955,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     thickness      = mget(1,'sl',fd); // thickness
     line_style     = mget(1,characterFormat,fd);  // line_style
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
 
     if is_higher_than([3 1 0 1])
       line_mode = toggle(mget(1,characterFormat,fd)) ; // line_mode
@@ -1013,7 +1031,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     h=gce();
 
     set(h,"visible",visible);
-    set(h,"line_style",mget(1,characterFormat,fd)); // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(h,"line_style",line_style); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"colored",toggle(mget(1,characterFormat,fd))) // colored
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
@@ -1038,7 +1060,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(h,"visible",visible);
     set(h,"line_mode" ,toggle(mget(1,characterFormat,fd))) // line_mode
-    set(h,"line_style",mget(1,characterFormat,fd)); // line_style
+    line_style = mget(1,characterFormat,fd);
+    if line_style==0 then // 0 and 1 are equivalents and 0 is obsolete since Scilab 5.4.0
+        line_style=1;
+    end
+    set(h,"line_style",line_style); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
 
@@ -1187,7 +1213,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if %LEG.clip_state=='on' then
 	%LEG.clip_box      = mget(4,'dl',fd); // clip_box
       end
-      load(fd,"user_data")
+      %_load(fd,"user_data")
       %LEG.user_data       = user_data;
     else
       visible         = toggle(mget(1,characterFormat,fd)) // visible
@@ -1399,6 +1425,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       ndata = mget(1,"il",fd); // SliderStep (size)
       h.sliderstep = mget(ndata,"dl",fd); // SliderStep (data)
       h.string = load_text_matrix(fd) ; // String
+      if ( is_higher_than([5 2 0 0]) ) then // Added in 5.4.0 version
+          h.tooltipstring = load_text_matrix(fd) ; // TooltipString
+      end
       h.units = ascii(mget(mget(1,"c",fd),"c",fd)); // Units
       h.position = position_in_units; // Position written after 'Units' to avoid them to be computed again
       ndata = mget(1,"il",fd); // Value (size)
@@ -1425,9 +1454,9 @@ endfunction
 function load_user_data(fd)
   if is_higher_than([3 1 0 0]) then
     h; //make a copy of the calling context h here
-    load(fd,'user_data')
-    if user_data<>[] then
-      h.user_data=user_data;
+    %_load(fd,'user_data')
+    if ~isempty(user_data) then
+      set(h, "user_data", user_data);
     end
   end
 endfunction
@@ -1443,11 +1472,11 @@ endfunction
 
 function text=load_text_vector(fd)
   T=mget(mget(1,'il',fd),characterFormat,fd)
-  newline=[find(T==10) size(T,'*')+1]
+  newline=[find(T==10) size(T,'*')+1];
   text=[]
   p=1
   for k=1:size(newline,'*')
-    text=[text;ascii(T(p:newline(k)-1))]
+    text=[text;ascii(T(p:newline(k)-1))];
     p=newline(k)+1
   end
 endfunction

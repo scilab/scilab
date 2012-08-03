@@ -11,61 +11,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="draw" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="draw" xml:lang="en">
   <refnamediv>
     <refname>draw</refname>
-
     <refpurpose>Desenha uma entidade</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>draw()
-draw(h)</synopsis>
+      draw(h)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>a o manipulador de uma entidade a ser desenhada.
-          <literal>h</literal> pode ser um vetor de manipuladores. Neste caso,
-          todos os objetos identificados por h(i) will serão desenhados
+            <literal>h</literal> pode ser um vetor de manipuladores. Neste caso,
+            todos os objetos identificados por h(i) will serão desenhados
           </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Esta função pode ser utilizada para desenhar entidades especificadas
-    por <literal>h</literal> mesmo se a propriedade de figura raiz
-    <literal>immediate_drawing</literal> for <literal>"off"</literal>. Se
-    nenhum argumento for especificado, o objeto corrente é desenhado. Note que
-    a janela não deve ser redimensionada; se for, esses objetos serão
-    escondidos.</para>
+      por <literal>h</literal> mesmo se a propriedade de figura raiz
+      <literal>immediate_drawing</literal> for <literal>"off"</literal>. Se
+      nenhum argumento for especificado, o objeto corrente é desenhado. Note que
+      a janela não deve ser redimensionada; se for, esses objetos serão
+      escondidos.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 subplot(212)
 a=gca();
@@ -87,27 +69,28 @@ drawnow // ...agora!
 e.children(1).visible='on';
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="get">get</link></member>
-
-      <member><link linkend="set">set</link></member>
-
-      <member><link linkend="drawnow">drawnow</link></member>
-
-      <member><link linkend="drawlater">drawlater</link></member>
-
-      <member><link
-      linkend="graphics_entities">graphics_entities</link></member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="drawnow">drawnow</link>
+      </member>
+      <member>
+        <link linkend="drawlater">drawlater</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Autores</title>
-
     <para>Djalel ABDEMOUCHE, F.Leray</para>
   </refsection>
 </refentry>

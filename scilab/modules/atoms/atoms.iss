@@ -1,8 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2009 - Allan CORNET
 ; Copyright (C) DIGITEO - 2010 - Pierre MARECHAL
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -24,7 +23,8 @@ Source: modules\{#ATOMS}\license.txt; DestDir: {app}\modules\{#ATOMS}; Component
 Source: modules\{#ATOMS}\etc\{#ATOMS}.quit; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\etc\{#ATOMS}.start; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\etc\repositories; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}
-Source: modules\{#ATOMS}\images\icons\*.png; DestDir: {app}\modules\{#ATOMS}\images\icons; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#ATOMS}\images\icons\16x16\emblems\*.png; DestDir: {app}\modules\{#ATOMS}\images\icons\16x16\emblems; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#ATOMS}\images\icons\16x16\status\*.png; DestDir: {app}\modules\{#ATOMS}\images\icons\16x16\status; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#ATOMS}\macros\lib; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\macros\names; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_ATOMS}
@@ -38,4 +38,6 @@ Source: modules\{#ATOMS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ATOMS}
 ;
 Source: modules\{#ATOMS}\tests\*.*; DestDir: {app}\modules\{#ATOMS}\tests; Flags: recursesubdirs; Components: {#COMPN_ATOMS} and {#COMPN_TESTS}
 ;
+;--------------------------------------------------------------------------------------------------------------
+#include BinariesSourcePath + "\contrib\external_modules.iss"
 ;--------------------------------------------------------------------------------------------------------------

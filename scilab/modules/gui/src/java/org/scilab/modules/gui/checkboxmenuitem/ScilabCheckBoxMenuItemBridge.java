@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 
 /**
@@ -210,7 +210,7 @@ public class ScilabCheckBoxMenuItemBridge {
 	 * @param checkBoxMenuItem the menu we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(CheckBoxMenuItem checkBoxMenuItem, CallBack callback) {
+	public static void setCallback(CheckBoxMenuItem checkBoxMenuItem, CommonCallBack callback) {
 		checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().setCallback(callback);
 	}
 
@@ -280,7 +280,7 @@ public class ScilabCheckBoxMenuItemBridge {
 	 * @param checkBoxMenuItem the CheckBoxMenuItem
 	 * @return the CallBack
 	 */
-	public static CallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
+	public static CommonCallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
 		return checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().getCallback();
 	}
 

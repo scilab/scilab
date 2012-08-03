@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="detr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>detr</refname>
     <refpurpose> polynomial determinant</refpurpose>
@@ -35,11 +32,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>d=detr(h)</literal> returns the determinant <literal>d</literal> of the polynomial or
-    rational function matrix <literal>h</literal>. Based on Leverrier's algorithm.</para>
+    <para>
+      <literal>d=detr(h)</literal> returns the determinant <literal>d</literal> of the polynomial or
+      rational function matrix <literal>h</literal>. Based on Leverrier's algorithm.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

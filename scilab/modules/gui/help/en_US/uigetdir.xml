@@ -7,7 +7,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>directory = uigetdir()
-directory = uigetdir(start_path [,title])</synopsis>
+      directory = uigetdir(start_path [,title])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,7 +36,8 @@ directory = uigetdir(start_path [,title])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Creates a dialog window for selecting a directory</para>
+      Creates a dialog window for selecting a directory
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,7 +48,7 @@ uigetdir("SCI/modules/", "Choose a directory")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="uigetfile">uigetfile</link>

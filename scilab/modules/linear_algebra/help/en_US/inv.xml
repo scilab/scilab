@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>inv</refname>
     <refpurpose> matrix inverse</refpurpose>
@@ -35,21 +32,27 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>inv(X)</literal> is the inverse of the square matrix <literal>X</literal>. A warning
-    message is printed if <literal>X</literal> is badly scaled or nearly singular.</para>
     <para>
-    For polynomial matrices or rational matrices in transfer representation,
-    <literal>inv(X)</literal> is equivalent to <literal>invr(X)</literal>.</para>
+      <literal>inv(X)</literal> is the inverse of the square matrix <literal>X</literal>. A warning
+      message is printed if <literal>X</literal> is badly scaled or nearly singular.
+    </para>
     <para>
-    For linear systems in state-space representation (<literal>syslin</literal> list),
-    <literal>invr(X)</literal> is equivalent to <literal>invsyslin(X)</literal>.</para>
+      For polynomial matrices or rational matrices in transfer representation,
+      <literal>inv(X)</literal> is equivalent to <literal>invr(X)</literal>.
+    </para>
+    <para>
+      For linear systems in state-space representation (<literal>syslin</literal> list),
+      <literal>invr(X)</literal> is equivalent to <literal>invsyslin(X)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
-    <para><literal>inv</literal> function for matrices of numbers is  based on the Lapack routines
- DGETRF, DGETRI for  real matrices and  ZGETRF, ZGETRI for the complex case.
- For polynomial matrix and rational function matrix <literal>inv</literal> is based on the <literal>invr</literal>
- Scilab function.</para>
+    <para>
+      <literal>inv</literal> function for matrices of numbers is  based on the Lapack routines
+      DGETRF, DGETRI for  real matrices and  ZGETRF, ZGETRI for the complex case.
+      For polynomial matrix and rational function matrix <literal>inv</literal> is based on the <literal>invr</literal>
+      Scilab function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,7 +71,7 @@ clean(ss2tf(W))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="slash">slash</link>

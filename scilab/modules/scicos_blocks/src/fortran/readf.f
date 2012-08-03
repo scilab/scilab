@@ -14,7 +14,7 @@ c     GNU General Public License for more details.
 c     
 c     You should have received a copy of the GNU General Public License
 c     along with this program; if not, write to the Free Software
-c     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+c     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 c     
 c     See the file ./license.txt
 c     
@@ -28,7 +28,7 @@ c     write read from a binary or formatted file
       include 'stack.h'
 c     ipar(1) = lfil : file name length
 c     ipar(2) = lfmt : format length (0) if binary file
-c     ipar(3) = ievt  : 1 if each data have a an associated time
+c     ipar(3) = ievt  : 1 if each data have an associated time
 c     ipar(4) = N : buffer length
 c     ipar(5:4+lfil) = character codes for file name
 c     ipar(5+lfil:4+lfil+lfmt) = character codes for format if any

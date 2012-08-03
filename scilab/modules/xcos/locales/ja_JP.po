@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:52+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-07-22 14:41+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -30,12 +30,20 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -68,14 +76,17 @@ msgid ""
 "Expecting version %s ; Getting version %s ."
 msgstr "Batikライブラリを読み込めません."
 
+msgid "parent diagram not found."
+msgstr "親ダイアグラムが見つかりません."
+
 msgid "Preview"
 msgstr "プレビュー"
 
-msgid "Please specify a file format"
-msgstr "ファイル形式を指定してください."
-
 msgid "Error on export"
 msgstr "エクスポートエラー"
+
+msgid "Please specify a valid file format"
+msgstr "有効なフォーマットを指定してください"
 
 msgid "Incompatibility detected"
 msgstr "互換性がありません"
@@ -154,11 +165,14 @@ msgstr "グローバル"
 msgid "Equations"
 msgstr "方程式"
 
-msgid "Discrete"
+msgid "Discretes"
 msgstr "離散"
 
-msgid "Input"
+msgid "Inputs"
 msgstr "入力"
+
+msgid "Outputs"
+msgstr "出力"
 
 msgid "Solver"
 msgstr "ソルバー"
@@ -250,6 +264,9 @@ msgstr "新規パレット"
 
 msgid "Open"
 msgstr "開く"
+
+msgid "Open file in Scilab current directory"
+msgstr "Scilabカレントディレクトリのファイルを開く"
 
 msgid "Save"
 msgstr "保存"
@@ -509,11 +526,18 @@ msgstr ""
 "ファイル %s は存在しません\n"
 "作成しますか?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr "URIをデコードできません : %s ."
+
 msgid "Ok"
 msgstr "OK"
 
 msgid "Cancel"
 msgstr "キャンセル"
+
+msgid "Reset to default"
+msgstr "デフォルトに戻す"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -555,13 +579,13 @@ msgid "No block selected"
 msgstr "ブロックが選択されていません"
 
 msgid "Export to XML"
-msgstr "XMLへエクスポート"
+msgstr "XMLにエキスポート"
 
 msgid "Export in progress"
 msgstr "エキスポートが進行中です"
 
 msgid "Import from XML"
-msgstr "XMLからインポート"
+msgstr "XMLをインポート"
 
 msgid "Add to"
 msgstr "追加"
@@ -661,14 +685,8 @@ msgstr "時間の誤差"
 msgid "Max integration time interval"
 msgstr "最大積分時間間隔"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "ソルバ 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "ソルバーの種類"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "最大反復サイズ(0は制限なし)"
@@ -705,7 +723,7 @@ msgstr "シミュレーション実行中"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "コンパイル進行中, 結果は 'scicos_cpr' 変数に保存されます"
+msgstr "コンパイル中, 結果は 'scicos_cpr'に保存されます"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "SuperBlockを生成中, お待ちください"
@@ -726,14 +744,20 @@ msgstr "ブロック毎の実行トレースとデバッグブロックコール
 msgid "Debug block calls without trace"
 msgstr "トレースなしのデバッグブロックコール"
 
+msgid "All supported formats"
+msgstr "サポートされる全形式"
+
 msgid "Scicos file"
 msgstr "Scicosファイル"
 
 msgid "Xcos file"
 msgstr "Xcosファイル"
 
-msgid "Scilab file"
-msgstr "Scilabファイル"
+msgid "Xcos (zip) file"
+msgstr "Xcos (zip) ファイル"
+
+msgid "Scilab Open Data file"
+msgstr "Scilab オープンデータファイル"
 
 msgid "Masked SuperBlock editor"
 msgstr "マスクされたスーパーブロックエディタ"
@@ -796,19 +820,21 @@ msgstr "Modelicaコンパイラを設定"
 msgid "Modelica initialize"
 msgstr "Modelica初期化"
 
-#, c-format
-msgid "From %s"
-msgstr "%s から"
-
-#, c-format
-msgid "Goto %s"
-msgstr "%s へ"
-
 msgid "Error: unable to compile this SuperBlock"
 msgstr "エラー: このSuperBlockをコンパイルできません"
 
-msgid "Wrong port number"
-msgstr "ポート番号が間違っています"
+msgid "Evaluation problem: wrong port number."
+msgstr "評価時の問題: ポート番号が間違っています."
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr "'%d' を待っています."
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
+msgstr ""
+"<html><body>コンパイルエラー: 未接続のためリンクは無視されます. <br/>再接続してください.</body></html>"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -972,10 +998,6 @@ msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ハンドル型を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
@@ -1026,22 +1048,10 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: xcosファイル %s をインポートできません."
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr "%s: ブロック %s は利用できなくなりました, ダイアグラムを同等なブロックに更新してください."
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s:  %s からデータをインポートできません"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: 'XX' を %s にエキスポートできません"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1135,28 +1145,38 @@ msgstr "%s: パレットを hdf5にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A String expected."
-msgstr ""
+msgstr "%s: 引数 %dの型が間違っています: 文字列を指定してください."
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "インターフェイス関数が存在しないかまたはコールできません."
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s は有効なブロック記述子ではありません."
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
-msgstr ""
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "関数 [%s] のブロック定義が失敗しました."
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "関数 [%s] のブロック設定が失敗しました."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr "%s: 入力引数 #%d の型が間違っています: ブロックを指定してください."
+
+#, c-format
+msgid "Field %s has different values."
+msgstr "フィールド %s は異なる値を有しています."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Scilabライブラリは取り込めませんでした"
@@ -1165,8 +1185,8 @@ msgstr "Scilabライブラリは取り込めませんでした"
 msgid "Unable to simulate %s"
 msgstr "%s をシュミレートできません"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
+msgstr "pre_xcos_simulateでエラーが発生しました: シミュレーションをキャンセルします."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1180,4 +1200,4 @@ msgid "Simulation problem"
 msgstr "シミュレーション問題"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "post_xcos_simulateでエラーが発生しました: シミュレーションを終了します."

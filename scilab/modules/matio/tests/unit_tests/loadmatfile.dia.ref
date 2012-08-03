@@ -174,11 +174,10 @@ end
     //
     // TESTS FOR ND-ARRAYS
     //
-    sciemptyNDarray = hypermat([0 0 0], []);
-    if or(emptyNDarray.dims <> sciemptyNDarray.dims) | or(emptyNDarray.entries <> sciemptyNDarray.entries) then bugmes();quit;end
+    if or(emptyNDarray.dims <> [0 0 0]) | or(emptyNDarray.entries <> []) then bugmes();quit;end
     if or(realdoubleNDarray <> matrix(1:24, 2, 3, 4)) then bugmes();quit;end
     if or(complexdoubleNDarray <> matrix((1:24) + (1:24)*%i, 2, 3, 4)) then bugmes();quit;end
-    clear sciemptyNDarray emptyNDarray realdoubleNDarray complexdoubleNDarray
+    clear emptyNDarray realdoubleNDarray complexdoubleNDarray
   end
   //
   // MISC

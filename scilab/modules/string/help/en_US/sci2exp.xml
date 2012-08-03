@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2exp">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>sci2exp</refname>
     <refpurpose> converts an expression to a string</refpurpose>
@@ -78,15 +75,19 @@
       <varlistentry>
         <term>lmax</term>
         <listitem>
-          <para>integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned</para>
+          <para>
+            integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
-    given or to an expression string.</para>
+    <para>
+      <literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
+      given or to an expression string.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -99,10 +100,11 @@ sci2exp(poly([1 0 3 4],'s'),'fi')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="prettyprint">prettyprint</link></member>
+      <member>
+        <link linkend="prettyprint">prettyprint</link>
+      </member>
     </simplelist>
   </refsection>
-
 </refentry>

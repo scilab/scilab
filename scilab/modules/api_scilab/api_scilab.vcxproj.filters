@@ -138,7 +138,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Localization_Import.def">
@@ -158,8 +158,11 @@
     </None>
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
+    <None Include="locales\api_scilab.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

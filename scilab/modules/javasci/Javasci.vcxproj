@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -88,9 +88,14 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -112,9 +117,14 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -135,9 +145,14 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -161,40 +176,29 @@
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\jni\call_scilab_wrap.c" />
     <ClCompile Include="src\c\DllmainJavasci.c" />
     <ClCompile Include="src\c\javasci2_helper.c" />
-    <ClCompile Include="src\c\javasci_globals.c" />
-    <ClCompile Include="src\c\javasci_SciAbstractArray.c" />
-    <ClCompile Include="src\c\javasci_SciBooleanArray.c" />
-    <ClCompile Include="src\c\javasci_SciComplexArray.c" />
-    <ClCompile Include="src\c\javasci_SciDoubleArray.c" />
-    <ClCompile Include="src\c\javasci_SciIntegerArray.c" />
-    <ClCompile Include="src\c\javasci_Scilab.c" />
-    <ClCompile Include="src\c\javasci_Scilab2.c" />
-    <ClCompile Include="src\c\javasci_SciStringArray.c" />
+    <ClCompile Include="src\jni\putLists.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\javasci2_helper.h" />
-    <ClInclude Include="includes\javasci_globals.h" />
-    <ClInclude Include="includes\javasci_SciAbstractArray.h" />
-    <ClInclude Include="includes\javasci_SciBooleanArray.h" />
-    <ClInclude Include="includes\javasci_SciComplexArray.h" />
-    <ClInclude Include="includes\javasci_SciDoubleArray.h" />
-    <ClInclude Include="includes\javasci_SciIntegerArray.h" />
-    <ClInclude Include="includes\javasci_Scilab.h" />
-    <ClInclude Include="includes\javasci_Scilab2.h" />
-    <ClInclude Include="includes\javasci_SciStringArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="javasci.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Core_f_Import.def" />
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
   </ItemGroup>
@@ -211,9 +215,15 @@
       <Project>{6a6a6f76-ccc0-40c4-8aee-8a010f49a604}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\graphics\graphics.vcxproj">
       <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
@@ -223,9 +233,6 @@
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\LibScilab.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

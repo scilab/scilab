@@ -1,5 +1,8 @@
-
 #
-# external dependencies 
+# Innosetup files (Windows) extern files
 #
 isxdl.dll
+ScilabLogo.bmp
+ScilabLogoSmall.bmp
+scilab.ico
+puffin.ico

@@ -28,33 +28,34 @@ static void centerPrint(char *str);
 /*--------------------------------------------------------------------------*/
 void banner(void)
 {
-    sciprint("%s\n",line);
+    sciprint("%s\n", line);
 
     centerPrint(SCI_VERSION_STRING);
     sciprint("\n\n");
 
-    centerPrint(_("Consortium Scilab (DIGITEO)\n"));
-    centerPrint(_("Copyright (c) 1989-2011 (INRIA)\n"));
+    centerPrint(_("Scilab Enterprises\n"));
+    centerPrint(_("Copyright (c) 2011-2012 (Scilab Enterprises)\n"));
+    centerPrint(_("Copyright (c) 1989-2012 (INRIA)\n"));
     centerPrint(_("Copyright (c) 1989-2007 (ENPC)\n"));
 
-    sciprint("%s\n",line);
+    sciprint("%s\n", line);
 }
 /*--------------------------------------------------------------------------*/
 static void centerLine(char *str)
 {
     int i = 0, start = 0;
     wchar_t *wstr = to_wide_string(str);
-    
+
     if (wstr)
     {
         char *whites = NULL;
-        start = (int)(floor((double)(strlen(line)/2)) - floor((double)(((int)wcslen(wstr) - 1)/2)));
+        start = (int)(floor((double)(strlen(line) / 2)) - floor((double)(((int)wcslen(wstr) - 1) / 2)));
         FREE(wstr);
         whites = (char*)MALLOC(sizeof(char) * (start + 1));
         if (whites)
         {
             /* To center the string */
-            for( i = 0 ; i < start ; i++ )
+            for ( i = 0 ; i < start ; i++ )
             {
                 whites[i] = ' ';
             }

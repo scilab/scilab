@@ -21,7 +21,7 @@
 /* Define if have strerror: used in fileio/misc.c */
 #define HAVE_STRERROR 1
 
-/* Define if have termcap library: used in os_specific/zzledt.c */
+/* Define if have termcap library */
 #define HAVE_TERMCAP 1
 
 /* define if have _finite function */

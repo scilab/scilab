@@ -29,12 +29,14 @@ Source: modules\{#XCOS}\sci_gateway\{#XCOS}_gateway.xml; DestDir: {app}\modules\
 Source: modules\{#XCOS}\etc\{#XCOS}.quit; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\{#XCOS}.start; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\*.xml; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\etc\*.xsl; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\*.xsd; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\images\blocks\*.svg; DestDir: {app}\modules\{#XCOS}\images\blocks; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\images\gui\*.gif; DestDir: {app}\modules\{#XCOS}\images\gui; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\images\palettes\*.png; DestDir: {app}\modules\{#XCOS}\images\palettes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}

@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * See the file ./license.txt
  -->
@@ -78,7 +78,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_SWITCH2_m">Authors</xref>
+              <xref linkend="Example_SWITCH2_m">Example</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -98,18 +98,18 @@
   <refsection id="Description_SWITCH2_m">
     <title>Description</title>
     <para>
-The Switch block passes through the first (top) input or the third
-(bottom) input based on the value of the second (middle) input. The
-first and third inputs are called data inputs. The second input is
-called the control input. You select the conditions under which the
-first input is passed with the Criteria for passing first input
-parameter. You can make the block check whether the control input is
-greater than or equal to the threshold value, purely greater than the
-threshold value, or nonzero. If the control input meets the condition
-set in the Criteria for passing first input parameter, then the first
-input is passed. Otherwise, the third input is passed.
-
-</para>
+      The Switch block passes through the first (top) input or the third
+      (bottom) input based on the value of the second (middle) input. The
+      first and third inputs are called data inputs. The second input is
+      called the control input. You select the conditions under which the
+      first input is passed with the Criteria for passing first input
+      parameter. You can make the block check whether the control input is
+      greater than or equal to the threshold value, purely greater than the
+      threshold value, or nonzero. If the control input meets the condition
+      set in the Criteria for passing first input parameter, then the first
+      input is passed. Otherwise, the third input is passed.
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_SWITCH2_m">
     <title>Dialog box</title>
@@ -121,8 +121,8 @@ input is passed. Otherwise, the third input is passed.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -133,7 +133,15 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">pass first input if: u2<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/SWITCH2_m_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>=a </emphasis>
+          <emphasis role="bold">
+            pass first input if: u2
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="../../../../help/images/SWITCH2_m_img3_eng.gif" align="center" valign="middle"/>
+              </imageobject>
+            </inlinemediaobject>
+            =a 
+          </emphasis>
         </para>
         <para> Select the conditions under which the first input is passed. You can make the block check whether the control input is greater than or equal to the threshold value, purely greater than the threshold value, or nonzero. If the control input meets the condition set in this parameter, then the first input is passed. Otherwise, the third input is passed.</para>
         <para> Properties : Type 'vec' of size 1. </para>
@@ -158,16 +166,24 @@ input is passed. Otherwise, the third input is passed.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -192,19 +208,29 @@ input is passed. Otherwise, the third input is passed.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -231,31 +257,15 @@ input is passed. Otherwise, the third input is passed.
     </itemizedlist>
   </refsection>
   <refsection id="Example_SWITCH2_m">
-    <title>SWITCH2_m Example</title>
+    <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SWITCH2_m_Example.xcos">
         <inlinemediaobject>
           <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/signalrouting_pal/SWITCH2_m_Example.png"
-                       valign="middle" />
+            <imagedata align="center" fileref="../../../examples/signalrouting_pal/SWITCH2_m_Example.png" valign="middle"/>
           </imageobject>
         </inlinemediaobject>
       </link>
     </para>
-  </refsection>
-  <refsection id="Authors_SWITCH2_m">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
-      </listitem>
-    </itemizedlist>
   </refsection>
 </refentry>

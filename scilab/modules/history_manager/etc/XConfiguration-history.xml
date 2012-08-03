@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<command-history title="_(Command history)">
+  <body>
+    <history-settings history-file="SCIHOME/.history.scilab" history-lines="20000" enable="true"/>
+    <history-save kind="quit" after="1"/>
+  </body>
+</command-history>

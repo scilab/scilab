@@ -71,6 +71,15 @@
     <ClCompile Include="toolsdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\FieldsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getfields.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\XMLFieldsGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\completeLine.h">
@@ -112,15 +121,24 @@
     <ClInclude Include="toolsdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\getfields.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\FieldsGetter.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\FieldsManager.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\XMLFieldsGetter.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\completion.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\jni\Completion.i">
       <Filter>Swig Files</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Scilab_windows_Import.def">
@@ -129,6 +147,9 @@
     <None Include="..\..\completion.iss" />
     <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\completion.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc">

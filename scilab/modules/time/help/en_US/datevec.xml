@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="datevec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>datevec</refname>
     <refpurpose>Date components</refpurpose>
@@ -21,19 +18,20 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>V=datevec(DT)
-[Y,M,D,H,MI,S]=datevec(DT)</synopsis>
+      [Y,M,D,H,MI,S]=datevec(DT)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			V = datevec(DT) converts a serial date number (defined by datenum) to a
-			date vector V having elements [year, month, day, hour, minute, second].
-			The first five vector elements are integers. DT can be an array.
-		</para>
+      V = datevec(DT) converts a serial date number (defined by datenum) to a
+      date vector V having elements [year, month, day, hour, minute, second].
+      The first five vector elements are integers. DT can be an array.
+    </para>
     <para>
-			[Y, M, D, H, MI, S] = datevec(DT) returns the components of the date
-			vector as individual variables. DT can be an array.
-		</para>
+      [Y, M, D, H, MI, S] = datevec(DT) returns the components of the date
+      vector as individual variables. DT can be an array.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +52,7 @@ datevec(A)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="datenum">datenum</link>
@@ -62,12 +60,6 @@ datevec(A)
       <member>
         <link linkend="calendar">calendar</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

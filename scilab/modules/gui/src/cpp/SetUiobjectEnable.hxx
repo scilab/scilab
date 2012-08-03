@@ -13,18 +13,15 @@
 #ifndef __SETUIOBJECTENABLE_HXX__
 #define __SETUIOBJECTENABLE_HXX__
 
-#include "CallScilabBridge.hxx"
-
 extern "C"{
 #include "sci_types.h"
-#include "getScilabJavaVM.h"
-#include "GetProperty.h"
-#include "SetPropertyStatus.h"
+#include "SetUiobjectEnable.h"
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
+#include "SetPropertyStatus.h"
 #include "Scierror.h"
-#include "SetUiobjectEnable.h"
-#include "stricmp.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 }
 
 #endif /* !__SETUIOBJECTENABLE_HXX__ */

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,13 +20,12 @@
 #include "BasicAlgos.h"
 #include "MALLOC.h"
 #include "core_math.h"
-#include "rendererBasicAlgos.h"
 #include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin( const double x[], int n )
 {
-  double min ;
-  int i ;
+  double min = 0.;
+  int i = 0;
 
   if ( n <= 0 )
   {
@@ -49,7 +48,7 @@ double sciFindStPosMin( const double x[], int n )
 /*------------------------------------------------------------------------*/
 int checkMonotony( const double vector[], int nbElement )
 {
-  int i ;
+  int i = 0;
   if( vector[1] >= vector[0] )
   {
     /* might be increasing */
@@ -83,7 +82,7 @@ int checkMonotony( const double vector[], int nbElement )
 /*------------------------------------------------------------------------*/
 BOOL containsOneFiniteElement(const double vector[], int nbElement)
 {
-	int i;
+	int i = 0;
 	for (i = 0; i < nbElement; i++)
 	{
 		if (finite(vector[i]))
@@ -106,7 +105,7 @@ void intArrayCopy( int dest[], const int src[], int nbElement )
 /*------------------------------------------------------------------------*/
 void stringArrayCopy( char * dest[], char * src[], int nbElement )
 {
-  int i ;
+  int i = 0;
   for ( i = 0 ; i < nbElement ; i++ )
   {
     int elemSize =  (int)strlen( src[i] ) + 1 ;
@@ -126,7 +125,7 @@ void stringArrayCopy( char * dest[], char * src[], int nbElement )
 /*------------------------------------------------------------------------*/
 void setDoubleArraySingleValue( double dest[], double value, int nbElement )
 {
-  int i ;
+  int i = 0;
   for ( i = 0 ; i < nbElement ; i++ )
   {
     dest[i] = value ;
@@ -135,7 +134,7 @@ void setDoubleArraySingleValue( double dest[], double value, int nbElement )
 /*------------------------------------------------------------------------*/
 double * createNewArrayFromSource( int destSize, const double src[], int srcSize )
 {
-  int i ;
+  int i = 0;
   int endCopy = Min( destSize, srcSize ) ;
   /* create new array */
   double * dest = MALLOC( destSize * sizeof(double) ) ;
@@ -162,11 +161,6 @@ void destroyStringArray( char * src[], int nbStrings )
 	freeArrayOfString(src, nbStrings);
 }
 /*--------------------------------------------------------------------------*/
-void destroyCppString(char * string)
-{
-  destroyRendererString(string);
-}
-/*--------------------------------------------------------------------------*/
 double * createDoubleArrayCopy( const double src[], int nbElement )
 {
   double * res = MALLOC( nbElement * sizeof(double) ) ;
@@ -184,12 +178,12 @@ double * createDoubleArrayCopy( const double src[], int nbElement )
 int * createIntArrayCopy( const int src[], int nbElement )
 {
   int * res = MALLOC( nbElement * sizeof(int) ) ;
-  
+
   if ( res == NULL )
   {
     return NULL ;
   }
-  
+
   memcpy( res, src, nbElement * sizeof(int) ) ;
 
   return res ;
@@ -212,7 +206,7 @@ char ** createStringArrayCopy( char * src[], int nbElement )
 /*--------------------------------------------------------------------------*/
 char ** createStringArray(int nbElement)
 {
-  int i ;
+  int i = 0;
   char ** res = MALLOC( nbElement * sizeof(char *) ) ;
 
   if ( res == NULL )

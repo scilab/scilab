@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="titlepage">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>titlepage</refname>
     <refpurpose> グラフィックウインドウの中央にタイトルを追加する</refpurpose>
@@ -35,9 +32,11 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>titlepage</literal> はカレントのグラフィックウインドウ
-	の中央にできるだけ大きなフォントで
-	文字列の行列<literal>str</literal>を表示します.</para>
+    <para>
+      <literal>titlepage</literal> はカレントのグラフィックウインドウ
+      の中央にできるだけ大きなフォントで
+      文字列の行列<literal>str</literal>を表示します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -46,9 +45,5 @@
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. S.  </para>
   </refsection>
 </refentry>

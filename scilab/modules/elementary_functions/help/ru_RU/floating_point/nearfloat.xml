@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nearfloat" xml:lang="ru">
+  <refnamediv>
+    <refname>nearfloat</refname>
+    <refpurpose>
+      получить предыдущее или следующее число с плавающей запятой
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>xnear = nearfloat(dir, x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>строковое значение "succ" или "pred"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>скаляр, вектор или матрица вещественных значений</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xnear</term>
+        <listitem>
+          <para>скаляр, вектор или матрица вещественных значений</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Эта функция вычисляет, в поэлементном смысле, соответствующих соседей
+      элементов <literal>x</literal> (см. number_properties в нижеследующем
+      наборе с плавающей точкой), последующие элементы, если <literal>dir =
+        "succ"
+      </literal>
+      ,и предыдущие элементы, если <literal>dir =
+        "pred"
+      </literal>
+      .
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+format("e",22)
+nearfloat("succ",1) - 1
+1 - nearfloat("pred",1)
+format("v") //reset default format
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="number_properties">number_properties</link>
+      </member>
+      <member>
+        <link linkend="frexp">frexp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

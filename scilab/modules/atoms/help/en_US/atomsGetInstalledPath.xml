@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Simon GARESTE <simon.gareste@scilab-enterprises.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="atomsGetInstalledPath" xml:lang="en">
+  <refnamediv>
+    <refname>atomsGetInstalledPath</refname>
+    <refpurpose>Get the install path of installed external modules</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      paths = atomsGetInstalledPath(modules)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>modules</term>
+        <listitem>
+          <para>mx2, mx3 Matrix of strings:</para>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <emphasis>3nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Section</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                the "all" section is used.
+              </td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>paths</term>
+        <para>the paths of the given modules</para>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>atomsGetInstalledPath</literal> returns the installation path of given external modules
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+atomsSetConfig("Verbose","True");
+atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+atomsInstall(["toolbox_5","1.0"]);
+atomsGetInstalledPath(["toolbox_5","1.0"]);
+atomsRemove("toolbox_5");
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsInstall">atomsInstall</link>
+      </member>
+      <member>
+        <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

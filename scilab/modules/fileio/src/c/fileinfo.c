@@ -10,6 +10,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>

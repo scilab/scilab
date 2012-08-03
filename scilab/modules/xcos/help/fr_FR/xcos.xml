@@ -38,13 +38,15 @@
     <title>Paramètres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">filename :</emphasis> une chaîne de caractères contenant
+        <para>
+          <emphasis role="bold">filename :</emphasis> une chaîne de caractères contenant
           le chemin du fichier de schéma (extension .cos, .cosf or .xcos). Si aucun argument
           n'est fourni, un schéma vide est ouvert (nom par défaut <emphasis>Sans titre</emphasis>).
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">scs_m_list :</emphasis> une structure de schéma <emphasis>Xcos</emphasis>
+        <para>
+          <emphasis role="bold">scs_m_list :</emphasis> une structure de schéma <emphasis>Xcos</emphasis>
           après édition.
         </para>
       </listitem>
@@ -52,7 +54,8 @@
   </refsection>
   <refsection id="Description_xcos">
     <title>Description</title>
-    <para><emphasis>Xcos</emphasis> est un éditeur visuel de construction de modèles de systèmes dynamiques hybrides.
+    <para>
+      <emphasis>Xcos</emphasis> est un éditeur visuel de construction de modèles de systèmes dynamiques hybrides.
       Les modèles peuvent être assemblés, chargés, sauvés, compilés, simulés, en utilisant l'interface graphique de
       <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> sert d'interface à divers compilateurs de schémas-blocs 
       et au simulateur hybride scicosim.
@@ -96,7 +99,11 @@
     <para/>
     <para>
       L'invocation de <emphasis>Xcos</emphasis> avec l'icône de la barre d'outils
-      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/images/icons/16x16/apps/utilities-system-monitor.png"/>
+        </imageobject>
+      </inlinemediaobject>
       , avec l'item <emphasis>Xcos</emphasis> du menu <emphasis>Applications</emphasis> de la fenêtre principale de 
       Scilab, ou comme dans l'exemple suivant, ouvre la fenêtre <emphasis>Xcos</emphasis> d'édition montrée ci-dessous.
     </para>
@@ -133,7 +140,7 @@ scs_m.objs(1).graphics.sz = [30 50];
 
 xcos(scs_m);]]></programlisting>
     <para>
-       où <emphasis>scs_m</emphasis> est la structure de schéma de <emphasis> bounce.xcos</emphasis>.
+      où <emphasis>scs_m</emphasis> est la structure de schéma de <emphasis> bounce.xcos</emphasis>.
     </para>
     <para>
       Vous construisez vos modèles en liant les blocs fournis dans le navigateur de palettes ouvert simultanément avec
@@ -157,10 +164,8 @@ xcos(scs_m);]]></programlisting>
         <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
       </imageobject>
     </mediaobject>
-
     <para>Xcos nécessite un compilateur C pour une accélération des simulations.</para>
     <para>Il est recommandé d'installer un compilateur C sur votre machine.</para>
-
   </refsection>
   <refsection role="see also" id="SeeAlso_xcos">
     <title>Voir Aussi</title>
@@ -177,14 +182,6 @@ xcos(scs_m);]]></programlisting>
       <listitem>
         <link linkend="supported_compilers">Compilateurs supportés</link>
       </listitem>
-      
     </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>DIGITEO</member>
-      <member>Bernard DUJARDIN - Contributeur</member>
-    </simplelist>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strtok">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>strtok</refname>
     <refpurpose>Split string into tokens</refpurpose>
@@ -47,7 +44,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = strtok(str,delimiters)</literal>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.</para>
+    <para>
+      <literal>res = strtok(str,delimiters)</literal>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +62,7 @@ disp(TOKENS);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strrchr">strrchr</link>

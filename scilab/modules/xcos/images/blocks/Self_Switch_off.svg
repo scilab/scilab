@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg11300" inkscape:version="0.46" inkscape:export-ydpi="90.000000" inkscape:export-xdpi="90.000000" sodipodi:docbase="/home/jimmac/src/cvs/tango-icon-theme/scalable/actions" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:version="0.32" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" sodipodi:docname="system-shutdown.svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:export-filename="/home/jimmac/Desktop/wi-fi.png" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="79.583px"
+	 viewBox="-10.667 -16.583 80 79.583" enable-background="new -10.667 -16.583 80 79.583" xml:space="preserve">
+<defs>
+	
+	
+		<inkscape:perspective  sodipodi:type="inkscape:persp3d" inkscape:persp3d-origin="24 : 16 : 1" inkscape:vp_z="48 : 24 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_x="0 : 24 : 1" id="perspective62">
+		</inkscape:perspective>
+</defs>
+<sodipodi:namedview  stroke="#ef2929" fill="#fce94f" pagecolor="#ffffff" bordercolor="#666666" borderopacity="0.25490196" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1" inkscape:cx="-112.52652" inkscape:cy="17.878701" inkscape:current-layer="layer1" showgrid="false" inkscape:grid-bbox="true" inkscape:document-units="px" inkscape:showpageshadow="false" inkscape:window-width="872" inkscape:window-height="754" inkscape:window-x="268" inkscape:window-y="94" id="base">
+	</sodipodi:namedview>
+<g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer">
+	
+		<radialGradient id="rect11518_1_" cx="81.7412" cy="193.0215" r="39.4779" gradientTransform="matrix(1.9951 0 0 -1.8554 -133.6792 406.2393)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#FBFBFB"/>
+		<stop  offset="1" style="stop-color:#DCDCDC"/>
+	</radialGradient>
+	
+		<path id="rect11518" fill="url(#rect11518_1_)" stroke="#9B9B9B" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M1.372-14.864h56.053c5.795,0,10.489,4.696,10.489,10.489v55.77c0,5.793-4.694,10.49-10.489,10.49H1.372
+		c-5.792,0-10.488-4.697-10.488-10.49v-55.77C-9.116-10.168-4.42-14.864,1.372-14.864z"/>
+	<path id="rect11528" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M1.316-12.877h56.167c4.504,0,8.158,3.653,8.158,8.158v56.331c0,4.506-3.654,8.156-8.158,8.156H1.316
+		c-4.506,0-8.158-3.65-8.158-8.156V-4.72C-6.842-9.225-3.19-12.877,1.316-12.877z"/>
+	
+		<linearGradient id="rect11592_1_" gradientUnits="userSpaceOnUse" x1="225.0801" y1="55.1973" x2="225.0801" y2="-19.6924" gradientTransform="matrix(0.9843 0 0 -0.9579 -192.1539 34.693)">
+		<stop  offset="0" style="stop-color:#FBFBFB"/>
+		<stop  offset="1" style="stop-color:#DCDCDC"/>
+	</linearGradient>
+	<linearGradient id="rect11592_2_" gradientUnits="userSpaceOnUse" x1="-62.2075" y1="440.248" x2="-50.5009" y2="410.248">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#D1D1D1"/>
+	</linearGradient>
+	
+		<path id="rect11592" fill="url(#rect11592_1_)" stroke="url(#rect11592_2_)" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M10.496-7.356h37.807c2.441,0,4.418,1.978,4.418,4.419v54.048c0,2.441-1.977,4.42-4.418,4.42H10.496
+		c-2.44,0-4.418-1.979-4.418-4.42V-2.937C6.078-5.378,8.056-7.356,10.496-7.356z"/>
+	
+		<radialGradient id="rect7580_1_" cx="57.7598" cy="201.8398" r="11.5878" gradientTransform="matrix(2.4079 0 0 -1.8611 -109.6827 418.4173)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#525252"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</radialGradient>
+	<linearGradient id="rect7580_2_" gradientUnits="userSpaceOnUse" x1="-50.7026" y1="415.7471" x2="-57.8541" y2="428.1275">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#D1D1D1"/>
+	</linearGradient>
+	
+		<path id="rect7580" fill="url(#rect7580_1_)" stroke="url(#rect7580_2_)" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M21.151,4.841h17.175c1.69,0,3.06,1.37,3.06,3.06v34.073c0,1.689-1.369,3.059-3.06,3.059H21.151c-1.689,0-3.059-1.369-3.059-3.059
+		V7.901C18.092,6.211,19.462,4.841,21.151,4.841z"/>
+	<path id="rect7626" fill="#8A8A8A" stroke="#595959" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M20.979,13.725V9.506c0-1.127,0.913-2.039,2.04-2.039h13.171c1.127,0,2.039,0.912,2.039,2.039v4.219
+		c0,1.125-0.912,2.041-2.039,2.041H23.019C21.892,15.766,20.979,14.85,20.979,13.725z"/>
+	
+		<linearGradient id="rect7594_1_" gradientUnits="userSpaceOnUse" x1="205.0234" y1="-85.3086" x2="205.0234" y2="-40.8807" gradientTransform="matrix(1.0592 0 0 0.8081 -187.5606 80.1279)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.4602" style="stop-color:#E3E3E3"/>
+		<stop  offset="0.6197" style="stop-color:#DADADA;stop-opacity:0.6706"/>
+		<stop  offset="1" style="stop-color:#D1D1D1;stop-opacity:0.3429"/>
+	</linearGradient>
+	<radialGradient id="rect7594_2_" cx="-57.8164" cy="419.5859" r="4.4775" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.2159" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.5" style="stop-color:#838383"/>
+		<stop  offset="1" style="stop-color:#838383;stop-opacity:0"/>
+	</radialGradient>
+	
+		<path id="rect7594" fill="url(#rect7594_1_)" stroke="url(#rect7594_2_)" stroke-width="1" stroke-linejoin="bevel" stroke-miterlimit="10" d="
+		M21.037,40.96V13.955c0-0.939,0.76-1.699,1.699-1.699h13.738c0.938,0,1.699,0.76,1.699,1.699V40.96
+		c0,0.938-0.761,1.699-1.699,1.699H22.736C21.797,42.659,21.037,41.898,21.037,40.96z"/>
+</g>
+<text transform="matrix(1 0 0 1 40.252 54.958)" font-family="'MyriadPro-Regular'" font-size="21.1506">off</text>
+</svg>

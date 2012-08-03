@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -42,16 +42,20 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     out_implicit=I(ones(pout(:)));
   end
   if exists('in_style','local')==0 then
-    S="";
-    in_style="" + S(ones(pin(:)));
+    in_style=emptystr(pin);
   end
   if exists('out_style','local')==0 then
-    S="";
-    out_style="" + S(ones(pout(:)));
+    out_style=emptystr(pout);
+  end
+  if exists('in_label','local')==0 then
+    in_label=emptystr(pin);
+  end
+  if exists('out_label','local')==0 then
+    out_label=emptystr(pout);
   end
   if exists('style','local')==0 then style="" + [],end
 
   graphics=mlist(['graphics','orig','sz','flip','theta','exprs','pin',..
-		  'pout','pein','peout','gr_i','id','in_implicit','out_implicit','in_style','out_style','style'],..
-		 orig,sz,flip,theta,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style,style)
+		  'pout','pein','peout','gr_i','id','in_implicit','out_implicit','in_style','out_style','in_label','out_label','style'],..
+		 orig,sz,flip,theta,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style,in_label,out_label,style)
 endfunction

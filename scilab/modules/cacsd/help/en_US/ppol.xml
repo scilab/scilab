@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ppol">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ppol</refname>
     <refpurpose> pole placement</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>A,B</term>
         <listitem>
-          <para>real matrices of dimensions <literal>nxn</literal> and <literal>nxm</literal>.</para>
+          <para>
+            real matrices of dimensions <literal>nxn</literal> and <literal>nxm</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>poles</term>
         <listitem>
-          <para>real or complex vector of dimension <literal>n</literal>.</para>
+          <para>
+            real or complex vector of dimension <literal>n</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,16 +48,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>K=ppol(A,B,poles)</literal> returns a mxn gain matrix <literal>K</literal> such that
-    the eigenvalues of <literal>A-B*K</literal> are <literal>poles</literal>.
-    The pair <literal>(A,B)</literal> must be controllable. Complex number in <literal>poles</literal> must appear in conjugate pairs.</para>
     <para>
-    An output-injection gain <literal>F</literal> for <literal>(A,C)</literal> is obtained as follows:</para>
+      <literal>K=ppol(A,B,poles)</literal> returns a mxn gain matrix <literal>K</literal> such that
+      the eigenvalues of <literal>A-B*K</literal> are <literal>poles</literal>.
+      The pair <literal>(A,B)</literal> must be controllable. Complex number in <literal>poles</literal> must appear in conjugate pairs.
+    </para>
+    <para>
+      An output-injection gain <literal>F</literal> for <literal>(A,C)</literal> is obtained as follows:
+    </para>
     <para>
       <literal>Ft=ppol(A',C',poles);  F=Ft'</literal>
     </para>
     <para>
-    The algorithm is by P.H. Petkov.</para>
+      The algorithm is by P.H. Petkov.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +72,7 @@ spec(A-B*F)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="canon">canon</link>

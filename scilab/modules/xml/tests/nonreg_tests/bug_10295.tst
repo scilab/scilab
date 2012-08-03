@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 10295 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=10295
+//
+// <-- Short Description -->
+//  Due to a bug in libxml2, an internal error could lead to a segfault in vsprintf_chk
+//
+
+doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
+assert_checkequal(execstr("xmlWrite(doc, TMPDIR+''/A/B.xml'', %f)","errcatch"), 999);
+xmlDelete(doc);

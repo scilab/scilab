@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: macros/%0_i_st.sci, line: 19
 msgid "Invalid index.\n"
@@ -124,6 +124,33 @@ msgstr ""
 # File: macros/%spb_sum.sci, line: 47
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#
+# File: macros/%hm_size.sci, line: 27
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: macros/%hm_size.sci, line: 32
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/%hm_size.sci, line: 40
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer or character "
+"string expected.\n"
+msgstr ""
+
+#
+# File: macros/%ip_string.sci, line: 19
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #

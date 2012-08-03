@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -24,39 +25,52 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Back to normal size for diagram (100%)
  */
 public final class NormalViewAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.NORMAL_100;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "zoom-original";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.NORMAL_100;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "zoom-original";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Scilab Graph
-	 */
-	public NormalViewAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     */
+    public NormalViewAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create the menu for Scilab Graph menu bar
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, NormalViewAction.class);
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		((XcosDiagram) getGraph(null)).getAsComponent().zoomActual();
-	}
+    /**
+     * Create the menu for Scilab Graph menu bar
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, NormalViewAction.class);
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        comp.zoomActual();
+    }
 
 }

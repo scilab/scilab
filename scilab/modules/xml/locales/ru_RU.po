@@ -1,0 +1,343 @@
+# Russian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-13 14:21+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Недостаточно памяти.\n"
+
+#, c-format
+msgid "%s: XML object does not exist.\n"
+msgstr "%s: XML-объект не существует.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s.\n"
+
+#, c-format
+msgid "%s: XML attribute does not exist.\n"
+msgstr "%s: Атрибут XML не существует.\n"
+
+#, c-format
+msgid "%s: XMLList does not exist.\n"
+msgstr "%s: XMLList не существует.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидалась строка или число типа "
+"double.\n"
+
+#, c-format
+msgid "%s: Unknown field: %s\n"
+msgstr "%s: Неизвестное поле: %s\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидалось одно число типа "
+"double.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался double (число двойной "
+"точности).\n"
+
+#, c-format
+msgid "%s: Wrong index in the XMLList.\n"
+msgstr "%s: Неверный индекс в XMLList.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался XMLList или XMLSet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась строка или одиночное "
+"целое число (integer)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a single integer "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась строка или одиночное "
+"целое число (integer).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался тип double.\n"
+
+#, c-format
+msgid "%s: xmlFormat must return a string.\n"
+msgstr "%s: xmlFormat должен возвращать строку.\n"
+
+#, c-format
+msgid "%s: You must define %%s_xmlFormat function.\n"
+msgstr "%s: Вы должны определить функцию %%s_xmlFormat.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: XML Element does not exist.\n"
+msgstr "%s: Элемент XML не существует.\n"
+
+#, c-format
+msgid "%s: XML Namespace does not exist.\n"
+msgstr "%s: Пространство имён XML не существует.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%i: ожидался XMLSet или XMLList.\n"
+
+#, c-format
+msgid "%s: XMLSet or XMLList does not exist.\n"
+msgstr "%s: XMLSet или XMLList не существует.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: XML document does not exist.\n"
+msgstr "%s: XML-документ не существует.\n"
+
+#, c-format
+msgid "%s: XML validation file does not exist.\n"
+msgstr "%s: Файл верификации XML не существует.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A %s expected\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s\n"
+
+#, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr "%s: Документ XML не существует.\n"
+
+#, c-format
+msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
+msgstr "%s: Плохой входной аргумент №%d: Ожидалось корректное имя XML.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr "%s: Не могу прочитать именованный аргумент %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid ""
+"%s: Cannot read the file:\n"
+"%s"
+msgstr ""
+"%s: Не могу прочитать файл:\n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Cannot parse the string:\n"
+"%s"
+msgstr ""
+"%s: Не могу произвести синтаксический разбор строки:\n"
+"%s"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался XMLElem или XMLList или "
+"XMLSet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
+"or a XMLSet expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался XMLAttr или XMLElem или "
+"XMLList или XMLSet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидалась матрица строк размером "
+"nx2 или nx3.\n"
+
+#, c-format
+msgid "%s: XML document does not exist\n"
+msgstr "%s: Документ XML не существует\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строк или "
+"XMLDoc.\n"
+
+#, c-format
+msgid ""
+"The file %s is not valid:\n"
+"%s\n"
+msgstr ""
+"Файл %s не корректен:\n"
+"%s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строка или логическое "
+"значение.\n"
+
+#, c-format
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
+msgstr "%s: Документ XML не имеет URI и нет второго аргумента.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Cannot write the file: %s\n"
+msgstr "%s: Не могу записать файл: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался XMLDoc или XMLElem.\n"
+
+#, c-format
+msgid "%s: XML element does not exist.\n"
+msgstr "%s: Элемент XML не существует.\n"
+
+#, c-format
+msgid "%s: Bad number of columns for argument #%d: two expected.\n"
+msgstr "%s: Плохое число столбцов во входном аргументе №%d: ожидалось два.\n"
+
+#, c-format
+msgid ""
+"%s: Bad XPath query:\n"
+"%s"
+msgstr ""
+"%s: Плохой запрос XPath:\n"
+"%s"
+
+#, c-format
+msgid "%s: XPath query returned a not handled type: %i\n"
+msgstr "%s: Запрос XPath вернул необрабатываемый тип: %i\n"
+
+msgid "Invalid file name: "
+msgstr "Некорректное имя файла: "
+
+msgid "Cannot create a parser context"
+msgstr "Не могу создать контекст синтаксического разбора"
+
+msgid " at line "
+msgstr " на строке "
+
+msgid "Cannot create a buffer"
+msgstr "Невозможно создать буфер"
+
+msgid "Cannot create a reader"
+msgstr "Невозможно создать читатель"
+
+msgid "Invalid file"
+msgstr "Недопустимый файл"
+
+msgid "Cannot parse the DTD"
+msgstr "Не могу сделать синтаксический разбор  DTD"
+
+msgid "Cannot create a valid context"
+msgstr "Не могу создать корректный контекст"
+
+msgid ""
+"Due to a libxml2 limitation, it is not possible to validate a document "
+"against an external DTD\n"
+"Please see help xmlValidate.\n"
+msgstr ""
+"Из-за ограничения libxml2, невозможно подтвердить правильность документа на "
+"основании внешнего DTD. Пожалуйста, прочтите справку xmlValidate.\n"
+
+msgid "Cannot create a validation context"
+msgstr "Не могу создать контекст подтверждения правильности"
+
+msgid "Cannot parse the Relax NG grammar"
+msgstr "Не могу сделать синтаксический разбор грамматики Relax NG"
+
+msgid "Cannot parse the schema"
+msgstr "Не могу сделать синтаксический разбор схемы"
+
+msgid "Cannot read the stream"
+msgstr "Не могу сделать синтаксический разбор потока"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "CML read"
+msgstr "Чтение CML"

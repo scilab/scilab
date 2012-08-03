@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tree2code">
-  <info>
-    <pubdate>$LastChangedDate: 2007-03-07 13:01:23 +0100 (Wed, 07 Mar 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>tree2code</refname>
     <refpurpose>Scilab関数のアスキー定義を生成する</refpurpose>
@@ -62,8 +59,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
-	によりコードを再生することができます.</para>
+      読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
+      によりコードを再生することができます.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -79,12 +77,6 @@ write(%io(2),txt,'(a)');
       <member>
         <link linkend="macr2tree">macr2tree</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

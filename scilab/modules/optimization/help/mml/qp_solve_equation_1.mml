@@ -130,7 +130,7 @@
    </math:mtable>
   </math:mrow>
   <math:annotation math:encoding="StarMath 5.0">alignl stack {
-min 1 over 2 cdot x^t cdot Q cdot x + p^t cdot x #
+min 1 over 2 cdot x^t cdot Q cdot x - p^t cdot x #
 &quot;with&quot; x^t cdot C(:,j) = b(j), j=1,dotsaxis,me #
 &quot;       &quot; x^t cdot C(:,j) &gt;= b(j), j=me+1,dotsaxis,me+md 
 }</math:annotation>

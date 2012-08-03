@@ -33,9 +33,6 @@
     <ClCompile Include="cbal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ccopy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cerr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -393,9 +390,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zeros.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sdot.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="simple.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -534,9 +528,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cbal.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ccopy.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cerr.f">
@@ -896,9 +887,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zeros.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="sdot.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="simple.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -1033,7 +1021,7 @@
     <None Include="Integer_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Output_stream_Import.def">
@@ -1044,10 +1032,26 @@
     </None>
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="cacsd_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="eispack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="slatec_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

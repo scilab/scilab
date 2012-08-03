@@ -84,4 +84,6 @@
 <PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="gsort" />
 <PRIMITIVE gatewayId="6" primitiveId="51" primitiveName="isequalbitwise" />
 <PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="rat" />
+<PRIMITIVE gatewayId="6" primitiveId="53" primitiveName="base2dec" />
+<PRIMITIVE gatewayId="6" primitiveId="54" primitiveName="dec2base" />
 </GATEWAY>

@@ -87,13 +87,13 @@ pal = xcosPal(scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  
@@ -107,13 +107,13 @@ pal = xcosPal(scs_m)
  
        pal(6)
  
-!noLabel=1;image=TMPDIR/LOOKUP_c.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/LOOKUP2D.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRPLBLK_f.svg;  !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRP2BLK_f.svg;  !
+!noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/LOOKUP2D.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRP2BLK_f.svg;  !
 pal = xcosPal([], scs_m)
  pal  =
  
@@ -138,13 +138,13 @@ pal = xcosPal([], scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  
@@ -158,13 +158,13 @@ pal = xcosPal([], scs_m)
  
        pal(6)
  
-!noLabel=1;image=TMPDIR/LOOKUP_c.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/LOOKUP2D.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRPLBLK_f.svg;  !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRP2BLK_f.svg;  !
+!noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/LOOKUP2D.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRP2BLK_f.svg;  !
 pal = xcosPal(name, scs_m)
  pal  =
  
@@ -189,13 +189,13 @@ pal = xcosPal(name, scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.h5     !
+!TMPDIR/LOOKUP_c.sod     !
 !                                          !
-!TMPDIR/LOOKUP2D.h5     !
+!TMPDIR/LOOKUP2D.sod     !
 !                                          !
-!TMPDIR/INTRPLBLK_f.h5  !
+!TMPDIR/INTRPLBLK_f.sod  !
 !                                          !
-!TMPDIR/INTRP2BLK_f.h5  !
+!TMPDIR/INTRP2BLK_f.sod  !
  
        pal(5)
  
@@ -209,10 +209,10 @@ pal = xcosPal(name, scs_m)
  
        pal(6)
  
-!noLabel=1;image=TMPDIR/LOOKUP_c.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/LOOKUP2D.svg;     !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRPLBLK_f.svg;  !
-!                                                            !
-!noLabel=1;image=TMPDIR/INTRP2BLK_f.svg;  !
+!noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/LOOKUP2D.svg;     !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                   !
+!noLabel=1;image=file://TMPDIR/INTRP2BLK_f.svg;  !

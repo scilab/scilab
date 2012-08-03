@@ -89,11 +89,19 @@ src/c/dynamic_tclsci.c \
 src/c/dynamic_parallel.c \
 src/c/storeCommand.c \
 src/c/backtrace.c \
-src/c/signal_mgmt.c
+src/c/signal_mgmt.c \
+src/c/suspendProcess.c \
+src/c/windowsChangeManagement.c \
+src/c/setieee.c \
+src/c/setlines.c \
+src/c/setformat.c \
+src/c/InitializePreferences.c
 
-CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
+CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp
+src/cpp/search_functions.cpp \
+src/cpp/demangle.cpp \
+src/cpp/backtrace_print.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -109,14 +117,11 @@ src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
 src/fortran/iseye.f \
-src/fortran/chkvar.f \
 src/fortran/setippty.f \
 src/fortran/compil.f \
 src/fortran/funnam.f \
 src/fortran/isnum.f \
 src/fortran/cmdstr.f \
-src/fortran/logops.f \
-src/fortran/atome.f \
 src/fortran/hndlops.f \
 src/fortran/cmplxt.f \
 src/fortran/skpins.f \
@@ -129,7 +134,6 @@ src/fortran/prompt.f \
 src/fortran/intstr.f \
 src/fortran/createref.f \
 src/fortran/btof.f \
-src/fortran/matzs.f \
 src/fortran/getnum.f \
 src/fortran/btofm.f \
 src/fortran/getsym.f \
@@ -145,7 +149,6 @@ src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
-src/fortran/majmin.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
@@ -162,7 +165,6 @@ src/fortran/defmat.f \
 src/fortran/mklist.f \
 src/fortran/sigbas.f \
 src/fortran/indxg.f \
-src/fortran/matz.f \
 src/fortran/istrue.f \
 src/fortran/inisci.f \
 src/fortran/ptover.f \
@@ -176,7 +178,6 @@ src/fortran/cvwm.f \
 src/fortran/storeglobal.f \
 src/fortran/lst2vars.f \
 src/fortran/basnms.f \
-src/fortran/matc.f \
 src/fortran/ptrback.f \
 src/fortran/getch.f \
 src/fortran/ftob.f \
@@ -271,54 +272,57 @@ sci_gateway/fortran/sci_f_clearglobal.f \
 sci_gateway/fortran/sci_f_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_f_iserror.f \
-sci_gateway/fortran/sci_f_debug.f \
 sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
-
-libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(top_srcdir)/modules/intersci/includes \
-	-I$(top_srcdir)/modules/call_scilab/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/action_binding/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/io/includes \
-	-I$(top_srcdir)/modules/tclsci/includes \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/modules/elementary_functions/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/console/includes \
-	$(XML_FLAGS)
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/libs/MALLOC/includes/
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(top_srcdir)/modules/intersci/includes/ \
+	-I$(top_srcdir)/modules/call_scilab/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/io/includes/ \
+	-I$(top_srcdir)/modules/tclsci/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/preferences/includes/ \
+	-I$(top_srcdir)/modules/external_objects/includes/ \
+	$(XML_FLAGS) \
+    $(AM_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
-libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
+libscicore_la_CPPFLAGS += $(TCL_INC_PATH) \
 		                  $(TK_INC_PATH)
 endif
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicore.la
 noinst_LTLIBRARIES = libscicore-algo.la
+else
+noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
+endif
 
-libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+
+libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+#-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicore_la_CPPFLAGS)
 
-libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)  $(JNI_SOURCES)
+libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CXX_SOURCES) $(CORE_FORTRAN_SOURCES)
 libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscicore_algo_la_CFLAGS = $(libscicore_la_CFLAGS)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
@@ -375,7 +379,8 @@ includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
-includes/Thread_Wrapper.h
+includes/Thread_Wrapper.h \
+includes/backtrace_print.h
 
 if GUI
 USEANT=1

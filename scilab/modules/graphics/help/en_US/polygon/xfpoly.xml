@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,17 +11,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpoly">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpoly">
   <refnamediv>
     <refname>xfpoly</refname>
     <refpurpose>fill a polygon</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xfpoly(xv,yv,[close])</synopsis>
+    <synopsis>xfpoly(xv,yv,[fill])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,39 +30,77 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>close</term>
+        <term>fill</term>
         <listitem>
-          <para>integer. If close=1, the polyline is closed; default value is
-          0.</para>
+          <para>integer, the color used to fill the polygon.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xfpoly</literal> fills a polygon with the current color. If
-    <literal>close</literal> is equal to 1 a point is added to the polyline
-    <literal>xv,yv</literal> to define a polygon.</para>
+    <para>
+      <literal>xfpoly</literal> fills a polygon with the current color or a color specified by the
+      optional <literal>fill</literal> argument.
+    </para>
+    <para>
+      If <literal>fill</literal> is omitted, the polygon is filled with the current color and its contour is
+      drawn with the current color and line style.
+      If <literal>fill</literal> is present, it is used to fill the polygon as follows:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <literal>if fill&lt;0</literal>, the polygon is filled with the color <literal>-fill</literal>, and
+          its contour is not drawn.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>if fill=0</literal>, the polygon is filled with the current color and its contour is drawn
+          with the current color and line style (equivalent to <literal>fill</literal> omitted).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>if fill&gt;0</literal>, the polygon is filled with the color <literal>fill</literal>
+          and its contour is drawn with the current color and line style.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=sin(2*%pi*(0:4)/5);
+      y=cos(2*%pi*(0:4)/5);
+      plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
+      xset("color",5);
+      xfpoly(x,y);
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
-plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
-xfpoly(x,y)
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
+xset("color",5);
+xfpoly(x,y);
 
-// News graphics only
 e=gce(); // get the current entity (the last created: here the polyline)
-e.fill_mode='off';
-e.closed = 'off' // the polyline is now open
-  
-xset("default")
+e.fill_mode='off'; // shows only the contour
+
+delete(e);
+
+// Create a new polygon filled with color 3
+// and its contour drawn with the current color
+xfpoly(x,y,3);
+
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpolys">xfpolys</link>
@@ -76,9 +112,5 @@ xset("default")
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

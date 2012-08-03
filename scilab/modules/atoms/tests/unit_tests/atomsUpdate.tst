@@ -5,7 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
+
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
@@ -13,10 +14,12 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 // =============================================================================
 if ~isempty( atomsGetInstalled() ) then pause, end 
 
-// Set some parameters for the test
+// If previous test did not end properly, restore, else backup config file
+atomsRestoreConfig(%T);
+atomsSaveConfig();
+
+// Do not use the autoload system
 // =============================================================================
-config_autoload = atomsGetConfig("autoloadAddAfterInstall");
-config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
@@ -260,12 +263,12 @@ atomsRepositorySetOfl("http://scene12.test.atoms.scilab.org");
 atomsUpdate();
 
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then pause, end
-if ~atomsIsInstalled(["toolbox_4" "1.1-2"],"user") then pause, end
+if ~atomsIsInstalled(["toolbox_4" "1.1-1"],"user") then pause, end
 if ~atomsIsInstalled(["toolbox_2" "1.0-1"],"user") then pause, end
 if ~atomsIsInstalled(["toolbox_1" "1.0-1"],"user") then pause, end
 
 if atomsGetInstalledStatus(["toolbox_5" "1.0-1"],"user")<>"I" then pause, end
-if atomsGetInstalledStatus(["toolbox_4" "1.1-2"],"user")<>"A" then pause, end
+if atomsGetInstalledStatus(["toolbox_4" "1.1-1"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"user")<>"A" then pause, end
 
@@ -277,6 +280,6 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoloadAddAfterInstall",config_autoload);
-atomsSetConfig("Verbose" ,config_Verbose);
+atomsRestoreConfig(%T);
+
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

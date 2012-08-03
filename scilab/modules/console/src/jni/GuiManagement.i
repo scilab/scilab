@@ -94,3 +94,12 @@ public class";
    */
 ";
 void setScilabLines(int nbRows, int nbCols);
+
+%javamethodmodifiers setScilabLines(int nbRows, int nbCols) "
+ /**
+   * Set Scilab parameters used to display data
+   * @param nbRows number of rows that can be used to display data
+   * @param nbCols number of columns that can be used to display data
+   */
+";
+void forceScilabLines(int nbRows, int nbCols);

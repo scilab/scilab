@@ -16,7 +16,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -59,7 +59,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   %nww=size(who('get'),'*')
 
   %ierr=execstr(%txt,'errcatch')
-  if %ierr<>0 then return,end
+  if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
   %mm=who('get')
   %mm=%mm(1:size(%mm,'*')-%nww)

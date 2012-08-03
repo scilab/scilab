@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-05 10:48+0000\n"
+"PO-Revision-Date: 2012-02-14 17:26+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -25,12 +29,12 @@ msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -39,6 +43,10 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr "%s: Nelze přečíst pojmenovaný argument %s.\n"
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -111,8 +119,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána matice nebo čísla s "
-"plovoucí čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice nebo desetinná "
+"čísla.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
@@ -486,6 +494,13 @@ msgid "Can't get current directory.\n"
 msgstr "Nelze získat současný adresář.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+"%s: Špatná proměnná typu (%s( nalezena v '%s'. Soubor může být špatný, nebo "
+"poškozený.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
 
@@ -532,11 +547,16 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr ""
-"%s: Špatná proměnná typu (%s( nalezena v '%s'. Soubor může být špatný, nebo "
-"poškozený.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Options ignored.\n"

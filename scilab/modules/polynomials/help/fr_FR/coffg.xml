@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coffg">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>coffg</refname>
     <refpurpose> inverse d'une matrice de polynômes  </refpurpose>
@@ -18,23 +15,25 @@
         <term>Fs  </term>
         <listitem>
           <para>matrice carrée de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coffg</literal> calcule <literal>Fs^-1</literal> par la méthode des cofacteurs, où <literal>Fs</literal> est une matrice de polynômes.
-  </para>
     <para>
-    inverse de <literal>Fs</literal> = <literal>Ns/d</literal>
-  </para>
-    <para><literal>d</literal> = dénominateur commun; <literal>Ns</literal> = numérateur (une matrice de polynômes).
-  </para>
+      <literal>coffg</literal> calcule <literal>Fs^-1</literal> par la méthode des cofacteurs, où <literal>Fs</literal> est une matrice de polynômes.
+    </para>
     <para>
-    (pour les grandes matrices, s'armer de patience... les résultats sont en général fiables)
-  </para>
+      inverse de <literal>Fs</literal> = <literal>Ns/d</literal>
+    </para>
+    <para>
+      <literal>d</literal> = dénominateur commun; <literal>Ns</literal> = numérateur (une matrice de polynômes).
+    </para>
+    <para>
+      (pour les grandes matrices, s'armer de patience... les résultats sont en général fiables)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -46,7 +45,7 @@ a=[ s, s^2+1; s  s^2-1];
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="determ">determ</link>
@@ -64,9 +63,5 @@ a=[ s, s^2+1; s  s^2-1];
         <link linkend="glever">glever</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

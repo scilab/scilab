@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsSystemUpdate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsSystemUpdate</refname>
     <refpurpose>Update the list of available modules</refpurpose>
@@ -24,17 +21,17 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsSystemUpdate()
-	</synopsis>
+      atomsSystemUpdate()
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsSystemUpdate</literal> update the list of available modules.
-	</para>
-	
+    <para>
+      <literal>atomsSystemUpdate</literal> update the list of available modules.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -48,10 +45,4 @@ atomsSystemUpdate();
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

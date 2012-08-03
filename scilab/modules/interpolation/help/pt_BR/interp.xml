@@ -1,170 +1,137 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry version="5.0-subset Scilab" xml:id="interp" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="interp" xml:lang="en">
   <refnamediv>
     <refname>interp</refname>
-
     <refpurpose>função de avaliação de spline cúbico</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>xp</term>
-
         <listitem>
           <para>vetor ou matriz de reais</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x,y,d</term>
-
         <listitem>
           <para>vetores de reais de mesmo tamanho definindo uma função de
-          spline cúbico ou sub-spline (chamado <literal>s</literal> a partir
-          daqui) </para>
+            spline cúbico ou sub-spline (chamado <literal>s</literal> a partir
+            daqui) 
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>out_mode</term>
-
         <listitem>
-          <para>(opcional) string definido a avaliação de <literal>s</literal>
-          fora do intervalo [x1,xn]</para>
+          <para>
+            (opcional) string definido a avaliação de <literal>s</literal>
+            fora do intervalo [x1,xn]
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>yp</term>
-
         <listitem>
-          <para>vetor ou matriz de mesmo tamanho que <literal>xp</literal>,
-          avaliação elemento a elemento de <literal>s</literal> em
-          <literal>xp</literal> (yp(i)=s(xp(i) ou yp(i,j)=s(xp(i,j))</para>
+          <para>
+            vetor ou matriz de mesmo tamanho que <literal>xp</literal>,
+            avaliação elemento a elemento de <literal>s</literal> em
+            <literal>xp</literal> (yp(i)=s(xp(i) ou yp(i,j)=s(xp(i,j))
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>yp1, yp2, yp3</term>
-
         <listitem>
           <para>vetores (ou matrizes) de mesmo tamanho que
-          <literal>xp</literal>, avaliação elemento a elemento das derivadas
-          sucessivas de <literal>s</literal> em <literal>xp</literal></para>
+            <literal>xp</literal>, avaliação elemento a elemento das derivadas
+            sucessivas de <literal>s</literal> em <literal>xp</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para>Dados três vetores <literal>(x,y,d)</literal> ddefinindo uma função
-    de spline cúbico ou sup-spline (ver <link linkend="splin">splin</link>)
-    com <literal>yi=s(xi), di = s'(xi)</literal> esta função avalia
-    <literal>s</literal> (e <literal>s', s'', s'''</literal> se necessário) em
-    <literal>xp(i)</literal> :</para>
-
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      Dados três vetores <literal>(x,y,d)</literal> ddefinindo uma função
+      de spline cúbico ou sup-spline (ver <link linkend="splin">splin</link>)
+      com <literal>yi=s(xi), di = s'(xi)</literal> esta função avalia
+      <literal>s</literal> (e <literal>s', s'', s'''</literal> se necessário) em
+      <literal>xp(i)</literal> :
+    </para>
+    <programlisting role=""><![CDATA[ 
 yp(i) = s(xp(i))    ou  yp(i,j) = s(xp(i,j))
 yp1(i) = s'(xp(i))   ou  yp1(i,j) = s'(xp(i,j))
 yp2(i) = s''(xp(i))   ou  yp2(i,j) = s''(xp(i,j))
 yp3(i) = s'''(xp(i))   ou  yp3(i,j) = s'''(xp(i,j))
  ]]></programlisting>
-
-    <para>O parâmetro <literal>out_mode</literal> ajusta a regra de avaliação
-    para extrapolação, i.e., para <literal>xp(i)</literal> fora de [x1,xn] :
+    <para>
+      O parâmetro <literal>out_mode</literal> ajusta a regra de avaliação
+      para extrapolação, i.e., para <literal>xp(i)</literal> fora de [x1,xn] :
     </para>
-
     <variablelist>
       <varlistentry>
         <term>"by_zero"</term>
-
         <listitem>
           <para>uma extrapolação por zero é feita </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"by_nan"</term>
-
         <listitem>
           <para>extrapolação por NaN </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"C0"</term>
-
         <listitem>
           <para>a extrapolação é definida como segue :</para>
-
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 s(x) = y1  para  x < x1
 s(x) = yn  para  x > xn
  ]]></programlisting>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"natural"</term>
-
         <listitem>
           <para>a extrapolação é definida como segue (p_i sendo o polinômio
-          que define <literal>s</literal> em [x_i,x_{i+1}]) :</para>
-
-          <programlisting role = ""><![CDATA[ 
+            que define <literal>s</literal> em [x_i,x_{i+1}]) :
+          </para>
+          <programlisting role=""><![CDATA[ 
 s(x) = p_1(x)      para  x < x1
 s(x) = p_{n-1}(x)  para  x > xn
  ]]></programlisting>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"linear"</term>
-
         <listitem>
           <para>a extrapolação é definida como segue :</para>
-
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 s(x) = y1 + s'(x1)(x-x1)  para  x < x1
 s(x) = yn + s'(xn)(x-xn)  para  x > xn
  ]]></programlisting>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"periodic"</term>
-
         <listitem>
-          <para> <literal>s</literal> é estendido por periodicidade. </para>
+          <para>
+            <literal>s</literal> é estendido por periodicidade. 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Exemplos </title>
-
     <programlisting role="example"><![CDATA[ 
 // veja os exemplos de splin e lsq_splin
 
@@ -207,20 +174,15 @@ plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodi
 xtitle(" Modos diferentes de avaliar um spline fora de seu domínio")
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="splin">splin</link></member>
-
-      <member><link linkend="lsq_splin">lsq_splin</link></member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="lsq_splin">lsq_splin</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>B. Pincon</para>
   </refsection>
 </refentry>

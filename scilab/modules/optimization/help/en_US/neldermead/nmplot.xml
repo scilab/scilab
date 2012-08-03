@@ -11,28 +11,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="nmplot" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nmplot" xml:lang="fr">
   <refnamediv>
     <refname>nmplot</refname>
-
     <refpurpose>
       Provides direct search optimization algorithms.
     </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>SYNOPSIS</title>
-
     <synopsis>
       newobj = nmplot_new ()
       this = nmplot_destroy (this)
@@ -47,43 +34,35 @@
       this = nmplot_simplexhistory ( this , colorforeground , markforeground , markstyle )
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Description</title>
-
     <para>
       This class provides several direct search optimization algorithms
       based on the simplex method.
     </para>
-
     <para>
       The goal of this class is to provide a neldermead component with
       plotting features. It enables to make fast plots of the algorithm progress
       through the iterations.
     </para>
-
     <para>
       It is a specialized neldermead class, with a specific output
-      command. This output function allows to store the history of several datas
-      through the iterations of the algorithm. These datas are :
+      command. This output function allows to store the history of several data
+      through the iterations of the algorithm. These data are :
     </para>
-
     <itemizedlist>
       <listitem>
         <para>the history of the coordinates of the simplex ,</para>
       </listitem>
-
       <listitem>
         <para>
           the history of the function value (averaged on the
           vertices),
         </para>
       </listitem>
-
       <listitem>
         <para>the history of the minimum function value in the simplex,</para>
       </listitem>
-
       <listitem>
         <para>
           the history of the size of the simplex (as computed with the
@@ -91,26 +70,21 @@
         </para>
       </listitem>
     </itemizedlist>
-
     <para>
       These data are stored into several data files during the
       optimization process. Several methods allows to plot the data stored into
       these data files.
     </para>
   </refsection>
-
   <refsection>
     <title>Design</title>
-
     <para>
-      The nmplot component is built on top of the <link
-    linkend="optimbase">neldermead</link> component. The -outputcommand option
+      The nmplot component is built on top of the <link linkend="optimbase">neldermead</link> component. The -outputcommand option
       (of the neldermead class) is not available since the nmplot class uses its
       own output function. Additionnal options -simplexfn, -fbarfn, -foptfn and
       -sigmafn are provided, which allows to configure the file names where the
       data is stored.
     </para>
-
     <para>
       The nmplot class can be considered as a sample test case of the
       -outputcommand option of the neldermead class. It gives an example of the
@@ -118,23 +92,17 @@
       neldermead class.
     </para>
   </refsection>
-
   <refsection>
     <title>Functions</title>
-
     <para>The following functions are available.</para>
-
     <variablelist>
       <varlistentry>
         <term xml:id="nmplot_new">newobj = nmplot_new ()</term>
-
         <listitem>
           <para>Creates a new nmplot object.</para>
-
           <variablelist>
             <varlistentry>
               <term>newobj</term>
-
               <listitem>
                 <para>The new object.</para>
               </listitem>
@@ -142,17 +110,13 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_destroy">this = nmplot_destroy (this)</term>
-
         <listitem>
           <para>Destroy the given object.</para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
@@ -160,28 +124,22 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_configure">this = nmplot_configure (this,key,value)</term>
-
         <listitem>
           <para>
             Configure the current object with the given value for the
             given key.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>key</term>
-
               <listitem>
                 <para>
                   a 1-by-1 matrix of strings, the key to configure.
@@ -206,11 +164,9 @@
                 <para>
                   The following specific keys are available.
                 </para>
-
                 <variablelist>
                   <varlistentry>
                     <term>-simplexfn</term>
-
                     <listitem>
                       <para>
                         the name of the file containing the history of the
@@ -218,10 +174,8 @@
                       </para>
                     </listitem>
                   </varlistentry>
-
                   <varlistentry>
                     <term>-fbarfn</term>
-
                     <listitem>
                       <para>
                         the name of the file containing the history of the
@@ -229,10 +183,8 @@
                       </para>
                     </listitem>
                   </varlistentry>
-
                   <varlistentry>
                     <term>-foptfn</term>
-
                     <listitem>
                       <para>
                         the name of the file containing the history of the
@@ -240,10 +192,8 @@
                       </para>
                     </listitem>
                   </varlistentry>
-
                   <varlistentry>
                     <term>-sigmafn</term>
-
                     <listitem>
                       <para>
                         the name of the file containing the history of the
@@ -254,10 +204,8 @@
                 </variablelist>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>value</term>
-
               <listitem>
                 <para>the value.</para>
               </listitem>
@@ -265,28 +213,22 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_cget">value = nmplot_cget (this,key)</term>
-
         <listitem>
           <para>
             Get the value for the given key. If the key is unknown,
             generates an error.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>key</term>
-
               <listitem>
                 <para>
                   a 1-by-1 matrix of strings, the name of the key to quiery. The list of available
@@ -297,61 +239,47 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_get">value = nmplot_get ( this , key )</term>
-
         <listitem>
           <para>
             Get the value for the given key. If the key is unknown,
             generates an error.
           </para>
-
           <para>
             Most fields are available only after an optimization has
             been performed with one call to the nmplot_search
             method.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>key</term>
-
               <listitem>
                 <para>a 1-by-1 matrix of strings, the key to get.</para>
-
                 <para>
                   The following keys are available and delegated to the <literal>neldermead</literal> component:
                   -funevals, -iterations, -xopt, -fopt, -historyxopt, -historyfopt,
                   -fx0, -status, -historysimplex, -simplexopt, -restartnb.
                   These options are documented in the help page of the <literal>neldermead_configure</literal> function.
                 </para>
-
-
               </listitem>
             </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_display">this = nmplot_display ( this )</term>
-
         <listitem>
           <para>Display the current settings in the console.</para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
@@ -359,46 +287,37 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_search">this = nmplot_search ( this )</term>
-
         <listitem>
           <para>
             Performs the optimization associated with the method
             associated with the -method option and find the optimum.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
           </variablelist>
-
           <para>
             If the -restartflag option is enabled, automatic restarts are
             performed, based on the -restartdetection option.
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_restart">this = nmplot_restart ( this )</term>
-
         <listitem>
           <para>
             Restarts the optimization by updating the simplex and
             performing a new search.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
@@ -406,47 +325,37 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_contour">
           [ this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin
           , xmax , ymin , ymax , nx , ny )
         </term>
-
         <listitem>
           <para>
             Plot the contours of the cost function. The cost function must
             be a function with two parameters.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>xmin , xmax , ymin , ymax</term>
-
               <listitem>
                 <para>the bounds for the contour plot</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>nx , ny</term>
-
               <listitem>
                 <para>the number of points in the directions x, y</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>xdata , ydata , zdata</term>
-
               <listitem>
                 <para>
                   vectors of data, as required by the contour
@@ -457,13 +366,11 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_simplexhistory">
           nmplot_simplexhistory ( this , colorforeground , markforeground
           , markstyle )
         </term>
-
         <listitem>
           <para>
             Plots the simplex history on the current graphic window. The
@@ -471,39 +378,31 @@
             produce fast plots. Specific settings can still be applied with the
             usual graphic features.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>colorforeground</term>
-
               <listitem>
                 <para>
                   the color of the foreground for the simplices (default colorforeground=5).
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>markforeground</term>
-
               <listitem>
                 <para>
                   the foreground mark for the simplices (default markforeground = 3).
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>markstyle</term>
-
               <listitem>
                 <para>
                   the mark style for the simplices (default markstyle = 9).
@@ -513,13 +412,11 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_historyplot">
           nmplot_historyplot ( this , datafile , mytitle , myxlabel ,
           myylabel )
         </term>
-
         <listitem>
           <para>
             Plots the history from the given data file on the current
@@ -527,19 +424,15 @@
             as a way to produce plots faster. Specific settings can still be
             applied with the usual graphic features.
           </para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>datafile</term>
-
               <listitem>
                 <para>
                   the data file which contains the history. The file is
@@ -549,10 +442,8 @@
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>mytitle</term>
-
               <listitem>
                 <para>
                   the title of the plot. Default value is the empty
@@ -560,10 +451,8 @@
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>myxlabel</term>
-
               <listitem>
                 <para>
                   the x label for the plot. Default value is the empty
@@ -571,10 +460,8 @@
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>myylabel</term>
-
               <listitem>
                 <para>
                   the y label for the plot. Default value is the empty
@@ -585,36 +472,28 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term xml:id="nmplot_function">[ this , result ] = nmplot_function ( this , x , index )</term>
-
         <listitem>
           <para>Call the cost function and return the value.</para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
-
               <listitem>
                 <para>The current object.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>x</term>
-
               <listitem>
                 <para>the point where the function is to be evaluated</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>index</term>
-
               <listitem>
                 <para>
-                  optionnal, a flag to pass to the cost function (default
+                  optional, a flag to pass to the cost function (default
                   = 1). See the section "The cost function" of the neldermead
                   component for available values of index.
                 </para>
@@ -625,10 +504,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Example</title>
-
     <para>
       In the following example, we use the fixed shape Spendley et al.
       simplex algorithm and find the minimum of a quadratic function.
@@ -650,15 +527,14 @@
       and "history.sigma.txt", which produces 3 plots of the
       history of the optimization algorithm through the iterations.
     </para>
-
     <programlisting role="example">
       function [y, index] = quadratic ( x, index )
-          y = x(1)^2 + x(2)^2 - x(1) * x(2);
+      y = x(1)^2 + x(2)^2 - x(1) * x(2);
       endfunction
       function y = quadraticC ( x1 , x2 )
-          [y, index] = quadratic ( [x1,x2], 2 )
+      [y, index] = quadratic ( [x1,x2], 2 )
       endfunction
-
+      
       nm = nmplot_new ();
       nm = nmplot_configure(nm,"-numberofvariables",2);
       nm = nmplot_configure(nm,"-function",quadratic);
@@ -709,22 +585,12 @@
       deletefile("history.fopt.txt");
       deletefile("history.sigma.txt");
       nm = nmplot_destroy(nm);
-
-
+      
+      
     </programlisting>
   </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <para>Michael Baudin - INRIA - 2008-2009</para>
-
-    <para>Michael Baudin - Digiteo - 2009 - 2011</para>
-  </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
-
     <simplelist type="inline">
       <member>
         <link linkend="optimbase">neldermead</link>

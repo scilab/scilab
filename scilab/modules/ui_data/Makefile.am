@@ -20,41 +20,48 @@ libsciui_data_la_root_DATA =  license.txt
 
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
-libsciui_data_la_etc_DATA = etc/ui_data.quit \
-				etc/ui_data.start \
-				etc/variablebrowser_menubar.xml \
-				etc/variableeditor_menubar.xml
-
-include $(top_srcdir)/Makefile.incl.am
+libsciui_data_la_etc_DATA = \
+	etc/ui_data.quit \
+	etc/ui_data.start \
+	etc/variablebrowser_menubar.xml \
+	etc/variableeditor_menubar.xml \
+	etc/XConfiguration-variables.xml \
+	etc/XConfiguration-variables.xsl
 
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
-					  src/jni/EditVar.cpp
+		      src/jni/EditVar.cpp \
+		      src/jni/FileBrowser.cpp
 
-UI_DATA_C_SOURCES = 
+UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
+                    src/c/PutScilabVariable.c
 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
+UI_DATA_CXX_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
-src/jni/EditVar.giws.xml
+src/jni/EditVar.giws.xml \
+src/jni/FileBrowser.giws.xml
 
+SWIG_WRAPPERS = \
+src/jni/ui_data.i
+
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
+endif
+if SWIG
+BUILT_SOURCES+=swig
 endif
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp
 
-libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/core/includes
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
+		      sci_gateway/cpp/sci_browsevar.cpp \
+		      sci_gateway/cpp/sci_filebrowser.cpp \
+			sci_gateway/cpp/sci_updatebrowsevar.cpp
 
 
 libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -62,18 +69,23 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/core/includes \
+			$(AM_CPPFLAGS)
 
 # Without the ui_data module 
-libsciui_data_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libsciui_data_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
@@ -83,16 +95,15 @@ pkglib_LTLIBRARIES += libsciui_data.la
 noinst_LTLIBRARIES = libsciui_data-algo.la 
 endif
 
-libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciui_data_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
 
-libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
-libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CXX_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciui_data_la_CPPFLAGS)
 
 libsciui_data_la_LIBADD = libsciui_data-algo.la
 
@@ -102,19 +113,32 @@ libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 
 #### ui_data : icons files ####
+#
+# Generated with:
+#    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libsciui_data_la_iconsdir=$(mydatadir)/
-nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
-images/icons/tp01.gif \
-images/icons/tp02.gif \
-images/icons/tp04.gif \
-images/icons/tp05.gif \
-images/icons/tp06.gif \
-images/icons/tp08.gif \
-images/icons/tp10.gif \
-images/icons/tp15.gif \
-images/icons/tp16.gif \
-images/icons/tp17.gif
+nobase_libsciui_data_la_icons_DATA = images/icons/16x16/mimetypes/array_up.png \
+images/icons/16x16/mimetypes/boolean.png \
+images/icons/16x16/mimetypes/cell.png \
+images/icons/16x16/mimetypes/double.png \
+images/icons/16x16/mimetypes/fptr.png \
+images/icons/16x16/mimetypes/function.png \
+images/icons/16x16/mimetypes/handle.png \
+images/icons/16x16/mimetypes/int.png \
+images/icons/16x16/mimetypes/list.png \
+images/icons/16x16/mimetypes/mlist.png \
+images/icons/16x16/mimetypes/noicon.png \
+images/icons/16x16/mimetypes/object.png \
+images/icons/16x16/mimetypes/polynomial.png \
+images/icons/16x16/mimetypes/sparse.png \
+images/icons/16x16/mimetypes/string.png \
+images/icons/16x16/mimetypes/timeseries.png \
+images/icons/16x16/mimetypes/tlist.png \
+images/icons/16x16/mimetypes/uint.png \
+images/icons/16x16/mimetypes/user.png
 
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // could not assign a function to a var anymore
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 a= rand;
 r=a(1);

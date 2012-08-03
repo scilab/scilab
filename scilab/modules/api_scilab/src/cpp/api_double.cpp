@@ -9,23 +9,27 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 * Please note that piece of code will be rewrited for the Scilab 6 family
-* However, the API (profile of the functions in the header files) will be 
+* However, the API (profile of the functions in the header files) will be
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
 #include "api_internal_double.h"
 #include "localization.h"
 
-
 #include "call_scilab.h"
-#include "stack-c.h"
 
 /*******************************/
 /*   double matrix functions   */
 /*******************************/
+
+static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg);
+static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg);
+static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg);
+static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
+
+
 
 SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {
@@ -409,7 +413,7 @@ int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, dou
 /*--------------------------------------------------------------------------*/
 static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg)
 {
-    SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iRows	= 0;
     int iCols	= 0;
 
@@ -446,7 +450,7 @@ static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, d
 /*--------------------------------------------------------------------------*/
 int getNamedScalarDouble(void* _pvCtx, const char* _pstName, double* _pdblReal)
 {
-    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, NULL);
+    return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, 0);
 }
 /*--------------------------------------------------------------------------*/
 int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdblReal, double* _pdblImg)
@@ -456,7 +460,7 @@ int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdb
 /*--------------------------------------------------------------------------*/
 static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg)
 {
-    SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     int iRows	= 0;
     int iCols	= 0;
 
@@ -503,7 +507,7 @@ int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _
 /*--------------------------------------------------------------------------*/
 static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg)
 {
-    SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     double *pdblReal	= NULL;
     double *pdblImg		= NULL;
 
@@ -535,7 +539,7 @@ int createNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double _d
 /*--------------------------------------------------------------------------*/
 static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg)
 {
-    SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
     sciErr = createCommonNamedMatrixOfDouble(_pvCtx, _pstName, _iComplex, 1, 1, &_dblReal, &_dblImg);
     if(sciErr.iErr)

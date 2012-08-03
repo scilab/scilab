@@ -1,0 +1,8 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+com_
+getScilabMode
+callFunctionFromGateway 

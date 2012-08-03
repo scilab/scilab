@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coff">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>coff</refname>
     <refpurpose> résolvante (méthode des cofacteurs)  </refpurpose>
@@ -29,43 +26,49 @@
         <term>M  </term>
         <listitem>
           <para>matrice carrée réelle
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>var  </term>
         <listitem>
           <para>chaîne de caractères (indéterminée des polynômes)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>N  </term>
         <listitem>
-          <para>matrice de polynômes (de même taille que <literal>M</literal>)
-</para>
+          <para>
+            matrice de polynômes (de même taille que <literal>M</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d  </term>
         <listitem>
-          <para>polynôme (polynôme caractéristique de M : <literal>poly(M,var)</literal>)
-</para>
+          <para>
+            polynôme (polynôme caractéristique de M : <literal>poly(M,var)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coff</literal> calcule R=<literal>(s*eye()-M)^-1</literal> pour <literal>M</literal> une matrice réelle. 
-    R est donnée par <literal>N/d</literal>.
-  </para>
-    <para><literal>N</literal> = matrice des numérateurs (polynômes).
-  </para>
-    <para><literal>d</literal> = dénominateur commun.
-  </para>
-    <para><literal>var</literal> chaîne de caractères (indéterminée des polynômes, '<literal>s</literal>' par défaut)
-  </para>
+    <para>
+      <literal>coff</literal> calcule R=<literal>(s*eye()-M)^-1</literal> pour <literal>M</literal> une matrice réelle. 
+      R est donnée par <literal>N/d</literal>.
+    </para>
+    <para>
+      <literal>N</literal> = matrice des numérateurs (polynômes).
+    </para>
+    <para>
+      <literal>d</literal> = dénominateur commun.
+    </para>
+    <para>
+      <literal>var</literal> chaîne de caractères (indéterminée des polynômes, '<literal>s</literal>' par défaut)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -77,7 +80,7 @@ inv(%s*eye()-M)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="coffg">coffg</link>

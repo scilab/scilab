@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:47+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-25 23:36+0000\n"
+"Last-Translator: gustavoreyes <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -43,10 +43,32 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
-"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un valor "
+"%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
 "entero.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de asignación de memoria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -55,9 +77,16 @@ msgstr ""
 "entero.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamaño incorrecto para el argumento de entrada #%d.\n"
 
 #, c-format
 msgid ""
@@ -65,14 +94,6 @@ msgid ""
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un valor "
 "mayor a 0.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s: Tipo incorrecto del argumento de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -85,40 +106,9 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: Se esperaba '%s' o "
-"'%s'.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: Se esperaba un "
-"entero.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: Debe estar en el "
-"intervalo [%d, %d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
-"una cadena de caracteres.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '0' ó '1'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+"%s: Valor incorrecto de argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
@@ -128,8 +118,21 @@ msgstr ""
 "intervalo [%d, %d].\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Tamaño incorrecto de los argumentos de entrada.\n"
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba una cadena "
+"o un valor escalar entero.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '0' ó '1'.\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -143,10 +146,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: El archivo %s no existe.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de asignación de memoria.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -167,15 +166,6 @@ msgstr ""
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Advertencia: Problemas con %s.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hay más memoria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Valor incorrecto de argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -231,9 +221,19 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -257,6 +257,33 @@ msgstr "%s: Imposible leer el puerto %s.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: Nombre de módulo inválido : %s.\n"
+
+#, c-format
+msgid ""
+"%s: Cannot allocate memory.\n"
+"%s\n"
+msgstr ""
+"%s: No se puede asignar memoria.\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Cannot allocate this quantity of memory.\n"
+msgstr "%s: No se puede reservar esta cantidad de memoria.\n"
+
+#, c-format
+msgid "%s: The requested size is smaller than the minimal one.\n"
+msgstr "%s: El tamaño requerido es menor que el mínimo.\n"
+
+#, c-format
+msgid ""
+"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgstr ""
+"%s: Incapaz de crear (o cambiar el tamaño) de la pila (probablemente un "
+"error malloc).\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: Error desconocido.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -339,11 +366,17 @@ msgstr "Error Fatal: No se puede crear tabla para las funciones de Scilab.\n"
 msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "Error: Imposible definir la variable de entorno %s.\n"
 
+msgid "Scilab Enterprises\n"
+msgstr "Scilab Enterprises\n"
+
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Consorcio Scilab (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2011 (INRIA)\n"
+msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr "Copyright (c) 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
@@ -365,7 +398,7 @@ msgid "Error: Not a valid primitive ID %d.\n"
 msgstr "Error: %d no es un identificador primitivo válido.\n"
 
 msgid "Aborting current computation\n"
-msgstr ""
+msgstr "Cancelando el cálculo actual\n"
 
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
@@ -521,24 +554,21 @@ msgstr "No hay espacio para colocar la pila de Scilab.\n"
 
 #, c-format
 msgid ""
-"\n"
-"Call stack:\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"End of stack\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
-"Please report a bug on %s with the following\n"
-"information:\n"
+"Please report a bug on %s with:\n"
+"* a sample code which reproduces the issue\n"
+"* the result of [a, b] = getdebuginfo()\n"
+"* the following information:\n"
 "%s %s\n"
 msgstr ""
+"Ops. Scilab ha detectado un error fatal.\n"
+"Su instancia probablemente fallará pronto.\n"
+"Por favor, informe del error en %s con:\n"
+"* un código de ejemplo que repita el problema\n"
+"* el resultado de [a, b] = getdebuginfo()\n"
+"* la siguiente información:\n"
+"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -681,9 +711,9 @@ msgstr ""
 "polinomios.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr ""
-"%s: Tipo incorrecto para el argumento %d : Se esperaba un polígono.\n"
+"%s: Tipo incorrecto para el argumento %d: Se esperaba un polinomio.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -897,20 +927,20 @@ msgid "%s argument"
 msgstr "Argumento %s"
 
 #, c-format
-msgid "argument number %d"
-msgstr "argumento número %d"
+msgid "argument #%d"
+msgstr "argumento #%d"
 
 #, c-format
 msgid "%s and %s arguments"
 msgstr "argumentos %s y %s"
 
 #, c-format
-msgid "%s argument and argument %d"
-msgstr "%s argumento y argumentos %d"
+msgid "%s argument and argument #%d"
+msgstr "%s argumento y argumento #%d"
 
 #, c-format
-msgid "arguments %d and %d"
-msgstr "argumentos %d y %d"
+msgid "arguments #%d and #%d"
+msgstr "argumentos #%d y #%d"
 
 msgid "should be square"
 msgstr "debe ser cuadrada."
@@ -996,6 +1026,14 @@ msgstr "Desencolando %s - Sin opción\n"
 msgid "Unqueuing %s - seq.\n"
 msgstr "Desencolando %s - seq\n"
 
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
+msgstr ""
+"Por favor, instale el módulo texmacs ATOMS: atomsInstall('texmacs')\n"
+"\n"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No se pudo encontrar el directorio temporal de Windows (1)."
 
@@ -1024,6 +1062,30 @@ msgstr ""
 
 msgid "Scilab Version Info."
 msgstr "Información sobre la versión de Scilab"
+
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Pila de llamadas:\n"
+
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Fin de la pila\n"
+"\n"
+
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+"¡No hay una consola disponible!\n"
+"Por favor use el modo STD."
+
+msgid "Empty tab"
+msgstr "Pestaña vacía"
 
 msgid "Scilab Console"
 msgstr "Consola de Scilab"
@@ -1069,7 +1131,13 @@ msgid "Introduction"
 msgstr "Introducción"
 
 msgid "Getting started with Scilab"
+msgstr "Empezando con Scilab"
+
+#, c-format
+msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr ""
+"%s: No puedo encontrar '%s': Por favor compruebe que las macros han sido "
+"construídas.\n"
 
 #, c-format
 msgid "Checking: %s\n"
@@ -1084,10 +1152,6 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s: Archivo inexistente: %s"
 
 #, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Requiere el editor de scilab.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumento(s) de entrada: Se esperaban al menos %d.\n"
@@ -1095,6 +1159,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un "
+"double.\n"
 
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
@@ -1157,7 +1223,7 @@ msgstr "Las variables de usuario son:"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "Usando %s elementos de %s"
 
 msgid " by "
 msgstr " por "
@@ -1173,14 +1239,3 @@ msgstr "Tamaño"
 
 msgid "Bytes"
 msgstr "Bytes"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr ""
-#~ "%s: Argumento de entrada #%d incorrecto: Se esperaba una ruta a una archivo "
-#~ "de script de Scilab.\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "Usando %s elementos de %s"

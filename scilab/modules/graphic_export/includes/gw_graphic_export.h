@@ -14,7 +14,6 @@
 #define __GW_GRAPHIC_EXPORT__
 /*--------------------------------------------------------------------------*/ 
 #include "dynlib_graphic_export.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 GRAPHIC_EXPORT_IMPEXP int gw_graphic_export(void);
 /*--------------------------------------------------------------------------*/
@@ -30,6 +29,9 @@ GRAPHIC_EXPORT_IMPEXP int sci_xs2png( char * fname, unsigned long fname_len ) ;
 GRAPHIC_EXPORT_IMPEXP int sci_xs2ppm( char * fname, unsigned long fname_len ) ;
 GRAPHIC_EXPORT_IMPEXP int sci_xs2svg( char * fname, unsigned long fname_len ) ;
 GRAPHIC_EXPORT_IMPEXP int sci_xs2ps( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_driver( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xinit( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xend( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_GRAPHIC_EXPORT__ */
 /*--------------------------------------------------------------------------*/ 

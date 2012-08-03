@@ -37,7 +37,6 @@ AC_DEFUN([ACX_BLAS], [
 AC_PREREQ(2.50)
 AC_REQUIRE([AC_F77_LIBRARY_LDFLAGS])
 acx_blas_ok=no
-BLAS_LIBS=
 acx_blas_save_LIBS="$LIBS"
 
 AC_ARG_WITH(blas-library,
@@ -268,3 +267,247 @@ else
         $2
 fi
 ])dnl ACX_LAPACK
+
+
+dnl ----------------------------------------------------------------------------
+dnl @synopsis ACX_ARPACK([ACTION-IF-FOUND[, ACTION-IF-NOT-FOUND]])
+dnl
+dnl This macro looks for a library that implements the ARPACK
+dnl collection of Fortran77 subroutines designed to solve large 
+dnl scale eigenvalue problems (http://forge.scilab.org/index.php/p/arpack-ng/).
+dnl On success, it sets the ARPACK_LIBS output variable to
+dnl hold the requisite library linkages.
+dnl
+dnl To link with ARPACK, you should link with:
+dnl
+dnl     $ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS
+dnl
+dnl in that order.  BLAS_LIBS is the output variable of the ACX_BLAS
+dnl macro, called automatically.  FLIBS is the output variable of the
+dnl AC_F77_LIBRARY_LDFLAGS macro (called if necessary by ACX_BLAS),
+dnl and is sometimes necessary in order to link with F77 libraries.
+dnl Users will also need to use AC_F77_DUMMY_MAIN (see the autoconf
+dnl manual), for the same reason.
+dnl
+dnl The user may also use --with-arpack-library=<DIR> in order to use some
+dnl specific ARPACK library <lib>.  In order to link successfully,
+dnl however, be aware that you will probably need to use the same
+dnl Fortran compiler (which can be set via the F77 env. var.) as
+dnl was used to compile the ARPACK and BLAS libraries.
+dnl
+dnl ACTION-IF-FOUND is a list of shell commands to run if a ARPACK
+dnl library is found, and ACTION-IF-NOT-FOUND is a list of commands
+dnl to run it if it is not found.  If ACTION-IF-FOUND is not specified,
+dnl the default action will define HAVE_ARPACK.
+dnl
+dnl @version acsite.m4,v 1.3 2002/08/02 09:28:12 steve Exp
+dnl @author Steven G. Johnson <stevenj@alum.mit.edu>
+dnl @author Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
+
+AC_DEFUN([ACX_ARPACK], [
+AC_REQUIRE([ACX_BLAS])
+acx_arpack_ok=no
+
+AC_ARG_WITH(arpack-library,
+            AC_HELP_STRING([--with-arpack-library=DIR], [set the path to the ARPACK library]))
+saved_ldflags="$LDFLAGS"
+
+if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
+LDFLAGS="$LDFLAGS -L$with_arpack_library"
+fi
+
+ARPACK_LIBS="-larpack"
+# Get fortran linker name of ARPACK function to check for.
+AC_F77_FUNC(znaupd)
+
+# We cannot use ARPACK if BLAS is not found
+if test "x$acx_blas_ok" != xyes; then
+        acx_arpack_ok=noblas
+fi
+
+# First, check ARPACK_LIBS environment variable
+if test "x$ARPACK_LIBS" != x; then
+        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+        AC_MSG_CHECKING([for $znaupd in $ARPACK_LIBS])
+        AC_TRY_LINK_FUNC($znaupd, [acx_arpack_ok=yes], [ARPACK_LIBS="-larpack"])
+        AC_MSG_RESULT($acx_arpack_ok)
+        LIBS="$save_LIBS"
+        if test acx_arpack_ok = no; then
+                ARPACK_LIBS=""
+        fi
+fi
+
+
+LDFLAGS="$saved_ldflags"
+
+if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
+ARPACK_LIBS="$ARPACK_LIBS -L$with_arpack_library"
+fi
+
+AC_SUBST(ARPACK_LIBS)
+
+# Finally, execute ACTION-IF-FOUND/ACTION-IF-NOT-FOUND:
+if test x"$acx_arpack_ok" = xyes; then
+        ifelse([$1],,,[$1])
+        :
+else
+        acx_arpack_ok=no
+        $2
+fi
+])dnl ACX_ARPACK
+dnl
+dnl Check whether ARPACK works (does not crash)
+dnl
+dnl Using a pure Fortran program doesn't seem to crash when linked
+dnl with the buggy ARPACK library but the C++ program does.  Maybe
+dnl it is the memory allocation that exposes the bug and using statically
+dnl allocated arrays in Fortran does not?
+dnl
+dnl Copyright (C) 1995-2012 John W. Eaton
+dnl
+dnl This code is released under the GPL license.
+dnl
+AC_DEFUN([CHECK_ARPACK_OK], [
+  AC_LANG_PUSH(C++)
+  save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  AC_CACHE_CHECK([whether the arpack library works],
+    [lib_cv_arpack_ok], [
+      AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+// External functions from ARPACK library
+extern "C" int
+C2F(dnaupd) (int&, const char *, const int&, const char *,
+                           int&, const double&, double*, const int&,
+                           double*, const int&, int*, int*, double*,
+                           double*, const int&, int&, long int, long int);
+
+extern "C" int
+C2F(dneupd) (const int&, const char *, int*, double*,
+                           double*, double*, const int&,
+                           const double&, const double&, double*,
+                           const char*, const int&, const char *,
+                           int&, const double&, double*, const int&,
+                           double*, const int&, int*, int*, double*,
+                           double*, const int&, int&, long int,
+                           long int, long int);
+
+extern "C" int
+C2F(dgemv) (const char *, const int&, const int&,
+                         const double&, const double*, const int&,
+                         const double*, const int&, const double&,
+                         double*, const int&, long int);
+
+#include <cfloat>
+
+void
+doit (void)
+{
+  // Based on Octave function EigsRealNonSymmetricMatrix from liboctave/eigs-base.cc.
+
+  // Problem matrix.  See bug #31479
+  int n = 4;
+  double *m = new double [n * n];
+  m[0] = 1, m[4] = 0, m[8]  = 0, m[12] = -1;
+  m[1] = 0, m[5] = 1, m[9]  = 0, m[13] = 0;
+  m[2] = 0, m[6] = 0, m[10] = 1, m[14] = 0;
+  m[3] = 0, m[7] = 0, m[11] = 2, m[15] = 1;
+
+  double *resid = new double [4];
+
+  resid[0] = 0.960966;
+  resid[1] = 0.741195;
+  resid[2] = 0.150143;
+  resid[3] = 0.868067;
+
+  int *ip = new int [11];
+
+  ip[0] = 1;   // ishift
+  ip[1] = 0;   // ip[1] not referenced
+  ip[2] = 300; // mxiter, maximum number of iterations
+  ip[3] = 1;   // NB blocksize in recurrence
+  ip[4] = 0;   // nconv, number of Ritz values that satisfy convergence
+  ip[5] = 0;   // ip[5] not referenced
+  ip[6] = 1;   // mode
+  ip[7] = 0;   // ip[7] to ip[10] are return values
+  ip[8] = 0;
+  ip[9] = 0;
+  ip[10] = 0;
+ 
+  int *ipntr = new int [14];
+
+  int k = 1;
+  int p = 3;
+  int lwork = 3 * p * (p + 2);
+
+  double *v = new double [n * (p + 1)];
+  double *workl = new double [lwork + 1];
+  double *workd = new double [3 * n + 1];
+
+  int ido = 0;
+  int info = 0;
+
+  double tol = DBL_EPSILON;
+
+  do 
+    {
+      C2F(dnaupd) (ido, "I", n, "LM", k, tol, resid, p,
+                                 v, n, ip, ipntr, workd, workl, lwork,
+                                 info, 1L, 2L);
+
+      if (ido == -1 || ido == 1 || ido == 2)
+        {
+          double *x = workd + ipntr[0] - 1;
+          double *y = workd + ipntr[1] - 1;
+
+          C2F(dgemv) ("N", n, n, 1.0, m, n, x, 1, 0.0,
+                                   y, 1, 1L);
+        }
+      else
+        {
+          if (info < 0)
+            {
+              return;  // Error
+            }
+
+          break;
+        }
+    } 
+  while (1);
+
+  int *sel = new int [p];
+
+  // The dimensions of dr and di are k+1, but k+2 avoids segfault
+  double *dr = new double [k + 1];
+  double *di = new double [k + 1];
+  double *workev = new double [3 * p];
+
+  for (int i = 0; i < k + 1; i++)
+    dr[i] = di[i] = 0.;
+
+  int rvec = 1;
+
+  double sigmar = 0.0;
+  double sigmai = 0.0;
+
+  // This is n*(k+1), but k+2 avoids segfault
+  double *z = new double [n * (k + 1)];
+
+  C2F(dneupd) (rvec, "A", sel, dr, di, z, n, sigmar,
+                             sigmai, workev, "I", n, "LM", k, tol,
+                             resid, p, v, n, ip, ipntr, workd,
+                             workl, lwork, info, 1L, 1L, 2L);
+}
+]], [[
+  for (int i = 0; i < 10; i++)
+    doit ();
+]])],
+  [cv_lib_arpack_ok=yes],
+  [cv_lib_arpack_ok=no],
+  [cv_lib_arpack_ok=yes])])
+  LIBS="$save_LIBS"
+  AC_LANG_POP(C++)
+  if test "$cv_lib_arpack_ok" = "yes"; then
+    $1
+  else
+    $2
+  fi
+])

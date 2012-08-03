@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,33 +10,19 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlGetNsByHref" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlGetNsByHref" xml:lang="en">
   <refnamediv>
     <refname>xmlGetNsByHref</refname>
     <refpurpose>Get a namespace by its href</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       ns = xmlGetNsByHref(elem, href)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>elem</term>
@@ -58,13 +44,10 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Search a namespace with the given href on the element or on its ancestors.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -72,11 +55,9 @@
     c = doc.root.children(1).children(2);
     xmlGetNsByHref(c, "http://www.scilab.org")
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
-
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -88,9 +69,13 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

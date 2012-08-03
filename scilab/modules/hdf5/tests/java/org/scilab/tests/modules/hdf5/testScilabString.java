@@ -15,8 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.junit.*;
+import org.junit.*;
 
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
@@ -25,8 +25,8 @@ import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.types.ScilabString;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.*;
+import org.junit.*;
 
 import java.io.File;
 
@@ -38,18 +38,18 @@ public class testScilabString {
     @Test
     public void emptyStringTest() throws NullPointerException, HDF5Exception {
         ScilabString emptyString = new ScilabString("");
-        String fileName = tempDir + "/emptyStringFromJava.h5";
-    
+        String fileName = tempDir + "/emptyStringFromJava.sod";
+
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "EmptyString", emptyString);
         H5Write.closeFile(fileId);
         new File(fileName).delete();
     }
 
-    @Test    
+    @Test
     public void testSingleString() throws NullPointerException, HDF5Exception {
         ScilabString scilabSingleString = new ScilabString(myString);
-        String fileName = tempDir + "/singleStringFromJava.h5";
+        String fileName = tempDir + "/singleStringFromJava.sod";
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "SingleString", scilabSingleString);
         H5Write.closeFile(fileId);
@@ -68,13 +68,13 @@ public class testScilabString {
     public void testStringMatrix() throws NullPointerException, HDF5Exception {
         String[][] dataStringMatix = {
             {"MatrixString(1,1)", "MatrixString(1,2)"},
-            {"MatrixString(2,1)", "MatrixString(2,2)"}, 
+            {"MatrixString(2,1)", "MatrixString(2,2)"},
             {"MatrixString(3,1)", "MatrixString(3,2)"}
         };
-    
+
         int ROWS = dataStringMatix.length;
         int COLS = dataStringMatix[0].length;
-        String fileName = tempDir + "/matrixStringFromJava.h5";
+        String fileName = tempDir + "/matrixStringFromJava.sod";
         ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
         int fileId = H5Write.createFile(fileName);
@@ -94,19 +94,19 @@ public class testScilabString {
         }
         new File(fileName).delete();
     }
-     
+
     //@Test(dependsOnMethods={"testStringMatrix"})
     // Commented because of bug #8863
     public void testMultiByteString() throws NullPointerException, HDF5Exception {
         String[][] dataStringMatix = {
-                {"éàᐛ@(1,1)", "éàᐛ@(1,1)"},
-                {"สวัสดี", "ァクゾ"}, 
-                {"Բարեւ Ձեզ", "העלא"}
-            };
-        
+            {"éàᐛ@(1,1)", "éàᐛ@(1,1)"},
+            {"สวัสดี", "ァクゾ"},
+            {"Բարեւ Ձեզ", "העלא"}
+        };
+
         int ROWS = dataStringMatix.length;
         int COLS = dataStringMatix[0].length;
-        String fileName=tempDir + "/matrixMultiByteStringFromJava.h5";
+        String fileName = tempDir + "/matrixMultiByteStringFromJava.sod";
         ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
         int fileId = H5Write.createFile(fileName);
@@ -130,13 +130,13 @@ public class testScilabString {
     /**
      * Call all public methods through introspection
      * @param args not used
-     * @throws InvocationTargetException 
-     * @throws IllegalAccessException 
-     * @throws IllegalArgumentException 
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
      */
     public static void main(String[] args) throws Exception {
-        final Class< ? > myClass = Class.forName(new Throwable().getStackTrace()[0].getClassName());
-        
+        final Class < ? > myClass = Class.forName(new Throwable().getStackTrace()[0].getClassName());
+
         Object obj = myClass.newInstance();
         java.lang.reflect.Method[] tests = myClass.getDeclaredMethods();
         for (java.lang.reflect.Method method : tests) {

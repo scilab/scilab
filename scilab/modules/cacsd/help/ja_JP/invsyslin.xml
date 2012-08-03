@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="invsyslin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>invsyslin</refname>
     <refpurpose>逆システム</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl1,sl2</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (状態空間表現の線形システム)</para>
+          <para>
+            <literal>syslin</literal> リスト (状態空間表現の線形システム)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,13 +35,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数. 
-	(状態形式で指定した)線形システム <literal>sl1</literal> の
-	逆 <literal>sl2</literal>の状態形式を計算します.</para>
+      ユーティリティ関数. 
+      (状態形式で指定した)線形システム <literal>sl1</literal> の
+      逆 <literal>sl2</literal>の状態形式を計算します.
+    </para>
     <para>
-    <literal>D</literal>行列はフルランクと仮定されます. 
-	<literal>S</literal>が<literal>syslin</literal>リストの場合,
-	<literal>inv(S)</literal>による古い処理が使用されます.</para>
+      <literal>D</literal>行列はフルランクと仮定されます. 
+      <literal>S</literal>が<literal>syslin</literal>リストの場合,
+      <literal>inv(S)</literal>による古い処理が使用されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

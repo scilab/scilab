@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xpolys">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xpolys">
   <refnamediv>
     <refname>xpolys</refname>
     <refpurpose> draw a set of polylines or polygons</refpurpose>
@@ -41,21 +38,35 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpolys</literal> draws a set of polylinse using marks or dashed lines. 
-    The coordinates of each polyline
-    are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
-  </para>
     <para>
-    The style of polyline i is given by <literal>draw(i)</literal>:
-  </para>
+      <literal>xpolys</literal> draws a set of polylinse using marks or dashed lines. 
+      The coordinates of each polyline
+      are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
+    </para>
+    <para>
+      The style of polyline i is given by <literal>draw(i)</literal>:
+    </para>
     <itemizedlist>
       <listitem>
-        <para>If <literal>draw(i)</literal> is negative, the mark with id <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using the current pattern). Use <literal>xset()</literal> to see the meaning of the ids.</para>
+        <para>
+          If <literal>draw(i)</literal> is negative, the mark with id <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using the current pattern). Use <literal>xset()</literal> to see the meaning of the ids.
+        </para>
       </listitem>
       <listitem>
-        <para>If <literal>draw(i)</literal> is strictly positive, the line style (or color) with id  <literal>draw(i)</literal> is used to draw polyline i. Use <literal>xset()</literal> to see the meaning of the ids.</para>
+        <para>
+          If <literal>draw(i)</literal> is strictly positive, the line style (or color) with id  <literal>draw(i)</literal> is used to draw polyline i. Use <literal>xset()</literal> to see the meaning of the ids.
+        </para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      plot2d(0,0,-1,"012"," ",[0,0,1,1])
+      rand("uniform")
+      xset("color",3)
+      xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,11 +75,10 @@ plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
 xset("color",3)
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
-xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>
@@ -80,9 +90,5 @@ xset("default")
         <link linkend="xpoly">xpoly</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

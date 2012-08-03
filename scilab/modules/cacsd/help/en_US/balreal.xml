@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balreal">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>balreal</refname>
     <refpurpose> balanced realization</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para>linear systems (<literal>syslin</literal> lists)</para>
+          <para>
+            linear systems (<literal>syslin</literal> lists)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,15 +35,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    Balanced realization of linear system <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
-    can be a continuous-time or discrete-time state-space system. 
-    sl is assumed stable.</para>
-    <programlisting role = ""><![CDATA[ 
+      Balanced realization of linear system <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
+      can be a continuous-time or discrete-time state-space system. 
+      sl is assumed stable.
+    </para>
+    <programlisting role=""><![CDATA[ 
 slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
  ]]></programlisting>
     <para>
-    is the balanced realization.</para>
-    <para><literal>slb</literal> is returned as a <literal>syslin</literal> list.</para>
+      is the balanced realization.
+    </para>
+    <para>
+      <literal>slb</literal> is returned as a <literal>syslin</literal> list.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +60,7 @@ W0=clean(obs_gram(slb))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

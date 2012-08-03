@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2di">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2di">
   <refnamediv>
     <refname>contour2di</refname>
     <refpurpose> compute level curves of a surface on a 2D plot</refpurpose>
@@ -45,15 +42,17 @@
             <varlistentry>
               <term/>
               <listitem>
-                <para>If <literal>nz</literal> is an integer, its value gives the number of
-  level curves  equally spaced from zmin to zmax as follows:</para>
-                <programlisting role = ""><![CDATA[ 
+                <para>
+                  If <literal>nz</literal> is an integer, its value gives the number of
+                  level curves  equally spaced from zmin to zmax as follows:
+                </para>
+                <programlisting role=""><![CDATA[ 
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                 <para>
-    Note that the <literal>zmin</literal> and <literal>zmax</literal> levels are not drawn  (generically they are reduced to points) but they can be added  with 
-  </para>
-                <programlisting role = ""><![CDATA[ 
+                  Note that the <literal>zmin</literal> and <literal>zmax</literal> levels are not drawn  (generically they are reduced to points) but they can be added  with 
+                </para>
+                <programlisting role=""><![CDATA[ 
 [im,jm] = find(z == zmin);     // or zmax 
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
@@ -62,7 +61,9 @@ plot2d(x(im)',y(jm)',-9,"000")
             <varlistentry>
               <term/>
               <listitem>
-                <para>If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives the value of the ith level curve.</para>
+                <para>
+                  If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives the value of the ith level curve.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -78,14 +79,18 @@ plot2d(x(im)',y(jm)',-9,"000")
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>contour2di</literal> computes level curves of a surface <literal>z=f(x,y)</literal> on
-    a 2D plot.  The values of <literal>f(x,y)</literal> are given by the matrix <literal>z</literal>
-    at the grid points defined by <literal>x</literal> and <literal>y</literal>.</para>
-    <para><literal>xc(1)</literal> contains the level associated with first contour path,
-    <literal>yc(1)</literal> contains the number <literal>N1</literal> of points defining this contour path
-    and (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contain the coordinates
-    of the paths points.
-    The second path begin at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and so on.</para>
+    <para>
+      <literal>contour2di</literal> computes level curves of a surface <literal>z=f(x,y)</literal> on
+      a 2D plot.  The values of <literal>f(x,y)</literal> are given by the matrix <literal>z</literal>
+      at the grid points defined by <literal>x</literal> and <literal>y</literal>.
+    </para>
+    <para>
+      <literal>xc(1)</literal> contains the level associated with first contour path,
+      <literal>yc(1)</literal> contains the number <literal>N1</literal> of points defining this contour path
+      and (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contain the coordinates
+      of the paths points.
+      The second path begin at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and so on.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -101,7 +106,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contour">contour</link>
@@ -122,9 +127,5 @@ end
         <link linkend="xset">xset</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

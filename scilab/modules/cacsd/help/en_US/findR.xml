@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findR">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findR</refname>
     <refpurpose> Preprocessor for estimating the matrices of a linear time-invariant dynamical system</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)
-[R,N] = findR(S,Y)</synopsis>
+      [R,N] = findR(S,Y)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,13 +33,13 @@
       <varlistentry>
         <term>Y</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,8 +61,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    METH = 1.
-  </para>
+            Default:    METH = 1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -92,8 +90,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    ALG = 1.
-  </para>
+            Default:    ALG = 1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -115,8 +113,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default: JOBD = 2. This parameter is not relevant for METH = 2.
-  </para>
+            Default: JOBD = 2. This parameter is not relevant for METH = 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -129,8 +127,8 @@
               <listitem>
                 <para>(1) is the tolerance for estimating the rank of matrices. If  TOL(1) &gt; 0,  the given value of  TOL(1)  is used as a lower bound for the reciprocal condition number.</para>
                 <para>
-    Default:    TOL(1) = prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.
-  </para>
+                  Default:    TOL(1) = prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -138,8 +136,8 @@
               <listitem>
                 <para>(2) is the tolerance for estimating the system order. If  TOL(2) &gt;= 0,  the estimate is indicated by the index of the last singular value greater than or equal to  TOL(2).  (Singular values less than  TOL(2) are considered as zero.)</para>
                 <para>
-    When  TOL(2) = 0,  then  S*epsilon_machine*sval(1)  is used instead TOL(2),  where  sval(1)  is the maximal singular value. When  TOL(2) &lt; 0,  the estimate is indicated by the index of the singular value that has the largest logarithmic gap to its successor. Default:    TOL(2) = -1.
-  </para>
+                  When  TOL(2) = 0,  then  S*epsilon_machine*sval(1)  is used instead TOL(2),  where  sval(1)  is the maximal singular value. When  TOL(2) &lt; 0,  the estimate is indicated by the index of the singular value that has the largest logarithmic gap to its successor. Default:    TOL(2) = -1.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -164,14 +162,14 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    PRINTW = 0.
-  </para>
+            Default:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>R</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -197,31 +195,36 @@
   <refsection>
     <title>Description</title>
     <para>
-    findR   Preprocesses the input-output data for estimating the matrices 
-    of a linear time-invariant dynamical system, using Cholesky or
-    (fast) QR factorization and subspace identification techniques 
-    (MOESP or N4SID), and estimates the system order.</para>
+      findR   Preprocesses the input-output data for estimating the matrices 
+      of a linear time-invariant dynamical system, using Cholesky or
+      (fast) QR factorization and subspace identification techniques 
+      (MOESP or N4SID), and estimates the system order.
+    </para>
     <para>
-    [R,N] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  returns the processed
-    upper triangular factor  R  of the concatenated block-Hankel matrices 
-    built from the input-output data, and the order  N  of a discrete-time
-    realization. The model structure is:</para>
-    <programlisting role = ""><![CDATA[ 
+      [R,N] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  returns the processed
+      upper triangular factor  R  of the concatenated block-Hankel matrices 
+      built from the input-output data, and the order  N  of a discrete-time
+      realization. The model structure is:
+    </para>
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k).
  ]]></programlisting>
     <para>
-    The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
-    respectively.</para>
+      The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
+      respectively.
+    </para>
     <para>
-    [R,N,SVAL,RCND] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  also returns
-    the singular values SVAL, used for estimating the order, as well as,
-    if meth = 2, the vector RCND of length 2 containing the reciprocal
-    condition numbers of the matrices involved in rank decisions or least
-    squares solutions.</para>
+      [R,N,SVAL,RCND] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  also returns
+      the singular values SVAL, used for estimating the order, as well as,
+      if meth = 2, the vector RCND of length 2 containing the reciprocal
+      condition numbers of the matrices involved in rank decisions or least
+      squares solutions.
+    </para>
     <para>
-    [R,N] = findR(S,Y)  assumes U = [] and default values for the
-    remaining input arguments.</para>
+      [R,N] = findR(S,Y)  assumes U = [] and default values for the
+      remaining input arguments.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -244,7 +247,7 @@ N
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findABCD">findABCD</link>

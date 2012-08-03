@@ -449,6 +449,27 @@
     <ClCompile Include="xscion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DllmainCore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializePreferences.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setformat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setieee.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\backtrace_print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backtrace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setlines.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">
@@ -742,14 +763,35 @@
     <ClInclude Include="..\..\includes\xscion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\sci_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitializePreferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setformat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setieee.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\backtrace_print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backtrace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\setlines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\core.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\..\core.iss" />
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\core.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\includes\machine.h.vc" />

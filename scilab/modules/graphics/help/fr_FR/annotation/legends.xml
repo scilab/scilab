@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="legends">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>legends</refname>
     <refpurpose>dessine des légendes de courbes
-  2D</refpurpose>
+      2D
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>legends(strings,style,&lt;opt_args&gt;)
-legends(strings,style,xy)
-</synopsis>
+      legends(strings,style,xy)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -21,32 +19,36 @@ legends(strings,style,xy)
         <term>strings</term>
         <listitem>
           <para>vecteur de chaînes de caractères, strings(i) est la légende de
-          la ième courbe</para>
+            la ième courbe
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>style :</term>
         <listitem>
           <para>vecteur ligne entier de taille n (les styles de dessin de chaque
-          courbe, troisième paramètre de plot2d) ou une matrice d'entiers 2 x
-          n, style(1,k) contenant le style pour la k-ième courbe et style(2,k)
-          contient le style de ligne (si style(1,k)&gt;0) ou la couleur du
-          marqueur (si style(1,k)&lt;0).</para>
+            courbe, troisième paramètre de plot2d) ou une matrice d'entiers 2 x
+            n, style(1,k) contenant le style pour la k-ième courbe et style(2,k)
+            contient le style de ligne (si style(1,k)&gt;0) ou la couleur du
+            marqueur (si style(1,k)&lt;0).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
           <para>This represents a sequence of statements
-          <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
-          <literal>key2,...</literal> can be one of the following:</para>
+            <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+            <literal>key2,...</literal> can be one of the following:
+          </para>
           <variablelist>
             <varlistentry>
               <term>opt</term>
               <listitem>
                 <para>determine la position des légendes. Ce paramètre peut être un vecteur
-                [x,y] spécifiant les coordonnées du point supérieur gauche de la boîte
-                contenant les légendes. Il peut aussi prendre l'une des valeurs suivantes:</para>
+                  [x,y] spécifiant les coordonnées du point supérieur gauche de la boîte
+                  contenant les légendes. Il peut aussi prendre l'une des valeurs suivantes:
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>1 or "ur"</term>
@@ -82,7 +84,8 @@ legends(strings,style,xy)
                     <term>6 or "below"</term>
                     <listitem>
                       <para>les légendes sont positionnées en dessous du graphique
-                      (qui est alors réduit pour laisser de la place aux légendes).</para>
+                        (qui est alors réduit pour laisser de la place aux légendes).
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -92,14 +95,16 @@ legends(strings,style,xy)
               <term>with_box</term>
               <listitem>
                 <para>booléen (%t par défaut) qui détermine la présence du cadre
-                des légendes.</para>
+                  des légendes.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>font_size</term>
               <listitem>
                 <para>entier (1 par défaut) précisant la taille de la fonte utilisée pour
-                les légendes.</para>
+                  les légendes.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -110,11 +115,14 @@ legends(strings,style,xy)
   <refsection>
     <title>Description</title>
     <para>Dessine des légendes sur le dessin courant à partir des chaînes de
-    caractères données.</para>
+      caractères données.
+    </para>
     <para>En cas de placement interactif (opt=5) déplacer la boîte de la légende
-    avec la souris et presser bouton de gauche pour la fixer.</para>
+      avec la souris et presser bouton de gauche pour la fixer.
+    </para>
     <para>Cette fonction permet de placer les légendes avec plus de liberté que
-    l'argument leg de plot2d.</para>
+      l'argument leg de plot2d.
+    </para>
     <para/>
   </refsection>
   <refsection>
@@ -154,7 +162,7 @@ legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -28,14 +32,14 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "de cadenes de text.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de memòria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -48,6 +52,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -528,6 +536,13 @@ msgid "Can't get current directory.\n"
 msgstr "No s'ha pogut obtenir el directori actual.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+"%s: S'ha trobat un tipus de variable incorrecta (%s) a '%s'. Pot ser que el "
+"fitxer sigui incorrecte.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
 
@@ -581,11 +596,16 @@ msgstr ""
 "descriptor de fitxer.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: S'ha trobat un tipus de variable incorrecta (%s) a '%s'. Pot ser que el "
-"fitxer sigui incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Options ignored.\n"

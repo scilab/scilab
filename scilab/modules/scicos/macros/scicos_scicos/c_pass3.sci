@@ -16,7 +16,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -233,7 +233,7 @@ outtb=buildouttb(lnksz,lnktyp);
 
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
 
-if max(funtyp)>10000 &%scicos_solver==0 then
+if max(funtyp)>10000 &%scicos_solver<100 then
   messagebox(['Diagram contains Implicit blocks,'
     'Compiling for implicit Solver'],'modal')
   %scicos_solver=100

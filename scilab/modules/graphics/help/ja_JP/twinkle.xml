@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="twinkle">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>twinkle</refname>
     <refpurpose>グラフィックエンティティを点滅させる</refpurpose>
@@ -41,12 +38,13 @@
   </refsection>
   <refsection>
     <title>説明n</title>
-    <para><literal>twinkle</literal>はハンドル<literal>h</literal> で
-	指定したグラフィックエンティティを点滅させます.
-	グラフィックウインドウ内でグラフィックハンドルに対応するグラフィックオブジェクトを
-	探す際に使用することができます.
-	デフォルトでグラフィックエンティティは5回点滅しますが,
-	オプションの引数 <literal>n</literal>によりこの値を変更することができます.
+    <para>
+      <literal>twinkle</literal>はハンドル<literal>h</literal> で
+      指定したグラフィックエンティティを点滅させます.
+      グラフィックウインドウ内でグラフィックハンドルに対応するグラフィックオブジェクトを
+      探す際に使用することができます.
+      デフォルトでグラフィックエンティティは5回点滅しますが,
+      オプションの引数 <literal>n</literal>によりこの値を変更することができます.
     </para>
   </refsection>
   <refsection>

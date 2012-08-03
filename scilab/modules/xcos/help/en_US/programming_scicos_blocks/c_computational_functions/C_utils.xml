@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -46,11 +46,6 @@
               <xref linkend="Description_C_utils">Description</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_C_utils">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -68,13 +63,13 @@
   <refsection id="Description_C_utils">
     <title>Description</title>
     <para>
-The 
-header provides some utilities
-functions to interact with the simulator in the C computational functions.
-</para>
+      The 
+      header provides some utilities
+      functions to interact with the simulator in the C computational functions.
+    </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -89,13 +84,15 @@ functions to interact with the simulator in the C computational functions.
         <para> That function returns an integer which says if the simulator is realizing time domain integration. It can returns :</para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">1 :</emphasis> The simulator is on a discrete activation time.
-</para>
+            <para>
+              <emphasis role="bold">1:</emphasis> The simulator is on a discrete activation time.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">2 :</emphasis> The simulator is realizing a continuous time domain integration.
-      
-</para>
+            <para>
+              <emphasis role="bold">2:</emphasis> The simulator is realizing a continuous time domain integration.
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -119,21 +116,25 @@ functions to interact with the simulator in the C computational functions.
         <para> The following calls are allowed :</para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">set_block_error(-1); :</emphasis> the block has been called with input out of its domain,
-</para>
+            <para>
+              <emphasis role="bold">set_block_error(-1); :</emphasis> the block has been called with input out of its domain,
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">set_block_error(-2); :</emphasis> singularity in a block,
-</para>
+            <para>
+              <emphasis role="bold">set_block_error(-2); :</emphasis> singularity in a block,
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">set_block_error(-3); :</emphasis> block produces an internal error,
-</para>
+            <para>
+              <emphasis role="bold">set_block_error(-3); :</emphasis> block produces an internal error,
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">set_block_error(-16); :</emphasis> cannot allocate memory in block.
-       
-</para>
+            <para>
+              <emphasis role="bold">set_block_error(-16); :</emphasis> cannot allocate memory in block.
+              
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -161,20 +162,6 @@ functions to interact with the simulator in the C computational functions.
           <emphasis role="bold">void scicos_free(void *p);</emphasis>
         </para>
         <para> That function must be used to free scicos pointers inside a C computational function and in particular for =5 for the work pointer . </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_C_utils">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

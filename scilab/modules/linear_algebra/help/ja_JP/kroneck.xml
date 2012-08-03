@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="kroneck">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>kroneck</refname>
     <refpurpose>行列ペンシルのクロネッカー形式</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
-[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)</synopsis>
+      [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>F</term>
         <listitem>
-          <para>実数行列ペンシル <literal>F=s*E-A</literal></para>
+          <para>
+            実数行列ペンシル <literal>F=s*E-A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,10 +61,11 @@
   <refsection>
     <title>説明</title>
     <para>
-	行列ペンシルのクロネッカー形式: <literal>kroneck</literal> は,
-	ペンシル<literal>F=s*E -A</literal>を以下のような上三角形式に変換する
-	2つの直交行列<literal>Q, Z</literal>を計算します:</para>
-    <programlisting role = ""><![CDATA[ 
+      行列ペンシルのクロネッカー形式: <literal>kroneck</literal> は,
+      ペンシル<literal>F=s*E -A</literal>を以下のような上三角形式に変換する
+      2つの直交行列<literal>Q, Z</literal>を計算します:
+    </para>
+    <programlisting role=""><![CDATA[ 
            | sE(eps)-A(eps) |        X       |      X     |      X        |
            |----------------|----------------|------------|---------------|
            |        O       | sE(inf)-A(inf) |      X     |      X        |
@@ -76,23 +77,42 @@ Q(sE-A)Z = |---------------------------------|----------------------------|
            |        0       |       0        |      0     | sE(eta)-A(eta)|
  ]]></programlisting>
     <para>
-	4個のブロックの次元は以下のように指定されます:</para>
-    <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
-    <literal>f = Qd(3) x Zd(3)</literal>, <literal>eta=Qd(4)xZd(4)</literal></para>
+      4個のブロックの次元は以下のように指定されます:
+    </para>
     <para>
-    <literal>inf</literal>ブロックにはペンシルの無限大モードが含まれます.</para>
+      <literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
+      <literal>f = Qd(3) x Zd(3)</literal>, <literal>eta=Qd(4)xZd(4)</literal>
+    </para>
     <para>
-    <literal>f</literal> ブロックにはペンシルの有限モードが含まれます.</para>
+      <literal>inf</literal>ブロックにはペンシルの無限大モードが含まれます.
+    </para>
     <para>
-	イプシロンとetaブロックの構造は以下のように指定されます:</para>
-    <para><literal>numbeps(1)</literal> = 大きさ 0 x 1のepsブロックの番号</para>
-    <para><literal>numbeps(2)</literal> = 大きさ 1 x 2のepsブロックの番号</para>
-    <para><literal>numbeps(3)</literal> = 大きさ 2 x 3のepsブロックの番号     etc...</para>
-    <para><literal>numbeta(1)</literal> = 大きさ 1 x 0のetaブロックの番号</para>
-    <para><literal>numbeta(2)</literal> = 大きさ 2 x 1のetaブロックの番号</para>
-    <para><literal>numbeta(3)</literal> = 大きさ 3 x 2のetaブロックの番号     etc...</para>
+      <literal>f</literal> ブロックにはペンシルの有限モードが含まれます.
+    </para>
     <para>
-	このコードはT. Beelen (Slicot-WGS group)によるものです.</para>
+      イプシロンとetaブロックの構造は以下のように指定されます:
+    </para>
+    <para>
+      <literal>numbeps(1)</literal> = 大きさ 0 x 1のepsブロックの番号
+    </para>
+    <para>
+      <literal>numbeps(2)</literal> = 大きさ 1 x 2のepsブロックの番号
+    </para>
+    <para>
+      <literal>numbeps(3)</literal> = 大きさ 2 x 3のepsブロックの番号     etc...
+    </para>
+    <para>
+      <literal>numbeta(1)</literal> = 大きさ 1 x 0のetaブロックの番号
+    </para>
+    <para>
+      <literal>numbeta(2)</literal> = 大きさ 2 x 1のetaブロックの番号
+    </para>
+    <para>
+      <literal>numbeta(3)</literal> = 大きさ 3 x 2のetaブロックの番号     etc...
+    </para>
+    <para>
+      このコードはT. Beelen (Slicot-WGS group)によるものです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

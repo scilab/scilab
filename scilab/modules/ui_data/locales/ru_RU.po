@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-02 21:20+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2012-02-21 14:28+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
@@ -22,8 +22,13 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -38,12 +43,22 @@ msgid "%s: ans cannot be edited.\n"
 msgstr "%s: Переменная «ans» не может быть изменена.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Переменная %s не определена.\n"
+msgid "%s: Undefined variable: %s.\n"
+msgstr "%s: Неопределённая переменная: %s.\n"
 
 #, c-format
-msgid "%s: Java memory problem, cannot edit %s\n"
-msgstr "%s: Проблема с памятью в Java, не удалось изменить %s\n"
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался double (число двойной "
+"точности).\n"
+
+#, c-format
+msgid ""
+"%s: Java exception arisen:\n"
+"%s\n"
+msgstr ""
+"%s: Возникло Java-исключение:\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Type not handle yet"
@@ -61,20 +76,29 @@ msgstr "&Справка"
 msgid "&About Scilab..."
 msgstr "&О Scilab"
 
-msgid "Icon"
-msgstr "Значок"
-
 msgid "Name"
 msgstr "Имя"
 
-msgid "Bytes"
-msgstr "Байт"
+msgid "Dimension"
+msgstr "Размер"
 
 msgid "Type"
 msgstr "Тип"
 
 msgid "Visibility"
 msgstr "Видимость"
+
+msgid "Bytes"
+msgstr "Байт"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Type int value"
+msgstr "Значение типа int"
+
+msgid "Feature not available in this mode..."
+msgstr "В этом режиме такой возможности нет..."
 
 msgid "File"
 msgstr "Файл"
@@ -85,59 +109,62 @@ msgstr "Закрыть"
 msgid "Filter"
 msgstr "Фильтр"
 
+msgid "Hide Scilab variables"
+msgstr "Скрывать системные переменные"
+
 msgid "Double"
-msgstr "Числа с двойной точностью"
+msgstr "Double"
 
 msgid "Polynomial"
-msgstr "Полиномы"
+msgstr "Polynomial"
 
 msgid "Boolean"
-msgstr "Логические значения"
+msgstr "Boolean"
 
 msgid "Sparse"
-msgstr "Разряженные матрицы"
+msgstr "Sparse"
 
 msgid "Sparse boolean"
-msgstr "Разряженные логические матрицы"
+msgstr "Sparse boolean"
 
 msgid "Integer"
-msgstr "Целые числа"
+msgstr "Integer"
 
 msgid "Graphic handles"
-msgstr "Графические дескрипторы"
+msgstr "Graphic handles"
 
 msgid "String"
-msgstr "Строки"
+msgstr "String"
 
 msgid "Un-compiled function"
-msgstr "Нескомпилированные функции"
+msgstr "Un-compiled function"
 
 msgid "Compiled function"
-msgstr "Скомпилированные функции"
+msgstr "Compiled function"
 
 msgid "Function library"
-msgstr "Библиотеки функций"
+msgstr "Function library"
 
 msgid "List"
-msgstr "Простые списки"
+msgstr "List"
 
 msgid "Tlist"
-msgstr "Типизированные списки"
+msgstr "Tlist"
 
 msgid "Mlist"
-msgstr "Матричные типизированные списки"
+msgstr "Mlist"
 
 msgid "Pointer"
-msgstr "Указатели"
+msgstr "Pointer"
 
 msgid "Intrinsic function"
-msgstr "Внутренние функции"
+msgstr "Intrinsic function"
 
 msgid "Matlab sparse"
-msgstr "Разряженные матрицы Matlab"
+msgstr "Matlab sparse"
 
 msgid "Implicit polynomial"
-msgstr "Неявные полиномы"
+msgstr "Implicit polynomial"
 
 msgid "Variable Editor"
 msgstr "Редактор переменных"
@@ -147,6 +174,9 @@ msgstr "Обозреватель переменных"
 
 msgid "Global variables can not be edited."
 msgstr "Глобальные переменные не могут быть изменены."
+
+msgid "Edition"
+msgstr "Редакция"
 
 msgid "Refresh the variable "
 msgstr "Обновить список переменных "
@@ -160,11 +190,152 @@ msgstr "Вставить"
 msgid "Cut"
 msgstr "Вырезать"
 
+msgid "Clear"
+msgstr "Очистить"
+
 msgid "Undo"
 msgstr "Отменить"
 
 msgid "Redo"
 msgstr "Повторить"
+
+msgid "Size columns to fit"
+msgstr "Размер столбцов по содержимому"
+
+msgid "Copy as Scilab command"
+msgstr "Копировать как команду Scilab"
+
+msgid "Copy as Scilab matrix"
+msgstr "Копировать как матрицу Scilab"
+
+msgid "Copy as Scilab matrix with CR"
+msgstr "Копировать как матрицу Scilab с CR"
+
+msgid "Short format"
+msgstr "Формат Short"
+
+msgid "ShortE format"
+msgstr "Формат ShortE"
+
+msgid "Long format"
+msgstr "Формат Long"
+
+msgid "LongE format"
+msgstr "Формат LongE"
+
+msgid "Create variable from selection"
+msgstr "Создать переменную из выделенного"
+
+msgid "Insert a row"
+msgstr "Вставить строку"
+
+msgid "Remove rows"
+msgstr "Удалить строки"
+
+msgid "Insert a column"
+msgstr "Вставить столбец"
+
+msgid "Remove columns"
+msgstr "Удалить столбцы"
+
+msgid "Plot the selection"
+msgstr "Построить графическое изображение выделенного"
+
+msgid "Plot the matrix"
+msgstr "Построить графическое изображение матрицы"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Ok"
+msgstr "Ок"
+
+msgid "Variable name"
+msgstr "Имя переменной"
+
+msgid "Create new variable"
+msgstr "Создать новую переменню"
+
+msgid "Duplicate the variable"
+msgstr "Копировать переменную"
+
+msgid "Rows number"
+msgstr "Число строк"
+
+msgid "Columns number"
+msgstr "Число столбцов"
+
+msgid "Fill with"
+msgstr "Заполнить"
+
+msgid "File Browser"
+msgstr "Обозреватель файлов"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Last modified"
+msgstr "Время последнего изменения"
+
+msgid "Directory"
+msgstr "Каталог"
+
+#, c-format
+msgid "%s File"
+msgstr "Файл %s"
+
+msgid "File/directory filter"
+msgstr "Фильтр файлов/папок"
+
+msgid "Enter your working folder"
+msgstr "Введите имя вашей рабочей папки"
+
+msgid "Case sensitive"
+msgstr "С учётом регистра"
+
+msgid "Regular expression"
+msgstr "Регулярное выражение"
+
+msgid "Select a directory"
+msgstr "Выберите папку"
+
+msgid "Home"
+msgstr "Домашняя папка"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr "Нельзя редактировать файл %s"
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr "Нельзя открыть файл %s"
+
+msgid "Open with SciNotes"
+msgstr "Открыть в SciNotes"
+
+msgid "Execute in Scilab"
+msgstr "Выполнить в Scilab"
+
+msgid "Open with Xcos"
+msgstr "Открыть в Xcos"
+
+msgid "Load in Scilab"
+msgstr "Загрузить в Scilab"
+
+msgid "Edit with default application"
+msgstr "Редактировать с помощью приложения по умолчанию"
+
+msgid "Open with default application"
+msgstr "Открыть с помощью приложения по умолчанию"
+
+msgid "Scilab type:"
+msgstr "Тип Scilab:"
+
+msgid "Bytes:"
+msgstr "Байты:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

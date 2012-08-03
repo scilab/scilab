@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gda">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gda</refname>
     <refpurpose>デフォルトの軸(axes)のハンドルを取得.</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>a = gda()
-a = get("default_axes")</synopsis>
+      a = get("default_axes")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Pパラメータ</title>
@@ -37,14 +35,18 @@ a = get("default_axes")</synopsis>
   <refsection>
     <title>説明</title>
     <para>デフォルトの axesは決して描画されないグラフィックエンティティです.
-	これは, axes のプロパティのデフォルト値の基準として使用されます.
-	これらのデフォルトのプロパティ値は図の中で新しい軸(axes)を初期化する
-	際に使用されます.</para>
-    <para><literal>gda</literal> 関数はデフォルトの軸のハンドルを返します.
-	ユーザはこのハンドルを用いて
-	axes のプロパティのデフォルト値を設定または取得することができます.</para>
+      これは, axes のプロパティのデフォルト値の基準として使用されます.
+      これらのデフォルトのプロパティ値は図の中で新しい軸(axes)を初期化する
+      際に使用されます.
+    </para>
+    <para>
+      <literal>gda</literal> 関数はデフォルトの軸のハンドルを返します.
+      ユーザはこのハンドルを用いて
+      axes のプロパティのデフォルト値を設定または取得することができます.
+    </para>
     <para>figureエンティティに関しても等価なデフォルトのグラフィックエンティティが
-	存在することに注意してください ( <literal>gdf</literal>参照).</para>
+      存在することに注意してください ( <literal>gdf</literal>参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -100,9 +102,5 @@ plot2d(sin(t),cos(t))
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

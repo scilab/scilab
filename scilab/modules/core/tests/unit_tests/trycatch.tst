@@ -152,7 +152,7 @@ if exists('a')==0|exists('b')==0 then pause,end
 if a<>3|b<>2 then pause,end
 
 //catch in  functions
-funcprot(0) 
+funcprot(0);
 clear a b
 deff('r=test()',[
     'try'

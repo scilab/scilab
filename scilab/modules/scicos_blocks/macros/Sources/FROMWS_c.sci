@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -43,17 +43,17 @@ case 'set' then
        list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if ~(Method==0 | Method==1| Method==2| Method==3) then 
-      x_message('Interpolation method should be chosen in [0,1,2,3]');
+      message('Interpolation method should be chosen in [0,1,2,3]');
       ok=%f;
     end
 
     if ~(ZC==0 | ZC==1) then 
-      x_message('Zero crossing should be either 0 or 1');
+      message('Zero crossing should be either 0 or 1');
       ok=%f;
     end
 
     if ~(OutEnd==0 | OutEnd==1| OutEnd==2) then 
-      x_message('Output at end option should be either 0 or 1');
+      message('Output at end option should be either 0 or 1');
       ok=%f;
     end
 
@@ -67,7 +67,7 @@ case 'set' then
     end
 
     if ok then
-      model.ipar=[length(varnam);str2code(varnam);Method;ZC;OutEnd;];
+      model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
       [model,graphics,ok]=set_io(model,graphics,list(),list([-1,-2],-1),1,1);
       if ok then
         graphics.exprs=exprs;
@@ -88,7 +88,7 @@ case 'define' then
   model.out=-1
   model.out2=-2
   model.outtyp=-1
-  model.ipar=[length(varnam);str2code(varnam);Method;ZC;OutEnd;];
+  model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
   model.evtin=[1];
   model.evtout=[1];
   model.firing=[0];

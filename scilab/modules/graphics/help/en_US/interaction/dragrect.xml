@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dragrect">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="dragrect">
   <refnamediv>
     <refname>dragrect</refname>
     <refpurpose> Drag rectangle(s) with mouse</refpurpose>
@@ -47,11 +44,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>dragrect</literal> drags one or more rectangles anywhere on the screen. The 4xn
-    matrix rect defines the rectangles. Each column of <literal>initial_rect</literal>
-    must contain the initial rectangle position as [left;top;width;height]
-    values. When a button is clicked <literal>dragrect</literal> returns the final
-    rectangles definition  in <literal>final_Rect</literal>.</para>
+    <para>
+      <literal>dragrect</literal> drags one or more rectangles anywhere on the screen. The 4xn
+      matrix rect defines the rectangles. Each column of <literal>initial_rect</literal>
+      must contain the initial rectangle position as [left;top;width;height]
+      values. When a button is clicked <literal>dragrect</literal> returns the final
+      rectangles definition  in <literal>final_Rect</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +61,7 @@ xrect(r)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

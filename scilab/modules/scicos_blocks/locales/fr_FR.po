@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 15:21+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2012-02-02 07:13+0000\n"
+"Last-Translator: Clément David <c.david86@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -89,6 +89,8 @@ msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
 msgstr ""
+"La factorisation LU a été achevée, mais le facteur U est strictement "
+"singulier : U (% d,% d) est exactement zéro."
 
 msgid "Read error!\n"
 msgstr "Erreur en lecture !\n"
@@ -98,34 +100,6 @@ msgstr "Impossible d'ouvrir le fichier !\n"
 
 msgid "Read error\n"
 msgstr "Erreur en lecture\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERREUR SCOPE : Erreur dans scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERREUR SCOPE : sciDrawObj n'a pu être exécuté, pShortDraw vaut NULL pour une "
-"raison inconnue !\n"
-" Vous avez peut-être détruit la fenête ou un parent de curves\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "ERREUR SCOPE : Erreur pendant malloc - Vérifiez la mémoire\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERREUR SCOPE : Code d'erreur inconnu !\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Valeur erronée de l'argument dimension."
-
-msgid "This scope has the same window id than another."
-msgstr "Ce scope a le même identifiant de fenêtre qu'un autre"
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Impossible d'utiliser %s avec ce type d'objet."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
@@ -754,7 +728,7 @@ msgid "Final Value"
 msgstr "Valeur finale"
 
 msgid "Step Time"
-msgstr "Pas de temps"
+msgstr "Instant de l'échelon"
 
 #, c-format
 msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."

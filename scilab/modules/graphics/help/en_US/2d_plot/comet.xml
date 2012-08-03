@@ -2,10 +2,7 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="comet">
-  <info>
-    <pubdate>$LastChangedDate: 11-03-2011 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en_US" xml:id="comet">
   <refnamediv>
     <refname>comet</refname>
     <refpurpose>2D comet animated plot. </refpurpose>
@@ -37,34 +34,33 @@
         <listitem>
           <para>
             a real vector or matrix of length.
-           </para>
+          </para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>p</term>
         <listitem>
           <para>
             a real scalar in the interval<literal>[0 1[</literal>. Default value is 0.1.
-           </para>
+          </para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>fun</term>
         <listitem>
           <para>
             a scilab function with calling sequence <literal>y=fun(x)</literal>.  <literal>fun</literal> can also be a polynomial or a rational fraction.
-           </para>
+          </para>
         </listitem>
       </varlistentry>
-    <varlistentry>
+      <varlistentry>
         <term>c</term>
         <listitem>
           <para>
             a vector of  <literal>ny</literal> color index.
-           </para>
+          </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
   <refsection>
@@ -79,57 +75,54 @@
     </para>
     <para>
       The plot is made of three parts:
-         <variablelist>
-           <varlistentry>
-             <term>a head</term> 
-             mark that shows the current <literal>(x(i),y(i))</literal> position.
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-           <varlistentry>
-             <term>a body</term> that shows the trailing curve that
-             follows the head: the
-             <literal>(x(i-k:i),y(i-k:i)</literal>) part of the curve.
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-          <varlistentry>
-             <term>a tail</term> 
-             that shows the  <literal>(x(1:i-k),y(1:i-k))</literal>  part of the curve.
-             <listitem>
-               <para>
-               </para>
-             </listitem>
-           </varlistentry>
-         </variablelist>
-       <para>
-         <literal>comet(x,fun,...)</literal>  is equivalent to <literal>comet(x,feval(x,fun),...)</literal> 
-         </para>
-         <para>
-         <literal>comet(...,p)</literal> can be used to set the
-         relative length of the body. <literal>k</literal> is defined
-         as <literal>k = round(p*ny)</literal>.
-         </para>
-        <para>
-          if <literal>y</literal> is a matrix then animated curves are drawn for each pair  <literal>(x,y(:,l))</literal>.
-          in this case <literal>ny</literal> is the number of rows of <literal>y</literal>.
-        </para>
-        <para>
-          if <literal>x</literal> and <literal>y</literal> are
-          matrices with identical sizes then animated curves are drawn
-          for each pair <literal>(x(:,l),y(:,l))</literal>.  in this
-          case <literal>ny</literal> is the number of rows of
-          <literal>x</literal>and  <literal>y</literal>.
-        </para>
-
-         <para>
-           <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
-         </para>
-
+      <variablelist>
+        <varlistentry>
+          <term>ahead</term> 
+          mark that shows the current <literal>(x(i),y(i))</literal> position.
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>abody</term> that shows the trailing curve that
+          follows the head: the
+          <literal>(x(i-k:i),y(i-k:i)</literal>) part of the curve.
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>atail</term> 
+          that shows the  <literal>(x(1:i-k),y(1:i-k))</literal>  part of the curve.
+          <listitem><para>
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para>
+        <literal>comet(x,fun,...)</literal>  is equivalent to <literal>comet(x,feval(x,fun),...)</literal> 
+      </para>
+      <para>
+        <literal>comet(...,p)</literal> can be used to set the
+        relative length of the body. <literal>k</literal> is defined
+        as <literal>k = round(p*ny)</literal>.
+      </para>
+      <para>
+        if <literal>y</literal> is a matrix then animated curves are drawn for each pair  <literal>(x,y(:,l))</literal>.
+        in this case <literal>ny</literal> is the number of rows of <literal>y</literal>.
+      </para>
+      <para>
+        if <literal>x</literal> and <literal>y</literal> are
+        matrices with identical sizes then animated curves are drawn
+        for each pair <literal>(x(:,l),y(:,l))</literal>.  in this
+        case <literal>ny</literal> is the number of rows of
+        <literal>x</literal>and  <literal>y</literal>.
+      </para>
+      
+      <para>
+        <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
+      </para>
+      
     </para>
   </refsection>
   <refsection>
@@ -150,7 +143,6 @@ clf();comet(linspace(0,5,500),traj)
     <programlisting role="example"><![CDATA[
 clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
-
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -161,24 +153,15 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
       <member>
         <link linkend="paramfplot2d">paramfplot2d</link>
       </member>
-
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer</member>
-    </simplelist>
-  </refsection>
-
   <refsection>
     <title>History</title>
-
- <revhistory>
-  <revision>
-   <revnumber>5.3.2</revnumber>
-   <revremark>Function comet introduced.</revremark>
-  </revision>
- </revhistory>
+    <revhistory>
+      <revision>
+        <revnumber>5.3.2</revnumber>
+        <revremark>Function comet introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

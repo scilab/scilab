@@ -11,20 +11,19 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mcisendstring">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mcisendstring</refname>
     <refpurpose>sends a command string to an MCI
-  device (Windows only).</refpurpose>
+      device (Windows only)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>mcisendstring(mcistring)
-bOK=mcisendstring(mcistring)
-[bOK,CodeError]=mcisendstring(mcistring)
-[bOK,CodeError,StringError]=mcisendstring(mcistring)</synopsis>
+      bOK=mcisendstring(mcistring)
+      [bOK,CodeError]=mcisendstring(mcistring)
+      [bOK,CodeError,StringError]=mcisendstring(mcistring)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -51,7 +50,8 @@ bOK=mcisendstring(mcistring)
         <term>StringError</term>
         <listitem>
           <para>returns MCI interpreter message ('OK' --&gt; if bOK ==
-          %T)</para>
+            %T)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,10 +59,13 @@ bOK=mcisendstring(mcistring)
   <refsection>
     <title>Description</title>
     <para>The mciSendString primitive sends a command string to an MCI device.
-    The device that the command is sent to is specified in the command
-    string.</para>
-    <para>see on <ulink url="http://msdn.microsoft.com/library/default.asp">http://msdn.microsoft.com/library/default.asp</ulink> and search
-    "Windows Multimedia SDK open"</para>
+      The device that the command is sent to is specified in the command
+      string.
+    </para>
+    <para>
+      see on <ulink url="http://msdn.microsoft.com/library/default.asp">http://msdn.microsoft.com/library/default.asp</ulink> and search
+      "Windows Multimedia SDK open"
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -75,9 +78,5 @@ mcisendstring("open ""d:\video.avi"" type avivideo alias AVI_Device")
 mcisendstring("play AVI_Device from 0") 
 mcisendstring("close AVI_Device") 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan Cornet</para>
   </refsection>
 </refentry>

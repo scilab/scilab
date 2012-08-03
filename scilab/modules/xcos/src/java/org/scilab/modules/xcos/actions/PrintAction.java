@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,66 +33,76 @@ import com.mxgraph.swing.mxGraphComponent;
  * Diagram printing management
  */
 public final class PrintAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.PRINT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "document-print.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_P;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    /** Name of the action */
+    public static final String NAME = XcosMessages.PRINT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "document-print";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_P;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+            .getMenuShortcutKeyMask();
 
-	/** The default page margin */
-	private static final int DEFAULT_MARGIN = 36;
-	
-	/** Constructor
-	 * @param scilabGraph associated diagram
-	 */
-	public PrintAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** The default page margin */
+    private static final int DEFAULT_MARGIN = 36;
 
-	/**
-	 * Print menu creation 
-	 * @param scilabGraph associated diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, PrintAction.class);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     */
+    public PrintAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Print button creation 
-	 * @param scilabGraph associated diagram
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, PrintAction.class);
-	}
+    /**
+     * Print menu creation
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, PrintAction.class);
+    }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
-		PrinterJob pj = PrinterJob.getPrinterJob();
+    /**
+     * Print button creation
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, PrintAction.class);
+    }
 
-		if (pj.printDialog()) {
-			PageFormat pf = graphComponent.getPageFormat();
-			Paper paper = new Paper();
-			double margin = DEFAULT_MARGIN;
-			paper.setImageableArea(margin, margin, paper.getWidth()	- margin * 2, paper.getHeight() - margin * 2);
-			pf.setPaper(paper);
-			pj.setPrintable(graphComponent, pf);
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        mxGraphComponent graphComponent = getGraph(null).getAsComponent();
+        PrinterJob pj = PrinterJob.getPrinterJob();
 
-			try {
-				pj.print();
-			} catch (PrinterException e2) {
-				System.out.println(e2);
-			}
-		}
+        if (pj.printDialog()) {
+            PageFormat pf = graphComponent.getPageFormat();
+            Paper paper = new Paper();
+            double margin = DEFAULT_MARGIN;
+            paper.setImageableArea(margin, margin, paper.getWidth() - margin
+                    * 2, paper.getHeight() - margin * 2);
+            pf.setPaper(paper);
+            pj.setPrintable(graphComponent, pf);
 
-	}
+            try {
+                pj.print();
+            } catch (PrinterException e2) {
+                System.out.println(e2);
+            }
+        }
+
+    }
 }

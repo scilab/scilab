@@ -11,8 +11,7 @@ package org.scilab.tests.modules.hdf5;
  *
  */
 
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.junit.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -32,7 +31,7 @@ public class testScilabDouble {
     @Test
     public void emptyMatrix() throws NullPointerException, HDF5Exception {
         ScilabDouble scilabEmptyDouble = new ScilabDouble();
-        String fileName = tempDir + "/emptyDoubleFromJava.h5";
+        String fileName = tempDir + "/emptyDoubleFromJava.sod";
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "EmptyDouble", scilabEmptyDouble);
         H5Write.closeFile(fileId);
@@ -47,9 +46,9 @@ public class testScilabDouble {
 
     @Test
     public void testScalarHDF5() throws NullPointerException, HDF5Exception {
-        double a=42.;
+        double a = 42.;
         ScilabDouble scilabScalar = new ScilabDouble(a);
-        String fileName = tempDir + "/scalarFromJava.h5";
+        String fileName = tempDir + "/scalarFromJava.sod";
         int fileId = H5Write.createFile(fileName);
         H5Write.writeInDataSet(fileId, "EmptyDouble", scilabScalar);
         H5Write.closeFile(fileId);
@@ -65,7 +64,7 @@ public class testScilabDouble {
     @Test
     public void testRealMatrix() throws NullPointerException, HDF5Exception {
         double [][]realPart = new double[ROWS][COLS];
-        String fileName = tempDir + "/realDoubleFromJava.h5";
+        String fileName = tempDir + "/realDoubleFromJava.sod";
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
                 realPart[i][j] = Math.random();
@@ -86,7 +85,7 @@ public class testScilabDouble {
         Assert.assertEquals(data.isReal(), true);
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
-                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
+                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j], 1e-8);
             }
         }
         new File(fileName).delete();
@@ -96,7 +95,7 @@ public class testScilabDouble {
     public void testComplexMatrix() throws NullPointerException, HDF5Exception {
         double [][]realPart = new double[ROWS][COLS];
         double [][]imagPart = new double[ROWS][COLS];
-        String fileName = tempDir + "/complexDoubleFromJava.h5";
+        String fileName = tempDir + "/complexDoubleFromJava.sod";
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
                 realPart[i][j] = Math.random();
@@ -117,8 +116,8 @@ public class testScilabDouble {
         H5Read.readDataFromFile(fileId, data);
         for (int i = 0 ; i < ROWS ; ++i) {
             for (int j = 0 ; j < COLS ; ++j) {
-                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
-                Assert.assertEquals(imagPart[i][j], data.getImaginaryPart()[i][j]);
+                Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j], 1e-8);
+                Assert.assertEquals(imagPart[i][j], data.getImaginaryPart()[i][j], 1e-8);
             }
         }
         new File(fileName).delete();

@@ -10,74 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="relocate_handle" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="relocate_handle" xml:lang="en">
   <refnamediv>
     <refname>relocate_handle</refname>
-
     <refpurpose>Movimentação de manipuladores dentro da hierarquia
-    gráfica</refpurpose>
+      gráfica
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>relocate_handle( movedHandles, parent )</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>movedHandles</term>
-
         <listitem>
           <para>vetor de manipuladores realocados</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>parent</term>
-
         <listitem>
           <para>nova raiz dos manipuladores</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>A função relocate_handle permite mover manipuladores das suas
-    localizações em uma hierarquia gráfica para outra localização. Todas as
-    entidades são realocadas sob o mesmo manipulador raiz especificado pelo
-    parâmetro <emphasis role="bold">parent</emphasis>.</para>
-
+      localizações em uma hierarquia gráfica para outra localização. Todas as
+      entidades são realocadas sob o mesmo manipulador raiz especificado pelo
+      parâmetro <emphasis role="bold">parent</emphasis>.
+    </para>
     <para>Já que não são todos os manipuladores que são compatíveis com todos
-    os outros, existem algumas restrições ao se realocar manipuladores. Por
-    exemplo, não é permitido mover um manipulador Axes sob um manipulador
-    Polyline. Para mais informações sobre compatibilidade veja a página <link
-    linkend="graphics_entities">graphics_entities</link>.</para>
-
+      os outros, existem algumas restrições ao se realocar manipuladores. Por
+      exemplo, não é permitido mover um manipulador Axes sob um manipulador
+      Polyline. Para mais informações sobre compatibilidade veja a página <link linkend="graphics_entities">graphics_entities</link>.
+    </para>
     <para>Esta rotina é particularmente útil para se mover um objeto de uma
-    entidade Axes para outra, ou para se move objetos Axes de uma entidade
-    Figure para outra.</para>
+      entidade Axes para outra, ou para se move objetos Axes de uma entidade
+      Figure para outra.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 x = 0:10 ;
 
@@ -97,25 +76,21 @@ poly2bis = copy( poly2 ) ; // criando uma cópia da poligonal
 relocate_handle( poly2bis, axes1 ) ;
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link
-      linkend="graphics_entities">graphics_entities</link></member>
-
-      <member><link linkend="copy">copy</link></member>
-
-      <member><link linkend="delete">delete</link></member>
-
-      <member><link linkend="swap_handles">swap_handles</link></member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="swap_handles">swap_handles</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="browsevar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>browsevar</refname>
-    <refpurpose> Scilab variable browser</refpurpose>
+    <refpurpose>Scilab variable browser</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,12 +22,93 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>browsevar</literal> is an embedded Scilab variable browser.</para>
-    <para><literal>browsevar</literal> can show all variables. <literal>browsevar</literal> can be costumized to show all or some type of variables. It's also possible to exclude variable names.</para>
+    <para>
+      <literal>browsevar</literal> is the embedded Scilab variable browser.
+    </para>
+    <para>
+      <literal>browsevar</literal> lists all user variables the current environnement.
+    </para>
+    <para>
+      <literal>browsevar</literal> has several features: 
+      <itemizedlist>
+        <listitem><para>
+            A simple and comprehensive list
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsevar_list.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Easy tooltips on the dimensions or types
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsevar_tooltip.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Sort by columns
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsevar_sort.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Direct connexion to the <link linkend="editvar">editvar component</link> by double-clicking on the variable name
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Filter by type from the menu
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsevar_filter.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Filter out Scilab predefined variables (SCI, SCIHOME, %pi, etc) from the menu
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsevar_filtersci.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
+a=rand(10,10);
+b="my string";
 browsevar();
  ]]></programlisting>
   </refsection>

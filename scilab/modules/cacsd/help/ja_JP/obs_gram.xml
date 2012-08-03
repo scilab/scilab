@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="obs_gram">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>obs_gram</refname>
     <refpurpose> 可観測性グラミアン</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>Go=obs_gram(A,C [,dom])
-Go=obs_gram(sl)</synopsis>
+      Go=obs_gram(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -35,13 +33,17 @@ Go=obs_gram(sl)</synopsis>
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>文字列 (<literal>"d'</literal> または <literal>"c"</literal> (デフォルト値))</para>
+          <para>
+            文字列 (<literal>"d'</literal> または <literal>"c"</literal> (デフォルト値))
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,11 +51,11 @@ Go=obs_gram(sl)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	対<literal>(A,C)</literal>または
-	線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)の
-	可観測性グラミアン.
-    <literal>dom</literal> は領域で,以下の値とすることができます
-  </para>
+      対<literal>(A,C)</literal>または
+      線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)の
+      可観測性グラミアン.
+      <literal>dom</literal> は領域で,以下の値とすることができます
+    </para>
     <variablelist>
       <varlistentry>
         <term>"c"</term>

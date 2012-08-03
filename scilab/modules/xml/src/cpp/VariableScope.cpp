@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,17 +17,19 @@
 namespace org_modules_xml
 {
     xmlFreeFunc VariableScope::XMLFreeFunc = 0;
-    std::map<void *, XMLObject *> * VariableScope::mapLibXMLToXMLObject = new std::map<void *, XMLObject *>();
-    std::map<void *, XMLNodeList *> * VariableScope::mapLibXMLToXMLNodeList = new std::map<void *, XMLNodeList *>();
+      std::map < void *, XMLObject * >*VariableScope::mapLibXMLToXMLObject = new std::map < void *, XMLObject * >();
+      std::map < void *, XMLNodeList * >*VariableScope::mapLibXMLToXMLNodeList = new std::map < void *, XMLNodeList * >();
+      std::map < const XMLObject *, std::vector < const XMLObject *>*>*VariableScope::parentToChildren =
+        new std::map < const XMLObject *, std::vector < const XMLObject *>*>();
 
-    VariableScope::VariableScope(int _initialSize)
+      VariableScope::VariableScope(int _initialSize)
     {
         position = -1;
         initialSize = _initialSize;
-        scope = new std::vector<XMLObject *>();
-        freePlaces = new std::stack<int>();
-        parentToChildren = new std::map<const XMLObject *, std::vector<const XMLObject *> *>();
-        initXMLMemory();
+        scope = new std::vector < XMLObject * >();
+        freePlaces = new std::stack < int >();
+          parentToChildren = new std::map < const XMLObject *, std::vector < const XMLObject *>*>();
+          initXMLMemory();
     }
 
     VariableScope::~VariableScope()
@@ -36,7 +38,7 @@ namespace org_modules_xml
         {
             if ((*scope)[i])
             {
-                delete (*scope)[i];
+                delete(*scope)[i];
             }
         }
         delete scope;
@@ -50,30 +52,32 @@ namespace org_modules_xml
     int VariableScope::getVariableId(const XMLObject & obj)
     {
         int returnValue;
-        const XMLObject * parent = obj.getXMLObjectParent();
+        const XMLObject *parent = obj.getXMLObjectParent();
 
         if (freePlaces->size() != 0)
         {
             returnValue = freePlaces->top();
             freePlaces->pop();
-            (*scope)[returnValue] = const_cast<XMLObject *>(&obj);
+            (*scope)[returnValue] = const_cast < XMLObject * >(&obj);
         }
         else
         {
             returnValue = (int)scope->size();
-            scope->push_back(const_cast<XMLObject *>(&obj));
+            scope->push_back(const_cast < XMLObject * >(&obj));
         }
 
         if (parent)
         {
-            std::map<const XMLObject *, std::vector<const XMLObject *> *>::const_iterator it = parentToChildren->find(parent);
+            std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(parent);
+
             if (it != parentToChildren->end())
             {
                 it->second->push_back(&obj);
             }
             else
             {
-                (*parentToChildren)[parent] = new std::vector<const XMLObject *>();
+                (*parentToChildren)[parent] = new std::vector < const XMLObject *>();
+
                 (*parentToChildren)[parent]->push_back(&obj);
             }
         }
@@ -81,7 +85,7 @@ namespace org_modules_xml
         return returnValue;
     }
 
-    XMLObject * VariableScope::getVariableFromId(int id)
+    XMLObject *VariableScope::getVariableFromId(int id)
     {
         if (id >= 0 && id < (int)scope->size())
         {
@@ -100,7 +104,7 @@ namespace org_modules_xml
      *       getXMLObjectFromLibXMLPtr is used to know if a XMLObject already exists for the
      *       libxml node.
      */
-    void VariableScope::registerPointers(void * libxml, XMLObject * obj)
+    void VariableScope::registerPointers(void *libxml, XMLObject * obj)
     {
         if (libxml)
         {
@@ -108,7 +112,7 @@ namespace org_modules_xml
         }
     }
 
-    void VariableScope::registerPointers(void * libxml, XMLNodeList * nodeList)
+    void VariableScope::registerPointers(void *libxml, XMLNodeList * nodeList)
     {
         if (libxml)
         {
@@ -116,7 +120,7 @@ namespace org_modules_xml
         }
     }
 
-    void VariableScope::unregisterPointer(void * libxml)
+    void VariableScope::unregisterPointer(void *libxml)
     {
         if (libxml)
         {
@@ -124,7 +128,7 @@ namespace org_modules_xml
         }
     }
 
-    void VariableScope::unregisterNodeListPointer(void * libxml)
+    void VariableScope::unregisterNodeListPointer(void *libxml)
     {
         if (libxml)
         {
@@ -132,11 +136,11 @@ namespace org_modules_xml
         }
     }
 
-    XMLObject * VariableScope::getXMLObjectFromLibXMLPtr(void * libxml) const
+    XMLObject *VariableScope::getXMLObjectFromLibXMLPtr(void *libxml) const
     {
         if (libxml)
         {
-            std::map<void *, XMLObject *>::const_iterator it = mapLibXMLToXMLObject->find(libxml);
+            std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject->find(libxml);
             if (it != mapLibXMLToXMLObject->end())
             {
                 return it->second;
@@ -146,11 +150,11 @@ namespace org_modules_xml
         return 0;
     }
 
-    XMLNodeList * VariableScope::getXMLNodeListFromLibXMLPtr(void * libxml) const
+    XMLNodeList *VariableScope::getXMLNodeListFromLibXMLPtr(void *libxml)const
     {
         if (libxml)
         {
-            std::map<void *, XMLNodeList *>::const_iterator it = mapLibXMLToXMLNodeList->find(libxml);
+            std::map < void *, XMLNodeList * >::const_iterator it = mapLibXMLToXMLNodeList->find(libxml);
             if (it != mapLibXMLToXMLNodeList->end())
             {
                 return it->second;
@@ -164,6 +168,7 @@ namespace org_modules_xml
     {
         if (id >= 0 && id < (int)scope->size() && (*scope)[id])
         {
+            removeChildFromParent((*scope)[id]);
             removeDependencies((*scope)[id]);
             (*scope)[id] = 0;
             freePlaces->push(id);
@@ -172,18 +177,21 @@ namespace org_modules_xml
 
     void VariableScope::removeDependencies(XMLObject * obj)
     {
-        std::map<const XMLObject *, std::vector<const XMLObject *> *>::const_iterator it = parentToChildren->find(obj);
+        std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(obj);
+
         if (it != parentToChildren->end())
         {
             for (unsigned int i = 0; i < it->second->size(); i++)
             {
-                const XMLObject * child = (*(it->second))[i];
-                if (getVariableFromId(child->getId()) == child)
+                const XMLObject *child = (*(it->second))[i];
+
+                if (child && getVariableFromId(child->getId()) == child)
                 {
                     delete child;
                 }
             }
             delete it->second;
+
             parentToChildren->erase(obj);
         }
     }
@@ -210,20 +218,43 @@ namespace org_modules_xml
         return &_xmlFreeFunc;
     }
 
-    void VariableScope::_xmlFreeFunc(void * mem)
+    void VariableScope::_xmlFreeFunc(void *mem)
     {
-        std::map<void *, XMLObject *>::const_iterator it = mapLibXMLToXMLObject->find(mem);
+        std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject->find(mem);
+
         if (it != mapLibXMLToXMLObject->end())
         {
             delete it->second;
+
+            mapLibXMLToXMLObject->erase(mem);
         }
 
-        std::map<void *, XMLNodeList *>::const_iterator itnl = mapLibXMLToXMLNodeList->find(mem);
+        std::map < void *, XMLNodeList * >::const_iterator itnl = mapLibXMLToXMLNodeList->find(mem);
+
         if (itnl != mapLibXMLToXMLNodeList->end())
         {
             delete itnl->second;
+
+            mapLibXMLToXMLNodeList->erase(mem);
         }
 
         XMLFreeFunc(mem);
+    }
+
+    inline void VariableScope::removeChildFromParent(const XMLObject * child)
+    {
+        const XMLObject *parent = child->getXMLObjectParent();
+        std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(parent);
+
+        if (it != parentToChildren->end())
+        {
+            for (unsigned int i = 0; i < it->second->size(); i++)
+            {
+                if (child == (*(it->second))[i])
+                {
+                    (*(it->second))[i] = 0;
+                }
+            }
+        }
     }
 }

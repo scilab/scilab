@@ -1,0 +1,13 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+allowptr_
+funs_
+isbyref_
+ref2val_
+
+

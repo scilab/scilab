@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tf2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tf2des</refname>
     <refpurpose>伝達関数をディスクリプタ形式に変換</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>S=tf2des(G)
-S=tf2des(G,flag)</synopsis>
+      S=tf2des(G,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,13 +27,17 @@ S=tf2des(G,flag)</synopsis>
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト), 多項式行列 <literal>D</literal> が指定される場合もある</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト), 多項式行列 <literal>D</literal> が指定される場合もある
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>"withD"</literal></para>
+          <para>
+            文字列 <literal>"withD"</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,17 +51,18 @@ S=tf2des(G,flag)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-    伝達関数をディスクリプタ形式: <literal>S=list('d',A,B,C,D,E)</literal>に変換します.</para>
-    <programlisting role = ""><![CDATA[ 
+      伝達関数をディスクリプタ形式: <literal>S=list('d',A,B,C,D,E)</literal>に変換します.
+    </para>
+    <programlisting role=""><![CDATA[ 
 E*xdot = A*x+B*u
 y = C*x + D*u
  ]]></programlisting>
     <para>
-	オプションのパラメータ flag=<literal>"withD"</literal> が指定されない場合,
-    <literal>D=0</literal> となることに注意してください.
-	指定された場合, 最大ランク行列 <literal>D</literal> がリスト <literal>S</literal>
-	の5番目のエントリとして返されます.
-	</para>
+      オプションのパラメータ flag=<literal>"withD"</literal> が指定されない場合,
+      <literal>D=0</literal> となることに注意してください.
+      指定された場合, 最大ランク行列 <literal>D</literal> がリスト <literal>S</literal>
+      の5番目のエントリとして返されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -29,6 +29,7 @@ libscimpi_la_CFLAGS=  -Iincludes/ \
 	-Isrc/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-DDEBUG
 libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
@@ -42,12 +43,6 @@ pkglib_LTLIBRARIES = libscimpi.la
 libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 #$(GATEWAY_FORTRAN_SOURCES) $(MPI_FORTRAN_SOURCES)
 
-
-## Libraries necessary
-libscimpi_la_LIBADD = \
-	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/core/libscicore.la
-#	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
 

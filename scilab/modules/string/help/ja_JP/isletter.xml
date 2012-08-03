@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="isletter">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>isletter</refname>
     <refpurpose>文字列の文字がアルファベット文字であるかどうかを調べる</refpurpose>
@@ -41,10 +38,11 @@
   </refsection>
   <refsection>
     <title>D説明</title>
-    <para><literal>res = isletter(str)</literal> は,
-	str と同じ大きさの配列を返します.
-	配列の要素は,対応する str の要素がアルファベット文字の場合に論理値%T (TRUE),
-	それ以外の場合に論理値%F (FALSE)となります.
+    <para>
+      <literal>res = isletter(str)</literal> は,
+      str と同じ大きさの配列を返します.
+      配列の要素は,対応する str の要素がアルファベット文字の場合に論理値%T (TRUE),
+      それ以外の場合に論理値%F (FALSE)となります.
     </para>
   </refsection>
   <refsection>

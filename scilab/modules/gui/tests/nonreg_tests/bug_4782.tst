@@ -25,7 +25,7 @@ h2 = uimenu("Parent", h, "label", "foo2", "Callback", "disp coucou");
 disp(h)
 
 // Before this bug fix, uicontextmenus were not be saved
-save(TMPDIR + filesep() + "bug_4782.tmp", h);
+save(TMPDIR + filesep() + "bug_4782.tmp", "h");
 clear h
 load(TMPDIR + filesep() + "bug_4782.tmp");
 deletefile(TMPDIR + filesep() + "bug_4782.tmp");
@@ -44,7 +44,7 @@ h1 = uimenu("Parent", h, "label", "uimenufoo1", "Callback", "disp hello");
 h2 = uimenu("Parent", h, "label", "uimenufoo2", "Callback", "disp coucou");
 
 // Before this bug fix, uimenus children were not be saved
-save(TMPDIR + filesep() + "bug_4782.tmp", h);
+save(TMPDIR + filesep() + "bug_4782.tmp", "h");
 clear h
 load(TMPDIR + filesep() + "bug_4782.tmp");
 deletefile(TMPDIR + filesep() + "bug_4782.tmp");

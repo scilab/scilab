@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="show_margins">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-06 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>show_margins</refname>
     <refpurpose>ゲイン余裕/位相余裕とそれぞれの交差周波数を表示する</refpurpose>
@@ -32,7 +29,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>SISO 線形システム (参照 :<link linkend="syslin">syslin</link>).</para>
+          <para>
+            SISO 線形システム (参照 :<link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,12 +39,10 @@
   <refsection>
     <title>説明</title>
     <para>連続または離散時間系の SISO 線形システムを指定すると
-    <literal>show_margins</literal> はゲイン余裕、位相余裕および
-    それぞれの交差周波数をボード線図(デフォルト)もしくは
-    システムの周波数応答をナイキスト線図に表示します.
+      <literal>show_margins</literal> はゲイン余裕、位相余裕および
+      それぞれの交差周波数をボード線図(デフォルト)もしくは
+      システムの周波数応答をナイキスト線図に表示します.
     </para>
-
-
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,14 +62,18 @@ show_margins(h,'nyquist')
   <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
-      <member><link linkend="p_margin">p_margin</link></member>
-      <member><link linkend="g_margin">g_margin</link></member>
-      <member><link linkend="bode">bode</link></member>
-      <member><link linkend="nyquist">nyquist</link></member>
+      <member>
+        <link linkend="p_margin">p_margin</link>
+      </member>
+      <member>
+        <link linkend="g_margin">g_margin</link>
+      </member>
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer, INRIA  </para>
   </refsection>
 </refentry>

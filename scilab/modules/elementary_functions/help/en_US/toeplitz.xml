@@ -10,55 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="toeplitz" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="toeplitz" xml:lang="en">
   <refnamediv>
     <refname>toeplitz</refname>
-
-    <refpurpose>toeplitz matrix</refpurpose>
+    <refpurpose>Toeplitz matrix</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>A=toeplitz(c [,r])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>a,c,r</term>
-
         <listitem>
           <para>constant, polynomial or string matrices</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>returns the Toeplitz matrix whose first row is <literal>r</literal>
-    and first column is <literal>c</literal>. <literal>c(1)</literal> must be
-    equal to <literal>r(1)</literal>. <literal>toeplitz(c)</literal> returns
-    the symmetric Toeplitz matrix.</para>
+    <para>
+      <literal>A=toeplitz(c [,r])</literal> returns the Toeplitz matrix whose first row is <literal>r</literal>
+      and first column is <literal>c</literal>. <literal>c(1)</literal> must be
+      equal to <literal>r(1)</literal>. <literal>toeplitz(c)</literal> returns
+      the symmetric Toeplitz matrix.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 A=toeplitz(1:5);
 
@@ -74,12 +56,15 @@ t=toeplitz(['1','2','3','4']);
 t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="matrix">matrix</link></member>
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
+      <member>
+        <link linkend="testmatrix">testmatrix</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

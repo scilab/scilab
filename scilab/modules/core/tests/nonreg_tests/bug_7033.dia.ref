@@ -12,5 +12,5 @@
 // <-- Short Description -->
 // Random crash (more often in 64 bits) in sci_newfun / getMatrixOfString / str2code
 // trying to write to unallocated memory.
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 exec SCI/modules/core/tests/unit_tests/newfun.tst;

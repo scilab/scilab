@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,13 +31,24 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
+  // look for the children blocks
+  ppath = list(0,0);
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "REGISTER_f" then
+      ppath(1) = i;
+    end
+    if typeof(o) == "Block" & o.gui == "EVTDLY_f" then
+      ppath(2) = i;
+    end
+    if and(ppath <> list(0,0)) then
+      break;
+    end
+  end
+
   // paths to updatable parameters or states
   x=arg1
-  if x.model.rpar.objs(1)==mlist('Deleted') then
-      ppath = list(4,5)  //compatibility with translated blocks
-    else
-      ppath = list(3,4)
-    end
+
   newpar=list();
   register=x.model.rpar.objs(ppath(1)) //data structure of register block
   evtdly=x.model.rpar.objs(ppath(2)) //data structure of evtdly block

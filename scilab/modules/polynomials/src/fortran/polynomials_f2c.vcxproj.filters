@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bezout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bezstp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dmpmu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmptld.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dmptra.c">
@@ -109,9 +103,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imptra.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matra.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mpdegr.c">
@@ -255,11 +246,11 @@
     <ClCompile Include="writebufsfact.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="chkvar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="bezout.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="bezstp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -297,9 +288,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmpmu.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmptld.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmptra.f">
@@ -342,9 +330,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="imptra.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="matra.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mpdegr.f">
@@ -488,11 +473,9 @@
     <f2c_rule Include="writebufsfact.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <f2c_rule Include="chkvar.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
@@ -503,7 +486,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="linear_algebra_Import.def">
@@ -513,6 +496,15 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="polynomials_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="cacsd_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

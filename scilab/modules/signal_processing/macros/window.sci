@@ -112,7 +112,7 @@ case 'ch' then           //Chebyshev window
     //           / cos(n acos(x),    |x| <= 1
     //    p(x) = |
     //           \ cosh(n acosh(x),  |x| > 1
-    pr==zeros(1,n);//real part
+    pr=zeros(1,n);//real part
     pi=zeros(1,n); //imaginary part
     ind = find(xarg<=1); pr(ind)=dp*cos (c2*acos (xarg(ind)));
     ind = find(xarg>1);  pr(ind)=dp*cosh(c2*acosh(xarg(ind)));

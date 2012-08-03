@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.uielement;
 
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.utils.Layout;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -26,7 +27,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public abstract class ScilabUIElement implements UIElement {
+public abstract class ScilabUIElement extends Uicontrol implements UIElement {
 
 	/**
 	 * The toolBar associated to the UIElement
@@ -166,7 +167,7 @@ public abstract class ScilabUIElement implements UIElement {
 	public TextBox getInfoBar() {
 		return infoBar;
 	}
-	
+
 	/*******************************/
 	/* UIElement interface methods */
 	/*******************************/

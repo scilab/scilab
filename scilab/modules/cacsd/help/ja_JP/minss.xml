@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="minss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>minss</refname>
     <refpurpose> 最小実現</refpurpose>
@@ -28,21 +25,27 @@
       <varlistentry>
         <term>sl,slc</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (状態空間形式の線形システム)</para>
+          <para>
+            <literal>syslin</literal> リスト (状態空間形式の線形システム)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>実数 (ランク定義の閾値 (<literal>contr</literal>参照)</para>
+          <para>
+            実数 (ランク定義の閾値 (<literal>contr</literal>参照)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>minss</literal> は,<literal>sl</literal>の
-	最小実現を<literal>slc</literal>に返します.</para>
+    <para>
+      <literal>minss</literal> は,<literal>sl</literal>の
+      最小実現を<literal>slc</literal>に返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

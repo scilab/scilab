@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -16,6 +16,9 @@
     <Filter Include="localization">
       <UniqueIdentifier>{15ec80be-2eb1-4a30-b9ed-bbfb13daa61c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{a80262cb-66f7-4d15-8271-cbddc2c2816b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\jni\call_scilab_wrap.c">
@@ -27,63 +30,12 @@
     <ClCompile Include="src\c\javasci2_helper.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\javasci_globals.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciAbstractArray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciBooleanArray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciComplexArray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciDoubleArray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciIntegerArray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_Scilab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_Scilab2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\javasci_SciStringArray.c">
+    <ClCompile Include="src\jni\putLists.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\javasci2_helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciAbstractArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciBooleanArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciComplexArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciDoubleArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciIntegerArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_Scilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_Scilab2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\javasci_SciStringArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,8 +47,8 @@
   <ItemGroup>
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\LibScilab.lib" />
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="subplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>subplot</refname>
     <refpurpose> グラフィックウインドウをサブウインドウの行列に分割する</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>subplot(m,n,p)
-subplot(mnp)</synopsis>
+      subplot(mnp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -35,7 +33,9 @@ subplot(mnp)</synopsis>
       <varlistentry>
         <term>mnp</term>
         <listitem>
-          <para>10進表記の整数 <literal>mnp</literal></para>
+          <para>
+            10進表記の整数 <literal>mnp</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,12 +43,12 @@ subplot(mnp)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-    subplot(m,n,p) または subplot(mnp) はグラフィックウインドウを
-	m行n列のサブウインドウの行列に分割し,
-	p番目のサブウインドウを描画先として選択します.
-	サブウインドウの番号は,行優先でカウント,つまり,
-	行列の要素(i,j)に対応するサブウインドウは(i-1)*n + j番となります.
-	</para>
+      subplot(m,n,p) または subplot(mnp) はグラフィックウインドウを
+      m行n列のサブウインドウの行列に分割し,
+      p番目のサブウインドウを描画先として選択します.
+      サブウインドウの番号は,行優先でカウント,つまり,
+      行列の要素(i,j)に対応するサブウインドウは(i-1)*n + j番となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

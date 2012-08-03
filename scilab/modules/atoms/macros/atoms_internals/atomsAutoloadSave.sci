@@ -64,7 +64,7 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     autoloaded_txt = atoms_directory+"autoloaded.txt";
     autoloaded_bin = atoms_directory+"autoloaded.bin";
 
-    // Build the the installed_str
+    // Build the installed_str
     // =========================================================================
 
     if ~ isempty(autoloaded_mat) then
@@ -84,6 +84,9 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     // =========================================================================
 
     mputl( autoloaded_str , autoloaded_txt);
+    wMode = warning("query");
+    warning("off");
     save( autoloaded_bin  , autoloaded_mat);
+    warning(wMode);
 
 endfunction

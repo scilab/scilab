@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_flags">
-  <info>
-    <pubdate>October 2006</pubdate>
-  </info>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_flags">
   <refnamediv>
     <refname>fftw_flags</refname>
-    <refpurpose>choix de la méthode de calcul pour la fonction fftw</refpurpose>
+    <refpurpose>choix de la méthode pour la sélection de l'algorithme
+    de planification pour la fft</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+    <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>[x1;x2;...]</term>
+        <term>flag</term>
         <listitem>
-          <para>Matrice de chaînes de caractères ou bien d'entiers. Sert à sélectionner la méthode de calcul de la fonction fftw.</para>
+          <para>une chaîne de caractères ou bien un entier. Sert à
+          spécifier l'algorithme de planification. Voir ci-dessous.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>Entier. Donne sous forme d'entier la méthode courante utilisée par la fonction fftw.</para>
+          <para>un entier. Code de l'algorithme de planification.Voir
+          ci-dessous.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>S</term>
         <listitem>
-          <para>Matrice de chaînes de caractères. Donne sous forme de chaînes de caractères la méthode utilisée par fftw.</para>
+          <para>une chaîne de caractères. Le nom de l'algorithme de
+          planification.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,104 +54,88 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction permet de sélectionner le paramètre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
-    qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
+      Cette fonction permet la sélection de l'algorithme utilisé pour
+      déterminer l'algorithme de planification de fftw. Le
+      planificateur est utilisé pour déterminer un moyen efficace pour
+      calculer la fft.
     </para>
     <para>
-    Les entrées possibles sont :
+      Attention: la valeur par défaut "FFTW_MEASURE" donne le plus
+      souvent de bonnes performances. N'essayez d'autres choix que si
+      la performance est cruciale et que vous avez beaucoup d'appels
+      du même type que faire.
+    </para>
+    <para>
+      Les entrées possibles sont :
     </para>
     <itemizedlist>
       <listitem>
-        <para>FFTW_MEASURE or 0</para>
+        <para>FFTW_ESTIMATE ou 64. Selectionne une heuristique simple et
+        peu couteuse pour choisir un plan (probablement
+        sous-optimal). C'est la valeur par défaut.</para>
       </listitem>
       <listitem>
-        <para>FFTW_DESTROY_INPUT or 1</para>
+        <para>FFTW_MEASURE ou 0.  Selectionne une méthode consistant a
+        éffectuer plusieurs calcul de fft avec des planifications
+        différentes, à mesurer leur temps d'exécution et de choisir la
+        meilleur planification. En fonction de votre machine, cela
+        peut prendre un certain le temps (souvent quelques
+        secondes).</para>
       </listitem>
       <listitem>
-        <para>FFTW_UNALIGNED or 2</para>
+        <para>FFTW_PATIENT ou 32. Similaire à "FFTW_MEASURE", mais
+        considère un plus large éventail d'algorithmes et produit
+        souvent un plan plus efficace (en particulier pour les
+        transformations importantes), par contre le cout de la
+        détermination du plan peut être largement supérieur (en
+        particulier pour les transformations importantes).</para>
       </listitem>
+     
       <listitem>
-        <para>FFTW_CONSERVE_MEMORY or 4</para>
+        <para>FFTW_EXHAUSTIVE or 8. C'est comme "FFTW_PATIENT", mais
+        considère une gamme encore plus large d'algorithmes, visant a
+        trouver le plan optimal , mais avec un temps de planification
+        sensiblement augmenté. </para>
       </listitem>
-      <listitem>
-        <para>FFTW_EXHAUSTIVE or 8</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_PRESERVE_INPUT or 16</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_PATIENT or 32</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_ESTIMATE or 64</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_ESTIMATE_PATIENT or 128</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_BELIEVE_PCOST or 256</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_DFT_R2HC or 512</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_NONTHREADED or 1024</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_BUFFERING or 2048</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_INDIRECT_OP or 4096</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_ALLOW_LARGE_GENERIC or 8192</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_RANK_SPLITS or 16384</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_VRANK_SPLITS or 32768</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_VRECURSE or 65536</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_SIMD or 131072</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_SLOW or 262144</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_ALLOW_PRUNING or 1048576</para>
-      </listitem>
+    
     </itemizedlist>
     <para>
-     Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
-     (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
-   </para>
+      Remarque : Lors de l'utilisation des méthodes
+      FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit
+      être appélée au moins deux fois.  (le premier appel est pour
+      l'initalisation, le second et les autres pour le calcul)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-//retourne sous forme entière la valeur du flag
-fftw_flags()
+A=rand(1,2^9+2^15+2^17);
+fftw_forget_wisdom();
+fftw_flags("FFTW_ESTIMATE");
+timer();y=fft(A);timer()//premier appel, détermine le plan
+timer();y=fft(A);timer() //appels similaires suivants
+fftw_flags("FFTW_MEASURE");
+fftw_forget_wisdom();
+timer();y=fft(A);timer()//premier appel, détermine le plan
+timer();y=fft(A);timer() //appels similaires suivants
 
-//changement de méthode
-fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-
-//changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
-[a,S]=fftw_flags("FFTW_PATIENT")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="fftw">fftw</link>
+    <member>
+        <link linkend="fft">fft</link>
       </member>
-    </simplelist>
+      <member>
+        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+      </member>
+     <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
+     </simplelist>
   </refsection>
 </refentry>

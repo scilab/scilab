@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hermit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hermit</refname>
     <refpurpose> Hermite form</refpurpose>
@@ -48,12 +45,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Hermite form: <literal>U</literal> is an unimodular matrix such that <literal>A*U</literal> is
-    in Hermite triangular form:</para>
+      Hermite form: <literal>U</literal> is an unimodular matrix such that <literal>A*U</literal> is
+      in Hermite triangular form:
+    </para>
     <para>
-    The output variable is <literal>Ar=A*U</literal>.</para>
+      The output variable is <literal>Ar=A*U</literal>.
+    </para>
     <para>
-    Warning: Experimental version</para>
+      Warning: Experimental version
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -65,7 +65,7 @@ clean(p'*p*U), det(U)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

@@ -1,4 +1,4 @@
-# Localization of the module signal_processing-macros
+# Localization of the module signal_processing
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
@@ -14,7 +14,71 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 17:58+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
+
+# File: sci_gateway/c/sci_conv2.c, line: 38
+# File: sci_gateway/c/sci_conv2.c, line: 99
+# File: sci_gateway/c/sci_conv2.c, line: 108
+# File: sci_gateway/c/sci_conv2.c, line: 126
+# File: sci_gateway/c/sci_conv2.c, line: 137
+# File: sci_gateway/c/sci_conv2.c, line: 156
+# File: sci_gateway/c/sci_conv2.c, line: 165
+# File: sci_gateway/c/sci_conv2.c, line: 183
+# File: sci_gateway/c/sci_conv2.c, line: 194
+# File: sci_gateway/c/sci_conv2.c, line: 214
+# File: sci_gateway/c/sci_conv2.c, line: 223
+# File: sci_gateway/c/sci_conv2.c, line: 241
+# File: sci_gateway/c/sci_conv2.c, line: 252
+# File: sci_gateway/c/sci_conv2.c, line: 353
+# File: sci_gateway/c/sci_conv2.c, line: 362
+# File: sci_gateway/c/sci_conv2.c, line: 380
+# File: sci_gateway/c/sci_conv2.c, line: 391
+# File: sci_gateway/c/sci_conv2.c, line: 402
+# File: sci_gateway/c/sci_conv2.c, line: 411
+# File: sci_gateway/c/sci_conv2.c, line: 429
+# File: sci_gateway/c/sci_conv2.c, line: 440
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 63
+# File: sci_gateway/c/sci_conv2.c, line: 75
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 114
+# File: sci_gateway/c/sci_conv2.c, line: 203
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 145
+# File: sci_gateway/c/sci_conv2.c, line: 171
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 229
+# File: sci_gateway/c/sci_conv2.c, line: 368
+# File: sci_gateway/c/sci_conv2.c, line: 417
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 312
+# File: sci_gateway/c/sci_conv2.c, line: 326
+# File: sci_gateway/c/sci_conv2.c, line: 334
+# File: sci_gateway/c/sci_conv2.c, line: 496
+# File: sci_gateway/c/sci_conv2.c, line: 509
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 # File: demos/arma/arma1.dem.sce, line: 29
 msgid "Simulation of an ARMAX process:"
@@ -86,6 +150,36 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #
+# File: demos/conv.dem.sce, line: 27
+msgid "filtered signal"
+msgstr ""
+
+#
+# File: demos/conv.dem.sce, line: 27
+msgid "given noisy signal"
+msgstr ""
+
+#
+# File: demos/conv.dem.sce, line: 28
+msgid "Signal"
+msgstr ""
+
+#
+# File: demos/conv.dem.sce, line: 35
+msgid "2 points convolution"
+msgstr ""
+
+#
+# File: demos/conv.dem.sce, line: 35
+msgid "3 points convolution"
+msgstr ""
+
+#
+# File: demos/conv.dem.sce, line: 36
+msgid "Signal derivative estimate"
+msgstr ""
+
+#
 # File: demos/remezfilt.dem.sce, line: 23
 msgid "Minimax FIR filter"
 msgstr ""
@@ -142,16 +236,26 @@ msgstr ""
 
 #
 # File: demos/signal_processing.dem.gateway.sce, line: 19
-msgid "Arma simulation and identification"
+msgid "1-D convolution"
 msgstr ""
 
 #
 # File: demos/signal_processing.dem.gateway.sce, line: 20
-msgid "Arma, bidimensional version"
+msgid "2-D convolution"
 msgstr ""
 
 #
 # File: demos/signal_processing.dem.gateway.sce, line: 21
+msgid "Arma simulation and identification"
+msgstr ""
+
+#
+# File: demos/signal_processing.dem.gateway.sce, line: 22
+msgid "Arma, bidimensional version"
+msgstr ""
+
+#
+# File: demos/signal_processing.dem.gateway.sce, line: 23
 msgid "Arma, Spectral power estimation"
 msgstr ""
 
@@ -185,13 +289,15 @@ msgstr ""
 # File: macros/eqiir.sci, line: 43
 # File: macros/eqiir.sci, line: 56
 # File: macros/hilb.sci, line: 42
-# File: macros/iir.sci, line: 50
-# File: macros/iir.sci, line: 53
+# File: macros/iir.sci, line: 52
+# File: macros/iir.sci, line: 55
 # File: macros/pspect.sci, line: 41
 # File: macros/sincd.sci, line: 40
-# File: macros/trans.sci, line: 50
-# File: macros/wfir.sci, line: 44
+# File: macros/trans.sci, line: 53
+# File: macros/wfir.sci, line: 50
 # File: macros/window.sci, line: 25
+# File: macros/xcorr.sci, line: 14
+# File: macros/xcov.sci, line: 14
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -204,15 +310,15 @@ msgstr ""
 # File: macros/detrend.sci, line: 43
 # File: macros/detrend.sci, line: 46
 # File: macros/hilbert.sci, line: 19
-# File: macros/iir.sci, line: 40
-# File: macros/iir.sci, line: 56
-# File: macros/iir.sci, line: 59
-# File: macros/lattn.sci, line: 50
-# File: macros/lattn.sci, line: 59
-# File: macros/lattn.sci, line: 68
-# File: macros/trans.sci, line: 36
+# File: macros/iir.sci, line: 42
+# File: macros/iir.sci, line: 58
+# File: macros/iir.sci, line: 61
+# File: macros/lattn.sci, line: 51
+# File: macros/lattn.sci, line: 60
+# File: macros/lattn.sci, line: 70
 # File: macros/trans.sci, line: 39
-# File: macros/trans.sci, line: 53
+# File: macros/trans.sci, line: 42
+# File: macros/trans.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -222,11 +328,11 @@ msgstr ""
 #
 # File: macros/bilt.sci, line: 34
 # File: macros/hilb.sci, line: 39
-# File: macros/iir.sci, line: 43
-# File: macros/lattn.sci, line: 53
-# File: macros/lattn.sci, line: 62
-# File: macros/trans.sci, line: 42
-# File: macros/trans.sci, line: 57
+# File: macros/iir.sci, line: 45
+# File: macros/lattn.sci, line: 54
+# File: macros/lattn.sci, line: 63
+# File: macros/trans.sci, line: 45
+# File: macros/trans.sci, line: 60
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -294,6 +400,25 @@ msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
 msgstr ""
 
 #
+# File: macros/conv.sci, line: 11
+# File: macros/conv.sci, line: 14
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr ""
+
+#
+# File: macros/conv.sci, line: 19
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#
+# File: macros/convol2d.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
 # File: macros/cspect.sci, line: 67
 # File: macros/pspect.sci, line: 75
 #, c-format
@@ -308,7 +433,7 @@ msgstr ""
 
 #
 # File: macros/fft2.sci, line: 57
-# File: macros/trans.sci, line: 47
+# File: macros/trans.sci, line: 50
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -316,7 +441,7 @@ msgstr ""
 #
 # File: macros/frmag.sci, line: 35
 # File: macros/frmag.sci, line: 41
-# File: macros/trans.sci, line: 27
+# File: macros/trans.sci, line: 30
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
@@ -332,25 +457,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/iir.sci, line: 46
-# File: macros/lattn.sci, line: 56
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-
-#
-# File: macros/iir.sci, line: 63
-# File: macros/iir.sci, line: 66
-# File: macros/lattn.sci, line: 65
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in the interval "
-"[%s, %s].\n"
-msgstr ""
-
-#
-# File: macros/lattn.sci, line: 47
+# File: macros/hank.sci, line: 24
+# File: macros/lattn.sci, line: 48
 # File: macros/levin.sci, line: 48
 # File: macros/srfaur.sci, line: 36
 # File: macros/yulewalk.sci, line: 36
@@ -359,10 +467,83 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: macros/lattn.sci, line: 73
+# File: macros/hank.sci, line: 28
+# File: macros/hank.sci, line: 40
+# File: macros/wfir.sci, line: 53
+# File: macros/window.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 32
+# File: macros/hank.sci, line: 44
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 36
+# File: macros/hank.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 53
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+
+#
+# File: macros/hank.sci, line: 60
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: macros/ifft.sci, line: 13
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of double expected.\n"
+msgstr ""
+
+#
+# File: macros/iir.sci, line: 38
+# File: macros/trans.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/iir.sci, line: 48
+# File: macros/lattn.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+
+#
+# File: macros/iir.sci, line: 65
+# File: macros/iir.sci, line: 68
+# File: macros/lattn.sci, line: 66
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+
+#
+# File: macros/lattn.sci, line: 75
 # File: macros/levin.sci, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/lattn.sci, line: 84
+# File: macros/lattn.sci, line: 93
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
@@ -388,33 +569,26 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: macros/trans.sci, line: 24
+# File: macros/trans.sci, line: 27
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 
 #
-# File: macros/trans.sci, line: 62
+# File: macros/trans.sci, line: 65
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 
 #
-# File: macros/wfir.sci, line: 47
-# File: macros/window.sci, line: 28
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#
-# File: macros/wfir.sci, line: 51
+# File: macros/wfir.sci, line: 57
 #, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
 msgstr ""
 
 #
-# File: macros/wfir.sci, line: 56
+# File: macros/wfir.sci, line: 62
 # File: macros/window.sci, line: 33
 #, c-format
 msgid ""
@@ -422,8 +596,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/wfir.sci, line: 60
-# File: macros/wfir.sci, line: 68
+# File: macros/wfir.sci, line: 66
+# File: macros/wfir.sci, line: 74
 # File: macros/window.sci, line: 37
 # File: macros/window.sci, line: 45
 #, c-format
@@ -432,201 +606,178 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/wfir.sci, line: 63
-# File: macros/wfir.sci, line: 71
+# File: macros/wfir.sci, line: 69
+# File: macros/wfir.sci, line: 77
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
 
 #
-# File: macros/wfir.sci, line: 74
+# File: macros/wfir.sci, line: 80
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 15
-msgid "low pass"
+# File: macros/wfir_gui.sci, line: 53
+msgid "&File"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 16
-msgid "high pass"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 17
-msgid "band pass"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 18
-msgid "Choose type of filter to be designed"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 18
-msgid "stop band"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 26
-# File: macros/wfir_gui.sci, line: 47
-# File: macros/wfir_gui.sci, line: 68
-# File: macros/wfir_gui.sci, line: 92
-msgid "Input filter characteristics"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 27
-# File: macros/wfir_gui.sci, line: 48
-msgid "cut-off frequency (0.<frequ<.5):"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 28
-# File: macros/wfir_gui.sci, line: 71
-msgid "filter length"
-msgstr ""
-
-#
-# File: macros/wfir_gui.sci, line: 33
 # File: macros/wfir_gui.sci, line: 54
-# File: macros/wfir_gui.sci, line: 76
-# File: macros/wfir_gui.sci, line: 100
-msgid "Incorrect filter order"
+msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 38
-# File: macros/wfir_gui.sci, line: 58
-msgid "Incorrect cut-off frequency"
+# File: macros/wfir_gui.sci, line: 55
+msgid "&Edit"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 49
-# File: macros/wfir_gui.sci, line: 95
-msgid "filter length (odd value)"
+# File: macros/wfir_gui.sci, line: 56
+msgid "&?"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 69
-# File: macros/wfir_gui.sci, line: 93
-msgid "low cut-off frequency (0.<flow<.5):"
+# File: macros/wfir_gui.sci, line: 62
+msgid "WFIR settings"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 70
-# File: macros/wfir_gui.sci, line: 94
-msgid "high cut-off frequency (0.<flow<fhi<.5):"
+# File: macros/wfir_gui.sci, line: 86
+msgid "Filter type"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 80
-# File: macros/wfir_gui.sci, line: 104
-msgid "Incorrect low cut-off frequency"
+# File: macros/wfir_gui.sci, line: 113
+msgid "Band pass"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 84
-# File: macros/wfir_gui.sci, line: 108
-msgid "Incorrect high cut-off frequency"
+# File: macros/wfir_gui.sci, line: 113
+msgid "High pass"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 121
-msgid "Even length high pass and stop band filters not allowed"
+# File: macros/wfir_gui.sci, line: 113
+msgid "Low pass"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 122
-msgid "---Filter order is being incremented by 1"
+# File: macros/wfir_gui.sci, line: 113
+msgid "Stop Band"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 128
-msgid "Kaiser"
+# File: macros/wfir_gui.sci, line: 135
+msgid "Window type"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 129
-msgid "Chebyshev"
+# File: macros/wfir_gui.sci, line: 162
+msgid "Hanning"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 130
+# File: macros/wfir_gui.sci, line: 162
 msgid "Rectangular"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 131
+# File: macros/wfir_gui.sci, line: 162
 msgid "Triangular"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 132
+# File: macros/wfir_gui.sci, line: 163
+msgid "Chebychev main lobe"
+msgstr ""
+
+#
+# File: macros/wfir_gui.sci, line: 163
+msgid "Chebychev side lobe"
+msgstr ""
+
+#
+# File: macros/wfir_gui.sci, line: 163
 msgid "Hamming"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 132
-msgid "Input window type"
+# File: macros/wfir_gui.sci, line: 163
+msgid "Kaiser"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 139
-msgid "Input window characteristics"
+# File: macros/wfir_gui.sci, line: 192
+msgid "Sampling Frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 143
-msgid "Incorrect beta value"
+# File: macros/wfir_gui.sci, line: 226
+msgid "Filter Order"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 153
-msgid "Input window characteristics:"
+# File: macros/wfir_gui.sci, line: 279
+msgid "Low cutoff frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 155
-msgid "dp (dp>0)   : the maximum value of the window side-lobe height"
+# File: macros/wfir_gui.sci, line: 330
+msgid "High cutoff frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 156
-msgid "df (0<df<.5): the width of the window main lobe"
+# File: macros/wfir_gui.sci, line: 386
+msgid "Parameter"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 158
-msgid "only one of this two values is to be defined,"
+# File: macros/wfir_gui.sci, line: 443
+msgid "View"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 159
-msgid "the other one is automatically deduced"
+# File: macros/wfir_gui.sci, line: 471
+msgid "Ok"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 160
-msgid "name of specified value"
+# File: macros/wfir_gui.sci, line: 486
+msgid "Cancel"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 160
-msgid "value"
+# File: macros/wfir_gui.sci, line: 501
+msgid "Reset"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 164
-msgid "Incorrect name of specified value"
+# File: macros/wfir_gui.sci, line: 517
+msgid "Help"
 msgstr ""
 
 #
-# File: macros/wfir_gui.sci, line: 168
-# File: macros/wfir_gui.sci, line: 175
-msgid "Incorrect  value"
+# File: macros/wfir_gui.sci, line: 694
+msgid "Window main lobe width"
+msgstr ""
+
+#
+# File: macros/wfir_gui.sci, line: 707
+msgid "maximum side-lobe height"
+msgstr ""
+
+#
+# File: macros/wfir_gui.sci, line: 734
+# File: macros/wfir_gui.sci, line: 867
+msgid "frequency (Hz)"
+msgstr ""
+
+#
+# File: macros/wfir_gui.sci, line: 735
+# File: macros/wfir_gui.sci, line: 868
+msgid "Magnitude (dB)"
 msgstr ""
 
 #
@@ -641,6 +792,39 @@ msgstr ""
 # File: macros/window.sci, line: 58
 #, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 24
+# File: macros/xcorr.sci, line: 46
+# File: macros/xcorr.sci, line: 55
+# File: macros/xcov.sci, line: 24
+# File: macros/xcov.sci, line: 46
+# File: macros/xcov.sci, line: 56
+# File: macros/xcov.sci, line: 60
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 35
+# File: macros/xcorr.sci, line: 60
+# File: macros/xcov.sci, line: 35
+# File: macros/xcov.sci, line: 66
+#, c-format
+msgid "%s: Wrong type for argument #%d: an integer expected.\n"
+msgstr ""
+
+#
+# File: macros/xcorr.sci, line: 39
+# File: macros/xcorr.sci, line: 64
+# File: macros/xcov.sci, line: 39
+# File: macros/xcov.sci, line: 70
+#, c-format
+msgid ""
+"%s: Wrong value for argument #%d: the expected value must be greater than "
+"%d.\n"
 msgstr ""
 
 #

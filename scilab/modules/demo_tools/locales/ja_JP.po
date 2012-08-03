@@ -8,25 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 13:25+0000\n"
+"PO-Revision-Date: 2011-10-05 14:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%dが間違っています: scilabスクリプトファイルのパスを指定してください.\n"
 
 # File: macros/demo_gui.sci, line: 53
 msgid "&File"

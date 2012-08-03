@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * Copyright (C) DIGITEO - 2011 - Allan CORNET
+ * Copyright (C) DIGITEO - 2011-2012 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,18 +14,16 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "gw_string.h"
-#include "stack-c.h"
-#include "stack-def.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intstring) (void); /* fortran routine */
 /*--------------------------------------------------------------------------*/
-int sci_string(char *fname,unsigned long fname_len)
+int sci_string(char *fname, unsigned long fname_len)
 {
-    CheckRhs(1,1);
-    CheckLhs(1,3);
+    CheckRhs(1, 1);
+    CheckLhs(1, 3);
 
     switch(VarType(1))
     {
@@ -33,23 +31,43 @@ int sci_string(char *fname,unsigned long fname_len)
         {
             if (Lhs == 1)
             {
-                int relativePosition = Top - Rhs + 1;
-                int address = *Lstk(relativePosition);
-                int intAddress = iadr(address);
-                int m = getNumberOfLines(intAddress);
-                int n = getNumberOfColumns(intAddress);
+                SciErr sciErr;
+                int iRows = 0, iCols = 0;
+                int *piAddressVarOne = NULL;
+
+                sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+                if(sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
+
+                sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &iRows, &iCols);
+                if(sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
 
                 /* case string(A) returns '' */
                 /* with A has special dimensions (-1,-1) */
-                /* bug 3747 */
-                if ( (m == -1) && (n == -1) ) 
+                /* bug 3747, 10641 */
+                if ( (iRows == -1) && (iCols == -1) ) 
                 {
-                    int m1 = 0, n1 = 0, l1 = 0;
-                    CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
-                    LhsVar(1)=Rhs+1;
+                    if (createSingleString(pvApiCtx, Rhs + 1, "") != 0)
+                    {
+                        Scierror(999, _("%s: No more memory.\n"), fname);
+                        return 0;
+                    }
+                    LhsVar(1) = Rhs + 1;
                     PutLhsVar();
                 }
-                else C2F(intstring)();
+                else
+                {
+                    C2F(intstring)();
+                }
             }
             else SciError(39);
         }
@@ -114,9 +132,21 @@ int sci_string(char *fname,unsigned long fname_len)
         }
         break;
 
+    case sci_implicit_poly:
+        {
+            if (Lhs == 1)
+            {
+                OverLoad(1);
+            }
+            else 
+            {
+                SciError(41);
+            }
+        }
+        break;
     default:
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d.\n"),fname,1);
+            Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 1);
         }
         break;
     }

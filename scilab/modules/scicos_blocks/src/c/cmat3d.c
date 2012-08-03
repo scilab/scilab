@@ -1,249 +1,561 @@
-/*  Scicos
-*
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
-/*--------------------------------------------------------------------------*/ 
-/**
-   \file cmat3d.c
-   \author Benoit Bayol
-   \version 1.0
-   \date September 2006 - January 2007
-   \brief CMAT3D is a scope which connect a matrix to a plot3d. Values of the matrix are the values at the nodes.
-   \see CMAT3D.sci in macros/scicos_blocks/Sinks/
-*/
-/*--------------------------------------------------------------------------*/ 
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#include <stdlib.h>
 #include <math.h>
-#include "CurrentObjectsManagement.h"
-#include "DrawingBridge.h"
-#include "scoMemoryScope.h"
-#include "scoWindowScope.h"
-#include "scoMisc.h"
-#include "scoGetProperty.h"
-#include "scoSetProperty.h"
-#include "scicos_block4.h"
-#include "scicos_malloc.h"
-#include "scicos_free.h"
-#include "MALLOC.h"
+#include <string.h>
+
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-/** \fn cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
-    \brief Function to draw or redraw the window
-*/
-SCICOS_BLOCKS_IMPEXP void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+#include "scoUtils.h"
+
+#include "MALLOC.h"
+#include "core_math.h"
+#include "elementary_functions.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+#include "createGraphicObject.h"
+
+#include "CurrentFigure.h"
+
+#include "scicos_block4.h"
+#include "scicos.h"
+
+#include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
+#include "FigureList.h"
+#include "BuildObjects.h"
+#include "AxesModel.h"
+/*****************************************************************************
+ * Internal container structure
+ ****************************************************************************/
+
+/**
+ * Container structure
+ */
+typedef struct
 {
-  /*Declarations*/
-  int i = 0; //As usual
-  int * ipar = NULL; //Integer Parameters
-  int win_pos[2]; //Position of the Window
-  int win_dim[2]; //Dimension of the Window
-  int dimension = 3;
-  double * rpar = NULL; //Reals parameters
-  double  ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
-  double  xmin = 0., xmax = 0.;
-  double zmin = 0., zmax = 0.;
-  int number_of_curves_by_subwin = 0;
-  int number_of_subwin = 0;
-  double * mat = NULL;
-  int size_mat = 0;
-  int size_in_x = 0;
-  int size_in_y = 0;
-  char *label = NULL;
-  scoGraphicalObject pShortDraw;
-
-  /*Retrieve parameters from the scicos_model() which has been created thanks to the interfacing function*/
-  rpar = GetRparPtrs(block);
-  ipar = GetIparPtrs(block);
-
-  number_of_subwin = 1;
-
-  win_pos[0] = -1;
-  win_pos[1] = -1;
-  win_dim[0] = -1;
-  win_dim[1] = -1;
-
-  size_mat = ipar[2];
-  mat = (double*)scicos_malloc(size_mat*sizeof(double));
-  for(i = 0 ; i < size_mat ; i++)
+    struct
     {
-      mat[i] = rpar[i];
-    }
-  size_in_x = GetInPortSize(block,1,1);
-  size_in_y = GetInPortSize(block,1,2);
-  if(ipar[3] == 1)
-    {
-      xmax = size_in_x;
-      xmin = 0;
-      ymax = size_in_y;
-      ymin = 0;
-    }
-  else
-    {
-      xmin = rpar[size_mat];
-      xmax = rpar[size_mat+1];
-      ymin = rpar[size_mat+2];
-      ymax = rpar[size_mat+3];
-    }
+        char const* cachedFigureUID;
+        char *cachedAxeUID;
+        char *cachedPlot3dUID;
+    } scope;
+} sco_data;
 
-  zmin = ipar[0];
-  zmax = ipar[1];
-  number_of_curves_by_subwin = 1;
-  label = GetLabelPtrs(block);
+/**
+ * Get (and allocate on demand) the internal data used on this scope
+ * \param block the block
+ * \return the scope data
+ */
+static sco_data *getScoData(scicos_block * block);
 
-  /*Allocating memory for scope only if the window has to be created and not redraw*/
-  if(firstdraw == 1)
-    {
-      scoInitScopeMemory(block->work,pScopeMemory, number_of_subwin, &number_of_curves_by_subwin);
-    }
+/**
+ * Release any internal data
+ *
+ * \param block the block
+ */
+static void freeScoData(scicos_block * block);
 
-  /*Creating the Scope with axes*/
-  scoInitOfWindow(*pScopeMemory, dimension, -1, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax);
-  if(scoGetScopeActivation(*pScopeMemory) == 1)
-    {
-      /*Here we put the special window feature like pixmap or text title
-	Dont forget that the function scoAddTitleScope redraws the window at end so it would be a good idea to put it at the end*/
-      //sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-      //pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
+/**
+ * Push the block data to the polyline
+ *
+ * \param data the data to push
+ *
+ */
+static BOOL pushData(scicos_block * block, double *data);
 
-      sciSetColormap(scoGetPointerScopeWindow(*pScopeMemory), mat , size_mat/3, 3);
+/*****************************************************************************
+ * Graphics utils
+ ****************************************************************************/
 
-      pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->alpha = 50;
-      pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = 280;
-  
-      /*Adding graphic elements like plot3d or polyline and so*/
-      if(ipar[3] == 1)
-	{
-	  scoAddPlot3dForShortDraw(*pScopeMemory,0,0,GetInPortSize(block,1,1),GetInPortSize(block,1,2));
-	}
-      else
-	{
-	  double h_x,h_y;
-	  scoAddPlot3dForShortDraw(*pScopeMemory,0,0,GetInPortSize(block,1,1),GetInPortSize(block,1,2));
-	  pShortDraw = scoGetPointerShortDraw(*pScopeMemory,0,0);
-	  h_x = fabs((xmax-xmin)/(GetInPortSize(block,1,1)-1));
-	  h_y = fabs((ymax-ymin)/(GetInPortSize(block,1,2)-1));
-      
-	  for(i = 0 ; i < size_in_x ; i++)
-	    {
-	      pSURFACE_FEATURE(pShortDraw)->pvecx[i] = xmin + i*h_x;
-	    } 
-	  for(i = 0 ; i < size_in_y ; i++)
-	    {
-	      pSURFACE_FEATURE(pShortDraw)->pvecy[i] = ymin + i*h_y;
-	    } 
-	}
-      scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
-    }
-  /*Dont forget to free your scicos_malloc or MALLOC*/
-  scicos_free(mat);
+/**
+ * Get (and allocate on demand) the figure associated with the block
+ * \param block the block
+ * \return a valid figure UID or NULL on error
+ */
+static char const* getFigure(scicos_block * block);
 
-}
-/*--------------------------------------------------------------------------*/ 
-/** \fn void cmat3d(scicos_block * block, int flag)
+/**
+ * Get (and allocate on demand) the axe associated with the input
+ *
+ * \param pFigureUID the parent figure UID
+ * \param block the block
+ * \return a valid axe UID or NULL on error
+ */
+static char *getAxe(char const* pFigureUID, scicos_block * block);
+
+/**
+ * Get (and allocate on demand) the plot3d
+ *
+ * \param pAxeUID the parent axe UID
+ * \param block the block
+ * \return a valid plot3d UID or NULL on error
+ */
+static char *getPlot3d(char *pAxeUID, scicos_block * block);
+
+/**
+ * Set the plot3d and axes bounds
+ *
+ * \param block the block
+ * \param pAxeUID the axe
+ * \param pPlot3dUID the plot3d
+ */
+static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID);
+
+/**
+ * Set the plot3d settings
+ *
+ * \param pPlot3dUID the plot3d
+ */
+static BOOL setPlot3dSettings(char *pPlot3dUID);
+
+/**
+ * Set the plot3d default values
+ *
+ * \param block the block
+ * \param pPlot3dUID the plot3d
+ */
+static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID);
+
+/*****************************************************************************
+ * Simulation function
+ ****************************************************************************/
+
+/** \fn void cmatview(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, scicos_flag flag)
 {
-  /* Declarations */
-  ScopeMemory * pScopeMemory = NULL;
-  scoGraphicalObject pShortDraw;
-  double * u1 = NULL;
-  int i = 0, j = 0;
-  int dim_i = 0, dim_j = 0;
- 
-  /* State Machine Control */
-  switch(flag)
+    char const* pFigureUID;
+
+    double *u;
+    sco_data *sco;
+
+    BOOL result;
+
+    switch (flag)
     {
-      /*Flag 4*/
-    case Initialization:
-      {
-        /*We create the window for the first time, so 1 is in parameters*/
-	cmat3d_draw(block,&pScopeMemory,1);
-	break; //dont forget the break
-      }
-      /*Flag 2*/
-    case StateUpdate:
-      {
-	/*Retreiving Scope in the block->work*/
-	scoRetrieveScopeMemory(block->work,&pScopeMemory);
-	if(scoGetScopeActivation(pScopeMemory) == 1)
-	  {
 
-	    /* If window has been destroyed we recreate it */
-	    if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
-	      {
-		//0 here because of the recreation
-		cmat3d_draw(block,&pScopeMemory,0);
-	      }
-	    /*Here some allocations and calcul wich are necessary*/
-	    pShortDraw = scoGetPointerShortDraw(pScopeMemory,0,0);
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
+            {
+                set_block_error(-5);
+                break;
+            }
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
+            break;
 
-	    u1 = GetInPortPtrs(block,1);
-	    dim_i = GetInPortRows(block,1);
-	    dim_j = GetInPortCols(block,1);
+        case StateUpdate:
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
 
-	    for(i = 0 ; i < dim_i ; i++)
-	      {
-	    
-		for(j = 0; j < dim_j ; j++)
-		  {
-		    pSURFACE_FEATURE(pShortDraw)->pvecz[j+i*dim_j] = u1[j+dim_j*i];
-		  }
-	      }
-        
-	    /*Here is the draw instructions*/
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-	      {
-			  /* TODO : not implemented */
-			  /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-	      }
-	    forceRedraw(pShortDraw);
-	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
-	  }
-	break; //dont forget the break
-      }
-      /*Flag 5*/
-    case Ending:
-      {
-        /*Retrieve Memory*/
-	scoRetrieveScopeMemory(block->work, &pScopeMemory);
-        /*Here we can add specific instructions to be sure that we have stick short and longdraw if we need it. Cscope for example stick the last short to the long to have one curve to move*/
-        /*Free Memory*/
-	if(scoGetScopeActivation(pScopeMemory) == 1)
-	  {
-	    /*sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    pShortDraw = sciGetCurrentFigure();
-	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;*/
-			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
-			scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
-			if (figure != NULL)
-			{
-				/*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
-				clearUserData(figure);
-			}
-	  }
-	scoFreeScopeMemory(block->work, &pScopeMemory);
-	break;
-      }
+            u = GetRealInPortPtrs(block, 1);
+
+            result = pushData(block, u);
+            if (result == FALSE)
+            {
+                Coserror("%s: unable to push some data.", "cmatview");
+                break;
+            }
+            break;
+
+        case Ending:
+            freeScoData(block);
+            break;
+
+        default:
+            break;
     }
 }
-/*--------------------------------------------------------------------------*/ 
+
+/*-------------------------------------------------------------------------*/
+
+/*****************************************************************************
+ *
+ * Container management
+ *
+ ****************************************************************************/
+
+static sco_data *getScoData(scicos_block * block)
+{
+    sco_data *sco = (sco_data *) * (block->work);
+
+    if (sco == NULL)
+    {
+        /*
+         * Data allocation
+         */
+
+        sco = (sco_data *) MALLOC(sizeof(sco_data));
+        if (sco == NULL)
+            goto error_handler_sco;
+
+        sco->scope.cachedFigureUID = NULL;
+        sco->scope.cachedAxeUID = NULL;
+        sco->scope.cachedPlot3dUID = NULL;
+
+        *(block->work) = sco;
+    }
+
+    return sco;
+
+    /*
+     * Error management (out of normal flow)
+     */
+
+error_handler_sco:
+    // allocation error
+    set_block_error(-5);
+    return NULL;
+}
+
+static void freeScoData(scicos_block * block)
+{
+    sco_data *sco = (sco_data *) * (block->work);
+
+    if (sco != NULL)
+    {
+        FREE(sco->scope.cachedAxeUID);
+        FREE(sco->scope.cachedPlot3dUID);
+
+
+        FREE(sco);
+        *(block->work) = NULL;
+    }
+}
+
+static BOOL pushData(scicos_block * block, double *data)
+{
+    char const* pFigureUID;
+    char *pAxeUID;
+    char *pPlot3dUID;
+
+    BOOL result;
+
+    int m, n;
+
+    pFigureUID = getFigure(block);
+    pAxeUID = getAxe(pFigureUID, block);
+    pPlot3dUID = getPlot3d(pAxeUID, block);
+
+    m = GetInPortSize(block, 1, 1);
+    n = GetInPortSize(block, 1, 2);
+
+    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Z__, data, jni_double_vector, m * n);
+
+    return result;
+}
+
+/*****************************************************************************
+ *
+ * Graphic utils
+ *
+ ****************************************************************************/
+
+/*****************************************************************************
+ *
+ * Graphic
+ *
+ ****************************************************************************/
+static char const* getFigure(scicos_block * block)
+{
+    signed int figNum;
+    char const* pFigureUID = NULL;
+    char *pAxe = NULL;
+    int i__1 = 1;
+    sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+
+    // fast path for an existing object
+    if (sco->scope.cachedFigureUID != NULL)
+    {
+        return sco->scope.cachedFigureUID;
+    }
+
+    figNum = block->ipar[0];
+
+    // with a negative id, use the block number indexed from a constant.
+    if (figNum < 0)
+    {
+        figNum = 20000 + get_block_number();
+    }
+
+    pFigureUID = getFigureFromIndex(figNum);
+    // create on demand
+    if (pFigureUID == NULL)
+    {
+        pFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = pFigureUID;
+
+        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, block->rpar, jni_double_vector, block->ipar[2]);
+
+        // allocate the axes through the getter
+        pAxe = getAxe(pFigureUID, block);
+
+        /*
+         * Setup according to block settings
+         */
+        setLabel(pAxe, __GO_X_AXIS_LABEL__, "x");
+        setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+        setLabel(pAxe, __GO_Z_AXIS_LABEL__, "z");
+
+        setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+        setGraphicObjectProperty(pAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+    }
+
+    if (sco->scope.cachedFigureUID == NULL)
+    {
+        sco->scope.cachedFigureUID = pFigureUID;
+    }
+    return pFigureUID;
+}
+
+static char *getAxe(char const* pFigureUID, scicos_block * block)
+{
+    char *pAxe;
+    int i__1 = 1;
+    sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+    // fast path for an existing object
+    if (sco->scope.cachedAxeUID != NULL)
+    {
+        return sco->scope.cachedAxeUID;
+    }
+
+    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+
+    /*
+     * Allocate if necessary
+     */
+    if (pAxe == NULL)
+    {
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    }
+
+    if (pAxe != NULL)
+    {
+        setGraphicObjectProperty(pAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
+
+        getPlot3d(pAxe, block);
+    }
+
+    /*
+     * then cache with local storage
+     */
+    if (pAxe != NULL && sco->scope.cachedAxeUID == NULL)
+    {
+        sco->scope.cachedAxeUID = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    }
+    return sco->scope.cachedAxeUID;
+}
+
+static char *getPlot3d(char *pAxeUID, scicos_block * block)
+{
+    char *pPlot3d;
+
+    sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+    // fast path for an existing object
+    if (sco->scope.cachedPlot3dUID != NULL)
+    {
+        return sco->scope.cachedPlot3dUID;
+    }
+
+    pPlot3d = findChildWithKindAt(pAxeUID, __GO_PLOT3D__, 0);
+
+    /*
+     * Allocate if necessary
+     */
+    if (pPlot3d == NULL)
+    {
+        pPlot3d = createGraphicObject(__GO_PLOT3D__);
+
+        if (pPlot3d != NULL)
+        {
+            createDataObject(pPlot3d, __GO_PLOT3D__);
+            setGraphicObjectRelationship(pAxeUID, pPlot3d);
+        }
+    }
+
+    /*
+     * Setup on first access
+     */
+    if (pPlot3d != NULL)
+    {
+
+        setBounds(block, pAxeUID, pPlot3d);
+        setPlot3dSettings(pPlot3d);
+        setDefaultValues(block, pPlot3d);
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pPlot3d, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
+    }
+
+    /*
+     * then cache with a local storage
+     */
+    if (pPlot3d != NULL && sco->scope.cachedPlot3dUID == NULL)
+    {
+        sco->scope.cachedPlot3dUID = strdup(pPlot3d);
+        releaseGraphicObjectProperty(__GO_PARENT__, pPlot3d, jni_string, 1);
+    }
+    return sco->scope.cachedPlot3dUID;
+}
+
+static BOOL setBounds(scicos_block * block, char *pAxeUID, char *pPlot3dUID)
+{
+    BOOL result;
+
+    int gridSize[4];
+    double dataBounds[6];
+    double rotationAngle[2];
+
+    int m, n;
+    int colormapLen;
+
+    m = GetInPortSize(block, 1, 1);
+    n = GetInPortSize(block, 1, 2);
+
+    gridSize[0] = 1;
+    gridSize[1] = m;
+    gridSize[2] = 1;
+    gridSize[3] = n;
+
+    colormapLen = block->ipar[3];
+    if (colormapLen == 1)
+    {
+        dataBounds[0] = (double) 0;  // xMin
+        dataBounds[1] = (double) m;  // xMax
+        dataBounds[2] = (double) 0;  // yMin
+        dataBounds[3] = (double) n;  // yMax
+    }
+    else
+    {
+        dataBounds[0] = block->rpar[colormapLen + 0];   // xMin
+        dataBounds[1] = block->rpar[colormapLen + 1];   // xMax
+        dataBounds[2] = block->rpar[colormapLen + 2];   // yMin
+        dataBounds[3] = block->rpar[colormapLen + 3];   // yMax
+    }
+
+    dataBounds[4] = (double)block->ipar[0]; // zMin
+    dataBounds[5] = (double)block->ipar[1]; // zMax
+
+    rotationAngle[0] = 50;      // alpha
+    rotationAngle[1] = 280;     // theta
+
+    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result &= setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    result &= setGraphicObjectProperty(pAxeUID, __GO_ROTATION_ANGLES__, rotationAngle, jni_double_vector, 2);
+
+    return result;
+}
+
+static BOOL setPlot3dSettings(char *pPlot3dUID)
+{
+    int i__1 = 1;
+    double d__1 = 1.0;
+    int i__2 = 2;
+    int i__4 = 4;
+
+    BOOL result = TRUE;
+
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_SURFACE_MODE__, &i__1, jni_bool, 1);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_MODE__, &i__2, jni_int, 1);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_COLOR_FLAG__, &i__1, jni_int, 1);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_HIDDEN_COLOR__, &i__4, jni_int, 1);
+
+    setGraphicObjectProperty(pPlot3dUID, __GO_CLIP_STATE__, &i__1, jni_int, 1);
+
+    return result;
+}
+
+static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
+{
+    int m, n, len;
+    int i;
+    double *values;
+
+    BOOL result;
+
+    m = GetInPortSize(block, 1, 1);
+    n = GetInPortSize(block, 1, 2);
+
+    /*
+     * Share the same memory for 0 allocation (z) and incremented index (x and y)
+     */
+    values = (double *)CALLOC(m * n, sizeof(double));
+    if (values == NULL)
+    {
+        return FALSE;
+    }
+    result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
+
+    len = Max(m, n);
+    for (i = 1; i <= len; i++)
+    {
+        values[i] = (double) i;
+    }
+
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_X__, values, jni_double_vector, m);
+    result &= setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Y__, values, jni_double_vector, n);
+
+    FREE(values);
+    return result;
+}

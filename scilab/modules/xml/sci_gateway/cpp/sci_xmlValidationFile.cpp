@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@ extern "C"
 {
 #include "xml.h"
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -33,13 +32,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-template <class T>
-int sci_xmlValidationFile(char * fname, unsigned long fname_len)
+template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 {
-    T * validation = 0;
+    T *validation = 0;
     SciErr err;
-    int * addr = 0;
-    char * path = 0;
+    int *addr = 0;
+    char *path = 0;
+
     std::string error;
 
     CheckLhs(1, 1);
@@ -49,15 +48,21 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
-    getAllocatedSingleString(pvApiCtx, addr, &path);
+
+    if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     validation = new T((const char *)path, &error);
     freeAllocatedSingleString(path);
@@ -65,11 +70,12 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
     if (!error.empty())
     {
         delete validation;
+
         Scierror(999, gettext("%s: Cannot read the file:\n%s"), fname, error.c_str());
         return 0;
     }
 
-    if (!validation->createOnStack(Rhs + 1))
+    if (!validation->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }
@@ -78,19 +84,23 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlDTD(char * fname, unsigned long fname_len)
+int sci_xmlDTD(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationDTD>(fname, fname_len);
+    return sci_xmlValidationFile < XMLValidationDTD > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlRelaxNG(char * fname, unsigned long fname_len)
+int sci_xmlRelaxNG(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationRelaxNG>(fname, fname_len);
+    return sci_xmlValidationFile < XMLValidationRelaxNG > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlSchema(char * fname, unsigned long fname_len)
+int sci_xmlSchema(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationSchema>(fname, fname_len);
+    return sci_xmlValidationFile < XMLValidationSchema > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/

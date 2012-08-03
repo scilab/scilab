@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="st_ility">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>st_ility</refname>
     <refpurpose> stabilizability test</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list (linear system)</para>
+          <para>
+            <literal>syslin</literal> list (linear system)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,19 +39,25 @@
       <varlistentry>
         <term>nc</term>
         <listitem>
-          <para> integer (dimension of controllable subspace <literal>nc &lt;= ns</literal>)</para>
+          <para>
+            integer (dimension of controllable subspace <literal>nc &lt;= ns</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para>basis such that its <literal>ns</literal> (resp. <literal>nc</literal>) first components span the stabilizable (resp. controllable) subspace</para>
+          <para>
+            basis such that its <literal>ns</literal> (resp. <literal>nc</literal>) first components span the stabilizable (resp. controllable) subspace
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Slo</term>
         <listitem>
-          <para>a linear system (<literal>syslin</literal> list)</para>
+          <para>
+            a linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -65,20 +70,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal> Slo=( U'*A*U, U'*B, C*U, D, U'*x0 )</literal> (<literal>syslin</literal> list)
-    displays the stabilizable form of <literal>Sl</literal>. Stabilizability means
-    <literal>ns=nx</literal> (dim. of <literal>A</literal> matrix).</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal> Slo=( U'*A*U, U'*B, C*U, D, U'*x0 )</literal> (<literal>syslin</literal> list)
+      displays the stabilizable form of <literal>Sl</literal>. Stabilizability means
+      <literal>ns=nx</literal> (dim. of <literal>A</literal> matrix).
+    </para>
+    <programlisting role=""><![CDATA[ 
          [*,*,*]            [*]
 U'*A*U = [0,*,*]     U'*B = [0]
          [0,0,*]            [0]
  ]]></programlisting>
     <para>
-    where <literal> (A11,B1) </literal> (dim(A11)= <literal>nc</literal>) is controllable and <literal>A22</literal> 
-    (dim(A22)=<literal>ns-nc</literal>) is stable.
-    "Stable" means real part of eigenvalues negative for a continuous
-    linear system, and magnitude of eigenvalues lower than one for a
-    discrete-time system (as defined by <literal>syslin</literal>).</para>
+      where <literal> (A11,B1) </literal> (dim(A11)= <literal>nc</literal>) is controllable and <literal>A22</literal> 
+      (dim(A22)=<literal>ns-nc</literal>) is stable.
+      "Stable" means real part of eigenvalues negative for a continuous
+      linear system, and magnitude of eigenvalues lower than one for a
+      discrete-time system (as defined by <literal>syslin</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -93,7 +101,7 @@ U'*B
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="dt_ility">dt_ility</link>
@@ -108,9 +116,5 @@ U'*B
         <link linkend="ssrand">ssrand</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer INRIA 1988</para>
   </refsection>
 </refentry>

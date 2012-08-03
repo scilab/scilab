@@ -29,13 +29,13 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
     <None Include="xml.iss" />
     <None Include="sci_gateway\xml_gateway.xml" />
-    <None Include="locales\en_US\xml.pot">
+    <None Include="locales\xml.pot">
       <Filter>localization</Filter>
     </None>
   </ItemGroup>
@@ -83,6 +83,42 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\XMLRhsValue.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\SplitString.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\XMLRemovable.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\XMLValidation.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\XMLValidationDTD.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\XMLValidationRelaxNG.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\XMLValidationSchema.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynlib_xml_scilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\gw_xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\xml_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\xml_mlist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\xmlObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -141,13 +177,13 @@
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlClose.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlDelete.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xmlDump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenStreams.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenDocs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp">
@@ -223,6 +259,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\XMLValidationSchema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlIsValidObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlRemove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlSetAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="percentsn">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>%sn</refname>
     <refpurpose> Jacobi 's elliptic function</refpurpose>
@@ -17,13 +14,17 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>a point inside the fundamental rectangle  defined by the elliptic integral; <literal>x</literal> is a vector of complex numbers</para>
+          <para>
+            a point inside the fundamental rectangle  defined by the elliptic integral; <literal>x</literal> is a vector of complex numbers
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m</term>
         <listitem>
-          <para>parameter of the elliptic integral (<literal>0&lt;m&lt;1</literal>)</para>
+          <para>
+            parameter of the elliptic integral (<literal>0&lt;m&lt;1</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -37,11 +38,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse 
-    of the elliptic integral for the parameter <literal>m</literal>.</para>
+      Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse 
+      of the elliptic integral for the parameter <literal>m</literal>.
+    </para>
     <para>
-    The amplitude am is computed in fortran and 
-    the addition formulas for elliptic functions are applied</para>
+      The amplitude am is computed in fortran and 
+      the addition formulas for elliptic functions are applied
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +65,7 @@ xgrid(3)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="percentasn">%asn</link>
@@ -71,9 +74,5 @@ xgrid(3)
         <link linkend="percentk">%k</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

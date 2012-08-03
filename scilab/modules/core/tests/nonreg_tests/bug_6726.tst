@@ -7,12 +7,14 @@
 
 // <-- Non-regression test for bug 6726 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=6726
 //
 // <-- Short Description -->
 //Variables whose name starts by a $  cannot be retreived in libraries
+
+warning("off");
 
 //create a library of variables
 Dir = TMPDIR + "/bug_6726/";

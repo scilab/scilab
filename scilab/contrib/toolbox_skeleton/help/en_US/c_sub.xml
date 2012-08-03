@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
- * 
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-    $</pubdate>
-  </info>
   <refnamediv>
     <refname>c_sub</refname>
     <refpurpose>substraction from C</refpurpose>
@@ -46,6 +39,9 @@
     <title>Description</title>
     <para>Do a substraction.</para>
     <para>Add here a paragraph of the function description </para>
+    <para>
+      LaTeX can also be used to render equation: In this case, the rendering should <latex>$x-y$</latex>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,12 +53,6 @@
       <member>
         <link linkend="c_sum">c_sum</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Allan CORNET</member>
     </simplelist>
   </refsection>
 </refentry>

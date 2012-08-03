@@ -50,7 +50,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 		end
 	end
 	
-	// build the datas for fec
+	// build the data for fec
 	z = feval(x,y,f);
 	[noe_x,noe_y] = ndgrid(x,y)
 	nbtri = 2*(p-1)*(q-1)

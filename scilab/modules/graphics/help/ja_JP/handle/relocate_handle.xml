@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="relocate_handle">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>relocate_handle</refname>
     <refpurpose>グラフィック階層内のハンドルを移動する.</refpurpose>
@@ -42,19 +39,22 @@
   <refsection>
     <title>説明</title>
     <para>relocate_handle 関数によりグラフィック階層のカレントの位置から
-	ハンドルを他の場所に移動することが可能です.
-	移動されたエントリは全て<emphasis role="bold">parent</emphasis>
-	パラメータで指定された同じ親のハンドルの元で再配置されます. </para>
+      ハンドルを他の場所に移動することが可能です.
+      移動されたエントリは全て<emphasis role="bold">parent</emphasis>
+      パラメータで指定された同じ親のハンドルの元で再配置されます. 
+    </para>
     <para>
-	全てのハンドルが他のハンドルと互換性があるわけでないので,
-	ハンドルの再配置にはいくつかの制約があります.
-	例えば,axesハンドラをpolylineの下に移動することはできません.
-	互換性に関する詳細については,
-	<link linkend="graphics_entities">graphics_entities</link>のページを
-	参照ください.</para>
+      全てのハンドルが他のハンドルと互換性があるわけでないので,
+      ハンドルの再配置にはいくつかの制約があります.
+      例えば,axesハンドラをpolylineの下に移動することはできません.
+      互換性に関する詳細については,
+      <link linkend="graphics_entities">graphics_entities</link>のページを
+      参照ください.
+    </para>
     <para>このルーチンはあるaxesエンティティから他のエンティティに
-	オブジェクトを移動したり, figureハンドルから axes を移動する際に
-	特に有用です.</para>
+      オブジェクトを移動したり, figureハンドルから axes を移動する際に
+      特に有用です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -93,9 +93,5 @@ relocate_handle( poly2bis, axes1 ) ;
         <link linkend="swap_handles">swap_handles</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

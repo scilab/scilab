@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="block_parameter_error" xml:lang="fr_FR">
-  <info>
-    <pubdate>$LastChangedDate: 15-Fév-2011 $</pubdate>
-  </info>
   <refnamediv>
     <refname>block_parameter_error</refname>
     <refpurpose>
@@ -24,7 +21,7 @@
     <title>Séquence d'appel</title>
     <synopsis>
       block_parameter_error(inform, expected)
-      </synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -46,23 +43,25 @@
   <refsection>
     <title>Description</title>
     <para>
-        Le but de cette fonction est de donner à l'utilisateur une information précise sur son erreur
-        lorsqu'il entre un paramètre de bloc. L'information utilisateur est affichée sur deux lignes
-        données respectivement par les paramètres :
-      </para>
+      Le but de cette fonction est de donner à l'utilisateur une information précise sur son erreur
+      lorsqu'il entre un paramètre de bloc. L'information utilisateur est affichée sur deux lignes
+      données respectivement par les paramètres :
+    </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">inform</emphasis>: elle est réservée à l'information de
-            l'utilisateur sur son erreur. La meilleure façon de le faire est de rappeler le
-            nom du paramètre et la valeur erronée fournie par l'utilisateur.
-          </para>
+        <para>
+          <emphasis role="bold">inform</emphasis>: elle est réservée à l'information de
+          l'utilisateur sur son erreur. La meilleure façon de le faire est de rappeler le
+          nom du paramètre et la valeur erronée fournie par l'utilisateur.
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">expected</emphasis>: une information positive pour
-            guider l'utilisateur en vue de la correction de l'erreur. Par exemple, si
-            le paramètre est un entier, le message peut être "Doit être entier", pour
-            une gamme de valeurs on peut utiliser un message comme celui-ci:
-          </para>
+        <para>
+          <emphasis role="bold">expected</emphasis>: une information positive pour
+          guider l'utilisateur en vue de la correction de l'erreur. Par exemple, si
+          le paramètre est un entier, le message peut être "Doit être entier", pour
+          une gamme de valeurs on peut utiliser un message comme celui-ci:
+        </para>
         <para/>
         <programlisting role="example"><![CDATA[
           msprintf(gettext("Must be in the interval %s."), "[3, 8]")
@@ -73,10 +72,10 @@
   <refsection>
     <title>Exemples</title>
     <para>
-        L'exemple ci-dessous est une cas d'utilisation simple de la fonction. L'utilisateur entre
-        une valeur dans la boîte de dialogue de paramètre. Si la valeur n'est pas valide, l'exemple
-        affiche cette boîte d'erreur :
-      </para>
+      L'exemple ci-dessous est une cas d'utilisation simple de la fonction. L'utilisateur entre
+      une valeur dans la boîte de dialogue de paramètre. Si la valeur n'est pas valide, l'exemple
+      affiche cette boîte d'erreur :
+    </para>
     <para/>
     <mediaobject>
       <imageobject>
@@ -128,11 +127,5 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Bernard DUJARDIN</member>
-    </simplelist>
   </refsection>
 </refentry>

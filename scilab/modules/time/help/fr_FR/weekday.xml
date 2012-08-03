@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="weekday">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>weekday</refname>
     <refpurpose>Retourne le jour de la semaine</refpurpose>
@@ -21,11 +18,14 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[N,S] = weekday(D)
-[N,S] = weekday(D, form)</synopsis>
+      [N,S] = weekday(D, form)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>[N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramètre passé en entrée peut être une matrice de "serial date number"</para>
+    <para>
+      [N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramètre passé en entrée peut être une matrice de "serial date number"
+    </para>
     <para>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S), où le contenu de S dépend du paramètre "form". Si form est égal à 'long', S contient le nom complet du jour de la semaine tandis que si form est égal à 'short', S contient l'abbreviation du nom du jour de la semaine.</para>
   </refsection>
   <refsection>
@@ -38,7 +38,7 @@ today = datenum();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="datenum">datenum</link>
@@ -49,12 +49,6 @@ today = datenum();
       <member>
         <link linkend="weekday">weekday</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

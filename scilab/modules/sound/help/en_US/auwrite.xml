@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="auwrite">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>auwrite</refname>
     <refpurpose> writes .au sound file</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>auwrite(y,aufile)
-auwrite(y,Fs,aufile)
-auwrite(y,Fs,bits,aufile)
-auwrite(y,Fs,bits,method,aufile)</synopsis>
+      auwrite(y,Fs,aufile)
+      auwrite(y,Fs,bits,aufile)
+      auwrite(y,Fs,bits,method,aufile)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -55,7 +53,9 @@ auwrite(y,Fs,bits,method,aufile)</synopsis>
       <varlistentry>
         <term>method</term>
         <listitem>
-          <para>string , <literal>'mu'</literal> (default) or <literal>'linear'</literal>, encoding method.</para>
+          <para>
+            string , <literal>'mu'</literal> (default) or <literal>'linear'</literal>, encoding method.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,20 +63,25 @@ auwrite(y,Fs,bits,method,aufile)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Utility function to save <literal>.au</literal> sound file.
-    <literal>auwrite(y,aufile)</literal> writes a sound file specified by the
-    string aufile.  The data should be arranged with one channel
-    per column.  Amplitude values outside the range [-1,+1] are
-    ignored.
-    Supports multi-channel data for 8-bit mu-law, and 8, 16, 32, 64 bits linear formats.</para>
-    <para><literal>auwrite(y,Fs,aufile)</literal> specifies in <literal>Fs</literal> the sample rate of the data
-    in Hertz.</para>
-    <para><literal>auwrite(y,Fs,bits,aufile)</literal> selects the number of bits in
-    the encoder. Allowable settings are bits in [8,16,32,64].
-     
-    <literal>auwrite(y,Fs,bits,method,aufile)</literal> allows selection of the
-    encoding method, which can be either 'mu' or 'linear'.
-    Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law enconding.</para>
+      Utility function to save <literal>.au</literal> sound file.
+      <literal>auwrite(y,aufile)</literal> writes a sound file specified by the
+      string aufile.  The data should be arranged with one channel
+      per column.  Amplitude values outside the range [-1,+1] are
+      ignored.
+      Supports multi-channel data for 8-bit mu-law, and 8, 16, 32, 64 bits linear formats.
+    </para>
+    <para>
+      <literal>auwrite(y,Fs,aufile)</literal> specifies in <literal>Fs</literal> the sample rate of the data
+      in Hertz.
+    </para>
+    <para>
+      <literal>auwrite(y,Fs,bits,aufile)</literal> selects the number of bits in
+      the encoder. Allowable settings are bits in [8,16,32,64].
+      
+      <literal>auwrite(y,Fs,bits,method,aufile)</literal> allows selection of the
+      encoding method, which can be either 'mu' or 'linear'.
+      Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law enconding.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,7 +93,7 @@ max(abs(A- round(B*6)))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="auread">auread</link>

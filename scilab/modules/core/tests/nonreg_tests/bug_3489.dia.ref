@@ -11,7 +11,7 @@
 //
 // <-- Short Description -->
 //catching protected variable redefinition
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 if execstr('%pi=3','errcatch')==0 then bugmes();quit;end
 r=%f;
 try,execstr('%pi=3'),catch,r=%t,end
@@ -56,4 +56,4 @@ try,setpi(3),catch,r=%t,end
   T  
 if ~r then bugmes();quit;end
 if exists('a')<>0 then bugmes();quit;end
-funcprot(prot)
+funcprot(prot);

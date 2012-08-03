@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,34 +13,29 @@
 
 package org.scilab.modules.xcos.palette.view;
 
-import javax.swing.ImageIcon;
+import java.util.List;
+import java.util.ListIterator;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.RepaintManager;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.BarUpdater;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.configuration.model.PositionType;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
@@ -48,165 +44,199 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the default view for the palette
  */
-public class PaletteManagerView extends ScilabTab {
-	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png";
-	
-	private final PaletteManager controller;
-	private PaletteManagerPanel panel;
+public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
+    public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
+    public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
 
-	/**
-	 * Default constructor
-	 * @param controller the associated controller
-	 */
-	public PaletteManagerView(final PaletteManager controller) {
-		super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME);
-		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(ICON_PATH).getImage());
-		this.controller = controller;
-		initComponents();
-	}
+    private final PaletteManager controller;
+    private PaletteManagerPanel panel;
 
-	/**
-	 * @return the controller
-	 */
-	protected PaletteManager getController() {
-		return controller;
-	}
-	
-	/**
-	 * @return the panel
-	 */
-	public PaletteManagerPanel getPanel() {
-		return panel;
-	}
-	
-	/**
-	 * @param panel the panel to set
-	 */
-	public void setPanel(final PaletteManagerPanel panel) {
-		this.panel = panel;
-	}
-	
-	/** Instantiate and setup all the components */
-	private void initComponents() {
-		final Window window = ScilabWindow.createWindow();
-		
-		final ConfigurationManager manager = ConfigurationManager.getInstance();
-		final PositionType p = manager.getSettings().getWindows().getPalette();
-		
-		window.setDims(new Size(p.getWidth(), p.getHeight()));
-		window.setPosition(new Position(p.getX(), p.getY()));
-		
-		/* Create the menu bar */
-		final MenuBar menuBar = ScilabMenuBar.createMenuBar();
+    /**
+     * Default constructor
+     * 
+     * @param controller
+     *            the associated controller
+     */
+    private PaletteManagerView(final PaletteManager controller) {
+        super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME,
+                DEFAULT_TAB_UUID);
 
-		final Menu menu = ScilabMenu.createMenu();
-		menu.setText(XcosMessages.PALETTES);
-		menu.setMnemonic('P');
-		menuBar.add(menu);
+        this.controller = controller;
+        setWindowIcon(Xcos.ICON.getImage());
 
-		menu.add(LoadAsPalAction.createMenu(null));
-		menu.addSeparator();
-		menu.add(ClosePalettesAction.createMenu(null));
-		
-		addMenuBar(menuBar);
+        initComponents();
+    }
 
-		/* Create the toolbar */
-		final ToolBar toolbar = ScilabToolBar.createToolBar();
-		toolbar.add(LoadAsPalAction.createButton(null));
-		
-		addToolBar(toolbar);
+    private static class ClosingOperation
+            implements
+            org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
 
-		/* Create the content pane */
-		panel = new PaletteManagerPanel(getController());
-		((SwingScilabTab) getAsSimpleTab()).setContentPane(panel);
-		
-		/* Create the infobar */
-		getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
-		
-		setCallback(new ClosePalettesAction(null));
-		window.addTab(this);
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(),
-				getInfoBar(), getName());
-		window.setVisible(true);
-		
-		getTree().revalidate();
-		getPanel().performStartUpLayout();
-	}
-	
-	/** @return the category tree */
-	public JTree getTree() {
-		return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
-				.getView();
-	}
-	
-	/**
-	 * Update the selected path on the tree
-	 */
-	public static void updateTree() {
-		final JTree t = PaletteManager.getInstance().getView().getTree();
-		final TreePath p = t.getSelectionPath();
-		
-		if (p == null) {
-			updateWholeTree();
-		} else {
-			((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
-			t.setSelectionPath(p);
-		}
-	}
-	
-	/**
-	 * Update the whole tree
-	 */
-	public static void updateWholeTree() {
-		final JTree t = PaletteManager.getInstance().getView().getTree();
-		
-		final TreePath selectedPath = t.getSelectionPath();
-		((DefaultTreeModel) t.getModel()).reload();
-		t.setSelectionPath(selectedPath);
-	}
-	
-	/** @param info the information to write on the infobar */
-	public void setInfo(final String info) {
-		getAsSimpleTab().getInfoBar().setText(info);
-		
-		/*
-		 * Force repaint
-		 */
-		((SwingScilabTextBox) getAsSimpleTab().getInfoBar()
-				.getAsSimpleTextBox()).repaint();
-		RepaintManager.currentManager((SwingScilabTab) this.getAsSimpleTab())
-				.paintDirtyRegions();
-	}
-	
-	/**
-	 * Handle the associated Tab removing and recreation 
-	 * 
-	 * @param newVisibleState the new status
-	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
-	 */
-	@Override
-	public void setVisible(final boolean newVisibleState) {
-		super.setVisible(newVisibleState);
-		
-		/*
-		 * Recreate the window if applicable
-		 */
-		if (newVisibleState && getParentWindow() == null) {
-			final Window paletteWindow = ScilabWindow.createWindow();
-			paletteWindow.setVisible(true);
-			super.setVisible(true);
-			paletteWindow.addTab(this);
-		}
-		
-		if (getParentWindow() != null) {
-			if (getParentWindow().getNbDockedObjects() == 1) {
-				getParentWindow().setVisible(newVisibleState);
-			} else {
-				if (!newVisibleState) {
-					DockingManager.undock((Dockable) getAsSimpleTab());
-					setParentWindowId(-1);
-				}
-			}
-		}
-	}
+        public ClosingOperation() {
+        }
+
+        @Override
+        public int canClose() {
+            return 1;
+        }
+
+        @Override
+        public void destroy() {
+        }
+
+        @Override
+        public String askForClosing(List<SwingScilabTab> list) {
+            return null;
+        }
+
+        @Override
+        public void updateDependencies(List<SwingScilabTab> list,
+                ListIterator<SwingScilabTab> it) {
+        }
+    }
+
+    /*
+     * Static API for Tabs
+     */
+
+    public static PaletteManagerView get() {
+        return (PaletteManagerView) ScilabTabFactory.getInstance()
+                .getFromCache(DEFAULT_TAB_UUID);
+    }
+
+    public static void restore(Void v) {
+        restore(v, true);
+    }
+
+    public static void restore(Void v, final boolean visible) {
+        PaletteManagerView tab = new PaletteManagerView(
+                PaletteManager.getInstance());
+        if (visible) {
+            tab.createDefaultWindow().setVisible(true);
+        }
+        PaletteManager.getInstance().firePropertyChange("visible", false, true);
+
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
+                new ClosingOperation());
+        ScilabTabFactory.getInstance().addToCache(tab);
+    }
+
+    /**
+     * @return the controller
+     */
+    protected PaletteManager getController() {
+        return controller;
+    }
+
+    /**
+     * @return the panel
+     */
+    public PaletteManagerPanel getPanel() {
+        return panel;
+    }
+
+    /**
+     * @param panel
+     *            the panel to set
+     */
+    public void setPanel(final PaletteManagerPanel panel) {
+        this.panel = panel;
+    }
+
+    /** Instantiate and setup all the components */
+    private void initComponents() {
+        /* Create the menu bar */
+        final MenuBar menuBar = ScilabMenuBar.createMenuBar();
+
+        final Menu menu = ScilabMenu.createMenu();
+        menu.setText(XcosMessages.PALETTES);
+        menu.setMnemonic('P');
+        menuBar.add(menu);
+
+        menu.add(LoadAsPalAction.createMenu(null));
+        menu.addSeparator();
+        menu.add(ClosePalettesAction.createMenu(null));
+
+        setMenuBar(menuBar);
+
+        /* Create the toolbar */
+        final ToolBar toolbar = ScilabToolBar.createToolBar();
+        toolbar.add(LoadAsPalAction.createButton(null));
+
+        setToolBar(toolbar);
+
+        /* Create the content pane */
+        panel = new PaletteManagerPanel(getController());
+        setContentPane(panel);
+
+        /* Create the infobar */
+        setInfoBar(ScilabTextBox.createTextBox());
+
+        setCallback(new ClosePalettesAction(null));
+        getTree().revalidate();
+        getPanel().performStartUpLayout();
+    }
+
+    /** @return the category tree */
+    public JTree getTree() {
+        return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
+                .getView();
+    }
+
+    /**
+     * Update the selected path on the tree
+     */
+    public static void updateTree() {
+        if (get() == null) {
+            restore(null);
+        }
+        final JTree t = get().getTree();
+        final TreePath p = t.getSelectionPath();
+
+        if (p == null) {
+            updateWholeTree();
+        } else {
+            ((DefaultTreeModel) t.getModel()).reload((TreeNode) p
+                    .getLastPathComponent());
+            t.setSelectionPath(p);
+        }
+    }
+
+    /**
+     * Update the whole tree
+     */
+    public static void updateWholeTree() {
+        if (get() == null) {
+            restore(null);
+        }
+        final JTree t = get().getTree();
+
+        final TreePath selectedPath = t.getSelectionPath();
+        ((DefaultTreeModel) t.getModel()).reload();
+        t.setSelectionPath(selectedPath);
+    }
+
+    /**
+     * @param info
+     *            the information to write on the infobar
+     */
+    public void setInfo(final String info) {
+        getInfoBar().setText(info);
+    }
+
+    private SwingScilabWindow createDefaultWindow() {
+        final SwingScilabWindow win;
+
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(
+                DEFAULT_WIN_UUID, false);
+        if (configuration != null) {
+            win = configuration;
+        } else {
+            win = new SwingScilabWindow();
+        }
+
+        win.addTab(this);
+        return win;
+    }
+
 }

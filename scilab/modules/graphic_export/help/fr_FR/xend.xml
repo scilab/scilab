@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xend">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xend</refname>
     <refpurpose> termine la session graphique courante  </refpurpose>
@@ -24,8 +21,9 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>. 
-  </para>
+    <para>
+      <literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -38,15 +36,11 @@ driver("X11")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xinit">xinit</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

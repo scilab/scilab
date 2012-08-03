@@ -1,0 +1,42 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - INRIA - Serge Steer
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 1635 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1635
+//
+// <-- Short Description -->
+// iir filter frequency response may be wrong
+
+fl=0.0004535;
+fu=0.0009070;
+
+[Poles,Zeros,Gain]=iir(4,'bp','butt',[fl fu],[0 0]);
+
+frq=linspace(fl,fu,400);
+//evaluation of frequency response in the pass zone 
+//based on pole zero gain representation
+frqz=exp(2*%i*%pi*frq);
+
+z=ones(frq);
+for i=1:size(Zeros,'*')
+  z=z.*(Zeros(i)-frqz);
+end     
+
+p=ones(frq);
+for i=1:size(Zeros,'*')
+  p=p.*(Poles(i)-frqz);
+end     
+repf=Gain*(z./p);
+db=20*log10(abs(repf));
+assert_checkalmostequal(db(1),-3,0.01);
+assert_checkalmostequal(db($),-3,0.01);
+
+assert_checktrue(max(abs(db(100:250)))<0.005)

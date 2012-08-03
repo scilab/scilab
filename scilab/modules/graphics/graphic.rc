@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "graphics module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "graphics module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "graphics.dll"
             VALUE "ProductName", "graphics module"
             VALUE "ProductVersion", "5, 4, 0, 0"

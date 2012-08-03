@@ -11,88 +11,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="getshortpathname" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getshortpathname" xml:lang="ja">
   <refnamediv>
     <refname>getshortpathname</refname>
-
     <refpurpose>ショートパス名を取得 (Windows専用)</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>shortpath=getshortgpathname(longpath)
-[shortpath,bOK]=getshortpathname(longpath)</synopsis>
+      [shortpath,bOK]=getshortpathname(longpath)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>パラメータ</title>
-
     <variablelist>
       <varlistentry>
         <term>longpath</term>
-
         <listitem>
           <para>ロングパスの文字列または文字列行列</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>shortpath</term>
-
         <listitem>
           <para>ショートパスの文字列または文字列行列</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>bOK</term>
-
         <listitem>
           <para>パスが変換された場合は論理値 %T または論理値行列
-	そうでない場合は %F</para>
+            そうでない場合は %F
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>説明</title>
-
     <para>getshortpathname プリミティブは指定したパスを
-	そのショート形式に変換します.</para>
+      そのショート形式に変換します.
+    </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-
     <programlisting role="example"><![CDATA[ 
 [shortpath,bOK]=getshortpathname(SCI) 
 [shortpaths,bOKs]=getshortpathname([SCI;SCI]) 
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>参照</title>
-
     <simplelist type="inline">
-      <member><link linkend="getlongpathname">getlongpathname</link></member>
+      <member>
+        <link linkend="getlongpathname">getlongpathname</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>作者</title>
-
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

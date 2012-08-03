@@ -32,11 +32,9 @@ public class H5Write {
 		try {
 			return H5.H5Fcreate(fileName,  HDF5Constants.H5F_ACC_TRUNC, HDF5Constants.H5P_DEFAULT, HDF5Constants.H5P_DEFAULT);
 		} catch (HDF5LibraryException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		}
@@ -46,7 +44,6 @@ public class H5Write {
 		try {
 			H5.H5Fclose(fileId);
 		} catch (HDF5LibraryException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

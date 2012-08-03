@@ -10,20 +10,19 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="scf">
   <refnamediv>
     <refname>scf</refname>
     <refpurpose>set the current graphic figure
-  (window)</refpurpose>
+      (window)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>f = scf()
-f = scf(h)
-f = scf(num)</synopsis>
+      f = scf(h)
+      f = scf(num)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -51,17 +50,24 @@ f = scf(num)</synopsis>
   <refsection>
     <title>Description</title>
     <para>The current figure is the destination of the graphic drawing. The
-    <literal>scf</literal> function allows to change this current figure or to
-    create it if it does not already exist.</para>
+      <literal>scf</literal> function allows to change this current figure or to
+      create it if it does not already exist.
+    </para>
     <para/>
-    <para><literal>scf(num)</literal> set the figure with <literal>figure_id==num</literal>
-    as the current figure. If it does not already exist it is created.</para>
+    <para>
+      <literal>scf(num)</literal> set the figure with <literal>figure_id==num</literal>
+      as the current figure. If it does not already exist it is created.
+    </para>
     <para/>
-    <para><literal>scf(h)</literal> set the figure pointed to by the handle
-    <literal>h</literal> as the current figure. If it does not already exist it is
-    created.</para>
-    <para><literal>scf()</literal> is equivalent to <literal>scf(max(winsid())+1) </literal>.
-    It may be used to create a new graphic window.</para>
+    <para>
+      <literal>scf(h)</literal> set the figure pointed to by the handle
+      <literal>h</literal> as the current figure. If it does not already exist it is
+      created.
+    </para>
+    <para>
+      <literal>scf()</literal> is equivalent to <literal>scf(max(winsid())+1) </literal>.
+      It may be used to create a new graphic window.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -74,7 +80,7 @@ plot3d() //draw in current figure (id=4)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>
@@ -95,9 +101,5 @@ plot3d() //draw in current figure (id=4)
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer INRIA</para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Sgrayplot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>Sgrayplot</refname>
     <refpurpose>色付きの曲面の2次元平滑化プロット</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
-Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
+      Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -35,24 +33,29 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
       <varlistentry>
         <term>z</term>
         <listitem>
-          <para>大きさ (n1,n2)の実数行列. <literal>z(i,j)</literal> は
-	点(x(i),y(j))における曲面の値です.</para>
+          <para>
+            大きさ (n1,n2)の実数行列. <literal>z(i,j)</literal> は
+            点(x(i),y(j))における曲面の値です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
           <para>
-	一連の命令<literal>key1=value1,key2=value2</literal>,...を表します.ただし,
-	<literal>key1</literal>,<literal>key2,...</literal>は以下のどれかとすることができます:
-	 strf, rect, nax, zminmax, colminmax, mesh, colout.</para>
+            一連の命令<literal>key1=value1,key2=value2</literal>,...を表します.ただし,
+            <literal>key1</literal>,<literal>key2,...</literal>は以下のどれかとすることができます:
+            strf, rect, nax, zminmax, colminmax, mesh, colout.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>strf</term>
         <listitem>
-          <para><literal>"xyz"</literal>は長さ3の文字列です (デフォルトでは
-          <literal>strf= "081"</literal>)</para>
+          <para>
+            <literal>"xyz"</literal>は長さ3の文字列です (デフォルトでは
+            <literal>strf= "081"</literal>)
+          </para>
           <variablelist>
             <varlistentry>
               <term>x</term>
@@ -69,7 +72,8 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
                     <term>x=1</term>
                     <listitem>
                       <para>表題が表示されます. 表題は
-                      オプションの引数 <literal>leg</literal>で指定されます.</para>
+                        オプションの引数 <literal>leg</literal>で指定されます.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -79,13 +83,15 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
               <term>y</term>
               <listitem>
                 <para>指定された最小限の値による実際の座標の範囲の計算を制御します.
-		実際の範囲は指定された最小限の範囲よりも大きくすることができます.</para>
+                  実際の範囲は指定された最小限の範囲よりも大きくすることができます.
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>y=0</term>
                     <listitem>
                       <para>計算は行われず,プロットは前(またはデフォルト)のスケール
-			を使用します</para>
+                        を使用します
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -104,14 +110,16 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
                     <term>y=3</term>
                     <listitem>
                       <para>rect引数に基づく等値スケールによる
-                      arg</para>
+                        arg
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>y=4</term>
                     <listitem>
                       <para>x, y データの最小値/最大値に基づく
-			等値スケールによる</para>
+                        等値スケールによる
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -124,21 +132,24 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
                     <term>y=6</term>
                     <listitem>
                       <para>x, y データの最小値/最大値に基づき
-			見栄えを良くするために軸を拡大</para>
+                        見栄えを良くするために軸を拡大
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>y=7</term>
                     <listitem>
                       <para>y=1と似ていますが,前のプロットが
-			新しいスケールで再描画されます</para>
+                        新しいスケールで再描画されます
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>y=8</term>
                     <listitem>
                       <para>y=2と似ていますが,前のプロットが
-			新しいスケールで再描画されます</para>
+                        新しいスケールで再描画されます
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -148,9 +159,10 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
               <term>z</term>
               <listitem>
                 <para>
-		プロットの周囲のフレームへの情報表示を制御します.
-		軸を指定した場合,目盛の数をオプション引数<literal>nax</literal>
-		により指定できます.</para>
+                  プロットの周囲のフレームへの情報表示を制御します.
+                  軸を指定した場合,目盛の数をオプション引数<literal>nax</literal>
+                  により指定できます.
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>z=0</term>
@@ -197,52 +209,66 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
       <varlistentry>
         <term>rect</term>
         <listitem>
-          <para>この引数は引数 <literal>strf</literal>の 2番目の文字 y が 1, 3 または 5の場合に
-		使用されます.大きさ4の行ベクトルで以下のようにフレームの大きさを指定します:
-          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+          <para>
+            この引数は引数 <literal>strf</literal>の 2番目の文字 y が 1, 3 または 5の場合に
+            使用されます.大きさ4の行ベクトルで以下のようにフレームの大きさを指定します:
+            <literal>rect=[xmin,ymin,xmax,ymax]</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>nax</term>
         <listitem>
-          <para>この引数は引数 <literal>strf</literal>の 3番目の文字 z が 1,の場合に
-		使用されます.要素数4の行ベクトル<literal>[nx,Nx,ny,Ny]</literal>で,
-		<literal>nx</literal> (<literal>ny</literal>)は x (y)軸の
-		サブグラデーションの数, 
-          	<literal>Nx</literal> (<literal>Ny</literal>) は x (y) 軸の
-		グラデーションの数です.</para>
+          <para>
+            この引数は引数 <literal>strf</literal>の 3番目の文字 z が 1,の場合に
+            使用されます.要素数4の行ベクトル<literal>[nx,Nx,ny,Ny]</literal>で,
+            <literal>nx</literal> (<literal>ny</literal>)は x (y)軸の
+            サブグラデーションの数, 
+            <literal>Nx</literal> (<literal>Ny</literal>) は x (y) 軸の
+            グラデーションの数です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>zminmax, colminmax, mesh, colout</term>
         <listitem>
-          <para><link linkend="fec">fec</link>参照.</para>
+          <para>
+            <link linkend="fec">fec</link>参照.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>Sgrayplot</literal> は <literal>grayplot</literal> と同じですが,
-	プロットは平滑化されます.
-	関数 <literal>fec</literal> が平滑化に使用されます. 
-	曲面のプロットの際には,
-	グリッド(ここでは, n1=5, n2=3)により構築される一連の三角形の上では線形であると仮定されます:</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>Sgrayplot</literal> は <literal>grayplot</literal> と同じですが,
+      プロットは平滑化されます.
+      関数 <literal>fec</literal> が平滑化に使用されます. 
+      曲面のプロットの際には,
+      グリッド(ここでは, n1=5, n2=3)により構築される一連の三角形の上では線形であると仮定されます:
+    </para>
+    <programlisting role=""><![CDATA[ 
 _____________
 | /| /| /| /|
 |/_|/_|/_|/_| 
 | /| /| /| /| 
 |/_|/_|/_|/_|
  ]]></programlisting>
-    <para>関数 <link linkend="colorbar">colorbar</link> を
-	使用して,カラースケールを表示することが可能です.</para>
-    <para>パラメータ <literal>zminmax</literal> はアニメーション用(下記例参照)に
-	有用です.
-	パラメータ <literal>colminmax</literal> によりユーザがカレントの
-	カラーマップの一部を選択することが可能になります(<link linkend="fec">fec</link> 
-	のヘルプ参照).</para>
-    <para>デモを参照するためには <literal>Sgrayplot()</literal> コマンドを入力してください.</para>
+    <para>
+      関数 <link linkend="colorbar">colorbar</link> を
+      使用して,カラースケールを表示することが可能です.
+    </para>
+    <para>
+      パラメータ <literal>zminmax</literal> はアニメーション用(下記例参照)に
+      有用です.
+      パラメータ <literal>colminmax</literal> によりユーザがカレントの
+      カラーマップの一部を選択することが可能になります(<link linkend="fec">fec</link> 
+      のヘルプ参照).
+    </para>
+    <para>
+      デモを参照するためには <literal>Sgrayplot()</literal> コマンドを入力してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -301,9 +327,5 @@ f.pixmap='off';
         <link linkend="colorbar">colorbar</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

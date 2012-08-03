@@ -8,14 +8,29 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:43+0000\n"
-"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"PO-Revision-Date: 2012-04-19 18:08+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: la característica %s està obsoleta.\n"
+
+msgid "Warning"
+msgstr "Avís"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: aquesta característica serà permanentment eliminada a Scilab %s\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -39,6 +54,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -91,7 +110,7 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: No es pot consultar un valor d'aquest tipus.\n"
 
 msgid "Scilab Console"
-msgstr ""
+msgstr "Consola de Scilab"
 
 msgid "Error(s) : see help powershell"
 msgstr "Error(s) : Veieu help powershell"

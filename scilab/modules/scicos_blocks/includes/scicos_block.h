@@ -14,13 +14,15 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
+
+#include <stdlib.h> /* min max */
 
 #ifndef NULL
 #define NULL 0
@@ -90,23 +92,5 @@ int rho_( double *, double *,double *,double *,double *, int *);
 int fx_( double *, double *);
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
 int write_xml_states(int,const char *, char **, double *);
-
-#if _MSC_VER
-#ifdef min
-#undef min
-#endif 
-#ifdef max 
-#undef max
-#endif 
-#endif 
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif 
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
 
 #endif /* __SCICOS_BLOCK_H__ */

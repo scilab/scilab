@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xgraduate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xgraduate</refname>
     <refpurpose>軸のグラデーション</refpurpose>
@@ -47,14 +44,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xgraduate</literal> は
-	(見栄えを良くするプリントフラグが有効とされた)プロットルーチン
-	で使用される軸のグラデーションを返します.
-	この関数は,指定した範囲<literal>[xmi,xma]</literal>を含み
-	<literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal>
-	となる範囲<literal>[xi,xa]</literal>を返します.</para>
-    <para>この範囲は,<literal>np2</literal>個の範囲に分割することができ,
-	各範囲は<literal>np1</literal>個のサブ範囲に分割されます.</para>
+    <para>
+      <literal>xgraduate</literal> は
+      (見栄えを良くするプリントフラグが有効とされた)プロットルーチン
+      で使用される軸のグラデーションを返します.
+      この関数は,指定した範囲<literal>[xmi,xma]</literal>を含み
+      <literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal>
+      となる範囲<literal>[xi,xa]</literal>を返します.
+    </para>
+    <para>
+      この範囲は,<literal>np2</literal>個の範囲に分割することができ,
+      各範囲は<literal>np1</literal>個のサブ範囲に分割されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -72,9 +73,5 @@
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.P.C ; ;   </para>
   </refsection>
 </refentry>

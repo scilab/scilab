@@ -1,273 +1,882 @@
-/*  Scicos
-*
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
-/*--------------------------------------------------------------------------*/
-/**
-   \file cmscope.c
-   \author Benoit Bayol
-   \version 1.0
-   \date September 2006 - January 2007
-   \brief CMSCOPE is a typical scope which links its input to the simulation time
-   \see CMSCOPE.sci in macros/scicos_blocks/Sinks/
-*/
-/*--------------------------------------------------------------------------*/
-#include "CurrentObjectsManagement.h"
-#include "scicos.h"
-#include "scoMemoryScope.h"
-#include "scoWindowScope.h"
-#include "scoMisc.h"
-#include "scoGetProperty.h"
-#include "scoSetProperty.h"
-#include "scicos_block4.h"
-#include "SetJavaProperty.h"
-#include "scicos_malloc.h"
-#include "scicos_free.h"
-#include "MALLOC.h"
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#include <string.h>
+
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/
-/** \fn cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
-    \brief Function to draw or redraw the window
-*/
-SCICOS_BLOCKS_IMPEXP void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+#include "scoUtils.h"
+
+#include "MALLOC.h"
+#include "elementary_functions.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+#include "createGraphicObject.h"
+
+#include "CurrentFigure.h"
+#include "CurrentObject.h"
+
+#include "scicos_block4.h"
+#include "scicos.h"
+
+#include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
+#include "FigureList.h"
+#include "BuildObjects.h"
+#include "AxesModel.h"
+
+// #include <stdio.h>
+// #define LOG(...) printf(__VA_ARGS__)
+#define LOG(...)
+
+/*****************************************************************************
+ * Internal container structure
+ ****************************************************************************/
+
+/**
+ * Container structure
+ */
+typedef struct
 {
-  int i = 0; //As usual
-  int * ipar = NULL; //Integer Parameters
-  int * colors = NULL; //Colors
-  int win = 0; //Windows ID : To give a name to the window
-  int buffer_size = 0; //Buffer Size
-  int win_pos[2]; //Position of the Window
-  int win_dim[2]; //Dimension of the Window
-  int inherited_events = 0;
-  int nipar = 0;
-  int dimension = 2;
-  double * rpar = NULL; //Reals parameters
-  double dt = 0.; //Time++
-  double * period = NULL; //Refresh Period of the scope is a vector here
-  double * ymin = NULL,* ymax = NULL; //Ymin and Ymax are vectors here
-  double * xmin = NULL, *xmax = NULL;
-  int nbr_period = 0;
-  int * number_of_curves_by_subwin = NULL;
-  int number_of_subwin = 0;
-  int nbr_total_curves = 0;
-  char *label = NULL;
-
-
-  rpar = GetRparPtrs(block);
-  ipar = GetIparPtrs(block);
-  nipar = GetNipar(block);
-  win = ipar[0];
-  number_of_subwin = ipar[1];
-  buffer_size = ipar[2];
-  win_pos[0] = ipar[3];
-  win_pos[1] = ipar[4];
-  win_dim[0] = ipar[5];
-  win_dim[1] = ipar[6];
-  label = GetLabelPtrs(block);
-  nbr_total_curves = 0;
-  //Don't forget malloc for 'type *'
-  number_of_curves_by_subwin = (int*)scicos_malloc(number_of_subwin*sizeof(int));
-  for (i = 7; i < 7+number_of_subwin ; i++)
+    struct
     {
-      number_of_curves_by_subwin[i-7] = ipar[i];
-      nbr_total_curves = nbr_total_curves + ipar[i];
-    }
-  colors = (int*)scicos_malloc(nbr_total_curves*sizeof(int));
-  for(i = 0; i < nbr_total_curves ; i++)
+        int *numberOfPoints;
+        int *maxNumberOfPoints;
+        double **time;
+        double ***data;
+    } internal;
+
+    struct
     {
-      colors[i] = ipar[i+7+number_of_subwin];
-    }
-  inherited_events = ipar[7+number_of_subwin+number_of_subwin];
+        int *periodCounter;
 
-  dt = rpar[0];
+        char const* cachedFigureUID;
+        char **cachedAxeUID;
+        char ***cachedPolylinesUIDs;
+    } scope;
+} sco_data;
 
-  nbr_period = 0;
-  period = (double*)scicos_malloc(number_of_subwin*sizeof(double));
-  for (i = 0 ; i < number_of_subwin ; i++)
-    {
-      period[i] = rpar[i+1];
-      nbr_period++;
-    }
-  ymin = (double*)scicos_malloc(number_of_subwin*sizeof(double));
-  ymax = (double*)scicos_malloc(number_of_subwin*sizeof(double));
-  for (i = 0 ; i < number_of_subwin ; i++)
-    {
-      ymin[i] = rpar[2*i+nbr_period+1];
-      ymax[i] = rpar[2*i+nbr_period+2];
-    }
+/**
+ * Get (and allocate on demand) the internal data used on this scope
+ * \param block the block
+ * \return the scope data
+ */
+static sco_data *getScoData(scicos_block * block);
 
-  /*Allocating memory*/
-  if(firstdraw == 1)
-    {
+/**
+ * Release any internal data
+ *
+ * \param block the block
+ */
+static void freeScoData(scicos_block * block);
 
-      scoInitScopeMemory(block->work,pScopeMemory, number_of_subwin, number_of_curves_by_subwin);
-      for(i = 0 ; i < number_of_subwin ; i++)
-    {
-      scoSetLongDrawSize(*pScopeMemory, i, 5000);
-      scoSetShortDrawSize(*pScopeMemory,i,buffer_size);
-      scoSetPeriod(*pScopeMemory,i,period[i]);
-    }
-    }
+/**
+ * Realloc any internal data
+ *
+ * \param block the block
+ * \param input the selected input
+ * \param numberOfPoints realloc to store this number of points
+ */
+static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoints);
 
-  /* Xmin and Xmax are calculated here because we need a variable which is only existing in the pScopeMemory. pScopeMemory is allocated just few lines before. Indeed in this TimeAmplitudeScope Xmin and Xmax have to change often. To be sure to redraw in the correct scale we have to calculate xmin and xmax thanks to the period_counter. If the window haven't to be redraw (recreate)  it wouldn't be necessary*/
-  xmin = (double*)scicos_malloc(number_of_subwin*sizeof(double));
-  xmax = (double*)scicos_malloc(number_of_subwin*sizeof(double));
-  for (i = 0 ; i < number_of_subwin ; i++)
-    {
-      xmin[i] = period[i]*(scoGetPeriodCounter(*pScopeMemory,i));
-      xmax[i] = period[i]*(scoGetPeriodCounter(*pScopeMemory,i)+1);
-    }
+/**
+ * Append the data to the current data
+ *
+ * \param block the block
+ * \param input the input (0-indexed)
+ * \param t the current time
+ * \param data the data to append
+ */
+static void appendData(scicos_block * block, int input, double t, double *data);
 
-  /*Creating the Scope*/
-  scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, xmin, xmax, ymin, ymax, NULL, NULL);
-  if(scoGetScopeActivation(*pScopeMemory) == 1)
-    {
-      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
+/**
+ * Push the block data to the polyline
+ *
+ * \param block the block
+ * \param input the selected input
+ * \param row the selected row
+ * \param pPolylineUID the polyline uid
+ *
+ */
+static BOOL pushData(scicos_block * block, int input, int row);
 
-  /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
-  /*     scoAddPolylineLineStyle(*pScopeMemory,colors); */
-      scoAddCoupleOfPolylines(*pScopeMemory,colors);
-    }
-  scicos_free(number_of_curves_by_subwin);
-  scicos_free(colors);
-  scicos_free(period);
-  scicos_free(ymin);
-  scicos_free(ymax);
-  scicos_free(xmin);
-  scicos_free(xmax);
+/*****************************************************************************
+ * Graphics utils
+ ****************************************************************************/
 
-  /* use only single buffering to be sure to draw on the screen */
-  if (scoGetPointerScopeWindow(*pScopeMemory) != NULL) {
-    sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
-  }
-}
-/*--------------------------------------------------------------------------*/
-/** \fn void cmscope(scicos_block * block, int flag)
+/**
+ * Get (and allocate on demand) the figure associated with the block
+ * \param block the block
+ * \return a valid figure UID or NULL on error
+ */
+static char const* getFigure(scicos_block * block);
+
+/**
+ * Get (and allocate on demand) the axe associated with the input
+ *
+ * \param pFigureUID the parent figure UID
+ * \param block the block
+ * \param input the current input index (0-indexed)
+ * \return a valid axe UID or NULL on error
+ */
+static char *getAxe(char const* pFigureUID, scicos_block * block, int input);
+
+/**
+ * Get (and allocate on demand) the polyline associated with the row
+ *
+ * \param pAxeUID the parent axe UID
+ * \param block the block
+ * \param input the current input index (0-indexed)
+ * \param row the current row index (0-indexed)
+ * \return a valid polyline UID or NULL on error
+ */
+static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row);
+
+/**
+ * Set the polylines buffer size
+ *
+ * \param block the block
+ * \param input the input port index
+ * \param maxNumberOfPoints the size of the buffer
+ */
+static BOOL setPolylinesBuffers(scicos_block * block, int input, int maxNumberOfPoints);
+
+/**
+ * Set the polylines bounds
+ *
+ * \param block the block
+ * \param input the input port index
+ * \param periodCounter number of past periods since startup
+ */
+static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter);
+
+/*****************************************************************************
+ * Simulation function
+ ****************************************************************************/
+
+/** \fn void cmscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-SCICOS_BLOCKS_IMPEXP void cmscope(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmscope(scicos_block * block, scicos_flag flag)
 {
-  /* Declarations */
-  ScopeMemory * pScopeMemory = NULL;
-  int NbrPtsShort = 0;
-  double * u1 = NULL;
-  double t = 0.; //get_scicos_time()
-  scoGraphicalObject pShortDraw;
-  int i = 0,j = 0;
+    char const* pFigureUID;
 
-  double d_current_real_time = 0. ;
+    double t;
+    double *u;
+    sco_data *sco;
 
-  /* Initializations and Allocations*/
-  //Allocations are done here because there are dependent of some values presents below
+    int i, j;
+    BOOL result;
 
-  /* State Machine Control */
-  switch(flag)
+    switch (flag)
     {
-    case Initialization:
-      {
-    cmscope_draw(block,&pScopeMemory,1);
 
-        //** Init the real time section
-          //** current real time as double [second]
-          d_current_real_time = scoGetRealTime();
-          pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step
-
-    break; //Break of the switch condition: dont forget it
-      } //End of Initialization
-
-    case StateUpdate:
-      {
-    /*Retreiving Scope in the block->work*/
-    scoRetrieveScopeMemory(block->work,&pScopeMemory);
-    if(scoGetScopeActivation(pScopeMemory) == 1)
-      {
-        /* Charging Elements */
-        t = get_scicos_time();
-        /* If window has been destroyed we recreate it */
-        if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
-          {
-        cmscope_draw(block,&pScopeMemory,0);
-          }
-
-        scoRefreshDataBoundsX(pScopeMemory,t);
-
-        //Here we are calculating the points in the polylines
-        for (i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
-          {
-        u1 = GetRealInPortPtrs(block,i+1);
-        pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-        NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-        for (j = 0; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-          {
-            pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-            pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
-            pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[j];
-            pPOLYLINE_FEATURE(pShortDraw)->n1++;
-          }
-          }
-
-            // Draw the Scope
-        scoDrawScopeAmplitudeTimeStyle(pScopeMemory, t); //** the scope update condition
-                                                             //** is hidden here
-
-      }
-    break;
-
-      } //**End of stateupdate
-
-   //** Ending is activated when the simulation is done or when we close Scicos
-    case Ending:
-      {
-    scoRetrieveScopeMemory(block->work, &pScopeMemory);
-    if(scoGetScopeActivation(pScopeMemory) == 1)
-      {
-      //  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-      //  pShortDraw = sciGetCurrentFigure();
-      //  pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-      //  pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-            ///* restore double buffering */
-            //sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
-      //  scoDelCoupleOfPolylines(pScopeMemory);
-
-
-            /* Check if figure is still opened, otherwise, don't try to destroy it again. */
-            scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
-            if (figure != NULL)
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
             {
-                /*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
-                clearUserData(figure);
+                set_block_error(-5);
+                break;
+            }
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
+            break;
 
-                /* restore double buffering */
-                if (figure) {
-                    sciSetJavaUseSingleBuffer(figure, FALSE);
-                }
-                scoDelCoupleOfPolylines(pScopeMemory);
+        case StateUpdate:
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
             }
 
-      }
+            t = get_scicos_time();
+            for (i = 0; i < block->nin; i++)
+            {
+                u = (double *)block->inptr[i];
 
-        scoFreeScopeMemory(block->work, &pScopeMemory);
+                appendData(block, i, t, u);
+                for (j = 0; j < block->insz[i]; j++)
+                {
+                    result = pushData(block, i, j);
+                    if (result == FALSE)
+                    {
+                        Coserror("%s: unable to push some data.", "cmscope");
+                        break;
+                    }
+                }
+            }
+            break;
 
-        break;
-      }
+        case Ending:
+            freeScoData(block);
+            break;
+
+        default:
+            break;
     }
 }
-/*--------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------*/
+
+/*****************************************************************************
+ *
+ * Container management
+ *
+ ****************************************************************************/
+
+static sco_data *getScoData(scicos_block * block)
+{
+    sco_data *sco = (sco_data *) * (block->work);
+    int i, j, k, l;
+
+    if (sco == NULL)
+    {
+        /*
+         * Data allocation
+         */
+
+        sco = (sco_data *) MALLOC(sizeof(sco_data));
+        if (sco == NULL)
+            goto error_handler_sco;
+
+        sco->internal.numberOfPoints = (int *) MALLOC(block->nin * sizeof(int));
+        if (sco->internal.numberOfPoints == NULL)
+            goto error_handler_numberOfPoints;
+        sco->internal.maxNumberOfPoints = (int *) MALLOC(block->nin * sizeof(int));
+        if (sco->internal.maxNumberOfPoints == NULL)
+            goto error_handler_maxNumberOfPoints;
+
+        for (i = 0; i < block->nin; i++)
+        {
+            sco->internal.numberOfPoints[i] = 0;
+            sco->internal.maxNumberOfPoints[i] = block->ipar[2];
+        }
+
+        sco->internal.data = (double ***)CALLOC(block->nin, sizeof(double **));
+        if (sco->internal.data == NULL)
+            goto error_handler_data;
+
+        for (i = 0; i < block->nin; i++)
+        {
+            sco->internal.data[i] = (double **)CALLOC(block->insz[i], sizeof(double *));
+            if (sco->internal.data[i] == NULL)
+                goto error_handler_data_i;
+        }
+        for (i = 0; i < block->nin; i++)
+        {
+            for (j = 0; j < block->insz[i]; j++)
+            {
+                sco->internal.data[i][j] = (double *)CALLOC(block->ipar[2], sizeof(double));
+
+                if (sco->internal.data[i][j] == NULL)
+                    goto error_handler_data_ij;
+            }
+        }
+
+        sco->internal.time = (double **) MALLOC(block->nin * sizeof(double));
+        if (sco->internal.time == NULL)
+        {
+            goto error_handler_time;
+        }
+        for (i = 0; i < block->nin; i++)
+        {
+            sco->internal.time[i] = (double *)CALLOC(block->ipar[2], sizeof(double));
+            if (sco->internal.time[i] == NULL)
+            {
+                goto error_handler_time_i;
+            }
+        }
+
+        sco->scope.periodCounter = (int *) CALLOC(block->nin, sizeof(int));
+        if (sco->scope.periodCounter == NULL)
+            goto error_handler_periodCounter;
+
+        sco->scope.cachedFigureUID = NULL;
+        sco->scope.cachedAxeUID = (char **)CALLOC(block->nin, sizeof(char *));
+
+        sco->scope.cachedPolylinesUIDs = (char ***)CALLOC(block->nin, sizeof(char **));
+        for (i = 0; i < block->nin; i++)
+        {
+            sco->scope.cachedPolylinesUIDs[i] = (char **)CALLOC(block->insz[i], sizeof(char *));
+        }
+
+        *(block->work) = sco;
+    }
+
+    return sco;
+
+    /*
+     * Error management (out of normal flow)
+     */
+error_handler_periodCounter:
+error_handler_time_i:
+    for (k = 0; k < i; k++)
+    {
+        FREE(sco->internal.time[i]);
+    }
+    i = block->nin - 1;
+    j = 2 ^ 31;
+    FREE(sco->internal.time);
+error_handler_time:
+error_handler_data_ij:
+    for (k = 0; k < i; k++)
+    {
+        for (l = 0; l < j && l < block->insz[i]; l++)
+        {
+            FREE(sco->internal.data[k][l]);
+        }
+    }
+    i = block->nin - 1;
+error_handler_data_i:
+    for (j = 0; j < i; j++)
+    {
+        FREE(sco->internal.data[i]);
+    }
+    FREE(sco->internal.data);
+error_handler_data:
+    FREE(sco->internal.maxNumberOfPoints);
+error_handler_maxNumberOfPoints:
+    FREE(sco->internal.numberOfPoints);
+error_handler_numberOfPoints:
+    FREE(sco);
+error_handler_sco:
+    // allocation error
+    set_block_error(-5);
+    return NULL;
+}
+
+static void freeScoData(scicos_block * block)
+{
+    sco_data *sco = (sco_data *) * (block->work);
+    int i, j;
+
+    if (sco != NULL)
+    {
+        for (i = 0; i < block->nin; i++)
+        {
+            for (j = 0; j < block->insz[i]; j++)
+            {
+                FREE(sco->internal.data[i][j]);
+            }
+            FREE(sco->internal.data[i]);
+        }
+        FREE(sco->internal.data);
+
+        for (i = 0; i < block->nin; i++)
+        {
+            FREE(sco->internal.time[i]);
+        }
+        FREE(sco->internal.time);
+
+        for (i = 0; i < block->nin; i++)
+        {
+            for (j = 0; j < block->insz[i]; j++)
+            {
+                FREE(sco->scope.cachedPolylinesUIDs[i][j]);
+            }
+            FREE(sco->scope.cachedAxeUID[i]);
+        }
+
+        FREE(sco);
+        *(block->work) = NULL;
+    }
+}
+
+static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoints)
+{
+    sco_data *sco = (sco_data *) * (block->work);
+    int i, j;
+
+    double *ptr;
+    int setLen;
+    int previousNumberOfPoints = sco->internal.maxNumberOfPoints[input];
+
+    LOG("%s: %s at %d to %d\n", "cmscope", "reallocScoData", input, numberOfPoints);
+
+    for (i = 0; i < block->nin; i++)
+    {
+        for (j = 0; j < block->insz[i]; j++)
+        {
+            ptr = (double *)REALLOC(sco->internal.data[i][j], numberOfPoints * sizeof(double));
+            if (ptr == NULL)
+                goto error_handler;
+
+            for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+            {
+                ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+            }
+            sco->internal.data[i][j] = ptr;
+        }
+    }
+
+    ptr = (double *)REALLOC(sco->internal.time[input], numberOfPoints * sizeof(double));
+    if (ptr == NULL)
+        goto error_handler;
+
+    for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+    {
+        ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+    }
+    sco->internal.time[input] = ptr;
+
+    sco->internal.maxNumberOfPoints[input] = numberOfPoints;
+    return sco;
+
+error_handler:
+    freeScoData(block);
+    // allocation error
+    set_block_error(-5);
+    return NULL;
+}
+
+static void appendData(scicos_block * block, int input, double t, double *data)
+{
+    int i;
+
+    sco_data *sco = (sco_data *) * (block->work);
+    int maxNumberOfPoints = sco->internal.maxNumberOfPoints[input];
+    int numberOfPoints = sco->internal.numberOfPoints[input];
+
+
+    /*
+     * Handle the case where the t is greater than the data_bounds
+     */
+    if (t > ((sco->scope.periodCounter[input] + 1) * block->rpar[1 + input]))
+    {
+        sco->scope.periodCounter[input]++;
+
+        numberOfPoints = 0;
+        sco->internal.numberOfPoints[input] = 0;
+        if (setPolylinesBounds(block, input, sco->scope.periodCounter[input]) == FALSE)
+        {
+            set_block_error(-5);
+            freeScoData(block);
+            sco = NULL;
+        }
+    }
+
+    /*
+     * Handle the case where the scope has more points than maxNumberOfPoints
+     */
+    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    {
+        // on a full scope, re-alloc
+        maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
+        sco = reallocScoData(block, input, maxNumberOfPoints);
+
+        // reconfigure related graphic objects
+        if (setPolylinesBuffers(block, input, maxNumberOfPoints) == FALSE)
+        {
+            set_block_error(-5);
+            freeScoData(block);
+            sco = NULL;
+        }
+    }
+
+    /*
+     * Update data
+     */
+    if (sco != NULL)
+    {
+        int setLen;
+
+        for (i = 0; i < block->insz[input]; i++)
+        {
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
+                sco->internal.data[input][i][numberOfPoints + setLen] = data[i];
+            }
+        }
+
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.time[input][numberOfPoints + setLen] = t;
+        }
+
+        sco->internal.numberOfPoints[input]++;
+    }
+}
+
+static BOOL pushData(scicos_block * block, int input, int row)
+{
+    char const* pFigureUID;
+    char *pAxeUID;
+    char *pPolylineUID;
+
+    double *data;
+    sco_data *sco;
+
+    BOOL result = TRUE;
+
+    pFigureUID = getFigure(block);
+    pAxeUID = getAxe(pFigureUID, block, input);
+    pPolylineUID = getPolyline(pAxeUID, block, input, row);
+
+    sco = getScoData(block);
+    if (sco == NULL)
+        return FALSE;
+
+
+    // select the right input and row
+    data = sco->internal.data[input][row];
+
+    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_X__, sco->internal.time[input], jni_double_vector, sco->internal.maxNumberOfPoints[input]);
+    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_Y__, data, jni_double_vector, sco->internal.maxNumberOfPoints[input]);
+
+    return result;
+}
+
+/*****************************************************************************
+ *
+ * Graphic utils
+ *
+ ****************************************************************************/
+
+/**
+ * Set properties on the figure.
+ *
+ * \param pFigureUID the figure uid
+ * \param block the current block
+ */
+static void setFigureSettings(char const* pFigureUID, scicos_block * block)
+{
+    int win_pos[2];
+    int win_dim[2];
+
+    int *ipar = block->ipar;
+
+    win_pos[0] = ipar[3];
+    win_pos[1] = ipar[4];
+    win_dim[0] = ipar[5];
+    win_dim[1] = ipar[6];
+
+    if (win_pos[0] > 0 && win_pos[1] > 0)
+    {
+        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
+    }
+
+    if (win_dim[0] > 0 && win_dim[1] > 0)
+    {
+        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
+    }
+};
+
+/**
+ * Set properties on the axes.
+ *
+ * \param pAxeUID the axe uid
+ * \param block the current block
+ * \param index axe index (0-indexed)
+ */
+static void setAxesSettings(char *pAxeUID, scicos_block * block, int index)
+{
+    double axesBounds[4];
+    double margins[4];
+
+    double nin = (double) block->nin;
+
+    axesBounds[0] = 0;              // x
+    axesBounds[1] = index / nin;    // y
+    axesBounds[2] = 1.0;            // w
+    axesBounds[3] = 1 / nin;        // h
+    setGraphicObjectProperty(pAxeUID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
+
+    margins[0] = 0.125;
+    margins[1] = 0.125;
+    margins[2] = 0.125;
+    margins[3] = 0.125;
+    setGraphicObjectProperty(pAxeUID, __GO_MARGINS__, margins, jni_double_vector, 4);
+
+};
+
+/*****************************************************************************
+ *
+ * Graphic
+ *
+ ****************************************************************************/
+
+static char const* getFigure(scicos_block * block)
+{
+    signed int figNum;
+    char const* pFigureUID = NULL;
+    char *pAxe = NULL;
+    int i__1 = 1;
+    sco_data *sco = (sco_data *) * (block->work);
+
+    int i;
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+    // fast path for an existing object
+    if (sco->scope.cachedFigureUID != NULL)
+    {
+        return sco->scope.cachedFigureUID;
+    }
+
+    figNum = block->ipar[0];
+
+    // with a negative id, use the block number indexed from a constant.
+    if (figNum < 0)
+    {
+        figNum = 20000 + get_block_number();
+    }
+
+    pFigureUID = getFigureFromIndex(figNum);
+    // create on demand
+    if (pFigureUID == NULL)
+    {
+        pFigureUID = createNewFigureWithAxes();
+        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+
+        // the stored uid is a reference to the figure map, not to the current figure
+        pFigureUID = getFigureFromIndex(figNum);
+        sco->scope.cachedFigureUID = pFigureUID;
+
+        // set configured parameters
+        setFigureSettings(pFigureUID, block);
+
+        // allocate the axes through the getter
+        for (i = 0; i < GetNin(block); i++)
+        {
+            pAxe = getAxe(pFigureUID, block, i);
+
+            /*
+             * Setup according to block settings
+             */
+            setLabel(pAxe, __GO_X_AXIS_LABEL__, "t");
+            setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+
+            setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+            setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
+
+            setPolylinesBounds(block, i, 0);
+        }
+    }
+
+    if (sco->scope.cachedFigureUID == NULL)
+    {
+        sco->scope.cachedFigureUID = pFigureUID;
+    }
+    return pFigureUID;
+}
+
+static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
+{
+    char *pAxe;
+    int i;
+    sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+    // fast path for an existing object
+    if (sco->scope.cachedAxeUID != NULL && sco->scope.cachedAxeUID[input] != NULL)
+    {
+        return sco->scope.cachedAxeUID[input];
+    }
+
+    pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+
+    /*
+     * Allocate if necessary
+     */
+    if (pAxe == NULL)
+    {
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+    }
+
+    /*
+     * Setup on first access
+     */
+    if (pAxe != NULL)
+    {
+        // allocate the polylines through the getter
+        for (i = 0; i < block->insz[input]; i++)
+        {
+            getPolyline(pAxe, block, input, i);
+        }
+
+        setAxesSettings(pAxe, block, input);
+    }
+
+    /*
+     * then cache with local storage
+     */
+    if (pAxe != NULL && sco->scope.cachedAxeUID != NULL && sco->scope.cachedAxeUID[input] == NULL)
+    {
+        sco->scope.cachedAxeUID[input] = strdup(pAxe);
+        releaseGraphicObjectProperty(__GO_PARENT__, pAxe, jni_string, 1);
+    }
+    return sco->scope.cachedAxeUID[input];
+}
+
+static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row)
+{
+    char *pPolyline;
+    double d__0 = 0.0;
+    BOOL b__true = TRUE;
+
+    int color;
+
+    sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
+    // fast path for an existing object
+    if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[input] != NULL && sco->scope.cachedPolylinesUIDs[input][row] != NULL)
+    {
+        return sco->scope.cachedPolylinesUIDs[input][row];
+    }
+
+    pPolyline = findChildWithKindAt(pAxeUID, __GO_POLYLINE__, row);
+
+    /*
+     * Allocate if necessary
+     */
+    if (pPolyline == NULL)
+    {
+        pPolyline = createGraphicObject(__GO_POLYLINE__);
+
+        if (pPolyline != NULL)
+        {
+            createDataObject(pPolyline, __GO_POLYLINE__);
+            setGraphicObjectRelationship(pAxeUID, pPolyline);
+        }
+    }
+
+    /*
+     * Setup on first access
+     */
+    if (pPolyline != NULL)
+    {
+
+        /*
+         * Default setup (will crash if removed)
+         */
+        {
+            int polylineSize[2] = { 1, block->ipar[2] };
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+        }
+
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
+
+        // ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+        //        1     1         1   2       2      nin   nin       1
+        color = block->ipar[7 + block->nin + input + row];
+        if (color > 0)
+        {
+            LOG("%s: %s at %d at %d to %d\n", "cmscope", "set lines mode", input, row, color);
+
+            setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
+        }
+        else
+        {
+            color = -color;
+
+            LOG("%s: %s at %d at %d to %d\n", "cmscope", "set mark mode", input, row, -color);
+
+            setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+        }
+
+        {
+            int iClipState = 1; //on
+            setGraphicObjectProperty(pPolyline, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
+        }
+    }
+
+    /*
+     * then cache with local storage
+     */
+    if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[input] != NULL)
+    {
+        sco->scope.cachedPolylinesUIDs[input][row] = strdup(pPolyline);
+        releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
+    }
+    return sco->scope.cachedPolylinesUIDs[input][row];
+}
+
+static BOOL setPolylinesBuffers(scicos_block * block, int input, int maxNumberOfPoints)
+{
+    int i;
+
+    char const* pFigureUID;
+    char *pAxeUID;
+    char *pPolylineUID;
+
+    BOOL result = TRUE;
+    int polylineSize[2] = { 1, maxNumberOfPoints };
+
+    LOG("%s: %s at %d to %d\n", "cmscope", "setPolylinesBuffers", input, maxNumberOfPoints);
+
+    pFigureUID = getFigure(block);
+    pAxeUID = getAxe(pFigureUID, block, input);
+
+    for (i = 0; i < block->insz[input]; i++)
+    {
+        pPolylineUID = getPolyline(pAxeUID, block, input, i);
+        result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+    }
+
+    return result;
+}
+
+static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter)
+{
+    char const* pFigureUID;
+    char *pAxeUID;
+
+    double dataBounds[6];
+    int nin = block->nin;
+    double period = block->rpar[block->nrpar - 3 * nin + input];
+
+    dataBounds[0] = periodCounter * period; // xMin
+    dataBounds[1] = (periodCounter + 1) * period;   // xMax
+    dataBounds[2] = block->rpar[block->nrpar - 2 * nin + 2 * input];    // yMin
+    dataBounds[3] = block->rpar[block->nrpar - 2 * nin + 2 * input + 1];    // yMax
+    dataBounds[4] = -1.0;       // zMin
+    dataBounds[5] = 1.0;        // zMax
+
+    LOG("%s: %s at %d to %f\n", "cmscope", "setPolylinesBounds", input, dataBounds[1]);
+
+    pFigureUID = getFigure(block);
+    pAxeUID = getAxe(pFigureUID, block, input);
+
+    return setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+}

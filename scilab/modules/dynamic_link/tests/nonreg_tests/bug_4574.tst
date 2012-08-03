@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 4574 -->
 //
@@ -18,8 +18,9 @@
 ilib_verbose(0);
 chdir(TMPDIR);
 
-i=['#include ""stack-c.h""'
-        '#include ""stackTypeVariable.h""'
+i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
+   '#include ""stackTypeVariable.h""'
    'int intfun1(char *fname)' 
    '{'
    '  return 0;'
@@ -29,8 +30,9 @@ mputl(i,'intfun1.c');
 ilib_build('foo',['scifun1','intfun1'],'intfun1.c',[]);
 exec loader.sce;
 
-i=['#include ""stack-c.h""'
-        '#include ""stackTypeVariable.h""'
+i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
+   '#include ""stackTypeVariable.h""'
    'int intfun1(char *fname)' 
    '{'
    '  return 1;'

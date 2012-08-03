@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bezout">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bezout</refname>
     <refpurpose>多項式またｈ整数のべズー方程式</refpurpose>
@@ -35,18 +32,23 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[thegcd,U]=bezout(p1,p2)</literal> は GCD,
-	<literal>p1</literal> および <literal>p2</literal>の
-	<literal>thegcd</literal>および
-	以下のような(2x2) ユニモジュラ行列<literal>U</literal> 
-	 を計算します:</para>
+    <para>
+      <literal>[thegcd,U]=bezout(p1,p2)</literal> は GCD,
+      <literal>p1</literal> および <literal>p2</literal>の
+      <literal>thegcd</literal>および
+      以下のような(2x2) ユニモジュラ行列<literal>U</literal> 
+      を計算します:
+    </para>
     <para>
       <literal>[p1,p2]*U = [thegcd,0]</literal>
     </para>
     <para>
-	<literal>p1</literal>および<literal>p2</literal>のlcmは
-	以下のように指定されます:</para>
-    <para><literal>p1*U(1,2)</literal> (または <literal>-p2*U(2,2)</literal>)</para>
+      <literal>p1</literal>および<literal>p2</literal>のlcmは
+      以下のように指定されます:
+    </para>
+    <para>
+      <literal>p1*U(1,2)</literal> (または <literal>-p2*U(2,2)</literal>)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -88,9 +90,5 @@ lcm(V)
         <link linkend="lcm">lcm</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

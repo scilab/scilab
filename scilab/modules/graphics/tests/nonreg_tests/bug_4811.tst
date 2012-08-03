@@ -20,7 +20,7 @@ h = gcf();
 
 tmp_file=pathconvert(TMPDIR+'/nonreg_test_bug4811.dat',%f);
 
-save(tmp_file,h);
+save(tmp_file,"h");
 // close the figure
 delete(h);
 load(tmp_file);

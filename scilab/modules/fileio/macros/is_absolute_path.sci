@@ -24,9 +24,7 @@ function status = is_absolute_path(pathname)
 		
 		// Windows Case
 		
-		if (abs(str2code(part(pathname,1))) >= 10)    ..
-			& (abs(str2code(part(pathname,1))) <= 35) ..
-			& (part(pathname,2) == ":") then
+		if isletter(part(pathname,1)) & (part(pathname,2) == ":") then
 			status = %T;
 		end
 		

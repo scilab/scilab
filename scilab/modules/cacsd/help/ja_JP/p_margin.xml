@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="p_margin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>p_margin</refname>
     <refpurpose>位相余裕および位相交差周波数</refpurpose>
@@ -31,7 +28,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>SISO線形システム (参照 :<link linkend="syslin">syslin</link>).</para>
+          <para>
+            SISO線形システム (参照 :<link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,32 +53,33 @@
       連続または離散時間SISO線形システムを
       指定すると,<literal>p_margin</literal>は<literal>h</literal>の
       位相余裕　<literal>phm</literal> (単位:度)および
-      位相交差周波数 <literal>fr</literal> (単位:Hz)を返します.</para>
-
-    <para>位相余裕は, <literal>h</literal>のナイキスト線図において
+      位相交差周波数 <literal>fr</literal> (単位:Hz)を返します.
+    </para>
+    <para>
+      位相余裕は, <literal>h</literal>のナイキスト線図において
       単位円を通過する周波数における位相を表します.
       言い換えると,
       位相余裕は,<literal>h</literal> のゲインが1となった時,
-       <literal>h</literal>の周波数応答の位相と-180度の
-       差を表します.</para>
+      <literal>h</literal>の周波数応答の位相と-180度の
+      差を表します.
+    </para>
     <para>このアルゴリズムは、多項式の求解ルーチンを使用して
-      以下の方程式を解いています:</para>
+      以下の方程式を解いています:
+    </para>
     <variablelist>
       <varlistentry>
-	<term>h(s)*h(-s)=1</term>
+        <term>h(s)*h(-s)=1</term>
         <listitem>
           <para> 連続時間システムの場合.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-	<term>h(z)*h(1/z)=1</term>
+        <term>h(z)*h(1/z)=1</term>
         <listitem>
           <para> 離散時間システムの場合.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-
-
   </refsection>
   <refsection>
     <title>例</title>
@@ -99,17 +99,27 @@ show_margins(h,'nyquist')
   <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
-      <member><link linkend="g_margin">p_margin</link></member>
-      <member><link linkend="show_margins">show_margins</link></member>
-      <member><link linkend="repfreq">repfreq</link></member>
-      <member><link linkend="black">black</link></member>
-      <member><link linkend="bode">bode</link></member>
-      <member><link linkend="chart">chart</link></member>
-      <member><link linkend="nyquist">nyquist</link></member>
+      <member>
+        <link linkend="g_margin">p_margin</link>
+      </member>
+      <member>
+        <link linkend="show_margins">show_margins</link>
+      </member>
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="chart">chart</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer, INRIA  </para>
   </refsection>
 </refentry>

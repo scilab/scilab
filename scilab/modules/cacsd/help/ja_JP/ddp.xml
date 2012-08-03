@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ddp">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ddp</refname>
     <refpurpose>外乱デカップリング</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)
-[Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)</synopsis>
+      [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,13 +27,17 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para> 行列 <literal>(A,B2,C,D2)</literal>を含む<literal>syslin</literal> リスト</para>
+          <para>
+            行列 <literal>(A,B2,C,D2)</literal>を含む<literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>zeroed</term>
         <listitem>
-          <para>整数ベクトル, ゼロ化する<literal>Sys</literal>の出力の添え字.</para>
+          <para>
+            整数ベクトル, ゼロ化する<literal>Sys</literal>の出力の添え字.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +49,17 @@
       <varlistentry>
         <term>D1</term>
         <listitem>
-          <para>実数行列. <literal>B1</literal> および <literal>D1</literal> は同数の列を有します.</para>
+          <para>
+            実数行列. <literal>B1</literal> および <literal>D1</literal> は同数の列を有します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>'ge'</literal> または <literal>'st'</literal> (デフォルト) または <literal>'pp'</literal>.</para>
+          <para>
+            文字列 <literal>'ge'</literal> または <literal>'st'</literal> (デフォルト) または <literal>'pp'</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -73,52 +79,58 @@
   <refsection>
     <title>説明</title>
     <para>
-	完全な外乱デカップリング(出力ゼロ化アルゴリズム).
-	線形システムとゼロ化する出力の部分集合 z を指定すると,
-	wからzへの伝達関数がゼロとなるようなSysの入力wを
-	明らかにします.
-    <literal>Sys</literal> は,
-	1入力,2出力の線形システム {A,B2,C,D2}  ( すなわち  Sys: u--&gt;(z,y) ), 
-	<literal>Sys</literal>
-	および<literal>B1,D1</literal>で定義される以下のシステムの一部です:</para>
-    <programlisting role = ""><![CDATA[ 
+      完全な外乱デカップリング(出力ゼロ化アルゴリズム).
+      線形システムとゼロ化する出力の部分集合 z を指定すると,
+      wからzへの伝達関数がゼロとなるようなSysの入力wを
+      明らかにします.
+      <literal>Sys</literal> は,
+      1入力,2出力の線形システム {A,B2,C,D2}  ( すなわち  Sys: u--&gt;(z,y) ), 
+      <literal>Sys</literal>
+      および<literal>B1,D1</literal>で定義される以下のシステムの一部です:
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
  ]]></programlisting>
     <para>
-    Sysの出力は(z,y)に分割され,zはゼロ化されます.
-	すなわち, 行列 CとD2は次のようになります:</para>
-    <programlisting role = ""><![CDATA[ 
+      Sysの出力は(z,y)に分割され,zはゼロ化されます.
+      すなわち, 行列 CとD2は次のようになります:
+    </para>
+    <programlisting role=""><![CDATA[ 
 C=[C1;C2]         D2=[D12;D22]
 C1=C(zeroed,:)    D12=D2(zeroed,:)
  ]]></programlisting>
     <para>
-    行列 <literal>D1</literal> は同様に
-	<literal>D11=D1(zeroed,:)</literal>として
-	 <literal>D1=[D11;D21]</literal>のように分割されます.
-    制御則は u=Fx+Gw で, 
-	閉ループシステム w--&gt;z は以下のように定義されます.</para>
-    <programlisting role = ""><![CDATA[ 
+      行列 <literal>D1</literal> は同様に
+      <literal>D11=D1(zeroed,:)</literal>として
+      <literal>D1=[D11;D21]</literal>のように分割されます.
+      制御則は u=Fx+Gw で, 
+      閉ループシステム w--&gt;z は以下のように定義されます.
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot= (A+B2*F)  x + (B1 + B2*G) w
   z = (C1+D12F) x + (D11+D12*G) w
  ]]></programlisting>
     <para>
-	この式は,ゼロ伝達関数を有します.
+      この式は,ゼロ伝達関数を有します.
     </para>
-    <para><literal>flag='ge'</literal>は安定性拘束条件を有しません.
-    <literal>flag='st'</literal> : 安定な閉ループシステムを探します (A+B2*F 安定).
-    <literal>flag='pp'</literal> : A+B2*Fの固有値を <literal>alfa</literal> および
-    <literal>beta</literal>に割付ます.</para>
     <para>
-	閉ループは閉ループしすてむ<literal>w--&gt;y</literal>の実現です.
+      <literal>flag='ge'</literal>は安定性拘束条件を有しません.
+      <literal>flag='st'</literal> : 安定な閉ループシステムを探します (A+B2*F 安定).
+      <literal>flag='pp'</literal> : A+B2*Fの固有値を <literal>alfa</literal> および
+      <literal>beta</literal>に割付ます.
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      閉ループは閉ループしすてむ<literal>w--&gt;y</literal>の実現です.
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot= (A+B2*F)  x + (B1 + B2*G) w
   y = (C2+D22*F) x + (D21+D22*G) w
  ]]></programlisting>
     <para>
-    安定性 (resp. 極配置) は(A,B2)が可安定(もしくは可制御性)であることを必要とします.</para>
+      安定性 (resp. 極配置) は(A,B2)が可安定(もしくは可制御性)であることを必要とします.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -157,9 +169,5 @@ ss2tf(closed)
         <link linkend="ui_observer">ui_observer</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

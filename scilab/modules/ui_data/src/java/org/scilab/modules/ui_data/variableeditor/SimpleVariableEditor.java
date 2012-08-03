@@ -13,12 +13,10 @@
 
 package org.scilab.modules.ui_data.variableeditor;
 
-import org.scilab.modules.gui.tab.Tab;
-
 /**
  * Interface for Variable editor.
  */
-public interface SimpleVariableEditor extends Tab {
+public interface SimpleVariableEditor {
 
     /**
      * Set data to be displayed

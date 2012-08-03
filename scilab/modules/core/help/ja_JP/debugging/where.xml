@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="where">
+  <refnamediv>
+    <refname>where</refname>
+    <refpurpose> カレントの命令呼び出しツリーを得る</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[linenum,mac]=where()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>linenum</term>
+        <listitem>
+          <para>整数の列ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mac</term>
+        <listitem>
+          <para>文字列の列ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>linenum</literal> および <literal>mac</literal> を返します.
+      この際,関数 <literal>mac(1)</literal> の <literal>linenum(1)</literal> 行目でカレントの命令がコールされ,
+      関数 <literal>mac(2)</literal> の <literal>linenum(2)</literal> 行目で <literal>mac(1)</literal> がコールされ,...,
+      を意味します.
+    </para>
+    <para>
+      <literal>mac(i)</literal> は一般には関数名ですが,
+      命令が <literal>exec</literal> ファイルまたは <literal>execstr</literal> 命令の中にある場合には,
+      <literal>"exec"</literal> または <literal>"execstr"</literal> となる可能性もあります.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

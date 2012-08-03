@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -27,53 +28,68 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Grid visibility management
  */
 public final class ViewGridAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.GRID;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Scilab Graph
-	 */
-	public ViewGridAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.GRID;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Create checkbox menu for the graph menu bar
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the menu
-	 */
-	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		final CheckBoxMenuItem  menu = 
-			createCheckBoxMenu(scilabGraph, ViewGridAction.class);
-		menu.setChecked(true);
-		
-		scilabGraph.addPropertyChangeListener("gridEnabled", new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				XcosDiagram graph = (XcosDiagram) evt.getSource();
-				
-				menu.setChecked(graph.isGridEnabled());
-				graph.getAsComponent().setGridVisible(graph.isGridEnabled());
-				graph.getAsComponent().repaint();
-			}
-		});
-		
-		return  menu;
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		(getGraph(e)).setGridEnabled(!((XcosDiagram) getGraph(e)).isGridEnabled());
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     */
+    public ViewGridAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * Create checkbox menu for the graph menu bar
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     * @return the menu
+     */
+    public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
+        final CheckBoxMenuItem menu = createCheckBoxMenu(scilabGraph,
+                ViewGridAction.class);
+        menu.setChecked(true);
+
+        scilabGraph.addPropertyChangeListener("gridEnabled",
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        XcosDiagram graph = (XcosDiagram) evt.getSource();
+
+                        menu.setChecked(graph.isGridEnabled());
+                        graph.getAsComponent().setGridVisible(
+                                graph.isGridEnabled());
+                        graph.getAsComponent().repaint();
+                    }
+                });
+
+        return menu;
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        graph.setGridEnabled(!graph.isGridEnabled());
+    }
 }

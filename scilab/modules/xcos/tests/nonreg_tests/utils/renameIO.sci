@@ -59,7 +59,7 @@ lfil = iparIO(1);
 lfmt = iparIO(2);
 
 //-- Set new filename ...
-iparIO = [iparIO(1:4) ; str2code(newName) ; iparIO(5+lfil:$)];
+iparIO = [iparIO(1:4) ; _str2code(newName) ; iparIO(5+lfil:$)];
 //-- ... and new filename length
 iparIO(1) = length(newName);
 

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="amell">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>amell</refname>
     <refpurpose>ヤコビのam関数</refpurpose>
@@ -48,11 +45,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    ヤコビの楕円関数 <literal>am(u,k)</literal>を計算します.
-    ただし, 
-    <literal>k</literal> はパラメータ, <literal>u</literal> は引数です. <literal>u</literal> 
-	はベクトル, <literal>sn</literal> は(要素毎の)計算値のベクトルです.
-	関数<literal>%sn</literal>で使用されます.</para>
+      ヤコビの楕円関数 <literal>am(u,k)</literal>を計算します.
+      ただし, 
+      <literal>k</literal> はパラメータ, <literal>u</literal> は引数です. <literal>u</literal> 
+      はベクトル, <literal>sn</literal> は(要素毎の)計算値のベクトルです.
+      関数<literal>%sn</literal>で使用されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

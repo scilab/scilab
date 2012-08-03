@@ -3,7 +3,8 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
+src/c/conv2.c
 
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
 src/fortran/parcha.f \
@@ -11,7 +12,6 @@ src/fortran/ouch.f \
 src/fortran/dfftbi.f \
 src/fortran/dsqrtc.f \
 src/fortran/tranze.f \
-src/fortran/chebc.f \
 src/fortran/tscccf.f \
 src/fortran/dsn2.f \
 src/fortran/hammin.f \
@@ -29,7 +29,6 @@ src/fortran/gee.f \
 src/fortran/r4tx.f \
 src/fortran/transn.f \
 src/fortran/r8tx.f \
-src/fortran/kaiser.f \
 src/fortran/deli11.f \
 src/fortran/compel.f \
 src/fortran/filbut.f \
@@ -39,14 +38,11 @@ src/fortran/amell.f \
 src/fortran/desi24.f \
 src/fortran/dellk.f \
 src/fortran/syredi.f \
-src/fortran/dpspln.f \
 src/fortran/coeft.f \
 src/fortran/tranpo.f \
 src/fortran/blnumz.f \
 src/fortran/sn.f \
 src/fortran/bldenz.f \
-src/fortran/dspln.f \
-src/fortran/belan.f \
 src/fortran/desib.f \
 src/fortran/freque.f \
 src/fortran/desi12.f \
@@ -77,7 +73,8 @@ sci_gateway/c/sci_amell.c \
 sci_gateway/c/gw_signal.c \
 sci_gateway/c/sci_delip.c \
 sci_gateway/c/sci_fft.c \
-sci_gateway/c/sci_syredi.c
+sci_gateway/c/sci_syredi.c \
+sci_gateway/c/sci_conv2.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_delip.f \
 sci_gateway/fortran/sci_f_fft.f \
@@ -91,23 +88,26 @@ sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
-libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+libscisignal_processing_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 noinst_LTLIBRARIES = libscisignal_processing-algo.la
 
-libscisignal_processing_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisignal_processing_algo_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) 
 libscisignal_processing_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscisignal_processing_algo_la_CFLAGS = $(libscisignal_processing_la_CFLAGS)
+libscisignal_processing_algo_la_CPPFLAGS = $(libscisignal_processing_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscisignal_processing_la_CFLAGS)
+INCLUDE_FLAGS = $(libscisignal_processing_la_CPPFLAGS)
 
 libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la
 

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="profile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>profile</refname>
     <refpurpose> extract execution profiles of a Scilab function</refpurpose>
@@ -42,21 +39,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    To use <literal>profile</literal> the Scilab function must have been prepared for
-    profiling (see exec).</para>
+      To use <literal>profile</literal> the Scilab function must have been prepared for
+      profiling (see exec).
+    </para>
     <para>
-    For such function, When such a function is executed the systems counts
-    how many time each line is executed and how may cpu time is spend for
-    each line execution. These data are stored within the function data
-    structure.  The profile function allows to extract these data and
-    return them in the two first columns of <literal>c</literal>. The <literal>c</literal> third
-    column gives a measure of interpetor effort for one execution of
-    corresponding line. Ith line of <literal>c</literal> corresponds to Ith line of the
-    function (included first)</para>
+      For such function, When such a function is executed the systems counts
+      how many time each line is executed and how may cpu time is spend for
+      each line execution. These data are stored within the function data
+      structure.  The profile function allows to extract these data and
+      return them in the two first columns of <literal>c</literal>. The <literal>c</literal> third
+      column gives a measure of interpetor effort for one execution of
+      corresponding line. Ith line of <literal>c</literal> corresponds to Ith line of the
+      function (included first)
+    </para>
     <para>
-    Note that, due to the precision of the processor clock (typically one
-    micro second), some executed lignes may appear with 0 cpu time even if
-    total cpu time really spend in their execution is large.</para>
+      Note that, due to the precision of the processor clock (typically one
+      micro second), some executed lignes may appear with 0 cpu time even if
+      total cpu time really spend in their execution is large.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -84,7 +84,7 @@ profile(foo) //execution profiles are cumulated
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findAC">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findAC</refname>
     <refpurpose> discrete-time system subspace identification</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)
-[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)</synopsis>
+      [A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -69,8 +67,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    METH = 3.
-  </para>
+            Default:    METH = 3.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -98,8 +96,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    PRINTW = 0.
-  </para>
+            Default:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -125,11 +123,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    finds the system matrices A and C of a discrete-time system, given the
-    system order and the relevant part of the R factor of the concatenated
-    block-Hankel matrices, using subspace identification techniques (MOESP 
-    or N4SID).
-  </para>
+      finds the system matrices A and C of a discrete-time system, given the
+      system order and the relevant part of the R factor of the concatenated
+      block-Hankel matrices, using subspace identification techniques (MOESP 
+      or N4SID).
+    </para>
     <itemizedlist>
       <listitem>
         <para>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  computes the system matrices A and C. The model structure is:       x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,      y(k)   = Cx(k) + Du(k) + e(k),  where x(k) and y(k) are vectors of length N and L, respectively.</para>
@@ -139,8 +137,9 @@
       </listitem>
     </itemizedlist>
     <para>
-    Matrix R, computed by findR, should be determined with suitable arguments
-    METH and JOBD.</para>
+      Matrix R, computed by findR, should be determined with suitable arguments
+      METH and JOBD.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -167,7 +166,7 @@ METH=3;TOL=-1;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findABCD">findABCD</link>

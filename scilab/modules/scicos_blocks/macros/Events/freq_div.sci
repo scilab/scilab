@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,6 +31,15 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
+  // look for the modulo block
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "Modulo_Count" then
+      path = i;
+      break;
+    end
+  end
+
  // paths to updatable parameters or states
  newpar=list();
  y=0;
@@ -38,7 +47,7 @@ case 'set' then
  spath($+1)='model'
  spath($+1)='rpar'
  spath($+1)='objs'
- spath($+1)=1
+ spath($+1)=path
 
  xx=arg1(spath)// get the block
 	       //execstr('xxn='+xx.gui+'(''set'',xx)')
@@ -122,9 +131,9 @@ case 'set' then
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
-mlist(["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
 "peout","gr_i","id","in_implicit","out_implicit"],..
-[60.518363,178.33333],[60,40],%t,["0";"3"],[],7,10,[],..
+[60.518363,178.33333],[60,40],%t,0,["0";"3"],[],7,10,[],..
              list(..
         "xstringb(orig(1),orig(2),[''  Counter'';''Modulo ''+string(base)],sz(1),sz(2),''fill'');",..
                 8),"",[],"E"),..
@@ -137,9 +146,9 @@ mlist(["graphics","orig","sz","flip","exprs","pin","pout","pein",..
                 "c",[],[%f,%f],"",0,0,list()),"Modulo_Count",list())
 scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [215.37648,299.81481],[20,30],%t,"1",[],[],[],6,..
+                [215.37648,299.81481],[20,30],%t,0,"1",[],[],[],6,..
                 list(..
                 ["xo=orig(1);yo=orig(2)+sz(2)/3";
                 "xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5)"],8),"",[],[]),..
@@ -152,9 +161,9 @@ scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
                 [%f,%f],"",0,0,list()),"CLKINV_f",list())
 scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [221.30407,86.481481],[20,30],%t,"1",[],[],5,[],list(" ",8),"",..
+                [221.30407,86.481481],[20,30],%t,0,"1",[],[],5,[],list(" ",8),"",..
                 [],[]),..
                 mlist(..
                 ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
@@ -164,9 +173,9 @@ scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
                 [%f,%f],"",0,0,list()),"CLKOUTV_f",list())
 scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [193.14804,168.7037],[60,60],%t,["1";"0"],7,[],9,[0;5],..
+                [193.14804,168.7037],[60,60],%t,0,["1";"0"],7,[],9,[0;5],..
                 list(..
                 ["txt=[''If in>0'';'' '';'' then    else''];";
                 "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"","E",..
@@ -189,9 +198,9 @@ scs_m_1.objs(7)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 [1,1],[1,1,0],[4,1,1])
 scs_m_1.objs(8)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [224.29194;267.98739],[0.3333333,0.3333333],%t,[],[],[],6,[9;10],..
+                [224.29194;267.98739],[0.3333333,0.3333333],%t,0,[],[],[],6,[9;10],..
                 list([],8),"",[],[]),..
                 mlist(..
                 ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..

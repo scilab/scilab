@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xpoly">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xpoly</refname>
     <refpurpose>ポリラインまたはポリゴンを描画する</refpurpose>
@@ -41,20 +38,23 @@
         <term>close</term>
         <listitem>
           <para>整数. close=1の場合, ポリラインは閉じられます; デフォルト値は
-          0です.</para>
+            0です.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xpoly</literal> は座標<literal>xv</literal> および<literal>yv</literal>の
-	ベクトルにより記述されるポリラインを1つ描画します.
-	 <literal>xv</literal> および
-    <literal>yv</literal> が行列の場合,  これらは列を結合したベクトルとみなされます.
-	<literal>dtype</literal> はカレントの線種を用いる場合には
-    <literal>"lines"</literal>,ポリラインを描画する際に
-	カレントのマーカを使用する場合には<literal>"marks"</literal>となります.</para>
+    <para>
+      <literal>xpoly</literal> は座標<literal>xv</literal> および<literal>yv</literal>の
+      ベクトルにより記述されるポリラインを1つ描画します.
+      <literal>xv</literal> および
+      <literal>yv</literal> が行列の場合,  これらは列を結合したベクトルとみなされます.
+      <literal>dtype</literal> はカレントの線種を用いる場合には
+      <literal>"lines"</literal>,ポリラインを描画する際に
+      カレントのマーカを使用する場合には<literal>"marks"</literal>となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -66,7 +66,6 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xpoly(x,y,"lines",1) // デフォルトで閉じられます
 
-// News graphics only
 e=gce(); // カレントのエンティティを取得 (the last created: here the polyline)
 e.closed = 'off' // ポリラインはオープンになります
  ]]></programlisting>
@@ -84,9 +83,5 @@ e.closed = 'off' // ポリラインはオープンになります
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

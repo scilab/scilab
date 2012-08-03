@@ -42,7 +42,7 @@ c
 
       data eol/99/,dot/51/,blank/40/,tab/-40/
       data retu/27,14,29,30,27,23/
-      data slash/48/,lrecl/512/
+      data slash/48/,lrecl/4096/
       data quit/26,30,18,29/
 c
       if(ddt.eq.4) then
@@ -242,9 +242,10 @@ c
          mlhs=istk(ilk+1)
          mrhs=istk(ilk+1+nsiz*mlhs+1)
          ll=ilk+4+nsiz*(mlhs+mrhs)
-         lf= ll+istk(ll-1)+1
+         lf= ll+istk(ll-1)-1
       endif
       il=lin(k+7)
+
       if(il.gt.lf) then
          eof=.true.
          goto 45

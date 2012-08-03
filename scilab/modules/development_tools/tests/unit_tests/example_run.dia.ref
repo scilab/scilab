@@ -1,0 +1,120 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// Test errors
+refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A row array of strings expected.\n"), "example_run", 1);
+assert_checkerror("example_run(10);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A row array of strings expected.\n"), "example_run", 1);
+assert_checkerror("example_run([""core"",""xml""]);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A row array of strings or empty matrix expected.\n"), "example_run", 2);
+assert_checkerror("example_run(""core"", 12);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A row array of strings or empty matrix expected.\n"), "example_run", 2);
+assert_checkerror("example_run(""core"", [""extraction"", ""insertion""]);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "example_run", 3);
+assert_checkerror("example_run(""core"", ""extraction"", 12);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "example_run", 3);
+assert_checkerror("example_run(""core"", ""extraction"", [""en_US"", ""fr_FR""]);", refMsg);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1);
+assert_checkerror("example_run(""toto"");", refMsg);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
+assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
+assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
+example_run("xml", [], "", "short_summary");
+   001/001 - [TMPDIR/xml_help] : 
+
+   001/030 - [TMPDIR/xml_help] XMLObjects_1..passed
+   002/030 - [TMPDIR/xml_help] XMLObjects_2..passed
+   003/030 - [TMPDIR/xml_help] XMLObjects_3..passed
+   004/030 - [TMPDIR/xml_help] XMLObjects_4..passed
+   005/030 - [TMPDIR/xml_help] XMLObjects_5..passed
+   006/030 - [TMPDIR/xml_help] XMLObjects_6..passed
+   007/030 - [TMPDIR/xml_help] XMLObjects_7..passed
+   008/030 - [TMPDIR/xml_help] xmlAddNs......passed
+   009/030 - [TMPDIR/xml_help] xmlAsNumber...passed
+   010/030 - [TMPDIR/xml_help] xmlAsText.....passed
+   011/030 - [TMPDIR/xml_help] xmlDTD........passed
+   012/030 - [TMPDIR/xml_help] xmlDelete.....passed
+   013/030 - [TMPDIR/xml_help] xmlDocument...passed
+   014/030 - [TMPDIR/xml_help] xmlDump.......passed
+   015/030 - [TMPDIR/xml_help] xmlElement....passed
+   016/030 - [TMPDIR/xml_help] xmlFormat.....passed
+   017/030 - [TMPDIR/xml_help] xmlGetNsByHref passed
+   018/030 - [TMPDIR/xml_help] xmlGetNsByPrefix passed
+   019/030 - [TMPDIR/xml_help] xmlGetOpenDocs passed
+   020/030 - [TMPDIR/xml_help] xmlIsValidObject passed
+   021/030 - [TMPDIR/xml_help] xmlNs.........passed
+   022/030 - [TMPDIR/xml_help] xmlRead.......passed
+   023/030 - [TMPDIR/xml_help] xmlReadStr....passed
+   024/030 - [TMPDIR/xml_help] xmlRelaxNG....passed
+   025/030 - [TMPDIR/xml_help] xmlRemove.....passed
+   026/030 - [TMPDIR/xml_help] xmlSchema.....passed
+   027/030 - [TMPDIR/xml_help] xmlSetAttributes passed
+   028/030 - [TMPDIR/xml_help] xmlValidate...passed
+   029/030 - [TMPDIR/xml_help] xmlWrite......passed
+   030/030 - [TMPDIR/xml_help] xmlXPath......passed
+
+
+   --------------------------------------------------------------------------
+   Tests:   30,    Passed:   30,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+example_run("functions", "argn", "", "short_summary");
+   001/001 - [TMPDIR/functions_help] : 
+
+   001/003 - [TMPDIR/functions_help] argn....passed
+   002/003 - [TMPDIR/functions_help] argn....passed
+   003/003 - [TMPDIR/functions_help] argn....passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+example_run("core", ["extraction"; "insertion"], "", "short_summary");
+   001/001 - [TMPDIR/core_help] : 
+
+   001/010 - [TMPDIR/core_help] extraction...passed
+   002/010 - [TMPDIR/core_help] insertion....passed
+   003/010 - [TMPDIR/core_help] extraction...passed
+   004/010 - [TMPDIR/core_help] insertion....passed
+   005/010 - [TMPDIR/core_help] extraction...passed
+   006/010 - [TMPDIR/core_help] insertion....passed
+   007/010 - [TMPDIR/core_help] extraction...passed
+   008/010 - [TMPDIR/core_help] insertion....passed
+   009/010 - [TMPDIR/core_help] extraction...passed
+   010/010 - [TMPDIR/core_help] insertion....passed
+
+
+   --------------------------------------------------------------------------
+   Tests:   10,    Passed:   10,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+example_run("core", "extraction", "en_US", "short_summary");
+   001/001 - [TMPDIR/core_help] : 
+
+   001/001 - [TMPDIR/core_help] extraction...passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"]);
+   001/001 - [TMPDIR/core_help] : 
+
+   001/001 - [TMPDIR/core_help] extraction...passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"], TMPDIR + "/example_run.xml");
+   001/001 - [TMPDIR/core_help] : 
+
+   001/001 - [TMPDIR/core_help] extraction...passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------

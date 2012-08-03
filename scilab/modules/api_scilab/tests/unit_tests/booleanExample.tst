@@ -5,20 +5,20 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/booleanExample"));
 cd(pathconvert(TMPDIR+"/booleanExample"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/booleanExample.c",pathconvert(TMPDIR+"/booleanExample/booleanExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("booleanExample",["booleanExample","booleanExample"],"booleanExample.c",[],"","",cflags);
+ilib_build("gw_booleanExample", ["booleanExample", "booleanExample"], "booleanExample.c", [], "", "", cflags);
 exec("loader.sce");
 
 a = %t;
 b = %f;
 c = [a,b;b,a;a,b;b,a];
 d = c';
-booleanExample(a) == a
-booleanExample(b) == b
-booleanExample(c) == c
-booleanExample(d) == d
+assert_checkequal(booleanExample(a), a);
+assert_checkequal(booleanExample(b), b);
+assert_checkequal(booleanExample(c), c);
+assert_checkequal(booleanExample(d), d);

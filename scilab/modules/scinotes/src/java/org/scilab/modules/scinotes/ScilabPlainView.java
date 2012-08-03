@@ -50,7 +50,7 @@ public class ScilabPlainView extends PlainView {
     private Segment text = new Segment();
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
-    private boolean enable = true;
+    private boolean enable = SciNotesOptions.getSciNotesDisplay().keywordsColorization;
 
     private int tabType;
     private String tabCharacter = " ";
@@ -117,6 +117,13 @@ public class ScilabPlainView extends PlainView {
     }
 
     /**
+     * Enable this view
+     */
+    public void enable(boolean b) {
+        enable = b;
+    }
+
+    /**
      * If n > 0, then a line will be drawn to see the maximum of chars recommanded in a line
      * (80 by default).
      * @param n the maximum of column recommanded in this view
@@ -130,13 +137,6 @@ public class ScilabPlainView extends PlainView {
      */
     public int getWhiteWidth() {
         return whiteWidth;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public float nextTabStop(float x, int tabOffset) {
-        return x + whiteWidth * tabLength;
     }
 
     /**
@@ -279,37 +279,37 @@ public class ScilabPlainView extends PlainView {
                 }
 
                 switch (tok) {
-                case ScilabLexerConstants.WHITE :
-                case ScilabLexerConstants.WHITE_COMMENT :
-                case ScilabLexerConstants.WHITE_STRING :
-                    if (isWhiteViewable) {
+                    case ScilabLexerConstants.WHITE :
+                    case ScilabLexerConstants.WHITE_COMMENT :
+                    case ScilabLexerConstants.WHITE_STRING :
+                        if (isWhiteViewable) {
+                            w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                            g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
+                        }
+                        break;
+                    case ScilabLexerConstants.TAB :
+                    case ScilabLexerConstants.TAB_COMMENT :
+                    case ScilabLexerConstants.TAB_STRING :
+                        if (isTabViewable) {
+                            paintTab(text, x, y, g, mark);
+                        }
+                        break;
+                    case ScilabLexerConstants.ERROR :
+                        if (unselected) {
+                            g.setColor(Color.RED);
+                        } else {
+                            g.setColor(Color.WHITE);
+                        }
                         w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-                        g.drawLine(x + (w - 1) / 2, y - whiteHeight, x + (w + 1) / 2, y - whiteHeight);
-                    }
-                    break;
-                case ScilabLexerConstants.TAB :
-                case ScilabLexerConstants.TAB_COMMENT :
-                case ScilabLexerConstants.TAB_STRING :
-                    if (isTabViewable) {
-                        paintTab(text, x, y, g, mark);
-                    }
-                    break;
-                case ScilabLexerConstants.ERROR :
-                    if (unselected) {
-                        g.setColor(Color.RED);
-                    } else {
-                        g.setColor(Color.WHITE);
-                    }
-                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
-                    for (int i = 0; i < w; i +=4) {
-                        g.drawLine(x + i, y + 2, x + i + 1, y + 2);
-                    }
-                    for (int i = 2; i < w; i +=4) {
-                        g.drawLine(x + i, y + 1, x + i + 1, y + 1);
-                    }
-                    break;
-                default :
-                    break;
+                        for (int i = 0; i < w; i += 4) {
+                            g.drawLine(x + i, y + 2, x + i + 1, y + 2);
+                        }
+                        for (int i = 2; i < w; i += 4) {
+                            g.drawLine(x + i, y + 1, x + i + 1, y + 1);
+                        }
+                        break;
+                    default :
+                        break;
                 }
 
                 x = Utilities.drawTabbedText(text, x, y, g, this, mark);
@@ -420,7 +420,7 @@ public class ScilabPlainView extends PlainView {
      * Used to represent the default tabulation got with ConfigSciNotesManager
      */
     public void setDefaultTabRepresentation() {
-        setTabRepresentation(ConfigSciNotesManager.getDefaultTabulation());
+        setTabRepresentation(new TabManager.Tabulation());
     }
 
     /**

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"PO-Revision-Date: 2011-09-13 22:52+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2012-07-26 23:24+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 msgid "WARNING : \n"
@@ -32,6 +32,25 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась матрица строк или целых "
 "чисел.\n"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: Возможность %s является устаревшей.\n"
+
+msgid "Warning"
+msgstr "Внимание"
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Эта возможность будет навсегда удалена в Scilab %s\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -81,6 +100,10 @@ msgid ""
 "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: Неверные значения входного параметра №%d: ожидались непустые строки.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -205,7 +228,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась не пустая строка.\n"
+"%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -222,12 +245,28 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась непустая матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
@@ -237,6 +276,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
 
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
@@ -285,7 +328,7 @@ msgstr "%s: Содержит совпадение оконечных CR или L
 
 #, c-format
 msgid "%s: Duplicate name status changes.\n"
-msgstr "%s: Состояние повторяющего имени изменяется.\n"
+msgstr "%s: Состояние повторяющегося имени изменяется.\n"
 
 #, c-format
 msgid "%s: Returned count is too big for offset size.\n"
@@ -316,7 +359,7 @@ msgstr "%s: Неизвестная ошибка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a function expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась функция.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"

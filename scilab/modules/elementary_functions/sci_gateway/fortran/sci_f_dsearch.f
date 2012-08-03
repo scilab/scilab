@@ -96,7 +96,7 @@ c     get val
 *     verif that val is in strict increasing order
       do j = 1, mval*nval-1
          if (.not. stk(lval+j-1) .lt. stk(lval+j)) then  ! cette forme permet de detecter les nans
-            buf=fname//' : the array val (arg 2) is not well ordered'
+            buf=fname//' : the array s (arg 2) is not well ordered'
             call error(999)
             return
          endif

@@ -13,7 +13,8 @@
 
 #include <string.h>
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
@@ -59,7 +60,8 @@ static gw_generic_table Tab[]=
 	{sci_usecanvas,"usecanvas"},
 	{sci_displaytree,"uiDisplayTree"},
 	{sci_uiputfile,"uiputfile"},
-        {sci_about,"about"}
+        {sci_about,"about"},
+        {sci_fire_closing_finished,"fire_closing_finished"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -90,6 +92,12 @@ int gw_gui(void)
           }
 
 
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
 	return 0;

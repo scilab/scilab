@@ -39,6 +39,9 @@ function ilib_gen_loader(varargin)
 
   if rhs > 5 then
     loadername = varargin(6);
+    if isempty(loadername) then
+      loadername = 'loader.sce';
+    end
   else
     loadername = 'loader.sce';
   end

@@ -1,0 +1,23 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+; from core
+createvar_
+stack_
+checkrhs_
+checklhs_
+createvarfromptr_
+intersci_
+putlhsvar_
+freeArrayOfString
+vstk_
+gettype_
+getrhsvar_
+getSCIpath
+getScilabModeString
+com_
+callFunctionFromGateway
+GetXmlFileEncoding
+getScilabMode
+;

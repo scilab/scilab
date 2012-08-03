@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getdrives">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>getdrives</refname>
-    <refpurpose>Get the drive letters of all mounted filesystems on the computer.</refpurpose>
+    <refpurpose>gets the drive letters of all mounted filesystems on the computer</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,20 +33,21 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Get the drive letters of all mounted filesystems on the computer.</para>
-    <para>returns the roots of all mounted filesystems on the computer as a matrix of strings.</para>
-    <para>For Linux this list consists solely of the  root directory, / .</para>
+    <para>
+      The function <function>getdrives</function> gets the drive letters of all
+      mounted filesystems on the computer.
+    </para>
+    <para>
+      <function>getdrives</function> returns the roots of all mounted filesystems on the computer as a matrix of strings.
+    </para>
+    <para>
+      For GNU/Linux this list consists solely of the  root directory, <literal>/</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 getdrives()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

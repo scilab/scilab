@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="invr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>invr</refname>
     <refpurpose> inversion of (rational) matrix</refpurpose>
@@ -42,8 +39,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    If <literal>H</literal> is a polynomial or rational function matrix, <literal>invr</literal>
-    computes <literal>H^(-1)</literal> using Leverrier's algorithm (see function code)</para>
+      If <literal>H</literal> is a polynomial or rational function matrix, <literal>invr</literal>
+      computes <literal>H^(-1)</literal> using Leverrier's algorithm (see function code)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -55,7 +53,7 @@ H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>

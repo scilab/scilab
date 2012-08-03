@@ -1,0 +1,70 @@
+# Russian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-07-22 12:02+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%i: ожидалась строка.\n"
+
+msgid "An error occurred while opening Preferences window:"
+msgstr "Во время открытия окна настроек произошла ошибка:"
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
+"%s: Возникло Java-исключение:\n"
+"%s"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Preferences backup"
+msgstr "Резервное копирование настроек"
+
+msgid "Select a backup file"
+msgstr "Выбрать файл резервной копии"
+
+msgid "Scilab Configuration files"
+msgstr "Файлы конфигурации Scilab''a"
+
+msgid "Restore"
+msgstr "Восстановить"
+
+msgid "Create a backup file"
+msgstr "Создать файл резервной копии"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Invalid path:"
+msgstr "Некорректный путь:"
+
+msgid "Invalid preferences file:"
+msgstr "Некорректный файл настроек:"
+
+msgid "Scilab Preferences"
+msgstr "Настройки Scilab"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль Scilab «%s» не установлен.\n"

@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * See the file ./license.txt
  */
@@ -24,24 +24,30 @@
  * Bruno JOFRET
  * Simone MANNORI
  */
-#include <stdio.h>
+#include "gw_scicos.h"
 #include "stack-c.h"
 
-typedef struct {
-  int halt;
+/*--------------------------------------------------------------------------*/
+typedef struct
+{
+    int halt;
 }  COSHLT_struct;
 extern COSHLT_struct  C2F(coshlt);
 /*--------------------------------------------------------------------------*/
-int sci_haltscicos(char *fname,unsigned long fname_len)
+int sci_haltscicos(char *fname, unsigned long fname_len)
 {
 
-  CheckLhs(0,1);
-  CheckRhs(0,0);
-    
-  C2F(coshlt).halt = 1;
+    CheckLhs(0, 1);
+    CheckRhs(0, 0);
 
-  LhsVar(1)=0;
-  PutLhsVar();
-  return 0;
+    // MAGIC VALUE: 0 is used to continue the simulation
+    // MAGIC VALUE: 1 is used to halt the simulator
+    // MAGIC VALUE: 2 is used to switch to the final time
+    //                        then halt the simulator
+    C2F(coshlt).halt = 2;
+
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

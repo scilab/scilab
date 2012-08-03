@@ -1,3 +1,15 @@
+            Changes between versions 5.3.3 and 5.3.3mac0 of Scilab
+            =================================================
+
+Bug fixes:
+==========
+
+* Bug 8718 fixed - Scilab on Mac OS X 10.5 did not start.
+
+* Bug 9766 fixed - Scilab on Mac OS X 10.7 did not start.
+
+
+
             Changes between versions 5.3.2 and 5.3.3 of Scilab
             =================================================
 
@@ -444,12 +456,12 @@ Documentation:
 
 * Enable the creation of links between an external module and Scilab main documentation
   with the following syntax:
-<link type="scilab" linkend="scilab/help/bvode">bvode</link>
+<link type="scilab" linkend="scilab.help/bvode">bvode</link>
 
 * Enable the execution and the edition of any Scilab example.
 
 * Enable the execution of demos with the following syntax:
-<link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
+<link type="scilab" linkend="scilab.demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
 
 * Enable the opening of a Xcos diagram from the help browser:
 <link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.xcos">Open bounce.xcos</link>
@@ -1976,7 +1988,7 @@ Bug Fixes:
 * Bug 7348 fixed - ATOMS: A module was loaded twice if it was installed both in
                    the "user" and the "allusers" section.
 
-* Bug 7405 fixed - The toolbar was not updated when an undocking occured.
+* Bug 7405 fixed - The toolbar was not updated when an undocking occurred.
 
 * Bug 7452 fixed - demos nmplot from Optimization and Simulation -> fminsearch
                    -> nmplot* did not work.

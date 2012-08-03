@@ -16,8 +16,8 @@
 
 currentPath = SCI + "/modules/xcos/tests/unit_tests/block_tests/ESELECT_f/";
 
-// Import the reference datas (A_ref)
-ierr = import_from_hdf5(currentPath + "sinus_ref.h5");
+// Import the reference data (A_ref)
+ierr = import_from_hdf5(currentPath + "sinus_ref.sod");
 if ierr <> %t then pause; end
 
 // Import the diagram structure
@@ -26,6 +26,4 @@ if ierr <> %t then pause; end
 
 // launch the simulation
 scicos_simulate(scs_m);
-
-if norm(A_ref('values') - A('values')) / length(A_ref('values')) > 1e-6 then pause; end
-
+assert_checkalmostequal(A_ref('values'), A('values'));

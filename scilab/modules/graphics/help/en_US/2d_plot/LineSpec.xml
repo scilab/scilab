@@ -10,28 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="LineSpec">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="LineSpec">
   <refnamediv>
     <refname>LineSpec</refname>
     <refpurpose>to quickly customize the lines appearance
-  in a plot</refpurpose>
+      in a plot
+    </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very usefull to quickly specify such basic line properties.</para>
+    <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very useful to quickly specify such basic line properties.</para>
     <para>To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</para>
-    <para>Here is a complete list of the <literal>LineSpec</literal> types you can
-    specify (using <link linkend="plot">plot</link>).</para>
+    <para>
+      Here is a complete list of the <literal>LineSpec</literal> types you can
+      specify (using <link linkend="plot">plot</link>).
+    </para>
     <variablelist>
       <varlistentry>
         <term>LineStyle: </term>
         <listitem>
           <para>a string defining the line style. This property is linked to the
-        object's <literal>line_style</literal> property (see
-        <link linkend="polyline_properties">polyline_properties</link>).</para>
+            object's <literal>line_style</literal> property (see
+            <link linkend="polyline_properties">polyline_properties</link>).
+          </para>
           <para/>
           <informaltable border="1">
             <tr>
@@ -73,8 +74,9 @@
         <term>Color: </term>
         <listitem>
           <para>a string defining the line color. This property is linked to the
-        object's <literal>foreground</literal> property (see
-        <link linkend="polyline_properties">polyline_properties</link>).</para>
+            object's <literal>foreground</literal> property (see
+            <link linkend="polyline_properties">polyline_properties</link>).
+          </para>
           <para/>
           <informaltable border="1">
             <tr>
@@ -140,10 +142,11 @@
         <term/>
         <listitem>
           <para>A default color table is used to color plotted curves if you do
-        not specify a color (neither with <literal>LineSpec</literal> nor with
-        <link linkend="GlobalProperty">GlobalProperty</link>). When drawing multiple lines, the plot
-        command automatically cycles through this table. Here are the used
-        colors:</para>
+            not specify a color (neither with <literal>LineSpec</literal> nor with
+            <link linkend="GlobalProperty">GlobalProperty</link>). When drawing multiple lines, the plot
+            command automatically cycles through this table. Here are the used
+            colors:
+          </para>
           <para/>
         </listitem>
       </varlistentry>
@@ -204,10 +207,11 @@
         <term>Marker type: </term>
         <listitem>
           <para>A string defining the marker type. note that if you specify a
-        marker wihtout a line style, only the marker is drawn. This property
-        is linked to the object's <literal>mark_style</literal> and
-        <literal>mark_mode</literal> properties (see
-        <link linkend="polyline_properties">polyline_properties</link>).</para>
+            marker wihtout a line style, only the marker is drawn. This property
+            is linked to the object's <literal>mark_style</literal> and
+            <literal>mark_mode</literal> properties (see
+            <link linkend="polyline_properties">polyline_properties</link>).
+          </para>
           <para/>
           <informaltable border="1">
             <tr>
@@ -249,13 +253,17 @@
               <td>Cross</td>
             </tr>
             <tr>
-              <td><literal>'square'</literal> or
-            <literal>'s'</literal></td>
+              <td>
+                <literal>'square'</literal> or
+                <literal>'s'</literal>
+              </td>
               <td>Square</td>
             </tr>
             <tr>
-              <td><literal>'diamond'</literal> or
-            <literal>'d'</literal></td>
+              <td>
+                <literal>'diamond'</literal> or
+                <literal>'d'</literal>
+              </td>
               <td>Diamond</td>
             </tr>
             <tr>
@@ -300,6 +308,14 @@
     </variablelist>
   </refsection>
   <refsection>
+    <title>Sample</title>
+    <scilab:image>x=1:0.1:10; // Init.
+      plot(x,sin(x),'r.-&gt;')
+      t=0:%pi/20:2*%pi;
+      plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+    </scilab:image>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 x=1:0.1:10; // Init.
@@ -320,7 +336,7 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="GlobalProperty">GlobalProperty</link>
@@ -332,9 +348,5 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         <link linkend="clf">clf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.Leray</para>
   </refsection>
 </refentry>

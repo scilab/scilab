@@ -21,72 +21,70 @@
 #include "scanf_functions.h"
 #include "StringConvert.h"
 #include "xscion.h"
-#include "../../../console/includes/zzledt.h"
-#include "../../../console/includes/GetCommandLine.h" /* getConsoleInputLine */
+#include "../../../console/includes/GetCommandLine.h"   /* getConsoleInputLine */
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-#define MAXSTR 512
-/*--------------------------------------------------------------------------*/
-int sci_scanf(char *fname,unsigned long fname_len)
+int sci_scanf(char *fname, unsigned long fname_len)
 {
     static char *String = NULL;
-    static int l1 = 0, m1 = 0, n1 = 0, len = MAXSTR-1,iarg  = 0,maxrow = 0,nrow = 0,rowcount = 0,ncol = 0;
-    int args = 0,retval = 0,retval_s = 0,lline = 0,iflag = 0,err = 0,n_count = 0;
+    static int l1 = 0, m1 = 0, n1 = 0, iarg = 0, maxrow = 0, nrow = 0, rowcount = 0, ncol = 0;
+    int args = 0, retval = 0, retval_s = 0, lline = 0, iflag = 0, err = 0, n_count = 0;
     entry *data = NULL;
     rec_entry buf[MAXSCAN];
-    sfdir  type[MAXSCAN],type_s[MAXSCAN];
+    sfdir type[MAXSCAN], type_s[MAXSCAN];
 
     Nbvars = 0;
-    CheckRhs(1,2);
+    CheckRhs(1, 2);
 
-    if (Rhs==2)
+    if (Rhs == 2)
     {
-        GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-        if (m1*n1 != 1)
+        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
+        if (m1 * n1 != 1)
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: Scalar expected.\n"),fname,1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Scalar expected.\n"), fname, 1);
             return 0;
         }
-        iarg=2;
-        maxrow=*istk(l1);
+        iarg = 2;
+        maxrow = *istk(l1);
     }
     else
     {
-        iarg=1;
-        maxrow=1;
+        iarg = 1;
+        maxrow = 1;
     }
 
-    GetRhsVar(iarg,STRING_DATATYPE,&m1,&n1,&l1); /** format **/
-    n_count=StringConvert(cstk(l1))+1;  /* conversion */
+    GetRhsVar(iarg, STRING_DATATYPE, &m1, &n1, &l1);
+    /** format **/
+    n_count = StringConvert(cstk(l1)) + 1;  /* conversion */
 
-    if (n_count>1)
+    if (n_count > 1)
     {
-        Scierror(999,_("%s: Specified format cannot include any '\\n'\n"),fname);
+        Scierror(999, _("%s: Specified format cannot include any '\\n'\n"), fname);
         return 0;
     }
 
-    nrow=maxrow;
-    rowcount = -1; /* number-1 of result lines already got */
+    nrow = maxrow;
+    rowcount = -1;              /* number-1 of result lines already got */
     while (1)
     {
         rowcount++;
-        if ((maxrow >= 0) && (rowcount >= maxrow)) break;
+        if ((maxrow >= 0) && (rowcount >= maxrow))
+            break;
 
         /* get a line */
-        C2F(xscion)(&iflag);
-        //C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
-        //getLine(String,&len,&lline,&status);
+        C2F(xscion) (&iflag);
+
         String = getConsoleInputLine();
         if (String == NULL)
         {
-            Scierror(999,_("%s: Data mismatch.\n"),fname);
+            Scierror(999, _("%s: Data mismatch.\n"), fname);
             return 0;
         }
         lline = (int)strlen(String);
 
-        if (lline == 0) 
+        if (lline == 0)
         {
             FREE(String);
             String = strdup(" ");
@@ -94,40 +92,51 @@ int sci_scanf(char *fname,unsigned long fname_len)
         }
 
         /** use the scaned line as input **/
-        args = Rhs; /* args set to Rhs on entry */
-        if (do_xxscanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) 
+        args = Rhs;             /* args set to Rhs on entry */
+        if (do_xxscanf("scanf", (FILE *) 0, cstk(l1), &args, String, &retval, buf, type) < 0)
         {
-            if (String) {FREE(String); String = NULL;}
+            if (String)
+            {
+                FREE(String);
+                String = NULL;
+            }
             return 0;
         }
-        if (String) {FREE(String); String = NULL;}
+        if (String)
+        {
+            FREE(String);
+            String = NULL;
+        }
 
-        if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
+        if ((err = Store_Scan(&nrow, &ncol, type_s, type, &retval, &retval_s, buf, &data, rowcount, args)) < 0)
         {
             switch (err)
             {
-            case MISMATCH:
-                if (maxrow>=0)
-                {
-                    Free_Scan(rowcount,ncol,type_s,&data);
-                    Scierror(999,_("%s: Data mismatch.\n"),fname);
-                    return 0;
-                }
-                break;
+                case MISMATCH:
+                    if (maxrow >= 0)
+                    {
+                        Free_Scan(rowcount, ncol, type_s, &data);
+                        Scierror(999, _("%s: Data mismatch.\n"), fname);
+                        return 0;
+                    }
+                    break;
 
-            case MEM_LACK:
-                Free_Scan(rowcount,ncol,type_s,&data);
-                Scierror(999,_("%s: No more memory.\n"),fname);
-                return 0;
-                break;
+                case MEM_LACK:
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
             }
         }
-    } /*  while (1) */
+    }                           /*  while (1) */
 
     /* create Scilab variables with each column of data */
-    err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
-    Free_Scan(rowcount,ncol,type_s,&data);
-    if (err==MEM_LACK) { Scierror(999,_("%s: No more memory.\n"),fname);}
+    err = Sci_Store(rowcount, ncol, data, type_s, retval_s);
+    Free_Scan(rowcount, ncol, type_s, &data);
+    if (err == MEM_LACK)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+    }
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  nbDel = atomsAutoloadDel(modules[,section])
-	</synopsis>
+      nbDel = atomsAutoloadDel(modules[,section])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -30,121 +30,107 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			
-			<!-- 1st input parameter -->
-			
-			<varlistentry>
+      <!-- 1st input parameter -->
+      <varlistentry>
         <term>modules</term>
         <listitem>
           <para>
-						mx1, mx2 or mx3 character string matrix:
-					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
-								Mandatory
-							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
-								If this field is empty or is not present, all versions
-								of the module are removed from the autoload system
-							</td>
-						</tr>
-						
-						<!-- Section -->
-						
-						<tr>
-							<td>
-								<emphasis>3rd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Installed section</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
-								If this field is empty or is not present, modules installed in
-								both "user" and "allusers" sections are searched.
-							</td>
-						</tr>
-						
-					</informaltable>
-					
+            mx1, mx2 or mx3 character string matrix:
+          </para>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+              <td>
+              </td>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present, all versions
+                of the module are removed from the autoload system
+              </td>
+            </tr>
+            <!-- Section -->
+            <tr>
+              <td>
+                <emphasis>3rd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Installed section</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present, modules installed in
+                both "user" and "allusers" sections are searched.
+              </td>
+            </tr>
+          </informaltable>
         </listitem>
       </varlistentry>
-			
-			<!-- 2nd input parameter -->
-			
-			<varlistentry>
+      <!-- 2nd input parameter -->
+      <varlistentry>
         <term>section</term>
         <listitem>
           <para>
-						This argument controls the list of sections where search
-						modules(s) to remove from autoload system.
-					</para>
+            This argument controls the list of sections where search
+            modules(s) to remove from autoload system.
+          </para>
           <para>
-						<literal>section</literal> is a single-string and its value should be :
-					</para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"all"</literal>: module(s) to remove from autotoload list
-								are searched in both "user" and "allusers" sections.
-							</para>
+                <literal>"all"</literal>: module(s) to remove from autotoload list
+                are searched in both "user" and "allusers" sections.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: module(s) to remove from autotoload
-								system are only searched in the "allusers" autoload list.
-							</para>
+                <literal>"allusers"</literal>: module(s) to remove from autotoload
+                system are only searched in the "allusers" autoload list.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"user"</literal>: module(s) to remove from autotoload
-								system are only searched in the "user" autoload list.
-							</para>
+                <literal>"user"</literal>: module(s) to remove from autotoload
+                system are only searched in the "user" autoload list.
+              </para>
             </listitem>
           </itemizedlist>
-					<para>
-						If SCI is write accessible, "all" is the default value.
-						Otherwise, the default value is "user".
-					</para>
+          <para>
+            If SCI is write accessible, "all" is the default value.
+            Otherwise, the default value is "user".
+          </para>
         </listitem>
-			</varlistentry>
-			
+      </varlistentry>
       <varlistentry>
         <term>nbDel</term>
         <listitem>
           <para>
-						An integer : the number of modules successfully removed from the
-						autoload system.
-					</para>
+            An integer : the number of modules successfully removed from the
+            autoload system.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -155,9 +141,9 @@
   <refsection>
     <title>Description</title>
     <para>
-			<literal>atomsAutoloadDel</literal> remove one or several modules from the
-			autoload system.
-	</para>
+      <literal>atomsAutoloadDel</literal> remove one or several modules from the
+      autoload system.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -198,7 +184,7 @@ atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
@@ -211,10 +197,4 @@ atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

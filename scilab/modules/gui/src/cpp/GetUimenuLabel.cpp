@@ -1,31 +1,35 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Get the label of an uimenu  
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUimenuLabel.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUimenuLabel(sciPointObj* sciObj)
+/* Get the label of an uimenu */
+int GetUimenuLabel(void* _pvCtx, char *pobjUID)
 {
-  if (sciGetEntityType( sciObj ) == SCI_UIMENU)
+    char *label = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(pobjUID, __GO_UI_LABEL__, jni_string, (void **)&label);
+
+    if (label == NULL)
     {
-      // Get the label from Java
-      return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "Label");
+        return FALSE;
     }
-  else
+    else
     {
-		Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Label");
-      return FALSE;
+        status = sciReturnString(_pvCtx, label);
+        free(label);
+        return status;
     }
 }
-

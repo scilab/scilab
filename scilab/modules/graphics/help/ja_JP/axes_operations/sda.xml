@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sda">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sda</refname>
     <refpurpose>デフォルトの軸(Axes)を設定. </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>sda()
-a = gda(); set(a,"default_values",1)</synopsis>
+      a = gda(); set(a,"default_values",1)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,8 +35,8 @@ a = gda(); set(a,"default_values",1)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	このルーチンは軸の規範をデフォルト値にリセットします.
-   </para>
+      このルーチンは軸の規範をデフォルト値にリセットします.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -92,11 +90,5 @@ plot2d(x-2,sin(x))
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Djalel ABDEMOUCHE
-  </para>
   </refsection>
 </refentry>

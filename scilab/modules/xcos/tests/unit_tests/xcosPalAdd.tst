@@ -3,8 +3,6 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- NOT FIXED -->
-
 // <-- TEST WITH XCOS -->
 //
 // <-- Short Description -->
@@ -40,6 +38,6 @@ if ~xcosPalAdd(pal) then pause, end
 if ~xcosPalAdd(pal, "my Summation blocks") then pause, end
 if ~xcosPalAdd(pal, ["Customs" "my Summation blocks"]) then pause, end
 
-export_to_hdf5(TMPDIR + "/palette.h5", "pal");
-if ~xcosPalAdd(TMPDIR + "/palette.h5") then pause, end
+export_to_hdf5(TMPDIR + "/palette.sod", "pal");
+if ~xcosPalAdd(TMPDIR + "/palette.sod") then pause, end
 

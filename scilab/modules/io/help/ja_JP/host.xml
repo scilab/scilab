@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="host">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>host</refname>
     <refpurpose> Unix または DOS コマンドを実行</refpurpose>
@@ -42,13 +39,14 @@
   <refsection>
     <title>説明n</title>
     <para>
-	コマンドインタプリタ(Unixではsh, DOSでは command.com)により実行される
-	文字列<literal>command-name</literal>をUnixに送信します.
-	シェルコマンドの標準出力および標準エラーは呼び出し側のシェルに
-	書き込まれます.
-	<literal>stat</literal>は,
-	ホストがコールできない場合(十分なシステムメモリが確保できない場合)に -1,
-	またはコマンドインタプリタのリターンコードを返します.</para>
+      コマンドインタプリタ(Unixではsh, DOSでは command.com)により実行される
+      文字列<literal>command-name</literal>をUnixに送信します.
+      シェルコマンドの標準出力および標準エラーは呼び出し側のシェルに
+      書き込まれます.
+      <literal>stat</literal>は,
+      ホストがコールできない場合(十分なシステムメモリが確保できない場合)に -1,
+      またはコマンドインタプリタのリターンコードを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

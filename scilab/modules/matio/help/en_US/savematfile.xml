@@ -12,9 +12,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="savematfile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>savematfile</refname>
     <refpurpose>write a Matlab MAT-file (binary or ASCII)</refpurpose>
@@ -22,14 +19,15 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>savematfile('filename')
-savematfile('filename', 'var1', 'var2', ...)
-savematfile('filename', '-struct', 's')
-savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
-savematfile(..., '-v4')
-savematfile(..., '-v6')
-savematfile(..., '-v7')
-savematfile(..., '-v7.3')
-savematfile filename var1 var2 ...</synopsis>
+      savematfile('filename', 'var1', 'var2', ...)
+      savematfile('filename', '-struct', 's')
+      savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
+      savematfile(..., '-v4')
+      savematfile(..., '-v6')
+      savematfile(..., '-v7')
+      savematfile(..., '-v7.3')
+      savematfile filename var1 var2 ...
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -91,14 +89,16 @@ savematfile filename var1 var2 ...</synopsis>
               <term>"-v7"</term>
               <listitem>
                 <para>A format that MATLAB Version 7 and earlier can
-                open (default)</para>
+                  open (default)
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>"-v7.3"</term>
               <listitem>
                 <para>A format that MATLAB Version 7.3 and earlier can
-                open</para>
+                  open
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -127,8 +127,9 @@ savematfile filename var1 var2 ...</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    saves variables in a Matlab MAT-file from Scilab. The Scilab data types are
-    converted into the Matlab equivalents.</para>
+      saves variables in a Matlab MAT-file from Scilab. The Scilab data types are
+      converted into the Matlab equivalents.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -143,7 +144,7 @@ disp(B)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="load">load</link>
@@ -160,16 +161,12 @@ disp(B)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer (INRIA)</member>
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
-    <para>This function has been developped following the "MAT-File Format"
-  description: 
-<literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
+    <para>This function has been developed following the "MAT-File Format"
+      description: 
+      <literal>
+        <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+      </literal>
+    </para>
   </refsection>
 </refentry>

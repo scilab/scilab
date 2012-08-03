@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lindquist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lindquist</refname>
     <refpurpose> Lindquistのアルゴリズム</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>H, F, G</term>
         <listitem>
-          <para><literal>y</literal>の共分散系列による推定値.</para>
+          <para>
+            <literal>y</literal>の共分散系列による推定値.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,10 +48,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	Lindquistのアルゴリズムにより,
-	代数リカッチ方程式の最小解を反復計算により求め,フィルタモデルの
-	行列<literal>R</literal> および <literal>T</literal>を出力します.
-	</para>
+      Lindquistのアルゴリズムにより,
+      代数リカッチ方程式の最小解を反復計算により求め,フィルタモデルの
+      行列<literal>R</literal> および <literal>T</literal>を出力します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -67,9 +66,5 @@
         <link linkend="phc">phc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

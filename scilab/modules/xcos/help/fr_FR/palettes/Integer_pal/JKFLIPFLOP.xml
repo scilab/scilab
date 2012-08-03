@@ -10,20 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="JKFLIPFLOP" xml:lang="fr_FR"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xml.mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="JKFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
   <refnamediv>
     <refname>JKFLIPFLOP</refname>
     <refpurpose>Bascule JK</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Aperçu</title>
     <para>
@@ -34,7 +25,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_JKFLIPFLOP">
     <title>Contenu</title>
     <itemizedlist>
@@ -85,16 +75,10 @@
               <xref linkend="Seealso_JKFLIPFLOP">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_JKFLIPFLOP">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_JKFLIPFLOP">
     <title>Palette</title>
     <itemizedlist>
@@ -105,7 +89,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_JKFLIPFLOP">
     <title>Description</title>
     <para>
@@ -119,14 +102,14 @@
           sont différentes, la sortie <emphasis role="bold">Q</emphasis> prend la valeur de
           <emphasis role="bold">J</emphasis> au prochain front descendant de l'horloge.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
           Quand les entrées <emphasis role="bold">J</emphasis> et <emphasis role="bold">K</emphasis>
           sont à l'état bas, aucun changement n'apparaît sur l'état de la sortie.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -136,7 +119,7 @@
       </listitem>
     </itemizedlist>
     <para>
-       La sortie <emphasis role="bold">!Q</emphasis> est la négation logique de
+      La sortie <emphasis role="bold">!Q</emphasis> est la négation logique de
       <emphasis role="bold">Q</emphasis>.
     </para>
     <para>
@@ -147,58 +130,103 @@
     <para>
       L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre <emphasis role="bold">Initial Value</emphasis>.
     </para>
-
     <para>
       La table de vérité de ce bloc est :
     </para>
-    <para />
-
+    <para/>
     <informaltable border="1" cellpadding="3">
       <tr>
-        <td align="left"><latex><![CDATA[\boldsymbol{J}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{K}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{Q_n}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{!Q_n}]]></latex></td>
-        <td align="left"></td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{J}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{K}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
+        </td>
+        <td align="left"/>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
-        <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[Q_{n-1}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[!Q_{n-1}]]></latex>
+        </td>
         <td align="left">Maintien</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
         <td align="left">Remise à 0</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
         <td align="left">Mise à 1</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-         <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
-        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[!Q_{n-1}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[Q_{n-1}]]></latex>
+        </td>
         <td align="left">Basculement</td>
       </tr>
     </informaltable>
     <para>
-      où <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis> est l'état antérieur de
-      <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
+      où 
+      <emphasis><literal>
+          Q<subscript>n-1</subscript>
+        </literal>
+      </emphasis>
+      est l'état antérieur de
+      <emphasis><literal>
+          Q<subscript>n</subscript>
+        </literal>
+      </emphasis>
+      .
     </para>
   </refsection>
-
   <refsection id="Data_Type_JKFLIPFLOP">
     <title>Types de données</title>
-
     <para>
       Le bloc supporte les types suivants :
     </para>
@@ -227,7 +255,7 @@
         <para>
           Une entrée positive est considérée comme un 1 logique, une entrée négative ou nulle comme un 0 logique.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -236,7 +264,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Dialogbox_JKFLIPFLOP">
     <title>Boîte de dialogue</title>
     <para>
@@ -246,32 +273,41 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Initial Value</emphasis>
         </para>
-        <para> Valeur initiale de la sortie <emphasis role="bold">Q</emphasis>.</para>
+        <para>
+          Valeur initiale de la sortie <emphasis role="bold">Q</emphasis>.
+        </para>
         <para> Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_JKFLIPFLOP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -299,19 +335,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -321,33 +367,41 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_JKFLIPFLOP">
     <title>Exemple</title>
-      <para>
-        L'exemple qui suit construit un compteur 3 bits asynchrone avec des bascules JK cablées en bascule T. Vous pouvez voir
-        sur la droite le chronogramme des sorties <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
-        à <emphasis><literal>Q<subscript>2</subscript></literal></emphasis> du compteur.
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.xcos">
-          Ouvrir cet exemple dans Xcos
-        </link>
-      </para>
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="../../../examples/integer_pal/fr_FR/jkflipflop_diagram_fr_FR.png" align="center" />
-        </imageobject>
-      </mediaobject>
+    <para>
+      L'exemple qui suit construit un compteur 3 bits asynchrone avec des bascules JK cablées en bascule T. Vous pouvez voir
+      sur la droite le chronogramme des sorties 
+      <emphasis><literal>
+          Q<subscript>0</subscript>
+        </literal>
+      </emphasis>
+      à 
+      <emphasis><literal>
+          Q<subscript>2</subscript>
+        </literal>
+      </emphasis>
+      du compteur.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/integer_pal/fr_FR/jkflipflop_diagram_fr_FR.png" align="center"/>
+      </imageobject>
+    </mediaobject>
   </refsection>
-
   <refsection id="Interfacingfunction_JKFLIPFLOP">
     <title>Fonction d'interfaçage</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_JKFLIPFLOP">
     <title>Voir aussi</title>
     <itemizedlist>
@@ -361,9 +415,5 @@
         <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_JKFLIPFLOP">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

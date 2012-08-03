@@ -1,14 +1,14 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010-2011  - DIGITEO - Allan CORNET
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2011  - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*------------------------------------------------------------------------*/
 #include "CommandHistory.hxx"
 #include "CommandHistory_Wrap.h"
@@ -56,6 +56,15 @@ void CommandHistoryInitialize (void)
     }
 }
 /*------------------------------------------------------------------------*/
+void CommandHistoryExpandAll (void)
+{
+    if (getScilabMode() == SCILAB_STD)
+    {
+        CommandHistory::expandAll(getScilabJavaVM());
+    }
+}
+
+/*------------------------------------------------------------------------*/
 void CommandHistoryReset(void)
 {
     if (getScilabMode() == SCILAB_STD)
@@ -69,6 +78,14 @@ void CommandHistoryDeleteLine(int lineNumber)
     if (getScilabMode() == SCILAB_STD)
     {
         CommandHistory::deleteLine(getScilabJavaVM(), lineNumber);
+    }
+}
+/*------------------------------------------------------------------------*/
+void CommandHistoryLaunch(void)
+{
+    if (getScilabMode() == SCILAB_STD)
+    {
+        CommandHistory::launchHistoryBrowser(getScilabJavaVM());
     }
 }
 /*------------------------------------------------------------------------*/

@@ -10,68 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="exit" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exit" xml:lang="ja">
   <refnamediv>
     <refname>exit</refname>
-
     <refpurpose>カレントのScilab セッションを終了する</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-
     <synopsis>exit
-exit(n)</synopsis>
+      exit(n)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>説明</title>
-
     <para>カレントのScilab セッションを終了します.</para>
-
     <variablelist>
       <varlistentry>
         <term>n</term>
-
         <listitem>
           <para>exit ステータスは指定された場合 n になります.
-	それ以外の場合, その値は 0 となります.</para>
+            それ以外の場合, その値は 0 となります.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>例</title>
-
-    <programlisting role = "example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 exit
 i = 4;
 exit(i); 
 ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>参照</title>
-
     <simplelist type="inline">
-      <member><link linkend="quit">quit</link></member>
-
-      <member><link linkend="abort">abort</link></member>
-
-      <member><link linkend="break">break</link></member>
-
-      <member><link linkend="resume">resume</link></member>
+      <member>
+        <link linkend="quit">quit</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

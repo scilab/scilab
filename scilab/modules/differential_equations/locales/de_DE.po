@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:23+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-02-28 12:11+0000\n"
+"Last-Translator: Daniel Dietrich <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 msgid "bike simulation, stable trajectory"
@@ -24,31 +24,31 @@ msgid "bike simulation, unstable trajectory"
 msgstr "Fahrrad Simulation, instabile Trajektorie"
 
 msgid "spherical pendulum simulation"
-msgstr "sphärische Pendel Simulation"
+msgstr "Simulation eines sphärischen Pendels."
 
 msgid "Simulation"
 msgstr "Simulation"
 
 msgid "n-pendulum"
-msgstr ""
+msgstr "N-Pendel"
 
 msgid "Wheel simulation"
-msgstr ""
+msgstr "Radsimulation"
 
 msgid "Bike simulation"
-msgstr ""
+msgstr "Zweiradsimulation"
 
 msgid "ODE'S"
-msgstr ""
+msgstr "ODE's"
 
 msgid "DAE'S"
-msgstr ""
+msgstr "Digital Audio Extraktion"
 
 msgid "Flow simulation"
-msgstr ""
+msgstr "Flußsimulation"
 
 msgid "Levitron"
-msgstr ""
+msgstr "Levitron"
 
 msgid "Blackhole"
 msgstr "schwarzes Loch"
@@ -98,10 +98,6 @@ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr "%s: falsche Anzahl von Ausgangsargument(en): %d oder %d erwartet.\n"
 
 #, c-format
-msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: %s falsche Anzahl von Eingangsargument(en): %d zu %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: falsche Nummer von Eingangsargument(en): %d zu %d erwartet.\n"
 
@@ -128,6 +124,10 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Syntax Fehler in der gegebenen "
 "Version\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: falsche Größe für Eingangsargumente: gleiche Größe erwartet.\n"
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "definiere %ODEOPTIONS Variable"
@@ -211,3 +211,27 @@ msgid "If the function is called without argument, default values are used"
 msgstr ""
 "Wenn die Funktion ohne Argument aufgerufen wird, dann werden voreingestellte "
 "Werte verwendet."
+
+msgid "tcrit (assumes itask=4 or 5)"
+msgstr ""
+
+msgid "h0 (first step tried)"
+msgstr ""
+
+msgid "hmax (max step size)"
+msgstr ""
+
+msgid "hmin (min step size)"
+msgstr ""
+
+msgid "mxstep (max number of steps allowed)"
+msgstr ""
+
+msgid "maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr ""
+
+msgid "maxords (maximum stiff order allowed, at most 5)"
+msgstr ""
+
+msgid "ixpr (print level 0 or 1)"
+msgstr ""

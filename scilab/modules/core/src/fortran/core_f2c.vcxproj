@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -26,22 +26,22 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -62,117 +62,268 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libs\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)libs\</OutDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)libs\</OutDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)libs\</OutDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</PreLinkEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
-    </Lib>
-    <PostBuildEvent>
-      <Message>Build core_f.vcdef</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def core_f.def &gt;nul
-copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
 </Command>
-    </PostBuildEvent>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
-    </Lib>
-    <PostBuildEvent>
-      <Message>Build core_f.vcdef</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def core_f.def &gt;nul
-copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
 </Command>
-    </PostBuildEvent>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
-    </Lib>
-    <PostBuildEvent>
-      <Message>Build core_f.vcdef</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def core_f.def &gt;nul
-copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
 </Command>
-    </PostBuildEvent>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
-    </Lib>
-    <PostBuildEvent>
-      <Message>Build core_f.vcdef</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def core_f.def &gt;nul
-copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+    <PreLinkEvent>
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+"$(SolutionDir)bin\dumpexts" -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
 </Command>
-    </PostBuildEvent>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_debug.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dispbpt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c" />
@@ -182,21 +333,18 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_intppty.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_iserror.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lines.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_predef.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c" />
+    <ClCompile Include="..\c\withf2c.c" />
     <ClCompile Include="allops.c" />
     <ClCompile Include="allowptr.c" />
-    <ClCompile Include="atome.c" />
     <ClCompile Include="basin.c" />
     <ClCompile Include="basnms.c" />
     <ClCompile Include="bexec.c" />
     <ClCompile Include="btof.c" />
     <ClCompile Include="btofm.c" />
-    <ClCompile Include="chkvar.c" />
     <ClCompile Include="clause.c" />
     <ClCompile Include="clunit.c" />
     <ClCompile Include="cmdstr.c" />
@@ -242,13 +390,8 @@ cd ..
     <ClCompile Include="isnum.c" />
     <ClCompile Include="istrue.c" />
     <ClCompile Include="itosci.c" />
-    <ClCompile Include="logops.c" />
     <ClCompile Include="lst2vars.c" />
     <ClCompile Include="macro.c" />
-    <ClCompile Include="majmin.c" />
-    <ClCompile Include="matc.c" />
-    <ClCompile Include="matz.c" />
-    <ClCompile Include="matzs.c" />
     <ClCompile Include="misops.c" />
     <ClCompile Include="mkindx.c" />
     <ClCompile Include="mklist.c" />
@@ -293,7 +436,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_debug.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dispbpt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f" />
@@ -303,21 +445,17 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_intppty.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_iserror.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lines.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_predef.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f" />
     <f2c_rule Include="allops.f" />
     <f2c_rule Include="allowptr.f" />
-    <f2c_rule Include="atome.f" />
     <f2c_rule Include="basin.f" />
     <f2c_rule Include="basnms.f" />
     <f2c_rule Include="bexec.f" />
     <f2c_rule Include="btof.f" />
     <f2c_rule Include="btofm.f" />
-    <f2c_rule Include="chkvar.f" />
     <f2c_rule Include="clause.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="cmdstr.f" />
@@ -363,13 +501,8 @@ cd ..
     <f2c_rule Include="isnum.f" />
     <f2c_rule Include="istrue.f" />
     <f2c_rule Include="itosci.f" />
-    <f2c_rule Include="logops.f" />
     <f2c_rule Include="lst2vars.f" />
     <f2c_rule Include="macro.f" />
-    <f2c_rule Include="majmin.f" />
-    <f2c_rule Include="matc.f" />
-    <f2c_rule Include="matz.f" />
-    <f2c_rule Include="matzs.f" />
     <f2c_rule Include="misops.f" />
     <f2c_rule Include="mkindx.f" />
     <f2c_rule Include="mklist.f" />
@@ -407,11 +540,27 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\sci_gateway\core_gateway.xml" />
-    <None Include="..\..\sci_gateway\fundef" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="boolean_f_Import.def" />
+    <None Include="console_Import.def" />
+    <None Include="data_structures_f_Import.def" />
+    <None Include="data_structures_Import.def" />
+    <None Include="double_Import.def" />
+    <None Include="elementary_functions_f_Import.def" />
+    <None Include="elementary_functions_Import.def" />
+    <None Include="fftw_Import.def" />
+    <None Include="fileio_Import.def" />
+    <None Include="integer_f_Import.def" />
+    <None Include="integer_Import.def" />
+    <None Include="io_f_Import.def" />
+    <None Include="core_import.def" />
+    <None Include="linpack_f_Import.def" />
+    <None Include="Output_stream_f_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="polynomials_f_Import.def" />
+    <None Include="sparse_f_Import.def" />
+    <None Include="string_f_Import.def" />
+    <None Include="string_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

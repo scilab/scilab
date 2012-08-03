@@ -19,13 +19,10 @@ function subdemolist = demo_gateway()
                  _("More surfaces")               ,"surface/surfaces.dem.gateway.sce"                    ; ..
                  _("Complex elementary functions"),"cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
                  _("bar histogram")               ,"bar/bar.dem.sce"; ..
-                 _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"                                     ];
-
-  if ~ usecanvas() then
-    subdemolist = [ subdemolist ;
-                 _("Misc")                        ,"misc/misc.dem.sce"; ..
+                 _("Datatips")                    ,"datatips/datatips.dem.gateway.sce"                   ; ..
+                 _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"         ; ..                            
+                 _("Misc")                        ,"misc/misc.dem.sce"                                   ; ..
                  _("Colormap")                    ,"colormap/colormap.dem.sce"];
-  end
 
   subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction

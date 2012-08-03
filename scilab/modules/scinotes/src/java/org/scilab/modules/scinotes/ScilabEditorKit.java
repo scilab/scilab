@@ -21,6 +21,10 @@ import java.io.Reader;
 import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CodingErrorAction;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
@@ -29,7 +33,6 @@ import javax.swing.text.ViewFactory;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.scinotes.actions.DefaultEncodingAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -47,8 +50,16 @@ public class ScilabEditorKit extends DefaultEditorKit {
      * The mimetype for a scilab code
      */
     public static final String MIMETYPE = "text/scilab";
-
     private static final int BUFFERCAPACITY = 8192;
+    public static final String[] ENCODINGS = new String[] {"utf-8", "windows-1252", "iso-8859-1"};
+    private static final Map<String, Integer> encPos = new HashMap<String, Integer>(ENCODINGS.length);
+
+    static {
+        for (int i = 0; i < ENCODINGS.length; i++) {
+            encPos.put(ENCODINGS[i], i);
+        }
+    }
+
     private final char[] buffer = new char[BUFFERCAPACITY];
 
     private ScilabContext preferences;
@@ -68,6 +79,10 @@ public class ScilabEditorKit extends DefaultEditorKit {
     public ScilabEditorKit(boolean plain) {
         super();
         this.plain = plain;
+    }
+
+    public boolean isPlain() {
+        return plain;
     }
 
     /**
@@ -111,6 +126,45 @@ public class ScilabEditorKit extends DefaultEditorKit {
     }
 
     /**
+     * @param file the file to test
+     * @return the corresponding charset if exists
+     * @throws IOExecption if I/O problems are met
+     * @throws CharacterCodingException if no charset is found
+     */
+    public static Charset tryToGuessEncoding(File file) throws IOException, CharacterCodingException {
+        for (int i = 0; i < ENCODINGS.length; i++) {
+            if (tryToGuessEncoding(file, Charset.forName(ENCODINGS[i]))) {
+                return Charset.forName(ENCODINGS[i]);
+            }
+        }
+
+        throw new CharacterCodingException();
+    }
+
+    /**
+     * @param file the file to test
+     * @param charset the charset to test
+     * @return true if the file can be decoded with the charset
+     * @throws IOExecption if I/O problems are met
+     */
+    public static boolean tryToGuessEncoding(File file, Charset charset) throws IOException {
+        char[] cbuf = new char[BUFFERCAPACITY];
+        CharsetDecoder decoder = charset.newDecoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT);
+        FileInputStream fis = new FileInputStream(file);
+        InputStreamReader inReader = new InputStreamReader(fis, decoder);
+        BufferedReader bufReader = new BufferedReader(inReader);
+        try {
+            while (bufReader.read(cbuf) != -1);
+            fis.close();
+            inReader.close();
+            bufReader.close();
+            return true;
+        } catch (Exception e) { }
+
+        return false;
+    }
+
+    /**
      * The read method is used to read the file and to write its contents
      * in the document at position pos
      * @param file the file to read
@@ -121,9 +175,9 @@ public class ScilabEditorKit extends DefaultEditorKit {
      * @throws BadLocationException if the pos is invalid
      */
     public void read(SciNotes editor, File file, Document doc, int pos) throws IOException, BadLocationException {
-        Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
+        Charset charset = Charset.forName(SciNotesOptions.getSciNotesPreferences().encoding);
         try {
-            charset = DefaultEncodingAction.tryToGuessEncoding(file);
+            charset = tryToGuessEncoding(file);
         } catch (CharacterCodingException e) {
             ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
         }

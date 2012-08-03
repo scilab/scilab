@@ -13,7 +13,9 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -68,11 +70,19 @@ static gw_generic_table Tab[] =
 	{sci_spones, "spones"},
 	{sci_gsort, "gsort"},
 	{sci_isequalbitwise, "isequalbitwise"},
-    {sci_rat, "rat"}
+    {sci_rat, "rat"},
+    {sci_base2dec, "base2dec"},
+    {sci_dec2base, "dec2base"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{  
+{
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //Checks syntactical aspects  related to functions
-funcprot(0)
+funcprot(0);
 //
 //               Various calling sequences
 //               -------------------------

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ui_observer">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ui_observer</refname>
     <refpurpose> unknown input observer</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
-[UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)</synopsis>
+      [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,13 +27,17 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para> <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.</para>
+          <para>
+            <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>reject</term>
         <listitem>
-          <para>integer vector, indices of inputs of <literal>Sys</literal> which are unknown.</para>
+          <para>
+            integer vector, indices of inputs of <literal>Sys</literal> which are unknown.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +49,17 @@
       <varlistentry>
         <term>D1</term>
         <listitem>
-          <para>real matrix. <literal>C1</literal> and <literal>D1</literal> have the same number of rows.</para>
+          <para>
+            real matrix. <literal>C1</literal> and <literal>D1</literal> have the same number of rows.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>string <literal>'ge'</literal> or <literal>'st'</literal> (default) or <literal>'pp'</literal>.</para>
+          <para>
+            string <literal>'ge'</literal> or <literal>'st'</literal> (default) or <literal>'pp'</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -73,43 +79,53 @@
   <refsection>
     <title>Description</title>
     <para>
-    Unknown input observer.</para>
-    <para><literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with 
-    two inputs w and u, w being the unknown input.
-    The  matrices B and D2 of Sys are (implicitly) partitioned as:
-    <literal>B=[B1,B2]</literal> and <literal>D2=[D21,D22]</literal>  with <literal>B1=B(:,reject)</literal>  and 
-    <literal>D21=D2(:,reject)</literal> where reject = indices of unknown inputs.
-    The matrices <literal>C1</literal> and <literal>D1</literal> define <literal>z = C1 x + D1 (w,u)</literal>,
-    the to-be-estimated output.</para>
+      Unknown input observer.
+    </para>
     <para>
-    The matrix <literal>D1</literal> is (implicitly) partitioned as <literal>D1=[D11,D12]</literal>
-    with <literal>D11=D(:,reject)</literal></para>
+      <literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with 
+      two inputs w and u, w being the unknown input.
+      The  matrices B and D2 of Sys are (implicitly) partitioned as:
+      <literal>B=[B1,B2]</literal> and <literal>D2=[D21,D22]</literal>  with <literal>B1=B(:,reject)</literal>  and 
+      <literal>D21=D2(:,reject)</literal> where reject = indices of unknown inputs.
+      The matrices <literal>C1</literal> and <literal>D1</literal> define <literal>z = C1 x + D1 (w,u)</literal>,
+      the to-be-estimated output.
+    </para>
     <para>
-    The data (Sys, reject,C1, D1)   define a 2-input 2-output system:</para>
-    <programlisting role = ""><![CDATA[ 
+      The matrix <literal>D1</literal> is (implicitly) partitioned as <literal>D1=[D11,D12]</literal>
+      with <literal>D11=D(:,reject)</literal>
+    </para>
+    <para>
+      The data (Sys, reject,C1, D1)   define a 2-input 2-output system:
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
  ]]></programlisting>
     <para>
-    An observer <literal>(u,y) --&gt; zhat</literal> is looked for the output z.</para>
-    <para><literal>flag='ge'</literal> no stability constraints
-    <literal>flag='st'</literal> stable observer    (default) 
-    <literal>flag='pp'</literal> observer with pole placement
-    alfa,beta = desired location of closed loop poles  (default -1, -2)
-    J=y-output to x-state injection.
-    N=y-output to z-estimated output injection.</para>
+      An observer <literal>(u,y) --&gt; zhat</literal> is looked for the output z.
+    </para>
     <para>
-    UIobs = linear system (u,y) --&gt; zhat such that:
-    The transfer function: (w,u) --&gt; z  equals the composed transfer function:
-                [0,I;        UIobs
-                 Sys]
-          (w,u) -----&gt; (u,y) -----&gt; zhat
-    i.e. transfer function of system {A,B,C1,D1} equals transfer function 
-    <literal>UIobs*[0,I; Sys]</literal></para>
+      <literal>flag='ge'</literal> no stability constraints
+      <literal>flag='st'</literal> stable observer    (default) 
+      <literal>flag='pp'</literal> observer with pole placement
+      alfa,beta = desired location of closed loop poles  (default -1, -2)
+      J=y-output to x-state injection.
+      N=y-output to z-estimated output injection.
+    </para>
     <para>
-    Stability (resp. pole placement) requires detectability
-    (resp. observability) of (A,C2).</para>
+      UIobs = linear system (u,y) --&gt; zhat such that:
+      The transfer function: (w,u) --&gt; z  equals the composed transfer function:
+      [0,I;        UIobs
+      Sys]
+      (w,u) -----&gt; (u,y) -----&gt; zhat
+      i.e. transfer function of system {A,B,C1,D1} equals transfer function 
+      <literal>UIobs*[0,I; Sys]</literal>
+    </para>
+    <para>
+      Stability (resp. pole placement) requires detectability
+      (resp. observability) of (A,C2).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -140,7 +156,7 @@ UIobs=ui_observer(Sys,1,C1,D1);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cainv">cainv</link>
@@ -152,9 +168,5 @@ UIobs=ui_observer(Sys,1,C1,D1);
         <link linkend="abinv">abinv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

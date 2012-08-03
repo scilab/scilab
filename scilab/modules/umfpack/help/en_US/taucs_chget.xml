@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chget">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>taucs_chget</refname>
     <refpurpose> retrieve the Cholesky factorization at the scilab level  </refpurpose>
@@ -37,19 +34,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function  may be used if you want  to plot  the sparse
-    pattern  of the Cholesky factorization (or if you  code something which
-    use the factors). Traditionnaly, the factorization is written :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      This function  may be used if you want  to plot  the sparse
+      pattern  of the Cholesky factorization (or if you  code something which
+      use the factors). Traditionnaly, the factorization is written :
+    </para>
+    <programlisting role=""><![CDATA[ 
 P A P' = C C'
  ]]></programlisting>
     <para>
-    with P' the permutation matrix associated to the permutation p.
-    As we get the upper triangle Ct (= C'), in scilab syntax we
-    can write :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      with P' the permutation matrix associated to the permutation p.
+      As we get the upper triangle Ct (= C'), in scilab syntax we
+      can write :
+    </para>
+    <programlisting role=""><![CDATA[ 
 A(p,p) = Ct' * Ct
  ]]></programlisting>
   </refsection>
@@ -94,7 +91,7 @@ taucs_chdel(Cptr)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chfact">taucs_chfact</link>
@@ -114,13 +111,6 @@ taucs_chdel(Cptr)
       <member>
         <link linkend="cond2sp">cond2sp</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>taucs by Sivan Toledo (see taucs_license)</member>
-      <member>scilab interface by Bruno Pincon</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="des2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>des2ss</refname>
     <refpurpose>記述子から状態空間へ</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
-[Sl]=des2ss(Des)</synopsis>
+      [Sl]=des2ss(Des)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -41,13 +39,17 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>実数パラメータ (閾値) (デフォルト値 <literal>100*%eps</literal>).</para>
+          <para>
+            実数パラメータ (閾値) (デフォルト値 <literal>100*%eps</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,22 +57,24 @@
   <refsection>
     <title>説明</title>
     <para>
-	状態空間変換の記述子.
-    </para>
-    <para><literal>Sl=des2ss(A,B,C,D,E)</literal> は,
-	記述子システム <literal>(E,A,B,C,D)</literal>と等価な
-	線形システム <literal>Sl</literal> を返します.
+      状態空間変換の記述子.
     </para>
     <para>
-	添え字1個の<literal>(E,A)</literal>ペンシルの場合,
-	明示式が使用され,
-	より高次の添え字のペンシルの場合には<literal>rowshuff</literal>
-	が使用されます.</para>
+      <literal>Sl=des2ss(A,B,C,D,E)</literal> は,
+      記述子システム <literal>(E,A,B,C,D)</literal>と等価な
+      線形システム <literal>Sl</literal> を返します.
+    </para>
     <para>
-	<literal>Sl=des2ss(Des)</literal> (ただし
-       <literal>Des=list('des',A,B,C,D,E)</literal>) は,
-	状態空間表現(多項式 <literal>D</literal> 行列が付く場合もある)の
-	線形システム <literal>Sl</literal> を返します. 
+      添え字1個の<literal>(E,A)</literal>ペンシルの場合,
+      明示式が使用され,
+      より高次の添え字のペンシルの場合には<literal>rowshuff</literal>
+      が使用されます.
+    </para>
+    <para>
+      <literal>Sl=des2ss(Des)</literal> (ただし
+      <literal>Des=list('des',A,B,C,D,E)</literal>) は,
+      状態空間表現(多項式 <literal>D</literal> 行列が付く場合もある)の
+      線形システム <literal>Sl</literal> を返します. 
     </para>
     <para>
       一般化Leverrierアルゴリズムが使用されます.

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lyap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lyap</refname>
     <refpurpose> Lyapunov equation</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[X]=lyap(A,C,'c')
-[X]=lyap(A,C,'d')</synopsis>
+      [X]=lyap(A,C,'d')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,23 +27,28 @@
       <varlistentry>
         <term>A, C</term>
         <listitem>
-          <para>real square matrices, <literal>C</literal> must be symmetric</para>
+          <para>
+            real square matrices, <literal>C</literal> must be symmetric
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = lyap(A,C,flag)</literal> solves the continuous time or
-    discrete time matrix Lyapunov matrix equation:</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X= lyap(A,C,flag)</literal> solves the continuous time or
+      discrete time matrix Lyapunov matrix equation:
+    </para>
+    <programlisting role=""><![CDATA[ 
 A'*X + X*A = C       ( flag='c' )
 A'*X*A - X = C       ( flag='d' )
  ]]></programlisting>
     <para>
-Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
-not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
-(<literal>flag='d'</literal>).</para>
+      Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
+      not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
+      (<literal>flag='d'</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -58,7 +61,7 @@ A'*X*A - X -C
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sylv">sylv</link>

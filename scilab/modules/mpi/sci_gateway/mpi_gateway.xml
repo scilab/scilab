@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="sylvestre">
-  <!-- =================== -->
-  <!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -21,13 +21,13 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-  <!-- =================== -->
-  <PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="MPI_Init"/>
-  <PRIMITIVE gatewayId="69" primitiveId="2" primitiveName="MPI_Finalize"/>
-  <PRIMITIVE gatewayId="69" primitiveId="3" primitiveName="MPI_Comm_size"/>
-  <PRIMITIVE gatewayId="69" primitiveId="4" primitiveName="MPI_Comm_rank"/>
-  <PRIMITIVE gatewayId="69" primitiveId="5" primitiveName="MPI_Recv"/>
-  <PRIMITIVE gatewayId="69" primitiveId="6" primitiveName="MPI_Send"/>
-  <PRIMITIVE gatewayId="69" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
-  <PRIMITIVE gatewayId="69" primitiveId="8" primitiveName="MPI_Bast"/>
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="MPI_Init"/>
+    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="MPI_Finalize"/>
+    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="MPI_Comm_size"/>
+    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="MPI_Comm_rank"/>
+    <PRIMITIVE gatewayId="72" primitiveId="5" primitiveName="MPI_Recv"/>
+    <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="MPI_Send"/>
+    <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
+    <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="MPI_Bast"/>
 </GATEWAY>

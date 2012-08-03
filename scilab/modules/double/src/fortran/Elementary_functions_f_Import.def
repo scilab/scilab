@@ -1,0 +1,24 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+;
+dadd_
+ddif_
+ddpow1_
+ddrdiv_
+dmcopy_
+dset_
+dvmul_
+dwpow1_
+dwrdiv_
+mtran_
+wdpow1_
+wdrdiv_
+wmmul_
+wscal_
+wvmul_
+wwpow1_
+wwrdiv_

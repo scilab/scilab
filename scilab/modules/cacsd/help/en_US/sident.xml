@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sident">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sident</refname>
     <refpurpose> discrete-time state-space realization and Kalman gain</refpurpose>
@@ -150,8 +147,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    printw = 0.
-  </para>
+            Default:    printw = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -213,9 +210,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    SIDENT function for computing a discrete-time state-space realization
-    (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.</para>
-    <programlisting role = ""><![CDATA[ 
+      SIDENT function for computing a discrete-time state-space realization
+      (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.
+    </para>
+    <programlisting role=""><![CDATA[ 
               [A,C,B,D] = sident(meth,1,s,n,l,R)
 [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
                   [A,C] = sident(meth,2,s,n,l,R)
@@ -225,39 +223,50 @@
     [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
  ]]></programlisting>
     <para>
-    SIDENT computes a state-space realization (A,B,C,D) and the Kalman
-    predictor gain K of a discrete-time system, given the system
-    order and the relevant part of the R factor of the concatenated 
-    block-Hankel matrices, using subspace identification techniques 
-    (MOESP, N4SID, or their combination).</para>
+      SIDENT computes a state-space realization (A,B,C,D) and the Kalman
+      predictor gain K of a discrete-time system, given the system
+      order and the relevant part of the R factor of the concatenated 
+      block-Hankel matrices, using subspace identification techniques 
+      (MOESP, N4SID, or their combination).
+    </para>
     <para>
-       The model structure is :</para>
-    <programlisting role = ""><![CDATA[ 
+      The model structure is :
+    </para>
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
     <para>
-       where  
-    x(k)  is the  n-dimensional state vector (at time k),</para>
+      where  
+      x(k)  is the  n-dimensional state vector (at time k),
+    </para>
     <para>
-    u(k)  is the  m-dimensional input vector,</para>
+      u(k)  is the  m-dimensional input vector,
+    </para>
     <para>
-    y(k)  is the  l-dimensional output vector,</para>
+      y(k)  is the  l-dimensional output vector,
+    </para>
     <para>
-    e(k)  is the  l-dimensional disturbance vector,</para>
+      e(k)  is the  l-dimensional disturbance vector,
+    </para>
     <para>
-    and  A, B, C, D, and K  are real matrices of appropriate dimensions.</para>
+      and  A, B, C, D, and K  are real matrices of appropriate dimensions.
+    </para>
   </refsection>
   <refsection>
     <title>Comments</title>
     <para>
-    1. The n-by-n system state matrix A, and the p-by-n system output  matrix C are computed for job &lt;= 2.</para>
+      1. The n-by-n system state matrix A, and the p-by-n system output  matrix C are computed for job &lt;= 2.
+    </para>
     <para>
-    2. The n-by-m system input matrix B is computed for job &lt;&gt; 2.</para>
+      2. The n-by-m system input matrix B is computed for job &lt;&gt; 2.
+    </para>
     <para>
-    3. The l-by-m system matrix D is computed for job = 1 or 4.</para>
+      3. The l-by-m system matrix D is computed for job = 1 or 4.
+    </para>
     <para>
-    4. The n-by-l Kalman predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t &gt; 0.</para>
+      4. The n-by-l Kalman predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t &gt; 0.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -299,7 +308,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findBD">findBD</link>
@@ -308,11 +317,5 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
         <link linkend="sorder">sorder</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999. 
-  Revisions: May 2000, July 2000. 
- </para>
   </refsection>
 </refentry>

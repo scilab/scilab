@@ -9,14 +9,15 @@
 // Test the Xcos toolbox skeleton in SCI/contrib/
 //  - Building/Compilation
 //  - Loading
+//  - Tests
 // Xcos external module skeleton
 status = copyfile(SCI + "/contrib/xcos_toolbox_skeleton/", TMPDIR + "/xcos_toolbox_skeleton/");
 assert_checkequal(status, 1);
 exec("TMPDIR/xcos_toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [xcos_toolbox_skeletonlib] (Macros) --
-genlib: Processing file: TBX_SUM_c.sci
 genlib: Processing file: TBX_MUT_STYLE.sci
+genlib: Processing file: TBX_SUM_c.sci
 genlib: Regenerate names and lib
 Building blocks...
 Building sources...
@@ -49,6 +50,7 @@ Building the master document:
 
 Building the manual file [javaHelp] in TMPDIR/xcos_toolbox_skeleton/help/en_US.
 Generating loader.sce...
+Generating unloader.sce...
 Generating cleaner.sce...
 exec("TMPDIR/xcos_toolbox_skeleton/loader.sce");
 Start Xcos toolbox skeleton
@@ -58,3 +60,12 @@ Start Xcos toolbox skeleton
 	Load gateways
 	Load help
 	Load demos
+test_run("TMPDIR/xcos_toolbox_skeleton/", [], "short_summary");
+   001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
+
+   001/001 - [TMPDIR/xcos_toolbox_skeleton/] tbx_sum............passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------

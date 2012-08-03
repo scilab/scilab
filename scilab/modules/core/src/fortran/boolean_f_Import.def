@@ -1,0 +1,5 @@
+LIBRARY    boolean_f.dll
+
+
+EXPORTS
+logic_

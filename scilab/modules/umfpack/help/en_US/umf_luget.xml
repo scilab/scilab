@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_luget">
-  <info>
-    <pubdate/>
-  </info>
   <refnamediv>
     <refname>umf_luget</refname>
     <refpurpose> retrieve lu factors at the scilab level  </refpurpose>
@@ -43,22 +40,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function  may be used if you want  to plot  the sparse
-    pattern  of the lu factors (or if you  code something which
-    use the lu factors). The factorization provided by umfpack is
-    of the form:
-  </para>
+      This function  may be used if you want  to plot  the sparse
+      pattern  of the lu factors (or if you  code something which
+      use the lu factors). The factorization provided by umfpack is
+      of the form:
+    </para>
     <para>
-       P R^(-1) A Q = LU
-  </para>
+      P R^(-1) A Q = LU
+    </para>
     <para>
-    where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
-    a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix.
-    The function provides the matrices L and U as Sparse scilab matrices but
-    P and Q are given as permutation vectors p and q (in fact p is the permutation 
-    associated to P') and Rd is the vector corresponding to the diagonal
-    of R.
-  </para>
+      where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
+      a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix.
+      The function provides the matrices L and U as Sparse scilab matrices but
+      P and Q are given as permutation vectors p and q (in fact p is the permutation 
+      associated to P') and Rd is the vector corresponding to the diagonal
+      of R.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -93,7 +90,7 @@ umf_ludel(Lup) // clear memory
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>
@@ -110,13 +107,6 @@ umf_ludel(Lup) // clear memory
       <member>
         <link linkend="umf_luinfo">umf_luinfo</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>umfpack by Timothy A. Davis (see umf_license)</member>
-      <member>scilab interface by Bruno Pincon</member>
     </simplelist>
   </refsection>
 </refentry>

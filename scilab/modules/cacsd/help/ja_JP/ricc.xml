@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ricc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ricc</refname>
     <refpurpose> リカッチ方程式</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
-[X,RCOND,FERR]=ricc(F,G,H,"disc","method")</synopsis>
+      [X,RCOND,FERR]=ricc(F,G,H,"disc","method")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -54,7 +52,8 @@
         <term>method</term>
         <listitem>
           <para>連続時間システムの場合は'schr' または 'sign',
-	    離散時間システムの場合は'schr' または'invf'</para>
+            離散時間システムの場合は'schr' または'invf'
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,45 +61,58 @@
   <refsection>
     <title>説明</title>
     <para>
-      リカッチソルバ.</para>
+      リカッチソルバ.
+    </para>
     <para>
-      連続時間:</para>
-    <programlisting role = ""><![CDATA[ 
+      連続時間:
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=ricc(A,B,C,'cont')
  ]]></programlisting>
     <para>
-      により連続時間 ARE の解が得られる</para>
-    <programlisting role = ""><![CDATA[ 
+      により連続時間 ARE の解が得られる
+    </para>
+    <programlisting role=""><![CDATA[ 
 A'*X+X*A-X*B*X+C=0 .
  ]]></programlisting>
-    <para><literal>B</literal> および<literal>C</literal> は
-      非負定とする.
-    <literal>(A,G)</literal> は
-    <literal>B</literal>のフルランク分解<literal>G*G'</literal>により
-    可安定とする.</para>
-    <para><literal>(A,H)</literal> は<literal>C</literal>の
-      フルランク分解<literal>H*H'</literal>により可検出とする.</para>
     <para>
-    離散時間:</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>B</literal> および<literal>C</literal> は
+      非負定とする.
+      <literal>(A,G)</literal> は
+      <literal>B</literal>のフルランク分解<literal>G*G'</literal>により
+      可安定とする.
+    </para>
+    <para>
+      <literal>(A,H)</literal> は<literal>C</literal>の
+      フルランク分解<literal>H*H'</literal>により可検出とする.
+    </para>
+    <para>
+      離散時間:
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=ricc(F,G,H,'disc')
  ]]></programlisting>
     <para>
-      により離散時間AREの解が得られる</para>
-    <programlisting role = ""><![CDATA[ 
+      により離散時間AREの解が得られる
+    </para>
+    <programlisting role=""><![CDATA[ 
 X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
  ]]></programlisting>
-    <para><literal>F</literal> は可逆であり、
-      <literal>G = G1*inv(G2)*G1'</literal>とする.</para>
+    <para>
+      <literal>F</literal> は可逆であり、
+      <literal>G = G1*inv(G2)*G1'</literal>とする.
+    </para>
     <para>
       <literal>(F,G1)</literal>は可安定, <literal>(C,F)</literal> は
       <literal>H</literal>のフルランク分解 <literal>C'*C</literal>を
       用いて可検出であることとする.
-      より適する場合, <literal>ric_desc</literal> を使用すること.</para>
+      より適する場合, <literal>ric_desc</literal> を使用すること.
+    </para>
     <para>
-    C, D は対象行列である.
-    行列 A, C および Dに対応する行列ペンシルが,絶対値が 1より小さい
-    N個の固有値を有するものとする.</para>
+      C, D は対象行列である.
+      行列 A, C および Dに対応する行列ペンシルが,絶対値が 1より小さい
+      N個の固有値を有するものとする.
+    </para>
     <para>
       解のエラー境界と推定条件も出力される.
       行列 A, C および D において,
@@ -152,12 +164,6 @@ norm(X2-X,1)
         <link linkend="schur">schur</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
- P. Petkov
-</para>
   </refsection>
   <refsection>
     <title>使用する関数</title>

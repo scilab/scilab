@@ -10,56 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="toeplitz" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="toeplitz" xml:lang="en">
   <refnamediv>
     <refname>toeplitz</refname>
-
     <refpurpose>matriz de Toeplitz</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>A=toeplitz(c [,r])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>a,c,r</term>
-
         <listitem>
           <para>matrizes de constantes, polinômios ou strings</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Retorna a matriz de Toeplitz cuja primeira linha é
-    <literal>r</literal> e a primeira coluna é <literal>c</literal>.
-    <literal>c(1)</literal> deve ser igual a <literal>r(1)</literal>.
-    <literal>toeplitz(c)</literal> retorna a matriz de Toeplitz
-    simétrica.</para>
+      <literal>r</literal> e a primeira coluna é <literal>c</literal>.
+      <literal>c(1)</literal> deve ser igual a <literal>r(1)</literal>.
+      <literal>toeplitz(c)</literal> retorna a matriz de Toeplitz
+      simétrica.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 A=toeplitz(1:5);
 
@@ -75,12 +56,12 @@ t=toeplitz(['1','2','3','4']);
 t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="matrix">matrix</link></member>
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

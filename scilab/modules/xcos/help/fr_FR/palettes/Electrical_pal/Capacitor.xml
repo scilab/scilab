@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="Capacitor"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Capacitor" xml:lang="fr">
   <refnamediv>
     <refname>Capacitor</refname>
     <refpurpose>Capacité électrique</refpurpose>
@@ -92,9 +84,9 @@
     <para>
       Une capacité est un composant qui dans un circuit électrique peut stocker de l'énergie.
       La relation entre la tension aux bornes de la capacité et le courant la traversant est donnée par :
-      </para>
+    </para>
     <para>
-</para>
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -118,8 +110,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -146,10 +138,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
             <para>
-	      Implicit <emphasis role="bold">variable.</emphasis>
-	    </para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -159,10 +153,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
             <para>
-	      Implicit <emphasis role="bold">variable.</emphasis>
-	    </para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -172,19 +168,33 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'C'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.01</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> non.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'C'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.01
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> non.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'v'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> oui.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'v'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> oui.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Capacitor</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Capacitor
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -14,14 +14,16 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include <stdlib.h>
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "core_math.h"
 #include "scicos_block.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
@@ -58,7 +60,7 @@ SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block,int flag)
 		pw=*block->work; 
 		iw=(int *) (pw+block->ipar[0]*(1+block->insz[0]));
 		t=get_scicos_time();
-		del=min(max(0,block->inptr[1][0]),block->rpar[0]);
+		del=Min(Max(0,block->inptr[1][0]),block->rpar[0]);
 		td=t-del;
 		if(td<pw[*iw]){
 			sciprint(_("delayed time=%f but last stored time=%f\n"), td, pw[*iw]);

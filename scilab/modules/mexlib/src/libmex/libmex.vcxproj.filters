@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="localization">
-      <UniqueIdentifier>{30d95717-f8e0-432a-a38c-477adaff30c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{b4f6f14e-5c21-48ed-9301-c70d1842b175}</UniqueIdentifier>
     </Filter>
@@ -42,18 +39,9 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\lapack.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\LibScilab.lib">
-      <Filter>Libraries Dependencies</Filter>
-    </Library>
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\mexlib.iss" />
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -15,19 +15,19 @@ deff('r=Check(a,b,c,d)',[
 'global filename'
 'select rhs'
 'case 1 then'
-'a1=a;save(filename,a1);a1=null();load(filename);'
+'a1=a;save(filename,''a1'');a1=null();load(filename);'
 'if or(a1<>a) then r=%f,end'
 'case 2 then'
-'a1=a;b1=b;save(filename,a1,b1);a1=null();b1=null();load(filename);'
+'a1=a;b1=b;save(filename,''a1'',''b1'');a1=null();b1=null();load(filename);'
 'if or(a1<>a)|or(b1<>b) then r=%f,end'
 'case 3 then'
 'a1=a;b1=b;c1=c;'
-'save(filename,a1,b1,c1);'
+'save(filename,''a1'',''b1'',''c1'');'
 'a1=null();b1=null();c1=null();load(filename);'
 'if or(a1<>a)|or(b1<>b)|or(c1<>c) then r=%f,end'
 'case 4 then'
 'a1=a;b1=b;c1=c;d1=d'
-'save(filename,a1,b1,c1,d1);'
+'save(filename,''a1'',''b1'',''c1'',''d1'');'
 'a1=null();b1=null();c1=null();;d1=null();load(filename);'
 'if or(a1<>a)|or(b1<>b)|or(c1<>c)|or(d1<>d) then r=%f,end'
 'end,if ~r then pause,end'])
@@ -130,7 +130,9 @@ a=list(list(1,rand(10,10),'asdfsf',poly(rand(10,10),'s')),$);if ~Check(a) then p
 a=list(1);a(4)='as';a=list(a,[]);if ~Check(a) then pause,end
 a=list(list(1,rand(10,10),'asdfsf',poly(rand(1,11),'s','c')),list());if ~Check(a) then pause,end
 
-
+a = list();
+a(3) = 3;
+assert_checktrue(Check(a));
 
 a=[];b=1;c=[1 2 3];d=[1 2 3;4 5 6];
 if ~Check(a,b) then pause,end

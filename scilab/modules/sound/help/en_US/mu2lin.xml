@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mu2lin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mu2lin</refname>
     <refpurpose> mu-law encoding to linear signal</refpurpose>
@@ -42,15 +39,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility fct: <literal>y=mu2lin(mu)</literal> converts mu-law encoded 8-bit audio signals,
-    stored in the range 0 &lt;= mu &lt;= 255, to linear signal amplitude in 
-    the range -s &lt; y &lt; s where s = 32124/32768 ~= .9803.  
-    The input mu is often obtained using mget(...,'uc') to read 
-    byte-encoded audio files.   Translation of C program by Craig Reese: 
-    IDA/Supercomputing Research Center Joe Campbell: Department of Defense</para>
+      Utility fct: <literal>y=mu2lin(mu)</literal> converts mu-law encoded 8-bit audio signals,
+      stored in the range 0 &lt;= mu &lt;= 255, to linear signal amplitude in 
+      the range -s &lt; y &lt; s where s = 32124/32768 ~= .9803.  
+      The input mu is often obtained using mget(...,'uc') to read 
+      byte-encoded audio files.   Translation of C program by Craig Reese: 
+      IDA/Supercomputing Research Center Joe Campbell: Department of Defense
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mu2lin">mu2lin</link>

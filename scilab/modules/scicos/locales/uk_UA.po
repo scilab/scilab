@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:29+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-13 21:15+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -1195,8 +1195,8 @@ msgstr ""
 " помилка у якобіані"
 
 #, c-format
-msgid "Error: cannot find '%s'  \n"
-msgstr "Помилка: не вдалося знайти «%s»  \n"
+msgid "Error: Cannot find file '%s'.\n"
+msgstr "Помилка: не знайдено файл «%s».\n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
@@ -1267,10 +1267,14 @@ msgstr "%s: не вдалося створити діаграму на кроц�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Empty matrix expected.\n"
 msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати порожню \n"
+"матрицю.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
@@ -1440,13 +1444,20 @@ msgid "Type not recognized"
 msgstr "Тип не розпізнано"
 
 msgid "Evaluation problem: value not updated from context."
-msgstr ""
+msgstr "Проблема обчислення: значення не оновлено на основі контексту."
+
+msgid "Evaluation problem: Unknown block"
+msgstr "Проблема з обчисленнями: невідомий блок"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
 
 msgid "Sorry file name not defined in "
 msgstr "Вибачте, назву файла не визначено у "
+
+#, c-format
+msgid "%s: Empty diagram"
+msgstr "%s: порожня діаграма"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
@@ -1506,7 +1517,3 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-#~ msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"

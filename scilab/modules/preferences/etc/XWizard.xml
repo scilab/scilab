@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<user-block-wizard select="xcos">
+	<kind name="xcos" title="XCos super block">&lt;HTML&gt;
+		Some explanatory text about &lt;U&gt;XCos super block&lt;/U&gt;.
+	</kind>
+	<folder title="Function block">
+		<kind name="expression" title="Scilab expression">&lt;HTML&gt;
+			Some explanatory text about &lt;U&gt;Scilab expression&lt;/U&gt;.
+		</kind>
+		<kind name="function" title="Scilab function">&lt;HTML&gt;
+			Some explanatory text about &lt;U&gt;Scilab function&lt;/U&gt;.
+		</kind>
+		<kind title="C, C++ or Java function"> <!-- name="imperative" -->
+			This item is not fully explained in the specification.
+		</kind>
+		<kind title="Fortran function"> <!-- name="fortran"  -->
+			This item is not fully explained in the specification.
+		</kind>
+		<kind title="Modelica model"> <!-- name="modelica" -->
+			This item is not fully explained in the specification.
+		</kind>
+	</folder>
+	<kind title="PDE">
+		This item is not explained in the specification.
+	</kind>
+</user-block-wizard>

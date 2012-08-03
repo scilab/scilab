@@ -10,17 +10,15 @@ libscidynamiclibrary_la_includedir=$(pkgincludedir)
 libscidynamiclibrary_la_include_HEADERS = includes/dynamiclibrary_others.h \
 includes/dynamiclibrary.h
 
-libscidynamiclibrary_la_CFLAGS= -Isrc/ -I$(srcdir)/includes/
+libscidynamiclibrary_la_CPPFLAGS= -I$(srcdir)/src/ -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidynamiclibrary.la
-
-libscidynamiclibrary_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidynamiclibrary_la_SOURCES = $(DYNAMICLIBRARY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(DYNAMICLIBRARY_C_SOURCES)
-INCLUDE_FLAGS = $(libscidynamiclibrary_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidynamiclibrary_la_CPPFLAGS)
 
 libscidynamiclibrary_la_LIBADD = 
 

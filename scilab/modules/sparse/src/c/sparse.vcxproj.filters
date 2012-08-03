@@ -171,10 +171,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\sparse.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="sparse_f_Import.def">
@@ -183,16 +180,16 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sparse.iss" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
+    <None Include="..\..\locales\sparse.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sparse.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\sparse_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

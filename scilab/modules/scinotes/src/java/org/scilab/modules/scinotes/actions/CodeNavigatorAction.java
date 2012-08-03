@@ -17,6 +17,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTab;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
@@ -50,6 +51,6 @@ public final class CodeNavigatorAction extends DefaultAction {
      * Action !!
      */
     public void doAction() {
-        NavigatorWindow.activateNavigator((ScilabDocument) getEditor().getTextPane().getDocument());
+	getEditor().addNavigator();
     }
 }

@@ -10,67 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="sqrt" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sqrt" xml:lang="en">
   <refnamediv>
     <refname>sqrt</refname>
-
     <refpurpose>square root</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>y=sqrt(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
-          <para>real or complex scalar or vector</para>
+          <para>real or complex scalar or vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>sqrt(x)</literal> is the vector of the square root of the
-    <literal>x</literal> elements. Result is complex if <literal>x</literal>
-    is negative.</para>
+    <para>
+      <literal>sqrt(x)</literal> is the vector/matrix of the square root of the
+      <literal>x</literal> elements. Result is complex if element of <literal>x</literal>
+      is negative.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
-sqrt([2,4])
-sqrt(-1)
+    A = matrix(4:4:16,2,2)
+    sqrt(A)
+    sqrt(-1)
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="hat">hat</link></member>
-
-      <member><link linkend="sqrtm">sqrtm</link></member>
+      <member>
+        <link linkend="hat">hat</link>
+      </member>
+      <member>
+        <link linkend="sqrtm">sqrtm</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

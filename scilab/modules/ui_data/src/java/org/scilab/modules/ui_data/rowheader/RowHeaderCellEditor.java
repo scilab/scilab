@@ -12,13 +12,17 @@
 
 package org.scilab.modules.ui_data.rowheader;
 
-import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.AbstractAction;
 import javax.swing.AbstractCellEditor;
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 
 /**
@@ -26,7 +30,7 @@ import javax.swing.table.TableCellEditor;
  */
 public class RowHeaderCellEditor extends AbstractCellEditor implements TableCellEditor {
 
-    private JButton button;
+    private JLabel label;
     private int row;
 
     /**
@@ -34,15 +38,17 @@ public class RowHeaderCellEditor extends AbstractCellEditor implements TableCell
      * @param table the table where to put the rowHeader
      */
     public RowHeaderCellEditor(final JTable table) {
-        button = new JButton();
-        button.setFocusPainted(false);
-        button.setAction(new AbstractAction() {
-                public void actionPerformed(ActionEvent e) {
-                    table.setRowSelectionInterval(row, row);
-                    table.setColumnSelectionInterval(0, table.getColumnCount() - 1);
-                    table.requestFocus();
-                }
-            });
+	label = new JLabel();
+	JTableHeader header = table.getTableHeader();
+	label.setOpaque(true);
+	label.setBorder(BorderFactory.createEmptyBorder());
+	label.setHorizontalAlignment(JLabel.CENTER);
+	label.setForeground(UIManager.getColor("textHighlightText"));
+	label.setFont(header.getFont().deriveFont(Font.BOLD));
+
+	Color selected = UIManager.getColor("Table.selectionBackground");
+	float[] hsb = Color.RGBtoHSB(selected.getRed(), selected.getGreen(), selected.getBlue(), null);
+	label.setBackground(Color.getHSBColor(hsb[0], 1, hsb[2]));
     }
 
     /**
@@ -57,8 +63,8 @@ public class RowHeaderCellEditor extends AbstractCellEditor implements TableCell
      */
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int col) {
         this.row = row;
-        button.setText(Integer.toString(row + 1));
+	label.setText(Integer.toString(row + 1));
 
-        return button;
+        return label;
     }
 }

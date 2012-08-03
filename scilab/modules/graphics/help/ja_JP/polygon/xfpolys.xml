@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xfpolys">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xfpolys</refname>
     <refpurpose>一連のポリゴンを塗りつぶす </refpurpose>
@@ -39,39 +36,49 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>説明</title>
-    <para><literal>xfpolys</literal>は
-	行列<literal>xpols</literal> および<literal>ypols</literal>
-	で定義された同じ大きさの一連のポリゴンを塗りつぶします.
-	各ポリゴンの座標は<literal>xpols</literal> および <literal>ypols</literal>
-	の列に保存されます.
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>xfpolys</literal>は
+      行列<literal>xpols</literal> および<literal>ypols</literal>
+      で定義された同じ大きさの一連のポリゴンを塗りつぶします.
+      各ポリゴンの座標は<literal>xpols</literal> および <literal>ypols</literal>
+      の列に保存されます.
     </para>
     <para>ポリゴンは指定した色で塗られるか(フラット),もしくは,
-	補間色(影付き)で塗られます.
+      補間色(影付き)で塗られます.
     </para>
     <variablelist>
       <varlistentry>
         <term>フラット彩色</term>
         <listitem>
-          <para>この場合, <literal>fill</literal>は
-		大きさ<literal>n</literal>のベクトルとなります.
-	ポリゴン番号 i を塗るパターンは
-	  <literal>fill(i)</literal>で指定されます:</para>
+          <para>
+            この場合, <literal>fill</literal>は
+            大きさ<literal>n</literal>のベクトルとなります.
+            ポリゴン番号 i を塗るパターンは
+            <literal>fill(i)</literal>で指定されます:
+          </para>
           <itemizedlist>
             <listitem>
-              <para><literal>fill(i)&lt;0</literal>の場合, ポリゴンは
-		パターンID <literal>-fill(i)</literal>で塗られます.</para>
+              <para>
+                <literal>fill(i)&lt;0</literal>の場合, ポリゴンは
+                パターンID <literal>-fill(i)</literal>で塗られます.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>fill(i)=0</literal>の場合, ポリゴンは
-		カレントの破線(またはカレントの色)で描画され,
-		塗られません.</para>
+              <para>
+                <literal>fill(i)=0</literal>の場合, ポリゴンは
+                カレントの破線(またはカレントの色)で描画され,
+                塗られません.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>fill(i)&gt;0</literal>の場合, 
-		ポリゴンはパターンID <literal>fill(i)</literal>で
-		塗られます. この後, 等高線がカレントの破線(または色)が描画され,
-		および必要に応じて閉じられます.</para>
+              <para>
+                <literal>fill(i)&gt;0</literal>の場合, 
+                ポリゴンはパターンID <literal>fill(i)</literal>で
+                塗られます. この後, 等高線がカレントの破線(または色)が描画され,
+                および必要に応じて閉じられます.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -80,14 +87,15 @@
         <term>補間色彩色</term>
         <listitem>
           <para>
-	この場合,<literal>fill</literal> は,
-	<literal>xpols</literal> および <literal>ypols</literal>と
-	同じ大きさの行列となります.
-	  <literal>p</literal> は 3 または 4とします.
-	</para>
-          <para><literal>fill(k,i)</literal>はポリゴン<literal>i</literal>の
-	<literal>k</literal>番目の縁の色を指定します.
-	</para>
+            この場合,<literal>fill</literal> は,
+            <literal>xpols</literal> および <literal>ypols</literal>と
+            同じ大きさの行列となります.
+            <literal>p</literal> は 3 または 4とします.
+          </para>
+          <para>
+            <literal>fill(k,i)</literal>はポリゴン<literal>i</literal>の
+            <literal>k</literal>番目の縁の色を指定します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -144,9 +152,5 @@ xfpolys(X,Y,C)
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

@@ -44,18 +44,6 @@ public interface ScilabScrollPane {
 	void setViewPosition(int xPos, int yPos);
 	
 	/**
-	 * Enable or disable auto resize mode
-	 * @param autoResizeMode true if autoresize is on
-	 */
-	void setAutoResizeMode(boolean autoResizeMode);
-	
-	/**
-	 * Enable or disable auto resize mode
-	 * @return true if autoresize is on
-	 */
-	boolean getAutoResizeMode();
-	
-	/**
 	 * @return Container representation of this object
 	 */
 	Container getAsContainer();

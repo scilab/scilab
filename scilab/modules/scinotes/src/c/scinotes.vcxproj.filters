@@ -69,10 +69,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\scinotes.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\jni\ScilabKeywords.i">
@@ -81,6 +78,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scinotes.iss" />
     <None Include="..\..\sci_gateway\scinotes_gateway.xml" />
+    <None Include="..\..\locales\scinotes.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scinotes.rc">

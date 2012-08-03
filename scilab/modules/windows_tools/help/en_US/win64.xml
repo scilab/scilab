@@ -11,23 +11,20 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="win64" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven., 14 mars 2008)
-    $</pubdate>
-  </info>
   <refnamediv>
     <refname>win64</refname>
-    <refpurpose>Determine whether Windows x64 version of Scilab</refpurpose>
+    <refpurpose>Determine whether Windows x64 version of Scilab (Windows only)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>win64()
-</synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>tf =win64() returns boolean (%t) for Windows x64 of Scilab and
-    boolean (%f) otherwise.</para>
+      boolean (%f) otherwise.
+    </para>
   </refsection>
   <refsection>
     <title>Example</title>
@@ -42,17 +39,11 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getos">getos</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Allan CORNET</member>
     </simplelist>
   </refsection>
 </refentry>

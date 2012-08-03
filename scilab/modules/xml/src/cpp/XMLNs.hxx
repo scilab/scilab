@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,44 +30,55 @@ namespace org_modules_xml
      * Class to wrap a namespace xmlNs.
      * @see http://xmlsoft.org/html/libxml-tree.html#xmlNs
      */
-    class XMLNs : public XMLObject
+    class XMLNs:public XMLObject
     {
         const XMLObject & parent;
-        xmlNs * ns;
+        xmlNs *ns;
 
-    public:
+public:
 
         /**
          * @param parent the parent XML object
          * @param ns the xml namespace
          */
-        XMLNs(const XMLObject & parent, xmlNs * ns);
+          XMLNs(const XMLObject & parent, xmlNs * ns);
 
         /**
          * @param elem the parent XMLElement
          * @param prefix the namespace prefix
          * @param href the namespace href
          */
-        XMLNs(const XMLElement & elem, char * prefix, char * href);
+          XMLNs(const XMLElement & elem, char *prefix, char *href);
 
-        ~XMLNs();
+         ~XMLNs();
+
+        void *getRealXMLPointer() const;
 
         /**
          * @return the namespace href
          */
-        const char * getHref() const { return ns == 0 ? "" : (const char *)ns->href; }
+        const char *getHref() const
+        {
+            return ns == 0 ? "" : (const char *)ns->href;
+        }
 
         /**
          * @return the namespace prefix
          */
-        const char * getPrefix() const { return ns == 0 ? "" : (const char *)ns->prefix; }
+        const char *getPrefix() const
+        {
+            return ns == 0 ? "" : (const char *)ns->prefix;
+        }
 
         /**
          * @return the xmlNs behind this object
          */
-        xmlNs * getRealNs() const { return ns; }
+        xmlNs *getRealNs() const
+        {
+            return ns;
+        }
 
-        const XMLObject * getXMLObjectParent() const;
+        const XMLObject *getXMLObjectParent() const;
         const std::string toString() const;
     };
 }

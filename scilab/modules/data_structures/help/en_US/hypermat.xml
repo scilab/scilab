@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hypermat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hypermat</refname>
     <refpurpose> initialize an  N dimensional matrices</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>vector of hypermatrix entries (default value <literal>zeros(prod(dims),1)</literal>)</para>
+          <para>
+            vector of hypermatrix entries (default value <literal>zeros(prod(dims),1)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,14 +41,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Initialize a hypermatrix whose dimensions are given in the vector dims
-    and entries are given in optional argument <literal>v</literal></para>
+      Initialize a hypermatrix whose dimensions are given in the vector dims
+      and entries are given in optional argument <literal>v</literal>
+    </para>
     <para>
-    M data structure contains the vector of matrix dimensions
-    <literal>M('dims')</literal> and the vector of entries <literal>M('entries')</literal> such as
-    the leftmost subcripts vary first
-    <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal></para>
-    <para>Warning: If you build your own <literal>hypermat</literal>, you must be careful. The M('dims') entry must be a row vector whereas the M('entries') must be a column vector.</para> 
+      M data structure contains the vector of matrix dimensions
+      <literal>M('dims')</literal> and the vector of entries <literal>M('entries')</literal> such as
+      the leftmost subcripts vary first
+      <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
+    </para>
+    <para>
+      Warning: If you build your own <literal>hypermat</literal>, you must be careful. The M('dims') entry must be a row vector whereas the M('entries') must be a column vector.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +69,7 @@ disp(size(M_own('entries')))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermatrices">hypermatrices</link>

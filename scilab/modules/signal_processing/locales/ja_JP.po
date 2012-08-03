@@ -8,16 +8,40 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2010-12-04 10:58+0000\n"
+"PO-Revision-Date: 2012-07-29 14:52+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数または複素数ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ割当エラー.\n"
 
 msgid "Simulation of an ARMAX process:"
 msgstr "ARMAX過程のシミュレーション:"
@@ -55,6 +79,24 @@ msgstr "スペクトル推定法"
 msgid "Press Return to continue ... \n"
 msgstr "続けるにはリターンを入力してください ... \n"
 
+msgid "filtered signal"
+msgstr "フィルタ後の信号"
+
+msgid "given noisy signal"
+msgstr "指定したノイズ入り信号"
+
+msgid "Signal"
+msgstr "信号"
+
+msgid "2 points convolution"
+msgstr "2点畳み込み"
+
+msgid "3 points convolution"
+msgstr "3点畳み込み"
+
+msgid "Signal derivative estimate"
+msgstr "信号微分推定"
+
 msgid "Minimax FIR filter"
 msgstr "ミニマックスFIRフィルタ"
 
@@ -87,6 +129,12 @@ msgstr "ボード線図"
 
 msgid "Window FIR filters"
 msgstr "ウインドウFIRフィルタ"
+
+msgid "1-D convolution"
+msgstr "1-D畳み込み"
+
+msgid "2-D convolution"
+msgstr "2-D畳み込み"
 
 msgid "Arma simulation and identification"
 msgstr "ARMAシミュレーションおよび同定"
@@ -187,6 +235,18 @@ msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 十分に高いサンプルになりません。\n"
 
 #, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: 引数 #%d と #%d の大きさは同じにする必要があります.\n"
 
@@ -214,6 +274,44 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が正しくありません:  線形動的システムまたは浮動小数点数の行ベクトルを指定してください.\n"
 
 #
+# File: macros/lattn.sci, line: 47
+# File: macros/levin.sci, line: 48
+# File: macros/srfaur.sci, line: 36
+# File: macros/yulewalk.sci, line: 36
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  '%s' 型はサポートされていません.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of double expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleの配列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+
+#
 # File: macros/iir.sci, line: 46
 # File: macros/lattn.sci, line: 56
 #, c-format
@@ -230,15 +328,6 @@ msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in the interval "
 "[%s, %s].\n"
 msgstr "%s: 入力引数 #%d で不正な値: 要素は、[%s, %s] の間でなくてはなりません。\n"
-
-#
-# File: macros/lattn.sci, line: 47
-# File: macros/levin.sci, line: 48
-# File: macros/srfaur.sci, line: 36
-# File: macros/yulewalk.sci, line: 36
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
@@ -259,7 +348,7 @@ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさ�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています.\n"
 
 #
 # File: macros/trans.sci, line: 24
@@ -276,144 +365,145 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正なサイズ: %d 要素配列を想定します。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s:  Wrong value for input argument #%d: Must be odd.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%dの値が間違っています: 奇数とする必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A %d-by-%d real vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%dの型が間違っています: %d行%d列の実数ベクトルを指定してください .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%dの大きさが間違っています: %d行%d列の実数ベクトルを指定してください .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
 
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
-msgstr ""
+msgstr "%s: %d番目の引数の要素は昇順である必要があります.\n"
 
-msgid "low pass"
-msgstr ""
+msgid "&File"
+msgstr "ファイル(&F)"
 
-msgid "high pass"
-msgstr ""
+msgid "&Tools"
+msgstr "ツール(&T)"
 
-msgid "band pass"
-msgstr ""
+msgid "&Edit"
+msgstr "編集(&E)"
 
-msgid "Choose type of filter to be designed"
-msgstr ""
+msgid "&?"
+msgstr "&?"
 
-msgid "stop band"
-msgstr ""
+msgid "WFIR settings"
+msgstr "WFIR設定"
 
-msgid "Input filter characteristics"
-msgstr ""
+msgid "Filter type"
+msgstr "フィルタ形式"
 
-msgid "cut-off frequency (0.<frequ<.5):"
-msgstr ""
+msgid "Band pass"
+msgstr "帯域通過"
 
-msgid "filter length"
-msgstr ""
+msgid "High pass"
+msgstr "高域通過"
 
-msgid "Incorrect filter order"
-msgstr ""
+msgid "Low pass"
+msgstr "低域通過"
 
-msgid "Incorrect cut-off frequency"
-msgstr ""
+msgid "Stop Band"
+msgstr "帯域阻止"
 
-msgid "filter length (odd value)"
-msgstr ""
+msgid "Window type"
+msgstr "ウインドウ型"
 
-msgid "low cut-off frequency (0.<flow<.5):"
-msgstr ""
-
-msgid "high cut-off frequency (0.<flow<fhi<.5):"
-msgstr ""
-
-msgid "Incorrect low cut-off frequency"
-msgstr ""
-
-msgid "Incorrect high cut-off frequency"
-msgstr ""
-
-msgid "Even length high pass and stop band filters not allowed"
-msgstr ""
-
-msgid "---Filter order is being incremented by 1"
-msgstr ""
-
-msgid "Kaiser"
-msgstr ""
-
-msgid "Chebyshev"
-msgstr ""
+msgid "Hanning"
+msgstr "ハニング"
 
 msgid "Rectangular"
-msgstr ""
+msgstr "長方形"
 
 msgid "Triangular"
-msgstr ""
+msgstr "三角"
+
+msgid "Chebychev main lobe"
+msgstr "チェビシェフメインローブ"
+
+msgid "Chebychev side lobe"
+msgstr "チェビシェフサイドローブ"
 
 msgid "Hamming"
-msgstr ""
+msgstr "ハミング"
 
-msgid "Input window type"
-msgstr ""
+msgid "Kaiser"
+msgstr "カイザー"
 
-msgid "Input window characteristics"
-msgstr ""
+msgid "Sampling Frequency (Hz)"
+msgstr "サンプル周波数 (Hz)"
 
-msgid "Incorrect beta value"
-msgstr ""
+msgid "Filter Order"
+msgstr "フィルタ次数"
 
-msgid "Input window characteristics:"
-msgstr ""
+msgid "Low cutoff frequency (Hz)"
+msgstr "低域カットオフ周波数 (Hz)"
 
-msgid "dp (dp>0)   : the maximum value of the window side-lobe height"
-msgstr ""
+msgid "High cutoff frequency (Hz)"
+msgstr "高域カットオフ周波数 (Hz)"
 
-msgid "df (0<df<.5): the width of the window main lobe"
-msgstr ""
+msgid "Parameter"
+msgstr "パラメータ"
 
-msgid "only one of this two values is to be defined,"
-msgstr ""
+msgid "View"
+msgstr "表示"
 
-msgid "the other one is automatically deduced"
-msgstr ""
+msgid "Ok"
+msgstr "OK"
 
-msgid "name of specified value"
-msgstr ""
+msgid "Cancel"
+msgstr "取り消し"
 
-msgid "value"
-msgstr ""
+msgid "Reset"
+msgstr "リセット"
 
-msgid "Incorrect name of specified value"
-msgstr ""
+msgid "Help"
+msgstr "ヘルプ"
 
-msgid "Incorrect  value"
-msgstr ""
+msgid "Window main lobe width"
+msgstr "ウィンドウメインローブ幅"
+
+msgid "maximum side-lobe height"
+msgstr "最大サイドローブ高さ"
+
+msgid "frequency (Hz)"
+msgstr "周波数(Hz)"
+
+msgid "Magnitude (dB)"
+msgstr "振幅 (dB)"
 
 #, c-format
 msgid "%s: Input argument #%d must be strictly positive.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d は厳密に正でなくてはなりません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
-msgstr ""
+msgstr "%s: 入力引数 #%dの値が間違っています: 要素#%dが不正確です\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: incorrect element #d\n"
-msgstr ""
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: an integer expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for argument #%d: the expected value must be greater than "
+"%d.\n"
+msgstr "%s: 引数 #%d の値が間違っています: %d より大きい値を指定してください.\n"
 
 #, c-format
 msgid ""

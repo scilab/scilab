@@ -6,12 +6,13 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // =============================================================================
 //Here with give a complete example on adding new primitive to Scilab
 ilib_verbose(0);
 i = ['#include <string>'
+'#define __USE_DEPRECATED_STACK_FUNCTIONS__'
 'extern ""C"" {'
 '#include ""stack-c.h""'
 'int sci_cppfind(char *fname) {'
@@ -54,3 +55,13 @@ exec loader.sce;
 assert_checkequal(cppfind("my very long string", "long"), 8);
 assert_checkequal(cppfind("my very long string","very"), 3);
 assert_checkequal(cppfind("my very long string","short"), -1);
+if getos() == "Linux" | getos() == "Darwin" then
+// Force the usage 
+   files = ['sci_cppfind.cxx'];
+   ilib_build('foo2', ['cppfind2', 'sci_cppfind'], files,[],[], [], "-fpermissive", [], [], "g++");
+   exec loader.sce;
+   // Small test to see if the function is actually working.
+   assert_checkequal(cppfind("my very long string", "long"), 8);
+   assert_checkequal(cppfind("my very long string","very"), 3);
+   assert_checkequal(cppfind("my very long string","short"), -1);
+end

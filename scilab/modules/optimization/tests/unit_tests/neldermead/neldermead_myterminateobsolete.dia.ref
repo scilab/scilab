@@ -6,7 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 // This test is designed to produce a warning:

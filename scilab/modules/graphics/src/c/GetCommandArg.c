@@ -3,11 +3,12 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - INRIA - Pierre Lando
- * 
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,9 +22,11 @@
 #include "GetCommandArg.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
-#include "CurrentObjectsManagement.h"
+#include "CurrentSubwin.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BuildObjects.h"
+
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
 /*--------------------------------------------------------------------------*/
@@ -31,13 +34,13 @@ static char logFlagsCpy[3] ; /* real logflags may use either this or the stack *
 /*--------------------------------------------------------------------------*/
 int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 {
-  int m,n,l,first_opt=FirstOpt(),kopt,un=1,ix,i,l1;
+  int m = 0,n = 0,l = 0, first_opt = FirstOpt(), kopt = 0, un = 1, ix = 0, i = 0, l1 = 0;
 
   Nbvars = Max(Nbvars,Rhs);
 
 
   if ( pos < first_opt ) /* regular argument  */
-  { 
+  {
     if (VarType(pos))
     {
 	    GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
@@ -112,23 +115,23 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 {
 	int m,n,l,first_opt=FirstOpt(),kopt,i;
 
-	if (pos < first_opt) 
-		{ 
+	if (pos < first_opt)
+		{
 			if (VarType(pos)) {
 				GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-				if (m * n != 4) { 
-					Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,pos,4); 
+				if (m * n != 4) {
+					Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,pos,4);
 					return 0;
 				}
 				*rect = stk(l);
-	
+
 				for(i=0;i<4;i++)
 					if(finite((*rect)[i]) == 0){
-						Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4); 
+						Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4);
 						return 0;
 					}
 			}
-			else 
+			else
 				{
 					/** global value can be modified  **/
 					double zeros[4] = { 0.0, 0.0, 0.0, 0.0 } ;
@@ -138,15 +141,15 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 		}
 	else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
 		GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-		if (m * n != 4) { 
-			Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,kopt,4); 
+		if (m * n != 4) {
+			Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,kopt,4);
 			return 0;
 		}
 		*rect = stk(l);
-    
+
 		for(i=0;i<4;i++)
 			if(finite((*rect)[i]) == 0){
-				Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4); 
+				Scierror(999,"%s: Wrong values (Nan or Inf) for input argument: %d finite values expected\n",fname,4);
 				return 0;
 			}
 	}
@@ -157,7 +160,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 			setDefRect( zeros ) ;
 			*rect = getDefRect() ;
 		}
-    
+
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
@@ -166,16 +169,16 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   int m,n,l,first_opt=FirstOpt(),kopt;
 
   if (pos < first_opt)
-  { 
+  {
     if (VarType(pos))
     {
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
-      { 
+      {
 		  Scierror(999,_("%s: Wrong size for input argument #%d: String of %d characters expected.\n"),fname,pos, 3);
 	      return 0;
 	    }
-	  *strf = cstk(l); 
+	  *strf = cstk(l);
     }
     else
 	  {
@@ -188,19 +191,19 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   {
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
-    { 
+    {
 		Scierror(999,_("%s: Wrong size for input argument #%d: String of %d characters expected.\n"),fname,kopt,3);
 		return 0;
     }
-    *strf = cstk(l); 
+    *strf = cstk(l);
   }
   else
   {
     /* def value can be changed */
-      
+
     reinitDefStrfN() ;
     *strf = getDefStrf() ;
-   
+
   }
   return 1;
 }
@@ -210,11 +213,11 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
-    { 
+  if (pos < first_opt)
+    {
       if (VarType(pos)) {
 	GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
-	*legend = cstk(l); 
+	*legend = cstk(l);
       }
       else
 	{
@@ -223,7 +226,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
     }
   else if ((kopt=FindOpt("leg",opts))) {
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
-    *legend = cstk(l); 
+    *legend = cstk(l);
   }
   else
     {
@@ -233,55 +236,55 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 }
 /*--------------------------------------------------------------------------*/
 /**
- * retrieve the labels from the command line  and store them into Legend
+ * retrieve the labels from the command line and store them into labels
  */
-int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
+int get_labels_arg(char *fname, int pos, rhs_opts opts[], char ** labels)
 {
-  int m,n,l,first_opt=FirstOpt(),kopt;
+    int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
-  { 
-    if (VarType(pos)) {
-      GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
-      *labels = cstk(l); 
+    if (pos < first_opt)
+    {
+        if (VarType(pos))
+        {
+            GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
+            *labels = cstk(l);
+        }
+        else
+        {
+            /* jb silvy 03/2006 */
+            /* do not change the legend if one already exists */
+            char * pSubWinUID = (char*)getOrCreateDefaultSubwin();
+            if (sciGetLegendDefined(pSubWinUID))
+            {
+                *labels = NULL;
+            }
+            else
+            {
+                *labels = getDefLegend();
+            }
+        }
+    }
+    else if ((kopt=FindOpt("leg",opts)))
+    {
+        GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
+        *labels = cstk(l);
     }
     else
     {
+        /* jb silvy 03/2006 */
+        /* do not change the legend if one already exists */
+        char* pSubWinUID = (char*)getOrCreateDefaultSubwin();
 
-      /* jb silvy 03/2006 */
-      /* do not change the legend if one already exists */
-      sciPointObj * pSubWin = sciGetCurrentSubWin() ;
-      if ( sciGetLegendDefined( pSubWin ) )
-      {
-        *labels = NULL ;
-      }
-      else
-      {
-        *labels = getDefLegend() ;
-      }
+        if (sciGetLegendDefined(pSubWinUID))
+        {
+            *labels = NULL;
+        }
+        else
+        {
+            *labels = getDefLegend();
+        }
     }
-  }
-  else if ((kopt=FindOpt("leg",opts)))
-  {
-    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
-    *labels = cstk(l); 
-  }
-  else
-  {
-
-    /* jb silvy 03/2006 */
-    /* do not change the legend if one already exists */
-    sciPointObj * pSubWin = sciGetCurrentSubWin() ;
-    if ( sciGetLegendDefined( pSubWin ) )
-    {
-      *labels = NULL ;
-    }
-    else
-    {
-      *labels = getDefLegend() ;
-    }
-  }
-  return 1;
+    return 1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -303,7 +306,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
       *nax=istk(l);
       *flagNax = TRUE;
     }
-    else  
+    else
     {
 	    *nax = getDefNax() ;
 	    *flagNax = FALSE;
@@ -321,11 +324,11 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
     *nax=istk(l);
     *flagNax = TRUE;
   }
-  else 
+  else
   {
     *nax = getDefNax() ;
     *flagNax = FALSE;
-  } 
+  }
   return 1;
 }
 
@@ -335,17 +338,17 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
-    { 
+  if (pos < first_opt)
+    {
       if (VarType(pos)) {
         GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-	if (m * n != 2) { 
+	if (m * n != 2) {
       Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,pos,2);
 	  return 0;
 	}
-	*zminmax = stk(l); 
+	*zminmax = stk(l);
       }
-      else 
+      else
 	{
 	  /** global value can be modified  **/
     double zeros[2] = { 0.0, 0.0 } ;
@@ -355,11 +358,11 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
     }
   else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
     GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
-    if (m * n != 2) { 
+    if (m * n != 2) {
       Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,kopt,2);
       return 0;
     }
-    *zminmax = stk(l); 
+    *zminmax = stk(l);
   }
   else
     {
@@ -368,7 +371,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
       setDefZminMax( zeros ) ;
       *zminmax = getDefZminMax() ;
     }
-    
+
   return 1;
 }
 
@@ -377,9 +380,9 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
+  if (pos < first_opt)
     {
-      if (VarType(pos)) 
+      if (VarType(pos))
 	{
 	  GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,2);
@@ -393,19 +396,19 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax )
 	  *colminmax = getDefColMinMax() ;
 	}
     }
-  else if ((kopt=FindOpt("colminmax",opts))) 
+  else if ((kopt=FindOpt("colminmax",opts)))
     {
       GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,2);
       *colminmax=istk(l);
     }
-  else 
+  else
     {
       /** global value can be modified  **/
       int zeros[2] = { 0, 0 } ;
       setDefColMinMax( zeros ) ;
       *colminmax = getDefColMinMax() ;
-    } 
+    }
   return 1;
 }
 
@@ -414,9 +417,9 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
+  if (pos < first_opt)
     {
-      if (VarType(pos)) 
+      if (VarType(pos))
 	{
 	  GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,2);
@@ -430,19 +433,19 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout )
 	  *colout = getDefColOut() ;
 	}
     }
-  else if ((kopt=FindOpt("colout",opts))) 
+  else if ((kopt=FindOpt("colout",opts)))
     {
       GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,2);
       *colout=istk(l);
     }
-  else 
+  else
     {
       /** global value can be modified  **/
       int newDefCO[2] = { -1, -1 } ;
       setDefColOut( newDefCO ) ;
       *colout = getDefColOut() ;
-    } 
+    }
   return 1;
 }
 /*--------------------------------------------------------------------------*/
@@ -450,9 +453,9 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
+  if (pos < first_opt)
     {
-      if (VarType(pos)) 
+      if (VarType(pos))
 	{
 	  GetRhsVar(pos,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
 	  CheckLength(pos,m*n,1);
@@ -465,18 +468,18 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
 	  *withMesh = getDefWithMesh() ;
 	}
     }
-  else if ((kopt=FindOpt("mesh",opts))) 
+  else if ((kopt=FindOpt("mesh",opts)))
     {
       GetRhsVar(kopt,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
       CheckLength(kopt,m*n,1);
       *withMesh = *(istk(l));
     }
-  else 
+  else
     {
       /** global value can be modified  **/
       setDefWithMesh( FALSE );
       *withMesh = getDefWithMesh() ;
-    } 
+    }
   return 1;
 }
 
@@ -484,9 +487,9 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh)
 int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
-  
+
   if (pos < first_opt) /* regular argument  */
-  { 
+  {
     if (VarType(pos))
     {
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
@@ -508,19 +511,19 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
         logFlagsCpy[2]=*cstk(l+1) ;
         *logFlags = logFlagsCpy ;
       }
-	    else 
+	    else
       {
-	      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
-	          (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
+	      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) ||
+	          (*cstk(l+1)!='l'&&*cstk(l+1)!='n') ||
 	          (*cstk(l+2)!='l'&&*cstk(l+2)!='n'))
         {
 	        Err=pos;
 	        SciError(116);
 	        return 0;
 	      }
-        *logFlags = cstk(l) ;  
+        *logFlags = cstk(l) ;
       }
-      
+
     }
     else /* zero type argument --> default value */
 	  {
@@ -550,15 +553,15 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
     }
     else
     {
-      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
-	         (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
+      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) ||
+	         (*cstk(l+1)!='l'&&*cstk(l+1)!='n') ||
 	         (*cstk(l+2)!='l'&&*cstk(l+2)!='n'))
       {
 	      Err=kopt;
 	      SciError(116);
 	      return 0;
       }
-      
+
       *logFlags = cstk(l) ;
     }
   }
@@ -574,12 +577,12 @@ int get_optional_double_arg(     char  * fname,
                                  char  * name ,
                                double ** value,
                                   int    sz   ,
-                             rhs_opts    opts[] ) 
+                             rhs_opts    opts[] )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
-    { 
+  if (pos < first_opt)
+    {
       if (VarType(pos)) {
 	GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	CheckLength(pos,m*n,sz)
@@ -599,12 +602,12 @@ int get_optional_int_arg(     char  * fname,
                               char  * name ,
                                int ** value,
                                int    sz   ,
-                          rhs_opts    opts[] ) 
+                          rhs_opts    opts[] )
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) 
-    { 
+  if (pos < first_opt)
+    {
       if (VarType(pos)) {
 	GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	CheckLength(pos,m*n,sz)

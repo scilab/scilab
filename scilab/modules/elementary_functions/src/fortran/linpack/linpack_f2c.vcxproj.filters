@@ -16,6 +16,9 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{1e471463-5740-4315-918f-8b1e325d24e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{a740827c-ee24-40a4-b7f9-73c4b3b85904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dgbfa.c">
@@ -54,13 +57,7 @@
     <ClCompile Include="pade.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="spofa.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="util.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wgeco.c">
@@ -113,13 +110,7 @@
     <f2c_rule Include="pade.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="spofa.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="util.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wcopy.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="wgeco.f">
@@ -136,8 +127,11 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

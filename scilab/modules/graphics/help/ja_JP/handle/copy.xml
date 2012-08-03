@@ -11,20 +11,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="copy">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>copy</refname>
     <refpurpose> 
-	グラフィックエンティティをコピー.
-  </refpurpose>
+      グラフィックエンティティをコピー.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>copy(h)
-copy(h,h_axes)
-h_copy=copy(h)</synopsis>
+      copy(h,h_axes)
+      h_copy=copy(h)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -39,7 +37,8 @@ h_copy=copy(h)</synopsis>
         <term>h_axes</term>
         <listitem>
           <para>ハンドル, 出力先の親エンティティのハンドル. 
-	axes エンティティとする必要があります.</para>
+            axes エンティティとする必要があります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,11 +52,12 @@ h_copy=copy(h)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	このルーチンは,グラフィックエンティティをその全てのプロパティの値と
-	共にコピーするために使用でき,
-	新しいエンティティのハンドルを返します.
-  <literal>h_axes</literal> が省略された場合, グラフィックエンティティが
-	複製され,同じ親のaxesエンティティにコピーされます.</para>
+      このルーチンは,グラフィックエンティティをその全てのプロパティの値と
+      共にコピーするために使用でき,
+      新しいエンティティのハンドルを返します.
+      <literal>h_axes</literal> が省略された場合, グラフィックエンティティが
+      複製され,同じ親のaxesエンティティにコピーされます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -91,9 +91,5 @@ copy(p1,a2);
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

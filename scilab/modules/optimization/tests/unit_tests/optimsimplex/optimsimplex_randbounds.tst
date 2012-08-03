@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;

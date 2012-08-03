@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- Non-regression test for bug 6891 -->
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- ENGLISH IMPOSED -->
 //
@@ -22,7 +22,7 @@ Name                     Type           Size           Bytes
 whos -name corel
 Name                     Type           Size           Bytes        
  
-corelib                  library                       664          
+corelib                  library                       640          
 whos -type polynomial
 Name                     Type           Size           Bytes        
  

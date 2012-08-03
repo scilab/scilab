@@ -11,7 +11,6 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "api_scilab.h"
@@ -58,6 +57,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -128,8 +128,15 @@ int sci_mputl(char *fname, unsigned long fname_len)
                 break;
             case MOPEN_INVALID_FILENAME:
                 {
-                    Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
-                    freeAllocatedSingleString(filename);
+                    if (filename)
+                    {
+                        Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
+                    }
+                    else
+                    {
+                        freeAllocatedSingleString(filename);
+                        Scierror(999, _("%s: invalid filename.\n"), fname);
+                    }
                     return 0;
                 }
                 break;
@@ -159,6 +166,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -194,6 +202,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -223,6 +232,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     {
         freeArrayOfString(pStVarOne, mnOne);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

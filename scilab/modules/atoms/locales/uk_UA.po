@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-05 04:33+0000\n"
+"PO-Revision-Date: 2012-07-26 16:49+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
@@ -121,6 +121,83 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути «all» або «main».\n"
 
 #, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+"\n"
+"Встановлення %s…\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+"\n"
+"Завантаження %s…\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+"\n"
+"Перевірка %s…\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+"\n"
+"Вилучення %s…\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
+
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr ""
+"%s: модуль %s вже встановлено. Будь ласка, вилучіть його перед виконанням "
+"цієї дії.\n"
+
+#, c-format
+msgid "%s: Module %s does not exist in current repositories.\n"
+msgstr "%s: у поточних сховищах немає модуля %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: мало бути вказано унікальні "
+"назви модулів.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
+"\n"
+"Кількість модулів для отримання: %d\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
@@ -132,8 +209,34 @@ msgstr ""
 "рядків 1x1 або 1x2.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d.\n"
+
+#, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s: помилка у файлі налаштування («%s»), рядок %d\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx2 або mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: має бути вказано версію всіх "
+"модулів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «user», "
+"«all» або «allusers».\n"
 
 #, c-format
 msgid ""
@@ -172,6 +275,13 @@ msgstr ""
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: у пакунку «%s» не знайдено файла DESCRIPTION\n"
+
+msgid ""
+"Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"Встановлено значення параметра налаштування ATOMS offline рівне True. "
+"atomsSystemUpdate не виконано перевірку доступності найновіших модулів."
 
 #, c-format
 msgid ""
@@ -254,12 +364,34 @@ msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: сталася помилка під час завантаження «%s-%s»:\n"
 
 #, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
+msgstr "%s: під час вивантаження «%s-%s» сталася помилка:\n"
+
+#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
-"expected.\n"
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «user», "
-"«all» або «allusers».\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано булеве значення "
+"або один рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано булеве "
+"значення або один рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -270,6 +402,14 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 "%s: у вас недостатньо прав для вилучення будь-якої версії пакунка %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"Вилучення %s (%s)(%s).\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -297,6 +437,14 @@ msgstr ""
 "перевірте, чи є у вас права доступу на запис до відповідного каталогу: %s.\n"
 
 #, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"Вилучення файлів архівів %s.\n"
+"\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: помилкове значення вхідного параметра №%d: такого ("
 
@@ -309,10 +457,29 @@ msgstr ""
 "«user», «allusers» або «official».\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr "Файла %s не існує. Не вдалося відновити попередні налаштування."
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "файл налаштувань збережено до %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
 "розмірність.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+"%s: помилкове значення параметра вхідних налаштувань: мало бути вказано True "
+"або False.\n"
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr "%s: помилковий ключ параметра вхідних налаштувань.\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -366,13 +533,6 @@ msgstr "Каталог встановлення"
 msgid "Description"
 msgstr "Опис"
 
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-"Встановлено значення параметра налаштування ATOMS offLine рівне True. "
-"atomsSystemUpdate не виконано перевірку доступності найновіших модулів."
-
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: «%s — %s» не встановлено.\n"
@@ -425,6 +585,9 @@ msgstr "Файл"
 
 msgid "Installed modules"
 msgstr "Встановлені модулі"
+
+msgid "Update List of Packages"
+msgstr "Оновити список пакунків"
 
 msgid "Close"
 msgstr "Закрити"
@@ -540,9 +703,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+"%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати назву "
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано назву "
 "пакунка atoms.\n"
 
 #, c-format
@@ -595,12 +758,24 @@ msgstr ""
 "%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
 
 #, c-format
+msgid "%s: save ('%s') has failed.\n"
+msgstr "%s: спроба збереження («%s») зазнала невдачі.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
 "'DESCRIPTION' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
 "що містить «TOOLBOXES» або «DESCRIPTION».\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: файл %s є порожнім.\n"
 
 #, c-format
 msgid ""
@@ -631,6 +806,22 @@ msgstr "%s: запис до файла «%s» неможливий.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s вилучено.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s не існує.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -652,39 +843,39 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: помилка, некоректна адреса.\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: помилка: встановлення з’єднання.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: помилкова адреса.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: помилка під час створення файла.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: помилка: некоректний розмір файла.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: помилка: читання файла з інтернету.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: помилка запису файла.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: критична помилка.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: вичерпано пам’ять.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -692,7 +883,7 @@ msgstr "%s: файл, назву якого наведено нижче, зва�
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t - URL      : «%s»\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -704,7 +895,7 @@ msgstr "%s: файл, назву якого наведено нижче, ско�
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t - джерело    : «%s»\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -716,7 +907,7 @@ msgstr "%s: звантажений файл не пройшов перевірк
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t - файл      : «%s»\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
@@ -761,36 +952,10 @@ msgstr ""
 "матрицю з рядків розмірності 1x1 або 1x2.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«boolean».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"булівське значення.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків 1x2.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
-"рядків mx2 або mx3.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: має бути вказано версію всіх "
-"модулів.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -899,15 +1064,3 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «ASC» "
 "або «DESC».\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - Адреса         : «%s»\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - файл            : «%s»\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - джерело      : «%s»\n"

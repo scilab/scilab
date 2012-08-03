@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<console title="_(Console)">
+  <body>
+    <display wrap-lines="true" adapt-to-display="true" lines-to-display="100" columns-to-display="80" tab-size="4" scroll-size="3000"/>
+  </body>
+</console>

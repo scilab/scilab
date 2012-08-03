@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_lusolve">
-  <info>
-    <pubdate/>
-  </info>
   <refnamediv>
     <refname>umf_lusolve</refname>
     <refpurpose> solve a linear sparse system given the LU factors  </refpurpose>
@@ -30,8 +27,9 @@
         <term>st  </term>
         <listitem>
           <para>(optional) a string "Ax=b" (default) or "Ax'=b" 
-      (to be written "Ax''=b"  in scilab langage: a quote in a string
-	  must be doubled !)</para>
+            (to be written "Ax''=b"  in scilab langage: a quote in a string
+            must be doubled !)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,22 +49,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function must be used in conjonction with <link linkend='umf_lufact'>umf_lufact</link> which
-    computes the LU factors of a sparse matrix. The optional
-    <literal>st</literal> argument lets us choose between the solving of Ax=b (general case)
-    or of A'x=b (sometimes useful). If you give the 4th argument then
-    iterative refinement will be also proceceed (as in umfpack) to
-    give a better numerical solution. 
-  </para>
+      This function must be used in conjonction with <link linkend="umf_lufact">umf_lufact</link> which
+      computes the LU factors of a sparse matrix. The optional
+      <literal>st</literal> argument lets us choose between the solving of Ax=b (general case)
+      or of A'x=b (sometimes useful). If you give the 4th argument then
+      iterative refinement will be also proceceed (as in umfpack) to
+      give a better numerical solution. 
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <para>
-    see the example section of <link linkend='umf_lufact'>umf_lufact</link>
-  </para>
+      see the example section of <link linkend="umf_lufact">umf_lufact</link>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>
@@ -83,13 +81,6 @@
       <member>
         <link linkend="umf_luinfo">umf_luinfo</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>umfpack by Timothy A. Davis (see umf_license)</member>
-      <member>scilab interface by Bruno Pincon with contributions from Antonio Frasson</member>
     </simplelist>
   </refsection>
 </refentry>

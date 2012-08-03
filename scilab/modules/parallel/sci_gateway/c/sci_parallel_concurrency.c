@@ -13,7 +13,7 @@
 #include "gw_parallel.h"
 #include "concurrency.h" /* prototype for concurrency query function */
 #include "api_scilab.h"
-#include "stack-c.h"
+
 
 /* Just a simple scilab wrapper to parallelConcurrency():
 * returns non zero when called from a concurrent execution context

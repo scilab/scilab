@@ -8,14 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:34+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-06-05 02:30+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -26,12 +30,12 @@ msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个布尔值。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -40,6 +44,10 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -350,15 +358,15 @@ msgstr "%s：无法关闭文件描述符为%d的文件：没有文件需要关�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为非空字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
-msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
+msgstr "%s：第%d个输入参数的值错误：格式无法识别。\n"
 
 #, c-format
 msgid "%s: format is of 0 length.\n"
@@ -453,6 +461,11 @@ msgid "Can't get current directory.\n"
 msgstr "无法得到当前目录。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr "%s：错误的变量类型（%s）出现在 %s 中。文件可能有错或被破坏。\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s：输入参数的数目错误。\n"
 
@@ -492,9 +505,16 @@ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个文件描述符。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr "%s：错误的变量类型（%s）出现在 %s 中。文件可能有错或被破坏。\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Options ignored.\n"

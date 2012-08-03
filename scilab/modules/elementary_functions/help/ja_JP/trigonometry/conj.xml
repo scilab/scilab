@@ -10,53 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="conj" xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="conj" xml:lang="ja">
   <refnamediv>
     <refname>conj</refname>
-
     <refpurpose>共役</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-
     <synopsis>[y]=conj(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>パラメータ</title>
-
     <variablelist>
       <varlistentry>
         <term>x,y</term>
-
         <listitem>
           <para>実数または複素行列.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>説明</title>
-
-    <para><literal>conj(x)</literal> は <literal>x</literal>の
-      複素共役である.</para>
+    <para>
+      <literal>conj(x)</literal> は <literal>x</literal>の
+      複素共役である.
+    </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-
     <programlisting role="example"><![CDATA[ 
 x=[1+%i,-%i;%i,2*%i];
 conj(x)

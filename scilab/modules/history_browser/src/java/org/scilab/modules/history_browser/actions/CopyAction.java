@@ -17,11 +17,12 @@ import java.awt.datatransfer.StringSelection;
 import java.lang.reflect.InvocationTargetException;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 
@@ -29,12 +30,12 @@ import org.scilab.modules.history_browser.CommandHistoryMessages;
  * Manage Copy Actions
  * @author Vincent COUVERT
  */
-public final class CopyAction extends CallBack {
+public final class CopyAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.COPY;
-    private static final String ICON = System.getenv("SCI") + "/modules/gui/images/icons/edit-copy.png";
+    private static final String ICON = ScilabSwingUtilities.findIcon("edit-copy");
     private static final char MNEMONIC = 'C';
 
     private static final String KEY = "OSSCKEY C";
@@ -83,8 +84,8 @@ public final class CopyAction extends CallBack {
      * Create a new class instance
      * @return the instance
      */
-    private static CallBack getCallBack() {
-        CallBack callback = null;
+    private static CommonCallBack getCallBack() {
+        CommonCallBack callback = null;
         try {
             callback = CopyAction.class.getConstructor().newInstance();
         } catch (IllegalArgumentException e) {
@@ -107,6 +108,7 @@ public final class CopyAction extends CallBack {
      * Action!
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
+    @Override
     public void callBack() {
         String commands = CommandHistory.getSelectedCommands();
         if (commands == null) {

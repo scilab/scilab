@@ -8,6 +8,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 /*--------------------------------------------------------------------------*/
+#include <windows.h>
 #include "gw_windows_tools.h"
 #include "stack-c.h"
 #include "MALLOC.h"

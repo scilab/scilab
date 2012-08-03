@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plot2d4">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plot2d4</refname>
     <refpurpose>2次元プロット (矢印形式)</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>plot2d4([logflag,] x,y,[style,strf,leg,rect,nax])
-plot2d4(y)
-plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
+      plot2d4(y)
+      plot2d4(x,y &lt;,opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,23 +28,30 @@ plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
       <varlistentry>
         <term>args</term>
         <listitem>
-          <para>パラメータの説明については<literal>plot2d</literal> 参照.</para>
+          <para>
+            パラメータの説明については<literal>plot2d</literal> 参照.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>plot2d4</literal> は <literal>plot2d</literal> と同じですが,
-	曲線は矢印形式でプロットされます.これは,
-	位相空間でODEの解をプロットする際に有用です.</para>
+    <para>
+      <literal>plot2d4</literal> は <literal>plot2d</literal> と同じですが,
+      曲線は矢印形式でプロットされます.これは,
+      位相空間でODEの解をプロットする際に有用です.
+    </para>
     <para>デフォルトで, 連続するプロットは重ね描きされます.前のプロットを消去するには
-     <literal>clf()</literal>を使用してください.</para>
-    <para>コマンド <literal>plot2d4()</literal> を使用してください. 
-	<literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
-	<literal>plot2d</literal>を用いて,
-	<literal>polyline_style</literal>オプションを対応する数字に設定することにより,
-	有効にすることができます.</para>
+      <literal>clf()</literal>を使用してください.
+    </para>
+    <para>
+      コマンド <literal>plot2d4()</literal> を使用してください. 
+      <literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
+      <literal>plot2d</literal>を用いて,
+      <literal>polyline_style</literal>オプションを対応する数字に設定することにより,
+      有効にすることができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -87,9 +92,5 @@ e.children(3).polyline_style=4;
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

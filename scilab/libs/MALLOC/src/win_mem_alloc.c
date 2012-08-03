@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <memory.h>
+#include <Windows.h>
 #include "../includes/win_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/
 /* an interesting article about HeapAlloc,malloc, and OctAlloc */
@@ -23,154 +24,154 @@
 /*-----------------------------------------------------------------------------------*/
 #define FREE_FLAGS 0
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void *MyHeapRealloc(void *lpAddress, size_t dwSize, char *file, int line)
 {
-	LPVOID NewPointer = NULL;
-	SIZE_T precSize = 0;
+    LPVOID NewPointer = NULL;
+    SIZE_T precSize = 0;
 
-	if (lpAddress)
-	{
-		_try
-		{
-			NewPointer = realloc(lpAddress, dwSize);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
-	else
-	{
-		NewPointer = malloc(dwSize);
+    if (lpAddress)
+    {
+        _try
+        {
+            NewPointer = realloc(lpAddress, dwSize);
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
+    }
+    else
+    {
+        NewPointer = malloc(dwSize);
         NewPointer = memset (NewPointer, 0, dwSize);
 
-		if (NewPointer == NULL)
-		{
-			#ifdef _DEBUG
-			char MsgError[1024];
-			wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ",fichier,ligne);
-			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			#endif
-		}
-	}
-	return NewPointer;
+        if (NewPointer == NULL)
+        {
+#ifdef _DEBUG
+            char MsgError[1024];
+            wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ", file, line);
+            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
+        }
+    }
+    return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void *MyHeapAlloc(size_t dwSize, char *file, int line)
 {
-	LPVOID NewPointer = NULL;
+    LPVOID NewPointer = NULL;
 
-	if (dwSize>0)
-	{
-		_try
-		{
-			NewPointer = malloc(dwSize);
-            NewPointer = memset (NewPointer, 0, dwSize);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-
-		if (NewPointer == NULL)
-		{
-			#ifdef _DEBUG
-			char MsgError[1024];
-			wsprintf(MsgError,"MALLOC (1) Error File %s Line %d ",fichier,ligne);
-			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			#endif
-		}
-	}
-	else
-	{
-		#ifdef _DEBUG
-		char MsgError[1024];
-		wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
-		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		#endif
-		_try
-		{
+    if (dwSize>0)
+    {
+        _try
+        {
             NewPointer = malloc(dwSize);
             NewPointer = memset (NewPointer, 0, dwSize);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
-	return NewPointer;
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
+
+        if (NewPointer == NULL)
+        {
+#ifdef _DEBUG
+            char MsgError[1024];
+            wsprintf(MsgError,"MALLOC (1) Error File %s Line %d ",file, line);
+            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
+        }
+    }
+    else
+    {
+#ifdef _DEBUG
+        char MsgError[1024];
+        wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ", file, line);
+        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
+        _try
+        {
+            NewPointer = malloc(dwSize);
+            NewPointer = memset (NewPointer, 0, dwSize);
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
+    }
+    return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(void *lpAddress, char *file, int line)
 {
-	_try
-	{
+    _try
+    {
         free(lpAddress);
-	}
-	_except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		#ifdef _DEBUG
-		char MsgError[1024];
-		wsprintf(MsgError,"FREE Error File %s Line %d ",fichier,ligne);
-		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		#endif
-	}
+    }
+    _except (EXCEPTION_EXECUTE_HANDLER)
+    {
+#ifdef _DEBUG
+        char MsgError[1024];
+        wsprintf(MsgError,"FREE Error File %s Line %d ", file, line);
+        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
+    }
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void *MyVirtualAlloc(size_t dwSize, char *file, int line)
 {
-	LPVOID NewPointer = NULL;
+    LPVOID NewPointer = NULL;
 
-	if (dwSize>0)
-	{
-		_try
-		{
+    if (dwSize>0)
+    {
+        _try
+        {
             NewPointer = malloc(dwSize);
             NewPointer = memset (NewPointer, 0, dwSize);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
 
-		if (NewPointer == NULL)
-		{
-			#ifdef _DEBUG
-			char MsgError[1024];
-			wsprintf(MsgError,"MALLOC ( 1) Error File %s Line %d ",fichier,ligne);
-			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			#endif
-		}
-	}
-	else
-	{
-		#ifdef _DEBUG
-		char MsgError[1024];
-		wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
-		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		#endif
+        if (NewPointer == NULL)
+        {
+#ifdef _DEBUG
+            char MsgError[1024];
+            wsprintf(MsgError,"MALLOC ( 1) Error File %s Line %d ", file, line);
+            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
+        }
+    }
+    else
+    {
+#ifdef _DEBUG
+        char MsgError[1024];
+        wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ", file, line);
+        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+#endif
 
-		_try
-		{
+        _try
+        {
             NewPointer = malloc(dwSize);
             NewPointer = memset (NewPointer, 0, dwSize);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
 
-	}
+    }
 
-	return NewPointer;
+    return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(void *lpAddress, char *file, int line)
 {
-	if (lpAddress) 
-	{
-		_try
-		{
+    if (lpAddress) 
+    {
+        _try
+        {
             free(lpAddress);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
+        }
+        _except (EXCEPTION_EXECUTE_HANDLER)
+        {
+        }
+    }
 }
 /*-----------------------------------------------------------------------------------*/

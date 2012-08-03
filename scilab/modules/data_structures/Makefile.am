@@ -41,25 +41,33 @@ sci_gateway/fortran/sci_f_getfield.f \
 sci_gateway/fortran/sci_f_lstcat.f \
 sci_gateway/fortran/sci_f_list.f
 
-libscidata_structures_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscidata_structures_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+$(AM_CPPFLAGS)
 
+# FIXME: why disabling optimisation ? Any bug reference ?
 # Disable optimisation of the file intl_e.f
 noinst_LTLIBRARIES = libdummy-data_structures.la
-libdummy_data_structures_la_SOURCES = src/fortran/intl_e.f
-libdummy_data_structures_la_FFLAGS = $(FFLAGS:-O%=)
 
+libdummy_data_structures_la_SOURCES = src/fortran/intl_e.f
+libdummy_data_structures_la_FFLAGS = $(AM_FFLAGS) $(FFLAGS) -O0
+
+
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
 noinst_LTLIBRARIES += libscidata_structures-algo.la
+else
+noinst_LTLIBRARIES += libscidata_structures-algo.la libscidata_structures.la
+endif
 
-libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES)
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidata_structures_algo_la_CFLAGS = $(libscidata_structures_la_CFLAGS)
+libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES)

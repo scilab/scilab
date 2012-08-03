@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lu</refname>
     <refpurpose> LU factorization with pivoting</refpurpose>
@@ -22,7 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[L,U]= lu(A)
-[L,U,E]= lu(A)</synopsis>
+      [L,U,E]= lu(A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -127,7 +125,7 @@ norm(P*L*U*Q-a)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lufact">lufact</link>
@@ -149,7 +147,8 @@ norm(P*L*U*Q-a)
   <refsection>
     <title>Used Functions</title>
     <para>
-   lu decompositions are based on the Lapack routines DGETRF for real
-   matrices and ZGETRF for the complex case.</para>
+      lu decompositions are based on the Lapack routines DGETRF for real
+      matrices and ZGETRF for the complex case.
+    </para>
   </refsection>
 </refentry>

@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "renderer module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "renderer module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "scirenderer.dll"
             VALUE "ProductName", "renderer module"
             VALUE "ProductVersion", "5, 4, 0, 0"

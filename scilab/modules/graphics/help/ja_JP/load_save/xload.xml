@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xload">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xload</refname>
     <refpurpose>保存されたグラフィックをロードする</refpurpose>
@@ -35,25 +32,31 @@
         <term>win_num</term>
         <listitem>
           <para>整数, グラフィックウインドウの番号. 指定されない場合, 
-		カレントのグラフィックウインドウが使用されます.</para>
+            カレントのグラフィックウインドウが使用されます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xload</literal> はファイル <literal>file_name</literal>
-	に含まれるグラフィックを
-	グラフィックウインドウ <literal>win_num</literal>に
-	リロードします.</para>
-    <para>Scilab 5.0以降, 全ての <link linkend="uimenu">uimenu</link>または
-	 <link linkend="uicontrol">uicontrol</link>ハンドルも
-	ロードされます.
+    <para>
+      <literal>xload</literal> はファイル <literal>file_name</literal>
+      に含まれるグラフィックを
+      グラフィックウインドウ <literal>win_num</literal>に
+      リロードします.
     </para>
-    <para>グラフィックを含むファイルに関して,<literal>load</literal>
-	関数は<literal>xload</literal>の代わりに使用されます.
-	<literal>xload</literal> はウインドウ番号,
-	ウインドウの大きさ,ウインドウの次元を回復しません.</para>
+    <para>
+      Scilab 5.0以降, 全ての <link linkend="uimenu">uimenu</link>または
+      <link linkend="uicontrol">uicontrol</link>ハンドルも
+      ロードされます.
+    </para>
+    <para>
+      グラフィックを含むファイルに関して,<literal>load</literal>
+      関数は<literal>xload</literal>の代わりに使用されます.
+      <literal>xload</literal> はウインドウ番号,
+      ウインドウの大きさ,ウインドウの次元を回復しません.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -61,15 +64,15 @@
 t=0:0.01:10;
 subplot(211),plot2d(t,sin(t))
 subplot(212),plot2d(t,sin(3*t))
-save(TMPDIR+'/foo.scg',gcf())
+xsave(TMPDIR + "/foo.scg", gcf())
 clf()
-load(TMPDIR+'/foo.scg')
-    
+xload(TMPDIR + "/foo.scg")
+
 a=gca();
-curve=a.children.children; //曲線のハンドル
-save(TMPDIR+'/foo.scg',curve)
+curve=a.children.children; //handle on the curve
+save(TMPDIR + "/foo.scg", "curve")
 delete(curve)
-load(TMPDIR+'/foo.scg')
+load(TMPDIR + "/foo.scg")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -85,9 +88,5 @@ load(TMPDIR+'/foo.scg')
         <link linkend="save">save</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

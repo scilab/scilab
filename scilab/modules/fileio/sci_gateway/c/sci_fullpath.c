@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "gw_fileio.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -23,46 +23,93 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_fullpath(char *fname,unsigned long fname_len)
 {
-	Rhs=Max(Rhs,0);
-	CheckRhs(1,1) ;
-	CheckLhs(0,1) ;
+    SciErr sciErr;
+    int *piAddressVarOne = NULL;
+    char **pStVarOne = NULL;
+    int mOne = 0, nOne = 0;
+    int mnOne = 0;
 
-	if (GetType(1) == sci_strings)
-	{
-		static int l1,n1,m1;
-		char *relPath = NULL;
-		char fullpath[PATH_MAX*4];
+    char **pStFullPath = NULL;
+    int i = 0;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		/* Bug 3089 */
-		relPath = cstk(l1);
+    Rhs = Max(Rhs, 0);
+    CheckRhs(1,1);
+    CheckLhs(0,1);
 
-		if( get_full_path( fullpath, relPath, PATH_MAX*4 ) != NULL )
-		{
-			char *Output = strdup(fullpath);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
 
-			n1=1;
-			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
-			LhsVar(1) = Rhs+1;
-			
-			if (Output) {FREE(Output);Output=NULL;}
+    if (!isStringType(pvApiCtx, piAddressVarOne))
+    {
+        if (isEmptyMatrix(pvApiCtx, piAddressVarOne))
+        {
+            createEmptyMatrix(pvApiCtx, Rhs + 1);
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar()
+        }
+        else
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        }
+        return 0;
+    }
 
-            PutLhsVar();	
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"),fname,1,relPath);
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
-	}
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, &pStVarOne) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
-	return 0;
+    mnOne = mOne * nOne;
+    pStFullPath = (char**)MALLOC(sizeof(char*) * mnOne);
+    if (pStFullPath == NULL)
+    {
+        freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    for (i = 0; i < mnOne; i++)
+    {
+        char fullpathtmp[PATH_MAX*4];
+        strcpy(fullpathtmp, "");
+        if( get_full_path(fullpathtmp, pStVarOne[i], PATH_MAX*4 ) != NULL )
+        {
+            pStFullPath[i] = strdup(fullpathtmp);
+        }
+        else
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"),fname,1, pStVarOne[i]);
+            freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
+            freeArrayOfString(pStFullPath, mnOne);
+            return 0;
+        }
+    }
+
+    freeAllocatedMatrixOfString(mOne, nOne, pStVarOne);
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1 , mOne, nOne, pStFullPath);
+    freeArrayOfString(pStFullPath, mnOne);
+
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
+
 

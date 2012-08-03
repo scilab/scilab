@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-			result = atomsSearch(pattern)
-		</synopsis>
+      result = atomsSearch(pattern)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -34,15 +34,15 @@
         <term>pattern</term>
         <listitem>
           <para>
-						String : The pattern to search for.
-					</para>
+            String : The pattern to search for.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>
-					</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -53,9 +53,9 @@
   <refsection>
     <title>Description</title>
     <para>
-			<literal>atomsSearch</literal> searches for packages matching one of
-			the patterns supplied as input argument.
-		</para>
+      <literal>atomsSearch</literal> searches for packages matching one of
+      the patterns supplied as input argument.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -72,7 +72,7 @@ atomsSearch("toolbox");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsList">atomsList</link>
@@ -82,10 +82,4 @@ atomsSearch("toolbox");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

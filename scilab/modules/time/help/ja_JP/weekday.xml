@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="weekday">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>weekday</refname>
     <refpurpose>曜日を返す</refpurpose>
@@ -21,19 +18,22 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[N,S] = weekday(D)
-[N,S] = weekday(D, form)</synopsis>
+      [N,S] = weekday(D, form)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>[N,S] = weekday(D) は,
-	日数 n または日付文字列Dで指定すると,
-	数値(N) および文字列(S)形式で曜日を返します.
-	入力引数 D は,日数の配列で複数の日を表すことができます.</para>
+      日数 n または日付文字列Dで指定すると,
+      数値(N) および文字列(S)形式で曜日を返します.
+      入力引数 D は,日数の配列で複数の日を表すことができます.
+    </para>
     <para>[N,S] = weekday(D, form) は,
-	数値(N) および文字列(S)形式で曜日を返しますが,
-	S の内容は form 引数に依存します.
-	form が 'long'の場合, S には完全な曜日 (例: Thuesday)が含まれます.
-	form が 'short'の場合, S には短縮形 (例: Tue) が含まれます.</para>
+      数値(N) および文字列(S)形式で曜日を返しますが,
+      S の内容は form 引数に依存します.
+      form が 'long'の場合, S には完全な曜日 (例: Thuesday)が含まれます.
+      form が 'short'の場合, S には短縮形 (例: Tue) が含まれます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -56,12 +56,6 @@ today = datenum();
       <member>
         <link linkend="weekday">weekday</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

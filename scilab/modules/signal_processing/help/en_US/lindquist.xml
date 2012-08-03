@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lindquist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lindquist</refname>
     <refpurpose> Lindquist's algorithm</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>H, F, G</term>
         <listitem>
-          <para>estimated triple from the covariance sequence of <literal>y</literal>.</para>
+          <para>
+            estimated triple from the covariance sequence of <literal>y</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,12 +48,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes iteratively the minimal solution of the algebraic
-    Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
-    filter model, by the Lindquist's algorithm.</para>
+      computes iteratively the minimal solution of the algebraic
+      Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
+      filter model, by the Lindquist's algorithm.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="srfaur">srfaur</link>
@@ -66,9 +66,5 @@
         <link linkend="phc">phc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

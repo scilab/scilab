@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the Scilab package.
 
 # List of the cpp files
-HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
+HISTORY_MANAGER_CXX_SOURCES = src/cpp/CommandLine.cpp \
 src/cpp/HistoryFile.cpp \
 src/cpp/HistoryManager.cpp \
 src/cpp/HistorySearch.cpp
@@ -50,40 +50,30 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/jni/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/history_browser/includes/
-
-# Includes need for the compilation
-libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/history_browser/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/fileio/includes/
+$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
 noinst_LTLIBRARIES = libscihistory_manager-algo.la
 
-libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscihistory_manager.la
-libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES)
+libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CXX_SOURCES)
 libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscihistory_manager_algo_la_CFLAGS = $(libscihistory_manager_la_CFLAGS)
 libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
+INCLUDE_FLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 ## Libraries necessary
 libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la
@@ -91,11 +81,15 @@ modulename=history_manager
 
 #### history_manager : Conf files ####
 libscihistory_manager_la_rootdir = $(mydatadir)
-libscihistory_manager_la_root_DATA =  license.txt 
+libscihistory_manager_la_root_DATA =  license.txt
 
 #### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
-libscihistory_manager_la_etc_DATA = etc/history_manager.quit etc/history_manager.start
+libscihistory_manager_la_etc_DATA = \
+	etc/history_manager.quit \
+	etc/history_manager.start \
+	etc/XConfiguration-history.xml \
+	etc/XConfiguration-history.xsl
 
 #### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway

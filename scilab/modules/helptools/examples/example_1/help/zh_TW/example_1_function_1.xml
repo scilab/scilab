@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
-          version="5.0-subset Scilab" 
-          xml:lang="zh_TW" 
-          xml:id="example_1_function_1">
-  <info>
-    <pubdate>01-08-2006</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="zh_TW" xml:id="example_1_function_1">
   <refnamediv>
     <refname>example_1_function_1</refname>
     <refpurpose>"example_1_function_1" èªªæ</refpurpose>
@@ -26,7 +16,7 @@
         <listitem>
           <para>
             "b" åæ¸èªªæ
-         </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -34,7 +24,7 @@
         <listitem>
           <para>
             "c" åæ¸èªªæ
-         </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,7 +32,7 @@
         <listitem>
           <para>
             "a" åæ¸èªªæ
-         </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -83,16 +73,16 @@ a = example_1_function_1(b,c);
     <title>ä½è</title>
     <simplelist type="vert">
       <member>
-      Scilab åé
-    </member>
+        Scilab åé
+      </member>
     </simplelist>
   </refsection>
   <refsection>
     <title>ç¿»è­¯</title>
     <simplelist type="vert">
       <member>
-      ä¸­æç¿»è­¯ç¾¤
-    </member>
+        ä¸­æç¿»è­¯ç¾¤
+      </member>
     </simplelist>
-  </refsection> 
+  </refsection>
 </refentry>

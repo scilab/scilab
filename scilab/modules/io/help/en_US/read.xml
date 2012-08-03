@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="read">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>read</refname>
     <refpurpose> matrices read</refpurpose>
@@ -22,7 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[x] = read(file-desc,m,n,[format])
-[x]=read(file-desc,m,n,k,format)</synopsis>
+      [x]=read(file-desc,m,n,k,format)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,7 +28,9 @@
       <varlistentry>
         <term>file-desc</term>
         <listitem>
-          <para>character string specifying the file name or integer value specifying logical unit (fortran, see <link linkend="file">file</link>).</para>
+          <para>
+            character string specifying the file name or integer value specifying logical unit (fortran, see <link linkend="file">file</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,42 +56,50 @@
   <refsection>
     <title>Description</title>
     <para>
-    reads row after row
-    the <literal>mxn</literal> matrix <literal>x</literal> (<literal>n=1</literal> for character chain) in the
-    file <literal>file-desc</literal> (string or integer).  Each row of the matrix <literal>x</literal>
-    begin in a new line of <literal>file-desc</literal> file. Depending on <literal>format</literal>, a
-    given row of the <literal>x</literal> matrix may be read from more than one line
-    of <literal>file-desc</literal> file.</para>
+      reads row after row
+      the <literal>mxn</literal> matrix <literal>x</literal> (<literal>n=1</literal> for character chain) in the
+      file <literal>file-desc</literal> (string or integer).  Each row of the matrix <literal>x</literal>
+      begin in a new line of <literal>file-desc</literal> file. Depending on <literal>format</literal>, a
+      given row of the <literal>x</literal> matrix may be read from more than one line
+      of <literal>file-desc</literal> file.
+    </para>
     <para>
-    The type of the result will depend on the specified format. 
-    If format contains only <literal>(d,e,f,g)</literal>  descriptors the function
-    tries to read numerical data (the result is matrix of real numbers).</para>
+      The type of the result will depend on the specified format. 
+      If format contains only <literal>(d,e,f,g)</literal>  descriptors the function
+      tries to read numerical data (the result is matrix of real numbers).
+    </para>
     <para>
-    If format contains only  <literal>a</literal> descriptors the function tries to
-    read character strings (the result is a character string column
-    vector). In this case n must be equal to 1. Warning: The character strings are
-      truncated when they are longuer than 4093.</para>
+      If format contains only  <literal>a</literal> descriptors the function tries to
+      read character strings (the result is a character string column
+      vector). In this case n must be equal to 1. Warning: The character strings are
+      truncated when they are longuer than 4093.
+    </para>
     <para>
-    Examples for <literal>format</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+      Examples for <literal>format</literal>:
+    </para>
+    <programlisting role=""><![CDATA[ 
 (1x,e10.3,5x,3(f3.0))
 (10x,a20) 
  ]]></programlisting>
     <para>
-    When format is omitted datas are read using numerical free format: 
-    blank, comma and slash may be used as data separators, n*v may be use
-    to represent n occurrences of value n.</para>
+      When format is omitted data are read using numerical free format: 
+      blank, comma and slash may be used as data separators, n*v may be use
+      to represent n occurrences of value n.
+    </para>
     <para>
-    A direct access file can be used if using the parameter <literal>k</literal> which is 
-    is the vector of record numbers to be read (one record per row),
-    thus <literal>m</literal> must be <literal>m=prod(size(k))</literal>.</para>
+      A direct access file can be used if using the parameter <literal>k</literal> which is 
+      is the vector of record numbers to be read (one record per row),
+      thus <literal>m</literal> must be <literal>m=prod(size(k))</literal>.
+    </para>
     <para>
-    To read on the keyboard use <literal>read(%io(1),...)</literal>.</para>
+      To read on the keyboard use <literal>read(%io(1),...)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Remark</title>
     <para>
-    Last line of data files must be terminated by a newline to be taken into account.</para>
+      Last line of data files must be terminated by a newline to be taken into account.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -105,7 +113,7 @@ read(%io(1), 1, 1, '(a)')  // waits for user's input
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="write">write</link>

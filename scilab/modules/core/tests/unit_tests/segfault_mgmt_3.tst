@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 ilib_verbose(0);
 curDir=pwd();
 cd TMPDIR;

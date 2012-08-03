@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -40,7 +40,6 @@ function [blocks] = bplatform2(blocks,flag)
     Axe.data_bounds=rpar(4:7)
     Axe.isoview='on'
 
-    drawlater(); 
       x0=(xmin+xmax)/2;
       y0=(ymin+ymax)/2;
       XY1=[x0-3, x0+3,x0+3,x0-3,x0-3]
@@ -64,11 +63,8 @@ function [blocks] = bplatform2(blocks,flag)
     
       xset("color",0)
 
-    drawnow(); 
-
 //** UPDATE 
-  elseif flag==2 then
-    drawlater();  
+  elseif flag==2 then 
       Axe=H.children
       yplat=blocks.inptr(1)(1)
       yball=blocks.inptr(2)(1)
@@ -81,7 +77,6 @@ function [blocks] = bplatform2(blocks,flag)
       //Axe.children(2).data(2)=;// Ground
       Axe.children(3).data(2)=yball+rcirc;// Ball
       Axe.children(4).data(:,2)=[yplat, yplat,yplat-2*tplat,yplat-2*tplat,yplat]';// platform
-    drawnow(); 
   end
 endfunction 
 

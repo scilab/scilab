@@ -1,6 +1,5 @@
 
 DUMPEXTS="$(SCIDIR)\bin\dumpexts"
-SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 all :: $(LIBRARY).dll
 
@@ -9,7 +8,7 @@ $(LIBRARY).dll: $(OBJS_WITH_PATH)
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $(OBJS_WITH_PATH)
 	@$(LINKER) $(LINKER_FLAGS) $(OBJS_WITH_PATH) $(OTHERLIBS) \
-$(SCIIMPLIB) $(SCILAB_LIBS) $(CPP_RUNTIME_LIBRARIES) $(FORTRAN_RUNTIME_LIBRARIES) \
+$(SCILAB_LIBS) $(CPP_RUNTIME_LIBRARIES) $(FORTRAN_RUNTIME_LIBRARIES) \
 $(EXTRA_LDFLAGS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def"
 
 clean	::

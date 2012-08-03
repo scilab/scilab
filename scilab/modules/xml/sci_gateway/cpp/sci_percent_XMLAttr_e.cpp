@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +19,6 @@ extern "C"
 {
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -29,17 +28,20 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
+int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
 {
-    XMLAttr * attr;
+    XMLAttr *attr;
     int id;
     SciErr err;
-    int * prefixaddr = 0;
-    int * nameaddr = 0;
-    int * mlistaddr = 0;
-    char * name = 0;
-    char * prefix = 0;
-    const char * value;
+    int *prefixaddr = 0;
+    double *indexes = 0;
+    int rows;
+    int cols;
+    int *nameaddr = 0;
+    int *mlistaddr = 0;
+    char *name = 0;
+    char *prefix = 0;
+    const char *value;
 
     CheckLhs(1, 1);
     CheckRhs(2, 3);
@@ -48,55 +50,84 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, prefixaddr))
+    if (Rhs == 2 && isDoubleType(pvApiCtx, prefixaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
-        return 0;
+        err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
+        if (rows != 1 || cols != 1)
+        {
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A real scalar expected.\n"), fname, 1);
+            return 0;
+        }
     }
-
-    getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
-
-    if (Rhs == 3)
+    else
     {
-        err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
-        if (err.iErr)
+        if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            freeAllocatedSingleString(prefix);
-            printError(&err, 0);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, nameaddr))
+        if (getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix) != 0)
         {
-            freeAllocatedSingleString(prefix);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+        if (Rhs == 3)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
+            if (err.iErr)
+            {
+                freeAllocatedSingleString(prefix);
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                return 0;
+            }
+
+            if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
+            {
+                freeAllocatedSingleString(prefix);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+        }
     }
 
     err = getVarAddressFromPosition(pvApiCtx, Rhs, &mlistaddr);
     if (err.iErr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr);
-    attr = XMLObject::getFromId<XMLAttr>(id);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
+    attr = XMLObject::getFromId < XMLAttr > (id);
 
     if (!attr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
@@ -107,14 +138,24 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
 
     if (Rhs == 3)
     {
-        value = attr->getAttributeValue(const_cast<const char *>(prefix), const_cast<const char *>(name));
+        value = attr->getAttributeValue(const_cast < const char *>(prefix), const_cast < const char *>(name));
     }
     else
     {
-        value = attr->getAttributeValue(const_cast<const char *>(prefix));
+        if (indexes)
+        {
+            value = attr->getAttributeValue((int)(*indexes));
+        }
+        else
+        {
+            value = attr->getAttributeValue(const_cast < const char *>(prefix));
+        }
     }
 
-    freeAllocatedSingleString(prefix);
+    if (prefix)
+    {
+        freeAllocatedSingleString(prefix);
+    }
     if (name)
     {
         freeAllocatedSingleString(name);
@@ -126,12 +167,13 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     }
     else
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast<const char * const *>(&value));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast < const char * const *>(&value));
     }
 
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

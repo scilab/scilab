@@ -1,11 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // unit tests for oct2dec function
 // =============================================================================
@@ -1040,5 +1041,12 @@ base_35 = [ ..
 	"4vowdo"; ..
 ];
 
-
-if or(base2dec(base_11,11)<>base_10) then pause,end
+assert_checkequal(base2dec(base_11, 11), base_10);
+assert_checkequal(base2dec(base_12, 12), base_10);
+assert_checkequal(base2dec(base_13, 13), base_10);
+assert_checkequal(base2dec(base_14, 14), base_10);
+assert_checkequal(base2dec(base_15, 15), base_10);
+assert_checkequal(base2dec(base_16, 16), base_10);
+assert_checkequal(base2dec(base_23, 23), base_10);
+assert_checkequal(base2dec(base_28, 28), base_10);
+assert_checkequal(base2dec(base_35, 35), base_10);

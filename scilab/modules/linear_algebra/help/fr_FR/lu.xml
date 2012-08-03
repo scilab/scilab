@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lu</refname>
     <refpurpose> factorisation LU  </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[L,U]= lu(A)
-[L,U,E]= lu(A)</synopsis>
+      [L,U,E]= lu(A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -30,28 +28,29 @@
         <term>A  </term>
         <listitem>
           <para>matrice carrée réelle ou complexe (m x n).
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>L,U  </term>
         <listitem>
           <para>matrices carrées réelles ou complexes (n x n).
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>E  </term>
         <listitem>
           <para>une matrice de permutation.
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[L,U]= lu(A)</literal> calcule deux matrices <literal>L</literal> et
+    <para>
+      <literal>[L,U]= lu(A)</literal> calcule deux matrices <literal>L</literal> et
       <literal>U</literal> telles que <literal>A = L*U</literal> avec <literal>U</literal>
       triangulaire supérieure et <literal>L</literal> triangulaire inférieure
       à une permutation des lignes près.
@@ -62,7 +61,8 @@
     </para>
     <para>
     </para>
-    <para><literal>[L,U,E]= lu(A)</literal> calcule trois matrices <literal>L</literal>,
+    <para>
+      <literal>[L,U,E]= lu(A)</literal> calcule trois matrices <literal>L</literal>,
       <literal>U</literal> et <literal>E</literal> telles que <literal>E*A = L*U</literal>
       avec <literal>U</literal> triangulaire supérieure, <literal>L</literal>
       triangulaire inférieure et <literal>E</literal> une matrice de
@@ -91,7 +91,7 @@ norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="lufact">lufact</link>
@@ -113,6 +113,7 @@ norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
   <refsection>
     <title>Fonctions Utilisées</title>
     <para>La décomposition LU est basée sur les routines Lapack  DGETRF pour
-    les matrices réelles et ZGETRF pour le cas complexe. </para>
+      les matrices réelles et ZGETRF pour le cas complexe. 
+    </para>
   </refsection>
 </refentry>

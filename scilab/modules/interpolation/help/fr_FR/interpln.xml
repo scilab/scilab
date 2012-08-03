@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="interpln">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>interpln</refname>
     <refpurpose> interpolation linéaire  </refpurpose>
@@ -29,21 +26,21 @@
         <term>xyd  </term>
         <listitem>
           <para>matrice à deux lignes (coordonnées x et y des points)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
           <para>vecteur des abscisses
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
           <para>vecteur des ordonnées
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,8 +48,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculées par interpolation linéaire.
-  </para>
+      étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculées par interpolation linéaire.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -65,7 +62,7 @@ plot2d((-4:45)',yi',[3],"000");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="splin">splin</link>

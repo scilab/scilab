@@ -29,6 +29,8 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
     private static final String MATH = "math";
     private static final String BASENAME = "Equation_MathML_";
 
+    private static HTMLMathMLHandler instance;
+
     private int compt;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
@@ -38,10 +40,18 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
      * Constructor
      * @param baseDir the base directory where to put the generated images
      */
-    public HTMLMathMLHandler(String outputDir, String baseDir) {
+    private HTMLMathMLHandler(String outputDir, String baseDir) {
         this.outputDir = outputDir + File.separator + baseDir;
         this.baseDir = baseDir + "/";
-     }
+    }
+
+    public static HTMLMathMLHandler getInstance(String outputDir, String baseDir) {
+        if (instance == null) {
+            instance = new HTMLMathMLHandler(outputDir, baseDir);
+        }
+
+        return instance;
+    }
 
     /**
      * {@inheritDoc}
@@ -72,7 +82,7 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
             Map<String, String> attributes = new HashMap();
             attributes.put("fontsize", "16");
 
-            String ret = ImageConverter.getImageByCode(buffer.toString(), attributes, "image/mathml", f, baseDir + f.getName());
+            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/mathml", f, baseDir + f.getName());
             buffer.setLength(0);
 
             return ret;

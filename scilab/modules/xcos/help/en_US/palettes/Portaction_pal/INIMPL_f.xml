@@ -18,24 +18,15 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="INIMPL_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="INIMPL_f" xml:lang="en_US">
   <refnamediv>
     <refname>INIMPL_f</refname>
     <refpurpose>Implicit Input port</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_INIMPL_f">
     <title>Contents</title>
     <itemizedlist>
@@ -92,16 +82,10 @@
               <xref linkend="Seealso_INIMPL_f">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_INIMPL_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_INIMPL_f">
     <title>Palettes</title>
     <itemizedlist>
@@ -117,10 +101,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_INIMPL_f">
     <title>Description</title>
-
     <para>
       This block represent an implicit input port. It must only be used inside a Xcos Super Block
       and be connected to an implicit input in the subsystem.
@@ -130,18 +112,16 @@
       You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
     </para>
   </refsection>
-
   <refsection id="Dialogbox_INIMPL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../gui/portaction_pal/en_US/INIMPL_f_gui.png" align="center" />
+          <imagedata fileref="../../../gui/portaction_pal/en_US/INIMPL_f_gui.png" align="center"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
-
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -152,21 +132,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_INIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -177,19 +164,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -199,7 +196,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_INIMPL_f">
     <title>Exemple</title>
     <para>
@@ -208,25 +204,26 @@
       and 2. The Super block output is connected via a <link linkend="OUTIMPL_f">OUTIMPL_f</link> block.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos">
         Open this example in Xcos
-      </link>.
+      </link>
+      .
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/inimpl_f_diagram_en_US.png" />
+        <imagedata fileref="../../../examples/portaction_pal/en_US/inimpl_f_diagram_en_US.png"/>
       </imageobject>
     </mediaobject>
   </refsection>
-
   <refsection id="Interfacingfunction_INIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/INIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sources/INIMPL_f.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/INIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sources/INIMPL_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Seealso_INIMPL_f">
     <title>See also</title>
     <itemizedlist>
@@ -237,10 +234,5 @@
         <link linkend="SUPER_f">SUPER_f</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_INIMPL_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

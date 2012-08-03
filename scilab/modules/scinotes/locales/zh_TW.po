@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
@@ -22,20 +22,25 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -43,8 +48,8 @@ msgid ""
 msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: 錯誤的 %d 參數形式：單一字串。\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
 
 msgid "File"
 msgstr ""
@@ -193,25 +198,10 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
-msgid "Set Colors ..."
-msgstr ""
-
-msgid "Set Font"
-msgstr ""
-
-msgid "Reset default font"
-msgstr ""
-
 msgid "Shift Right"
 msgstr ""
 
 msgid "Shift Left"
-msgstr ""
-
-msgid "Configure Tabulation"
-msgstr ""
-
-msgid "Horizontal wrapping"
 msgstr ""
 
 msgid "Correct Indentation"
@@ -248,9 +238,6 @@ msgid "Options"
 msgstr ""
 
 msgid "Current file encoding"
-msgstr ""
-
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
 msgstr ""
 
 msgid "Line Endings"
@@ -328,6 +315,171 @@ msgstr ""
 msgid "Complete"
 msgstr ""
 
+msgid "Display"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Autosave"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "Use SciNotes"
+msgstr ""
+
+msgid "External editor: "
+msgstr ""
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+
+msgid "Scilab command: "
+msgstr ""
+
+msgid "SciNotes General settings"
+msgstr ""
+
+msgid "Restore previous session on start-up"
+msgstr ""
+
+msgid "Add carriage return at the end of the file."
+msgstr ""
+
+msgid "Number of recently opened files to display: "
+msgstr ""
+
+msgid "Default file encoding: "
+msgstr ""
+
+msgid "Default End-Of-Line: "
+msgstr ""
+
+msgid "General display options"
+msgstr ""
+
+msgid "Highlight current line: "
+msgstr ""
+
+msgid "Show line numbers: "
+msgstr ""
+
+msgid "Whereami compatible"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Wrap lines"
+msgstr ""
+
+msgid "Keywords"
+msgstr ""
+
+msgid "Enable keywords colorization"
+msgstr ""
+
+msgid "Set syntax Colors"
+msgstr ""
+
+msgid "Highlight corresponding brackets"
+msgstr ""
+
+msgid "Color: "
+msgstr ""
+
+msgid "Highlight on mouse over"
+msgstr ""
+
+msgid "Style: "
+msgstr ""
+
+msgid "Filled"
+msgstr ""
+
+msgid "Framed"
+msgstr ""
+
+msgid "Underlined"
+msgstr ""
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr ""
+
+msgid "Tabulation and Indentation"
+msgstr ""
+
+msgid "Tabulation size: "
+msgstr ""
+
+msgid "Use space"
+msgstr ""
+
+msgid "Representation: "
+msgstr ""
+
+msgid "Chevrons"
+msgstr ""
+
+msgid "Horizontal rule"
+msgstr ""
+
+msgid "Vertical rule"
+msgstr ""
+
+msgid "Enable auto indentation"
+msgstr ""
+
+msgid "Indent size: "
+msgstr ""
+
+msgid "Enable autosave in Scinotes"
+msgstr ""
+
+msgid "Save options"
+msgstr ""
+
+msgid "Save every "
+msgstr ""
+
+msgid " minutes "
+msgstr ""
+
+msgid "Close options"
+msgstr ""
+
+msgid "Delete automatically saved files"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Append filename with: "
+msgstr ""
+
+msgid "Replace extension with: "
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Source file directory"
+msgstr ""
+
+msgid "Single directory"
+msgstr ""
+
+msgid "Choose an autosave directory"
+msgstr ""
+
+msgid "Default header"
+msgstr ""
+
+msgid "Add a default header to new file"
+msgstr ""
+
 msgid "Graphics handle field"
 msgstr ""
 
@@ -358,10 +510,10 @@ msgstr ""
 msgid "You do not have the permissions to read this file"
 msgstr ""
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr ""
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr ""
 
 msgid "Tools"
@@ -404,6 +556,12 @@ msgid "No Line Numbering"
 msgstr ""
 
 msgid "Set Colors"
+msgstr ""
+
+msgid "Set Font"
+msgstr ""
+
+msgid "Reset default font"
 msgstr ""
 
 msgid "Split horizontally"
@@ -517,7 +675,6 @@ msgstr ""
 msgid "Replace All"
 msgstr ""
 
-#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -533,11 +690,9 @@ msgstr ""
 msgid "You have reached the beginning of the document"
 msgstr ""
 
-#, c-format
 msgid "String %s not found"
 msgstr ""
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -556,7 +711,6 @@ msgstr ""
 " 儲存後又再修正\n"
 "儲存"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -637,14 +791,12 @@ msgstr ""
 msgid "Show the definition of the macro "
 msgstr ""
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Unknown function"
 msgstr ""
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
@@ -660,7 +812,6 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr ""
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%目錄"
 
@@ -685,7 +836,6 @@ msgstr ""
 msgid "No text to execute."
 msgstr ""
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -694,6 +844,15 @@ msgid "Encoding problems"
 msgstr ""
 
 msgid "Cannot guess the file encoding."
+msgstr ""
+
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+
+msgid "Backup finished..."
+msgstr ""
+
+msgid "%s occurences found."
 msgstr ""
 
 msgid "Change Colors"
@@ -780,6 +939,9 @@ msgstr ""
 msgid "Restore the last sessions"
 msgstr ""
 
+msgid "Configure Tabulation"
+msgstr ""
+
 msgid "Tab style"
 msgstr ""
 
@@ -790,12 +952,6 @@ msgid "Length"
 msgstr ""
 
 msgid "Tab representation"
-msgstr ""
-
-msgid "Horizontal rule"
-msgstr ""
-
-msgid "Vertical rule"
 msgstr ""
 
 msgid "Double chevrons"
@@ -813,15 +969,12 @@ msgstr ""
 msgid "Search in Files..."
 msgstr ""
 
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr ""
 

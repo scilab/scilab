@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ss2tf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ss2tf</refname>
     <refpurpose> 状態空間から伝達関数への変換</refpurpose>
@@ -21,16 +18,16 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[h]=ss2tf(sl)
-[Ds,NUM,chi]=ss2tf(sl)
-
-[h]=ss2tf(sl,"b")
-[Ds,NUM,chi]=ss2tf(sl,"b")
-
-
-[h]=ss2tf(sl,rmax)
-[Ds,NUM,chi]=ss2tf(sl,rmax)
-
-</synopsis>
+      [Ds,NUM,chi]=ss2tf(sl)
+      
+      [h]=ss2tf(sl,"b")
+      [Ds,NUM,chi]=ss2tf(sl,"b")
+      
+      
+      [h]=ss2tf(sl,rmax)
+      [Ds,NUM,chi]=ss2tf(sl,rmax)
+      
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -38,7 +35,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,21 +55,25 @@
       分子多項式行列 <literal>NUM</literal>, 
       特性方程式 <literal>chi</literal>および
       多項式部分 <literal>Ds</literal> が別々に得られる.
-      すなわち: </para>
-    <programlisting role = ""><![CDATA[ 
+      すなわち: 
+    </para>
+    <programlisting role=""><![CDATA[ 
 h = NUM/chi + Ds
  ]]></programlisting>
     <para>
-    手法:</para>
+      手法:
+    </para>
     <para>
-     特性多項式と
-     <literal>det(A+Eij)=det(A)+C(i,j)</literal> が使用される.
-     ただし,<literal>C</literal> は <literal>A</literal>の随伴行列である.</para>
+      特性多項式と
+      <literal>det(A+Eij)=det(A)+C(i,j)</literal> が使用される.
+      ただし,<literal>C</literal> は <literal>A</literal>の随伴行列である.
+    </para>
     <para>
       <literal>rmax</literal> または引数 <literal>"b"</literal> を指定した場合,
       sl.A のブロック対角化を行い,このブロックに
       "Leverrier" アルゴリズムを適用する.
-      指定した場合, <literal>rmax</literal> は条件数を制御する (bdiag参照).</para>
+      指定した場合, <literal>rmax</literal> は条件数を制御する (bdiag参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="p_margin">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>p_margin</refname>
     <refpurpose>phase margin  and associated crossover frequency</refpurpose>
@@ -31,7 +28,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>a SISO linear system (see :<link linkend="syslin">syslin</link>).</para>
+          <para>
+            a SISO linear system (see :<link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,34 +50,33 @@
   <refsection>
     <title>Description</title>
     <para>Given a SISO linear system in continuous or discrete time,
-    <literal>p_margin</literal> returns <literal>phm</literal>, the
-    phase margin in degree of <literal>h</literal> and
-    <literal>fr</literal>, the achieved corresponding frequency in
-    hz.</para>
-
+      <literal>p_margin</literal> returns <literal>phm</literal>, the
+      phase margin in degree of <literal>h</literal> and
+      <literal>fr</literal>, the achieved corresponding frequency in
+      hz.
+    </para>
     <para>The phase margin is the values of the phase at frequency
-    points where the nyquist plot of <literal>h</literal> crosses the
-    unit circle. In other words the phase margin is the difference
-    between the phase of the frequency response of
-    <literal>h</literal> and -180° when the gain of
-    <literal>h</literal> is 1.</para>
+      points where the nyquist plot of <literal>h</literal> crosses the
+      unit circle. In other words the phase margin is the difference
+      between the phase of the frequency response of
+      <literal>h</literal> and -180° when the gain of
+      <literal>h</literal> is 1.
+    </para>
     <para>The algorithm uses polynomial root finder to solve the equations:</para>
     <variablelist>
       <varlistentry>
-	<term>h(s)*h(-s)=1</term>
+        <term>h(s)*h(-s)=1</term>
         <listitem>
           <para> for the continuous time case.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-	<term>h(z)*h(1/z)=1</term>
+        <term>h(z)*h(1/z)=1</term>
         <listitem>
           <para> for the discrete time case.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-
-
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -96,19 +94,29 @@ show_margins(h,'nyquist')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="g_margin">p_margin</link></member>
-      <member><link linkend="show_margins">show_margins</link></member>
-      <member><link linkend="repfreq">repfreq</link></member>
-      <member><link linkend="black">black</link></member>
-      <member><link linkend="bode">bode</link></member>
-      <member><link linkend="chart">chart</link></member>
-      <member><link linkend="nyquist">nyquist</link></member>
+      <member>
+        <link linkend="g_margin">p_margin</link>
+      </member>
+      <member>
+        <link linkend="show_margins">show_margins</link>
+      </member>
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="chart">chart</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer, INRIA  </para>
   </refsection>
 </refentry>

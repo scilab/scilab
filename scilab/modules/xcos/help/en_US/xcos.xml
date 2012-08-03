@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  *
@@ -48,19 +48,22 @@
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">filename : </emphasis> a character string containing the path of the diagram file
+        <para>
+          <emphasis role="bold">filename : </emphasis> a character string containing the path of the diagram file
           (.cos, .cosf or .xcos extension). If no input argument is used, an empty diagram is opened (default name Untitled).
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">scs_m_list : </emphasis>a <emphasis>Xcos</emphasis> diagram structure after edition.
+        <para>
+          <emphasis role="bold">scs_m_list : </emphasis>a <emphasis>Xcos</emphasis> diagram structure after edition.
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Description_xcos">
     <title>Description</title>
-    <para><emphasis>Xcos</emphasis> is a graphical editor for constructing models of hybrid dynamical systems.
+    <para>
+      <emphasis>Xcos</emphasis> is a graphical editor for constructing models of hybrid dynamical systems.
       Models can then be assembled, loaded, saved, compiled, simulated, using GUI of
       <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> serves as an interface to the
       various block diagram compilers and the hybrid simulator <link linkend="scicosim">scicosim</link>
@@ -104,14 +107,18 @@
     <para/>
     <para>
       Invoking xcos with the toolbar icon
-      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/images/icons/32x32/apps/utilities-system-monitor.png"/>
+        </imageobject>
+      </inlinemediaobject>
       , with the <emphasis>Xcos</emphasis> menu item in <emphasis>Applications</emphasis> of the Scilab main window,
       or as the following example opens up the empty <emphasis>Xcos</emphasis> window of edition shown below.
     </para>
     <para/>
     <programlisting role="example">
-        xcos
-      </programlisting>
+      xcos
+    </programlisting>
     <para/>
     <mediaobject>
       <imageobject>
@@ -142,11 +149,11 @@ scs_m.objs(1).graphics.sz = [30 50];
 
 xcos(scs_m);]]></programlisting>
     <para>
-       where <emphasis>scs_m</emphasis> is the diagram structure of <emphasis>bounce.xcos</emphasis>.
+      where <emphasis>scs_m</emphasis> is the diagram structure of <emphasis>bounce.xcos</emphasis>.
     </para>
     <para>
       You build your models by linking the blocks provided in the palette browser simultaneously opened with
-       <emphasis>Xcos</emphasis> editor. This window has the following appearance
+      <emphasis>Xcos</emphasis> editor. This window has the following appearance
     </para>
     <para/>
     <mediaobject>
@@ -166,10 +173,8 @@ xcos(scs_m);]]></programlisting>
         <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
       </imageobject>
     </mediaobject>
-    
     <para>Xcos requires a C compiler for simulation acceleration.</para>
     <para>It is recommended that you install a supported compiler on your machine.</para>
-
   </refsection>
   <refsection id="SeeAlso_xcos">
     <title role="see also">See Also</title>
@@ -187,12 +192,5 @@ xcos(scs_m);]]></programlisting>
         <link linkend="supported_compilers">Supported compilers</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>DIGITEO</member>
-      <member>Bernard DUJARDIN - Contributor</member>
-    </simplelist>
   </refsection>
 </refentry>

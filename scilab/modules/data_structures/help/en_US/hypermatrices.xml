@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hypermatrices">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hypermatrices</refname>
     <refpurpose> Scilab object, N dimensional matrices in Scilab</refpurpose>
@@ -21,23 +18,29 @@
   <refsection>
     <title>Description</title>
     <para>
-    Hypermatrix type allows to manipulate multidimensional arrays</para>
+      Hypermatrix type allows to manipulate multidimensional arrays
+    </para>
     <para>
-    They can be defined by extension of 2D matrices as follows
-    a=[1 2;3 4];a(:,:,2)=rand(2,2)</para>
+      They can be defined by extension of 2D matrices as follows
+      a=[1 2;3 4];a(:,:,2)=rand(2,2)
+    </para>
     <para>
-    or directly using <literal>hypermat</literal> function</para>
+      or directly using <literal>hypermat</literal> function
+    </para>
     <para>
-    Entries  can be real or complex numbers, polynomials,
-    rationals, strings, booleans.</para>
+      Entries  can be real or complex numbers, polynomials,
+      rationals, strings, booleans.
+    </para>
     <para>
-    Hypermatrices are <literal>mlists</literal>:
-    <literal>mlist(['hm','dims','entries'],sz,v)</literal> where <literal>sz</literal> is the row
-    vector of dimensions and <literal>v</literal> the column vector of entries (first
-      dimension are stored first)</para>
+      Hypermatrices are <literal>mlists</literal>:
+      <literal>mlist(['hm','dims','entries'],sz,v)</literal> where <literal>sz</literal> is the row
+      vector of dimensions and <literal>v</literal> the column vector of entries (first
+      dimension are stored first)
+    </para>
     <para>NOTES: The number of dimension of hypermatrices with right-most sizes equal to
       1 are automatically reduced. An hypermatrix with only two dimensions is
-      automatically changed to a regular matrix (type 1).</para>
+      automatically changed to a regular matrix (type 1).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -55,7 +58,7 @@ type(a(:,:,1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermat">hypermat</link>

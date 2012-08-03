@@ -1,0 +1,32 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- Non-regression test for bug 4751 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4751
+//
+// <-- Short Description -->
+// cat failed for large vector concatenation
+A = ones(50, 50) * 2;
+B = A * 4;
+R = cat(1, A, B);
+assert_checkequal(size(R), [100 50]);
+R = cat(2, A, B);
+assert_checkequal(size(R), [50 100]);
+A = ones(4000, 1) * 2;
+B = A * 4;
+R = cat(1, A, B);
+assert_checkequal(size(R), [8000 1]);
+R = cat(2, A, B);
+assert_checkequal(size(R), [4000 2]);
+A = ones(1, 4000) * 2;
+B = A * 4;
+R = cat(1, A, B);
+assert_checkequal(size(R), [2 4000]);
+R = cat(2, A, B);
+assert_checkequal(size(R), [1 8000]);

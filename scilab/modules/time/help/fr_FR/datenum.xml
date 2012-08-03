@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="datenum">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>datenum</refname>
     <refpurpose>Convertie une date en un nombre</refpurpose>
@@ -21,37 +18,38 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>N = datenum()
-N = datenum(DT)
-N = datenum(Y, M, D)
-N = datenum(Y, M, D, H, MI, S)</synopsis>
+      N = datenum(DT)
+      N = datenum(Y, M, D)
+      N = datenum(Y, M, D, H, MI, S)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			La fonction datenum convertie une date en un nombre lui correspondant.
-			Ce nombre correspond au nombre de jours passe depuis une date reference.
-			Par defaut, cette date est le 1-Jan-0000.
-		</para>
+      La fonction datenum convertie une date en un nombre lui correspondant.
+      Ce nombre correspond au nombre de jours passe depuis une date reference.
+      Par defaut, cette date est le 1-Jan-0000.
+    </para>
     <para>
-			N = datenum() retourne le nombre correspondant a la date courante.
-		</para>
+      N = datenum() retourne le nombre correspondant a la date courante.
+    </para>
     <para>
-			N = datenum(DT) retourne le nombre correspondant a la date représentée par
-			la matrice DT. DT est soit une matrice m * 3 ou une matrice m * 6 contenant
-			respectivement une date entiere (annee,mois,jour,heure,minute,seconde) ou une
-			date partielle (annee,mois,jour).
-		</para>
+      N = datenum(DT) retourne le nombre correspondant a la date représentée par
+      la matrice DT. DT est soit une matrice m * 3 ou une matrice m * 6 contenant
+      respectivement une date entiere (annee,mois,jour,heure,minute,seconde) ou une
+      date partielle (annee,mois,jour).
+    </para>
     <para>
-			N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
-			M, D (annee, mois, jour). Y, M et D peuvent être des matrices de même
-			dimensions ou de simples scalaires.
-		</para>
+      N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
+      M, D (annee, mois, jour). Y, M et D peuvent être des matrices de même
+      dimensions ou de simples scalaires.
+    </para>
     <para>
-			N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
-			elements Y, M, D, H, MI, et S (annee, mois, jour, heure, minute, et
-			seconde).Y, M, D, H, MI, et S peuvent être des matrices de même
-			dimensions ou de simples scalaires.
-		</para>
+      N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
+      elements Y, M, D, H, MI, et S (annee, mois, jour, heure, minute, et
+      seconde).Y, M, D, H, MI, et S peuvent être des matrices de même
+      dimensions ou de simples scalaires.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -86,7 +84,7 @@ datenum(Annees,Mois,Jours,Heures,Minutes,Secondes)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="datevec">datevec</link>
@@ -94,12 +92,6 @@ datenum(Annees,Mois,Jours,Heures,Minutes,Secondes)
       <member>
         <link linkend="calendar">calendar</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -11,10 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom">
   <refnamediv>
     <refname>unzoom</refname>
     <refpurpose> unzoom graphics</refpurpose>
@@ -22,7 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>unzoom()
-unzoom(H)</synopsis>
+      unzoom(H)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -37,12 +35,15 @@ unzoom(H)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
-      current graphic figure: </para>
-    <para><literal>unzoom(H)</literal> is used to remove the zoom effect for all the
-	    Figures and Axes given by the vector of handles <literal>H</literal>.
-	    Removing zoom effect for a Figure is the equivalent of removing zoom effect
-	    on all its Axes children.
+    <para>
+      <literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
+      current graphic figure: 
+    </para>
+    <para>
+      <literal>unzoom(H)</literal> is used to remove the zoom effect for all the
+      Figures and Axes given by the vector of handles <literal>H</literal>.
+      Removing zoom effect for a Figure is the equivalent of removing zoom effect
+      on all its Axes children.
     </para>
   </refsection>
   <refsection>
@@ -72,7 +73,7 @@ unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="zoom_rect">zoom_rect</link>
@@ -81,10 +82,5 @@ unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
         <link linkend="axes_properties">axes_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer INRIA </para>
-    <para>Jean-Baptiste Silvy INRIA </para>
   </refsection>
 </refentry>

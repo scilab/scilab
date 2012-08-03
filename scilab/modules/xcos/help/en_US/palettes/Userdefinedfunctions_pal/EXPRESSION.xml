@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -76,11 +76,6 @@
               <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_EXPRESSION">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,8 +93,8 @@
   <refsection id="Description_EXPRESSION">
     <title>Description</title>
     <para>
-The Expression block applies the specified Scilab expressions to its input.
-</para>
+      The Expression block applies the specified Scilab expressions to its input.
+    </para>
   </refsection>
   <refsection id="Dialogbox_EXPRESSION">
     <title>Dialog box</title>
@@ -111,8 +106,8 @@ The Expression block applies the specified Scilab expressions to its input.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -141,16 +136,24 @@ The Expression block applies the specified Scilab expressions to its input.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -172,19 +175,29 @@ The Expression block applies the specified Scilab expressions to its input.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -197,11 +210,11 @@ The Expression block applies the specified Scilab expressions to its input.
   <refsection id="Example_EXPRESSION">
     <title>Example</title>
     <para>
-        The following example calculate an arbitrary expression with multiple different configuration or blocks.
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos">
-          Open this example in Xcos
-        </link>
-      </para>
+      The following example calculate an arbitrary expression with multiple different configuration or blocks.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos">
+        Open this example in Xcos
+      </link>
+    </para>
     <para>
       <latex>y=u(1) - u(2) - u(3)</latex>
     </para>
@@ -224,10 +237,5 @@ The Expression block applies the specified Scilab expressions to its input.
         <para> SCI/modules/scicos_blocks/macros/Misc/EXPRESSION.sci</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_EXPRESSION">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

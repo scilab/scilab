@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="htrianr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>htrianr</refname>
     <refpurpose>多項式行列の三角化</refpurpose>
@@ -46,7 +43,9 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>整数, <literal>A</literal>の通常ランク</para>
+          <para>
+            整数, <literal>A</literal>の通常ランク
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,13 +53,17 @@
   <refsection>
     <title>説明</title>
     <para>
-    多項式行列 <literal>A</literal>の三角化.</para>
-    <para><literal>A</literal> は <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>です.</para>
+      多項式行列 <literal>A</literal>の三角化.
+    </para>
+    <para>
+      <literal>A</literal> は <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>です.
+    </para>
     <para>
       <literal>Ar=A*U</literal>
     </para>
     <para>
-    警告: "小さい"項の削除が行われます(関数コードを参照).</para>
+      警告: "小さい"項の削除が行われます(関数コードを参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

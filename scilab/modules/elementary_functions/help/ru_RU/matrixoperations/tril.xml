@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tril" xml:lang="ru">
+  <refnamediv>
+    <refname>tril</refname>
+    <refpurpose>нижняя треугольная часть матрицы</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>tril(x [,k])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+            матрица (вещественных, комплексных, полиномиальных, рациональных значений)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>целое число (по умолчанию 0)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Нижняя треугольная часть матрицы. <literal>tril(x,k)</literal> сделана из элементов 
+      ниже k-той диагонали: k&gt;0 (верхняя диагональ) и k&lt;0 (диагонали ниже главной 
+      диагонали).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+tril([s,s;s,1])
+tril([1/s,1/s;1/s,1])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="triu">triu</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="eye">eye</link>
+      </member>
+      <member>
+        <link linkend="diag">diag</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

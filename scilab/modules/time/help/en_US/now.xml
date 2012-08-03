@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="now">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>now</refname>
     <refpurpose>Return current date and time</refpurpose>
@@ -24,7 +21,9 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>t = now() returns date and time as a serial date number. (See <link linkend="datenum">datenum</link>)</para>
+    <para>
+      t = now() returns date and time as a serial date number. (See <link linkend="datenum">datenum</link>)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -39,7 +38,7 @@ datevec(t1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clock">clock</link>
@@ -50,12 +49,6 @@ datevec(t1)
       <member>
         <link linkend="datevec">datevec</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

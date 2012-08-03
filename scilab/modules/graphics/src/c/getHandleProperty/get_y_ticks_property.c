@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,43 +28,54 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
-int get_y_ticks_property( sciPointObj * pobj )
+int get_y_ticks_property(void* _pvCtx, char* pobjUID)
 {
-  
-  int nbTicks;
+    int iNbTicks = 0;
+    int *piNbTicks = &iNbTicks;
 
-  if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
-    return -1 ;
-  }
+    /* retrieve number of ticks */
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
 
-  /* retrieve number of ticks */
-  nbTicks = sciGetNbYTicks(pobj);
-  if (nbTicks == 0)
-  {
-    /* return empty matrices */
-    buildTListForTicks( NULL, NULL, 0) ;
-  }
-  else
-  {
-    char ** labels;
-    double * positions;
-    /* allocate arrays */
-    positions = MALLOC(nbTicks * sizeof(double));
-    labels = createStringArray(nbTicks);
+    if (piNbTicks == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
+        return -1;
+    }
 
-    sciGetYTicksPos(pobj, positions, labels);
+    if (iNbTicks == 0)
+    {
+        /* return empty matrices */
+        buildTListForTicks( NULL, NULL, 0);
+    }
+    else
+    {
+        char ** labels = NULL;
+        double * positions = NULL;
 
-    buildTListForTicks( positions, labels, nbTicks ) ;
+        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
-    /* free arrays */
-    destroyStringArray(labels, nbTicks);
-    FREE(positions);
-  }
+        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
-  return 0;
+        if (positions == NULL || labels == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
+            return -1;
+        }
+
+        buildTListForTicks( positions, labels, iNbTicks ) ;
+
+        /* free arrays */
+#if 0
+        destroyStringArray(labels, iNbTicks);
+        FREE(positions);
+#endif
+    }
+
+    return 0;
 
 }
 /*------------------------------------------------------------------------*/

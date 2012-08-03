@@ -72,10 +72,10 @@ int error_internal(int *n, char *buffer)
         len = (int)strlen(buffer);
 
         /* free message table */
-        clearLastError();
+        clearInternalLastError();
 
         /* store error number */
-        setLastErrorValue(*n);
+        setInternalLastErrorValue(*n);
 
         /* store message */
 

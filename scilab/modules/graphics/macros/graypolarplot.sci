@@ -16,7 +16,6 @@ if rhs<=0 then
   f=gcf();
   f.color_map=hotcolormap(128);
   f.background= 128;
-  f.foreground=1;
   a=gca();
   a.background= 128;
   a.foreground=1;

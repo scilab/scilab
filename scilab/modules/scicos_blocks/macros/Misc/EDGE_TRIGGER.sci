@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,8 +31,14 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  // paths to updatable parameters or states
-  ppath = list(1)
+  // look for the internal edge trigger block
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "EDGETRIGGER" then
+      ppath = list(i);
+      break;
+    end
+  end
   newpar=list();
   y=0;
   for path=ppath do
@@ -111,9 +117,9 @@ tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [288.58631,257.1131],[60,40],%t,"0",5,3,[],[],..
+                [288.58631,257.1131],[60,40],%t,0,"0",5,3,[],[],..
                 list(..
                 "xstringb(orig(1),orig(2),[''Edge'';''trigger''],sz(1),sz(2),''fill'');",..
                 8),"","E","E"),..
@@ -126,9 +132,9 @@ scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
                 [],[%t,%f],"",1,0,list()),"EDGETRIGGER",list())
 scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [388.28869,247.1131],[60,60],%t,["0";"0"],3,[],[],[7;0],..
+                [388.28869,247.1131],[60,60],%t,0,["0";"0"],3,[],[],[7;0],..
                 list(..
                 ["txt=[''If in>0'';'' '';'' then    else''];";
                 "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"","E",..
@@ -144,9 +150,9 @@ scs_m_1.objs(3)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 "drawlink",[0,0],[1,1],[1,1,0],[2,1,1])
 scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [240.01488,267.1131],[20,20],%t,"1",[],5,[],[],list(" ",8),"",[],..
+                [240.01488,267.1131],[20,20],%t,0,"1",[],5,[],[],list(" ",8),"",[],..
                 "E"),..
                 mlist(..
                 ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
@@ -159,9 +165,9 @@ scs_m_1.objs(5)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 [4,1,0],[1,1,1])
 scs_m_1.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
-                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                 "peout","gr_i","id","in_implicit","out_implicit"],..
-                [398.28869,181.39881],[20,30],%t,"1",[],[],7,[],list(" ",8),"",..
+                [398.28869,181.39881],[20,30],%t,0,"1",[],[],7,[],list(" ",8),"",..
                 [],[]),..
                 mlist(..
                 ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..

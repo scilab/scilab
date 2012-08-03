@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2001 - INRIA - Serge Steer
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -67,7 +68,7 @@ t1=log(1+%i)/dt;
 t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
-assert_checkalmostequal (wn,wnref);
+assert_checkalmostequal (wn,wnref, 0, 1D-14);
 assert_checkalmostequal (zeta(2:$),zetaref(2:$));
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
@@ -75,7 +76,7 @@ assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 [wn,zeta]=damp(syslin('c',ones(1,3),P));
 wnref=[0;1;sqrt(2);sqrt(2);2;sqrt(13);sqrt(13)];
 zetaref=[-1;-1;-sqrt(2)/2;-sqrt(2)/2;-1;-2/sqrt(13);-2/sqrt(13)];
-assert_checkalmostequal (wn,wnref);
+assert_checkalmostequal (wn,wnref, 0, 1D-14);
 assert_checkalmostequal (zeta(2:$),zetaref(2:$));
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
@@ -85,7 +86,7 @@ t1=log(1+%i)/dt;
 t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
-assert_checkalmostequal (wn,wnref);
+assert_checkalmostequal (wn,wnref,0, 1D-14);
 assert_checkalmostequal (zeta(2:$),zetaref(2:$));
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
@@ -103,7 +104,7 @@ t1=log(1+%i)/dt;
 t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
-assert_checkalmostequal (wn,wnref) ;
+assert_checkalmostequal (wn, wnref, 0, 1D-14) ;
 assert_checkalmostequal (zeta(2:$),zetaref(2:$)) ;
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 

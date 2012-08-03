@@ -19,27 +19,28 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
 sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c
 
-libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscispreadsheet_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/c/ripole \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/io/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la
 
-libscispreadsheet_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscispreadsheet_algo_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(RIPOLE_SOURCES)
 libscispreadsheet_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscispreadsheet_algo_la_CFLAGS = $(libscispreadsheet_la_CFLAGS)
+libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
-INCLUDE_FLAGS = $(libscispreadsheet_la_CFLAGS)
+INCLUDE_FLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
 

@@ -48,12 +48,27 @@
     <ClCompile Include="sci_gateway\c\sci_zneupd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\eigs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\eigs_dependencies.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_eigs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_arnoldi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\gw_arnoldi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\eigs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\eigs_dependencies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,14 +78,14 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\arnoldi.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="arnoldi.iss" />
     <None Include="sci_gateway\arnoldi_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="locales\arnoldi.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

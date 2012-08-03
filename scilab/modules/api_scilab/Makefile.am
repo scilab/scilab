@@ -6,7 +6,7 @@
 ### SOURCES ###
 
 
-API_SCILAB_CPP_SOURCES = src/cpp/api_boolean.cpp \
+API_SCILAB_CXX_SOURCES = src/cpp/api_boolean.cpp \
 src/cpp/api_boolean_sparse.cpp \
 src/cpp/api_common.cpp \
 src/cpp/api_double.cpp \
@@ -19,34 +19,30 @@ src/cpp/api_pointer.cpp \
 src/cpp/api_error.cpp
 
 
-libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/core/includes \
--I$(top_srcdir)/modules/call_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/string/includes
-
 libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/core/includes \
--I$(top_srcdir)/modules/call_scilab/includes \
+-I$(top_srcdir)/modules/core/includes/ \
+-I$(top_srcdir)/modules/call_scilab/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+$(AM_CPPFLAGS)
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciapi_scilab.la
+else
+noinst_LTLIBRARIES = libsciapi_scilab.la
+endif
 
-libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES)
+
+libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)
-INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciapi_scilab_la_CPPFLAGS) 
 
 libsciapi_scilab_la_LIBADD =  
 #

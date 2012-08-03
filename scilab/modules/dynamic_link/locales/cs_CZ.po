@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-02 15:19+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2012-04-06 19:11+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -185,6 +185,12 @@ msgstr "Propojení %s.\n"
 msgid "Dynamic link"
 msgstr "Dynamické propojení"
 
+msgid "Call a C function"
+msgstr "Zavolat funkci C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Zavolat podprogram Fortran"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
@@ -211,6 +217,13 @@ msgstr "%s: Funkce není v Microsoft Windows dostupná.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
+"Díky tomu, že v Unixovém světě jsou kompilátory od více dodavatelů je funkce "
+"'haveacompiler' podporována pouze ve Windows."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -343,6 +356,14 @@ msgstr ""
 "   %s: Nezkopírováno %s: Zdrojové a cílové složky jsou stejné (%s).\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáván existující soubor(y). "
+"Zadáno: %s\n"
+
+#, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr "   %s: Soubor %s ignorován.\n"
 
@@ -423,6 +444,10 @@ msgstr "%s: Chyba při spuštění %s.\n"
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr "%s: Tato funkce vyžadovala kompilátor C z Microsoft visual studio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

@@ -42,22 +42,24 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
-libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libscirandlib_la_CPPFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/localization/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscirandlib.la
 noinst_LTLIBRARIES = libscirandlib-algo.la
 
-libscirandlib_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscirandlib_algo_la_SOURCES = $(RANDLIB_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 libscirandlib_la_SOURCES = $(GATEWAY_C_SOURCES) 
-libscirandlib_algo_la_CFLAGS = $(libscirandlib_la_CFLAGS)
+libscirandlib_algo_la_CPPFLAGS = $(libscirandlib_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscirandlib_la_CFLAGS)
+INCLUDE_FLAGS = $(libscirandlib_la_CPPFLAGS)
 
 libscirandlib_la_LIBADD =  libscirandlib-algo.la
 

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // unit tests for fieldnames function
 // =============================================================================
 if fieldnames(1)<>[] then bugmes();quit;end

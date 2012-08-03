@@ -1,0 +1,12 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+getScilabMode
+com_
+freeArrayOfWideString
+getVariablesName
+getcommandkeywords
+GetFunctionsList

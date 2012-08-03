@@ -11,7 +11,7 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-libsciscicos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
+libsciscicos_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
 
 
 include $(top_srcdir)/Makefile.incl.am
@@ -106,32 +106,33 @@ sci_gateway/fortran/sci_f_vec2var.f
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
-libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
+libsciscicos_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/graphics/includes \
-			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/intersci/includes \
-			-I$(top_srcdir)/modules/scicos_blocks/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/time/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+			-I$(top_srcdir)/modules/graphics/includes/ \
+			-I$(top_srcdir)/modules/dynamic_link/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/intersci/includes/ \
+			-I$(top_srcdir)/modules/scicos_blocks/includes/ \
+			-I$(top_srcdir)/modules/action_binding/includes/ \
+			-I$(top_srcdir)/modules/time/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/ \
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials/ \
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida/ \
+			$(AM_CPPFLAGS)
 
 
 libsciscicos_algo_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
 libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciscicos_algo_la_CFLAGS = $(libsciscicos_la_CFLAGS)
+libsciscicos_algo_la_CPPFLAGS = $(libsciscicos_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciscicos_la_CPPFLAGS)
 
 libsciscicos_la_LIBADD = libsciscicos-algo.la libscisundials.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la 
@@ -160,7 +161,10 @@ libsciscicos_la_include_HEADERS = includes/scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
 includes/scicos_malloc.h \
-includes/scicos_math.h
+includes/scicos_math.h \
+includes/dynlib_scicos.h \
+includes/import.h
+
 
 
 #### scicos : cosf files ####
@@ -204,7 +208,7 @@ src/scicos_sundials/src/sundials/sundials_nvector.c \
 src/scicos_sundials/src/sundials/sundials_smalldense.c \
 src/scicos_sundials/src/sundials/sundials_extension.c
 
-libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
+libscisundials_la_CPPFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/cvode \
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/ida \
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/kinsol \
@@ -214,7 +218,8 @@ libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/in
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida \
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/kinsol \
 -I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/nvec_ser \
--I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/sundials
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/sundials \
+$(AM_CPPFLAGS)
 
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
@@ -226,9 +231,10 @@ NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 
-libsciscicos_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/scicos/includes
+libsciscicos_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/scicos/includes/ \
+$(AM_CPPFLAGS)
 
 #### scicos : init scripts ####
 libsciscicos_la_etcdir = $(mydatadir)/etc

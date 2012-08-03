@@ -33,7 +33,6 @@ function [d,ptp,ind,c]=orthProj(data,pt)
   L = sum(X.*X,2); //segment lengths
   nz = find(L>0)
   X = X(nz,:); Y = Y(nz,:);
-
   P = sum(X.*Y,2)./L(nz);
   //the projected point lies in the segment nz(i) if 0 <= P(i)<1
   i_in = find(P >= 0 & P<1); //find segments the projected point falls in

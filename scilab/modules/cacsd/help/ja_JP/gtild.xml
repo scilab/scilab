@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gtild">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gtild</refname>
     <refpurpose>チルダ処理</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>Gt=gtild(G)
-Gt=gtild(G,flag)</synopsis>
+      Gt=gtild(G,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,7 +28,8 @@ Gt=gtild(G,flag)</synopsis>
         <term>G</term>
         <listitem>
           <para>多項式または線形システムのどちらか
-	 (<literal>syslin</literal> リスト) または有理行列</para>
+            (<literal>syslin</literal> リスト) または有理行列
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,8 +41,10 @@ Gt=gtild(G,flag)</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列: <literal>'c'</literal> または
-	 <literal>'d'</literal> のどちらか (オプションのパラメータ).</para>
+          <para>
+            文字列: <literal>'c'</literal> または
+            <literal>'d'</literal> のどちらか (オプションのパラメータ).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,41 +52,47 @@ Gt=gtild(G,flag)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-    <literal>G</literal> は多項式行列 (または多項式), <literal>Gt=gtild(G,'c')</literal>
-    は多項式行列 <literal>Gt(s)=G(-s)'</literal>を返します.</para>
+      <literal>G</literal> は多項式行列 (または多項式), <literal>Gt=gtild(G,'c')</literal>
+      は多項式行列 <literal>Gt(s)=G(-s)'</literal>を返します.
+    </para>
     <para>
-    <literal>G</literal> が多項式行列 (または多項式)の場合,  
-	<literal>Gt=gtild(G,'d')</literal> は多項式行列
-    <literal>Gt=G(1/z)*z^n</literal> を返します.
-	ただし, n は <literal>G</literal> の最大次数です.</para>
+      <literal>G</literal> が多項式行列 (または多項式)の場合,  
+      <literal>Gt=gtild(G,'d')</literal> は多項式行列
+      <literal>Gt=G(1/z)*z^n</literal> を返します.
+      ただし, n は <literal>G</literal> の最大次数です.
+    </para>
     <para>
-	<literal>syslin</literal>リストにより状態空間で表される
-	連続時間システムの場合,
-    <literal>Gt = gtild(G,'c')</literal> は<literal>G(-s)'</literal>の
-	状態空間表現を返します.
-	すなわち, <literal>Gt</literal> の <literal>ABCD</literal> 行列は,
-	<literal>A',-C', B', D'</literal> となります.
-	<literal>G</literal> がプロパーでない場合 
-	(<literal> D= D(s)</literal>) ,
-	<literal>Gt</literal> の <literal>D</literal> 行列は 
-	<literal>D(-s)'</literal> となります.</para>
+      <literal>syslin</literal>リストにより状態空間で表される
+      連続時間システムの場合,
+      <literal>Gt = gtild(G,'c')</literal> は<literal>G(-s)'</literal>の
+      状態空間表現を返します.
+      すなわち, <literal>Gt</literal> の <literal>ABCD</literal> 行列は,
+      <literal>A',-C', B', D'</literal> となります.
+      <literal>G</literal> がプロパーでない場合 
+      (<literal> D= D(s)</literal>) ,
+      <literal>Gt</literal> の <literal>D</literal> 行列は 
+      <literal>D(-s)'</literal> となります.
+    </para>
     <para>
-	<literal>syslin</literal>リストにより状態空間で表される
-	離散時間システムの場合,
-    <literal>Gt = gtild(G,'d')</literal> は<literal>G(-1/z)'</literal>
-	の状態空間表現,
-	すなわち, (プロパーでない場合もある)
-	<literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>の状態空間表現,
-	を返します.</para>
+      <literal>syslin</literal>リストにより状態空間で表される
+      離散時間システムの場合,
+      <literal>Gt = gtild(G,'d')</literal> は<literal>G(-1/z)'</literal>
+      の状態空間表現,
+      すなわち, (プロパーでない場合もある)
+      <literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>の状態空間表現,
+      を返します.
+    </para>
     <para>
-	有理行列の場合, <literal>Gt = gtild(G,'c')</literal> は
-	誘致行列 <literal>Gt(s)=G(-s)</literal> を返し,
-	<literal>Gt = gtild(G,'d')</literal> は有理行列 
-	<literal>Gt(z)= G(1/z)'</literal> を返します.</para>
+      有理行列の場合, <literal>Gt = gtild(G,'c')</literal> は
+      誘致行列 <literal>Gt(s)=G(-s)</literal> を返し,
+      <literal>Gt = gtild(G,'d')</literal> は有理行列 
+      <literal>Gt(z)= G(1/z)'</literal> を返します.
+    </para>
     <para>
-    パラメータ <literal>flag</literal> は,
-	多項式引数を指定して<literal>gtild</literal>がコール
-	される場合に必要です.</para>
+      パラメータ <literal>flag</literal> は,
+      多項式引数を指定して<literal>gtild</literal>がコール
+      される場合に必要です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

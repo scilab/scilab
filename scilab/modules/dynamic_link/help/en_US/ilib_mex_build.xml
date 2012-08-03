@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_mex_build">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>ilib_mex_build</refname>
     <refpurpose> utility for mex library management</refpurpose>
@@ -68,12 +65,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is used to create mex libraries and to generate a 
-    loader file which can be used to dynamically load the mex shared library.
+      This function is used to create mex libraries and to generate a 
+      loader file which can be used to dynamically load the mex shared library.
     </para>
-	<para>
-	Note that the file name containing the mex code can be set in the third input argument (<literal>files</literal>) or the second value of the <literal>table</literal> input argument.</para>
-	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
+    <para>
+      Note that the file name containing the mex code can be set in the third input argument (<literal>files</literal>) or the second value of the <literal>table</literal> input argument.
+    </para>
+    <para>
+      <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -93,7 +93,7 @@ mexf16(rand(2,3,2));
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>
@@ -116,7 +116,9 @@ mexf16(rand(2,3,2));
       <member>
         <link linkend="ilib_for_link">ilib_for_link</link>
       </member>
-      <member><link linkend="api_scilab">api_scilab</link></member>
+      <member>
+        <link linkend="api_scilab">api_scilab</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

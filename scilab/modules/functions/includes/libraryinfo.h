@@ -25,7 +25,7 @@ FUNCTIONS_SCILAB_IMPEXP char *getlibrarypath(char *libraryname);
 * get macros list in a scilab's library
 * @param[in] name of scilab library
 * @param[out] size of array returned
-* @return a array of string (macros list)
+* @return an array of string (macros list)
 */
 FUNCTIONS_SCILAB_IMPEXP char **getlistmacrosfromlibrary(char *libraryname,int *sizearray);
 

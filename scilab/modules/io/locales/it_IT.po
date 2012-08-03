@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
 
 #, c-format
@@ -44,6 +44,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un int.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -84,6 +88,37 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: La variabile d'ambiente %s non è definita.\n"
 
 #, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
+msgstr ""
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "La variabile d'ambiente %s non è definita.\n"
 
@@ -110,8 +145,28 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "errore non gestito da v2cunit.\n"
 
 #, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

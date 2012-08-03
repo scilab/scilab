@@ -10,82 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="list_getlistitemaddress_API"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="list_getlistitemaddress_API" xml:lang="en">
+  <refnamediv>
+    <refname>Get child item (Scilab gateway)</refname>
+    <refpurpose>
+      How to get the address of a list child.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>_pvCtx</term>
+        <listitem>
+          <para>
+            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piAddress</term>
+        <listitem>
+          <para>
+            Address of the list.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_iItemNum</term>
+        <listitem>
+          <para>
+            Item number.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>_piItemAddress</term>
+        <listitem>
+          <para>
+            Return address of the item.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SciErr</term>
+        <listitem>
+          <para>
+            Error structure where is stored errors messages history and first error number.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This help describes how to get the address of a list child.</para>
+  </refsection>
+  <refsection>
+    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_list_api.c-->
+    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_list_api.tst-->
+    <!--Lib_name: common_list-->
+    <!--Func_list: common_list-->
+    <title>Gateway Source</title>
+    <programlisting role="code_gateway"><![CDATA[ 
+#include "api_scilab.h"
 
-    <refnamediv>
-        <refname>Get child item (Scilab gateway)</refname>
-
-        <refpurpose>
-            How to get the address of a list child.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-      <title>Calling Sequence</title>
-      <synopsis>SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the list.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iItemNum</term>
-                <listitem>
-                    <para>
-                        Item number.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piItemAddress</term>
-                <listitem>
-                    <para>
-                        Return address of the item.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get the address of a list child.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_list_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_list_api.tst-->
-        <!--Lib_name: common_list-->
-        <!--Func_list: common_list-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
 int get_list_info(int* _piAddress);
 void insert_indent(void);
 
@@ -94,9 +87,9 @@ static int iLocalTab = 0;
 int common_list(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
-    int *piAddr     = NULL;
+    int *piAddr = NULL;
 
-    CheckRhs(1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)
@@ -106,11 +99,9 @@ int common_list(char *fname,unsigned long fname_len)
     }
 
     get_list_info(piAddr);
-
-    LhsVar(1) = 0;
+    AssignOutputVariable(1) = 0;
     return 0;
 }
-
 int get_list_info(int* _piAddress)
 {
     SciErr sciErr;
@@ -128,10 +119,12 @@ int get_list_info(int* _piAddress)
     }
 
     sciprint("List (%d items) -> address : 0x%08X) : \n", iItem, _piAddress);
+
     for(i = 0 ; i < iItem ; i++)
     {
         int iType           = 0;
         int* piAddrChild    = NULL;
+
         sciErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
         if(sciErr.iErr)
         {
@@ -153,6 +146,7 @@ int get_list_info(int* _piAddress)
             iLocalTab++;
             iRet = get_list_info(piAddrChild);
             iLocalTab--;
+
             if(iRet)
             {
                 return 1;
@@ -164,9 +158,9 @@ int get_list_info(int* _piAddress)
             sciprint("Child %d -> address : 0x%08X\n", i + 1, piAddrChild);
         }
     }
+
     return 0;
 }
-
 void insert_indent(void)
 {
     int i = 0;
@@ -176,11 +170,10 @@ void insert_indent(void)
     }
 }
  ]]></programlisting>
-    </refsection>
-
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+  </refsection>
+  <refsection>
+    <title>Scilab test script</title>
+    <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -190,5 +183,5 @@ l6 = uint16([1000,2000,3000]);
 l = list(l1,l2,l3,l6,l4,l5);
 common_list(l)
  ]]></programlisting>
-    </refsection>
+  </refsection>
 </refentry>

@@ -8,8 +8,8 @@ function subdemolist = demo_gateway()
   demopath = get_absolute_file_path("dynamic_link.dem.gateway.sce");
   add_demo(_("Dynamic link"), demopath+"dynamic_link.dem.gateway.sce");
 
-  subdemolist = ["call a C function"             , "call_c.sce" ;
-                "call a fortran subroutine"             , "call_fortran.sce" ;];
+  subdemolist = [_("Call a C function")       , "call_c.sce" ;
+          _("Call a Fortran subroutine")      , "call_fortran.sce" ;];
 
   subdemolist(:,2) = demopath + subdemolist(:,2)
 endfunction

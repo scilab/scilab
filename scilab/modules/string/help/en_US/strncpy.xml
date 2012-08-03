@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strncpy">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>strncpy</refname>
     <refpurpose> Copy characters from strings</refpurpose>
@@ -47,7 +44,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = strncpy(str1,num)</literal> Copies the first num characters of source to destination.</para>
+    <para>
+      <literal>res = strncpy(str1,num)</literal> Copies the first num characters of source to destination.
+    </para>
     <para> num must have same dimensions than str1 or str2 must be a number. </para>
   </refsection>
   <refsection>
@@ -59,7 +58,7 @@ strncpy(['scilab','SciLab';'strncpy','strstr'],[1,2;3,4])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strcat">strcat</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xbasr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xbasr</refname>
     <refpurpose>グラフィックウインドウを再描画する</refpurpose>
@@ -24,11 +21,13 @@
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para><literal>xbasr</literal> は
-	ID <literal>win_num</literal>を有するグラフィックウインドウの
-	内容を再描画するために使用されます.
-	この関数は,ドライバ<literal>"Rec"</literal>でのみ
-	動作します.</para>
+    <para>
+      <literal>xbasr</literal> は
+      ID <literal>win_num</literal>を有するグラフィックウインドウの
+      内容を再描画するために使用されます.
+      この関数は,ドライバ<literal>"Rec"</literal>でのみ
+      動作します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -40,9 +39,5 @@
         <link linkend="replot">replot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

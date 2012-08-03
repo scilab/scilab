@@ -116,7 +116,7 @@ if exists("logfile")==0 then
     mdelete(pathconvert(TMPDIR)+"logfile.dat")
   end
   logfile=file('open',res_path+"m2sci_"+fnam+".log","unknown")
-  save(pathconvert(TMPDIR)+"logfile.dat",logfile)
+  save(pathconvert(TMPDIR)+"logfile.dat", "logfile")
 end
 
 // Output beginning message
@@ -135,7 +135,7 @@ txt=mgetl(fil);
 m2sci_info(gettext("M-file reading: Done"),-1);
 
 //Replace TAB by SPACE
-txt=strsubst(txt,code2str(-40),"")
+txt=strsubst(txt, ascii(9), "");
 
 if txt==[] then
   m2sci_infos(msprintf(gettext("File %s is an empty file.\n"),fil),-1);
@@ -245,7 +245,7 @@ if txt~=[] then
         mdelete(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
       end
       resume_logfile=file('open',res_path+gettext("resume")+"_m2sci_"+fnam+".log",'unknown')
-      save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"),resume_logfile)
+      save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"), "resume_logfile")
     end
        
     //number of matlab reference functions, matlab toolboxes functions, not matlab functions

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="systmat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>systmat</refname>
     <refpurpose>システム行列</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal>リスト) またはディスクリプタシステム</para>
+          <para>
+            線形システム (<literal>syslin</literal>リスト) またはディスクリプタシステム
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,16 +41,18 @@
   <refsection>
     <title>説明</title>
     <para>
-    状態空間形式の線形システムのシステム行列 <literal>Sl</literal> (<literal>syslin</literal> リスト)
-    (ユーティリティ関数).</para>
-    <programlisting role = ""><![CDATA[ 
+      状態空間形式の線形システムのシステム行列 <literal>Sl</literal> (<literal>syslin</literal> リスト)
+      (ユーティリティ関数).
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    離散系の場合(<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> は
-	以下を返します:</para>
-    <programlisting role = ""><![CDATA[ 
+      離散系の場合(<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> は
+      以下を返します:
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>

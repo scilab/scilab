@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -26,8 +26,9 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #endif
-#include "scicos_math.h"
-#include "dynlib_scicos_blocks.h"
+#include <math.h>
+#include <stdlib.h>
+#include "dmmul.h"
 /*--------------------------------------------------------------------------*/ 
 /* Table of constant values */
 static double c_b4 = 1.;
@@ -35,7 +36,7 @@ static double c_b5 = 0.;
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dgemm)(); /* blas routine */
 /*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
+int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
                                int *nc, int *l, int *m, int *n)
 {
     int a_dim1 = 0, a_offset = 0, b_dim1 = 0, b_offset = 0, c_dim1 = 0, c_offset = 0;

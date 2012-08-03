@@ -1,0 +1,11 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+;--------------------------
+; core
+;--------------------------
+getScilabMode
+callFunctionFromGateway
+com_
+freeArrayOfString

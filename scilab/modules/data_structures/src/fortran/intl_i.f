@@ -86,7 +86,12 @@ c     get arg1
       il1=iadr(lstk(top))
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
-
+      if (abs(istk(il1)).eq.1.and.m1.eq.0)  then
+c     .  arg3([])=arg2 -->overloading
+         top=top3
+         fin=-fin
+         return
+      endif
       ilind=iadr(lw)
 c
 c     get room for index list

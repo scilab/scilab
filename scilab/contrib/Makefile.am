@@ -50,6 +50,7 @@ toolbox_skeleton/sci_gateway/fortran/builder_gateway_fortran.sce \
 toolbox_skeleton/sci_gateway/fortran/sci_fsum.c \
 toolbox_skeleton/sci_gateway/c/sci_csub.c \
 toolbox_skeleton/sci_gateway/c/sci_multiplybypi.c \
+toolbox_skeleton/sci_gateway/c/sci_foo.c \
 toolbox_skeleton/sci_gateway/c/sci_csum.c \
 toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
@@ -95,6 +96,7 @@ xcos_toolbox_skeleton/src/c/business.h \
 xcos_toolbox_skeleton/src/c/business_sum.c \
 xcos_toolbox_skeleton/src/cleaner_src.sce \
 xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst \
+xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.dia.ref \
 loader.sce
 
 install-data-local:
@@ -102,9 +104,59 @@ install-data-local:
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/xcos_toolbox_skeleton; \
 	for file in $(SKELETON_FILES) ; do \
-		filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
-		echo "$(mkinstalldirs) -m 755 $$filePath/"; \
-		$(mkinstalldirs) -m 755 $$filePath/; \
-		echo "$(INSTALL_DATA) $$file $$filePath" ; \
-		$(INSTALL_DATA) "$$file" $$filePath; \
+	    filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
+	    echo "$(mkinstalldirs) -m 755 $$filePath/"; \
+	    $(mkinstalldirs) -m 755 $$filePath/; \
+	    echo "$(INSTALL_DATA) $$file $$filePath" ; \
+	    $(INSTALL_DATA) "$$file" $$filePath; \
 	done
+
+mostlyclean-local:
+	rm -rf archives \
+	toolbox_skeleton/cleaner.sce \
+	toolbox_skeleton/help/*/master_help.xml \
+	toolbox_skeleton/help/*/scilab_*_help \
+	toolbox_skeleton/jar \
+	toolbox_skeleton/loader.sce \
+	toolbox_skeleton/macros/lib \
+	toolbox_skeleton/macros/names \
+	toolbox_skeleton/sci_gateway/cpp/cleaner.sce \
+	toolbox_skeleton/sci_gateway/cpp/libskeleton_cpp.c \
+	toolbox_skeleton/sci_gateway/cpp/libskeleton_cpp.* \
+	toolbox_skeleton/sci_gateway/cpp/loader.sce \
+	toolbox_skeleton/sci_gateway/c/cleaner.sce \
+	toolbox_skeleton/sci_gateway/cleaner_gateway.sce \
+	toolbox_skeleton/sci_gateway/c/libskeleton_c.c \
+	toolbox_skeleton/sci_gateway/c/libskeleton_c.* \
+	toolbox_skeleton/sci_gateway/c/loader.sce \
+	toolbox_skeleton/sci_gateway/fortran/cleaner.sce \
+	toolbox_skeleton/sci_gateway/fortran/libskeleton_fortran.c \
+	toolbox_skeleton/sci_gateway/fortran/libskeleton_fortran.* \
+	toolbox_skeleton/sci_gateway/fortran/loader.sce \
+	toolbox_skeleton/sci_gateway/loader_gateway.sce \
+	toolbox_skeleton/src/c/cleaner.sce \
+	toolbox_skeleton/src/c/libcsum.* \
+	toolbox_skeleton/src/c/loader.sce \
+	toolbox_skeleton/src/fortran/cleaner.sce \
+	toolbox_skeleton/src/fortran/libfsum.* \
+	toolbox_skeleton/src/fortran/loader.sce \
+	toolbox_skeleton/unloader.sce \
+	xcos_toolbox_skeleton/cleaner.sce \
+	xcos_toolbox_skeleton/help/*/master_help.xml \
+	xcos_toolbox_skeleton/help/*/scilab_*_help \
+	xcos_toolbox_skeleton/jar \
+	xcos_toolbox_skeleton/loader.sce \
+	xcos_toolbox_skeleton/macros/lib \
+	xcos_toolbox_skeleton/macros/names \
+	xcos_toolbox_skeleton/sci_gateway/cleaner.sce \
+	xcos_toolbox_skeleton/sci_gateway/cleaner_gateway.sce \
+	xcos_toolbox_skeleton/sci_gateway/c/lib \
+	xcos_toolbox_skeleton/sci_gateway/c/libskeleton_c.c \
+	xcos_toolbox_skeleton/sci_gateway/c/loader.sce \
+	xcos_toolbox_skeleton/sci_gateway/c/cleaner.sce \
+	xcos_toolbox_skeleton/sci_gateway/c/libxcos_toolbox_skeleton_c.c \
+	xcos_toolbox_skeleton/sci_gateway/c/libxcos_toolbox_skeleton_c.* \
+	xcos_toolbox_skeleton/src/c/cleaner.sce \
+	xcos_toolbox_skeleton/src/c/libxcos_tbx_skel.* \
+	xcos_toolbox_skeleton/src/c/loader.sce \
+	xcos_toolbox_skeleton/unloader.sce

@@ -10,33 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="sparseExample"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-    <refnamediv>
-        <refname>sparse example</refname>
-
-        <refpurpose>
-            Sparse use case.
-        </refpurpose>
-    </refnamediv>
-
-    <refsection>
-        <title>Description</title>
-        <para>This example shows how to get a sparse variable and return it to Scilab.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparseExample.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparseExample.tst-->
-        <!--Lib_name: sparseExample-->
-        <!--Func_list: sparseExample-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sparseExample" xml:lang="en">
+  <refnamediv>
+    <refname>sparse example</refname>
+    <refpurpose>
+      Sparse use case.
+    </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>This example shows how to get a sparse variable and return it to Scilab.</para>
+  </refsection>
+  <refsection>
+    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparseExample.c-->
+    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparseExample.tst-->
+    <!--Lib_name: sparseExample-->
+    <!--Func_list: sparseExample-->
+    <title>Gateway Source</title>
+    <programlisting role="code_gateway"><![CDATA[ 
+#include "api_scilab.h"
 int sparseExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -44,8 +36,8 @@ int sparseExample(char *fname,unsigned long fname_len)
 	int iType   = 0;
 	int iRet    = 0;
 
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -73,13 +65,14 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createComplexSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+			sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
 			if(sciErr.iErr)
 			{
 				freeAllocatedComplexSparseMatrix(piNbItemRow, piColPos, pdblReal, pdblImg);
 				printError(&sciErr, 0);
 				return sciErr.iErr;
 			}
+
 			freeAllocatedComplexSparseMatrix(piNbItemRow, piColPos, pdblReal, pdblImg);
 		}
 		else
@@ -91,35 +84,33 @@ int sparseExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+			sciErr = createSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
 			if(sciErr.iErr)
 			{
 				freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
 				printError(&sciErr, 0);
 				return sciErr.iErr;
 			}
+
 			freeAllocatedSparseMatrix(piNbItemRow, piColPos, pdblReal);
 		}
-		LhsVar(1) = Rhs + 1;
+		AssignOutputVariable(1) = nbInputArgument + 1;
 	}
 	else
 	{
-		LhsVar(1) = 0;
+		AssignOutputVariable(1) = 0;
 	}
 	return 0;
 }
- ]]>
-        </programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[ 
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Scilab test script</title>
+    <programlisting role="code_scilab"><![CDATA[ 
 a = sparse([1,1;2,2;3,3], [1, 2, 3]);
 b = sparse([1,1;2,2;3,3], [1 + 2 * %i, 3 , -4 * %i]);
 if sparseExample(a) <> a then pause;end
 if sparseExample(b) <> b then pause;end
- ]]>
-        </programlisting>
-    </refsection>
+ ]]></programlisting>
+  </refsection>
 </refentry>

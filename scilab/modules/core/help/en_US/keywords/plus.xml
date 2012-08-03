@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plus">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plus</refname>
     <refpurpose> (+)  addition operator</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>X+Y
-str1+str2</synopsis>
+    <synopsis>
+      X+Y
+      str1+str2
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -18,7 +17,9 @@ str1+str2</synopsis>
       <varlistentry>
         <term>X,Y</term>
         <listitem>
-          <para>scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list</para>
+          <para>
+            scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -32,17 +33,21 @@ str1+str2</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Addition.</para>
+      Addition.
+    </para>
     <para>
-    For numeric operands addition as its usual meaning.
-    If one of the operands is a matrix and the other one a scalar the
-    scalar is added to each matrix entries. if one of the operands is an
-    empty matrix the other operand is returned (this default behavior can be modified by the function <literal>mtlb_mode</literal>).</para>
+      For numeric operands addition as its usual meaning.
+      If one of the operands is a matrix and the other one a scalar the
+      scalar is added to each matrix entries. If one of the operands is an
+      empty matrix the other operand is returned (this default behavior can be modified by the function <literal>mtlb_mode</literal>).
+    </para>
     <para>
-    For character strings <literal>+</literal> means concatenation.</para>
+      For character strings <literal>+</literal> means concatenation.
+    </para>
     <para>
-    Addition may also be defined for other data types through
-    "soft-coded" operations (see <literal>overloading</literal>).</para>
+      Addition may also be defined for other data types through
+      "soft-coded" operations (see <link linkend="overloading">overloading</link>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,11 +57,11 @@ str1+str2</synopsis>
 s=poly(0,"s");
 s+2
 1/s+2
-"cat"+"enate"
+"con"+"cat"+"enate"
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addf">addf</link>

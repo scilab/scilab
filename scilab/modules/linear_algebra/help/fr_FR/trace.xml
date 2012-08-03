@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="trace">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>trace </refname>
     <refpurpose> trace d'une matrice  </refpurpose>
@@ -29,18 +26,19 @@
         <term>X  </term>
         <listitem>
           <para>matrice carrée, réelle, complexe, polynomiale ou rationnelle.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
-  </para>
     <para>
-    Identique à <literal>sum(diag(X))</literal>.
-  </para>
+      <literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
+    </para>
+    <para>
+      Identique à <literal>sum(diag(X))</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -50,7 +48,7 @@ trace(A)-sum(spec(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

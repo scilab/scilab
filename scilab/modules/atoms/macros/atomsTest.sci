@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,15 +12,12 @@
 
 // Output argument :
 
-//   path : . If the toolbox is loaded, path is the path of the loaded toolbox
-//            otherwise, path = ""
-//          . Matrix of string (n x 1)
-//          . mandatory
 
-function path = atomsTest(packages)
+function bResult = atomsTest(packages, test_name)
 
     rhs         = argn(2);
     path        = [];
+    bResult     = %T;
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -32,8 +30,17 @@ function path = atomsTest(packages)
 
     rhs = argn(2);
 
-    if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsTest",1))
+    if rhs > 2 | rhs < 1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"atomsTest", 1, 2));
+    end
+    
+    if isdef('test_name') then
+      if type(test_name) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsTest", 2));
+      end
+      test_name = stripblanks(test_name);
+    else
+      test_name = [];
     end
 
     if type(packages) <> 10 then
@@ -87,17 +94,15 @@ function path = atomsTest(packages)
     for i=1:size(packages(:,1),"*")
 
         // The module's installed version hasn't been specified or is empty
-        // → Set the MRV available
+        // Set the MRV available
         // =====================================================================
 
         if isempty(packages(i,2)) then
 
             if ~ isempty(packages(i,3)) then
                 section = packages(i,3);
-
             else
                 section = "all";
-
             end
 
             this_module_versions = atomsGetInstalledVers(packages(i,1),section);
@@ -121,8 +126,8 @@ function path = atomsTest(packages)
         end
 
         // The module's installed section hasn't been specified or is empty
-        // → If the module (same name/same version) is installed in both sections,
-        //   module installed in the "user" section is taken
+        // If the module (same name/same version) is installed in both sections,
+        // module installed in the "user" section is taken
         // =====================================================================
 
         if isempty(packages(i,3)) then
@@ -154,9 +159,13 @@ function path = atomsTest(packages)
 
     // Loop on packages
     // =========================================================================
-
-    for i=1:size(packages(:,1),"*")
-        test_run(packages(i,4));
+    
+    if test_name <> [] & (size(packages(:,1), "*") == 1) then
+      bResult = bResult & test_run(packages(1,4), test_name);
+    else
+      for i = 1:size(packages(:,1),"*")
+        bResult = bResult & test_run(packages(i,4));
+      end
     end
 
 endfunction

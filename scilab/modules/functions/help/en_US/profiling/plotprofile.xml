@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plotprofile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plotprofile</refname>
     <refpurpose> extracts and displays execution profiles
-                     of a Scilab function</refpurpose>
+      of a Scilab function
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,7 +28,8 @@
         <term>fun</term>
         <listitem>
           <para>a Scilab compiled function, or a function name (string), or an array of
-                function names</para>
+            function names
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,22 +37,26 @@
   <refsection>
     <title>Description</title>
     <para>
-    To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
-    profiling (see exec).</para>
+      To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
+      profiling (see exec).
+    </para>
     <para>
-    When such a function is executed, the system
-    counts how many times each line is executed and how much cpu time is
-    spent executing each line. This data is stored within the
-    function data structure. The function <literal>plotprofile</literal> in an interactive
-    command which displays this results in a graphic window. When a line
-    is clicked, the source of the function is displayed with the selected line
-    highlighted.</para>
+      When such a function is executed, the system
+      counts how many times each line is executed and how much cpu time is
+      spent executing each line. This data is stored within the
+      function data structure. The function <literal>plotprofile</literal> in an interactive
+      command which displays this results in a graphic window. When a line
+      is clicked, the source of the function is displayed with the selected line
+      highlighted.
+    </para>
     <para>
-    NOTE: you have to click on the "Exit" item in the graphics windows to
-    exit from "plotprofile".</para>
+      NOTE: you have to click on the "Exit" item in the graphics windows to
+      exit from "plotprofile".
+    </para>
     <para>
-    The function code is regenerated with <literal>fun2string</literal> and dumped into
-    a temporary file.</para>
+      The function code is regenerated with <literal>fun2string</literal> and dumped into
+      a temporary file.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +79,7 @@ plotprofile(foo) // click on Exit to exit
   ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="profile">profile</link>

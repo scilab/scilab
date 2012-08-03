@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+  * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="atomsQuit" xml:lang="en">
+  <refnamediv>
+    <refname>atomsQuit</refname>
+    <refpurpose>Unload (call .quit file of) external modules previously loaded by ATOMS</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      result = atomsQuit();
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>result</term>
+        <listitem>
+          <para>scalar boolean %T or %F</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>atomsQuit</literal>unload (call .quit file of) external modules previously loaded by ATOMS.
+    </para>
+    <para>This function is called by SCI/etc/scilab.quit</para>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsIsLoaded">atomsIsLoaded</link>
+      </member>
+      <member>
+        <link linkend="atomsGetLoaded">atomsGetLoaded</link>
+      </member>
+      <member>
+        <link linkend="atomsGetLoaded">atomsInstall</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>This function added in Scilab 5.4.0</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+</refentry>

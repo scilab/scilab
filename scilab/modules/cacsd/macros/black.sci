@@ -211,8 +211,11 @@ function black(varargin)
   xpoly([180*(imag(lgmt)/%pi-ones(lgmt))],[(20/log(10)*real(lgmt))])
   e=gce();e.foreground=2;e.line_style=3;
   if comments<>[] then
-    c=[];for k=1:mn,c=[E(k).children(1),c];end
-    legend([c e]',["2.3"+_("dB");comments(:)])
+    c=[];
+    for k=1:mn
+        c=[c, E(k).children(1)];
+    end
+    legend([c e]',[comments(:); "2.3"+_("dB")])
   end
   fig.immediate_drawing=immediate_drawing;
 endfunction

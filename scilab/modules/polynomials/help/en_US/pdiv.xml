@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pdiv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pdiv</refname>
     <refpurpose> polynomial division</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[R,Q]=pdiv(P1,P2)
-[Q]=pdiv(P1,P2)</synopsis>
+      [Q]=pdiv(P1,P2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -49,10 +47,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Element-wise euclidan division of the polynomial matrix <literal>P1</literal>
-    by the polynomial <literal>P2</literal> or by the polynomial matrix <literal>P2</literal>.
-    <literal>Rij</literal> is the matrix of remainders, <literal>Qij</literal> is the matrix
-    of quotients and <literal>P1ij = Qij*P2 + Qij</literal> or <literal>P1ij = Qij*P2ij + Qij</literal>.</para>
+      Element-wise euclidan division of the polynomial matrix <literal>P1</literal>
+      by the polynomial <literal>P2</literal> or by the polynomial matrix <literal>P2</literal>.
+      <literal>Rij</literal> is the matrix of remainders, <literal>Qij</literal> is the matrix
+      of quotients and <literal>P1ij = Qij*P2 + Rij</literal> or <literal>P1ij = Qij*P2ij + Rij</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +66,7 @@ p2*q+r-p1
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ldiv">ldiv</link>

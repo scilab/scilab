@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <stack-c.h>
 #include <MALLOC.h>
 #include <localization.h>
 

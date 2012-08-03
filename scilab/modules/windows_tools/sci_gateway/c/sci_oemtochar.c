@@ -11,50 +11,59 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <windows.h>
 #include "gw_windows_tools.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "scilabmode.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_oemtochar(char *fname,unsigned long l)
 {
-	int l1 = 0,n1 = 0,m1 = 0;
-	char *Output = NULL;
+    int l1 = 0,n1 = 0,m1 = 0;
+    char *Output = NULL;
 
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    if (getWarningMode())
+    {
+        sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+    }
 
-	if (GetType(1) == sci_strings)	
-	{
-		char *OEMstring = NULL;
+    CheckRhs(1,1);
+    CheckLhs(0,1);
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		OEMstring = cstk(l1);
-		
-		Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
-		if (getScilabMode() == SCILAB_STD)
-		{
-			OemToChar(OEMstring,Output);
-		}
-		else
-		{
-			wsprintf(Output,"%s",OEMstring);
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
-		return 0;
-	}
-	
-	n1 = 1;
-	CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
+    if (GetType(1) == sci_strings)	
+    {
+        char *OEMstring = NULL;
+
+        GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+        OEMstring = cstk(l1);
+
+        Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
+        if (getScilabMode() == SCILAB_STD)
+        {
+            OemToChar(OEMstring,Output);
+        }
+        else
+        {
+            wsprintf(Output,"%s",OEMstring);
+        }
+    }
+    else
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+        return 0;
+    }
+
+    n1 = 1;
+    CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
     if (Output) {FREE(Output);Output=NULL;}
 
-	LhsVar(1) = Rhs+1;
-	PutLhsVar();	
-	return 0;
+    LhsVar(1) = Rhs+1;
+    PutLhsVar();	
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

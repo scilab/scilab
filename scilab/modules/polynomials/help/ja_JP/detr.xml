@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="detr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>detr</refname>
     <refpurpose>多項式の行列式</refpurpose>
@@ -35,10 +32,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>d=detr(h)</literal> は
-	多項式または有理関数行列<literal>h</literal>の
-	行列式<literal>d</literal>を返します.
-	Leverrierのアルゴリズムに基づきます.</para>
+    <para>
+      <literal>d=detr(h)</literal> は
+      多項式または有理関数行列<literal>h</literal>の
+      行列式<literal>d</literal>を返します.
+      Leverrierのアルゴリズムに基づきます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

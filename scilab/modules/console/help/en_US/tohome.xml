@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tohome">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tohome</refname>
     <refpurpose>Move the cursor to the upper left corner of the Command Window</refpurpose>
@@ -24,22 +21,22 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>tohome()</literal> moves the cursor to the upper-left corner of the Command Window and clears the screen.</para>
+    <para>
+      <literal>tohome()</literal> moves the cursor to the upper-left corner of the Command Window and clears the screen.
+    </para>
     <para>You can use the scroll bar to see the history of previous functions.</para>
-    <para>Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.</para>
+    <para>
+      <note>
+        Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.
+      </note>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clc">clc</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -156,24 +156,28 @@ AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
 
 case "$host" in
-     *darwin*)
-     if test -n "$with_fink_prefix"; then
-        # If with-fink-prefix is provided, use the provided path to make sure that we will
-    # use it to detect dependencies (for example, gfortran is not provided in xcode.
-    # Therefor, we use the one in fink)
-    FINK_PREFIX="$with_fink_prefix/"
+    *darwin*)
+        if test -n "$with_fink_prefix"; then
+            # If with-fink-prefix is provided, use the provided path to make sure that we will
+            # use it to detect dependencies (for example, gfortran is not provided in xcode.
+            # Therefor, we use the one in fink)
+            FINK_PREFIX="$with_fink_prefix/"
 
-    # Exec the init script of fink to make sure that the env is set
-    if test -f $with_fink_prefix/bin/init.sh; then
-       echo "source $with_fink_prefix/bin/init.sh executed to set the env"
-       source $with_fink_prefix/bin/init.sh
+            # Exec the init script of fink to make sure that the env is set
+            if test -f $with_fink_prefix/bin/init.sh; then
+                echo "source $with_fink_prefix/bin/init.sh executed to set the env"
+                source $with_fink_prefix/bin/init.sh
+            else
+                AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
+            fi
         else
-       AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
-    fi
-     else
-    FINK_PREFIX="/sw/"
-     fi
-     ;;
+            FINK_PREFIX="/sw/"
+        fi
+
+        #Append to the default flags on Apple machines
+        CPPFLAGS="$CPPFLAGS -I$FINK_PREFIX/include/"
+        LDFLAGS="$LDFLAGS -L$FINK_PREFIX/lib/"
+        ;;
 esac
 
 #####################################################
@@ -206,8 +210,12 @@ if test "$with_intelcompilers" = yes; then
 fi
 
 if test -z "$F77"; then
-## No Frotran compiler specified... We rely on Autoconf to find the best
-   AC_PROG_F77
+## No Fortran compiler specified... Prefer gfortran and intel compilers
+   AC_PROG_F77([gfortran ifc ifort])
+   if test -z "$F77"; then
+        # Best effort to find a compiler (might be g77)
+	AC_PROG_F77
+   fi
 fi
 
 
@@ -328,21 +336,14 @@ else
 fi
 
 if test "$enable_debug_java" = yes; then
-   LOGGING_LEVEL="ALL"
-else
    LOGGING_LEVEL="INFO"
+else
+   LOGGING_LEVEL="SEVERE"
 fi
 AC_SUBST(LOGGING_LEVEL)
 
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
-fi
-
-
-if test "$enable_largefile" = "yes"; then
-   CFLAGS="$CFLAGS $LARGEFILE_CFLAGS"
-   CXXFLAGS="$CXXFLAGS $LARGEFILE_CFLAGS"
-   FFLAGS="$FFLAGS $LARGEFILE_CFLAGS"
 fi
 
 ###############################
@@ -374,7 +375,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -395,54 +396,54 @@ if test -n "$F77"; then
                 ac_save_FFLAGS="$FFLAGS"
                 FFLAGS="$FFLAGS ${flag}"
                 AC_COMPILE_IFELSE([AC_LANG_PROGRAM()],
-                    [AC_MSG_RESULT([yes])],
-                    [AC_MSG_RESULT([no])
-                    FFLAGS="$ac_save_FFLAGS"
-                    ]
+                    [AC_MSG_RESULT([yes])
+                     DEBUG_FFLAGS="${flag}"
+                    ],
+                    [AC_MSG_RESULT([no])]
                 )
                 ;;
         esac
     done
     AC_LANG_POP([Fortran 77])
    else
-      FFLAGS="$FFLAGS -DNDEBUG"
+      DEBUG_FFLAGS="-DNDEBUG"
    fi
       case "$host" in
          x86_64-*-linux*)
-            FFLAGS="$FFLAGS -m64 -fPIC"
+            ARCH_FFLAGS="-m64 -fPIC"
                     ;;
         # Dec Alpha OSF 4
         alpha*-dec-osf4.*)
-          FFLAGS="$FFLAGS -fpe3"
+          ARCH_FFLAGS="-fpe3"
         ;;
         alpha*-dec-osf*)
-            FFLAGS="$FFLAGS -fpe3 -switch nosqrt_recip"
+            ARCH_FFLAGS="-fpe3 -switch nosqrt_recip"
         ;;
         rs6000-*-*)
-            FFLAGS="$FFLAGS -qcharlen=4096"
+            ARCH_FFLAGS="-qcharlen=4096"
             ;;
         mips-*-ultrix*)
-            FFLAGS="-O0 -fpe1"
+            ARCH_FFLAGS="-O0 -fpe1"
         ;;
           *-*-hpux9.*)
-            FFLAGS="$FFLAGS +Obb1200 +E4 -Dhpux"
+            ARCH_FFLAGS="+Obb1200 +E4 -Dhpux"
         ;;
           *-*-hpux10.*)
             if test "$enable_debug_fortran" = yes; then
-                FFLAGS="+E4 +Z +DAportable -Dhpux"
+                ARCH_FFLAGS="+E4 +Z +DAportable -Dhpux"
             else
-                   FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
+                ARCH_FFLAGS="+O2 +E4 +Z +DAportable -Dhpux"
             fi
-#            F77_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
+#            ARCH_LDFLAGS="-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
 
             ;;
           *-*-hpux11.*)
            if test "$enable_debug_fortran" = yes; then
-              FFLAGS=" +Z +DAportable -Dhpux"
+              ARCH_FFLAGS=" +Z +DAportable -Dhpux"
              else
-              FFLAGS="+O2 +Z +DAportable -Dhpux"
+              ARCH_FFLAGS="+O2 +Z +DAportable -Dhpux"
            fi
-              FLIBS="-ldld -lnsl -lU77 -lm"
+           ARCH_LDFLAGS="-ldld -lnsl -lU77 -lm"
 
      ;;
       esac
@@ -489,31 +490,34 @@ if test -z "$CXX"; then
 fi
 
 case "$CXX" in
-     g++-* | g++ | ccache*g++ | ccache*g++-* )
-   ## With GNU C++ Compiler
+    g++-* | g++ | ccache*g++ | ccache*g++-* )
+        ## With GNU C++ Compiler
 
-   # enable the code coverage
-   if test "$enable_code_coverage" = yes; then
-    CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage"
-   fi
+        # enable the code coverage
+        if test "$enable_code_coverage" = yes; then
+            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+        fi
 
-   if test "$enable_debug_CXX" = yes; then
-      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
-          case "$host" in
-          *-linux-gnu )
-          # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
-          ;;
-      esac
-   else
-      CXXFLAGS="$CXXFLAGS -DNDEBUG"
-   fi
-   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
-   ;;
-   clang-* | clang)
-           # clang expect an explict declaration
-           LDFLAGS="$LDFLAGS -lstdc++"
-   ;;
+        if test "$enable_debug_CXX" = yes; then
+            DEBUG_CXXFLAGS="-pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
+            case "$host" in
+                *-linux-gnu )
+                    # Only doing that under Linux
+                    DEBUG_CXXFLAGS="$DEBUG_CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
+                ;;
+            esac
+        else
+            DEBUG_CXXFLAGS="-DNDEBUG"
+        fi
+        COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
+        COMPILER_LDFLAGS="-lstdc++"
+    ;;
+
+    clang-* | clang)
+        # clang linker expect an explict declaration
+        # until the http://libcxx.llvm.org/ release, we select the GNU one.
+        COMPILER_LDFLAGS="-lstdc++"
+    ;;
 esac
 
 #### 64 bits detection
@@ -532,72 +536,73 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
+      DEBUG_CFLAGS="-pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
       # used to be -O
       # -D_FORTIFY_SOURCE=2
       case "$host" in
       *-linux-gnu )
       # Only doing that under Linux
-        if test "$enable_debugLinker" = yes; then
+        if test "$enable_debug_linker" = yes; then
             LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
         fi
-          CFLAGS="$CFLAGS -fdiagnostics-show-option -Werror=format-security"
+          DEBUG_CFLAGS="$DEBUG_CFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
           esac
    else
-      CFLAGS="$CFLAGS  -DNDEBUG"
+      DEBUG_CFLAGS="-DNDEBUG"
    fi
-   CFLAGS="$CFLAGS -fno-stack-protector" # bug 3131
 
+   COMPILER_CFLAGS="-fno-stack-protector " # bug 3131
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.
    # Check if linker supports --as-needed and --no-as-needed options
    if $LD --help 2>/dev/null | grep no-as-needed > /dev/null; then
-      LDFLAGS="$LDFLAGS -Wl,--no-as-needed"
+      COMPILER_LDFLAGS="$COMPILER_LDFLAGS -Wl,--no-as-needed"
    fi
 
 
    case "$host" in
      x86_64-*-linux-gnu | x86_64-linux-gnu)
-        CFLAGS="$CFLAGS -DNARROWPROTO -m64"
-    ;;
-     i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
-        CFLAGS="$CFLAGS  -DNARROWPROTO"
-    ;;
-     ia64-*-linux-gnu )
-        CFLAGS="$CFLAGS -DNARROWPROTO"
+        ARCH_CFLAGS="-m64"
     ;;
      alpha-*-linux-gnu)
-        CFLAGS="$CFLAGS  -mieee-with-inexact"
-        LDFLAGS="$LDFLAGS -mieee-with-inexact"
+        ARCH_CFLAGS="-mieee-with-inexact"
+        ARCH_LDFLAGS="-mieee-with-inexact"
     ;;
      powerpc-*-linux-gnu)
-        CFLAGS="$CFLAGS -D_GNU_SOURCE"
+        ARCH_CFLAGS="-D_GNU_SOURCE"
     ;;
      *-*-solaris*)
-        CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
+        ARCH_CFLAGS="-DSVR4 -DSYSV -Dsolaris"
     ;;
    *-*-freebsd*)
-     CFLAGS="$CFLAGS -Dfreebsd"
-     LDFLAGS="$LDFLAGS -lm"
+     ARCH_CFLAGS="-Dfreebsd"
+     ARCH_LDFLAGS="-lm"
      ;;
 
   alpha-*-netbsd*)
-    CFLAGS="$CFLAGS -Dnetbsd -mieee"
-    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+    ARCH_CFLAGS="-Dnetbsd -mieee"
+    ARCH_FFLAGS="-Dnetbsd -mieee"
     ;;
 
   *-*-netbsd*)
-    CFLAGS="$CFLAGS -Dnetbsd"
+    ARCH_CFLAGS="-Dnetbsd"
     ;;
 
   *-*-darwin*)
-case "$F77" in
+    ARCH_CFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_FFLAGS="-mmacosx-version-min=10.5"
+    ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    # We need this to be passed to all linker commands
+    LDFLAGS="$LDFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+
+    case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
                MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
@@ -609,9 +614,6 @@ case "$F77" in
     esac
     CC="$CC -arch $MAC_DETECTED_ARCH"
     CXX="$CXX -arch $MAC_DETECTED_ARCH"
-    LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
-    CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
-    CXXFLAGS=" $CXXFLAGS -I$FINK_PREFIX/include "
     ;;
 esac
 ;; # end of the gcc case on the $CC
@@ -619,46 +621,47 @@ esac
 
         ## CC compiler (not GCC)
         if test "$enable_debug_C" != yes; then
-             CFLAGS="$CFLAGS -DNDEBUG"
+             ARCH_CFLAGS="-DNDEBUG"
         fi
 
 case "$host" in
 # Dec Alpha OSF 4
   alpha*-dec-osf4.*)
-      CFLAGS="$CFLAGS -std -ieee_with_inexact"
-      LDFLAGS="$LDFLAGS -ieee_with_inexact"
+      ARCH_CFLAGS="-std -ieee_with_inexact"
+      ARCH_LDFLAGS="-ieee_with_inexact"
       ;;
   alpha*-dec-osf*)
-      CFLAGS="$CFLAGS -ieee_with_inexact"
-      LDFLAGS="$LDFLAGS -ieee_with_inexact"
+      ARCH_CFLAGS="-ieee_with_inexact"
+      ARCH_LDFLAGS="-ieee_with_inexact"
       ;;
   rs6000-*-*) # IBM AIX RS 6000 (NO LONGER SUPPORTED)
-    CFLAGS="-Daix -DSYSV"
+    ARCH_CFLAGS="-Daix -DSYSV"
   ;;
   mips-sgi-irix*) # SGI
-    CFLAGS="$CFLAGS -DSYSV -DSVR4"
+    ARCH_CFLAGS="-DSYSV -DSVR4"
   ;;
   *-*-hpux9.*)
-    CFLAGS="$CFLAGS -DSYSV -Dhpux"
+    ARCH_CFLAGS="-DSYSV -Dhpux"
   ;;
   *-*-hpux10.*) # HP 10
     if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -DSYSV -Dhpux"
+      ARCH_CFLAGS="-DSYSV -Dhpux"
     else
-      CFLAGS="$CFLAGS -DSYSV -Dhpux +Z +DAportable"
+      ARCH_CFLAGS="-DSYSV -Dhpux +Z +DAportable"
     fi
   ;;
 
   *-*-hpux11.*) # HP 11
-    CFLAGS="$CFLAGS -DSYSV -Dhpux -Dhppa +Z +DAportable"
+    ARCH_CFLAGS="-DSYSV -Dhpux -Dhppa +Z +DAportable"
   ;;
   *-*-solaris*) # SUN SOLARIS
-    CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris -I/usr/local/include/"
-    LDFLAGS="$LDFLAGS  -L/usr/local/lib/"
+    ARCH_CFLAGS="-DSVR4 -DSYSV -Dsolaris -I/usr/local/include/"
+    ARCH_LDFLAGS="-L/usr/local/lib/"
   ;;
 esac
 ;; # end of not a gcc compiler
 esac
+
 
 # enable the code coverage
 if test "$enable_code_coverage" = yes; then
@@ -670,14 +673,14 @@ if test "$enable_code_coverage" = yes; then
    if test -z "$GENHTML" ; then
         AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
    fi
-   LDFLAGS="$LDFLAGS -coverage"
+   CODE_COVERAGE_LDFLAGS="-coverage"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
-CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
+SCILIBS_CFLAGS=''
+SCILIBS_CXXFLAGS=''
+SCILIBS_FFLAGS=''
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
@@ -698,9 +701,9 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 
 case "$host" in
      i*86-linux-gnu|i*86-*-linux-gnu)
-        CFLAGS="$CFLAGS -msse"
-        FFLAGS="$FFLAGS -msse"
-        CPPFLAGS="$CPPFLAGS -msse"
+        SSE_CFLAGS="-msse"
+        SSE_FFLAGS="-msse"
+        SSE_CXXFLAGS="-msse"
      ;;
 esac
 
@@ -714,19 +717,8 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## HDF5
 #################
 
-AC_ARG_WITH(hdf5,
-    AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))
-
-HDF5_ENABLE=no
-
-if test "$with_hdf5" != no; then
-   AC_HDF5()
-# TODO: check if the JNI JHDF5 library are available
-   HDF5_ENABLE=yes
-fi
-
-AC_SUBST(HDF5_ENABLE)
-AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+AC_HDF5()
+# The Java detection is done after in this file.
 
 #################
 ## XCOS
@@ -840,10 +832,10 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
-                   # Java HDF5 is only needed for Xcos
-                   if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
+                   # Java HDF5 is only needed for Xcos. Should be dropped in 5.4.X (with X > 0)
+                   if test "$with_xcos" != no -a "$with_gui" != no;  then
                       AC_JAVA_HDF5()
                       if test "$MACOSX" = 1; then
                          echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
@@ -854,12 +846,20 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                 fi
 
-                # Docking system
+
+                # scirenderer
+                AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+                SCIRENDERER=$PACKAGE_JAR_FILE
+                AC_SUBST(SCIRENDERER)
+
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.5],[PackageInfo.VERSION])
+
+               # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.2],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.0],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -877,10 +877,10 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SKINLF=$PACKAGE_JAR_FILE
                 AC_SUBST(SKINLF)
 
-                # JOGL
-                AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
-                JOGL=$PACKAGE_JAR_FILE
-                AC_SUBST(JOGL)
+                # JOGL 2
+                AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
+                JOGL2=$PACKAGE_JAR_FILE
+                AC_SUBST(JOGL2)
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
@@ -888,14 +888,15 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
-                   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
+                   if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
-                          AC_CHECK_LIB([jogl ], [glTexParameterf],
-                       [JOGL_LIBS="-ljogl -lGL"],
+                          AC_CHECK_LIB([jogl_desktop ], [glTexParameterf],
+                       [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
 interface for JOGL - or libGL are installed and if the version is correct. Note
@@ -908,9 +909,9 @@ the the JNI libraries."])],
                 fi
 
                 # JoGL Native <=> Java connector
-                AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-                GLUEGEN_RT=$PACKAGE_JAR_FILE
-                AC_SUBST(GLUEGEN_RT)
+                AC_JAVA_CHECK_PACKAGE([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
+                GLUEGEN2_RT=$PACKAGE_JAR_FILE
+                AC_SUBST(GLUEGEN2_RT)
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
@@ -918,11 +919,12 @@ the the JNI libraries."])],
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
-                   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-                   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+                   symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
+                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
                 fi
@@ -939,14 +941,19 @@ the the JNI libraries."])],
                 AC_SUBST(JHALL)
 
                 # Console API
-                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 JROSETTA_API=$PACKAGE_JAR_FILE
+		if test -z "$JROSETTA_API"; then
+	                AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+        	        JROSETTA_API=$PACKAGE_JAR_FILE
+		fi
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
                 AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
                 JROSETTA_ENGINE=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_ENGINE)
+                AC_JAVA_CHECK_VERSION_PACKAGE([jrosetta-engine],[import com.artenum.rosetta.util.ConfigurationBuilder;],$JROSETTA_ENGINE,[1.0.4],[ConfigurationBuilder.getVersion()])
 
 
                 # MathML rendering solution
@@ -1013,7 +1020,7 @@ the the JNI libraries."])],
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.9.4],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.9.7],[TeXFormula.VERSION])
 
                 AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1034,26 +1041,24 @@ the the JNI libraries."])],
         ANTLR=$PACKAGE_JAR_FILE
         AC_SUBST(ANTLR)
 
-        # Test NG (java unitary test)
-        AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
-        TESTNG=$PACKAGE_JAR_FILE
-        AC_SUBST(TESTNG)
+        # Junit 4 (java unitary test)
+        AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        JUNIT4=$PACKAGE_JAR_FILE
+        AC_SUBST(JUNIT4)
 
-        # Qdox (parses declarations and Javadoc) - dependency of TestNG
-        AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
-        QDOX=$PACKAGE_JAR_FILE
-        AC_SUBST(QDOX)
+        # Cobertura (java code coverage)
+        AC_JAVA_CHECK_PACKAGE([cobertura],[net.sourceforge.cobertura.merge.Main],[cobertura - Java code coverage],"yes")
+        COBERTURA=$PACKAGE_JAR_FILE
+        AC_SUBST(COBERTURA)
 
-                # bsh (Java scripting environment) - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
-                BSH=$PACKAGE_JAR_FILE
-                AC_SUBST(BSH)
-
-                # Junit - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
-                JUNIT=$PACKAGE_JAR_FILE
-                AC_SUBST(JUNIT)
-
+        # ASM (a dependency of Cobertura)
+        AC_JAVA_CHECK_PACKAGE([asm3],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
+        ASM3=$PACKAGE_JAR_FILE
+        AC_SUBST(ASM3)
+        if test -z "$ASM3"; then
+                AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
+                ASM3=$PACKAGE_JAR_FILE
+        fi
 
     else
         AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1084,7 +1089,7 @@ the the JNI libraries."])],
     # Giws is the equivalent of Swig developped by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
-        AC_GIWS()
+        AC_GIWS([1.3.0])
     fi
 fi
 
@@ -1372,8 +1377,8 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
-ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP ru_RU"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1417,6 +1422,31 @@ ACX_LAPACK(
         [AC_MSG_RESULT([$LAPACK_TYPE found])],
         AC_MSG_ERROR([Impossible to find the LAPACK library.])
         )
+
+
+AC_ARG_WITH(arpack-ng,
+    AC_HELP_STRING([--without-arpack-ng],[Disable the interface to ARPACK-NG]))
+
+ARPACK_NG=no
+if test "$with_arpack_ng" != no; then
+   ARPACK_NG=yes
+   AC_MSG_CHECKING([if ARPACK-NG is available])
+echo ""
+ACX_ARPACK(
+        [AC_MSG_RESULT([ARPACK-NG library found])],
+        AC_MSG_ERROR([Impossible to find the ARPACK library. Please note that arpack was bundled with version prior to 5.4.0 and Scilab requires arpack-ng ( http://forge.scilab.org/index.php/p/arpack-ng/ ).])
+        )
+
+CHECK_ARPACK_OK(
+[AC_MSG_RESULT([Working ARPACK-NG library found (probably ARPACK-NG or a patched version of ARPACK)])],
+[AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
+])
+else
+   AC_MSG_CHECKING([Skip ARPACK-NG detection])
+fi
+
+AM_CONDITIONAL(ARPACK_NG, test "$ARPACK_NG" != "no")
+
 
 #################
 ## UMFPACK
@@ -1609,8 +1639,8 @@ if test "$enable_compilation_tests" != no -a "$enable_compilation_tests" != ""; 
    COMPILATION_TESTS=yes
 fi
 
-if test COMPILATION_TESTS=yes -a "$TESTNG" == ""; then
-   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find TestNG"])
+if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
+   AC_MSG_WARN([--enable-compilation-tests deactivated: Could not find Junit4"])
    COMPILATION_TESTS=no
 fi
 
@@ -1645,6 +1675,7 @@ AC_SUBST(GRAPHICS_ENABLE)
 #########################
 
 AM_DISABLE_STATIC
+LT_PREREQ([2.2.7])
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
 
@@ -1677,6 +1708,19 @@ AC_BACKTRACE()
 ##### Code quality
 ##########
 AC_PATH_PROG(SPLINT, splint, no)
+
+##########
+##### Detect ccache and use it by default if available
+##########
+
+AC_ARG_ENABLE(ccache,
+        AC_HELP_STRING([--disable-ccache],[Disable the use of ccache])
+        )
+AC_PATH_PROG(CCACHE, ccache)
+if test x"$CCACHE" != x -a "$enable_ccache" != no; then
+  CC="$CCACHE $CC"
+  CXX="$CCACHE $CXX"
+fi
 
 #######################
 ###### Creation of the header file (machine.h)
@@ -1713,9 +1757,19 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
-   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
+    WARNING_CFLAGS="-Werror=implicit-function-declaration -O0"
+    WARNING_CXXFLAGS="-Werror=implicit-function-declaration -O0"
 fi
+
+# SCI_*FLAGS contains all defaults values detected on configure
+SCI_CFLAGS=$(echo   $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
+SCI_CXXFLAGS=$(echo $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
+SCI_FFLAGS=$(echo   $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
+SCI_LDFLAGS=$(echo  $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+AC_SUBST(SCI_CFLAGS)
+AC_SUBST(SCI_CXXFLAGS)
+AC_SUBST(SCI_FFLAGS)
+AC_SUBST(SCI_LDFLAGS)
 
 AC_CONFIG_FILES([
 libs/MALLOC/Makefile
@@ -1724,6 +1778,8 @@ libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
+desktop/images/icons/Makefile
+desktop/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
@@ -1757,6 +1813,7 @@ modules/string/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/graphic_export/Makefile
+modules/graphic_objects/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
@@ -1765,6 +1822,7 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/prebuildjava/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
 modules/types/Makefile
@@ -1777,10 +1835,8 @@ modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
-modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
-modules/texmacs/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1797,7 +1853,9 @@ modules/graph/Makefile
 modules/parallel/Makefile
 modules/modules_manager/Makefile
 modules/history_browser/Makefile
+modules/preferences/Makefile
 modules/xml/Makefile
+modules/external_objects/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1993,7 +2051,7 @@ echo "  BLAS LIBS ............. = $BLAS_LIBS"
 echo "  BLAS TYPE ............. = $BLAS_TYPE"
 echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
-
+echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
 
 #if test "$with_mpi" = yes; then
@@ -2060,16 +2118,17 @@ echo ""
 echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
-echo "  JOGL ................ = $JOGL"
-echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
-echo "  Gluegen ............. = $GLUEGEN_RT"
-echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  JOGL 2............... = $JOGL2"
+echo "  JOGL 2 LIBS (JNI) ... = $JOGL2_LIBS"
+echo "  Gluegen 2 ........... = $GLUEGEN2_RT"
+echo "  Gluegen 2 LIBS (JNI)  = $GLUEGEN2_RT_LIBS"
 echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
+echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
 
@@ -2090,7 +2149,8 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
-echo "  TestNG .............. = $TESTNG"
+echo "  Junit4 .............. = $JUNIT4"
+echo "  Cobertura ........... = $COBERTURA"
 echo "  splint .............. = $SPLINT"
 
 echo ""
@@ -2179,15 +2239,18 @@ echo "  localedir ...... = $localedir"
 echo "  VERSION ........ = $PACKAGE_VERSION"
 echo "  CC ............. = $CC"
 echo "  CFLAGS ......... = $CFLAGS"
-echo "  PCFLAGS ........ = $PCFLAGS"
+echo "  SCI_CFLAGS ..... = $SCI_CFLAGS"
 echo "  DEFS ........... = $DEFS"
 echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
+echo "  SCI_LDFLAGS .... = $SCI_LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
 echo "  CXXFLAGS ....... = $CXXFLAGS"
+echo "  SCI_CXXFLAGS ... = $SCI_CXXFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
+echo "  SCI_FFLAGS ..... = $SCI_FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
 echo ""

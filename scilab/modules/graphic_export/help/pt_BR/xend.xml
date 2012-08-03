@@ -10,40 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xend" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xend" xml:lang="en">
   <refnamediv>
     <refname>xend</refname>
-
     <refpurpose>termina uma sessão de gráficos</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>xend()</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Descrição</title>
-
-    <para><literal>xend</literal> é usado para encerrar uma sessão de
-    gráficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
-    fecha o arquivo que foi aberto por <literal>xinit</literal>.</para>
+    <para>
+      <literal>xend</literal> é usado para encerrar uma sessão de
+      gráficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
+      fecha o arquivo que foi aberto por <literal>xinit</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 driver("Pos")
 xinit("foo.ps")
@@ -52,18 +37,12 @@ xend()
 driver("X11")
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="xinit">xinit</link></member>
+      <member>
+        <link linkend="xinit">xinit</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

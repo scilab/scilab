@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,51 +16,51 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.scilab.modules.action_binding.utils.Signal;
-import org.testng.annotations.Test;
+import org.junit.*;
 
 /**
  * Test for the {@link Signal} class.
  */
 public class SignalTest {
-	/**
-	 * Check that the following simple sequence is valid :
-	 * <pre>
-	 * wait
-	 * notify
-	 * </pre>
-	 */
-	@Test
-	public void simpleNotify() {
-		final String index = "1";
+    /**
+     * Check that the following simple sequence is valid :
+     * <pre>
+     * wait
+     * notify
+     * </pre>
+     */
+    @Test
+    public void simpleNotify() {
+        final String index = "1";
 
-		new Timer().schedule((new TimerTask() {
-			@Override
-			public void run() {
-				Signal.notify(index);
-			}
-		}), 1000);
+        new Timer().schedule((new TimerTask() {
+            @Override
+            public void run() {
+                Signal.notify(index);
+            }
+        }), 1000);
 
-		Signal.wait(index);
-	}
+        Signal.wait(index);
+    }
 
-	/**
-	 * Check that the inverted sequence is valid :
-	 * <pre>
-	 * notify
-	 * wait
-	 * </pre>
-	 */
-	@Test
-	public void invertedNotify() {
-		final String index = "1";
+    /**
+     * Check that the inverted sequence is valid :
+     * <pre>
+     * notify
+     * wait
+     * </pre>
+     */
+    @Test
+    public void invertedNotify() {
+        final String index = "1";
 
-		new Timer().schedule((new TimerTask() {
-			@Override
-			public void run() {
-				Signal.wait(index);
-			}
-		}), 1000);
+        new Timer().schedule((new TimerTask() {
+            @Override
+            public void run() {
+                Signal.wait(index);
+            }
+        }), 1000);
 
-		Signal.notify(index);
-	}
+        Signal.notify(index);
+    }
 }

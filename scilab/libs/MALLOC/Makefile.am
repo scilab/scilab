@@ -4,7 +4,8 @@
 # This file is distributed under the same license as the Scilab package.
  
 
-MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c 
+MALLOC_C_SOURCES = src/getmaxMALLOC.c \
+src/sci_mem_alloc.c
 
 # Commented since it is causing more problems than it solves...
 # If you are trying to run Scilab on a 64 bits CPU and a seg fault
@@ -21,11 +22,7 @@ includes/MALLOC.h \
 includes/getmaxMALLOC.h \
 includes/ExportImport.h
 
-libscimalloc_la_CFLAGS= 
-
 pkglib_LTLIBRARIES = libscimalloc.la
-
-libscimalloc_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 

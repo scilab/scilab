@@ -50,6 +50,7 @@
 #include BinariesSourcePath + "\modules\graphics\graphics.iss"
 #include BinariesSourcePath + "\modules\renderer\renderer.iss"
 #include BinariesSourcePath + "\modules\graphic_export\graphic_export.iss"
+#include BinariesSourcePath + "\modules\external_objects\external_objects.iss"
 #include BinariesSourcePath + "\modules\sound\sound.iss"
 #include BinariesSourcePath + "\modules\tclsci\tclsci.iss"
 #include BinariesSourcePath + "\modules\arnoldi\arnoldi.iss"
@@ -58,8 +59,6 @@
 #include BinariesSourcePath + "\modules\polynomials\polynomials.iss"
 #include BinariesSourcePath + "\modules\scicos\scicos.iss"
 #include BinariesSourcePath + "\modules\scicos_blocks\scicos_blocks.iss"
-#include BinariesSourcePath + "\modules\maple2scilab\maple2scilab.iss"
-#include BinariesSourcePath + "\modules\texmacs\texmacs.iss"
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"
 #include BinariesSourcePath + "\modules\javasci\javasci.iss"
@@ -94,5 +93,7 @@
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"
 #include BinariesSourcePath + "\modules\xml\xml.iss"
+#include BinariesSourcePath + "\modules\preferences\preferences.iss"
+#include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
 ;-------------------------------------------------------------------------------
 ;

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fprintf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fprintf</refname>
     <refpurpose>C言語のfprintf関数のエミュレーション</refpurpose>
@@ -30,14 +27,16 @@
         <term>format</term>
         <listitem>
           <para>Scilab 文字列. 
-	リテラル文字と変換指定子を組み合わせた文字列を指定.</para>
+            リテラル文字と変換指定子を組み合わせた文字列を指定.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value_i</term>
         <listitem>
           <para>
-	フォーマットパラメータに基づき変換されるデータを指定.</para>
+            フォーマットパラメータに基づき変換されるデータを指定.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,11 +49,13 @@
         <term>file</term>
         <listitem>
           <para>
-	ファイル名または論理ユニット番号を指定する
-	Scilab文字列 (<literal>file</literal>参照)</para>
+            ファイル名または論理ユニット番号を指定する
+            Scilab文字列 (<literal>file</literal>参照)
+          </para>
           <para>
-	file=0の場合, 
-	メッセージは標準エラーストリーム(stderr)に出力されます.</para>
+            file=0の場合, 
+            メッセージは標準エラーストリーム(stderr)に出力されます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,44 +63,48 @@
   <refsection>
     <title>説明</title>
     <para> 
-	古い関数であり,
-	C言語の<literal>fprintf</literal>の機能との互換性がはるかに高い
-	<link linkend="mfprintf">mfprintf</link>関数の使用を推奨します.</para>
+      古い関数であり,
+      C言語の<literal>fprintf</literal>の機能との互換性がはるかに高い
+      <link linkend="mfprintf">mfprintf</link>関数の使用を推奨します.
+    </para>
     <para>
-    <literal>fprintf</literal> 関数は,
-	<literal>format</literal>パラメータの制御の下で
-
-	<literal>value</literal>パラメータを変換,整形し,
-	<literal>file</literal>パラメータで指定されたファイルに
-	書き込みます.
-  </para>
+      <literal>fprintf</literal> 関数は,
+      <literal>format</literal>パラメータの制御の下で
+      
+      <literal>value</literal>パラメータを変換,整形し,
+      <literal>file</literal>パラメータで指定されたファイルに
+      書き込みます.
+    </para>
     <para>
-    <literal>format</literal> パラメータは
-	以下の2つの型のオブジェクトを有します:
-  </para>
+      <literal>format</literal> パラメータは
+      以下の2つの型のオブジェクトを有します:
+    </para>
     <variablelist>
       <varlistentry>
         <term>リテラル文字</term>
         <listitem>
           <para>
-	出力ストリームにコピーする文字.</para>
+            出力ストリームにコピーする文字.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>変換指定子</term>
         <listitem>
           <para>
-	各々は,1個以上のアイテムを
-	<literal>value</literal>パラメータのリストから取得します.
-	詳細は <link linkend="printf_conversion">printf_conversion</link> を
-	参照ください.</para>
+            各々は,1個以上のアイテムを
+            <literal>value</literal>パラメータのリストから取得します.
+            詳細は <link linkend="printf_conversion">printf_conversion</link> を
+            参照ください.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-	<literal>format</literal>を全て処理した後,
-	<literal>value</literal>がまだ残っている場合,
-	それらは無視されます.</para>
+      <literal>format</literal>を全て処理した後,
+      <literal>value</literal>がまだ残っている場合,
+      それらは無視されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -139,10 +144,10 @@ fprintf(0,'My error which is going to be displayed on the stderr')
         <link linkend="file">file</link>
       </member>
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
-        <link linkend="sprintf">sprintf</link>
+        <link linkend="msprintf">msprintf</link>
       </member>
       <member>
         <link linkend="printf_conversion">printf_conversion</link>

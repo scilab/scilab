@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getdate">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>getdate</refname>
     <refpurpose>日付と時間に関する情報を取得</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>dt=getdate()
-x=getdate("s")
-dt=getdate(x)</synopsis>
+      x=getdate("s")
+      dt=getdate(x)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -71,14 +69,16 @@ dt=getdate(x)</synopsis>
               <term>dt(4)</term>
               <listitem>
                 <para>
-		001 と 366の間の数で表されたユリウス日</para>
+                  001 と 366の間の数で表されたユリウス日
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>dt(5)</term>
               <listitem>
                 <para>
-		[1,7]の範囲の10進数で表された曜日, 1は日曜日に対応.</para>
+                  [1,7]の範囲の10進数で表された曜日, 1は日曜日に対応.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -91,28 +91,32 @@ dt=getdate(x)</synopsis>
               <term>dt(7)</term>
               <listitem>
                 <para>
-		00 と 23の間の数で表された1日内の時間.</para>
+                  00 と 23の間の数で表された1日内の時間.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>dt(8)</term>
               <listitem>
                 <para>
-		出力は00と59の間の数で表された分.</para>
+                  出力は00と59の間の数で表された分.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>dt(9)</term>
               <listitem>
                 <para>
-		出力は00と59の間の数で表された秒.</para>
+                  出力は00と59の間の数で表された秒.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>dt(10)</term>
               <listitem>
                 <para>
-		出力は000と999の間の数で表されたミリ秒.</para>
+                  出力は000と999の間の数で表されたミリ秒.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -122,17 +126,19 @@ dt=getdate(x)</synopsis>
         <term>x=getdate("s")</term>
         <listitem>
           <para> 
-	1970年1月1日, 00:00 UTC (Unix Time Convention)からの経過
-	秒数をスカラーとして返します.</para>
+            1970年1月1日, 00:00 UTC (Unix Time Convention)からの経過
+            秒数をスカラーとして返します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dt=getdate(x)</term>
         <listitem>
           <para>
-	x (1970年1月1日, 00:00 UTC からの経過秒数)により指定した
-	日付を上記の形式で成形します.
-	この場合, dt(10) は常に 0となります.</para>
+            x (1970年1月1日, 00:00 UTC からの経過秒数)により指定した
+            日付を上記の形式で成形します.
+            この場合, dt(10) は常に 0となります.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -156,12 +162,6 @@ getdate(x)
       <member>
         <link linkend="timer">timer</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

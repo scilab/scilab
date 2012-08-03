@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lin2mu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lin2mu</refname>
     <refpurpose> linear signal to mu-law encoding</refpurpose>
@@ -42,12 +39,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility fct: converts linear signal to mu-law encoding.
-    <literal>mu = lin2mu(y)</literal> converts linear audio signal amplitudes
-    in the range  -1 &lt;= y &lt;= 1 to mu-law in the range 0 &lt;= mu &lt;= 255.</para>
+      Utility fct: converts linear signal to mu-law encoding.
+      <literal>mu = lin2mu(y)</literal> converts linear audio signal amplitudes
+      in the range  -1 &lt;= y &lt;= 1 to mu-law in the range 0 &lt;= mu &lt;= 255.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mu2lin">mu2lin</link>

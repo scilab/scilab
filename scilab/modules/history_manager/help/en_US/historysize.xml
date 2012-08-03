@@ -11,79 +11,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="historysize" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006)
-    $</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="historysize" xml:lang="en">
   <refnamediv>
     <refname>historysize</refname>
-
     <refpurpose>get number of lines in history</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>nb = historysize()</synopsis>
-
     <synopsis>nbMax = historysize("max")</synopsis>
-
     <synopsis>nbMax = historysize(newMax)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>nb</term>
-
         <listitem>
           <para>number of lines in current history.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>nbMax</term>
-
         <listitem>
           <para>number of lines maximum in history file.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>newMax</term>
-
         <listitem>
           <para>set number of lines maximum in history file.</para>
-
           <para>by default this value is 20000 lines max.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>get number of lines in history.</para>
-
     <para>This function can also used to set maximun number of lines in
-    history file.</para>
+      history file.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">historysize()
-historysize("max")</programlisting>
+      historysize("max")
+    </programlisting>
   </refsection>
 </refentry>

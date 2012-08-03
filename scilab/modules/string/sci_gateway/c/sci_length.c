@@ -28,7 +28,6 @@ length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "MALLOC.h"
@@ -47,21 +46,25 @@ static int lengthMList(const char *fname, int *piAddressVar);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
 static int lengthSparse(int *piAddressVar);
 /*----------------------------------------------------------------------------*/
-int sci_length(char *fname,unsigned long fname_len)
+int sci_length(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
     int *piAddressVarOne = NULL;
     int iScilabType = 0;
 
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
+
     /* get Address of inputs */
-    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iScilabType);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -69,34 +72,39 @@ int sci_length(char *fname,unsigned long fname_len)
 
     switch ( iScilabType )
     {
-    case sci_strings :
+        case sci_strings :
         {
             return lengthStrings(piAddressVarOne);
         }
-    case sci_sparse :
+        case sci_sparse :
         {
             return lengthSparse(piAddressVarOne);
         }
-    case sci_list :
-    case sci_tlist :
+        case sci_list :
+        case sci_tlist :
         {
             return lengthList(piAddressVarOne);
         }
         break;
-    case sci_mlist :
+        case sci_mlist :
         {
             return lengthMList(fname, piAddressVarOne);
         }
         break;
 
-    case sci_matrix : case sci_poly : case sci_boolean : case sci_boolean_sparse : 
-    case sci_matlab_sparse : case sci_ints : case sci_handles : 
+        case sci_matrix :
+        case sci_poly :
+        case sci_boolean :
+        case sci_boolean_sparse :
+        case sci_matlab_sparse :
+        case sci_ints :
+        case sci_handles :
         {
             return lengthDefault(piAddressVarOne);
         }
-    default :
-        return lengthOthers(fname);
-        break;
+        default :
+            return lengthOthers(fname);
+            break;
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -113,7 +121,7 @@ static int lengthStrings(int *piAddressVar)
     int i = 0;
 
     sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -121,38 +129,39 @@ static int lengthStrings(int *piAddressVar)
 
     if ( iType != sci_strings )
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),"length",1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "length", 1);
         return 0;
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, NULL, NULL);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+        Scierror(999, _("%s: impossible to get dimensions of this matrix.\n"), "length");
         return 0;
     }
 
-    lenStVarOne = (int*)MALLOC(sizeof(int) * (m1*n1));
+    lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
     if (lenStVarOne == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, lenStVarOne, NULL);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        FREE(lenStVarOne); lenStVarOne = NULL;
-        Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+        FREE(lenStVarOne);
+        lenStVarOne = NULL;
+        Scierror(999, _("%s: impossible to get dimensions of this matrix.\n"), "length");
         return 0;
     }
 
-    pStVarOne = (char**)MALLOC(sizeof(char*) * (m1*n1));
+    pStVarOne = (char**)MALLOC(sizeof(char*) * (m1 * n1));
     if (pStVarOne == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
@@ -161,31 +170,35 @@ static int lengthStrings(int *piAddressVar)
         pStVarOne[i] = (char*)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
         if (pStVarOne[i] == NULL)
         {
-            FREE(lenStVarOne); lenStVarOne = NULL;
+            FREE(lenStVarOne);
+            lenStVarOne = NULL;
             freeArrayOfString(pStVarOne, i);
-            Scierror(999,_("%s: No more memory.\n"),"length");
+            Scierror(999, _("%s: No more memory.\n"), "length");
             return 0;
         }
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        FREE(lenStVarOne); lenStVarOne = NULL;
+        FREE(lenStVarOne);
+        lenStVarOne = NULL;
         freeArrayOfString(pStVarOne, m1 * n1);
-        Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+        Scierror(999, _("%s: impossible to get dimensions of this matrix.\n"), "length");
         return 0;
     }
 
-    m_out = m1;  n_out = n1;
+    m_out = m1;
+    n_out = n1;
     pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
 
     if (pdOut == NULL)
     {
-        FREE(lenStVarOne); lenStVarOne = NULL;
+        FREE(lenStVarOne);
+        lenStVarOne = NULL;
         freeArrayOfString(pStVarOne, m1 * n1);
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
@@ -198,31 +211,32 @@ static int lengthStrings(int *piAddressVar)
 
         wchar_t *wcStr = NULL;
 
-        if (scilen > clen)  
+        if (scilen > clen)
         {
             int j = 0;
             /* bug 4727 */
-            /* A scilab string is a array of characters */
+            /* A scilab string is an array of characters */
             /* we can put '\0' in a scilab string */
             for (j = 0; j < lenStVarOne[i]; j++)
             {
-                if (pStVarOne[i][j] == 0) 
+                if (pStVarOne[i][j] == 0)
                 {
                     pStVarOne[i][j] = ' ';
                 }
             }
 
             wcStr = to_wide_string(pStVarOne[i]);
-            if (wcStr) 
+            if (wcStr)
             {
                 trueLength = (int) wcslen(wcStr);
-                FREE(wcStr); wcStr = NULL;
+                FREE(wcStr);
+                wcStr = NULL;
             }
         }
-        else 
+        else
         {
             wcStr = to_wide_string(pStVarOne[i]);
-            if (wcStr) 
+            if (wcStr)
             {
                 char *cStr = wide_string_to_UTF8(wcStr);
                 if (cStr)
@@ -236,13 +250,15 @@ static int lengthStrings(int *piAddressVar)
                     {
                         trueLength = (int) wcslen(wcStr);
                     }
-                    FREE(cStr); cStr = NULL;
+                    FREE(cStr);
+                    cStr = NULL;
                 }
                 else
                 {
                     trueLength = (int) wcslen(wcStr);
                 }
-                FREE(wcStr); wcStr = NULL;
+                FREE(wcStr);
+                wcStr = NULL;
 
             }
         }
@@ -252,26 +268,30 @@ static int lengthStrings(int *piAddressVar)
 
     freeArrayOfString(pStVarOne,  m_out * n_out);
 
-    FREE(lenStVarOne); lenStVarOne = NULL;
+    FREE(lenStVarOne);
+    lenStVarOne = NULL;
 
     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, pdOut);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(pdOut);
+        Scierror(999, _("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
-    FREE(pdOut); pdOut = NULL;
+    FREE(pdOut);
+    pdOut = NULL;
 
-    LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    return 0;	
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int lengthOthers(char *fname)
 {
     /* unknown type */
-    Scierror(999, _("%s: Wrong type for input argument(s).\n"),fname);
+    Scierror(999, _("%s: Wrong type for input argument(s).\n"), fname);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -286,32 +306,36 @@ static int lengthSparse(int *piAddressVar)
 
     int m = 0, n = 0;
     SciErr sciErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    m_out = 1;  n_out = 1;
+    m_out = 1;
+    n_out = 1;
     pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
     if (pdOut == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
-    pdOut[0] = Max(m,n);
+    pdOut[0] = Max(m, n);
 
     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, pdOut);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(pdOut);
+        Scierror(999, _("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
-    FREE(pdOut); pdOut = NULL;
+    FREE(pdOut);
+    pdOut = NULL;
 
-    LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }
@@ -340,7 +364,7 @@ static int lengthMList(const char *fname, int *piAddressVar)
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrChild, &m, &n, &pstrData) == 0)
         {
             char overloadFunctionName[nlgh];
-            int lengthOverloadFunctionName = (int)(strlen("%") + strlen(pstrData[0]) + strlen("_") + strlen(fname) + 1);            
+            int lengthOverloadFunctionName = (int)(strlen("%") + strlen(pstrData[0]) + strlen("_") + strlen(fname) + 1);
             if (lengthOverloadFunctionName > nlgh) // length of function name in S5
             {
                 freeAllocatedMatrixOfString(m, n, pstrData);
@@ -360,7 +384,7 @@ static int lengthMList(const char *fname, int *piAddressVar)
                 if (isScilabFunction(overloadFunctionName))
                 {
                     int lw = 1 + Top - Rhs;
-                    C2F(overload)(&lw, (char*)fname, strlen(fname));
+                    C2F(overload)(&lw, (char*)fname, (unsigned long)strlen(fname));
                     return 0;
                 }
                 else
@@ -380,32 +404,36 @@ static int lengthList(int *piAddressVar)
 
     int nbItem = 0;
     SciErr sciErr = getListItemNumber(pvApiCtx, piAddressVar, &nbItem);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    m_out = 1;  n_out = 1;
+    m_out = 1;
+    n_out = 1;
     pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
     if (pdOut == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
     pdOut[0] = (double) nbItem;
 
     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, pdOut);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(pdOut);
+        Scierror(999, _("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
-    FREE(pdOut); pdOut = NULL;
+    FREE(pdOut);
+    pdOut = NULL;
 
-    LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;
@@ -418,32 +446,36 @@ static int lengthDefault(int *piAddressVar)
 
     int m = 0, n = 0;
     SciErr sciErr = getVarDimension(pvApiCtx, piAddressVar, &m, &n);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    m_out = 1;  n_out = 1;
+    m_out = 1;
+    n_out = 1;
     pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
     if (pdOut == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),"length");
+        Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }
 
     pdOut[0] = m * n;
 
     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, pdOut);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(pdOut);
+        Scierror(999, _("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
-    FREE(pdOut); pdOut = NULL;
+    FREE(pdOut);
+    pdOut = NULL;
 
-    LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }

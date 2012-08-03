@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int read_sparse(char *fname,unsigned long fname_len)
@@ -29,13 +28,16 @@ int read_sparse(char *fname,unsigned long fname_len)
 	int* piColPos		= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
-	CheckRhs(1,1);
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	if(isVarComplex(pvApiCtx, piAddr))
 	{
 		sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
@@ -44,13 +46,16 @@ int read_sparse(char *fname,unsigned long fname_len)
 	{
 		sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
 	}
+
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	sciprint("Sparse %d item(s)\n", iNbItem);
 	k = 0;
+
 	for(i = 0 ; i < iRows ; i++)
 	{
 		for(j = 0 ; j < piNbItemRow[i] ; j++)
@@ -60,11 +65,13 @@ int read_sparse(char *fname,unsigned long fname_len)
 			{
 				sciprint(" %+fi", pdblImg[k]);
 			}
+
 			sciprint("\n");
 			k++;
 		}
 	}
+
 	//assign allocated variables to Lhs position
-	LhsVar(1) = 0;
+	AssignOutputVariable(pvApiCtx, 1) = 0;
 	return 0;
 }

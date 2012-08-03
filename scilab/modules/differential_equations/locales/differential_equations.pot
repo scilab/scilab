@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
 # File: demos/bike/macros/velo1.sci, line: 26
 msgid "bike simulation, stable trajectory"
@@ -61,12 +61,12 @@ msgid "DAE'S"
 msgstr ""
 
 #
-# File: demos/differential_equations.dem.gateway.sce, line: 20
+# File: demos/differential_equations.dem.gateway.sce, line: 17
 msgid "Flow simulation"
 msgstr ""
 
 #
-# File: demos/differential_equations.dem.gateway.sce, line: 21
+# File: demos/differential_equations.dem.gateway.sce, line: 18
 msgid "Levitron"
 msgstr ""
 
@@ -117,12 +117,12 @@ msgid "Van der Pol vector field"
 msgstr ""
 
 #
-# File: demos/wheel/wheel.dem.gateway.sce, line: 8
+# File: demos/wheel/wheel.dem.gateway.sce, line: 12
 msgid "Reading a precomputed trajectory"
 msgstr ""
 
 #
-# File: demos/wheel/wheel.dem.gateway.sce, line: 9
+# File: demos/wheel/wheel.dem.gateway.sce, line: 13
 msgid "Simulation with ode (needs a Fortran compiler)"
 msgstr ""
 
@@ -176,11 +176,6 @@ msgstr ""
 
 #
 # File: macros/dae.sci, line: 168
-#, c-format
-msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
 # File: macros/dae.sci, line: 345
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -193,31 +188,38 @@ msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/integrate.sci, line: 30
+# File: macros/integrate.sci, line: 26
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/integrate.sci, line: 34
-# File: macros/integrate.sci, line: 38
-# File: macros/integrate.sci, line: 42
+# File: macros/integrate.sci, line: 37
+# File: macros/integrate.sci, line: 41
+# File: macros/integrate.sci, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: macros/integrate.sci, line: 46
-# File: macros/integrate.sci, line: 50
+# File: macros/integrate.sci, line: 49
+# File: macros/integrate.sci, line: 53
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: macros/integrate.sci, line: 63
+# File: macros/integrate.sci, line: 66
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
+msgstr ""
+
+#
+# File: macros/intsplin.sci, line: 27
+# File: macros/inttrap.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
 
 #
@@ -338,4 +340,44 @@ msgstr ""
 #
 # File: macros/odeoptions.sci, line: 77
 msgid "If the function is called without argument, default values are used"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 84
+msgid "tcrit (assumes itask=4 or 5)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 85
+msgid "h0 (first step tried)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 86
+msgid "hmax (max step size)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 87
+msgid "hmin (min step size)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 89
+msgid "mxstep (max number of steps allowed)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 90
+msgid "maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 91
+msgid "maxords (maximum stiff order allowed, at most 5)"
+msgstr ""
+
+#
+# File: macros/odeoptions.sci, line: 92
+msgid "ixpr (print level 0 or 1)"
 msgstr ""

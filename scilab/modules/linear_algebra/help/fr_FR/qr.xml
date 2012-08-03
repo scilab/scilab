@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="qr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>qr</refname>
     <refpurpose> factorisation QR  </refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[Q,R]=qr(X [,"e"])
-[Q,R,E]=qr(X [,"e"])
-[Q,R,rk,E]=qr(X [,tol])</synopsis>
+      [Q,R,E]=qr(X [,"e"])
+      [Q,R,rk,E]=qr(X [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -31,57 +29,62 @@
         <term>X  </term>
         <listitem>
           <para>matrice réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
           <para>nombre réel positif
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q  </term>
         <listitem>
           <para>matrice carrée unitaire
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>R  </term>
         <listitem>
-          <para>matrice de même dimensions que <literal>X</literal>
-	  </para>
+          <para>
+            matrice de même dimensions que <literal>X</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>E  </term>
         <listitem>
           <para>matrice de permutation
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rk  </term>
         <listitem>
-          <para>entier (rang de <literal>X</literal>)
-	  </para>
+          <para>
+            entier (rang de <literal>X</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supérieure
+    <para>
+      <literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supérieure
       <literal>R</literal> de même
       dimensions que <literal>X</literal> et une matrice carrée othogonale
       (unitaire dans le cas complexe) <literal>Q</literal> telles que
       <literal>X = Q*R</literal>.
-
+      
       <literal>[Q,R] = qr(X,"e")</literal>  renvoie une decomposition de
       taille réduite: si <literal>X</literal> est une matrice <literal>m x
-	n</literal> avec <literal>m &gt; n</literal> alors seulement les
+        n
+      </literal>
+      avec <literal>m &gt; n</literal> alors seulement les
       <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
       ainsi que les <literal>n</literal> premières lignes de
       <literal>R</literal>.   
@@ -91,19 +94,26 @@
       <literal>k</literal>ième colonne de <literal>X</literal> peut s'exprimer comme
       une combinaison linéaire des <literal>k</literal> premieres colonnes de
       <literal>Q</literal> (avec les coefficients <literal>R(1,k), ...,
-	R(k,k)</literal>. Les <literal>k</literal> premieres colonnes de
+        R(k,k)
+      </literal>
+      .Les <literal>k</literal> premieres colonnes de
       <literal>Q</literal> forment une base orthogonale du sous espace généré
       par les Les <literal>k</literal> premieres colonnes de
       <literal>X</literal>. Si la colonne <literal>k</literal> de <literal>X</literal> est
       une combinaison linéaire des <literal>p</literal> premiéres colonnes de
       <literal>X</literal> alors les éléments <literal>R(p+1,k), ...,
-	R(k,k)</literal> sont nuls. Dans cette situation <literal>R</literal> est
+        R(k,k)
+      </literal>
+      sont nuls. Dans cette situation <literal>R</literal> est
       une matrice trapézoidale supérieure. Si <literal>X</literal> est de rang
       <literal>rk</literal> alors les lignes  <literal>R(rk+1,:), R(rk+2,:),
-	...</literal> sont nulles.
-
+        ...
+      </literal>
+      sont nulles.
+      
     </para>
-    <para><literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
+    <para>
+      <literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
       colonnes) <literal>E</literal>,
       une matrice triangulaire supérieure <literal>R</literal> dont les
       éléments diagonaux sont classés par ordre décroissant et une
@@ -112,12 +122,15 @@
       <literal>rk</literal> premiers éléménts diagonaux de <literal>R</literal> sont
       tous non nuls. <literal>[Q,R,E] = qr(X,"e")</literal>  renvoie une decomposition de
       taille réduite: si <literal>X</literal> est une matrice <literal>m x
-	n</literal> avec <literal>m &gt; n</literal> alors seulement les
+        n
+      </literal>
+      avec <literal>m &gt; n</literal> alors seulement les
       <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
       ainsi que les <literal>n</literal> premières lignes de
       <literal>R</literal>.   
     </para>
-    <para><literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
+    <para>
+      <literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
       <literal>rk</literal> =rang estimé de <literal>X</literal>. 
       Plus précisément, 
       <literal>rk</literal> est le nombre d'éléments diagonaux de
@@ -155,7 +168,7 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rank">rank</link>
@@ -175,6 +188,7 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
     <title>Fonctions Utilisées</title>
     <para>La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF,
       DORGQR pour les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas
-      complexe.</para>
+      complexe.
+    </para>
   </refsection>
 </refentry>

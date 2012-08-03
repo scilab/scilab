@@ -37,21 +37,30 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\string_gateway.xml" />
     <None Include="elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="string_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-03-08 23:23+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -19,6 +19,10 @@ msgstr "%s: 輸入參數之數目錯誤: 最多應為 %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -34,7 +38,8 @@ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: 輸入參數之數目錯誤: 資料與格式不吻合.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 
 # File: src/c/sciprint_full.c, line: 38
@@ -759,7 +764,7 @@ msgstr "變數 %s 不是一有效之狀態函數表示.\n"
 
 #
 # File: src/c/errmsg.c, line: 757
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "未定義函數.\n"
 
 #
@@ -1921,6 +1926,23 @@ msgstr "%s: Wrong export format: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: Type %s is not handled : Define the function %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

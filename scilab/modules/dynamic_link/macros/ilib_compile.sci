@@ -29,8 +29,7 @@ function libn = ilib_compile(lib_name, ..
   lib_name_orig = strsubst(lib_name,"/^lib/","","r");
 
   libn=""; //** init variable
-
-  if ~haveacompiler() then
+  if getos() == "Windows" & ~haveacompiler() then
     error(_("A Fortran or C compiler is required."))
     return;
   end
@@ -54,7 +53,7 @@ function libn = ilib_compile(lib_name, ..
   files = files(:)';
 
   [make_command, lib_name_make, lib_name, path, makename, files]= ...
-      ilib_compile_get_names(lib_name, makename, files);
+      ilib_compile_get_names(lib_name, files);
 
   if isdir(path) then
     chdir(path);
@@ -141,14 +140,12 @@ function libn = ilib_compile(lib_name, ..
     end
 
     if ierr <> 0 then
-      mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
-      lines(0);
-      disp(stderr);
-      mprintf("\n");
-      mprintf(gettext("%s: The command was:\n"),"ilib_compile");
-      mprintf(cmd);
-      mprintf("\n");
+      errMsg = sprintf(gettext("%s: An error occurred during the compilation:\n"), "ilib_compile");
+      errMsg = [errMsg ; stderr];
+      errMsg = [errMsg ; sprintf(gettext("%s: The command was:\n"), "ilib_compile")];
+      errMsg = [errMsg ; cmd];
       chdir(oldPath); // Go back to the working dir
+      error(errMsg);
       return ;
     end
 
@@ -176,19 +173,11 @@ endfunction
 //=============================================================================
 // function only defined in ilib_compile
 //=============================================================================
-function [make_command,lib_name_make,lib_name,path,makename,files] = ..
-             ilib_compile_get_names(lib_name, makename, files)
+function [make_command, lib_name_make, lib_name,path, makename, files] = ..
+             ilib_compile_get_names(lib_name, files)
 
   if getos() <> "Windows" then
-
-    k = strindex(makename,["/","\"]);
-
-    if k~=[] then
-      path = part(makename,1:k($));
-      makename = part(makename,k($)+1:length(makename));
-    else
-      path = "";
-    end
+    path = "";
 
     lib_name = lib_name + getdynlibext();
     lib_name_make = lib_name;
@@ -198,6 +187,8 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ..
       files = files + ".o";
     end
 
+    makename = 'Makefile';
+
   else // Windows
     // Load dynamic_link Internal lib if it"s not already loaded
     if ~ exists("dynamic_linkwindowslib") then
@@ -205,7 +196,7 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ..
     end
 
     [make_command, lib_name_make, lib_name, path, makename, files] = ..
-         dlwGetParamsIlibCompil(lib_name, makename, files);
+         dlwGetParamsIlibCompil(lib_name, files);
   end
 
 endfunction

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hat</refname>
     <refpurpose> (^) exponentiation</refpurpose>
@@ -25,24 +22,30 @@
   <refsection>
     <title>Description</title>
     <para>
-    Exponentiation of matrices or vectors by a constant vector.</para>
+      Exponentiation of matrices or vectors by a constant vector.
+    </para>
     <para>
-    If <literal>A</literal> is a vector or a rectangular matrix the exponentiation is done
-    element-wise, with the usual meaning.</para>
+      If <literal>A</literal> is a vector or a rectangular matrix the exponentiation is done
+      element-wise, with the usual meaning.
+    </para>
     <para>
-    For square <literal>A</literal> matrices the exponentiation is done in the matrix sense.</para>
+      For square <literal>A</literal> matrix the exponentiation is done in the matrix sense.
+    </para>
     <para>
-    For boolean, polynomial and rational matrices, the exponent must be an
-    integer</para>
+      For boolean, polynomial and rational matrices, the exponent must be an
+      integer.
+    </para>
     <refsection>
       <title>Remarks </title>
-      <para><literal>123.^b</literal> is interpreted as <literal>(123).^b</literal>. In such
-    cases dot is part of the operator, not of the number.</para>
       <para>
-      For two real or complex numbers <literal>x1</literal> et
-      <literal>x2</literal> the value of  <literal>x1^x2</literal> is the "principal value"
-      determined by <literal>x1^x2 = exp(x2*log(x1))</literal>.
-    </para>
+        <literal>123.^b</literal> is interpreted as <literal>(123).^b</literal>. In such
+        cases dot is part of the operator, not of the number.
+      </para>
+      <para>
+        For two real or complex numbers <literal>x1</literal> and
+        <literal>x2</literal> the value of  <literal>x1^x2</literal> is the "principal value"
+        determined by <literal>x1^x2 = exp(x2*log(x1))</literal>.
+      </para>
     </refsection>
   </refsection>
   <refsection>
@@ -57,13 +60,13 @@ s=poly(0,"s");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="exp">exp</link>
       </member>
       <member>
-        <link linkend="inv">inv</link>
+        <link linkend="log">log</link>
       </member>
     </simplelist>
   </refsection>

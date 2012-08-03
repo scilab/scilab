@@ -2,10 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aplat">
-  <info>
-    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aplat">
   <refnamediv>
     <refname>aplat</refname>
     <refpurpose>Flattens a list. </refpurpose>
@@ -45,7 +42,7 @@
         <term>ind</term>
         <listitem>
           <para>
-           a list, each entry give the path of the corresponding lf entry in the original list
+            a list, each entry give the path of the corresponding lf entry in the original list
           </para>
         </listitem>
       </varlistentry>
@@ -54,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-     Creates a flat list, built with the initial l list leaves and if given prepended by the r list entries
+      Creates a flat list, built with the initial l list leaves and if given prepended by the r list entries
     </para>
   </refsection>
   <refsection>
@@ -64,18 +61,11 @@
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="recons" >recons</link>
+        <link linkend="recons">recons</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>F.D. and S.S., INRIA</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

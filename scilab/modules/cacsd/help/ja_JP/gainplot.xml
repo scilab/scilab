@@ -11,9 +11,6 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gainplot">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>gainplot</refname>
     <refpurpose>ゲインプロット</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
-    gainplot(frq,db,phi [,comments])
-    gainplot(frq, repf [,comments])</synopsis>
+      gainplot(frq,db,phi [,comments])
+      gainplot(frq, repf [,comments])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,7 +28,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>リスト (<literal>syslin</literal> SIMO 線形システム).</para>
+          <para>
+            リスト (<literal>syslin</literal> SIMO 線形システム).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,7 +60,9 @@
       <varlistentry>
         <term>db,phi</term>
         <listitem>
-          <para>行列 (<literal>frq</literal>に対応するゲインと位相)</para>
+          <para>
+            行列 (<literal>frq</literal>に対応するゲインと位相)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -73,7 +75,9 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><link linkend="bode">bode</link> と同じだがゲインのみプロットする.</para>
+    <para>
+      <link linkend="bode">bode</link> と同じだがゲインのみプロットする.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

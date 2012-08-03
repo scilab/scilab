@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nehari">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>nehari</refname>
     <refpurpose>ネハリ近似</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>R</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,12 +48,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[x]=nehari(R [,tol])</literal>
-	は<literal>R</literal>のネハリ近似を返します.</para>
-    <para><literal>R</literal> = 状態空間表現の線形システム (<literal>syslin</literal>リスト).</para>
-    <para><literal>R</literal> は厳密にプロパーで <literal>- R~</literal> は安定です 
-    (すなわち <literal>R</literal> は反安定です).</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>[x]=nehari(R [,tol])</literal>
+      は<literal>R</literal>のネハリ近似を返します.
+    </para>
+    <para>
+      <literal>R</literal> = 状態空間表現の線形システム (<literal>syslin</literal>リスト).
+    </para>
+    <para>
+      <literal>R</literal> は厳密にプロパーで <literal>- R~</literal> は安定です 
+      (すなわち <literal>R</literal> は反安定です).
+    </para>
+    <programlisting role=""><![CDATA[ 
 || R - X ||oo = min || R - Y ||oo
               Y in Hoo
  ]]></programlisting>

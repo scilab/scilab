@@ -10,13 +10,19 @@
 
 modulename=fftw
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifftw.la
-
-if FFTW
-noinst_LTLIBRARIES = libscifftw-algo.la
+noinst_LTLIBRARIES =
+else
+noinst_LTLIBRARIES = libscifftw.la
 endif
 
-libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
+
+if FFTW
+noinst_LTLIBRARIES += libscifftw-algo.la
+endif
+
+libscifftw_la_LDFLAGS = $(FFTW3_LIB) $(AM_LDFLAGS)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -52,21 +58,24 @@ libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
 libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES)
 libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscifftw_algo_la_CFLAGS = $(libscifftw_la_CFLAGS)
+libscifftw_algo_la_CPPFLAGS = $(libscifftw_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
+INCLUDE_FLAGS = $(libscifftw_la_CPPFLAGS)
 
 libscifftw_la_LIBADD = libscifftw-algo.la
 
-libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			$(FFTW3_CFLAGS)
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			$(FFTW3_CFLAGS) \
+			$(AM_CPPFLAGS)
 
 else
 
@@ -74,10 +83,12 @@ FFTW_C_SOURCES = src/nofftw/nofftw.c
 
 libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 
-libscifftw_la_CFLAGS= 	-I$(srcdir)/includes/ \
+libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			$(AM_CPPFLAGS)
 endif
 
 include $(top_srcdir)/Makefile.incl.am

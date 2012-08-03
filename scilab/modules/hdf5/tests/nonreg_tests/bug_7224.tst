@@ -20,6 +20,6 @@ loadXcosLibs();
 importScicosDiagram("SCI/modules/hdf5/tests/nonreg_tests/bug_7224.cos");
 
 emp=[];         // or list([]), scicos_diagram(), etc.
-export_to_hdf5(TMPDIR + "/emp.h5","emp");
-import_from_hdf5(TMPDIR + "/emp.h5");
-if execstr("export_to_hdf5(TMPDIR + ""/emp.h5"",""emp"");","errcatch") then pause, end
+export_to_hdf5(TMPDIR + "/emp.sod","emp");
+import_from_hdf5(TMPDIR + "/emp.sod");
+if execstr("export_to_hdf5(TMPDIR + ""/emp.sod"",""emp"");","errcatch") then pause, end

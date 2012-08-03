@@ -10,20 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="SRFLIPFLOP" xml:lang="fr_FR"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xml.mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SRFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
   <refnamediv>
     <refname>SRFLIPFLOP</refname>
     <refpurpose>Bascule SR</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Aperçu</title>
     <para>
@@ -34,7 +25,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_SRFLIPFLOP">
     <title>Contenu</title>
     <itemizedlist>
@@ -85,16 +75,10 @@
               <xref linkend="Seealso_SRFLIPFLOP">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SRFLIPFLOP">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_SRFLIPFLOP">
     <title>Palette</title>
     <itemizedlist>
@@ -105,7 +89,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_SRFLIPFLOP">
     <title>Description</title>
     <para>
@@ -120,7 +103,7 @@
           <emphasis role="bold">Q</emphasis> est forcée à l'état haut, et le reste quand
           <emphasis role="bold">S</emphasis> retourne à l'état bas.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -128,7 +111,7 @@
           que <emphasis role="bold">S</emphasis> est gardé à l'état bas, la sortie <emphasis role="bold">Q</emphasis> est forcée à l'état bas, et le reste quand
           <emphasis role="bold">R</emphasis> retourne à l'état bas.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -136,7 +119,7 @@
           sont à l'état bas, <emphasis role="bold">Q(t)</emphasis> prend la valeur de l'état
           antérieur de la sortie <emphasis role="bold">Q(t-1)</emphasis>.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -154,56 +137,97 @@
       L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre <emphasis role="bold">Initial Value</emphasis>.
     </para>
     <para>Ce bloc est souvent utilisé comme une mémoire.</para>
-
     <para>
-       La table de vérité de ce bloc est :
+      La table de vérité de ce bloc est :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="3">
       <tr>
-        <td align="left"><latex><![CDATA[\boldsymbol{S}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{R}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{Q_n}]]></latex></td>
-        <td align="left"><latex><![CDATA[\boldsymbol{!Q_n}]]></latex></td>
-        <td align="left"></td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{S}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{R}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
+        </td>
+        <td align="left"/>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[Q_n]]></latex></td>
-        <td align="left"><latex><![CDATA[!Q_n]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[Q_n]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[!Q_n]]></latex>
+        </td>
         <td align="left">Maintien</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
         <td align="left">Remise à 0</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[0]]></latex>
+        </td>
         <td align="left">Mise à 1</td>
       </tr>
       <tr>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left"><latex><![CDATA[I]]></latex></td>
-        <td align="left"><latex><![CDATA[I]]></latex></td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[1]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[I]]></latex>
+        </td>
+        <td align="left">
+          <latex><![CDATA[I]]></latex>
+        </td>
         <td align="left">Etat interdit</td>
       </tr>
     </informaltable>
     <para>
-      où <emphasis><literal>I</literal></emphasis> signifie "Inconnu".
+      où 
+      <emphasis>
+        <literal>I</literal>
+      </emphasis>
+      signifie "Inconnu".
     </para>
   </refsection>
-
   <refsection id="Data_Type_SRFLIPFLOP">
     <title>Types de données</title>
-
     <para>
       Le bloc supporte les types suivants :
     </para>
@@ -228,7 +252,7 @@
           Une entrée positive est considérée comme un 1 logique, une entrée négative ou nulle comme un 0
           logique.
         </para>
-        <para />
+        <para/>
       </listitem>
       <listitem>
         <para>
@@ -236,12 +260,9 @@
         </para>
       </listitem>
     </itemizedlist>
-
   </refsection>
-
   <refsection id="Dialogbox_SRFLIPFLOP">
     <title>Boîte de dialogue</title>
-
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -249,7 +270,7 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -260,21 +281,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_SRFLIPFLOP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -299,19 +327,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -321,32 +359,31 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_SRFLIPFLOP">
     <title>Exemple</title>
-     <para>
-       L'exemple suivant présente une application typique d'anti-rebond de la bascule SR. Le graphe de
-       sortie montre l'effet mémoire de la bascule.
+    <para>
+      L'exemple suivant présente une application typique d'anti-rebond de la bascule SR. Le graphe de
+      sortie montre l'effet mémoire de la bascule.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.xcos">
         Ouvrir cet exemple dans Xcos
       </link>
-     </para>
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="../../../examples/integer_pal/fr_FR/srflipflop_diagram_fr_FR.png" align="center" />
-        </imageobject>
-      </mediaobject>
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/integer_pal/fr_FR/srflipflop_diagram_fr_FR.png" align="center"/>
+      </imageobject>
+    </mediaobject>
   </refsection>
-
   <refsection id="Interfacingfunction_SRFLIPFLOP">
     <title>Fonction d'interfaçage</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_SRFLIPFLOP">
     <title>Voir aussi</title>
     <itemizedlist>
@@ -360,10 +397,5 @@
         <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_SRFLIPFLOP">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

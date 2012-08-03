@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -37,7 +37,7 @@ case 'set' then
    exprs=graphics.exprs;
 
    while %t do
-      [ok,nz,varnam,herit,exprs]=scicos_getvalue('Set Scicos buffer block',...
+      [ok,nz,varnam,herit,exprs]=scicos_getvalue('Set Xcos buffer block',...
       ['Size of buffer';
        'Scilab variable name';
        'Inherit (no:0, yes:1)'],...
@@ -68,7 +68,7 @@ case 'set' then
         else
           model.blocktype = 'd';
         end
-        model.ipar=[nz;length(varnam);str2code(varnam)]
+        model.ipar=[nz;length(varnam);_str2code(varnam)]
         graphics.exprs=exprs
         x.graphics=graphics;
         x.model=model;
@@ -91,7 +91,7 @@ case 'define' then
   model.evtin     = [1];
   model.evtout    = [];
   model.rpar      = [];
-  model.ipar      = [nz;length(varnam);str2code(varnam)];
+  model.ipar      = [nz;length(varnam);_str2code(varnam)];
   model.blocktype = 'd';
   model.firing    = [];
   model.dep_ut    = [%f %f];

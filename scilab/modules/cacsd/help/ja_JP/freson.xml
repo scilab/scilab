@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="freson">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>freson</refname>
     <refpurpose>ピーク周波数</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,8 +41,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	SISOプラント <literal>h</literal> に関して,
-	ピーク周波数のベクトル(単位: Hz)を返します.
+      SISOプラント <literal>h</literal> に関して,
+      ピーク周波数のベクトル(単位: Hz)を返します.
     </para>
   </refsection>
   <refsection>

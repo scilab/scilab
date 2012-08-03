@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="srfaur">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>srfaur</refname>
     <refpurpose>平方根アルゴリズム</refpurpose>
@@ -47,15 +44,18 @@
       <varlistentry>
         <term>rt, tt</term>
         <listitem>
-          <para><literal>n</literal>回の反復後のフィルタモデルのゲイン行列.</para>
+          <para>
+            <literal>n</literal>回の反復後のフィルタモデルのゲイン行列.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>p, s, t, l</term>
         <listitem>
           <para>
-	複数回の反復を行う場合,入力として指定できます
-	(<literal>p</literal>の中間値の評価).</para>
+            複数回の反復を行う場合,入力として指定できます
+            (<literal>p</literal>の中間値の評価).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,7 +63,8 @@
   <refsection>
     <title>説明n</title>
     <para>
-	代数リカッチ方程式の平方根アルゴリズム.</para>
+      代数リカッチ方程式の平方根アルゴリズム.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

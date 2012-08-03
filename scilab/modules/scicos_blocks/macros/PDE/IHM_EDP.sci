@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -67,6 +67,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
   
   f = figure("Position",[50 50 670 620],"figure_name","PDE_IHM","BackgroundColor",[0.7 0.9 0.4]);
   f.axes_size=[670,620];
+  f.closerequestfcn = "do_quitter()";
   //m=uimenu(f,'label', 'Model EDP');
   // create an item on the menu bar
   //m1=uimenu(f,'label', 'Methode');

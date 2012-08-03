@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 15:18+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-06-21 20:01+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 msgid "bike simulation, stable trajectory"
 msgstr "simulace kola, stabilní trajektorie"
@@ -97,10 +97,6 @@ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d nebo %d.\n"
 
 #, c-format
-msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: %s: Špatný počet vstupních argumentů: očekáván %d až %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
@@ -127,6 +123,11 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: syntaktická chyba v zadaném "
 "výrazu\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Určuji proměnnou %ODEOPTIONS"
@@ -204,3 +205,27 @@ msgstr "Výchozí hodnoty jsou zadány v hranatých závorkách"
 
 msgid "If the function is called without argument, default values are used"
 msgstr "Pokud je funkce zavolána bez argumentů, jsou použity výchozí hodnoty"
+
+msgid "tcrit (assumes itask=4 or 5)"
+msgstr "tcrit (předpokládáno itask=4 nebo 5)"
+
+msgid "h0 (first step tried)"
+msgstr "h0 (pokus o první krok)"
+
+msgid "hmax (max step size)"
+msgstr "hmax (max velikost kroku)"
+
+msgid "hmin (min step size)"
+msgstr "hmin (min velikost kroku)"
+
+msgid "mxstep (max number of steps allowed)"
+msgstr "mxstep (max počet povolených kroků)"
+
+msgid "maxordn (maximum non-stiff order allowed, at most 12)"
+msgstr "maxordn (maximum povolených netlumených seřazení, nejvíce 12)"
+
+msgid "maxords (maximum stiff order allowed, at most 5)"
+msgstr "maxords (maximum povolených tlumených seřazení, nejvíce 12)"
+
+msgid "ixpr (print level 0 or 1)"
+msgstr "ixpr (úroveň výpisu 0 nebo 1)"

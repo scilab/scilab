@@ -12,7 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
-#include "stack-c.h"
+#include "machine.h"
 #include "gw_cacsd3.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scildiv)(char *fname,unsigned long fname_len);

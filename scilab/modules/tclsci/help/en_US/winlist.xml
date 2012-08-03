@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winlist">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>winlist</refname>
     <refpurpose> Return the winId of current window created by sciGUI</refpurpose>
@@ -35,10 +32,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>winlist()</literal> Return the winId of current window created by sciGUI.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
+    <para>
+      <literal>winlist()</literal> Return the winId of current window created by sciGUI.
+    </para>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stringbox">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>stringbox</refname>
     <refpurpose>テキストまたはラベルのバウンディングボックスを計算</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
-rect = stringbox( Handle )</synopsis>
+      rect = stringbox( Handle )
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータs</title>
@@ -48,8 +46,8 @@ rect = stringbox( Handle )</synopsis>
         <term>angle</term>
         <listitem>
           <para>
-		文字列の点<literal>(x,y)</literal>を中心とする時計回りの回転角(単位:度)
-		</para>
+            文字列の点<literal>(x,y)</literal>を中心とする時計回りの回転角(単位:度)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -74,12 +72,14 @@ rect = stringbox( Handle )</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>stringbox</literal> はtextまたはlabelオブジェクトまたは
-	特定の手段で表示される文字列を囲う矩形の頂点を返します.
-	座標はカレントのグラフィックスケールで指定されます.
-	最初の頂点はテキストの座標 <literal>(x,y)</literal>の
-	回転しない状態で左下の点に対応し,
-	以下の頂点は時計回りに戻り値の行列に指定されます. </para>
+    <para>
+      <literal>stringbox</literal> はtextまたはlabelオブジェクトまたは
+      特定の手段で表示される文字列を囲う矩形の頂点を返します.
+      座標はカレントのグラフィックスケールで指定されます.
+      最初の頂点はテキストの座標 <literal>(x,y)</literal>の
+      回転しない状態で左下の点に対応し,
+      以下の頂点は時計回りに戻り値の行列に指定されます. 
+    </para>
     <para>結果は PostScriptドライバに指定するにはあまり正確ではない可能性があります.</para>
   </refsection>
   <refsection>
@@ -136,9 +136,5 @@ end;
         <link linkend="xstringb">xstringb</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

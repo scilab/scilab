@@ -14,10 +14,68 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
-# File: src/c/matboolean.c, line: 136
-# File: src/c/matboolean.c, line: 140
+# File: sci_gateway/c/sci_and.c, line: 40
+# File: sci_gateway/c/sci_and.c, line: 58
+# File: sci_gateway/c/sci_and.c, line: 172
+# File: sci_gateway/c/sci_or.c, line: 40
+# File: sci_gateway/c/sci_or.c, line: 58
+# File: sci_gateway/c/sci_or.c, line: 172
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 64
+# File: sci_gateway/c/sci_or.c, line: 64
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 95
+# File: sci_gateway/c/sci_and.c, line: 106
+# File: sci_gateway/c/sci_and.c, line: 148
+# File: sci_gateway/c/sci_or.c, line: 95
+# File: sci_gateway/c/sci_or.c, line: 106
+# File: sci_gateway/c/sci_or.c, line: 148
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 112
+# File: sci_gateway/c/sci_and.c, line: 118
+# File: sci_gateway/c/sci_or.c, line: 112
+# File: sci_gateway/c/sci_or.c, line: 118
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 129
+# File: sci_gateway/c/sci_and.c, line: 154
+# File: sci_gateway/c/sci_or.c, line: 129
+# File: sci_gateway/c/sci_or.c, line: 154
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 135
+# File: sci_gateway/c/sci_and.c, line: 193
+# File: sci_gateway/c/sci_or.c, line: 135
+# File: sci_gateway/c/sci_or.c, line: 193
+# File: src/c/matboolean.c, line: 137
+# File: src/c/matboolean.c, line: 141
 #, c-format
 msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_and.c, line: 142
+# File: sci_gateway/c/sci_or.c, line: 142
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""

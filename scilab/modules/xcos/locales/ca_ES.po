@@ -14,13 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 "El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -31,6 +35,10 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -68,13 +76,16 @@ msgstr ""
 "No s'ha pogut carregar la llibreria Batik. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
 
+msgid "parent diagram not found."
+msgstr ""
+
 msgid "Preview"
 msgstr ""
 
-msgid "Please specify a file format"
+msgid "Error on export"
 msgstr ""
 
-msgid "Error on export"
+msgid "Please specify a valid file format"
 msgstr ""
 
 msgid "Incompatibility detected"
@@ -154,10 +165,13 @@ msgstr ""
 msgid "Equations"
 msgstr ""
 
-msgid "Discrete"
-msgstr "Discret"
+msgid "Discretes"
+msgstr ""
 
-msgid "Input"
+msgid "Inputs"
+msgstr ""
+
+msgid "Outputs"
 msgstr ""
 
 msgid "Solver"
@@ -250,6 +264,9 @@ msgstr "Nova paleta"
 
 msgid "Open"
 msgstr "Obre"
+
+msgid "Open file in Scilab current directory"
+msgstr ""
 
 msgid "Save"
 msgstr "Desa"
@@ -517,11 +534,18 @@ msgstr ""
 "El fitxer %s no existeix\n"
 " El voleu crear?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "Accepta"
 
 msgid "Cancel"
 msgstr "Cancel·la"
+
+msgid "Reset to default"
+msgstr ""
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -561,13 +585,13 @@ msgid "No block selected"
 msgstr "No heu seleccionat cap bloc"
 
 msgid "Export to XML"
-msgstr "Exporta a XML"
+msgstr ""
 
 msgid "Export in progress"
 msgstr "S'està exportant"
 
 msgid "Import from XML"
-msgstr "Importa de XML"
+msgstr ""
 
 msgid "Add to"
 msgstr "Afegeix"
@@ -678,14 +702,8 @@ msgstr "Tolerància temporal"
 msgid "Max integration time interval"
 msgstr "Intèrval màxim d'integració"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Solver 0 (CVODE) - 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "mida màxima del pas (0 indica que no hi ha límit)"
@@ -722,7 +740,7 @@ msgstr "S'està realitzant la simulació"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "S'està compilant, el resultat es desarà a la variable 'scicos_cpr'"
+msgstr ""
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -745,14 +763,20 @@ msgstr "Crides a traces i depuracions per execucions de blocs"
 msgid "Debug block calls without trace"
 msgstr "Crides a blocs de depuració sense traces"
 
+msgid "All supported formats"
+msgstr ""
+
 msgid "Scicos file"
 msgstr "Fitxer d'Scicos"
 
 msgid "Xcos file"
 msgstr "Fitxer d'Xcos"
 
-msgid "Scilab file"
-msgstr "Fitxer d'Scilab"
+msgid "Xcos (zip) file"
+msgstr ""
+
+msgid "Scilab Open Data file"
+msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Editor de superblocs emmascarats"
@@ -819,18 +843,19 @@ msgstr "S'està configurant el compilador Modelica."
 msgid "Modelica initialize"
 msgstr "Inicialitza la modelica"
 
-#, c-format
-msgid "From %s"
-msgstr "De %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Vés a %s"
-
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
-msgid "Wrong port number"
+msgid "Evaluation problem: wrong port number."
+msgstr ""
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr ""
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
 
 #, c-format
@@ -1000,12 +1025,6 @@ msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
-"tractament.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
 
@@ -1062,21 +1081,9 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
 msgstr ""
 
 #, c-format
@@ -1202,9 +1209,11 @@ msgid "%s is not a valid block descriptor."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -1215,6 +1224,14 @@ msgstr ""
 msgid "Block configuration with function [%s] failed."
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr ""
+
+#, c-format
+msgid "Field %s has different values."
+msgstr ""
+
 msgid "The Scicos libraries are not loaded"
 msgstr "No s'ha carregat les llibreries de Scicos"
 
@@ -1222,7 +1239,7 @@ msgstr "No s'ha carregat les llibreries de Scicos"
 msgid "Unable to simulate %s"
 msgstr "No s'ha pogut fer la simulació %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format

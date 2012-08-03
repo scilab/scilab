@@ -31,11 +31,11 @@ import javax.swing.KeyStroke;
 import javax.swing.text.Element;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * SetAnchorAction Class
@@ -59,6 +59,7 @@ public class SetAnchorAction extends DefaultAction {
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         openAnchorWindow();
     }
@@ -85,7 +86,7 @@ public class SetAnchorAction extends DefaultAction {
 
         dialog = new JDialog();
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
-        dialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         JLabel label = new JLabel(SciNotesMessages.ANCHOR_NAME);
 
         cancelButton = new JButton(SciNotesMessages.CANCEL);
@@ -115,12 +116,14 @@ public class SetAnchorAction extends DefaultAction {
         dialog.setContentPane(panelDialog);
 
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                 }
             });
 
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     setAnchorName(textField.getText());
                     dialog.dispose();
@@ -128,6 +131,7 @@ public class SetAnchorAction extends DefaultAction {
             });
 
         textField.addKeyListener(new KeyListener() {
+                @Override
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {
@@ -137,8 +141,10 @@ public class SetAnchorAction extends DefaultAction {
                     }
                 }
 
+                @Override
                 public void keyPressed(KeyEvent arg0) { }
 
+                @Override
                 public void keyTyped(KeyEvent arg0) { }
             });
 
@@ -155,13 +161,13 @@ public class SetAnchorAction extends DefaultAction {
      */
     private void setAnchorName(String name) {
         if (name != null && name.length() != 0) {
-            ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+            ScilabEditorPane sep = getEditor().getTextPane();
             sep.getXln().repaint();
             ScilabDocument doc = (ScilabDocument) sep.getDocument();
             Element root = doc.getDefaultRootElement();
             ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(sep.getCaretPosition()));
             line.setAnchor(name);
-            NavigatorWindow.updateNavigator();
+            getEditor().getNavigator().update();
         }
     }
 }

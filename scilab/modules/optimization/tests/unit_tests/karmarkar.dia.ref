@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // With slack variables:
 //
 // Minimize -20.x1 - 24.x2 such as:

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="coeff">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>coeff</refname>
     <refpurpose>多項式行列の係数</refpurpose>
@@ -47,16 +44,20 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>C=coeff(Mp)</literal>
-	多項式行列<literal>Mp</literal>の係数である大きな
-	行列<literal>C</literal>を返します.
-	<literal>C</literal>は<literal>C=[C0,C1,...,Ck]</literal>のように
-	分割されます.
-	ただし,<literal>Ci</literal>は昇順
-	<literal>k = max(degree(Mp))</literal>に並べられています.</para>
-    <para><literal>C=coeff(Mp,v)</literal> は
-	<literal>v</literal>の次数の行列の係数を返します
-	(<literal>v</literal> は行または列ベクトルです).</para>
+    <para>
+      <literal>C=coeff(Mp)</literal>
+      多項式行列<literal>Mp</literal>の係数である大きな
+      行列<literal>C</literal>を返します.
+      <literal>C</literal>は<literal>C=[C0,C1,...,Ck]</literal>のように
+      分割されます.
+      ただし,<literal>Ci</literal>は昇順
+      <literal>k = max(degree(Mp))</literal>に並べられています.
+    </para>
+    <para>
+      <literal>C=coeff(Mp,v)</literal> は
+      <literal>v</literal>の次数の行列の係数を返します
+      (<literal>v</literal> は行または列ベクトルです).
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -71,9 +72,5 @@
         <link linkend="inv_coeff">inv_coeff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

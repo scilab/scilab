@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowcompr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rowcompr</refname>
     <refpurpose> row compression of polynomial matrix</refpurpose>
@@ -40,13 +37,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>normal rank of <literal>A</literal></para>
+          <para>
+            normal rank of <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=X*A</literal>, polynomial matrix</para>
+          <para>
+            <literal>Ac=X*A</literal>, polynomial matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,14 +55,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    row compression of polynomial matrix <literal>A</literal>.</para>
-    <para><literal>X</literal> is a left polynomial unimodular basis which row compressed
-    thee rows of <literal>A</literal>. <literal>rk</literal> is the normal rank of A.</para>
+      row compression of polynomial matrix <literal>A</literal>.
+    </para>
     <para>
-    Warning: elimination of "small" terms (use with care!).</para>
+      <literal>X</literal> is a left polynomial unimodular basis which row compressed
+      thee rows of <literal>A</literal>. <literal>rk</literal> is the normal rank of A.
+    </para>
+    <para>
+      Warning: elimination of "small" terms (use with care!).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colcompr">colcompr</link>

@@ -1,0 +1,13 @@
+	LIBRARY    linpack_f.dll
+
+
+EXPORTS
+;
+;linpack
+dgefa_
+dgesl_
+dpofa_
+dpori_
+dposl_
+icopy_
+

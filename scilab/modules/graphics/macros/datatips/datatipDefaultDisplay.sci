@@ -7,11 +7,10 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 function str=datatipDefaultDisplay(curve,pt,index)
-  if size(pt,'*')==2 then
-    str=msprintf('X: %.2g\nY: %.2g', pt(1),pt(2))
+  if size(pt,'c')==2 then
+    str=msprintf('X: %.2g\nY: %.2g', pt(1,1),pt(1,2))
   else
-    str=msprintf('X: %.2g\nY: %.2g\nZ: %.2g', pt(1),pt(2),pt(3))
+    str=msprintf('X: %.2g\nY: %.2g\nZ: %.2g', pt(1,1),pt(1,2),pt(1,3))
   end
 endfunction

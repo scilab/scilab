@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macglov">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>macglov</refname>
     <refpurpose>Continuous time dynamical systems Mac Farlane Glover problem</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 vector, dimension of <literal>P22</literal></para>
+          <para>
+            1x2 vector, dimension of <literal>P22</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,10 +62,33 @@
       representation (transfer function or state-space) than
       <literal>Sl</literal>.
     </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    MAC-FARLANE PROBLEM for G=1/s^3;
+    <programlisting role="example"><![CDATA[ 
+    G=syslin("c",1/%s^3);
+    [P,r]=macglov(G);
 
+    //K Optimal controller , ro = gamaopt^-2;
+    [K,ro]=h_inf(P,r,0,1,30);
+
+    ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
     <para>F. Delebecque INRIA</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+          This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

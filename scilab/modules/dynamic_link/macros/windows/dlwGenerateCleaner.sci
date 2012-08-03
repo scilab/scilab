@@ -9,9 +9,9 @@
 //=============================================================================
 function dlwGenerateCleaner(fd, makename)
   make_command = dlwGetMakefileCmdCleaner(makename);
-  mfprintf(fd,"if fileinfo(''%s%s'') <> [] then\n", makename, dlwGetMakefileExt());
+  mfprintf(fd,"if fileinfo(''%s'') <> [] then\n", makename);
   mfprintf(fd,"  unix_s(''%s'');\n", make_command);
-  mfprintf(fd,"  mdelete(''%s%s'');\n", makename, dlwGetMakefileExt());
+  mfprintf(fd,"  mdelete(''%s'');\n", makename);
   mfprintf(fd,"end\n");
   mfprintf(fd,"// ------------------------------------------------------\n");
 endfunction

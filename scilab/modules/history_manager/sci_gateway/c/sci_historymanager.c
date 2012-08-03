@@ -64,7 +64,7 @@ int sci_historymanager(char *fname,unsigned long fname_len)
                         InitializeHistoryManager();
 
                         /* add date & time @ begin session */
-                        commentbeginsession = getCommentDateSession();
+                        commentbeginsession = getCommentDateSession(FALSE);
                         if (commentbeginsession)
                         {
                             appendLineToScilabHistory(commentbeginsession);

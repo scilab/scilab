@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plot3d2">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>plot3d2</refname>
     <refpurpose>矩形の小平面により定義された曲面をプロット</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>plot3d2(X,Y,Z [,vect,theta,alpha,leg,flag,ebox])
-plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
+      plot3d2(X,Y,Z, &lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -41,10 +39,14 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
         <listitem>
-          <para>一連の命令<literal>key1=value1,
-          key2=value2</literal>,...を表し, <literal>key1</literal>,
-          <literal>key2,...</literal> は以下のどれかとすることができます: theta,
-          alpha ,leg,flag,ebox (以下の定義を参照).</para>
+          <para>
+            一連の命令<literal>key1=value1,
+              key2=value2
+            </literal>
+            ,...を表し, <literal>key1</literal>,
+            <literal>key2,...</literal> は以下のどれかとすることができます: theta,
+            alpha ,leg,flag,ebox (以下の定義を参照).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -57,14 +59,16 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
         <term>leg</term>
         <listitem>
           <para>各軸のラベルを定義する文字列. @ をフィールドセパレータとし,
-		"X@Y@Z"のようになります.</para>
+            "X@Y@Z"のようになります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
           <para>大きさ3の実数ベクトル.
-          <literal>flag=[mode,type,box]</literal>.</para>
+            <literal>flag=[mode,type,box]</literal>.
+          </para>
           <variablelist>
             <varlistentry>
               <term>mode</term>
@@ -74,8 +78,10 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>mode&gt;0</term>
                     <listitem>
-                      <para>曲面は色<literal>"mode"</literal>で塗られます ;
-			小平面の境界はカレントの線種と色で描画されます.</para>
+                      <para>
+                        曲面は色<literal>"mode"</literal>で塗られます ;
+                        小平面の境界はカレントの線種と色で描画されます.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -87,14 +93,16 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>mode&lt;0:</term>
                     <listitem>
-                      <para>曲面は色<literal>"-mode"</literal>で塗られます ;
-			小平面の境界は描画されません.</para>
+                      <para>
+                        曲面は色<literal>"-mode"</literal>で塗られます ;
+                        小平面の境界は描画されません.
+                      </para>
                       <para>曲面の色の取り扱いは,
-			surfaceエンティティプロパティによる
-			<literal>color_mode</literal>および
-			<literal>color_flag</literal>オプションを用いて
-			行われることに注意してください (<link
-                      linkend="surface_properties">surface_properties</link>参照).</para>
+                        surfaceエンティティプロパティによる
+                        <literal>color_mode</literal>および
+                        <literal>color_flag</literal>オプションを用いて
+                        行われることに注意してください (<link linkend="surface_properties">surface_properties</link>参照).
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -109,63 +117,69 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
                     <term>type=0:</term>
                     <listitem>
                       <para>プロットは
-			(前の<literal>param3d</literal>,
-                      <literal>plot3d</literal>, <literal>contour</literal> または
-                      <literal>plot3d1</literal>のコールで設定された)
-			カレントの3次元スケールで行われます.</para>
+                        (前の<literal>param3d</literal>,
+                        <literal>plot3d</literal>, <literal>contour</literal> または
+                        <literal>plot3d1</literal>のコールで設定された)
+                        カレントの3次元スケールで行われます.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=1:</term>
                     <listitem>
                       <para>
-			3次元ボックスのスケールがアスペクト比の最大値に基づき
-			自動的に調整され,
-			境界はオプションの引数<literal>ebox</literal>の値で
-			指定されます.</para>
+                        3次元ボックスのスケールがアスペクト比の最大値に基づき
+                        自動的に調整され,
+                        境界はオプションの引数<literal>ebox</literal>の値で
+                        指定されます.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=2:</term>
                     <listitem>
-                     <para>
-			3次元ボックスのスケールがアスペクト比の最大値に基づき
-			自動的に調整され,境界は指令したデータにより計算されます.</para>
+                      <para>
+                        3次元ボックスのスケールがアスペクト比の最大値に基づき
+                        自動的に調整され,境界は指令したデータにより計算されます.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=3:</term>
                     <listitem>
-                     <para>
-			オプション<literal>ebox</literal>で指定したボックス境界を有する
-			3次元等軸プロットで,<literal>type=1</literal>に似ています.</para>
+                      <para>
+                        オプション<literal>ebox</literal>で指定したボックス境界を有する
+                        3次元等軸プロットで,<literal>type=1</literal>に似ています.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=4:</term>
                     <listitem>
                       <para>データで定義された境界に基づく3次元等軸プロットで,
-			<literal>type=2</literal>に似ています.</para>
+                        <literal>type=2</literal>に似ています.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=5:</term>
                     <listitem>
-                     <para>
-			オプション<literal>ebox</literal>で指定されたボックス境界で
-			定義された境界に基づく3次元拡張等軸プロットで,
-			<literal>type=1</literal>に似ています.</para>
+                      <para>
+                        オプション<literal>ebox</literal>で指定されたボックス境界で
+                        定義された境界に基づく3次元拡張等軸プロットで,
+                        <literal>type=1</literal>に似ています.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=6:</term>
                     <listitem>
-                     <para>
-			データで定義された境界に基づく3次元拡張等軸プロットで,
-			<literal>type=2</literal>に似ています.
-			軸の境界は axes エンティティプロパティによりカスタマイズできる
-			ことに注意してください(<link
-                      linkend="axes_properties">axes_properties</link>参照).</para>
+                      <para>
+                        データで定義された境界に基づく3次元拡張等軸プロットで,
+                        <literal>type=2</literal>に似ています.
+                        軸の境界は axes エンティティプロパティによりカスタマイズできる
+                        ことに注意してください(<link linkend="axes_properties">axes_properties</link>参照).
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -204,12 +218,11 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
                     <term>box=4:</term>
                     <listitem>
                       <para>
-			曲面を囲うボックスが描画され,キャプションと軸が追加されます.
-			</para>
+                        曲面を囲うボックスが描画され,キャプションと軸が追加されます.
+                      </para>
                       <para>
-			軸のアスペクトもaxesエンティティのプロパティによりカスタマイズ
-			できることに注意してください (<link
-                      linkend="axes_properties">axes_properties</link>参照).
+                        軸のアスペクトもaxesエンティティのプロパティによりカスタマイズ
+                        できることに注意してください (<link linkend="axes_properties">axes_properties</link>参照).
                       </para>
                     </listitem>
                   </varlistentry>
@@ -222,21 +235,21 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>ebox</term>
         <listitem>
-        <para>
-	プロットの境界をベクトル
-          <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>で指定します. 
-	この引数は,<literal>flag</literal>の<literal>type</literal>が<literal>1</literal>,
-          <literal>3</literal> または <literal>5</literal>に設定された場合,
-	使用されます (対応する動作については上記参照). 
-	<literal>flag</literal> が指定されない場合
-          <literal>ebox</literal> は無視されます. </para>
           <para>
-	指定された場合, <literal>ebox</literal>引数は,
-	<literal>data_bounds</literal>に基づいて動作し,
-	axesエンティティのプロパティによりリセットすることも可能であることに
-	注意してください. ebox のデフォルト値は[0,1,0,1,0,1]です.(<link
-          linkend="axes_properties">axes_properties</link>参照)
-	</para>
+            プロットの境界をベクトル
+            <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>で指定します. 
+            この引数は,<literal>flag</literal>の<literal>type</literal>が<literal>1</literal>,
+            <literal>3</literal> または <literal>5</literal>に設定された場合,
+            使用されます (対応する動作については上記参照). 
+            <literal>flag</literal> が指定されない場合
+            <literal>ebox</literal> は無視されます. 
+          </para>
+          <para>
+            指定された場合, <literal>ebox</literal>引数は,
+            <literal>data_bounds</literal>に基づいて動作し,
+            axesエンティティのプロパティによりリセットすることも可能であることに
+            注意してください. ebox のデフォルト値は[0,1,0,1,0,1]です.(<link linkend="axes_properties">axes_properties</link>参照)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -244,24 +257,25 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	<literal>plot3d2</literal> は矩形の小平面で定義された曲面をプロットします.
-    (X,Y,Z) は曲面を記述する3つの行列です.
-	曲面は4角形のポリゴンから構成されます.
-	</para>
-	<para>
-	小平面のX座標は
-    X(i,j), X(i+1,j), X(i+1,j+1) および X(i,j+1)で指定されます. 同様に
-	 Y および Z 行列は Y および Z座標を有します.
+      <literal>plot3d2</literal> は矩形の小平面で定義された曲面をプロットします.
+      (X,Y,Z) は曲面を記述する3つの行列です.
+      曲面は4角形のポリゴンから構成されます.
     </para>
-	<para>
-	 <literal>vect</literal> ベクトルは,同じ(X,Y,Z)行列に複数の曲面が
-	コード化される場合に使用されます.
-	<literal>vect(j)</literal> はj番目の曲面が開始されるコードの場所の
-	行番号です.
-	<literal>plot3d</literal>と同じプロパティが編集可能です
-	 (
-    <link linkend="surface_properties">surface_properties</link> および
-	 <link linkend="axes_properties">axes_properties</link>を参照ください).</para>
+    <para>
+      小平面のX座標は
+      X(i,j), X(i+1,j), X(i+1,j+1) および X(i,j+1)で指定されます. 同様に
+      Y および Z 行列は Y および Z座標を有します.
+    </para>
+    <para>
+      <literal>vect</literal> ベクトルは,同じ(X,Y,Z)行列に複数の曲面が
+      コード化される場合に使用されます.
+      <literal>vect(j)</literal> はj番目の曲面が開始されるコードの場所の
+      行番号です.
+      <literal>plot3d</literal>と同じプロパティが編集可能です
+      (
+      <link linkend="surface_properties">surface_properties</link> および
+      <link linkend="axes_properties">axes_properties</link>を参照ください).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

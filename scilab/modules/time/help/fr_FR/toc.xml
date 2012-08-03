@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="toc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>toc</refname>
     <refpurpose>Lit le chronomètre</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>toc()
-t = toc()</synopsis>
+      t = toc()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -29,14 +27,18 @@ t = toc()</synopsis>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>nombre de secondes depuis le dernier appel à <literal>tic()</literal> (Précision de l'ordre de la milliseconde).</para>
+          <para>
+            nombre de secondes depuis le dernier appel à <literal>tic()</literal> (Précision de l'ordre de la milliseconde).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>La séquence de commandes <literal>tic(); opération; toc();</literal> affiche le nombre de secondes nécessaire pour opération.</para>
+    <para>
+      La séquence de commandes <literal>tic(); opération; toc();</literal> affiche le nombre de secondes nécessaire pour opération.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -49,7 +51,7 @@ toc();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="tic">tic</link>
@@ -60,13 +62,6 @@ toc();
       <member>
         <link linkend="etime">etime</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

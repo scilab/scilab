@@ -70,76 +70,28 @@
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
+cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
+
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean
+
+
 
 </NMakeCleanCommandLine>
     <NMakeOutput>
@@ -149,76 +101,28 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
+cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
+
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean
+
+
 
 </NMakeCleanCommandLine>
     <NMakeOutput>
@@ -228,76 +132,28 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
+cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
+
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean
+
+
 
 </NMakeCleanCommandLine>
     <NMakeOutput>
@@ -307,76 +163,28 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
+cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
+cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
+
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
-cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
-cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
-cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graphic_export &amp;&amp; call ant clean
-cd $(SolutionDir)modules\console &amp;&amp; call ant clean
-cd $(SolutionDir)modules\gui &amp;&amp; call ant clean
-cd $(SolutionDir)modules\types &amp;&amp; call ant clean
-cd $(SolutionDir)modules\graph &amp;&amp; call ant clean
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
+cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-cd $(SolutionDir)modules\helptools &amp;&amp; call ant clean
-cd $(SolutionDir)modules\scinotes &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean
-cd $(SolutionDir)modules\ui_data &amp;&amp; call ant clean
-cd $(SolutionDir)modules\history_browser &amp;&amp; call ant clean
-cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
-cd $(SolutionDir)modules\core &amp;&amp; call ant clean
+
+
 
 </NMakeCleanCommandLine>
     <NMakeOutput>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullpath">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullpath</refname>
-    <refpurpose>Creates an full path name for the specified relative path name.</refpurpose>
+    <refpurpose>creates an full path name for the specified relative path name.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,7 +26,7 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>a string</para>
+          <para>a string or matrix of string</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,30 +34,46 @@
       <varlistentry>
         <term>relative_path</term>
         <listitem>
-          <para>a string</para>
+          <para>a string or a matrix of string</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Creates an full path name for the specified relative path name.</para>
-    <para>On linux 'relative_path' needs to exist.</para>
+    <para>
+      <code>fullpath(relative_path)</code> сreates an full path name
+      for the specified relative path name.
+    </para>
+    <para>
+      On GNU/Linux <varname>relative_path</varname> needs to exist.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-mkdir(TMPDIR+'/niv1');
-mkdir(TMPDIR+'/niv1/niv2');
-mputl(' ',TMPDIR+'/niv1/test.txt');
-cd(TMPDIR+'/niv1/niv2');
-fullpath('../test.txt')
+cd(TMPDIR);
+mkdir(TMPDIR + "/niv1");
+mkdir(TMPDIR + "/niv1/niv2");
+mkdir(TMPDIR + "/niv1/niv2/niv3");
+mputl(' ', TMPDIR + "/niv1/test1.txt");
+mputl(' ' , TMPDIR + "/niv1/niv2/test2.txt");
+
+cd(TMPDIR + "/niv1/niv2/niv3");
+
+r1 = fullpath("../../test1.txt")
+r2 = fullpath("../test2.txt")
+M = ["../../test1.txt", "../test2.txt"];
+R = fullpath(M)
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Matrix of String managed (SEP 72)</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

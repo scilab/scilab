@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trzeros">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>trzeros</refname>
     <refpurpose> transmission zeros and normal rank</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[tr]=trzeros(Sl)
-[nt,dt,rk]=trzeros(Sl)</synopsis>
+      [nt,dt,rk]=trzeros(Sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,37 +55,50 @@
   <refsection>
     <title>Description</title>
     <para>
-    Called with one output argument, <literal>trzeros(Sl)</literal> returns the 
-    transmission zeros of the linear system <literal>Sl</literal>.</para>
-    <para><literal>Sl</literal> may have a polynomial (but square) <literal>D</literal> matrix.</para>
+      Called with one output argument, <literal>trzeros(Sl)</literal> returns the 
+      transmission zeros of the linear system <literal>Sl</literal>.
+    </para>
     <para>
-    Called with 2 output arguments, <literal>trzeros</literal> returns the 
-    transmission zeros of the linear system <literal>Sl</literal> as <literal>tr=nt./dt</literal>;</para>
+      <literal>Sl</literal> may have a polynomial (but square) <literal>D</literal> matrix.
+    </para>
     <para>
-    (Note that some components of <literal>dt</literal> may be zeros)</para>
+      Called with 2 output arguments, <literal>trzeros</literal> returns the 
+      transmission zeros of the linear system <literal>Sl</literal> as <literal>tr=nt./dt</literal>;
+    </para>
     <para>
-    Called with 3 output arguments, <literal>rk</literal>  is the normal rank of <literal>Sl</literal></para>
+      (Note that some components of <literal>dt</literal> may be zeros)
+    </para>
     <para>
-    Transfer matrices are converted to state-space.</para>
+      Called with 3 output arguments, <literal>rk</literal>  is the normal rank of <literal>Sl</literal>
+    </para>
     <para>
-    If <literal>Sl</literal> is a (square) polynomial matrix <literal>trzeros</literal> returns the 
-    roots of its determinant.</para>
+      Transfer matrices are converted to state-space.
+    </para>
     <para>
-    For usual state-space system <literal>trzeros</literal> uses the state-space 
-    algorithm of Emami-Naeni and Van Dooren.</para>
+      If <literal>Sl</literal> is a (square) polynomial matrix <literal>trzeros</literal> returns the 
+      roots of its determinant.
+    </para>
     <para>
-    If <literal>D</literal> is invertible the transmission zeros are the eigenvalues
-    of the "<literal>A</literal> matrix" of the inverse system : <literal>A - B*inv(D)*C</literal>;</para>
+      For usual state-space system <literal>trzeros</literal> uses the state-space 
+      algorithm of Emami-Naeni and Van Dooren.
+    </para>
     <para>
-    If <literal>C*B</literal> is invertible the transmission zeros are the eigenvalues
-    of <literal>N*A*M</literal> where <literal>M*N</literal> is a full rank factorization of 
-    <literal>eye(A)-B*inv(C*B)*C</literal>;</para>
+      If <literal>D</literal> is invertible the transmission zeros are the eigenvalues
+      of the "<literal>A</literal> matrix" of the inverse system : <literal>A - B*inv(D)*C</literal>;
+    </para>
     <para>
-    For systems with a polynomial <literal>D</literal> matrix zeros are 
-    calculated as the roots of the determinant of the system matrix.</para>
+      If <literal>C*B</literal> is invertible the transmission zeros are the eigenvalues
+      of <literal>N*A*M</literal> where <literal>M*N</literal> is a full rank factorization of 
+      <literal>eye(A)-B*inv(C*B)*C</literal>;
+    </para>
     <para>
-    Caution: the computed zeros are not always reliable, in particular
-    in case of repeated zeros.</para>
+      For systems with a polynomial <literal>D</literal> matrix zeros are 
+      calculated as the roots of the determinant of the system matrix.
+    </para>
+    <para>
+      Caution: the computed zeros are not always reliable, in particular
+      in case of repeated zeros.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -100,7 +113,7 @@ roots(St1(rowf,colf)), nt./dt     //By Kronecker form
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gspec">gspec</link>

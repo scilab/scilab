@@ -16,6 +16,9 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{133e4c80-9122-491c-8021-24677524d571}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library Dependencies">
+      <UniqueIdentifier>{4417abf3-7c8c-4472-b063-06a3aac0bd43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\algdiv.c">
@@ -400,8 +403,11 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+    <None Include="Output_stream_Import.def">
+      <Filter>Library Dependencies</Filter>
+    </None>
+    <None Include="statistics_Import.def">
+      <Filter>Library Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

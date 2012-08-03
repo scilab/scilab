@@ -96,7 +96,7 @@ double * getDoubleComplexImg(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol);
+int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol, double * imag, int nbRowI, int nbColI);
 
 /**
  * Return a matrix of boolean
@@ -287,14 +287,6 @@ unsigned long * getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
  */
 int putUnsignedLong(char* variableName, unsigned long *variable, int nbRow, int nbCol);
 
-
-/**
- * Return the last error message as a single string
- *
- * @return The last error message
- */
-char* getLastErrorMessageSingle();
-
 /**
  * Return a matrix of string
  *
@@ -315,6 +307,83 @@ char ** getString(char* variableName, int *nbRow, int *nbCol);
  * @return 0 if successfull, != 0 otherwise
  */
 int putString(char* variableName, char **variable, int nbRow, int nbCol);
+
+/**
+ * Set a sparse matrix
+ *
+ * @param variableName The name of the variable
+ * @param nbRow Number of rows
+ * @param nbCol Number of cols
+ * @param nbRowItem the number of non null items by row
+ * @param nbRowItemL the length of the previous array
+ * @param colPos the column position of each non null item
+ * @param colPosL the length of the previous array
+ * @param data the double data
+ * @param dataL the length of the previous array
+ * @return 0 if successfull, != 0 otherwise
+ */
+int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL);
+
+/**
+ * Set a complex sparse matrix
+ *
+ * @param variableName The name of the variable
+ * @param nbRow Number of rows
+ * @param nbCol Number of cols
+ * @param nbRowItem the number of non null items by row
+ * @param nbRowItemL the length of the previous array
+ * @param colPos the column position of each non null item
+ * @param colPosL the length of the previous array
+ * @param data the double data
+ * @param dataL the length of the previous array
+ * @param imag the double data
+ * @param imagL the length of the previous array
+ * @return 0 if successfull, != 0 otherwise
+ */
+int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL, double * imag, int imagL);
+
+/**
+ * Set a boolean sparse matrix
+ *
+ * @param variableName The name of the variable
+ * @param nbRow Number of rows
+ * @param nbCol Number of cols
+ * @param nbRowItem the number of non null items by row
+ * @param nbRowItemL the length of the previous array
+ * @param colPos the column position of each non null item
+ * @param colPosL the length of the previous array
+ * @return 0 if successfull, != 0 otherwise
+ */
+int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL);
+
+/**
+ * Set a polynomial matrix
+ *
+ * @param variableName The name of the variable
+ * @param polyVarName The name of the polynomial variable
+ * @param data the double data
+ * @param nbRow Number of rows
+ * @param nbCol Number of cols
+ * @param nbCoef the number of coef of each polynomial
+ * @return 0 if successfull, != 0 otherwise
+ */
+int putPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef);
+
+/**
+ * Set a complex polynomial matrix
+ *
+ * @param variableName The name of the variable
+ * @param polyVarName The name of the polynomial variable
+ * @param data the double data
+ * @param nbRow Number of rows
+ * @param nbCol Number of cols
+ * @param imag the double data
+ * @param nbRowI Number of rows
+ * @param nbColI Number of cols
+ * @param nbCoef the number of coef of each polynomial
+ * @return 0 if successfull, != 0 otherwise
+ */
+int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI);
 
 /**
  * Chek if a variable exists in Context

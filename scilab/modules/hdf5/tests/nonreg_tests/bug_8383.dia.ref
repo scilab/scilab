@@ -17,42 +17,42 @@
 //list(1, undef, 3)
 list_undefined = list(1);
 list_undefined(3) = 3;
-export_to_hdf5(TMPDIR + "/list_undefined.h5", "list_undefined");
+export_to_hdf5(TMPDIR + "/list_undefined.sod", "list_undefined");
 clear list_undefined;
-import_from_hdf5(TMPDIR + "/list_undefined.h5");
+import_from_hdf5(TMPDIR + "/list_undefined.sod");
 if or(definedfields(list_undefined) == 2) == %t then bugmes();quit;end
 //list(undef, 3)
 list_undefined = list(1);
 list_undefined(3) = 3;
 list_undefined(1) = null();
-export_to_hdf5(TMPDIR + "/list_undefined.h5", "list_undefined");
+export_to_hdf5(TMPDIR + "/list_undefined.sod", "list_undefined");
 clear list_undefined;
-import_from_hdf5(TMPDIR + "/list_undefined.h5");
+import_from_hdf5(TMPDIR + "/list_undefined.sod");
 if or(definedfields(list_undefined) == 1) == %t then bugmes();quit;end
 //list(1, undef)
 list_undefined = list(1);
 list_undefined(3) = 3;
 list_undefined(3) = null();
-export_to_hdf5(TMPDIR + "/list_undefined.h5", "list_undefined");
+export_to_hdf5(TMPDIR + "/list_undefined.sod", "list_undefined");
 clear list_undefined;
-import_from_hdf5(TMPDIR + "/list_undefined.h5");
+import_from_hdf5(TMPDIR + "/list_undefined.sod");
 if or(definedfields(list_undefined) == 2) == %t then bugmes();quit;end
 //void test
 //list(1, void, 3)
 list_void = list(1,,3);
-export_to_hdf5(TMPDIR + "/list_void.h5", "list_void");
+export_to_hdf5(TMPDIR + "/list_void.sod", "list_void");
 clear list_void;
-import_from_hdf5(TMPDIR + "/list_void.h5");
+import_from_hdf5(TMPDIR + "/list_void.sod");
 if type(list_void(2)) <> 0 then bugmes();quit;end
 //list(void, 3)
 list_void = list(,2);
-export_to_hdf5(TMPDIR + "/list_void.h5", "list_void");
+export_to_hdf5(TMPDIR + "/list_void.sod", "list_void");
 clear list_void;
-import_from_hdf5(TMPDIR + "/list_void.h5");
+import_from_hdf5(TMPDIR + "/list_void.sod");
 if type(list_void(1)) <> 0 then bugmes();quit;end
 //list(1, void)
 list_void = list(1,);
-export_to_hdf5(TMPDIR + "/list_void.h5", "list_void");
+export_to_hdf5(TMPDIR + "/list_void.sod", "list_void");
 clear list_void;
-import_from_hdf5(TMPDIR + "/list_void.h5");
+import_from_hdf5(TMPDIR + "/list_void.sod");
 if type(list_void(2)) <> 0 then bugmes();quit;end

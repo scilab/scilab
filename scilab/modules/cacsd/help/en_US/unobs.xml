@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unobs">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>unobs</refname>
     <refpurpose> unobservable subspace</refpurpose>
@@ -46,21 +43,26 @@
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para>orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.</para>
+          <para>
+            orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal> 
-    pair.
-    The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
-    subspace.</para>
     <para>
-    The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first 
-    columns) of <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first columns 
-    of <literal>C*U</literal> are zero.</para>
+      <literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal> 
+      pair.
+      The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
+      subspace.
+    </para>
+    <para>
+      The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first 
+      columns) of <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first columns 
+      of <literal>C*U</literal> are zero.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +72,7 @@ unobs(A,C)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contr">contr</link>

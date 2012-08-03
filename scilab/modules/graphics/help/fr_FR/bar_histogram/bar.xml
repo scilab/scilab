@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bar</refname>
     <refpurpose>histogramme de barres</refpurpose>
@@ -10,8 +7,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>bar(y)
-bar(x,y)
-bar([h],x,y [,width [,color [,style]]])</synopsis>
+      bar(x,y)
+      bar([h],x,y [,width [,color [,style]]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -56,35 +54,48 @@ bar([h],x,y [,width [,color [,style]]])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>bar(y,...) :</literal> si y est un vecteur alors la fonction bar
-		dessine une polyline de type <literal>polyline_style</literal> égale à  6, dans
-		ce cas x =1 : length(y). Si y est une matrice de taille N*M, alors la
-		fonction bar dessine M polylines de (type 6), chaque polyline correspond à 
-		une colonne de y est au vecteur x=1:size(y,1).</para>
-    <para><literal>bar(x,y,...) :</literal> si y est un vecteur alors la fonction bar
-		dessine une polyline de type <literal>polyline_style</literal> égale à  6,
-		vérifiant: longeur de x = longeur de y .Si y est une matrice de taille
-		N*M, alors la fonction bar dessine M polylines de (type 6), chaque
-		polyline correspond à  une colonne de y est au vecteur x vérifiant longueur
-		de x=size(y,1) (i.e longueur de x = nombre de ligne de y).</para>
-    <para><literal>bar(h,...) :</literal> definit les axes courants ou le dessin est
-		réalisé.</para>
-    <para><literal>bar(...,width,...) :</literal> definit l'épaisseur des barres en
-		pourcentage (générallement: 0&lt;width&lt;=1).</para>
-    <para><literal>bar(...,style,...) :</literal> dans le cas ou y est une matrice
-		l'option style definit la façon dont les barres sont positionnées les unes
-		par rapport aux autres. Si y est une matice N*M (donc M polylines de type
-		6) alors il y a 2 façons de dessiner ces M barres. l'option style fixée à 
-		grouped' permet de centrer les M polylines par rapport aux abscisses (i.e
-		par rapport à  chaque composantes de x), et l'option style fixée à 
-		'stacked' permet de les empiler.</para>
-    <para><literal>bar(...,color,...) : </literal>definit la couleur des barres. La
-		fonction bar utilise la meme colormap que la fonction
-		<literal>plot</literal>.</para>
-    <para>S'il y a plusieurs appels à  la fonction bar, la fonction
-		<literal>barhomogenize</literal> permet d'homogénéiser l'épaisseur et le style
-		de toutes les barres (i.e les polylines de type 6) inclus dans les axes
-		courrants.</para>
+    <para>
+      <literal>bar(y,...) :</literal> si y est un vecteur alors la fonction bar
+      dessine une polyline de type <literal>polyline_style</literal> égale à 6, dans
+      ce cas x =1 : length(y). Si y est une matrice de taille N*M, alors la
+      fonction bar dessine M polylines de (type 6), chaque polyline correspond à
+      une colonne de y est au vecteur x=1:size(y,1).
+    </para>
+    <para>
+      <literal>bar(x,y,...) :</literal> si y est un vecteur alors la fonction bar
+      dessine une polyline de type <literal>polyline_style</literal> égale à 6,
+      vérifiant: longeur de x = longeur de y .Si y est une matrice de taille
+      N*M, alors la fonction bar dessine M polylines de (type 6), chaque
+      polyline correspond à une colonne de y est au vecteur x vérifiant longueur
+      de x=size(y,1) (i.e longueur de x = nombre de ligne de y).
+    </para>
+    <para>
+      <literal>bar(h,...) :</literal> definit les axes courants ou le dessin est
+      réalisé.
+    </para>
+    <para>
+      <literal>bar(...,width,...) :</literal> definit l'épaisseur des barres en
+      pourcentage (générallement: 0&lt;width&lt;=1).
+    </para>
+    <para>
+      <literal>bar(...,style,...) :</literal> dans le cas ou y est une matrice
+      l'option style definit la façon dont les barres sont positionnées les unes
+      par rapport aux autres. Si y est une matice N*M (donc M polylines de type
+      6) alors il y a 2 façons de dessiner ces M barres. l'option style fixée à
+      grouped' permet de centrer les M polylines par rapport aux abscisses (i.e
+      par rapport à chaque composantes de x), et l'option style fixée à
+      'stacked' permet de les empiler.
+    </para>
+    <para>
+      <literal>bar(...,color,...) : </literal>definit la couleur des barres. La
+      fonction bar utilise la meme colormap que la fonction
+      <literal>plot</literal>.
+    </para>
+    <para>S'il y a plusieurs appels à la fonction bar, la fonction
+      <literal>barhomogenize</literal> permet d'homogénéiser l'épaisseur et le style
+      de toutes les barres (i.e les polylines de type 6) inclus dans les axes
+      courrants.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -112,7 +123,7 @@ bar(x,y,0.2,'green');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="barh">barh</link>
@@ -127,9 +138,5 @@ bar(x,y,0.2,'green');
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Farid Belahcene</para>
   </refsection>
 </refentry>

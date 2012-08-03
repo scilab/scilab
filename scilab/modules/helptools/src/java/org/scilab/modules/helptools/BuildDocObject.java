@@ -22,8 +22,6 @@ import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
-import org.scilab.modules.commons.ScilabConstants;
-
 /**
  * This classes intends to wrap Saxon features in a easy-to-use class.
  */
@@ -204,11 +202,11 @@ public class BuildDocObject extends StyleSheet {
      * Replace links by the contents of the XML files in the master
      * @param masterXML name of the master file
      * @param styleSheet CSS to be used
-     * @return the absolute path the the new master file
+     * @return the absolute path of the new master file
      */
     private String preProcessMaster(String masterXML) {
 
-        String filename = (String) new File(masterXML).getName();
+        String filename = new File(masterXML).getName();
         /* Create the output file which will be created by copyconvert.run into the working directory  */
         File masterXMLTransformed = new File(this.outputDirectory
                                              + File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
@@ -274,12 +272,12 @@ public class BuildDocObject extends StyleSheet {
             File tmpFileForURI = new File(this.styleDoc);
             contentMainStyleDoc = contentMainStyleDoc.replaceAll("STYLE_DOC", tmpFileForURI.toURI().toString());
 
-            File temporaryStyleFile = File.createTempFile("style_",".xsl");
+            File temporaryStyleFile = File.createTempFile("style_", ".xsl");
 
             Helpers.saveString(contentMainStyleDoc, temporaryStyleFile, "UTF-8");
             return temporaryStyleFile;
         } catch (java.io.IOException e) {
-            System.err.println("Could not convert "+mainStyleDoc);
+            System.err.println("Could not convert " + mainStyleDoc);
             return null;
         }
     }
@@ -329,7 +327,7 @@ public class BuildDocObject extends StyleSheet {
                 throw new FileNotFoundException("Could not find CSS stylesheet: " + styleSheet);
             }
             /* Where it will be stored */
-            String out = this.outputDirectory + File.separator + (String) new File(styleSheet).getName();
+            String out = this.outputDirectory + File.separator + new File(styleSheet).getName();
 
             try {
                 Helpers.copyFile(new File(styleSheet), new File(out));

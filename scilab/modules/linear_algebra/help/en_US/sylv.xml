@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sylv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sylv</refname>
     <refpurpose> Sylvester equation.  </refpurpose>
@@ -34,21 +31,27 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string (<literal>'c'</literal> or <literal>'d'</literal>)</para>
+          <para>
+            character string (<literal>'c'</literal> or <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = sylv(A,B,C,'c')</literal> computes <literal>X</literal>, solution
-    of the "continuous time" Sylvester equation</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X= sylv(A,B,C,'c')</literal> computes <literal>X</literal>, solution
+      of the "continuous time" Sylvester equation
+    </para>
+    <programlisting role=""><![CDATA[ 
 A*X+X*B=C 
  ]]></programlisting>
-    <para><literal>X=sylv(A,B,C,'d')</literal> computes <literal>X</literal>, solution
-    of the "discrete time" Sylvester equation</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X=sylv(A,B,C,'d')</literal> computes <literal>X</literal>, solution
+      of the "discrete time" Sylvester equation
+    </para>
+    <programlisting role=""><![CDATA[ 
 A*X*B-X=C
  ]]></programlisting>
   </refsection>
@@ -63,7 +66,7 @@ norm(A*X*B-X-C)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lyap">lyap</link>

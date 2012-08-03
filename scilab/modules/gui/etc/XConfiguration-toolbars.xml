@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toolbar title="Toolbar">
+  <body>
+    <toolbars select="scilab">
+      <toolbar title="scilab" position="1" selection="0">
+        <item title="Cut"/>
+        <separator/>
+        <item title="Paste"/>
+      </toolbar>
+      <toolbar title="scinotes" position="2" selection="2">
+        <item title="Cut"/>
+        <separator/>
+        <item title="Copy"/>
+      </toolbar>
+    </toolbars>
+  </body>
+</toolbar>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="systmat">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>systmat</refname>
     <refpurpose> system matrix</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) or descriptor system</para>
+          <para>
+            linear system (<literal>syslin</literal> list) or descriptor system
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,21 +41,23 @@
   <refsection>
     <title>Description</title>
     <para>
-    System matrix of the linear system <literal>Sl</literal> (<literal>syslin</literal> list)
-    in state-space form (utility function).</para>
-    <programlisting role = ""><![CDATA[ 
+      System matrix of the linear system <literal>Sl</literal> (<literal>syslin</literal> list)
+      in state-space form (utility function).
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    For a descriptor system (<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> returns:</para>
-    <programlisting role = ""><![CDATA[ 
+      For a descriptor system (<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> returns:
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>

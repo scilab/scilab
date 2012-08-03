@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gca">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="gca">
   <refnamediv>
     <refname>gca</refname>
     <refpurpose>  Return handle of current axes. </refpurpose>
@@ -36,8 +33,8 @@
   <refsection>
     <title>Description</title>
     <para>
-   This routine returns the handle of the current axes for the current figure.
-  </para>
+      This routine returns the handle of the current axes for the current figure.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +54,7 @@ xdel(0) //delete a graphics window
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gda">gda</link>
@@ -75,11 +72,5 @@ xdel(0) //delete a graphics window
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Djalel ABDEMOUCHE
-  </para>
   </refsection>
 </refentry>

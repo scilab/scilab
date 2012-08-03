@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="des2tf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>des2tf</refname>
     <refpurpose>記述子から伝達関数への変換</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[S]=des2tf(sl)
-[Bfs,Bis,chis]=des2tf(sl)</synopsis>
+      [Bfs,Bis,chis]=des2tf(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -55,22 +53,26 @@
   <refsection>
     <title>説明</title>
     <para>
-	記述子形式の線形システム<literal>Sl=list('des',A,B,C,D,E)</literal>を指定すると,
-	<literal>des2tf</literal> は <literal>sl</literal> を
-	その伝達関数表現に変換します:</para>
-    <programlisting role = ""><![CDATA[ 
+      記述子形式の線形システム<literal>Sl=list('des',A,B,C,D,E)</literal>を指定すると,
+      <literal>des2tf</literal> は <literal>sl</literal> を
+      その伝達関数表現に変換します:
+    </para>
+    <programlisting role=""><![CDATA[ 
 S=C*(s*E-A)^(-1)*B+D
  ]]></programlisting>
     <para>
-	引数3個でコールされた場合, <literal>des2tf</literal> は,
-	2つの多項式行列
-    <literal>Bfs</literal> および <literal>Bis</literal> と 
-    次のような多項式<literal>chis</literal>を返します:</para>
-    <programlisting role = ""><![CDATA[ 
+      引数3個でコールされた場合, <literal>des2tf</literal> は,
+      2つの多項式行列
+      <literal>Bfs</literal> および <literal>Bis</literal> と 
+      次のような多項式<literal>chis</literal>を返します:
+    </para>
+    <programlisting role=""><![CDATA[ 
 S=Bfs/chis - Bis
  ]]></programlisting>
-    <para><literal>chis</literal> は <literal>(s*E-A)</literal> の行列式
-	(xcative定数に一致)です;</para>
+    <para>
+      <literal>chis</literal> は <literal>(s*E-A)</literal> の行列式
+      (xcative定数に一致)です;
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -104,9 +106,5 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
         <link linkend="rowshuff">rowshuff</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

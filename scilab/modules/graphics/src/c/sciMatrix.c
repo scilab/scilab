@@ -36,7 +36,7 @@ sciMatrix * emptyMatrix( void )
 /*----------------------------------------------------------------------------------*/
 sciMatrix * newMatrix( int nbRow, int nbCol )
 {
-  int i ;
+  int i = 0;
   /* create the matrix */
   sciMatrix * newMat = emptyMatrix() ;
   
@@ -68,7 +68,7 @@ sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol )
 /*----------------------------------------------------------------------------------*/
 void deleteMatrix( sciMatrix * mat )
 {
-  int i ;
+  int i = 0;
   for ( i = 0 ; i < mat->nbRow * mat->nbCol ; i++ )
   {
     FREE( mat->data[i] ) ;

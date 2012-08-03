@@ -1,0 +1,20 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+adre_
+intersci_
+iop_
+recu_
+stack_
+vstk_
+com_
+cha1_
+mtlbc_
+errgst_
+cremat_
+isanan_
+putlhsvar_

@@ -15,7 +15,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -32,9 +32,17 @@ function [x,y,typ] = JKFLIPFLOP(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
+    // look for the 1/z block
+    for i=1:length(arg1.model.rpar.objs) do
+      o = arg1.model.rpar.objs(i);
+      if typeof(o) == "Block" & o.gui == "DOLLAR_m" then
+        path = i;
+        break;
+      end
+    end
    // if exprs==[] then exprs=sci2exp(int8(0));end
     newpar=list()
-    xx=arg1.model.rpar.objs(1)// get the 1/z  block
+    xx=arg1.model.rpar.objs(path)// get the 1/z  block
     exprs=xx.graphics.exprs(1)
     model=xx.model;
     init_old= model.odstate(1)
@@ -54,7 +62,7 @@ function [x,y,typ] = JKFLIPFLOP(job,arg1,arg2)
     xx.graphics.exprs(1)=exprs0
     model.odstate(1)=init
     xx.model=model
-    arg1.model.rpar.objs(1)=xx// Update
+    arg1.model.rpar.objs(path)=xx// Update
     break
       end
     end

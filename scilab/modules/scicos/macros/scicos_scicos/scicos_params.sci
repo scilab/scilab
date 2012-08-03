@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,7 +31,7 @@ function params=scicos_params(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     end
   end
   if exists('tf','local')==0 then tf=100000,end
-  if exists('tol','local')==0 then tol=[1.d-6,1.d-6,1.d-10,tf+1,0,0],end
+  if exists('tol','local')==0 then tol=[1.d-6,1.d-6,1.d-10,tf+1,0,0,0],end
   if exists('context','local')==0 then context=[],end
   void1=[]
   if exists('options','local')==0 then options=default_options(),end

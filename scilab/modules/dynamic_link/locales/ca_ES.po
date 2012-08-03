@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
 
 #, c-format
@@ -205,6 +205,12 @@ msgstr "S'està enllaçant %s.\n"
 msgid "Dynamic link"
 msgstr "Enllaç dinàmic"
 
+msgid "Call a C function"
+msgstr ""
+
+msgid "Call a Fortran subroutine"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
@@ -232,6 +238,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -365,6 +376,12 @@ msgstr ""
 "mateixos (%s).\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+
+#, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr "   %s: S'ignora el fitxer %s.\n"
 
@@ -450,6 +467,10 @@ msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 "%s: Aquesta característica necessita el compilador de C del Microsoft Visual "
 "Studio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

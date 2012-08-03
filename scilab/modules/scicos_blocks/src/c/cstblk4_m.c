@@ -14,19 +14,17 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
-#include <memory.h>
-#include<stdio.h>
+/*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block,int flag)
-{ 
+{
   /* Copyright INRIA
 
   Scicos block simulator
@@ -43,4 +41,4 @@ SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block,int flag)
   so=GetSizeOfOpar(block,1);
   memcpy(y,opar,mo*no*so);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -34,62 +34,57 @@
         <term>module</term>
         <listitem>
           <para>mx1, mx2, mx3 Matrix of strings :</para>
-            <informaltable border="1">
-              <!-- Technical name -->
-
-                <tr>
-                  <td>
-                    <emphasis>1st Col.</emphasis>
-                  </td>
-                  <td>
-                    <emphasis role="strong">Technical name</emphasis>
-                  </td>
-                  <td>
-                    Mandatory
-                  </td>
-                  <td>
-                  </td>
-                </tr>
-
-                <!-- Version -->
-
-                <tr>
-                  <td>
-                    <emphasis>2nd Col.</emphasis>
-                  </td>
-                    <td>
-                      <emphasis role="strong">Version</emphasis>
-                    </td>
-                    <td>
-                      Optionnal
-                    </td>
-                    <td>
-                      If this field is empty or is not present,
-                      the most recent version is used
-                    </td>
-                  </tr>
-
-                  <!-- Section -->
-
-                  <tr>
-                    <td>
-                      <emphasis>3nd Col.</emphasis>
-                    </td>
-                    <td>
-                      <emphasis role="strong">Section</emphasis>
-                    </td>
-                    <td>
-                      Optionnal
-                    </td>
-                    <td>
-                      If this field is empty or is not present,
-                      "allusers" is used
-                    </td>
-                  </tr>
-                 </informaltable>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
+                Mandatory
+              </td>
+              <td>
+              </td>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                the most recent version is used
+              </td>
+            </tr>
+            <!-- Section -->
+            <tr>
+              <td>
+                <emphasis>3nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Section</emphasis>
+              </td>
+              <td>
+                Optional
+              </td>
+              <td>
+                If this field is empty or is not present,
+                "allusers" is used
+              </td>
+            </tr>
+          </informaltable>
         </listitem>
-	<term>path</term>
-	  <para>The path of the given module</para>
+        <term>path</term>
+        <para>The path of the given module</para>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -122,7 +117,7 @@ atomsRemove("toolbox_5");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsLoad">atomsLoad</link>
@@ -138,10 +133,4 @@ atomsRemove("toolbox_5");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

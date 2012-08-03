@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the font size of an uicontrol
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,31 +14,20 @@
 
 #include "GetUicontrolFontSize.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
-int GetUicontrolFontSize(sciPointObj* sciObj)
+int GetUicontrolFontSize(void* _pvCtx, char *sciObjUID)
 {
-  int fontSize = 0;
+    double fontSize = 0;
+    double* pdblFontSize = &fontSize;
 
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTSIZE__), jni_double, (void**) &pdblFontSize);
+
+    if (pdblFontSize == NULL)
     {
-      // Get the font size from Scilab object
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
-        {
-          fontSize = CallScilabBridge::getFrameFontSize(getScilabJavaVM(), 
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-        }
-      else /* All other uicontrol styles */
-        {
-          fontSize = CallScilabBridge::getWidgetFontSize(getScilabJavaVM(), 
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-        }
-
-      return sciReturnDouble(ConvertFromPoint(fontSize, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj, FALSE));
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontSize");
+        return FALSE; 
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontSize");
-      return FALSE;
+        return sciReturnDouble(_pvCtx, fontSize);
     }
 }

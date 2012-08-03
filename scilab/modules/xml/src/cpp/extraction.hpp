@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +24,6 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -46,7 +45,7 @@ using namespace org_modules_xml;
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createStringOnStack(char * fname, const char * str, int pos)
+int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 {
     SciErr err;
 
@@ -101,15 +100,21 @@ int createStringOnStack(char * fname, const char * str, int pos)
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos)
+int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("root", field))
     {
-        return doc.getRoot()->createOnStack(pos);
+        const XMLElement * e = doc.getRoot();
+        if (!e)
+        {
+            Scierror(999, gettext("%s: No root element.\n"), fname, field);
+            return 0;
+        }
+        return e->createOnStack(pos, pvApiCtx);
     }
     else if (!strcmp("url", field))
     {
-        return createStringOnStack(fname, doc.getDocumentURL(), pos);
+        return createStringOnStack(fname, doc.getDocumentURL(), pos, pvApiCtx);
     }
     else
     {
@@ -127,18 +132,18 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos)
+int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("name", field))
     {
-        return createStringOnStack(fname, elem.getNodeName(), pos);
+        return createStringOnStack(fname, elem.getNodeName(), pos, pvApiCtx);
     }
     else if (!strcmp("namespace", field))
     {
         const XMLNs * ns = elem.getNodeNameSpace();
         if (ns)
         {
-            return ns->createOnStack(pos);
+            return ns->createOnStack(pos, pvApiCtx);
         }
         else
         {
@@ -149,20 +154,20 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     else if (!strcmp("content", field))
     {
         const char * content = elem.getNodeContent();
-        int ret = createStringOnStack(fname, content, pos);
+        int ret = createStringOnStack(fname, content, pos, pvApiCtx);
         xmlFree(const_cast<char *>(content));
         return ret;
     }
     else if (!strcmp("type", field))
     {
-        return createStringOnStack(fname, nodes_type[elem.getNodeType() - 1], pos);
+        return createStringOnStack(fname, nodes_type[elem.getNodeType() - 1], pos, pvApiCtx);
     }
     else if (!strcmp("parent", field))
     {
         const XMLElement * parent = elem.getParentElement();
         if (parent)
         {
-            return parent->createOnStack(pos);
+            return parent->createOnStack(pos, pvApiCtx);
         }
         else
         {
@@ -172,11 +177,24 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     }
     else if (!strcmp("attributes", field))
     {
-        return elem.getAttributes()->createOnStack(pos);
+        return elem.getAttributes()->createOnStack(pos, pvApiCtx);
     }
     else if (!strcmp("children", field))
     {
-        return elem.getChildren()->createOnStack(pos);
+        return elem.getChildren()->createOnStack(pos, pvApiCtx);
+    }
+    else if (!strcmp("line", field))
+    {
+        double line = (double)elem.getDefinitionLine();
+        SciErr err = createMatrixOfDouble(pvApiCtx, pos, 1, 1, &line);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+
+        return 1;
     }
     else
     {
@@ -194,15 +212,15 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos)
+int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("href", field))
     {
-        return createStringOnStack(fname, ns.getHref(), pos);
+        return createStringOnStack(fname, ns.getHref(), pos, pvApiCtx);
     }
     else if (!strcmp("prefix", field))
     {
-        return createStringOnStack(fname, ns.getPrefix(), pos);
+        return createStringOnStack(fname, ns.getPrefix(), pos, pvApiCtx);
     }
     else
     {
@@ -218,7 +236,7 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos)
  * @param fname_len the function name length
  */
 template<class T>
-int sci_extraction(char * fname, unsigned long fname_len)
+int sci_extraction(char * fname, void *pvApiCtx)
 {
     T * t;
     int id;
@@ -248,11 +266,16 @@ int sci_extraction(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
-    id = getXMLObjectId(mlistaddr);
+    if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
 
     t = XMLObject::getFromId<T>(id);
     if (!t)
@@ -262,7 +285,7 @@ int sci_extraction(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    ret = createVariableOnStack(fname, *t, const_cast<char *>(field), Rhs + 1);
+    ret = createVariableOnStack(fname, *t, const_cast<char *>(field), Rhs + 1, pvApiCtx);
     freeAllocatedSingleString(field);
     if (ret)
     {

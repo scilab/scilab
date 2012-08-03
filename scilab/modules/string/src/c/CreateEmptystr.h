@@ -22,7 +22,7 @@
 * Create Empty strings matrix
 * @param[in] dimension row
 * @param[in] dimension col
-* @return a empty string
+* @return an empty string
 */
 char **CreateEmptystr(int m1,int n1);
 

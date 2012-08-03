@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="arma">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>arma</refname>
     <refpurpose> Scilab armaライブラリ</refpurpose>
@@ -21,19 +18,21 @@
   <refsection>
     <title>説明</title>
     <para>
-    Armax は,Scilab tlist型<literal>'ar'</literal>を有するデータを処理します.
-	<literal>armac</literal>が,
-    <literal>Armax</literal> Scilabオブジェクトを構築する際に使用されます.
-	<literal>'ar'</literal> tlist には,フィールド
-	<literal>['a','b','d','ny','nu','sig']</literal>が含まれます.
-  </para>
+      Armax は,Scilab tlist型<literal>'ar'</literal>を有するデータを処理します.
+      <literal>armac</literal>が,
+      <literal>Armax</literal> Scilabオブジェクトを構築する際に使用されます.
+      <literal>'ar'</literal> tlist には,フィールド
+      <literal>['a','b','d','ny','nu','sig']</literal>が含まれます.
+    </para>
     <variablelist>
       <varlistentry>
         <term>armac</term>
         <listitem>
-          <para>この間巣は,Armaxプロセス<literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
-	を符号化するScilab tlistを作成します.</para>
-          <programlisting role = ""><![CDATA[ 
+          <para>
+            この間巣は,Armaxプロセス<literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+            を符号化するScilab tlistを作成します.
+          </para>
+          <programlisting role=""><![CDATA[ 
 -->ar=armac([1,2],[3,4],1,1,1,sig);
  
 -->ar('a')   
@@ -50,14 +49,18 @@
       <varlistentry>
         <term>armap(ar [,out])</term>
         <listitem>
-          <para><literal>ar</literal>に関するarmax方程式を表示します.</para>
+          <para>
+            <literal>ar</literal>に関するarmax方程式を表示します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>armap_p(ar [,out])</term>
         <listitem>
-          <para><literal>ar</literal> 
-	に関するarmax方程式を多項式行列表示で表示します.</para>
+          <para>
+            <literal>ar</literal> 
+            に関するarmax方程式を多項式行列表示で表示します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -69,15 +72,19 @@
       <varlistentry>
         <term>armax</term>
         <listitem>
-          <para>n次元ARXプロセス<literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal>の係数を
-	同定するために使用されます.</para>
+          <para>
+            n次元ARXプロセス<literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal>の係数を
+            同定するために使用されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>armax1</term>
         <listitem>
-          <para>armax1 は,1次元 ARX プロセス<literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
-	の係数を同定するために使用されます.</para>
+          <para>
+            armax1 は,1次元 ARX プロセス<literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+            の係数を同定するために使用されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -153,10 +160,5 @@ plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1
 legend(["Using macro mese";"Theoretical value";"Arma identification"])
 xtitle("Spectral power","frequency","spectral estimate")
  ]]></programlisting>
-  </refsection>
-
-  <refsection>
-    <title>作者</title>
-    <para>J.P.C ; ;   </para>
   </refsection>
 </refentry>

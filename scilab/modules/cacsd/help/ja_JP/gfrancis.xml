@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gfrancis">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gfrancis</refname>
     <refpurpose>追尾用のフランシス方程式</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>Plant</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Model</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,39 +49,44 @@
   <refsection>
     <title>説明</title>
     <para>
-    線形プラント:</para>
-    <programlisting role = ""><![CDATA[ 
+      線形プラント:
+    </para>
+    <programlisting role=""><![CDATA[ 
 x'= F*x + G*u 
 y = H*x + J*u
  ]]></programlisting>
     <para>
-    および線形モデルを指定</para>
-    <programlisting role = ""><![CDATA[
+      および線形モデルを指定
+    </para>
+    <programlisting role=""><![CDATA[
 xm'= A*xm + B*um
 ym = C*xm + D*um
  ]]></programlisting>
     <para>
-	プラントの状態量 x(t) の安定性を維持しつつ,
-	プラントがモデルを追尾する,すなわち,
-	<literal>e = y - ym ---&gt; 0</literal>
-	ことが目標です.
-    <literal>u</literal> はフィードフォワードおよびフィードバックにより
-	指定されます</para>
-    <programlisting role = ""><![CDATA[ 
+      プラントの状態量 x(t) の安定性を維持しつつ,
+      プラントがモデルを追尾する,すなわち,
+      <literal>e = y - ym ---&gt; 0</literal>
+      ことが目標です.
+      <literal>u</literal> はフィードフォワードおよびフィードバックにより
+      指定されます
+    </para>
+    <programlisting role=""><![CDATA[ 
 u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
  ]]></programlisting>
     <para>
-    行列 T,L,M は一般化フランシス方程式を満たします</para>
-    <programlisting role = ""><![CDATA[ 
+      行列 T,L,M は一般化フランシス方程式を満たします
+    </para>
+    <programlisting role=""><![CDATA[ 
 F*T + G*L = T*A
 H*T + J*L = C
       G*M = T*B
       J*M = D
  ]]></programlisting>
     <para>
-    行列 <literal>K</literal> は,対 <literal>(F,G)</literal> を安定化するように
-	選択する必要があります.
-	ディレクトリ <literal>demos/tracking</literal> の使用例を参照ください.</para>
+      行列 <literal>K</literal> は,対 <literal>(F,G)</literal> を安定化するように
+      選択する必要があります.
+      ディレクトリ <literal>demos/tracking</literal> の使用例を参照ください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

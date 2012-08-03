@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveconsecutivecommands">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>saveconsecutivecommands</refname>
     <refpurpose>Save consecutive duplicate commands.</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>saveconsecutivecommands(boolean_in)
-boolean_out = saveconsecutivecommands()</synopsis>
+      boolean_out = saveconsecutivecommands()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -44,7 +42,8 @@ boolean_out = saveconsecutivecommands()</synopsis>
     <title>Description</title>
     <para>Save consecutive duplicate commands.</para>
     <para>saveconsecutivecommands(%t) if you want consecutive executions of the
-    same statement to be saved to the history file.</para>
+      same statement to be saved to the history file.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -59,11 +58,5 @@ saveconsecutivecommands(%f)
 1
 2
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
   </refsection>
 </refentry>

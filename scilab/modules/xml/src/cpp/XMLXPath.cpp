@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +19,7 @@
 
 namespace org_modules_xml
 {
-    XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLObject(), doc(_doc)
+    XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath):XMLObject(), doc(_doc)
     {
         xpath = _xpath;
         scope->registerPointers(xpath, this);
@@ -32,19 +32,24 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
-    const XMLObject * XMLXPath::getXMLObjectParent() const
+    void *XMLXPath::getRealXMLPointer() const
+    {
+        return static_cast < void *>(xpath);
+    }
+
+    const XMLObject *XMLXPath::getXMLObjectParent() const
     {
         return &doc;
     }
 
-    const XMLNodeSet * XMLXPath::getNodeSet() const
+    const XMLNodeSet *XMLXPath::getNodeSet() const
     {
-        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(xpath->nodesetval);
+        XMLObject *obj = scope->getXMLObjectFromLibXMLPtr(xpath->nodesetval);
         if (obj)
         {
-            return static_cast<XMLNodeSet *>(obj);
+            return static_cast < XMLNodeSet * >(obj);
         }
 
-        return new XMLNodeSet(doc, xpath->nodesetval);
+        return new XMLNodeSet(doc, xpath);
     }
 }

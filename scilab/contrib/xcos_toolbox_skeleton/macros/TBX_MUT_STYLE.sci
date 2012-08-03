@@ -1,8 +1,7 @@
 //
 // This file is part of the Xcos skeleton toolbox
 //
-// Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
-// see license.txt for more licensing informations
+// see license.txt for more licensing information
 
 function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
   x=[];y=[];typ=[]
@@ -24,9 +23,7 @@ function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
     hexa = [string(1:9) "A" "B" "C" "D" "E" "F"];
     graphics.style = "BIGSOM_f;fillColor=#" + strcat(hexa(15 * rand(1,6) + 1));
 
-    port_styles = ["rectangle" "ellipse" "doubleEllipse" "rhombus" "triangle" ..
-                   "cylinder"];
-    
+    port_styles = ["actor" "cloud" "connector" "cylinder" "curve" "doubleEllipse" "ellipse" "hexagon" "image" "label" "line" "rectangle" "rhombus" "triangle"];
     graphics.in_style = "ExplicitInputPort;shape=" + port_styles(size(port_styles, '*') * rand(model.in) + ones(model.in));
     graphics.out_style = "ExplicitOutputPort;shape=" + port_styles(size(port_styles, '*') * rand(model.out) + ones(model.out));
 
@@ -40,9 +37,9 @@ function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
    case 'define' then
     model=scicos_model()
     model.sim=list('block_sum',4)
-    // two inputs with a single "double" element
-    model.in=[1;1]
-    model.intyp=[1;1]
+    // n inputs with a single "double" element
+    model.in=ones(4, 1);
+    model.intyp=ones(model.in);
     // one output with a single "double" element
     model.out=1
     model.outtyp=1

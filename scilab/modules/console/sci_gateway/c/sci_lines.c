@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET 
- * Copyright (C) 2011 - DIGITEO - Allan CORNET 
+ * Copyright (C) 2011-2012 - DIGITEO - Allan CORNET 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,7 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "scilines.h"
 #include "Scierror.h"
@@ -64,6 +63,7 @@ static int sci_lines_no_rhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -81,12 +81,14 @@ static int sci_lines_one_rhs(char *fname)
     /* nb_lines > 0 set value */
     SciErr sciErr;
     int *piAddressVarOne = NULL;
-    int iParam1 = 0;
+
+    int isScalarInput = 0;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -97,48 +99,114 @@ static int sci_lines_one_rhs(char *fname)
         return 0;
     }
 
-    if (!isScalar(pvApiCtx, piAddressVarOne))
+    isScalarInput = isScalar(pvApiCtx, piAddressVarOne);
+
+    if (!isScalarInput && !checkVarDimension(pvApiCtx, piAddressVarOne, 1, 2))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);
         return 0;
     }
 
-    if (isIntegerType(pvApiCtx, piAddressVarOne))
+    if (isScalarInput)
     {
-        if (getScalarInteger32(pvApiCtx, piAddressVarOne, &iParam1) != 0)
+        int iParam1 = 0;
+        if (isIntegerType(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 1);
-            return 0;
+            if (getScalarInteger32(pvApiCtx, piAddressVarOne, &iParam1) != 0)
+            {
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
         }
-    }
-    else // double
-    {
-        double dParam1 = 0.;
-        if (getScalarDouble(pvApiCtx,piAddressVarOne, &dParam1) == 0)
+        else // double
         {
-            iParam1 = (int)dParam1;
+            double dParam1 = 0.;
+            if (getScalarDouble(pvApiCtx,piAddressVarOne, &dParam1) == 0)
+            {
+                iParam1 = (int)dParam1;
+                if (dParam1 != (double)iParam1)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
         }
-    }
 
-    if (iParam1 == -1)
-    {
-        scilinesdefault();
-        if (getScilabMode() == SCILAB_STD)
+        if (iParam1 == -1)
         {
-            ScilabLinesUpdate();
+            scilinesdefault();
+            if (getScilabMode() == SCILAB_STD)
+            {
+                ScilabLinesUpdate();
+            }
+        }
+        else
+        {
+            if (iParam1 < 0)
+            {
+                Scierror(999,_("%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"),fname, 1);
+                return 0;
+            }
+            else
+            {
+                setLinesSize(iParam1);
+            }
         }
     }
     else
     {
-        if (iParam1 < 0)
+        int iLinesValues[2];
+
+        if (isIntegerType(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"),fname, 1);
+            int *iParams1 = NULL;
+            int m = 0, n = 0;
+            sciErr = getMatrixOfInteger32(pvApiCtx,piAddressVarOne, &m, &n, &iParams1);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+            iLinesValues[0] = iParams1[0];
+            iLinesValues[1] = iParams1[1];
+        }
+        else // double
+        {
+            double *dParams1 = NULL;
+            int m = 0, n = 0;
+
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m, &n, &dParams1);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            iLinesValues[0] = (int)dParams1[0];
+            iLinesValues[1] = (int)dParams1[1];
+
+            if ((dParams1[0] != (double)iLinesValues[0]) ||
+                (dParams1[1] != (double)iLinesValues[1]))
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
+                return 0;
+            }
+        }
+
+        if ((iLinesValues[0] < 0) || (iLinesValues[1] < 0))
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d.\n"), fname, 1);
             return 0;
         }
-        else
-        {
-            setLinesSize(iParam1);
-        }
+
+        scilines(iLinesValues[1], iLinesValues[0]);
     }
 
     LhsVar(1) = 0;
@@ -160,6 +228,7 @@ static int sci_lines_two_rhs(char *fname)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -167,6 +236,7 @@ static int sci_lines_two_rhs(char *fname)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

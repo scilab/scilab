@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="showprofile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>showprofile</refname>
     <refpurpose> extracts and displays execution profiles of a Scilab function</refpurpose>
@@ -36,16 +33,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    To use <literal>showprofile</literal> the Scilab function must have been prepared for
-    profiling (see exec).</para>
+      To use <literal>showprofile</literal> the Scilab function must have been prepared for
+      profiling (see exec).
+    </para>
     <para>
-    For such function, When such a function is executed the systems counts
-    how many time each line is executed and how may cpu time is spend for
-    each line execution. These data are stored within the function data
-    structure.  The <literal>showprofile</literal> function outputs profiling results
-    (see <literal>profile</literal>) with text of the function lines.</para>
+      For such function, When such a function is executed the systems counts
+      how many time each line is executed and how may cpu time is spend for
+      each line execution. These data are stored within the function data
+      structure.  The <literal>showprofile</literal> function outputs profiling results
+      (see <literal>profile</literal>) with text of the function lines.
+    </para>
     <para>
-    Function text is rebuild with <literal>fun2string</literal>.</para>
+      Function text is rebuild with <literal>fun2string</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +69,7 @@ showprofile(foo)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="profile">profile</link>

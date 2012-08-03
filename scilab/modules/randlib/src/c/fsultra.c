@@ -108,7 +108,7 @@ be tested before z is assigned a value.
 */
 #define SWB(c,x,y,z) c = (y<0) ? (((z=x-y-c) < 0) || (x>=0)) : (((z=x-y-c) < 0) && (x>=0));
 
-static void advance_state_swb()
+static void advance_state_swb(void)
 { 
     int i;
     /*
@@ -226,7 +226,7 @@ void get_state_fsultra(double s[])
         s[i+3] = (double) (unsigned int) swb_state[i];
 }
 
-unsigned int fsultra()
+unsigned long int fsultra(void)
 {
     if (swb_index >= N)  /* generate N words at one time */
     { 

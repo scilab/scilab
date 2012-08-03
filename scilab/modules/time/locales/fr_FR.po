@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
+"PO-Revision-Date: 2012-07-20 14:26+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -28,8 +28,38 @@ msgstr ""
 "%s : Type erroné des arguments d'entrée : Des valeurs scalaires attendues.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
+msgid "%s: An error occurred.\n"
+msgstr "%s : Une erreur s'est produite.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -42,18 +72,6 @@ msgid ""
 msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée n°%d : Un entier non-négatif "
 "attendu.\n"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s : Une erreur s'est produite.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être > %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Doit être < %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -154,11 +172,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s : Nombre erroné de l'argument d'entrée.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Same size expected.\n"
@@ -172,7 +190,7 @@ msgstr "%s : Type erroné des arguments d'entrée : Des entiers attendus.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d  Un vecteur réel attendu.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -182,7 +200,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""

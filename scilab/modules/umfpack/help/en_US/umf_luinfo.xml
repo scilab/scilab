@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_luinfo">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>  umf_luinfo </refname>
     <refpurpose>  get information on LU factors  </refpurpose>
@@ -37,52 +34,53 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function may be used to know basic information about 
-    LU factors created with umf_lufact :
-  </para>
+      This function may be used to know basic information about 
+      LU factors created with umf_lufact :
+    </para>
     <para>
-    first <literal>OK</literal> is %t if <literal>LU_ptr</literal> is a valid pointer to an umfpack 
-    LU numeric handle (and %f else)
-  </para>
+      first <literal>OK</literal> is %t if <literal>LU_ptr</literal> is a valid pointer to an umfpack 
+      LU numeric handle (and %f else)
+    </para>
     <para>
-    if <literal>OK</literal> is %t then: 
-  </para>
+      if <literal>OK</literal> is %t then: 
+    </para>
     <variablelist>
       <varlistentry>
         <term>nrow, ncol</term>
         <listitem>
-          <para>are the matrix size (L is <literal>nrow x n</literal> and U is  <literal>n x ncol</literal>
-              where <literal>n = min(nrow,ncol)</literal>
-        </para>
+          <para>
+            are the matrix size (L is <literal>nrow x n</literal> and U is  <literal>n x ncol</literal>
+            where <literal>n = min(nrow,ncol)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>lnz, unz</term>
         <listitem>
           <para>are the number of non zeros elements in L and in U;
-        </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>udiag_nz</term>
         <listitem>
           <para>are the number of non zeros elements on the diagonal of U; if the matrix
-              is square (<literal>nrow = ncol = n)</literal> then it is not inversible if 
-              udiag_nz &lt; n (more precisely it appears to be numericaly not
-              inversible through the LU factorization).
-        </para>
+            is square (<literal>nrow = ncol = n)</literal> then it is not inversible if 
+            udiag_nz &lt; n (more precisely it appears to be numericaly not
+            inversible through the LU factorization).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>it</term>
         <listitem>
           <para>0 if the factors are real and 1 if they are complex.
-        </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-    if OK is %f then all the others outputs are set to the empty matrix [].
+      if OK is %f then all the others outputs are set to the empty matrix [].
     </para>
   </refsection>
   <refsection>
@@ -103,7 +101,7 @@ umf_ludel(Lup) // clear memory
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>
@@ -120,13 +118,6 @@ umf_ludel(Lup) // clear memory
       <member>
         <link linkend="umf_luget">umf_luget</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>umfpack by Timothy A. Davis (see umf_license)</member>
-      <member>scilab interface by Bruno Pincon</member>
     </simplelist>
   </refsection>
 </refentry>

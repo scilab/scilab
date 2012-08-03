@@ -113,6 +113,7 @@ BOOL create_hashtable_scilab_functions(void)
     }
     catch( std::bad_alloc& e)
     {
+        e.what();
         return FALSE;
     }
     return TRUE;

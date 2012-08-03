@@ -11,13 +11,11 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_contents_infer">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>get_contents_infer</refname>
     <refpurpose>Search for information
-  in a "M2SCi tlist" contents</refpurpose>
+      in a "M2SCi tlist" contents
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -35,7 +33,9 @@
       <varlistentry>
         <term>index</term>
         <listitem>
-          <para>an index similar to indexes returned by <literal>macr2tree</literal>.</para>
+          <para>
+            an index similar to indexes returned by <literal>macr2tree</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,14 +55,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    This functions searches for inference informations of a given
-    index in the contents of a Cell or a Struct taken in account the
-    <literal>*</literal>. If no information has been found, returned values
-    are infer=infer() and pos=0.
+      This functions searches for inference information of a given
+      index in the contents of a Cell or a Struct taken in account the
+      <literal>*</literal>. If no information has been found, returned values
+      are infer=infer() and pos=0.
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="Infer">Infer</link>
@@ -70,12 +70,6 @@
       <member>
         <link linkend="Contents">Contents</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

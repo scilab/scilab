@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2011 - Allan CORNET
+; Copyright (C) DIGITEO - 2011-2012 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -17,24 +17,26 @@
 ;
 #define XML "xml"
 ;
-Source: bin\{#xml}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#xml}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#XML}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#XML}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#xml}\license.txt; DestDir: {app}\modules\{#xml}; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\license.txt; DestDir: {app}\modules\{#XML}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#xml}\sci_gateway\{#xml}_gateway.xml; DestDir: {app}\modules\{#xml}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\sci_gateway\{#XML}_gateway.xml; DestDir: {app}\modules\{#XML}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#xml}\etc\{#xml}.quit; DestDir: {app}\modules\{#xml}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#xml}\etc\{#xml}.start; DestDir: {app}\modules\{#xml}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\etc\{#XML}.quit; DestDir: {app}\modules\{#XML}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\etc\{#XML}.start; DestDir: {app}\modules\{#XML}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#xml}\macros\buildmacros.sce; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#xml}\macros\buildmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#xml}\macros\cleanmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#xml}\macros\*.bin; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#xml}\macros\*.sci; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#xml}\macros\lib; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#xml}\macros\names; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\buildmacros.sce; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\buildmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\cleanmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#XML}\macros\*.bin; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#XML}\macros\*.sci; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#XML}\macros\lib; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#XML}\macros\names; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#xml}\tests\*.*; DestDir: {app}\modules\{#xml}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#XML}\tests\*.*; DestDir: {app}\modules\{#XML}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+;
+Source: modules\{#XML}\demos\*.*; DestDir: {app}\modules\{#XML}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;--------------------------------------------------------------------------------------------------------------

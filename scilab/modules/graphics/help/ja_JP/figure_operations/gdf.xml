@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gdf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gdf</refname>
     <refpurpose>デフォルトの図(figure)のハンドルを取得.</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>f = gdf()
-f = get("default_figure")</synopsis>
+      f = get("default_figure")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,15 +35,19 @@ f = get("default_figure")</synopsis>
   <refsection>
     <title>説明</title>
     <para>デフォルトの図は決して描画されないグラフィックエンティティです.
-	これはfigureプロパティのデフォルト値の基準として
-	使用されます.
-	これらのプロパティのデフォルト値は新しい図(figure)を初期化する際に
-	使用されます.</para>
-    <para><literal>gdf</literal>関数はデフォルトのfigureのハンドルを返します.
-	ユーザはこのハンドルにおりfigureプロパティのデフォルト値を設定または
-	取得することができます.</para>
+      これはfigureプロパティのデフォルト値の基準として
+      使用されます.
+      これらのプロパティのデフォルト値は新しい図(figure)を初期化する際に
+      使用されます.
+    </para>
+    <para>
+      <literal>gdf</literal>関数はデフォルトのfigureのハンドルを返します.
+      ユーザはこのハンドルにおりfigureプロパティのデフォルト値を設定または
+      取得することができます.
+    </para>
     <para>axesエンティティについても等価なデフォルトのグラフィックエンティティ
-	が存在することに注意してください ( <literal>gda</literal>参照).</para>
+      が存在することに注意してください ( <literal>gda</literal>参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -95,9 +97,5 @@ plot2d()
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

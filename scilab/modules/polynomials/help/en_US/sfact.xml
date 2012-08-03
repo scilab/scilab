@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sfact">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sfact</refname>
     <refpurpose> discrete time spectral factorization</refpurpose>
@@ -36,18 +33,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    Finds <literal>F</literal>, a spectral factor of
-    <literal>P</literal>. <literal>P</literal> is a polynomial matrix such that
-    each root of <literal>P</literal> has a mirror image w.r.t the unit
-    circle. Problem is singular if a root is on the unit circle.</para>
-    <para><literal>sfact(P)</literal> returns a polynomial matrix
-    <literal>F(z)</literal> which is antistable and such that</para>
+      Finds <literal>F</literal>, a spectral factor of
+      <literal>P</literal>. <literal>P</literal> is a polynomial matrix such that
+      each root of <literal>P</literal> has a mirror image w.r.t the unit
+      circle. Problem is singular if a root is on the unit circle.
+    </para>
+    <para>
+      <literal>sfact(P)</literal> returns a polynomial matrix
+      <literal>F(z)</literal> which is antistable and such that
+    </para>
     <para>
       <literal>P = F(z)* F(1/z) *z^n</literal>
     </para>
     <para>
-    For scalar polynomials a specific algorithm is implemented.
-    Algorithms are adapted from Kucera's book.</para>
+      For scalar polynomials a specific algorithm is implemented.
+      Algorithms are adapted from Kucera's book.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -80,7 +81,7 @@ clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gtild">gtild</link>

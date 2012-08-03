@@ -19,7 +19,7 @@ clearglobal();
 
 // Set stack size   ===================================================
 function setStackSize()
-  defaultstacksize = 5000000;
+  defaultstacksize = 10000000;
   old = stacksize()
   params = sciargs();
   nparam = find(params == "-mem");
@@ -44,6 +44,7 @@ setStackSize();
 clear setStackSize;
 
 // Special variables definition =======================================
+oldieee=ieee()
 ieee(2);
 %inf = 1/0;
 ieee(0);
@@ -52,6 +53,9 @@ ieee(0);
 %T = %t;
 %F = %f;
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
+
+ieee(oldieee);
+clear oldieee
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;
@@ -73,10 +77,16 @@ end
 
 // loads modules ======================================================
 modules    = getmodules();
+
+// Map 'load' to 'old binary files load' called %_load to be able to load Scilab libraries
+warning("off");
+load = %_load;
+warning("on");
+
 for i=1:size(modules,"*")
   exec("SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start", -1);
 end
-clear modules i
+clear modules i load;
 
 // Create some configuration variables ================================
 home = getenv("HOME", SCI);
@@ -90,9 +100,13 @@ setenv("VERSION", getversion());
 // ATOMS ===============================================================
 if with_module("atoms") then
   atomsSystemInit();
-  atomsAutoload();
-  clear atomsSystemInit atomsAutoload
+  if sciargs() <> "-noatomsautoload" then
+    atomsAutoload();
+    clear atomsAutoload;
+  end
+  clear atomsSystemInit;
 end
+
 
 // Protect variable previously defined  ================================
 predef("all");
@@ -156,6 +170,5 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
 end
-
 // ====================================================================
 clear ans

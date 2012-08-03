@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cls2dls">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cls2dls</refname>
     <refpurpose> bilinear transform</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl,sl1</term>
         <listitem>
-          <para>linear systems (<literal>syslin</literal> lists)</para>
+          <para>
+            linear systems (<literal>syslin</literal> lists)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,9 +47,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    given <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> list),a continuous time system 
-    <literal>cls2dls</literal> returns the sampled system obtained by the 
-    bilinear transform <literal>s=(2/T)*(z-1)/(z+1)</literal>.</para>
+      given <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> list),a continuous time system 
+      <literal>cls2dls</literal> returns the sampled system obtained by the 
+      bilinear transform <literal>s=(2/T)*(z-1)/(z+1)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,7 +64,7 @@ sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="horner">horner</link>

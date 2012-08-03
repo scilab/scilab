@@ -21,13 +21,15 @@ libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 
 #### atoms : icons files ####
+#
+# Generated with:
+#    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libsciatoms_la_iconsdir=$(mydatadir)/
-nobase_libsciatoms_la_icons_DATA = images/icons/installed.png \
-images/icons/notinstalled.png \
-images/icons/notuptodate.png \
-images/icons/software-update-available.png \
-images/icons/dialog-information.png \
-images/icons/emblem-default.png \
-images/icons/user-home.png
+nobase_libsciatoms_la_icons_DATA = images/icons/16x16/emblems/emblem-default.png \
+images/icons/16x16/status/dialog-information.png \
+images/icons/16x16/status/software-update-available.png \
+images/icons/16x16/status/software-update-installed.png \
+images/icons/16x16/status/software-update-notinstalled.png \
+images/icons/16x16/status/software-update-notuptodate.png
 
 include $(top_srcdir)/Makefile.incl.am

@@ -3,24 +3,28 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-07-22 21:56+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -31,6 +35,10 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -71,14 +79,17 @@ msgstr ""
 "Не вдалося завантажити бібліотеку Batik. \n"
 "Потрібна версія — %s; Поточна версія — %s."
 
+msgid "parent diagram not found."
+msgstr "не знайдено батьківської діаграми."
+
 msgid "Preview"
 msgstr "Перегляд"
 
-msgid "Please specify a file format"
-msgstr "Будь ласка, вкажіть формат файла"
-
 msgid "Error on export"
 msgstr "Помилка під час спроби експортування"
+
+msgid "Please specify a valid file format"
+msgstr "Будь ласка, вкажіть коректний формат файлів"
 
 msgid "Incompatibility detected"
 msgstr "Виявлено несумісність"
@@ -157,11 +168,14 @@ msgstr "Загальний"
 msgid "Equations"
 msgstr "Рівняння"
 
-msgid "Discrete"
-msgstr "Дискретний"
+msgid "Discretes"
+msgstr "Дискретизації"
 
-msgid "Input"
-msgstr "Вхідні дані"
+msgid "Inputs"
+msgstr "Вхідні"
+
+msgid "Outputs"
+msgstr "Вихідні"
 
 msgid "Solver"
 msgstr "Розв’язувач"
@@ -257,6 +271,9 @@ msgstr "Створити палітру"
 
 msgid "Open"
 msgstr "Відкрити"
+
+msgid "Open file in Scilab current directory"
+msgstr "Відкрити файл у поточному каталозі Scilab"
 
 msgid "Save"
 msgstr "Зберегти"
@@ -524,11 +541,18 @@ msgstr ""
 "Файла з назвою %s не існує.\n"
 " Бажаєте його створити?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr "Не вдалося декодувати адресу: %s ."
+
 msgid "Ok"
 msgstr "Гаразд"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Reset to default"
+msgstr "Повернутися до типового"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -572,7 +596,7 @@ msgid "No block selected"
 msgstr "Не позначено жодного блоку"
 
 msgid "Export to XML"
-msgstr "Експортувати у XML…"
+msgstr "Експортувати до XML"
 
 msgid "Export in progress"
 msgstr "Триває експортування"
@@ -685,14 +709,8 @@ msgstr "Похибка за часом"
 msgid "Max integration time interval"
 msgstr "Максимальний час інтегрування"
 
-msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr "Розв’язувач 0 (CVODE) — 100 (IDA)"
-
-msgid "CVODE"
-msgstr "CVODE"
-
-msgid "IDA"
-msgstr "IDA"
+msgid "Solver kind"
+msgstr "Тип розв’язувача"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "максимальний розмір кроку (0 — без обмежень)"
@@ -754,14 +772,20 @@ msgstr "Трасування за виконанням блоків та вик�
 msgid "Debug block calls without trace"
 msgstr "Діагностика викликів блоку без трасування"
 
+msgid "All supported formats"
+msgstr "Всі підтримувані формати"
+
 msgid "Scicos file"
 msgstr "Файл Scicos"
 
 msgid "Xcos file"
 msgstr "Файл Xcos"
 
-msgid "Scilab file"
-msgstr "Файл Scilab"
+msgid "Xcos (zip) file"
+msgstr "файл Xcos (zip)"
+
+msgid "Scilab Open Data file"
+msgstr "файл Scilab Open Data"
 
 msgid "Masked SuperBlock editor"
 msgstr "Замаскований редактор суперблоку"
@@ -828,19 +852,22 @@ msgstr "Налаштування компілятора Modelica."
 msgid "Modelica initialize"
 msgstr "Ініціалізація Modelica"
 
-#, c-format
-msgid "From %s"
-msgstr "З %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Перейти до %s"
-
 msgid "Error: unable to compile this SuperBlock"
 msgstr "Помилка: не вдалося зібрати цей суперблок"
 
-msgid "Wrong port number"
-msgstr "Помилковий номер порту"
+msgid "Evaluation problem: wrong port number."
+msgstr "Помилка обчислень: помилковий номер порту"
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr "Мало бути вказано «%d»."
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
+msgstr ""
+"<html><body>Помилка під час компіляції: зв’язок проігноровано, оскільки "
+"немає з’єднання. <br/>Будь ласка, створіть з’єднання.</body></html>"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -1012,12 +1039,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип елемента "
-"керування.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
@@ -1077,24 +1098,12 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: не вдалося імпортувати файл xcos %s."
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr ""
 "%s: блок %s недоступний, будь ласка, додайте замість нього якийсь сумісний "
 "блок."
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: не вдалося імпортувати дані з %s"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: не вдалося експортувати «XX» до %s"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1214,27 +1223,41 @@ msgstr "%s: не вдалося експортувати палітру до hdf
 #, c-format
 msgid "%s: Wrong type for argument %d: A String expected."
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "Функції інтерфейсу не існує або цю функцію неможливо викликати."
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s не є коректним дескриптором блоку."
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "Спроба визначення блоку з функцією [%s] зазнала невдачі."
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "Спроба налаштування блоку з функцією [%s] зазнала невдачі."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr "%s: помилковий тип параметра №%d: слід вказати блок."
+
+#, c-format
+msgid "Field %s has different values."
+msgstr "Поле %s має різні значення."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Не завантажено бібліотеки Scicos"
@@ -1243,8 +1266,8 @@ msgstr "Не завантажено бібліотеки Scicos"
 msgid "Unable to simulate %s"
 msgstr "Не вдалося імітувати %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
+msgstr "Сталася помилка у pre_xcos_simulate: імітацію скасовано."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1258,4 +1281,4 @@ msgid "Simulation problem"
 msgstr "Проблема імітації:"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "Помилка у post_xcos_simulate: завершуємо імітацію."

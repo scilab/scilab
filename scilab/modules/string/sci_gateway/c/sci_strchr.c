@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "gw_string.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -75,6 +75,7 @@ int sci_strchr(char *fname, unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
@@ -103,6 +104,7 @@ static wchar_t **getInputArgumentAsMatrixOfWideString(void* _pvCtx, int _iVar,
     {
         *iErr = sciErr.iErr;
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -111,6 +113,7 @@ static wchar_t **getInputArgumentAsMatrixOfWideString(void* _pvCtx, int _iVar,
     {
         *iErr = sciErr.iErr;
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -127,6 +130,7 @@ static wchar_t **getInputArgumentAsMatrixOfWideString(void* _pvCtx, int _iVar,
         if (pStringValues) {freeAllocatedMatrixOfWideString(m_, n_, pStringValues); pStringValues = NULL;}
         *m = 0;
         *n = 0;
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
     }
     else
     {

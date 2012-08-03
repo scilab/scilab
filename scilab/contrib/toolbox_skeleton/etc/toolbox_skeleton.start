@@ -5,7 +5,7 @@
 
 function toolbox_skeletonlib = startModule()
    
-  toolbox_name="Toolbox skeleton"
+  toolbox_name = "Toolbox skeleton"
 
   mprintf("Start " + toolbox_name + "\n");
 
@@ -48,6 +48,12 @@ function toolbox_skeletonlib = startModule()
     mprintf("\tLoad demos\n");
     pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce", %F, %T);
     add_demo(toolbox_name, pathdemos);
+  end
+
+// Load Preferences GUI
+// =============================================================================
+  if getscilabmode() == "STD" then
+    addModulePreferences(toolbox_name, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
   end
 
 endfunction

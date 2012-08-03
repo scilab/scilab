@@ -1,0 +1,14 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+allops_
+createref_
+funnam_
+ref2val_
+setfunnam_
+
+

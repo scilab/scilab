@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -45,80 +45,82 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "VariablePath")
 public class VariablePath {
 
-	@XmlAttribute(required = true)
-	@XmlSchemaType(name = "anyURI")
-	private String path;
-	@XmlAttribute
-	private String variable;
+    @XmlAttribute(required = true)
+    @XmlSchemaType(name = "anyURI")
+    private String path;
+    @XmlAttribute
+    private String variable;
 
-	/**
-	 * Default constructor
-	 */
-	public VariablePath() { }
-	
-	/**
-	 * Gets the value of the path property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getPath() {
-		return path;
-	}
+    /**
+     * Default constructor
+     */
+    public VariablePath() {
+    }
 
-	/**
-	 * Sets the value of the path property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setPath(String value) {
-		this.path = value;
-	}
+    /**
+     * Gets the value of the path property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getPath() {
+        return path;
+    }
 
-	/**
-	 * Gets the value of the variable property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getVariable() {
-		return variable;
-	}
+    /**
+     * Sets the value of the path property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setPath(String value) {
+        this.path = value;
+    }
 
-	/**
-	 * Sets the value of the variable property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setVariable(String value) {
-		this.variable = value;
-	}
+    /**
+     * Gets the value of the variable property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getVariable() {
+        return variable;
+    }
 
-	/**
-	 * Evaluate the environment variable and construct a real absolut path.
-	 * @return the real path
-	 */
-	public String getEvaluatedPath() {
-		StringBuilder str = new StringBuilder();
-		
-		if (getVariable() != null) {
-			str.append(System.getenv(getVariable()));
-		}
-		str.append(getPath());
-		
-		return str.toString();
-	}
-	
-	/**
-	 * @return a representative string
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return getEvaluatedPath();
-	}
+    /**
+     * Sets the value of the variable property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setVariable(String value) {
+        this.variable = value;
+    }
+
+    /**
+     * Evaluate the environment variable and construct a real absolut path.
+     * 
+     * @return the real path
+     */
+    public String getEvaluatedPath() {
+        StringBuilder str = new StringBuilder();
+
+        if (getVariable() != null) {
+            str.append(System.getenv(getVariable()));
+        }
+        str.append(getPath());
+
+        return str.toString();
+    }
+
+    /**
+     * @return a representative string
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return getEvaluatedPath();
+    }
 }

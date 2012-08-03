@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="evans">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>evans</refname>
     <refpurpose>Evans root locus</refpurpose>
@@ -29,8 +26,8 @@
         <term>H</term>
         <listitem>
           <para>SISO linear system given by a transfer or a state
-          space representation (see:<link
-          linkend="syslin">syslin</link>).</para>
+            space representation (see:<link linkend="syslin">syslin</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,17 +41,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Gives the Evans root locus for a SISO linear system in state-space or
-    transfer form H(s) (<link linkend="syslin">syslin</link>). This is
-    the locus of the roots of
-    <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex
-    plane. For a selected sample of gains <literal>k &lt;=
-    kmax</literal>, the imaginary part of the roots of
-    <literal>D(s)+k*N(s)</literal> is plotted vs the real part.</para>
+      Gives the Evans root locus for a SISO linear system in state-space or
+      transfer form H(s) (<link linkend="syslin">syslin</link>). This is
+      the locus of the roots of
+      <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex
+      plane. For a selected sample of gains <literal>k &lt;=
+        kmax
+      </literal>
+      ,the imaginary part of the roots of
+      <literal>D(s)+k*N(s)</literal> is plotted vs the real part.
+    </para>
     <para>To obtain the gain at a given point of the locus you can
-    activate the <link linkend="datatips">datatips</link> manager and
-    click the desired point on the root locus.
-   </para>
+      activate the <link linkend="datatips">datatips</link> manager and
+      click the desired point on the root locus.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,14 +68,14 @@
     ]]></programlisting>
     <para>
       <inlinemediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/evans.svg"/>
-	</imageobject>
+        <imageobject>
+          <imagedata fileref="../images/evans.svg"/>
+        </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

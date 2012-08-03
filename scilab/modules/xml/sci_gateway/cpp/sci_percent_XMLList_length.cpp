@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -26,13 +25,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_length(char * fname, unsigned long fname_len)
+int sci_percent_XMLList_length(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
     double d;
-    int * addr = 0;
-    XMLList * list;
+    int *addr = 0;
+    XMLList *list;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -41,18 +40,19 @@ int sci_percent_XMLList_length(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLList(addr) && !isXMLSet(addr))
+    if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLList or XMLSet expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"), fname, 1);
         return 0;
 
     }
 
-    id = getXMLObjectId(addr);
-    list = XMLObject::getFromId<XMLList>(id);
+    id = getXMLObjectId(addr, pvApiCtx);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XMLList does not exist.\n"), fname);
@@ -66,4 +66,5 @@ int sci_percent_XMLList_length(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

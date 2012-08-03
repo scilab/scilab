@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-22 14:54+0000\n"
+"PO-Revision-Date: 2012-07-30 09:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -22,9 +22,13 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
+"%s : Type erroné de l'argument n°%d : Une matrice de chaîne de caractères "
 "attendue.\n"
 
 #, c-format
@@ -32,14 +36,15 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice réelle ou 'readonly' "
-"attendue.\n"
+"%s : Type erroné de l'argument n°%d : Une matrice réelle ou 'readonly' "
+"attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid ""
@@ -49,9 +54,9 @@ msgstr ""
 "dimensions attendues.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument %d : Une seule chaîne de caractères.\n"
+"%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
 msgid "File"
 msgstr "Fichier"
@@ -63,7 +68,7 @@ msgid "Open"
 msgstr "Ouvrir"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Ouvrir récent"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
@@ -199,28 +204,13 @@ msgid "Code Navigator"
 msgstr "Navigateur de code"
 
 msgid "Format"
-msgstr ""
-
-msgid "Set Colors ..."
-msgstr "Définir les couleurs..."
-
-msgid "Set Font"
-msgstr "Définir la police"
-
-msgid "Reset default font"
-msgstr "Rétablir les polices par défaut"
+msgstr "Format"
 
 msgid "Shift Right"
 msgstr "Décaler à droite"
 
 msgid "Shift Left"
 msgstr "Décaler à gauche"
-
-msgid "Configure Tabulation"
-msgstr "Configurer la tabulation"
-
-msgid "Horizontal wrapping"
-msgstr "Justifier horizontalement"
 
 msgid "Correct Indentation"
 msgstr "Corriger l'indentation"
@@ -238,7 +228,7 @@ msgid "Uncomment Selection"
 msgstr "Décommenter la sélection"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Changer la casse"
 
 msgid "Make Selection Lowercase"
 msgstr "Transformer la sélection en minuscules"
@@ -258,24 +248,20 @@ msgstr "Options"
 msgid "Current file encoding"
 msgstr "Encodage du fichier actuel"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Encodage du fichier par défaut SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Line Endings"
-msgstr "Fins de ligne"
+msgstr "Fin de lignes"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Complétion automatique sur"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numérotation de ligne;Désactivée;Normale;Compatible Whereami"
+msgstr "Numérotation de lignes;Désactivée;Normale;Compatible whereami"
 
 msgid "Highlight current line"
 msgstr "Mettre en surbrillance la ligne actuelle"
@@ -339,6 +325,174 @@ msgstr "Évaluer la sélection avec écho;Évaluer jusqu'au curseur, avec écho"
 msgid "Complete"
 msgstr "Compléter"
 
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Header"
+msgstr "En-tête"
+
+msgid "Autosave"
+msgstr "Enregistrement automatique"
+
+msgid "Editor"
+msgstr "Éditeur"
+
+msgid "Use SciNotes"
+msgstr "Utiliser SciNotes"
+
+msgid "External editor: "
+msgstr "Éditeur externe : "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+"N'oubliez pas de mettre des guillemets autour du chemin s'il contient des "
+"espaces blancs"
+
+msgid "Scilab command: "
+msgstr "Commande Scilab : "
+
+msgid "SciNotes General settings"
+msgstr "Paramètres de base de Scinotes"
+
+msgid "Restore previous session on start-up"
+msgstr "Restaurer la session précédente au démarrage"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Ajouter retour chariot à la fin du fichier"
+
+msgid "Number of recently opened files to display: "
+msgstr "Nombre de fichiers ouverts récemment à afficher : "
+
+msgid "Default file encoding: "
+msgstr "Encodage de fichier par défaut : "
+
+msgid "Default End-Of-Line: "
+msgstr "Fin de ligne par défaut : "
+
+msgid "General display options"
+msgstr "Options d'affichage"
+
+msgid "Highlight current line: "
+msgstr "Mettre en surbrillance la ligne courante : "
+
+msgid "Show line numbers: "
+msgstr "Afficher les numéros de ligne : "
+
+msgid "Whereami compatible"
+msgstr "Compatible Whereami"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Wrap lines"
+msgstr "Retour automatique à la ligne"
+
+msgid "Keywords"
+msgstr "Mots-clés"
+
+msgid "Enable keywords colorization"
+msgstr "Activer la coloration des mots-clés"
+
+msgid "Set syntax Colors"
+msgstr "Régler les couleurs de syntaxe"
+
+msgid "Highlight corresponding brackets"
+msgstr "Mettre en surbrillance les parenthèses correspondantes"
+
+msgid "Color: "
+msgstr "Couleur: "
+
+msgid "Highlight on mouse over"
+msgstr "Mettre en surbrillance au passage de la souris"
+
+msgid "Style: "
+msgstr "Style : "
+
+msgid "Filled"
+msgstr "Justifié"
+
+msgid "Framed"
+msgstr "Encadré"
+
+msgid "Underlined"
+msgstr "Souligné"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr ""
+"Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Tabulation et indentation"
+
+msgid "Tabulation size: "
+msgstr "Taille des tabulations : "
+
+msgid "Use space"
+msgstr "Utiliser des espaces"
+
+msgid "Representation: "
+msgstr "Représentation : "
+
+msgid "Chevrons"
+msgstr "Chevrons"
+
+msgid "Horizontal rule"
+msgstr "Règle horizontale"
+
+msgid "Vertical rule"
+msgstr "Règle verticale"
+
+msgid "Enable auto indentation"
+msgstr "Activer l'indentation automatique"
+
+msgid "Indent size: "
+msgstr "Taille des indentations : "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Activer l'enregistrement automatique dans SciNotes"
+
+msgid "Save options"
+msgstr "Enregistrer les options"
+
+msgid "Save every "
+msgstr "Enregistrer toutes les "
+
+msgid " minutes "
+msgstr " minutes "
+
+msgid "Close options"
+msgstr "Fermer les options"
+
+msgid "Delete automatically saved files"
+msgstr "Supprimer les fichiers enregistrés automatiquement"
+
+msgid "Filename"
+msgstr "Nom de fichier"
+
+msgid "Append filename with: "
+msgstr "Adjoindre le nom de fichier avec : "
+
+msgid "Replace extension with: "
+msgstr "Remplacer l'extension par : "
+
+msgid "Location"
+msgstr "Emplacement"
+
+msgid "Source file directory"
+msgstr "Répertoire du fichier source"
+
+msgid "Single directory"
+msgstr "Répertoire unique"
+
+msgid "Choose an autosave directory"
+msgstr "Choisir un répertoire d'enregistrement automatique"
+
+msgid "Default header"
+msgstr "En-tête par défaut"
+
+msgid "Add a default header to new file"
+msgstr "Ajouter un en-tête par défaut à un nouveau fichier"
+
 msgid "Graphics handle field"
 msgstr "Champ d'un handle graphique"
 
@@ -371,10 +525,10 @@ msgstr "Vous n'avez pas les droits suffisants pour écrire sur ce fichier"
 msgid "You do not have the permissions to read this file"
 msgstr "Vous n'avez pas les droits suffisants pour ouvrir ce fichier"
 
-msgid "An error occured when exporting the code using FOP"
+msgid "An error occurred when exporting the code using FOP"
 msgstr "Une erreur s'est produite pendant l'exécution du code avec FOP"
 
-msgid "An error occured when printing"
+msgid "An error occurred when printing"
 msgstr "Une erreur s'est produite pendant l'impression"
 
 msgid "Tools"
@@ -408,16 +562,22 @@ msgid "Word Wrap"
 msgstr "Césure des lignes"
 
 msgid "Whereami Line Numbering"
-msgstr "Numérotation de ligne 'où-suis-je'"
+msgstr "Numérotation de lignes whereami"
 
 msgid "Normal Line Numbering"
-msgstr "Numérotation de ligne normale"
+msgstr "Numérotation de lignes normale"
 
 msgid "No Line Numbering"
-msgstr "Non-numérotation des lignes"
+msgstr "Non-numérotation de lignes"
 
 msgid "Set Colors"
 msgstr "Définir les couleurs"
+
+msgid "Set Font"
+msgstr "Définir la police"
+
+msgid "Reset default font"
+msgstr "Rétablir les polices par défaut"
 
 msgid "Split horizontally"
 msgstr "Scission horizontale"
@@ -530,9 +690,8 @@ msgstr "Remplacer"
 msgid "Replace All"
 msgstr "Remplacer tout"
 
-#, c-format
 msgid "Invalid regular expression : %s"
-msgstr "Expression régulière invalide : %s"
+msgstr "Expression rationnelle invalide : %s"
 
 msgid "You have passed the end of the document"
 msgstr "Vous avez dépassé la fin du document"
@@ -546,11 +705,9 @@ msgstr "Vous avez atteint la fin du document"
 msgid "You have reached the beginning of the document"
 msgstr "Vous avez atteint le début du document"
 
-#, c-format
 msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
 
-#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -571,7 +728,6 @@ msgstr ""
 " a été modifié depuis le dernier enregistrement\n"
 "L'enregistrer ?"
 
-#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -635,7 +791,7 @@ msgid "Loading"
 msgstr "Chargement"
 
 msgid "Colorization canceled"
-msgstr "Colorisation annulée"
+msgstr "Coloration annulée"
 
 msgid "Binary file: read-only mode"
 msgstr "Fichier binaire : mode en lecture seule"
@@ -658,14 +814,12 @@ msgstr "Ouvrir le code source de la macro "
 msgid "Show the definition of the macro "
 msgstr "Afficher la définition de la macro "
 
-#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Ligne %s, Colonne %s. Fonction '%s' à la Ligne %s."
 
 msgid "Unknown function"
 msgstr "Fonction inconnue"
 
-#, c-format
 msgid "Line %s, Column %s."
 msgstr "Ligne %s, Colonne %s."
 
@@ -681,7 +835,6 @@ msgstr "Impossible d'enregistrer le fichier"
 msgid "The file could not be converted."
 msgstr "Impossible de convertir le fichier"
 
-#, c-format
 msgid "%s is a directory."
 msgstr "%s est un répertoire."
 
@@ -708,7 +861,6 @@ msgstr "Pas de texte sélectionné."
 msgid "No text to execute."
 msgstr "Pas de texte à exécuter."
 
-#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -720,6 +872,16 @@ msgstr "Problèmes d'encodage"
 
 msgid "Cannot guess the file encoding."
 msgstr "Impossible de supposer l'encodage du fichier."
+
+msgid "Cannot save the file %s... stop the backup process"
+msgstr ""
+"Impossible d'enregistrer le fichier %s... Arrêt du processus de sauvegarde"
+
+msgid "Backup finished..."
+msgstr "Sauvegarde terminée..."
+
+msgid "%s occurences found."
+msgstr "%s occurrences trouvées."
 
 msgid "Change Colors"
 msgstr "Changer les couleurs"
@@ -805,6 +967,9 @@ msgstr "Restaurer les fichiers de la session précédente ?"
 msgid "Restore the last sessions"
 msgstr "Restaurer la dernière session"
 
+msgid "Configure Tabulation"
+msgstr "Configurer la tabulation"
+
 msgid "Tab style"
 msgstr "Style de tabulation"
 
@@ -816,12 +981,6 @@ msgstr "Longueur"
 
 msgid "Tab representation"
 msgstr "Représentation de la tabulation"
-
-msgid "Horizontal rule"
-msgstr "Règle horizontale"
-
-msgid "Vertical rule"
-msgstr "Règle verticale"
 
 msgid "Double chevrons"
 msgstr "Double chevrons"
@@ -844,17 +1003,14 @@ msgstr "Rechercher dans des fichiers..."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
-#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s correspondances)</i></html>"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
-#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s correspondance)</i></html>"
 
-#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Temps écoulé : %s sec."
 
@@ -902,7 +1058,7 @@ msgid "Stop"
 msgstr "Arrêter"
 
 msgid "Regex"
-msgstr "Expression régulière"
+msgstr "Expression rationelle"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 321
@@ -938,12 +1094,3 @@ msgstr "Sélectionner le répertoire de base pour la recherche"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
-
-#~ msgid "Preferences"
-#~ msgstr "Préférences"
-
-#~ msgid "Auto-completion on if, function, ..."
-#~ msgstr "Complétion automatique sur if, function, ..."
-
-#~ msgid "Auto-completion on (, [, ..."
-#~ msgstr "Complétion automatique sur (, [, ..."

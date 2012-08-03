@@ -12,13 +12,12 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "gw_elementary_functions.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intmaxi) (char *fname, int *id, unsigned long fname_len);
-
 /*--------------------------------------------------------------------------*/
 int sci_maxi(char *fname, unsigned long fname_len)
 {

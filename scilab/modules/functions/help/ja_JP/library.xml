@@ -11,13 +11,10 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="library">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>library</refname>
     <refpurpose>ライブラリのデータ型の説明
-  </refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -26,39 +23,45 @@
   <refsection>
     <title>説明</title>
     <para>
-	ライブラリは型番号14のデータ型です.
-	これには,パス名と名前の集合が含まれます.
-	これにより,以下のアルゴリズムにより変数を自動的に
-	ロードすることが可能になります:</para>
+      ライブラリは型番号14のデータ型です.
+      これには,パス名と名前の集合が含まれます.
+      これにより,以下のアルゴリズムにより変数を自動的に
+      ロードすることが可能になります:
+    </para>
     <para>
-	Scilabユーザが<literal>foo</literal>という名前の変数を参照すると
-	仮定します.
-	Scilabはまず<literal>foo</literal>がプリミティブの名前または
-	すでに定義ずみであるかどうかを調べます.
-	そうでない場合,<literal>foo</literal>を(新しいものから順に)
-	順番に全ての定義済みのライブラリの中で探します.</para>
+      Scilabユーザが<literal>foo</literal>という名前の変数を参照すると
+      仮定します.
+      Scilabはまず<literal>foo</literal>がプリミティブの名前または
+      すでに定義ずみであるかどうかを調べます.
+      そうでない場合,<literal>foo</literal>を(新しいものから順に)
+      順番に全ての定義済みのライブラリの中で探します.
+    </para>
     <para>
-    <literal>foo</literal> がライブラリ<literal>xlib</literal>の
-	名前の集合に属すると仮定すると,
-	Scilabはファイル &lt;xlib-path-name&gt;/foo.bin をロード
-	します.
-	&lt;xlib-path-name&gt;/foo.bin は
-	<literal>save</literal> 関数により作成されている必要があります.
-	</para>
+      <literal>foo</literal> がライブラリ<literal>xlib</literal>の
+      名前の集合に属すると仮定すると,
+      Scilabはファイル &lt;xlib-path-name&gt;/foo.bin をロード
+      します.
+      &lt;xlib-path-name&gt;/foo.bin は
+      <literal>save</literal> 関数により作成されている必要があります.
+    </para>
     <para>
-    ライブラリはしばしば関数の集約に使用されますが,
-	Scilab変数の集約にも使用することができます.</para>
+      ライブラリはしばしば関数の集約に使用されますが,
+      Scilab変数の集約にも使用することができます.
+    </para>
     <para>
-	ある関数が1つ以上のライブラリで定義されている場合,
-	デフォルトの探索アルゴリズムは最新のライブラリに
-	含まれる関数をロードします.
-	ドット表記により
-	特定のライブラリの関数を強制的に使用することも可能です:</para>
-    <para><literal>xlib.foo</literal> は
-	<literal>xlib</literal>に含まれる変数<literal>foo</literal>
-	をロードします.
-	<literal>foo</literal>が関数の場合,
-	<literal>xlib.foo(args)</literal>はこの関数を実行します.</para>
+      ある関数が1つ以上のライブラリで定義されている場合,
+      デフォルトの探索アルゴリズムは最新のライブラリに
+      含まれる関数をロードします.
+      ドット表記により
+      特定のライブラリの関数を強制的に使用することも可能です:
+    </para>
+    <para>
+      <literal>xlib.foo</literal> は
+      <literal>xlib</literal>に含まれる変数<literal>foo</literal>
+      をロードします.
+      <literal>foo</literal>が関数の場合,
+      <literal>xlib.foo(args)</literal>はこの関数を実行します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

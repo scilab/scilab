@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,7 +14,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -55,6 +54,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -62,6 +62,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -72,6 +73,12 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            return 0;
+        }
 
         if ( (m3 != n3) && (n3 != 1) ) 
         {
@@ -102,6 +109,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         {
             if (separator) {FREE(separator); separator = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -110,6 +118,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         {
             if (separator) {FREE(separator); separator = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -121,6 +130,13 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+        if(sciErr.iErr)
+        {
+            if (separator) {FREE(separator); separator = NULL;}
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
         if ( (m2 != n2) && (n2 != 1) ) 
         {
@@ -147,6 +163,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if (separator) {FREE(separator); separator = NULL;}
         if (Format) {FREE(Format); Format = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -156,6 +173,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if (separator) {FREE(separator); separator = NULL;}
         if (Format) {FREE(Format); Format = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -168,6 +186,14 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+    if(sciErr.iErr)
+    {
+        if (separator) {FREE(separator); separator = NULL;}
+        if (Format) {FREE(Format); Format = NULL;}
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
 
     if ( (m1 != n1) && (n1 != 1) ) 
     {
@@ -224,6 +250,8 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
                     if(sciErr.iErr)
                     {
+                        freeFscanfMatResult(results);
+                        results = NULL;
                         printError(&sciErr, 0);
                         return 0;
                     }
@@ -245,6 +273,10 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                     if (results->text)
                     {
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
+
+                        freeFscanfMatResult(results);
+                        results = NULL;
+
                         if(sciErr.iErr)
                         {
                             printError(&sciErr, 0);
@@ -267,6 +299,9 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                         LhsVar(2) = Rhs + 2;
                     }
                 }
+
+                freeFscanfMatResult(results);
+                results = NULL;
 
                 if (filename) {FREE(filename); filename = NULL;}
 

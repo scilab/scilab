@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullfile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullfile</refname>
-    <refpurpose>Build a full filename from parts</refpurpose>
+    <refpurpose>builds a full filename from parts</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,31 +26,38 @@
       <varlistentry>
         <term>varargin</term>
         <listitem>
-          <para>all directories and filename used to build the full filename (at least one directory and filename)</para>
+          <para>
+            character strings, all directories and filename used to
+            build the full filename (at least one directory and
+            filename).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>full filename</para>
+          <para>
+            a character string or matrix of strings, full filename.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>f = fullfile(varargin)</literal> builds a full filename taking care of platform on which it is run
-    and handling the cases when the directories begin or end with a directory separator.</para>
+    <para>
+      <code>f= fullfile(varargin)</code> builds a full filename taking care of platform on which it is run
+      and handling the cases when the directories begin or end with a directory separator.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
-f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[f = fullfile("/home/", "\scilab", "macros", "\util", "fullfile.sci")
+f = fullfile("C:", "\scilab", "macros", "\util", "fullfile.sci")
+r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>
@@ -61,12 +65,6 @@ f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
       <member>
         <link linkend="fileparts">fileparts</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

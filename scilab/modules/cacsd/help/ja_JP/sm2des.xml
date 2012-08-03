@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sm2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sm2des</refname>
     <refpurpose>システム行列を記述子に変換</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>Des</term>
         <listitem>
-          <para>記述子システム (<literal>list('des',A,B,C,D,E)</literal>)</para>
+          <para>
+            記述子システム (<literal>list('des',A,B,C,D,E)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,13 +41,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数: システム行列</para>
-    <programlisting role = ""><![CDATA[ 
+      ユーティリティ関数: システム行列
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    を記述子システム <literal>Des=list('des',A,B,C,D,E)</literal>)に変換します.</para>
+      を記述子システム <literal>Des=list('des',A,B,C,D,E)</literal>)に変換します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

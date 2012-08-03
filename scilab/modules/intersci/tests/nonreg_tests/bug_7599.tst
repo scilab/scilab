@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 7599 -->
 //
@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7599
 //
 // <-- Short Description -->
-// Intersci-n and intersci did not create code from a .desc file if it was not ended by a empty line.
+// Intersci-n and intersci did not create code from a .desc file if it was not ended by an empty line.
 //
 
 if getos() == 'Windows' then

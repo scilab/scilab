@@ -75,4 +75,6 @@
 
   <entry key="DeleteAction">DELETE</entry>
 
+  <entry key="NextParagraphAction">OSSCKEY DOWN</entry>
+  <entry key="PreviousParagraphAction">OSSCKEY UP</entry>
 </properties>

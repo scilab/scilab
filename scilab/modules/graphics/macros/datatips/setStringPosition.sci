@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
+// Copyright (C) 2010-2011 - INRIA - Serge Steer <serge.steer@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,40 +7,107 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function setStringPosition(string_handle,pt)
-//Computes the position of the lower left corner of the string box. 
+function setStringPosition(tip_handle,pt)
+//Computes the position of the lower left corner of the string box.
 //
 //These coordinates must be expressed in user coordinates units but their
 //computation takes into account the pixel dimensions of the text boxes
 //when they are not located in the upper right position
-  ax=string_handle.parent
+  ax=tip_handle.parent
   while ax.type<>"Axes" then ax=ax.parent,end
+  string_handle=tip_handle.children(2);
+  point_handle=tip_handle.children(1);
 
-  
+
+  params=string_handle.user_data
+  orient=params(1);
+  if size(params,'*')>1 then //for compatibility
+    style=params(2)
+  else
+    style=1
+  end
+  pt=pt(1,:)
+
   r=xstringl(0,0,string_handle.text);r=r(3:4)';
-  d=mark_usersize(point_handle);
-  orient=string_handle.user_data;
+  if style==1 then
+    d=mark_usersize(point_handle);
+  else
+    d=[0 0]
+  end
+  orient=string_handle.user_data(1);
   if orient==0 then //automatic
-    if ax.zoom_box==[] then
-      t=[pt(1:2)+r-ax.data_bounds(2,1:2)<0; //a l'interieur des max
-         pt(1:2)-r-ax.data_bounds(1,1:2)>0] //a l'interieur des min
-    else
-      t=[pt(1:2)+r-ax.zoom_box([3 4])<0; //a l'interieur des max
-         pt(1:2)-r-ax.zoom_box([1 2])>0] //a l'interieur des min
+
+    //compute the slope and curvature at the tip point
+    curve_handle=point_handle.user_data(1)
+    k=point_handle.user_data(2)
+    np=size(curve_handle.data,1)
+    T=curve_handle.data([max(k-1,1) k min(np,k+1)],:)
+
+
+    if size(T,2)==3 then
+      [Tx,Ty]=geom3d(T(:,1),T(:,2),T(:,3))
+      T=[Tx Ty];
     end
-    if and(t(1,:)) then //les deux sont inf aux max (upper right)
-      orient=2;//1
-    elseif and(t(2,:)) //les deux sont sup aux min (lower left)
-      orient=3;//2
-    elseif t(1,1)&t(2,2) //x est sup au min y est inf au max (upper left)
-      orient=1;//3
-    else//if t(1,2)*t(2,1) //y est sup au min   et x est inf au max (lower right)
-      orient=4;
+    d1=sum(diff(T,1,1),1)/2;
+    d2=diff(T,2,1);
+    c=(d1(1)*d2(2)-d1(2)*d2(1))
+
+    //set position according to the slope and curvature sign
+    if d1(1)>0 then
+      if  d1(2)>0 then
+        if c<0 then//upper left
+          orient=1
+        else //lower right
+          orient=4
+        end
+      else
+        if c<0 then//upper right
+          orient=2
+        else //lower left
+          orient=3
+        end
+      end
+    else
+      if  d1(2)>0 then
+        if c>0 then //upper right
+          orient=2
+        else //lower left
+          orient=3
+        end
+      else
+        if c>0 then//upper left
+          orient=1
+        else //lower right
+          orient=4
+        end
+
+      end
+    end
+    //    mprintf("d1=[%f %f], c=%f, orient=%d\n",d1(1),d1(2),c,orient)
+    if ax.zoom_box==[]
+      box=ax.data_bounds
+    else
+      box=[ax.zoom_box(1:2);ax.zoom_box(3:4)];
+    end
+    //take care of  the plot boundaries
+    //    mprintf("Y:%f< [%f %f]<%f\n",box(1,2),pt(2)-r(2),pt(2)+r(2),box(2,2))
+    //    mprintf("X:%f< [%f %f]<%f\n",box(1,1),pt(1)-r(1),pt(1)+r(1),box(2,1))
+    if or(orient==[1 2])&pt(2)+r(2)>box(2,2) then//upper bound on Y
+      orient=5-orient
+    end
+    if or(orient==[3 4])&pt(2)-r(2)<box(1,2) then//lower bound on Y
+      orient=5-orient
+    end
+    if or(orient==[2 4])&pt(1)+r(1)>box(2,1) then//right bound on X
+      orient=orient-1
+    end
+    if or(orient==[1 3])&pt(1)-r(1)<box(1,1) then//left bound on X
+      orient=orient+1
     end
   end
   select orient
   case 1 then //upper left
-    dx=(-d(1)-r(1));dy=d(2);
+    dx=-d(1)-r(1);dy=d(2);
   case 2 then //upper right
     dx=d(1);dy=d(2)
   case 3 then //lower left
@@ -48,17 +115,19 @@ function setStringPosition(string_handle,pt)
   case 4 then //lower right
     dx=d(1);dy=-d(2)-r(2)
   end
-  
+
   if ax.view=="3d" then
     angles=ax.rotation_angles*%pi/180;
     t=angles(2);a=angles(1);
     st=sin(t);ct=cos(t);sa=sin(a);ca=cos(a)
-    //apply inverse transformation matrix to [dx,dy,0]
-    //the transformation matrix is R=[-st ct 0;-ct*ca -st*sa sa;ct*sa st*sa ca] 
-    //and the inserve is R'
-    pos=pt+[-st*dx-ct*ca*dy,ct*dx-st*ca*dy,sa*dy]
+    c=sum(ax.data_bounds,1)/2
+    x=pt(1)-c(1)
+    y=pt(2)-c(2)
+    z=pt(3)-c(3)
+    pos=c+[(st*x-ct*y-dx)/st,0,(st*dy+st*sa*z-ca*y-ct*ca*dx)/(sa*st)]
   else
     pos=pt+[dx dy]
+
   end
   string_handle.data=pos
 endfunction

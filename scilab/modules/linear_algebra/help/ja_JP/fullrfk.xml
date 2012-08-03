@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fullrfk">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fullrfk</refname>
     <refpurpose>A^kのフルランク分解</refpurpose>
@@ -48,15 +45,17 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,<literal>A^k</literal>のフルランク分解,
-	すなわち, <literal>Bk*Ck=A^k</literal> を計算します.
-	ただし, <literal>Bk</literal> は列フルランク,
-	<literal>Ck</literal>は行フルランクです.
-	range(<literal>Bk</literal>)=range(<literal>A^k</literal>) 
-	および ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>)となります.</para>
+      この関数は,<literal>A^k</literal>のフルランク分解,
+      すなわち, <literal>Bk*Ck=A^k</literal> を計算します.
+      ただし, <literal>Bk</literal> は列フルランク,
+      <literal>Ck</literal>は行フルランクです.
+      range(<literal>Bk</literal>)=range(<literal>A^k</literal>) 
+      および ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>)となります.
+    </para>
     <para>
-    <literal>k=1</literal>の場合, <literal>fullrfk</literal> は
-	 <literal>fullrf</literal>と等価になります.</para>
+      <literal>k=1</literal>の場合, <literal>fullrfk</literal> は
+      <literal>fullrf</literal>と等価になります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -75,9 +74,5 @@ norm(Bk*Ck-A^3,1)
         <link linkend="range">range</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D (1990);   </para>
   </refsection>
 </refentry>

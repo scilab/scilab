@@ -107,9 +107,9 @@ C
       integer  isearch
 
 *  some modifs :
-*    1/ to avoid the sort on the datas points use a dicho search to get
+*    1/ to avoid the sort on the data points use a dicho search to get
 *       the interval LEFT
-*    2/ all the datas points outside the interval definition of the spline 
+*    2/ all the data points outside the interval definition of the spline 
 *       ([T(K),T(N+1)]) or with a non positive weight are not taken into acount
 *       in the fit
 *

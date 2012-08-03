@@ -8,14 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-25 01:58+0000\n"
+"Last-Translator: gustavoreyes <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -30,25 +38,25 @@ msgid "CACSD"
 msgstr "CACSD"
 
 msgid "LQG"
-msgstr ""
+msgstr "LQG"
 
 msgid "Mixed-sensitivity"
-msgstr ""
+msgstr "Sensibilidad mezclada."
 
 msgid "PID"
-msgstr ""
+msgstr "PID"
 
 msgid "Inverted pendulum"
-msgstr ""
+msgstr "Péndulo invertido"
 
 msgid "Flat systems"
-msgstr ""
+msgstr "Sistemas planos"
 
 msgid "Tracking"
-msgstr ""
+msgstr "Seguimiento"
 
 msgid "Robust control"
-msgstr ""
+msgstr "Control robusto"
 
 #, c-format
 msgid ""
@@ -100,6 +108,12 @@ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba estructura "
 "de datos %s.\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr ""
+"%s : Tipo erróneo para argumento de entrada #%d: Se esperaba un sistema "
+"armax.\n"
 
 #, c-format
 msgid ""
@@ -314,14 +328,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento %d: Se esperaba un vector real.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba %d.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
+"%s: Valores incorrectos del argumento de entrada #%d: Los elementos deben "
+"ser positivos.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Amplitud y contornos de fase de y/(1+y)"
@@ -358,18 +376,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se lo esperaba en "
+"tiempo continuo.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be a positive scalar.\n"
 msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Debe ser un escalar "
+"positivo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un vector "
+"de floats.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr ""
+msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba %d.\n"
 
 #, c-format
 msgid ""
@@ -407,20 +431,26 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un real o "
+"un escalar no negativo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
+"un string.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats or Polynomial "
 "expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un "
+"polinomio o un arreglo de floats.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
-msgstr ""
+msgstr "%s: Se ignoró el argumento de entrada #%d.\n"
 
 #, c-format
 msgid ""
@@ -469,6 +499,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: transfer function expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba una "
+"función de transferencia.\n"
 
 #, c-format
 msgid ""
@@ -547,8 +579,15 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s: Iteración %s, error=%s.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un sistema "
+"lineal.\n"
 
 #, c-format
 msgid ""
@@ -601,10 +640,12 @@ msgstr "%s: No se satisfacieron las ecuaciones de Francis.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
@@ -615,10 +656,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un entero "
+"positivo.\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -753,6 +797,8 @@ msgstr "%s: %s no es simétrico.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
+"%s: Tipo erróneo de argumentos de entrada #%d: se esperaba un espacio de "
+"estados lineal.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
@@ -776,7 +822,7 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: El valor computado de || G || puede ser inexacto.\n"
 
 msgid "G is all-pass"
-msgstr ""
+msgstr "G es pasa-todo"
 
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
@@ -823,17 +869,19 @@ msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
+msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba (%d,%d).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: second row must be greater than "
 "first one.\n"
 msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: la segunda fila debe "
+"ser mayor que la primera.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
+msgstr "Tipo incorrecto para el argumento %d: Se esperaba SISO.\n"
 
 #, c-format
 msgid ""
@@ -841,6 +889,9 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un sistema "
 "lineal dinámico.\n"
+
+msgid "Phase (Deg)"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
@@ -996,10 +1047,20 @@ msgstr "%s: Respuesta incorrecta.\n"
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: Norma residual = %g\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr ""
+
 msgid ""
 "loci with constant damping and constant natural frequency\n"
 "in discrete plane"
 msgstr ""
+"loci con amortiguación y frecuencia natural constante\n"
+"en plano discreto"
 
 msgid "Real Axis"
 msgstr "Eje Real"

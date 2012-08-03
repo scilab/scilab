@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dt_ility">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dt_ility</refname>
     <refpurpose>可検出性テスト</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>k</term>
         <listitem>
-          <para>不安定かつ不可観測な部分空間の次元 (<literal> k&lt;=n</literal>).</para>
+          <para>
+            不安定かつ不可観測な部分空間の次元 (<literal> k&lt;=n</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,7 +53,9 @@
       <varlistentry>
         <term>Sld</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,20 +69,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	状態空間表現の線形システム
-    <literal>sl</literal>の可検出性テスト. 
-    <literal>U</literal> は基数で,
-	その最初の<literal>k</literal>列に<literal>Sl</literal>の
-	不安定かつ不可検出な部分空間
-	(<literal>(A,C)</literal>の不可観測な部分空間と
-	<literal>A</literal>の不安定な部分空間の共通集合)
-	が広がります.
-	可検出性は,<literal>k=0</literal>を意味します.</para>
-    <para><literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> は,
-	<literal>Sl=(A,B,C,D)</literal>の"可検出な部分"	を
-	以下のように表示します.
-	</para>
-    <programlisting role = ""><![CDATA[ 
+      状態空間表現の線形システム
+      <literal>sl</literal>の可検出性テスト. 
+      <literal>U</literal> は基数で,
+      その最初の<literal>k</literal>列に<literal>Sl</literal>の
+      不安定かつ不可検出な部分空間
+      (<literal>(A,C)</literal>の不可観測な部分空間と
+      <literal>A</literal>の不安定な部分空間の共通集合)
+      が広がります.
+      可検出性は,<literal>k=0</literal>を意味します.
+    </para>
+    <para>
+      <literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> は,
+      <literal>Sl=(A,B,C,D)</literal>の"可検出な部分"	を
+      以下のように表示します.
+    </para>
+    <programlisting role=""><![CDATA[ 
          [*,*,*]
 U'*A*U = [0,*,*]
          [0,0,*]
@@ -87,10 +92,11 @@ U'*A*U = [0,*,*]
 C*U = [0,0,*]
  ]]></programlisting>
     <para>
-	<literal>(A33,C3)</literal>は可観測 (<literal>nx-n</literal>次), 
-	<literal>A22</literal> は可安定,
-    ( <literal>n-k</literal>次) ,
-	 <literal>A11</literal> は不可安定 ( <literal>k</literal>次)です.</para>
+      <literal>(A33,C3)</literal>は可観測 (<literal>nx-n</literal>次), 
+      <literal>A22</literal> は可安定,
+      ( <literal>n-k</literal>次) ,
+      <literal>A11</literal> は不可安定 ( <literal>k</literal>次)です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

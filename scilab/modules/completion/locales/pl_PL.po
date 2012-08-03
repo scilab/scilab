@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-10 18:43+0000\n"
+"PO-Revision-Date: 2011-12-03 14:26+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pl\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
 
 #, c-format
@@ -48,7 +48,7 @@ msgstr "Moduł uzupełniania kodu Scilab nie jest zainstalowany.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: Nieprawidłowy typ parametrów wejściowych.\n"
+msgstr "%s: Nieprawidłowy typ argumentów wejściowych.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"

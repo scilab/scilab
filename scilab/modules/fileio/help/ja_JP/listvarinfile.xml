@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="listvarinfile">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>listvarinfile</refname>
     <refpurpose>保存したデータファイルの内容の一覧を得る</refpurpose>
@@ -10,7 +7,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>listvarinfile(filename)
-[nams,typs,dims,vols]=listvarinfile(filename)</synopsis>
+      [nams,typs,dims,vols]=listvarinfile(filename)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -19,35 +17,35 @@
         <term>filename</term>
         <listitem>
           <para>文字列, 調べるファイルのパス名
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>nams</term>
         <listitem>
           <para>文字配列, ファイルに保存した変数の名前
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dims</term>
         <listitem>
           <para>リスト, ファイルに保存した変数の次元
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>typs</term>
         <listitem>
           <para>数値配列, ファイルに保存した変数の型
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>vols</term>
         <listitem>
           <para>数値配列, ファイルに保存した変数のバイト数 
-       </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,15 +55,15 @@
     <itemizedlist>
       <listitem>
         <para>
-	このユーティリティ関数は,
-	<link linkend="save">save</link>により作成されたScilabデータファイルに含まれる
-	変数の一覧 "a la <link linkend="whos">whos</link>" を取得します.
-     </para>
+          このユーティリティ関数は,
+          <link linkend="save">save</link>により作成されたScilabデータファイルに含まれる
+          変数の一覧 "a la <link linkend="whos">whos</link>" を取得します.
+        </para>
         <para>
-     注意: ハイパー行列はプレーンな mlist として報告されます;
-	有理数および状態空間はプレーンな tlist として報告されます;
-	グラフィックハンドルは認識されません.
-     </para>
+          注意: ハイパー行列はプレーンな mlist として報告されます;
+          有理数および状態空間はプレーンな tlist として報告されます;
+          グラフィックハンドルは認識されません.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -96,18 +94,5 @@ listvarinfile("vals.dat")
         <link linkend="type">type</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <variablelist>
-      <varlistentry>
-        <term>Serge Steer</term>
-        <listitem>
-          <para>
-    31 Jan 2001; reediting by Enrico Segre
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

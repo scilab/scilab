@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pol2des">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pol2des</refname>
     <refpurpose>記述形式の多項式行列</refpurpose>
@@ -42,9 +39,10 @@
   <refsection>
     <title>説明</title>
     <para>
-    多項式 <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>を指定すると,
-    <literal>pol2des</literal> は,<literal>N</literal> 冪ゼロとして
-	3つの行列 <literal>N, B, C</literal>を返します:</para>
+      多項式 <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>を指定すると,
+      <literal>pol2des</literal> は,<literal>N</literal> 冪ゼロとして
+      3つの行列 <literal>N, B, C</literal>を返します:
+    </para>
     <para>
       <literal>Ds = C (s*N-eye())^-1 B</literal>
     </para>
@@ -67,9 +65,5 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
         <link linkend="tf2des">tf2des</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

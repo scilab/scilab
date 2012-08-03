@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-02 07:24+0000\n"
+"PO-Revision-Date: 2012-07-30 08:26+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -38,7 +38,7 @@ msgstr "%s : Impossible de créer la variable dans la mémoire."
 
 #, c-format
 msgid "%s: Invalid variable name."
-msgstr ""
+msgstr "%s : Nom de variable invalide."
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -70,6 +70,41 @@ msgstr "Matrice creuse de booléens"
 
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au plus %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) de sortie : au moins %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) de sortie : au plus %d attendu(s).\n"
 
 #, c-format
 msgid "%s: matrix argument excepted"
@@ -137,11 +172,11 @@ msgstr "%s : Impossible d'obtenir l'argument precision"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel ou un entier "
-"scalaire attendu.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel ou entier "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
@@ -252,13 +287,14 @@ msgstr "Matrice de chaîne de caractères étendue"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une seule chaîne de caractère "
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée \"%s\" : Un seul string attendu.\n"
+"%s : Type erroné de l'argument d'entrée \"%s\" : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -270,4 +306,4 @@ msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Invalid variable name.\n"
-msgstr ""
+msgstr "%s : Nom de variable invalide.\n"

@@ -1,105 +1,79 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry version="5.0-subset Scilab" xml:id="splin3d" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="splin3d" xml:lang="en">
   <refnamediv>
     <refname>splin3d</refname>
-
     <refpurpose>interpolação spline em grides 3d</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>x,y,z</term>
-
         <listitem>
           <para> vetores linhas estritamente crescentes (cada um com pelo
-          menos três componentes) definindo o grid de interpolação 3d</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>v</term>
-
-        <listitem>
-          <para> uma hipermatriz nx x ny x nz (nx, ny, nz sendo de
-          comprimentos de <literal>x</literal>, <literal>y</literal> e
-          <literal>z</literal>, respectivamente)</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>order</term>
-
-        <listitem>
-          <para>(opcional) um vetor 1x3 [kx,ky,kz] dada a ordem do tensor
-          spline em cada direção (o padrão é [4,4,4], i.e. spline tricúbico)
+            menos três componentes) definindo o grid de interpolação 3d
           </para>
         </listitem>
       </varlistentry>
-
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para> uma hipermatriz nx x ny x nz (nx, ny, nz sendo de
+            comprimentos de <literal>x</literal>, <literal>y</literal> e
+            <literal>z</literal>, respectivamente)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>(opcional) um vetor 1x3 [kx,ky,kz] dada a ordem do tensor
+            spline em cada direção (o padrão é [4,4,4], i.e. spline tricúbico)
+          </para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>tl</term>
-
         <listitem>
           <para>um tlist do tipo splin3d definindo o spline</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para>Esta função computa um spline tensor 3d <emphasis>s</emphasis> que
-    interpola os pontos <emphasis>(xi,yj,zk,vijk)</emphasis>, i.e., temos
-    <emphasis>s(xi,yj,zk)=vijk</emphasis> para todo
-    <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> e
-    <emphasis>k=1,..,nz</emphasis>. O spline resultante <emphasis>s</emphasis>
-    é definido por <literal>tl</literal> que consiste em uma representação
-    B-tensor-spline de <emphasis>s</emphasis>. A avaliação de s em alguns
-    pontos deve ser feita pela função <link linkend="interp3d">interp3d</link>
-    (para computar s e suas derivadas primeiras) ou pela função <link
-    linkend="bsplin3val">bsplin3val</link> (para computar uma derivada
-    arbitrária de s) . Vários tipos de splines podem ser computados
-    selecionando a ordem dos splines em cada direção
-    <literal>order=[kx,ky,kz]</literal>.</para>
+    <para>
+      Esta função computa um spline tensor 3d <emphasis>s</emphasis> que
+      interpola os pontos <emphasis>(xi,yj,zk,vijk)</emphasis>, i.e., temos
+      <emphasis>s(xi,yj,zk)=vijk</emphasis> para todo
+      <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> e
+      <emphasis>k=1,..,nz</emphasis>. O spline resultante <emphasis>s</emphasis>
+      é definido por <literal>tl</literal> que consiste em uma representação
+      B-tensor-spline de <emphasis>s</emphasis>. A avaliação de s em alguns
+      pontos deve ser feita pela função <link linkend="interp3d">interp3d</link>
+      (para computar s e suas derivadas primeiras) ou pela função <link linkend="bsplin3val">bsplin3val</link> (para computar uma derivada
+      arbitrária de s) . Vários tipos de splines podem ser computados
+      selecionando a ordem dos splines em cada direção
+      <literal>order=[kx,ky,kz]</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Observação</title>
-
     <para>Esta função funciona sob as condições: </para>
-
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 nx, ny, nz <= 3
 2 <= kx < nx
 2 <= ky < ny
 2 <= kz < nz
  ]]></programlisting>
- <para>Há erro quando estas condições não são respeitadas. </para>
+    <para>Há erro quando estas condições não são respeitadas. </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 // exemplo 1
 // =============================================================================
@@ -157,26 +131,25 @@ xtitle("interpolação por spline 3d da função "+func)
 show_window()
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="linear_interpn">linear_interpn</link></member>
-
-      <member><link linkend="interp3d">interp3d</link></member>
-
-      <member><link linkend="bsplin3val">bsplin3val</link></member>
+      <member>
+        <link linkend="linear_interpn">linear_interpn</link>
+      </member>
+      <member>
+        <link linkend="interp3d">interp3d</link>
+      </member>
+      <member>
+        <link linkend="bsplin3val">bsplin3val</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Autores</title>
-
     <simplelist type="vert">
       <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
       </member>
-
       <member>B. Pincon (interface Scilab)</member>
     </simplelist>
   </refsection>

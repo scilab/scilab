@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-// Example #1 : a small linear test system
+// <-- CLI SHELL MODE -->
+// Example #1 : a small linear test system 
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2 -1  0  0  0;
              -1  2 -1  0  0;
@@ -17,8 +18,6 @@ x = taucs_chsolve(Cp,b);
 if round(x) <> [ 1; 2; 3; 4; 5 ] then bugmes();quit;end
 // don't forget to clear memory with
 taucs_chdel(Cp)
- ans  =
- 
 // Example #2 a real example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
@@ -34,5 +33,3 @@ secondNorm=norm(A*x - b);
 if norm(firstNorm,secondNorm) < 1E-7 then bugmes();quit;end
 // don't forget to clear memory
 taucs_chdel(Cp)
- ans  =
- 

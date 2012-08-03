@@ -1,0 +1,38 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Clément DAVID
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH XCOS -->
+// <-- LONG TIME EXECUTION -->
+//
+// <-- Non-regression test for bug 7537 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=7537
+//
+// <-- Short Description -->
+// block instance may contains superblocks with wrong versions. Check that
+// no errors are thrown when adding them to a diagram.
+loadXcosLibs();
+scs_m = scicos_diagram();
+doc = xmlRead(SCI + "/modules/xcos/etc/palettes.xml");
+blocks = xmlXPath(doc, "//block/@name");
+blocks = blocks.content;
+xmlDelete(doc);
+for blockIndex=1:size(blocks, '*')
+    interfunction = blocks(blockIndex);
+    execstr("out = " + interfunction + "(''define'');");
+    xx = (modulo(blockIndex, 10) + 1) * 100;
+    yy = int(blockIndex / 10) * 100;
+    out.graphics.orig =[xx yy];
+    scs_m.objs(blockIndex) = out;
+end
+// export the diagram to h5
+h5name = TMPDIR + "/diagram.sod";
+status = export_to_hdf5(h5name, "scs_m");
+if ~status then bugmes();quit;end
+// import to xcos (decode/encode synchronous version)
+status = xcosDiagramToScilab(h5name);
+if status <> 0 then bugmes();quit;end

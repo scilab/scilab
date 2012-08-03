@@ -18,4 +18,4 @@ doc.root.children(1.5) = "plop";
 assert_checkequal(doc.root.children(2).content,"plop");
 assert_checkequal(doc.root.children(3).content,"1.23456");
 assert_checkequal(evstr(doc.root.children(3).content),1.23456);
-xmlClose(doc);
+xmlDelete(doc);

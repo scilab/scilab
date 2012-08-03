@@ -34,7 +34,6 @@ Description:
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
-        <module name="FileLength"/>
         <module name="LineLength">
             <property name="max" value="150"/>
         </module>
@@ -120,7 +119,11 @@ Description:
         <module name="JavaNCSS"/>
         <module name="NPathComplexity"/>
     </module>
-    <module name="PackageHtml"/>
+    <module name="FileLength"/>
+    <module name="JavadocPackage">
+        <property name="severity" value="ignore"/>
+        <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="NewlineAtEndOfFile"/>
     <module name="Translation"/>
 <!--    

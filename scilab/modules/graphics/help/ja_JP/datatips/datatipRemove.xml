@@ -8,10 +8,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipRemove">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipRemove">
   <refnamediv>
     <refname>datatipRemove</refname>
     <refpurpose>選択したdatatipを削除する</refpurpose>
@@ -19,7 +16,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順e</title>
     <synopsis>datatipRemove(polyline_handle,ind)
-    datatipRemove(datatip_handle)</synopsis>
+      datatipRemove(datatip_handle)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -40,7 +38,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>ind</term>
         <listitem>
@@ -54,7 +51,7 @@
   <refsection>
     <title>説明</title>
     <para>
-	選択されたdatatipを削除します.
+      選択されたdatatipを削除します.
     </para>
   </refsection>
   <refsection>
@@ -75,18 +72,11 @@
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="datatips" >datatips</link>
+        <link linkend="datatips">datatips</link>
       </member>
       <member>
         <link linkend="datatipCreate">datatipCreate</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

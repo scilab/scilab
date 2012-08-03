@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -31,8 +31,14 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  // paths to updatable parameters or states
-  ppath = list(1)
+  // look for the internal edge trigger block
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "STEP" then
+      ppath = list(i);
+      break;
+    end
+  end
   newpar=list();
   for path=ppath do
     np=size(path,'*')
@@ -104,6 +110,8 @@ case 'set' then
   y=needcompile
   typ=newpar
 case 'define' then
+scs_m=scicos_diagram(..
+);
   model = mlist(..
   ['model','sim','in','in2','intyp','out','out2','outtyp','evtin','evtout','state','dstate',..
   'odstate','rpar','ipar','opar','blocktype','firing','dep_ut','label','nzcross','nmode','equations'],..
@@ -118,8 +126,8 @@ case 'define' then
   list(..
   mlist(['Block','graphics','model','gui','doc'],..
   mlist(..
-  ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout','gr_i','id',..
-  'in_implicit','out_implicit'],[82.230597,652.6813],[40,40],%t,['1';'0';'1'],[],4,2,2,..
+  ['graphics','orig','sz','flip','theta','exprs','pin','pout','pein','peout','gr_i','id',..
+  'in_implicit','out_implicit'],[82.230597,652.6813],[40,40],%t,0,['1';'0';'1'],[],4,2,2,..
   list(['txt=[''Step''];';'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');'],8),..
   emptystr(),[],[]),..
   mlist(..
@@ -133,8 +141,8 @@ case 'define' then
   [1,1,0],[1,1,1]),..
   mlist(['Block','graphics','model','gui','doc'],..
   mlist(..
-  ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout','gr_i','id',..
-  'in_implicit','out_implicit'],[150.80203,662.6813],[20,20],%t,'1',4,[],[],[],list(' ',8),..
+  ['graphics','orig','sz','flip','theta','exprs','pin','pout','pein','peout','gr_i','id',..
+  'in_implicit','out_implicit'],[150.80203,662.6813],[20,20],%t,0,'1',4,[],[],[],list(' ',8),..
   emptystr(),[],[]),..
   mlist(..
   ['model','sim','in','in2','intyp','out','out2','outtyp','evtin','evtout','state','dstate',..

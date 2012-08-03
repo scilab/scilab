@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_figure_handle">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="get_figure_handle">
   <refnamediv>
     <refname>get_figure_handle</refname>
     <refpurpose>get a figure handle from its id</refpurpose>
@@ -41,9 +38,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>get_figure_handle</literal> function allows to retrieve the handle
-    of a graphic figure knowing its id. If a figure with the specified id exists
-    the function returns it. Otherwise is returns an empty matrix.
+    <para>
+      <literal>get_figure_handle</literal> function allows to retrieve the handle
+      of a graphic figure knowing its id. If a figure with the specified id exists
+      the function returns it. Otherwise is returns an empty matrix.
     </para>
   </refsection>
   <refsection>
@@ -63,7 +61,7 @@ f42 = get_figure_handle(42);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>
@@ -82,9 +80,4 @@ f42 = get_figure_handle(42);
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-

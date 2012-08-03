@@ -17,7 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  *
  * See the file ./license.txt
  -->
@@ -69,6 +69,11 @@
           <listitem>
             <para>
               <xref linkend="Computationalfunction_MIN_f">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_MIN_f">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -167,7 +172,7 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_MIN_f">
-    <title>MIN_f Example</title>
+    <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/MIN_f_Example.xcos">
         <inlinemediaobject>

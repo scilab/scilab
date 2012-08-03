@@ -11,10 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="repmat" xml:lang="fr">
-  <info>
-    <pubdate>$LastChangedDate: 2011-01-12  (mer, 12 jan 2011)
-    $</pubdate>
-  </info>
   <refnamediv>
     <refname>repmat</refname>
     <refpurpose>Définit un grand tableau par pavage avec un tableau 2D.</refpurpose>
@@ -37,16 +33,19 @@
       <varlistentry>
         <term>m, n, ...</term>
         <listitem>
-          <para>entiers, nombres de copie de <literal>A</literal> pour
-          chaque dimension de <literal>B</literal>.</para>
+          <para>
+            entiers, nombres de copie de <literal>A</literal> pour
+            chaque dimension de <literal>B</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>siz</term>
         <listitem>
           <para>vecteur d'entiers, Chaque élément donne le nombre de
-          copie de <literal>A</literal> pour la dimension
-          correspondante de <literal>B</literal>.</para>
+            copie de <literal>A</literal> pour la dimension
+            correspondante de <literal>B</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,23 +58,32 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>repmat(A,m,n)</literal> or de façon équivalente,
-    <literal>repmat(A,[m,n])</literal> retourne un grand tableau formé
-    d'un pavage <literal>m</literal>-par- <literal>n</literal> avec
-    des copies de <literal>A</literal>.  La taille du résultat est
-    <literal>[size(A,1)*M, size(A,2)*N]</literal>.</para>
-    <para><literal>repmat(A,m)</literal> crée un pavage 
-    <literal>m</literal>-by- <literal>m</literal>.</para>
-    <para><literal>repmat(A,[m n p ...])</literal> pave un tableau
-    mutidimensionnel <literal>m</literal>-par-
-    <literal>n</literal>-par- <literal>p</literal> ... avec des copies
-    de <literal>A</literal>. La taille du résultat est
-    <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P,
-    ...]</literal>.</para>
+    <para>
+      <literal>repmat(A,m,n)</literal> or de façon équivalente,
+      <literal>repmat(A,[m,n])</literal> retourne un grand tableau formé
+      d'un pavage <literal>m</literal>-par- <literal>n</literal> avec
+      des copies de <literal>A</literal>.  La taille du résultat est
+      <literal>[size(A,1)*M, size(A,2)*N]</literal>.
+    </para>
+    <para>
+      <literal>repmat(A,m)</literal> crée un pavage 
+      <literal>m</literal>-by- <literal>m</literal>.
+    </para>
+    <para>
+      <literal>repmat(A,[m n p ...])</literal> pave un tableau
+      mutidimensionnel <literal>m</literal>-par-
+      <literal>n</literal>-par- <literal>p</literal> ... avec des copies
+      de <literal>A</literal>. La taille du résultat est
+      <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P,
+        ...]
+      </literal>
+      .
+    </para>
     <para>Cette fonction supporte les tableaux de réels, d'entiers, de
-    booléens, de chaînes de caractères, de polynômes, et de fractions
-    rationnelles ainsi que les matrices creuses. Cette fonction peut
-    être étendue en utilisant le méchanisme de surcharge.</para>
+      booléens, de chaînes de caractères, de polynômes, et de fractions
+      rationnelles ainsi que les matrices creuses. Cette fonction peut
+      être étendue en utilisant le méchanisme de surcharge.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -103,19 +111,12 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>Serge Steer, INRIA</para>
-  </refsection>
-
-  <refsection>
     <title>Historique</title>
-
- <revhistory>
-  <revision>
-   <revnumber>5.3.1</revnumber>
-   <revremark>Fonction repmat introduite.</revremark>
-  </revision>
- </revhistory>
+    <revhistory>
+      <revision>
+        <revnumber>5.3.1</revnumber>
+        <revremark>Fonction repmat introduite.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
-
 </refentry>

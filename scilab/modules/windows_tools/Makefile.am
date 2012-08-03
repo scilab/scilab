@@ -7,17 +7,22 @@
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
-libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
+libsciwindows_tools_la_CPPFLAGS=  -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libsciwindows_tools.la
 
-libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+if MAINTAINER_MODE
+pkglib_LTLIBRARIES = libsciwindows_tools.la
+else
+noinst_LTLIBRARIES = libsciwindows_tools.la
+endif
+
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)

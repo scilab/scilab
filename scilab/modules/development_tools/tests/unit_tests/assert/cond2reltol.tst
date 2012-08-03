@@ -6,7 +6,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 function flag = MY_assert_equal ( computed , expected )
@@ -46,7 +46,7 @@ expected = [
     1.000000000000000000D+00  
     1.000000000000000000D+00  
 ];
-MY_assert_equal ( computed , expected );
+assert_checkalmostequal ( computed , expected , 100*%eps);
 //
 // With offset
 computed = assert_cond2reltol ( 1.e2 , [5 4 3 2 1 0 -1 -2 -3 -4 -5]' );
@@ -63,13 +63,13 @@ expected = [
     1.110223024625162227D-10  
     1.110223024625162331D-09  
 ];
-MY_assert_equal ( computed , expected );
+assert_checkalmostequal ( computed , expected , 100*%eps);
 //
 computed = assert_cond2reltol ( 1.e14 , [0 -1 -2 -3] );
 expected = [1.110223024625162265D-02    1.110223024625162230D-01    1.000000000000000000D+00    1.000000000000000000D+00];
-MY_assert_equal ( computed , expected );
+assert_checkalmostequal ( computed , expected , 100*%eps);
 //
 computed = assert_cond2reltol ( 1.e2 , [0 1 2 3] ) ;
 expected = [1.110223024625162220D-14    1.110223024625162260D-15    1.110223024625162210D-16    1.110223024625162210D-16];
-MY_assert_equal ( computed , expected );
+assert_checkalmostequal ( computed , expected , 100*%eps);
 

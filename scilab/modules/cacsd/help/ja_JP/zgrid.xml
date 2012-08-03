@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="zgrid">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>zgrid</refname>
     <refpurpose> zgrid プロット</refpurpose>
@@ -25,13 +22,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    z面グリッド線をプロットします: 
-    ダンピング係数(zeta)と固有周波数(Wn)が一定の線が
-	Z面単位円の内部に描かれます.</para>
+      z面グリッド線をプロットします: 
+      ダンピング係数(zeta)と固有周波数(Wn)が一定の線が
+      Z面単位円の内部に描かれます.
+    </para>
     <para>
-	等周波数曲線が[0,0.5]の間隔でfrequency*stepに表示されます.
-	上限はシャノン周波数<literal>( 1/dt &gt; 2*f )</literal>に
-	一致します.</para>
+      等周波数曲線が[0,0.5]の間隔でfrequency*stepに表示されます.
+      上限はシャノン周波数<literal>( 1/dt &gt; 2*f )</literal>に
+      一致します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

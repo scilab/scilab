@@ -1,0 +1,15 @@
+LIBRARY    slicot_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; slicot_f
+; --------------------------------------- 
+zb02ox_
+zb02ow_
+sb02ox_
+sb02ow_
+zb02mw_
+zb02mv_
+sb02mw_
+sb02mv_

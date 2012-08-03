@@ -12,17 +12,17 @@ my_figure = scf();
 clf(my_figure,"reset");
 
 // Test the default value
-if my_figure.rotation_style <> "unary" then pause, end
+assert_checkequal(my_figure.rotation_style, "unary");
 
 // Test the allocation
 my_figure.rotation_style = "multiple";
-if my_figure.rotation_style <> "multiple" then pause, end
+assert_checkequal(my_figure.rotation_style, "multiple");
 
 execstr("my_figure.rotation_style = ''badvalue''",'errcatch','n');
-if my_figure.rotation_style <> "multiple" then pause, end
+assert_checkequal(my_figure.rotation_style, "multiple");
 
 my_figure.rotation_style = "unary";
-if my_figure.rotation_style <> "unary" then pause, end
+assert_checkequal(my_figure.rotation_style, "unary");
 
 // Delete
 delete(my_figure);

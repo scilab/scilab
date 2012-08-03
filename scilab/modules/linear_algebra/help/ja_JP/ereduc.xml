@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ereduc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ereduc</refname>
     <refpurpose>qz変換により列階段形行列を計算</refpurpose>
@@ -64,16 +61,18 @@
               <term>*  </term>
               <listitem>
                 <para>
-	境界要素<literal>E(i,j)</literal>がコーナ点の場合,
-	<literal>ISTAIR(i) = + j</literal>.</para>
+                  境界要素<literal>E(i,j)</literal>がコーナ点の場合,
+                  <literal>ISTAIR(i) = + j</literal>.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>*  </term>
               <listitem>
                 <para>
-	境界要素<literal>E(i,j)</literal>がコーナ点でない場合,
-	<literal>ISTAIR(i) = - j</literal>.</para>
+                  境界要素<literal>E(i,j)</literal>がコーナ点でない場合,
+                  <literal>ISTAIR(i) = - j</literal>.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -93,12 +92,13 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>m x n</literal>行列<literal>X</literal> (正則である
-	必要はない)を指定すると,
-	関数ereducは,列階段形(台形)の
-	ユニタリ変換行列<literal>E=Q*X*Z</literal>
-	を計算します.
-	更に行列<literal>X</literal>のランクが定義されます.</para>
+      <literal>mx n</literal>行列<literal>X</literal> (正則である
+      必要はない)を指定すると,
+      関数ereducは,列階段形(台形)の
+      ユニタリ変換行列<literal>E=Q*X*Z</literal>
+      を計算します.
+      更に行列<literal>X</literal>のランクが定義されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -114,9 +114,5 @@ X=[1 2 3;4 5 6]
         <link linkend="fstair">fstair</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
   </refsection>
 </refentry>

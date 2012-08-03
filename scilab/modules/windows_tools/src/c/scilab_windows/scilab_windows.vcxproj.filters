@@ -71,12 +71,6 @@
     <ClCompile Include="spawncommand.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="splashScreen.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StartupMessageBox.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="strdup_windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +93,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getBlasType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getVideoAdapters.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splashScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -145,12 +145,6 @@
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource_scilab_windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="scilab_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -164,9 +158,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="splashScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StartupMessageBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\includes\strdup_windows.h">
@@ -193,15 +184,18 @@
     <ClInclude Include="getBlasType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="getVideoAdapters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resources\scilab_splashscreen.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="Gui_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Localization_Import.def">

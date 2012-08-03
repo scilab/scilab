@@ -1,0 +1,16 @@
+	LIBRARY    slatec_f.dll
+
+
+EXPORTS
+;
+;slatec_f
+dbesi_
+dbesj_
+dbesk_
+dbesy_
+dgammacody_
+zbesi_
+zbesj_
+zbesk_
+zbesy_
+

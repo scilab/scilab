@@ -12,7 +12,8 @@
 #include <string.h>
 #include "gw_core.h"
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "machine.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/

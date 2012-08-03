@@ -11,6 +11,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>

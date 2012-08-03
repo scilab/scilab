@@ -14,8 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -87,6 +95,10 @@ msgstr "%s：输入参数#%d的值错误：应该为稳定系统。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为%s数据结构。\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -471,6 +483,11 @@ msgid "%s: Iteration %s, error=%s.\n"
 msgstr "%s：迭代 %s，错误=%s。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
@@ -737,6 +754,9 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为线性动态系统。\n"
 
+msgid "Phase (Deg)"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
@@ -859,6 +879,14 @@ msgstr "%s：不正确的答案。\n"
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: 残留标准= %g\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected."
+msgstr ""
 
 msgid ""
 "loci with constant damping and constant natural frequency\n"

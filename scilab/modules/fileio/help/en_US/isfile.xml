@@ -11,16 +11,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isfile" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>isfile</refname>
-    <refpurpose>checks if argument is a file</refpurpose>
+    <refpurpose>checks whether argument is an existing file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>a = isfile(filenames)</synopsis>
+    <synopsis>x = isfile(filenames)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,29 +29,33 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a</term>
+        <term>x</term>
         <listitem>
-          <para>an matrix of boolean (%t is filenames exists).</para>
+          <para>
+            a matrix of boolean (<constant>%t</constant> if <varname>filenames</varname> are 
+            existing files).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>x = isfile(filenames) checks if filenames is existing file or not. (a
-    directory is not a file. see isdir.)</para>
+    <para>
+      <code>x = isfile(filenames)</code> checks whether <varname>filenames</varname> is an existing file or not (a
+      directory is not a file). See also <link linkend="isdir">isdir</link>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">cd SCI
-filenames = ls()
-isfile(filenames)
-
-isfile(filenames)
-
-isfile(SCI + '/etc')
-isdir(SCI + '/etc')
- </programlisting>
+    <programlisting role="example">
+      filenames = ls(SCI)
+      
+      x = isfile(filenames)
+      
+      isfile(SCI + '/etc')
+      isdir(SCI + '/etc')
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -66,9 +67,5 @@ isdir(SCI + '/etc')
         <link linkend="isdir">isdir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

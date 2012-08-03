@@ -16,14 +16,14 @@
 #include "BOOL.h"
 
 /**
-* Append Datas to a dictionary(string matrix)
+* Append Data to a dictionary(string matrix)
 * @param dictionary 
 * @param i
-* @param datas
-* @param sizedatas
+* @param data
+* @param sizedata
 * @return TRUE or FALSE
 */
-BOOL appendDictionary(char ***dictionary,int *i,char ***datas,int *sizedatas);
+BOOL appendDictionary(char ***dictionary, int *i, char ***data, int *sizedata);
 
 /**
 * sort dictionary
@@ -31,7 +31,7 @@ BOOL appendDictionary(char ***dictionary,int *i,char ***datas,int *sizedatas);
 * @param  size of new dictionary
 * @return result
 */
-char **SortDictionary(char **Strings,int SizeStrings);
+char **SortDictionary(char **Strings, int SizeStrings);
 
 /**
 * Remove duplicate words in a dictionary
@@ -39,7 +39,7 @@ char **SortDictionary(char **Strings,int SizeStrings);
 * @param[out] size of new dictionary
 * @return result
 */
-char ** RemoveDuplicateDictionary(char **Strings,int *SizeStrings);
+char **RemoveDuplicateDictionary(char **Strings, int *SizeStrings);
 
 /**
 * free pointer
@@ -62,4 +62,4 @@ char ** RemoveDuplicateDictionary(char **Strings,int *SizeStrings);
 }
 
 #endif /* __TOOLSDICTIONARY_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

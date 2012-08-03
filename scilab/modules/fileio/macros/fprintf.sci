@@ -15,7 +15,7 @@ function fprintf(fil, frmt, varargin)
 
   [lhs, rhs] = argn(0);
   if rhs < 2 then
-    error(999, msprintf(_("%s: Wrong number of input argument(s).\n"), "fprintf"));
+    error(999, msprintf(gettext("%s: Wrong number of input argument(s).\n"), "fprintf"));
   end
 
   if (type(frmt) <> 10) then

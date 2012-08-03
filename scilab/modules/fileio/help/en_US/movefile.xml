@@ -10,71 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="movefile" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept.
-    2006)$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="movefile" xml:lang="en">
   <refnamediv>
     <refname>movefile</refname>
-
     <refpurpose>Move file or directory</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>movefile('source','destination')
-[status,message] = movefile('source','destination')</synopsis>
+      [status,message] = movefile('source','destination')
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Description</title>
-
     <para>movefile('source','destination') moves the file or directory ,
-    source (and subdirectories) to the file or directory, destination.</para>
-
+      source (and subdirectories) to the file or directory, destination.
+    </para>
     <para>If source is a directory, destination can not be a file. movefile
-    replaces existing files without warning.</para>
-
+      replaces existing files without warning.
+    </para>
     <para>[status, message] = movefile('source','destination') moves source
-    to destination, returning the status and a message. </para>
-
+      to destination, returning the status and a message. 
+    </para>
     <para>Whatever the operating system, if the move succeeds, the status is 1
-    and the message is empty ; if the move fails, the status is 0 and the
-    message is not empty.</para>
-
+      and the message is empty ; if the move fails, the status is 0 and the
+      message is not empty.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"> 
-copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-[status,message] = movefile(TMPDIR+"/scilab.start",TMPDIR+"/renamed_scilab.start")
- </programlisting>
+      copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+      [status,message] = movefile(TMPDIR+"/scilab.start",TMPDIR+"/renamed_scilab.start")
+    </programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="copyfile">copyfile</link></member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Allan CORNET</member>
+      <member>
+        <link linkend="copyfile">copyfile</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

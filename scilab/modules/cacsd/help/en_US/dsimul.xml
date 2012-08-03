@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsimul">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dsimul</refname>
     <refpurpose>  state space discrete time simulation</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list describing a discrete time linear system</para>
+          <para>
+            <literal>syslin</literal> list describing a discrete time linear system
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>output of <literal>sl</literal></para>
+          <para>
+            output of <literal>sl</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,10 +49,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function. 
-    If <literal>[A,B,C,D]=abcd(sl)</literal> and <literal>x0=sl('X0')</literal>, <literal>dsimul</literal> returns <literal>y=C*ltitr(A,B,u,x0)+D*u</literal> i.e.
-    the time response of <literal>sl</literal> to the input <literal>u</literal>.
-    <literal>sl</literal> is assumed to be in state space form (<literal>syslin</literal> list).</para>
+      Utility function. 
+      If <literal>[A,B,C,D]=abcd(sl)</literal> and <literal>x0=sl('X0')</literal>, <literal>dsimul</literal> returns <literal>y=C*ltitr(A,B,u,x0)+D*u</literal> i.e.
+      the time response of <literal>sl</literal> to the input <literal>u</literal>.
+      <literal>sl</literal> is assumed to be in state space form (<literal>syslin</literal> list).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +68,7 @@ x2=dsimul(sl,u);  //Step response
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

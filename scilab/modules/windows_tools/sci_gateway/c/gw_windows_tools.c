@@ -14,7 +14,7 @@
 #include <string.h>
 #include "gw_windows_tools.h"
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =

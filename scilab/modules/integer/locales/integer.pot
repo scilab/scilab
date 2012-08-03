@@ -1,4 +1,4 @@
-# Localization of the module integer-macros
+# Localization of the module integer
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
@@ -14,7 +14,50 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
+
+# File: sci_gateway/c/sci_iconvert.c, line: 37
+# File: sci_gateway/c/sci_iconvert.c, line: 51
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 43
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 57
+# File: sci_gateway/c/sci_iconvert.c, line: 63
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 69
+#, c-format
+msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 75
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 82
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_iconvert.c, line: 103
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
 
 # File: macros/%i_Matplot.sci, line: 43
 #, c-format

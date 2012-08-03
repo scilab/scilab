@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lcm</refname>
     <refpurpose> least common multiple</refpurpose>
@@ -28,7 +25,7 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,8 +44,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>pp=lcm(p)</literal> computes the lcm <literal>pp</literal> of polynomial vector <literal>p</literal>.</para>
-    <para><literal>[pp,fact]=lcm(p)</literal> computes in addition the vector <literal>fact</literal> such that:</para>
+    <para>
+      <literal>pp=lcm(p)</literal> computes the lcm <literal>pp</literal> of polynomial vector <literal>p</literal>.
+    </para>
+    <para>
+      <literal>[pp,fact]=lcm(p)</literal> computes in addition the vector <literal>fact</literal> such that:
+    </para>
     <para>
       <literal>p.*fact=pp*ones(p)</literal>
     </para>
@@ -68,7 +69,7 @@ lcm(V)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcd">gcd</link>

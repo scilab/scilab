@@ -84,9 +84,6 @@
     <ClCompile Include="..\c\commons_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="daux.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dcutet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -359,9 +356,6 @@
     <f2c_rule Include="colnew.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="daux.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dcutet.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -580,7 +574,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Output_stream_Import.def">
@@ -591,10 +585,17 @@
     </None>
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="slatec_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

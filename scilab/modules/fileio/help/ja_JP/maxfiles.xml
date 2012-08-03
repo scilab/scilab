@@ -12,13 +12,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="maxfiles">
-  <info>
-    <pubdate>$LastChangedDate: 2007-04-22 18:20:07 +0200 (dim., 22 avr. 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>maxfiles</refname>
     <refpurpose>
-	Scilabが同時にオープンできるファイル数を最大値を指定する.</refpurpose>
+      Scilabが同時にオープンできるファイル数を最大値を指定する.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>

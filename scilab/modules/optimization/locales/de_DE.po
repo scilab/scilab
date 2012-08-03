@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:43+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-12 14:48+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 #, c-format
@@ -40,8 +40,15 @@ msgid "%s: The constraints are inconsistent.\n"
 msgstr "%s: die Bedingungens sind inkonsistent.\n"
 
 #, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s: Argument 3: falsche Anzahl an Spalten %d erwartet\n"
+msgid ""
+"%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
+"to %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -132,10 +139,10 @@ msgid "Spaceship landing trajectory"
 msgstr ""
 
 msgid "Computation of optimal parameters"
-msgstr ""
+msgstr "Berechnung der optimalen Parameter"
 
 msgid "Running optimization ...\n"
-msgstr ""
+msgstr "Optimierung wird ausgeführt …\n"
 
 msgid "fminsearch - Rosenbrock"
 msgstr ""
@@ -218,16 +225,16 @@ msgid ""
 msgstr ""
 
 msgid "Searching (please wait) ...\n"
-msgstr ""
+msgstr "Es wird gesucht (bitte warten) …\n"
 
 msgid "...Done\n"
-msgstr ""
+msgstr "… Abgeschlossen\n"
 
 msgid "Plot contour (please wait)...\n"
 msgstr ""
 
 msgid "End of demo.\n"
-msgstr ""
+msgstr "Ende der Demonstration.\n"
 
 msgid "Illustrates Box' algorithm on Rosenbrock's Post Office Problem.\n"
 msgstr ""
@@ -248,7 +255,7 @@ msgid "Problem A\n"
 msgstr ""
 
 msgid "Searching (please wait)...\n"
-msgstr ""
+msgstr "Es wird gesucht (bitte warten) …\n"
 
 #, c-format
 msgid "Relative error on x = %e\n"
@@ -294,7 +301,7 @@ msgid "Column #4: convergence rate (lower is better)\n"
 msgstr ""
 
 msgid "Number of parameters"
-msgstr ""
+msgstr "Anzahl der Parameter"
 
 msgid "Rate of convergence"
 msgstr ""
@@ -303,10 +310,10 @@ msgid "Number of function evaluations"
 msgstr ""
 
 msgid "Initialization\n"
-msgstr ""
+msgstr "Initialisierung\n"
 
 msgid "End of Optimization\n"
-msgstr ""
+msgstr "Ende der Optimierung\n"
 
 msgid "Defining Rosenbrock function ...\n"
 msgstr ""
@@ -327,7 +334,7 @@ msgid "Configuring nmplot object...\n"
 msgstr ""
 
 msgid "Setup output files...\n"
-msgstr ""
+msgstr "Ausgabedateien werden eingerichtet …\n"
 
 msgid "Plotting contour (please wait)...\n"
 msgstr ""
@@ -358,7 +365,7 @@ msgid "Function Value Average"
 msgstr ""
 
 msgid "Iterations"
-msgstr ""
+msgstr "Iterationen"
 
 msgid "Minimum Function Value"
 msgstr ""
@@ -371,7 +378,7 @@ msgid "x0=%s\n"
 msgstr ""
 
 msgid "Creating object...\n"
-msgstr ""
+msgstr "Objekt wird erstellt …\n"
 
 msgid ""
 "Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
@@ -411,7 +418,7 @@ msgid "Rosenbrock"
 msgstr ""
 
 msgid "Output"
-msgstr ""
+msgstr "Ausgabe"
 
 msgid "Plot"
 msgstr ""
@@ -423,13 +430,13 @@ msgid "Optimization and Simulation"
 msgstr "Optimierung und Simulation"
 
 msgid "Optimisation"
-msgstr ""
+msgstr "Optimierung"
 
 msgid "fminsearch"
 msgstr ""
 
 msgid "Genetic algorithms"
-msgstr ""
+msgstr "Genetische Algorithmen"
 
 msgid "Simulated Annealing"
 msgstr ""
@@ -705,7 +712,7 @@ msgstr ""
 
 #, c-format
 msgid "Please use %s instead."
-msgstr ""
+msgstr "Bitte verwenden Sie stattdessen %s."
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
@@ -763,7 +770,7 @@ msgstr ""
 
 #, c-format
 msgid "Option %s is obsolete."
-msgstr ""
+msgstr "Die Option %s ist überflüssig."
 
 #, c-format
 msgid ""
@@ -1174,4 +1181,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Falscher Wert des Eingangsarguments #%d: Ein Integer-Wert wird "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""

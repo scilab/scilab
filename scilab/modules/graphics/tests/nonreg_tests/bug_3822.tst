@@ -20,7 +20,7 @@ f = gcf();
 f.auto_resize='off';
 f.figure_size = [300 300];
 f.viewport = [110 130];
-save('foo.sav',f);
+save('foo.sav',"f");
 delete(f)
 load('foo.sav')
 f = gcf();

@@ -19,5 +19,5 @@ importXcosDiagram(SCI+'/modules/xcos/tests/nonreg_tests/bug_4715.xcos');
 global AA
 Info = scicos_simulate(scs_m,list(),%scicos_context,'nw');
 res = AA;
-clearglobal AA;
-if abs(res - 1.56016557141035550060) > (%eps * 1000) then pause,end
+
+assert_checkalmostequal(res, 1.56016557141035550060, 1E-4)

@@ -16,6 +16,7 @@
 #include <string.h>
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "api_scilab.h"
 #include "gsort.h"
 #include "string.h"
 #include "Scierror.h"
@@ -114,34 +115,50 @@ int sci_gsort(char *fname, unsigned long fname_len)
 
     if (Rhs == 3)
     {
-        GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
-        CheckLength(3, m3, 1);
-        if ((*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND))
+        int* piAddr = NULL;
+        char* pstData = NULL;
+
+        SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
+        if(sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "i", "d");
-            return 0;
+            printError(&sciErr, 0);
+            return 1;
         }
-        iord[0] = *cstk(l3);
+
+        if(getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
+        {
+            return 1;
+        }
+
+        iord[0] = pstData[0];
+        freeAllocatedSingleString(pstData);
     }
 
     if (Rhs >= 2)
     {
-        char c;
+        int* piAddr = NULL;
+        char* pstData = NULL;
 
-        GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-        if (m2 == 0)
+        SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+        if(sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname, 2);
-            return 0;
+            printError(&sciErr, 0);
+            return 1;
         }
-        c = *cstk(l2);
-        if ((c != ROW_SORT) && (c != COLUMN_SORT) && (c != GLOBAL_SORT) && (c != LIST_SORT))
+
+        if(getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "g", "lr",
-                     "lc");
-            return 0;
+            return 1;
         }
-        strcpy(typex, cstk(l2));
+
+        if ((pstData[0] != ROW_SORT) && (pstData[0] != COLUMN_SORT) && (pstData[0] != GLOBAL_SORT) && (pstData[0] != LIST_SORT))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "g", "lr", "lc");
+            return 1;
+        }
+
+        strcpy(typex, pstData);
+        freeAllocatedSingleString(pstData);
     }
 
     if (typex[0] == LIST_SORT)

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fstair">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fstair</refname>
     <refpurpose> computes  pencil  column echelon form by qz transformations</refpurpose>
@@ -94,7 +91,9 @@
       <varlistentry>
         <term>nblcks</term>
         <listitem>
-          <para>is the number of submatrices having full row rank &gt;= 0  detected in matrix  <literal>A</literal>.</para>
+          <para>
+            is the number of submatrices having full row rank &gt;= 0  detected in matrix  <literal>A</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -132,17 +131,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given a pencil <literal>sE-A</literal> where matrix <literal>E</literal> is in column echelon form the
-    function  <literal>fstair</literal> computes according to the wishes of the user a
-    unitary transformed pencil <literal>QE(sEE-AE)ZE</literal> which is more or less similar
-    to the generalized Schur form of the pencil <literal>sE-A</literal>.
-    The function  yields also part of the Kronecker structure of
-    the given pencil.</para>
-    <para><literal>Q,Z</literal> are the unitary matrices used to compute the pencil where E
-    is in column echelon form (see ereduc)</para>
+      Given a pencil <literal>sE-A</literal> where matrix <literal>E</literal> is in column echelon form the
+      function  <literal>fstair</literal> computes according to the wishes of the user a
+      unitary transformed pencil <literal>QE(sEE-AE)ZE</literal> which is more or less similar
+      to the generalized Schur form of the pencil <literal>sE-A</literal>.
+      The function  yields also part of the Kronecker structure of
+      the given pencil.
+    </para>
+    <para>
+      <literal>Q,Z</literal> are the unitary matrices used to compute the pencil where E
+      is in column echelon form (see ereduc)
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="quaskro">quaskro</link>
@@ -151,9 +153,5 @@
         <link linkend="ereduc">ereduc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
   </refsection>
 </refentry>

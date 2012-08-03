@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-07 16:07+0000\n"
+"PO-Revision-Date: 2011-10-04 16:15+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 msgid "overflow error"
 msgstr "chyba přetečení"
@@ -86,6 +86,8 @@ msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
 msgstr ""
+"LU faktorizace byla dokončena, ale faktor U je přesně singulární : U(%d,%d) "
+"ke přesně nula."
 
 msgid "Read error!\n"
 msgstr "Chyba čtení!\n"
@@ -95,34 +97,6 @@ msgstr "Nelze otevřít soubor!\n"
 
 msgid "Read error\n"
 msgstr "Chyba čtení\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "CHYBA ROZSAHU : Chyba ve scoReallocLongDraw()"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"CHYBA ROZSAHU : sciDrawObj nelze provést, pShortDraw je z neznámého důvodu "
-"prázdný !\n"
-" Možná jste zničili okna nebo jakékoliv nadřazené křivek\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "CHYBA ROZSAHU : Chyba při malloc - Zkontrolujte Paměť\n"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "CHYBA ROZSAHU : Neznámá chyba kódu !\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Nesprávné hodnoty pro argument rozměru."
-
-msgid "This scope has the same window id than another."
-msgstr "Tento rozsah má stejné id okna jako jiný."
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Nelze použít %s s tímto typem objektu."
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"

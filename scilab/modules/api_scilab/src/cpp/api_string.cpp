@@ -19,12 +19,10 @@
 
 #include "charEncoding.h"
 #include "MALLOC.h"
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_string.h"
 #include "api_internal_string.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 #include "localization.h"
 
 extern "C"
@@ -114,6 +112,18 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
 	sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
@@ -195,13 +205,25 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
 
 	int iTotalLen	= 0;
 
-    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    if(!checkNamedVarFormat(_pvCtx, _pstName))
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedMatrixOfString");
         return sciErr;
     }
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -328,8 +350,11 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		}
 		else
 		{
-			// it should not be here
-			_piwLength[i] = 0;
+            _piwLength[i] = 0;
+            addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to convert to wide string #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+            if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+            freeArrayOfString(pstStrings,strSize);
+            return sciErr;
 		}
 	}
 
@@ -365,6 +390,10 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 				// case to_wide_string fails
 				_pwstStrings[i] = NULL;
 				_piwLength[i] = 0;
+                addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to convert to wide string #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
+                if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
+                freeArrayOfString(pstStrings,strSize);
+                return sciErr;
 			}
 		}
 		else
@@ -385,6 +414,18 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char **pStrings = NULL;
+
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
 
 	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
 
@@ -409,7 +450,19 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char **pStrings = NULL;
 
-	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
+ 
+    pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
 
 	for (int i = 0; i < (_iRows * _iCols) ; i++)
 	{
@@ -464,7 +517,7 @@ int isNamedStringType(void* _pvCtx, const char* _pstName)
 /*--------------------------------------------------------------------------*/
 int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows = 0;
 	int iCols = 0;
 	int iLen = 0;
@@ -496,10 +549,11 @@ int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
 
 	return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows = 0;
 	int iCols = 0;
 	int iLen = 0;
@@ -534,7 +588,7 @@ int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstD
 /*--------------------------------------------------------------------------*/
 int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, char*** _pstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int i;
 	int* piLen = 0;
 
@@ -577,7 +631,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
 /*--------------------------------------------------------------------------*/
 int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, wchar_t*** _pwstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int i;
 	int* piLen = 0;
 
@@ -621,7 +675,7 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
 /*--------------------------------------------------------------------------*/
 int getAllocatedNamedSingleString(void* _pvCtx, const char* _pstName, char** _pstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows = 0;
 	int iCols = 0;
 	int iLen	= 0;
@@ -656,7 +710,7 @@ int getAllocatedNamedSingleString(void* _pvCtx, const char* _pstName, char** _ps
 /*--------------------------------------------------------------------------*/
 int getAllocatedNamedSingleWideString(void* _pvCtx, const char* _pstName, wchar_t** _pwstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows = 0;
 	int iCols = 0;
 	int iLen	= 0;
@@ -691,7 +745,7 @@ int getAllocatedNamedSingleWideString(void* _pvCtx, const char* _pstName, wchar_
 /*--------------------------------------------------------------------------*/
 int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, char*** _pstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piLen	= 0;
 
 
@@ -734,7 +788,7 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _pi
 /*--------------------------------------------------------------------------*/
 int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, wchar_t*** _pwstData)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iRows		= 0;
 	int iCols		= 0;
 	int* piLen	= 0;
@@ -779,7 +833,7 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int*
 /*--------------------------------------------------------------------------*/
 int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	
 	sciErr = createMatrixOfString(_pvCtx, _iVar, 1, 1,	&_pstStrings);
 	if(sciErr.iErr)
@@ -794,7 +848,7 @@ int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings)
 /*--------------------------------------------------------------------------*/
 int createSingleWideString(void* _pvCtx, int _iVar, const wchar_t* _pwstStrings)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	
 	sciErr = createMatrixOfWideString(_pvCtx, _iVar, 1, 1,	&_pwstStrings);
 	if(sciErr.iErr)
@@ -809,7 +863,7 @@ int createSingleWideString(void* _pvCtx, int _iVar, const wchar_t* _pwstStrings)
 /*--------------------------------------------------------------------------*/
 int createNamedSingleString(void* _pvCtx, const char* _pstName, const char* _pstStrings)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	
 	sciErr = createNamedMatrixOfString(_pvCtx, _pstName, 1, 1,	&_pstStrings);
 	if(sciErr.iErr)
@@ -824,7 +878,7 @@ int createNamedSingleString(void* _pvCtx, const char* _pstName, const char* _pst
 /*--------------------------------------------------------------------------*/
 int createNamedSingleWideString(void* _pvCtx, const char* _pstName, const wchar_t* _pwstStrings)
 {
-	SciErr sciErr;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	
 	sciErr = createNamedMatrixOfWideString(_pvCtx, _pstName, 1, 1,	&_pwstStrings);
 	if(sciErr.iErr)

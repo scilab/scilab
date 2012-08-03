@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="drawlater">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>drawlater</refname>
     <refpurpose>軸の子を不可視にする.</refpurpose>
@@ -26,21 +23,25 @@
   <refsection>
     <title>説明</title>
     <para>この関数は,
-	プロットを行う関数のような高レベル関数をコールすることにより,
-	または既存のオブジェクトにプロパティを設定することにより,
-	次に作成されるグラフィックオブジェクト,
-	<literal>カレントの図</literal>にただちに
-	表示しない場合に使用されます.カレントの図の
-	<literal>immediate_drawing</literal>プロパティは
-	次の描画を延期するために<literal>'off'</literal>に設定されます.</para>
+      プロットを行う関数のような高レベル関数をコールすることにより,
+      または既存のオブジェクトにプロパティを設定することにより,
+      次に作成されるグラフィックオブジェクト,
+      <literal>カレントの図</literal>にただちに
+      表示しない場合に使用されます.カレントの図の
+      <literal>immediate_drawing</literal>プロパティは
+      次の描画を延期するために<literal>'off'</literal>に設定されます.
+    </para>
     <para>
-	この関数は特に<literal>drawnow</literal>関数と組み合わせて使用されます.</para>
+      この関数は特に<literal>drawnow</literal>関数と組み合わせて使用されます.
+    </para>
     <para>
-	カレントの図の<literal>immediate_drawing</literal>を有効に戻すには,
-	<literal>drawnow</literal>関数を使用します.</para>
+      カレントの図の<literal>immediate_drawing</literal>を有効に戻すには,
+      <literal>drawnow</literal>関数を使用します.
+    </para>
     <para>警告 :  drawlater と drawnow コールの間に, カレントの図が
-	変更される可能性があります.
-	このため, 使用に際しては注意を要します.</para>
+      変更される可能性があります.
+      このため, 使用に際しては注意を要します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -97,9 +98,5 @@ drawnow() // 全て可視
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Djalel ABDEMOUCHE, F.Leray</para>
   </refsection>
 </refentry>

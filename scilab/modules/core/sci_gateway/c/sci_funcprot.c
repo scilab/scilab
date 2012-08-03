@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "stack-c.h"
 #include "funcprot.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -21,90 +20,84 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 {
-	SciErr sciErr;
-	CheckLhs(1,1);
-	CheckRhs(0,1);
+    SciErr sciErr;
+    CheckLhs(1, 1);
+    CheckRhs(0, 1);
 
-	if (Rhs == 0)
-	{
-		int m_out = 0, n_out = 0;
-		double dOut = (double) getfuncprot();
+    if (Rhs == 0)
+    {
+        double dOut = (double) getfuncprot();
 
-		m_out = 1;  n_out = 1;
-		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        if (createScalarDouble(pvApiCtx, Rhs + 1, dOut) != 0)
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
 
-		LhsVar(1) = Rhs + 1; 
-		PutLhsVar();
-	}
-	else if (Rhs == 1)
-	{
-		int ilevel = 0;
-		int m1 = 0, n1 = 0;
-		int iType1						= 0;
-		int *piAddressVarOne	= NULL;
-		double *pdVarOne			= NULL;
+        LhsVar(1) = Rhs + 1; 
+        PutLhsVar();
+    }
+    else if (Rhs == 1)
+    {
+        int ilevel = 0;
+        int *piAddressVarOne = NULL;
+        double dVarOne = 0.;
+        double dPreviousValue = (double) getfuncprot();
 
-		/* get Address of inputs */
-		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        /* get Address of inputs */
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
 
-		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        /* check input type */
+        if (isDoubleType(pvApiCtx, piAddressVarOne) != 1)
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 1);
+            return 0;
+        }
 
-		/* check input type */
-		if ( iType1 != sci_matrix )
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
-			return 0;
-		}
+        if(isScalar(pvApiCtx, piAddressVarOne) != 1)
+        {
+            Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+            return 0;
+        }
 
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        if (getScalarDouble(pvApiCtx, piAddressVarOne, &dVarOne) != 0)
+        {
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
 
-		//if ((m1 > 0) && (n1>0))
-		//if ( (m1 != n1) && (n1 != 1) ) 
-		if( n1 != 1 || m1 != 1)
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
-			return 0;
-		}
+        ilevel = (int) dVarOne;
 
+        if (dVarOne != (double)ilevel)
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
+            return 0;
+        }
 
-		ilevel = (int) *pdVarOne;
+        if (!setfuncprot(ilevel))
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"), fname, 1);
+            return 0;
+        }
+        else
+        {
+            if (createScalarDouble(pvApiCtx, Rhs + 1, dPreviousValue) != 0)
+            {
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
 
-		if (*pdVarOne != (double)ilevel)
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"),fname,1);
-			return 0;
-		}
-
-		if ( !setfuncprot(ilevel) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"),fname,1);
-		}
-		else
-		{
-			LhsVar(1) = 0; 
-			PutLhsVar();
-		}
-	}
-	return 0;
+            LhsVar(1) = Rhs + 1; 
+            PutLhsVar();
+        }
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
+

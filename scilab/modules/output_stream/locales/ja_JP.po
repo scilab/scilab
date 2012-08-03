@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:34+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-03-08 23:21+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -26,6 +26,10 @@ msgstr "%s: 入力引数の数が間違っています: 最大でも%d 個とし
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr "%s: 入力引数の数が間違っています: フォーマットにデータが整合していません.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -40,8 +44,9 @@ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: 入力引数の数が間違っています: データがフォーマットに適合しません.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: データがフォーマットに適合しません.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: データがフォーマットに整合していません.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -581,7 +586,7 @@ msgstr "変数 %s は有効な有利関数ではありません.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "変数 %s は有効な状態空間表現ではありません.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "関数が定義されていません.\n"
 
 msgid "Function name already used.\n"
@@ -1444,6 +1449,23 @@ msgstr "%s: エクスポートフォーマットが違います: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: 型 %s は処理できません: 関数 %s2%s を定義してください"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 状態空間モデルを指定してください.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

@@ -67,3 +67,18 @@ SEP #067: lines() default value
 SEP #068: Tempname
 SEP #069: Extend predef to get protected variable names
 SEP #070: Xcos validation functions
+SEP #071: Modify atomsRemove to delete tarball
+SEP #072: Extend fullpath to manage matrix of string as input argument
+SEP #073: New convolution functions
+SEP #074: Atoms configuration files management
+SEP #075: New dec2base function
+SEP #076: atomsCheckModule function
+SEP #077: atomsQuit function
+SEP #078: nthroot function
+SEP #079: arma2ss function
+SEP #080: xcorr & xcov functions
+SEP #081: new argument for test_run to generate a xunit report
+SEP #082: eigs function
+SEP #083: example_run function
+SEP #084: fft improvements
+SEP #085: conv improvements

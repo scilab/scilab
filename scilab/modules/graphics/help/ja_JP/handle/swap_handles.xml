@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="swap_handles">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>swap_handles</refname>
     <refpurpose>グラフィック階層の2つのハンドルを交換する.</refpurpose>
@@ -41,14 +38,17 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><emphasis role="bold">swap_handles</emphasis>関数により
-	グラフィック階層の2つのハンドルを交換することができます.
-	最初のハンドルは2番目のハンドルの位置と交換されます.</para>
+    <para>
+      <emphasis role="bold">swap_handles</emphasis>関数により
+      グラフィック階層の2つのハンドルを交換することができます.
+      最初のハンドルは2番目のハンドルの位置と交換されます.
+    </para>
     <para>あるハンドルは他のハンドルと常に互換であるわけではないため,
-	ハンドルの交換についえはいくつかの制約があります.
-	例えば,  polylineとaxesハンドルを交換することはできません.
-	この互換性に関する詳細については,
-	 <link linkend="graphics_entities">graphics_entities</link>ページを参照ください.</para>
+      ハンドルの交換についえはいくつかの制約があります.
+      例えば,  polylineとaxesハンドルを交換することはできません.
+      この互換性に関する詳細については,
+      <link linkend="graphics_entities">graphics_entities</link>ページを参照ください.
+    </para>
     <para>このルーチンは同じ親の子の間で添字を変更する際に使用することができます.</para>
   </refsection>
   <refsection>
@@ -116,9 +116,5 @@ swap_handles( axes1, axes2 ) ;
         <link linkend="relocate_handle">relocate_handle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

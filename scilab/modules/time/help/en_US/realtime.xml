@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="realtime">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv xml:id="realtimeinit">
     <refname>realtimeinit</refname>
     <refpurpose>set  time unit</refpurpose>
@@ -25,7 +22,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>realtimeinit(time_unit)
-realtime(t)</synopsis>
+      realtime(t)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,7 +31,9 @@ realtime(t)</synopsis>
       <varlistentry>
         <term>time_unit</term>
         <listitem>
-          <para>a real number. The number of seconds associated to the <literal>realtime</literal> argument</para>
+          <para>
+            a real number. The number of seconds associated to the <literal>realtime</literal> argument
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,16 @@ realtime(t)</synopsis>
   <refsection>
     <title>Description</title>
     <para>   These two functions can be used to handle real time into Scilab.</para>
-    <para><literal>realtimeinit(time_unit)</literal>  defines the time unit
-   associated to the <literal>realtime</literal> argument <literal>t</literal></para>
     <para>
-   first call to <literal>realtime(t0)</literal> sets current date to
-   (<literal>t0</literal>).
-   subsequent calls to <literal>realtime(t)</literal> wait till date <literal>t</literal> is
-   reached.</para>
+      <literal>realtimeinit(time_unit)</literal>  defines the time unit
+      associated to the <literal>realtime</literal> argument <literal>t</literal>
+    </para>
+    <para>
+      first call to <literal>realtime(t0)</literal> sets current date to
+      (<literal>t0</literal>).
+      subsequent calls to <literal>realtime(t)</literal> wait till date <literal>t</literal> is
+      reached.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +73,7 @@ dt=getdate('s'); realtime(10);   getdate('s')-dt
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getdate">getdate</link>

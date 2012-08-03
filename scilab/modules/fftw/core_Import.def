@@ -1,0 +1,23 @@
+LIBRARY    core.dll
+
+
+EXPORTS
+callFunctionFromGateway
+com_
+putlhsvar_
+intersci_
+stack_
+createvar_
+createcvar_
+vartype_
+check_dims
+GetData
+getrhscvar_
+checklhs_
+checkrhs_
+createvarfromptr_ 
+freeArrayOfString 
+getrhsvar_
+gettype_
+vstk_
+overload_

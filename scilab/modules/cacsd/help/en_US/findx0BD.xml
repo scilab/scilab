@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findx0BD">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findx0BD</refname>
     <refpurpose> Estimates state and B and D matrices of a discrete-time linear system</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
-[x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)</synopsis>
+      [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -69,8 +67,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    WITHX0 = 1.
-  </para>
+            Default:    WITHX0 = 1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -92,8 +90,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    WITHD = 1.
-  </para>
+            Default:    WITHD = 1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -121,8 +119,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    PRINTW = 0.
-  </para>
+            Default:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -160,27 +158,31 @@
   <refsection>
     <title>Description</title>
     <para>
-    findx0BD  Estimates the initial state and/or the matrices B and D of a
-    discrete-time linear system, given the (estimated) system
-    matrices A, C, and a set of input/output data.</para>
+      findx0BD  Estimates the initial state and/or the matrices B and D of a
+      discrete-time linear system, given the (estimated) system
+      matrices A, C, and a set of input/output data.
+    </para>
     <para>
-    [X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)  estimates the
-    initial state X0 and the matrices B and D of a discrete-time 
-    system using the system matrices A, C, output data Y and the input 
-    data U. The model structure is :</para>
-    <programlisting role = ""><![CDATA[ 
+      [X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)  estimates the
+      initial state X0 and the matrices B and D of a discrete-time 
+      system using the system matrices A, C, output data Y and the input 
+      data U. The model structure is :
+    </para>
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
     <para>
-    The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
-    respectively.</para>
+      The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
+      respectively.
+    </para>
     <para>
-    [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)  also returns the orthogonal
-    matrix V which reduces the system state matrix A to a real Schur
-    form, as well as some estimates of the reciprocal condition numbers
-    of the matrices involved in rank decisions.</para>
-    <programlisting role = ""><![CDATA[ 
+      [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)  also returns the orthogonal
+      matrix V which reduces the system state matrix A to a real Schur
+      form, as well as some estimates of the reciprocal condition numbers
+      of the matrices involved in rank decisions.
+    </para>
+    <programlisting role=""><![CDATA[ 
     B = findx0BD(A,C,Y,U,0,0)  returns B only, and
 [B,D] = findx0BD(A,C,Y,U,0)    returns B and D only. 
  ]]></programlisting>
@@ -216,7 +218,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findBD">findBD</link>

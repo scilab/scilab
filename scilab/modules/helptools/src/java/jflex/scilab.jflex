@@ -15,6 +15,8 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.IOException;
 
+@javax.annotation.Generated("JFlex")
+@SuppressWarnings("fallthrough")
 %%
 
 %public
@@ -386,10 +388,12 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                  }
 
   " "                            {
+                                   transposable = false;
                                    handler.handleNothing(" ");
                                  }
 
   "\t"                           {
+                                   transposable = false;
                                    handler.handleNothing("    ");
                                  }
 

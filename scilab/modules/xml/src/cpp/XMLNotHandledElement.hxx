@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,25 +27,26 @@ namespace org_modules_xml
      *
      * Class for not handled nodes.
      */
-    class XMLNotHandledElement : public XMLObject
+    class XMLNotHandledElement:public XMLObject
     {
         const XMLObject & parent;
-        xmlNode * node;
+        xmlNode *node;
 
-    public:
+public:
         /**
          * Default constructor
          * @param parent the parent
          * @param node the not handled node
          */
-        XMLNotHandledElement(const XMLObject & parent, xmlNode * node);
+          XMLNotHandledElement(const XMLObject & parent, xmlNode * node);
 
-        ~XMLNotHandledElement();
+         ~XMLNotHandledElement();
 
-        const XMLObject * getXMLObjectParent() const;
+        void *getRealXMLPointer() const;
+
+        const XMLObject *getXMLObjectParent() const;
         const std::string toString() const;
     };
 }
 
 #endif
-

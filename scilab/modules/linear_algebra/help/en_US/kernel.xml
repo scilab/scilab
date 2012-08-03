@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kernel">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>kernel</refname>
     <refpurpose> kernel, nullspace</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string <literal>'svd'</literal> (default) or <literal>'qr'</literal></para>
+          <para>
+            character string <literal>'svd'</literal> (default) or <literal>'qr'</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,10 +52,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>W=kernel(A)</literal> returns the kernel (nullspace) of <literal>A</literal>. If A has full column rank then an empty matrix [] is returned.</para>
-    <para><literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag = 'qr'</literal> 
-    or <literal>'svd'</literal> (default is <literal>'svd'</literal>).</para>
-    <para><literal>tol</literal> = tolerance parameter (of order <literal>%eps</literal> as default value).</para>
+    <para>
+      <literal>W=kernel(A)</literal> returns the kernel (nullspace) of <literal>A</literal>. If A has full column rank then an empty matrix [] is returned.
+    </para>
+    <para>
+      <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag = 'qr'</literal> 
+      or <literal>'svd'</literal> (default is <literal>'svd'</literal>).
+    </para>
+    <para>
+      <literal>tol</literal> = tolerance parameter (of order <literal>%eps</literal> as default value).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,7 +73,7 @@ clean(A*kernel(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colcomp">colcomp</link>
@@ -83,9 +88,5 @@ clean(A*kernel(A))
         <link linkend="linsolve">linsolve</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

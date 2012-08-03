@@ -14,6 +14,9 @@ c     ifun allow to pass the input arguments by address.
       logical r
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
+cDEC$ ENDIF      
       common /ippty/ byptr,nbyptr
       r=.false.
       do 10 i=1,nbyptr

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 //===============================
 ierr = execstr('r = stripblanks(1);','errcatch');
@@ -58,12 +58,12 @@ if ( r <> [TAB_CHAR + '  123   '+TAB_CHAR,'xyz'] ) then pause,end
 //===============================
 STRING = ' '+ascii(9)+' '+'S'+' '+ascii(9)+'C'+' '+ascii(9)+'I'+' '+ascii(9)+'L'+' '+ascii(9)+'A'+' '+ascii(9)+'B'+' '+ascii(9)+' ';
 //===============================
-R1 = str2code('!'+stripblanks(STRING,%T)+'!');
-W1 = [  38.;  - 28.;    40.;  - 40.;  - 12.;    40.;  - 40.;  - 18.;    40.;  - 40.;  - 21.;    40.;  - 40.;  - 10.; 40.;  - 40.;  - 11.;    38]; 
+R1 = ascii('!'+stripblanks(STRING,%T)+'!');
+W1 = [33.    83.    32.    9.    67.    32.    9.    73.    32.    9.    76.    32.    9.    65.    32.    9.    66.    33.]; 
 if (R1 <> W1) then pause,end
 //===============================
-R2 = str2code('!'+stripblanks(STRING,%F)+'!');
-W2 = [38.;  - 40.;   40.;  - 28.;    40.;  - 40.;  - 12.;    40.;  - 40.;  - 18.;    40.;  - 40.;  - 21.;    40.;  - 40.;  - 10.;    40.;  - 40.;  - 11.;    40.;  - 40.;    38.];
+R2 = ascii('!'+stripblanks(STRING,%F)+'!');
+W2 = [33.    9.    32.    83.    32.    9.    67.    32.    9.    73.    32.    9.    76.    32.    9.    65.    32.    9.    66.    32.    9.    33. ];
 if (R2 <> W2) then pause,end
 
 // = strings with only blank character =========================================

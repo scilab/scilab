@@ -8,10 +8,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipRemoveAll">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipRemoveAll">
   <refnamediv>
     <refname>datatipRemoveAll</refname>
     <refpurpose>一連のポリラインの上のdatatipsを全て削除する. </refpurpose>
@@ -33,9 +30,10 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>説明</title>
+  <refsection>
+    <title>説明</title>
     <para>
-	一連のポリラインの上のdatatipsを全て削除します.
+      一連のポリラインの上のdatatipsを全て削除します.
     </para>
   </refsection>
   <refsection>
@@ -55,21 +53,14 @@
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="datatips" >datatips</link>
+        <link linkend="datatips">datatips</link>
       </member>
       <member>
         <link linkend="datatipCreate">datatipCreate</link>
       </member>
-     <member>
+      <member>
         <link linkend="datatipRemove">datatipRemove</link>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

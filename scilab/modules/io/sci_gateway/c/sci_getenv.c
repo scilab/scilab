@@ -11,12 +11,12 @@
  *
  */
 #include <stdio.h>
+#include <stdlib.h> /* _MAX_ENV */
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
@@ -53,6 +53,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -60,6 +61,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -73,6 +75,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -89,6 +92,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 				return 0;
 			}
 		}
@@ -103,6 +107,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -110,6 +115,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -124,6 +130,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -141,6 +148,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 	}
@@ -183,6 +191,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -197,6 +206,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
 					return 0;
 				}
 

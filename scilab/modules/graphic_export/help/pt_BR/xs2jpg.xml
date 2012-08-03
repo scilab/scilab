@@ -10,62 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xs2jpg" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2jpg" xml:lang="en">
   <refnamediv>
     <refname>xs2jpg</refname>
-
     <refpurpose>envia gráficos a um arquivo em sintaxe JPG</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>xs2jpg(win_num,filen)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>win_num</term>
-
         <listitem>
           <para>escalar inteiro</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>filen</term>
-
         <listitem>
           <para>string, nome do arquivo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para><literal>xs2jpg</literal> envia os gráficos gravados da janela
-    <literal>win_num</literal> para o arquivo <literal>filen</literal> em
-    formato JPG.</para>
+    <para>
+      <literal>xs2jpg</literal> envia os gráficos gravados da janela
+      <literal>win_num</literal> para o arquivo <literal>filen</literal> em
+      formato JPG.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
@@ -73,36 +53,36 @@ plot2d();
 xs2jpg(0,'foo.jpg');
  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Ver Também</title>
-
     <simplelist type="inline">
-      <member><link linkend="xs2bmp">xs2bmp</link></member>
-
-      <member><link linkend="xs2gif">xs2gif</link></member>
-
-      <member><link linkend="xs2png">xs2png</link></member>
-
-      <member><link linkend="xs2ppm">xs2ppm</link></member>
-
-      <member><link linkend="xs2eps">xs2eps</link></member>
-
-      <member><link linkend="xs2pdf">xs2pdf</link></member>
-
-      <member><link linkend="xs2svg">xs2svg</link></member>
-
-      <member><link linkend="xs2ps">xs2ps</link></member>
-
-      <member><link linkend="xs2fig">xs2fig</link></member>
-
-      <member><link linkend="xs2emf">xs2emf</link></member>
+      <member>
+        <link linkend="xs2bmp">xs2bmp</link>
+      </member>
+      <member>
+        <link linkend="xs2gif">xs2gif</link>
+      </member>
+      <member>
+        <link linkend="xs2png">xs2png</link>
+      </member>
+      <member>
+        <link linkend="xs2ppm">xs2ppm</link>
+      </member>
+      <member>
+        <link linkend="xs2eps">xs2eps</link>
+      </member>
+      <member>
+        <link linkend="xs2pdf">xs2pdf</link>
+      </member>
+      <member>
+        <link linkend="xs2svg">xs2svg</link>
+      </member>
+      <member>
+        <link linkend="xs2ps">xs2ps</link>
+      </member>
+      <member>
+        <link linkend="xs2emf">xs2emf</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>S.K</para>
   </refsection>
 </refentry>

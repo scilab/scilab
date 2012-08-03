@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,9 +11,6 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlWrite" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xmlWrite</refname>
     <refpurpose>Write a XML document in a file</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      xmlWrite(doc [, filename])
+      xmlWrite(doc [, filename] [, indent])
+      xmlWrite(doc [, indent])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -39,17 +37,23 @@
           <para>filename, a string</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>indent</term>
+        <listitem>
+          <para>indent, a boolean</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Write a XML document in a file with the given filename or with the document url.</para>
+    <para>Write a XML document in a file with the given filename or with the document url. If indent is true, then the document will be indented, by default indent is true.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
-    xmlWrite(doc, TMPDIR+"/foo.xml");
+    xmlWrite(doc, TMPDIR+"/foo.xml", %f);
 
     // Now we open the previous file, modify it and save it
     doc1 = xmlRead(TMPDIR+"/foo.xml");
@@ -60,7 +64,7 @@
     doc2 = xmlRead(TMPDIR+"/foo.xml");
     doc2.root.children(1).name
 
-    xmlClose("all");
+    xmlDelete("all");
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -72,7 +76,12 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

@@ -81,7 +81,7 @@ c     .  check for zero imaginary part
                l=sadr(il+4)+mn
             elseif(istk(il).eq.2) then
                mn=istk(il+8+m*n)-1
-               l=sadr(il+9+istk(il+1)*istk(il+2))
+               l=sadr(il+9+istk(il+1)*istk(il+2)) + mn
             elseif(istk(il).eq.5) then
                mn=istk(il+4)
                l=sadr(ilr+5+m+mn)+mn

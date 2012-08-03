@@ -39,10 +39,12 @@
   </refsection>
   <refsection id="SeeAlso_tbx_sum">
     <title>See Also</title>
-    <itemizedlist>
-      <listitem>
-        <para><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding <link type="scilab" linkend="scilab.help/xcos">Xcos</link> block.</para>
-      </listitem>
-    </itemizedlist>
+    <simplelist type="inline">
+      <member><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding <link type="scilab" linkend="scilab.help/xcos">Xcos</link> block.
+      </member>
+      <member>
+        <link type="scilab" linkend="scilab.help/sum">Link to the Scilab help page</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

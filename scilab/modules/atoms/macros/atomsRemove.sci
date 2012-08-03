@@ -11,7 +11,7 @@
 
 // Remove a toolbox
 
-function result = atomsRemove(packages,section)
+function result = atomsRemove(packages,section,del)
 
     result = [];
 
@@ -38,8 +38,8 @@ function result = atomsRemove(packages,section)
 
     rhs = argn(2);
 
-    if rhs < 1 | rhs > 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsRemove",1,2))
+    if rhs < 1 | rhs > 3 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsRemove",1,3))
     end
 
     if type(packages) <> 10 then
@@ -92,22 +92,69 @@ function result = atomsRemove(packages,section)
             section = "user";
         end
 
-    else
+        del = %F;
+
+    elseif rhs==2 then
 
         // Process the 2nd input argument : section
         // Allusers can be a boolean or equal to "user" or "allusers"
 
-        if type(section) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRemove",2));
+        if typeof(section) <> "string" & typeof(section) <> "boolean" then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or single string expected.\n"),"atomsRemove",2));
         end
 
-        if and(section<>["user","allusers","all"]) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",1));
+        if size(section, "*") <> 1 then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A boolean or single string expected.\n"),"atomsRemove",2));
         end
 
-        // Check if we have the write access
-        if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
-            error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,atomsPath("system","user")));
+        if typeof(section) == "string" then
+            if and(section<>["user","allusers","all"]) then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",1));
+            end
+
+            // Check if we have the write access
+            if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
+                error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,atomsPath("system","user")));
+            end
+
+            del = %F;
+        else
+            del = section;
+            if ATOMSALLUSERSWRITEACCESS then
+                section = "all";
+            else
+                section = "user";
+            end
+        end
+
+    else
+
+        if typeof(section) <> "string" then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or single string expected.\n"),"atomsRemove",2));
+        end
+
+        if size(section, "*") <> 1 then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A boolean or single string expected.\n"),"atomsRemove",2));
+        end
+
+        // Process the 3rd input argument : delete
+        if typeof(del) <> "boolean" then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemove",3));
+        end
+
+        if size(del, "*") <> 1 then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A boolean expected.\n"),"atomsRemove",3));
+        end
+
+        if typeof(section) == "string" then
+            if and(section<>["user","allusers","all"]) then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",1));
+            end
+
+            // Check if we have the write access
+            if or(section==["all","allusers"]) & ~ ATOMSALLUSERSWRITEACCESS then
+                error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,atomsPath("system","user")));
+            end
         end
     end
 
@@ -156,14 +203,17 @@ function result = atomsRemove(packages,section)
     // Build the list of package to Uninstall
     // =========================================================================
     remove_package_list = atomsRemoveList(packages,section);
-
     // Loop on remList to print if a package has to be remove
     // or not
     // =========================================================================
     if ATOMSVERBOSE
         for i=1:size(remove_package_list(:,1),"*")
             if remove_package_list(i,1) == "-" then
-                atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                if del==%T then
+                    atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section and its package fully deleted",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                else
+                    atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                end
             elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
                 atomsDisp(msprintf("\t%s (%s) cannot be removed from the ''%s'' section and will be broken",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
             end
@@ -197,7 +247,7 @@ function result = atomsRemove(packages,section)
             continue;
         end
 
-        atomsDisp(msprintf( "\tRemoving %s (%s)(%s) ... " , this_package_name , this_package_version , this_package_section));
+        atomsDisp(msprintf(gettext("Removing %s (%s)(%s).\n\n"), this_package_name , this_package_version , this_package_section));
 
         // Check if this_package_directory start with SCI or SCIHOME
 
@@ -206,11 +256,11 @@ function result = atomsRemove(packages,section)
             (grep(this_package_directory,"/^(SCI|SCIHOME)\"+filesep()+"/","r") == []) then
 
             atomsError("error", ..
-                msprintf( ..
-                    gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version));
+            msprintf( ..
+            gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
+            "atomsRemove", ..
+            this_package_name, ..
+            this_package_version));
         end
 
         if isdir(this_package_directory) then
@@ -219,12 +269,12 @@ function result = atomsRemove(packages,section)
 
             if uninstall_status<>1 then
                 atomsError("error", ..
-                    msprintf( ..
-                        gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version, ..
-                        strsubst(this_package_directory,"\","\\") ));
+                msprintf( ..
+                gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                "atomsRemove", ..
+                this_package_name, ..
+                this_package_version, ..
+                strsubst(this_package_directory,"\","\\") ));
             end
 
         end
@@ -238,13 +288,19 @@ function result = atomsRemove(packages,section)
             stat = rmdir(this_package_root_dir);
             if stat<>1 then
                 atomsError("error", ..
-                    msprintf( ..
-                        gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version, ..
-                        strsubst(this_package_root_dir,"\","\\") ));
+                msprintf( ..
+                gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                "atomsRemove", ..
+                this_package_name, ..
+                this_package_version, ..
+                strsubst(this_package_root_dir,"\","\\") ));
             end
+        end
+
+        // Remove the tarball file if asked
+        if del==%T then
+            atomsDisp(msprintf(gettext("Deleting archives files for %s.\n\n"),this_package_name));
+            atomsDeleteTarball(this_package_name,section,this_package_version);
         end
 
         // Remove this toolbox from the list of installed packages

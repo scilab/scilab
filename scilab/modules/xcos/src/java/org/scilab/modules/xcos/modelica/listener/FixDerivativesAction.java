@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,28 +24,31 @@ import org.scilab.modules.xcos.modelica.ModelicaMessages;
  * Fix the derivative of the current model
  */
 public final class FixDerivativesAction extends AbstractAction {
-	private final ModelicaController controller;
-	
-	/**
-	 * Default constructor
-	 * @param controller the associated controller
-	 */
-	public FixDerivativesAction(ModelicaController controller) {
-		super();
-		
-		putValue(NAME, ModelicaMessages.FIX_DERIVATIVES);
-		this.controller = controller;
-	}
-	
-	/**
-	 * Update the not fixed derivatives variable to 1.0 and not fixed state
-	 * variables to 0.0 
-	 * 
-	 * @param e the event
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		controller.updateWeight(1.0, 0.0);
-	}
+    private final ModelicaController controller;
+
+    /**
+     * Default constructor
+     * 
+     * @param controller
+     *            the associated controller
+     */
+    public FixDerivativesAction(ModelicaController controller) {
+        super();
+
+        putValue(NAME, ModelicaMessages.FIX_DERIVATIVES);
+        this.controller = controller;
+    }
+
+    /**
+     * Update the not fixed derivatives variable to 1.0 and not fixed state
+     * variables to 0.0
+     * 
+     * @param e
+     *            the event
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        controller.fixWeight(1.0, 0.0);
+    }
 }

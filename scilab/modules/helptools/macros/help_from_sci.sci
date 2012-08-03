@@ -213,11 +213,8 @@ helptxt = [
 "          xmlns:svg=""http://www.w3.org/2000/svg"""
 "          xmlns:ns3=""http://www.w3.org/1999/xhtml"""
 "          xmlns:mml=""http://www.w3.org/1998/Math/MathML"""
+"          xmlns:scilab=""http://www.scilab.org"""
 "          xmlns:db=""http://docbook.org/ns/docbook"">"
-""
-"  <info>"
-"    <pubdate>$LastChangedDate: " + date() + " $</pubdate>"
-"  </info>"
 ""
 ];
 
@@ -239,9 +236,10 @@ line = replaceTabBySpace(line);
 short_descr = stripblanks(strsubst(line, "//", ""), %T);
 helptxt = [helptxt;
 "  <refnamediv>"
-"    <refname>"+out+"</refname><refpurpose>"+short_descr+"</refpurpose>"
+"    <refname>"+out+"</refname>"
+"    <refpurpose>"+short_descr+"</refpurpose>"
 "  </refnamediv>"
-""];
+];
 
 cmds = ["CALLING SEQUENCE", "PARAMETERS", "DESCRIPTION", "EXAMPLES", "SEE ALSO", ..
         "AUTHORS", "BIBLIOGRAPHY", "USED FUNCTIONS"];

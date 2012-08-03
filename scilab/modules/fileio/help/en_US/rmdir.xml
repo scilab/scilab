@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rmdir">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>rmdir</refname>
     <refpurpose>Remove a directory</refpurpose>
@@ -22,20 +19,24 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>rmdir('dirname')
-rmdir('dirname','s')
-[status,message] = rmdir('dirname','s')</synopsis>
+      rmdir('dirname','s')
+      [status,message] = rmdir('dirname','s')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>rmdir('dirname') removes the directory dirname from the current
-    directory. If the directory is not empty, you must use the s argument. If
-    dirname is not in the current directory, specify the relative path to the
-    current directory or the full path for dirname.</para>
+      directory. If the directory is not empty, you must use the s argument. If
+      dirname is not in the current directory, specify the relative path to the
+      current directory or the full path for dirname.
+    </para>
     <para>rmdir('dirname','s') removes the directory dirname and its contents
-    from the current directory. </para>
+      from the current directory. 
+    </para>
     <para>[status, message] = rmdir('dirname','s') removes the directory dirname
-    and its contents from the current directory, returning the status, and a
-    message. Here, status is 1 for success and is 0 for error.</para>
+      and its contents from the current directory, returning the status, and a
+      message. Here, status is 1 for success and is 0 for error.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -45,7 +46,7 @@ rmdir(SCI+'/Directory')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cd">cd</link>
@@ -56,12 +57,6 @@ rmdir(SCI+'/Directory')
       <member>
         <link linkend="mkdir">mkdir</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

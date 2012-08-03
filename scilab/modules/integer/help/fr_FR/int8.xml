@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="int8">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>int8 </refname>
     <refpurpose> conversion au codage entier à 1 octet  </refpurpose>
@@ -30,11 +27,12 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>y=int8(X)
-y=int16(X)
-y=int32(X)
-y=uint8(X)
-y=uint16(X)
-y=uint32(X)</synopsis>
+      y=int16(X)
+      y=int32(X)
+      y=uint8(X)
+      y=uint16(X)
+      y=uint32(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -43,14 +41,14 @@ y=uint32(X)</synopsis>
         <term>X  </term>
         <listitem>
           <para>matrice de flottants ou d'entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
           <para>matrice d'entiers codés sur 1,2 ou 4 octets.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,8 +56,8 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Convertit et stocke sous forme d'entiers. Ces types de données sont particulièrement intéressants pour stocker des images, de longs signaux, ...
-  </para>
+      Convertit et stocke sous forme d'entiers. Ces types de données sont particulièrement intéressants pour stocker des images, de longs signaux, ...
+    </para>
     <variablelist>
       <varlistentry>
         <term>y=int8(X)</term>
@@ -110,7 +108,7 @@ int8(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="double">double</link>

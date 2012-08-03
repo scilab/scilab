@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xarcs">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xarcs</refname>
     <refpurpose>楕円の集合の一部を描画する</refpurpose>
@@ -41,15 +38,21 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xarcs</literal> は,
-	<literal>arcs</literal>により記述された楕円の集合の一部を描画します:
-    <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> 
-	ただし, 各楕円は6個のパラメータ
-	 <literal>(x,y,w,h,a1,a2)</literal> (<literal>xarc</literal>参照)で
-	定義されます.</para>
-    <para><literal>x, y, w, h</literal>パラメータはユーザ座標で指定されます.</para>
-    <para><literal>style(i)</literal> は<literal>i</literal>番の楕円を描画する
-	際に使用される色を指定します.</para>
+    <para>
+      <literal>xarcs</literal> は,
+      <literal>arcs</literal>により記述された楕円の集合の一部を描画します:
+      <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> 
+      ただし, 各楕円は6個のパラメータ
+      <literal>(x,y,w,h,a1,a2)</literal> (<literal>xarc</literal>参照)で
+      定義されます.
+    </para>
+    <para>
+      <literal>x, y, w, h</literal>パラメータはユーザ座標で指定されます.
+    </para>
+    <para>
+      <literal>style(i)</literal> は<literal>i</literal>番の楕円を描画する
+      際に使用される色を指定します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -77,9 +80,5 @@ xarcs(arcs,[1,2,3])
         <link linkend="xfarcs">xfarcs</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.;   </para>
   </refsection>
 </refentry>

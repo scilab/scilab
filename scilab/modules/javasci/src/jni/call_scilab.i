@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2011 - Scilab Enterprises - Sylvestre LEDRU
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../output_stream/includes/lasterror.h"
-#include "../../../modules/graphics/includes/WindowList.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -65,7 +66,6 @@ class%}
     if (System.getProperty("os.name").toLowerCase().contains("windows")) {
         System.loadLibrary("javasci");
     } else {
-        System.loadLibrary("scilab");
         System.loadLibrary("javasci2");
         }
     } catch (SecurityException e) {
@@ -76,6 +76,8 @@ class%}
         e.printStackTrace(System.err);
     }
   }
+
+  public final static native int putList(String varNmae, Object list, char type);
 %}
 
 /* JavaDoc for Call_Scilab class */
@@ -136,58 +138,52 @@ BOOL isComplexVar(char* varname);
 
 %include "call_scilab_java_typemaps_string.i"
 // string
-char ** getString(char* variableName, int *nbRow, int *nbCol);
 int putString(char* variableName, char **variable, int nbRow, int nbCol);
-
-
-%include "arrays_java.i"
-int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol);
-
 
 // This position matters. It will apply only to the following lines
 %include "call_scilab_java_typemaps.i"
 
+int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol, double imag[], int nbRowI, int nbColI);
 
 // double (default Scilab type)
-double * getDouble(char *variableName, int *nbRow, int *nbCol);
 int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
 
-
 // boolean (%t / %f)
-BOOL * getBoolean(char *variableName, int *nbRow, int *nbCol);
 int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
 
 // byte/char = int8
-byte * getByte(char *variableName, int *nbRow, int *nbCol);
 int putByte(char * variableName, byte variable[], int nbRow, int nbCol);
 
-byte * getUnsignedByte(char *variableName, int *nbRow, int *nbCol);
 int putUnsignedByte(char * variableName, byte variable[], int nbRow, int nbCol);
 
 // short = int16
-short * getShort(char *variableName, int *nbRow, int *nbCol);
 int putShort(char * variableName, short variable[], int nbRow, int nbCol);
 
-unsigned short * getUnsignedShort(char *variableName, int *nbRow, int *nbCol);
 int putUnsignedShort(char * variableName, unsigned short variable[], int nbRow, int nbCol);
 
 // int = int32
-int * getInt(char *variableName, int *nbRow, int *nbCol);
 int putInt(char * variableName, int variable[], int nbRow, int nbCol);
 
-unsigned int * getUnsignedInt(char *variableName, int *nbRow, int *nbCol);
 int putUnsignedInt(char * variableName, unsigned int variable[], int nbRow, int nbCol);
 
 #ifdef __SCILAB_INT64__
 // long = int64
-long * getLong(char *variableName, int *nbRow, int *nbCol);
 int putLong(char * variableName, long variable[], int nbRow, int nbCol);
 
-unsigned long * getUnsignedLong(char *variableName, int *nbRow, int *nbCol);
 int putUnsignedLong(char * variableName, unsigned long variable[], int nbRow, int nbCol);
 #endif
 
-%include "call_scilab_java_typemaps_complex.i"
-// Complex
-double * getDoubleComplexReal(char *variableName, int *nbRow, int *nbCol);
-double * getDoubleComplexImg(char * variableName, int *nbRow, int *nbCol);
+// This position matters. It will apply only to the following lines
+%include "call_scilab_java_typemaps_sparse.i"
+
+int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL);
+
+int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL, double * imag, int imagL);
+
+int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL);
+
+// This position matters. It will apply only to the following lines
+%include "call_scilab_java_typemaps_poly.i"
+
+int putPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef);
+int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI);

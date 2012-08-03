@@ -21,7 +21,7 @@ pos = initPos;
 
 // window should not move
 for k=1:10,
-  xset('wpos', pos(1), pos(2));
+  xset('wpos', pos);
   pos = xget('wpos');
 end
 if (pos <> initPos) then pause; end;

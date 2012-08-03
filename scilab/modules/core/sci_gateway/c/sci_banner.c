@@ -11,7 +11,7 @@
  */
 #include <string.h>
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "banier.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_banner)(char *fname,unsigned long fname_len)

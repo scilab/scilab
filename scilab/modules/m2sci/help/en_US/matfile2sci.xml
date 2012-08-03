@@ -11,13 +11,11 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile2sci">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>matfile2sci</refname>
     <refpurpose> converts  a Matlab 5 MAT-file
-  into a Scilab binary file</refpurpose>
+      into a Scilab binary file
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,12 +41,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Converts a Matlab 5 MAT-file into a Scilab binary file compatible
-    with  the function <literal>load</literal> The Matlab data types are
-    converted into the Scilab equivalents.</para>
+      Converts a Matlab 5 MAT-file into a SOD file compatible
+      with the function <literal>load</literal> (See <link linkend="save">save</link> for more information). The Matlab data types are
+      converted into the Scilab equivalents.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="loadmatfile">loadmatfile</link>
@@ -57,17 +56,26 @@
         <link linkend="load">load</link>
       </member>
       <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
         <link linkend="mfile2sci">mfile2sci</link>
       </member>
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para>Serge Steer (INRIA)  </para>
+    <title>Bibliography</title>
+    <para>This function has been developed according to the document "MAT-File Format":
+      <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+    </para>
   </refsection>
   <refsection>
-    <title>Bibliography</title>
-    <para>This function has been developped according to the document  "MAT-File Format":
-><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></para>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Scilab output file in a SOD (Scilab Open Data) file.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

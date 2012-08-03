@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
@@ -65,8 +66,8 @@ SCICOS_BLOCKS_IMPEXP void matz_pinv(scicos_block *block,int flag)
 	ui=GetImagInPortPtrs(block,1);
 	yr=GetRealOutPortPtrs(block,1);
 	yi=GetImagOutPortPtrs(block,1);
-	lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4);
-	rw=5*min(mu,nu);
+	lwork=Max(3*Min(mu,nu)+Max(mu,nu),5*Min(mu,nu)-4);
+	rw=5*Min(mu,nu);
 	/*init : initialization*/
 	if (flag==4)
 	{
@@ -139,7 +140,7 @@ SCICOS_BLOCKS_IMPEXP void matz_pinv(scicos_block *block,int flag)
 			scicos_free(ptr);
 			return;
 		}
-		if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(min(mu,nu))))==NULL)
+		if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(Min(mu,nu))))==NULL)
 		{
 			set_block_error(-16);
 			scicos_free(ptr->LUi);
@@ -152,7 +153,7 @@ SCICOS_BLOCKS_IMPEXP void matz_pinv(scicos_block *block,int flag)
 			scicos_free(ptr);
 			return;
 		}
-		if((ptr->LSW=(double*) scicos_malloc(sizeof(double)*(min(mu,nu))))==NULL)
+		if((ptr->LSW=(double*) scicos_malloc(sizeof(double)*(Min(mu,nu))))==NULL)
 		{
 			set_block_error(-16);
 			scicos_free(ptr->LSV);
@@ -342,7 +343,7 @@ SCICOS_BLOCKS_IMPEXP void matz_pinv(scicos_block *block,int flag)
 		*(ptr->l0)=0;
 		C2F(dlaset)("F",&nu,&mu,ptr->l0,ptr->l0,ptr->LSi,&nu);
 		C2F(dlaset)("F",&nu,&mu,ptr->l0,ptr->l0,ptr->LSr,&nu);
-		for (i=0;i<min(mu,nu);i++)  
+		for (i=0;i<Min(mu,nu);i++)  
 		{
 			if (*(ptr->LSV+i)!=0)
 			{
@@ -353,7 +354,7 @@ SCICOS_BLOCKS_IMPEXP void matz_pinv(scicos_block *block,int flag)
 				*(ptr->LSW+i)=0;
 			}
 		}
-		for (i=0;i<min(mu,nu);i++)
+		for (i=0;i<Min(mu,nu);i++)
 		{
 			ii=i+i*nu;
 			*(ptr->LSr+ii)=*(ptr->LSW+i);}

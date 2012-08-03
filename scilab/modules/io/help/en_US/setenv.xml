@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setenv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>setenv</refname>
     <refpurpose>set the value of an environment
-  variable</refpurpose>
+      variable
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,14 +28,16 @@
         <term>name</term>
         <listitem>
           <para>Points to the name of an environment variable . (name is a
-          string)</para>
+            string)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value</term>
         <listitem>
           <para>Points to the value to be assigned to the environment
-          variable. (value is a string)</para>
+            variable. (value is a string)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,15 +60,11 @@ getenv('toto')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getenv">getenv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

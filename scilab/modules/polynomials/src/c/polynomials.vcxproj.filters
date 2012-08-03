@@ -87,10 +87,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\polynomials.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="polynomials_f_Import.def">
@@ -99,6 +96,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
+    <None Include="..\..\locales\polynomials.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc">

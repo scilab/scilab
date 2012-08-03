@@ -315,6 +315,9 @@
     <ClCompile Include="src\c\URIFileToFilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\sendtorecyclebin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\createtempfilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -473,7 +476,22 @@
     <ClInclude Include="includes\mgetl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\sendtorecyclebin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\createtempfilename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\deleteafile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\diary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\getshortpathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\readline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -483,13 +501,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\fileio.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="io_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Localization_Import.def">
@@ -503,6 +515,9 @@
     <None Include="Makefile.am" />
     <None Include="Console_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\fileio.pot">
+      <Filter>localization</Filter>
     </None>
   </ItemGroup>
 </Project>

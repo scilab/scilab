@@ -12,16 +12,13 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mgetl">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mgetl</refname>
-    <refpurpose> read lines from an text file</refpurpose>
+    <refpurpose>reads lines from an text file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>txt=mgetl(file_desc [,m])</synopsis>
+    <synopsis>txt = mgetl(file_desc [,m])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,42 +26,55 @@
       <varlistentry>
         <term>file_desc</term>
         <listitem>
-          <para>a character string giving the file name or a logical unit returned by mopen</para>
+          <para>
+            a character string giving the file name or a logical unit 
+            returned by <function>mopen</function>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m</term>
         <listitem>
-          <para>an integer scalar. number of lines to read. Default value is -1.</para>
+          <para>
+            an integer scalar: a number of lines to read. Default value is -1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>a column vector of string</para>
+          <para>a column vector of strings.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>mgetl</literal> function allows to read a lines from an text file.</para>
     <para>
-    If <literal>m</literal> is
-    omitted or is <literal>-1</literal> all lines till end of file occurs are read.</para>
+      <function>mgetl</function> function allows to read a lines from an text file.
+    </para>
     <para>
-    If <literal>m</literal> is given <literal>mgetl</literal> tries to read exactly m lines. This
-    option is useful to sequentialy read part of a file. In this case if
-    an end of file (EOF) occurs before <literal>m</literal> lines are read the read lines are
-    returned (it is possible to check if EOF had occured using the meof
-    function) issued.</para>
-    <para><literal>mgetl</literal> allows to read files coming from Unix, Windows, or Mac
-    operating systems.</para>
-    <para><literal>mgetl</literal> supports only UTF-8 and ANSI file encoding.</para>
+      If <varname>m</varname> is omitted or is <literal>-1</literal> all lines till end of file occurs are read.
+    </para>
+    <para>
+      If <varname>m</varname> is given <function>mgetl</function> tries to
+      read exactly <varname>m</varname> lines. This option is useful to
+      sequentialy read part of a file. In this case if an end of file (EOF)
+      occurs before <varname>m</varname> lines are read the read lines are
+      returned (it is possible to check if EOF had occurred using the
+      <function>meof</function> function) issued.
+    </para>
+    <para>
+      <function>mgetl</function> allows to read files coming from Unix,
+      Windows or Mac operating systems.
+    </para>
+    <para>
+      <function>mgetl</function> supports only UTF-8 and ANSI file encoding.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 mgetl('SCI/etc/scilab.start',5)
 
 mgetl SCI/modules/elementary_functions/macros/erf.sci
@@ -75,7 +85,7 @@ mclose(fd)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mputl">mputl</link>
@@ -102,9 +112,5 @@ mclose(fd)
         <link linkend="read">read</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer</para>
   </refsection>
 </refentry>

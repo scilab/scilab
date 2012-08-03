@@ -10,19 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eventhandlerfunctions">
-  <info>
-    <pubdate>$LastChangedDate: 2007-03-08 08:05:42 +0200 (jeu, 08 mar 2007) $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="eventhandlerfunctions">
   <refnamediv>
     <refname>event handler functions</refname>
     <refpurpose>
-    Prototype of functions which may be used as event handler.
-  </refpurpose>
+      Prototype of functions which may be used as event handler.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
+    <synopsis>event_handler_function(win,x,y,ibut)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,19 +27,19 @@
       <varlistentry>
         <term>win</term>
         <listitem>
-          <para>window number where the event had occured.</para>
+          <para>window number where the event had occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>X coordinate in pixels of the mouse pointer when the events occured.</para>
+          <para>X coordinate in pixels of the mouse pointer when the events occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>Y coordinate in pixels of the mouse pointer when the events occured.</para>
+          <para>Y coordinate in pixels of the mouse pointer when the events occurred.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,15 +53,15 @@
   <refsection>
     <title>Description</title>
     <para>
-  When the event handler mode is enable, Scilab will call the specified event handler
-  function each time an event occures in the graphic window. The event handler function
-  must comply with the above prototype. Each time an event occured, the function is called
-  and its four parameters are set accordingly to the window number, mouse position and
-  type of event.
-  </para>
+      When the event handler mode is enable, Scilab will call the specified event handler
+      function each time an event occures in the graphic window. The event handler function
+      must comply with the above prototype. Each time an event occurred, the function is called
+      and its four parameters are set accordingly to the window number, mouse position and
+      type of event.
+    </para>
     <para>
-    The <literal>ibut</literal> parameter takes one of the following value depending on event type:
-  </para>
+      The <literal>ibut</literal> parameter takes one of the following value depending on event type:
+    </para>
     <variablelist>
       <varlistentry>
         <term>ibut==0</term>
@@ -166,7 +163,8 @@
         <term>ibut &gt; =1000+32</term>
         <listitem>
           <para>key with ascii code ascii(ibut-1000) has been pressed while CTRL
-       key pressed</para>
+            key pressed
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -177,14 +175,14 @@
       </varlistentry>
     </variablelist>
     <para>
-  For example, let say that the name of the event handler function is fooHandler
-  for window number 0. A left click in the window at position [100,150] (in pixels)
-  will be equivalent as calling fooHandler( 0, 100, 150, 3 ).
-  </para>
+      For example, let say that the name of the event handler function is fooHandler
+      for window number 0. A left click in the window at position [100,150] (in pixels)
+      will be equivalent as calling fooHandler( 0, 100, 150, 3 ).
+    </para>
     <para>
-  See <link linkend="figure_properties">figure_properties</link> or <link linkend="seteventhandler">seteventhandler</link> for information on
-  how to specify the event_handler name.
-  </para>
+      See <link linkend="figure_properties">figure_properties</link> or <link linkend="seteventhandler">seteventhandler</link> for information on
+      how to specify the event_handler name.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -210,7 +208,7 @@ fig.event_handler_enable = "off" ; //suppress the event handler
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure_properties">figure_properties</link>
@@ -225,9 +223,5 @@ fig.event_handler_enable = "off" ; //suppress the event handler
         <link linkend="xclick">xclick</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Jean-Baptiste Silvy </para>
   </refsection>
 </refentry>

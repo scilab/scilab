@@ -10,25 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry
-  version="5.0-subset Scilab" xml:id="Integer_pal" xml:lang="fr_FR"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xml.mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Integer_pal" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
   <refnamediv>
     <refname>Integer_pal</refname>
-
     <refpurpose>Palette Entier</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Aperçu</title>
-
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -78,7 +66,8 @@
       <inlinemediaobject>
         <imageobject>
           <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>    </inlinemediaobject>
+        </imageobject>
+      </inlinemediaobject>
       <inlinemediaobject>
         <imageobject>
           <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
@@ -86,10 +75,8 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Module_Integer_pal">
     <title>Module</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -98,81 +85,67 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_Integer_pal">
     <title>Description</title>
-
     <para>
       Cette palette est dédiée à la manipulation des nombres entiers. Divers opérateurs
       logiques et de gestion des champs de bits sont implantés ainsi que les portes logiques
       communément rencontrées dans les circuits digitaux.
     </para>
   </refsection>
-
   <refsection id="Blocks_Integer_pal">
     <title>Blocs</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="BITCLEAR">BITCLEAR - Positionne un bit à 0</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="BITSET">BITSET - Positionne un bit à 1</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="CONVERT">CONVERT - Conversion de type de données</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="DFLIPFLOP">DFLIPFLOP - Bascule D</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="DLATCH">DLATCH - Bascule D transparente</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="EXTRACTBITS">EXTRACTBITS - Extraction de bits</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="INTMUL">INTMUL - Multiplication de matrices entières</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="JKFLIPFLOP">JKFLIPFLOP - Bascule JK</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="LOGIC">LOGIC - Logique combinatoire</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SHIFT">SHIFT - Décalage/Rotation de bits</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SRFLIPFLOP">SRFLIPFLOP - Bascule SR</link>

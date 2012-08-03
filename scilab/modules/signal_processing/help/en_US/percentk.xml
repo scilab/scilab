@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="percentk">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>%k</refname>
     <refpurpose> Jacobi's complete elliptic integral</refpurpose>
@@ -17,7 +14,9 @@
       <varlistentry>
         <term>m</term>
         <listitem>
-          <para>parameter of the elliptic integral <literal>0&lt;m&lt;1</literal> (<literal>m</literal> can be a vector)</para>
+          <para>
+            parameter of the elliptic integral <literal>0&lt;m&lt;1</literal> (<literal>m</literal> can be a vector)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -31,13 +30,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calculates Jacobi's complete elliptic integral
-    of the first kind :</para>
+      Calculates Jacobi's complete elliptic integral
+      of the first kind :
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-    Abramowitz and Stegun page 598</para>
+      Abramowitz and Stegun page 598
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -48,15 +49,11 @@ m=0.4;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="percentasn">%asn</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

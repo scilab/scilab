@@ -11,34 +11,35 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dos">
-  <info>
-    <pubdate>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>dos</refname>
     <refpurpose>shell (cmd) command execution (Windows
-  only)</refpurpose>
+      only)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>bOK=dos(command-name)
-bOK=dos(command-name,'-echo')
-[output,bOK]=dos(command-name)
-[output,bOK,exitcode]=dos(command-name)
-[output,bOK]=dos(command-name,'-echo')
-[output,bOK,exitcode]=dos(command-name,'-echo')</synopsis>
+      bOK=dos(command-name,'-echo')
+      [output,bOK]=dos(command-name)
+      [output,bOK,exitcode]=dos(command-name)
+      [output,bOK]=dos(command-name,'-echo')
+      [output,bOK,exitcode]=dos(command-name,'-echo')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>Sends a string command-name to Windows for execution by the cmd shell.
-    Standard output and standard errors of the shell command are written in
-    the calling shell. bOK returns if command has been executed.</para>
+      Standard output and standard errors of the shell command are written in
+      the calling shell. bOK returns if command has been executed.
+    </para>
     <para>[output,bOK] = dos(command-name,'-echo') forces the output to the
-    Command Window, even though it is also being assigned into a variable.</para>
+      Command Window, even though it is also being assigned into a variable.
+    </para>
     <para>exitcode value returned by the external process.</para>
-    
     <para>To open the notepad editor and return control immediately to Scilab
-    dos('start notepad')</para>
+      dos('start notepad')
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,17 +54,11 @@ dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched 
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

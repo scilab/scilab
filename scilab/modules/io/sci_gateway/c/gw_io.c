@@ -1,18 +1,17 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
@@ -38,13 +37,14 @@ static gw_generic_table Tab[] =
     {sci_read4b, "read4b"},
     {sci_write4b, "write4b"},
     {sci_save, "save"},
-    {sci_load, "load"}
+    {sci_load, "load"},
+    {sci_percent_load, "%_load"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
-{  
+{
     /* Recursion from a function */
-    if(pvApiCtx == NULL)
+    if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
@@ -53,28 +53,28 @@ int gw_io(void)
     {
         switch ( getRecursionFunctionToCall() )
         {
-        case RECURSION_CALL_SAVE:
+            case RECURSION_CALL_SAVE:
             {
                 pvApiCtx->pstName = "save";
-                C2F(intsave)(); 
+                C2F(intsave)();
                 return 0;
             }
             break;
-        case RECURSION_CALL_LOAD:
+            case RECURSION_CALL_LOAD:
             {
                 pvApiCtx->pstName = "load";
-                sci_load("load",(unsigned long)strlen("load"));
+                sci_load("load", (unsigned long)strlen("load"));
                 return 0;
             }
             break;
-        default:
-            break;
+            default:
+                break;
         }
     }
     else
     {
         Rhs = Max(0, Rhs);
-        pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+        pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
         callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     }
     return 0;

@@ -48,7 +48,6 @@ src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
 src/fortran/zqnbd.f \
 src/fortran/ajour.f \
-src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
 src/fortran/nlis2.f \
@@ -60,13 +59,11 @@ src/fortran/icse1.f \
 src/fortran/ctonb.f \
 src/fortran/icscof.f \
 src/fortran/fmlag1.f \
-src/fortran/fpq2.f \
 src/fortran/n1fc1.f \
 src/fortran/ffinf1.f \
 src/fortran/ctcab.f \
 src/fortran/n1gc2b.f \
 src/fortran/fprf2.f \
-src/fortran/fremf1.f \
 src/fortran/icse.f \
 src/fortran/rlbd.f \
 src/fortran/calmaj.f \
@@ -120,20 +117,21 @@ sci_gateway/fortran/Ex-optim.f \
 sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
-libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+libscioptimization_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscioptimization.la
 noinst_LTLIBRARIES = libscioptimization-algo.la
 
-libscioptimization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
-libscioptimization_algo_la_CFLAGS = $(libscioptimization_la_CFLAGS)
+libscioptimization_algo_la_CPPFLAGS = $(libscioptimization_la_CPPFLAGS)
 
 libscioptimization_la_LIBADD = libscioptimization-algo.la 
 

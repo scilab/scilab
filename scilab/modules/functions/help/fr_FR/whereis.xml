@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="whereis">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>whereis</refname>
     <refpurpose> nom de la bibliothèque contenant une fonction  </refpurpose>
@@ -14,13 +11,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie une chaîne de caractères contenant le nom de la bibliothèque contenant
-    la fonction <literal>function-name</literal>. 
-    Le chemin d'accès à la bibliothèque peut être obtenu avec la fonction <literal>"librname"</literal>.
-  </para>
+      Renvoie une chaîne de caractères contenant le nom de la bibliothèque contenant
+      la fonction <literal>function-name</literal>. 
+      Le chemin d'accès à la bibliothèque peut être obtenu avec la fonction <literal>"librname"</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="lib">lib</link>

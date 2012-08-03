@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armax">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>armax</refname>
     <refpurpose> armax identification</refpurpose>
@@ -84,28 +81,31 @@
   <refsection>
     <title>Description</title>
     <para>
-    armax is used to identify the coefficients of a n-dimensional 
-    ARX process</para>
-    <programlisting role = ""><![CDATA[ 
+      armax is used to identify the coefficients of a n-dimensional 
+      ARX process
+    </para>
+    <programlisting role=""><![CDATA[ 
 A(z^-1)y= B(z^-1)u + sig*e(t)
  ]]></programlisting>
     <para>
-    where e(t) is a n-dimensional white noise with variance I.
-    sig  an nxn matrix and A(z) and B(z):</para>
-    <programlisting role = ""><![CDATA[ 
+      where e(t) is a n-dimensional white noise with variance I.
+      sig  an nxn matrix and A(z) and B(z):
+    </para>
+    <programlisting role=""><![CDATA[ 
 A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
 B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
  ]]></programlisting>
     <para>
-    for the method see Eykhoff in trends and progress in system identification, page 96.
-    with  
-     <literal>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</literal>
-    and
-     <literal>coef= [-a1,..,-ar,b0,...,b_s] </literal>
-    we can write 
-    <literal>y(t)= coef* z(t) + sig*e(t) </literal> and the algorithm minimises 
-    <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
-    where t0=max(max(r,s)+1,1))).</para>
+      for the method see Eykhoff in trends and progress in system identification, page 96.
+      with  
+      <literal>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</literal>
+      and
+      <literal>coef= [-a1,..,-ar,b0,...,b_s] </literal>
+      we can write 
+      <literal>y(t)= coef* z(t) + sig*e(t) </literal> and the algorithm minimises 
+      <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
+      where t0=max(max(r,s)+1,1))).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -138,7 +138,7 @@ Arma1est=armax(2,-1,y,[]);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>
@@ -156,9 +156,5 @@ Arma1est=armax(2,-1,y,[]);
         <link linkend="frep2tf">frep2tf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J-Ph. Chancelier.  </para>
   </refsection>
 </refentry>

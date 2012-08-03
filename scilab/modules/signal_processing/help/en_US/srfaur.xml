@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="srfaur">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>srfaur</refname>
     <refpurpose> square-root algorithm</refpurpose>
@@ -47,13 +44,17 @@
       <varlistentry>
         <term>rt, tt</term>
         <listitem>
-          <para>gain matrices of the filter model after <literal>n</literal> iterations.</para>
+          <para>
+            gain matrices of the filter model after <literal>n</literal> iterations.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>p, s, t, l</term>
         <listitem>
-          <para>may be given as input if more than one recursion is desired (evaluation of intermediate values of <literal>p</literal>).</para>
+          <para>
+            may be given as input if more than one recursion is desired (evaluation of intermediate values of <literal>p</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -61,7 +62,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    square-root algorithm for the algebraic Riccati equation.</para>
+      square-root algorithm for the algebraic Riccati equation.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -88,7 +90,7 @@ Rt=(Rt+Rt')/2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="phc">phc</link>

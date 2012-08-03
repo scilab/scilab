@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -71,11 +71,6 @@
               <xref linkend="Interfacingfunction_CBLOCK">Interfacing function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_CBLOCK">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -93,10 +88,10 @@
   <refsection id="Description_CBLOCK">
     <title>Description</title>
     <para>
-This block creates skeleton of the C-computing function. It also
-creates library file and object files.  
-
-</para>
+      This block creates skeleton of the C-computing function. It also
+      creates library file and object files.  
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_CBLOCK">
     <title>Dialog box</title>
@@ -108,8 +103,8 @@ creates library file and object files.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -192,7 +187,21 @@ creates library file and object files.
         <para>
           <emphasis role="bold">initial firing vector </emphasis>
         </para>
-        <para> A vector. Size of this vector corresponds to the number of event outputs. The value of the<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entry specifies the time of the preprogrammed event firing on the<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> output event port. If less than zero, no event is preprogrammed.</para>
+        <para>
+          A vector. Size of this vector corresponds to the number of event outputs. The value of the
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          entry specifies the time of the preprogrammed event firing on the
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          output event port. If less than zero, no event is preprogrammed.
+        </para>
         <para> Properties : Type 'vec' of size 'sum(%6)' </para>
       </listitem>
       <listitem>
@@ -215,16 +224,24 @@ creates library file and object files.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -243,19 +260,29 @@ creates library file and object files.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -271,9 +298,5 @@ creates library file and object files.
         <para> SCI/modules/scicos_blocks/macros/Misc/CBLOCK.sci</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CBLOCK">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mseek">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>mseek</refname>
     <refpurpose>バイナリファイルの中でカレントの位置を設定する.  </refpurpose>
@@ -35,14 +32,18 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-         <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
-	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+          <para>
+            スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+            パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列. 原点を指定. デフォルト値: <literal>'set'</literal>.</para>
+          <para>
+            文字列. 原点を指定. デフォルト値: <literal>'set'</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,24 +51,27 @@
   <refsection>
     <title>説明</title>
     <para>
-    関数 <literal>mseek()</literal> は,ストリーム<literal>fd</literal>上での
-	次の入力または出力処理の位置を設定します.
-	新たな位置は,
-	<literal>flag</literal> の値,
-	つまり,
-	<literal>'set'</literal>, <literal>'cur'</literal> または <literal>'end'</literal>
-	に基づき,先頭位置からまたは	
-	現在位置からまたはファイル終端からの符号付きの位置を表す
-	バイト数<literal>n</literal>で指定した位置となります.</para>
-    <para><literal>mseek()</literal> により
-	ファイルの既存のデータの終端より後の部分にファイル位置インジケータを
-	設定することができるようになります.
-	データがこのような場所に書き込まれた時,
-	隙間にあるデータが読み込まれた場合に,
-	隙間に実際に書き込まれたデータに達するまでは
-	 0 が返されます.
-	<literal>mseek()</literal>, はそれ自体では,
-	ファイルの大きさを拡張しません.</para>
+      関数 <literal>mseek()</literal> は,ストリーム<literal>fd</literal>上での
+      次の入力または出力処理の位置を設定します.
+      新たな位置は,
+      <literal>flag</literal> の値,
+      つまり,
+      <literal>'set'</literal>, <literal>'cur'</literal> または <literal>'end'</literal>
+      に基づき,先頭位置からまたは	
+      現在位置からまたはファイル終端からの符号付きの位置を表す
+      バイト数<literal>n</literal>で指定した位置となります.
+    </para>
+    <para>
+      <literal>mseek()</literal> により
+      ファイルの既存のデータの終端より後の部分にファイル位置インジケータを
+      設定することができるようになります.
+      データがこのような場所に書き込まれた時,
+      隙間にあるデータが読み込まれた場合に,
+      隙間に実際に書き込まれたデータに達するまでは
+      0 が返されます.
+      <literal>mseek()</literal>, はそれ自体では,
+      ファイルの大きさを拡張しません.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

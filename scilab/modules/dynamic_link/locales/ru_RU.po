@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:41+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-04-17 15:12+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
@@ -188,6 +188,12 @@ msgstr "Компоновка %s.\n"
 msgid "Dynamic link"
 msgstr "Динамическая компоновка"
 
+msgid "Call a C function"
+msgstr "Вызвать функцию C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Вызвать подпрограмму Fortran"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество входных параметров.\n"
@@ -215,6 +221,13 @@ msgstr "%s: Функциональный модуль не работает в M
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
+"Из-за того, что мир Unix по своей природе многоплатформенный, функция "
+"'haveacompiler' поддерживается только в Windows."
+
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Требуется компилятор Fortran или C.\n"
@@ -237,6 +250,8 @@ msgstr ""
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
 msgstr ""
+"%s: Ожидалось, что входной аргумент №%d является расширением обрабатываемого "
+"файла."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
@@ -262,7 +277,7 @@ msgid "   Generate a loader file\n"
 msgstr "   Формируется файл загрузки\n"
 
 msgid "   Generate a Makefile\n"
-msgstr "   Формирутеся Makefile\n"
+msgstr "   Формируется Makefile\n"
 
 msgid "   Running the makefile\n"
 msgstr "   Выполняется Makefile\n"
@@ -316,6 +331,8 @@ msgstr "%s: Невозможно найти собранную библиоте�
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
 msgstr ""
+"%s: Ожидалось, что входной аргумент №%d является расширением обрабатываемого "
+"файла.\n"
 
 msgid "F2C cannot build fortran 90"
 msgstr "F2C не удалось собрать fortran 90"
@@ -342,6 +359,14 @@ msgid ""
 msgstr ""
 "   %s: %s не копировалось: одинаковые исходный каталог и каталог назначения "
 "(%s).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидались существующие файлы. "
+"Указано: %s\n"
 
 #, c-format
 msgid "   %s: File %s ignored.\n"
@@ -429,6 +454,11 @@ msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 "%s: Функциональный модуль требует наличие компилятора Microsoft visual "
 "studio C.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

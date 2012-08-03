@@ -18,7 +18,6 @@
 	#pragma comment(lib, "winmm.lib")
 #endif
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "expandPathVariable.h"
 #include "Scierror.h"
 #include "api_scilab.h"
@@ -46,6 +45,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -53,6 +53,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -72,6 +73,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -86,6 +88,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 

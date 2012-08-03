@@ -36,7 +36,14 @@ C     .     exponent mark is put in place of the last digit
          endif
        elseif (ifmt .ge. 0) then
           n1 = ifmt / 32
+c         bug 8420 check values n1, n2
+          if (n1.le.0) then
+            n1 = 1
+          endif
           n2 = ifmt - 32*n1
+          if (n2.lt.0) then
+            n2 = 0
+          endif
           fl = n1
           if(a.lt.0.0d0) fl=fl+1
           write(form,120) n1,n2
@@ -44,7 +51,7 @@ C     .     exponent mark is put in place of the last digit
 C     workaround to fix gfortran4.0 bug: 0.999999999--> 0
 C     See: http://bugzilla.scilab.org/show_bug.cgi?id=1985
 C     See: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=28354
-           if (str(1:n1).eq.' 0.'.and.a.gt.0.9999d0) str(2:2)='1'
+          if (str(1:n1).eq.' 0.'.and.a.gt.0.9999d0) str(2:2)='1'
 C     workaround to fix gfortran 4.2.1 & 4.3.2 bug: 0.999999999--> 2
 C     See: http://bugzilla.scilab.org/show_bug.cgi?id=2647
 C     See: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=37863

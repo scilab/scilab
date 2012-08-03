@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="group">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>group</refname>
     <refpurpose> group delay for digital filter</refpurpose>
@@ -61,15 +58,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calculate the group delay of a digital filter
-    with transfer function h(z).</para>
+      Calculate the group delay of a digital filter
+      with transfer function h(z).
+    </para>
     <para>
-    The filter specification can be in coefficient form,
-    polynomial form, rational polynomial form, cascade
-    polynomial form, or in coefficient polynomial form.</para>
+      The filter specification can be in coefficient form,
+      polynomial form, rational polynomial form, cascade
+      polynomial form, or in coefficient polynomial form.
+    </para>
     <para>
-    In the coefficient polynomial form the transfer function is
-    formulated by the following expression</para>
+      In the coefficient polynomial form the transfer function is
+      formulated by the following expression
+    </para>
     <para>
       <literal>h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)</literal>
     </para>
@@ -82,9 +82,5 @@ h=z/(z-.5);
 [tg,fr]=group(100,h);
 plot(fr,tg)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
   </refsection>
 </refentry>

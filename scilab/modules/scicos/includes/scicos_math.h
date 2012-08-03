@@ -14,28 +14,13 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 
 #ifndef __SCICOS_MATH_H__
 #define __SCICOS_MATH_H__
-
-/*--------------------------------------------------------------------------*/ 
-#ifdef abs
-	#undef abs
-#endif
-#define abs(x) ((x) >= 0 ? (x) : -(x))
-/*--------------------------------------------------------------------------*/ 
-#ifdef max
-	#undef max
-#endif
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-
-#ifdef min
-	#undef min
-#endif
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#pragma message("Deprecated header (since 5.4.0). scicos_math.h is now including automatically math.h of the libc. Please replace the include of scicos_math.h by math.")
 #endif /* __SCICOS_MATH_H__ */

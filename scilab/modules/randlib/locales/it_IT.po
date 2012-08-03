@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: it\n"
 
 #, c-format
@@ -318,8 +318,8 @@ msgid "X0 is empty\n"
 msgstr "X0è vuoto\n"
 
 #, c-format
-msgid "%s: X0(%d) must be in the range [1,%d]\n"
-msgstr "%s: X0(%d) deve essere nell'intervallo [1,%d]\n"
+msgid "%s: X0(%d) must be in the range [1,%d[\n"
+msgstr ""
 
 #, c-format
 msgid "P(%d,%d) < 0\n"

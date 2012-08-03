@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 13:30+0000\n"
+"PO-Revision-Date: 2012-07-29 14:40+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -30,64 +30,115 @@ msgid "FFTW Library not found.\n"
 msgstr "FFTW ライブラリ が見つかりません。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: N次元配列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
-msgstr "%s: 入力引数 '#%d' および '#%d' で互換性がありません: 同じ大きさとしてください.\n"
+"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数の配列を指定してください.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
+"%s: Wrong type for argument #%d: An integer or a floating point number "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数または浮動小数点数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: メモリを確保できません.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: An array of floating point or integer "
+"numbers expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数または整数の配列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 要素は %d 未満としてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順としてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 要素は %d より大きな値としてください.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  %d 未満としてください.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d の約数を指定してください.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:要素は  %d の約数としてください.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d.\n"
+msgstr "%s: 入力引数 #%d および #%d に互換性がありません.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
+
+#, c-format
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr "%s: MKL fftwライブラリはwisdom関数をまだ実装していません.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが発生しました: %s\n"
-
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
-msgid "FFTW can't read wisdom."
-msgstr "FFTW wisdom を読めません。"
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な wisdom を指定してください.\n"
 
 #
 # File: src/nofftw/nofftw.c, line: 20

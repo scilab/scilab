@@ -27,18 +27,23 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidouble.la
+else
+noinst_LTLIBRARIES = libscidouble.la
+endif
 
-libscidouble_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+
+libscidouble_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+$(AM_CPPFLAGS)
 
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscidouble_la_CFLAGS)
+INCLUDE_FLAGS = $(libscidouble_la_CPPFLAGS)
 
 
 

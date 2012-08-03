@@ -74,88 +74,64 @@ public class Call_Scilab {
     return Call_ScilabJNI.isComplex(varname);
   }
 
-  public static String[][] getString(String variableName) {
-    return Call_ScilabJNI.getString(variableName);
-  }
-
   public static int putString(String variableName, String[][] variable) {
     return Call_ScilabJNI.putString(variableName, variable);
   }
 
-  public static int putDoubleComplex(String variableName, double[] variable, int nbRow, int nbCol) {
-    return Call_ScilabJNI.putDoubleComplex(variableName, variable, nbRow, nbCol);
-  }
-
-  public static double[][] getDouble(String variableName) {
-    return Call_ScilabJNI.getDouble(variableName);
+  public static int putDoubleComplex(String variableName, double[][] variable, double[][] imag) {
+    return Call_ScilabJNI.putDoubleComplex(variableName, variable, imag);
   }
 
   public static int putDouble(String variableName, double[][] variable) {
     return Call_ScilabJNI.putDouble(variableName, variable);
   }
 
-  public static boolean[][] getBoolean(String variableName) {
-    return Call_ScilabJNI.getBoolean(variableName);
-  }
-
   public static int putBoolean(String variableName, boolean[][] variable) {
     return Call_ScilabJNI.putBoolean(variableName, variable);
-  }
-
-  public static byte[][] getByte(String variableName) {
-    return Call_ScilabJNI.getByte(variableName);
   }
 
   public static int putByte(String variableName, byte[][] variable) {
     return Call_ScilabJNI.putByte(variableName, variable);
   }
 
-  public static byte[][] getUnsignedByte(String variableName) {
-    return Call_ScilabJNI.getUnsignedByte(variableName);
-  }
-
   public static int putUnsignedByte(String variableName, byte[][] variable) {
     return Call_ScilabJNI.putUnsignedByte(variableName, variable);
-  }
-
-  public static short[][] getShort(String variableName) {
-    return Call_ScilabJNI.getShort(variableName);
   }
 
   public static int putShort(String variableName, short[][] variable) {
     return Call_ScilabJNI.putShort(variableName, variable);
   }
 
-  public static short[][] getUnsignedShort(String variableName) {
-    return Call_ScilabJNI.getUnsignedShort(variableName);
-  }
-
   public static int putUnsignedShort(String variableName, short[][] variable) {
     return Call_ScilabJNI.putUnsignedShort(variableName, variable);
-  }
-
-  public static int[][] getInt(String variableName) {
-    return Call_ScilabJNI.getInt(variableName);
   }
 
   public static int putInt(String variableName, int[][] variable) {
     return Call_ScilabJNI.putInt(variableName, variable);
   }
 
-  public static int[][] getUnsignedInt(String variableName) {
-    return Call_ScilabJNI.getUnsignedInt(variableName);
-  }
-
   public static int putUnsignedInt(String variableName, int[][] variable) {
     return Call_ScilabJNI.putUnsignedInt(variableName, variable);
   }
 
-  public static double[][] getDoubleComplexReal(String variableName) {
-    return Call_ScilabJNI.getDoubleComplexReal(variableName);
+  public static int putSparse(String variableName, int nbRow, int nbCol, int[] nbRowItem, int[] colPos, double[] data) {
+    return Call_ScilabJNI.putSparse(variableName, nbRow, nbCol, nbRowItem, colPos, data);
   }
 
-  public static double[][] getDoubleComplexImg(String variableName) {
-    return Call_ScilabJNI.getDoubleComplexImg(variableName);
+  public static int putComplexSparse(String variableName, int nbRow, int nbCol, int[] nbRowItem, int[] colPos, double[] data, double[] imag) {
+    return Call_ScilabJNI.putComplexSparse(variableName, nbRow, nbCol, nbRowItem, colPos, data, imag);
+  }
+
+  public static int putBooleanSparse(String variableName, int nbRow, int nbCol, int[] nbRowItem, int[] colPos) {
+    return Call_ScilabJNI.putBooleanSparse(variableName, nbRow, nbCol, nbRowItem, colPos);
+  }
+
+  public static int putPolynomial(String variableName, String polyVarName, double[][][] data) {
+    return Call_ScilabJNI.putPolynomial(variableName, polyVarName, data);
+  }
+
+  public static int putComplexPolynomial(String variableName, String polyVarName, double[][][] data, double[][][] imag) {
+    return Call_ScilabJNI.putComplexPolynomial(variableName, polyVarName, data, imag);
   }
 
 }

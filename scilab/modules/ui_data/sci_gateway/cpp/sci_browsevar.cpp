@@ -16,13 +16,10 @@ extern "C"
 #include "UpdateBrowseVar.h"
 #include "gw_ui_data.h"
 #include "BOOL.h"
-#include "stack-c.h"
-#include "stackinfo.h"
 #include "api_scilab.h"
-#include "Scierror.h"
 }
 /*--------------------------------------------------------------------------*/
-int sci_browsevar(char *fname,unsigned long fname_len)
+int sci_browsevar(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);
@@ -31,6 +28,6 @@ int sci_browsevar(char *fname,unsigned long fname_len)
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
 }
-/*--------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* Copyright (C) DIGITEO - 2010 - Allan CORNET
+* Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -30,7 +30,6 @@
 #include "stristr.h"
 #include "console.h"
 #include "WinConsole.h"
-#include "StartupMessageBox.h"
 #include "splashScreen.h"
 #include "WndThread.h"
 #include "strdup_windows.h"
@@ -71,7 +70,8 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 
     if (ScilabDirectory == NULL)
     {
-        MessageBox (NULL,"ERROR" , "getScilabDirectory()", MB_ICONSTOP | MB_OK);
+        // This message must never occur, but ...
+        MessageBox (NULL, "ERROR" , "Cannot determine the Scilab directory (SCI).", MB_ICONSTOP | MB_OK);
         exit(1);
     }
     else

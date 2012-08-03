@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-02 15:17+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2012-06-13 19:27+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -31,6 +31,10 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -69,6 +73,41 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Nedefinovaná proměnná prostředí %s.\n"
 
 #, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s: Funkce %s je zastaralá.\n"
+
+msgid "Warning"
+msgstr "Varování"
+
+#, c-format
+msgid "%s: See help('load') for the rational.\n"
+msgstr "%s: Viz help('load') pro důvody.\n"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Tato funkce bude natrvalo odstraněna v Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Scilab 6 will not support the file format used.\n"
+msgstr "%s: Scilab 6 nebude podporovat použitý formát souboru.\n"
+
+#, c-format
+msgid ""
+"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
+"becomes save('myData.sod','a').\n"
+msgstr ""
+"%s: Prosím umístěte deklaraci proměnné do uvozovek. Příklad: "
+"save('myData.sod',a) na save('myData.sod','a').\n"
+
+#, c-format
+msgid "%s: See help('save') for the rational.\n"
+msgstr "%s: Viz help('save') pro důvody.\n"
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "Nedefinovaná proměnná prostředí %s.\n"
 
@@ -95,8 +134,28 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "nezvládnutá chyba od v2cunit.\n"
 
 #, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s: Neplatný objekt %s\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: Legenda se do současného kontextu nevejde. Přeskočeno\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: variable '%s' does not exist in '%s'.\n"
+msgstr "%s: proměnná '%s' v '%s' neexistuje.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

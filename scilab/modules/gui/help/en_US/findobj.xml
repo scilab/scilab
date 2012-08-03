@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findobj">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findobj</refname>
     <refpurpose> find an object with specified property</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-       h =  findobj(propertyName, propertyValue)
+      h =  findobj(propertyName, propertyValue)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
     <variablelist>
@@ -41,10 +36,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    This routine is currently used to find objects knowing their 'tag'
-    property.  It returns handle of the first found object which property
-    <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
-    function returns an empty matrix.</para>
+      This routine is currently used to find objects knowing their 'tag'
+      property.  It returns handle of the first found object which property
+      <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
+      function returns an empty matrix.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -65,7 +61,7 @@ close();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="uicontrol">uicontrol</link>
@@ -80,10 +76,5 @@ close();
         <link linkend="get">get</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bertrand Guiheneuf</para>
-    <para>V.C.</para>
   </refsection>
 </refentry>

@@ -1,6 +1,6 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2010 - DIGITEO - ClÃ©ment DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -11,7 +11,7 @@
 // Blocks must have valid dimensions for their settings.
 // Some dimensions were not coherents between theirs "set" and "define" method.
 
-loadXcosLibs();
+loadXcosLibs(); loadScicos();
 
 defaultlibs = ["Branching",
                "Electrical",
@@ -27,8 +27,16 @@ defaultlibs = ["Branching",
                "Threshold"];
 
 defaultlibs  = defaultlibs + "lib";
-notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f", ..    // Specific blocks
-            "CBLOCK" "CBLOCK4" "c_block" ];             // native blocks
+notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
+            , ..                                       // native blocks
+            "CBLOCK" "CBLOCK4" "c_block" "fortran_block",..
+            ,..                                        // not interface function
+            "vanne_inputs" "vanne_outputs" "vanne_draw_ports" ,..
+            "source_inputs" "source_outputs" "source_draw_ports" ,..
+            "puit_inputs" "puit_outputs" "puit_draw_ports" ,..
+            "bache_inputs" "bache_outputs" "bache_draw_ports" ,..
+            "tkscaleblk", "m_sin", "bplatform2", "anim_pen" ,..
+            "BARXY_sim" ];
 
 funcprot(0);
 ilib_verbose(0);
@@ -55,19 +63,6 @@ for i = 1:size(defaultlibs,"*")
             disp(message)
         end
         assert_checktrue(status);
-
-        // Exported hdf5 instance
-        filePath = SCI + "/modules/scicos_blocks/blocks/" + interfunction + ".h5";
-        if isfile(filePath) <> %t then
-            mprintf("%s not found.\n", filePath);
-            continue;
-        end
-
-        if import_from_hdf5(filePath) <> %t then
-            mprintf("%s not loaded\n", filePath); pause, end
-        // the saved data is stored as the out variable
-        scs_m = out;
-        cmd = "scs_m=" + interfunction + "(""set"", scs_m, []); // loaded block";
     end
 end
 

@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_SetVar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>TCL_SetVar</refname>
     <refpurpose>Set a tcl/tk variable
-  value</refpurpose>
+      value
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,23 +28,26 @@
         <term>varname</term>
         <listitem>
           <para>character string. Contains the name of the tcl/tk variable to
-          set.</para>
+            set.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>value</term>
         <listitem>
           <para>may be a character string, a scalar, a real or string matrix
-          (m x n). Contains the value to give to the tcl/tk variable.</para>
+            (m x n). Contains the value to give to the tcl/tk variable.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>interp</term>
         <listitem>
           <para>optional character string parameter. Name of the slave tcl
-          interpreter in which the operation has to be performed. If not
-          provided, it defaults to the main tcl interpreter created by
-          Scilab.</para>
+            interpreter in which the operation has to be performed. If not
+            provided, it defaults to the main tcl interpreter created by
+            Scilab.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,11 +55,14 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to set a variable within a tcl/tk interpreter. When
-    tcl/tk support is enabled in scilab, this routine can be used to set up
-    the value of a tcl/tk variable. This can be useful to change some value in
-    the tcl/tk interpreter without having to build a tcl/tk instruction (and
-    use <literal>TCL_EvalStr</literal>).</para>
-    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
+      tcl/tk support is enabled in scilab, this routine can be used to set up
+      the value of a tcl/tk variable. This can be useful to change some value in
+      the tcl/tk interpreter without having to build a tcl/tk instruction (and
+      use <literal>TCL_EvalStr</literal>).
+    </para>
+    <para>
+      More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -130,7 +134,7 @@ TCL_DeleteInterp('TCLSlave')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>
@@ -160,9 +164,5 @@ TCL_DeleteInterp('TCLSlave')
         <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

@@ -19,27 +19,35 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA =  license.txt 
+libscigui_la_root_DATA =  license.txt
 
 
 #### gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml
+libscigui_la_etc_DATA = \
+	etc/gui.quit \
+	etc/gui.start \
+	etc/graphics_menubar.xml \
+	etc/graphics_toolbar.xml \
+	etc/helpbrowser_menubar.xml \
+	etc/main_menubar.xml \
+	etc/main_toolbar.xml \
+	etc/flexdock-themes.xml \
+	etc/integratedConfiguration.xml \
+	etc/simpleConfiguration.xml \
+	etc/XConfiguration-colors.xml \
+	etc/XConfiguration-colors.xsl \
+	etc/XConfiguration-font.xml \
+	etc/XConfiguration-font.xsl \
+	etc/XConfiguration-web.xml \
+	etc/XConfiguration-web.xsl \
+	etc/XConfiguration-toolbars.xml \
+	etc/XConfiguration-toolbars.xsl
 
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree
 
-include $(top_srcdir)/Makefile.incl.am
-
 GUI_C_SOURCES = \
-src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
@@ -47,40 +55,24 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
-src/c/InitWaitBar.c \
-src/c/InitProgressionBar.c \
-src/c/CreateUIContextMenu.c \
-src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c \
+src/c/ScilabTermination.c \
+src/jni/ScilabTermination_wrap.c
 
-GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
+GUI_CXX_SOURCES = \
+src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/DestroyUimenu.cpp \
-src/cpp/DestroyUicontrol.cpp \
-src/cpp/DestroyJavaUiobject.cpp \
-src/cpp/DestroyWaitBar.cpp \
+src/jni/SwingView.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
-src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallMainWindow.cpp \
-src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
-src/cpp/PushButton.cpp \
-src/cpp/EditBox.cpp \
-src/cpp/Label.cpp \
-src/cpp/CheckBox.cpp \
-src/cpp/RadioButton.cpp \
-src/cpp/Slider.cpp \
-src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
-src/cpp/ListBox.cpp \
-src/cpp/Frame.cpp \
 src/cpp/Toolbar.cpp \
 src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
@@ -88,7 +80,8 @@ src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
 src/cpp/SetUicontrolString.cpp \
 src/cpp/GetUicontrolString.cpp \
-src/cpp/SetUicontrolParent.cpp \
+src/cpp/SetUicontrolTooltipString.cpp \
+src/cpp/GetUicontrolTooltipString.cpp \
 src/cpp/SetUicontrolBackgroundColor.cpp \
 src/cpp/GetUicontrolBackgroundColor.cpp \
 src/cpp/SetUiobjectForegroundColor.cpp \
@@ -105,10 +98,6 @@ src/cpp/SetUicontrolFontSize.cpp \
 src/cpp/GetUicontrolFontSize.cpp \
 src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
-src/cpp/SetUiobjectCallback.cpp \
-src/cpp/GetUiobjectCallback.cpp \
-src/cpp/SetUiobjectTag.cpp \
-src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUimenuChecked.cpp \
@@ -131,8 +120,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
-src/cpp/SetUiobjectVisible.cpp \
-src/cpp/GetUiobjectVisible.cpp \
+src/cpp/SetConsoleShowHiddenHandles.cpp \
+src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
@@ -143,7 +132,6 @@ src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
-
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
@@ -153,11 +141,15 @@ src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
 src/jni/ScilabDisplayTree.giws.xml
 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
 endif
-
+if SWIG
+BUILT_SOURCES+=swig
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \
@@ -170,8 +162,8 @@ sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uicontextmenu.c \
+sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uimenu.c \
 sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c \
@@ -184,7 +176,7 @@ sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
 sci_gateway/c/sci_exportUI.c
 
-GATEWAY_CPP_SOURCES = \
+GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \
 sci_gateway/cpp/sci_toprint.cpp \
 sci_gateway/cpp/sci_printfigure.cpp \
@@ -197,64 +189,50 @@ sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
 sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
-sci_gateway/cpp/sci_usecanvas.cpp
+sci_gateway/cpp/sci_usecanvas.cpp \
+sci_gateway/cpp/sci_fire_closing_finished.cpp
 
-libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/c/xsci/ \
-			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/core/src/c/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/tclsci/includes/ \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/console/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			$(TCL_INC_PATH) \
-			$(Tk_INC_PATH) \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/libs/hashtable \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(srcdir)/src/cpp/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
-
-libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/string/includes/
-
-libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/renderer/src/jni/ \
-			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/renderer/src/cpp/ \
-			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
-			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/libs/hashtable/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
+			-I$(top_srcdir)/modules/console/includes/ \
+			-I$(top_srcdir)/modules/core/src/c/ \
+			-I$(top_srcdir)/modules/dynamic_link/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
+			-I$(top_srcdir)/modules/graphic_objects/includes/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/string/includes/
-
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/tclsci/includes/ \
+			-I$(top_srcdir)/modules/renderer/includes/ \
+			-I$(top_srcdir)/modules/renderer/src/jni/ \
+			-I$(top_srcdir)/modules/renderer/src/cpp/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(TCL_INC_PATH) \
+			$(Tk_INC_PATH) \
+			$(AM_CPPFLAGS)
 
 # Without the GUI module
-libscigui_disable_la_CFLAGS = -Iincludes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+libscigui_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(AM_CPPFLAGS)
+
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-libscigui_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
@@ -265,16 +243,14 @@ pkglib_LTLIBRARIES += libscigui.la
 noinst_LTLIBRARIES = libscigui-algo.la
 endif
 
-libscigui_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CPP_SOURCES)
-libscigui_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscigui_algo_la_CFLAGS = $(libscigui_la_CFLAGS)
+libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CXX_SOURCES)
+libscigui_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigui_algo_la_CPPFLAGS = $(libscigui_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
+INCLUDE_FLAGS = $(libscigui_la_CPPFLAGS)
 
 libscigui_la_LIBADD = libscigui-algo.la
 
@@ -289,67 +265,129 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
-images/icons/32x32/apps/rrze_table.png \
-images/icons/32x32/apps/utilities-system-monitor.png \
-images/icons/32x32/apps/system-search.png \
+nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/document-new.png \
+images/icons/16x16/actions/document-open.png \
+images/icons/16x16/actions/document-open-sci.png \
+images/icons/16x16/actions/document-print.png \
+images/icons/16x16/actions/document-print-preview.png \
+images/icons/16x16/actions/document-save-as.png \
+images/icons/16x16/actions/document-save.png \
+images/icons/16x16/actions/dynamic-blue-up.png \
+images/icons/16x16/actions/edit-clear.png \
+images/icons/16x16/actions/edit-copy.png \
+images/icons/16x16/actions/edit-cut.png \
+images/icons/16x16/actions/edit-delete.png \
+images/icons/16x16/actions/edit-find.png \
+images/icons/16x16/actions/edit-find-replace.png \
+images/icons/16x16/actions/edit-paste.png \
+images/icons/16x16/actions/edit-redo.png \
+images/icons/16x16/actions/edit-select-all.png \
+images/icons/16x16/actions/edit-undo.png \
 images/icons/16x16/actions/execute-all.png \
+images/icons/16x16/actions/filter.png \
+images/icons/16x16/actions/format-text-bold.png \
 images/icons/16x16/actions/go-bottom.png \
+images/icons/16x16/actions/go-next.png \
+images/icons/16x16/actions/go-previous.png \
 images/icons/16x16/actions/go-top.png \
-images/icons/16x16/actions/view-refresh.png \
-images/icons/16x16/search/folder.png \
-images/icons/16x16/search/file.png \
-images/icons/16x16/search/line-found.png \
-images/icons/16x16/search/scilab-file.png \
+images/icons/16x16/actions/list-add.png \
+images/icons/16x16/actions/list-remove.png \
+images/icons/16x16/actions/longe.png \
+images/icons/16x16/actions/long.png \
+images/icons/16x16/actions/media-playback-start.png \
+images/icons/16x16/actions/plot.png \
 images/icons/16x16/actions/save-and-execute.png \
+images/icons/16x16/actions/scilab_search.png \
+images/icons/16x16/actions/shorte.png \
+images/icons/16x16/actions/short.png \
+images/icons/16x16/actions/SizeColumnsToFit.png \
+images/icons/16x16/actions/system-search.png \
+images/icons/16x16/actions/transform-rotate.png \
+images/icons/16x16/actions/variable-from-selection.png \
+images/icons/16x16/actions/variable-new.png \
+images/icons/16x16/actions/view-refresh.png \
+images/icons/16x16/actions/window-new.png \
+images/icons/16x16/actions/zoom-area-cursor.png \
+images/icons/16x16/actions/zoom-fit-drawing.png \
+images/icons/16x16/actions/zoom-fit-selection.png \
+images/icons/16x16/actions/zoom-in.png \
+images/icons/16x16/actions/zoom-original.png \
+images/icons/16x16/actions/zoom-out.png \
+images/icons/16x16/animations/process-working.png \
+images/icons/16x16/apps/accessories-text-editor.png \
+images/icons/16x16/apps/help-browser.png \
+images/icons/16x16/apps/scilab.png \
+images/icons/16x16/apps/utilities-system-monitor.png \
+images/icons/16x16/categories/applications-system.png \
+images/icons/16x16/categories/preferences-system.png \
+images/icons/16x16/devices/media-floppy.png \
+images/icons/16x16/devices/printer.png \
+images/icons/16x16/emblems/emblem-important.png \
+images/icons/16x16/emblems/emblem-readonly.png \
+images/icons/16x16/mimetypes/application-pdf.png \
+images/icons/16x16/mimetypes/binary.png \
+images/icons/16x16/mimetypes/image-x-generic.png \
+images/icons/16x16/mimetypes/package-x-generic.png \
+images/icons/16x16/mimetypes/text-csv.png \
+images/icons/16x16/mimetypes/text-html.png \
+images/icons/16x16/mimetypes/text-x-generic.png \
+images/icons/16x16/mimetypes/text-xml.png \
+images/icons/16x16/places/folder.png \
+images/icons/16x16/places/folder-saved-search.png \
+images/icons/16x16/places/scilab-folder.png \
+images/icons/16x16/places/user-home.png \
+images/icons/16x16/status/dialog-information.png \
+images/icons/16x16/status/dialog-warning.png \
+images/icons/16x16/status/error.png \
+images/icons/16x16/status/folder-open.png \
+images/icons/16x16/status/line-found.png \
+images/icons/16x16/status/scilab-folder-open.png \
+images/icons/16x16/status/user-home-open.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/puffin.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/system-search.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
+images/icons/32x32/actions/edit-clear.png \
+images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/apps/datatips.png \
+images/icons/32x32/apps/graphic-window.png \
+images/icons/32x32/apps/rrze_table.png \
+images/icons/32x32/apps/scilab.png \
+images/icons/32x32/apps/system-search.png \
+images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/32x32/emblems/emblem-readonly.png \
+images/icons/48x48/emblems/emblem-readonly.png \
+images/icons/64x40/mimetypes/application-x-scilab-champ.png \
+images/icons/64x40/mimetypes/application-x-scilab-contour2d.png \
+images/icons/64x40/mimetypes/application-x-scilab-grayplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-hist3d.png \
+images/icons/64x40/mimetypes/application-x-scilab-histplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-Matplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-mesh.png \
+images/icons/64x40/mimetypes/application-x-scilab-pie.png \
+images/icons/64x40/mimetypes/application-x-scilab-plot2d.png \
+images/icons/64x40/mimetypes/application-x-scilab-plot3d.png \
+images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-surf.png \
 images/icons/aboutscilab.png \
-images/icons/accessories-text-editor.png \
-images/icons/applications-system.png \
 images/icons/check-icon.png \
+images/icons/close-tab-on.png \
 images/icons/close-tab.png \
-images/icons/datatips.png \
-images/icons/document-new.png \
-images/icons/document-open.png \
-images/icons/document-open-sci.png \
-images/icons/document-print.png \
-images/icons/document-print-preview.png \
-images/icons/document-save-as.png \
-images/icons/document-save.png \
-images/icons/edit-copy.png \
-images/icons/edit-cut.png \
-images/icons/edit-delete.png \
-images/icons/edit-find.png \
-images/icons/edit-find-replace.png \
-images/icons/edit-paste.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
-images/icons/emblem-readonly.png \
-images/icons/folder.png \
-images/icons/format-text-bold.png \
-images/icons/graphic-window.png \
-images/icons/help-browser.png \
-images/icons/media-floppy.png \
-images/icons/media-playback-start.png \
-images/icons/package-x-generic.png \
-images/icons/printer.png \
-images/icons/process-working.png \
+images/icons/dock_help_active.png \
+images/icons/dock_help_default.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
-images/icons/scilab.png \
-images/icons/transform-rotate.png \
 images/icons/undock_active.png \
 images/icons/undock_default.png \
-images/icons/utilities-system-monitor.png \
-images/icons/window-new.png \
-images/icons/zoom-area-cursor.png \
-images/icons/zoom-fit-drawing.png \
-images/icons/zoom-fit-selection.png \
-images/icons/zoom-in.png \
-images/icons/zoom-original.png \
-images/icons/zoom-out.png
+images/preferences/integrated.png \
+images/preferences/simple.png
+
 
 if GUI
 USEANT=1
 endif
+
+include $(top_srcdir)/Makefile.incl.am

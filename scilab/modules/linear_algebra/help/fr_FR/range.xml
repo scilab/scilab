@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="range">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>range</refname>
     <refpurpose> Image de A^k  </refpurpose>
@@ -53,10 +50,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> Calcul de l'image de <literal>A^k</literal>; les <literal>dim</literal>
+    <para>
+      Calcul de l'image de <literal>A^k</literal>; les <literal>dim</literal>
       premières colonnes de <literal>X</literal> forment une base de
       <literal>A^k</literal>. Les dernières lignes de  <literal>X</literal> forment une
-      base de l'orthogonal de l'image. </para>
+      base de l'orthogonal de l'image. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -76,7 +75,7 @@ norm(I*coeffs-y1)        // test
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fullrfk">fullrfk</link>
@@ -87,12 +86,10 @@ norm(I*coeffs-y1)        // test
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>F. D.; INRIA ;   </para>
-  </refsection>
-  <refsection>
     <title>Fonctions Utilisées</title>
-    <para>La fonction <literal>range</literal> est basée sue la fonction <link linkend="rowcomp">rowcomp</link>
-      qui utilise la décomposition <link linkend="svd">svd</link>.</para>
+    <para>
+      La fonction <literal>range</literal> est basée sue la fonction <link linkend="rowcomp">rowcomp</link>
+      qui utilise la décomposition <link linkend="svd">svd</link>.
+    </para>
   </refsection>
 </refentry>

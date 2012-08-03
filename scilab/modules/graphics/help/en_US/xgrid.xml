@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgrid">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xgrid">
   <refnamediv>
     <refname>xgrid</refname>
     <refpurpose> add a grid on a 2D plot</refpurpose>
@@ -35,9 +32,19 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xgrid</literal> adds a grid on a 2D plot. <literal>style</literal> is the dash id
-    or the color id to use for the grid plotting. Use <literal>xset()</literal> for the
-    meaning of id.</para>
+    <para>
+      <literal>xgrid</literal> adds a grid on a 2D plot. <literal>style</literal> is the dash id
+      or the color id to use for the grid plotting. Use <literal>xset()</literal> for the
+      meaning of id.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      x=[0:0.1:2*%pi]';
+      plot2d(sin(x))
+      xgrid(5)
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -48,7 +55,7 @@ xgrid(2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xset">xset</link>
@@ -57,9 +64,5 @@ xgrid(2)
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

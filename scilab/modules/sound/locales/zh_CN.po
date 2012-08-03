@@ -8,14 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 15:21+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-03-06 12:48+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -27,7 +31,7 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -43,17 +47,20 @@ msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound模块没有被安装。\n"
 
+msgid "Sound file handling"
+msgstr "声音文件处理"
+
 msgid "FFT on a wav file"
-msgstr ""
+msgstr "傅里叶分析wav声音文件"
 
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
+msgstr "0.5秒声音参数的傅里叶分析"
 
 msgid "A complete picture of the sound."
-msgstr ""
+msgstr "声音的完整图像"
 
 msgid "see 'mapsound' function"
-msgstr ""
+msgstr "查看‘mapsound’函数"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -90,6 +97,10 @@ msgstr "%s：输出参数的数目错误。\n"
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Failed to play the sound with command: %s.\n"
+msgstr "%s：用命令播放声音失败：%s。\n"
 
 #, c-format
 msgid "%s: Audio capabilities not available.\n"

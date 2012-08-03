@@ -147,7 +147,7 @@ for k=1:n
 // Because if it is associated to digit, dot is suppressed by comp()
 kdot=strindex(tk,[".*","./",".\",".^",".''"])
 if kdot<>[] then
-  kdgt=kdot(find(abs(str2code(part(tk,kdot-1)))<9))
+  kdgt=kdot(find(abs(_str2code(part(tk,kdot-1)))<9))
   for kk=size(kdgt,"*"):-1:1
     tk=part(tk,1:kdgt(kk)-1)+" "+part(tk,kdgt(kk):length(tk));
   end

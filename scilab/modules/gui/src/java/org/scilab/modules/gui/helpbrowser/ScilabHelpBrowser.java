@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
+ * Copyright (C) 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,23 +22,28 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
@@ -45,18 +51,27 @@ import org.scilab.modules.localization.Messages;
 /**
  * Class for Scilab Help Browser in GUIs
  * @author Vincent COUVERT
+ * @author Calixte DENIZET
  */
 public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
+    public static final String HELPUUID = "d1ef5062-533e-4aee-b12a-66740820d6d1";
+
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String MENUBARXMLFILE = SCI + "/modules/gui/etc/helpbrowser_menubar.xml";
-    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
 
     private static HelpBrowser instance;
-
     private static Tab helpTab;
 
+    private static String language;
+    private static String[] helps;
+
+    static {
+        ScilabTabFactory.getInstance().addTabFactory(HelpBrowserTabFactory.getInstance());
+    }
+
     private SimpleHelpBrowser component;
+    private Window parentWindow;
 
     /**
      * Constructor
@@ -64,7 +79,65 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @param language Scilab current language
      */
     protected ScilabHelpBrowser(String[] helps, String language) {
+        if (language == null) {
+            language = ScilabCommons.getlanguage();
+        }
         component = ScilabBridge.createHelpBrowser(helps, language);
+    }
+
+    /**
+     * Creates a SwingScilabTab containing the help browser
+     * @return the corresponding SwingScilabTab
+     */
+    public static SwingScilabTab createHelpBrowserTab() {
+        helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"), HELPUUID);
+        String lastID = restoreHelpBrowserState();
+
+        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
+            System.err.println("No help file available.");
+            return null;
+        }
+
+        instance = new ScilabHelpBrowser(helps, language);
+        helpTab.addMember(instance);
+
+        MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
+        helpTab.addMenuBar(menubar);
+
+        TextBox infobar = ScilabTextBox.createTextBox();
+        helpTab.addInfoBar(infobar);
+
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+            // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getID() == KeyEvent.KEY_PRESSED) {
+                    Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+                    if (e.getSource() instanceof Component) {
+                        Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
+                        char chr = e.getKeyChar();
+
+                        if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
+                        && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
+                            if (chr == '-' || chr == '_') {
+                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
+                            } else {
+                                ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
+                            }
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        });
+
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        browser.setCurrentID(lastID);
+        ((SwingScilabTab) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("helpbrowser");
+        WindowsConfigurationManager.restorationFinished((SwingScilabTab) helpTab.getAsSimpleTab());
+
+        return (SwingScilabTab) helpTab.getAsSimpleTab();
     }
 
     /**
@@ -74,70 +147,45 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @return the created Help Browser
      */
     public static HelpBrowser createHelpBrowser(String[] helps, String language) {
-        if (instance == null) {
+        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
+            System.err.println("No help file available.");
+            return null;
+        }
 
-            instance = new ScilabHelpBrowser(helps, language);
+        if (instance == null) {
+            ScilabHelpBrowser.language = language;
+            ScilabHelpBrowser.helps = helps;
+            boolean success = WindowsConfigurationManager.restoreUUID(HELPUUID);
+            if (!success) {
+                HelpBrowserTabFactory.getInstance().getTab(HELPUUID);
+                ((ScilabHelpBrowser) instance).setParentWindow();
+                ((ScilabHelpBrowser) instance).parentWindow.addTab(helpTab);
+                ((ScilabHelpBrowser) instance).parentWindow.setVisible(true);
+            }
 
             if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
                 if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
-                    // An error occured
+                    // An error occurred
                     ScilabConsole.getConsole().getInfoBar().setText("");
                     return null;
                 }
             }
-
-            helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"));
-            helpTab.addMember(instance);
-            /* Action when the Browser tab is closed */
-            helpTab.setCallback(ScilabCallBack
-                                .createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
-
-            MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-            helpTab.addMenuBar(menubar);
-
-            TextBox infobar = ScilabTextBox.createTextBox();
-            helpTab.addInfoBar(infobar);
-
-            Window helpWindow = ScilabWindow.createWindow();
-            helpWindow.addTab(helpTab);
-
-            KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-            manager.addKeyEventDispatcher(new KeyEventDispatcher() {
-                    // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
-                    public boolean dispatchKeyEvent(KeyEvent e) {
-                        if (e.getID() == KeyEvent.KEY_PRESSED) {
-                            Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
-                            if (e.getSource() instanceof Component) {
-                                Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
-                                char chr = e.getKeyChar();
-
-                                if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
-                                                && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
-                                    if (chr == '-' || chr == '_') {
-                                        ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
-                                    } else {
-                                        ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
-                                    }
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    }
-                });
-
-            /* Set the dimension / position of the help window */
-            helpWindow.setPosition(ConfigManager.getHelpWindowPosition());
-            helpWindow.setDims(ConfigManager.getHelpWindowSize());
-
-            helpWindow.draw();
-        } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
-            window.setVisible(true);
-            window.toFront();
         }
 
+        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+        ScilabGUIUtilities.toFront(window);
+
         return instance;
+    }
+
+    /**
+     * Set a default parent window
+     */
+    public void setParentWindow() {
+        this.parentWindow = ScilabWindow.createWindow();
+        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
+        window.setLocation(0, 0);
+        window.setSize(500, 500);
     }
 
     /**
@@ -149,9 +197,25 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             try {
                 browser.displayHomePage();
             } catch (Exception e) {
-                System.err.println("This error should not occured, please report it at bugzilla.scilab.org\n" + e);
+                System.err.println("This error should not occurred, please report it at bugzilla.scilab.org\n" + e);
             }
         }
+    }
+
+    /**
+     * @return the current displayed url as String
+     */
+    public String getCurrentURL() {
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        return browser.getCurrentURL();
+    }
+
+    /**
+     * @return the current displayed url as String
+     */
+    public String getCurrentID() {
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        return browser.getCurrentID();
     }
 
     /**
@@ -231,10 +295,23 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     /**
      * Close the HelpBrowser
      */
-    public void close() {
-        ScilabBridge.close(this);
-        helpTab.close();
+    public void closeHelpBrowser() {
+        saveHelpBrowserState();
         instance = null;
+    }
+
+    /**
+     * Close the HelpBrowser
+     */
+    public static void closeHB() {
+        ((ScilabHelpBrowser) instance).closeHelpBrowser();
+    }
+
+    /**
+     * Close the HelpBrowser
+     */
+    public void close() {
+        ClosingOperationsManager.startClosingOperation((SwingScilabTab) helpTab.getAsSimpleTab());
     }
 
     /**
@@ -307,5 +384,24 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      */
     public TextBox getInfoBar() {
         return helpTab.getInfoBar();
+    }
+
+
+    /**
+     * Save the state of this help browser
+     */
+    public void saveHelpBrowserState() {
+        String id = getCurrentID();
+        if (id != null) {
+            ConfigManager.saveHelpBrowserState(id);
+        }
+    }
+
+    /**
+     * Restore the state of this help browser
+     * @return the last id displayed in the browser
+     */
+    public static String restoreHelpBrowserState() {
+        return ConfigManager.getHelpBrowserState();
     }
 }

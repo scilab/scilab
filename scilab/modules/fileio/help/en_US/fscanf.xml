@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fscanf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fscanf</refname>
     <refpurpose> Converts formatted input read on a file</refpurpose>
@@ -43,32 +40,40 @@
   <refsection>
     <title>Description</title>
     <para>
-    The fscanf functions read character data on the file specified by the
-    <literal>file</literal> argument , interpret it according
-    to a format, and returns the converted results.  </para>
+      This function is obsolete, use preferably the <literal>mfscanf</literal>
+      function which is more efficient and is more compatible with the C
+      <literal>fscanf</literal> procedure.
+    </para>
     <para>
-    The format parameter contains conversion specifications
-    used to interpret the input.
-  </para>
+      The fscanf functions read character data on the file specified by the
+      <literal>file</literal> argument , interpret it according
+      to a format, and returns the converted results.  
+    </para>
     <para>
-    The format parameter can contain
-    white-space characters (blanks, tabs, newline, or formfeed)
-    that, except in the following two cases, read the input up to the
-    next nonwhite-space character. Unless there is a match in the control
-    string, trailing white space (including a newline character) is not
-    read.
-  </para>
+      The format parameter contains conversion specifications
+      used to interpret the input.
+    </para>
+    <para>
+      The format parameter can contain
+      white-space characters (blanks, tabs, newline, or formfeed)
+      that, except in the following two cases, read the input up to the
+      next nonwhite-space character. Unless there is a match in the control
+      string, trailing white space (including a newline character) is not
+      read.
+    </para>
     <itemizedlist>
       <listitem>
         <para>Any character except % (percent sign), which must match the next character of the input stream.</para>
       </listitem>
       <listitem>
-        <para>A conversion specification that directs the conversion of the next input field. see <link linkend="scanf_conversion">scanf_conversion</link> for details.</para>
+        <para>
+          A conversion specification that directs the conversion of the next input field. see <link linkend="scanf_conversion">scanf_conversion</link> for details.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="printf">printf</link>

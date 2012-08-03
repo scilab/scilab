@@ -19,7 +19,6 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "Scierror.h"
@@ -30,8 +29,8 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "WindowList.h"
 #include "warningmode.h"
+#include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
@@ -40,8 +39,8 @@ static BOOL loadedDep = FALSE;
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname);
-static int sci_toprint_two_rhs(const char *fname);
+static int sci_toprint_one_rhs(void* _pvCtx, const char *fname);
+static int sci_toprint_two_rhs(void* _pvCtx, const char *fname);
 
 /*--------------------------------------------------------------------------*/
 int sci_toprint(char *fname, unsigned long l)
@@ -57,34 +56,35 @@ int sci_toprint(char *fname, unsigned long l)
 
     if (Rhs == 1)
     {
-        return sci_toprint_one_rhs(fname);
+        return sci_toprint_one_rhs(pvApiCtx, fname);
     }
     else
     {
-        return sci_toprint_two_rhs(fname);
+        return sci_toprint_two_rhs(pvApiCtx, fname);
     }
     return 0;
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname)
+static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(_pvCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(_pvCtx, piAddressVarOne))
     {
         char *fileName = NULL;
         BOOL iRet = FALSE;
 
-        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &fileName) == 0)
+        if (getAllocatedSingleString(_pvCtx, piAddressVarOne, &fileName) == 0)
         {
             char *fullName = getFullFilename(fileName);
 
@@ -97,7 +97,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     {
                         iRet = booltoBOOL(CallScilabBridge::printFile(getScilabJavaVM(), fullName));
                     }
-                    catch(const GiwsException::JniException & e)
+                    catch (const GiwsException::JniException & e)
                     {
                         FREE(fullName);
                         fullName = NULL;
@@ -118,9 +118,9 @@ static int sci_toprint_one_rhs(const char *fname)
                 fullName = NULL;
             }
 
-            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
+            createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+            AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+            ReturnArguments(_pvCtx);
         }
         else
         {
@@ -133,7 +133,7 @@ static int sci_toprint_one_rhs(const char *fname)
         {
             double dValue = 0.;
 
-            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
+            if (!getScalarDouble(_pvCtx, piAddressVarOne, &dValue))
             {
                 int num_win = (int)dValue;
                 BOOL iRet = FALSE;
@@ -144,7 +144,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     return 0;
                 }
 
-                if (!sciIsExistingFigure((int)num_win))
+                if (getFigureFromIndex((int) num_win) == NULL)
                 {
                     Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
                     return 0;
@@ -152,17 +152,17 @@ static int sci_toprint_one_rhs(const char *fname)
 
                 try
                 {
-                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex((int) num_win), FALSE, FALSE));
                 }
-                catch(const GiwsException::JniException & e)
+                catch (const GiwsException::JniException & e)
                 {
                     Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
                     return 0;
                 }
 
-                createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
+                createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                ReturnArguments(_pvCtx);
             }
             else
             {
@@ -182,31 +182,34 @@ static int sci_toprint_one_rhs(const char *fname)
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_two_rhs(const char *fname)
+static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(_pvCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(_pvCtx, 2, &piAddressVarTwo);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
-    if (isStringType(pvApiCtx, piAddressVarOne))
+    if (isStringType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarTwo))
+        if (isScalar(_pvCtx, piAddressVarTwo))
         {
-            if (isStringType(pvApiCtx, piAddressVarTwo))
+            if (isStringType(_pvCtx, piAddressVarTwo))
             {
                 char *pageHeader = NULL;
                 char **pStVarOne = NULL;
@@ -217,10 +220,11 @@ static int sci_toprint_two_rhs(const char *fname)
                 int i = 0;
                 char *lines = NULL;
 
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, NULL, NULL);
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, NULL, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -239,10 +243,11 @@ static int sci_toprint_two_rhs(const char *fname)
                     return 0;
                 }
 
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, NULL);
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -276,7 +281,7 @@ static int sci_toprint_two_rhs(const char *fname)
                     }
                 }
 
-                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
+                sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
                 if (lenStVarOne)
                 {
                     FREE(lenStVarOne);
@@ -286,6 +291,7 @@ static int sci_toprint_two_rhs(const char *fname)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -310,7 +316,7 @@ static int sci_toprint_two_rhs(const char *fname)
                 }
                 freeArrayOfString(pStVarOne, mnOne);
 
-                if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pageHeader) == 0)
+                if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &pageHeader) == 0)
                 {
                     BOOL iRet = FALSE;
 
@@ -319,7 +325,7 @@ static int sci_toprint_two_rhs(const char *fname)
                         iRet = booltoBOOL(CallScilabBridge::printString(getScilabJavaVM(), lines, pageHeader));
                     }
 
-                    catch(const GiwsException::JniException & e)
+                    catch (const GiwsException::JniException & e)
                     {
                         freeAllocatedSingleString(pageHeader);
                         if (lines)
@@ -339,9 +345,9 @@ static int sci_toprint_two_rhs(const char *fname)
                         lines = NULL;
                     }
 
-                    createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                    LhsVar(1) = Rhs + 1;
-                    PutLhsVar();
+                    createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                    AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                    ReturnArguments(_pvCtx);
                 }
                 else
                 {
@@ -366,14 +372,14 @@ static int sci_toprint_two_rhs(const char *fname)
             return 0;
         }
     }
-    else if (isDoubleType(pvApiCtx, piAddressVarOne))
+    else if (isDoubleType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarOne))
+        if (isScalar(_pvCtx, piAddressVarOne))
         {
             int num_win = 0;
             double dValue = 0.;
 
-            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
+            if (!getScalarDouble(_pvCtx, piAddressVarOne, &dValue))
             {
                 num_win = (int)dValue;
 
@@ -395,15 +401,15 @@ static int sci_toprint_two_rhs(const char *fname)
                 return 0;
             }
 
-            if (isStringType(pvApiCtx, piAddressVarTwo))
+            if (isStringType(_pvCtx, piAddressVarTwo))
             {
                 BOOL iRet = FALSE;
 
-                if (isScalar(pvApiCtx, piAddressVarTwo))
+                if (isScalar(_pvCtx, piAddressVarTwo))
                 {
                     char *outputType = NULL;
 
-                    if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &outputType) == 0)
+                    if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &outputType) == 0)
                     {
                         if ((strcmp(outputType, "pos") == 0) || (strcmp(outputType, "gdi") == 0))
                         {
@@ -411,14 +417,14 @@ static int sci_toprint_two_rhs(const char *fname)
                             {
                                 if (strcmp(outputType, "pos") == 0)
                                 {
-                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE));
+                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), TRUE, FALSE));
                                 }
                                 else
                                 {
-                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
+                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), FALSE, FALSE));
                                 }
                             }
-                            catch(const GiwsException::JniException & e)
+                            catch (const GiwsException::JniException & e)
                             {
                                 Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
                                          e.getJavaExceptionName().c_str());
@@ -426,9 +432,9 @@ static int sci_toprint_two_rhs(const char *fname)
                                 return 0;
                             }
 
-                            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-                            LhsVar(1) = Rhs + 1;
-                            PutLhsVar();
+                            createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
+                            AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
+                            ReturnArguments(_pvCtx);
                         }
                         else
                         {

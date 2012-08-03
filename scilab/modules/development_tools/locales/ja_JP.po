@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 08:21+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-07-20 15:34+0000\n"
+"Last-Translator: Hiroshi <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -24,12 +24,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s: 入力引数の数が間違っています: %d から %d の範囲で指定してください."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　文字列の行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -76,9 +76,17 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 負でない整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 空でない行列を指定してください.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
@@ -101,8 +109,8 @@ msgid ""
 msgstr "%s: アサーションが失敗しました: 予定のエラー番号は %d でしたが,計算されたエラー番号は %d でした."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 論理値行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
@@ -192,6 +200,12 @@ msgstr "%s はインストール済みのモジュールまたはツールボッ
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "参照先ファイル (%s) が存在しません"
+
+#, c-format
+msgid ""
+"The file '%s' is not following the XUnit XML format. Root tag expected "
+"'testsuites"
+msgstr "ファイル'%s'は、XUnit XMLフォーマットに従っていません。ルートはテストスイートを想定しました"
 
 #
 # File: macros/testexamples.sci, line: 17

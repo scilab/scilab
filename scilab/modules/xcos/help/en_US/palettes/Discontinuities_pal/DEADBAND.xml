@@ -17,295 +17,284 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="DEADBAND"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DEADBAND">
   <refnamediv>
     <refname>DEADBAND</refname>
-
     <refpurpose>Deadband</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/DEADBAND.png"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../../images/palettes/DEADBAND.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Contents_DEADBAND">
     <title>Contents</title>
-
     <itemizedlist>
       <listitem>
-        <para><link linkend="DEADBAND">Deadband</link></para>
+        <para>
+          <link linkend="DEADBAND">Deadband</link>
+        </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
           <listitem>
-            <para><xref linkend="Palette_DEADBAND">Palette</xref></para>
+            <para>
+              <xref linkend="Palette_DEADBAND">Palette</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref
-            linkend="Description_DEADBAND">Description</xref></para>
+            <para>
+              <xref linkend="Description_DEADBAND">Description</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Dialogbox_DEADBAND">Dialog box</xref></para>
+            <para>
+              <xref linkend="Dialogbox_DEADBAND">Dialog box</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Defaultproperties_DEADBAND">Default
-            properties</xref></para>
+            <para>
+              <xref linkend="Defaultproperties_DEADBAND">Default
+                properties
+              </xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Example_DEADBAND">Example</xref></para>
+            <para>
+              <xref linkend="Example_DEADBAND">Example</xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Interfacingfunction_DEADBAND">Interfacing
-            function</xref></para>
+            <para>
+              <xref linkend="Interfacingfunction_DEADBAND">Interfacing
+                function
+              </xref>
+            </para>
           </listitem>
-
           <listitem>
-            <para><xref linkend="Computationalfunction_DEADBAND">Computational
-            function</xref></para>
-          </listitem>
-
-          <listitem>
-            <para><xref linkend="Authors_DEADBAND">Authors</xref></para>
+            <para>
+              <xref linkend="Computationalfunction_DEADBAND">Computational
+                function
+              </xref>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_DEADBAND">
     <title>Palette</title>
-
     <itemizedlist>
       <listitem>
-        <para><link linkend="discontinuities_pal">Discontinuities
-        palette</link></para>
+        <para>
+          <link linkend="discontinuities_pal">Discontinuities
+            palette
+          </link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_DEADBAND">
     <title>Description</title>
-
     <para>The Dead Band block provides a region of zero output.</para>
-
     <para>It's a range of inputs for which the output remains unchanged.
-    Outside that range there is a linear relationship between the deadband
-    input u(k) and the dead band output v(k).</para>
-
+      Outside that range there is a linear relationship between the deadband
+      input u(k) and the dead band output v(k).
+    </para>
     <para>Below is shown a graph of a particular deadband:</para>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../examples/discontinuities_pal/en_US/deadband_desc_en_US.png"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/en_US/deadband_desc_en_US.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
-
+      </inlinemediaobject>
+    </para>
     <para>It is defined by:</para>
-  
-        
     <para>
       <latex><![CDATA[
         v\left(k\right)=\begin{cases}u\left(k\right)-c_{S} & \textrm{ for }u\left(k\right)<c_{S}\\0 & \textrm{ for }c_{S}\leq u\left(k\right)\leq c_{E}\\u\left(k\right)-c_{E} & \textrm{ for }u\left(k\right)>c_{E}
         \end{cases}
       ]]></latex>
     </para>
-    
     <para>Where </para>
-    
-    <para><latex><![CDATA[c_{E}>c_{S}]]></latex></para>
-    
+    <para>
+      <latex><![CDATA[c_{E}>c_{S}]]></latex>
+    </para>
     <para>When the input u(k) is between Cs and CE, the output v(k) is zero.
-    When the input is greater than or equal to the upper limit CE, the output
-    is the input minus the upper limit. When the input is less than or equal
-    to the lower limit Cs, the output is the input minus the lower
-    limit.</para>
+      When the input is greater than or equal to the upper limit CE, the output
+      is the input minus the upper limit. When the input is less than or equal
+      to the lower limit Cs, the output is the input minus the lower
+      limit.
+    </para>
   </refsection>
-
   <refsection id="Dialogbox_DEADBAND">
     <title>Dialog box</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../gui/discontinuities_pal/en_US/DEADBAND_gui.png"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../gui/discontinuities_pal/en_US/DEADBAND_gui.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
-
-    <para></para>
-
+      </inlinemediaobject>
+    </para>
+    <para/>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">End of dead band</emphasis></para>
-
+        <para>
+          <emphasis role="bold">End of dead band</emphasis>
+        </para>
         <para>The upper limit of the dead band.</para>
-
         <para>Properties : Type 'vec' of size 1</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">Start of dead band</emphasis></para>
-
+        <para>
+          <emphasis role="bold">Start of dead band</emphasis>
+        </para>
         <para>The lower limit of the dead band.</para>
-
         <para>Properties : Type 'vec' of size 1</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">zero crossing</emphasis></para>
-
+        <para>
+          <emphasis role="bold">zero crossing</emphasis>
+        </para>
         <para>Select to enable zero crossing detection to detect when the
-        limits are reached.</para>
-
+          limits are reached.
+        </para>
         <para>Properties : Type 'vec' of size 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_DEADBAND">
     <title>Default properties</title>
-
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> yes
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> yes
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">regular inputs:</emphasis></para>
-
-        <para><emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis></para>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type
+            1
+          </emphasis>
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">regular outputs:</emphasis></para>
-
-        <para><emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis></para>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type
+            1
+          </emphasis>
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            inputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            outputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>
+          no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>
+          no
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">name of computational function:</emphasis>
-        <emphasis role="italic">deadband</emphasis></para>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">deadband</emphasis>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_DEADBAND">
-    <title>Deadband Example</title>
-
+    <title>Example</title>
     <para>The following is an example of a system with deadband.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/en_US/deadband_en_US.xcos">
-          Open this example in Xcos
+        Open this example in Xcos
       </link>
     </para>
-
     <para>The input is a sine wave. The magnitude is set to 2, the frequency
-    to 1.25 and the phase to 0. The Deadband block has the following
-    parameters:</para>
-    
-    <para><latex><![CDATA[\begin{cases}c{}_{S} & =-1.5\\c_{E} & =-1\end{cases}]]></latex></para>
-    
+      to 1.25 and the phase to 0. The Deadband block has the following
+      parameters:
+    </para>
+    <para>
+      <latex><![CDATA[\begin{cases}c{}_{S} & =-1.5\\c_{E} & =-1\end{cases}]]></latex>
+    </para>
     <para>This plot shows the effect of the dead band on the sine wave.</para>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../examples/discontinuities_pal/en_US/deadband_c_en_US.png"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/en_US/deadband_c_en_US.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Interfacingfunction_DEADBAND">
     <title>Interfacing function</title>
-
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Misc/DEADBAND.sci">SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</link></para> 
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Misc/DEADBAND.sci">SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_DEADBAND">
     <title>Computational function</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/deadband.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_DEADBAND">
-    <title>Authors</title>
-
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-
-    <para><emphasis role="bold">Zhour Madini-Zouine</emphasis> -
-    DIGITEO</para>
-
-    <para></para>
   </refsection>
 </refentry>

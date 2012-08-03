@@ -163,7 +163,7 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Imports</Filter>
     </None>
     <None Include="Output_stream_Import.def">
@@ -177,10 +177,11 @@
     <None Include="elementary_functions_Import.def">
       <Filter>Imports</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libf2c.lib" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

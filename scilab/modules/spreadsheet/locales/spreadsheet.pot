@@ -14,59 +14,59 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:35+0100\n"
 
-# File: sci_gateway/c/sci_xls_open.c, line: 91
-# File: sci_gateway/c/sci_xls_open.c, line: 107
+# File: sci_gateway/c/sci_xls_open.c, line: 95
+# File: sci_gateway/c/sci_xls_open.c, line: 115
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 115
+# File: sci_gateway/c/sci_xls_open.c, line: 121
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 120
+# File: sci_gateway/c/sci_xls_open.c, line: 130
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 130
+# File: sci_gateway/c/sci_xls_open.c, line: 144
 #, c-format
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 156
+# File: sci_gateway/c/sci_xls_open.c, line: 178
 #, c-format
 msgid "%s: Not an ole2 file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 161
+# File: sci_gateway/c/sci_xls_open.c, line: 182
 #, c-format
 msgid "%s: The file has no Workbook directory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 166
+# File: sci_gateway/c/sci_xls_open.c, line: 186
 # File: sci_gateway/c/sci_xls_read.c, line: 62
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 171
+# File: sci_gateway/c/sci_xls_open.c, line: 190
 #, c-format
 msgid "%s: Incorrect or corrupted file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 176
+# File: sci_gateway/c/sci_xls_open.c, line: 194
 #, c-format
 msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr ""
@@ -109,55 +109,55 @@ msgid "LOGGER-Default: %s%s"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 99
+# File: src/c/ripole/ole.c, line: 97
 #, c-format
 msgid "ripOLE: %s\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 249
+# File: src/c/ripole/ole.c, line: 244
 #, c-format
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 331
+# File: src/c/ripole/ole.c, line: 323
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 345
+# File: src/c/ripole/ole.c, line: 337
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 360
+# File: src/c/ripole/ole.c, line: 356
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 370
+# File: src/c/ripole/ole.c, line: 371
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 386
+# File: src/c/ripole/ole.c, line: 394
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 976
+# File: src/c/ripole/ole.c, line: 960
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1030
+# File: src/c/ripole/ole.c, line: 1020
 #, c-format
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
@@ -165,51 +165,51 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1046
-# File: src/c/ripole/ole.c, line: 1053
+# File: src/c/ripole/ole.c, line: 1034
+# File: src/c/ripole/ole.c, line: 1045
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1058
+# File: src/c/ripole/ole.c, line: 1053
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1312
+# File: src/c/ripole/ole.c, line: 1334
 #, c-format
 msgid ""
 "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1390
+# File: src/c/ripole/ole.c, line: 1418
 #, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1441
+# File: src/c/ripole/ole.c, line: 1472
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1457
+# File: src/c/ripole/ole.c, line: 1491
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1503
+# File: src/c/ripole/ole.c, line: 1540
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1560
+# File: src/c/ripole/ole.c, line: 1597
 #, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
@@ -217,13 +217,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1570
+# File: src/c/ripole/ole.c, line: 1608
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1584
+# File: src/c/ripole/ole.c, line: 1622
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
@@ -286,57 +286,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ripole.c, line: 130
-# File: src/c/ripole/ripole.c, line: 139
-#, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 206
+# File: src/c/ripole/ripole.c, line: 72
 #, c-format
 msgid "Decoding filename=%s"
 msgstr ""
 
 #
-# File: src/c/ripole/ripole.c, line: 285
+# File: src/c/ripole/ripole.c, line: 150
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ripole.c, line: 319
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 346
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 349
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 352
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 355
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr ""
-
-#
-# File: src/c/ripole/ripole.c, line: 399
+# File: src/c/ripole/ripole.c, line: 187
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr ""
@@ -346,6 +308,11 @@ msgstr ""
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr ""
 
+# File: demos/spreadsheet.dem.gateway.sce, line: 9
+msgid "Spreadsheet"
+msgstr ""
+
+#
 # File: demos/spreadsheet.dem.gateway.sce, line: 11
 msgid "Read a xls file"
 msgstr ""

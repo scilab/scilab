@@ -14,7 +14,6 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "do_xxprintf.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
@@ -62,16 +61,18 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         int *piAddressVarK = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, K, &piAddressVarK);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
         sciErr = getVarType(pvApiCtx, piAddressVarK, &iTypeK);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -83,34 +84,36 @@ int sci_msprintf(char *fname, unsigned long fname_len)
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (checkVarDimension(pvApiCtx, piAddressVarOne, 1, 1) != 1)
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &ptrFormat))
     {
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     if (ptrFormat == NULL)
     {
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
     else
@@ -123,18 +126,18 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
 
     lenghtFormat = (int)strlen(ptrFormat);
-    for(i = 0; i < lenghtFormat; i++)
+    for (i = 0; i < lenghtFormat; i++)
     {
         if (ptrFormat[i] == PERCENT_CHAR)
         {
             NumberPercent++;
-            if ( (i+1 < lenghtFormat) && (ptrFormat[i+1] == PERCENT_CHAR))
+            if ( (i + 1 < lenghtFormat) && (ptrFormat[i + 1] == PERCENT_CHAR))
             {
                 NumberPercent--;
                 i++;
@@ -150,29 +153,31 @@ int sci_msprintf(char *fname, unsigned long fname_len)
             ptrFormat = NULL;
         }
 
-        Scierror(999,_("%s: Wrong number of input arguments: at most %d expected.\n"), fname, NumberPercent);
+        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), fname, NumberPercent);
         return 0;
     }
 
-    if( Rhs > 1 )
+    if ( Rhs > 1 )
     {
-        for( i = 2 ; i <= Rhs ; i++ )
+        for ( i = 2 ; i <= Rhs ; i++ )
         {
             int iRows = 0;
             int iCols = 0;
             int *piAddressVarI = NULL;
 
             sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddressVarI);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
                 return 0;
             }
 
             sciErr = getVarDimension(pvApiCtx, piAddressVarI, &iRows, &iCols);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
                 return 0;
             }
             NumberCols += iCols;
@@ -186,7 +191,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
             FREE(ptrFormat);
             ptrFormat = NULL;
         }
-        Scierror(999,_("%s: Wrong number of input arguments: data doesn't fit with format.\n"), fname);
+        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), fname);
         return 0;
     }
 
@@ -198,7 +203,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
 
     while (1)
     {
-        if ((rval = do_xxprintf("msprintf",(FILE *) 0, ptrFormat, Rhs, 1, lcount, (char **) &pStrs)) < 0)
+        if ((rval = do_xxprintf("msprintf", (FILE *) 0, ptrFormat, Rhs, 1, lcount, (char **) &pStrs)) < 0)
         {
             break;
         }
@@ -213,14 +218,14 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                 ptrFormat = NULL;
             }
 
-            Scierror(999,_("%s: Wrong value of input argument %d: data doesn't fit with format.\n"),fname,1);
+            Scierror(999, _("%s: Wrong value of input argument #%d: data doesn't fit with format.\n"), fname, 1);
             return 0;
         }
 
         pStrTmp1 = pStrTmp;
         while (*pStrTmp != '\0')
         {
-            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) ==0)
+            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) == 0)
             {
                 k = (int)(pStrTmp - pStrTmp1);
                 if (!cat_to_last)
@@ -246,12 +251,12 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                                 ptrFormat = NULL;
                             }
 
-                            Scierror(999,_("%s: No more memory.\n"),fname);
+                            Scierror(999, _("%s: No more memory.\n"), fname);
                             return 0;
                         }
                     }
 
-                    pOutputStrings[mOut] = (char*)MALLOC((k+1) * sizeof(char));
+                    pOutputStrings[mOut] = (char*)MALLOC((k + 1) * sizeof(char));
                     if (pOutputStrings[mOut] == NULL)
                     {
                         if (ptrFormat)
@@ -259,8 +264,8 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                             FREE(ptrFormat);
                             ptrFormat = NULL;
                         }
-
-                        Scierror(999,_("%s: No more memory.\n"),fname);
+                        freeArrayOfString(pOutputStrings, mOut * nOut);
+                        Scierror(999, _("%s: No more memory.\n"), fname);
                         return 0;
                     }
                     strncpy(pOutputStrings[mOut], pStrTmp1, k);
@@ -271,7 +276,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                 {
                     /* cat to previous line */
                     ll = (int)strlen(pOutputStrings[mOut - 1]);
-                    pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll)*sizeof(char));
+                    pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll) * sizeof(char));
                     if (pOutputStrings[mOut - 1] == NULL)
                     {
                         if (ptrFormat)
@@ -280,7 +285,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                             ptrFormat = NULL;
                         }
 
-                        Scierror(999,_("%s: No more memory.\n"),fname);
+                        Scierror(999, _("%s: No more memory.\n"), fname);
                         return 0;
                     }
                     strncpy(&(pOutputStrings[mOut - 1][ll]), pStrTmp1, k);
@@ -307,7 +312,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     nmax += blk;
                     if (pOutputStrings)
                     {
-                        pOutputStrings = (char **) REALLOC(pOutputStrings, nmax*sizeof(char **));
+                        pOutputStrings = (char **) REALLOC(pOutputStrings, nmax * sizeof(char **));
                         if (pOutputStrings == NULL)
                         {
                             if (ptrFormat)
@@ -316,7 +321,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                                 ptrFormat = NULL;
                             }
 
-                            Scierror(999,_("%s: No more memory.\n"),fname);
+                            Scierror(999, _("%s: No more memory.\n"), fname);
                             return 0;
                         }
                     }
@@ -331,7 +336,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                                 ptrFormat = NULL;
                             }
 
-                            Scierror(999,_("%s: No more memory.\n"),fname);
+                            Scierror(999, _("%s: No more memory.\n"), fname);
                             return 0;
                         }
                     }
@@ -345,8 +350,8 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                         FREE(ptrFormat);
                         ptrFormat = NULL;
                     }
-
-                    Scierror(999,_("%s: No more memory.\n"), fname);
+                    freeArrayOfString(pOutputStrings, mOut * nOut);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }
                 strncpy(pOutputStrings[mOut], pStrTmp1, k);
@@ -366,7 +371,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                         ptrFormat = NULL;
                     }
 
-                    Scierror(999,_("%s: No more memory.\n"),fname);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }
                 strncpy(&(pOutputStrings[mOut - 1][ll]), pStrTmp1, k);
@@ -396,9 +401,10 @@ int sci_msprintf(char *fname, unsigned long fname_len)
 
     /* lstr must not be freed */
     freeArrayOfString(pOutputStrings, mOut * nOut);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
     else
     {

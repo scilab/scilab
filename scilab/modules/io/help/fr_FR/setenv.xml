@@ -11,13 +11,11 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="setenv">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>setenv</refname>
     <refpurpose>fixe la valeur d'une variable
-  d'environnement</refpurpose>
+      d'environnement
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -30,21 +28,24 @@
         <term>nom</term>
         <listitem>
           <para>chaîne de caractères contenant le nom de la variable
-          d'environnement </para>
+            d'environnement 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>valeur</term>
         <listitem>
           <para>chaîne de caractères contenant la valeur de la variable
-          d'environnement</para>
+            d'environnement
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rep</term>
         <listitem>
           <para>retourne %T si la variable d'environnement a ete cree ou %F
-          dans le cas contraire</para>
+            dans le cas contraire
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -61,15 +62,11 @@ getenv('chaine')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="getenv">getenv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

@@ -100,7 +100,7 @@ function remList = atomsRemoveList(packages,section)
 
         if isempty(package_versions(i)) then
 
-            // No version is mention :
+            // No version is mentioned :
             // → uninstall all version of this toolbox (if we have the right, of
             // course)
             this_package_versions = atomsGetInstalledVers(package_names(i),section);
@@ -130,7 +130,6 @@ function remList = atomsRemoveList(packages,section)
                     end
 
                 end
-
             else
 
                 // The packaging version is mentioned :
@@ -149,15 +148,12 @@ function remList = atomsRemoveList(packages,section)
             end
 
         end
-
     end
 
     // Second Step : List the packages that depends of the uninstalled packages
     // =========================================================================
-
     packages = remList;
     for i=1:size(packages(:,1),"*")
-
         this_package_name    = packages(i,3);
         this_package_version = packages(i,4);
         this_package_section = packages(i,5);
@@ -208,8 +204,7 @@ function remList = atomsRemoveList(packages,section)
                     continue
                 end
             end
-
-            if find(remList(:,3)+" - "+remList(:,4) == this_child_name+" - "+this_child_version) == [] then
+            if find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == this_child_name+" - "+this_child_version+" - "+this_package_section) == [] then
                 remList = [ remList ; "-" "C" this_child_name this_child_version this_package_section ]; // C stands for "Child"
             end
 
@@ -219,9 +214,7 @@ function remList = atomsRemoveList(packages,section)
 
     // Third Step : Loop on childs check if we can remove it or not
     // =========================================================================
-
     packages = remList(find(remList(:,2)=="C"),:);
-
     for i=1:size(remList(:,1),"*")
 
         // This is not a Child package :
@@ -268,7 +261,6 @@ function remList = atomsRemoveList(packages,section)
                 continue;
             end
         end
-
     end
 
 endfunction

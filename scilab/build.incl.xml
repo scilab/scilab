@@ -15,18 +15,12 @@
   <property name="classes.dir" location="${build.dir}/classes"/>
   <!-- Where builded test classes will be generated -->
   <property name="classes.test.dir" location="${build.test.dir}/classes"/>
+  <property name="instrumented.classes.test.dir" location="${build.test.dir}/instrumented-classes"/>
   <!-- Where we store cache files -->
   <property name="cache.dir" location="${build.dir}/cachefile"/>
   <!-- Where we can find the sources -->
   <property name="src.dir" location="src/java/"/>
-  <!-- Where we can find the test sources -->
-  <property name="src.test.dir" location="tests/java/"/>
-  <!-- Check style definitions -->
-  <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
-  <property name="checkstyle.stylesheet" value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl"/>
-  <property name="checkstyle.report.dir" value="${build.dir}/checkstyle"/>
-  <property name="checkstyle.xml.report.file" value="${checkstyle.report.dir}/checkstyle_errors.xml"/>
-  <property name="checkstyle.html.report.file" value="${checkstyle.report.dir}/checkstyle_errors.htm"/>
+  
   <property name="modules.dir" value="${base.dir}/modules"/>
   <!-- JAR names -->
   <property file="${base.dir}/scilab-lib.properties"/>
@@ -35,22 +29,18 @@
   <property file="${base.dir}/scilab.properties"/>
   <!-- Set ${SCIVERSION} -->
   <property file="${base.dir}/Version.incl"/>
+  
   <path id="checkstyle.classpath">
     <pathelement location="${checkstyle.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${commons-beanutils.jar}"/>
     <pathelement location="${antlr.jar}"/>
   </path>
-  <path id="unittest.classpath">
-    <pathelement location="${testng.jar}"/>
-    <pathelement location="${bsh.jar}"/>
-    <pathelement location="${junit.jar}"/>
-    <pathelement location="${qdox.jar}"/>
-  </path>
+  
   <path id="compile.classpath">
     <pathelement location="${library.types.dir}/${library.types.name}"/>
-    <pathelement location="${library.types.dir}/${library.output_stream.name}"/>
     <pathelement location="${library.graph.dir}/${library.graph.name}"/>
+    <pathelement location="${library.graphic_objects.dir}/${library.graphic_objects.name}"/>
     <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
     <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
     <pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
@@ -65,18 +55,20 @@
     <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
     <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
     <pathelement location="${library.core.dir}/${library.core.name}"/>
+    <pathelement location="${library.preferences.dir}/${library.preferences.name}"/>
     <!-- Not use at build time but used for unitary tests -->
     <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
     <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
     <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${flexdock.jar}"/>
-    <pathelement location="${gluegen.jar}"/>
+    <pathelement location="${gluegen2.jar}"/>
     <pathelement location="${jrosetta-API.jar}"/>
     <pathelement location="${jrosetta-engine.jar}"/>
-    <pathelement location="${jogl.jar}"/>
+    <pathelement location="${jogl2.jar}"/>
     <pathelement location="${jhdf5.jar}"/>
     <pathelement location="${jhall.jar}"/>
     <pathelement location="${jgraphx.jar}"/>
+    <pathelement location="${scirenderer.jar}"/>
     <!-- Only usefull for the documentation -->
     <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
     <pathelement location="${batik.jar}"/>
@@ -86,53 +78,14 @@
     <pathelement location="${fop.jar}"/>
     <pathelement location="${jlatexmath-fop.jar}"/>
     <pathelement location="${avalon-framework.jar}"/>
-    <pathelement location="${avalon-framework-impl.jar}"/>
     <pathelement location="${jeuclid-core.jar}"/>
     <pathelement location="${jlatexmath.jar}"/>
   </path>
-  <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
-  <!-- Checkstyle process -->
-  <target name="checkstyle" depends="checkstyle-init" description="Generates a report of code convention violations.">
-    <checkstyle config="${checkstyle.config.file}" failOnViolation="false">
-      <fileset dir="${src.dir}" includes="**/*.java"/>
-      <!-- Location of cache-file. -->
-      <property key="checkstyle.cache.file" file="${cache.dir}"/>
-      <formatter type="plain"/>
-      <formatter type="xml" toFile="${checkstyle.xml.report.file}"/>
-    </checkstyle>
-    <xslt in="${checkstyle.xml.report.file}" out="${checkstyle.html.report.file}" style="${checkstyle.stylesheet}"/>
-  </target>
-  <!-- Create the build directory -->
-  <target name="checkstyle-init">
-    <mkdir dir="${checkstyle.report.dir}"/>
-  </target>
-  <!-- Delete the build directory -->
-  <target name="checkstyle-clean">
-    <delete dir="${checkstyle.report.dir}"/>
-  </target>
-  <target name="test" depends="existing-tests, compile-test, validate" if="test-present">
-    <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask"/>
-    <testng verbose="2" haltonfailure="true">
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
-        <pathelement location="${classes.test.dir}"/>
-      </classpath>
-      <classfileset dir="${build.test.dir}" includes="**/*.class"/>
-      <!-- Where ${basedir} is the module base directory -->
-      <env key="SCI" value="${basedir}/../.."/>
-      <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
-    </testng>
-  </target>
-  <target name="validate">
-    <!-- Empty target to be override by other build.xml -->
-  </target>
   <target name="init">
     <!-- Check the version of Java. If it changes after the configure
          or if there is a mistake in the build system
-     -->
-    <fail message="JDK 1.6 or 1.7 required">
+    -->
+    <fail message="JDK 1.6 or 1.7 required. Found ${ant.java.version}">
       <condition>
         <not>
           <or>
@@ -154,27 +107,13 @@
     <delete dir="${build.jar.dir}"/>
     <delete file="${build.jar.dir}/${library.name}"/>
   </target>
-  <!-- Clean test -->
-  <target name="clean-test" description="Clean test files">
-    <delete dir="${build.test.dir}"/>
-  </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources" depends="init">
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
-  </target>
-  <target name="existing-tests">
-    <available property="test-present" file="${src.test.dir}"/>
-  </target>
-  <!-- Compile test sources -->
-  <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
-    <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6">
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
-      </classpath>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6">
+      <compilerarg value="-Xlint"/>
     </javac>
   </target>
+  
   <!-- Create the jar -->
   <target name="jar" description="Build the jar file" depends="compile">
     <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
@@ -192,4 +131,8 @@
       </manifest>
     </jar>
   </target>
+  
+  <import file="build.qa.incl.xml"/>
+  
+  
 </project>

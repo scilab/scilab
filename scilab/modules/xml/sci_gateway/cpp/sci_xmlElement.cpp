@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -28,13 +27,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlElement(char * fname, unsigned long fname_len)
+int sci_xmlElement(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc = 0;
-    XMLElement * elem = 0;
+    XMLElement *elem = 0;
     SciErr err;
-    int * addr = 0;
-    char * name = 0;
+    int *addr = 0;
+    char *name = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);
@@ -43,16 +42,17 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr));
+    doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -63,27 +63,32 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, addr, &name);
+    if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (!strlen(name) || xmlValidateName((const xmlChar *)name, 0))
     {
         freeAllocatedSingleString(name);
-        Scierror(999, gettext("%s: Bad input argument #%i: A valid XML name expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Bad input argument #%d: A valid XML name expected.\n"), fname, 2);
         return 0;
     }
 
     elem = new XMLElement(*doc, name);
     freeAllocatedSingleString(name);
-    if (!elem->createOnStack(Rhs + 1))
+    if (!elem->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }
@@ -93,4 +98,5 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

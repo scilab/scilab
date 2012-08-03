@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spanplus">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spanplus</refname>
     <refpurpose> sum of subspaces</refpurpose>
@@ -54,21 +51,27 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes a  basis X such that:</para>
+      computes a  basis X such that:
+    </para>
     <para>
-    the first <literal>dima</literal> columns of <literal>X</literal> span Range(<literal>A</literal>)
-    and the following (<literal>dim-dima</literal>) columns make a basis of <literal>A+B</literal>
-    relative to <literal>A</literal>.</para>
+      the first <literal>dima</literal> columns of <literal>X</literal> span Range(<literal>A</literal>)
+      and the following (<literal>dim-dima</literal>) columns make a basis of <literal>A+B</literal>
+      relative to <literal>A</literal>.
+    </para>
     <para>
-    The <literal>dim</literal> first columns of <literal>X</literal> make a basis for <literal>A+B</literal>.</para>
+      The <literal>dim</literal> first columns of <literal>X</literal> make a basis for <literal>A+B</literal>.
+    </para>
     <para>
-    One has the following canonical form for <literal>[A,B]</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+      One has the following canonical form for <literal>[A,B]</literal>:
+    </para>
+    <programlisting role=""><![CDATA[ 
          [*,*]    (dima rows)
 X'*[A,B]=[0,*]    (dim-dima rows)
          [0,0]    
  ]]></programlisting>
-    <para><literal>tol</literal> is an optional argument (see function code).</para>
+    <para>
+      <literal>tol</literal> is an optional argument (see function code).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -81,7 +84,7 @@ dim
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="spaninter">spaninter</link>
@@ -93,9 +96,5 @@ dim
         <link linkend="spantwo">spantwo</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

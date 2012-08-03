@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_dialog">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>x_dialog</refname>
     <refpurpose> boîte de dialogue  </refpurpose>
@@ -18,21 +15,21 @@
         <term>labels  </term>
         <listitem>
           <para>vecteur de chaînes de caractères. Commentaire de la boîte
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>valueini  </term>
         <listitem>
           <para>vecteur de n chaînes de caractères. Valeurs suggérées 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result  </term>
         <listitem>
           <para>vecteur de n chaînes de caractères si le bouton "Ok" est pressé ou [] si "Cancel" a été pressé.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,8 +37,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Crée une boîte de dialogue à plusieurs lignes. 
-  </para>
+      Crée une boîte de dialogue à plusieurs lignes. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -52,7 +49,7 @@ m=evstr(x_dialog('entrer une matrice 3x3',['[0 0 0';'0 0 0';'0 0 0]']))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>

@@ -27,7 +27,6 @@ zh_TW.MsgBoxWebOpen =Can not open web page.
 zh_TW.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but development_tools module is not selected.
 zh_TW.MsgBoxDevToolsRequired2 =Please install development_tools module.
 zh_TW.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
-zh_TW.MsgBoxTclsciRequired1 =You choose to install Scipad but tclsci module is not selected.
 zh_TW.MsgBoxTclsciRequired2 =Please install tclsci module.
 zh_TW.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
 zh_TW.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
@@ -58,16 +57,12 @@ zh_TW.DescriptionUmfpack =UMFPACK for Scilab
 zh_TW.DescriptionCompatFunctions =Compatibility functions
 zh_TW.DescriptionM2sci =M2SCI Toolbox
 zh_TW.DescriptionMatio =MAT File Input/Output Toolbox
-zh_TW.DescriptionTexmacs =Texmacs Interface
+zh_TW.DescriptionExternalObjects =External objects
 zh_TW.DescriptionSound =Sound file handling Toolbox
 zh_TW.DescriptionRandlib =Randlib Toolbox
-zh_TW.DescriptionJavasci =Java Interface with Scilab
 zh_TW.DescriptionMexlib =Mexlib Tools
 zh_TW.DescriptionIntersci =Intersci Toolbox
-zh_TW.DescriptionMaple2sci =Maple to Scilab Toolbox
-zh_TW.DescriptionFortran2sci =Scilab to Fortran Toolbox
 zh_TW.DescriptionTclTK =TCL/TK in Scilab
-zh_TW.DescriptionScipad =Scipad Editor for Scilab
 zh_TW.DescriptionSpreadsheet =Spreadsheet Toolbox
 zh_TW.DescriptionJVM =Java Runtime
 zh_TW.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
@@ -148,9 +143,6 @@ zh_TW.DescriptionAtoms =ATOMS
 ;
 zh_TW.DescriptionHelpScilabCHM =Scilab Help
 zh_TW.ScilabCHM =modules\helptools\chm\scilab_zh_TW_help.chm
-;
-zh_TW.DescriptionHelpScicosCHM =Scicos Help
-zh_TW.ScicosCHM =modules\scicos\chm\scilab_zh_TW_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;

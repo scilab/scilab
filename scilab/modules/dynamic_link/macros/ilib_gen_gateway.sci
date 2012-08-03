@@ -67,7 +67,11 @@ function gateway_filename = ilib_gen_gateway(name,tables)
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end
     [gate,names] = new_names(table);
-    t = [ '#include <mex.h> ';
+    t = [
+          '#ifdef __cplusplus';
+          'extern ""C"" {';
+          '#endif';
+          '#include <mex.h> ';
           '#include <sci_gateway.h>';
           '#include <api_scilab.h>';
           '#include <MALLOC.h>';
@@ -90,7 +94,10 @@ function gateway_filename = ilib_gen_gateway(name,tables)
           '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
           '  }';
           '  return 0;';
-          '}'];
+          '}';
+          '#ifdef __cplusplus';
+          '}';
+          '#endif'];
 
     gateway_filename = path + tname + '.c';
     // first check if we have already a gateway

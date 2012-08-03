@@ -5,13 +5,15 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
+// If previous test did not end properly, restore, else backup config file
+atomsRestoreConfig(%T);
+atomsSaveConfig();
+
 // Do not use the autoload system
-config_autoload = atomsGetConfig("autoloadAddAfterInstall");
-config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
@@ -108,6 +110,6 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoloadAddAfterInstall",config_autoload);
-atomsSetConfig("Verbose" ,config_Verbose);
+atomsRestoreConfig(%T);
+
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

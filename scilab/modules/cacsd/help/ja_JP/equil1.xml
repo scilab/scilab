@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="equil1">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>equil1</refname>
     <refpurpose>行列の平衡 (非負定) の組</refpurpose>
@@ -53,14 +50,21 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>equil1</literal> は次のような <literal>t</literal> を計算します:</para>
-    <para><literal>P1=T*P*T'</literal>  および <literal>Q1=inv(T)'*Q*inv(T)</literal> 
-	は以下のようになります:</para>
-    <para><literal>P1 = diag(S1,S2,0,0)</literal>  および <literal>Q1 = diag(S1,0,S3,0)</literal> 
-	ただし,
-    <literal>S1,S2,S3</literal> は各次元が<literal>siz=[n1,n2,n3]</literal>の正定対角行列です.
-	</para>
-    <para><literal>tol</literal> はSVDのランク定義の閾値です.</para>
+    <para>
+      <literal>equil1</literal> は次のような <literal>t</literal> を計算します:
+    </para>
+    <para>
+      <literal>P1=T*P*T'</literal>  および <literal>Q1=inv(T)'*Q*inv(T)</literal> 
+      は以下のようになります:
+    </para>
+    <para>
+      <literal>P1 = diag(S1,S2,0,0)</literal>  および <literal>Q1 = diag(S1,0,S3,0)</literal> 
+      ただし,
+      <literal>S1,S2,S3</literal> は各次元が<literal>siz=[n1,n2,n3]</literal>の正定対角行列です.
+    </para>
+    <para>
+      <literal>tol</literal> はSVDのランク定義の閾値です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -93,9 +97,5 @@ Q1=clean(inv(T)'*Q*inv(T))
         <link linkend="hankelsv">hankelsv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer 1987</para>
   </refsection>
 </refentry>

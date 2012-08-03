@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="stringbox">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>stringbox</refname>
     <refpurpose>Calcule le rectangle englobant d'un
-  texte ou d'un label.</refpurpose>
+      texte ou d'un label.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
-rect = stringbox( handle )</synopsis>
+      rect = stringbox( handle )
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -20,7 +19,8 @@ rect = stringbox( handle )</synopsis>
         <term>rect</term>
         <listitem>
           <para>matrice 2x4 contenant les coordonées des 4 sommets du
-          rectangle englobant.</para>
+            rectangle englobant.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -33,14 +33,16 @@ rect = stringbox( handle )</synopsis>
         <term>x,y</term>
         <listitem>
           <para>scalaires réels, coordonnées du point en bas à  gauche des
-          chaînes de caractères.</para>
+            chaînes de caractères.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>angle</term>
         <listitem>
           <para>Angle de rotation de la chaîne en degrés autour du point
-          <literal>(x,y)</literal> dans le sens des aiguilles d'une montre.</para>
+            <literal>(x,y)</literal> dans le sens des aiguilles d'une montre.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -65,12 +67,14 @@ rect = stringbox( handle )</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>stringbox</literal> renvoie les positions des quatres sommets du
-    rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
-    que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
-    graphique courante. Le premier sommet correspond à  la coordonnées du
-    texte, le point en bas à  gauche sans rotations, les suivants sont donnés
-    dans le sens des aiguilles d'une montre.</para>
+    <para>
+      <literal>stringbox</literal> renvoie les positions des quatres sommets du
+      rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
+      que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
+      graphique courante. Le premier sommet correspond à  la coordonnées du
+      texte, le point en bas à  gauche sans rotations, les suivants sont donnés
+      dans le sens des aiguilles d'une montre.
+    </para>
     <para>Le résultat est approximatif avec le pilote PostScript.</para>
   </refsection>
   <refsection>
@@ -115,7 +119,7 @@ end;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xstring">xstring</link>
@@ -127,9 +131,5 @@ end;
         <link linkend="xstringb">xstringb</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

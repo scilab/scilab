@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,25 +27,34 @@ namespace org_modules_xml
      *
      * Class to wrap the list of the elements returned by a XPath query
      */
-    class XMLNodeSet : public XMLList
+    class XMLNodeSet:public XMLList
     {
 
         const XMLDocument & doc;
-        xmlNodeSet * nodeSet;
+        xmlNodeSet *nodeSet;
+        xmlXPathObject *xpath;
 
-    public :
-
+public:
         /**
          * Default constructor
          * @param doc the document where the node set is existing
          * @param nodeSet a xmlNodeSet
          */
-        XMLNodeSet(const XMLDocument & doc, xmlNodeSet * nodeSet);
+          XMLNodeSet(const XMLDocument & doc, xmlXPathObject * _xpath);
 
-        ~XMLNodeSet();
+         ~XMLNodeSet();
 
-        const XMLObject * getXMLObjectParent() const;
-        const XMLObject * getListElement(int index);
+        void *getRealXMLPointer() const;
+
+        const char **getContentFromList() const;
+
+        const char **getNameFromList() const;
+
+        void remove() const;
+        void setAttributeValue(const char **prefix, const char **name, const char **value, int lsize) const;
+        void setAttributeValue(const char **name, const char **value, int lsize) const;
+        const XMLObject *getXMLObjectParent() const;
+        const XMLObject *getListElement(int index);
     };
 }
 

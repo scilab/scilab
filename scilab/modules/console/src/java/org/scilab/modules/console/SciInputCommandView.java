@@ -13,7 +13,9 @@
 
 package org.scilab.modules.console;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
@@ -24,18 +26,29 @@ import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
+import javax.swing.InputMap;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.Element;
+import javax.swing.text.PlainView;
+import javax.swing.text.StyledEditorKit;
+import javax.swing.text.View;
+import javax.swing.text.ViewFactory;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
@@ -51,7 +64,7 @@ import com.artenum.rosetta.util.StringConstants;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-public class SciInputCommandView extends ConsoleTextPane implements InputCommandView, CaretListener {
+public class SciInputCommandView extends ConsoleTextPane implements InputCommandView, CaretListener, ViewFactory {
 
     private static final long serialVersionUID = 1L;
     private static final String END_LINE = "\n";
@@ -72,24 +85,39 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private int width = -1;
     private boolean isLatex;
 
+    private List<KeyStroke> keysForHistory;
+
     /**
      * Constructor
      */
     public SciInputCommandView() {
         super();
+
+        setEditorKit(new StyledEditorKit() {
+            public ViewFactory getViewFactory() {
+                return SciInputCommandView.this;
+            }
+        });
+
         setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
 
         // Input command line is not editable when created
         this.setEditable(false);
         ScilabCaret caret = new ScilabCaret(this) {
-                public void mousePressed(MouseEvent e) {
-                    ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
-                    super.mousePressed(e);
-                }
-            };
+            public void mousePressed(MouseEvent e) {
+                ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+                super.mousePressed(e);
+            }
+        };
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
+        setFocusTraversalPolicy(new java.awt.DefaultFocusTraversalPolicy() {
+            public java.awt.Component getComponentAfter(java.awt.Container aContainer, java.awt.Component aComponent) {
+                return SciInputCommandView.this;
+            }
+        });
+        setFocusCycleRoot(true);
     }
 
     /**
@@ -139,8 +167,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         try {
             if (concurrentThread == null) {
                 concurrentThread = Thread.currentThread();
-            }
-            else {
+            } else {
                 concurrentThread.interrupt();
             }
             command = queue.take();
@@ -186,51 +213,56 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // BUG 2510 fix: automatic validation of pasted lines
         this.getDocument().addDocumentListener(new DocumentListener() {
-                public void changedUpdate(DocumentEvent e) {
-                    // Nothing to do in Scilab
-                }
+            public void changedUpdate(DocumentEvent e) {
+                // Nothing to do in Scilab
+            }
 
-                public void insertUpdate(DocumentEvent e) {
-                    // Validates commands if followed by a carriage return
-                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                    if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
-                        EventQueue.invokeLater(new Runnable() {
-                                public void run() {
-                                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                                    console.sendCommandsToScilab(wholeTxt, true, true);
-                                };
-                            });
-                    }
+            public void insertUpdate(DocumentEvent e) {
+                // Validates commands if followed by a carriage return
+                final String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+                    EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            console.sendCommandsToScilab(wholeTxt, true, true);
+                        };
+                    });
                 }
+            }
 
-                public void removeUpdate(DocumentEvent e) {
-                    // Nothing to do in Scilab
-                }
-            });
+            public void removeUpdate(DocumentEvent e) {
+                // Nothing to do in Scilab
+            }
+        });
 
         this.addKeyListener(new KeyListener() {
-                public void keyPressed (KeyEvent e) {
-                    if (e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT) {
-                        if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                            console.getConfiguration().getHistoryManager().setInHistory(false);
-                        }
+            public void keyPressed (KeyEvent e) {
+                if (keysForHistory == null) {
+                    getKeysForHistory();
+                }
+
+                // key char is equal to 65535 when the hit key is only shift, meta, alt,...
+                if (e.getKeyChar() != 65535 && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT && !keysForHistory.contains(KeyStroke.getKeyStrokeForEvent(e))) {
+                    if (console.getConfiguration().getHistoryManager().isInHistory()) {
+                        console.getConfiguration().getHistoryManager().setInHistory(false);
                     }
-                    if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+                }
+
+                if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
                         && e.getKeyCode() == KeyEvent.VK_DELETE
-                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
-                        // Fix for bug 7238
-                        e.setKeyCode(KeyEvent.VK_DECIMAL);
-                    }
+                && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                    // Fix for bug 7238
+                    e.setKeyCode(KeyEvent.VK_DECIMAL);
                 }
+            }
 
-                public void keyReleased (KeyEvent e) {
-                    // Nothing to do in Scilab
-                }
+            public void keyReleased (KeyEvent e) {
+                // Nothing to do in Scilab
+            }
 
-                public void keyTyped (KeyEvent e) {
-                    // Nothing to do in Scilab
-                }
-            });
+            public void keyTyped (KeyEvent e) {
+                // Nothing to do in Scilab
+            }
+        });
     }
 
     /**
@@ -254,7 +286,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             int y = 0;
             try {
                 Rectangle rect = modelToView(getCaretPosition());
-                y = (int) (rect.height + rect.y + 1);
+                y = rect.height + rect.y + 1;
             } catch (BadLocationException ex) { }
 
             int sheight = height;
@@ -274,6 +306,10 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
                 isLatex = false;
             }
         }
+    }
+
+    public int getCaretHeight() {
+        return ((ScilabCaret) getCaret()).height;
     }
 
     /**
@@ -312,5 +348,37 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             dim.width = Math.max(width, dim.width);
         }
         return dim;
+    }
+
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        setCaretColor(fg);
+        repaint();
+    }
+
+    public View create(Element e) {
+        return new PlainView(e) {
+            public Container getContainer() {
+                return SciInputCommandView.this;
+            }
+        };
+    }
+
+    /**
+     * Find the key used to navigate in the history
+     */
+    private void getKeysForHistory() {
+        ActionMap am = getActionMap();
+        InputMap im = getInputMap();
+        KeyStroke[] keys = im.keys();
+
+        keysForHistory = new ArrayList<KeyStroke>();
+
+        for (KeyStroke key : keys) {
+            Object a = im.get(key);
+            if (a.equals("PREVIOUS_HISTORY_LINE") || a.equals("NEXT_HISTORY_LINE")) {
+                keysForHistory.add(key);
+            }
+        }
     }
 }

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spaninter">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>spaninter</refname>
     <refpurpose> subspace intersection</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>dim</term>
         <listitem>
-          <para>integer, dimension of subspace range(<literal>A</literal>) inter range(<literal>B</literal>)</para>
+          <para>
+            integer, dimension of subspace range(<literal>A</literal>) inter range(<literal>B</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,16 +47,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes the intersection of range(<literal>A</literal>) and range(<literal>B</literal>).</para>
+      computes the intersection of range(<literal>A</literal>) and range(<literal>B</literal>).
+    </para>
     <para>
-    The first <literal>dim</literal> columns of <literal>X</literal> span this intersection i.e.
-    <literal>X(:,1:dim)</literal> is an orthogonal basis for</para>
+      The first <literal>dim</literal> columns of <literal>X</literal> span this intersection i.e.
+      <literal>X(:,1:dim)</literal> is an orthogonal basis for
+    </para>
     <para>
-    range(<literal>A</literal>) inter range(<literal>B</literal>)</para>
+      range(<literal>A</literal>) inter range(<literal>B</literal>)
+    </para>
     <para>
-    In the <literal>X</literal> basis <literal>A</literal> and <literal>B</literal> are respectively represented by:</para>
-    <para><literal>X'*A</literal> and <literal>X'*B</literal>.</para>
-    <para><literal>tol</literal> is a threshold (<literal>sqrt(%eps)</literal> is the default value).</para>
+      In the <literal>X</literal> basis <literal>A</literal> and <literal>B</literal> are respectively represented by:
+    </para>
+    <para>
+      <literal>X'*A</literal> and <literal>X'*B</literal>.
+    </para>
+    <para>
+      <literal>tol</literal> is a threshold (<literal>sqrt(%eps)</literal> is the default value).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +78,7 @@ svd(B),svd([B,X1])   // X1 in span(B)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="spanplus">spanplus</link>
@@ -80,9 +87,5 @@ svd(B),svd([B,X1])   // X1 in span(B)
         <link linkend="spantwo">spantwo</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

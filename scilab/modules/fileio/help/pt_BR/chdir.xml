@@ -1,79 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="chdir" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="chdir" xml:lang="en">
   <refnamediv>
     <refname>chdir</refname>
-
     <refpurpose>muda o diretório corrente do Scilab</refpurpose>
   </refnamediv>
-
   <refnamediv xml:id="cd">
     <refname>cd</refname>
-
     <refpurpose>muda o diretório corrente do Scilab</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>b=chdir(path)
-realpath=cd(path)
-cd path</synopsis>
+      realpath=cd(path)
+      cd path
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>b</term>
-
         <listitem>
           <para>um booleano %t se a operação chdir estiver ok.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>path</term>
-
         <listitem>
           <para>um string</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>realpath</term>
-
         <listitem>
           <para>um string, o nome real do endereço após a conversão do nome do
-          endereço (ver abaixo)</para>
+            endereço (ver abaixo)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Muda o diretório corrente do Scilab para aquele dado por
-    <literal>path</literal>. Note que a conversão de endereço é realizada e.
-    por exemplo <literal>SCI/modules/core/macros</literal> é um padrão válido
-    tanto pra Unix quanto para Windows. Se path for vazio, muda para diretório
-    "home".</para>
+      <literal>path</literal>. Note que a conversão de endereço é realizada e.
+      por exemplo <literal>SCI/modules/core/macros</literal> é um padrão válido
+      tanto pra Unix quanto para Windows. Se path for vazio, muda para diretório
+      "home".
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 chdir(TMPDIR);
 pwd
@@ -81,12 +58,12 @@ cd
 cd SCI
  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Ver Também</title>
-
     <simplelist type="inline">
-      <member><link linkend="pwd">pwd</link></member>
+      <member>
+        <link linkend="pwd">pwd</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

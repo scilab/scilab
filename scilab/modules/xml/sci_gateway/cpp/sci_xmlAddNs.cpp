@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -27,12 +26,12 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAddNs(char * fname, unsigned long fname_len)
+int sci_xmlAddNs(char *fname, unsigned long fname_len)
 {
-    XMLElement * elem = 0;
-    XMLNs * ns = 0;
+    XMLElement *elem = 0;
+    XMLNs *ns = 0;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
     int i = 2;
 
     CheckLhs(1, 1);
@@ -46,16 +45,17 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLElem(addr))
+    if (!isXMLElem(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
 
-    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr));
+    elem = XMLObject::getFromId < XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
         Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
@@ -68,16 +68,17 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
             return 0;
         }
 
-        if (!isXMLNs(addr))
+        if (!isXMLNs(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, i, "XMLNs");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, i, "XMLNs");
             return 0;
         }
 
-        ns = XMLObject::getFromId<XMLNs>(getXMLObjectId(addr));
+        ns = XMLObject::getFromId < XMLNs > (getXMLObjectId(addr, pvApiCtx));
         if (!ns)
         {
             Scierror(999, gettext("%s: XML Namespace does not exist.\n"), fname);

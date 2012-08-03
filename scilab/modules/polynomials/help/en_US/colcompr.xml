@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colcompr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colcompr</refname>
     <refpurpose> column compression of polynomial matrix</refpurpose>
@@ -40,13 +37,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>normal rank of <literal>A</literal></para>
+          <para>
+            normal rank of <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=A*Y</literal>, polynomial matrix</para>
+          <para>
+            <literal>Ac=A*Y</literal>, polynomial matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +55,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    column compression of polynomial matrix <literal>A</literal> (compression to the left)</para>
+      column compression of polynomial matrix <literal>A</literal> (compression to the left)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +68,7 @@ p*p'*Y
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcompr">rowcompr</link>

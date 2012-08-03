@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +14,7 @@
 #define __XMLELEMENT_HXX__
 
 #include <string>
+#include "XMLRemovable.hxx"
 
 #include "xml.h"
 
@@ -32,31 +33,38 @@ namespace org_modules_xml
      * Class to wrap a xmlNode
      * @see http://xmlsoft.org/html/libxml-tree.html#xmlNode
      */
-    class XMLElement : public XMLObject
+    class XMLElement:public XMLObject, public XMLRemovable
     {
-        xmlNode * node;
+        xmlNode *node;
         const XMLDocument & doc;
 
-    public:
+public:
 
         /**
          * @param doc the owner document of this XMLElement
          * @param node the xmlNode to wrap
          */
-        XMLElement(const XMLDocument & doc, xmlNode * node);
+          XMLElement(const XMLDocument & doc, xmlNode * node);
 
         /**
          * @param doc the owner document of this XMLElement
          * @param name the name of the XMLElement
          */
-        XMLElement(const XMLDocument & doc, const char * name);
+          XMLElement(const XMLDocument & doc, const char *name);
 
-        ~XMLElement();
+         ~XMLElement();
+
+        void *getRealXMLPointer() const;
+
+        void remove() const;
 
         /**
          * @return the node name
          */
-        const char * getNodeName(void) const { return node->name ? (const char *)node->name : ""; }
+        const char *getNodeName(void) const
+        {
+            return node->name ? (const char *)node->name : "";
+        }
 
         /**
          * Sets the node name
@@ -67,7 +75,7 @@ namespace org_modules_xml
         /**
          * @return the namespace associated to this node
          */
-        const XMLNs * getNodeNameSpace() const;
+        const XMLNs *getNodeNameSpace() const;
 
         /**
          * Sets the namespace of this node
@@ -80,7 +88,7 @@ namespace org_modules_xml
          * @see http://xmlsoft.org/html/libxml-tree.html#xmlNodeGetContent
          * @return the node content
          */
-        const char * getNodeContent() const;
+        const char *getNodeContent() const;
 
         /**
          * Sets the node content
@@ -92,12 +100,15 @@ namespace org_modules_xml
          * @return the node type
          * @see http://xmlsoft.org/html/libxml-tree.html#xmlElementType
          */
-        int getNodeType(void) const { return node->type; }
+        int getNodeType(void) const
+        {
+            return node->type;
+        }
 
         /**
          * @return the attributes of this node
          */
-        const XMLAttr * getAttributes(void) const;
+        const XMLAttr *getAttributes(void) const;
 
         /**
          * Sets the attributes of this node
@@ -108,12 +119,12 @@ namespace org_modules_xml
         /**
          * @return the parent XMLElement
          */
-        const XMLElement * getParentElement() const;
+        const XMLElement *getParentElement() const;
 
         /**
          * @return a list of the children of this node
          */
-        const XMLNodeList * getChildren() const;
+        const XMLNodeList *getChildren() const;
 
         /**
          * Replaces the children of this node by an XMLElement
@@ -146,7 +157,7 @@ namespace org_modules_xml
          * @param prefix the prefix
          * @return the corresponding namespace or 0 if not found
          */
-        const XMLNs * getNamespaceByPrefix(const char * prefix) const;
+        const XMLNs *getNamespaceByPrefix(const char *prefix) const;
 
         /**
          * Gets the namespace which has a given href. If it is not found in this
@@ -155,20 +166,33 @@ namespace org_modules_xml
          * @param href the href
          * @return the corresponding namespace or 0 if not found
          */
-        const XMLNs * getNamespaceByHref(const char * href) const;
+        const XMLNs *getNamespaceByHref(const char *href) const;
 
         /**
          * @return the libxml node behind this object
          */
-        xmlNode * getRealNode() const { return node; }
+        xmlNode *getRealNode() const
+        {
+            return node;
+        }
 
         /**
          * @return the XMLDocument which is the parent or this XMLElement
          */
-        const XMLDocument & getXMLDocument() const { return doc; }
+        const XMLDocument & getXMLDocument() const
+        {
+            return doc;
+        }
 
-        const XMLObject * getXMLObjectParent() const;
-        const std::string dump() const;
+        /**
+         * @return the defintion line of this XMLElement
+         */
+        int getDefinitionLine() const;
+
+        void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const;
+        void setAttributeValue(const char **name, const char **value, int size) const;
+        const XMLObject *getXMLObjectParent() const;
+        const std::string dump(bool indent) const;
         const std::string toString() const;
     };
 }

@@ -19,7 +19,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * RemoveAnchorAction Class
@@ -48,7 +47,9 @@ public class RemoveAnchorAction extends DefaultAction {
         ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(sep.getCaretPosition()));
         line.setAnchor(null);
         sep.getXln().repaint();
-        NavigatorWindow.updateNavigator();
+        if (getEditor().getNavigator() != null) {
+            getEditor().getNavigator().update();
+        }
     }
 
     /**

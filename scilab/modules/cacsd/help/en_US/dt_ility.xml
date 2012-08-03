@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dt_ility">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dt_ility</refname>
     <refpurpose> detectability test</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>k</term>
         <listitem>
-          <para>dimension of unstable, unobservable subspace (<literal> k&lt;=n</literal>).</para>
+          <para>
+            dimension of unstable, unobservable subspace (<literal> k&lt;=n</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,7 +53,9 @@
       <varlistentry>
         <term>Sld</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,15 +69,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Detectability test for <literal>sl</literal>, a linear system in state-space
-    representation. 
-    <literal>U</literal> is a basis whose <literal>k</literal> first columns span the
-    unstable, unobservable subspace of <literal>Sl</literal> (intersection
-    of unobservable subspace of <literal>(A,C)</literal> and unstable subspace
-    of <literal>A</literal>). Detectability means <literal>k=0</literal>.</para>
-    <para><literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> displays the "detectable part"
-    of <literal>Sl=(A,B,C,D)</literal>, i.e.</para>
-    <programlisting role = ""><![CDATA[ 
+      Detectability test for <literal>sl</literal>, a linear system in state-space
+      representation. 
+      <literal>U</literal> is a basis whose <literal>k</literal> first columns span the
+      unstable, unobservable subspace of <literal>Sl</literal> (intersection
+      of unobservable subspace of <literal>(A,C)</literal> and unstable subspace
+      of <literal>A</literal>). Detectability means <literal>k=0</literal>.
+    </para>
+    <para>
+      <literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> displays the "detectable part"
+      of <literal>Sl=(A,B,C,D)</literal>, i.e.
+    </para>
+    <programlisting role=""><![CDATA[ 
          [*,*,*]
 U'*A*U = [0,*,*]
          [0,0,*]
@@ -82,8 +88,9 @@ U'*A*U = [0,*,*]
 C*U = [0,0,*]
  ]]></programlisting>
     <para>
-    with <literal>(A33,C3)</literal> observable (dimension <literal>nx-n</literal>), <literal>A22</literal> stable 
-    (dimension <literal>n-k</literal>) and <literal>A11</literal> unstable (dimension <literal>k</literal>).</para>
+      with <literal>(A33,C3)</literal> observable (dimension <literal>nx-n</literal>), <literal>A22</literal> stable 
+      (dimension <literal>n-k</literal>) and <literal>A11</literal> unstable (dimension <literal>k</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -98,7 +105,7 @@ W1("C")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contr">contr</link>

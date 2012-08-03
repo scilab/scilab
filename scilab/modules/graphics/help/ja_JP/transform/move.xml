@@ -11,19 +11,17 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="move">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>move</refname>
     <refpurpose> 
-	グラフィックエンティティおよびその子を移動, 変換する
-  </refpurpose>
+      グラフィックエンティティおよびその子を移動, 変換する
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>move(h,t)
-move(h,t,"alone")</synopsis>
+      move(h,t,"alone")
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,8 +35,10 @@ move(h,t,"alone")</synopsis>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>配列で, <literal>[dx,dy]</literal> または [dx,dy,dz]のどちらか, 
-		適用する変換ベクトルを指定.</para>
+          <para>
+            配列で, <literal>[dx,dy]</literal> または [dx,dy,dz]のどちらか, 
+            適用する変換ベクトルを指定.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,14 +52,16 @@ move(h,t,"alone")</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	このルーチンはグラフィックエンティティに変換を適用するために使用できます.
-	エンティティが子を有する場合,これらも変換されます.</para>
+      このルーチンはグラフィックエンティティに変換を適用するために使用できます.
+      エンティティが子を有する場合,これらも変換されます.
+    </para>
     <para>
-	キーワード<literal>"alone"</literal>を指定した場合,指定された
-	エンティティのみが再描画されます.
-	この機能は特にfigureエンティティの
-	<literal>pixel_drawing_mode</literal>プロパティで使用されます
-	 (<literal>"xor"</literal> 描画モードにおけるオブジェクトの描画を参照ください).</para>
+      キーワード<literal>"alone"</literal>を指定した場合,指定された
+      エンティティのみが再描画されます.
+      この機能は特にfigureエンティティの
+      <literal>pixel_drawing_mode</literal>プロパティで使用されます
+      (<literal>"xor"</literal> 描画モードにおけるオブジェクトの描画を参照ください).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -90,9 +92,5 @@ move(p,t);
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

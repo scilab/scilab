@@ -33,6 +33,8 @@ import net.sourceforge.jeuclid.layout.JEuclidView;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.context.Parameter;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+
 /**
  * A MathML to PNG converter
  * @author Calixte DENIZET
@@ -41,8 +43,11 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
     private static final Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
     private static MathMLImageConverter instance;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private MathMLImageConverter() { }
+    private MathMLImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+        this.type = type;
+    }
 
     /**
      * {@inheritDoc}
@@ -52,12 +57,19 @@ public class MathMLImageConverter implements ExternalImageConverter {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean mustRegenerate() {
+        return true;
+    }
+
+    /**
      * Since it is a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance() {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-             instance = new MathMLImageConverter();
+            instance = new MathMLImageConverter(type);
         }
         return instance;
     }
@@ -65,7 +77,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
     /**
      * {@inheritDoc}
      */
-    public String convertToImage(String mathml, Map<String, String> attributes, File imageFile, String imageName) {
+    public String convertToImage(String currentFile, String mathml, Map<String, String> attributes, File imageFile, String imageName) {
         Document doc = null;
         try {
             doc = MathMLParserSupport.parseString(mathml);
@@ -132,7 +144,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
         int ascent = (int) Math.ceil(jev.getAscentHeight());
         int height = (int) Math.ceil(jev.getDescentHeight()) + ascent;
 
-        if (width <= 0 || height <=0) {
+        if (width <= 0 || height <= 0) {
             return null;
         }
 

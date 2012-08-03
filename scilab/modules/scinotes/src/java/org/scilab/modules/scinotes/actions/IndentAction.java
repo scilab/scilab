@@ -42,9 +42,10 @@ public final class IndentAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
+        int pos = sep.getCaretPosition();
         IndentManager indent = sep.getIndentManager();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         int[] ret = new int[2];
@@ -58,8 +59,11 @@ public final class IndentAction extends DefaultAction {
         } else {
             ret = indent.indentDoc(start, end - 1);
             if (ret != null) {
-                sep.setSelectionStart(ret[0]);
-                sep.setSelectionEnd(ret[1]);
+                if (pos == start) {
+                    sep.select(ret[1], ret[0]);
+                } else {
+                    sep.select(ret[0], ret[1]);
+                }
             }
         }
         doc.mergeEditsEnd();

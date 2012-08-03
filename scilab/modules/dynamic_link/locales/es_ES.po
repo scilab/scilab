@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:47+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-22 15:28+0000\n"
+"Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: es\n"
 
 #, c-format
@@ -136,15 +136,15 @@ msgstr "%s: A ocurrido un error: %s\n"
 
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
+msgstr "%s: no se puede cargar un dll x86 dll en un entorno x64.\n"
 
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
+msgstr "%s: no se puede cargar un dll x64 dll en un entorno x86.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr ""
+msgstr "%s: El archivo %s no existe en en el entorno PATH.\n"
 
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"
@@ -200,12 +200,18 @@ msgstr "Enlazando %s.\n"
 msgid "Dynamic link"
 msgstr "Enlace dinámico"
 
+msgid "Call a C function"
+msgstr ""
+
+msgid "Call a Fortran subroutine"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
-msgstr ""
+msgstr "Compilador no encontrado: Intel Fortran Compiler 9, 10, 11 o 12."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -226,6 +232,11 @@ msgstr "%s: Esta función no está disponible para Microsoft Windows.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
+
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -261,13 +272,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaban archivos "
+"existentes.\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr ""
+msgstr "%s: %s ya está cargado en Scilab."
 
 msgid "You need to unload this library before."
-msgstr ""
+msgstr "Necesita descargar esta biblioteca primero."
 
 msgid "   Generate a gateway file\n"
 msgstr "   Generar un archivo de puerta de enlace\n"
@@ -358,6 +371,12 @@ msgstr ""
 "son el mismo (%s).\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
+"%s\n"
+msgstr ""
+
+#, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr "   %s: El archivo %s fue ignorado.\n"
 
@@ -443,6 +462,10 @@ msgstr ""
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 "%s: Esta función requiere el compilador de Microsoft visual studio C.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

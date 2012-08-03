@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dhinf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dhinf</refname>
     <refpurpose> H_infinity design of discrete-time systems</refpurpose>
@@ -64,7 +61,9 @@
       <varlistentry>
         <term>gamma</term>
         <listitem>
-          <para>the parameter gamma used in <literal>H_infinity</literal> design. It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.</para>
+          <para>
+            the parameter gamma used in <literal>H_infinity</literal> design. It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,31 +150,36 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
-     To compute the matrices of an H-infinity (sub)optimal n-state
-  controller</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
+      To compute the matrices of an H-infinity (sub)optimal n-state
+      controller
+    </para>
+    <programlisting role=""><![CDATA[ 
     | AK | BK |
 K = |----|----|,
     | CK | DK |
  ]]></programlisting>
     <para>
-    for the discrete-time system</para>
-    <programlisting role = ""><![CDATA[ 
+      for the discrete-time system
+    </para>
+    <programlisting role=""><![CDATA[ 
     | A  | B1  B2  |   | A | B |
 P = |----|---------| = |---|---|,
     | C1 | D11 D12 |   | C | D | 
     | C2 | D21 D22 |
  ]]></programlisting>
     <para>
-    and for a given value of gamma, where B2 has column size of the
-    number of control inputs (ncon) and C2 has row size of the number
-    of measurements (nmeas) being provided to the controller.</para>
+      and for a given value of gamma, where B2 has column size of the
+      number of control inputs (ncon) and C2 has row size of the number
+      of measurements (nmeas) being provided to the controller.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-       [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines        for Hinf and H2 design of linear discrete-time control systems.        Report99-8, Department of Engineering, Leicester University,        April 1999.</para>
+      [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines        for Hinf and H2 design of linear discrete-time control systems.        Report99-8, Department of Engineering, Leicester University,        April 1999.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -212,7 +216,7 @@ gam=111.30;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hinf">hinf</link>

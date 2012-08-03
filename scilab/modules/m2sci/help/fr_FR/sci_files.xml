@@ -11,9 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sci_files">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sci_files</refname>
     <refpurpose>Comment écrire des fonctions de conversion</refpurpose>
@@ -21,17 +18,17 @@
   <refsection>
     <title>Description</title>
     <para>  
-  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
-  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
-  dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
-  ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
-  Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
-  ou pour ses propres fonctions) en utilisant les conseils suivants.
-  </para>
+      Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
+      <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
+      dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
+      ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
+      Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
+      ou pour ses propres fonctions) en utilisant les conseils suivants.
+    </para>
     <para>
-  Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
-  du fichier à convertir), représenté dans Scilab par une <literal>tlist</literal> avec les champs suivants :
-  </para>
+      Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
+      du fichier à convertir), représenté dans Scilab par une <literal>tlist</literal> avec les champs suivants :
+    </para>
     <itemizedlist>
       <listitem>
         <variablelist>
@@ -63,15 +60,15 @@
       </listitem>
     </itemizedlist>
     <para>
-  Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
-  Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
-  en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
-  l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
-  ce que l'on peut inférer pour les lhs de cette fonction. 
-  </para>
+      Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
+      Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
+      en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
+      l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
+      ce que l'on peut inférer pour les lhs de cette fonction. 
+    </para>
     <para>
-  Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
-  </para>
+      Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
+    </para>
     <itemizedlist>
       <listitem>
         <variablelist>
@@ -121,8 +118,8 @@
       </listitem>
     </itemizedlist>
     <para>
-  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
-  </para>
+      Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+    </para>
     <informaltable border="1">
       <tr>
         <td>La fonction</td>
@@ -170,15 +167,17 @@
       </tr>
     </informaltable>
     <para>
-  D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
-  </para>
+      D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
+    </para>
     <itemizedlist>
       <listitem>
         <variablelist>
           <varlistentry>
             <term>first_non_singleton</term>
             <listitem>
-              <para>est équivalente à <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)</para>
+              <para>
+                est équivalente à <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)
+              </para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -215,13 +214,13 @@
       </listitem>
     </itemizedlist>
     <para>
-  Pour plus d'informations sur la façon d'écrire ces fichiers, consulter le répertoire
-  SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
-  aux plus compliqués (e.g. sci_zeros.sci).
-  </para>
+      Pour plus d'informations sur la façon d'écrire ces fichiers, consulter le répertoire
+      SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
+      aux plus compliqués (e.g. sci_zeros.sci).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="m2scideclare">m2scideclare</link>
@@ -247,12 +246,6 @@
       <member>
         <link linkend="Equal">Equal</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

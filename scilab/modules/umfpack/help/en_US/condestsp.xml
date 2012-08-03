@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="condestsp">
-  <info>
-    <pubdate>  </pubdate>
-  </info>
   <refnamediv>
     <refname>condestsp</refname>
     <refpurpose> estimate the condition number of a sparse matrix  </refpurpose>
@@ -10,9 +7,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[K1] = condestsp(A, LUp, t)
-[K1] = condestsp(A, LUp)
-[K1] = condestsp(A, t)
-[K1] = condestsp(A)</synopsis>
+      [K1] = condestsp(A, LUp)
+      [K1] = condestsp(A, t)
+      [K1] = condestsp(A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -27,15 +25,17 @@
         <term>LUp  </term>
         <listitem>
           <para>(optional) a pointer to (umf) LU factors of A obtained by a call to umf_lufact ; 
-             if you have already computed the LU (= PAQ) factors it is recommanded to give 
-			 this optional parameter (as the factorization may be time consuming)</para>
+            if you have already computed the LU (= PAQ) factors it is recommended to give 
+            this optional parameter (as the factorization may be time consuming)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t  </term>
         <listitem>
           <para>(optional) a positive integer (default value 2) by increasing this one 
-				you may hope to get a better (even exact) estimate</para>
+            you may hope to get a better (even exact) estimate
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,19 +49,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Give an estimate of the 1-norm condition number of 
-    the sparse matrix A by Algorithm 2.4 appearing in :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      Give an estimate of the 1-norm condition number of 
+      the sparse matrix A by Algorithm 2.4 appearing in :
+    </para>
+    <programlisting role=""><![CDATA[ 
 "A block algorithm for matrix 1-norm estimation
  with an application to 1-norm pseudospectra"
  Nicholas J. Higham and Francoise Tisseur
  Siam J. Matrix Anal. Appl., vol 21, No 4, pp 1185-1201
  ]]></programlisting>
-    <para> Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
-    we have allways <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
-    something superior to <literal>1/2 K1e</literal>
-  </para>
+    <para>
+      Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
+      we have always <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
+      something superior to <literal>1/2 K1e</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -89,7 +90,7 @@ umf_ludel(Lup)         // clear memory
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umf_lufact">umf_lufact</link>
@@ -98,9 +99,5 @@ umf_ludel(Lup)         // clear memory
         <link linkend="rcond">rcond</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt; </para>
   </refsection>
 </refentry>

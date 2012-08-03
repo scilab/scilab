@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bezout">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>bezout</refname>
     <refpurpose> Bezout equation for polynomials or integers</refpurpose>
@@ -35,14 +32,19 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[thegcd,U]=bezout(p1,p2)</literal> computes GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal> and in addition a (2x2)
-    unimodular matrix <literal>U</literal> such that:</para>
+    <para>
+      <literal>[thegcd,U]=bezout(p1,p2)</literal> computes GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal> and in addition a (2x2)
+      unimodular matrix <literal>U</literal> such that:
+    </para>
     <para>
       <literal>[p1,p2]*U = [thegcd,0]</literal>
     </para>
     <para>
-    The lcm of <literal>p1</literal> and <literal>p2</literal> is given by:</para>
-    <para><literal>p1*U(1,2)</literal> (or <literal>-p2*U(2,2)</literal>)</para>
+      The lcm of <literal>p1</literal> and <literal>p2</literal> is given by:
+    </para>
+    <para>
+      <literal>p1*U(1,2)</literal> (or <literal>-p2*U(2,2)</literal>)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +68,7 @@ lcm(V)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>
@@ -84,9 +86,5 @@ lcm(V)
         <link linkend="lcm">lcm</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

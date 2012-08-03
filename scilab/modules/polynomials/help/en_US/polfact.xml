@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polfact">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>polfact</refname>
     <refpurpose> minimal factors</refpurpose>
@@ -34,7 +31,9 @@
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>vector <literal>[f0 f1 ... fn]</literal> such that <literal>p=prod(f)</literal></para>
+          <para>
+            vector <literal>[f0 f1 ... fn]</literal> such that <literal>p=prod(f)</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>f0</term>
@@ -55,11 +54,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>f=polfact(p)</literal> returns the minimal factors of p i.e. <literal>f=[f0 f1 ... fn]</literal> such
-    that <literal>p=prod(f)</literal></para>
+    <para>
+      <literal>f=polfact(p)</literal> returns the minimal factors of p i.e. <literal>f=[f0 f1 ... fn]</literal> such
+      that <literal>p=prod(f)</literal>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lcm">lcm</link>
@@ -71,9 +72,5 @@
         <link linkend="factors">factors</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

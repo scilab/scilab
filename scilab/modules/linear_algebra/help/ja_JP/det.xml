@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="det">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>det</refname>
     <refpurpose>行列式</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>det(X)
-[e,m]=det(X)</synopsis>
+      [e,m]=det(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -64,8 +62,9 @@
   <refsection role="see also">
     <title>参照</title>
     <para>
-     det の計算は Lapack ルーチン DGETRF (実数行列の場合) および
-     ZGETRF (複素数の場合)に基づいている.</para>
+      det の計算は Lapack ルーチン DGETRF (実数行列の場合) および
+      ZGETRF (複素数の場合)に基づいている.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

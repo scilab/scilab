@@ -195,578 +195,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../output_stream/includes/lasterror.h"
-#include "../../../modules/graphics/includes/WindowList.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
 #include "../../../core/includes/sci_types.h"
-
-
-#if defined(SWIG_NOINCLUDE) || defined(SWIG_NOARRAYS)
-
-
-int SWIG_JavaArrayInSchar (JNIEnv *jenv, jbyte **jarr, signed char **carr, jbyteArray input);
-void SWIG_JavaArrayArgoutSchar (JNIEnv *jenv, jbyte *jarr, signed char *carr, jbyteArray input);
-jbyteArray SWIG_JavaArrayOutSchar (JNIEnv *jenv, signed char *result, jsize sz);
-
-
-int SWIG_JavaArrayInUchar (JNIEnv *jenv, jshort **jarr, unsigned char **carr, jshortArray input);
-void SWIG_JavaArrayArgoutUchar (JNIEnv *jenv, jshort *jarr, unsigned char *carr, jshortArray input);
-jshortArray SWIG_JavaArrayOutUchar (JNIEnv *jenv, unsigned char *result, jsize sz);
-
-
-int SWIG_JavaArrayInShort (JNIEnv *jenv, jshort **jarr, short **carr, jshortArray input);
-void SWIG_JavaArrayArgoutShort (JNIEnv *jenv, jshort *jarr, short *carr, jshortArray input);
-jshortArray SWIG_JavaArrayOutShort (JNIEnv *jenv, short *result, jsize sz);
-
-
-int SWIG_JavaArrayInUshort (JNIEnv *jenv, jint **jarr, unsigned short **carr, jintArray input);
-void SWIG_JavaArrayArgoutUshort (JNIEnv *jenv, jint *jarr, unsigned short *carr, jintArray input);
-jintArray SWIG_JavaArrayOutUshort (JNIEnv *jenv, unsigned short *result, jsize sz);
-
-
-int SWIG_JavaArrayInInt (JNIEnv *jenv, jint **jarr, int **carr, jintArray input);
-void SWIG_JavaArrayArgoutInt (JNIEnv *jenv, jint *jarr, int *carr, jintArray input);
-jintArray SWIG_JavaArrayOutInt (JNIEnv *jenv, int *result, jsize sz);
-
-
-int SWIG_JavaArrayInUint (JNIEnv *jenv, jlong **jarr, unsigned int **carr, jlongArray input);
-void SWIG_JavaArrayArgoutUint (JNIEnv *jenv, jlong *jarr, unsigned int *carr, jlongArray input);
-jlongArray SWIG_JavaArrayOutUint (JNIEnv *jenv, unsigned int *result, jsize sz);
-
-
-int SWIG_JavaArrayInLong (JNIEnv *jenv, jint **jarr, long **carr, jintArray input);
-void SWIG_JavaArrayArgoutLong (JNIEnv *jenv, jint *jarr, long *carr, jintArray input);
-jintArray SWIG_JavaArrayOutLong (JNIEnv *jenv, long *result, jsize sz);
-
-
-int SWIG_JavaArrayInUlong (JNIEnv *jenv, jlong **jarr, unsigned long **carr, jlongArray input);
-void SWIG_JavaArrayArgoutUlong (JNIEnv *jenv, jlong *jarr, unsigned long *carr, jlongArray input);
-jlongArray SWIG_JavaArrayOutUlong (JNIEnv *jenv, unsigned long *result, jsize sz);
-
-
-int SWIG_JavaArrayInLonglong (JNIEnv *jenv, jlong **jarr, jlong **carr, jlongArray input);
-void SWIG_JavaArrayArgoutLonglong (JNIEnv *jenv, jlong *jarr, jlong *carr, jlongArray input);
-jlongArray SWIG_JavaArrayOutLonglong (JNIEnv *jenv, jlong *result, jsize sz);
-
-
-int SWIG_JavaArrayInFloat (JNIEnv *jenv, jfloat **jarr, float **carr, jfloatArray input);
-void SWIG_JavaArrayArgoutFloat (JNIEnv *jenv, jfloat *jarr, float *carr, jfloatArray input);
-jfloatArray SWIG_JavaArrayOutFloat (JNIEnv *jenv, float *result, jsize sz);
-
-
-int SWIG_JavaArrayInDouble (JNIEnv *jenv, jdouble **jarr, double **carr, jdoubleArray input);
-void SWIG_JavaArrayArgoutDouble (JNIEnv *jenv, jdouble *jarr, double *carr, jdoubleArray input);
-jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz);
-
-
-#else
-
-
-/* signed char[] support */
-int SWIG_JavaArrayInSchar (JNIEnv *jenv, jbyte **jarr, signed char **carr, jbyteArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetByteArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (signed char*) calloc(sz, sizeof(signed char)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (signed char)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutSchar (JNIEnv *jenv, jbyte *jarr, signed char *carr, jbyteArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jbyte)carr[i];
-  (*jenv)->ReleaseByteArrayElements(jenv, input, jarr, 0);
-}
-
-jbyteArray SWIG_JavaArrayOutSchar (JNIEnv *jenv, signed char *result, jsize sz) {
-  jbyte *arr;
-  int i;
-  jbyteArray jresult = (*jenv)->NewByteArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetByteArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jbyte)result[i];
-  (*jenv)->ReleaseByteArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* unsigned char[] support */
-int SWIG_JavaArrayInUchar (JNIEnv *jenv, jshort **jarr, unsigned char **carr, jshortArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetShortArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (unsigned char*) calloc(sz, sizeof(unsigned char)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (unsigned char)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutUchar (JNIEnv *jenv, jshort *jarr, unsigned char *carr, jshortArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jshort)carr[i];
-  (*jenv)->ReleaseShortArrayElements(jenv, input, jarr, 0);
-}
-
-jshortArray SWIG_JavaArrayOutUchar (JNIEnv *jenv, unsigned char *result, jsize sz) {
-  jshort *arr;
-  int i;
-  jshortArray jresult = (*jenv)->NewShortArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetShortArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jshort)result[i];
-  (*jenv)->ReleaseShortArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* short[] support */
-int SWIG_JavaArrayInShort (JNIEnv *jenv, jshort **jarr, short **carr, jshortArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetShortArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (short*) calloc(sz, sizeof(short)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (short)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutShort (JNIEnv *jenv, jshort *jarr, short *carr, jshortArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jshort)carr[i];
-  (*jenv)->ReleaseShortArrayElements(jenv, input, jarr, 0);
-}
-
-jshortArray SWIG_JavaArrayOutShort (JNIEnv *jenv, short *result, jsize sz) {
-  jshort *arr;
-  int i;
-  jshortArray jresult = (*jenv)->NewShortArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetShortArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jshort)result[i];
-  (*jenv)->ReleaseShortArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* unsigned short[] support */
-int SWIG_JavaArrayInUshort (JNIEnv *jenv, jint **jarr, unsigned short **carr, jintArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (unsigned short*) calloc(sz, sizeof(unsigned short)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (unsigned short)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutUshort (JNIEnv *jenv, jint *jarr, unsigned short *carr, jintArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jint)carr[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
-}
-
-jintArray SWIG_JavaArrayOutUshort (JNIEnv *jenv, unsigned short *result, jsize sz) {
-  jint *arr;
-  int i;
-  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetIntArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jint)result[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* int[] support */
-int SWIG_JavaArrayInInt (JNIEnv *jenv, jint **jarr, int **carr, jintArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (int*) calloc(sz, sizeof(int)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (int)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutInt (JNIEnv *jenv, jint *jarr, int *carr, jintArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jint)carr[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
-}
-
-jintArray SWIG_JavaArrayOutInt (JNIEnv *jenv, int *result, jsize sz) {
-  jint *arr;
-  int i;
-  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetIntArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jint)result[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* unsigned int[] support */
-int SWIG_JavaArrayInUint (JNIEnv *jenv, jlong **jarr, unsigned int **carr, jlongArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetLongArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (unsigned int*) calloc(sz, sizeof(unsigned int)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (unsigned int)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutUint (JNIEnv *jenv, jlong *jarr, unsigned int *carr, jlongArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jlong)carr[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, input, jarr, 0);
-}
-
-jlongArray SWIG_JavaArrayOutUint (JNIEnv *jenv, unsigned int *result, jsize sz) {
-  jlong *arr;
-  int i;
-  jlongArray jresult = (*jenv)->NewLongArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetLongArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jlong)result[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* long[] support */
-int SWIG_JavaArrayInLong (JNIEnv *jenv, jint **jarr, long **carr, jintArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetIntArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (long*) calloc(sz, sizeof(long)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (long)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutLong (JNIEnv *jenv, jint *jarr, long *carr, jintArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jint)carr[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, input, jarr, 0);
-}
-
-jintArray SWIG_JavaArrayOutLong (JNIEnv *jenv, long *result, jsize sz) {
-  jint *arr;
-  int i;
-  jintArray jresult = (*jenv)->NewIntArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetIntArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jint)result[i];
-  (*jenv)->ReleaseIntArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* unsigned long[] support */
-int SWIG_JavaArrayInUlong (JNIEnv *jenv, jlong **jarr, unsigned long **carr, jlongArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetLongArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (unsigned long*) calloc(sz, sizeof(unsigned long)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (unsigned long)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutUlong (JNIEnv *jenv, jlong *jarr, unsigned long *carr, jlongArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jlong)carr[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, input, jarr, 0);
-}
-
-jlongArray SWIG_JavaArrayOutUlong (JNIEnv *jenv, unsigned long *result, jsize sz) {
-  jlong *arr;
-  int i;
-  jlongArray jresult = (*jenv)->NewLongArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetLongArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jlong)result[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* jlong[] support */
-int SWIG_JavaArrayInLonglong (JNIEnv *jenv, jlong **jarr, jlong **carr, jlongArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetLongArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (jlong*) calloc(sz, sizeof(jlong)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (jlong)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutLonglong (JNIEnv *jenv, jlong *jarr, jlong *carr, jlongArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jlong)carr[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, input, jarr, 0);
-}
-
-jlongArray SWIG_JavaArrayOutLonglong (JNIEnv *jenv, jlong *result, jsize sz) {
-  jlong *arr;
-  int i;
-  jlongArray jresult = (*jenv)->NewLongArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetLongArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jlong)result[i];
-  (*jenv)->ReleaseLongArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* float[] support */
-int SWIG_JavaArrayInFloat (JNIEnv *jenv, jfloat **jarr, float **carr, jfloatArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetFloatArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (float*) calloc(sz, sizeof(float)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (float)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutFloat (JNIEnv *jenv, jfloat *jarr, float *carr, jfloatArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jfloat)carr[i];
-  (*jenv)->ReleaseFloatArrayElements(jenv, input, jarr, 0);
-}
-
-jfloatArray SWIG_JavaArrayOutFloat (JNIEnv *jenv, float *result, jsize sz) {
-  jfloat *arr;
-  int i;
-  jfloatArray jresult = (*jenv)->NewFloatArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetFloatArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jfloat)result[i];
-  (*jenv)->ReleaseFloatArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-/* double[] support */
-int SWIG_JavaArrayInDouble (JNIEnv *jenv, jdouble **jarr, double **carr, jdoubleArray input) {
-  int i;
-  jsize sz;
-  if (!input) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null array");
-    return 0;
-  }
-  sz = (*jenv)->GetArrayLength(jenv, input);
-  *jarr = (*jenv)->GetDoubleArrayElements(jenv, input, 0);
-  if (!*jarr)
-    return 0; 
-  *carr = (double*) calloc(sz, sizeof(double)); 
-  if (!*carr) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaOutOfMemoryError, "array memory allocation failed");
-    return 0;
-  }
-  for (i=0; i<sz; i++)
-    (*carr)[i] = (double)(*jarr)[i];
-  return 1;
-}
-
-void SWIG_JavaArrayArgoutDouble (JNIEnv *jenv, jdouble *jarr, double *carr, jdoubleArray input) {
-  int i;
-  jsize sz = (*jenv)->GetArrayLength(jenv, input);
-  for (i=0; i<sz; i++)
-    jarr[i] = (jdouble)carr[i];
-  (*jenv)->ReleaseDoubleArrayElements(jenv, input, jarr, 0);
-}
-
-jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
-  jdouble *arr;
-  int i;
-  jdoubleArray jresult = (*jenv)->NewDoubleArray(jenv, sz);
-  if (!jresult)
-    return NULL;
-  arr = (*jenv)->GetDoubleArrayElements(jenv, jresult, 0);
-  if (!arr)
-    return NULL;
-  for (i=0; i<sz; i++)
-    arr[i] = (jdouble)result[i];
-  (*jenv)->ReleaseDoubleArrayElements(jenv, jresult, arr, 0);
-  return jresult;
-}
-
-
-#endif
 
 
 #ifdef __cplusplus
@@ -1022,65 +452,6 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_isCo
 }
 
 
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getString(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  char **result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (char **)getString(arg1,arg2,arg3);
-  {
-    const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/Object");
-    int i = 0, j = 0;
-    
-    
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,clazz, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      //      jdouble array[nbCol];
-      jobjectArray jarray = (*jenv)->NewObjectArray(jenv, nbCol, clazz, NULL);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      for (j=0; j < nbCol; j++) {
-        /* Scilab is storing matrice cols by cols while Java is doing it
-                               row by row. Therefor, we need to convert it */
-        
-        jstring temp_string = (*jenv)->NewStringUTF(jenv, (const char *)result[nbRow*j+i]);
-        (*jenv)->SetObjectArrayElement(jenv, jarray, j, temp_string);
-        (*jenv)->DeleteLocalRef(jenv, temp_string);
-      }
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
-  return jresult;
-}
-
-
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putString(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
@@ -1103,43 +474,56 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putStrin
     arg4 = 0;
     arg2 = NULL;
     
-    
-    for(i=0; i<arg3; i++) {
-      jobjectArray oneDim=(jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    for (; i < arg3; i++)
+    {
+      jobjectArray oneDim = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (char**)malloc(sizeof(char*)*arg3*arg4);
+        arg2 = (char**)malloc(sizeof(char*) * arg3 * arg4);
       }
-      //      jstring*element=(*jenv)->GetStringArrayElements(jenv, oneDim, 0);
-      for(j=0; j<arg4; j++) {
+      for (j = 0; j < arg4; j++)
+      {
         jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, oneDim, j);
-        char *str = (char *)(*jenv)->GetStringUTFChars(jenv, j_string, 0);
-        arg2[j*arg3+i]=(char*)malloc(sizeof(char)*(strlen(str)+1));
-        strcpy(arg2[j*arg3+i],str);
-        (*jenv)->ReleaseStringUTFChars(jenv, j_string, (const char *)str);
-        
+        jboolean isCopy = JNI_FALSE;
+        char *str = (char *)(*jenv)->GetStringUTFChars(jenv, j_string, &isCopy);
+        arg2[j * arg3 + i] = (char*)MALLOC(sizeof(char)*(strlen(str) + 1));
+        strcpy(arg2[j * arg3 + i], str);
+        if (isCopy)
+        {
+          (*jenv)->ReleaseStringUTFChars(jenv, j_string, (const char *)str);
+        }
+        (*jenv)->DeleteLocalRef(jenv, j_string);
       }
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putString(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    int i = 0;
+    for (; i < arg3 * arg4; i++)
+    {
+      FREE(arg2[i]);
+    }
+    FREE(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubleComplex(JNIEnv *jenv, jclass jcls, jstring jarg1, jdoubleArray jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubleComplex(JNIEnv *jenv, jclass jcls, jstring jarg1, jobjectArray jarg2, jobjectArray jarg5) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   double *arg2 ;
   int arg3 ;
   int arg4 ;
-  jdouble *jarr2 ;
+  double *arg5 ;
+  int arg6 ;
+  int arg7 ;
   int result;
   
   (void)jenv;
@@ -1149,75 +533,77 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  if (!SWIG_JavaArrayInDouble(jenv, &jarr2, &arg2, jarg2)) return 0; 
-  arg3 = (int)jarg3; 
-  arg4 = (int)jarg4; 
-  result = (int)putDoubleComplex(arg1,arg2,arg3,arg4);
-  jresult = (jint)result; 
-  SWIG_JavaArrayArgoutDouble(jenv, jarr2, arg2, jarg2); 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  free(arg2); 
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getDouble(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  double *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
   {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (double *)getDouble(arg1,arg2,arg3);
-  {
-    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
+    // Convert the double[][] => double *
     int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
+    arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
+    arg4 = 0;
+    arg2 = NULL;
     
-    for (i=0; i < nbRow; i++) {
-      jdouble *array = (jdouble*)malloc(nbCol * sizeof(jdouble)) ;
-      jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jdouble* element = NULL;
+      jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
+        /* First time we are here, init + create the array where we store the data */
+        arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg2 = (double*)malloc(sizeof(double) * arg3 * arg4);
       }
+      isCopy = JNI_FALSE;
+      element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
-      
-      (*jenv)->SetDoubleArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
   }
+  {
+    // Convert the double[][] => double *
+    int i = 0, j = 0;
+    arg6 = (*jenv)->GetArrayLength(jenv, jarg5);
+    arg7 = 0;
+    arg5 = NULL;
+    
+    
+    for (; i < arg6; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jdouble* element = NULL;
+      jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, jarg5, i);
+      if (arg7 == 0)
+      {
+        /* First time we are here, init + create the array where we store the data */
+        arg7 = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg5 = (double*)malloc(sizeof(double) * arg6 * arg7);
+      }
+      isCopy = JNI_FALSE;
+      element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
+      
+      for (j = 0; j < arg7; j++)
+      {
+        arg5[j * arg6 + i] = element[j];
+      }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
+    }
+  }
+  result = (int)putDoubleComplex(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+    free(arg2);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    free(arg5);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -1239,94 +625,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
   }
   {
     // Convert the double[][] => double *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jdouble*element = NULL;
-      jdoubleArray oneDim=(jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jdouble* element = NULL;
+      jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (double*)malloc(sizeof(double)*arg3*arg4);
+        arg2 = (double*)malloc(sizeof(double) * arg3 * arg4);
       }
-      element=(*jenv)->GetDoubleArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putDouble(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getBoolean(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  BOOL *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (BOOL *)getBoolean(arg1,arg2,arg3);
-  {
-    jclass booleanArr = (*jenv)->FindClass(jenv, "[Z");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,booleanArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jboolean *array = (jboolean*)malloc(nbCol * sizeof(jboolean)) ;
-      jbooleanArray jarray = (*jenv)->NewBooleanArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetBooleanArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1348,94 +681,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putBoole
   }
   {
     // Convert the BOOL[][] => BOOL *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jboolean*element = NULL;
-      jbooleanArray oneDim=(jbooleanArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jboolean* element = NULL;
+      jbooleanArray oneDim = (jbooleanArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (BOOL*)malloc(sizeof(BOOL)*arg3*arg4);
+        arg2 = (BOOL*)malloc(sizeof(BOOL) * arg3 * arg4);
       }
-      element=(*jenv)->GetBooleanArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jboolean*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putBoolean(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getByte(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  byte *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (byte *)getByte(arg1,arg2,arg3);
-  {
-    jclass byteArr = (*jenv)->FindClass(jenv, "[B");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,byteArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jbyte *array = (jbyte*)malloc(nbCol * sizeof(jbyte)) ;
-      jbyteArray jarray = (*jenv)->NewByteArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetByteArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1457,94 +737,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putByte(
   }
   {
     // Convert the byte[][] => byte *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jbyte*element = NULL;
-      jbyteArray oneDim=(jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jbyte* element = NULL;
+      jbyteArray oneDim = (jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (byte*)malloc(sizeof(byte)*arg3*arg4);
+        arg2 = (byte*)malloc(sizeof(byte) * arg3 * arg4);
       }
-      element=(*jenv)->GetByteArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jbyte*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putByte(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedByte(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  byte *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (byte *)getUnsignedByte(arg1,arg2,arg3);
-  {
-    jclass byteArr = (*jenv)->FindClass(jenv, "[B");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,byteArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jbyte *array = (jbyte*)malloc(nbCol * sizeof(jbyte)) ;
-      jbyteArray jarray = (*jenv)->NewByteArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetByteArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1566,94 +793,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
   }
   {
     // Convert the byte[][] => byte *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jbyte*element = NULL;
-      jbyteArray oneDim=(jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jbyte* element = NULL;
+      jbyteArray oneDim = (jbyteArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (byte*)malloc(sizeof(byte)*arg3*arg4);
+        arg2 = (byte*)malloc(sizeof(byte) * arg3 * arg4);
       }
-      element=(*jenv)->GetByteArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jbyte*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putUnsignedByte(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getShort(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  short *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (short *)getShort(arg1,arg2,arg3);
-  {
-    jclass shortArr = (*jenv)->FindClass(jenv, "[S");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,shortArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jshort *array = (jshort*)malloc(nbCol * sizeof(jshort)) ;
-      jshortArray jarray = (*jenv)->NewShortArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetShortArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1675,94 +849,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putShort
   }
   {
     // Convert the short[][] => short *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jshort*element = NULL;
-      jshortArray oneDim=(jshortArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jshort* element = NULL;
+      jshortArray oneDim = (jshortArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (short*)malloc(sizeof(short)*arg3*arg4);
+        arg2 = (short*)malloc(sizeof(short) * arg3 * arg4);
       }
-      element=(*jenv)->GetShortArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jshort*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putShort(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedShort(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  unsigned short *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (unsigned short *)getUnsignedShort(arg1,arg2,arg3);
-  {
-    jclass shortArr = (*jenv)->FindClass(jenv, "[C");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,shortArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jchar *array = (jchar*)malloc(nbCol * sizeof(jchar)) ;
-      jcharArray jarray = (*jenv)->NewCharArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetCharArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1784,94 +905,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
   }
   {
     // Convert the unsigned short[][] => unsigned short *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jchar*element = NULL;
-      jcharArray oneDim=(jcharArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jchar* element = NULL;
+      jcharArray oneDim = (jcharArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (unsigned short*)malloc(sizeof(unsigned short)*arg3*arg4);
+        arg2 = (unsigned short*)malloc(sizeof(unsigned short) * arg3 * arg4);
       }
-      element=(*jenv)->GetCharArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jchar*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putUnsignedShort(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getInt(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (int *)getInt(arg1,arg2,arg3);
-  {
-    jclass intArr = (*jenv)->FindClass(jenv, "[I");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,intArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jint *array = (jint*)malloc(nbCol * sizeof(jint)) ;
-      jintArray jarray = (*jenv)->NewIntArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetIntArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -1893,94 +961,41 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putInt(J
   }
   {
     // Convert the int[][] => int *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jint*element = NULL;
-      jintArray oneDim=(jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jint* element = NULL;
+      jintArray oneDim = (jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (int*)malloc(sizeof(int)*arg3*arg4);
+        arg2 = (int*)malloc(sizeof(int) * arg3 * arg4);
       }
-      element=(*jenv)->GetIntArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putInt(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getUnsignedInt(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  unsigned int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
-  }
-  result = (unsigned int *)getUnsignedInt(arg1,arg2,arg3);
-  {
-    jclass intArr = (*jenv)->FindClass(jenv, "[I");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,intArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jint *array = (jint*)malloc(nbCol * sizeof(jint)) ;
-      jintArray jarray = (*jenv)->NewIntArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetIntArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
-  }
   return jresult;
 }
 
@@ -2002,155 +1017,459 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
   }
   {
     // Convert the unsigned int[][] => unsigned int *
-    int i=0, j=0;
+    int i = 0, j = 0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
     arg2 = NULL;
     
-    for(i=0; i<arg3; i++) {
-      jint*element = NULL;
-      jintArray oneDim=(jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-      if (arg4==0) {
+    
+    for (; i < arg3; i++)
+    {
+      jboolean isCopy = JNI_FALSE;
+      jint* element = NULL;
+      jintArray oneDim = (jintArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+      if (arg4 == 0)
+      {
         /* First time we are here, init + create the array where we store the data */
         arg4 = (*jenv)->GetArrayLength(jenv, oneDim);
-        arg2 = (unsigned int*)malloc(sizeof(unsigned int)*arg3*arg4);
+        arg2 = (unsigned int*)malloc(sizeof(unsigned int) * arg3 * arg4);
       }
-      element=(*jenv)->GetIntArrayElements(jenv, oneDim, 0);
+      isCopy = JNI_FALSE;
+      element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
       
-      for(j=0; j<arg4; j++) {
-        arg2[j*arg3+i]=element[j];
+      for (j = 0; j < arg4; j++)
+      {
+        arg2[j * arg3 + i] = element[j];
       }
+      (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+      (*jenv)->DeleteLocalRef(jenv, oneDim);
     }
-    
   }
   result = (int)putUnsignedInt(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   {
     // Specific target because it was freeing the wrong argument
+    free(arg2);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getDoubleComplexReal(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putSparse(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jint jarg3, jobjectArray jarg4, jobjectArray jarg6, jobjectArray jarg8) {
+  jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  double *result = 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  int arg7 ;
+  double *arg8 = (double *) 0 ;
+  int arg9 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
-  {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
-    }
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
   }
-  result = (double *)getDoubleComplexReal(arg1,arg2,arg3);
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
   {
-    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg5 = (*jenv)->GetArrayLength(jenv, jarg4);
+    arg4 = (int*)MALLOC(sizeof(int) * arg5);
     
-    for (i=0; i < nbRow; i++) {
-      jdouble *array = (jdouble*)malloc(nbCol * sizeof(jdouble)) ;
-      jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetDoubleArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
-    }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg4, &isCopy);
+    memcpy(arg4, element, sizeof(int) * arg5);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg4, element, 0); 
   }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg7 = (*jenv)->GetArrayLength(jenv, jarg6);
+    arg6 = (int*)MALLOC(sizeof(int) * arg7);
+    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg6, &isCopy);
+    memcpy(arg6, element, sizeof(int) * arg7);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg6, element, 0); 
+  }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jdouble* element = NULL;
+    // Convert the double[][] => double *
+    arg9 = (*jenv)->GetArrayLength(jenv, jarg8);
+    arg8 = (double*)MALLOC(sizeof(double) * arg9);
+    
+    isCopy = JNI_FALSE;
+    element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg8, &isCopy);
+    memcpy(arg8, element, sizeof(double) * arg9);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg8, element, 0); 
+  }
+  result = (int)putSparse(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg4);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg6);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg8);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
 
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getDoubleComplexImg(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putComplexSparse(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jint jarg3, jobjectArray jarg4, jobjectArray jarg6, jobjectArray jarg8, jobjectArray jarg10) {
+  jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int *arg3 = (int *) 0 ;
-  int nbRow ;
-  int nbCol ;
-  double *result = 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  int arg7 ;
+  double *arg8 = (double *) 0 ;
+  int arg9 ;
+  double *arg10 = (double *) 0 ;
+  int arg11 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
   {
-    arg2 = &nbRow;
-    arg3 = &nbCol;
-    arg1 = 0;
-    if (jarg1) {
-      arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-      if (!arg1) return 0;
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg5 = (*jenv)->GetArrayLength(jenv, jarg4);
+    arg4 = (int*)MALLOC(sizeof(int) * arg5);
+    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg4, &isCopy);
+    memcpy(arg4, element, sizeof(int) * arg5);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg4, element, 0); 
+  }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg7 = (*jenv)->GetArrayLength(jenv, jarg6);
+    arg6 = (int*)MALLOC(sizeof(int) * arg7);
+    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg6, &isCopy);
+    memcpy(arg6, element, sizeof(int) * arg7);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg6, element, 0); 
+  }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jdouble* element = NULL;
+    // Convert the double[][] => double *
+    arg9 = (*jenv)->GetArrayLength(jenv, jarg8);
+    arg8 = (double*)MALLOC(sizeof(double) * arg9);
+    
+    isCopy = JNI_FALSE;
+    element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg8, &isCopy);
+    memcpy(arg8, element, sizeof(double) * arg9);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg8, element, 0); 
+  }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jdouble* element = NULL;
+    // Convert the double[][] => double *
+    arg11 = (*jenv)->GetArrayLength(jenv, jarg10);
+    arg10 = (double*)MALLOC(sizeof(double) * arg11);
+    
+    isCopy = JNI_FALSE;
+    element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg10, &isCopy);
+    memcpy(arg10, element, sizeof(double) * arg11);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg10, element, 0); 
+  }
+  result = (int)putComplexSparse(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg4);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg6);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg8);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg10);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putBooleanSparse(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2, jint jarg3, jobjectArray jarg4, jobjectArray jarg6) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  int arg7 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  {
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg5 = (*jenv)->GetArrayLength(jenv, jarg4);
+    arg4 = (int*)MALLOC(sizeof(int) * arg5);
+    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg4, &isCopy);
+    memcpy(arg4, element, sizeof(int) * arg5);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg4, element, 0); 
+  }
+  {
+    jboolean isCopy = JNI_FALSE;
+    jint* element = NULL;
+    // Convert the int[][] => int *
+    arg7 = (*jenv)->GetArrayLength(jenv, jarg6);
+    arg6 = (int*)MALLOC(sizeof(int) * arg7);
+    
+    isCopy = JNI_FALSE;
+    element = (jint*)(*jenv)->GetPrimitiveArrayCritical(jenv, jarg6, &isCopy);
+    memcpy(arg6, element, sizeof(int) * arg7);
+    (*jenv)->ReleasePrimitiveArrayCritical(jenv, jarg6, element, 0); 
+  }
+  result = (int)putBooleanSparse(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg4);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    FREE(arg6);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putPolynomial(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jobjectArray jarg3) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double **arg3 = (double **) 0 ;
+  int arg4 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  {
+    // Convert the double[][] => double *
+    int i = 0, j = 0, k = 0;
+    arg4 = (*jenv)->GetArrayLength(jenv, jarg3);
+    arg5 = 0;
+    arg3 = NULL;
+    
+    for (; i < arg4; i++) {
+      jobjectArray dblDim = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg3, i);
+      if (arg5 == 0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg5 = (*jenv)->GetArrayLength(jenv, dblDim);
+        arg3 = (double**)malloc(sizeof(double*) * arg4 * arg5);
+        arg6 = (int*)malloc(sizeof(int) * arg4 * arg5);
+      }
+      for (j = 0; j < arg5; j++)
+      {
+        jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, dblDim, j);
+        jboolean isCopy = JNI_FALSE;
+        jdouble* element = NULL;
+        arg6[j * arg4 + i] = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg3[j * arg4 + i] = (double*)MALLOC(sizeof(jdouble) * arg6[j * arg4 + i]);
+        isCopy = JNI_FALSE;
+        element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
+        memcpy(arg3[j * arg4 + i], element, sizeof(jdouble) * arg6[j * arg4 + i]);
+        (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, 0);
+        (*jenv)->DeleteLocalRef(jenv, oneDim);
+      }
+      (*jenv)->DeleteLocalRef(jenv, dblDim);
     }
   }
-  result = (double *)getDoubleComplexImg(arg1,arg2,arg3);
+  result = (int)putPolynomial(arg1,arg2,arg3,arg4,arg5,arg6);
+  jresult = (jint)result; 
   {
-    jclass doubleArr = (*jenv)->FindClass(jenv, "[D");
-    int i = 0, j = 0;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow,doubleArr, NULL);
-    
-    for (i=0; i < nbRow; i++) {
-      jdouble *array = (jdouble*)malloc(nbCol * sizeof(jdouble)) ;
-      jdoubleArray jarray = (*jenv)->NewDoubleArray(jenv, nbCol);
-      if (jarray == NULL) {
-        printf("Could not allocate\n");fflush(NULL);
-      }
-      
-      if (array) {
-        for (j=0; j < nbCol; j++) {
-          /* Scilab is storing matrice cols by cols while Java is doing it
-                         row by row. Therefor, we need to convert it */
-          array[j]=result[nbRow*j+i];
-        }
-      }
-      
-      (*jenv)->SetDoubleArrayRegion(jenv, jarray, 0, nbCol, array);
-      
-      (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-      
-      (*jenv)->DeleteLocalRef(jenv, jarray);
-      if (array) {
-        free(array);
-        array = NULL;
-      }
+    // Specific target because it was freeing the wrong argument
+    int i = 0;
+    for (; i < arg4 * arg5; i++)
+    {
+      FREE(arg3[i]);
     }
-    
-    
-    if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-    
+    FREE(arg3);
+    FREE(arg6);
   }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putComplexPolynomial(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jobjectArray jarg3, jobjectArray jarg7) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double **arg3 = (double **) 0 ;
+  int arg4 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  double **arg7 = (double **) 0 ;
+  int arg8 ;
+  int arg9 ;
+  int *arg10 = (int *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  {
+    // Convert the double[][] => double *
+    int i = 0, j = 0, k = 0;
+    arg4 = (*jenv)->GetArrayLength(jenv, jarg3);
+    arg5 = 0;
+    arg3 = NULL;
+    
+    for (; i < arg4; i++) {
+      jobjectArray dblDim = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg3, i);
+      if (arg5 == 0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg5 = (*jenv)->GetArrayLength(jenv, dblDim);
+        arg3 = (double**)malloc(sizeof(double*) * arg4 * arg5);
+        arg6 = (int*)malloc(sizeof(int) * arg4 * arg5);
+      }
+      for (j = 0; j < arg5; j++)
+      {
+        jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, dblDim, j);
+        jboolean isCopy = JNI_FALSE;
+        jdouble* element = NULL;
+        arg6[j * arg4 + i] = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg3[j * arg4 + i] = (double*)MALLOC(sizeof(jdouble) * arg6[j * arg4 + i]);
+        isCopy = JNI_FALSE;
+        element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
+        memcpy(arg3[j * arg4 + i], element, sizeof(jdouble) * arg6[j * arg4 + i]);
+        (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, 0);
+        (*jenv)->DeleteLocalRef(jenv, oneDim);
+      }
+      (*jenv)->DeleteLocalRef(jenv, dblDim);
+    }
+  }
+  {
+    // Convert the double[][] => double *
+    int i = 0, j = 0, k = 0;
+    arg8 = (*jenv)->GetArrayLength(jenv, jarg7);
+    arg9 = 0;
+    arg7 = NULL;
+    
+    for (; i < arg8; i++) {
+      jobjectArray dblDim = (jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg7, i);
+      if (arg9 == 0) {
+        /* First time we are here, init + create the array where we store the data */
+        arg9 = (*jenv)->GetArrayLength(jenv, dblDim);
+        arg7 = (double**)malloc(sizeof(double*) * arg8 * arg9);
+        arg10 = (int*)malloc(sizeof(int) * arg8 * arg9);
+      }
+      for (j = 0; j < arg9; j++)
+      {
+        jdoubleArray oneDim = (jdoubleArray)(*jenv)->GetObjectArrayElement(jenv, dblDim, j);
+        jboolean isCopy = JNI_FALSE;
+        jdouble* element = NULL;
+        arg10[j * arg8 + i] = (*jenv)->GetArrayLength(jenv, oneDim);
+        arg7[j * arg8 + i] = (double*)MALLOC(sizeof(jdouble) * arg10[j * arg8 + i]);
+        isCopy = JNI_FALSE;
+        element = (jdouble*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
+        memcpy(arg7[j * arg8 + i], element, sizeof(jdouble) * arg10[j * arg8 + i]);
+        (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, 0);
+        (*jenv)->DeleteLocalRef(jenv, oneDim);
+      }
+      (*jenv)->DeleteLocalRef(jenv, dblDim);
+    }
+  }
+  result = (int)putComplexPolynomial(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10);
+  jresult = (jint)result; 
+  {
+    // Specific target because it was freeing the wrong argument
+    int i = 0;
+    for (; i < arg4 * arg5; i++)
+    {
+      FREE(arg3[i]);
+    }
+    FREE(arg3);
+    FREE(arg6);
+  }
+  {
+    // Specific target because it was freeing the wrong argument
+    int i = 0;
+    for (; i < arg8 * arg9; i++)
+    {
+      FREE(arg7[i]);
+    }
+    FREE(arg7);
+    FREE(arg10);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 

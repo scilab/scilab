@@ -13,12 +13,12 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
-#include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "TCL_Command.h"
+#include "TCL_Global.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"

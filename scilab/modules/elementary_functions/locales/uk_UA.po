@@ -3,20 +3,109 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-05 04:42+0000\n"
+"PO-Revision-Date: 2012-04-05 16:54+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
+"цілого типу.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між %d та %d."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідних параметрів: слід використовувати коректне "
+"представлення за основою числення %d.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"цілий тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано ціле "
+"значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Слід використовувати матрицю зі "
+"значень цілого типу.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між 0 та 2^52.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: слід використовувати матрицю "
+"з додатних цілих значень\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d, значення не вдалося "
+"перетворити.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -58,22 +147,21 @@ msgstr "%s: помилковий тип вхідного параметра №%
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
+"ціле значення.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
@@ -142,39 +230,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"між %d та %d."
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument(s): Valid base %d representations "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідних параметрів: слід використовувати коректне "
-"представлення за основою числення %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
-"ones expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків, що складаються з нулів та одиниць.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати рядок "
-"з не більше ніж %d символів.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -302,6 +357,12 @@ msgstr ""
 "розмірність.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
@@ -319,27 +380,6 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
 "ціле число або вектор чи матрицю з додатних цілих чисел.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
-"ціле значення"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer matrix "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід було вказувати матрицю з "
-"невід’ємних цілих чисел.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
-"ціле значення.\n"
 
 #, c-format
 msgid ""
@@ -367,14 +407,6 @@ msgstr ""
 "дійсних значень.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати коректне "
-"шістнадцяткове представлення.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %d, "
@@ -392,10 +424,10 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"квадратну матрицю.\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
+"стовпчик.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -436,17 +468,22 @@ msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати дійсні значення.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів %d: мало бути вказано дійсні числа.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
+msgstr "%s: помилковий тип вхідних параметрів %d: n має бути числом.\n"
+
+#, c-format
+msgid "%s: If x is negative, n must be an odd integer\n"
+msgstr "%s: якщо x від’ємне,  n має бути непарним цілим числом\n"
+
+#, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr ""
 "%s: помилковий параметр №%d: слід використовувати додатне ціле число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid octal representations "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати коректне "
-"вісімкове представлення.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -506,6 +543,12 @@ msgstr ""
 "розріджених матриць слід використовувати розмірність %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не ермітова матриця.\n"
@@ -533,15 +576,3 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected."
-#~ msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d."
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
-#~ "or %s expected"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: невідомий суфікс назви файла, "
-#~ "слід використовувати %s, %s, %s або %s"

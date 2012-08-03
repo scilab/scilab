@@ -11,7 +11,9 @@
  */
 package org.scilab.tests.modules.javasci;
 
-import org.testng.annotations.*;
+import org.junit.*;
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -27,93 +29,93 @@ import org.scilab.modules.types.ScilabDouble;
 public class testExec {
     private Scilab sci;
 
-    /* 
+    /*
      * This method will be called for each test.
-     * with @AfterMethod, this ensures that all the time the engine is closed
+     * with @After, this ensures that all the time the engine is closed
      * especially in case of error.
      * Otherwise, the engine might be still running and all subsequent tests
      * would fail.
-     */ 
-    @BeforeMethod
+     */
+    @Before
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
-    @Test(sequential = true)
+    @Test()
     public void execAndReadTest() throws NullPointerException, JavasciException {
 
         /* Scalar test */
-        assert sci.exec("a = 1+1") == true;
+        assertTrue(sci.exec("a = 1+1"));
         ScilabType a = sci.get("a");
         double[][] aReal = ((ScilabDouble)a).getRealPart();
 
-        assert a.getHeight() == 1;
-        assert a.getWidth() == 1;
+        assertEquals(a.getHeight(), 1);
+        assertEquals(a.getWidth(), 1);
 
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 2.0;
+        assertEquals(((ScilabDouble)a).getRealPart()[0][0], 2.0, 1e-8);
 
         /* Matrix 10x10 */
-        assert sci.exec("b = matrix(1:100,10,10)") == true;
+        assertTrue(sci.exec("b = matrix(1:100,10,10)"));
 
         ScilabType b = sci.get("b");
 
-        assert b.getHeight() == 10;
-        assert b.getWidth() == 10;
+        assertEquals(b.getHeight(), 10);
+        assertEquals(b.getWidth(), 10);
 
         /* Check results of the addition of two matrixes */
-        assert sci.exec("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);") == true;
+        assertTrue(sci.exec("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);"));
         ScilabType c = sci.get("c");
 
-        assert c.getHeight() == 2;
+        assertEquals(c.getHeight(), 2);
 
-        assert c.getWidth() == 2;
+        assertEquals(c.getWidth(), 2);
 
         double sum = 0;
         /* Compute ourself the sum of all matrices elements */
-        for (int i=0; i < c.getHeight(); i++) {
-            for (int j=0; j < c.getWidth(); j++) {
+        for (int i = 0; i < c.getHeight(); i++) {
+            for (int j = 0; j < c.getWidth(); j++) {
                 sum += ((ScilabDouble)c).getRealPart()[i][j];
             }
         }
         ScilabType sumMatrix = sci.get("sumMatrix");
         /* Compare if they match */
-        assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
+        assertEquals(((ScilabDouble)sumMatrix).getRealPart()[0][0], sum, 1e-8);
         sci.exec("b = matrix(1:100,10,10)") ;
         ScilabType b2 = sci.get("b");
-        b2.getHeight(); // 10 
+        b2.getHeight(); // 10
         b2.getWidth(); // 10
         ScilabDouble b3 = (ScilabDouble)sci.get("b");
-        assert b3.equals(b2);
+        assertTrue(b3.equals(b2));
     }
 
 
-    @Test(sequential = true)
+    @Test()
     public void execFromFileTest() throws NullPointerException, JavasciException {
         sci.close();
 
         try {
             // Create temp file.
             File tempScript = File.createTempFile("tempScript", ".sci");
-            
+
             // Write to temp file
             BufferedWriter out = new BufferedWriter(new FileWriter(tempScript));
             out.write("a=4+42;");
             out.close();
-            
-            assert sci.open(tempScript) == true;
+
+            assertTrue(sci.open(tempScript));
 
             ScilabType a = sci.get("a");
             double[][] aReal = ((ScilabDouble)a).getRealPart();
 
-            assert ((ScilabDouble)a).getRealPart()[0][0] == 46.0;
+            assertEquals(((ScilabDouble)a).getRealPart()[0][0], 46.0, 1e-8);
             tempScript.delete();
 
         } catch (IOException e) {
         }
     }
 
-    @Test(sequential = true, expectedExceptions = FileNotFoundException.class)
+    @Test( expected = FileNotFoundException.class)
     public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
         sci.close();
 
@@ -122,22 +124,22 @@ public class testExec {
         sci.open(nonExistingFile);
     }
 
-    @Test(sequential = true)
+    @Test()
     public void execExecstrTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
         sci.exec("execstr('toto = 111')");
 
         ScilabType a = sci.get("toto");
         double[][] aReal = ((ScilabDouble)a).getRealPart();
-        
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 111.0;
+
+        assertEquals(((ScilabDouble)a).getRealPart()[0][0], 111.0, 1e-8);
     }
 
     /**
      * See #open()
      */
-    @AfterMethod
+    @After
     public void close() {
         sci.close();
-        
+
     }
 }

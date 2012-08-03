@@ -44,6 +44,12 @@ public final class CellEditorFactory {
             editor = new ScilabBooleanCellEditor();
         } else if (type.equals(EditVar.INTEGER)) {
             editor = new ScilabIntegerCellEditor();
+        } else if (type.equals(EditVar.SPARSE)) {
+            editor = new ScilabDoubleCellEditor();
+        } else if (type.equals(EditVar.COMPLEXSPARSE)) {
+            editor = new ScilabComplexCellEditor();
+        } else if (type.equals(EditVar.BOOLEANSPARSE)) {
+            editor = new ScilabBooleanCellEditor();
         }
 
         return editor;

@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -25,6 +25,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
@@ -76,31 +77,31 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block,int flag)
 	double *ind1;
 	ind1=GetRealInPortPtrs(block,2+(int)*out0);
 	*tempind1=1;
-	*(tempind1+1)=max(min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
+	*(tempind1+1)=Max(Min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
       }
       else if ((typ==SCSINT8_N)|(typ==SCSUINT8_N)){
 	char  *ind1;
 	ind1=Getint8InPortPtrs(block,2+(int)*out0);
 	*tempind1=1;
-	*(tempind1+1)=max(min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
+	*(tempind1+1)=Max(Min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
       }
       else if ((typ==SCSINT16_N)|(typ==SCSUINT16_N)){
 	short *ind1;
 	ind1=Getint16InPortPtrs(block,2+(int)*out0);
 	*tempind1=1;
-	*(tempind1+1)=max(min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
+	*(tempind1+1)=Max(Min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
       }
       else if ((typ==SCSINT32_N)|(typ==SCSUINT32_N)){
 	long *ind1;
 	ind1=Getint32InPortPtrs(block,2+(int)*out0);
 	*tempind1=1;
-	*(tempind1+1)=max(min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
+	*(tempind1+1)=Max(Min((int)(*ind1),my-(1-(int)(*indxb)))-(int)(*indxb),0);
       }
     }
     else if ((*indxopt==2)|(*indxopt==4)){
       *tempind1=GetOparSize(block,3,1)*GetOparSize(block,3,2);
       for (i=0;i<*tempind1;i++)
-	*(tempind1+1+i)=max(min((int)(*(indx1+i)),my-(1-(int)(*indxb)))-(int)(*indxb),0);
+	*(tempind1+1+i)=Max(Min((int)(*(indx1+i)),my-(1-(int)(*indxb)))-(int)(*indxb),0);
     }
     else {
       *tempind1=my;
@@ -117,25 +118,25 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block,int flag)
 	  double *ind2;	  
 	  ind2=GetRealInPortPtrs(block,3+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT8_N)|(typ==SCSUINT8_N)){
 	  char  *ind2;
 	  ind2=Getint8InPortPtrs(block,3+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT16_N)|(typ==SCSUINT16_N)){
 	  short *ind2;
 	  ind2=Getint16InPortPtrs(block,3+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT32_N)|(typ==SCSUINT32_N)){
 	  long *ind2;
 	  ind2=Getint32InPortPtrs(block,3+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
       }
       else if (((*(indxopt+1)==3)|(*(indxopt+1)==5))&(!((*indxopt==3)|(*indxopt==5)))){
@@ -143,31 +144,31 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block,int flag)
 	  double *ind2;	  
 	  ind2=GetRealInPortPtrs(block,2+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT8_N)|(typ==SCSUINT8_N)){
 	  char  *ind2;
 	  ind2=Getint8InPortPtrs(block,2+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT16_N)|(typ==SCSUINT16_N)){
 	  short *ind2;
 	  ind2=Getint16InPortPtrs(block,2+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
 	else if ((typ==SCSINT32_N)|(typ==SCSUINT32_N)){
 	  long *ind2;
 	  ind2=Getint32InPortPtrs(block,2+(int)*out0);
 	  *tempind2=1;
-	  *(tempind2+1)=max(min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1)=Max(Min((int)(*ind2),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
 	}
       }
       else if ((*(indxopt+1)==2)|(*(indxopt+1)==4)){
 	*tempind2=GetOparSize(block,4,1)*GetOparSize(block,4,2);
 	for (i=0;i<*tempind2;i++)
-	  *(tempind2+1+i)=max(min((int)(*(indx2+i)),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
+	  *(tempind2+1+i)=Max(Min((int)(*(indx2+i)),ny-(1-(int)(*indxb)))-(int)(*indxb),0);
       }
       else {
 	*tempind1=ny;

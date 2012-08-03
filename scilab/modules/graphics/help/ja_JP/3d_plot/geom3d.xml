@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="geom3d">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>geom3d</refname>
     <refpurpose>3次元プロットの後に3次元から2次元へ投影する</refpurpose>
@@ -35,24 +32,26 @@
         <term>x,y</term>
         <listitem>
           <para>
-	 <literal>x1</literal>,
-          <literal>y1</literal> および <literal>z1</literal>と同じ
-	大きさの実数ベクトル.</para>
+            <literal>x1</literal>,
+            <literal>y1</literal> および <literal>z1</literal>と同じ
+            大きさの実数ベクトル.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>geom3d</literal>は, 
-	<literal>plot3d</literal>,　<literal>plot3d1</literal> または <literal>param3d</literal>
-	のような3次元プロット関数の後に使用され,
-	3次元空間<literal>(x1(i),y1(i),z1(i))</literal>
-	における点と投影された二次元平面上の対応する点<literal>(x(i),y(i))</literal>
-	の間のマッピングを行ないます.
-	この後,<literal>(x,y)</literal>に行う全ての2次元グラフィックプリミティブを
-	この3次元プロット上への重ね合わせるために使用できます.
-	</para>
+    <para>
+      <literal>geom3d</literal>は, 
+      <literal>plot3d</literal>,　<literal>plot3d1</literal> または <literal>param3d</literal>
+      のような3次元プロット関数の後に使用され,
+      3次元空間<literal>(x1(i),y1(i),z1(i))</literal>
+      における点と投影された二次元平面上の対応する点<literal>(x(i),y(i))</literal>
+      の間のマッピングを行ないます.
+      この後,<literal>(x,y)</literal>に行う全ての2次元グラフィックプリミティブを
+      この3次元プロット上への重ね合わせるために使用できます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,9 +64,5 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // geom3d および xpolyにより描画される
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

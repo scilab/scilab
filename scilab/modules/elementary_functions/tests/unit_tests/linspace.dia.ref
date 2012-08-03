@@ -1,37 +1,26 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Basic use
 computed=linspace(0,1,11);
 expected=[0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.];
-if norm(computed-expected)>10*%eps then bugmes();quit;end
-// With 2 arguments only : from 0. to 0.99
-computed=linspace(0,1.-1/100.);
-expected=zeros(1,100);
-for k=1:100
-  expected(1,k)=(k-1)*0.01;
-end
-if norm(computed-expected)>10*%eps then bugmes();quit;end
-// Corner case with a real value
-a = (1-0.9)*50;
-computed=linspace(0,1,a);
-expected=[0. 0.25 0.50 0.75 1.];
-if norm(computed-expected)>10*%eps then bugmes();quit;end
+assert_checkalmostequal(computed,expected);
 // Basic use with 12 and 14 which also test scaling
 computed=linspace(12,14,11);
 expected=[12. 12.2 12.4 12.6 12.8 13. 13.2 13.4 13.6 13.8 14.];
-if norm(computed-expected)>10*%eps then bugmes();quit;end
-// Special cases
-if linspace(0,1,1)<>1 then bugmes();quit;end
-if linspace(0,1,-1)<>1 then bugmes();quit;end
-if linspace(0,1,0)<>1 then bugmes();quit;end
-if linspace(0,10,1)<>10 then bugmes();quit;end
-if linspace(0,10,-1)<>10 then bugmes();quit;end
-if linspace(0,10,0)<>10 then bugmes();quit;end
-if linspace(10,1,1)<>1 then bugmes();quit;end
-if linspace(10,1,-1)<>1 then bugmes();quit;end
-if linspace(10,1,0)<>1 then bugmes();quit;end
+assert_checkalmostequal(computed,expected);
+// Vector input
+assert_checkequal(size(linspace([0;2],[2;5],5)),[2,5]);
+assert_checkequal(size(linspace([0;2],[2;5],2)),[2,2]);
+assert_checkequal(linspace([0;2],[2;5],2),[0,2;2,5]);
+assert_checkalmostequal(linspace([-1;2],[2;6],6), [-1,-0.4,0.2,0.8,1.4,2; 2,2.8,3.6,4.4,5.2,6]);
+// Perform a check on the size of the input arguments
+assert_checktrue(execstr('linspace(2,[2,2])','errcatch')<>0);
+assert_checkequal(linspace(1,2,0),2);
+assert_checkequal(linspace(1,2,1),2);
+assert_checkequal(linspace(1,2,2),[1,2]);

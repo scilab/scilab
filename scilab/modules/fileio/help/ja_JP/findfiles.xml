@@ -12,19 +12,18 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="findfiles">
-  <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
-  </info>
   <refnamediv>
     <refname>findfiles</refname>
     <refpurpose>
-	指定した filespec を有する全てのファイルを見つける</refpurpose>
+      指定した filespec を有する全てのファイルを見つける
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>f = findfiles()
-f=findfiles(path)
-f=findfiles(path,filespec)</synopsis>
+      f=findfiles(path)
+      f=findfiles(path,filespec)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -67,12 +66,6 @@ f=findfiles(SCI+'/modules/core/macros','*.sci')
       <member>
         <link linkend="listfiles">listfiles</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fieldnames">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>fieldnames</refname>
     <refpurpose>get a tlist, mlist or struct fields names</refpurpose>
@@ -51,20 +48,20 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
-fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
-fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
-fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
-obj.x = 3;
-obj.y = 3;
-fieldnames(obj)
+      fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
+      fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
+      fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
+      obj.x = 3;
+      obj.y = 3;
+      fieldnames(obj)
     </programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>
-      </member>  
+      </member>
       <member>
         <link linkend="getfield">getfield</link>
       </member>

@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,48 +26,73 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int nbSegs = 0 ;
+    BOOL status = FALSE;
+    int iNbSegs = 0;
+    int* piNbSegs = &iNbSegs;
+    int* segsColors = NULL;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "segs_color");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  nbSegs = pSEGS_FEATURE(pobj)->Nbr1 / 2 ;
-
-  if ( nbRow * nbCol == 1 )
-  {
-    int i ;
-    int value = (int) getDoubleFromStack( stackPointer ) ;
-    pSEGS_FEATURE (pobj)->iflag = 0 ;
-    for ( i = 0 ; i < nbSegs ; i++ )
+    if ( !isParameterDoubleMatrix( valueType ) )
     {
-      pSEGS_FEATURE (pobj)->pstyle[i] = value ;
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "segs_color");
+        return SET_PROPERTY_ERROR;
     }
-  }
-  else if ( nbRow * nbCol == nbSegs )
-  {
-    pSEGS_FEATURE (pobj)->iflag = 1 ;
-    copyDoubleVectorToIntFromStack( stackPointer, pSEGS_FEATURE (pobj)->pstyle, nbSegs ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "segs_color", 1, nbSegs);
-    return SET_PROPERTY_ERROR ;
-  }
 
-  return SET_PROPERTY_SUCCEED ;
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
 
+    if (piNbSegs == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
+        return SET_PROPERTY_ERROR;
+    }
+
+    if (nbRow*nbCol != 1 && nbRow*nbCol != iNbSegs)
+    {
+        Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "segs_color", 1, iNbSegs);
+        return SET_PROPERTY_ERROR;
+    }
+
+    if ( nbRow * nbCol == 1 )
+    {
+        int value = (int) getDoubleFromStack( stackPointer );
+
+        /* 1-element array which is internally duplicated */
+        status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, &value, jni_int_vector, 1);
+    }
+    else if ( nbRow * nbCol == iNbSegs )
+    {
+        segsColors = (int*) MALLOC(iNbSegs*sizeof(int));
+
+        if (segsColors == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"),"set_segs_colors_property");
+            return SET_PROPERTY_ERROR;
+        }
+
+        copyDoubleVectorToIntFromStack( stackPointer, segsColors, iNbSegs);
+        status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, segsColors, jni_int_vector, iNbSegs);
+
+        FREE(segsColors);
+    }
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_colors");
+        return SET_PROPERTY_ERROR;
+    }
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

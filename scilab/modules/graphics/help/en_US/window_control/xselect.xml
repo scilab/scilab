@@ -11,10 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xselect">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xselect">
   <refnamediv>
     <refname>xselect</refname>
     <refpurpose>raise the current graphics window</refpurpose>
@@ -25,25 +22,21 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>xselect</literal>raises the current graphics window.
-	    It creates the window if none exists.
+    <para>
+      <literal>xselect</literal>raises the current graphics window.
+      It creates the window if none exists.
     </para>
     <para>
-	    Warning: This function is obsolete and will be removed in Scilab 5.4.
-	    It has been replaced by the show_window function.
+      Warning: This function is obsolete and will be removed in Scilab 5.4.
+      It has been replaced by the show_window function.
     </para>
   </refsection>
-   <refsection role="see also">
-<title>See Also</title>
+  <refsection role="see also">
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="show_window">show_window</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

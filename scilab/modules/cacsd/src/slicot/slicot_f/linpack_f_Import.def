@@ -1,0 +1,10 @@
+	LIBRARY    linpack_f.dll
+
+
+EXPORTS
+
+;
+;linpack_f
+dqrdc_
+dqrsm_
+hhdml_

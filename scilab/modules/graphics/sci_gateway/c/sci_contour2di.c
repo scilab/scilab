@@ -25,11 +25,11 @@
 /*--------------------------------------------------------------------------*/
 int sci_contour2di( char * fname, unsigned long fname_len )
 {
-  int flagx=0,nz=10; /* default number of level curves : 10 */
-  int m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,l5;
-  double  *hl1, *hl2;
+  int flagx = 0, nz = 10; /* default number of level curves : 10 */
+  int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0, m4 = 0, n4 = 0, l4 = 0, l5 = 0;
+  double  *hl1 = NULL, *hl2 = NULL;
   double *znz= NULL;
-  int ix4, i, un = 1;
+  int ix4, i = 0, un = 1;
 
   CheckRhs(3,4);
   CheckLhs(2,2);

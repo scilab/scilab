@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getvalue">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>getvalue</refname>
     <refpurpose> xwindow dialog for data acquisition</refpurpose>
@@ -23,13 +20,17 @@
       <varlistentry>
         <term>labels</term>
         <listitem>
-          <para>n column vector of strings, <literal>labels(i)</literal> is the label of  the ith required value</para>
+          <para>
+            n column vector of strings, <literal>labels(i)</literal> is the label of  the ith required value
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para> <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
+          <para>
+            <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>typ_i</term>
@@ -84,7 +85,7 @@
             <varlistentry>
               <term>dim_i</term>
               <listitem>
-                <para>defines the size of the ith value it must be a integer or a 2-vector of integer, -1 stands for undefined dimension</para>
+                <para>defines the size of the ith value it must be an integer or a 2-vector of integer, -1 stands for undefined dimension</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -93,7 +94,9 @@
       <varlistentry>
         <term>ini</term>
         <listitem>
-          <para>n column vector of strings, <literal>ini(i)</literal> gives the suggested response for the ith required value</para>
+          <para>
+            n column vector of strings, <literal>ini(i)</literal> gives the suggested response for the ith required value
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -105,7 +108,9 @@
       <varlistentry>
         <term>xi</term>
         <listitem>
-          <para>contains the ith value if ok=%t. If left hand side has one more <literal>xi</literal> than required values the last  <literal>xi</literal> contains the vector of answered strings.</para>
+          <para>
+            contains the ith value if ok=%t. If left hand side has one more <literal>xi</literal> than required values the last  <literal>xi</literal> contains the vector of answered strings.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -113,13 +118,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function encapsulate <literal>x_mdialog</literal> function with error checking,
-    evaluation of numerical response, ...</para>
+      This function encapsulate <literal>x_mdialog</literal> function with error checking,
+      evaluation of numerical response, ...
+    </para>
   </refsection>
   <refsection>
     <title>Remarks</title>
     <para>
-    All valid expressions can be used as answers; for matrices  and vectors <literal>getvalues</literal> automatically adds [ ] around the given answer before numeric evaluation.</para>
+      All valid expressions can be used as answers; for matrices  and vectors <literal>getvalues</literal> automatically adds [ ] around the given answer before numeric evaluation.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -130,7 +137,7 @@ labels=["magnitude";"frequency";"phase    "];
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>
@@ -142,9 +149,5 @@ labels=["magnitude";"frequency";"phase    "];
         <link linkend="x_dialog">x_dialog</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer ; ;   </para>
   </refsection>
 </refentry>

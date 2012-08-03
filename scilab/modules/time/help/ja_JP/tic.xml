@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tic">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>tic</refname>
     <refpurpose>ストップウォッチタイマーを開始</refpurpose>
@@ -25,8 +22,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	一連のコマンド <literal>tic(); 処理; toc();</literal> により,
-	処理に要した秒数が出力されます.</para>
+      一連のコマンド <literal>tic(); 処理; toc();</literal> により,
+      処理に要した秒数が出力されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -50,13 +48,6 @@ toc();
       <member>
         <link linkend="etime">etime</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -14,14 +14,16 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include <stdio.h>
 #include "math_graphics.h"
 #include "sciprint.h"
+#include "core_math.h"
 #include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -78,7 +80,7 @@ void slider(int *flag, int *nevprt, double *t, double *xd,
     if( wid < 0) return;
     cur = set_block_win(wid) ; 
     {
-      double val = Min(rpar[1],Max(rpar[0],u[0]));
+      double val = Min(rpar[1], Max(rpar[0],u[0]));
       double percent = (val - rpar[0])/(rpar[1]-rpar[0]);
       if ( Abs(z[0] - percent) > 0.01 ) /* a mettre en parametre XXXXX */
 	{

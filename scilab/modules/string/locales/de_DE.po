@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"PO-Revision-Date: 2011-09-01 09:34+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-05-07 18:53+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: de\n"
 
 msgid "WARNING : \n"
@@ -32,6 +32,23 @@ msgid ""
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Matrix mit Zeichenketten oder "
 "Integermatrix erwartet.\n"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -84,6 +101,10 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: nicht-leere Zeichenketten "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -148,11 +169,11 @@ msgstr "%s: Falsche Größe für Eingangsargument(e).\n"
 
 #, c-format
 msgid "%s: error.\n"
-msgstr "%s: Fehler\n"
+msgstr "%s: Fehler.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
-msgstr "%s: falsche Größe für Eingangsargument.\n"
+msgstr "%s: Falsche Größe des/der Eingangsargument(s/e).\n"
 
 #, c-format
 msgid ""
@@ -227,12 +248,24 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: nicht-leere Matrix erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
@@ -241,6 +274,10 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: ein Wert >0 erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Falsche Anzahl von Ausgangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"

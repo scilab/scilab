@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gfrancis">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>gfrancis</refname>
     <refpurpose>Francis equations for tracking</refpurpose>
@@ -48,35 +45,40 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the the linear plant:</para>
-    <programlisting role = ""><![CDATA[ 
+      Given the linear plant:
+    </para>
+    <programlisting role=""><![CDATA[ 
 x'= F*x + G*u 
 y = H*x + J*u
  ]]></programlisting>
     <para>
-    and the linear model</para>
-    <programlisting role = ""><![CDATA[
+      and the linear model
+    </para>
+    <programlisting role=""><![CDATA[
 xm'= A*xm + B*um
 ym = C*xm + D*um
  ]]></programlisting>
     <para>
-    the goal is for the plant to track the model i.e. <literal>e = y - ym ---&gt; 0</literal>
-    while keeping stable the state x(t) of the plant. 
-    <literal>u</literal> is given by feedforward and feedback</para>
-    <programlisting role = ""><![CDATA[ 
+      the goal is for the plant to track the model i.e. <literal>e = y - ym ---&gt; 0</literal>
+      while keeping stable the state x(t) of the plant. 
+      <literal>u</literal> is given by feedforward and feedback
+    </para>
+    <programlisting role=""><![CDATA[ 
 u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
  ]]></programlisting>
     <para>
-    The matrices T,L,M satisfy generalized Francis equations</para>
-    <programlisting role = ""><![CDATA[ 
+      The matrices T,L,M satisfy generalized Francis equations
+    </para>
+    <programlisting role=""><![CDATA[ 
 F*T + G*L = T*A
 H*T + J*L = C
       G*M = T*B
       J*M = D
  ]]></programlisting>
     <para>
-    The matrix <literal>K</literal> must be chosen as stabilizing the pair <literal>(F,G)</literal>
-    See example of use in directory <literal>demos/tracking</literal>.</para>
+      The matrix <literal>K</literal> must be chosen as stabilizing the pair <literal>(F,G)</literal>
+      See example of use in directory <literal>demos/tracking</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -95,7 +97,7 @@ norm(J*M-D,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqg">lqg</link>
@@ -104,5 +106,18 @@ norm(J*M-D,1)
         <link linkend="ppol">ppol</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>
+          <literal>Sl</literal> is now checked for
+          continuous time linear dynamical system.  This modification
+          has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+        </revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sensi">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sensi</refname>
     <refpurpose> 感度関数</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[Se,Re,Te]=sensi(G,K)
-[Si,Ri,Ti]=sensi(G,K,flag)</synopsis>
+      [Si,Ri,Ti]=sensi(G,K,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,57 +27,71 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>標準プラント (<literal>syslin</literal> リスト)</para>
+          <para>
+            標準プラント (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>補償器 (<literal>syslin</literal> リスト)</para>
+          <para>
+            補償器 (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>'o'</literal> (デフォルト値) または <literal>'i'</literal></para>
+          <para>
+            文字列 <literal>'o'</literal> (デフォルト値) または <literal>'i'</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Se</term>
         <listitem>
-          <para>出力感度関数 <literal>(I+G*K)^-1</literal></para>
+          <para>
+            出力感度関数 <literal>(I+G*K)^-1</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Re</term>
         <listitem>
-          <para> <literal>K*Se</literal></para>
+          <para>
+            <literal>K*Se</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Te</term>
         <listitem>
-          <para> <literal>G*K*Se</literal> (出力相補感度関数)</para>
+          <para>
+            <literal>G*K*Se</literal> (出力相補感度関数)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sensi</literal> は感度関数を計算します. 
-	<literal>G</literal> および <literal>K</literal> が
-	状態空間形式で指定される場合,
-	システムは一般的に最小実現を返します.
-	計算は <literal>lft</literal> により行われます.
-	例えば, <literal>Se</literal> は
-	コマンド 
-	<literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>
-	により指定することができます.
-	
-    <literal>flag</literal> = <literal>'i'</literal>の場合, 
-	<literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>は
-	入力感度関数を返します.</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>sensi</literal> は感度関数を計算します. 
+      <literal>G</literal> および <literal>K</literal> が
+      状態空間形式で指定される場合,
+      システムは一般的に最小実現を返します.
+      計算は <literal>lft</literal> により行われます.
+      例えば, <literal>Se</literal> は
+      コマンド 
+      <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>
+      により指定することができます.
+      
+      <literal>flag</literal> = <literal>'i'</literal>の場合, 
+      <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>は
+      入力感度関数を返します.
+    </para>
+    <programlisting role=""><![CDATA[ 
 [Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
 [Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
  ]]></programlisting>

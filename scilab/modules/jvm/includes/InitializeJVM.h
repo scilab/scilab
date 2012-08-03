@@ -24,5 +24,11 @@
 */
 JVM_IMPEXP BOOL InitializeJVM(void);
 
+/**
+* Execute initial hooks register in the class Scilab.java 
+* @return TRUE or FALSE
+*/
+JVM_IMPEXP BOOL ExecuteInitialHooks(void);
+
 #endif /* __INITIALIZEJVM_H__ */
 /*--------------------------------------------------------------------------*/ 

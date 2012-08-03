@@ -10,54 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="sda" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sda" xml:lang="en">
   <refnamediv>
     <refname>sda</refname>
-
     <refpurpose>Ajusta eixos padrões </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>sda()
-a = gda(); set(a,"default_values",1)</synopsis>
+      a = gda(); set(a,"default_values",1)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>a</term>
-
         <listitem>
           <para>manipulador dos eixos padrões </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
     <para>Esta rotina reajusta o os eixos modelos para valores padrões.
     </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 f=get("default_figure"); // obtendo o manipulador da figura modelo
@@ -89,27 +70,24 @@ xdel(0)
 plot2d(x-2,sin(x))
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="sdf">sdf</link></member>
-
-      <member><link linkend="gda">gda</link></member>
-
-      <member><link linkend="gdf">gdf</link></member>
-
-      <member><link linkend="set">set</link></member>
-
-      <member><link
-      linkend="graphics_entities">graphics_entities</link></member>
+      <member>
+        <link linkend="sdf">sdf</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Autor</title>
-
-    <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

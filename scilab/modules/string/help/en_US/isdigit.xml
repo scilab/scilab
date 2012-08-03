@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isdigit">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>isdigit</refname>
     <refpurpose> check that characters of a string are digits between 0 and 9</refpurpose>
@@ -41,9 +38,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = isdigit(str)</literal> returns an array the same size as str
-        containing logical %T (TRUE) where the elements of str are digits and
-        logical %F (FALSE) where they are not.
+    <para>
+      <literal>res = isdigit(str)</literal> returns an array the same size as str
+      containing logical %T (TRUE) where the elements of str are digits and
+      logical %F (FALSE) where they are not.
     </para>
   </refsection>
   <refsection>
@@ -54,7 +52,7 @@ isdigit(s)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="isalphanum">isalphanum</link>

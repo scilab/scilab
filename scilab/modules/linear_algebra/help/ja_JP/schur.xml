@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="schur">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>schur</refname>
     <refpurpose> 行列およびペンシルの[ソートされた] Schur 分解</refpurpose>
@@ -21,14 +18,15 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[U,T] = schur(A)
-[U,dim [,T] ]=schur(A,flag)
-[U,dim [,T] ]=schur(A,extern1)
-
-[As,Es [,Q,Z]]=schur(A,E)
-[As,Es [,Q],Z,dim] = schur(A,E,flag)
-[Z,dim] = schur(A,E,flag)
-[As,Es [,Q],Z,dim]= schur(A,E,extern2)
-[Z,dim]= schur(A,E,extern2)</synopsis>
+      [U,dim [,T] ]=schur(A,flag)
+      [U,dim [,T] ]=schur(A,extern1)
+      
+      [As,Es [,Q,Z]]=schur(A,E)
+      [As,Es [,Q],Z,dim] = schur(A,E,flag)
+      [Z,dim] = schur(A,E,flag)
+      [As,Es [,Q],Z,dim]= schur(A,E,extern2)
+      [Z,dim]= schur(A,E,extern2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -42,13 +40,17 @@
       <varlistentry>
         <term>E</term>
         <listitem>
-          <para><literal>A</literal>と同じ次元の実数または複素数の正方行列.</para>
+          <para>
+            <literal>A</literal>と同じ次元の実数または複素数の正方行列.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 (<literal>'c'</literal> または <literal>'d'</literal>)</para>
+          <para>
+            文字列 (<literal>'c'</literal> または <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -110,8 +112,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    Schur 形式, 行列およびペンシルのソートされた Schur 形式
-  </para>
+      Schur 形式, 行列およびペンシルのソートされた Schur 形式
+    </para>
     <variablelist>
       <varlistentry>
         <term>行列Schur形式</term>
@@ -120,67 +122,76 @@
             <varlistentry>
               <term>通常のSchur形式:</term>
               <listitem>
-                <para><literal>[U,T] = schur(A)</literal> は,
-	<literal>A = U*T*U'</literal> および <literal>U'*U =  eye(U)</literal>となるような
-	Schur行列<literal>T</literal> およびユニタリ行列 <literal>U</literal>
-	を出力します.
-	Schur(<literal>A</literal>)は,<literal>T</literal>を返します.
-	<literal>A</literal> が複素数の場合, 複素Schur形式は,行列<literal>T</literal>に返します.
-	複素Schur形式は,<literal>A</literal>の固有値を対角項に有する上三角行列です.
-	<literal>A</literal> が実数の場合, 実数Schur形式が返されます.
-	実数Schur形式は,対角項に実数固有値、複素数固有値を対角項の2x2ブロックに
-	有します.
-      </para>
+                <para>
+                  <literal>[U,T] = schur(A)</literal> は,
+                  <literal>A = U*T*U'</literal> および <literal>U'*U =  eye(U)</literal>となるような
+                  Schur行列<literal>T</literal> およびユニタリ行列 <literal>U</literal>
+                  を出力します.
+                  Schur(<literal>A</literal>)は,<literal>T</literal>を返します.
+                  <literal>A</literal> が複素数の場合, 複素Schur形式は,行列<literal>T</literal>に返します.
+                  複素Schur形式は,<literal>A</literal>の固有値を対角項に有する上三角行列です.
+                  <literal>A</literal> が実数の場合, 実数Schur形式が返されます.
+                  実数Schur形式は,対角項に実数固有値、複素数固有値を対角項の2x2ブロックに
+                  有します.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>ソートされたSchur形式</term>
               <listitem>
-                <para><literal>[U,dim]=schur(A,'c')</literal> は,
-	<literal>A</literal>を Schur 形式に変換する
-	ユニタリ行列 <literal>U</literal> を返します.
-	更に,<literal>U</literal>の最初の列 dim は,
-	実部が負の固有値(安定な"連続時間"固有値空間)
-	に関連する<literal>A</literal>の固有値空間
-	の基底を構成します.</para>
-
-        <para><literal>[U,dim]=schur(A,'d')</literal> は,
-	<literal>A</literal>を Schur 形式に変換する
-	ユニタリ行列 <literal>U</literal> を返します.
-	更に,<literal>U</literal>の最初の列 dim は,
-	大きさが1未満の固有値(安定な"離散時間"固有値空間)
-	に関連する<literal>A</literal>の固有値空間
-	の基底を構成します.
-      </para>
-      <para><literal>[U,dim]=schur(A,extern1)</literal> は,
-	<literal>A</literal>を Schur 形式に変換する
-	ユニタリ行列<literal>U</literal>を返します.
-	更に,<literal>U</literal>の最初の列 dim は,
-	外部関数 <literal>extern1</literal> (詳細は external 参照)
-	により選択された固有値に関連する<literal>A</literal>の固有値空間
-	の基底を構成します.
-	この external はScilab関数またはCまたはFortranプロシージャにより
-	次のように記述することができます: </para>
+                <para>
+                  <literal>[U,dim]=schur(A,'c')</literal> は,
+                  <literal>A</literal>を Schur 形式に変換する
+                  ユニタリ行列 <literal>U</literal> を返します.
+                  更に,<literal>U</literal>の最初の列 dim は,
+                  実部が負の固有値(安定な"連続時間"固有値空間)
+                  に関連する<literal>A</literal>の固有値空間
+                  の基底を構成します.
+                </para>
+                <para>
+                  <literal>[U,dim]=schur(A,'d')</literal> は,
+                  <literal>A</literal>を Schur 形式に変換する
+                  ユニタリ行列 <literal>U</literal> を返します.
+                  更に,<literal>U</literal>の最初の列 dim は,
+                  大きさが1未満の固有値(安定な"離散時間"固有値空間)
+                  に関連する<literal>A</literal>の固有値空間
+                  の基底を構成します.
+                </para>
+                <para>
+                  <literal>[U,dim]=schur(A,extern1)</literal> は,
+                  <literal>A</literal>を Schur 形式に変換する
+                  ユニタリ行列<literal>U</literal>を返します.
+                  更に,<literal>U</literal>の最初の列 dim は,
+                  外部関数 <literal>extern1</literal> (詳細は external 参照)
+                  により選択された固有値に関連する<literal>A</literal>の固有値空間
+                  の基底を構成します.
+                  この external はScilab関数またはCまたはFortranプロシージャにより
+                  次のように記述することができます: 
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>Scilab関数</term>
                     <listitem>
-                      <para><literal>extern1</literal>が
-	Scilab関数により記述される場合,
-	以下の呼び出し手順を有する必要があります:
-	  <literal>s=extern1(Ev)</literal>, ただし <literal>Ev</literal> は固有値,
-	  <literal>s</literal> は論理値です.</para>
+                      <para>
+                        <literal>extern1</literal>が
+                        Scilab関数により記述される場合,
+                        以下の呼び出し手順を有する必要があります:
+                        <literal>s=extern1(Ev)</literal>, ただし <literal>Ev</literal> は固有値,
+                        <literal>s</literal> は論理値です.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>C または Fortran プロシージャ</term>
                     <listitem>
-                      <para><literal>extern1</literal> がCまたはFortran関数により
-		記述される場合,以下の呼び出し手順を有する必要があります:
-	  <literal>int extern1(double *EvR, double *EvI)</literal>
-	  ただし <literal>EvR</literal> および <literal>EvI</literal> は
-	固有値の実部および虚部です.
-	trueまたはゼロでない戻り値は,選択された固有値を意味します.</para>
+                      <para>
+                        <literal>extern1</literal> がCまたはFortran関数により
+                        記述される場合,以下の呼び出し手順を有する必要があります:
+                        <literal>int extern1(double *EvR, double *EvI)</literal>
+                        ただし <literal>EvR</literal> および <literal>EvI</literal> は
+                        固有値の実部および虚部です.
+                        trueまたはゼロでない戻り値は,選択された固有値を意味します.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -196,73 +207,85 @@
             <varlistentry>
               <term>通常のペンシルSchur形式</term>
               <listitem>
-                <para><literal>[As,Es] = schur(A,E)</literal> は,
-	対<literal>A, E</literal>の一般化Schur形式である
-	準三角行列<literal>As</literal>行列および三角行列<literal>Es</literal>
-	を出力します.</para>
-       <para><literal>[As,Es,Q,Z] = schur(A,E)</literal>は,更に
-	<literal>As=Q'*A*Z</literal> および <literal>Es=Q'*E*Z</literal>となるような
-	2つのユニタリ行列<literal>Q</literal> および <literal>Z</literal>を返します.
-      </para>
+                <para>
+                  <literal>[As,Es] = schur(A,E)</literal> は,
+                  対<literal>A, E</literal>の一般化Schur形式である
+                  準三角行列<literal>As</literal>行列および三角行列<literal>Es</literal>
+                  を出力します.
+                </para>
+                <para>
+                  <literal>[As,Es,Q,Z] = schur(A,E)</literal>は,更に
+                  <literal>As=Q'*A*Z</literal> および <literal>Es=Q'*E*Z</literal>となるような
+                  2つのユニタリ行列<literal>Q</literal> および <literal>Z</literal>を返します.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>ソートされたSchur形式:</term>
               <listitem>
-                <para><literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>は,
-	ペンシル<literal>s*E-A</literal>の実数一般化Schur形式を返します.
-	更に, <literal>Z</literal>の最初の列 dim は,
-	実部が負の固有値 (安定な"連続時間"一般化固有値空間)に関連する
-	固有値空間の基底を構成します.</para>
+                <para>
+                  <literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>は,
+                  ペンシル<literal>s*E-A</literal>の実数一般化Schur形式を返します.
+                  更に, <literal>Z</literal>の最初の列 dim は,
+                  実部が負の固有値 (安定な"連続時間"一般化固有値空間)に関連する
+                  固有値空間の基底を構成します.
+                </para>
                 <para>
                   <literal>[As,Es,Z,dim] = schur(A,E,'d')</literal>
                 </para>
                 <para>
-	は,ペンシル<literal>s*E-A</literal>の
-	実数一般化Schur形式を返します.
-	更に, <literal>Z</literal>の最初の列 dim は,
-	大きさ1未満の固有値 (安定な"離散時間"一般化固有値空間)に関連する
-	固有値空間の基底を構成します.</para>
+                  は,ペンシル<literal>s*E-A</literal>の
+                  実数一般化Schur形式を返します.
+                  更に, <literal>Z</literal>の最初の列 dim は,
+                  大きさ1未満の固有値 (安定な"離散時間"一般化固有値空間)に関連する
+                  固有値空間の基底を構成します.
+                </para>
                 <para>
                   <literal>[As,Es,Z,dim] = schur(A,E,extern2)</literal>
                 </para>
                 <para>
-	は,ペンシル<literal>s*E-A</literal>の実一般化Schur形式を返します.
-	更に, <literal>Z</literal>の最初の列 dim は,
-	関数<literal>extern2</literal>により指定された規則に基づき選択された
-	ペンシルの固有値に関する固有値空間の基底を構成します.
-	(詳細は external 参照)
-	この external は Scilab 関数またはCまたはFortranプロシージャ
-	により次のように記述することができます:
-	</para>
+                  は,ペンシル<literal>s*E-A</literal>の実一般化Schur形式を返します.
+                  更に, <literal>Z</literal>の最初の列 dim は,
+                  関数<literal>extern2</literal>により指定された規則に基づき選択された
+                  ペンシルの固有値に関する固有値空間の基底を構成します.
+                  (詳細は external 参照)
+                  この external は Scilab 関数またはCまたはFortranプロシージャ
+                  により次のように記述することができます:
+                </para>
                 <variablelist>
                   <varlistentry>
                     <term>Scilab関数</term>
                     <listitem>
-                      <para><literal>extern2</literal>がScilab関数により記述される場合,
-	以下の呼び出し手順を有する必要があります:
-	  <literal>s=extern2(Alpha,Beta)</literal>, ただし <literal>Alpha</literal> および
-	  <literal>Beta</literal> は一般化固有値および論理値 <literal>s</literal>
-	を定義します.</para>
+                      <para>
+                        <literal>extern2</literal>がScilab関数により記述される場合,
+                        以下の呼び出し手順を有する必要があります:
+                        <literal>s=extern2(Alpha,Beta)</literal>, ただし <literal>Alpha</literal> および
+                        <literal>Beta</literal> は一般化固有値および論理値 <literal>s</literal>
+                        を定義します.
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>C またはFortranプロシージャ</term>
                     <listitem>
-                      <para>if external <literal>extern2</literal> がCまたはFortran関数により
-		記述される場合,以下の呼び出し手順を有する必要があります:</para>
+                      <para>
+                        if external <literal>extern2</literal> がCまたはFortran関数により
+                        記述される場合,以下の呼び出し手順を有する必要があります:
+                      </para>
                       <para>
                         <literal>int extern2(double *AlphaR, double *AlphaI, double *Beta)</literal>
                       </para>
                       <para>
-	  : <literal>A</literal> および <literal>E</literal> が実数の場合.</para>
+                        : <literal>A</literal> および <literal>E</literal> が実数の場合.
+                      </para>
                       <para>
                         <literal>int extern2(double *AlphaR, double *AlphaI, double *BetaR, double *BetaI)</literal>
                       </para>
                       <para>
-	  : <literal>A</literal> および <literal>E</literal> が複素数の場合.
-	  <literal>Alpha</literal>, および <literal>Beta</literal> は一般化固有値を定義します.
-	trueまたは非ゼロの戻り値は,選択された一般化固有値を意味します.</para>
+                        : <literal>A</literal> および <literal>E</literal> が複素数の場合.
+                        <literal>Alpha</literal>, および <literal>Beta</literal> は一般化固有値を定義します.
+                        trueまたは非ゼロの戻り値は,選択された一般化固有値を意味します.
+                      </para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -276,9 +299,11 @@
   <refsection>
     <title>参考</title>
     <para>
-	行列Schur形式の計算はLapackルーチンDGEES および ZGEESに基づいています.</para>
+      行列Schur形式の計算はLapackルーチンDGEES および ZGEESに基づいています.
+    </para>
     <para>
-    ペンシルSchur形式の計算はLapackルーチンDGGES および ZGGESに基づいています.</para>
+      ペンシルSchur形式の計算はLapackルーチンDGGES および ZGGESに基づいています.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

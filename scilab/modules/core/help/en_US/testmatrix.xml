@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="testmatrix">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>testmatrix</refname>
     <refpurpose> generate special matrices, such as Hilbert, Franck</refpurpose>
@@ -29,7 +26,9 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para> <literal>n</literal> x <literal>m</literal> matrix</para>
+          <para>
+            <literal>n</literal> x <literal>n</literal> matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,25 +36,29 @@
   <refsection>
     <title>Description</title>
     <para>
-    Create some particular matrices
-  </para>
+      Creates some particular matrices.
+    </para>
     <variablelist>
       <varlistentry>
         <term>testmatrix('magi',n)</term>
         <listitem>
-          <para>returns a magic square of size <literal>n</literal> .</para>
+          <para>
+            returns a magic square of size <literal>n</literal> x <literal>n</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('frk',n)</term>
         <listitem>
-          <para>returns the Franck matrix :</para>
+          <para>returns the Franck matrix.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>testmatrix('hilb',n)</term>
         <listitem>
-          <para>is the inverse of the nxn Hilbert matrix  <literal> (Hij= 1/(i+j-1))</literal>.</para>
+          <para>
+            is the inverse of the <literal>n</literal> x <literal>n</literal> Hilbert matrix  <literal>(Hij= 1/(i+j-1))</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

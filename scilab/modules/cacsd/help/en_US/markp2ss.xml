@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="markp2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>markp2ss</refname>
     <refpurpose> Markov parameters to state-space</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,11 +47,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    given a set of <literal>n</literal> Markov parameters stacked in the (row)-matrix 
-    <literal>markpar</literal> of size <literal>nout</literal>X<literal>(n*nin) markp2ss</literal>
-    returns a state-space linear system <literal>sl</literal> (<literal>syslin</literal> list) 
-    such that with <literal>[A,B,C,D]=abcd(sl)</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+      given a set of <literal>n</literal> Markov parameters stacked in the (row)-matrix 
+      <literal>markpar</literal> of size <literal>nout</literal>X<literal>(n*nin) markp2ss</literal>
+      returns a state-space linear system <literal>sl</literal> (<literal>syslin</literal> list) 
+      such that with <literal>[A,B,C,D]=abcd(sl)</literal>:
+    </para>
+    <programlisting role=""><![CDATA[ 
 C*B = markpar(1:nout,1:nin),
 C*A*B =markpar(1:nout,nin+1:2*nin),....
  ]]></programlisting>
@@ -71,7 +71,7 @@ norm(markpar-Markpar,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="frep2tf">frep2tf</link>

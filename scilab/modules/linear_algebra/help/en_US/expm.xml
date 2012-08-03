@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="expm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>expm</refname>
     <refpurpose> square matrix exponential</refpurpose>
@@ -35,14 +32,17 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X</literal> is a square matrix <literal>expm(X)</literal> is the matrix</para>
+    <para>
+      <literal>X</literal> is a square matrix <literal>expm(X)</literal> is the matrix
+    </para>
     <para>
       <literal>expm(X) = I + X + X^2 /2 + ...</literal>
     </para>
     <para>
-    The computation is performed by first 
-    block-diagonalizing <literal>X</literal> and then applying a Pade approximation 
-    on each block.</para>
+      The computation is performed by first 
+      block-diagonalizing <literal>X</literal> and then applying a Pade approximation 
+      on each block.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +53,7 @@ logm(expm(X))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="logm">logm</link>

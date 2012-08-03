@@ -92,21 +92,31 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
 
     // Operating system detection + Architecture detection
     // =========================================================================
-    [OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
+    [OSNAME, ARCH, LINUX, MACOSX, SOLARIS,BSD] = atomsGetPlatform();
 
     // Start Read the file
     // =========================================================================
+
+    if ~isfile(file_in) then
+       error(msprintf(gettext("%s: The file ""%s"" does not exist.\n"), ..
+                              "atomsDESCRIPTIONread", ..
+                              file_in));
+    end
 
     lines_in         = mgetl(file_in);
     current_toolbox  = struct();
     current_field    = "";
 
     if isempty(lines_in) then
-        return;
+       error(msprintf(gettext("%s: The file ""%s"" is empty.\n"), ..
+                              "atomsDESCRIPTIONread", ..
+                              file_in));
     end
 
+    winId = atomsOpenProgressBar(_("Updating Atoms modules database..."), %t)
     for i=1:(size(lines_in,"*")+1)
 
+        atomsUpdateProgressBar(winId, i / size(lines_in,"*"));
         // File totally read : register the latest toolbox
         if i == (size(lines_in,"*")+1) then
 
@@ -123,6 +133,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                 // Register the current toolbox : Check the mandatory fields
                 missingfield = atomsCheckFields( current_toolbox );
                 if ~ isempty(missingfield) then
+                    atomsCloseProgressBar(winId);
                     error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
                         "atomsDESCRIPTIONread",..
                         file_in,current_toolbox("Toolbox"),..
@@ -167,6 +178,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                     // Register the current toolbox : Check the mandatory fields
                     missingfield = atomsCheckFields( current_toolbox );
                     if ~ isempty(missingfield) then
+                        atomsCloseProgressBar(winId);
                         error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
                             "atomsDESCRIPTIONread",..
                             file_in,current_toolbox("Toolbox"),..
@@ -225,6 +237,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                 if and(isfield(current_toolbox,["Toolbox";"Version"])) then
                     categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
                 else
+                    atomsCloseProgressBar(winId);
                     error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
                 end
             end
@@ -235,7 +248,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
         // Second case : Current field continuation
         if regexp(lines_in(i),"/^\s/","o") == 1 then
             current_value = part(lines_in(i),2:length(lines_in(i)));
-            current_toolbox(current_field) = [ current_toolbox(current_field) ; current_value ];
+            current_toolbox(current_field)($+1) =  current_value;
 
             // Category management
             if current_field == "Category" then
@@ -245,6 +258,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                 if and(isfield(current_toolbox,["Toolbox";"Version"])) then
                     categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
                 else
+                    atomsCloseProgressBar(winId);
                     error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
                 end
             end
@@ -263,6 +277,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
         end
 
         // Else Error
+        atomsCloseProgressBar(winId);
         error(msprintf(gettext("%s: The file ''%s'' is not well formated at line %d\n"),"atomsDESCRIPTIONread",file_in,i));
 
     end
@@ -270,6 +285,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
     description_out("packages")        = packages;
     description_out("categories")      = categories;
     description_out("categories_flat") = categories_flat;
+    atomsCloseProgressBar(winId);
 
 endfunction
 

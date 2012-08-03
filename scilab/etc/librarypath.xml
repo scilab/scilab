@@ -26,12 +26,21 @@
 <path value="$SCILAB/modules/localization/.libs"/>
 <path value="$SCILAB/modules/renderer/.libs"/>
 <path value="$SCILAB/modules/graphic_export/.libs"/>
+<path value="$SCILAB/modules/graphic_objects/.libs"/>
 <path value="$SCILAB/modules/scinotes/.libs"/>
 <path value="$SCILAB/modules/commons/.libs"/>
+<path value="$SCILAB/modules/gui/.libs"/>
+<path value="$SCILAB/modules/ui_data/.libs"/>
+<path value="$SCILAB/modules/javasci/.libs"/>
+<path value="$SCILAB/modules/.libs"/>
 <path value="$SCILAB/.libs"/>
 
 <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
 <path value="/usr/lib/jni/"/>
+
+<!-- Standard path for %{_jnidir} rpm macro (jpackage) -->
+<path value="/usr/lib/java/"/>
+<path value="/usr/lib64/java/"/>
 
 <!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
 <path value="/usr/lib/jogl/"/>

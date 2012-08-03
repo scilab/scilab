@@ -14,7 +14,7 @@
 
 // Try this :
 
-for i = [0:9] do
+for i = [1:9] do
   plot([i,i]);
   e=gce();
   e=e.children();

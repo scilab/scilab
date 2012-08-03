@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linmeq">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>linmeq</refname>
     <refpurpose> Sylvester and Lyapunov equations solver</refpurpose>
@@ -122,7 +119,8 @@
                     <term>flag(1)</term>
                     <listitem>
                       <para>if 0 solve continuous-time equation
-            (2a), otherwise, solve discrete-time equation (2b).</para>
+                        (2a), otherwise, solve discrete-time equation (2b).
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -156,8 +154,8 @@
             </varlistentry>
           </variablelist>
           <para>
-     Default:    flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
-    </para>
+            Default:    flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -191,8 +189,8 @@
             </varlistentry>
           </variablelist>
           <para>
-     Default:    trans = 0.
-    </para>
+            Default:    trans = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -214,14 +212,14 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    schur = 1.
-  </para>
+            Default:    schur = 1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -235,20 +233,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    linmeq  function for solving Sylvester and Lyapunov equations
-    using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD, 
-    SB04RD, SB03MD, and SB03OD.
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      linmeq  function for solving Sylvester and Lyapunov equations
+      using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD, 
+      SB04RD, SB03MD, and SB03OD.
+    </para>
+    <programlisting role=""><![CDATA[ 
     [X] = linmeq(1,A,B,C,flag,trans,schur)
 [X,sep] = linmeq(2,A,C,flag,trans)
     [X] = linmeq(2,A,C,flag,trans)
     [X] = linmeq(3,A,C,flag,trans)
  ]]></programlisting>
     <para>
-    linmeq solves various Sylvester and Lyapunov matrix equations:
-  </para>
-    <programlisting role = ""><![CDATA[
+      linmeq solves various Sylvester and Lyapunov matrix equations:
+    </para>
+    <programlisting role=""><![CDATA[
 op(A)*X + X*op(B) = C,                           (1a)
 
 op(A)*X*op(B) + X = C,                           (1b)
@@ -264,8 +262,8 @@ op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
                             - op(C)'*op(C),      (3b)
  ]]></programlisting>
     <para>
-    where op(M) = M, or M'.
-  </para>
+      where op(M) = M, or M'.
+    </para>
   </refsection>
   <refsection>
     <title>Comments</title>
@@ -274,12 +272,13 @@ op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
         <term>1.</term>
         <listitem>
           <para>For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur
-method is used, reducing one matrix to Hessenberg form and the other
-one to a real Schur form. Otherwise, both matrices are reduced to real
-Schur forms. If one or both matrices are already reduced to
-Schur/Hessenberg forms, this could be specified by flag(2) and
-flag(3). For general matrices, the Hessenberg-Schur method could be
-significantly more efficient than the Schur method.</para>
+            method is used, reducing one matrix to Hessenberg form and the other
+            one to a real Schur form. Otherwise, both matrices are reduced to real
+            Schur forms. If one or both matrices are already reduced to
+            Schur/Hessenberg forms, this could be specified by flag(2) and
+            flag(3). For general matrices, the Hessenberg-Schur method could be
+            significantly more efficient than the Schur method.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -305,7 +304,8 @@ significantly more efficient than the Schur method.</para>
   <refsection>
     <title>Revisions</title>
     <para>
-    V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of Bucharest, Romania, May 2000.</para>
+      V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of Bucharest, Romania, May 2000.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -346,7 +346,7 @@ norm(A'*X'*X*A - X'*X +C'*C,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sylv">sylv</link>
@@ -355,9 +355,5 @@ norm(A'*X'*X*A - X'*X +C'*C,1)
         <link linkend="lyap">lyap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>H. Xu, TU Chemnitz, FR Germany, Dec. 1998.  </para>
   </refsection>
 </refentry>

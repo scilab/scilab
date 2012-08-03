@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_ludel">
-  <info>
-    <pubdate>scispt toolbox  </pubdate>
-  </info>
   <refnamediv>
     <refname>umf_ludel</refname>
     <refpurpose> utility function used with umf_lufact  </refpurpose>
@@ -25,19 +22,19 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function must be used in conjunction with <link linkend='umf_lufact'>umf_lufact</link> and <link linkend='umf_lusolve'>umf_lusolve</link>.
-    It clears the internal memory space used to store the LU factors (got with umf_lufact).
-    Use without argument it frees the memory for all the current scilab umfpack LU factors. 
-  </para>
+      This function must be used in conjunction with <link linkend="umf_lufact">umf_lufact</link> and <link linkend="umf_lusolve">umf_lusolve</link>.
+      It clears the internal memory space used to store the LU factors (got with umf_lufact).
+      Use without argument it frees the memory for all the current scilab umfpack LU factors. 
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <para>
-    see the example section of <link linkend='umf_lufact'>umf_lufact</link>
-  </para>
+      see the example section of <link linkend="umf_lufact">umf_lufact</link>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>
@@ -54,13 +51,6 @@
       <member>
         <link linkend="umf_luinfo">umf_luinfo</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>umfpack by Timothy A. Davis (see umf_license)</member>
-      <member>scilab interface by Bruno Pincon</member>
     </simplelist>
   </refsection>
 </refentry>

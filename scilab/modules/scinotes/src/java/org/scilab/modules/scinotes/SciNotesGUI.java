@@ -46,7 +46,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
@@ -73,7 +73,6 @@ public final class SciNotesGUI {
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
     private static Document menuConf;
 
     private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap<SciNotes, MenuBar>();
@@ -81,36 +80,41 @@ public final class SciNotesGUI {
     private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap<SciNotes, JPopupMenu>();
     private static Map<SciNotes, TextBox> mapInfoBar = new HashMap<SciNotes, TextBox>();
 
-    static {
-        ConfigSciNotesManager.addMapActionNameKeys(map);
-    }
-
     /**
      * initialize the window
      * @param mainWindow Windows
      * @param editorInstance SciNotes
      * @param title the title
      */
-    public static void init(Window mainWindow, final SciNotes editorInstance, String title) {
+    public static void init(SimpleWindow mainWindow, final SciNotes editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 
         // Set SciNotes Window position /size
-        mainWindow.setPosition(ConfigSciNotesManager.getMainWindowPosition());
-        mainWindow.setDims(ConfigSciNotesManager.getMainWindowSize());
-
-        editorInstance.setMenuBar(generateMenuBar(editorInstance));
-        editorInstance.setToolBar(generateToolBar(editorInstance));
-        editorInstance.setInfoBar(generateInfoBar(editorInstance));
         mainWindow.setTitle(title);
         mainWindow.setVisible(true);
+
+        init(editorInstance);
     }
 
     /**
-     * @return the Map containing the pairs (Action, KeyStroke).
+     * Initialize SciNotes
+     * @param editorInstance SciNotes
      */
-    public static Map<String, KeyStroke> getActionKeyMap() {
-        return map;
+    public static void init(SciNotes editorInstance) {
+        editorInstance.setMenuBar(generateMenuBar(editorInstance));
+        editorInstance.setToolBar(generateToolBar(editorInstance));
+        editorInstance.setInfoBar(generateInfoBar(editorInstance));
+    }
+
+    /**
+     * Initialize SciNotes
+     * @param editorInstance SciNotes
+     */
+    public static void reinitMenus(SciNotes editorInstance) {
+        mapMenuBar.remove(editorInstance);
+        mapPopup.remove(editorInstance);
+        editorInstance.setMenuBar(generateMenuBar(editorInstance));
     }
 
     /**
@@ -295,14 +299,15 @@ public final class SciNotesGUI {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         String className = "";
         Method method = null;
+        String actionClass = SciNotes.getActionName().get(action);
         try {
             if (action.lastIndexOf(DOT) != -1)  {
-                className = action;
+                className = actionClass;
             } else {
-                className = DEFAULTACTIONPATH + DOT + action;
+                className = DEFAULTACTIONPATH + DOT + actionClass;
             }
             Class clazz = loader.loadClass(className);
-            method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
+            method = clazz.getMethod("createMenu", new Class[] {String.class, SciNotes.class, KeyStroke.class});
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {
@@ -314,14 +319,14 @@ public final class SciNotesGUI {
         }
 
         try {
-            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+            return method.invoke(null, new Object[] {Messages.gettext(label), editor, SciNotes.getActionKeys().get(action)});
         } catch (InvocationTargetException e) {
             System.err.println("Warning: problem to create the menu for action: " + className);
             System.err.println("The menu label is: " + Messages.gettext(label));
             System.err.println("English version will be used instead.");
             System.err.println("Please report a bug at: http://bugzilla.scilab.org");
             try {
-                return method.invoke(null, new Object[]{label, editor, map.get(action)});
+                return method.invoke(null, new Object[] {label, editor, SciNotes.getActionKeys().get(action)});
             } catch (InvocationTargetException ex) {
                 System.err.println("Problem to create menu of the action: " + className);
             } catch (IllegalAccessException ex) {
@@ -344,15 +349,16 @@ public final class SciNotesGUI {
     private static Object getButton(String action, String tooltip, String icon, SciNotes editor) {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         String className = "";
+        String actionClass = SciNotes.getActionName().get(action);
         try {
             if (action.lastIndexOf(DOT) != -1)  {
-                className = action;
+                className = actionClass;
             } else {
-                className = DEFAULTACTIONPATH + DOT + action;
+                className = DEFAULTACTIONPATH + DOT + actionClass;
             }
             Class clazz = loader.loadClass(className);
-            Method method = clazz.getMethod("createButton", new Class[]{String.class, String.class, SciNotes.class});
-            return method.invoke(null, new Object[]{Messages.gettext(tooltip), icon, editor});
+            Method method = clazz.getMethod("createButton", new Class[] {String.class, String.class, SciNotes.class});
+            return method.invoke(null, new Object[] {Messages.gettext(tooltip), icon, editor});
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {

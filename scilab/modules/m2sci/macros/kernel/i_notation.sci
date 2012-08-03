@@ -75,7 +75,7 @@ for k=1:n
     
     
     if ~tokill then
-      // If char which follows supposed complex notation is not a operation symbol
+      // If char which follows supposed complex notation is not an operation symbol
       if km<>kc(kk-1) then
 	if and(part(tk,km)<>symbs) then tokill=%T,end
       end

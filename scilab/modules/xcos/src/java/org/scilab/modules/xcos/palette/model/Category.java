@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +22,7 @@ import java.util.Map;
 
 import javax.swing.tree.TreeNode;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -55,135 +56,159 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(name = "Category", propOrder = { "node" })
 public class Category extends PaletteNode {
-	private static final transient
-		Map<String, List<PaletteNode>> SAVED_NODELIST = new HashMap<String, List<PaletteNode>>();
-	
-	@XmlElement(nillable = true)
-	private List<PaletteNode> node;
+    private static final transient Map<String, List<PaletteNode>> SAVED_NODELIST = new HashMap<String, List<PaletteNode>>();
 
-	/**
-	 * Default constructor
-	 */
-	public Category() {
-	}
+    @XmlElement(nillable = true)
+    private List<PaletteNode> node;
 
-	/**
-	 * Gets the value of the node property.
-	 * 
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a
-	 * snapshot. Therefore any modification you make to the returned list will
-	 * be present inside the JAXB object. This is why there is not a
-	 * <CODE>set</CODE> method for the node property.
-	 * 
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getNode().add(newItem);
-	 * </pre>
-	 * 
-	 * 
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list
-	 * {@link PaletteNode }
-	 * 
-	 * @return the non-null children list.
-	 */
-	public List<PaletteNode> getNode() {
-		if (node == null) {
-			node = new ArrayList<PaletteNode>();
-		}
-		return node;
-	}
+    /**
+     * Default constructor
+     */
+    public Category() {
+    }
 
-	/*
-	 * TreeNode method implementation
-	 */
+    /**
+     * Gets the value of the node property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the node property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * 
+     * <pre>
+     * getNode().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PaletteNode }
+     * 
+     * @return the non-null children list.
+     */
+    public List<PaletteNode> getNode() {
+        if (node == null) {
+            node = new ArrayList<PaletteNode>();
+        }
+        return node;
+    }
 
-	/**
-	 * @return the children
-	 * @see javax.swing.tree.TreeNode#children()
-	 */
-	@Override
-	public Enumeration<PaletteNode> children() {
-		return Collections.enumeration(getNode());
-	}
+    /*
+     * TreeNode method implementation
+     */
 
-	/**
-	 * @return true
-	 * @see javax.swing.tree.TreeNode#getAllowsChildren()
-	 */
-	@Override
-	public boolean getAllowsChildren() {
-		return true;
-	}
+    /**
+     * @return the children
+     * @see javax.swing.tree.TreeNode#children()
+     */
+    @Override
+    public Enumeration<PaletteNode> children() {
+        return Collections.enumeration(getNode());
+    }
 
-	/**
-	 * @param childIndex
-	 *            the selected child index
-	 * @return the child at the specified index
-	 * @see javax.swing.tree.TreeNode#getChildAt(int)
-	 */
-	@Override
-	public TreeNode getChildAt(int childIndex) {
-		return getNode().get(childIndex);
-	}
+    /**
+     * @return true
+     * @see javax.swing.tree.TreeNode#getAllowsChildren()
+     */
+    @Override
+    public boolean getAllowsChildren() {
+        return true;
+    }
 
-	/**
-	 * @return the number of child
-	 * @see javax.swing.tree.TreeNode#getChildCount()
-	 */
-	@Override
-	public int getChildCount() {
-		return getNode().size();
-	}
+    /**
+     * @param childIndex
+     *            the selected child index
+     * @return the child at the specified index
+     * @see javax.swing.tree.TreeNode#getChildAt(int)
+     */
+    @Override
+    public TreeNode getChildAt(int childIndex) {
+        return getNode().get(childIndex);
+    }
 
-	/**
-	 * @param node
-	 *            the node
-	 * @return the index of the node
-	 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
-	 */
-	@Override
-	public int getIndex(TreeNode node) {
-		return getNode().indexOf(node);
-	}
+    /**
+     * @return the number of child
+     * @see javax.swing.tree.TreeNode#getChildCount()
+     */
+    @Override
+    public int getChildCount() {
+        return getNode().size();
+    }
 
-	/**
-	 * @return false
-	 * @see javax.swing.tree.TreeNode#isLeaf()
-	 */
-	@Override
-	public boolean isLeaf() {
-		return false;
-	}
+    /**
+     * @param node
+     *            the node
+     * @return the index of the node
+     * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
+     */
+    @Override
+    public int getIndex(TreeNode node) {
+        return getNode().indexOf(node);
+    }
 
-	/*
-	 * Customize the marshalling operation
-	 */
+    /**
+     * @return false
+     * @see javax.swing.tree.TreeNode#isLeaf()
+     */
+    @Override
+    public boolean isLeaf() {
+        return false;
+    }
 
-	/**
-	 * Invoked by Marshaller after it has created an instance of this object.
-	 * @param m the marshaller
-	 */
-	void beforeMarshal(Marshaller m) {
-		SAVED_NODELIST.put(getName(), new ArrayList<PaletteNode>(node));
-		
-		for (Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
-			if (it.next() instanceof PreLoaded.Dynamic) {
-				it.remove();
-			}
-		}
-	}
+    /*
+     * Customize the marshalling operation
+     */
 
-	/**
-	 * Invoked by Marshaller after it has marshalled all properties of this
-	 * object.
-	 *
-	 * @param m the marshaller
-	 */
-	void afterMarshal(Marshaller m) {
-		node = SAVED_NODELIST.get(getName());
-	}
+    /**
+     * Invoked by Marshaller after it has created an instance of this object.
+     * 
+     * @param m
+     *            the marshaller
+     */
+    void beforeMarshal(Marshaller m) {
+        SAVED_NODELIST.put(getName(), new ArrayList<PaletteNode>(node));
+
+        for (final Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
+            if (it.next() instanceof PreLoaded.Dynamic) {
+                it.remove();
+            }
+        }
+    }
+
+    /**
+     * Invoked by Marshaller after it has marshalled all properties of this
+     * object.
+     * 
+     * @param m
+     *            the marshaller
+     */
+    void afterMarshal(Marshaller m) {
+        node = SAVED_NODELIST.get(getName());
+    }
+
+    /**
+     * Invoked by Unmarshaller after unmarshalling
+     * 
+     * @param u
+     *            the unmarshaller
+     * @param parent
+     *            the parent object
+     */
+    @Override
+    void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (node == null) {
+            return;
+        }
+
+        for (final Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
+            final PaletteNode p = it.next();
+            if (p instanceof Category && p.getChildCount() == 0) {
+                it.remove();
+            }
+        }
+    }
 }

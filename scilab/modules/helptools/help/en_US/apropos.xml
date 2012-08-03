@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="apropos">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>apropos</refname>
     <refpurpose> searches keywords in Scilab help</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>apropos(key)
-apropos(regexp)</synopsis>
+      apropos(regexp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -36,18 +34,23 @@ apropos(regexp)</synopsis>
         <term>regexp</term>
         <listitem>
           <para> character string. give the regular expression to be found
-	    (only with "Scilab Browser")</para>
+            (only with "Scilab Browser")
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>apropos(key)</literal> looks for Scilab help files containing
-      keywords <literal>key</literal>in their short description section.</para>
-    <para><literal>apropos(regexp)</literal> looks for Scilab
+    <para>
+      <literal>apropos(key)</literal> looks for Scilab help files containing
+      keywords <literal>key</literal>in their short description section.
+    </para>
+    <para>
+      <literal>apropos(regexp)</literal> looks for Scilab
       help files containing regular expression  <literal>regexp</literal>in their short
-      description section.</para>
+      description section.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -61,7 +64,7 @@ apropos "quadratic.*solver"
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

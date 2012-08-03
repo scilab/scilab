@@ -17,8 +17,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "stack-c.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -33,27 +31,43 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
     CheckRhs(1, 2);
     CheckLhs(0, 1);
 
-    char *path = NULL;
+    char *init = NULL;
+    char *relations = NULL;
 
-    /* path setup */
-    if (readSingleString(pvApiCtx, 1, &path, fname))
+    /* first file setup */
+    if (readSingleString(pvApiCtx, 1, &init, fname))
     {
+        return 0;
+    }
+    /* second file setup */
+    if (readSingleString(pvApiCtx, 2, &relations, fname))
+    {
+        FREE(init);
         return 0;
     }
 
     /* Call the java implementation */
     try
     {
-        Modelica::load(getScilabJavaVM(), path);
+        Modelica::load(getScilabJavaVM(), init, relations);
+
+        FREE(init);
+        FREE(relations);
     }
-    catch(GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+
+        FREE(init);
+        FREE(relations);
         return 0;
     }
-    catch(GiwsException::JniException exception)
+    catch (GiwsException::JniException &exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
+
+        FREE(init);
+        FREE(relations);
         return 0;
     }
 

@@ -19,6 +19,8 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "MALLOC.h"
+#include "localization.h"
 
 matvar_t *GetCharVariable(int iVar, const char *name, int * parent, int item_position)
 {

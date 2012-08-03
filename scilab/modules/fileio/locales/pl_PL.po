@@ -8,14 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-10 18:39+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2012-04-28 19:20+0000\n"
+"Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pl\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -30,14 +34,14 @@ msgstr ""
 "logicznej.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Błąd alokacji pamięci.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy ciągów "
 "znaków.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Błąd przedzielania pamięci\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -49,6 +53,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -355,6 +363,7 @@ msgstr "%s: Wystąpił błąd.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwany skalar.\n"
 
 #, c-format
 msgid ""
@@ -531,6 +540,13 @@ msgid "Can't get current directory.\n"
 msgstr "Niemożna odczytać bieżącego katalogu.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+"%s: Zły typ (%s) zmiennej  znaleziony w '%s'. Plik może być błędny lub "
+"uszkodzony.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
@@ -583,11 +599,21 @@ msgstr ""
 "plików.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Zły typ (%s) zmiennej  znaleziony w '%s'. Plik może być błędny lub "
-"uszkodzony.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: Niewłaściwy typ parametru wejściowego nr %d: oczekiwany ciąg znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany ciąg "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Options ignored.\n"
@@ -599,13 +625,13 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego: oczekiwany jest ciąg znaków.\n"
 
 msgid "Impossible to create directory "
-msgstr ""
+msgstr "Nie można utworzyć folderu "
 
 msgid "This directory already exists in "
-msgstr ""
+msgstr "Ten folder już istnieje w "
 
 msgid "A file with the same name already exists in "
-msgstr ""
+msgstr "Plik o tej samej nazwie już istnieje w "
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"

@@ -7,44 +7,47 @@ MEXLIB_C_SOURCES = src/c/mexlib.c \
 src/c/sci_gateway.c
 
 MEXLIB_FLAGS = -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/call_scilab/includes/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/call_scilab/includes/
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/string/includes/
 
-MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
-
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
+else
+noinst_LTLIBRARIES = libmat.la libmex.la libmx.la
+endif
+
 
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 
 libmex_la_LIBADD = $(MEXLIB_DEP)
 
-libmex_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmex_la_CPPFLAGS=  $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
-libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
 
 libmat_la_LIBADD = $(MEXLIB_DEP)
 
-libmat_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmat_la_CPPFLAGS=  $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
-libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
 
 libmx_la_LIBADD = $(MEXLIB_DEP)
 
-libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmx_la_CPPFLAGS=  $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
-libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename=mexlib
 
 # For the code check (splint)
 CHECK_SRC= $(MEXLIB_C_SOURCES)
-INCLUDE_FLAGS = $(MEXLIB_FLAGS)
+INCLUDE_FLAGS = $(MEXLIB_FLAGS) $(AM_CPPFLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)

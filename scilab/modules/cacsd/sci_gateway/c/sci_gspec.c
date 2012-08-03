@@ -12,7 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
-#include "stack-c.h"
+#include "machine.h"
 #include "gw_cacsd0.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scigspec)(char *fname,unsigned long fname_len);

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ui_observer">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ui_observer</refname>
     <refpurpose>未知入力オブザーバ </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
-[UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)</synopsis>
+      [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -29,14 +27,17 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para> 行列 <literal>(A,B,C2,D2)</literal>を含む<literal>syslin</literal>リスト.</para>
+          <para>
+            行列 <literal>(A,B,C2,D2)</literal>を含む<literal>syslin</literal>リスト.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>reject</term>
         <listitem>
           <para>整数ベクトル, 
-	<literal>Sys</literal> の未知入力の添え字.</para>
+            <literal>Sys</literal> の未知入力の添え字.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,13 +49,17 @@
       <varlistentry>
         <term>D1</term>
         <listitem>
-          <para>実数行列. <literal>C1</literal> および <literal>D1</literal> は同じ数の行を有します.</para>
+          <para>
+            実数行列. <literal>C1</literal> および <literal>D1</literal> は同じ数の行を有します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>'ge'</literal> または <literal>'st'</literal> (default) または <literal>'pp'</literal>.</para>
+          <para>
+            文字列 <literal>'ge'</literal> または <literal>'st'</literal> (default) または <literal>'pp'</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -74,52 +79,62 @@
   <refsection>
     <title>説明</title>
     <para>
-    未知入力オブザーバ.</para>
-    <para><literal>Sys: (w,u) --&gt; y</literal> は,
-	2つの入力 w および u を有する
-	<literal>(A,B,C2,D2)</literal> syslin 線形システムです.
-	ただし, w は未知入力です.
-    Sys の行列 B および D2 は (暗黙のうちに) 次のように分割されます:
-    <literal>B=[B1,B2]</literal> および <literal>D2=[D21,D22]</literal>  
-	ただし,<literal>B1=B(:,reject)</literal>  および 
-    <literal>D21=D2(:,reject)</literal> で,
-	reject = 未知入力の添え字.
-	行列 <literal>C1</literal> および<literal>D1</literal> は，
-	推定対象の出力 <literal>z = C1 x + D1 (w,u)</literal>
-	を定義します.</para>
+      未知入力オブザーバ.
+    </para>
     <para>
-    行列 <literal>D1</literal> は (暗黙のうちに) 
-	<literal>D11=D(:,reject)</literal> として
-	<literal>D1=[D11,D12]</literal>
-	のように分割されます</para>
+      <literal>Sys: (w,u) --&gt; y</literal> は,
+      2つの入力 w および u を有する
+      <literal>(A,B,C2,D2)</literal> syslin 線形システムです.
+      ただし, w は未知入力です.
+      Sys の行列 B および D2 は (暗黙のうちに) 次のように分割されます:
+      <literal>B=[B1,B2]</literal> および <literal>D2=[D21,D22]</literal>  
+      ただし,<literal>B1=B(:,reject)</literal>  および 
+      <literal>D21=D2(:,reject)</literal> で,
+      reject = 未知入力の添え字.
+      行列 <literal>C1</literal> および<literal>D1</literal> は，
+      推定対象の出力 <literal>z = C1 x + D1 (w,u)</literal>
+      を定義します.
+    </para>
     <para>
-    データ (Sys, reject,C1, D1)   は次の2入力2出力システムを定義します:</para>
-    <programlisting role = ""><![CDATA[ 
+      行列 <literal>D1</literal> は (暗黙のうちに) 
+      <literal>D11=D(:,reject)</literal> として
+      <literal>D1=[D11,D12]</literal>
+      のように分割されます
+    </para>
+    <para>
+      データ (Sys, reject,C1, D1)   は次の2入力2出力システムを定義します:
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
  ]]></programlisting>
     <para>
-    オブザーバ <literal>(u,y) --&gt; zhat</literal> は
-	出力 z を推定します.</para>
-    <para><literal>flag='ge'</literal> 安定性拘束なし
-    <literal>flag='st'</literal> 安定なオブザーバ    (デフォルト) 
-    <literal>flag='pp'</literal> 極配置を指定するオブザーバ
-    alfa,beta = 閉ループ極の指定位置  (デフォルト -1, -2)
-    J=出力yから状態xへの注入.
-    N=出力yから推定値出力zへの注入.</para>
+      オブザーバ <literal>(u,y) --&gt; zhat</literal> は
+      出力 z を推定します.
+    </para>
     <para>
-    UIobs = 線形システム (u,y) --&gt; zhat ただし:
-    伝達関数: (w,u) --&gt; 
-	z  は以下の複合伝達関数と等しくなります:
-                [0,I;        UIobs
-                 Sys]
-          (w,u) -----&gt; (u,y) -----&gt; zhat
-    すなわち, システム {A,B,C1,D1} の伝達関数は
-    <literal>UIobs*[0,I; Sys]</literal>と等価になります</para>
+      <literal>flag='ge'</literal> 安定性拘束なし
+      <literal>flag='st'</literal> 安定なオブザーバ    (デフォルト) 
+      <literal>flag='pp'</literal> 極配置を指定するオブザーバ
+      alfa,beta = 閉ループ極の指定位置  (デフォルト -1, -2)
+      J=出力yから状態xへの注入.
+      N=出力yから推定値出力zへの注入.
+    </para>
     <para>
-    安定性 (または極配置) は(A,C2)の可検出性
-    (または可観測性) を要求します .</para>
+      UIobs = 線形システム (u,y) --&gt; zhat ただし:
+      伝達関数: (w,u) --&gt; 
+      z  は以下の複合伝達関数と等しくなります:
+      [0,I;        UIobs
+      Sys]
+      (w,u) -----&gt; (u,y) -----&gt; zhat
+      すなわち, システム {A,B,C1,D1} の伝達関数は
+      <literal>UIobs*[0,I; Sys]</literal>と等価になります
+    </para>
+    <para>
+      安定性 (または極配置) は(A,C2)の可検出性
+      (または可観測性) を要求します .
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -162,9 +177,5 @@ UIobs=ui_observer(Sys,1,C1,D1);
         <link linkend="abinv">abinv</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

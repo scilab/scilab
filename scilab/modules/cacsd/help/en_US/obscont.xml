@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="obscont">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>obscont</refname>
     <refpurpose> observer based controller</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[K]=obscont(P,Kc,Kf)
-[J,r]=obscont(P,Kc,Kf)</synopsis>
+      [J,r]=obscont(P,Kc,Kf)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,7 +27,9 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time</para>
+          <para>
+            <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,17 @@
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para> <literal>syslin</literal> list (controller)</para>
+          <para>
+            <literal>syslin</literal> list (controller)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para> <literal>syslin</literal> list (extended controller)</para>
+          <para>
+            <literal>syslin</literal> list (extended controller)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,43 +70,58 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>obscont</literal>  returns the observer-based controller associated with a 
-    nominal plant <literal>P</literal> with matrices <literal>[A,B,C,D]</literal> (<literal>syslin</literal> list).</para>
     <para>
-    The full-state control gain is <literal>Kc</literal> and the filter gain is <literal>Kf</literal>.
-    These gains can be computed, for example, by pole placement.</para>
-    <para><literal>A+B*Kc</literal> and <literal>A+Kf*C</literal> are (usually) assumed stable.</para>
-    <para><literal>K</literal> is a state-space representation of the 
-    compensator <literal> K: y-&gt;u</literal> in:</para>
+      <literal>obscont</literal>  returns the observer-based controller associated with a 
+      nominal plant <literal>P</literal> with matrices <literal>[A,B,C,D]</literal> (<literal>syslin</literal> list).
+    </para>
+    <para>
+      The full-state control gain is <literal>Kc</literal> and the filter gain is <literal>Kf</literal>.
+      These gains can be computed, for example, by pole placement.
+    </para>
+    <para>
+      <literal>A+B*Kc</literal> and <literal>A+Kf*C</literal> are (usually) assumed stable.
+    </para>
+    <para>
+      <literal>K</literal> is a state-space representation of the 
+      compensator <literal> K: y-&gt;u</literal> in:
+    </para>
     <para>
       <literal> xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z</literal>
     </para>
-    <para><literal>K</literal> is a linear system (<literal>syslin</literal> list) with matrices given by:
-     <literal>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</literal>.</para>
     <para>
-    The closed loop feedback system <literal> Cl: v -&gt;y</literal> with
-    (negative) feedback <literal>K</literal> (i.e. <literal>y = P u, u = v - K y</literal>, or  </para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>K</literal> is a linear system (<literal>syslin</literal> list) with matrices given by:
+      <literal>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</literal>.
+    </para>
+    <para>
+      The closed loop feedback system <literal> Cl: v -&gt;y</literal> with
+      (negative) feedback <literal>K</literal> (i.e. <literal>y = P u, u = v - K y</literal>, or  
+    </para>
+    <programlisting role=""><![CDATA[ 
 xdot = A x + B u, 
    y = C x + D u, 
 zdot = (A + Kf C) z - Kf y + B u, 
    u = v -F z
  ]]></programlisting>
-    <para>) is given by <literal>Cl = P/.(-K)</literal></para>
     <para>
-    The poles of <literal>Cl</literal> (<literal> spec(cl('A')) </literal>) are located at the eigenvalues of <literal>A+B*Kc</literal>
-    and <literal>A+Kf*C</literal>.</para>
+      ) is given by <literal>Cl = P/.(-K)</literal>
+    </para>
     <para>
-    Invoked with two output arguments <literal>obscont</literal> returns a
-    (square) linear system <literal>K</literal> which parametrizes all the stabilizing
-    feedbacks via a LFT.</para>
+      The poles of <literal>Cl</literal> (<literal> spec(cl('A')) </literal>) are located at the eigenvalues of <literal>A+B*Kc</literal>
+      and <literal>A+Kf*C</literal>.
+    </para>
     <para>
-    Let <literal>Q</literal> an arbitrary stable linear system of dimension <literal>r(2)</literal>x<literal>r(1)</literal>
-    i.e. number of inputs x number of outputs in <literal>P</literal>.
-    Then any stabilizing controller <literal>K</literal> for <literal>P</literal> can be expressed as
-    <literal>K=lft(J,r,Q)</literal>. The controller which corresponds to <literal>Q=0</literal> is
-    <literal>K=J(1:nu,1:ny)</literal> (this <literal>K</literal> is returned by <literal>K=obscont(P,Kc,Kf)</literal>).
-    <literal>r</literal> is <literal>size(P)</literal> i.e the vector [number of outputs, number of inputs];</para>
+      Invoked with two output arguments <literal>obscont</literal> returns a
+      (square) linear system <literal>K</literal> which parametrizes all the stabilizing
+      feedbacks via a LFT.
+    </para>
+    <para>
+      Let <literal>Q</literal> an arbitrary stable linear system of dimension <literal>r(2)</literal>x<literal>r(1)</literal>
+      i.e. number of inputs x number of outputs in <literal>P</literal>.
+      Then any stabilizing controller <literal>K</literal> for <literal>P</literal> can be expressed as
+      <literal>K=lft(J,r,Q)</literal>. The controller which corresponds to <literal>Q=0</literal> is
+      <literal>K=J(1:nu,1:ny)</literal> (this <literal>K</literal> is returned by <literal>K=obscont(P,Kc,Kf)</literal>).
+      <literal>r</literal> is <literal>size(P)</literal> i.e the vector [number of outputs, number of inputs];
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -119,7 +138,7 @@ spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ppol">ppol</link>
@@ -149,9 +168,5 @@ spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
         <link linkend="observer">observer</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D. ; ;   </para>
   </refsection>
 </refentry>

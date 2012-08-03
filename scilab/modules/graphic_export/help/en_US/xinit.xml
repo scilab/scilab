@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xinit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xinit</refname>
     <refpurpose>Initialization of a graphics driver</refpurpose>
@@ -22,8 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    xinit(FileName)
-    xinit()
+      xinit(FileName)
+      xinit()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -40,23 +37,31 @@
   <refsection>
     <title>Description</title>
     <para>
-    For the Postscript, Xfig, Gif or PPM driver, <literal>FileName</literal> must be specified. It is the name of 
-    the file where all the graphics operations are recorded.</para>
-    <para>For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and
-	  opens an empty graphic window.</para>
+      To export to a file, <literal>FileName</literal> must be specified. It is the name of the file where all the graphics operations are recorded.
+    </para>
+    <para>
+      For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and it will open an empty graphic window.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 driver("Pos")
-xinit("foo.ps")
+xinit(TMPDIR+"/foo.ps")
 plot2d()
+xend()
+driver("X11")
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+driver("PNG")
+xinit(TMPDIR+"/foo.png")
+plot3d()
 xend()
 driver("X11")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="driver">driver</link>
@@ -69,10 +74,4 @@ driver("X11")
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

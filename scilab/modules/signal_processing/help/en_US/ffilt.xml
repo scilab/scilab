@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ffilt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>ffilt</refname>
     <refpurpose> coefficients of FIR low-pass</refpurpose>
@@ -17,7 +14,9 @@
       <varlistentry>
         <term>ft</term>
         <listitem>
-          <para>filter type where <literal>ft</literal> can take the values</para>
+          <para>
+            filter type where <literal>ft</literal> can take the values
+          </para>
           <variablelist>
             <varlistentry>
               <term>"lp"  </term>
@@ -75,17 +74,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Get <literal>n</literal> coefficients of a FIR low-pass,
-    high-pass, band-pass, or stop-band filter.
-    For low and high-pass filters one cut-off
-    frequency must be specified whose value is
-    given in <literal>fl</literal>. For band-pass and stop-band
-    filters two cut-off frequencies must be
-    specified for which the lower value is in
-    <literal>fl</literal> and the higher value is in <literal>fh</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      Get <literal>n</literal> coefficients of a FIR low-pass,
+      high-pass, band-pass, or stop-band filter.
+      For low and high-pass filters one cut-off
+      frequency must be specified whose value is
+      given in <literal>fl</literal>. For band-pass and stop-band
+      filters two cut-off frequencies must be
+      specified for which the lower value is in
+      <literal>fl</literal> and the higher value is in <literal>fh</literal>
+    </para>
   </refsection>
 </refentry>

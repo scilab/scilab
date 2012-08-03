@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="obs_gram">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>obs_gram</refname>
     <refpurpose> observability gramian</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>Go=obs_gram(A,C [,dom])
-Go=obs_gram(sl)</synopsis>
+      Go=obs_gram(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,13 +33,17 @@ Go=obs_gram(sl)</synopsis>
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>string (<literal>"d'</literal> or <literal>"c"</literal> (default value))</para>
+          <para>
+            string (<literal>"d'</literal> or <literal>"c"</literal> (default value))
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,10 +51,10 @@ Go=obs_gram(sl)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Observability gramian of the pair <literal>(A,C)</literal> or linear 
-    system <literal>sl</literal> (<literal>syslin</literal> list).
-    <literal>dom</literal> is the domain which can be 
-  </para>
+      Observability gramian of the pair <literal>(A,C)</literal> or linear 
+      system <literal>sl</literal> (<literal>syslin</literal> list).
+      <literal>dom</literal> is the domain which can be 
+    </para>
     <variablelist>
       <varlistentry>
         <term>"c"</term>
@@ -80,7 +82,7 @@ norm(lyap(A,-C'*C,'d')-Go,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

@@ -3,11 +3,13 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,41 +21,38 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
-/*------------------------------------------------------------------------*/
-int get_data_bounds_property( sciPointObj * pobj )
-{
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
-  if ( sciGetEntityType(pobj) == SCI_SUBWIN )
-  {
-		double bounds[6] ;
-		sciGetDataBounds(pobj, bounds) ;
-    /**DJ.Abdemouche 2003**/
-    if ( sciGetIs3d( pobj ) )
+/*------------------------------------------------------------------------*/
+int get_data_bounds_property(void* _pvCtx, char* pobjUID)
+{
+    double* dataBounds = NULL;
+    int iView = 0;
+    int* piView = &iView;
+
+    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+    if (dataBounds == NULL)
     {
-      return sciReturnMatrix( bounds, 2, 3 ) ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+        return -1;
+    }
+
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
+
+    /**DJ.Abdemouche 2003**/
+    if (iView == 1)
+    {
+      return sciReturnMatrix(_pvCtx, dataBounds, 2, 3);
     }
     else
     {
-      return sciReturnMatrix( bounds, 2, 2 ) ;
+      return sciReturnMatrix(_pvCtx, dataBounds, 2, 2);
     }
-  }
-  else if ( sciGetEntityType (pobj) == SCI_SURFACE )
-  {
-		double bounds[6] ;
-		sciGetDataBounds(pobj, bounds) ;
-    /* used for what ? F.Leray 20.04.05 */
-    return sciReturnMatrix( bounds, 3, 2 ) ;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
-    return -1;
-  }
-
 }
 /*------------------------------------------------------------------------*/

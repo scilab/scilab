@@ -12,6 +12,10 @@
 #ifndef __POINTER_API__
 #define __POINTER_API__
 
+#if !defined(__INTERNAL_API_SCILAB__)
+#error Do not include api_pointer.h. Include api_scilab.h instead.
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

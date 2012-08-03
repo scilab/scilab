@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lqg">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lqg</refname>
     <refpurpose> LQG 補償器</refpurpose>
@@ -28,40 +25,50 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> 状態空間表現の<literal>syslin</literal> リスト (拡張プラント) </para>
+          <para>
+            状態空間表現の<literal>syslin</literal> リスト (拡張プラント) 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 行ベクトル = (観測量の数,入力の数)  (<literal>P</literal>の2,2の部分の次元)</para>
+          <para>
+            1x2 行ベクトル = (観測量の数,入力の数)  (<literal>P</literal>の2,2の部分の次元)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト (コントローラ)</para>
+          <para>
+            <literal>syslin</literal> リスト (コントローラ)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>lqg</literal>  は,"拡張"プラント
-	<literal>P=syslin('c',A,B,C,D)</literal> (連続時間)または
-	<literal>P=syslin('d',A,B,C,D)</literal> (離散時間)に関して,
-	線形最適 LQG (H2) コントローラを計算します.
-	</para>
     <para>
-    関数 <literal>lqg2stan</literal> は,
-	ノミナルプラント,重み項,ノイズの分散を指定すると,
- 	<literal>P</literal> および
-	 <literal>r</literal> を返します.</para>
-    <para><literal>K</literal> は以下のABCD行列により計算されます:
-    <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> ただし,
-	 <literal>Kc=lqr(P12)</literal>
-    はコントローラゲインで <literal>Kf=lqe(P21)</literal> はフィルタゲインです.
-    <literal>lqg2stan</literal>の例を参照ください.</para>
+      <literal>lqg</literal>  は,"拡張"プラント
+      <literal>P=syslin('c',A,B,C,D)</literal> (連続時間)または
+      <literal>P=syslin('d',A,B,C,D)</literal> (離散時間)に関して,
+      線形最適 LQG (H2) コントローラを計算します.
+    </para>
+    <para>
+      関数 <literal>lqg2stan</literal> は,
+      ノミナルプラント,重み項,ノイズの分散を指定すると,
+      <literal>P</literal> および
+      <literal>r</literal> を返します.
+    </para>
+    <para>
+      <literal>K</literal> は以下のABCD行列により計算されます:
+      <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> ただし,
+      <literal>Kc=lqr(P12)</literal>
+      はコントローラゲインで <literal>Kf=lqe(P21)</literal> はフィルタゲインです.
+      <literal>lqg2stan</literal>の例を参照ください.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -82,9 +89,5 @@
         <link linkend="obscont">obscont</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

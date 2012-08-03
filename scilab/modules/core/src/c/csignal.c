@@ -12,22 +12,29 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
 #include "banier.h"
 #include "csignal.h"
 #include "sigbas.h"
+#include "scilabmode.h"
+#include "getKey.h"
+#include "cliPrompt.h"
+#include "cliDisplayManagement.h"
 
-void controlC_handler (int sig)
+/* If CTRL-C was pressed. */
+void controlC_handler(int sig)
 {
-  int j = SIGINT;
-  C2F(sigbas)(&j);
+    int j = SIGINT;
+    C2F(sigbas)(&j);
 }
 
 int csignal(void)
 {
 
 #ifdef _MSC_VER
-    if (signal(SIGINT, controlC_handler) == SIG_ERR) {
-        fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+    if (signal(SIGINT, controlC_handler) == SIG_ERR)
+    {
+        fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
         return -1;
     }
 #else
@@ -37,10 +44,10 @@ int csignal(void)
     act_controlC.sa_sigaction = controlC_handler;
     if (sigaction(SIGINT, &act_controlC, NULL) != 0)
     {
-        fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+        fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
         return -1;
     }
 #endif
 
-	return 0;
+    return 0;
 }

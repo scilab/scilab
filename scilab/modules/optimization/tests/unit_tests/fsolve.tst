@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 a=[1,7;2,8];b=[10;11];
 deff('[y]=fsol1(x)','y=a*x+b');

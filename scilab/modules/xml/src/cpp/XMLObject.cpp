@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,9 +17,9 @@
 
 namespace org_modules_xml
 {
-    VariableScope * XMLObject::scope = 0;
+    VariableScope *XMLObject::scope = 0;
 
-    XMLObject::XMLObject()
+      XMLObject::XMLObject()
     {
         if (!scope)
         {
@@ -28,7 +28,7 @@ namespace org_modules_xml
         scilabType = -1;
     }
 
-    XMLObject * XMLObject::getVariableFromId(int id)
+    XMLObject *XMLObject::getVariableFromId(int id)
     {
         if (!scope)
         {
@@ -38,11 +38,11 @@ namespace org_modules_xml
         return scope->getVariableFromId(id);
     }
 
-    int XMLObject::createOnStack(int pos) const
+    int XMLObject::createOnStack(int pos, void *pvApiCtx) const
     {
         if (scilabType != -1)
         {
-            return createXMLObjectAtPos(scilabType, pos, id);
+            return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
         }
 
         return 0;
@@ -53,6 +53,7 @@ namespace org_modules_xml
         if (scope)
         {
             delete scope;
+
             scope = 0;
         }
     }

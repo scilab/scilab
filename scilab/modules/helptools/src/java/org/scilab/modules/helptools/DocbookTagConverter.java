@@ -12,17 +12,10 @@
 
 package org.scilab.modules.helptools;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.StringReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +33,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import org.scilab.modules.helptools.external.ExternalXMLHandler;
+import org.scilab.modules.helptools.external.HTMLScilabHandler;
 
 /**
  * Class the convert a DocBook xml file
@@ -48,13 +42,13 @@ import org.scilab.modules.helptools.external.ExternalXMLHandler;
 public class DocbookTagConverter extends DefaultHandler {
 
     private static final String DOCBOOKURI = "http://docbook.org/ns/docbook";
-    private static final Class[] argsType = new Class[]{Map.class, String.class};
+    private static final Class[] argsType = new Class[] {Map.class, String.class};
 
     private Map<String, Method> mapMeth = new HashMap();
     private Map<String, ExternalXMLHandler> externalHandlers = new HashMap();
     private List<DocbookTagConverter> converters;
     private final File in;
-    private DocbookElement baseElement = new DocbookElement(null, null);
+    private DocbookElement baseElement = new DocbookElement(null, null, null);
     private Stack<DocbookElement> stack = new Stack();
     private String errors = "";
 
@@ -116,7 +110,7 @@ public class DocbookTagConverter extends DefaultHandler {
                 }
             }
             try {
-                return (String) method.invoke(this, new Object[]{attributes, contents});
+                return (String) method.invoke(this, new Object[] {attributes, contents});
             } catch (IllegalAccessException e) {
                 throw new UnhandledDocbookTagException(tag);
             } catch (InvocationTargetException e) {
@@ -125,6 +119,10 @@ public class DocbookTagConverter extends DefaultHandler {
         } else {
             throw new UnhandledDocbookTagException(tag);
         }
+    }
+
+    public String getCurrentFileName() {
+        return currentFileName;
     }
 
     /**
@@ -167,6 +165,7 @@ public class DocbookTagConverter extends DefaultHandler {
     public void registerExternalXMLHandler(ExternalXMLHandler h) {
         if (externalHandlers.get(h.getURI()) == null) {
             externalHandlers.put(h.getURI(), h);
+            h.setConverter(this);
         }
     }
 
@@ -174,7 +173,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param tagName the tag name
      * @return true if the contents of the tag must be escaped
      */
-    public boolean isEscapable(String tagName) {
+    public boolean isEscapable(String tagName, String uri) {
         return true;
     }
 
@@ -232,6 +231,7 @@ public class DocbookTagConverter extends DefaultHandler {
      */
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
         currentFileName = systemId;
+        HTMLScilabHandler.getInstance().resetCompt();
         if (converters != null) {
             for (DocbookTagConverter conv : converters) {
                 conv.resolveEntity(publicId, systemId);
@@ -245,7 +245,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * {@inheritDoc}
      */
     public void startDocument() throws SAXException {
-        stack.push(baseElement.getNewInstance(null, null));
+        stack.push(baseElement.getNewInstance(null, null, null));
         if (converters != null) {
             for (DocbookTagConverter conv : converters) {
                 conv.startDocument();
@@ -276,7 +276,7 @@ public class DocbookTagConverter extends DefaultHandler {
             for (int i = 0; i < len; i++) {
                 map.put(attributes.getLocalName(i), attributes.getValue(i));
             }
-            stack.push(baseElement.getNewInstance(localName, map));
+            stack.push(baseElement.getNewInstance(localName, uri, map));
         } else {
             ExternalXMLHandler h = externalHandlers.get(uri);
             if (h == null) {
@@ -285,7 +285,7 @@ public class DocbookTagConverter extends DefaultHandler {
             }
             StringBuilder buf = h.startExternalXML(localName, attributes);
             if (buf != null) {
-                DocbookElement elem = baseElement.getNewInstance(localName, null);
+                DocbookElement elem = baseElement.getNewInstance(localName, uri, null);
                 elem.setStringBuilder(buf);
                 stack.push(elem);
             }
@@ -349,38 +349,38 @@ public class DocbookTagConverter extends DefaultHandler {
     public void characters(char[] ch, int start, int length) throws SAXException {
         int end = start + length;
 
-        if (isEscapable(stack.peek().getName())) {
+        if (isEscapable(stack.peek().getName(), stack.peek().getURI())) {
             StringBuilder buf = stack.peek().getStringBuilder();
             int save = start;
             for (int i = start; i < end; i++) {
                 switch (ch[i]) {
-                case '\'' :
-                    buf.append(ch, save, i - save);
-                    buf.append("&#0039;");
-                    save = i + 1;
-                    break;
-                case '\"' :
-                    buf.append(ch, save, i - save);
-                    buf.append("&#0034;");
-                    save = i + 1;
-                    break;
-                case '<' :
-                    buf.append(ch, save, i - save);
-                    buf.append("&lt;");
-                    save = i + 1;
-                    break;
-                case '>' :
-                    buf.append(ch, save, i - save);
-                    buf.append("&gt;");
-                    save = i + 1;
-                    break;
-                case '&' :
-                    buf.append(ch, save, i - save);
-                    buf.append("&amp;");
-                    save = i + 1;
-                    break;
-                default :
-                    break;
+                    case '\'' :
+                        buf.append(ch, save, i - save);
+                        buf.append("&#0039;");
+                        save = i + 1;
+                        break;
+                    case '\"' :
+                        buf.append(ch, save, i - save);
+                        buf.append("&#0034;");
+                        save = i + 1;
+                        break;
+                    case '<' :
+                        buf.append(ch, save, i - save);
+                        buf.append("&lt;");
+                        save = i + 1;
+                        break;
+                    case '>' :
+                        buf.append(ch, save, i - save);
+                        buf.append("&gt;");
+                        save = i + 1;
+                        break;
+                    case '&' :
+                        buf.append(ch, save, i - save);
+                        buf.append("&amp;");
+                        save = i + 1;
+                        break;
+                    default :
+                        break;
                 }
             }
 
@@ -406,6 +406,13 @@ public class DocbookTagConverter extends DefaultHandler {
     }
 
     /**
+     * @return the document locator
+     */
+    public Locator getDocumentLocator() {
+        return locator;
+    }
+
+    /**
      * @return the used stack
      */
     protected Stack<DocbookElement> getStack() {
@@ -426,7 +433,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param e the exception to handle
      * @throws SAXException if problem
      */
-    protected void exceptionOccured(Exception e){
+    protected void exceptionOccured(Exception e) {
         if (!hasError) {
             hasError = true;
         }

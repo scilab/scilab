@@ -11,9 +11,6 @@
     *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>clc</refname>
     <refpurpose>コマンドウインドウを消去する</refpurpose>
@@ -35,16 +32,25 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>clc()</literal>はコマンドウインドウの
-	入力および出力を全て消去します.</para>
-    <para><literal>clc()</literal>の使用後, 関数の履歴を
-	スクロールバーにより見ることはできませんが,
-	上矢印によりコマンド履歴から命令を再度コールすることはできます.
-	</para>
-    <para><literal>clc(nblines)</literal> はカレント行の上<literal>nblines</literal>
-	行を消去し,カーソルをこの行に移動します.</para>
-    <para><literal>clc([nblines])</literal> は,ウインドウモードではない
-	Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.</para>
+    <para>
+      <literal>clc()</literal>はコマンドウインドウの
+      入力および出力を全て消去します.
+    </para>
+    <para>
+      <literal>clc()</literal>の使用後, 関数の履歴を
+      スクロールバーにより見ることはできませんが,
+      上矢印によりコマンド履歴から命令を再度コールすることはできます.
+    </para>
+    <para>
+      <literal>clc(nblines)</literal> はカレント行の上<literal>nblines</literal>
+      行を消去し,カーソルをこの行に移動します.
+    </para>
+    <para>
+      <note>
+        <literal>clc([nblines])</literal> は,ウインドウモードではない
+        Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.
+      </note>
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -52,12 +58,6 @@
       <member>
         <link linkend="tohome">tohome</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

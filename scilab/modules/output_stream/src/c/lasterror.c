@@ -45,43 +45,34 @@ static void allocLastErrorMessage(void)
     iLastErrorMessageNbLines = NO_ERROR_MESSAGE_NB_LINES;
 }
 /*--------------------------------------------------------------------------*/
-static void freeLastErrorMessage(void)
+int setInternalLastError(int iErr, char** strErrorMessage, int iNbLines, int iLinePos, char *strFunctionName)
 {
-    if (strLastErrorMessage)
-    {
-        freeArrayOfString(strLastErrorMessage, iLastErrorMessageNbLines);
-    }
-    iLastErrorMessageNbLines = NO_ERROR_MESSAGE_NB_LINES;
-}
-/*--------------------------------------------------------------------------*/ 
-int setLastError(int iErr, char** strErrorMessage, int iNbLines, int iLinePos, char *strFunctionName)
-{
-    setLastErrorValue(iErr);
+    setInternalLastErrorValue(iErr);
 
     if (iNbLines == 0)
     {
-        setLastErrorMessage(NULL, iNbLines);
+        setInternalLastErrorMessage(NULL, iNbLines);
     }
     else
     {
-        setLastErrorMessage(strErrorMessage, iNbLines);
+        setInternalLastErrorMessage(strErrorMessage, iNbLines);
     }
 
-    setLastErrorLinePosition(iLinePos);
-    setLastErrorFunctionName(strFunctionName);
+    setInternalLastErrorLinePosition(iLinePos);
+    setInternalLastErrorFunctionName(strFunctionName);
     return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-int clearLastError(void)
+int clearInternalLastError(void)
 {
-    return setLastError(NO_ERROR_VALUE, 
+    return setInternalLastError(NO_ERROR_VALUE, 
         NULL, 
         NO_ERROR_MESSAGE_NB_LINES, 
         NO_ERROR_LINEPOSITION, 
         NO_ERROR_FUNCTIONNAME);
 }
 /*--------------------------------------------------------------------------*/ 
-int setLastErrorMessage(char** strErrorMessage, int iNbLines)
+int setInternalLastErrorMessage(char** strErrorMessage, int iNbLines)
 {
     int i = 0;
     if (strLastErrorMessage)
@@ -92,12 +83,12 @@ int setLastErrorMessage(char** strErrorMessage, int iNbLines)
 
     for (i = 0; i < iNbLines; i++)
     {
-        appendStringToLastErrorMessage(strErrorMessage[i]);
+        appendStringToInternalLastErrorMessage(strErrorMessage[i]);
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-const char** getLastErrorMessage(int *iNbLines)
+const char** getInternalLastErrorMessage(int *iNbLines)
 {
     if (iLastErrorMessageNbLines > 0)
     {
@@ -111,7 +102,7 @@ const char** getLastErrorMessage(int *iNbLines)
     }
 }
 /*--------------------------------------------------------------------------*/ 
-int appendStringToLastErrorMessage(char *strErrorMessage)
+int appendStringToInternalLastErrorMessage(char *strErrorMessage)
 {
     if (iLastErrorMessageNbLines >= MAX_ERROR_MESSAGE_NB_LINES)
     {
@@ -145,31 +136,31 @@ int appendStringToLastErrorMessage(char *strErrorMessage)
     return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-int setLastErrorValue(int iVal)
+int setInternalLastErrorValue(int iVal)
 {
     int iPrevValue = iLastErrorValue;
     iLastErrorValue = iVal;
     return iPrevValue;
 }
 /*--------------------------------------------------------------------------*/ 
-int getLastErrorValue(void)
+int getInternalLastErrorValue(void)
 {
     return iLastErrorValue;
 }
 /*--------------------------------------------------------------------------*/ 
-int setLastErrorLinePosition(int iLinePosition)
+int setInternalLastErrorLinePosition(int iLinePosition)
 {
     int iPrevLinePosition = iLastErrorLinePostion;
     iLastErrorLinePostion = iLinePosition;
     return iPrevLinePosition;
 }
 /*--------------------------------------------------------------------------*/ 
-int getLastErrorLinePosition(void)
+int getInternalLastErrorLinePosition(void)
 {
     return iLastErrorLinePostion;
 }
 /*--------------------------------------------------------------------------*/ 
-int setLastErrorFunctionName(char *strFunctionName)
+int setInternalLastErrorFunctionName(char *strFunctionName)
 {
     if (strFunctionName)
     {
@@ -190,7 +181,7 @@ int setLastErrorFunctionName(char *strFunctionName)
     return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-const char *getLastErrorFunctionName(void)
+const char *getInternalLastErrorFunctionName(void)
 {
     return strLastErrorFunctionName;
 }

@@ -15,7 +15,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "gw_core.h"
-#include "stack-c.h"
 #include "getversion.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -85,6 +84,7 @@ int getversion_no_rhs(char *fname)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -111,6 +111,7 @@ int getversion_one_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -158,6 +159,7 @@ int getversion_one_rhs(char *fname)
 							if(sciErr.iErr)
 							{
 								printError(&sciErr, 0);
+                                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 								return 0;
 							}
 
@@ -222,6 +224,7 @@ int getversion_two_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -229,6 +232,7 @@ int getversion_two_rhs(char *fname)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 		return 0;
 	}
 

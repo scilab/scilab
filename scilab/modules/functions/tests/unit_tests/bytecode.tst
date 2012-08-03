@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 //build the list of loaded libs
 
@@ -26,7 +26,7 @@ end
 for Lib=%libs
   execstr('funs=string('+Lib+')''');
   funs(1)=[];
-  funcprot(0)
+  funcprot(0);
   for fun=funs
     if execstr('f='+fun','errcatch')==0 then
       if type(f)==13 then

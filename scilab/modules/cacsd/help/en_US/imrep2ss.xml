@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imrep2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>imrep2ss</refname>
     <refpurpose> state-space realization of an impulse response</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>vector coefficients of impulse response, <literal>v(:,k)</literal> is the kth sample</para>
+          <para>
+            vector coefficients of impulse response, <literal>v(:,k)</literal> is the kth sample
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +39,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,8 +49,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Impulse response to linear system conversion (one input).
-    <literal>v</literal> must have an even number of columns.</para>
+      Impulse response to linear system conversion (one input).
+      <literal>v</literal> must have an even number of columns.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +72,7 @@ H2=ss2tf(w);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="frep2tf">frep2tf</link>

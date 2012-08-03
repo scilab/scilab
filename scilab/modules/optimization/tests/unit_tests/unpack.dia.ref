@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Define a compressed list of symmetric block-diagonal matrices.
 // There are 3 matrices in the list, as indicated by the 3 columns in CA.
 // Only the nonzero entries are stored in CA. 

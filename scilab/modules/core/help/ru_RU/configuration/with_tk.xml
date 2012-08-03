@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="with_tk">
+  <refnamediv>
+    <refname>with_tk</refname>
+    <refpurpose>проверка: собран ли Scilab с TCL/TK</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>r=with_tk()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>логическое значение</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Возвращает <literal>%t</literal>, если Scilab собран с TCL/TK-интерфейсом, и  
+      <literal>%f</literal>, если нет.
+    </para>
+  </refsection>
+</refentry>

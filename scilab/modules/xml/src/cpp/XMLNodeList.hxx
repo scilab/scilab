@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,24 +27,31 @@ namespace org_modules_xml
      *
      * Class to wrap the list of the children of a node
      */
-    class XMLNodeList : public XMLList
+    class XMLNodeList:public XMLList
     {
 
         const XMLDocument & doc;
-        xmlNode * parent;
+        xmlNode *parent;
         int prev;
-        xmlNode * prevNode;
+        xmlNode *prevNode;
 
-    public :
-
+public:
         /**
          * Default constructor
          * @param doc the XMLDocument where this nodelist is
          * @param parent the parent node
          */
-        XMLNodeList(const XMLDocument & doc, xmlNode * parent);
+          XMLNodeList(const XMLDocument & doc, xmlNode * parent);
 
-        ~XMLNodeList();
+         ~XMLNodeList();
+
+        void *getRealXMLPointer() const;
+
+        const char **getContentFromList() const;
+
+        const char **getNameFromList() const;
+
+        void remove() const;
 
         /**
          * Removes an element
@@ -89,14 +96,18 @@ namespace org_modules_xml
          * Gets the parent node behind this children list.
          * @return the parent node
          */
-        xmlNode * getRealNode() const { return parent->children; }
+        xmlNode *getRealNode() const
+        {
+            return parent->children;
+        }
 
-        const XMLObject * getXMLObjectParent() const;
+        void setAttributeValue(const char **prefix, const char **name, const char **value, int lsize) const;
+        void setAttributeValue(const char **name, const char **value, int lsize) const;
+        const XMLObject *getXMLObjectParent() const;
         const std::string dump() const;
-        const XMLObject * getListElement(int index);
+        const XMLObject *getListElement(int index);
 
-    protected :
-
+protected:
         /**
          * Replaces an element at a given index
          * @param index the index
@@ -123,8 +134,7 @@ namespace org_modules_xml
          */
         void insertAtIndex(int index, const XMLElement & elem);
 
-    private :
-
+private:
         /**
          * Gets the node list size
          * @param node the xmlNode
@@ -137,7 +147,7 @@ namespace org_modules_xml
          * @param index the index
          * @return the correspionding node
          */
-        xmlNode * getListNode(int index);
+        xmlNode *getListNode(int index);
 
     };
 }

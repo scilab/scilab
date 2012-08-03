@@ -24,7 +24,7 @@ Cc (DLL Digital Visual Fortran)
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
 cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/
-cDEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/
+cDEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/, /dbg/
 cDEC$ ENDIF
 C     ---------------------------------------------------------------
       integer   csiz,bsiz,isizt,psiz,nsiz,lsiz

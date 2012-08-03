@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:27+0000\n"
+"PO-Revision-Date: 2012-01-06 15:46+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -232,15 +232,7 @@ msgid ""
 "with '%s'"
 msgstr ""
 "%s:%d:PLD_strreplace_general: A memória alocada esgotou-se durante a "
-"substituição de '%s' por '%s'"
-
-#, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Não é possível interpretar a opção \"%s\"\n"
-"%s\n"
+"substituição de \"%s\" por \"%s\""
 
 #, c-format
 msgid "Decoding filename=%s"
@@ -250,25 +242,6 @@ msgstr "Decodificando o nome de arquivo=%s"
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE exige um arquivo de entrada para decodificar.\n"
 
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: Não é possível alocar memória para o objeto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Não é possível localizar o arquivo de entrada '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "O arquivo '%s' não está no formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "O arquivo de entrada OLE '%s' é insano"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: A decodificação de %s resultou no erro %d\n"
-
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: A decodificação de %s resultou no erro %d.\n"
@@ -276,8 +249,11 @@ msgstr "ripOLE: A decodificação de %s resultou no erro %d.\n"
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "O módulo Planilha (Spreadsheet) do Scilab não está instalado.\n"
 
+msgid "Spreadsheet"
+msgstr "Planilha"
+
 msgid "Read a xls file"
-msgstr ""
+msgstr "Ler um arquivo xls"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

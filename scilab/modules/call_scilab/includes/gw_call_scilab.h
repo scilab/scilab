@@ -12,7 +12,6 @@
 #ifndef __GW_CALL_SCILAB__
 #define __GW_CALL_SCILAB__
 /*--------------------------------------------------------------------------*/ 
-#include "api_scilab.h"
 #include "dynlib_call_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 CALL_SCILAB_IMPEXP int gw_call_scilab(void);

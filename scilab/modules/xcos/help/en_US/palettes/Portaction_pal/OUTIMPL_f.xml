@@ -18,25 +18,15 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry 
-  version="5.0-subset Scilab" xml:id="OUTIMPL_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg" 
-  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-  xmlns:db="http://docbook.org/ns/docbook" 
->
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OUTIMPL_f" xml:lang="en_US">
   <refnamediv>
     <refname>OUTIMPL_f</refname>
     <refpurpose>Output implicit port</refpurpose>
   </refnamediv>
-  
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -47,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  
   <refsection id="Contents_OUTIMPL_f">
     <title>Contents</title>
     <itemizedlist>
@@ -82,7 +71,7 @@
             <para>
               <xref linkend="Example_OUTIMPL_f">Example</xref>
             </para>
-          </listitem>           
+          </listitem>
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_OUTIMPL_f">Interfacing function</xref>
@@ -92,17 +81,11 @@
             <para>
               <xref linkend="Seealso_OUTIMPL_f">See also</xref>
             </para>
-          </listitem>          
-          <listitem>
-            <para>
-              <xref linkend="Authors_OUTIMPL_f">Authors</xref>
-            </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Palette_OUTIMPL_f">
     <title>Palettes</title>
     <itemizedlist>
@@ -115,10 +98,9 @@
         <para>
           <link linkend="Sinks_pal">Sinks palette</link>
         </para>
-      </listitem>       
+      </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Description_OUTIMPL_f">
     <title>Description</title>
     <para>
@@ -128,7 +110,6 @@
       This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's output ports must be numbered from 1 to the total number of implicit's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
     </para>
   </refsection>
-  
   <refsection id="Dialogbox_OUTIMPL_f">
     <title>Dialog box</title>
     <para>
@@ -139,8 +120,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -151,21 +132,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Defaultproperties_OUTIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -176,19 +164,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -198,41 +196,41 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection id="Example_OUTIMPL_f">
     <title>Example</title>
     <para>
       In the following example the Super block is a basic transistor switch. 
       <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.xcos">
         Open this example in Xcos
-      </link>.
+      </link>
+      .
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_superbloc_en_US.png" />
+        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_superbloc_en_US.png"/>
       </imageobject>
     </mediaobject>
     <para>
-      The following figure shows the use of the Super block and the resulting ouput when its input is toggled between the potentials GND and Vcc. You can also see on the output the effect of the saturation voltage (minimal output = 0.4 Volt).
+      The following figure shows the use of the Super block and the resulting output when its input is toggled between the potentials GND and Vcc. You can also see on the output the effect of the saturation voltage (minimal output = 0.4 Volt).
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_diagram_en_US.png" />
+        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_diagram_en_US.png"/>
       </imageobject>
     </mediaobject>
-  </refsection>   
-  
+  </refsection>
   <refsection id="Interfacingfunction_OUTIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUTIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUTIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  
   <refsection role="see also" id="Seealso_OUTIMPL_f">
     <title>See also</title>
     <itemizedlist>
@@ -241,12 +239,7 @@
       </listitem>
       <listitem>
         <link linkend="SUPER_f">SUPER_f</link>
-    </listitem>
+      </listitem>
     </itemizedlist>
-  </refsection>   
-  
-  <refsection id="Authors_OUTIMPL_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

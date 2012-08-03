@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="armax">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>armax</refname>
     <refpurpose> armax 同定</refpurpose>
@@ -47,15 +44,17 @@
         <term>b0f</term>
         <listitem>
           <para>オプションのパラメータ. 
-	デフォルト値は0で,係数b0を同定する必要があることを意味します.
-	bof=1の場合,b0は0であると仮定され,同定されません.</para>
+            デフォルト値は0で,係数b0を同定する必要があることを意味します.
+            bof=1の場合,b0は0であると仮定され,同定されません.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>prf</term>
         <listitem>
           <para>表示を制御するオプションのパラメータ. prf =1 (デフォルト値)の場合, 
-	Arma同定の過程が表示されます.</para>
+            Arma同定の過程が表示されます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -68,16 +67,18 @@
         <term>la</term>
         <listitem>
           <para>list(a,a+eta,a-eta) ( la は a の次元1) です; ただし,
-	eta は標準偏差の推定値です.
-	a=[Id,a1,a2,...,ar],ただし,各aiは大きさ(ny,ny)の行列です.</para>
+            eta は標準偏差の推定値です.
+            a=[Id,a1,a2,...,ar],ただし,各aiは大きさ(ny,ny)の行列です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>lb</term>
         <listitem>
           <para>list(b,b+etb,b-etb) (lb はbの次元1) です; ただし,
-	etb は標準偏差の推定値です.
-	 b=[b0,.....,b_s] ただし,各biは大きさ(nu,nu)の行列です.</para>
+            etb は標準偏差の推定値です.
+            b=[b0,.....,b_s] ただし,各biは大きさ(nu,nu)の行列です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -91,28 +92,31 @@
   <refsection>
     <title>説明</title>
     <para>
-    armax はn次元ARXプロセスの係数を同定するために使用されます.</para>
-    <programlisting role = ""><![CDATA[ 
+      armax はn次元ARXプロセスの係数を同定するために使用されます.
+    </para>
+    <programlisting role=""><![CDATA[ 
 A(z^-1)y= B(z^-1)u + sig*e(t)
  ]]></programlisting>
     <para>
-    ただし, e(t) は分散Iのn次元白色雑音です.
-    sig は nxn の行列で， A(z) および B(z)は以下のようになります:</para>
-    <programlisting role = ""><![CDATA[ 
+      ただし, e(t) は分散Iのn次元白色雑音です.
+      sig は nxn の行列で， A(z) および B(z)は以下のようになります:
+    </para>
+    <programlisting role=""><![CDATA[ 
 A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
 B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
  ]]></programlisting>
     <para>
-    この手法については,Eykhoffの96ページ,
-	"trends and progress in system identification"を参照ください.
-     <literal>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</literal>
-	および
-     <literal>coef= [-a1,..,-ar,b0,...,b_s] </literal>とおくと,
-	<literal>y(t)= coef* z(t) + sig*e(t) </literal>を記述することができ,
-	このアルゴリズムは,
-	<literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
-	を最小化
-	(ただし,t0=maxi(maxi(r,s)+1,1))) )します.</para>
+      この手法については,Eykhoffの96ページ,
+      "trends and progress in system identification"を参照ください.
+      <literal>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</literal>
+      および
+      <literal>coef= [-a1,..,-ar,b0,...,b_s] </literal>とおくと,
+      <literal>y(t)= coef* z(t) + sig*e(t) </literal>を記述することができ,
+      このアルゴリズムは,
+      <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
+      を最小化
+      (ただし,t0=maxi(maxi(r,s)+1,1))) )します.
+    </para>
   </refsection>
   <refsection>
     <title>例s</title>
@@ -163,9 +167,5 @@ Arma1est=armax(2,-1,y,[]);
         <link linkend="frep2tf">frep2tf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J-Ph. Chancelier.  </para>
   </refsection>
 </refentry>

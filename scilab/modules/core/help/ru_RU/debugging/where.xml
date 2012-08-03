@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="where">
+  <refnamediv>
+    <refname>where</refname>
+    <refpurpose>получение текущей инструкции дерева вызова</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[linenum,mac]=where()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>linenum</term>
+        <listitem>
+          <para>вектор-столбец целых чисел</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mac</term>
+        <listitem>
+          <para>вектор-столбец строк</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      <literal>[linenum,mac]=where()</literal> возвращает номер строки 
+      <literal>linenum</literal> и имя <literal>mac</literal> такие, что текущая инструкция 
+      была вызвана в строке <literal>linenum(1)</literal> функции
+      <literal>mac(1)</literal>, а <literal>mac(1)</literal> была вызвана в строке
+      <literal>linenum(2)</literal> функции <literal>mac(2)</literal> и так далее.
+    </para>
+    <para>
+      <literal>mac(i)</literal> -- это, в общем, имя функции, но это может быть также 
+      <literal>"exec"</literal> или <literal>"execstr"</literal>, если инструкция лежит в  
+      сценарии, исполняемом функцией <literal>exec</literal>, или строковом аргументе функции <literal>execstr</literal>.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

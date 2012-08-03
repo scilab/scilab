@@ -20,18 +20,18 @@ Source: modules\{#UI_DATA}\jar\org.scilab.modules.{#UI_DATA}.jar;DestDir: {app}\
 ;
 Source: modules\{#UI_DATA}\etc\{#UI_DATA}.start;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\{#UI_DATA}.quit;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#UI_DATA}\etc\variablebrowser_menubar.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#UI_DATA}\etc\variableeditor_menubar.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#UI_DATA}\etc\*.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#UI_DATA}\etc\*.xsl;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#UI_DATA}\sci_gateway\{#UI_DATA}_gateway.xml; DestDir: {app}\modules\{#UI_DATA}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 
 Source: modules\{#UI_DATA}\license.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#UI_DATA}\images\icons\*.gif; DestDir: {app}\modules\{#UI_DATA}\images\icons; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#UI_DATA}\images\icons\*.png; DestDir: {app}\modules\{#UI_DATA}\images\icons; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#UI_DATA}\demos\*.*; DestDir: {app}\modules\{#UI_DATA}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#UI_DATA}\tests\*.*; DestDir: {app}\modules\{#UI_DATA}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS} and {#COMPN_JVM_MODULE}
+Source: modules\{#UI_DATA}\tests\*.*; DestDir: {app}\modules\{#UI_DATA}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS} and {#COMPN_JVM_MODULE}
 ;
 ;--------------------------------------------------------------------------------------------------------------

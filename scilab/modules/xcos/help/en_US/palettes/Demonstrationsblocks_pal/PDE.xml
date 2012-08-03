@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
@@ -71,11 +71,6 @@
               <xref linkend="Interfacingfunction_PDE">Interfacing function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_PDE">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -93,15 +88,15 @@
   <refsection id="Description_PDE">
     <title>Description</title>
     <para>
-This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
-Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
-PDE (Partial Differential Equation) within SCICOS.
-The mathematical framwork was restricts in PDEs linear scalars with maximum order 2 in time and space.
-The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
-graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
-depending on the type of the PDE and runs the solvers.
-
-</para>
+      This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
+      Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
+      PDE (Partial Differential Equation) within SCICOS.
+      The mathematical framework was restricts in PDEs linear scalars with maximum order 2 in time and space.
+      The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
+      graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
+      depending on the type of the PDE and runs the solvers.
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_PDE">
     <title>Dialog box</title>
@@ -113,8 +108,8 @@ depending on the type of the PDE and runs the solvers.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -127,25 +122,25 @@ depending on the type of the PDE and runs the solvers.
           <emphasis role="bold">specification de l'EDP</emphasis>
         </para>
         <para> check box to select the PDE operators.
-ai(x), bi(t) (i=1:7) are the operator coefficients.
- 
-type of PDE discriminant (constant or variable, in the
-        later case, the sign should be given) 
-  </para>
+          ai(x), bi(t) (i=1:7) are the operator coefficients.
+          
+          type of PDE discriminant (constant or variable, in the
+          later case, the sign should be given) 
+        </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Discretization methode</emphasis>
         </para>
         <para> choix (check box) : is the choice for the manual or the automatic mode.
-type : in the manual mode we can give the method type
-        (Finite differences, finite elements or finite volumes).
- 
-degré : method degre (1 or 2 for the FD and FE methods,
-        1 for the FV method).
- 
-Nombre de noeuds : to give the number of the nodal points.
-  </para>
+          type : in the manual mode we can give the method type
+          (Finite differences, finite elements or finite volumes).
+          
+          degré : method degre (1 or 2 for the FD and FE methods,
+          1 for the FV method).
+          
+          Nombre de noeuds : to give the number of the nodal points.
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -158,8 +153,8 @@ Nombre de noeuds : to give the number of the nodal points.
           <emphasis role="bold">Conditions aux limites</emphasis>
         </para>
         <para> type : two type of the boundray conditions are possible : Dirichlet or Neumann.
-expressions : to give then boundray conditions expressions.
-  </para>
+          expressions : to give then boundray conditions expressions.
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -179,16 +174,24 @@ expressions : to give then boundray conditions expressions.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -222,19 +225,29 @@ expressions : to give then boundray conditions expressions.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -251,18 +264,5 @@ expressions : to give then boundray conditions expressions.
         <para> SCI/modules/scicos_blocks/macros/PDE/PDE.sci</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_PDE">
-    <title>Authors</title>
-    <para><emphasis role="bold"/> - EADS 2005-01-16</para>
-    <para> EADS 2005-01-16
-
-</para>
-    <para>
-
-
-
-
-</para>
   </refsection>
 </refentry>

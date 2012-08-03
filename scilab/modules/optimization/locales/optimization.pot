@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2012-08-02 12:34+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
@@ -46,9 +46,18 @@ msgid "%s: The constraints are inconsistent.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 81
+# File: sci_gateway/c/sci_qp_solve.c, line: 82
 #, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgid ""
+"%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 95
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
+"to %d.\n"
 msgstr ""
 
 #
@@ -1105,52 +1114,52 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 58
+# File: macros/neldermead/fminsearch.sci, line: 59
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 68
+# File: macros/neldermead/fminsearch.sci, line: 69
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 141
+# File: macros/neldermead/fminsearch.sci, line: 150
 #, c-format
 msgid "%s: Unknown status %s"
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 209
+# File: macros/neldermead/fminsearch.sci, line: 214
 #, c-format
 msgid "%s: Unknown step %s"
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 258
+# File: macros/neldermead/fminsearch.sci, line: 263
 #, c-format
 msgid ""
 "%s: The value of the 'OutputFcn' option is neither a function nor a list."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 274
+# File: macros/neldermead/fminsearch.sci, line: 279
 #, c-format
 msgid ""
 "%s: The value of the 'PlotFcns' option is neither a function nor a list."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 297
+# File: macros/neldermead/fminsearch.sci, line: 302
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 57
 #, c-format
 msgid "Calling sequence %s is obsolete."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 298
+# File: macros/neldermead/fminsearch.sci, line: 303
 # File: macros/neldermead/neldermead_configure.sci, line: 264
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 58
 #, c-format
@@ -1158,7 +1167,7 @@ msgid "Please use %s instead."
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 299
+# File: macros/neldermead/fminsearch.sci, line: 304
 # File: macros/neldermead/neldermead_configure.sci, line: 265
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 59
 #, c-format
@@ -1166,7 +1175,7 @@ msgid "This feature will be permanently removed in Scilab %s"
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 307
+# File: macros/neldermead/fminsearch.sci, line: 312
 # File: macros/optimbase/optimbase_configure.sci, line: 169
 #, c-format
 msgid ""
@@ -1175,7 +1184,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 313
+# File: macros/neldermead/fminsearch.sci, line: 318
 # File: macros/optimbase/optimbase_configure.sci, line: 175
 #, c-format
 msgid ""
@@ -1183,7 +1192,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/neldermead/fminsearch.sci, line: 321
+# File: macros/neldermead/fminsearch.sci, line: 326
 # File: macros/neldermead/neldermead_configure.sci, line: 236
 # File: macros/optimbase/optimbase_configure.sci, line: 134
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 255
@@ -1789,4 +1798,10 @@ msgstr ""
 # File: macros/unpack.sci, line: 38
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: macros/qpsolve.sci, line: 14
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""

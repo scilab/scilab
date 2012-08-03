@@ -18,24 +18,15 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="IN_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="IN_f" xml:lang="en_US">
   <refnamediv>
     <refname>IN_f</refname>
     <refpurpose>Regular Input Port</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_IN_f">
     <title>Contents</title>
     <itemizedlist>
@@ -71,7 +61,7 @@
             <para>
               <xref linkend="Datatype_IN_f">Data types</xref>
             </para>
-          </listitem>          
+          </listitem>
           <listitem>
             <para>
               <xref linkend="Dialogbox_IN_f">Dialog box</xref>
@@ -97,16 +87,10 @@
               <xref linkend="Seealso_IN_f">See also</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_IN_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_IN_f">
     <title>Palettes</title>
     <itemizedlist>
@@ -122,7 +106,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_IN_f">
     <title>Description</title>
     <para>
@@ -132,7 +115,6 @@
       This block is a signal link from outside of a system into a sub-system. In a Super Block, the regular's input ports must be numbered from 1 to the total number of regular's input ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
     </para>
   </refsection>
-  
   <refsection id="Datatype_IN_f">
     <title>Data types</title>
     <itemizedlist>
@@ -143,7 +125,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Dialogbox_IN_f">
     <title>Dialog box</title>
     <para>
@@ -153,7 +134,7 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para />
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -164,21 +145,28 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_IN_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -189,19 +177,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -211,32 +209,32 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_IN_f">
     <title>Example</title>
     <para>
-       In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
+      In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.xcos">
         Open this example in Xcos
-      </link>.
+      </link>
+      .
     </para>
-    <para />
+    <para/>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/in_f_diagram_en_US.png" />
+        <imagedata fileref="../../../examples/portaction_pal/en_US/in_f_diagram_en_US.png"/>
       </imageobject>
     </mediaobject>
   </refsection>
-
   <refsection id="Interfacingfunction_IN_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/IN_f.sci">SCI/modules/scicos_blocks/macros/Sources/IN_f.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/IN_f.sci">SCI/modules/scicos_blocks/macros/Sources/IN_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_IN_f">
     <title>See also</title>
     <itemizedlist>
@@ -244,13 +242,8 @@
         <link linkend="OUT_f">OUT_f</link>
       </listitem>
       <listitem>
-      <link linkend="SUPER_f">SUPER_f</link>
-    </listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+      </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_IN_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

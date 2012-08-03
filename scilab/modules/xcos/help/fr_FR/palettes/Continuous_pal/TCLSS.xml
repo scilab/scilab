@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="TCLSS"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TCLSS" xml:lang="fr">
   <refnamediv>
     <refname>TCLSS</refname>
     <refpurpose>Système continu linéaire avec saut</refpurpose>
@@ -73,6 +65,11 @@
               <xref linkend="Computationalfunction_TCLSS">Fonction de calcul</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_TCLSS">Exemple</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,8 +95,8 @@
       Ce qui signifie que l'état du système saute à la valeur présente sur la seconde entrée
       (de taille égale à celle de l'état). Le système est défini par les matrices et l'état initial.
       Les dimensions doivent être compatibles. Les tailles des entrées et sorties sont ajustées automatiquement.
-
-</para>
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_TCLSS">
     <title>Boîte de dialogue</title>
@@ -111,36 +108,67 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">A matrix</emphasis>
         </para>
-        <para> La matrice carrée <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
-	</para>
+        <para>
+          La matrice carrée 
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          .
+        </para>
         <para> Propriétés Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas d'entrées.</para>
+        <para>
+          La matrice 
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img6_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          ,[] si le système n'a pas d'entrées.
+        </para>
         <para> Propriétés Type 'mat' de taille ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas de sorties.</para>
+        <para>
+          La matrice 
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img7_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          ,[] si le système n'a pas de sorties.
+        </para>
         <para> Propriétés Type 'mat' de taille ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas de terme D.</para>
+        <para>
+          La matrice 
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img8_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          ,[] si le système n'a pas de terme D.
+        </para>
         <para> Propriétés Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
@@ -156,16 +184,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -187,19 +223,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -224,5 +270,17 @@
         <para> SCI/modules/scicos_blocks/src/c/tcslti4.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_TCLSS">
+    <title>Exemple</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TCLSS_Example.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../../examples/continuous_pal/TCLSS_Example.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
   </refsection>
 </refentry>

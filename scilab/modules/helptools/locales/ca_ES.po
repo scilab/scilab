@@ -14,13 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ca\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 "El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -37,16 +41,12 @@ msgid "%s: Error while building documentation: %s.\n"
 msgstr "%s: Error en crear la documentació: %s.\n"
 
 #, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Pila d'execució en Java %s.\n"
+msgid "%s: Execution Java stack: %s.\n"
+msgstr ""
 
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
 msgstr ""
 
 #, c-format
@@ -171,11 +171,11 @@ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
 msgid "\tProcessing file %s.xml\n"
-msgstr "\tS'està processant el fitxer %s.xml\n"
+msgstr ""
 
 #, c-format
 msgid "Warning %s does not follow the dtd"
-msgstr "Avís: El %s no segueix el dtd"
+msgstr ""
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"

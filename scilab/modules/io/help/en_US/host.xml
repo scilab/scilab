@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="host">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>host</refname>
     <refpurpose> Unix or DOS command execution</refpurpose>
@@ -42,9 +39,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Sends a string <literal>command-name</literal> to Unix for execution by the command interpreter (sh under Unix, or command.com under DOS). Standard output and standard errors of the shell command are written in the calling shell.
-    <literal>stat</literal> gives -1 if host can't be called (Not enough system memory
-    available) or the command interpreter return code.</para>
+      Sends a string <literal>command-name</literal> to Unix for execution by the command interpreter (sh under Unix, or command.com under DOS). Standard output and standard errors of the shell command are written in the calling shell.
+      <literal>stat</literal> gives -1 if host can't be called (Not enough system memory
+      available) or the command interpreter return code.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +61,7 @@ wd=getdir()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

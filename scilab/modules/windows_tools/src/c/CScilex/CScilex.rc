@@ -39,7 +39,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // remains consistent on all systems.
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON_SCILAB         ICON  "..\\resources\\icon_scilab.ico"
+IDI_ICON_SCILAB         ICON  "..\\resources\\scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -105,11 +105,11 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "CompanyName", "Consortium Scilab (DIGITEO)"
+            VALUE "CompanyName", "Scilab Enterprises"
             VALUE "FileDescription", "Scilab 5.4.0 (NO GUI)"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "WScilex"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "WScilex.exe"
             VALUE "ProductName", "Scilab 5.x Application"
             VALUE "ProductVersion", "5, 4, 0, 0"

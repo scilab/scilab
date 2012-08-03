@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="linf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>linf</refname>
     <refpurpose> 無限大ノルム</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>g</term>
         <listitem>
-          <para><literal>syslin</literal> 線形システム.</para>
+          <para>
+            <literal>syslin</literal> 線形システム.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,13 +47,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>g</literal>の L_infinity ノルムを返します.</para>
-    <programlisting role = ""><![CDATA[
+      <literal>g</literal>の L_infinity ノルムを返します.
+    </para>
+    <programlisting role=""><![CDATA[
 n=sup [sigmax(g(jw)] 
    w
  ]]></programlisting>
     <para>
-    (sigmax 最大固有値).</para>
+      (sigmax 最大固有値).
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

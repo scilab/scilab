@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsq">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lsq</refname>
     <refpurpose> linear least square problems.  </refpurpose>
@@ -41,10 +38,11 @@
         <term>tol</term>
         <listitem>
           <para>positive scalar,  used to determine the effective rank of A
-	    (defined as the order of the largest leading triangular 
-          submatrix R11 in the QR factorization with pivoting of A,
-          whose estimated condition number &lt;= 1/tol. The tol default value is
-	    set to <literal>sqrt(%eps)</literal>.</para>
+            (defined as the order of the largest leading triangular 
+            submatrix R11 in the QR factorization with pivoting of A,
+            whose estimated condition number &lt;= 1/tol. The tol default value is
+            set to <literal>sqrt(%eps)</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -57,14 +55,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
-    the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
-    solution with at at most <literal>rank(A)</literal>  nonzero components per column.</para>
+    <para>
+      <literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
+      the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
+      solution with at at most <literal>rank(A)</literal>  nonzero components per column.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
-    <para><literal>lsq</literal> function is  based on the LApack functions DGELSY for
-      real matrices and ZGELSY for complex matrices.</para>
+    <para>
+      <literal>lsq</literal> function is  based on the LApack functions DGELSY for
+      real matrices and ZGELSY for complex matrices.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -92,7 +94,7 @@ X2=A\b
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="backslash">backslash</link>

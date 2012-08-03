@@ -34,9 +34,9 @@ jmp_buf jmp_env;
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-
-#define INTERFACES_MAX 69
-static OpTab Interfaces[INTERFACES_MAX] = {
+#define INTERFACES_MAX 72
+static OpTab Interfaces[INTERFACES_MAX] =
+{
     /* 01  */ {gw_user}, /* free position may be used */
     /* 02  */ {gw_linear_algebra},
     /* 03  */ {gw_user}, /* free position may be used */
@@ -78,7 +78,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 39  */ {gw_dynamic_special_functions},
     /* 40  */ {gw_dynamic_tclsci},
     /* 41  */ {gw_data_structures2},
-    /* 42  */ {gw_user}, /* free position may be used */
+    /* 42  */ {gw_dynamic_history_browser},
     /* 43  */ {gw_integer},
     /* 44  */ {gw_linear_algebra2},
     /* 45  */ {gw_dynamic_scicos},
@@ -103,9 +103,12 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 64  */ {gw_dynamic_xcos},
     /* 65  */ {gw_dynamic_action_binding},
     /* 66  */ {gw_dynamic_parallel},
-	/* 67  */ {gw_dynamic_ui_data},
+    /* 67  */ {gw_dynamic_ui_data},
     /* 68  */ {gw_dynamic_xml},
-	/* 69  */ {gw_dynamic_mpi}
+    /* 69  */ {gw_dynamic_preferences},
+    /* 70  */ {gw_dynamic_graphic_objects},
+    /* 71  */ {gw_dynamic_external_objects},
+    /* 72  */ {gw_dynamic_mpi}
 };
 /*--------------------------------------------------------------------------*/
 /**
@@ -121,7 +124,7 @@ int C2F(callinterf) (int *k)
     {
         if ( setjmp(jmp_env) != 0 )
         {
-            Scierror(999,_("Aborting current computation\n"));
+            Scierror(999, _("Aborting current computation\n"));
             count = 0;
             return 0;
         }
@@ -135,13 +138,13 @@ int C2F(callinterf) (int *k)
     {
         if ( (*k > INTERFACES_MAX) || (*k < 1) )
         {
-            Scierror(999,_("Error: Not a valid gateway ID %d.\n"), *k);
+            Scierror(999, _("Error: Not a valid gateway ID %d.\n"), *k);
             count = 0;
             return 0;
         }
         else
         {
-            (*(Interfaces[*k-1].fonc))();
+            (*(Interfaces[*k - 1].fonc))();
         }
     }
     count--;
@@ -154,6 +157,6 @@ int C2F(callinterf) (int *k)
 */
 void errjump()
 {
-    longjmp(jmp_env,-1);
+    longjmp(jmp_env, -1);
 }
 /*--------------------------------------------------------------------------*/

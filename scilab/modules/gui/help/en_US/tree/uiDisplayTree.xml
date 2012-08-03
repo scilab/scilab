@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.1-subset Scilab" xml:lang="en" xml:id="uiDisplayTree">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>uiDisplayTree</refname>
     <refpurpose> Printing a Tree in GUI mode</refpurpose>
@@ -10,7 +7,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>uiDisplayTree(tree)
-	</synopsis>
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Input parameters</title>
@@ -49,15 +46,41 @@ uiDisplayTree(treeRoot)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
-      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
-      <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
-      <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>
-      <member>        <link linkend="uiConcatTree">uiConcatTree</link>       </member>      <member>        <link linkend="uiEqualsTree">uiEqualsTree</link>       </member>      <member>        <link linkend="uiFindNode">uiFindNode</link>       </member>
-      <member>        <link linkend="uiGetParentNode">uiGetParentNode</link>       </member>      <member>        <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>       </member>
-      <member>        <link linkend="uiGetNodePosition">uiGetNodePosition</link>       </member>
+      <member>
+        <link linkend="uiCreateNode">uiCreateNode</link>
+      </member>
+      <member>
+        <link linkend="uiCreateTree">uiCreateTree</link>
+      </member>
+      <member>
+        <link linkend="uiDumpTree">uiDumpTree</link>
+      </member>
+      <member>
+        <link linkend="uiInsertNode">uiInsertNode</link>
+      </member>
+      <member>
+        <link linkend="uiDeleteNode">uiDeleteNode</link>
+      </member>
+      <member>
+        <link linkend="uiConcatTree">uiConcatTree</link>
+      </member>
+      <member>
+        <link linkend="uiEqualsTree">uiEqualsTree</link>
+      </member>
+      <member>
+        <link linkend="uiFindNode">uiFindNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetParentNode">uiGetParentNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+      </member>
+      <member>
+        <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

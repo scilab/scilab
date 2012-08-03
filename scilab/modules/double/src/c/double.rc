@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "double module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "double module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "double.dll"
             VALUE "ProductName", "double module"
             VALUE "ProductVersion", "5, 4, 0, 0"

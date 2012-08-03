@@ -14,13 +14,14 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "core_math.h"
 #include "scicos.h"
 #include "dynlib_scicos_blocks.h"
@@ -33,8 +34,8 @@
 /*------------------------------------------------
  *     Scicos block simulator 
  *     Dead Band, 
- *     if u(i)<0 ,y(i)=min(0,u+DB(i)/2) 
- *     else       y(i)=max(0,u-DB(i)/2) 
+ *     if u(i)<0 ,y(i)=Min(0,u+DB(i)/2) 
+ *     else       y(i)=Max(0,u-DB(i)/2) 
  *     DB(i)=rpar(i) 
  *------------------------------------------------*/
 

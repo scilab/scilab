@@ -11,16 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-    xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:ns5="http://www.w3.org/1999/xhtml"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook"
-    version="5.0-subset Scilab"
-    xml:id="test_run"
-    xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="test_run" xml:lang="en">
   <refnamediv>
     <refname>test_run</refname>
     <refpurpose>Launch tests</refpurpose>
@@ -28,10 +19,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      test_run()
-      test_run(module)
-      test_run(module,test_name)
-      test_run(module,test_name,options)
+      status = test_run()
+      status = test_run(module)
+      status = test_run(module, test_name)
+      status = test_run(module, test_name, options, exportToFile)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -44,14 +35,12 @@
           <itemizedlist>
             <listitem>
               <para>
-                the name of an internal Scilab module ("core", "time", ...)
-                or a sub-module (e.g. "optimization|neldermead").
+                the name of an internal Scilab module ("core", "time", ...) or a sub-module (e.g. "optimization|neldermead").
               </para>
             </listitem>
             <listitem>
               <para>
-                the name of an ATOMS module ("module_lycee", "nisp", ...). To
-                be taken into account, the module must be loaded when test_run() is called.
+                the name of an ATOMS module ("module_lycee", "nisp", ...). To be taken into account, the module must be loaded when test_run() is called.
               </para>
             </listitem>
             <listitem>
@@ -72,41 +61,116 @@
         <term>options</term>
         <listitem>
           <para>A string array</para>
-          <itemizedlist>
-            <listitem>
-              <para>no_check_ref: does not check if the .dia and .dia.ref are equal</para>
-            </listitem>
-            <listitem>
-              <para>no_check_error_output: The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
-            </listitem>
-            <listitem>
-              <para>create_ref: create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
-            </listitem>
-            <listitem>
-              <para>list: does not perform the tests but displays a list of available tests</para>
-            </listitem>
-            <listitem>
-              <para>help: display some examples about how to use this command</para>
-            </listitem>
-            <listitem>
-              <para>mode_nw: add the "-nw" option to the launch</para>
-            </listitem>
-            <listitem>
-              <para>mode_nwni: add the "-nwni" option to the launch</para>
-            </listitem>
-            <listitem>
-              <para>nonreg_test: runs only the non-regression tests, skipping unit tests</para>
-            </listitem>
-            <listitem>
-              <para>unit_test: runs only the unit tests, skipping non-regression tests</para>
-            </listitem>
-            <listitem>
-              <para>skip_tests</para>
-            </listitem>
-            <listitem>
-              <para>enable_lt: Enable long-time execution tests</para>
-            </listitem>
-          </itemizedlist>
+          <variablelist>
+            <varlistentry>
+              <term>no_check_ref</term>
+              <listitem>
+                <para>does not check if the .dia and .dia.ref are equal</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>no_check_error_output</term>
+              <listitem>
+                <para>The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>create_ref</term>
+              <listitem>
+                <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>show_error</term>
+              <listitem>
+                <para>If an error occurs, show the last 10 lines of the execution</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>show_diff</term>
+              <listitem>
+                <para>
+                  If a difference is found, show the result of the command <literal>diff -u</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>list</term>
+              <listitem>
+                <para>Does not perform the tests but displays a list of available tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>help</term>
+              <listitem>
+                <para>display some examples about how to use this command</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mode_nw</term>
+              <listitem>
+                <para>Add the "-nw" option to the launch</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mode_nwni</term>
+              <listitem>
+                <para>Add the "-nwni" option to the launch</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nonreg_test</term>
+              <listitem>
+                <para>runs only the non-regression tests, skipping unit tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>unit_test</term>
+              <listitem>
+                <para>Runs only the unit tests, skipping non-regression tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>skip_tests</term>
+              <listitem>
+                <para>Skip the tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>enable_lt</term>
+              <listitem>
+                <para>Enable long-time execution tests</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>short_summary</term>
+              <listitem>
+                <para>Does not display statistics nor execution time after execution (only number of executed, passed, failed and skipped tests will be displayed on a single line).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>exportToFile</term>
+        <listitem>
+          <para>
+            Export to a XML file the result of the test. This file follows the specification of the XUnit format.
+            Note that the usage of this option enables <literal>show_diff</literal> and <literal>show_error</literal>.
+          </para>
+          <para>
+            If the file pointed by <varname>exportToFile</varname> already exists, the new result will be added to the existing file.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>
+            Boolean value
+            Returns %t if no error has been detected
+            Returns %f if any error has been detected
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -133,97 +197,97 @@
     <itemizedlist>
       <listitem>
         <para>
-          &#60;-- INTERACTIVE TEST --&#62;
+          &lt;-- INTERACTIVE TEST --&gt;
           This test will be skipped because it is interactive.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- LONG TIME EXECUTION --&#62;
+          &lt;-- LONG TIME EXECUTION --&gt;
           This test will be skipped because it needs long-time duration. To enable
           the test, call test_run with the following option: "enable_lt"
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NOT FIXED --&#62;
+          &lt;-- NOT FIXED --&gt;
           This test will be skipped because it is a known, but unfixed bug.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- TEST WITH GRAPHIC --&#62;
+          &lt;-- TEST WITH GRAPHIC --&gt;
           This test will not be executed if the option "mode_nwni" is used.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO TRY CATCH --&#62;
+          &lt;-- NO TRY CATCH --&gt;
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO CHECK ERROR OUTPUT --&#62;
+          &lt;-- NO CHECK ERROR OUTPUT --&gt;
           The error output file is not checked
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO CHECK REF --&#62;
+          &lt;-- NO CHECK REF --&gt;
           The .dia and the .dia.ref files are not compared.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- ENGLISH IMPOSED --&#62;
+          &lt;-- ENGLISH IMPOSED --&gt;
           This test will be executed with the -l en_US option.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- FRENCH IMPOSED --&#62;
+          &lt;-- FRENCH IMPOSED --&gt;
           This test will be executed with the -l fr_FR option.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- JVM NOT MANDATORY --&#62;
-          This test will be executed with the nwni mode by default.
+          &lt;-- CLI SHELL MODE --&gt;
+          (was: &lt;-- JVM NOT MANDATORY --&gt;)
+          This test will be executed with scilab-cli (nwni mode) by default.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- WINDOWS ONLY --&#62;
+          &lt;-- WINDOWS ONLY --&gt;
           If the operating system isn't Windows, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- UNIX ONLY --&#62;
+          &lt;-- UNIX ONLY --&gt;
           If the operating system isn't an Unix OS, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- LINUX ONLY --&#62;
+          &lt;-- LINUX ONLY --&gt;
           If the operating system isn't GNU/Linux, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- MACOSX ONLY --&#62;
+          &lt;-- MACOSX ONLY --&gt;
           If the operating system isn't Mac OS X, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- XCOS TEST --&#62;
+          &lt;-- XCOS TEST --&gt;
           This test will launch all the necessary Xcos libs. This test
           will be launched in nw mode.
         </para>
       </listitem>
     </itemizedlist>
-
     <para>
       Each test is executed in a separated process, created with the "host" command.
       That enables the current command to continue, even if the test as
@@ -231,7 +295,6 @@
       independent from one another.
     </para>
   </refsection>
-
   <refsection>
     <title>Platform-specific tests</title>
     <para>
@@ -241,72 +304,57 @@
       create a default <literal>.ref</literal> and create additionnal <literal>.ref</literal>
       file for each platform.
     </para>
-
     <para>
       The various platform-specific <literal>.ref</literal> files must have one of the following extensions.
     </para>
-
     <itemizedlist>
       <listitem>
         <para>
           <literal>.unix.dia.ref</literal> for Unix platform,
         </para>
       </listitem>
-
       <listitem>
         <para>
           <literal>.linux.dia.ref</literal> for GNU/Linux platform,
         </para>
       </listitem>
-
       <listitem>
         <para>
           <literal>.win.dia.ref</literal> for Windows platform,
         </para>
       </listitem>
-
       <listitem>
         <para>
           <literal>.macosx.dia.ref</literal> for Mac OS X platform.
         </para>
       </listitem>
-
     </itemizedlist>
-
     <para>
       The algorithm is the following.
       First, the <literal>.ref</literal> is considered. If this file does not exist,
       the platform-specific <literal>.ref</literal> file is examined depending on the current platform.
     </para>
-
     <itemizedlist>
-
       <listitem>
         <para>
           on Windows platforms: <literal>.win.dia.ref</literal>,
         </para>
       </listitem>
-
       <listitem>
         <para>
           on Max OS X platforms: <literal>.unix.dia.ref</literal>, <literal>.macosx.dia.ref</literal>,
         </para>
       </listitem>
-
       <listitem>
         <para>
           on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
         </para>
       </listitem>
-
     </itemizedlist>
-
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 // Launch all tests
 // =============================================
 
@@ -369,10 +417,19 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
- ]]>
-    </programlisting>
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[
+// Run unitary tests of an external module (with his path)
+test_run('SCI/contrib/toolbox_skeleton')
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
+// Export to a XML Xunit file
+test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
+test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
+ ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Internal Design</title>
     <para>
@@ -381,7 +438,6 @@ test_run([],[],['no_check_ref','mode_nw']);
       The .tst file is copied into the temporary directory, the test is performed
       and the .dia.ref is copied back into the original location.
     </para>
-
     <para>
       The .tst script is not run as is. Instead, a header and a footer are
       inserted at the beginning and at the end of the .tst at the time
@@ -390,14 +446,35 @@ test_run([],[],['no_check_ref','mode_nw']);
       into the .dia file, so that the user can have a log file once the test
       is performed.
     </para>
-
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre Maréchal</member>
-      <member>Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>test_run returns a status:
+          <itemizedlist><listitem>
+              Returns %t if no error has been detected
+            </listitem>
+            <listitem>
+              Returns %f if any error has been detected
+            </listitem>
+          </itemizedlist>
+          <para>
+            <literal>show_diff</literal> and <literal>show_error</literal> added as new options
+          </para>
+          <para>
+            <literal>CLI SHELL MODE</literal> tag is added. Replaces <literal>JVM NOT MANDATORY</literal> (still supported)
+          </para>
+          <para>
+            <literal>test_run</literal> can work on an external module.
+          </para>
+          
+          <para>
+            Fourth argument added to export to a XML file
+          </para>
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

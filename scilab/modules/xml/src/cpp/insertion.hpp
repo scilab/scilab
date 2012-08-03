@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +19,6 @@ extern "C"
 {
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -161,7 +160,7 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
  * @param fname_len the function name length
  */
 template<class T, class U>
-int sci_insertion(char * fname, unsigned long fname_len)
+int sci_insertion(char * fname, void* pvApiCtx)
 {
     T * a;
     U * b;
@@ -180,6 +179,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -193,6 +193,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -200,11 +201,16 @@ int sci_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
-    lhsid = getXMLObjectId(lhsaddr);
+    if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
 
     a = XMLObject::getFromId<T>(lhsid);
     if (!a)
@@ -214,7 +220,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    success = XMLRhsValue::get(fname, rhsaddr, &b);
+    success = XMLRhsValue::get(fname, rhsaddr, &b, pvApiCtx);
     if (!success)
     {
         freeAllocatedSingleString(field);
@@ -230,7 +236,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
         delete b;
     }
 
-    if (a->createOnStack(Rhs + 1))
+    if (a->createOnStack(Rhs + 1, pvApiCtx))
     {
         LhsVar(1) = Rhs + 1;
     }

@@ -23,26 +23,16 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  */
 public class CellsUndoManager extends UndoManager {
 
-    private String initCommand;
     private SwingScilabVariableEditor editor;
 
     /**
      * Constructor
      * @param editor the editor
-     * @param initCommand the command user to create the edited matrix
      */
-    public CellsUndoManager(SwingScilabVariableEditor editor, String initCommand) {
+    public CellsUndoManager(SwingScilabVariableEditor editor) {
         super();
         this.editor = editor;
-        this.initCommand = initCommand;
         setLimit(-1);
-    }
-
-    /**
-     * @return the init command to have initial matrix
-     */
-    public String getInitCommand() {
-        return initCommand;
     }
 
     /**

@@ -17,7 +17,6 @@ import java.awt.Component;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /**
@@ -34,24 +33,24 @@ public class GlobalEventFilter {
      * Constructor
      */
     protected GlobalEventFilter() {
-    throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Update ClickInfos structure when a KeyEvent occurs.
      *
      * @param keyPressed : the key pressed.
-     * @param figureID Scilab ID of the figure where the even occurred
+     * @param figureUID Scilab ID of the figure where the even occurred
      * @param isControlDown : is CTRL key modifier activated.
      */
-    public static void filterKey(int keyPressed, int figureID, boolean isControlDown) {
-    synchronized (ClickInfos.getInstance()) {
-        ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaKey2Scilab(keyPressed, isControlDown));
-        ClickInfos.getInstance().setWindowID(figureID);
-        ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
-        ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
-        ClickInfos.getInstance().notify();
-    }
+    public static void filterKey(int keyPressed, String figureUID, boolean isControlDown) {
+        synchronized (ClickInfos.getInstance()) {
+            ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaKey2Scilab(keyPressed, isControlDown));
+            ClickInfos.getInstance().setWindowID(figureUID);
+            ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
+            ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
+            ClickInfos.getInstance().notify();
+        }
     }
 
     /**
@@ -60,14 +59,14 @@ public class GlobalEventFilter {
      * @param command : the callback that was supposed to be called.
      */
     public static void filterCallback(String command) {
-    synchronized (ClickInfos.getInstance()) {
-        ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
-        ClickInfos.getInstance().setMenuCallback(command);
-        ClickInfos.getInstance().setWindowID(-1);
-        ClickInfos.getInstance().setXCoordinate(-1);
-        ClickInfos.getInstance().setYCoordinate(-1);
-        ClickInfos.getInstance().notify();
-    }
+        synchronized (ClickInfos.getInstance()) {
+            ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
+            ClickInfos.getInstance().setMenuCallback(command);
+            ClickInfos.getInstance().setWindowID("");
+            ClickInfos.getInstance().setXCoordinate(-1);
+            ClickInfos.getInstance().setYCoordinate(-1);
+            ClickInfos.getInstance().notify();
+        }
     }
 
     /**
@@ -75,53 +74,51 @@ public class GlobalEventFilter {
      *
      * @param command : the callback that was supposed to be called.
      * @param returnCode : used for closing windows.
-     * @param figureIndex : the figure ID where callback occured.
+     * @param figureUID : the figure ID where callback occurred.
      */
-    public static void filterCallback(String command, int returnCode, int figureIndex) {
-    synchronized (ClickInfos.getInstance()) {
-        ClickInfos.getInstance().setMouseButtonNumber(returnCode);
-        ClickInfos.getInstance().setMenuCallback(command);
-        ClickInfos.getInstance().setWindowID(figureIndex);
-        ClickInfos.getInstance().setXCoordinate(-1);
-        ClickInfos.getInstance().setYCoordinate(-1);
-        ClickInfos.getInstance().notify();
-    }
+    public static void filterCallback(String command, int returnCode, String figureUID) {
+        synchronized (ClickInfos.getInstance()) {
+            ClickInfos.getInstance().setMouseButtonNumber(returnCode);
+            ClickInfos.getInstance().setMenuCallback(command);
+            ClickInfos.getInstance().setWindowID(figureUID);
+            ClickInfos.getInstance().setXCoordinate(-1);
+            ClickInfos.getInstance().setYCoordinate(-1);
+            ClickInfos.getInstance().notify();
+        }
     }
     /**
      * Update ClickInfos structure when a mouse event occurs on a Canvas.
      *
      * @param mouseEvent the event caught.
-     * @param source the canvas where the event occurs.
+     * @param axesUID the axes where the event occurs.
      * @param buttonAction the Scilab button code mean PRESSED / RELEASED / CLICKED / DCLICKED.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    public static void filterMouse(MouseEvent mouseEvent, SwingScilabAxes source, int buttonAction, boolean isControlDown) {
-    if (source != null) {
-        synchronized (ClickInfos.getInstance()) {
-        ClickInfos.getInstance().setMouseButtonNumber(
-            SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
-        );
-        ClickInfos.getInstance().setWindowID(source.getFigureId());
-        try {
-            ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
-                                                    + ((Component) mouseEvent.getSource()).getLocationOnScreen().getX()
-                                                    - source.getLocationOnScreen().getX());
-            ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
-                                                    + ((Component) mouseEvent.getSource()).getLocationOnScreen().getY()
-                                                    - source.getLocationOnScreen().getY());
+    public static void filterMouse(MouseEvent mouseEvent, String axesUID, int buttonAction, boolean isControlDown) {
+        if (axesUID != null) {
+            synchronized (ClickInfos.getInstance()) {
+                ClickInfos.getInstance().setMouseButtonNumber(
+                    SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
+                );
+                ClickInfos.getInstance().setWindowID(axesUID);
+                try {
+                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
+                                                            + ((Component) mouseEvent.getSource()).getLocationOnScreen().getX()
+                                                            - ((Component) mouseEvent.getSource()).getLocationOnScreen().getX());
+                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
+                                                            + ((Component) mouseEvent.getSource()).getLocationOnScreen().getY()
+                                                            - ((Component) mouseEvent.getSource()).getLocationOnScreen().getY());
+                } catch (Exception e) {
+                    ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
+                                                            + ((Component) mouseEvent.getSource()).getX()
+                                                            - ((Component) mouseEvent.getSource()).getX());
+                    ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
+                                                            + ((Component) mouseEvent.getSource()).getY()
+                                                            - ((Component) mouseEvent.getSource()).getY());
+                } finally {
+                    ClickInfos.getInstance().notify();
+                }
+            }
         }
-        catch (Exception e) {
-            ClickInfos.getInstance().setXCoordinate(mouseEvent.getX()
-                                                    + ((Component) mouseEvent.getSource()).getX()
-                                                    - source.getX());
-            ClickInfos.getInstance().setYCoordinate(mouseEvent.getY()
-                                                    + ((Component) mouseEvent.getSource()).getY()
-                                                    - source.getY());
-        }
-        finally {
-            ClickInfos.getInstance().notify();
-        }
-        }
-    }
     }
 }

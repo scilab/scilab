@@ -10,72 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="gamma" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="gamma" xml:lang="en">
   <refnamediv>
     <refname>gamma</refname>
-
     <refpurpose>função gama </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
-
     <synopsis>y = gamma(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parâmetros</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>vetor ou matriz de reais ou complexos </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>y</term>
-
         <listitem>
           <para>vetor ou matriz de reais ou complexos de mesmo tamanho que
-          x</para>
+            x
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Descrição</title>
-
-    <para><literal>gamma(x)</literal> avalia a função gama em todos os
-    elementos de <literal>x</literal>. A função gama é defininda por :</para>
-
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>gamma(x)</literal> avalia a função gama em todos os
+      elementos de <literal>x</literal>. A função gama é defininda por :
+    </para>
+    <programlisting role=""><![CDATA[ 
             /+oo
             |   x-1  -t
 gamma(x) =  |  t    e    dt
             /0
  ]]></programlisting>
-
     <para>e generaliza a função fatorial para os números reais
-    (<literal>gamma(n+1) = n!</literal>).</para>
+      (<literal>gamma(n+1) = n!</literal>).
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 // exemplos simples
 gamma(0.5)
@@ -94,20 +74,19 @@ xtitle("A função gama em ["+string(a)+","+string(b)+"]")
 show_window()
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>Ver Também</title>
-
+    <title>Ver Também</title>
     <simplelist type="inline">
-      <member><link linkend="gammaln">gammaln</link></member>
-
-      <member><link linkend="dlgamma">dlgamma</link></member>
+      <member>
+        <link linkend="gammaln">gammaln</link>
+      </member>
+      <member>
+        <link linkend="dlgamma">dlgamma</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Autores</title>
-
     <para>W. J. Cody e L. Stoltz (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

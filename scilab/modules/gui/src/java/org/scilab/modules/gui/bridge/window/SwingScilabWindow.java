@@ -4,6 +4,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU (Mac OS X port)
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,29 +16,14 @@
 
 package org.scilab.modules.gui.bridge.window;
 
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Iterator;
-import java.util.Set;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
-
 import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
-import org.flexdock.view.View;
+import org.flexdock.docking.defaults.DefaultDockingStrategy;
+import org.flexdock.docking.drag.effects.EffectsManager;
+import org.flexdock.docking.drag.preview.GhostPreview;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -46,17 +32,37 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciDockingListener;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.SimpleWindow;
-import org.scilab.modules.renderer.utils.RenderingCapabilities;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.rmi.server.UID;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Swing implementation for Scilab windows in GUIs
@@ -74,35 +80,45 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private static final int DEFAULTWIDTH = 500;
     private static final int DEFAULTHEIGHT = 500;
 
+    public static Map<String, SwingScilabWindow> allScilabWindows = Collections.synchronizedMap(new HashMap<String, SwingScilabWindow>());
+
+    static {
+        DefaultDockingStrategy.setDefaultResizeWeight(0.5);
+        DefaultDockingStrategy.keepConstantPercentage(true);
+    }
+
     private DefaultDockingPort sciDockingPort;
     private SciDockingListener sciDockingListener;
     private SimpleMenuBar menuBar;
     private SimpleToolBar toolBar;
     private SimpleTextBox infoBar;
-
+    private String uuid;
     private int elementId; // the id of the Window which contains this SimpleWindow
-    boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
+    private String windowUID;
+    private final boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
 
     /**
      * Constructor
      */
     public SwingScilabWindow() {
         super();
+        this.uuid = UUID.randomUUID().toString();
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         // By default ctrl+w close the window
         ActionListener listener = new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+            }
+        };
         getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
         this.setTitle("Scilab");
-        setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
 
         /* defining the Layout */
         super.setLayout(new java.awt.BorderLayout());
@@ -110,7 +126,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         /* Create automatically a docking port associated to the window */
         sciDockingPort = new DefaultDockingPort();
 
-        //EffectsManager.setPreview(new GhostPreview());
+        EffectsManager.setPreview(new GhostPreview());
 
         /* The docking port is the center of the Layout of the Window */
         super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
@@ -122,32 +138,32 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         sciDockingListener = new SciDockingListener();
         sciDockingPort.addDockingListener(sciDockingListener);
+
         /*
          * Prevent the background RootPane to catch Focus.
          * Causes trouble with Scicos use xclick & co.
          */
-        this.setFocusable(false);
+        //this.setFocusable(false);
 
         // let the OS choose the window position if not specified by user.
         setLocationByPlatform(true);
 
         addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e) {
-                    Object[] dockArray = sciDockingPort.getDockables().toArray();
-                    for (int i = 0; i < dockArray.length; i++) {
-                        ((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
-                    }
-
-                    //if dock stay open, do not close main window
-                    if(dockArray.length == 0){
-                        removeWindowListener(this);
-                    }
-                }
-            });
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
+            }
+        });
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
         }
+
+        windowUID = new UID().toString();
+
+        sciDockingListener.setAssociatedWindowId(windowUID);
+
+        allScilabWindows.put(windowUID, this);
     }
 
     /**
@@ -158,28 +174,55 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         try {
             // Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
             // use as delegates for various com.apple.eawt.ApplicationListener methods
-            OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
-            OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
-            OSXAdapter.setDockIcon(System.getenv("SCI") + "/desktop/puffin.png");
+            OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("macosxAbout", (Class[]) null));
+            OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("macosxQuit", (Class[]) null));
+            OSXAdapter.setPreferencesHandler(this, getClass().getDeclaredMethod("macosxPreferences", (Class[]) null));
+            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("puffin", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
-            System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
+            System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * This method is called by the OSXAdapter class when the specific Mac
-     * OS X about menu is called. It is the only case where this method
+     * OS X "About" menu is called. It is the only case where this method
      * should be used
      */
-    public void OSXabout() {
-        InterpreterManagement.requestScilabExec("about()");
+    public void macosxAbout() {
+        InterpreterManagement.requestScilabExec("about();");
     }
 
-    public void OSXquit() {
-        InterpreterManagement.requestScilabExec("exit()");
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Quit Scilab" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxQuit() {
+        InterpreterManagement.requestScilabExec("exit();");
     }
 
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Preferences" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxPreferences() {
+        InterpreterManagement.requestScilabExec("preferences();");
+    }
 
+    /**
+     * @return the UUID associated with this window
+     */
+    public String getUUID() {
+        return uuid;
+    }
+
+    /**
+     * @param uuid the UUID associated with this window
+     */
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
 
     /**
      * Creates a swing Scilab window
@@ -191,8 +234,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     /**
      * Draws a swing Scilab window
-     * @see org.scilab.modules.gui.UIElement#draw()
+     * @see org.scilab.modules.gui.uielement.UIElement#draw()
      */
+    @Override
     public void draw() {
         this.setVisible(true);
         this.doLayout();
@@ -215,16 +259,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Deiconify the window and put it in front of other window
      */
+    @Override
     public void raise() {
         // blocking call. So graphic synchronization must be desactivated here.
         if (!SwingUtilities.isEventDispatchThread()) {
-        /* javasci bug: See bug 9544 why we are doing this check */
+            /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        public void run() {
-                            raiseToFront();
-                        }
-                    });
+                    @Override
+                    public void run() {
+                        raiseToFront();
+                    }
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -238,8 +284,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Gets the dimensions (width and height) of a swing Scilab window
      * @return the dimensions of the window
-     * @see org.scilab.modules.gui.UIElement#getDims()
+     * @see org.scilab.modules.gui.uielement.UIElement#getDims()
      */
+    @Override
     public Size getDims() {
         return new Size(getSize().width, getSize().height);
     }
@@ -247,27 +294,27 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets the dimensions (width and height) of a swing Scilab window
      * @param newWindowSize the dimensions to set to the window
-     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
+    @Override
     public void setDims(Size newWindowSize) {
+        //if (!SwingUtilities.isEventDispatchThread()) {
+        if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
+            Dimension finalDim = new Dimension(newWindowSize.getWidth(), newWindowSize.getHeight());
 
-        // get the greatest size we can use
-        int[] maxSize = RenderingCapabilities.getMaxWindowSize();
-
-        // make suze size is not greater than the max size
-        Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
-                                           Math.min(newWindowSize.getHeight(), maxSize[1]));
-
-        setSize(finalDim);
-        // validate so the new values are taken into account immediately
-        validate();
+            setSize(finalDim);
+            // validate so the new values are taken into account immediately
+            validate();
+        }
+        //}
     }
 
     /**
      * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab window
      * @return the position of the window
-     * @see org.scilab.modules.gui.UIElement#getPosition()
+     * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
+    @Override
     public Position getPosition() {
         return new Position(this.getX(), this.getY());
     }
@@ -275,17 +322,23 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab window
      * @param newWindowPosition the position to set to the window
-     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
+    @Override
     public void setPosition(Position newWindowPosition) {
-        this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+        //if (!SwingUtilities.isEventDispatchThread()) {
+        if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
+            this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+        }
+        //}
     }
 
     /**
      * Gets the title of a swing Scilab window
      * @return the title of the window
-     * @see java.awt.Frame#getTitle(java.lang.String)
+     * @see javax.swing.JFrame#getTitle()
      */
+    @Override
     public String getTitle() {
         return super.getTitle();
     }
@@ -295,6 +348,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @param newWindowTitle the title to set to the window
      * @see java.awt.Frame#setTitle(java.lang.String)
      */
+    @Override
     public void setTitle(String newWindowTitle) {
         // set only if required
         if (newWindowTitle != null && !newWindowTitle.equals(getTitle())) {
@@ -305,6 +359,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * {@inheritedDoc}
      */
+    @Override
     public void setName(String name) {
         super.setName(name);
         setTitle(name);
@@ -316,7 +371,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     public DockingPort getDockingPort() {
         //return (DockingPort) centerFrame.getContentPane();
-        return (DockingPort) sciDockingPort;
+        return sciDockingPort;
     }
 
     /**
@@ -324,36 +379,37 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @param newTab the Scilab tab to add to the Scilab window
      * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void addTab(Tab newTab) {
-        final SwingScilabTab tabImpl = ((SwingScilabTab) newTab.getAsSimpleTab());
-
-        tabImpl.setParentWindowId(this.elementId);
-        DockingManager.dock(tabImpl, this.getDockingPort());
-        ActiveDockableTracker.requestDockableActivation(tabImpl);
+    @Override
+    public void addTab(SimpleTab newTab) {
+        SwingScilabTab tab = (SwingScilabTab) newTab;
+        tab.setParentWindowId(this.windowUID);
+        DockingManager.dock(tab, this.getDockingPort());
+        ActiveDockableTracker.requestDockableActivation(tab);
     }
 
     /**
      * Remove a Scilab tab from a Scilab window
-     * @param tab the Scilab tab to remove from the Scilab window
+     * @param tabs the Scilab tabs to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void removeTab(Tab tab) {
-        DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
-        DockingManager.unregisterDockable((Dockable) ((SwingScilabTab) tab.getAsSimpleTab()));
-        ((SwingScilabTab) tab.getAsSimpleTab()).close();
+    public void removeTabs(SwingScilabTab[] tabs) {
+        for (SwingScilabTab tab : tabs) {
+            DockingManager.unregisterDockable((Dockable) tab);
+            tab.close();
+            DockingManager.close(tab);
+        }
         if (getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars
             if (toolBar != null) {
                 ((SwingScilabToolBar) toolBar).close();
             }
             if (menuBar != null) {
-                UIElementMapper.removeMapping(menuBar.getElementId());
+                ((SwingScilabMenuBar) menuBar).close();
             }
-            UIElementMapper.removeMapping(this.elementId);
 
             // clean all
             this.removeAll();
-            this.dispose();
+            close();
 
             // disable docking port
             ActiveDockableTracker.getTracker(this).setActive(null);
@@ -364,29 +420,37 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             /* Make sur a Tab is active */
             Set<SwingScilabTab> docks = sciDockingPort.getDockables();
             Iterator<SwingScilabTab> it = docks.iterator();
-            ActiveDockableTracker.requestDockableActivation((SwingScilabTab) it.next());
+            ActiveDockableTracker.requestDockableActivation(it.next());
         }
+    }
+
+    /**
+     * Remove a Scilab tab from a Scilab window
+     * @param tab the Scilab tab to remove from the Scilab window
+     * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
+     */
+    @Override
+    public void removeTab(SimpleTab tab) {
+        removeTabs(new SwingScilabTab[] {(SwingScilabTab) tab});
     }
 
     /**
      * Sets a Scilab MenuBar to a Scilab window
      * @param newMenuBar the Scilab MenuBar to add to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+     * @see org.scilab.modules.gui.window.Window#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
+    @Override
     public void addMenuBar(MenuBar newMenuBar) {
-
         if (newMenuBar == null) {
             if (this.menuBar != null) {
                 this.menuBar = null;
                 super.setJMenuBar(null);
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
             if (this.menuBar != newMenuBar.getAsSimpleMenuBar()) {
                 this.menuBar = newMenuBar.getAsSimpleMenuBar();
                 super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }
@@ -395,16 +459,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets a Scilab ToolBar to a Scilab window
      * @param newToolBar the Scilab ToolBar to set to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+     * @see org.scilab.modules.gui.window.Window#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
+    @Override
     public void addToolBar(ToolBar newToolBar) {
-
         if (newToolBar == null) {
             if (this.toolBar != null) {
                 // Remove old InfoBar if already set
                 super.remove((SwingScilabToolBar) this.toolBar);
                 this.toolBar = null;
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
@@ -415,7 +478,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 }
                 this.toolBar = newToolBar.getAsSimpleToolBar();
                 super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }
@@ -424,16 +486,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Sets a Scilab InfoBar to a Scilab window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window
-     * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
+     * @see org.scilab.modules.gui.window.Window#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
      */
+    @Override
     public void addInfoBar(TextBox newInfoBar) {
-
         if (newInfoBar == null) {
             if (this.infoBar != null) {
                 // Remove old InfoBar if already set
                 super.remove((SwingScilabTextBox) this.infoBar);
                 this.infoBar = null;
-                this.repaint();
             }
             // else nothing to do both are null
         } else {
@@ -444,7 +505,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 }
                 this.infoBar = newInfoBar.getAsSimpleTextBox();
                 super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
-                this.repaint();
             }
             //  else nothing to do element alredy set
         }
@@ -454,6 +514,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * Get the element id for this window
      * @return id the id of the corresponding window object
      */
+    @Override
     public int getElementId() {
         return elementId;
     }
@@ -462,30 +523,39 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * Set the element id for this window
      * @param id the id of the corresponding window object
      */
+    @Override
     public void setElementId(int id) {
         this.elementId = id;
-        sciDockingListener.setAssociatedWindowId(id);
+        //sciDockingListener.setAssociatedWindowId(id);
     }
 
     /**
      * Close the window
      * @see org.scilab.modules.gui.window.SimpleWindow#close()
      */
+    @Override
     public void close() {
-        dispose();
+        try {
+            dispose();
+        } catch (IllegalStateException e) {
+            enableInputMethods(false);
+        }
+        allScilabWindows.remove(windowUID);
     }
 
     /**
      * @return number of objects (tabs) docked in this window
      */
+    @Override
     public int getNbDockedObjects() {
-        return sciDockingListener.getNbDockedObjects();
+        return sciDockingPort.getDockables().size();
     }
 
     /**
      * Update the dimension of the window and its component.
      * Only useful when the window is not yet visible
      */
+    @Override
     public void updateDimensions() {
         pack();
     }
@@ -493,6 +563,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * DeIconify Window
      */
+    @Override
     public void windowDeiconified() {
         super.setState(Frame.NORMAL);
     }
@@ -500,6 +571,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Iconify Window
      */
+    @Override
     public void windowIconified() {
         super.setState(Frame.ICONIFIED);
     }
@@ -507,6 +579,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Maximized Window
      */
+    @Override
     public void windowMaximized() {
         super.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
@@ -514,7 +587,16 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     /**
      * Window is in the "normal" state.
      */
+    @Override
     public void windowNormal() {
         super.setState(Frame.NORMAL);
+    }
+
+    /**
+     * Get the window UID
+     * @return the UID
+     */
+    public String getId() {
+        return windowUID;
     }
 }

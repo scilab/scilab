@@ -9,28 +9,50 @@
 
 function datatipRedraw(curve_handles)
 //Recomputes the datatip text box position after a rotation
-  
+
 //These coordinates must be expressed in user coordinates units but their
 //computation takes into account the pixel dimensions of the text boxes
 //when they are not located in the upper right position. So during
 //rotation or zoom the  text box positions has to be recomputed.
-  
-    drawlater()
-    if argn(2)<>1 then //search for curves in the current axes
-      curve_handles=datatipGetEntities()
-    end
-    if size(curve_handles,"*")==1&curve_handles.type=="axes" then
-      //the argument is a handle on an axes, search for curves in it
-      curve_handles=datatipGetEntities(curve_handles)
-    end
+
+
+  if argn(2)<>1 then //search for curves in the current axes
+    ax=gca()
+    curve_handles=datatipGetEntities(ax)
+  elseif type(curve_handles)<>9 then
+    error(msprintf(_("%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"),"datatipRedraw",1))
+  elseif size(curve_handles,"*")==1&curve_handles.type=="Axes" then
+    //the argument is a handle on an axes, search for curves in it
+    ax=curve_handles
+    curve_handles=datatipGetEntities(ax)
+  elseif and(curve_handles<>"Figure") then
+    //check for a common axes entity for parent
+    ax=[]
     for k=1:size(curve_handles,'*')
-      ud=datatipGetStruct(curve_handles(k))
-      for l=1:size(ud.tips,'*')
-        tip_handle=ud.tips(l)
+      a=curve_handles(k)
+      while a.type<>"Axes" then a=a.parent,end
+      if ax<>[]&a<>ax then
+        error(msprintf(_("%s: Wrong value for input argument #%d: the handles must have the same parent.\n"),"datatipRedraw",1))
+      end
+      ax=a
+    end
+  else
+    error(msprintf(_("%s: Wrong type for input argument #%d: handle on axes or axes children expected.\n"),"datatipRedraw",1))
+  end
+
+  fig=ax.parent
+  id=fig.immediate_drawing;
+  fig.immediate_drawing="off"
+
+  for k=1:size(curve_handles,'*')
+    ud=datatipGetStruct(curve_handles(k))
+    if  typeof(ud)=='datatips' then
+      for l=1:size(ud.tips.children,'*')
+        tip_handle=ud.tips.children(l)
         point_handle=tip_handle.children(1)
-        string_handle=tip_handle.children(2)
-        setStringPosition(string_handle,point_handle.data)
+        setStringPosition(tip_handle,point_handle.data)
       end
     end
-    drawnow()
+  end
+  fig.immediate_drawing=id
 endfunction

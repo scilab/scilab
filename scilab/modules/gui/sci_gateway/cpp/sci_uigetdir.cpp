@@ -128,6 +128,11 @@ int sci_uigetdir(char *fname, unsigned long l)
         /* Read the selection */
         userSelection = getJuigetfileSelection();
     }
+    catch(const GiwsException::JniCallMethodException & exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
     catch(const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());

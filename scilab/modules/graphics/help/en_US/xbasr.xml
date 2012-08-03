@@ -10,10 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xbasr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xbasr">
   <refnamediv>
     <refname>xbasr</refname>
     <refpurpose> redraw a graphics window</refpurpose>
@@ -24,11 +21,13 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>xbasr</literal> is used to redraw the content of the graphics
-    window with id <literal>win_num</literal>. It works only with the driver <literal>"Rec"</literal>.</para>
+    <para>
+      <literal>xbasr</literal> is used to redraw the content of the graphics
+      window with id <literal>win_num</literal>. It works only with the driver <literal>"Rec"</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="driver">driver</link>
@@ -37,9 +36,5 @@
         <link linkend="replot">replot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

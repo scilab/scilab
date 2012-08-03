@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="range">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>range</refname>
     <refpurpose>A^kの範囲</refpurpose>
@@ -54,11 +51,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    範囲 <literal>A^k</literal>を計算します ; the first dim rows of <literal>X</literal> の
-	最初の dim 行は, <literal>A^k</literal>の範囲に広がります.
-	<literal>X</literal>の最後の行は,
-	この直交相補な範囲に広がります.
-	<literal>X*X'</literal> は単位行列です.</para>
+      範囲 <literal>A^k</literal>を計算します ; the first dim rows of <literal>X</literal> の
+      最初の dim 行は, <literal>A^k</literal>の範囲に広がります.
+      <literal>X</literal>の最後の行は,
+      この直交相補な範囲に広がります.
+      <literal>X*X'</literal> は単位行列です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -89,14 +87,12 @@ norm(I*coeffs-y1)        //check
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para>F. D. INRIA ;   </para>
-  </refsection>
-  <refsection>
     <title>使用される関数</title>
-    <para><literal>range</literal> 関数は,
-	<link linkend="svd">svd</link>分解を使用する
-	<link linkend="rowcomp">rowcomp</link> 関数
-	に基づいています.</para>
+    <para>
+      <literal>range</literal> 関数は,
+      <link linkend="svd">svd</link>分解を使用する
+      <link linkend="rowcomp">rowcomp</link> 関数
+      に基づいています.
+    </para>
   </refsection>
 </refentry>

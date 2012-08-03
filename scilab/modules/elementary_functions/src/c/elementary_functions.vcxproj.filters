@@ -242,6 +242,15 @@
     <ClCompile Include="xerhlt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="convertbase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_base2dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_dec2base.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h">
@@ -286,28 +295,63 @@
     <ClInclude Include="..\..\includes\xerhlt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="convertbase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IsEqualVar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-char.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-short.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qsort-string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vceil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vfloor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vfrexp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\elementary_functions.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\elementary_functions.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

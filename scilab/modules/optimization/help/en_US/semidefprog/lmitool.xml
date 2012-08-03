@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lmitool">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lmitool</refname>
     <refpurpose>Graphical tool for solving linear matrix inequations.</refpurpose>
@@ -21,10 +18,11 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>lmitool()
-
-lmitool(filename)
-
-txt=lmitool(probname,varlist,datalist)</synopsis>
+      
+      lmitool(filename)
+      
+      txt=lmitool(probname,varlist,datalist)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,7 +30,9 @@ txt=lmitool(probname,varlist,datalist)</synopsis>
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>a string referring to a <literal>.sci</literal> function</para>
+          <para>
+            a string referring to a <literal>.sci</literal> function
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,17 +63,19 @@ txt=lmitool(probname,varlist,datalist)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lmitool()</literal> or <literal>lmitool(filename)</literal> is used to define 
-    interactively a LMI problem.
-    In the non interactive mode,
-    <literal>txt=lmitool(probname,varlist,datalist)</literal>
-    generates a file in the current directory. The name of this file 
-    is obtained by adding <literal>.sci</literal> to the end of <literal>probname</literal>. 
-    This file is the skeleton of a solver function and the corresponding 
-    evaluation function needed by <literal>lmisolver</literal>.</para>
+    <para>
+      <literal>lmitool()</literal> or <literal>lmitool(filename)</literal> is used to define 
+      interactively a LMI problem.
+      In the non interactive mode,
+      <literal>txt=lmitool(probname,varlist,datalist)</literal>
+      generates a file in the current directory. The name of this file 
+      is obtained by adding <literal>.sci</literal> to the end of <literal>probname</literal>. 
+      This file is the skeleton of a solver function and the corresponding 
+      evaluation function needed by <literal>lmisolver</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lmisolver">lmisolver</link>

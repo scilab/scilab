@@ -27,6 +27,12 @@ SCILAB_WINDOWS_IMPEXP void createInnosetupMutex(void);
 * Close named Mutex used by Innosetup
 */
 SCILAB_WINDOWS_IMPEXP void closeInnosetupMutex(void);
+
+/**
+* Check if named Mutex used by Innosetup exists
+*/
+SCILAB_WINDOWS_IMPEXP BOOL haveInnosetupMutex(void);
+
 /*--------------------------------------------------------------------------*/
 
 #endif /* __INNOSETUPMUTEX_H__ */

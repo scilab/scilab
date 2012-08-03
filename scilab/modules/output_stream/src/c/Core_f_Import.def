@@ -1,0 +1,13 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+cvname_
+errcontext_
+errloc_
+errmgr_
+showstack_
+whatln_

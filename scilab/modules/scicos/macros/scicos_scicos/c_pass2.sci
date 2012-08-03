@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
 //
@@ -198,8 +198,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
   iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
-    messagebox(msprintf(_('Diagram contains implicit blocks,\n'+..
-	     'compiling for implicit Solver.')),"modal","info")
+    warning(_('Diagram contains implicit blocks, compiling for implicit Solver.'))
     %scicos_solver=100
   end
   if %scicos_solver==100 then xc0=[xc0;xcd0],end
@@ -515,9 +514,7 @@ function ok=is_alg_event_loop(typ_l,clkconnect)
   end  
 endfunction
 
-function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
-          dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,..
-	  connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
+function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
 
   ordclk=[];ordptr=1;cord=[];
   lordclk=list()
@@ -527,7 +524,11 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
   zz=get_clocks(clkconnect,clkptr)  
   //testing event algebraic loops
   ok=is_alg_event_loop(typ_l,clkconnect)
-  if ~ok then messagebox(_('Algebraic loop on events.'),"modal","error");return ,end
+  if ~ok then
+    disp(mprintf("%s: alg_event_loop failed", "c_pass2"));
+    messagebox(_('Algebraic loop on events.'),"modal","error");
+    return
+  end
   
 
   ok=%t
@@ -553,8 +554,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  primary0=[]
 	end
 
-	if  show_comment then mprintf('Processing blk '+string(blk)+' port"+...
-				   " '+string(port)),end
+	if  show_comment then mprintf("Processing blk " + string(blk) + " port "+...
+				   + string(port) + "\n"),end
 	  
 	  if primary0<>[] then  // delete redundant links
 	    [jj,k]=unique(primary0*(1+max(prt0))+prt0)
@@ -565,6 +566,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
             [balg,vec]=ini_ordo3(primary)
             if balg then 
+              disp(mprintf("%s: ini_ordo (3) failed", "c_pass2"));
     	      messagebox(_('Algebraic loop.'),"modal","error"),
     	      ok=%f
     	      return
@@ -588,7 +590,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
                if bouclalg then break,end
             end
    
-            if show_comment&bouclalg then mprintf('found intersect'),end
+            if show_comment&bouclalg then mprintf('found intersect \n'),end
 
             if ~bouclalg then
 	      [bouclalg,Vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
@@ -596,9 +598,10 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		clkconnect,connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,..
                 corinv,clkptr,cliptr,critev)
 	      if bouclalg then
-                if show_comment then mprintf('found non convergence'),pause,end
+                if show_comment then mprintf('found non convergence\n'),pause,end
                 i=lp(1)  // first typ_l
                 if i==[] then 
+                  disp(mprintf("%s: ini_ordo (2) failed", "c_pass2"));
                   messagebox(_('Algebraic loop.'),"modal","error")
                   ok=%f
                   return
@@ -619,7 +622,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		nblock=nblock+1
 		clkconnect(f,3)=nblock
 		if  show_comment then   
-                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
+                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock) + "\n"),
                 end
 		[typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
 		 corinv,clkptr,cliptr,critev]=duplicate_block(bl,typ_l,clkconnect,..
@@ -646,8 +649,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		for jj=2:nout
                     if  show_comment then  
                        mprintf('No block duplication but link between '+string(blk)+..
-                            ' and '+string(bli)+'replaced with links from '+..
-                                                 string(bl)+' to '+string(bli)),
+                            ' and '+string(bli)+' replaced with links from '+..
+                                                 string(bl)+' to '+string(bli) + "\n"),
                     end
 		    xx(:,2)=jj;
 		    clkconnect=[clkconnect;xx]
@@ -679,7 +682,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
 		if  show_comment then  
                       mprintf('for blk port '+string(blk)+' '+string(port)+..
-                               ' ordclk is'),mprintf(lordclk(clkptr(blk)+port-1)),
+                               ' ordclk is :\n'), disp(lordclk(clkptr(blk)+port-1)),
                 end
 	      else
 		cord=[primary0(In),prt0(In)]
@@ -699,7 +702,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      lordclk(J)=[]
 	      if  show_comment then   
                   mprintf('for blk port '+string(blk)+' '+string(port)+..
-                                  ' ordclk is'), mprintf(lordclk(J)),
+                                  ' ordclk is'), mprintf(lordclk(J) + "\n"),
               end
 	    else
 	      cord=[]
@@ -765,9 +768,9 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
 	f=find(par1==parents(:,1))
 	if size(f,2)==n_out then
 	  if show_comment then
-	    mprintf('del_inutile:')
-	    mprintf('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
-                 ' sont supprim�s')
+	    mprintf('find_del_inutile:')
+	    mprintf('link between blocks '+string(par1)+' and '+string(blk)+..
+                 ' are deleted\n')
 	    pause
 	  end
 	  [clkconnect]=del_inutile(clkconnect,par1,n_out,blk,port)
@@ -990,6 +993,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   end
   //
   if ~ok then 
+    disp(mprintf("%s: scheduling failed", "c_pass2"));
     messagebox(_('Algebraic loop.'),"modal","error");
     iord=[],oord=[],zord=[],critev=[]
     return,
@@ -1092,9 +1096,10 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
     fini=%t
     for i=1:nb
       if vec(i)==j-1&typ_l(i)<>-1 then 
-	if j==nb+2 then 
-	  messagebox(_('Algebraic loop.'),"modal","error");ok=%f;ord=[];return;
-	end
+        if j==nb+2 then 
+          disp(mprintf("%s: tree (3) failed", "c_pass2"));
+          messagebox(_('Algebraic loop.'),"modal","error");ok=%f;ord=[];return;
+        end
 	if typ_l(i)==1 then
 	  fini=%f;
 	  kk=bexe(boptr(i):boptr(i+1)-1)';
@@ -1471,9 +1476,10 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
     fini=%t
     for i=1:nb
       if vec(i)==j-1 then 
-	if j==nb+2 then 
-	  messagebox(_('algebraic loop.'),"modal","error");ok=%f;ord=[];return;
-	end
+        if j==nb+2 then 
+          disp(mprintf("%s: tree (2) failed", "c_pass2"));
+          messagebox(_('Algebraic loop.'),"modal","error");ok=%f;ord=[];return;
+        end
 	for k=outoinptr(i):outoinptr(i+1)-1
 	  ii=outoin(k,1);
 	  //indport=find(dep_u(dep_uptr(ii):dep_uptr(ii+1)-1)==1);

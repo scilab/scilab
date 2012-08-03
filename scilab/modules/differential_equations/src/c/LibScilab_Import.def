@@ -1,9 +1,0 @@
-	LIBRARY    Libscilab.dll
-
-
-EXPORTS
-;
-;core
-;
-callFunctionFromGateway
-ierode_

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="less">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>less</refname>
     <refpurpose> (&lt;) より小さいの比較</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="great">
-    <refname>great</refname>
-    <refpurpose> (&lt;) より大きいの比較</refpurpose>
+  <refnamediv xml:id="greater">
+    <refname>greater</refname>
+    <refpurpose> (&gt;) より大きいの比較</refpurpose>
   </refnamediv>
   <refsection>
     <title>説明</title>
     <para>
-    論理値比較記号
-  </para>
+      論理値比較記号
+    </para>
     <variablelist>
       <varlistentry>
         <term>&lt;&gt;</term>
         <listitem>
-          <para>"異なる"を意味する (<literal>~=</literal>と同じ)</para>
+          <para>
+            "異なる"を意味する (<literal>~=</literal>と同じ)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>

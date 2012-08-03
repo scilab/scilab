@@ -16,9 +16,17 @@ AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
 SUBDIRS= libs \
 	modules \
-	contrib
+	contrib \
+	desktop
 
 ACLOCAL_AMFLAGS = -I m4/
+
+# Set AM_* SCI detected settings
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS   = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS   = $(SCI_FFLAGS)
+AM_LDFLAGS  = $(SCI_LDFLAGS)
 
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
 
@@ -28,42 +36,36 @@ bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
 CC = $(OPENMPI_CC)
 
-scilab_bin_LDFLAGS 		=   $(OPENMPI_LIBS)
-scilab_cli_bin_LDFLAGS		=  $(OPENMPI_LIBS)
-
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
+scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
+                    -I$(top_srcdir)/modules/console/includes/ \
+                    -I$(top_srcdir)/modules/localization/includes/ \
+                    $(AM_CPPFLAGS)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(LTLIBINTL)
-
-SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
-
+COMMON_LIBS = $(LTLIBINTL)
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
+scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 
 if NEED_JAVA
@@ -78,8 +80,8 @@ if IS_SOLARIS
 endif
 
 if ENABLE_STATIC
-scilab_static_bin_LDFLAGS 		= -static -static-libgcc --start-group
-scilab_static_bin_CFLAGS =  -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
+scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
+scilab_static_bin_CFLAGS  = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
 
 #-static
 bin_PROGRAMS	   		+= scilab-static-bin
@@ -100,6 +102,10 @@ endif
 if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
+
+# check is performed with scilab
+TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
+TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
 all-local: $(TARGETS_ALL)
 
@@ -135,31 +141,23 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
-$(top_srcdir)/desktop/puffin_128.xpm \
-$(top_srcdir)/desktop/puffin_256.xpm \
-$(top_srcdir)/desktop/puffin_32.xpm \
-$(top_srcdir)/desktop/puffin_48.xpm \
-$(top_srcdir)/desktop/puffin.png \
-$(top_srcdir)/desktop/puffin.icns \
-$(top_srcdir)/desktop/scilab.icns
-
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-# Desktop file
-# Note that here, it is datadir and NOT pkgdatadir
-desktopdir = $(datadir)/applications
-desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
-$(top_srcdir)/desktop/scilab-cli.desktop \
-$(top_srcdir)/desktop/scilab.desktop
-
-macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
 	-@( cd $(top_builddir) ; \
-	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
+	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+
+check-jvm-dep:
+# Check that scilab-cli does not have a dependency on libjvm
+if !IS_MACOSX
+	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
+	if test $$? == 0; then \
+		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
+	fi
+endif
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"
@@ -167,8 +165,37 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 javadoc:
 	$(JAVADOC) -noindex -nohelp -nonavbar -notree \
 	-d $(top_builddir)/modules/javasci/javadoc \
-	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
+	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java::$(top_srcdir)/modules/localization/src/java \
 	org.scilab.modules.javasci org.scilab.modules.types
+
+javadoc-all:
+	MASK="$(top_srcdir)/modules/*/src/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		LISTMODULES="$$M:$$LISTMODULES"; \
+		MODULE=$$(echo $$M|cut -d/ -f3); \
+		LISTPKG="$$LISTPKG org.scilab.modules.$$MODULE"; \
+	done; \
+	$(JAVADOC) \
+	-d $(top_builddir)/javadocall \
+	-sourcepath $$LISTMODULES \
+	$$LISTPKG
+
+doc-fr_FR:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=fr_FR
+
+doc-en_US:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=en_US
+
+doc-pt_BR:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=pt_BR
+
+doc-ru_RU:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ru_RU
+
+doc-ja_JP:
+	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
+
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
@@ -176,9 +203,9 @@ if BUILD_HELP
 		cd $(top_builddir);\
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -ex \"$$COMMAND\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
@@ -187,15 +214,15 @@ else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
-doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+doc-web: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -noatomsautoload -nouserstartup -e "$$COMMAND" || exit 1;\
 			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 			if test ! -d $$JAVADOC_TARGET; then \
 				mkdir $$JAVADOC_TARGET; \
@@ -214,19 +241,9 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Checking documentation ($$l) --"; \
 			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
-			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e \"$$COMMAND\"";\
-			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1;\
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e \"$$COMMAND\"";\
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e "$$COMMAND" || exit 1;\
 		done; \
-	else \
-		echo "Cannot find Scilab binary"; \
-	fi
-
-check-recursive: check-local
-check-local:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="try test_run();catch exit(-1);end;exit(0)";\
-		export LANG=C;\
-		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -266,8 +283,8 @@ clean-help:
 	-@if test -x $(top_builddir)/scilab-cli-bin; then \
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
 		for l in $(ALL_LINGUAS_DOC); do \
-			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
-			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1; \
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e '$$COMMAND'"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -noatomsautoload -e "$$COMMAND" || exit 1; \
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -285,7 +302,7 @@ clean-help:
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
+		$(top_builddir)/bin/scilab-cli -nb -noatomsautoload -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -294,6 +311,8 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 clean-generated:
+# Deleted junit + code coverage
+	rm -rf $(top_builddir)/reports/
 	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
 
 distclean-generated:
@@ -305,16 +324,32 @@ if IS_MACOSX
 MACOSX=1
 endif
 
+clean-reports:
+	rm -f reports/xml/TEST-org.scilab.*.xml
+
 # For each module, build and call Java unitary tests
 # If fails, stops the call
-check-java:
-	@echo "-- Launch all TestNG (Java) unitary tests"; \
+check-java: clean-reports
+	@echo "-- Launch all Junit (Java) unitary tests"; \
 	MASK="$(top_srcdir)/modules/*/tests/java/"; \
 	MODULES=`ls -d $$MASK`; \
 	for M in $$MODULES; do \
 		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
 		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
 	done
+	rm -f reports/xml/TEST-org.scilab.*.xml
+
+codecoverage-java: clean-reports
+	@echo "Check if --enable-debug-java has been set"; \
+	grep "build.debug=on" $(top_srcdir)/scilab.properties > /dev/null || exit 10; \
+	echo "-- Launch all Junit (Java) unitary tests + code coverage"; \
+	MASK="$(top_srcdir)/modules/*/tests/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
+		$(ANT) -buildfile $$BASE/build.xml codecoverage || exit $$?; \
+	done
+	rm -f reports/xml/TEST-org.scilab.*.xml
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
@@ -328,30 +363,37 @@ localization:
 	rm modules/*/locales/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE$$EXTENSION`; \
+		if test "$$LOCALE" == "en_US"; then \
+			LOCFILE=$$MASK/*.pot; \
+		else \
+			LOCFILE=$$MASK/$$LOCALE$$EXTENSION; \
+		fi; \
+		FILES=`ls $$LOCFILE`; \
 		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-		$(MSGCAT) --use-first -o $$POFILE $$FILES; \
+		$(MSGCAT) --use-first -o $$POFILE $$FILES || exit 2; \
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE || exit 2; \
 	done;
 
 
 localization-status:
 	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-		if test ! -d $$PATHTO; then \
-			echo "        Creating $$PATHTO"; \
-			mkdir -p $$PATHTO; \
+		if test "$$LOCALE" != "en_US"; then \
+			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+			if test ! -d $$PATHTO; then \
+				echo "        Creating $$PATHTO"; \
+				mkdir -p $$PATHTO; \
+			fi; \
+			echo "Building status for $$LOCALE"; \
+			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 		fi; \
-		echo "Building status for $$LOCALE"; \
-		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
-	done; 
+	done;
 
 endif
 

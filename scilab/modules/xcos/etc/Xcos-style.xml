@@ -168,6 +168,9 @@
   <add as="STEP_FUNCTION" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
   </add>
+  <add as="PULSE_SC" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PULSE_SC.svg"/>
+  </add>
   <add as="CLOCK_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
@@ -218,7 +221,7 @@
   </add>
   <add as="CLSS_f" extend="CLSS"/>
   <add as="CLR" extend="blockWithLabel">
-    <add as="displayedLabel" value="num(s)&lt;BR&gt;         &lt;hr&gt;         den(s)"/>
+    <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
   </add>
   <add as="CLR_f" extend="CLR"/>
   <add as="TIME_DELAY" extend="blockWithLabel">
@@ -395,8 +398,11 @@
     <remove as="image"/>
     <add as="fontSize" value="20"/>
   </add>
-  <add as="CONSTRAINT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="=0 ?"/>
+  <add as="CONSTRAINT_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x == %s"/>
+  </add>
+  <add as="CONSTRAINT2_c" extend="blockWithLabel">
+    <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
   </add>
   <!-- MODELICA -->
   <add as="MBLOCK" extend="blockWithLabel">
@@ -586,13 +592,14 @@
   <add as="CLKFROM" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
-    <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="From %s"/>
   </add>
   <add as="CLKGOTO" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
     <add as="strokeColor" value="red"/>
+    <add as="displayedLabel" value="To %s"/>
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
@@ -605,6 +612,7 @@
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
   </add>
+  <add as="CLKOUT_f" extend="CLKOUTV_f"/>
   <add as="CLKSOMV_f" extend="blockWithLabel">
     <add as="shape" value="ellipse"/>
     <add as="displayedLabel" value="+"/>
@@ -628,7 +636,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>
   </add>
   <add as="HALT_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="STOP"/>
+    <add as="displayedLabel" value="HALT"/>
   </add>
   <add as="freq_div" extend="blockWithLabel">
     <add as="displayedLabel" value="Frequency&lt;BR&gt;         division"/>
@@ -643,6 +651,12 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.svg"/>
   </add>
   <!-- SIGNAL ROUTING -->
+  <add as="SELF_SWITCH_ON" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Self_Switch_on.svg"/>
+  </add>
+  <add as="SELF_SWITCH_OFF" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Self_Switch_off.svg"/>
+  </add>
   <add as="ISELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
   </add>
@@ -679,6 +693,7 @@
   <add as="GOTO" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="Goto %s"/>
   </add>
   <add as="GotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
@@ -686,6 +701,7 @@
   <add as="FROM" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value=" From %s"/>
   </add>
   <add as="WFILE_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Write to&lt;BR&gt;         output file"/>
@@ -701,6 +717,9 @@
     <add as="verticalAlign" value="top"/>
     <add as="displayedLabel" value="DEMUX"/>
     <add as="spacing" value="2"/>
+  </add>
+  <add as="SCALAR2VECTOR" extend="blockWithLabel">
+    <add as="displayedLabel" value="SCALAR2VECTOR"/>
   </add>
   <!-- COMMONLY USED BLOCKS -->
   <add as="OUT_f" extend="blockWithLabel">
@@ -906,6 +925,7 @@
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
+  <add as="VirtualCLK0" extend="CLOCK_f"/>
   <add as="CLKSPLIT_f" extend="Split"/>
   <add as="IMPSPLIT_f" extend="Split"/>
   <add as="CLKSOM_f" extend="CLKSOMV_f"/>

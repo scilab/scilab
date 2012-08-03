@@ -1,0 +1,62 @@
+# Catalan translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2012-04-21 14:19+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+msgid "History loading in progress..."
+msgstr "S'està carregant l'historial..."
+
+msgid "Command History"
+msgstr "Historial d'ordres"
+
+msgid "File"
+msgstr "Fitxer"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid "Cut"
+msgstr "Retalla"
+
+msgid "Delete"
+msgstr "Esborra"
+
+msgid "Clear history"
+msgstr "Neteja l'historial"
+
+msgid "?"
+msgstr "?"
+
+msgid "Scilab Help"
+msgstr "Ajuda de Scilab"
+
+msgid "Evaluate Selection"
+msgstr "Avalua la selecció"
+
+msgid "Edit in SciNotes"
+msgstr "Edita amb SciNotes"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Cannot delete current session beginning line."
+msgstr "No es pot esborrar la línia inicial de la sessió actual."

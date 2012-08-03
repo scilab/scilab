@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cheb1mag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cheb1mag</refname>
     <refpurpose>  response of Chebyshev type 1 filter</refpurpose>
@@ -35,7 +32,9 @@
       <varlistentry>
         <term>sample</term>
         <listitem>
-          <para>vector of frequencies where <literal>cheb1mag</literal> is evaluated</para>
+          <para>
+            vector of frequencies where <literal>cheb1mag</literal> is evaluated
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,11 +48,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Square magnitude response of a type 1 Chebyshev filter.</para>
-    <para><literal>omegac</literal>=passband edge.</para>
-    <para><literal>epsilon</literal>such that <literal>1/(1+epsilon^2)</literal>=passband ripple.</para>
-    <para><literal>sample</literal>vector of frequencies where the square magnitude
-    is desired.</para>
+      Square magnitude response of a type 1 Chebyshev filter.
+    </para>
+    <para>
+      <literal>omegac</literal>=passband edge.
+    </para>
+    <para>
+      <literal>epsilon</literal>such that <literal>1/(1+epsilon^2)</literal>=passband ripple.
+    </para>
+    <para>
+      <literal>sample</literal>vector of frequencies where the square magnitude
+      is desired.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +72,7 @@ xtitle('','frequencies','magnitude')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="buttmag">buttmag</link>

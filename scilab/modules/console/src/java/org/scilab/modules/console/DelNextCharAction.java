@@ -25,30 +25,30 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  */
 public class DelNextCharAction extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public DelNextCharAction() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public DelNextCharAction() {
+        super();
+    }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		int currentPosition = configuration.getInputCommandView().getCaretPosition();
+    /**
+     * Threats the event
+     * @param e the action event that occurred
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+        int currentPosition = configuration.getInputCommandView().getCaretPosition();
 
-		/* Do not try to remove an non-existing item */
-		if (currentPosition < configuration.getInputCommandViewStyledDocument().getLength()) {
-			try {
-				configuration.getInputCommandViewStyledDocument().remove(currentPosition, 1);
-			} catch (BadLocationException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
+        /* Do not try to remove an non-existing item */
+        if (currentPosition < configuration.getInputCommandViewStyledDocument().getLength()) {
+            try {
+                configuration.getInputCommandViewStyledDocument().remove(currentPosition, 1);
+            } catch (BadLocationException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 }

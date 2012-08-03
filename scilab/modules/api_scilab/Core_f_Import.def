@@ -1,0 +1,11 @@
+LIBRARY    core_f.dll
+
+
+EXPORTS
+;core_f
+
+cvname_
+cvnamel_
+stackg_
+stackp_
+funs_

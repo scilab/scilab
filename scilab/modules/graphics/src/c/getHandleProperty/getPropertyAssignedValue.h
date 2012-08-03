@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -112,12 +112,12 @@ GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(size_t stackPointer, int valueTy
 
 /*------------------------------------------------------------------------------*/
 /* Tlist */
-typedef struct 
+typedef struct
 {
-  int nbElement ; /**< number of elements in the tlist */
-  int curElement ; /**< currently read element */
-  int paramNumber ; /**< rank of the tlist within the Rhs parameters */
-  size_t stackPointer ; /**< pointer of the tlist in the stack */
+    int nbElement ; /**< number of elements in the tlist */
+    int curElement ; /**< currently read element */
+    int paramNumber ; /**< rank of the tlist within the Rhs parameters */
+    size_t stackPointer ; /**< pointer of the tlist in the stack */
 } AssignedList ;
 
 /**
@@ -206,7 +206,7 @@ GRAPHICS_IMPEXP char ** getCurrentStringMatrixFromList( AssignedList * list, int
  * @param[in/out] list object used to retrieve elements
  * @param[out]    nbRow number of row of the returned matrix or -1 if an error occurred
  * @param[out]    nbCol number of column of the returned matrix or -1 if an error occurred
- * @return the created array or NULL if the matrix is empty or an error occured
+ * @return the created array or NULL if the matrix is empty or an error occurred
  */
 GRAPHICS_IMPEXP double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 

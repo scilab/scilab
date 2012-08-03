@@ -10,20 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="glue">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="glue">
   <refnamediv>
     <refname>glue</refname>
     <refpurpose> 
-   glue a set of graphics entities into an Compound.
-  </refpurpose>
+      glue a set of graphics entities into an Compound.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>glue(H)
-h_agreg=glue(H)</synopsis>
+      h_agreg=glue(H)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -45,9 +43,10 @@ h_agreg=glue(H)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Given a vector of handles, this function glue the corresponding
-    entities in a single Compound and returns the handle on this new
-    entity.</para>
+      Given a vector of handles, this function glue the corresponding
+      entities in a single Compound and returns the handle on this new
+      entity.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,7 +67,7 @@ move(nc,[-1,-0.5]);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>
@@ -86,9 +85,5 @@ move(nc,[-1,-0.5]);
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

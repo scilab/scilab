@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zpbutt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>zpbutt</refname>
     <refpurpose> Butterworth analog filter</refpurpose>
@@ -43,12 +40,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes the poles of a Butterworth analog
-    filter of order <literal>n</literal> and cutoff frequency omegac
-    transfer function H(s) is calculated by <literal>H(s)=gain/real(poly(pols,'s'))</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA</para>
+      computes the poles of a Butterworth analog
+      filter of order <literal>n</literal> and cutoff frequency omegac
+      transfer function H(s) is calculated by <literal>H(s)=gain/real(poly(pols,'s'))</literal>
+    </para>
   </refsection>
 </refentry>

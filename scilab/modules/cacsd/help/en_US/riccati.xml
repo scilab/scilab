@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="riccati">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>riccati</refname>
     <refpurpose> Riccati equation</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>X=riccati(A,B,C,dom,[typ])
-[X1,X2]=riccati(A,B,C,dom,[typ])</synopsis>
+      [X1,X2]=riccati(A,B,C,dom,[typ])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -29,19 +27,25 @@
       <varlistentry>
         <term>A,B,C</term>
         <listitem>
-          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symmetric.</para>
+          <para>
+            real matrices nxn, <literal>B</literal> and  <literal>C</literal> symmetric.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para> <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
+          <para>
+            <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>string : <literal>'eigen'</literal> for block diagonalization or <literal>schur'</literal> for  Schur method.</para>
+          <para>
+            string : <literal>'eigen'</literal> for block diagonalization or <literal>schur'</literal> for  Schur method.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,22 +58,26 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:
+    </para>
+    <programlisting role=""><![CDATA[ 
 A'*X+X*A-X*B*X+C=0 
  ]]></programlisting>
     <para>
-    in continuous time case, or:</para>
-    <programlisting role = ""><![CDATA[ 
+      in continuous time case, or:
+    </para>
+    <programlisting role=""><![CDATA[ 
 A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
  ]]></programlisting>
     <para>
-     with <literal>B=B1/B2*B1'</literal> in the discrete time case.
-    If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
-    such that <literal>X=X1/X2</literal>.</para>
+      with <literal>B=B1/B2*B1'</literal> in the discrete time case.
+      If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
+      such that <literal>X=X1/X2</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ricc">ricc</link>

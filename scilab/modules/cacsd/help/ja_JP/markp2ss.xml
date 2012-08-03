@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="markp2ss">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>markp2ss</refname>
     <refpurpose>マルコフパラメータを状態空間に変換</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,13 +47,14 @@
   <refsection>
     <title>説明</title>
     <para>
-	大きさ<literal>nout</literal>X<literal>(n*nin)</literal>
-	の(行)-行列<literal>markpar</literal>にスタックされた
-	マルコフパラメータ<literal>n</literal>の集合を指定すると,
-	 markp2ss は,<literal>[A,B,C,D]=abcd(sl)</literal>となる
-	状態空間線形システム <literal>sl</literal>
-	(<literal>syslin</literal> リスト) を返します:</para>
-    <programlisting role = ""><![CDATA[ 
+      大きさ<literal>nout</literal>X<literal>(n*nin)</literal>
+      の(行)-行列<literal>markpar</literal>にスタックされた
+      マルコフパラメータ<literal>n</literal>の集合を指定すると,
+      markp2ss は,<literal>[A,B,C,D]=abcd(sl)</literal>となる
+      状態空間線形システム <literal>sl</literal>
+      (<literal>syslin</literal> リスト) を返します:
+    </para>
+    <programlisting role=""><![CDATA[ 
 C*B = markpar(1:nout,1:nin),
 C*A*B =markpar(1:nout,nin+1:2*nin),....
  ]]></programlisting>

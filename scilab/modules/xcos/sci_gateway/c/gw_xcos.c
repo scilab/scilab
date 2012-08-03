@@ -12,7 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_xcos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
@@ -22,20 +23,25 @@
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
-    {sci_Xcos,                            "xcos"},
-    {sci_warnBlockByUID,                  "warnBlockByUID"},
-    {sci_closeXcosFromScilab,             "closeXcos"},
-    {sci_xcosDiagramToHDF5,               "xcosDiagramToHDF5"},
-    {sci_xcosPalLoad,                     "xcosPalLoad"},
-    {sci_xcosPalCategoryAdd,              "xcosPalCategoryAdd"},
-    {sci_xcosPalDelete,                   "xcosPalDelete"},
-    {sci_xcosPalMove,                     "xcosPalMove"},
-    {sci_xcosPalEnable,                   "xcosPalEnable"},
-    {sci_xcosPalDisable,                  "xcosPalDisable"},
-    {sci_xcosPalGenerateIcon,             "xcosPalGenerateIcon"},
-    {sci_xcosConfigureXmlFile,            "xcosConfigureXmlFile"}
+static gw_generic_table Tab[] =
+{
+    {sci_Xcos, "xcos"},
+    {sci_warnBlockByUID, "warnBlockByUID"},
+    {sci_closeXcosFromScilab, "closeXcos"},
+    {sci_xcosDiagramToScilab, "xcosDiagramToScilab"},
+    {sci_xcosPalLoad, "xcosPalLoad"},
+    {sci_xcosPalCategoryAdd, "xcosPalCategoryAdd"},
+    {sci_xcosPalDelete, "xcosPalDelete"},
+    {sci_xcosPalMove, "xcosPalMove"},
+    {sci_xcosPalEnable, "xcosPalEnable"},
+    {sci_xcosPalDisable, "xcosPalDisable"},
+    {sci_xcosPalGenerateIcon, "xcosPalGenerateIcon"},
+    {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"},
+    {sci_xcosAddToolsMenu, "xcosAddToolsMenu"},
+    {sci_xcosUpdateBlock, "xcosUpdateBlock"},
+    {sci_loadXcos, "loadXcos"}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -43,24 +49,34 @@ int gw_xcos(void)
 {
     Rhs = Max(0, Rhs);
 
-    if  ( getScilabMode() == SCILAB_NWNI)
+    if (getScilabMode() == SCILAB_NWNI)
     {
-        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
         return 0;
     }
 
-    if (!loadedDep                                      // never reload
-        && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
+    if (!loadedDep              // never reload
+            && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
     {
-        loadOnUseClassPath("XCos");
+        loadOnUseClassPath("Xcos");
         loadedDep = TRUE;
     }
-    callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
+
+
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
+
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 int xcosStarted(void)
 {
     return loadedDep;
 }
+
 /*--------------------------------------------------------------------------*/

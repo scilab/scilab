@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="isalphanum">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>isalphanum</refname>
     <refpurpose>文字列の文字がアルファベットまたは数字であるかどうかを調べる</refpurpose>
@@ -41,10 +38,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>res = isalphanum(str)</literal> は str を同じ大きさの
-	配列を返します.
-	この配列の要素は,対応する str の要素がアルファベットまたは数字である
-	場合に論理値 %t (true), そうでない場合は %f (false) を返します.</para>
+    <para>
+      <literal>res = isalphanum(str)</literal> は str を同じ大きさの
+      配列を返します.
+      この配列の要素は,対応する str の要素がアルファベットまたは数字である
+      場合に論理値 %t (true), そうでない場合は %f (false) を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

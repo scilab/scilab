@@ -6,8 +6,10 @@
     <method name="loadFromFile" returnType="void" modifier="static"/>
     <method name="initialize" returnType="void" modifier="static"/>
     <method name="reset" returnType="void" modifier="static"/>
+    <method name="expandAll" returnType="void" modifier="static"/>
     <method name="deleteLine" returnType="void" modifier="static">
       <parameter type="int" name="lineNumber"/>
     </method>
+    <method name="launchHistoryBrowser" returnType="void" modifier="static"/>
   </object>
 </package>

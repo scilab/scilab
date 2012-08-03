@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linsolve">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>linsolve</refname>
     <refpurpose> linear equation solver</refpurpose>
@@ -28,13 +25,17 @@
       <varlistentry>
         <term>A</term>
         <listitem>
-          <para>a <literal>na x ma</literal> real matrix (possibly sparse)</para>
+          <para>
+            a <literal>na x ma</literal> real matrix (possibly sparse)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para>a <literal>na x 1</literal> vector (same row dimension as <literal>A</literal>)</para>
+          <para>
+            a <literal>na x 1</literal> vector (same row dimension as <literal>A</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,20 +47,27 @@
       <varlistentry>
         <term>kerA</term>
         <listitem>
-          <para>a <literal>ma x k</literal> real matrix</para>
+          <para>
+            a <literal>ma x k</literal> real matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>linsolve</literal>  computes all the solutions to <literal> A*x+b=0</literal>.</para>
-    <para><literal>x0</literal> is a particular solution (if any) and <literal> kerA= </literal>nullspace
-    of <literal>A</literal>. Any <literal>x=x0+kerA*w</literal> with arbitrary <literal>w</literal> satisfies
-    <literal> A*x+b=0</literal>.</para>
     <para>
-    If compatible <literal>x0</literal> is given on entry, <literal>x0</literal> is returned. If not
-    a compatible <literal>x0</literal>, if any, is returned.</para>
+      <literal>linsolve</literal>  computes all the solutions to <literal> A*x+b=0</literal>.
+    </para>
+    <para>
+      <literal>x0</literal> is a particular solution (if any) and <literal> kerA= </literal>nullspace
+      of <literal>A</literal>. Any <literal>x=x0+kerA*w</literal> with arbitrary <literal>w</literal> satisfies
+      <literal> A*x+b=0</literal>.
+    </para>
+    <para>
+      If compatible <literal>x0</literal> is given on entry, <literal>x0</literal> is returned. If not
+      a compatible <literal>x0</literal>, if any, is returned.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -72,23 +80,23 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
 // Benchmark with other linear sparse solver:
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
-printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
 
 tic();
 res = linsolve(A,b);
-printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
 
 tic();
 res = A\b;
-printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inv">inv</link>

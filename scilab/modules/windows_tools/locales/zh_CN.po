@@ -8,14 +8,29 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:39+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2012-05-30 08:46+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr "%s：特性%s已废弃。\n"
+
+msgid "Warning"
+msgstr "警告"
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s：此特性将在Scilab %s中被永久移除。\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -26,7 +41,7 @@ msgstr "只可在窗口模式下，不可在控制台模式下。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
@@ -35,6 +50,10 @@ msgstr "%s：输入参数的值错误：应该为非负整数。\n"
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr "%s：输入参数的类型错误：应该为标量。\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -69,7 +88,7 @@ msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -80,20 +99,20 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr "%s：无法查询此类型的值。\n"
 
 msgid "Scilab Console"
-msgstr ""
+msgstr "Scilab控制台"
 
 msgid "Error(s) : see help powershell"
 msgstr "错误：请参阅powershell帮助。"
 
 msgid "Please verify your powershell command without Scilab."
-msgstr ""
+msgstr "请在不用Scilab的情况下确认PowerShell命令。"
 
 msgid "Only for Microsoft Windows."
 msgstr "只可用于微软 Windows。"
 
 msgid "Powershell 1.0 not found."
-msgstr ""
+msgstr "Powershell 1.0 未找到。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误：应该为%d。\n"

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-06-27 15:52+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
@@ -28,6 +28,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s: Неверное количество входных параметров: данные не соответствуют "
 "формату.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,9 +48,10 @@ msgstr ""
 "формату.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: данные не соответствуют "
+"%s: Неверное значение входного аргумента №%d: данные не подходят по "
 "формату.\n"
 
 #, c-format
@@ -190,7 +195,7 @@ msgstr "Несогласованное количество строк или с
 
 msgid "Dot cannot be used as modifier for this operator.\n"
 msgstr ""
-"Точка не может быть использовака в качестве модификатора этого оператора.\n"
+"Точка не может быть использована в качестве модификатора этого оператора.\n"
 
 msgid "Inconsistent addition.\n"
 msgstr "Некорректное суммирование.\n"
@@ -217,13 +222,13 @@ msgid "Submatrix incorrectly defined.\n"
 msgstr "Подматрица задана некорректно.\n"
 
 msgid "Incorrect command!\n"
-msgstr "Некорректная комманда!\n"
+msgstr "Некорректная команда!\n"
 
 msgid "stack size exceeded!\n"
 msgstr "достигнут предел размера стека!\n"
 
 msgid "Use stacksize function to increase it.\n"
-msgstr "Используйте функцию stacksize для увеличения его.\n"
+msgstr "Используйте функцию stacksize для увеличения размера стека.\n"
 
 #, c-format
 msgid "Memory used for variables: %d\n"
@@ -315,7 +320,7 @@ msgid "Wrong file name.\n"
 msgstr "Неправильное имя файла.\n"
 
 msgid "Incorrect number of input arguments.\n"
-msgstr "Неправильное количество параметров.\n"
+msgstr "Неправильное количество входных аргументов.\n"
 
 msgid "Waiting for end of command.\n"
 msgstr "Ожидание конца команды.\n"
@@ -335,10 +340,10 @@ msgstr "Неверный параметр %d.\n"
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
-msgstr "пустая матрица (параметр №%d).\n"
+msgstr "нулевая матрица (параметр №%d).\n"
 
 msgid "Incorrect syntax.\n"
-msgstr "Ошибка синтаксиса.\n"
+msgstr "Некорректный синтаксис.\n"
 
 msgid " end or else is missing...\n"
 msgstr " пропущен end или else...\n"
@@ -426,14 +431,13 @@ msgstr "Неизвестный формат файла.\n"
 
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
-msgstr ""
-"Неустранимая ошибка!!! Your variables have been saved in the file: %s\n"
+msgstr "Неустранимая ошибка!!! Ваши переменные сохранены в файле: %s\n"
 
 msgid "Bad call to a scilab function ?\n"
 msgstr "Неверный вызов к функции scilab?\n"
 
 msgid "Otherwise, send a bug report to :"
-msgstr "Иначе, отправьте отчет об ошибке:"
+msgstr "В противном случае отправьте отчёт об ошибке:"
 
 msgid "Floating point exception.\n"
 msgstr "Исключение операции с плавающей точкой.\n"
@@ -452,7 +456,7 @@ msgid "Error while linking.\n"
 msgstr "Ошибка связывания (linking).\n"
 
 msgid "Leading coefficient is zero.\n"
-msgstr "Нулевой ведущий коэффициент.\n"
+msgstr "Старший коэффициент равен нулю.\n"
 
 msgid "Too high degree (max 100).\n"
 msgstr "Слишком большая степень (максимум 100).\n"
@@ -496,7 +500,7 @@ msgid "%s: Wrong type for argument %d: Scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался скаляр.\n"
 
 msgid "Host does not answer...\n"
-msgstr "Удалённый хост не отвечает...\n"
+msgstr "Хост не отвечает...\n"
 
 msgid "Uncontrollable system.\n"
 msgstr "Неконтролируемая система.\n"
@@ -510,7 +514,7 @@ msgstr "%s: вырожденная или асимметричная задач�
 
 #, c-format
 msgid "Wrong size for argument %d.\n"
-msgstr "Неверный размера параметра %d.\n"
+msgstr "Неверный размер параметра %d.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: Transfer matrix expected.\n"
@@ -546,8 +550,8 @@ msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
-"Неверный тип параметра %d: ожидалась система в пространстве состояний или "
-"матрица преобразования.\n"
+"Неверный тип параметра %d: ожидалась система в пространстве состояний или в "
+"форме передаточной матрицы.\n"
 
 msgid "Variable returned by scilab argument function is incorrect.\n"
 msgstr "Функция аргумента scilab вернула некорректную переменную.\n"
@@ -568,14 +572,14 @@ msgstr "Элементы первого параметра не являются
 
 #, c-format
 msgid "Last element of %dth argument <> first.\n"
-msgstr "Последний элемент %d-го параметра неравен первому.\n"
+msgstr "Последний элемент %d-го параметра не равен первому.\n"
 
 msgid "Last element of first argument does not match the first one.\n"
 msgstr "Последний элемент первого параметра неравен первому.\n"
 
 #, c-format
 msgid "Variable or function %s are not in file.\n"
-msgstr "Переменная или функция %s не в файле.\n"
+msgstr "Переменной или функции %s нет в файле.\n"
 
 #, c-format
 msgid "Variable %s is not a valid rational function.\n"
@@ -584,9 +588,9 @@ msgstr "Переменная %s не является корректной ра�
 #, c-format
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
-"Переменная %s не является корректным представлениям пространства состояний.\n"
+"Переменная %s не является корректным представлением пространства состояний.\n"
 
-msgid "Undefined fonction.\n"
+msgid "Undefined function.\n"
 msgstr "Неопределённая функция.\n"
 
 msgid "Function name already used.\n"
@@ -659,7 +663,7 @@ msgid "Logical unit number should be larger than %d.\n"
 msgstr "Номер логического блока должен быть больше %d.\n"
 
 msgid "Function not bounded from below.\n"
-msgstr "Функция не ограниченна снизу.\n"
+msgstr "Функция не ограничена снизу.\n"
 
 msgid ""
 "Problem may be unbounded: too high distance between two consecutive "
@@ -715,7 +719,7 @@ msgstr "%s: Некорректные параметры остановки.\n"
 
 #, c-format
 msgid "%s: Incorrect bounds.\n"
-msgstr "%s: Некорректные граничные учловия.\n"
+msgstr "%s: Некорректные граничные условия.\n"
 
 #, c-format
 msgid "Variable : %s must be a list\n"
@@ -855,7 +859,7 @@ msgid "Entry name not found.\n"
 msgstr "Имя входа не найдено.\n"
 
 msgid "Maximum number of dynamic interfaces reached.\n"
-msgstr "Превышен предел количества динамических интерфейсов.\n"
+msgstr "Достигнут предел количества динамических интерфейсов.\n"
 
 #, c-format
 msgid "%s: expecting more than one argument.\n"
@@ -1016,7 +1020,7 @@ msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr "Параметр переменной длины a*eye(), (параметр %d) здесь недопустим.\n"
 
 msgid "endfunction is missing.\n"
-msgstr "пропущен endfunction.\n"
+msgstr "пропущено ключевое слово endfunction.\n"
 
 msgid ""
 "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
@@ -1092,7 +1096,7 @@ msgstr "Внимание: устаревшее использование eye(),
 
 #, c-format
 msgid "Rank deficient. rank = %d\n"
-msgstr "Ранг недостаточен. Ранг = %d\n"
+msgstr "Неполный ранг. Ранг = %d\n"
 
 msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quapro столкнулся с циклами в точке вырождения.\n"
@@ -1163,11 +1167,11 @@ msgstr "Остановка после строки %s в функции %s.\n"
 
 #, c-format
 msgid "The identifier : %s\n"
-msgstr "Идентификатор : %s\n"
+msgstr "Идентификатор: %s\n"
 
 #, c-format
 msgid " has been truncated to: %s.\n"
-msgstr " было усечено до %s.\n"
+msgstr " был усечён до %s.\n"
 
 msgid "Real part\n"
 msgstr "Вещественная часть\n"
@@ -1181,7 +1185,7 @@ msgstr "Максимальный размер буфера : %d символов
 
 #, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
-msgstr "Ранг недостаточен : ранг = %s  - tol = %s .\n"
+msgstr "Неполный ранг: ранг = %s  - tol = %s .\n"
 
 msgid "Your variables are:\n"
 msgstr "Ваши переменные:\n"
@@ -1470,6 +1474,27 @@ msgstr "%s: Неверный формат для экспорта: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: Тип %s не обрабатывается: определите функцию %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась модель в пространстве "
+"состояний.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

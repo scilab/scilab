@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hess">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>hess</refname>
     <refpurpose> Forme de Hessenberg  </refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>H = hess(A)
-[U,H] = hess(A)</synopsis>
+      [U,H] = hess(A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -30,30 +28,33 @@
         <term>A  </term>
         <listitem>
           <para>matrice carrée réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>H  </term>
         <listitem>
           <para>matrice carrée réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
           <para>matrice carrée unitaire
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[U,H] = hess(A)</literal> Calcule une matrice unitaire <literal>U</literal>
+    <para>
+      <literal>[U,H] = hess(A)</literal> Calcule une matrice unitaire <literal>U</literal>
       et une matrice de Hessenberg <literal>H</literal> telles que <literal>A =
-	U*H*U'</literal> et <literal>U'*U</literal> = Identité. La syntaxe
+        U*H*U'
+      </literal>
+      et <literal>U'*U</literal> = Identité. La syntaxe
       <literal>H=hess(A)</literal> ne renvoie que la matrice de Hessenberg.
     </para>
     <para>
@@ -70,7 +71,7 @@ and( abs(U*H*U'-A)<1.d-10 )
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

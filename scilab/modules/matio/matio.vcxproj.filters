@@ -123,14 +123,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
     <None Include="matio.iss" />
     <None Include="sci_gateway\matio_gateway.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\sparse_f.lib" />
+    <None Include="locales\matio.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

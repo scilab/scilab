@@ -13,6 +13,7 @@
 package org.scilab.modules.scinotes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
@@ -31,7 +32,10 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * Class SearchManager
@@ -40,10 +44,10 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class SearchManager {
 
-    private static final ImageIcon FILEIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/file.png");
-    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/scilab-file.png");
-    private static final ImageIcon FOLDERIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/folder.png");
-    private static final ImageIcon LINEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/line-found.png");
+    private static final ImageIcon FILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("stock_search"));
+    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("scilab_search"));
+    private static final ImageIcon FOLDERIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("folder-saved-search"));
+    private static final ImageIcon LINEICON = new ImageIcon(ScilabSwingUtilities.findIcon("line-found"));
 
     /**
      * FIND AND REPLACE START
@@ -83,6 +87,41 @@ public class SearchManager {
                 }
             }
         }
+
+        return offsetList;
+    }
+
+    /**
+     * FIND AND REPLACE START
+     * @param scilabDocument document
+     * @param word string
+     * @param start int
+     * @param end int
+     * @param caseSensitive boolean
+     * @param wholeWord boolean
+     * @param useRegexp boolean
+     * @return List
+     */
+    public static List<Integer[]> findToken(ScilabDocument scilabDocument, int token, ScilabLexer lexer, Pattern pat) {
+        String fullText = scilabDocument.getText();
+
+        if (fullText.length() == 0) {
+            return null;
+        }
+
+        List<Integer[]> offsetList = new ArrayList<Integer[]>();
+
+        //If we don't give any word to find
+        Matcher matcher = pat.matcher(fullText);
+
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+            if (token == -1 || token == lexer.getKeyword(start, false)) {
+                offsetList.add(new Integer[] {start, end});
+            }
+        }
+
         return offsetList;
     }
 
@@ -132,8 +171,8 @@ public class SearchManager {
      * @return infos with the matching positions
      */
     public static MatchingPositions searchInFiles(final BackgroundSearch bgs, String base, final boolean recursive, final boolean ignoreCR,
-                                                  String filePattern, boolean fileCaseSensitive,
-                                                  String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+            String filePattern, boolean fileCaseSensitive,
+            String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
         final File dir = new File(base);
         Pattern word = null;
         if (wordPattern != null && wordPattern.length() != 0) {
@@ -142,12 +181,13 @@ public class SearchManager {
         filePattern = filePattern.replace(".", "\\.").replace("*", ".*").replace("?", ".?");
         final Pattern file = generatePattern(filePattern, fileCaseSensitive, false, true);
 
-        final boolean[] killed = new boolean[]{false};
+        final boolean[] killed = new boolean[] {false};
         if (bgs == null) {
             return searchInFiles(killed, dir, recursive, ignoreCR, file, word);
         } else {
             final Pattern fword = word;
             SwingWorker worker = new SwingWorker<Object, Object>() {
+                @Override
                 public Object doInBackground() {
                     long begin = System.currentTimeMillis();
                     bgs.setResults(searchInFiles(killed, dir, recursive, ignoreCR, file, fword));
@@ -156,6 +196,7 @@ public class SearchManager {
                     return null;
                 }
 
+                @Override
                 public void done() {
                     bgs.done();
                 }
@@ -184,11 +225,12 @@ public class SearchManager {
             pos = new MatchingPositions(base.getAbsolutePath(), list);
             int occurences = 0;
             File[] files = base.listFiles(new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        File f = new File(dir, name);
-                        return f.isFile() && f.canRead() && file.matcher(name).matches();
-                    }
-                });
+                @Override
+                public boolean accept(File dir, String name) {
+                    File f = new File(dir, name);
+                    return f.isFile() && f.canRead() && file.matcher(name).matches();
+                }
+            });
             Arrays.sort(files);
 
             if (word != null) {
@@ -213,11 +255,12 @@ public class SearchManager {
 
             if (recursive) {
                 files = base.listFiles(new FilenameFilter() {
-                        public boolean accept(File dir, String name) {
-                            File d = new File(dir, name);
-                            return d.isDirectory() && d.canRead();
-                        }
-                    });
+                    @Override
+                    public boolean accept(File dir, String name) {
+                        File d = new File(dir, name);
+                        return d.isDirectory() && d.canRead();
+                    }
+                });
                 Arrays.sort(files);
 
                 for (int i = 0; i < files.length && !killed[0]; i++) {
@@ -310,7 +353,7 @@ public class SearchManager {
             return -1;
         }
 
-        int[] count = new int[]{0};
+        int[] count = new int[] {0};
         countFiles(base, pat, count);
 
         return count[0];
@@ -321,16 +364,17 @@ public class SearchManager {
      */
     private static void countFiles(File base, final Pattern pat, final int[] count) {
         File[] files = base.listFiles(new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    File f = new File(dir, name);
-                    if (f.isFile() && f.canRead() && pat.matcher(name).matches()) {
-                        count[0]++;
-                    } else if (f.isDirectory() && f.canRead()) {
-                        countFiles(f, pat, count);
-                    }
-                    return false;
+            @Override
+            public boolean accept(File dir, String name) {
+                File f = new File(dir, name);
+                if (f.isFile() && f.canRead() && pat.matcher(name).matches()) {
+                    count[0]++;
+                } else if (f.isDirectory() && f.canRead()) {
+                    countFiles(f, pat, count);
                 }
-            });
+                return false;
+            }
+        });
     }
 
     /**
@@ -345,7 +389,7 @@ public class SearchManager {
             reader.close();
             int i = 0;
             if (len != -1) {
-                for (;i < len && buffer[i] != '\0'; i++);
+                for (; i < len && buffer[i] != '\0'; i++);
             }
 
             return len != -1 && i != len;
@@ -355,17 +399,23 @@ public class SearchManager {
         }
     }
 
+    private static void indent(BufferedWriter buffer, int level) throws IOException {
+        for (int i = 0; i < level; i++) {
+            buffer.append("    ");
+        }
+    }
+
     /**
      * MatchingPositions: inner class to store the results of a search in a file or in a directory
      */
     public static class MatchingPositions implements Iconable {
 
-        private String file;
+        private final String file;
         private boolean isRoot;
         private Icon icon;
         private int occurences;
         private List<MatchingPositions> children;
-        private List<Line> lines = new ArrayList<Line>();
+        private final List<Line> lines = new ArrayList<Line>();
 
         /**
          * Constructor
@@ -375,13 +425,7 @@ public class SearchManager {
         public MatchingPositions(String file, List<MatchingPositions> children) {
             this.file = file;
             this.children = children;
-            if (children != null) {
-                this.icon = FOLDERIMAGE;
-            } else if (file.endsWith(".sce") || file.endsWith(".sci")) {
-                this.icon = SCILABFILEIMAGE;
-            } else {
-                this.icon = FILEIMAGE;
-            }
+            setIcon();
         }
 
         /**
@@ -390,6 +434,46 @@ public class SearchManager {
          */
         public MatchingPositions(String file) {
             this(file, null);
+        }
+
+        /**
+         * @param root the xml Element representing a MatchingPositions
+         */
+        public MatchingPositions(Element root) {
+            this.file = root.getAttribute("file");
+            this.isRoot = Boolean.parseBoolean(root.getAttribute("isRoot"));
+            this.occurences = Integer.parseInt(root.getAttribute("occurences"));
+            if (root.hasChildNodes()) {
+                NodeList nodeList = root.getChildNodes();
+                Element e = (Element) nodeList.item(1);
+                if (e.getTagName().equals("Position")) {
+                    this.children = new ArrayList<MatchingPositions>();
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        if (nodeList.item(i) instanceof Element) {
+                            e = (Element) nodeList.item(i);
+                            this.children.add(new MatchingPositions(e));
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        if (nodeList.item(i) instanceof Element) {
+                            e = (Element) nodeList.item(i);
+                            this.lines.add(new Line(e));
+                        }
+                    }
+                }
+            }
+            setIcon();
+        }
+
+        private void setIcon() {
+            if (children != null) {
+                this.icon = FOLDERIMAGE;
+            } else if (file.endsWith(".sce") || file.endsWith(".sci")) {
+                this.icon = SCILABFILEIMAGE;
+            } else {
+                this.icon = FILEIMAGE;
+            }
         }
 
         /**
@@ -441,6 +525,7 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Icon getIcon() {
             return icon;
         }
@@ -479,8 +564,35 @@ public class SearchManager {
         }
 
         /**
+         * @param buffer the buffer where to write the XML
+         * @param level the indentation level
+         */
+        public void toXML(BufferedWriter buffer, int level) throws IOException {
+            indent(buffer, level);
+            buffer.append("<Position file=\"" + file + "\" isRoot=\"" + isRoot + "\" occurences=\"" + occurences + "\"");
+            if (children != null && !children.isEmpty()) {
+                buffer.append(">\n");
+                for (int i = 0; i < children.size(); i++) {
+                    children.get(i).toXML(buffer, level + 1);
+                }
+                indent(buffer, level);
+                buffer.append("</Position>\n");
+            } else if (!lines.isEmpty()) {
+                buffer.append(">\n");
+                for (Line l : lines) {
+                    l.toXML(buffer, level + 1);
+                }
+                indent(buffer, level);
+                buffer.append("</Position>\n");
+            } else {
+                buffer.append("/>\n");
+            }
+        }
+
+        /**
          * {@inheritDoc}
          */
+        @Override
         public String toString() {
             String occ = SciNotesMessages.MATCHES;
             if (occurences <= 1) {
@@ -510,7 +622,7 @@ public class SearchManager {
      */
     public static class Line implements Iconable {
 
-        private int number;
+        private final int number;
         private String content;
 
         /**
@@ -542,6 +654,14 @@ public class SearchManager {
         }
 
         /**
+         * @param root the xml Element representing a Line
+         */
+        public Line(Element root) {
+            this.number = Integer.parseInt(root.getAttribute("number"));
+            this.content = root.getAttribute("content");
+        }
+
+        /**
          * @return the line number
          */
         public int getNumber() {
@@ -558,13 +678,24 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Icon getIcon() {
             return LINEICON;
         }
 
         /**
+         * @param buffer the buffer where to write the XML
+         * @param level the indentation level
+         */
+        public void toXML(BufferedWriter buffer, int level) throws IOException {
+            indent(buffer, level);
+            buffer.append("<Line content=\"" + content.replaceAll("\"", "&quot;") + "\" number=\"" + number + "\"/>\n");
+        }
+
+        /**
          * {@inheritDoc}
          */
+        @Override
         public String toString() {
             return "<html><u>line " + number + "</u>&thinsp;: " + content + "</html>";
         }

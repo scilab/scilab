@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcmdiag">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lcmdiag</refname>
     <refpurpose> least common multiple diagonal factorization</refpurpose>
@@ -21,7 +18,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[N,D]=lcmdiag(H)
-[N,D]=lcmdiag(H,flag)</synopsis>
+      [N,D]=lcmdiag(H,flag)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -47,18 +45,24 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string: <literal>'row'</literal> or <literal>'col'</literal> (default)</para>
+          <para>
+            character string: <literal>'row'</literal> or <literal>'col'</literal> (default)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[N,D]=lcmdiag(H,'row')</literal> computes a factorization <literal>D*H=N</literal>,
-    i.e.  <literal>H=D^(-1)*N</literal>  where D is a diagonal matrix with D(k,k)=lcm of
-    kth row of H('den').</para>
-    <para><literal>[N,D]=lcmdiag(H)</literal> or <literal>[N,D]=lcmdiag(H,'col)</literal> returns
-    <literal>H=N*D^(-1)</literal> with diagonal D and D(k,k)=lcm of kth col of H('den')</para>
+    <para>
+      <literal>[N,D]=lcmdiag(H,'row')</literal> computes a factorization <literal>D*H=N</literal>,
+      i.e.  <literal>H=D^(-1)*N</literal>  where D is a diagonal matrix with D(k,k)=lcm of
+      kth row of H('den').
+    </para>
+    <para>
+      <literal>[N,D]=lcmdiag(H)</literal> or <literal>[N,D]=lcmdiag(H,'col)</literal> returns
+      <literal>H=N*D^(-1)</literal> with diagonal D and D(k,k)=lcm of kth col of H('den')
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +74,7 @@ N/D-H
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lcm">lcm</link>

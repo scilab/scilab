@@ -51,7 +51,7 @@ C        qraux real(p)
 C              qraux is an array used by sqrdc and sqrsl
 C
 C        work  real(p)
-C              work is a array used by sqrdc.
+C              work is an array used by sqrdc.
 C
 C     on return
 C

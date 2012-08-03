@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-05 11:22+0000\n"
+"PO-Revision-Date: 2012-02-22 20:51+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -96,12 +100,25 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Soubor %s neexistuje.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
+
+#, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Vytváření [%s] (Makra) --\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Žádné soubory s příponou %s ve %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgstr "%s: Špatná typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
 msgid "%s: %s file compilation forced\n"

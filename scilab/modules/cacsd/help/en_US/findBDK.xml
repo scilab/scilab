@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findBDK">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>findBDK</refname>
     <refpurpose> Kalman gain and  B D system matrices of a discrete-time system</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
-[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
-[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)</synopsis>
+      [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
+      [B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -82,8 +80,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    METH = 2.
-  </para>
+            Default:    METH = 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -105,8 +103,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    JOB = 2.
-  </para>
+            Default:    JOB = 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -140,8 +138,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    PRINTW = 0.
-  </para>
+            Default:    PRINTW = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -185,21 +183,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    finds the system matrices B and D and the Kalman gain of a discrete-time 
-    system, given the system order, the matrices A and C, and the relevant
-    part of the R factor of the concatenated block-Hankel matrices, using
-    subspace identification techniques (MOESP or N4SID).
-  </para>
+      finds the system matrices B and D and the Kalman gain of a discrete-time 
+      system, given the system order, the matrices A and C, and the relevant
+      part of the R factor of the concatenated block-Hankel matrices, using
+      subspace identification techniques (MOESP or N4SID).
+    </para>
     <itemizedlist>
       <listitem>
         <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  computes the system matrices B (if JOB = 1), B and D (if JOB = 2), and the Kalman  predictor gain K (if NSMPL &gt; 0). The model structure is:</para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-    where x(k) and y(k) are vectors of length N and L, respectively.
-  </para>
+          where x(k) and y(k) are vectors of length N and L, respectively.
+        </para>
       </listitem>
       <listitem>
         <para>[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)  also returns the vector RCND of length 4 containing the reciprocal condition numbers of the matrices involved in rank decisions.</para>
@@ -209,13 +207,15 @@ y(k)   = Cx(k) + Du(k) + e(k),
       </listitem>
     </itemizedlist>
     <para>
-    Matrix R, computed by findR, should be determined with suitable arguments
-    METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
-    in findBDK. Using METH = 1 in FINDR and METH = 2 in findBDK is allowed.</para>
+      Matrix R, computed by findR, should be determined with suitable arguments
+      METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
+      in findBDK. Using METH = 1 in FINDR and METH = 2 in findBDK is allowed.
+    </para>
     <para>
-    The number of output arguments may vary, but should correspond to the 
-    input arguments, e.g.,</para>
-    <programlisting role = ""><![CDATA[ 
+      The number of output arguments may vary, but should correspond to the 
+      input arguments, e.g.,
+    </para>
+    <programlisting role=""><![CDATA[ 
          B = findBDK(S,N,L,R,A,C,METH,1)  or
      [B,D] = findBDK(S,N,L,R,A,C,METH,2)  or
 [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  
@@ -253,7 +253,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findABCD">findABCD</link>

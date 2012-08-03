@@ -20,9 +20,9 @@ figIndex =fig.figure_id;
 
 
 // vectorial export
-// check that file size is greater than 100K
+// check that file size is greater than 80K
 // increase minimum size
-minimumSize = 100000;
+minimumSize = 80000;
 
 xs2pdf(figIndex, TMPDIR+"/textExport.pdf")
 fileSize = fileinfo(TMPDIR+"/textExport.pdf");

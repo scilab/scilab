@@ -2,7 +2,7 @@
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
-// Copyright (C) 2010 DIGITEO - Allan CORNET
+// Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -227,30 +227,22 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     // Convert paths into absolute paths
     // ---------------------------------------------------------------------
-
-    for k=1:size(dirs,'*');
-        if ~isdir(dirs(k)) then
-            error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
+    function dir_modified = checkAndConvertDir(dirs_path)
+      dir_modified = [];
+      if (dirs_path <> []) then
+        if ~and(isdir(dirs_path)) then
+          notDirIdx = find(isdir(dirs_path) == %F);
+          error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat", dirs_path(notDirIdx(1))));
         end
-        dirs(k) = fullpath(dirs(k));
-    end
-
+        dir_modified = fullpath(dirs_path);
+      end
+    endfunction
+    
+    dirs = checkAndConvertDir(dirs);
 
     if all_scilab_help then
-
-        for k=1:size(dirs_m,'*');
-            if ~isdir(dirs_m(k)) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
-            end
-            dirs_m(k) = fullpath(dirs_m(k));
-        end
-
-        for k=1:size(dirs_c,'*');
-            if ~isdir(dirs_c(k)) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
-            end
-            dirs_c(k) = fullpath(dirs_c(k));
-        end
+        dirs_m = checkAndConvertDir(dirs_m);
+        dirs_c = checkAndConvertDir(dirs_c);
     end
 
     // =========================================================================
@@ -516,14 +508,19 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-          buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
-        else
-          buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
+        fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        if fileToExec ~= [] then
+            exec(fileToExec, -1);
+            if output_format == "javaHelp" then
+              // We don't create the jar when building the online help
+              // or the PDF
+              buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
+            end
         end
 
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
+            chdir(cur_dir);
             error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
         end
 
@@ -534,6 +531,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             my_html_files = listfiles(buildDoc_dir);
             for k=1:size(my_html_files,'*')
                 if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                    chdir(cur_dir);
                     error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                 end
                 mdelete(my_html_files(k));
@@ -610,18 +608,20 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // Change Scilab current directory so that Java Indexer works
             if ~chdir(buildDoc_dir) then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            if fileToExec ~= [] then
+                exec(fileToExec, -1);
+		buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -632,6 +632,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 my_html_files = listfiles(buildDoc_dir);
                 for k=1:size(my_html_files,'*')
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                        chdir(cur_dir);
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
                     mdelete(my_html_files(k));
@@ -737,14 +738,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-             end
+            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            if fileToExec ~= [] then
+                exec(fileToExec, -1);
+		buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
+            end
 
              // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -755,6 +757,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 my_html_files = listfiles(buildDoc_dir);
                 for k=1:size(my_html_files,'*')
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                        chdir(cur_dir);
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
                     mdelete(my_html_files(k));

@@ -50,6 +50,12 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_is_hdf5_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h">
@@ -78,12 +84,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\hdf5.iss" />
     <None Include="..\..\sci_gateway\hdf5_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\hdf5.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="hdf5.rc">

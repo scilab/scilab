@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chart">
-  <info>
-    <pubdate>$LastChangedDate: 2008-06-19 18:44:44 +0200 (jeu, 19 jun 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>chart</refname>
     <refpurpose> Nichols chart</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>chart([flags])
-chart(gain [,flags])
-chart(gain,phase [,flags])</synopsis>
+      chart(gain [,flags])
+      chart(gain,phase [,flags])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -76,15 +74,22 @@ chart(gain,phase [,flags])</synopsis>
   <refsection>
     <title>Description</title>
     <para> plot the Nichols'chart: iso-gain and iso-phase contour of
-    y/(1+y) in phase/gain plane</para>
-    <para><literal>chart</literal> may be used in cunjunction with
-    <link linkend="black">black</link>. </para>
-    <para>The default values for <literal>gain</literal> and
-    <literal>phase</literal> are respectively :</para>
+      y/(1+y) in phase/gain plane
+    </para>
+    <para>
+      <literal>chart</literal> may be used in cunjunction with
+      <link linkend="black">black</link>. 
+    </para>
+    <para>
+      The default values for <literal>gain</literal> and
+      <literal>phase</literal> are respectively :
+    </para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para><literal>[-(1:10) , -(20:10:160)]</literal></para>
+    <para>
+      <literal>[-(1:10) , -(20:10:160)]</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -102,7 +107,7 @@ chart(list(1,0));
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="nyquist">nyquist</link>

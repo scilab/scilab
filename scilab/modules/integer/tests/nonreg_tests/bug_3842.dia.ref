@@ -26,7 +26,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/prod.tst
 // =============================================================================
  
  
-// <-- JVM NOT MANDATORY 
+// <-- CLI SHELL MODE 
  
 // prod 
  
@@ -290,7 +290,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/cumprod.tst
 // =============================================================================
  
  
-// <-- JVM NOT MANDATORY 
+// <-- CLI SHELL MODE 
  
  
 //cumprod
@@ -555,7 +555,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/prod.tst
 // =============================================================================
  
  
-// <-- JVM NOT MANDATORY 
+// <-- CLI SHELL MODE 
  
 // prod 
  
@@ -819,7 +819,7 @@ exec SCI/modules/elementary_functions/tests/unit_tests/cumprod.tst
 // =============================================================================
  
  
-// <-- JVM NOT MANDATORY 
+// <-- CLI SHELL MODE 
  
  
 //cumprod

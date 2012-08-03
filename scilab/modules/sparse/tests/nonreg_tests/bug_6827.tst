@@ -1,11 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Yann COLLETTE <yann.collette@scilab.org>
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 6827 -->
 //
@@ -30,5 +31,6 @@ X=[3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ; ...
 X(1,1) = X(1,1) + %i;
 X      = sparse(X);
 
-execstr('[R,P] = spchol(X);','errcatch');
-if lasterror() <> gettext("Wrong type for argument 1: Real matrix expected.") then pause, end
+msgerr = msprintf(gettext("Wrong type for argument %d: Real matrix expected.\n"), 1);
+assert_checkerror('[R,P] = spchol(X);', msgerr);
+

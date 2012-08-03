@@ -11,19 +11,17 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="glue">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>glue</refname>
     <refpurpose> 
-	一連のグラフィックエンティティをCompoundに結合する.
-  </refpurpose>
+      一連のグラフィックエンティティをCompoundに結合する.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>glue(H)
-h_agreg=glue(H)</synopsis>
+      h_agreg=glue(H)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -45,9 +43,10 @@ h_agreg=glue(H)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	ハンドルのベクトルを指定すると,この関数は
-	対応するエンティティを一つのCompoundに結合し,
-	この新たに作成されたエンティティのハンドルを返します.</para>
+      ハンドルのベクトルを指定すると,この関数は
+      対応するエンティティを一つのCompoundに結合し,
+      この新たに作成されたエンティティのハンドルを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -86,9 +85,5 @@ move(nc,[-1,-0.5]);
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

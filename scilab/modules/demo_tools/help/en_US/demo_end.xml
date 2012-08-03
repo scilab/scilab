@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_end">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>demo_end</refname>
     <refpurpose> completes a demonstration </refpurpose>
@@ -25,11 +22,11 @@
   <refsection>
     <title>Description</title>
     <para>
-		The function demo_end() is used to complete a demonstration.
-		It shall be used complementarily with the function demo_begin.
-		It resets the state of the environment as it was before to use the function 
-		demo_begin : width of the console and the variables value.
-		</para>
+      The function demo_end() is used to complete a demonstration.
+      It shall be used complementarily with the function demo_begin.
+      It resets the state of the environment as it was before to use the function 
+      demo_begin : width of the console and the variables value.
+    </para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
@@ -43,12 +40,6 @@
       <member>
         <link linkend="demo_message">demo_message</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

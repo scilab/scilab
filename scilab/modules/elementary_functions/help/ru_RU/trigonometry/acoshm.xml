@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="acoshm" xml:lang="ru">
+  <refnamediv>
+    <refname>acoshm</refname>
+    <refpurpose>матричный гиперболический арккосинус</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>t=acoshm(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,t</term>
+        <listitem>
+          <para>вещественная или комплексная квадратная матрица</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      acoshm - это матричный гиперболический арккосинус матрицы <literal>x</literal>. Использует формулу: 
+      <literal>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</literal>.
+      Для несимметричных матриц результат может быть неточным.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+coshm(acoshm(A))
+A(1,1)=A(1,1)+%i;
+coshm(acoshm(A))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="acosh">acosh</link>
+      </member>
+      <member>
+        <link linkend="logm">logm</link>
+      </member>
+      <member>
+        <link linkend="sqrtm">sqrtm</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

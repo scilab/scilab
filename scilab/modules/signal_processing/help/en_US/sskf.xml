@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sskf">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>sskf</refname>
     <refpurpose> steady-state Kalman filter</refpurpose>
@@ -17,7 +14,9 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector</para>
+          <para>
+            data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -67,10 +66,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    steady-state Kalman filter</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      steady-state Kalman filter
+    </para>
   </refsection>
 </refentry>

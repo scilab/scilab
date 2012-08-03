@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,83 +33,88 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public class PaletteManagerPanel extends JSplitPane {
 
-	private PaletteManager controller;
-	
-	/**
-	 * Default constructor
-	 * @param controller the {@link PaletteManager} instance
-	 */
-	public PaletteManagerPanel(PaletteManager controller) {
-		super(JSplitPane.HORIZONTAL_SPLIT);
-		this.controller = controller;
-		fillUpContentPane();
-	}
-	
-	/**
-	 * Fill up the content pane
-	 */
-	private void fillUpContentPane() {
-		/** Default instances */
-		JScrollPane panel = new JScrollPane();
-		initJScrollPane(panel);
-		
-		// Set default left component
-		JPanel rootPalette = new JPanel();
-		
-		TreeNode root = controller.getRoot();
-		JTree tree = new JTree(new PaletteTreeModel(root));
-		
-		/** Setup tree */
-		tree.getSelectionModel().setSelectionMode(
-				TreeSelectionModel.SINGLE_TREE_SELECTION);
-		tree.addMouseListener(new PaletteManagerMouseListener());
-		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
-		
-		tree.setEditable(false);
-		tree.setDragEnabled(true);
-		tree.setDropMode(DropMode.INSERT);
-		tree.setTransferHandler(new PaletteTreeTransferHandler());
-		
-		setLeftComponent(new JScrollPane(tree));
-		panel.setViewportView(rootPalette);
-		setRightComponent(panel);
-	}
+    private PaletteManager controller;
 
-	/**
-	 * Init the ScrollPane component
-	 * @param panel the component
-	 */
-	private void initJScrollPane(JScrollPane panel) {
-		panel.setBackground(Color.WHITE);
-		panel.getVerticalScrollBar().setBlockIncrement(
-				XcosConstants.PALETTE_BLOCK_HEIGHT
-						+ XcosConstants.PALETTE_VMARGIN);
-		panel.getVerticalScrollBar().setUnitIncrement(
-				XcosConstants.PALETTE_BLOCK_HEIGHT
-						+ XcosConstants.PALETTE_VMARGIN);
+    /**
+     * Default constructor
+     * 
+     * @param controller
+     *            the {@link PaletteManager} instance
+     */
+    public PaletteManagerPanel(PaletteManager controller) {
+        super(JSplitPane.HORIZONTAL_SPLIT);
+        this.controller = controller;
+        fillUpContentPane();
+    }
 
-		panel.getHorizontalScrollBar().setBlockIncrement(
-				XcosConstants.PALETTE_BLOCK_WIDTH
-						+ XcosConstants.PALETTE_HMARGIN);
-		panel.getHorizontalScrollBar().setUnitIncrement(
-				XcosConstants.PALETTE_BLOCK_WIDTH
-						+ XcosConstants.PALETTE_HMARGIN);
-	}
+    /**
+     * Fill up the content pane
+     */
+    private void fillUpContentPane() {
+        /** Default instances */
+        JScrollPane panel = new JScrollPane();
+        initJScrollPane(panel);
 
-	/**
-	 * Setup the default layout 
-	 */
-	public void performStartUpLayout() {
-		JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
-				.getView();
-		
-		/* Tree layout*/
-		tree.expandRow(1);
-		tree.setSelectionRow(2);
-		tree.setRootVisible(false);
-		tree.setScrollsOnExpand(true);
-		
-		/* Global layout */
-		setContinuousLayout(true);
-	}
+        // Set default left component
+        JPanel rootPalette = new JPanel();
+
+        TreeNode root = controller.getRoot();
+        JTree tree = new JTree(new PaletteTreeModel(root));
+
+        /** Setup tree */
+        tree.getSelectionModel().setSelectionMode(
+                TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.addMouseListener(new PaletteManagerMouseListener());
+        tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(
+                panel));
+
+        tree.setEditable(false);
+        tree.setDragEnabled(true);
+        tree.setDropMode(DropMode.INSERT);
+        tree.setTransferHandler(new PaletteTreeTransferHandler());
+
+        setLeftComponent(new JScrollPane(tree));
+        panel.setViewportView(rootPalette);
+        setRightComponent(panel);
+    }
+
+    /**
+     * Init the ScrollPane component
+     * 
+     * @param panel
+     *            the component
+     */
+    private void initJScrollPane(JScrollPane panel) {
+        panel.setBackground(Color.WHITE);
+        panel.getVerticalScrollBar().setBlockIncrement(
+                XcosConstants.PALETTE_BLOCK_HEIGHT
+                        + XcosConstants.PALETTE_VMARGIN);
+        panel.getVerticalScrollBar().setUnitIncrement(
+                XcosConstants.PALETTE_BLOCK_HEIGHT
+                        + XcosConstants.PALETTE_VMARGIN);
+
+        panel.getHorizontalScrollBar().setBlockIncrement(
+                XcosConstants.PALETTE_BLOCK_WIDTH
+                        + XcosConstants.PALETTE_HMARGIN);
+        panel.getHorizontalScrollBar().setUnitIncrement(
+                XcosConstants.PALETTE_BLOCK_WIDTH
+                        + XcosConstants.PALETTE_HMARGIN);
+    }
+
+    /**
+     * Setup the default layout
+     */
+    public void performStartUpLayout() {
+        JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
+                .getView();
+
+        /* Tree layout */
+        tree.expandRow(1);
+        tree.setSelectionRow(2);
+        tree.setRootVisible(false);
+        tree.setScrollsOnExpand(true);
+
+        /* Global layout */
+        setContinuousLayout(true);
+    }
 }

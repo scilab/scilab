@@ -12,12 +12,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getdefaultlanguage">
-  <info>
-    <pubdate>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007) $</pubdate>
-  </info>
   <refnamediv>
     <refname>getdefaultlanguage</refname>
-    <refpurpose>getdefaultlanguage() returns the default language used by Scilab.</refpurpose>
+    <refpurpose>returns the default language used by Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,9 +22,10 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getdefaultlanguage()</literal> returns the default language used by Scilab.
-By default, this function should return en_US.
-</para>
+    <para>
+      <literal>getdefaultlanguage()</literal> returns the default language used by Scilab.
+      By default, this function should return <literal>en_US</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -36,7 +34,7 @@ getdefaultlanguage()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="setlanguage">setlanguage</link>
@@ -44,12 +42,6 @@ getdefaultlanguage()
       <member>
         <link linkend="getlanguage">getlanguage</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Sylvestre Ledru</member>
     </simplelist>
   </refsection>
 </refentry>

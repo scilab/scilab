@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-13 22:45+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2012-07-27 14:51+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: ru\n"
 
 #, c-format
@@ -34,12 +34,26 @@ msgid "%s: Not implemented in this mode.\n"
 msgstr "%s: Не реализовано в этом режиме.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
@@ -58,10 +72,527 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Неверное количество выходных параметров.\n"
 
-msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgid "Console"
+msgstr "Командное окно"
+
+msgid "Display"
+msgstr "Показать"
+
+msgid "Lines to display:"
+msgstr "Строки для показа:"
+
+msgid "Columns to display:"
+msgstr "Столбцы для показа:"
+
+msgid "Number of lines in console scroll buffer:"
+msgstr "Количество строк в буфере прокрутки командного окна:"
+
+msgid "General"
+msgstr "Общее"
+
+msgid "Produces an error"
+msgstr "Формирует ошибку"
+
+msgid "Produces a warning"
+msgstr "Формирует предупреждение"
+
+msgid "Produces Inf or NaN"
+msgstr "Формирует Inf или NaN"
+
+msgid "Variable format"
+msgstr "Формат переменной"
+
+msgid "Scientific format"
+msgstr "Научный формат"
+
+msgid "English"
+msgstr "Английский"
+
+msgid "French"
+msgstr "Французский"
+
+msgid "Portugese (Brazil)"
+msgstr "Португальский (Бразилия)"
+
+msgid "Catalan"
+msgstr "Каталанский"
+
+msgid "Czech"
+msgstr "Чешский"
+
+msgid "Spanish"
+msgstr "Испанский"
+
+msgid "Italian"
+msgstr "Итальянский"
+
+msgid "Polish"
+msgstr "Польский"
+
+msgid "Russian"
+msgstr "Русский"
+
+msgid "Chinese (Simplified)"
+msgstr "Китайский (упрощенный)"
+
+msgid "Chinese (Traditional)"
+msgstr "Китайский (традиционный)"
+
+msgid "German"
+msgstr "Немецкий"
+
+msgid "Japanese"
+msgstr "Японский"
+
+msgid "Ukrainian"
+msgstr "Украинский"
+
+msgid "Confirmation dialogs"
+msgstr "Диалоги подтверждения"
+
+msgid "Warn before exiting Scilab"
+msgstr "Предупреждать перед выходом из Scilab''а"
+
+msgid "Warn before deleting Command History items"
+msgstr "Предупреждать перед удалением пунктов истории команд"
+
+msgid "Warn before clearing the Console"
+msgstr "Предупреждать перед очисткой командного окна"
+
+msgid "Desktop layout"
+msgstr "Расположение рабочего стола"
+
+msgid "Integrated"
+msgstr "Совместно"
+
+msgid "Simple"
+msgstr "Простой"
+
+msgid "Shortcuts"
+msgstr "Комбинации клавиш"
+
+msgid "Cut or interrupt"
+msgstr "Вырезать или прервать"
+
+msgid "Copy or interrupt"
+msgstr "Копировать или прервать"
+
+msgid "Select all"
+msgstr "Выбрать всё"
+
+msgid "Line beginning"
+msgstr "Начало строки"
+
+msgid "Line end"
+msgstr "Конец строки"
+
+msgid "Previous char"
+msgstr "Предыдущий символ"
+
+msgid "Next char"
+msgstr "Следующий символ"
+
+msgid "Delete next char"
+msgstr "Удалить следующий символ"
+
+msgid "Delete previous char"
+msgstr "Удалить предыдущий символ"
+
+msgid "Delete end of line"
+msgstr "Удалить конец строки"
+
+msgid "Delete whole line"
+msgstr "Удалить строку целиком"
+
+msgid "Delete last word"
+msgstr "Удалить последнее слово"
+
+msgid "Previous console page"
+msgstr "Предыдущая страница командного окна"
+
+msgid "Next console page"
+msgstr "Следующая страница командного окна"
+
+msgid "Validate input"
+msgstr "Проверить ввод"
+
+msgid "Clear console"
+msgstr "Очистить командное окно"
+
+msgid "Console box"
 msgstr ""
-"[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
-"продолжить]"
+
+msgid "Completion"
+msgstr "Завершение"
+
+msgid "Previous history line"
+msgstr "Предыдущая строка журнала команд"
+
+msgid "Next history line"
+msgstr "Следующая строка журнала команд"
+
+msgid "Help Browser"
+msgstr "Справочная система"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Open a file"
+msgstr "Открыть файл"
+
+msgid "Load environment"
+msgstr "Загрузить рабочую среду"
+
+msgid "Save environment"
+msgstr "Сохранить рабочую среду"
+
+msgid "Quit"
+msgstr "Выйти"
+
+msgid "Execute"
+msgstr "Выполнить"
+
+msgid "Empty clipboard"
+msgstr "Очистить буфер обмена"
+
+msgid "Change current directory"
+msgstr "Сменить текущую директорию"
+
+msgid "Display current directory"
+msgstr "Показать текущую директорию"
+
+msgid "Page setup"
+msgstr "Настройка страницы"
+
+msgid "Print"
+msgstr "Печать"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Show/Hide toolbar"
+msgstr "Показать/скрыть панель инструментов"
+
+msgid "Clear history"
+msgstr "Очистить журнал команд"
+
+msgid "Resume"
+msgstr "Продолжить"
+
+msgid "Abort"
+msgstr "Прекратить работу"
+
+msgid "Interrupt"
+msgstr "Прервать выполнение"
+
+msgid "Launch SciNotes"
+msgstr "Открыть SciNotes"
+
+msgid "Launch Xcos"
+msgstr "Запустить Xcos"
+
+msgid "Matlab to Scilab Translator"
+msgstr "Перевод с языка Matlab на язык Scilab"
+
+msgid "Module manager"
+msgstr "Управление модулями"
+
+msgid "Variable Browser"
+msgstr "Обозреватель переменных"
+
+msgid "Command History"
+msgstr "Журнал команд"
+
+msgid "File Browser"
+msgstr "Обозреватель файлов"
+
+msgid "Demonstrations"
+msgstr "Наглядные примеры"
+
+msgid "Open Scilab website"
+msgstr "Открыть сайт Scilab''а"
+
+msgid "Open Online Help"
+msgstr "Открыть справку в сети"
+
+msgid "Open Scilab wiki"
+msgstr "Открыть вики Scilab''а"
+
+msgid "Open ATOMS website"
+msgstr "Открыть сайт ATOMS"
+
+msgid "Open File Exchange website"
+msgstr "Открыть сайт обмена файлами"
+
+msgid "Open Mailing lists"
+msgstr "Открыть списки почтовой рассылки"
+
+msgid "Open Forge website"
+msgstr "Открыть сайт Forge"
+
+msgid "Open Bugzilla"
+msgstr "Открыть Bugzilla"
+
+msgid "About Scilab"
+msgstr "О Scilab''е"
+
+msgid "Auto complete (, [,..."
+msgstr "Автоматическое закрытие (, [,..."
+
+msgid "Auto complete keyword"
+msgstr "Автозавершение ключевого слова"
+
+msgid "Generate Help prototype"
+msgstr "Генерировать прототип Справки"
+
+msgid "Tabify"
+msgstr "Заменить пробелы на табуляцию"
+
+msgid "Untabify"
+msgstr "Заменить табуляцию на пробелы"
+
+msgid "Indent"
+msgstr "Отступы"
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "Uncomment"
+msgstr "Раскомментировать"
+
+msgid "Remove trailing whites"
+msgstr "Удалить пробелы в конце строки"
+
+msgid "Select block"
+msgstr ""
+
+msgid "Open current tab in a new window"
+msgstr "Открыть текущую вкладку в новом окне"
+
+msgid "Export current tab in a new window"
+msgstr "Экспортировать текущую вкладку в новое окно"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Paste a column"
+msgstr "Вставить столбец"
+
+msgid "Repeat selection on column"
+msgstr ""
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Copy as HTML with line number"
+msgstr "Копировать как HTML с номерами строк"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open URL"
+msgstr "Открыть URL"
+
+msgid "Open source"
+msgstr "Открыть исходный код"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save as"
+msgstr "Сохранить как"
+
+msgid "Reload"
+msgstr "Перезагрузить"
+
+msgid "Print preview"
+msgstr "Предварительный просмотр печати"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Exit"
+msgstr "Выйти"
+
+msgid "To lower case"
+msgstr "В нижний регистр"
+
+msgid "To upper case"
+msgstr "В верхний регистр"
+
+msgid "Capitalize"
+msgstr "Перевести в ПРОПИСНЫЕ БУКВЫ"
+
+msgid "Help on keyword"
+msgstr "Справка по ключевому слову"
+
+msgid "Load in Scilab"
+msgstr "Загрузить в Scilab"
+
+msgid "Execute in Scilab"
+msgstr "Выполнить в Scilab"
+
+msgid "Evaluate selection"
+msgstr "Вычислить выбранное"
+
+msgid "Save and execute"
+msgstr "Сохранить и выполнить"
+
+msgid "Save and execute all"
+msgstr "Сохранить и выполнить всё"
+
+msgid "Find"
+msgstr "Найти"
+
+msgid "Find next"
+msgstr "Найти далее"
+
+msgid "Find previous"
+msgstr "Найти предыдущее"
+
+msgid "Incremental search"
+msgstr "Пошаговый поиск"
+
+msgid "Set anchor"
+msgstr "Установить метку"
+
+msgid "Remove anchor"
+msgstr "Удалить метку"
+
+msgid "Go to next anchor"
+msgstr "Перейти к следующей метке"
+
+msgid "Go to previous anchor"
+msgstr "Перейти к предыдущей метке"
+
+msgid "Start Code Navigator"
+msgstr ""
+
+msgid "Search word in file"
+msgstr "Искать слово в файле"
+
+msgid "Search files"
+msgstr "Поиск файлов"
+
+msgid "Keyword completion"
+msgstr "Завершение ключевых слов"
+
+msgid "Help"
+msgstr "Справка"
+
+msgid "About"
+msgstr "О программе"
+
+msgid "Next tab"
+msgstr "Следующая вкладка"
+
+msgid "Previous tab"
+msgstr "Предыдущая вкладка"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Next paragraph"
+msgstr "Следующий абзац"
+
+msgid "Previous paragraph"
+msgstr "Предыдущий абзац"
+
+msgid "Save all"
+msgstr "Сохранить все"
+
+msgid "Overwrite"
+msgstr "Переписать"
+
+msgid "Close all"
+msgstr "Закрыть всё"
+
+msgid "Close all but this"
+msgstr ""
+
+msgid "Convert quote to double quote"
+msgstr "Заменить кавычки на двойные кавычки"
+
+msgid "Line numbering"
+msgstr "Нумерация строк"
+
+msgid "Save diagram"
+msgstr ""
+
+msgid "Save variable"
+msgstr "Сохранить переменную"
+
+msgid "Save history"
+msgstr "Сохранить журнал команд"
+
+msgid "Save file"
+msgstr "Сохранить файл"
+
+msgid "Floating point exception (ieee): "
+msgstr "Исключение плавающей запятой (ieee): "
+
+msgid "Printing format: "
+msgstr "Формат печати: "
+
+msgid "Width: "
+msgstr "Ширина: "
+
+msgid "Language setting"
+msgstr "Настройка языка"
+
+msgid "Default language: "
+msgstr "Язык по умолчанию: "
+
+msgid "(This requires a restart of Scilab)"
+msgstr "(Это требует перезапуск Scilab''а)"
+
+msgid "Java Heap Memory"
+msgstr "Динамическая память для Java (heap memory)"
+
+msgid "Select the memory (in MB) available in Java: "
+msgstr "Выберите память (в МБ), доступную в Java: "
+
+msgid "Desktop Layout"
+msgstr ""
+
+msgid "Select a layout"
+msgstr ""
+
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr ""
+
+msgid "Keys binding"
+msgstr "Привязка клавиш"
+
+msgid "Filter on action name: "
+msgstr ""
+
+msgid "Component"
+msgstr ""
+
+msgid "Name: "
+msgstr "Название: "
+
+msgid "Description: "
+msgstr "Описание: "
+
+msgid "Binding: "
+msgstr ""
+
+msgid "Action name"
+msgstr ""
+
+msgid "Key binding"
+msgstr ""
 
 msgid "File or Directory"
 msgstr "Файл или Каталог"
@@ -83,6 +614,19 @@ msgstr "Переменная Scilab"
 
 msgid "Graphics handle field"
 msgstr "Поле графического дескриптора"
+
+#, c-format
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"Команда слишком длинная (больше %d символов): не удалось её передать в "
+"Scilab\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
+"продолжить]"
 
 #, c-format
 msgid ""

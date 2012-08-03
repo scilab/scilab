@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,26 +76,27 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scigui.lib;scilab_windows.lib;elementary_functions_f.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -104,32 +105,33 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scigui.lib;scilab_windows.lib;elementary_functions_f.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -139,13 +141,13 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scigui.lib;scilab_windows.lib;elementary_functions_f.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +156,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,7 +165,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -172,13 +175,13 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scigui.lib;scilab_windows.lib;elementary_functions_f.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -187,6 +190,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -197,9 +201,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\Champ.c" />
     <ClCompile Include="src\c\getHandleProperty\CheckTicksProperty.c" />
     <ClCompile Include="src\c\CloneObjects.c" />
-    <ClCompile Include="src\c\ColorMapManagement.c" />
     <ClCompile Include="src\c\Contour.c" />
-    <ClCompile Include="src\c\CurrentObjectsManagement.c" />
     <ClCompile Include="src\c\DefaultCommandArg.c" />
     <ClCompile Include="src\c\DestroyObjects.c" />
     <ClCompile Include="src\c\DllmainGraphics.c" />
@@ -228,7 +230,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_clip_box_property.c" />
@@ -248,12 +249,13 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_id_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_name_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_resizefcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figures_id_property.c" />
@@ -306,10 +308,14 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />
@@ -347,18 +353,15 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\graphicModuleLoad.c" />
     <ClCompile Include="src\c\Gray.c" />
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
-    <ClCompile Include="src\c\HandleManagement.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
     </ClCompile>
-    <ClCompile Include="src\c\ObjectSelection.c" />
     <ClCompile Include="src\c\pixel_mode.c" />
     <ClCompile Include="src\c\Plo2dEch.c" />
     <ClCompile Include="src\c\Plo2dn.c" />
-    <ClCompile Include="sci_gateway\c\sci_addcb.c" />
     <ClCompile Include="sci_gateway\c\sci_champ.c" />
     <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_contour2di.c" />
@@ -391,7 +394,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_set.c" />
     <ClCompile Include="sci_gateway\c\sci_show_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_show_window.c" />
-    <ClCompile Include="sci_gateway\c\sci_showalluimenushandles.c" />
     <ClCompile Include="sci_gateway\c\sci_StringBox.c" />
     <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />
     <ClCompile Include="sci_gateway\c\sci_unglue.c" />
@@ -407,7 +409,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xfpoly.c" />
     <ClCompile Include="sci_gateway\c\sci_xfpolys.c" />
     <ClCompile Include="sci_gateway\c\sci_xget.c" />
-    <ClCompile Include="sci_gateway\c\sci_xgetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c" />
     <ClCompile Include="sci_gateway\c\sci_xgraduate.c" />
     <ClCompile Include="sci_gateway\c\sci_xgrid.c" />
@@ -419,13 +420,11 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xrects.c" />
     <ClCompile Include="sci_gateway\c\sci_xsegs.c" />
     <ClCompile Include="sci_gateway\c\sci_xset.c" />
-    <ClCompile Include="sci_gateway\c\sci_xsetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xstring.c" />
     <ClCompile Include="sci_gateway\c\sci_xstringb.c" />
     <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
     <ClCompile Include="sci_gateway\c\sci_zoom_rect.c" />
     <ClCompile Include="src\c\sciCall.c" />
-    <ClCompile Include="src\c\SciHandleTab.c" />
     <ClCompile Include="src\c\sciMatrix.c" />
     <ClCompile Include="src\c\scitokenize.c" />
     <ClCompile Include="src\c\getHandleProperty\set_alignment_property.c" />
@@ -450,7 +449,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_clip_box_property.c" />
@@ -469,7 +467,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_id_property.c" />
@@ -565,7 +562,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\StringBox.c" />
     <ClCompile Include="src\c\StringMatrix.c" />
     <ClCompile Include="src\c\TerminateGraphics.c" />
-    <ClCompile Include="src\c\WindowList.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h" />
@@ -573,11 +569,10 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
-    <ClInclude Include="src\c\ColorMapManagement.h" />
     <ClInclude Include="includes\Contour.h" />
-    <ClInclude Include="includes\CurrentObjectsManagement.h" />
     <ClInclude Include="includes\DefaultCommandArg.h" />
     <ClInclude Include="includes\DestroyObjects.h" />
     <ClInclude Include="includes\DrawObjects.h" />
@@ -596,18 +591,15 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\graphicModuleLoad.h" />
     <ClInclude Include="includes\GrayPlot.h" />
     <ClInclude Include="includes\gw_graphics.h" />
-    <ClInclude Include="includes\HandleManagement.h" />
     <ClInclude Include="includes\InitObjects.h" />
     <ClInclude Include="includes\Interaction.h" />
     <ClInclude Include="includes\math_graphics.h" />
-    <ClInclude Include="includes\ObjectSelection.h" />
-    <ClInclude Include="includes\ObjectStructure.h" />
     <ClInclude Include="includes\pixel_mode.h" />
     <ClInclude Include="includes\PloEch.h" />
     <ClInclude Include="includes\Plot2d.h" />
     <ClInclude Include="includes\sciCall.h" />
-    <ClInclude Include="src\c\SciHandleTab.h" />
     <ClInclude Include="includes\sciMatrix.h" />
+    <ClInclude Include="src\c\loadTextRenderingAPI.h" />
     <ClInclude Include="src\c\scitokenize.h" />
     <ClInclude Include="src\c\getHandleProperty\set_data_property.h" />
     <ClInclude Include="src\c\getHandleProperty\setGetHashTable.h" />
@@ -618,13 +610,13 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="src\c\StringBox.h" />
     <ClInclude Include="includes\StringMatrix.h" />
     <ClInclude Include="includes\TerminateGraphics.h" />
-    <ClInclude Include="includes\WindowList.h" />
     <ClInclude Include="src\c\XsetXgetParameters.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\graphics.pot" />
+    <None Include="Elementary_functions_f_Import.def" />
     <None Include="Gui_Import.def" />
-    <None Include="LibScilab_Import.def" />
+    <None Include="core_import.def" />
+    <None Include="locales\graphics.pot" />
     <None Include="scilab_windows_Import.def" />
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />
@@ -654,9 +646,15 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <Project>{8a654cc5-22c1-4972-a8cf-1b89f78b5383}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
@@ -678,9 +676,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <Project>{c456d5b8-8a32-496a-a2ee-164b0d734126}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

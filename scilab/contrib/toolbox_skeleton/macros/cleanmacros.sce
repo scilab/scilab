@@ -1,6 +1,4 @@
 // ====================================================================
-// Allan CORNET
-// DIGITEO 2009
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 // ====================================================================
 function cleanmacros()

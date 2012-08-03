@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:42+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-11 15:00+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: fr\n"
 
 #, c-format
@@ -235,14 +235,6 @@ msgstr ""
 "remplacement de '%s' par '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Impossible d'interpréter l'option \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Décoder le nom de fichier=%s"
 
@@ -250,31 +242,15 @@ msgstr "Décoder le nom de fichier=%s"
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE nécessite un fichier à décoder en entrée.\n"
 
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE : Impossible d'allouer de la mémoire pour l'objet OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Impossible de localiser le fichier d'entrée '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "Le fichier '%s' n'est pas au format OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "Le fichier d'entrée OLE '%s' est erroné"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE : Le décodage de %s s'est terminé par une erreur %d\n"
-
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE : Le décodage de %s s'est terminé par une erreur %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Le module spreadsheet de Scilab n'est pas installé.\n"
+
+msgid "Spreadsheet"
+msgstr "Feuille de calcul"
 
 msgid "Read a xls file"
 msgstr "Lire un fichier xls"

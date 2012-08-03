@@ -14,7 +14,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *
 * See the file ./license.txt
 */
@@ -181,13 +181,6 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		intersci_state *state ;
 		int nbvars;
 	} intersci_list ;
-
-	typedef struct /* declaration of outtb_elem -valable dans inctscicos.c- */
-	{
-		int lnk;
-		int pos;
-	} outtb_el;
-
 
 	intersci_list *loc = NULL;
 	intersci_state *new = NULL ;

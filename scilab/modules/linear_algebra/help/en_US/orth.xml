@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="orth">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>orth</refname>
     <refpurpose> orthogonal basis</refpurpose>
@@ -41,12 +38,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>Q=orth(A)</literal> returns <literal>Q</literal>, an orthogonal
-    basis for the span of <literal>A</literal>.  Range(<literal>Q</literal>) =
-    Range(<literal>A</literal>) and <literal>Q'*Q=eye</literal>.</para>
     <para>
-    The number of columns of <literal>Q</literal> is the rank of
-    <literal>A</literal> as determined by the QR algorithm.</para>
+      <literal>Q=orth(A)</literal> returns <literal>Q</literal>, an orthogonal
+      basis for the span of <literal>A</literal>.  Range(<literal>Q</literal>) =
+      Range(<literal>A</literal>) and <literal>Q'*Q=eye</literal>.
+    </para>
+    <para>
+      The number of columns of <literal>Q</literal> is the rank of
+      <literal>A</literal> as determined by the QR algorithm.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +57,7 @@ svd([orth(A),X(:,1:dim)])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

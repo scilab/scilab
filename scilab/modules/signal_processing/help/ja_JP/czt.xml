@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="czt">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>czt</refname>
     <refpurpose>チャープz変換アルゴリズム</refpurpose>
@@ -23,7 +20,9 @@
       <varlistentry>
         <term>m</term>
         <listitem>
-          <para>cztはz平面の<literal>m</literal> 個の点で評価されます</para>
+          <para>
+            cztはz平面の<literal>m</literal> 個の点で評価されます
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,10 +60,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>k=0,1,...,m-1</literal>として
-	点<literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal>における
-	z平面の螺旋上でz変換を計算するチャープz変換アルゴリズム.
-	</para>
+      <literal>k=0,1,...,m-1</literal>として
+      点<literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal>における
+      z平面の螺旋上でz変換を計算するチャープz変換アルゴリズム.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -88,9 +87,5 @@ zr=real(z);zi=imag(z);
 plot2d(zr',zi',[5],"000")
 xsetech(ffr,bds); //コンテキストを回復
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. Bunks</para>
   </refsection>
 </refentry>

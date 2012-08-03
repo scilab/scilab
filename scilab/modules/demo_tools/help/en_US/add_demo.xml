@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_demo">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>add_demo</refname>
     <refpurpose> Add an entry in the demos list</refpurpose>
@@ -35,7 +32,8 @@
         <term>path</term>
         <listitem>
           <para>a character string, the path of the scilab script associated
-	  with the demo</para>
+            with the demo
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,10 +41,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function adds a new entry in the demos list. The demo should be
-    executed by a Scilab script file. If the given <literal>title</literal> already exists
-    in the demo list associated with the same file nothing is done.
-    The function checks if the file exist.</para>
+      This function adds a new entry in the demos list. The demo should be
+      executed by a Scilab script file. If the given <literal>title</literal> already exists
+      in the demo list associated with the same file nothing is done.
+      The function checks if the file exist.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -59,17 +58,11 @@ add_demo('My first demo',path)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="add_help_chapter">add_help_chapter</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Serge Steer , INRIA
-  </para>
   </refsection>
 </refentry>

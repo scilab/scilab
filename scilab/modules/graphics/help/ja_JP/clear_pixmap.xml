@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clear_pixmap">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>clear_pixmap</refname>
     <refpurpose>pixmapバッファを消去する</refpurpose>
@@ -24,12 +21,15 @@
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para>グラフィックウインドウ <literal>pixmap</literal> プロパティが <literal>"on"</literal>
-	の場合, 描画内容はスクリーン画面ではなくピクセルマップメモリに送信されます.
+    <para>
+      グラフィックウインドウ <literal>pixmap</literal> プロパティが <literal>"on"</literal>
+      の場合, 描画内容はスクリーン画面ではなくピクセルマップメモリに送信されます.
     </para>
     <para/>
-    <para><literal>clear_pixmap()</literal> 命令はこのピクセルマップを消去しますが,
-	画面は消去しません.</para>
+    <para>
+      <literal>clear_pixmap()</literal> 命令はこのピクセルマップを消去しますが,
+      画面は消去しません.
+    </para>
     <para/>
     <para>滑らかなアニメーションを得るためにpixmapモードを使用することができます.</para>
   </refsection>
@@ -43,9 +43,5 @@
         <link linkend="show_pixmap">show_pixmap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

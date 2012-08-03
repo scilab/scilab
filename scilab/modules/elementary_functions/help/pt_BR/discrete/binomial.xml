@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="binomial" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>binomial</refname>
     <refpurpose>probabilidades de distribuição binomial</refpurpose>
@@ -47,13 +44,17 @@
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para><literal>pr=binomial(p,n)</literal> retorna o vetor de probabilidade
-    binomial, i.e. <literal>pr(k+1)</literal> é a probabilidade de
-    <literal>k</literal> successos em <literal>n</literal> tentativas
-    independentes de Bernoulli com probabilidade de sucesso
-    <literal>p</literal>. Em outras palavras : <literal>pr(k+1) =
-    probability(X=k)</literal> , com X uma variável aleatória, segundo a
-    distribuição B(n,p) , e numericamente :</para>
+    <para>
+      <literal>pr=binomial(p,n)</literal> retorna o vetor de probabilidade
+      binomial, i.e. <literal>pr(k+1)</literal> é a probabilidade de
+      <literal>k</literal> successos em <literal>n</literal> tentativas
+      independentes de Bernoulli com probabilidade de sucesso
+      <literal>p</literal>. Em outras palavras : <literal>pr(k+1) =
+        probability(X=k)
+      </literal>
+      ,com X uma variável aleatória, segundo a
+      distribuição B(n,p) , e numericamente :
+    </para>
     <programlisting><![CDATA[ 
             / n \  k      n-k       / n \       n!
  pr(k+1) =  |   | p  (1-p)    com  |   |  = ---------

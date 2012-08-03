@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 
 c = round([1.3 1.5 1.7 2.5 3.7]);
@@ -15,3 +15,5 @@ assert_checkequal(c,e);
 c = round([-1.3 -1.5 -1.7 -2.5 -3.7]);
 e = [-1 -2 -2 -3 -4];
 assert_checkequal(c,e);
+
+assert_checkequal([ 2+%i*23,%i*3,-%i] ,round([2.2+%i*23, %pi*%i, -%i ]));

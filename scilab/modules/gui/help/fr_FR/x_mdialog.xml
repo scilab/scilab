@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_mdialog">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>x_mdialog</refname>
     <refpurpose>boîte de dialogue pour la saisie de
-  paramètres</refpurpose>
+      paramètres
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>result=x_mdialog(title,labels,default_inputs_vector)
-result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
+      result=x_mdialog(title,labelsv,labelsh,default_input_matrix)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -26,45 +25,53 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
         <term>labels</term>
         <listitem>
           <para>n vecteurs colonnes de chaînes de caractères,
-          <literal>labels(i)</literal> est l'intitulé du i-ème paramètre à  
-          saisir</para>
+            <literal>labels(i)</literal> est l'intitulé du i-ème paramètre à  
+            saisir
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_vector</term>
         <listitem>
           <para>n vecteurs colonnes de chaînes de caractères,
-          <literal>default_input_vector(i)</literal> la valeur initiale du i-ème
-          paramètre</para>
+            <literal>default_input_vector(i)</literal> la valeur initiale du i-ème
+            paramètre
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsv</term>
         <listitem>
-          <para>vecteur de n chaînes de caractères, <literal>labelsv(i)</literal>
-          est la légende de la i-ème ligne de la matrice de paramètres</para>
+          <para>
+            vecteur de n chaînes de caractères, <literal>labelsv(i)</literal>
+            est la légende de la i-ème ligne de la matrice de paramètres
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsh</term>
         <listitem>
-          <para>vecteur de m chaînes de caractères, <literal>labelsh(j)</literal>
-          est la légende de la j-ième colonne de la matrice de paramètres</para>
+          <para>
+            vecteur de m chaînes de caractères, <literal>labelsh(j)</literal>
+            est la légende de la j-ième colonne de la matrice de paramètres
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_matrix</term>
         <listitem>
           <para>matrice n x m de chaînes de caractères,
-          <literal>default_input_matrix(i,j)</literal> est la valeur initiale du
-          terme (i,j) de la matrice à   saisir</para>
+            <literal>default_input_matrix(i,j)</literal> est la valeur initiale du
+            terme (i,j) de la matrice à   saisir
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>matrice n x m de chaînes de caractères si le bouton "Ok" a été
-          pressé ou [] si c'est le bouton "Cancel".</para>
+            pressé ou [] si c'est le bouton "Cancel".
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -87,7 +94,7 @@ rep=x_mdialog(['Simulation d''un systeme';'avec un regulateur PI'],...
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="editvar">editvar</link>

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xinit">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>xinit</refname>
     <refpurpose>Initialisation d'un pilote graphique</refpurpose>
@@ -21,8 +18,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>
-    xinit(fileName)
-    xinit()
+      xinit(fileName)
+      xinit()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -39,11 +36,13 @@
   <refsection>
     <title>Description</title>
     <para>
-	    Pour les pilotes Postscript, Xfig, Gif ou PPM <literal>fileName</literal> doit être spécifié. Il determine
-	      le nom du fichier où tous les ordres graphiques sont enregistrés.
-  </para>
-  <para>Pour les pilotes écrans (X11 ou Rec), <literal>xinit</literal> doit être appelé sans argument. Dans ce cas,
-	une fenêtre graphique vide est ouverte.</para>
+      Pour les pilotes Postscript, Xfig, Gif ou PPM <literal>fileName</literal> doit être spécifié. Il determine
+      le nom du fichier où tous les ordres graphiques sont enregistrés.
+    </para>
+    <para>
+      Pour les pilotes écrans (X11 ou Rec), <literal>xinit</literal> doit être appelé sans argument. Dans ce cas,
+      une fenêtre graphique vide est ouverte.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +55,7 @@ driver("X11")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xend">xend</link>
@@ -66,10 +65,4 @@ driver("X11")
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

@@ -1,6 +1,4 @@
 /* ==================================================================== */
-/* Allan CORNET */
-/* DIGITEO 2009 */
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
@@ -9,7 +7,6 @@
 extern "C" 
 {
 /* ==================================================================== */	
-  #include "stack-c.h"
   #include "api_scilab.h"
   #include "Scierror.h"
   #include "MALLOC.h"
@@ -31,10 +28,10 @@ extern "C"
     int iType2 = 0;
     
     /* Check the number of input argument */
-    CheckRhs(2,2); 
+    CheckInputArgument(pvApiCtx, 2,2); 
     
     /* Check the number of output argument */
-    CheckLhs(1,1);
+    CheckOutputArgument(pvApiCtx, 1,1);
     
     /* get Address of inputs */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -126,10 +123,18 @@ extern "C"
     
     
     std::string myMessage (pStVarOne);
-    if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+    if (pStVarOne)
+      {
+	FREE(pStVarOne); 
+	pStVarOne = NULL;
+      }
     	
     std::string search(pStVarTwo);
-    if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+    if (pStVarTwo)
+      {
+	FREE(pStVarTwo);
+	pStVarTwo = NULL;
+      }
 
     /* Where we will store the position */
     double dOut = 0.0;
@@ -144,11 +149,12 @@ extern "C"
     }
     
     /* create result on stack */
-    int m_out = 1, n_out = 1;
+    int m_out = 1;
+    int n_out = 1;
     
-    createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
+    createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, m_out, n_out, &dOut);
     
-    LhsVar(1) = Rhs + 1; 
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1; 
 
     return 0;
 	}

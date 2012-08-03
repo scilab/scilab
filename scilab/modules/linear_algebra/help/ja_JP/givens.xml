@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="givens">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>givens</refname>
     <refpurpose>ギブンス変換</refpurpose>
@@ -21,9 +18,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>U=givens(xy)
-U=givens(x,y)
-[U,c]=givens(xy)
-[U,c]=givens(x,y)</synopsis>
+      U=givens(x,y)
+      [U,c]=givens(xy)
+      [U,c]=givens(x,y)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -55,15 +53,19 @@ U=givens(x,y)
     </variablelist>
   </refsection>
   <refsection>
-    <title>説明</title>
-	<literal>xy = [x;y]</literal>として
-    <para><literal>U = givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
-	は,次のような<literal>2</literal>x<literal>2</literal> の
-	ユニタリ行列 <literal>U</literal> を返します:</para>
-    <para><literal>U*xy=[r;0]=c</literal>.</para>
+    <title>説明</title><literal>xy = [x;y]</literal>として
     <para>
-    <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
-	注意してください.</para>
+      <literal>U= givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
+      は,次のような<literal>2</literal>x<literal>2</literal> の
+      ユニタリ行列 <literal>U</literal> を返します:
+    </para>
+    <para>
+      <literal>U*xy=[r;0]=c</literal>.
+    </para>
+    <para>
+      <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
+      注意してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

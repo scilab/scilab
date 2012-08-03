@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="system">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>system</refname>
     <refpurpose>観測更新</refpurpose>
@@ -67,18 +64,16 @@
   <refsection>
     <title>説明</title>
     <para>
-	古い状態量を指定して次の観測量を生成するシステム関数を定義します.
-	システムは再帰的に計算されます</para>
-    <programlisting role = ""><![CDATA[ 
+      古い状態量を指定して次の観測量を生成するシステム関数を定義します.
+      システムは再帰的に計算されます
+    </para>
+    <programlisting role=""><![CDATA[ 
 x1=f*x0+g*u
 y=h*x0+v
  ]]></programlisting>
     <para>
-    ただし, <literal>u</literal> の分布は <literal>N(0,q)</literal>,
-   <literal>v</literal> の分布は <literal>N(0,r)</literal>です.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      ただし, <literal>u</literal> の分布は <literal>N(0,q)</literal>,
+      <literal>v</literal> の分布は <literal>N(0,r)</literal>です.
+    </para>
   </refsection>
 </refentry>

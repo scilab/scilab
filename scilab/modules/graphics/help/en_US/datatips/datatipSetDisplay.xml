@@ -8,18 +8,16 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetDisplay">
-  <info>
-    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetDisplay">
   <refnamediv>
     <refname>datatipSetDisplay</refname>
-    <refpurpose>Search the nearest datatip of a given point. </refpurpose>
+    <refpurpose>Set the function used to compute the datatip string. </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      datatipSetDisplay(tip_handle,orient)
+      datatipSetDisplay(curve_handle,fun)
+      datatipSetDisplay(curve_handle)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -36,14 +34,21 @@
     </variablelist>
     <variablelist>
       <varlistentry>
-	<term>orient</term>
+        <term>fun</term>
         <listitem>
           <para>
-            A character string with possible values:
-            <literal>"automatic"</literal> <literal>"upper
-            left"</literal> <literal>"upper right"</literal>,
-            <literal>"lower left"</literal>, <literal>"lower
-            right"</literal>.
+            A variable that contains a function (type==11 or
+            type==13). This function calling sequence must be
+            <literal>str=fun(curve, pt, index)</literal> where
+            <literal>curve</literal> is the handle of the polyline
+            associated with the datatip, <literal>pt</literal> is the
+            vector of datatip coordinates and <literal>index</literal>
+            is the mesh point index of the datatip point or the index
+            of the previous mesh point if interpolation is allowed.
+          </para>
+          <para>
+            This function must return a string or a vector of strings
+            in <literal>str</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -52,15 +57,11 @@
   <refsection>
     <title>Description</title>
     <para>
-        Set the position on the text box with respect to the curve
-        point. With the <literal>"automatic"</literal> orientation the
-        program makes the choice to keep the text box within the plot
-        boundaries.
+      Set the function used to format the text to be displayed at the datatip point.
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <title>Examples</title><programlisting role="example"><![CDATA[
     x=linspace(-1,1,1000);
     clf()
     plot(x,sinc(20*x),x,1-x^2);
@@ -76,24 +77,32 @@
     ]]></programlisting>
     <para>
       <inlinemediaobject>
-	<imageobject>
-	  <imagedata fileref="../../images/datatips5.svg"/>
-	</imageobject>
+        <imageobject>
+          <imagedata fileref="../../images/datatips5.svg"/>
+        </imageobject>
       </inlinemediaobject>
     </para>
+    
+    The display function can also be used to place tip text in different locations:
+    
+    <programlisting role="example"><![CDATA[
+    function str=infodisplay(curve,pt,index)
+       xinfo(msprintf('x=%0.2g,\t 1-x^2=%0.2g', pt(1),pt(2)))
+       str=''
+    endfunction
+    datatipSetDisplay(e(1),infodisplay) //tip text displayed in the info bar
+    ]]></programlisting>
+    
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="datatips" >datatips</link></member>
-      <member><link linkend="datatipSetOrientation">datatipSetOrientation</link></member>
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
+      <member>
+        <link linkend="datatipSetOrientation">datatipSetOrientation</link>
+      </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
- 
 </refentry>

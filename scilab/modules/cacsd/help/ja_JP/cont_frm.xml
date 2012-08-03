@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cont_frm">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>cont_frm</refname>
     <refpurpose>可制御状態空間への変換</refpurpose>
@@ -40,7 +37,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト, <literal>sl=[A,B,C,D]</literal>.</para>
+          <para>
+            <literal>syslin</literal> リスト, <literal>sl=[A,B,C,D]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,7 +47,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    伝達関数 <literal>NUM/den</literal>の可制御状態空間形式.</para>
+      伝達関数 <literal>NUM/den</literal>の可制御状態空間形式.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -13,6 +13,8 @@
 #include <string.h>
 #include "gw_signal.h"
 #include "callFunctionFromGateway.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -24,11 +26,19 @@ static gw_generic_table Tab[]=
 	{C2F(sci_amell),"amell"},
 	{C2F(sci_delip),"delip"},
 	{C2F(sci_remez),"remez"},
-	{C2F(sci_syredi),"syredi"}
+	{C2F(sci_syredi),"syredi"},
+	{sci_conv2,"conv2"}
+
 };
 /*--------------------------------------------------------------------------*/
 int gw_signal_processing(void)
 {  
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

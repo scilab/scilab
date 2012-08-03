@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="residu">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>residu</refname>
     <refpurpose> residue</refpurpose>
@@ -35,11 +32,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>V=residu(P,Q1,Q2)</literal> returns the matrix <literal>V</literal>
-    such that <literal>V(i,j)</literal> is the sum of the residues of the
-    rational fraction <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculated
-    at the zeros of <literal>Q1(i,j)</literal>.</para>
-    <para><literal>Q1(i,j)</literal> and <literal>Q2(i,j)</literal> must not have any common root.</para>
+    <para>
+      <literal>V=residu(P,Q1,Q2)</literal> returns the matrix <literal>V</literal>
+      such that <literal>V(i,j)</literal> is the sum of the residues of the
+      rational fraction <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculated
+      at the zeros of <literal>Q1(i,j)</literal>.
+    </para>
+    <para>
+      <literal>Q1(i,j)</literal> and <literal>Q2(i,j)</literal> must not have any common root.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -61,7 +62,7 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pfss">pfss</link>
@@ -79,9 +80,5 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
         <link linkend="gtild">gtild</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> F.Delebecque INRIA</para>
   </refsection>
 </refentry>

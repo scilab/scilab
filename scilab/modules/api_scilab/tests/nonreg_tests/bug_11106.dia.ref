@@ -1,0 +1,38 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 11106 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=11106
+//
+// <-- Short Description -->
+ilib_verbose(0);
+test_path = get_absolute_file_path('bug_11106.tst');
+currentpath = pwd();
+cd TMPDIR;
+mkdir('bug_11106');
+cd('bug_11106');
+copyfile(SCI+'/modules/api_scilab/tests/nonreg_tests/bug_11106.c' , 'bug_11106.c');
+files = ['bug_11106.c'];
+ilib_build('lib_bug_11106', ['bug_11106', 'sci_bug_11106'], files, []);
+exec loader.sce;
+chdir(currentpath);
+a = list();
+b = tlist("test");
+c = mlist("test");
+d = 1;
+assert_checkequal(bug_11106(a), "isList");
+assert_checkequal(bug_11106(b), "isTList");
+assert_checkequal(bug_11106(c), "isMList");
+assert_checkequal(bug_11106(d), "unmanaged type");
+assert_checkequal(bug_11106("a"), "isNamedList");
+assert_checkequal(bug_11106("b"), "isNamedTList");
+assert_checkequal(bug_11106("c"), "isNamedMList");
+assert_checkequal(bug_11106("d"), "unmanaged named type");

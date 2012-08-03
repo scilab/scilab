@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pbig">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>pbig</refname>
     <refpurpose> projection sur des sous-espaces propres   </refpurpose>
@@ -29,28 +26,29 @@
         <term>A  </term>
         <listitem>
           <para>matrice réelle carrée
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>thres  </term>
         <listitem>
           <para>nombre réel
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères (<literal>'c'</literal> ou <literal>'d'</literal>)
-	  </para>
+          <para>
+            chaîne de caractères (<literal>'c'</literal> ou <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q,M  </term>
         <listitem>
           <para>matrices réelles
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -104,7 +102,7 @@ spec(M1*A*Q1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="psmall">psmall</link>
@@ -121,12 +119,10 @@ spec(M1*A*Q1)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>F. Delebecque, INRIA (1988); ;   </para>
-  </refsection>
-  <refsection>
     <title>Fonctions Utilisées</title>
-    <para><literal>pbig</literal> est basée sur la forme de Schur ordonnée
-    (fonction Scilab <literal>schur</literal>).</para>
+    <para>
+      <literal>pbig</literal> est basée sur la forme de Schur ordonnée
+      (fonction Scilab <literal>schur</literal>).
+    </para>
   </refsection>
 </refentry>

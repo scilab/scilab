@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>contr</refname>
     <refpurpose> controllability, controllable subspace, staircase</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>n=contr(A,B [,tol])
-[n,U]=contr(A,B [,tol])
-[n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis>
+      [n,U]=contr(A,B [,tol])
+      [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,7 +46,9 @@
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para>orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.</para>
+          <para>
+            orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -60,35 +60,45 @@
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para>block Hessenberg matrix <literal>Ac=U'*A*U</literal></para>
+          <para>
+            block Hessenberg matrix <literal>Ac=U'*A*U</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Bc</term>
         <listitem>
-          <para>is <literal>U'*B*V</literal>.</para>
+          <para>
+            is <literal>U'*B*V</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ind</term>
         <listitem>
-          <para>p integer vector associated with controllability indices  (dimensions of subspaces <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>)</para>
+          <para>
+            p integer vector associated with controllability indices  (dimensions of subspaces <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[n,[U]]=contr(A,B,[tol])</literal> gives the controllable form of an <literal>(A,B)</literal> 
-    pair.(<literal>dx/dt = A x + B u</literal> or <literal>x(n+1) = A x(n) +b u(n)</literal>).
-    The <literal>n</literal> first columns of <literal>U</literal> make a basis for the controllable
-    subspace.</para>
     <para>
-    If <literal>V=U(:,1:n)</literal>, then <literal>V'*A*V</literal> and  <literal>V'*B</literal> give the controllable part
-    of the <literal>(A,B)</literal> pair.</para>
+      <literal>[n,[U]]=contr(A,B,[tol])</literal> gives the controllable form of an <literal>(A,B)</literal> 
+      pair.(<literal>dx/dt = A x + B u</literal> or <literal>x(n+1) = A x(n) +b u(n)</literal>).
+      The <literal>n</literal> first columns of <literal>U</literal> make a basis for the controllable
+      subspace.
+    </para>
     <para>
-    The pair <literal>(Bc, Ac)</literal> is in staircase controllable form.</para>
-    <programlisting role = ""><![CDATA[ 
+      If <literal>V=U(:,1:n)</literal>, then <literal>V'*A*V</literal> and  <literal>V'*B</literal> give the controllable part
+      of the <literal>(A,B)</literal> pair.
+    </para>
+    <para>
+      The pair <literal>(Bc, Ac)</literal> is in staircase controllable form.
+    </para>
+    <programlisting role=""><![CDATA[ 
                    |B |sI-A      *  . . .  *      *       |
                    | 1|    11       .      .      .       |
                    |  |  A    sI-A    .    .      .       |
@@ -105,7 +115,8 @@
   <refsection>
     <title>Reference</title>
     <para>
-	    Slicot library (see ab01od in SCI/modules/cacsd/src/slicot).</para>
+      Slicot library (see ab01od in SCI/modules/cacsd/src/slicot).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -119,7 +130,7 @@ spec(A+B*rand(3,5))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="canon">canon</link>

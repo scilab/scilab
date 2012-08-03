@@ -8,17 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-22 21:27+0000\n"
+"PO-Revision-Date: 2012-07-16 15:58+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: pl\n"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Interfejs JVM  wyłączony w trybach in -nogui lub -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
@@ -65,6 +73,12 @@ msgstr ""
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Nie uzyskano dostępu do Main Scilab Class:\n"
+
+msgid "Cannot execute initial hooks. Error:\n"
 msgstr ""
 
 #, c-format
@@ -192,14 +206,20 @@ msgstr "Niezdefiniowany błąd w kodzie JNI. Dziwny problem"
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr "Ostrzeżenie: Nie odnaleziono pakietu Java: '%s'.\n"
 
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "Nie uzyskano dostępu do Main Scilab Class:\n"
-
 msgid "Could not access to the constructor of the Main Scilab Class:\n"
 msgstr "Nie uzyskano dostępu do konstruktora Main Scilab Class:\n"
 
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr "Nie udało się utworzyć głównej klasy dla programu Scilab. Błąd:\n"
+
+msgid "Cannot execute final hooks. Error:\n"
+msgstr ""
+
+msgid "Error with Scilab.canClose():\n"
+msgstr ""
+
+msgid "Error with Scilab.forceClose():\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -237,7 +257,7 @@ msgstr "Ostrzeżenie: nie odnaleziono pliku %s deklaracji classpath .\n"
 
 #, c-format
 msgid ""
-"Some problems during the loading of the Java libraries occured.\n"
+"Some problems during the loading of the Java libraries occurred.\n"
 "This could lead to inconsistent behaviours.\n"
 "Please check SCI/etc/classpath.xml.\n"
 msgstr ""

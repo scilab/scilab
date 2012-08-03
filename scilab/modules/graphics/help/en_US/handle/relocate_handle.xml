@@ -10,14 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="relocate_handle">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="relocate_handle">
   <refnamediv>
     <refname>relocate_handle</refname>
     <refpurpose>Move handles inside the graphic
-  hierarchy.</refpurpose>
+      hierarchy.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,15 +41,18 @@
   <refsection>
     <title>Description</title>
     <para>The relocate_handle function allows to move handles from their current
-    locations in the graphical hierarchy to another. All the moved entities
-    are relocated under the same parent handle specified with the
-    <emphasis role="bold">parent</emphasis> parameter.</para>
+      locations in the graphical hierarchy to another. All the moved entities
+      are relocated under the same parent handle specified with the
+      <emphasis role="bold">parent</emphasis> parameter.
+    </para>
     <para>Since not every handles are compatible with each others, some
-    restrictions exist when relocationg handles. For examples, it is not
-    allowed to move an axes handle under a polyline. More information about
-    compatibility can be found in the <link linkend="graphics_entities">graphics_entities</link> page.</para>
+      restrictions exist when relocationg handles. For examples, it is not
+      allowed to move an axes handle under a polyline. More information about
+      compatibility can be found in the <link linkend="graphics_entities">graphics_entities</link> page.
+    </para>
     <para>This routine is particularly useful to move an object from an axes
-    entity to an other or to move axes from figures handles.</para>
+      entity to an other or to move axes from figures handles.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -75,7 +76,7 @@ relocate_handle( poly2bis, axes1 ) ;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>
@@ -90,9 +91,5 @@ relocate_handle( poly2bis, axes1 ) ;
         <link linkend="swap_handles">swap_handles</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

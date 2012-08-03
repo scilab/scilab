@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lqg_ltr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>lqg_ltr</refname>
     <refpurpose> LQG/LTR (loop transform recovery)設計 </refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>状態空間表現の線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            状態空間表現の線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,8 +47,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    以下のシステムのカルマンゲインを返します:</para>
-    <programlisting role = ""><![CDATA[ 
+      以下のシステムのカルマンゲインを返します:
+    </para>
+    <programlisting role=""><![CDATA[ 
          x = a*x + b*u + l*w1   
 (sl)
          y = c*x + mu*I*w2
@@ -57,8 +57,9 @@
          z = h*x
  ]]></programlisting>
     <para>
-    評価関数:</para>
-    <programlisting role = ""><![CDATA[ 
+      評価関数:
+    </para>
+    <programlisting role=""><![CDATA[ 
          /+oo
          |
 J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
@@ -66,17 +67,19 @@ J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
          / 0
   ]]></programlisting>
     <para>
-    lqg/ltr 手法は, 以下のように設定した<literal>L,mu,H,ro</literal> に似ています:
-    J(lqg) = J(freq) ただし,</para>
-    <programlisting role = ""><![CDATA[ 
+      lqg/ltr 手法は, 以下のように設定した<literal>L,mu,H,ro</literal> に似ています:
+      J(lqg) = J(freq) ただし,
+    </para>
+    <programlisting role=""><![CDATA[ 
         /+oo        *  *           *
 J    =  | tr[S  W  W  S ] + tr[T  T]dw
  freq   |
         /0
  ]]></programlisting>
     <para>
-    そして</para>
-    <programlisting role = ""><![CDATA[ 
+      そして
+    </para>
+    <programlisting role=""><![CDATA[ 
  S = (I + G*K)^(-1)  
  T = G*K*(I+G*K)^(-1)
  ]]></programlisting>

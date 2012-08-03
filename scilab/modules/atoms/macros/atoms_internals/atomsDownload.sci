@@ -100,6 +100,7 @@ function atomsDownload(url_in,file_out,md5sum)
       end
     elseif MACOSX | getos() == 'Windows' then
       CURL = %T;
+      atomsSetConfig("downloadTool", "curl");
     end
   end
 
@@ -172,6 +173,8 @@ function atomsDownload(url_in,file_out,md5sum)
       download_cmd = proxy_host_arg+"wget"+proxy_user_arg+timeout_arg+" "+url_in + " -O " + file_out;
     end
 
+    winId = atomsOpenProgressBar(_("Download in progress... Please be patient."), %f);
+
     err = [];
     [rep,stat,err] = unix_g(download_cmd);
 
@@ -206,7 +209,8 @@ function atomsDownload(url_in,file_out,md5sum)
       mprintf(gettext("%s: The following file hasn''t been downloaded:\n"), "atomsDownload");
       mprintf(gettext("\t - URL      : ''%s''\n"), url_in);
       mprintf(gettext("\t - Local location : ''%s''\n"), file_out);
-      if isdef(err) then
+      if isdef('err') then
+        atomsCloseProgressBar(winId);
         error(strcat(err, ascii(10)));
       end
     end
@@ -225,6 +229,7 @@ function atomsDownload(url_in,file_out,md5sum)
       mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");
       mprintf(gettext("\t - source    : ''%s''\n"),file_in);
       mprintf(gettext("\t - destination : ''%s''\n"),file_out);
+      atomsCloseProgressBar(winId);
       error(strcat(lasterror(), ascii(10)));
     end
 
@@ -242,9 +247,11 @@ function atomsDownload(url_in,file_out,md5sum)
       mprintf(gettext("\t - file      : ''%s''\n"),file_out);
       mprintf(gettext("\t - MD5SUM expected : ''%s''\n"),md5sum);
       mprintf(gettext("\t - MD5SUM watched  : ''%s''\n"),filemd5);
+      atomsCloseProgressBar(winId);
       error("");
     end
 
   end
 
+  atomsCloseProgressBar(winId);
 endfunction

@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="determ">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>determ</refname>
     <refpurpose>多項式行列の行列式</refpurpose>
@@ -42,18 +39,23 @@
   <refsection>
     <title>説明</title>
     <para>
-	実数多項式行列の行列式を返します
-	(Wの大きさが2*2より大きい場合,FFTにより計算されます).</para>
-    <para><literal>res=determ(W [,k])</literal><literal>k</literal> は
-	<literal>W</literal>の行列式の実際の次数より大きな整数です.</para>
+      実数多項式行列の行列式を返します
+      (Wの大きさが2*2より大きい場合,FFTにより計算されます).
+    </para>
     <para>
-    <literal>k</literal>のデフォルト値は<literal>n*max(degree(W))</literal>
-	より大きな2の冪乗の最小値です.</para>
+      <literal>res=determ(W [,k])</literal><literal>k</literal> は
+      <literal>W</literal>の行列式の実際の次数より大きな整数です.
+    </para>
     <para>
-    手法 (Wの大きさが  2*2より大きな場合のみ) : 
-	フーリエ周波数に関して
-	<literal>W</literal>の行列式を評価し,
-	行列式の係数に逆FFTを適用します.</para>
+      <literal>k</literal>のデフォルト値は<literal>n*max(degree(W))</literal>
+      より大きな2の冪乗の最小値です.
+    </para>
+    <para>
+      手法 (Wの大きさが  2*2より大きな場合のみ) : 
+      フーリエ周波数に関して
+      <literal>W</literal>の行列式を評価し,
+      行列式の係数に逆FFTを適用します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -77,9 +79,5 @@ det(coeff(w,1))*s^10
         <link linkend="coffg">coffg</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

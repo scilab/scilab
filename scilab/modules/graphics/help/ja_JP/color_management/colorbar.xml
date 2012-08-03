@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colorbar">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>colorbar</refname>
     <refpurpose>カラーバーを描画</refpurpose>
@@ -36,7 +33,8 @@
         <term>fmt</term>
         <listitem>
           <para>(オプション) カラーバーのグラデーションの表示形式を設定する
-	ための文字列</para>
+            ための文字列
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,30 +42,30 @@
   <refsection>
     <title>説明</title>
     <para>
-     plot3d, fec, Sgrayplot, etc...用にカラーバーを描画します.
-	この関数は, plot3d, fec, Sgrayplot,... の<emphasis role="bold">前に</emphasis>
-	コールする必要があります.
-	これは,この関数がプロットのフレームの設定を変更するためです.
-	この方法では,カラーバーは関連するプロットの一部ではなく,このため,
-	ズームや回転による修正はできません.
+      plot3d, fec, Sgrayplot, etc...用にカラーバーを描画します.
+      この関数は, plot3d, fec, Sgrayplot,... の<emphasis role="bold">前に</emphasis>
+      コールする必要があります.
+      これは,この関数がプロットのフレームの設定を変更するためです.
+      この方法では,カラーバーは関連するプロットの一部ではなく,このため,
+      ズームや回転による修正はできません.
     </para>
     <para>
-	オプションの引数 <literal>colminmax</literal> は,
-	カレントのカラーマップの
-	(uminに関連する)最初の色と(umaxに関連する)最後の色を正確に
-	指定するために使用できます.
-	デフォルトでは <literal>colminmax=[1 nb_colors]</literal> です.ただし,
-	nb_colors はカレントのカラーマップの色数です.
+      オプションの引数 <literal>colminmax</literal> は,
+      カレントのカラーマップの
+      (uminに関連する)最初の色と(umaxに関連する)最後の色を正確に
+      指定するために使用できます.
+      デフォルトでは <literal>colminmax=[1 nb_colors]</literal> です.ただし,
+      nb_colors はカレントのカラーマップの色数です.
     </para>
     <para>
-	オプションの引数<literal>fmt</literal> は,
-	<literal>"%.2f"</literal>, <literal>"%e"</literal>, etc...のような
-	C言語形式を含む文字列です.
+      オプションの引数<literal>fmt</literal> は,
+      <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc...のような
+      C言語形式を含む文字列です.
     </para>
     <para>
-	この2つのオプションのパラメータについて,
-	構文 <literal>keyword=value</literal> を使用することができます
-	(最後の例を参照ください).
+      この2つのオプションのパラメータについて,
+      構文 <literal>keyword=value</literal> を使用することができます
+      (最後の例を参照ください).
     </para>
   </refsection>
   <refsection>
@@ -136,11 +134,5 @@ show_window()
         <link linkend="colormap">colormap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-     B. Pincon, S. Steer
-  </para>
   </refsection>
 </refentry>

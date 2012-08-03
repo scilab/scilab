@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dscr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>dscr</refname>
     <refpurpose>  discretization of linear system</refpurpose>
@@ -28,7 +25,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list containing <literal>[A,B,C,D]</literal>.</para>
+          <para>
+            <literal>syslin</literal> list containing <literal>[A,B,C,D]</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,13 +45,17 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>covariance of the output noise (discrete time) given if <literal>m</literal> is  given as input</para>
+          <para>
+            covariance of the output noise (discrete time) given if <literal>m</literal> is  given as input
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sld</term>
         <listitem>
-          <para>sampled (discrete-time) linear system, <literal>syslin</literal> list</para>
+          <para>
+            sampled (discrete-time) linear system, <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,10 +63,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    Discretization of linear system. <literal>sl</literal> is a continuous-time system:</para>
-    <para><literal>dx/dt=A*x+B*u (+ noise)</literal>.</para>
-    <para><literal>sld</literal> is the discrete-time system obtained by 
-    sampling <literal>sl</literal> with the sampling period <literal>dt</literal>.</para>
+      Discretization of linear system. <literal>sl</literal> is a continuous-time system:
+    </para>
+    <para>
+      <literal>dx/dt=A*x+B*u (+ noise)</literal>.
+    </para>
+    <para>
+      <literal>sld</literal> is the discrete-time system obtained by 
+      sampling <literal>sl</literal> with the sampling period <literal>dt</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -74,7 +82,7 @@ ss2tf(dscr(tf2ss(Sys),0.1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

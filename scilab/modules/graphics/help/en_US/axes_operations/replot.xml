@@ -10,14 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="replot">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="replot">
   <refnamediv>
     <refname>replot</refname>
     <refpurpose>redraw the current graphics window with new
-  boundaries</refpurpose>
+      boundaries
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,24 +34,39 @@
         <term>handle</term>
         <listitem>
           <para>optional argument. Graphics handle(s) of type Axes to select
-          one or several given Axes.</para>
+            one or several given Axes.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>replot</literal> is used to redraw the content of the current
-    graphics window with new boundaries defined by
-    <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Under old graphics syntax, it
-    works only with the driver <literal>"Rec"</literal>.</para>
+    <para>
+      <literal>replot</literal> is used to redraw the content of the current
+      graphics window with new boundaries defined by
+      <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Under old graphics syntax, it
+      works only with the driver <literal>"Rec"</literal>.
+    </para>
     <para>This transformation can be applied to specific
-    axes given by Axes graphics handles via the handle argument. If handle is
-    not specified, the new boundaries are applied to the current axes of the
-    current figure. The transformation changes the <literal>data_bounds</literal>
-    value of those axes. Note that the axes property <literal>tight_limits</literal>
-    must also be set to "on" to strictly select those bounds (see
-    <link linkend="axes_properties">axes_properties</link>).<literal> </literal></para>
+      axes given by Axes graphics handles via the handle argument. If handle is
+      not specified, the new boundaries are applied to the current axes of the
+      current figure. The transformation changes the <literal>data_bounds</literal>
+      value of those axes. Note that the axes property <literal>tight_limits</literal>
+      must also be set to "on" to strictly select those bounds (see
+      <link linkend="axes_properties">axes_properties</link>).<literal> </literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Sample</title>
+    <scilab:image>
+      xdel(winsid());
+      plot()
+      f=gcf();
+      replot([-1,-1,10,2],f.children(1))
+      replot([-3,-2,8,4],f.children(2)) 
+      
+    </scilab:image>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -74,7 +87,7 @@ replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xbasr">xbasr</link>
@@ -83,9 +96,5 @@ replot([-3,-2,8,4],f.children(2))
         <link linkend="clf">clf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

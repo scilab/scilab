@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 // <-- Non-regression test for bug 2052 -->
@@ -26,7 +26,8 @@ ilib_verbose(0);
 cur=pwd();
 cd(TMPDIR);
 //first create a function changetype 
-code=['#include ""stack-c.h""'
+code=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+'#include ""stack-c.h""'
 'int intchangetype(fname)'
 '   char *fname;'
 '{'

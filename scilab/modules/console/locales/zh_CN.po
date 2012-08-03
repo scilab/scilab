@@ -8,63 +8,594 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-05-21 03:38+0000\n"
-"Last-Translator: Lele Long <schemacs@gmail.com>\n"
+"PO-Revision-Date: 2012-03-04 07:36+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 15702)\n"
 "Language: \n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr ""
+msgstr "%s：此功能尚未实现。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
+msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
-msgstr ""
+msgstr "%s：在该模式下此功能尚未实现。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：应该为标量（>= 0）。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s：输出参数的数目错误。\n"
+
+msgid "Console"
 msgstr ""
 
-msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgid "Display"
+msgstr ""
+
+msgid "Lines to display:"
+msgstr ""
+
+msgid "Columns to display:"
+msgstr ""
+
+msgid "Number of lines in console scroll buffer:"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Produces an error"
+msgstr ""
+
+msgid "Produces a warning"
+msgstr ""
+
+msgid "Produces Inf or NaN"
+msgstr ""
+
+msgid "Variable format"
+msgstr ""
+
+msgid "Scientific format"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "Portugese (Brazil)"
+msgstr ""
+
+msgid "Catalan"
+msgstr ""
+
+msgid "Czech"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "Italian"
+msgstr ""
+
+msgid "Polish"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Chinese (Simplified)"
+msgstr ""
+
+msgid "Chinese (Traditional)"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
+
+msgid "Confirmation dialogs"
+msgstr ""
+
+msgid "Warn before exiting Scilab"
+msgstr ""
+
+msgid "Warn before deleting Command History items"
+msgstr ""
+
+msgid "Warn before clearing the Console"
+msgstr ""
+
+msgid "Desktop layout"
+msgstr ""
+
+msgid "Integrated"
+msgstr ""
+
+msgid "Simple"
+msgstr ""
+
+msgid "Shortcuts"
+msgstr ""
+
+msgid "Cut or interrupt"
+msgstr ""
+
+msgid "Copy or interrupt"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Line beginning"
+msgstr ""
+
+msgid "Line end"
+msgstr ""
+
+msgid "Previous char"
+msgstr ""
+
+msgid "Next char"
+msgstr ""
+
+msgid "Delete next char"
+msgstr ""
+
+msgid "Delete previous char"
+msgstr ""
+
+msgid "Delete end of line"
+msgstr ""
+
+msgid "Delete whole line"
+msgstr ""
+
+msgid "Delete last word"
+msgstr ""
+
+msgid "Previous console page"
+msgstr ""
+
+msgid "Next console page"
+msgstr ""
+
+msgid "Validate input"
+msgstr ""
+
+msgid "Clear console"
+msgstr ""
+
+msgid "Console box"
+msgstr ""
+
+msgid "Completion"
+msgstr ""
+
+msgid "Previous history line"
+msgstr ""
+
+msgid "Next history line"
+msgstr ""
+
+msgid "Help Browser"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Open a file"
+msgstr ""
+
+msgid "Load environment"
+msgstr ""
+
+msgid "Save environment"
+msgstr ""
+
+msgid "Quit"
+msgstr ""
+
+msgid "Execute"
+msgstr ""
+
+msgid "Empty clipboard"
+msgstr ""
+
+msgid "Change current directory"
+msgstr ""
+
+msgid "Display current directory"
+msgstr ""
+
+msgid "Page setup"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Show/Hide toolbar"
+msgstr ""
+
+msgid "Clear history"
+msgstr ""
+
+msgid "Resume"
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Interrupt"
+msgstr ""
+
+msgid "Launch SciNotes"
+msgstr ""
+
+msgid "Launch Xcos"
+msgstr ""
+
+msgid "Matlab to Scilab Translator"
+msgstr ""
+
+msgid "Module manager"
+msgstr ""
+
+msgid "Variable Browser"
+msgstr ""
+
+msgid "Command History"
+msgstr ""
+
+msgid "File Browser"
+msgstr ""
+
+msgid "Demonstrations"
+msgstr ""
+
+msgid "Open Scilab website"
+msgstr ""
+
+msgid "Open Online Help"
+msgstr ""
+
+msgid "Open Scilab wiki"
+msgstr ""
+
+msgid "Open ATOMS website"
+msgstr ""
+
+msgid "Open File Exchange website"
+msgstr ""
+
+msgid "Open Mailing lists"
+msgstr ""
+
+msgid "Open Forge website"
+msgstr ""
+
+msgid "Open Bugzilla"
+msgstr ""
+
+msgid "About Scilab"
+msgstr ""
+
+msgid "Auto complete (, [,..."
+msgstr ""
+
+msgid "Auto complete keyword"
+msgstr ""
+
+msgid "Generate Help prototype"
+msgstr ""
+
+msgid "Tabify"
+msgstr ""
+
+msgid "Untabify"
+msgstr ""
+
+msgid "Indent"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Uncomment"
+msgstr ""
+
+msgid "Remove trailing whites"
+msgstr ""
+
+msgid "Select block"
+msgstr ""
+
+msgid "Open current tab in a new window"
+msgstr ""
+
+msgid "Export current tab in a new window"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Paste a column"
+msgstr ""
+
+msgid "Repeat selection on column"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Copy as HTML with line number"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open URL"
+msgstr ""
+
+msgid "Open source"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save as"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Print preview"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "To lower case"
+msgstr ""
+
+msgid "To upper case"
+msgstr ""
+
+msgid "Capitalize"
+msgstr ""
+
+msgid "Help on keyword"
+msgstr ""
+
+msgid "Load in Scilab"
+msgstr ""
+
+msgid "Execute in Scilab"
+msgstr ""
+
+msgid "Evaluate selection"
+msgstr ""
+
+msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all"
+msgstr ""
+
+msgid "Find"
+msgstr ""
+
+msgid "Find next"
+msgstr ""
+
+msgid "Find previous"
+msgstr ""
+
+msgid "Incremental search"
+msgstr ""
+
+msgid "Set anchor"
+msgstr ""
+
+msgid "Remove anchor"
+msgstr ""
+
+msgid "Go to next anchor"
+msgstr ""
+
+msgid "Go to previous anchor"
+msgstr ""
+
+msgid "Start Code Navigator"
+msgstr ""
+
+msgid "Search word in file"
+msgstr ""
+
+msgid "Search files"
+msgstr ""
+
+msgid "Keyword completion"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Next tab"
+msgstr ""
+
+msgid "Previous tab"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Next paragraph"
+msgstr ""
+
+msgid "Previous paragraph"
+msgstr ""
+
+msgid "Save all"
+msgstr ""
+
+msgid "Overwrite"
+msgstr ""
+
+msgid "Close all"
+msgstr ""
+
+msgid "Close all but this"
+msgstr ""
+
+msgid "Convert quote to double quote"
+msgstr ""
+
+msgid "Line numbering"
+msgstr ""
+
+msgid "Save diagram"
+msgstr ""
+
+msgid "Save variable"
+msgstr ""
+
+msgid "Save history"
+msgstr ""
+
+msgid "Save file"
+msgstr ""
+
+msgid "Floating point exception (ieee): "
+msgstr ""
+
+msgid "Printing format: "
+msgstr ""
+
+msgid "Width: "
+msgstr ""
+
+msgid "Language setting"
+msgstr ""
+
+msgid "Default language: "
+msgstr ""
+
+msgid "(This requires a restart of Scilab)"
+msgstr ""
+
+msgid "Java Heap Memory"
+msgstr ""
+
+msgid "Select the memory (in MB) available in Java: "
+msgstr ""
+
+msgid "Desktop Layout"
+msgstr ""
+
+msgid "Select a layout"
+msgstr ""
+
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr ""
+
+msgid "Keys binding"
+msgstr ""
+
+msgid "Filter on action name: "
+msgstr ""
+
+msgid "Component"
+msgstr ""
+
+msgid "Name: "
+msgstr ""
+
+msgid "Description: "
+msgstr ""
+
+msgid "Binding: "
+msgstr ""
+
+msgid "Action name"
+msgstr ""
+
+msgid "Key binding"
 msgstr ""
 
 msgid "File or Directory"
 msgstr "文件或目录"
 
 msgid "Scilab Fields"
-msgstr ""
+msgstr "Scilab字段"
 
 msgid "Scilab Function"
 msgstr "Scilab函数"
@@ -83,9 +614,20 @@ msgstr "Scilab句柄域"
 
 #, c-format
 msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr "[继续显示？按n键停止，按任意其他键继续]"
+
+#, c-format
+msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
+"键入‘%s’或‘%s’以返回到标准层提示符。\n"
+"\n"
 
 msgid "Field"
 msgstr "字段"

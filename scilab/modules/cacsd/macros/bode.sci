@@ -8,6 +8,18 @@
 
 function []=bode(varargin)
   rhs=size(varargin)
+
+  if rhs == 0 then
+    s=poly(0,'s')
+    h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+    num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+    den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+    h2=syslin('c',num/den);
+
+    bode([h1;h2],0.01,100,['h1';'h2'])
+    return;
+  end
+
   if type(varargin($))==10 then
     comments=varargin($),rhs=rhs-1;
   else
@@ -158,5 +170,5 @@ endfunction
 function str=formatBodePhaseTip(curve,pt,index)
 //this function is called by the datatip mechanism to format the tip
 //string for the bode phase curves
-  str=msprintf("%.4g"+_("Hz")+"\n %.4g"+_("dB"), pt(1),pt(2))
+  str=msprintf("%.4g"+_("Hz")+"\n %.4g"+"°", pt(1),pt(2))
 endfunction

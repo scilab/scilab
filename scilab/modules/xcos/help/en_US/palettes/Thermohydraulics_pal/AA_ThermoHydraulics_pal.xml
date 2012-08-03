@@ -17,58 +17,47 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="ThermoHydraulics_pal"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ThermoHydraulics_pal">
   <refnamediv>
     <refname>ThermoHydraulics_pal</refname>
-
     <refpurpose>Thermal-Hydraulics toolbox</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
     <para>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="Bache" fileref="../../../../../../modules/xcos/images/palettes/Bache.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="PerteDP" fileref="../../../../../../modules/xcos/images/palettes/PerteDP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="PuitsP" fileref="../../../../../../modules/xcos/images/palettes/PuitsP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="SourceP" fileref="../../../../../../modules/xcos/images/palettes/SourceP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
-        <imagedata linkend="VanneReglante" fileref="../../../../../../modules/xcos/images/palettes/VanneReglante.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="Bache" fileref="../../../../../../modules/xcos/images/palettes/Bache.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="PerteDP" fileref="../../../../../../modules/xcos/images/palettes/PerteDP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="PuitsP" fileref="../../../../../../modules/xcos/images/palettes/PuitsP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="SourceP" fileref="../../../../../../modules/xcos/images/palettes/SourceP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="VanneReglante" fileref="../../../../../../modules/xcos/images/palettes/VanneReglante.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Module_ThermoHydraulics_pal">
     <title>Module</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -77,49 +66,46 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_ThermoHydraulics_pal">
     <title>Description</title>
-
     <para>Thermal-Hydraulics toolbox contains some basic thermal-hydraulic
-    components such as pressure source, pipe, control valves, etc.</para>
+      components such as pressure source, pipe, control valves, etc.
+    </para>
   </refsection>
-
   <refsection id="Blocks_ThermoHydraulics_pal">
     <title>Blocks</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="Bache">Bache - Thermal-hydraulic tank
-          (reservoir)</link>
+            (reservoir)
+          </link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="PerteDP">PerteDP - Thermal-hydraulic pipe</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="PuitsP">PuitsP - Thermal-hydraulic drain
-          (well)</link>
+            (well)
+          </link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="SourceP">SourceP - Thermal-hydraulic constant
-          pressure source</link>
+            pressure source
+          </link>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <link linkend="VanneReglante">VanneReglante - Thermal-hydraulic
-          control valve</link>
+            control valve
+          </link>
         </para>
       </listitem>
     </itemizedlist>

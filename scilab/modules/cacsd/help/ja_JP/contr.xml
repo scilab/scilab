@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="contr">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>contr</refname>
     <refpurpose> 可制御性, 可制御部分空間, 階段化</refpurpose>
@@ -21,8 +18,9 @@
   <refsynopsisdiv>
     <title>呼び出しの手順</title>
     <synopsis>n=contr(A,B [,tol])
-[n,U]=contr(A,B [,tol])
-[n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis>
+      [n,U]=contr(A,B [,tol])
+      [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -49,7 +47,8 @@
         <term>U</term>
         <listitem>
           <para>
-	    <literal>(A,B)</literal>を正準形に変換する直交変換基底.</para>
+            <literal>(A,B)</literal>を正準形に変換する直交変換基底.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,43 +60,50 @@
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para>ブロックヘッセ行列 <literal>Ac=U'*A*U</literal></para>
+          <para>
+            ブロックヘッセ行列 <literal>Ac=U'*A*U</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Bc</term>
         <listitem>
-          <para>is <literal>U'*B*V</literal>.</para>
+          <para>
+            is <literal>U'*B*V</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ind</term>
         <listitem>
           <para>
-可制御インデックス
-(サブスペース <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>の次元)
-を有するp整数ベクトル
-</para>
+            可制御インデックス
+            (サブスペース <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>の次元)
+            を有するp整数ベクトル
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[n,[U]]=contr(A,B,[tol])</literal> は
+    <para>
+      <literal>[n,[U]]=contr(A,B,[tol])</literal> は
       <literal>(A,B)</literal> の可制御形式を与える.
       (<literal>dx/dt = A x + B u</literal> または
       <literal>x(n+1) = A x(n) +b u(n)</literal>).
       <literal>U</literal> の最初の <literal>n</literal> 列は、
-      可制御サブスペースの基底を構成する.</para>
+      可制御サブスペースの基底を構成する.
+    </para>
     <para>
       <literal>V=U(:,1:n)</literal>の場合, 
       <literal>V'*A*V</literal> と <literal>V'*B</literal> は
-      <literal>(A,B)</literal> の可制御部を与える.</para>
+      <literal>(A,B)</literal> の可制御部を与える.
+    </para>
     <para>
       <literal>(Bc, Ac)</literal> は階段化可制御形式である.
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
                    |B |sI-A      *  . . .  *      *       |
                    | 1|    11       .      .      .       |
                    |  |  A    sI-A    .    .      .       |
@@ -114,7 +120,8 @@
   <refsection role="see also">
     <title>参照</title>
     <para>
-	    Slicot ライブラリ (SCI/modules/cacsd/src/slicotのab01od参照).</para>
+      Slicot ライブラリ (SCI/modules/cacsd/src/slicotのab01od参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -10,105 +10,90 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry version="5.0-subset Scilab" xml:id="wavwrite" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="wavwrite" xml:lang="en">
   <refnamediv>
     <refname>wavwrite</refname>
-
     <refpurpose>writes .wav sound file</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>wavwrite(y, wavfile)
-wavwrite(y, Fs, wavfile)
-wavwrite(y, Fs, nbits, wavfile)</synopsis>
+      wavwrite(y, Fs, wavfile)
+      wavwrite(y, Fs, nbits, wavfile)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>y</term>
-
         <listitem>
           <para>real vector or matrix with entries in [-1,1].</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>wavfile</term>
-
         <listitem>
           <para>string (The .wav extension is appended if no extension is
-          given)</para>
+            given)
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>Fs</term>
-
         <listitem>
           <para>integer, frequency sampling in Hz. 22500 is the default value.</para>
         </listitem>
       </varlistentry>
-    
-    <varlistentry>
-       <term>nbits</term>
+      <varlistentry>
+        <term>nbits</term>
         <listitem>
           <para>bit-depth 8, 16, 24, 32 bits. it describes the number of bits of information recorded for each sample.
-          	16 is the default value.</para>
+            16 is the default value.
+          </para>
         </listitem>
       </varlistentry>
-  </variablelist>
+    </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>Utility function to save <literal>.wav</literal> sound file.
-    <literal>wavwrite(y,wavfile)</literal> writes a sound file specified by
-    the string wavfile. The data should be arranged with one channel per
-    column. Amplitude values outside the range [-1,+1] are ignored.</para>
-
-    <para><literal>wavwrite(y,Fs,wavfile)</literal> specifies in
-    <literal>Fs</literal> the sample rate of the data in Hertz.</para>
+    <para>
+      Utility function to save <literal>.wav</literal> sound file.
+      <literal>wavwrite(y,wavfile)</literal> writes a sound file specified by
+      the string wavfile. The data should be arranged with one channel per
+      column. Amplitude values outside the range [-1,+1] are ignored.
+    </para>
+    <para>
+      <literal>wavwrite(y,Fs,wavfile)</literal> specifies in
+      <literal>Fs</literal> the sample rate of the data in Hertz.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 A=matrix(1:6,2,3);
 wavwrite(A/6,TMPDIR+'/foo.wav');
 B=wavread(TMPDIR+'/foo.wav');
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="auread">auread</link></member>
-
-      <member><link linkend="wavread">wavread</link></member>
-
-      <member><link linkend="savewave">savewave</link></member>
-
-      <member><link linkend="analyze">analyze</link></member>
-
-      <member><link linkend="mapsound">mapsound</link></member>
+      <member>
+        <link linkend="auread">auread</link>
+      </member>
+      <member>
+        <link linkend="wavread">wavread</link>
+      </member>
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -45,13 +45,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\parameters.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
+    <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Scilab_windows_Import.def">
@@ -65,8 +59,8 @@
     </None>
     <None Include="Makefile.am" />
     <None Include="parameters.iss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
+    <None Include="locales\parameters.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

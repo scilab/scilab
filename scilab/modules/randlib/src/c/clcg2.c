@@ -42,7 +42,7 @@
 static int s1 = 1234567890 ;
 static int s2 = 123456789  ;
 
-unsigned int clcg2()
+unsigned long int clcg2(void)
 {
     register int k,z;
 

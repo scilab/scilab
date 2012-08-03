@@ -13,7 +13,7 @@
 // Export a palette instance to an hdf5 file.
 //
 // @param pal the "palette" type
-// @param path Fullpath to the hdf5 file (.h5)
+// @param path Fullpath to the hdf5 file (.sod)
 // @return status %T if the export has been successful, %F otherwise
 // @return[opt] msg Contains the error message in case of %F status or an empty
 //                  string when no error as occurred.
@@ -38,8 +38,8 @@ function [status, msg] = xcosPalExport(pal, path)
 //   loadXcosLibs();
 //   pal = xcosPal();
 //   
-//   sumPath = TMPDIR + "/sum.h5";
-//   bigSomPath = TMPDIR + "/sum.h5";
+//   sumPath = TMPDIR + "/sum.sod";
+//   bigSomPath = TMPDIR + "/sum.sod";
 //   
 //   scs_m = SUM_f("define");
 //   export_to_hdf5(sumPath, "scs_m");
@@ -49,7 +49,7 @@ function [status, msg] = xcosPalExport(pal, path)
 //   pal = xcosPalAddBlock(pal, sumPath);
 //   pal = xcosPalAddBlock(pal, bigSomPath);
 //   
-//   xcosPalExport(pal, TMPDIR + "/palette.h5");
+//   xcosPalExport(pal, TMPDIR + "/palette.sod");
 //
 // See also
 //   xcosPal
