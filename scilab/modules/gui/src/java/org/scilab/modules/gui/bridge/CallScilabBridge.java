@@ -118,7 +118,6 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
-import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -327,16 +326,6 @@ public class CallScilabBridge {
     public static int newMessageBox() {
         MessageBox messageBox = ScilabMessageBox.createMessageBox();
         return UIElementMapper.add(messageBox);
-    }
-
-    /**
-     * Create a new WaitBar in Scilab GUIs
-     * @return the ID of the WaitBar in the UIElementMapper
-     */
-    // TODO REMOVE ME (NO MORE USED IN JNI)
-    public static int newWaitBar() {
-        WaitBar waitBar = ScilabWaitBar.createWaitBar();
-        return UIElementMapper.add(waitBar);
     }
 
     /**
