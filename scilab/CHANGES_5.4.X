@@ -32,6 +32,7 @@ Bug Fixes
 
 * Bug #11618 fixed - A(:) returned wrong values when A was a complex sparse matrix.
 
+* Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
 
 
