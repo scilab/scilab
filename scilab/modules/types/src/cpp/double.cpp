@@ -977,7 +977,9 @@ namespace types
                 }
                 else
                 {
-                    memset(getImg() + iOffset, 0x00, iSize * sizeof(double));
+                    int iZero = 0;
+                    double dblZero = 0;
+                    C2F(dcopy)(&iSize, &dblZero, &iZero, getImg() + iOffset, &iInc);
                 }
             }
         }
