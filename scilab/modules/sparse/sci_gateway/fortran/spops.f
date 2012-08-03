@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
+c Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -1165,8 +1166,9 @@ c     .     reshape to column vector via spmat (reshape is named matrix in scila
                call dspmat(m2,n2,stk(lr),nel2,istk(irc2),m2*n2
      $              ,istk(ircr),istk(iw))  
             else
-               call wspmat(m2,n2,stk(lr),stk(lr+mn2),nel2,istk(irc2)
-     $              ,m2*n2,istk(ircr),istk(iw)) 
+
+               call wspmat(m2,n2,stk(lr),stk(lr+nel2),nel2,istk(irc2)
+     $              ,m2*n2,istk(ircr),istk(iw))
             endif
             call icopy(m2*n2+nel2,istk(ircr),1,istk(irc1),1)
             call unsfdcopy(nel2*(it2+1),stk(lr),1,stk(l1),1)
