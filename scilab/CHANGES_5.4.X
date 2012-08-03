@@ -1,6 +1,13 @@
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
+Obsolete functions
+==================
+
+* config function is now obsolete and will be removed in Scilab 5.4.1.
+  Please use 'preferences' instead.
+
+
 Bug Fixes
 =========
 
