@@ -89,7 +89,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     if (ISNAN(_dblVal) || !finite(_dblVal))
     {
-        _pDF->iWidth = 3;       //" nan" or " inf"
+        _pDF->iWidth =5;       //" nan" or " inf"
         _pDF->iPrec = 0;
         return;
     }
