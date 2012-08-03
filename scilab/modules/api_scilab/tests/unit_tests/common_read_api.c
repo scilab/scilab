@@ -26,16 +26,16 @@ void insert_indent(void)
 	}
 }
 
-int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
-int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_list_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_double_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_boolean_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_sparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_bsparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_integer_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
+int get_pointer_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 
 int common_read(char *fname,unsigned long fname_len)
 {
@@ -53,58 +53,58 @@ int common_read(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	get_info(1, NULL, piAddr, 0);
-	AssignOutputVariable(1) = 0;
+	get_info(pvApiCtx, 1, NULL, piAddr, 0);
+	AssignOutputVariable(pvApiCtx, 1) = 0;
 	return 0;
 }
 
-int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRet    = 0;
 	int iType   = 0;
 
-	sciErr = getVarType(pvApiCtx, _piAddr, &iType);
+	sciErr = getVarType(_pvCtx, _piAddr, &iType);
 	switch(iType)
 	{
 	case sci_matrix :
-		iRet = get_double_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_double_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_poly :
-		iRet = get_poly_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_poly_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_boolean :
-		iRet = get_boolean_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_boolean_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_sparse :
-		iRet = get_sparse_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_sparse_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_boolean_sparse :
-		iRet = get_bsparse_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_bsparse_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_ints :
-		iRet = get_integer_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_integer_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_strings :
-		iRet = get_string_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_string_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_list :
 		insert_indent();
 		sciprint("List ");
-		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_list_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_tlist :
 		insert_indent();
 		sciprint("TList ");
-		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_list_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_mlist :
 		insert_indent();
 		sciprint("MList ");
-		iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_list_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	case sci_pointer :
-		iRet = get_pointer_info(_iRhs, _piParent, _piAddr, _iItemPos);
+		iRet = get_pointer_info(_pvCtx, _iRhs, _piParent, _piAddr, _iItemPos);
 		break;
 	default :
 		insert_indent();
@@ -114,7 +114,7 @@ int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	return iRet;
 }
 
-int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_list_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int i;
@@ -122,7 +122,7 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iItem       = 0;
 	int* piChild    = NULL;
 
-	sciErr = getListItemNumber(pvApiCtx, _piAddr, &iItem);
+	sciErr = getListItemNumber(_pvCtx, _piAddr, &iItem);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -132,7 +132,7 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("(%d)\n", iItem);
 	for(i = 0 ; i < iItem ; i++)
 	{
-		sciErr = getListItemAddress(pvApiCtx, _piAddr, i + 1, &piChild);
+		sciErr = getListItemAddress(_pvCtx, _piAddr, i + 1, &piChild);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -140,13 +140,13 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		iTab++;
-		iRet = get_info(_iRhs, _piAddr, piChild, i + 1);
+		iRet = get_info(_pvCtx, _iRhs, _piAddr, piChild, i + 1);
 		iTab--;
 	}
 	return 0;;
 }
 
-int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_double_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows           = 0;
@@ -156,24 +156,24 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//not in list
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+			sciErr = getComplexMatrixOfDouble(_pvCtx, _piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 		}
 		else
 		{
-			sciErr = getMatrixOfDouble(pvApiCtx, _piAddr, &iRows, &iCols, &pdblReal);
+			sciErr = getMatrixOfDouble(_pvCtx, _piAddr, &iRows, &iCols, &pdblReal);
 		}
 	}
 	else
 	{
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexMatrixOfDoubleInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal, &pdblImg);
+			sciErr = getComplexMatrixOfDoubleInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal, &pdblImg);
 		}
 		else
 		{
-			sciErr = getMatrixOfDoubleInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal);
+			sciErr = getMatrixOfDoubleInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal);
 		}
 	}
 
@@ -188,7 +188,7 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	return 0;;
 }
 
-int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int i;
@@ -200,7 +200,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	double** pdblReal   = NULL;
 	double** pdblImg    = NULL;
 
-	sciErr = getPolyVariableName(pvApiCtx, _piAddr, pstVar, &iLen);
+	sciErr = getPolyVariableName(_pvCtx, _piAddr, pstVar, &iLen);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -209,7 +209,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//not in list
-		sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, NULL, NULL);
+		sciErr = getMatrixOfPoly(_pvCtx, _piAddr, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -217,7 +217,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piCoeff     = (int*)malloc(sizeof(int) * iRows * iCols);
-		sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, NULL);
+		sciErr = getMatrixOfPoly(_pvCtx, _piAddr, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -233,9 +233,9 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+			sciErr = getComplexMatrixOfPoly(_pvCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -244,7 +244,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 		else
 		{
-			sciErr = getMatrixOfPoly(pvApiCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal);
+			sciErr = getMatrixOfPoly(_pvCtx, _piAddr, &iRows, &iCols, piCoeff, pdblReal);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -254,7 +254,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	}
 	else
 	{
-		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
+		sciErr = getMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -263,7 +263,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
 
-		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
+		sciErr = getMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -279,13 +279,13 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+			sciErr = getComplexMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
 		}
 		else
 		{
-			sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal);
+			sciErr = getMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal);
 		}
 	}
 
@@ -309,7 +309,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	free(piCoeff);
 	return 0;;
 }
-int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_boolean_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows       = 0;
@@ -318,11 +318,11 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{
-		sciErr = getMatrixOfBoolean(pvApiCtx, _piAddr, &iRows, &iCols, &piBool);
+		sciErr = getMatrixOfBoolean(_pvCtx, _piAddr, &iRows, &iCols, &piBool);
 	}
 	else
 	{
-		sciErr = getMatrixOfBooleanInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piBool);
+		sciErr = getMatrixOfBooleanInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &piBool);
 	}
 
 	if(sciErr.iErr)
@@ -335,7 +335,7 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean (%d x %d)\n", iRows, iCols);
 	return 0;
 }
-int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_sparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows           = 0;
@@ -348,24 +348,24 @@ int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//Not in list
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
+			sciErr = getComplexSparseMatrix(_pvCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
 		}
 		else
 		{
-			sciErr = getSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
+			sciErr = getSparseMatrix(_pvCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
 		}
 	}
 	else
 	{
-		if(isVarComplex(pvApiCtx, _piAddr))
+		if(isVarComplex(_pvCtx, _piAddr))
 		{
-			sciErr = getComplexSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
+			sciErr = getComplexSparseMatrixInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
 		}
 		else
 		{
-			sciErr = getSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
+			sciErr = getSparseMatrixInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
 		}
 	}
 
@@ -374,7 +374,7 @@ int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	return 0;;
 }
 
-int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_bsparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows       = 0;
@@ -385,11 +385,11 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//Not in list
-		sciErr = getBooleanSparseMatrix(pvApiCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
+		sciErr = getBooleanSparseMatrix(_pvCtx, _piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
 	}
 	else
 	{
-		sciErr = getBooleanSparseMatrixInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
+		sciErr = getBooleanSparseMatrixInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
 	}
 
 	if(sciErr.iErr)
@@ -402,7 +402,7 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
 	return 0;;
 }
-int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_integer_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iPrec               = 0;
@@ -417,7 +417,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//Not in list
-		sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddr, &iPrec);
+		sciErr = getMatrixOfIntegerPrecision(_pvCtx, _piAddr, &iPrec);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -427,22 +427,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		switch(iPrec)
 		{
 		case SCI_INT8 :
-			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pcData);
+			sciErr = getMatrixOfInteger8(_pvCtx, _piAddr, &iRows, &iCols, &pcData);
 			break;
 		case SCI_INT16 :
-			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &psData);
+			sciErr = getMatrixOfInteger16(_pvCtx, _piAddr, &iRows, &iCols, &psData);
 			break;
 		case SCI_INT32 :
-			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &piData);
+			sciErr = getMatrixOfInteger32(_pvCtx, _piAddr, &iRows, &iCols, &piData);
 			break;
 		case SCI_UINT8 :
-			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pucData);
+			sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _piAddr, &iRows, &iCols, &pucData);
 			break;
 		case SCI_UINT16 :
-			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &pusData);
+			sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _piAddr, &iRows, &iCols, &pusData);
 			break;
 		case SCI_UINT32 :
-			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &puiData);
+			sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _piAddr, &iRows, &iCols, &puiData);
 			break;
 		default :
 			return 1;
@@ -450,7 +450,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	}
 	else
 	{
-		sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddr, &iPrec);
+		sciErr = getMatrixOfIntegerPrecision(_pvCtx, _piAddr, &iPrec);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -460,22 +460,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		switch(iPrec)
 		{
 		case SCI_INT8 :
-			sciErr = getMatrixOfInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pcData);
+			sciErr = getMatrixOfInteger8InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &pcData);
 			break;
 		case SCI_INT16 :
-			sciErr = getMatrixOfInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &psData);
+			sciErr = getMatrixOfInteger16InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &psData);
 			break;
 		case SCI_INT32 :
-			sciErr = getMatrixOfInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piData);
+			sciErr = getMatrixOfInteger32InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &piData);
 			break;
 		case SCI_UINT8 :
-			sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
+			sciErr = getMatrixOfUnsignedInteger8InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
 			break;
 		case SCI_UINT16 :
-			sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pusData);
+			sciErr = getMatrixOfUnsignedInteger16InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &pusData);
 			break;
 		case SCI_UINT32 :
-			sciErr = getMatrixOfUnsignedInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &puiData);
+			sciErr = getMatrixOfUnsignedInteger32InList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, &puiData);
 			break;
 		default :
 			return 1;
@@ -498,7 +498,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
 	return 0;;
 }
-int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int i;
@@ -509,7 +509,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	if(_iItemPos == 0)
 	{//Not in list
-		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, NULL, NULL);
+		sciErr = getMatrixOfString(_pvCtx, _piAddr, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -517,7 +517,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, piLen, NULL);
+		sciErr = getMatrixOfString(_pvCtx, _piAddr, &iRows, &iCols, piLen, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -531,7 +531,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 		}
 
-		sciErr = getMatrixOfString(pvApiCtx, _piAddr, &iRows, &iCols, piLen, pstData);
+		sciErr = getMatrixOfString(_pvCtx, _piAddr, &iRows, &iCols, piLen, pstData);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -540,7 +540,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	}
 	else
 	{
-		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
+		sciErr = getMatrixOfStringInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -549,7 +549,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 
-		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
+		sciErr = getMatrixOfStringInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -563,7 +563,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 		}
 
-		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, pstData);
+		sciErr = getMatrixOfStringInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, pstData);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -580,18 +580,18 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Strings (%d x %d)\n", iRows, iCols);
 	return 0;;
 }
-int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
+int get_pointer_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	void* pvPtr     = NULL;
 
 	if(_iItemPos == 0)
 	{
-		sciErr = getPointer(pvApiCtx, _piAddr, &pvPtr);
+		sciErr = getPointer(_pvCtx, _piAddr, &pvPtr);
 	}
 	else
 	{
-		sciErr = getPointerInList(pvApiCtx, _piParent, _iItemPos, &pvPtr);
+		sciErr = getPointerInList(_pvCtx, _piParent, _iItemPos, &pvPtr);
 	}
 
 	if(sciErr.iErr)

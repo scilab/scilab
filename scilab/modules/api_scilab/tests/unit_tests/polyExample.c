@@ -60,7 +60,7 @@ int polyExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, 1, 1, &iNbCoef, &pdblReal, &pdblImg);
+                sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, 1, 1, &iNbCoef, &pdblReal, &pdblImg);
                 if (sciErr.iErr)
                 {
                     freeAllocatedSingleComplexPoly(pdblReal, pdblImg);
@@ -79,7 +79,7 @@ int polyExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, 1, 1, &iNbCoef, &pdblReal);
+                sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, 1, 1, &iNbCoef, &pdblReal);
                 if (sciErr.iErr)
                 {
                     freeAllocatedSinglePoly(pdblReal);
@@ -107,7 +107,7 @@ int polyExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+                sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
                 if (sciErr.iErr)
                 {
                     freeAllocatedMatrixOfComplexPoly(iRows, iCols, piNbCoef, pdblReal, pdblImg);
@@ -126,7 +126,7 @@ int polyExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+                sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
                 if (sciErr.iErr)
                 {
                     freeAllocatedMatrixOfPoly(iRows, iCols, piNbCoef, pdblReal);
@@ -138,11 +138,11 @@ int polyExample(char *fname, unsigned long fname_len)
             }
         }
 
-        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     }
     else
     {
-        AssignOutputVariable(1) = 0;
+        AssignOutputVariable(pvApiCtx, 1) = 0;
     }
     return 0;
 }

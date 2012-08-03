@@ -46,7 +46,7 @@ int stringExample(char *fname, unsigned long fname_len)
                 return iRet;
             }
 
-            iRet = createSingleString(pvApiCtx, nbInputArgument + 1, pstData);
+            iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, pstData);
             if (iRet)
             {
                 freeAllocatedSingleString(pstData);
@@ -68,7 +68,7 @@ int stringExample(char *fname, unsigned long fname_len)
                 return iRet;
             }
 
-            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument + 1, iRows, iCols, pstData);
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, iRows, iCols, pstData);
             if (sciErr.iErr)
             {
                 freeAllocatedMatrixOfString(iRows, iCols, pstData);
@@ -79,11 +79,11 @@ int stringExample(char *fname, unsigned long fname_len)
             freeAllocatedMatrixOfString(iRows, iCols, pstData);
         }
 
-        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
     }
     else
     {
-        AssignOutputVariable(1) = 0;
+        AssignOutputVariable(pvApiCtx, 1) = 0;
     }
     return 0;
 }
