@@ -102,8 +102,18 @@ public final class MenuBarBuilder {
      * @param figureId the figure
      */
     public static void buildFigureMenuBar(String figureId) {
-        MenuBarBuilder.isParentValid = false;
-        buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+	boolean isheadless = false;
+	
+	try {
+	    Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+	    Method meth = clazz.getMethod("isHeadless");
+	    isheadless = (Boolean) meth.invoke(null);
+	} catch (Exception e) { System.err.println(e);}
+
+        if (!isheadless) {
+            MenuBarBuilder.isParentValid = false;
+            buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+        }
     }
 
     /**
