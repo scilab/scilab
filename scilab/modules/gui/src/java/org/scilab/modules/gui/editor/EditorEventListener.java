@@ -171,12 +171,9 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             // Part responsible for the exchange of properties of the GED.
             //If the GED is open, so the code is executed.
             if (Inspector.isInspectorOpened()) {
-                if (editor.getSelected() == null) {
-                    new SwapObject("axes or figure", windowUid, (Integer) arg0.getX(), (Integer) arg0.getY());
-                } else {
-                    new SwapObject("curve", editor.getSelected(), 0, 0);
-                }
+                EditorManager.getEditor().onClickGED();
             }
+
             polylineUidInit = DatatipDrag.getInitialInfo (windowUid, indexToMove, arg0.getX(), arg0.getY());
             if (polylineUidInit != null) {
                 dragDatatip = true;
