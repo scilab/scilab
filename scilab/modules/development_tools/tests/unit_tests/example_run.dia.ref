@@ -24,9 +24,7 @@ refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' modu
 assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
 assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
-example_run("xml");
-   TMPDIR = TMPDIR
-
+example_run("xml", [], "", "short_summary");
    001/001 - [TMPDIR/xml_help] : 
 
    001/030 - [TMPDIR/xml_help] XMLObjects_1..passed
@@ -62,99 +60,61 @@ example_run("xml");
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests             30 - 100 % 
-   passed            30 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             41.12 sec 
+   Tests:   30,    Passed:   30,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-example_run("functions", "argn");
-   TMPDIR = TMPDIR
-
+example_run("functions", "argn", "", "short_summary");
    001/001 - [TMPDIR/functions_help] : 
 
-   001/001 - [TMPDIR/functions_help] argn....passed
+   001/003 - [TMPDIR/functions_help] argn....passed
+   002/003 - [TMPDIR/functions_help] argn....passed
+   003/003 - [TMPDIR/functions_help] argn....passed
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests              1 - 100 % 
-   passed             1 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             1.30 sec 
+   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-example_run("core", ["extraction"; "insertion"]);
-   TMPDIR = TMPDIR
-
+example_run("core", ["extraction"; "insertion"], "", "short_summary");
    001/001 - [TMPDIR/core_help] : 
 
-   001/002 - [TMPDIR/core_help] extraction...passed
-   002/002 - [TMPDIR/core_help] insertion....passed
+   001/010 - [TMPDIR/core_help] extraction...passed
+   002/010 - [TMPDIR/core_help] insertion....passed
+   003/010 - [TMPDIR/core_help] extraction...passed
+   004/010 - [TMPDIR/core_help] insertion....passed
+   005/010 - [TMPDIR/core_help] extraction...passed
+   006/010 - [TMPDIR/core_help] insertion....passed
+   007/010 - [TMPDIR/core_help] extraction...passed
+   008/010 - [TMPDIR/core_help] insertion....passed
+   009/010 - [TMPDIR/core_help] extraction...passed
+   010/010 - [TMPDIR/core_help] insertion....passed
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests              2 - 100 % 
-   passed             2 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             2.56 sec 
+   Tests:   10,    Passed:   10,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-example_run("core", "extraction", "en_US");
-   TMPDIR = TMPDIR
-
+example_run("core", "extraction", "en_US", "short_summary");
    001/001 - [TMPDIR/core_help] : 
 
    001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests              1 - 100 % 
-   passed             1 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             1.24 sec 
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-example_run("core", "extraction", "en_US", "no_check_error_output");
-   TMPDIR = TMPDIR
-
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"]);
    001/001 - [TMPDIR/core_help] : 
 
    001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests              1 - 100 % 
-   passed             1 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             1.26 sec 
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-example_run("core", "extraction", "en_US", "no_check_error_output", TMPDIR + "/example_run.xml");
-   TMPDIR = TMPDIR
-
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"], TMPDIR + "/example_run.xml");
    001/001 - [TMPDIR/core_help] : 
 
    001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
-   Summary
-
-   tests              1 - 100 % 
-   passed             1 - 100 % 
-   failed             0 -   0 % 
-   skipped            0 -   0 % 
-   length             1.35 sec 
-   --------------------------------------------------------------------------
-   Export to          TMPDIR/example_run.xml 
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------

@@ -32,9 +32,9 @@ assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
 assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
 
-example_run("xml");
-example_run("functions", "argn");
-example_run("core", ["extraction"; "insertion"]);
-example_run("core", "extraction", "en_US");
-example_run("core", "extraction", "en_US", "no_check_error_output");
-example_run("core", "extraction", "en_US", "no_check_error_output", TMPDIR + "/example_run.xml");
+example_run("xml", [], "", "short_summary");
+example_run("functions", "argn", "", "short_summary");
+example_run("core", ["extraction"; "insertion"], "", "short_summary");
+example_run("core", "extraction", "en_US", "short_summary");
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"]);
+example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"], TMPDIR + "/example_run.xml");
