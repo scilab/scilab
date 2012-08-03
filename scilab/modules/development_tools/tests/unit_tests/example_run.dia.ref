@@ -13,17 +13,17 @@ assert_checkerror("example_run([""core"",""xml""]);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A row array of strings or empty matrix expected.\n"), "example_run", 2);
 assert_checkerror("example_run(""core"", 12);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A row array of strings or empty matrix expected.\n"), "example_run", 2);
-assert_checkerror("example_run(""core"", [""argn"", ""insertion""]);", refMsg);
+assert_checkerror("example_run(""core"", [""extraction"", ""insertion""]);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "example_run", 3);
-assert_checkerror("example_run(""core"", ""argn"", 12);", refMsg);
+assert_checkerror("example_run(""core"", ""extraction"", 12);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "example_run", 3);
-assert_checkerror("example_run(""core"", ""argn"", [""en_US"", ""fr_FR""]);", refMsg);
+assert_checkerror("example_run(""core"", ""extraction"", [""en_US"", ""fr_FR""]);", refMsg);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1);
 assert_checkerror("example_run(""toto"");", refMsg);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
 assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
-assert_checkerror("example_run(""core"", ""argn"", ""aa_BB"");", refMsg);
+assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
 example_run("xml");
    TMPDIR = TMPDIR
 
@@ -68,14 +68,14 @@ example_run("xml");
    passed            30 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             38.82 sec 
+   length             41.12 sec 
    --------------------------------------------------------------------------
-example_run("core", "argn");
+example_run("functions", "argn");
    TMPDIR = TMPDIR
 
-   001/001 - [TMPDIR/core_help] : 
+   001/001 - [TMPDIR/functions_help] : 
 
-   001/001 - [TMPDIR/core_help] argn.........passed
+   001/001 - [TMPDIR/functions_help] argn....passed
 
 
    --------------------------------------------------------------------------
@@ -85,14 +85,14 @@ example_run("core", "argn");
    passed             1 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             1.19 sec 
+   length             1.30 sec 
    --------------------------------------------------------------------------
-example_run("core", ["argn"; "insertion"]);
+example_run("core", ["extraction"; "insertion"]);
    TMPDIR = TMPDIR
 
    001/001 - [TMPDIR/core_help] : 
 
-   001/002 - [TMPDIR/core_help] argn.........passed
+   001/002 - [TMPDIR/core_help] extraction...passed
    002/002 - [TMPDIR/core_help] insertion....passed
 
 
@@ -103,14 +103,14 @@ example_run("core", ["argn"; "insertion"]);
    passed             2 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             2.38 sec 
+   length             2.56 sec 
    --------------------------------------------------------------------------
-example_run("core", "argn", "en_US");
+example_run("core", "extraction", "en_US");
    TMPDIR = TMPDIR
 
    001/001 - [TMPDIR/core_help] : 
 
-   001/001 - [TMPDIR/core_help] argn.........passed
+   001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
@@ -120,14 +120,14 @@ example_run("core", "argn", "en_US");
    passed             1 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             1.18 sec 
+   length             1.24 sec 
    --------------------------------------------------------------------------
-example_run("core", "argn", "en_US", "no_check_error_output");
+example_run("core", "extraction", "en_US", "no_check_error_output");
    TMPDIR = TMPDIR
 
    001/001 - [TMPDIR/core_help] : 
 
-   001/001 - [TMPDIR/core_help] argn.........passed
+   001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
@@ -137,14 +137,14 @@ example_run("core", "argn", "en_US", "no_check_error_output");
    passed             1 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             1.15 sec 
+   length             1.26 sec 
    --------------------------------------------------------------------------
-example_run("core", "argn", "en_US", "no_check_error_output", TMPDIR + "/example_run.xml");
+example_run("core", "extraction", "en_US", "no_check_error_output", TMPDIR + "/example_run.xml");
    TMPDIR = TMPDIR
 
    001/001 - [TMPDIR/core_help] : 
 
-   001/001 - [TMPDIR/core_help] argn.........passed
+   001/001 - [TMPDIR/core_help] extraction...passed
 
 
    --------------------------------------------------------------------------
@@ -154,7 +154,7 @@ example_run("core", "argn", "en_US", "no_check_error_output", TMPDIR + "/example
    passed             1 - 100 % 
    failed             0 -   0 % 
    skipped            0 -   0 % 
-   length             1.19 sec 
+   length             1.35 sec 
    --------------------------------------------------------------------------
    Export to          TMPDIR/example_run.xml 
    --------------------------------------------------------------------------
