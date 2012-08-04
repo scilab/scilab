@@ -34,6 +34,7 @@ Bug Fixes
 
 * Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
+* Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
