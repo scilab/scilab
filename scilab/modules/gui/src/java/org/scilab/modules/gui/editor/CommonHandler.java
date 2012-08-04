@@ -137,8 +137,7 @@ public class CommonHandler {
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             ret = PolylineData.createPolylineData(uid, dup);
-        }
-        else if (typeName == GraphicObjectProperties.__GO_PLOT3D__) {
+        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__) {
             ret = SurfaceData.createObject3dData(uid, dup, GraphicObjectProperties.__GO_PLOT3D__);
         }
 
@@ -163,8 +162,7 @@ public class CommonHandler {
             String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
             GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
             GraphicController.getController().setGraphicObjectRelationship(newCompound, uid);
-        }
-        else if (typeName == GraphicObjectProperties.__GO_PLOT3D__) {
+        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__) {
             GraphicController.getController().setGraphicObjectRelationship(axes, uid);
         }
     }
@@ -207,7 +205,7 @@ public class CommonHandler {
      * @param status true set object vidible false hide it.
      */
     public static void setVisible(String uid, boolean status) {
-       GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_VISIBLE__, status);
+        GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_VISIBLE__, status);
     }
 
     /**
@@ -216,13 +214,13 @@ public class CommonHandler {
      * @param figure figure unique identifier.
      */
     public static void unhideAll(String figure) {
-       String[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__};
-       String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
-       if (objs != null) {
-           for (int i = 0; i < objs.length; ++i) {
-               setVisible(objs[i], true);
-           }
-       }
+        String[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__};
+        String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
+        if (objs != null) {
+            for (int i = 0; i < objs.length; ++i) {
+                setVisible(objs[i], true);
+            }
+        }
     }
 
     /**
@@ -280,5 +278,27 @@ public class CommonHandler {
         Double[] cm1 = (Double[])GraphicController.getController().getProperty(from, GraphicObjectProperties.__GO_COLORMAP__);
         GraphicController.getController().setProperty(to, GraphicObjectProperties.__GO_COLORMAP__, cm1);
 
+    }
+
+    /**
+    * Clone the object background color(if colormap from both figures are different this won't work)
+    *
+    * @param objectFrom The object to get the backgound color
+    * @param objectTo The object to set the background color
+    */
+    public static void cloneBackgroundColor(String objectFrom, String objectTo) {
+
+        Integer color = (Integer)GraphicController.getController().getProperty(objectFrom, GraphicObjectProperties.__GO_BACKGROUND__);
+        GraphicController.getController().setProperty(objectTo, GraphicObjectProperties.__GO_BACKGROUND__, color);
+    }
+
+    public static Double[] getColorMap(String figure) {
+
+        return (Double[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_COLORMAP__);
+    }
+
+    public static Integer getBackground(String object) {
+
+        return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_BACKGROUND__);
     }
 }

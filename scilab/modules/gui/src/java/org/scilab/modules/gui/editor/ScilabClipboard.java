@@ -31,7 +31,7 @@ public class ScilabClipboard {
     String objectUid = null;
     Integer copiedColor = 0;
     boolean needDuplication = false;
-
+    String copyStyle;
 
     public static ScilabClipboard getInstance() {
         if (instance == null) {
@@ -45,7 +45,7 @@ public class ScilabClipboard {
     * @param uid object unique identifier.
     */
     public void copy(String uid) {
-    	objectUid = uid;
+        objectUid = uid;
         needDuplication = true;
     }
 
@@ -99,7 +99,7 @@ public class ScilabClipboard {
     * @param object object unique identifier.
     */
     public void cut(String object) {
-    	objectUid = object;
+        objectUid = object;
         needDuplication = false;
     }
 
@@ -109,7 +109,7 @@ public class ScilabClipboard {
     */
     public boolean canPaste() {
         if (!CommonHandler.objectExists(objectUid)) {
-        	objectUid = null;
+            objectUid = null;
             return false;
         }
         return true;
@@ -132,5 +132,48 @@ public class ScilabClipboard {
 
         return objectUid;
     }
+
+    /**
+    * Check if the object where the style will be copied exists
+    */
+    public boolean canPasteStyle() {
+
+        if (!CommonHandler.objectExists(copyStyle)) {
+            copyStyle = null;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+    * Copy store the object to copy style
+    *
+    * @param object The axes to store
+    */
+    public void copyStyle(String objectUID) {
+
+        copyStyle = objectUID;
+    }
+
+    /**
+    * Paste the Style of the object in the clipboard to a new object
+    *
+    * @param object The object to recieve the style
+    * @return The new axes pasted
+    */
+    public String pasteStyle(String objectUID) {
+
+        if (!canPasteStyle()) {
+            return null;
+        }
+        String newAxes = AxesHandler.cloneAxesWithStyle(copyStyle);
+        String figureFrom = CommonHandler.getParentFigure(copyStyle);
+        String figureTo = CommonHandler.getParentFigure(objectUID);
+        CommonHandler.cloneColorMap(figureFrom, figureTo);
+        CommonHandler.cloneBackgroundColor(figureFrom, figureTo);
+        AxesHandler.pasteAxesStyle(newAxes, objectUID);
+        return newAxes;
+    }
+
 }
 

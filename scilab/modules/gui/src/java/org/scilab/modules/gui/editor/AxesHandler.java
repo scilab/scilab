@@ -226,5 +226,113 @@ public class AxesHandler {
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
     }
 
+    /**
+    * Clone an axes with the same properties from the original
+    *
+    * @param axesFromUID The uid from the axes to clone
+    * @return The cloned axes UID
+    */
+    public static String cloneAxesWithStyle(String axesFromUID) {
+
+        String cloneUID = GraphicController.getController().cloneObject(axesFromUID);
+        Axes clone = (Axes)GraphicController.getController().getObjectFromId(cloneUID);
+        Axes axesFrom = (Axes)GraphicController.getController().getObjectFromId(axesFromUID);
+
+        Double[] margins = axesFrom.getMargins();
+        Integer boxType = axesFrom.getBoxType();
+        boolean markMode = axesFrom.getMarkMode();
+        Integer clipState = axesFrom.getClipState();
+        Integer markSize = axesFrom.getMarkSize();
+        Integer markStyle = axesFrom.getMarkStyle();
+        Integer markForeground = axesFrom.getMarkForeground();
+        Integer markBackground = axesFrom.getMarkBackground();
+        boolean lineMode = axesFrom.getLineMode();
+        Integer lineStyle = axesFrom.getLineStyle();
+        Double lineThickness = axesFrom.getLineThickness();
+        Integer lineColor = axesFrom.getLineColor();
+        Double[] rotationAngles = axesFrom.getRotationAngles();
+        boolean XAxisVisible = axesFrom.getXAxisVisible();
+        boolean YAxisVisible = axesFrom.getYAxisVisible();
+        boolean ZAxisVisible = axesFrom.getZAxisVisible();
+        boolean XAxisReverse = axesFrom.getXAxisReverse();
+        boolean YAxisReverse = axesFrom.getYAxisReverse();
+        boolean ZAxisReverse = axesFrom.getZAxisReverse();
+        Integer XAxisGridColor = axesFrom.getXAxisGridColor();
+        Integer YAxisGridColor = axesFrom.getYAxisGridColor();
+        Integer ZAxisGridColor = axesFrom.getZAxisGridColor();
+        Integer fontStyle = axesFrom.getFontStyle();
+        Double fontSize = axesFrom.getFontSize();
+        Integer fontColor = axesFrom.getFontColor();
+        boolean fontFractional = axesFrom.getFontFractional();
+        Integer hiddenColor = axesFrom.getHiddenColor();
+        boolean tightLimits = axesFrom.getTightLimits();
+
+        clone.setMargins(margins);
+        clone.setBoxType(boxType);
+        clone.setClipState(clipState);
+        clone.setMarkMode(markMode);
+        clone.setMarkStyle(markStyle);
+        clone.setMarkSize(markSize);
+        clone.setMarkBackground(markBackground);
+        clone.setMarkForeground(markForeground);
+        clone.setLineMode(lineMode);
+        clone.setLineStyle(lineStyle);
+        clone.setLineThickness(lineThickness);
+        clone.setLineColor(lineColor);
+
+        clone.setRotationAngles(rotationAngles);
+        clone.setXAxisVisible(XAxisVisible);
+        clone.setYAxisVisible(YAxisVisible);
+        clone.setZAxisVisible(ZAxisVisible);
+        clone.setXAxisReverse(XAxisReverse);
+        clone.setYAxisReverse(YAxisReverse);
+        clone.setZAxisReverse(ZAxisReverse);
+        clone.setXAxisGridColor(XAxisGridColor);
+        clone.setYAxisGridColor(YAxisGridColor);
+        clone.setZAxisGridColor(ZAxisGridColor);
+        clone.setFontStyle(fontStyle);
+        clone.setFontSize(fontSize);
+        clone.setFontColor(fontColor);
+        clone.setFontFractional(fontFractional);
+        clone.setHiddenColor(hiddenColor);
+        clone.setTightLimits(tightLimits);
+
+        return cloneUID;
+    }
+
+    /**
+    * Cuts the original from the figure, paste the new axes in the figure and copy
+    * the childrens, data bounds and title from the original axes to the new one
+    *
+    * @param newAxesUID The uid from the new axes to paste
+    * @param axesToUID The uid from the axes to be cut
+    */
+    public static void pasteAxesStyle(String newAxesUID, String axesToUID) {
+
+        if (newAxesUID == null || axesToUID == null) {
+            return;
+        }
+        Axes newAxes = (Axes)GraphicController.getController().getObjectFromId(newAxesUID);
+        Axes axesTo = (Axes)GraphicController.getController().getObjectFromId(axesToUID);
+
+        Double[] dataBounds = axesTo.getDataBounds();
+
+        Double[] realDataBounds = axesTo.getRealDataBounds();
+
+        String[] children = axesTo.getChildren();
+
+        String parentUID = axesTo.getParent();
+
+        String title = axesTo.getTitle();
+
+        newAxes.setDataBounds(dataBounds);
+        newAxes.setRealDataBounds(realDataBounds);
+        newAxes.setTitle(title);
+        for (Integer i = 0; i < children.length; i++) {
+            GraphicController.getController().setGraphicObjectRelationship(newAxesUID, children[i]);
+        }
+        GraphicController.getController().setGraphicObjectRelationship(parentUID, newAxesUID);
+        GraphicController.getController().setGraphicObjectRelationship("", axesToUID);
+    }
 }
 
