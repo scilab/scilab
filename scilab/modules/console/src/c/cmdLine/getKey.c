@@ -298,7 +298,7 @@ char *getCmdLine(void)
 
     if (isatty(fileno(stdin)))
     {
-        /* We are in a pipe */
+        /* We are not in a pipe */
         printPrompt(WRITE_PROMPT);
         setCharDisplay(DISP_BRIGHT);
     }
