@@ -233,7 +233,7 @@
 
     <submenu label="Scilab Graphic Editor - GED">
       <submenu label="&amp;Quick Editor">
-        <callback instruction="org.scilab.modules.gui.ged.StartGED.quickGED" type="3"/>
+        <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
       </submenu>
     </submenu>
 

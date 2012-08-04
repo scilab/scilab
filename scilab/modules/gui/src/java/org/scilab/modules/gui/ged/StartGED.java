@@ -12,7 +12,8 @@
 
 package org.scilab.modules.gui.ged;
 
-import org.scilab.modules.gui.editor.EditorEventListener;
+import org.scilab.modules.gui.editor.Editor;
+import org.scilab.modules.gui.editor.EditorManager;
 
 /**
  * Manages the action of the buttons on the toolbar and menubar.
@@ -24,7 +25,8 @@ public class StartGED {
     /**
     * Initializes the lightGED.
     */
-    public static void quickGED() {
-        Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, EditorEventListener.windowUid, 1, 1);
+    public static void quickGED(String uid) {
+        Editor instanceEditor = EditorManager.getFromUid(uid);
+        instanceEditor.onClickGED();
     }
 }

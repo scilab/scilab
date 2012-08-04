@@ -392,10 +392,16 @@
     <ClCompile Include="..\jni\EditorManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\StartGED.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_fire_closing_finished.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -852,6 +858,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\EditorManager.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\StartGED.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
