@@ -164,13 +164,21 @@ static void endCopyPast(wchar_t * commandLine)
     int sizeOfCmd = 0;
 
     sizeOfCmd = wcslen(commandLine);
-    if (commandLine[sizeOfCmd - 1] == L'\n')
+
+    if (sizeOfCmd == 0)
     {
         setTokenInteruptExecution(SEND_COMMAND);
     }
     else
     {
-        setTokenInteruptExecution(CONTINUE_COMMAND);
+        if (commandLine[sizeOfCmd - 1] == L'\n')
+        {
+            setTokenInteruptExecution(SEND_COMMAND);
+        }
+        else
+        {
+            setTokenInteruptExecution(CONTINUE_COMMAND);
+        }
     }
 }
 

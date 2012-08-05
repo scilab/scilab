@@ -42,6 +42,8 @@ Bug Fixes
 
 * Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
+* Bug #11640 fixed - Plug back the same behavior as 5.3.3 when STDIN is closed.
+
 * Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
 
 * Bug #11647 fixed - The phrase "The system cannot find the file specified." in
