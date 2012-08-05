@@ -9,6 +9,13 @@ Obsolete functions
   Please use 'preferences' instead.
 
 
+Documentation
+=============
+
+* Categories have been created for the following modules help pages:
+  - Functions: libraries sub-category (See bug #11642)
+
+
 Bug Fixes
 =========
 
