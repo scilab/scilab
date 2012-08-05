@@ -1,6 +1,7 @@
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
+
 Obsolete functions
 ==================
 
@@ -35,6 +36,8 @@ Bug Fixes
 * Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
 * Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
+
+* Bug #11654 fixed - Rendering of the title of genetic algorithms help pages improved.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
