@@ -12,6 +12,7 @@ Obsolete functions
 Documentation
 =============
 
+
 * Categories have been created for the following modules help pages:
     - Functions (libraries sub-category). See bug #11642.
     - Linear algebra. See bug #11562.
@@ -54,6 +55,8 @@ Bug Fixes
                      rmdir was not localized.
 
 * Bug #11654 fixed - Rendering of the title of genetic algorithms help pages improved.
+
+* Bug #11655 fixed - external_object help chapter was empty.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
