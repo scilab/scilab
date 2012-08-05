@@ -37,6 +37,9 @@ Bug Fixes
 
 * Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
 
+* Bug #11647 fixed - The phrase "The system cannot find the file specified." in
+                     rmdir was not localized.
+
 * Bug #11654 fixed - Rendering of the title of genetic algorithms help pages improved.
 
 
