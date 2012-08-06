@@ -410,7 +410,9 @@ public class EntityPicker {
         Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f*pos[0], 1.0f*pos[1], 1.0));
         Vector3d Dir = v0.minus(v1).getNormalized();
 
-        String[] objs = (new ObjectSearcher()).search(figure, GraphicObjectProperties.__GO_PLOT3D__);
+
+        String[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__};
+        String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         double Z = 2.0;
         String picked = null;
         if (objs != null) {

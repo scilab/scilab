@@ -15,6 +15,7 @@ extern "C"
 {
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -90,7 +91,6 @@ public:
     }
 };
 
-typedef Vec3 Vector3d;
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret);
 
 /*
@@ -106,43 +106,94 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
     double* Y = NULL;
     double* Z = NULL;
 
-    int numX = 0;
-    int* piNumX = &numX;
-    int numY = 0;
-    int* piNumY = &numY;
+    char *type;
+    double lastZ = 2.0;
 
-    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
-    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
-
-    if (numX == 0 || numY == 0)
-    {
-        return 2.0;
-    }
+    Vec3 direction = Vec3(dx, dy, dz);
+    Vec3 point = Vec3(x, y, z);
 
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &X);
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
 
-    double lastZ = 2.0;
 
-    /* for each quad in the mesh separate it in 2 triangles
-     * and use test_tri function to test intersection from
-     * mouse click ray
-     * A point (x, y, z)  at (n,m) is given by
-     * (X[n], Y[m], Z[n][m]) where X, Y are vectors and Z a matrix.
-     */
-    for (int i = 0; i < (numX-1); ++i)
+    getGraphicObjectProperty(uid, __GO_TYPE__, jni_string, (void**) &type);
+    if (strcmp(type, __GO_PLOT3D__) == 0)
     {
-        for (int j = 0; j < (numY-1); ++j)
+
+        int numX = 0;
+        int* piNumX = &numX;
+        int numY = 0;
+        int* piNumY = &numY;
+
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
+
+        /* for each quad in the mesh separate it in 2 triangles
+         * and use test_tri function to test intersection from
+         * mouse click ray
+         * A point (x, y, z)  at (n,m) is given by
+         * (X[n], Y[m], Z[n][m]) where X, Y are vectors and Z a matrix.
+         */
+        for (int i = 0; i < (numX-1); ++i)
         {
-            Vector3d P0 = Vector3d(X[i],   Y[j],   Z[i + j*numX]);
-            Vector3d P1 = Vector3d(X[i+1], Y[j],   Z[(i+1) + j*numX]);
-            Vector3d P2 = Vector3d(X[i+1], Y[j+1], Z[(i+1) + (j+1)*numX]);
-            Vector3d P3 = Vector3d(X[i],   Y[j+1], Z[i + (j+1)*numX]);
-            Vector3d ret;
+            for (int j = 0; j < (numY-1); ++j)
+            {
+                Vec3 P0 = Vec3(X[i],   Y[j],   Z[i + j*numX]);
+                Vec3 P1 = Vec3(X[i+1], Y[j],   Z[(i+1) + j*numX]);
+                Vec3 P2 = Vec3(X[i+1], Y[j+1], Z[(i+1) + (j+1)*numX]);
+                Vec3 P3 = Vec3(X[i],   Y[j+1], Z[i + (j+1)*numX]);
+                Vec3 ret;
+
+                /*test first triangle*/
+                if (test_tri(P0, P1, P2, direction, point, ret) == 1)
+                {
+                    /* ray intersects the triangle, then we project only the Z cordinate
+                     * and store the nearest projected Z.
+                     */
+                    double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+                    lastZ = lastZ < curZ ? lastZ : curZ;
+                }
+                /*test second triangle*/
+                if (test_tri(P0, P2, P3, direction, point, ret) == 1)
+                {
+                    double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+                    lastZ = lastZ < curZ ? lastZ : curZ;
+                }
+            }
+        }
+    } 
+    else if (strcmp(type, __GO_FAC3D__) == 0)
+    {
+        int ng = 0, nvg = 0;
+        int *png = &ng, *pnvg = &nvg;
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &png);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pnvg);
+
+        if (nvg != 4)
+        {
+            return 2.0;
+        }
+
+        /*
+         * Fac3d data model is made by gons
+         * each gon should be a quad
+         * ordered in the vector 
+         * X = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+         * Y = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+         * Z = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+         * where a point is given by (x, y, z)
+         */
+        for (int i = 0; i < ng*nvg; i+= nvg)
+        {
+            Vec3 P0 = Vec3(X[i],   Y[i],   Z[i]);
+            Vec3 P1 = Vec3(X[i+1], Y[i+1], Z[i+1]);
+            Vec3 P2 = Vec3(X[i+2], Y[i+2], Z[i+2]);
+            Vec3 P3 = Vec3(X[i+3], Y[i+3], Z[i+3]);
+            Vec3 ret;
 
             /*test first triangle*/
-            if (test_tri(P0, P1, P2, Vec3(dx, dy, dz), Vec3(x, y, z), ret) == 1)
+            if (test_tri(P0, P1, P2, direction, point, ret) == 1)
             {
                 /* ray intersects the triangle, then we project only the Z cordinate
                  * and store the nearest projected Z.
@@ -151,15 +202,13 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
                 lastZ = lastZ < curZ ? lastZ : curZ;
             }
             /*test second triangle*/
-            if (test_tri(P0, P2, P3, Vec3(dx, dy, dz), Vec3(x, y, z), ret) == 1)
+            if (test_tri(P0, P2, P3, direction, point, ret) == 1)
             {
                 double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
                 lastZ = lastZ < curZ ? lastZ : curZ;
             }
-
         }
     }
-
 
     return lastZ;
 
