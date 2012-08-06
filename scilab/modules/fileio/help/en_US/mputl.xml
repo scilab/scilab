@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -12,51 +12,59 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mputl" xml:lang="en">
-  <refnamediv>
-    <refname>mputl</refname>
-    <refpurpose>writes strings in an ascii file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>r = mputl(txt ,file_desc)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>returns %t or %f to check if function has correctly written on
-            the file.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>file_desc</term>
-        <listitem>
-          <para>A character string giving the name of the file or a logical
-            unit returned by mopen.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>txt</term>
-        <listitem>
-          <para>a vector of strings.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>mputl</literal> function allows to write a vector of
-      strings as a sequence of lines in an ascii file.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>mputl</refname>
+        <refpurpose>writes strings in a text file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>r = mputl(txt, file_desc)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        returns <literal>%t</literal> or <literal>%f</literal> to check 
+                        if function has correctly wrote on the file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_desc</term>
+                <listitem>
+                    <para>
+                        a character string giving the name of the file or 
+                    </para>
+                    <para>
+                        an integer scalar: a file descriptor returned by 
+                        <function>mopen</function> function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>a vector of strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>mputl</function> function allows to write a vector of
+            strings as a sequence of lines in a text file.
+        </para>
+        <para>
+            <function>mputl</function> supports strings encoded as ANSI/ASCII and UTF-8.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 fd = mopen(TMPDIR+'/text_mputl.txt','wt');
 mputl('Hello World',fd);
 mclose(fd);
@@ -67,34 +75,34 @@ fd = mopen(TMPDIR+'/text_mputl.txt','rt');
 disp(mgetl(fd));
 mclose(fd);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="write">write</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -12,69 +12,68 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mgetl">
-  <refnamediv>
-    <refname>mgetl</refname>
-    <refpurpose>reads lines from an text file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>txt = mgetl(file_desc [,m])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>file_desc</term>
-        <listitem>
-          <para>
-            a character string giving the file name or a logical unit 
-            returned by <function>mopen</function>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>m</term>
-        <listitem>
-          <para>
-            an integer scalar: a number of lines to read. Default value is -1.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>txt</term>
-        <listitem>
-          <para>a column vector of strings.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <function>mgetl</function> function allows to read a lines from an text file.
-    </para>
-    <para>
-      If <varname>m</varname> is omitted or is <literal>-1</literal> all lines till end of file occurs are read.
-    </para>
-    <para>
-      If <varname>m</varname> is given <function>mgetl</function> tries to
-      read exactly <varname>m</varname> lines. This option is useful to
-      sequentialy read part of a file. In this case if an end of file (EOF)
-      occurs before <varname>m</varname> lines are read the read lines are
-      returned (it is possible to check if EOF had occurred using the
-      <function>meof</function> function) issued.
-    </para>
-    <para>
-      <function>mgetl</function> allows to read files coming from Unix,
-      Windows or Mac operating systems.
-    </para>
-    <para>
-      <function>mgetl</function> supports only UTF-8 and ANSI file encoding.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>mgetl</refname>
+        <refpurpose>reads lines from an text file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>txt = mgetl(file_desc [,m])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>file_desc</term>
+                <listitem>
+                    <para>
+                        a character string giving the file name or an integer giving a logical unit returned by <function>mopen</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        an integer scalar: a number of lines to read. Default value is -1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>a column vector of strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>mgetl</function> function allows to read a lines from an text file.
+        </para>
+        <para>
+            If <varname>m</varname> is omitted or is <literal>-1</literal> all lines till end of file occurs are read.
+        </para>
+        <para>
+            If <varname>m</varname> is given <function>mgetl</function> tries to
+            read exactly <varname>m</varname> lines. This option is useful to
+            sequentialy read part of a file. In this case if an end of file (EOF)
+            occurs before <varname>m</varname> lines are read the read lines are
+            returned (it is possible to check if EOF had occurred using the
+            <function>meof</function> function) issued.
+        </para>
+        <para>
+            <function>mgetl</function> allows to read files coming from Unix,
+            Windows or Mac operating systems.
+        </para>
+        <para>
+            <function>mgetl</function> supports only UTF-8 and ANSI file encoding.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 mgetl('SCI/etc/scilab.start',5)
 
 mgetl SCI/modules/elementary_functions/macros/erf.sci
@@ -83,34 +82,34 @@ fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="read">read</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

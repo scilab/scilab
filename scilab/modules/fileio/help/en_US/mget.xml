@@ -12,173 +12,173 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mget" xml:lang="en">
-  <refnamediv>
-    <refname>mget</refname>
-    <refpurpose>reads byte or word in a given binary format and converts to
-      a double type
-    </refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="mgeti">
-    <refname>mgeti</refname>
-    <refpurpose>
-      reads byte or word in a given binary format and returns an int type
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      x = mget([n, type, fd])
-      x = mgeti([n, type, fd])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>a positive scalar: the number of items to be read.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fd</term>
-        <listitem>
-          <para>
-            a scalar: the <varname>fd</varname> parameter returned by the
-            function <function>mopen</function>. -1 stands for the last 
-            opened file. Default value is -1.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>type</term>
-        <listitem>
-          <para>
-            a string: the binary format used to write all the entries of 
-            <varname>x</varname>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>a vector of floating point or integer numbers.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The <function>mget</function> function reads data in the input
-      specified by the stream parameter <varname>fd</varname> and returns a
-      vector of floating point data. 
-    </para>
-     
-    <para>
-      The <function>mgeti</function> function reads data in the input 
-      specified by the stream parameter <varname>fd</varname> and returns a 
-      vector of integer data.
-    </para>
-    <para>
-      Data is read at the position at which the file pointer is currently
-      pointing and advances the indicator appropriately.
-    </para>
-    <para>
-      The <varname>type</varname> parameter is a conversion specifier
-      which may be set to any of the following flag characters (with default 
-      value <literal>"l"</literal>):
-    </para>
-    <para>
-      <note>
-        On Windows, default behavior is to skip byte 13 (0x0D). 
-        <function>mopen</function> should be called with the 
-        <literal>'b'</literal> option, e.g. 
-        <code>fd1=mopen(file1,'rb')</code>, so that all bytes will be read 
-        without exception.
-      </note>
-    </para>
-    <para>Data type:</para>
-    <variablelist>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>double</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>float</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>l</term>
-        <listitem>
-          <para>long</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>i</term>
-        <listitem>
-          <para>int</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>s</term>
-        <listitem>
-          <para>short</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>c</term>
-        <listitem>
-          <para>character</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>Optional flag:</para>
-    <variablelist>
-      <varlistentry>
-        <term>u..</term>
-        <listitem>
-          <para>unsigned (in combination with one of the above types)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>..l</term>
-        <listitem>
-          <para>
-            little endian (in combination with one of the above types)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>..b</term>
-        <listitem>
-          <para>
-            big endian (in combination with one of the above types)
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Bytes read is automatically swapped if necessary (by checking 
-      <literal>little=endian</literal> status).
-    </para>
-    <para>
-      This default swapping behavior can be suprressed by adding a flag in      
-      the <function>mopen</function> function.
-    </para>
-    <para>
-      Formats <literal>"l"</literal>, <literal>"d"</literal> and 
-      <literal>"f"</literal> are only valid with the 
-      <function>mget</function> function.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>mget</refname>
+        <refpurpose>reads byte or word in a given binary format and converts to
+            a double type
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="mgeti">
+        <refname>mgeti</refname>
+        <refpurpose>
+            reads byte or word in a given binary format and returns an int type
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            x = mget([n, type, fd])
+            x = mgeti([n, type, fd])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>a positive scalar: the number of items to be read.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal> 
+                        stands for last opened file. Default value is 
+                        <literal>-1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        a string: the binary format used to write all the entries of 
+                        <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a vector of floating point or integer numbers.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>mget</function> function reads data in the input
+            specified by the stream parameter <varname>fd</varname> and returns a
+            vector of floating point data. 
+        </para>
+        
+        <para>
+            The <function>mgeti</function> function reads data in the input 
+            specified by the stream parameter <varname>fd</varname> and returns a 
+            vector of integer data.
+        </para>
+        <para>
+            Data is read at the position at which the file pointer is currently
+            pointing and advances the indicator appropriately.
+        </para>
+        <para>
+            The <varname>type</varname> parameter is a conversion specifier
+            which may be set to any of the following flag characters (with default 
+            value <literal>"l"</literal>):
+        </para>
+        <para>
+            <note>
+                On Windows, default behavior is to skip byte 13 (0x0D). 
+                <function>mopen</function> should be called with the 
+                <literal>'b'</literal> option, e.g. 
+                <code>fd1=mopen(file1,'rb')</code>, so that all bytes will be read 
+                without exception.
+            </note>
+        </para>
+        <para>Data type:</para>
+        <variablelist>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>double</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>float</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>long</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>int</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>short</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>character</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Optional flag:</para>
+        <variablelist>
+            <varlistentry>
+                <term>u..</term>
+                <listitem>
+                    <para>unsigned (in combination with one of the above types)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>..l</term>
+                <listitem>
+                    <para>
+                        little endian (in combination with one of the above types)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>..b</term>
+                <listitem>
+                    <para>
+                        big endian (in combination with one of the above types)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Bytes read is automatically swapped if necessary (by checking 
+            <literal>little=endian</literal> status).
+        </para>
+        <para>
+            This default swapping behavior can be suprressed by adding a flag in      
+            the <function>mopen</function> function.
+        </para>
+        <para>
+            Formats <literal>"l"</literal>, <literal>"d"</literal> and 
+            <literal>"f"</literal> are only valid with the 
+            <function>mget</function> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 file1 = fullfile(TMPDIR,'test1.bin');
 file2 = fullfile(TMPDIR,'test2.bin');
 fd1=mopen(file1,'wb');
@@ -201,58 +201,58 @@ end
 mclose(fd1);
 mclose(fd2);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
