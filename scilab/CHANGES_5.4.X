@@ -13,7 +13,8 @@ Documentation
 =============
 
 * Categories have been created for the following modules help pages:
-  - Functions: libraries sub-category (See bug #11642)
+    - Functions (libraries sub-category). See bug #11642.
+    - Linear algebra. See bug #11562.
 
 
 Bug Fixes
