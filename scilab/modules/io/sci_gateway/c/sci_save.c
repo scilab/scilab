@@ -138,10 +138,10 @@ int sci_save(char *fname, unsigned long fname_len)
     }
 
 
-    //new -> %_export_to_hdf5
-    //old
-    if (iOldSave)
-    {
+    //old save
+
+    if (iOldSave && Rhs > 1)
+    {//show warning only for variable save, not for environment.
         if (getWarningMode())
         {
             sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));

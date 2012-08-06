@@ -31,6 +31,8 @@ Bug Fixes
 * Bug #11411 fixed - save function used unsigned char to store length of string.
                      Now it is an integer.
 
+* Bug #11426 fixed - Save function shew a warning message saving user environment.
+
 * Bug #11509 fixed - A progression bar was missing during Atoms operations.
 
 * Bug #11592 fixed - In the documentation, example of bessel failed.
