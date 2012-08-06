@@ -37,7 +37,6 @@ import org.scilab.modules.gui.editor.action.ActionPaste;
 import org.scilab.modules.gui.editor.action.ActionTextEdit;
 import org.scilab.modules.gui.editor.action.ActionPasteStyle;
 import org.scilab.modules.gui.ged.Inspector;
-import org.scilab.modules.gui.ged.SelectionEnum;
 import org.scilab.modules.gui.ged.SwapObject;
 import org.scilab.modules.localization.Messages;
 
@@ -737,32 +736,30 @@ public class Editor {
     }
 
     /**
-    * Starts the GED with the property selected by user.
+    * Starts the GED with the property of the Figure.
     */
     public void onClickGED() {
-        if (lastClick[0] != 0 && lastClick[1] != 0) {
-            String picked = tryPickAnyObject(lastClick);
-            if (picked != null) {
-                setSelected(picked);
-            }
-            if (getSelected() != null) {
-                switch (selectedType) {
-                    case LEGEND:
-                        Inspector.getInspector(SelectionEnum.LEGEND , selected, 0, 0);
-                        break;
-                    case POLYLINE:
-                        Inspector.getInspector(SelectionEnum.POLYLINE , selected, 0, 0);
-                        break;
-                    case SURFACE:
-                        Inspector.getInspector(SelectionEnum.SURFACE , selected, 0, 0);
-                        break;
-                }
-            } else {
-                Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, figureUid, lastClick[0], lastClick[1]);
+
+        String picked = tryPickAnyObject(lastClick);
+        if (picked != null) {
+            setSelected(picked);
+        }
+        if (getSelected() != null) {
+            switch (selectedType) {
+                case LEGEND:
+                    /*not implemented yet*/
+                    break;
+                case POLYLINE:
+                    Inspector.getInspector("curve" , selected, 0, 0);
+                    break;
+                case SURFACE:
+                    /*not implemented yet*/
+                    break;
             }
         } else {
-            Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, figureUid, 1, 1);
+            Inspector.getInspector("axes or figure", figureUid, lastClick[0], lastClick[1]);
         }
+
     }
 
     /**

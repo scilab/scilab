@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.polyline;
+package org.scilab.modules.gui.ged.curve;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -47,7 +47,7 @@ public class ColorDialog extends Style {
 
     /**
     * Receives and passes the objectID to the parent class.
-    * @param objectID Enters the identification of polyline.
+    * @param objectID Enters the identification of curve.
     */
     public ColorDialog(String objectID) {
         super(objectID);
@@ -180,7 +180,7 @@ public class ColorDialog extends Style {
     */
     private void setBackgroungColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+              .setProperty(currentcurve, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }
     
     /**

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 - Marcos Cardinot
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,21 +9,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.legend;
+package org.scilab.modules.gui.ged.curve;
 
 /**
-* Properties of the legend.
+* Properties of the curve.
 * Last child.
 *
-* @author Marcos CARDINOT <mcardinot@gmail.com>
+* @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Legend extends Layout {
+public class Curve extends Layout {
     /**
     * Initializes the components of the JPanel.
     *
-    * @param objectID Enters the identification of legend.
+    * @param objectID Enters the identification of curve.
     */
-    public Legend(String objectID) {
+    public Curve(String objectID) {
         super(objectID);
     }
 }

@@ -25,6 +25,6 @@ public class StartGED {
     * Initializes the lightGED.
     */
     public static void quickGED() {
-        Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, EditorEventListener.windowUid, 1, 1);
+        Inspector.getInspector("figure", EditorEventListener.windowUid, 1, 1);
     }
 }
