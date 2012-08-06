@@ -28,6 +28,9 @@ Bug Fixes
 * Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
                     duplicates.
 
+* Bug #11411 fixed - save function used unsigned char to store length of string.
+                     Now it is an integer.
+
 * Bug #11509 fixed - A progression bar was missing during Atoms operations.
 
 * Bug #11592 fixed - In the documentation, example of bessel failed.
