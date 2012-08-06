@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 import javax.swing.JPanel;
 

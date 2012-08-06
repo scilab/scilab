@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -44,11 +44,11 @@ public class BaseProperties extends Roof {
     protected JLabel lBaseProperties;
     protected JComboBox cVisible;
     protected JLabel lVisible;
-    protected String currentcurve = null;
+    protected String currentpolyline = null;
 
     /**
     * Initializes the properties and the icons of the buttons.
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
     public BaseProperties(String objectID){
         initPropertiesBase(objectID);
@@ -132,14 +132,14 @@ public class BaseProperties extends Roof {
     /**
     * Loads the current properties of the section Base Properties.
     *
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
     public void initPropertiesBase(String objectID) {
         if (objectID != null) {
-            currentcurve = objectID;
+            currentpolyline = objectID;
             // Get the current status of the property: Visible
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentcurve, GraphicObjectProperties.__GO_VISIBLE__);
+                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__);
             if (isVisible) {
                 cVisible.setSelectedIndex(1);
             } else {
@@ -162,10 +162,10 @@ public class BaseProperties extends Roof {
     private void bBasePropertiesActionPerformed(ActionEvent evt) {
         if (bBaseProperties.isSelected()) {
             pBaseProperties.setVisible(false);
-            HideCurve.checkAllButtons();
+            HidePolyline.checkAllButtons();
         } else {
             pBaseProperties.setVisible(true);
-            HideCurve.checkAllButtons();
+            HidePolyline.checkAllButtons();
         }
     }
 
@@ -179,6 +179,6 @@ public class BaseProperties extends Roof {
             setVisible = false;
         }
         GraphicController.getController()
-                .setProperty(currentcurve, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+                .setProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
     }
 }

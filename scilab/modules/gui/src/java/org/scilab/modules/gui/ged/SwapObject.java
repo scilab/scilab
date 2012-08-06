@@ -18,7 +18,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 import org.scilab.modules.gui.ged.axes.Axes;
-import org.scilab.modules.gui.ged.curve.Curve;
+import org.scilab.modules.gui.ged.polyline.Polyline;
 import org.scilab.modules.gui.ged.figure.Figure;
 
 /**
@@ -38,7 +38,7 @@ public class SwapObject {
     */
     public SwapObject(String select, String objectID, Integer clickX, Integer clickY) {
         if (select.equals("curve")) {
-            curve(objectID);
+            polyline(objectID);
         } else {
             Integer[] position = new Integer[2];
             position[0] = clickX;
@@ -99,7 +99,7 @@ public class SwapObject {
     *
     * @param objectID Enters the identification of curve.
     */
-    private void curve(String objectID) {
+    private void polyline(String objectID) {
         //Resets the panel.
         SwingInspector.pReceive.removeAll();
         SwingInspector.pReceive.repaint();
@@ -107,9 +107,9 @@ public class SwapObject {
         ShowHide.click = true;
         ShowHide.setIcon(1);
         //Load the curve panel.
-        SwingInspector.pReceive.add(new Curve(objectID));
+        SwingInspector.pReceive.add(new Polyline(objectID));
         try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.curve);
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
         } catch (NullPointerException npe){ }
     }
 

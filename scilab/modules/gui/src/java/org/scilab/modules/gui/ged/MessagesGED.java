@@ -27,14 +27,19 @@ public class MessagesGED {
     public static final String hide = Messages.gettext("Hide");
     public static final String show = Messages.gettext("Show");
     public static final String axes = Messages.gettext("Axes");
-    public static final String curve = Messages.gettext("Curve");
+    public static final String polyline = Messages.gettext("Polyline");
     public static final String figure = Messages.gettext("Figure");
+    public static final String legend = Messages.gettext("Legend");
+    public static final String surface = Messages.gettext("Surface");
 
     //Base Properties - Labels
     public static final String visible = Messages.gettext("Visible");
     public static final String base_properties = Messages.gettext("Base Properties");
     public static final String on = Messages.gettext("On");
     public static final String off = Messages.gettext("Off");
+    public static final String tag = Messages.gettext("Tag");
+    public static final String text = Messages.gettext("Text");
+    public static final String surface_mode = Messages.gettext("Surface Mode");
 
     //ColorDialog
     public static final String choose_background_color = Messages.gettext("Choose Background Color");

@@ -9,21 +9,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 /**
-* Properties of the curve.
+* Properties of the polyline.
 * Last child.
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Curve extends Layout {
+public class Polyline extends Layout {
     /**
     * Initializes the components of the JPanel.
     *
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
-    public Curve(String objectID) {
+    public Polyline(String objectID) {
         super(objectID);
     }
 }

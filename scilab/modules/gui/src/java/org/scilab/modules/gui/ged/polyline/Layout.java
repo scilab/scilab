@@ -9,12 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 import javax.swing.GroupLayout;
 
 /**
-* Construction and startup of all components of the Curve.
+* Construction and startup of all components of the Polyline.
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
@@ -22,7 +22,7 @@ public class Layout extends ColorDialog {
 
     /**
     * Receives and passes the objectID to the parent class.
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
     public Layout(String objectID) {
         super(objectID);
