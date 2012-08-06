@@ -23,7 +23,7 @@ $SCILAB : scilab path (SCI in Scilab)
     <option value="-Djava.compiler=JIT"/>
     <!-- Set Java Heap space to 256mb -->
     <option value="-Xmx256m"/>
-    <option value="-Dawt.useSystemAAFontSettings=on" />
+    <option value="-Dawt.useSystemAAFontSettings=on" os="linux"/>
     <option value="-Dapple.laf.useScreenMenuBar=true" os="macosx"/>
     
     <!-- workaround https://jogamp.org/bugzilla/show_bug.cgi?id=563 -->
