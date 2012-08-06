@@ -11,7 +11,7 @@ MPI_Init();
 rnk =    MPI_Comm_rank();
 sizeNodes =    MPI_Comm_size();
 
-if MPI_Comm_size() <> 2 then pause, end
+assert_checkequal(MPI_Comm_size(), 2);
 
 SLV = rnk;                // handy shortcuts, master is rank 0
 Master = ~ SLV;            // slaves are all other
