@@ -66,6 +66,7 @@ Bug Fixes
 
 * Bug #11659 fixed - twinkle displayed warning messages about show_pixmap function.
 
+* Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages. 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
