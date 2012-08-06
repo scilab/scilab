@@ -33,24 +33,24 @@ public class Inspector {
     /**
     * Constructor.
     *
-    * @param select Indicates which property window will open.
+    * @param selected Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public Inspector(String select , String objectID, Integer clickX, Integer clickY) {
+    public Inspector(SelectionEnum selected , String objectID, Integer clickX, Integer clickY) {
         TextBox infobar = ScilabTextBox.createTextBox();
-        inspectorTab = new SwingInspector(select , objectID, clickX, clickY);
+        inspectorTab = new SwingInspector(selected , objectID, clickX, clickY);
         inspectorTab.addInfoBar(infobar);
     }
 
     /**
      * Create the inspector (as tab) instance
-     * @param select Indicates which property window will open initially.
+     * @param selected Indicates which property window will open initially.
      * @param objectID Enters the identification of object.
      * @return the instance.
      */
-    public static SwingInspector createInspectorTab(String select, String objectID, Integer clickX, Integer clickY) {
+    public static SwingInspector createInspectorTab(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
         if (instance == null) {
-            instance = new Inspector(select , objectID, clickX, clickY);
+            instance = new Inspector(selected, objectID, clickX, clickY);
         }
 
         return inspectorTab;
@@ -76,15 +76,15 @@ public class Inspector {
     /**
     * Initializes the Inspector with the docking system.
     *
-    * @param select Indicates which property window will open initially.
+    * @param selected Indicates which property window will open initially.
     * @param objectID Enters the identification of object.
     * @return Shows the lightGED was generated.
     */
-    public static Inspector getInspector(String select, String objectID, Integer clickX, Integer clickY) {
+    public static Inspector getInspector(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
-                InspectorTab.getInspectorInstance(select, objectID, clickX, clickY);
+                InspectorTab.getInspectorInstance(selected, objectID, clickX, clickY);
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
@@ -96,7 +96,7 @@ public class Inspector {
                                        (SwingScilabWindow.class, (SwingInspector) inspectorTab);
             window.setVisible(true);
             window.toFront();
-            new SwapObject(select, objectID, clickX, clickY);
+            new SwapObject(selected, objectID, clickX, clickY);
         }
         return instance;
     }
