@@ -32,6 +32,9 @@ Compilation
 Bug Fixes
 =========
 
+* Bug #4337 fixed - who_user did not return user's variable names, they were
+                    only displayed.
+
 * Bug #7674 fixed - In all demos Optimization and Simulation, the source
                     code was displayed by default.
                     A messagebox now lets the choice to the user to display the

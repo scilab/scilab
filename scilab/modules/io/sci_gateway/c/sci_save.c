@@ -119,17 +119,10 @@ int sci_save(char *fname, unsigned long fname_len)
 
                 freeAllocatedSingleString(pstVarI);
             }
-
-            if(iOldSave == FALSE)
-            {
-                int lw = 0;
-                //call "overload" to prepare data to export_to_hdf5 function.
-                C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
-            }
         }
         else
         {
-            iOldSave = TRUE;
+            iOldSave = FALSE;
         }
     }
     else
@@ -137,6 +130,13 @@ int sci_save(char *fname, unsigned long fname_len)
         iOldSave = TRUE;
     }
 
+    //new save to sod format
+    if(iOldSave == FALSE)
+    {
+        int lw = 0;
+        //call "overload" to prepare data to export_to_hdf5 function.
+        C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+    }
 
     //old save
 

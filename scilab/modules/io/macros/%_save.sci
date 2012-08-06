@@ -7,8 +7,10 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+//2012/08/06 transform macros to string to save it
+
 //called by save function, transform handle in tlist and save result
-function [] = %_save(filename, varargin)
+function [] = %_save(%__filename__, varargin)
 
     function result = isList(var)
 
@@ -22,16 +24,34 @@ function [] = %_save(filename, varargin)
         end
     endfunction
 
+    function result = isMacro(var)
+        //11 : sci_u_function
+        if or(type(var) == [11]) then
+            result  = %t;
+        else
+            result = %f;
+        end
+    endfunction
+
+    function result = isCompiledMacro(var)
+        //11 : sci_c_function
+        if or(type(var) == [13]) then
+            result  = %t;
+        else
+            result = %f;
+        end
+    endfunction
+
     function result = inspectList(l)
     if typeof(l)=="list" then
         result = list();
-        for i = definedfields(l)
-            if typeof(l(i)) == "handle" then
-                result(i) = extractMatrixHandle(l(i));
-            elseif isList(l(i)) then
-                result(i) = inspectList(l(i));
+        for %__i__ = definedfields(l)
+            if typeof(l(%__i__)) == "handle" then
+                result(%__i__) = extractMatrixHandle(l(%__i__));
+            elseif isList(l(%__i__)) then
+                result(%__i__) = inspectList(l(%__i__));
             else
-                result(i) = l(i);
+                result(%__i__) = l(%__i__);
             end
         end
     else
@@ -59,8 +79,8 @@ function [] = %_save(filename, varargin)
         matrixHandle = tlist(["ScilabMatrixHandle", "dims", "values"]);
         matrixHandle.dims = size(h);
         matrixHandle.values = list();
-        for i = 1:size(h, "*")
-            matrixHandle.values($+1) = extractSingleHandle(h(i));
+        for %__i__ = 1:size(h, "*")
+            matrixHandle.values($+1) = extractSingleHandle(h(%__i__));
             if or(fieldnames(matrixHandle.values($))=="user_data") then // TODO Remove after graphic branch merge
                 if isList(matrixHandle.values($).user_data) then
                     matrixHandle.values($).user_data = inspectList(matrixHandle.values($).user_data)
@@ -152,11 +172,11 @@ function [] = %_save(filename, varargin)
             
         fields = fieldnames(returnedFigure);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "children" then
-                returnedFigure(fields(i)) = extractMatrixHandle(h(fields(i)));
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "children" then
+                returnedFigure(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
-                returnedFigure(fields(i)) = h(fields(i));
+                returnedFigure(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -184,8 +204,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedLabel);
 
-        for i = 1:size(fields, "*")
-            returnedLabel(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedLabel(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -200,8 +220,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedTicks);
 
-        for i = 1:size(fields, "*")
-            returnedTicks(fields(i)) = ticks(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedTicks(fields(%__i__)) = ticks(fields(%__i__));
         end
     endfunction
 
@@ -267,15 +287,15 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedAxes);
 
-        for i = 1:size(fields, "*")
-            if or(fields(i) == ["title","x_label","y_label","z_label"]) then
-                returnedAxes(fields(i)) = extractLabel(h(fields(i)));
-            elseif or(fields(i) == ["x_ticks", "y_ticks", "z_ticks"]) then
-                returnedAxes(fields(i)) = extractTicks(h(fields(i)));
-            elseif fields(i) == "children" then
-                returnedAxes(fields(i)) = extractMatrixHandle(h(fields(i)));
+        for %__i__ = 1:size(fields, "*")
+            if or(fields(%__i__) == ["title","x_label","y_label","z_label"]) then
+                returnedAxes(fields(%__i__)) = extractLabel(h(fields(%__i__)));
+            elseif or(fields(%__i__) == ["x_ticks", "y_ticks", "z_ticks"]) then
+                returnedAxes(fields(%__i__)) = extractTicks(h(fields(%__i__)));
+            elseif fields(%__i__) == "children" then
+                returnedAxes(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
-                returnedAxes(fields(i)) = h(fields(i));
+                returnedAxes(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -316,8 +336,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedPolyline);
 
-        for i = 1:size(fields, "*")
-            returnedPolyline(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedPolyline(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -364,13 +384,13 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedSurface);
 
-        for i = 1:size(fields, "*")
-            if fields(i)=="cdata_mapping" then
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__)=="cdata_mapping" then
                 if h.type=="Fac3d" then
-                    returnedSurface(fields(i)) = h(fields(i));
+                    returnedSurface(fields(%__i__)) = h(fields(%__i__));
                 end
             else
-                returnedSurface(fields(i)) = h(fields(i));
+                returnedSurface(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -388,11 +408,11 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedCompound);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "children" then
-                returnedCompound(fields(i)) = extractMatrixHandle(h(fields(i)));
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "children" then
+                returnedCompound(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
-                returnedCompound(fields(i)) = h(fields(i));
+                returnedCompound(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -424,8 +444,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedRectangle);
 
-        for i = 1:size(fields, "*")
-            returnedRectangle(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedRectangle(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -451,8 +471,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedArc);
 
-        for i = 1:size(fields, "*")
-            returnedArc(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedArc(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -475,8 +495,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedChamp);
 
-        for i = 1:size(fields, "*")
-            returnedChamp(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedChamp(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -505,8 +525,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedSeg);
 
-        for i = 1:size(fields, "*")
-            returnedSeg(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedSeg(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -526,8 +546,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedGrayplot);
 
-        for i = 1:size(fields, "*")
-            returnedGrayplot(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedGrayplot(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -546,8 +566,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedMatplot);
 
-        for i = 1:size(fields, "*")
-            returnedMatplot(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedMatplot(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -572,8 +592,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedFec);
 
-        for i = 1:size(fields, "*")
-            returnedFec(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedFec(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -605,17 +625,17 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedLegend);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "links" then
-                returnedLegend(fields(i)) = extractMatrixHandle(h(fields(i)));
-            elseif fields(i) == "paths" then
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "links" then
+                returnedLegend(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
+            elseif fields(%__i__) == "paths" then
                 p = list();
                 for kl=1:size(h.links,'*');
                     p($+1) = get_entity_path(h.links(kl));
                 end
-                returnedLegend(fields(i)) = p;
+                returnedLegend(fields(%__i__)) = p;
             else
-                returnedLegend(fields(i)) = h(fields(i));
+                returnedLegend(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -649,8 +669,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedText);
 
-        for i = 1:size(fields, "*")
-            returnedText(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedText(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -679,8 +699,8 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returnedAxis);
 
-        for i = 1:size(fields, "*")
-            returnedAxis(fields(i)) = h(fields(i));
+        for %__i__ = 1:size(fields, "*")
+            returnedAxis(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
@@ -704,11 +724,11 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returneduimenu);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "children" then
-                returneduimenu(fields(i)) = extractMatrixHandle(h(fields(i))($:-1:1));
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "children" then
+                returneduimenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
             else
-                returneduimenu(fields(i)) = h(fields(i));
+                returneduimenu(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -724,11 +744,11 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returneduicontextmenu);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "children" then
-                returneduicontextmenu(fields(i)) = extractMatrixHandle(h(fields(i))($:-1:1));
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "children" then
+                returneduicontextmenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
             else
-                returneduicontextmenu(fields(i)) = h(fields(i));
+                returneduicontextmenu(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -770,11 +790,11 @@ function [] = %_save(filename, varargin)
 
         fields = fieldnames(returneduicontrol);
 
-        for i = 1:size(fields, "*")
-            if fields(i) == "children" then
-                returneduicontrol(fields(i)) = extractMatrixHandle(h(fields(i))($:-1:1));
+        for %__i__ = 1:size(fields, "*")
+            if fields(%__i__) == "children" then
+                returneduicontrol(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
             else
-                returneduicontrol(fields(i)) = h(fields(i));
+                returneduicontrol(fields(%__i__)) = h(fields(%__i__));
             end
         end
     endfunction
@@ -800,29 +820,100 @@ function [] = %_save(filename, varargin)
         parent=e.parent;
     end
     endfunction
-    varList = list();
-    for i = 1:size(varargin)
 
-        if varargin(i) == "-append" then
+    function macro = extractMacro(macroPtr, macroName)
+        macroSt = fun2string(macroPtr, macroName);
+        oldMode = warning("query");
+        warning("off");
+        macro = tlist("ScilabMacro", isCompiledMacro(macroPtr), macroSt);
+        warning(oldMode);
+    endfunction
+
+    //main
+
+    //save environment
+    if size(varargin) == 0 then
+        %__excludeList__ = [
+            "%_save"
+            "isList"
+            "isMacro"
+            "isCompiledMacro"
+            "inspectList"
+            "extractMatrixHandle"
+            "extractSingleHandle"
+            "extractFigure"
+            "extractLabel"
+            "extractTicks"
+            "extractAxes"
+            "extractPolyline"
+            "extractPlot3d"
+            "extractFac3d"
+            "extractSurface"
+            "extractCompound"
+            "extractRectangle"
+            "extractArc"
+            "extractChamp"
+            "extractSegs"
+            "extractGrayplot"
+            "extractMatplot"
+            "extractFec"
+            "extractLegend"
+            "extractText"
+            "extractAxis"
+            "extractuimenu"
+            "extractuicontextmenu"
+            "extractuicontrol"
+            "get_entity_path"
+            "extractMacro"
+            "%__excludeList__"
+            "%__filename__"
+            "varargin"
+            "%__varList__"];
+
+        //get all user variables
+        %__varList__ = who_user(%f);
+        //remove exclude variables/functions
+        %__grepResult__ = grep(%__varList__, %__excludeList__);
+        %__varList__(%__grepResult__) = [];
+        for %__i__ = 1:size(%__varList__, "*")
+            //store them as input arguments
+            varargin(%__i__) = %__varList__(%__i__);
+        end
+    end
+
+    oldMode = warning("query");
+    warning("off");
+
+    if size(varargin) == 0 then
+    end
+
+    for %__i__ = 1:size(varargin)
+
+        if varargin(%__i__) == "-append" then
             continue;
         end
 
-        temp = evstr(varargin(i));
+        temp = evstr(varargin(%__i__));
 
         if isList(temp) then
             //list container
             value = inspectList(temp);
             //update 
-            execstr(varargin(i) + " = value");
+            execstr(varargin(%__i__) + " = value");
         elseif typeof(temp) == "handle" then
             //convert handle to tlist
             value = extractMatrixHandle(temp);
             //update 
-            execstr(varargin(i) + " = value");
+            execstr(varargin(%__i__) + " = value");
+        elseif isMacro(temp) | isCompiledMacro(temp) then
+            //convert macro to tlist
+            value = extractMacro(temp, varargin(%__i__));
+            //update 
+            execstr(varargin(%__i__) + " = value");
         end
     end
+    warning(oldMode);
 
-    result = export_to_hdf5(filename, varargin(:));
+    result = export_to_hdf5(%__filename__, varargin(:));
 
 endfunction
-
