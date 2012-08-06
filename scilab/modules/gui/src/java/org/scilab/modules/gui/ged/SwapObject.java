@@ -18,8 +18,9 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 import org.scilab.modules.gui.ged.axes.Axes;
-import org.scilab.modules.gui.ged.polyline.Polyline;
 import org.scilab.modules.gui.ged.figure.Figure;
+import org.scilab.modules.gui.ged.legend.Legend;
+import org.scilab.modules.gui.ged.polyline.Polyline;
 
 /**
 * Manager object exchange.
@@ -41,7 +42,7 @@ public class SwapObject {
                 /*not implemented yet */
                 break;
             case LEGEND:
-                /*not implemented yet */
+                legend(objectID);
                 break;
             case POLYLINE:
                 polyline(objectID);
@@ -134,6 +135,20 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Figure(objectID));
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
+        } catch (NullPointerException npe){ }
+    }
+
+    /**
+    * Loads the properties of the legend.
+    *
+    * @param objectID Enters the identification of legend.
+    */
+    private void legend(String objectID) {
+        adjust();
+        //Load the legend panel.
+        SwingInspector.pReceive.add(new Legend(objectID));
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.legend);
         } catch (NullPointerException npe){ }
     }
 
