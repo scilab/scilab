@@ -1,6 +1,11 @@
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
+Xcos
+====
+
+* Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
+
 
 Obsolete functions
 ==================
