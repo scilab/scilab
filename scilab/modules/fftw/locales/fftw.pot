@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:34+0100\n"
+"Revision-Date: 2012-08-06 10:22+0100\n"
 
 # File: sci_gateway/c/gw_fftw.c, line: 47
 #, c-format
@@ -96,16 +96,16 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 960
 # File: sci_gateway/c/sci_fftw.c, line: 996
 # File: sci_gateway/c/sci_fftw.c, line: 1157
-# File: sci_gateway/c/sci_fftw.c, line: 1184
-# File: sci_gateway/c/sci_fftw.c, line: 1195
-# File: sci_gateway/c/sci_fftw.c, line: 1213
-# File: sci_gateway/c/sci_fftw.c, line: 1238
-# File: sci_gateway/c/sci_fftw.c, line: 1251
-# File: sci_gateway/c/sci_fftw.c, line: 1329
-# File: sci_gateway/c/sci_fftw.c, line: 1341
-# File: sci_gateway/c/sci_fftw.c, line: 1349
-# File: sci_gateway/c/sci_fftw.c, line: 1367
-# File: sci_gateway/c/sci_fftw.c, line: 1375
+# File: sci_gateway/c/sci_fftw.c, line: 1185
+# File: sci_gateway/c/sci_fftw.c, line: 1196
+# File: sci_gateway/c/sci_fftw.c, line: 1214
+# File: sci_gateway/c/sci_fftw.c, line: 1239
+# File: sci_gateway/c/sci_fftw.c, line: 1252
+# File: sci_gateway/c/sci_fftw.c, line: 1330
+# File: sci_gateway/c/sci_fftw.c, line: 1342
+# File: sci_gateway/c/sci_fftw.c, line: 1350
+# File: sci_gateway/c/sci_fftw.c, line: 1368
+# File: sci_gateway/c/sci_fftw.c, line: 1376
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 67
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -188,7 +188,7 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_fftw.c, line: 1309
+# File: sci_gateway/c/sci_fftw.c, line: 1310
 # File: sci_gateway/c/sci_fftw_flags.c, line: 192
 # File: sci_gateway/c/sci_fftw_flags.c, line: 199
 # File: sci_gateway/c/sci_fftw_flags.c, line: 222
