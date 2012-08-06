@@ -8,55 +8,73 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function A = %sp_gsort(A, optsort, directionsort)
+function [A, k] = %sp_gsort(A, optsort, directionsort)
     rhs = argn(2);
+    lhs = argn(1);
+    // arguments by default in gsort
     select rhs
     case 1
         optsort = 'g';
         directionsort = 'd';
     case 2
+        // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
+        pos_opts = find(optsort == ['r', 'c', 'g', 'lr', 'lc']);
+        if pos_opts == [] then
+            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
+        end
         directionsort = 'd';
+    else
+        // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
+        pos_opts = find(optsort == ['r', 'c', 'g', 'lr', 'lc']);
+        // directionsort can be: 'd' or 'i'
+        pos_direction = find(directionsort == ['d', 'i']);
+        if pos_opts == [] then
+            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
+        end
+        if pos_direction == [] then
+            error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "gsort", 3, "d", "i"));
+        end
     end
 
     [ij, v, mn] = spget(A);
-
     if mn(1) <> 1 & mn(2) <> 1 then
-        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"),'gsort',1));
+        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), 'gsort', 1));
     end
 
-    if (strcmp(optsort, 'c')) == 0 | v == [] then
-        A = A;
-    else
-        if mn(2) == 1 then
-            dif = mn(1) - length(v);
-            v = gsort(v, optsort, directionsort);
-            
-            last = find(v<0);
-            first = find(v>0);
-            
-            if last == [] & first <> [] then
-                if strcmp(directionsort, 'i')== 0 then
-                    ij(:,1) = first(:) + dif;
+    if mn(1) == 1 then
+        // if A is a row vector and optsort = 'r', the result is the 
+        // first input argument
+        if strcmp(optsort, 'r') == 0 |strcmp(optsort, 'lr') == 0 then
+            A = A;
+            if lhs == 2 then
+                if strcmp(optsort, 'lr') == 0 then
+                    k = 1;
                 else
-                    ij(:,1) = first(:);
-                end
-            elseif first == [] & last <> [] then
-                ij(:,1) = last(:) + dif;
-            else
-                if strcmp(directionsort, 'i')== 0 then
-                    ij(:,1) = [last(:); first(:) + dif];
-                else
-                    ij(:,1) = [first(:); last(:) + dif];
+                    k = ij(:,1);
+                    k = k';
                 end
             end
-            
-        elseif mn(1) == 1 then
+        else
             dif = mn(2) - length(v);
-            v = gsort(v, optsort, directionsort);
-            
-            last = find(v<0);
-            first = find(v>0);
-            
+            if lhs == 1 then
+                v = gsort(v', optsort, directionsort);
+            else
+                [v, k] = gsort(v', optsort, directionsort);
+            end
+
+            //Obtain the indices corresponding to positive values of v
+            // and negative value of v
+            // If A is complex, the elements are sorted by magnitude
+            if isreal(A) then
+                last = find(v<0);
+                first = find(v>0);
+            else
+                s = abs(v);
+                last = find(s<0);
+                first = find(s>0);
+            end
+
+            // Sort the indices
             if last == [] & first <> [] then
                 if strcmp(directionsort, 'i')== 0 then
                     ij(:,2) = first(:) + dif;
@@ -64,7 +82,11 @@ function A = %sp_gsort(A, optsort, directionsort)
                     ij(:,2) = first(:);
                 end
             elseif first == [] & last <> [] then
-                ij(:,1) = last(:) + dif;
+                if strcmp(directionsort, 'i')== 0 then
+                    ij(:,1) = last(:);
+                else
+                    ij(:,1) = last(:) + dif;
+                end
             else
                 if strcmp(directionsort, 'i')== 0 then
                     ij(:,2) = [last(:); first(:) + dif];
@@ -72,12 +94,74 @@ function A = %sp_gsort(A, optsort, directionsort)
                     ij(:,2) = [first(:); last(:) + dif];
                 end
             end
-            
+            A = sparse(ij,v,mn);
         end
-        A = sparse(ij, v, mn)
     end
 
+    if mn(2) == 1 then
+        // if A is a column vector and optsort = 'c', the result is the 
+        // first input argument
+        if strcmp(optsort, 'c') == 0 | strcmp(optsort, 'lc') == 0 then
+            A = A;
+            if lhs == 2 then
+                if strcmp(optsort, 'lc') == 0 then
+                    k = 1;
+                else
+                    k = ij(:,2);
+                    k = k;
+                end
+            end
+        else
+
+            dif = mn(1) - length(v);
+            if lhs == 1 then
+                v = gsort(v, optsort, directionsort);
+            else
+                [v, k] = gsort(v, optsort, directionsort);
+            end
+
+            //Obtain the indices corresponding to positive values of v
+            // and negative value of v
+            // If A is complex, the elements are sorted by magnitude
+            if isreal(A) then
+                last = find(v<0);
+                first = find(v>0);
+            else
+                s = abs(v);
+                last = find(s<0);
+                first = find(s>0);
+            end
+
+            // sort the indices in terms of directionsort = 'i' or 'd'
+            // if directionsort='i' and v>0, the elements are sorted in the 
+            // increasing order, ie [0,..,v] and, conversely, in the decreasing
+            // order the elements are sorted : [v,..,0]
+            // if v<0, the elements are sorted in the increasing order, 
+            // ie [v,..,0] and, conversely, in the decreasing order the 
+            // elements are sorted : [0,..,v]
+            // And else, if v contains positive and neqative values, the 
+            // elements are sorted in the increasing order,ie [v_neg,0,v_pos],
+            // and conversely for the decreasing order.
+            if last == [] & first <> [] then
+                if strcmp(directionsort, 'i') == 0 then
+                    ij(:,1) = first(:) + dif;
+                else
+                    ij(:,1) = first(:);
+                end
+            elseif first == [] & last <> [] then
+                if strcmp(directionsort, 'i') == 0 then
+                    ij(:,1) = last(:);
+                else
+                    ij(:,1) = last(:) + dif;
+                end
+            else
+                if strcmp(directionsort, 'i') == 0 then
+                    ij(:,1) = [last(:); first(:) + dif];
+                else
+                    ij(:,1) = [first(:); last(:) + dif];
+                end
+            end
+            A = sparse(ij, v, mn);
+        end
+    end
 endfunction
-
-
-
