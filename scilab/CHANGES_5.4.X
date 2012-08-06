@@ -59,6 +59,8 @@ Bug Fixes
 
 * Bug #11655 fixed - external_object help chapter was empty.
 
+* Bug #11659 fixed - twinkle displayed warning messages about show_pixmap function.
+
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
