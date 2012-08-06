@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -63,11 +63,11 @@ public class Style extends BaseProperties {
     protected static JDialog backcolorDialog;
     protected static JDialog forecolorDialog;
     protected String parentFigure = (String) GraphicController.getController()
-                                .getProperty(currentcurve, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
     /**
     * Receives and passes the objectID to the parent class.
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
     public Style(String objectID) {
         super(objectID);
@@ -305,15 +305,15 @@ public class Style extends BaseProperties {
     /**
     * Loads the current properties of the section Style/Appearance.
     *
-    * @param objectID Enters the identification of curve.
+    * @param objectID Enters the identification of polyline.
     */
     public void initPropertiesStyle(String objectID) {
         if (objectID != null) {
-            currentcurve = objectID;
+            currentpolyline = objectID;
 
             // Get the current status of the property: Background Color
             Integer scilabBackgroundColor = (Integer) GraphicController.getController()
-                  .getProperty(currentcurve, GraphicObjectProperties.__GO_BACKGROUND__);
+                  .getProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__);
             Double[] rgbBackgroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabBackgroundColor);
             cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(), rgbBackgroundColor[1].intValue(), rgbBackgroundColor[2].intValue()));
 
@@ -324,12 +324,12 @@ public class Style extends BaseProperties {
 
             // Get the current status of the property: Line Style
             int currentLineStyle = (Integer) GraphicController.getController()
-                    .getProperty(currentcurve, GraphicObjectProperties.__GO_LINE_STYLE__);
+                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__);
             cLine.setSelectedIndex(currentLineStyle);
 
             // Get the current status of the property: Polyline Style
             int currentPolylineStyle = (Integer) GraphicController.getController()
-                    .getProperty(currentcurve, GraphicObjectProperties.__GO_POLYLINE_STYLE__);
+                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__);
             cPolyline.setSelectedIndex(currentPolylineStyle);
         }
     }
@@ -361,10 +361,10 @@ public class Style extends BaseProperties {
     private void bStyleActionPerformed(ActionEvent evt) {
         if (bStyle.isSelected()) {
             pStyle.setVisible(false);
-            HideCurve.checkAllButtons();
+            HidePolyline.checkAllButtons();
         } else {
             pStyle.setVisible(true);
-            HideCurve.checkAllButtons();
+            HidePolyline.checkAllButtons();
         }
     }
 
@@ -374,7 +374,7 @@ public class Style extends BaseProperties {
     */
     private void cLineActionPerformed(ActionEvent evt) {
         int setLine = cLine.getSelectedIndex();
-        GraphicController.getController().setProperty(currentcurve, GraphicObjectProperties.__GO_LINE_STYLE__, setLine);
+        GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__, setLine);
     }
 
     /**
@@ -384,7 +384,7 @@ public class Style extends BaseProperties {
     private void cPolylineActionPerformed(ActionEvent evt) {
         int setPolyline = cPolyline.getSelectedIndex();
         GraphicController.getController()
-                .setProperty(currentcurve, GraphicObjectProperties.__GO_POLYLINE_STYLE__, setPolyline);
+                .setProperty(currentpolyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__, setPolyline);
     }
 
     /**

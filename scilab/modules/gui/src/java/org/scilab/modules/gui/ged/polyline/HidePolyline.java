@@ -9,17 +9,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.polyline;
 
 import org.scilab.modules.gui.ged.actions.ShowHide;
 
 /**
- * Manages the operation of the button show/hide for the current curve.
+ * Manages the operation of the button show/hide for the current polyline.
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class HideCurve {
-    public HideCurve(boolean hide) {
+public class HidePolyline {
+    public HidePolyline(boolean hide) {
         try {
             BaseProperties.pBaseProperties.setVisible(!hide);
             BaseProperties.bBaseProperties.setSelected(hide);

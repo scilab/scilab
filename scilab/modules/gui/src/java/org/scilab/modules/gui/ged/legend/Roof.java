@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,13 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.curve;
+package org.scilab.modules.gui.ged.legend;
 
 import javax.swing.JPanel;
 
 /**
  * Highest class - Prepares methods dependent on JPanel.
- * @author cardinot
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class Roof extends JPanel {
 
@@ -24,10 +24,7 @@ public class Roof extends JPanel {
     */
     public Roof() {
         basePropertiesComponents();
-        styleComponents();
         initLayout();
-        dialogBackgroundColor();
-        dialogForegroungColor();
     }
 
     /**
@@ -36,22 +33,7 @@ public class Roof extends JPanel {
     public void basePropertiesComponents() { };
 
     /**
-    * It has all the components of the section Style/Appearance.
-    */
-    public void styleComponents() { };
-
-    /**
     * Creates layout of all sections(Base Proprerties and Style/Appareance).
     */
     public void initLayout() { };
-
-    /**
-    * JDialog - Selection of background colors.
-    */
-    public void dialogBackgroundColor() { };
-
-    /**
-    * JDialog - Selection of foreground colors.
-    */
-    public void dialogForegroungColor() { };
 }
