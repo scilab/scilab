@@ -12,7 +12,6 @@ Obsolete functions
 Documentation
 =============
 
-
 * Categories have been created for the following modules help pages:
     - Functions (libraries sub-category). See bug #11642.
     - Linear algebra. See bug #11562.
@@ -50,6 +49,8 @@ Bug Fixes
 * Bug #11640 fixed - Plug back the same behavior as 5.3.3 when STDIN is closed.
 
 * Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
+
+* Bug #11645 fixed - Short description was wrong in atomsGetLoadedPath help page.
 
 * Bug #11647 fixed - The phrase "The system cannot find the file specified." in
                      rmdir was not localized.
