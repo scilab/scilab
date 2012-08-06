@@ -29,6 +29,9 @@ Bug Fixes
 * Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
                     duplicates.
 
+* Bug #8488 fixed - NaN values was propagated when we performed the min/max between
+                    several matrices.
+
 * Bug #11411 fixed - save function used unsigned char to store length of string.
                      Now it is an integer.
 
