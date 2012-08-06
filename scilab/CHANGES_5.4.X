@@ -12,6 +12,73 @@
 
 * Graphic editor
 
+            Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
+            ===============================================================
+
+
+Obsolete functions
+==================
+
+* config function is now obsolete and will be removed in Scilab 5.4.1.
+  Please use 'preferences' instead.
+
+
+Documentation
+=============
+
+* Categories have been created for the following modules help pages:
+    - Functions (libraries sub-category). See bug #11642.
+    - Linear algebra. See bug #11562.
+    - Special functions. See bug #11643.
+
+
+Bug Fixes
+=========
+
+* Bug #7674 fixed - In all demos Optimization and Simulation, the source
+                    code was displayed by default.
+                    A messagebox now lets the choice to the user to display the
+                    code or not.
+
+* Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
+                    duplicates.
+
+* Bug #11411 fixed - save function used unsigned char to store length of string.
+                     Now it is an integer.
+
+* Bug #11426 fixed - Save function shew a warning message saving user environment.
+
+* Bug #11509 fixed - A progression bar was missing during Atoms operations.
+
+* Bug #11592 fixed - In the documentation, example of bessel failed.
+
+* Bug #11597 fixed - On Mac OS X, the Preferences windows was not accessible
+                     through the standard shortcut "CMD + ,".
+
+* Bug #11604 fixed - Some items were not localized in "Scilab Preferences" window.
+
+* Bug #11606 fixed - exit() was too slow in nw mode when driver("png") was set.
+
+* Bug #11618 fixed - A(:) returned wrong values when A was a complex sparse matrix.
+
+* Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
+
+* Bug #11640 fixed - Plug back the same behavior as 5.3.3 when STDIN is closed.
+
+* Bug #11641 fixed - In xmltoformat, parsing of the CHAPTER files was too strict.
+
+* Bug #11645 fixed - Short description was wrong in atomsGetLoadedPath help page.
+
+* Bug #11647 fixed - The phrase "The system cannot find the file specified." in
+                     rmdir was not localized.
+
+* Bug #11654 fixed - Rendering of the title of genetic algorithms help pages improved.
+
+* Bug #11655 fixed - external_object help chapter was empty.
+
+* Bug #11659 fixed - twinkle displayed warning messages about show_pixmap function.
+
+
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
 
@@ -36,6 +103,9 @@ Xcos
 * Bug #11494 fixed - Xcos PDE block could not open UIcontrol to set parameter.
 
 * Bug #11518 fixed - When zooming on CLR block-text, the block was outside the box.
+
+* Bug #11550 fixed - Closing the scope graph while running simulation led to a
+                     segfault.
 
 
 Preferences
@@ -84,7 +154,7 @@ Compilation
 
 * Switch to flexdock 1.2.0.
 
-* Switch to Scirenderer 0.5.4.
+* Switch to Scirenderer 0.5.5.
 
 * BLAS_LIBS variable can now be set by the user (See bug #9824).
 
@@ -95,7 +165,7 @@ GUI
 * Uicontrols tooltip can now be managed using the new "TooltipString" property.
 
 * Figure closure can now be managed by the user (confirmation, ...) through the
-  'closerequestfcn' property.
+  'CloseRequestFcn' property.
 
 * F5 and F6 change the focus of the docked element.
 
@@ -149,7 +219,7 @@ Bug Fixes
 
 * Bug #6154, #10850 fixed - arnoldi package help pages updated.
 
-* Bug #6538 fixed - unobs() ignored its 'tol' argument when it was given,
+* Bug #6538 fixed - unobs ignored its 'tol' argument when it was given,
                     and always calculated its own, arbitrary, internal value.
 
 * Bug #6702 fixed - max and min functions returned a scalar in k when the input
@@ -238,8 +308,8 @@ Bug Fixes
 
 * Bug #11203 fixed - Description for info output argument was wrong in lsqrsolve help page.
 
-* Bug #11244 fixed - Due to browsevar, an error was displayed in the console when deleting
-                     a global variable.
+* Bug #11244 fixed - Due to the variable browser, an error was displayed in the console when
+                     deleting a global variable.
 
 * Bug #11300 fixed - freson calculated wrong frequencies in Scilab 5.3.3.
 
@@ -256,7 +326,7 @@ Bug Fixes
 
 * Bug #11330 fixed - oldplot function removed.
 
-* Bug #11331 fixed - graypolarplot() returned an error about an unknown property.
+* Bug #11331 fixed - graypolarplot returned an error about an unknown property.
 
 * Bug #11332 fixed - Default usage of contour2d was producing some errors.
 
@@ -276,19 +346,19 @@ Bug Fixes
 
 * Bug #11369 fixed - colordef("black") returned an error about an unknown property.
 
-* Bug #11372 fixed - Calling odeoptions() returned an error.
+* Bug #11372 fixed - Calling odeoptions returned an error.
 
-* Bug #11385 fixed - length() returned a wrong error message when called without
+* Bug #11385 fixed - length returned a wrong error message when called without
                      input argument.
 
 * Bug #11388 fixed - Calling xsetech(frect=[0,0,100,100]) failed.
 
 * Bug #11396 fixed - Overloading: toto([])=[] with toto being an mlist failed.
 
-* Bug #11398 fixed - newest() produced an incomprehensible error message when
+* Bug #11398 fixed - newest produced an incomprehensible error message when
                      called with a string vector as second input argument.
 
-* Bug #11403 fixed - toprint() and Print menu did not work.
+* Bug #11403 fixed - toprint and Print menu did not work.
 
 * Bug #11409 fixed - xpoly crashed on polyline allocation.
 
@@ -396,7 +466,7 @@ Known Incompatibilities
   for the modulo function and x - y * floor(x / y). Now, they return an error and
   %nan with ieee(2). See bug #7216.
 
-* In previous versions, the newest() function could be called with a string vector
+* In previous versions, newest function could be called with a string vector
   as second (up to last) input argument. In these cases, only the first string of
   the vector was taken into account. These calls now return an error. See bug #11398.
 

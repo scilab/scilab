@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -231,7 +232,7 @@
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
    er = abs((y1-y2)./y2);
-   ind = find(er < 0 & y2 ~= 0);
+   ind = find(er > 0 & y2 ~= 0);
    clf()
    subplot(2,1,1)
    plot2d(x,y1,style=2)
@@ -246,7 +247,7 @@
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
    er = abs((y1-y2)./y2);
-   ind = find(er < 0 & y2 ~= 0);
+   ind = find(er > 0 & y2 ~= 0);
    clf()
    subplot(2,1,1)
    plot2d(x,y1,style=2)

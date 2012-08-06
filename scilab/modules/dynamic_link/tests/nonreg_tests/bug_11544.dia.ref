@@ -23,7 +23,7 @@ src = [
    '#include ""api_scilab.h""'
    'int sci_bug_11544(char* fname, int len)' 
    '{'
-   '    AssignOutputVariable(0) = 1;'
+   '    AssignOutputVariable(pvApiCtx, 0) = 1;'
    '    return 0;'
    '}'];
 mputl(src, "bug_11544.c');

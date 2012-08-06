@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("JVM",SCI+"/modules/jvm/help/en_US",%T);
+add_help_chapter("Java Virtual Machine (JVM)",SCI+"/modules/jvm/help/en_US",%T);
 

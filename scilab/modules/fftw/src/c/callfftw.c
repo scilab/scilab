@@ -46,13 +46,12 @@ static PROC_FFTW_FORGET_WISDOM MY_FFTW_FORGET_WISDOM=NULL;
 /*--------------------------------------------------------------------------*/
 BOOL IsLoadedFFTW(void)
 {
-    if ( (MY_FFTW_EXECUTE_SPLIT_DFT)       && (MY_FFTW_EXECUTE_SPLIT_DFT_C2R)     &&
-        (MY_FFTW_EXECUTE_SPLIT_DFT_R2C)   && (MY_FFTW_EXECUTE_SPLIT_DFT_R2R)     &&
-        (MY_FFTW_PLAN_GURU_SPLIT_DFT)     && (MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R)   &&
-        (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C) && (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R)   &&
-        (MY_FFTW_DESTROY_PLAN)            &&
+    if ( (MY_FFTW_EXECUTE_SPLIT_DFT) && (MY_FFTW_PLAN_GURU_SPLIT_DFT) && (MY_FFTW_DESTROY_PLAN) &&
         (MY_FFTW_EXPORT_WISDOM_TO_STRING) && (MY_FFTW_IMPORT_WISDOM_FROM_STRING) &&
-        (MY_FFTW_FORGET_WISDOM) ) return TRUE;
+        (MY_FFTW_FORGET_WISDOM) ) 
+        {
+            return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -108,17 +107,7 @@ BOOL LoadFFTWLibrary(char *libraryname)
         MY_FFTW_FORGET_WISDOM             = (PROC_FFTW_FORGET_WISDOM) GetDynLibFuncPtr(hinstLib,"fftw_forget_wisdom");
     }
 
-    if ( MY_FFTW_EXECUTE_SPLIT_DFT       && MY_FFTW_EXECUTE_SPLIT_DFT_C2R   &&
-        MY_FFTW_EXECUTE_SPLIT_DFT_R2C   && MY_FFTW_EXECUTE_SPLIT_DFT_R2R   &&
-        MY_FFTW_PLAN_GURU_SPLIT_DFT     && MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R &&
-        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C && MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R &&
-        MY_FFTW_DESTROY_PLAN            &&
-        MY_FFTW_EXPORT_WISDOM_TO_STRING && MY_FFTW_IMPORT_WISDOM_FROM_STRING &&
-        MY_FFTW_FORGET_WISDOM )
-    {
-        return TRUE;
-    }
-    return FALSE;
+    return IsLoadedFFTW();
 }
 /*--------------------------------------------------------------------------*/
 BOOL DisposeFFTWLibrary(void)

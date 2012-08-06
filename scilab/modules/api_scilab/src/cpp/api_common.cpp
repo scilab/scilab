@@ -88,7 +88,7 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     int cx0 = 0;
     C2F(cvname) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz],  ((StrCtx *) _pvCtx)->pstName, &cx0, (unsigned long int)strlen(((StrCtx *)_pvCtx)->pstName));
 
-    if (_iMin <= nbInputArgument && _iMax >= nbInputArgument)
+    if (_iMin <= nbInputArgument(_pvCtx) && _iMax >= nbInputArgument(_pvCtx))
     {
         return 1;
     }
@@ -112,7 +112,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if (_iMin <= nbInputArgument)
+    if (_iMin <= nbInputArgument(_pvCtx))
     {
         return 1;
     }
@@ -128,7 +128,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if (_iMax >= nbInputArgument)
+    if (_iMax >= nbInputArgument(_pvCtx))
     {
         return 1;
     }
@@ -145,7 +145,7 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iMsgCount = 0;
 
 
-    if (_iMin <= nbOutputArgument && _iMax >= nbOutputArgument)
+    if (_iMin <= nbOutputArgument(_pvCtx) && _iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
     }
@@ -169,7 +169,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if (_iMin <= nbOutputArgument)
+    if (_iMin <= nbOutputArgument(_pvCtx))
     {
         return 1;
     }
@@ -185,7 +185,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
 
-    if (_iMax >= nbOutputArgument)
+    if (_iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
     }

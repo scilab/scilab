@@ -245,9 +245,11 @@ static void freeScoData(scicos_block * block)
     {
         FREE(sco->scope.cachedAxeUID);
         FREE(sco->scope.cachedPlot3dUID);
-    }
 
-    FREE(sco);
+
+        FREE(sco);
+        *(block->work) = NULL;
+    }
 }
 
 static BOOL pushData(scicos_block * block, double *data)
@@ -290,6 +292,12 @@ static char const* getFigure(scicos_block * block)
     char *pAxe = NULL;
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
 
 
     // fast path for an existing object
@@ -347,6 +355,12 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
     int i__1 = 1;
     sco_data *sco = (sco_data *) * (block->work);
 
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
     // fast path for an existing object
     if (sco->scope.cachedAxeUID != NULL)
     {
@@ -387,6 +401,12 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
     char *pPlot3d;
 
     sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
 
     // fast path for an existing object
     if (sco->scope.cachedPlot3dUID != NULL)

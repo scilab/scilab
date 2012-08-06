@@ -306,15 +306,4 @@ public interface Tab extends Container {
      */
     void setEventHandlerEnabled(boolean status);
 
-    /**
-     * Get the displacement in pixel that should be used for rotating axes
-     * @param displacement out parameter, [x,y] array of displacement in pixels
-     * @return true if the displacement recording continue, false otherwise
-     */
-    boolean getRotationDisplacement(int[] displacement);
-
-    /**
-     * Asynchronous stop of rotation tracking.
-     */
-    void stopRotationRecording();
 }

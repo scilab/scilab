@@ -550,21 +550,4 @@ public class ScilabTabBridge {
         tab.getAsSimpleTab().setEventHandlerEnabled(status);
     }
 
-    /**
-     * Get the displacement in pixel that should be used for rotating axes
-     * @param tab tab on which the displacement is recorded
-     * @param displacement out parameter, [x,y] array of displacement in pixels
-     * @return true if the displacement recording continue, false otherwise
-     */
-    public static boolean getRotationDisplacement(Tab tab, int[] displacement) {
-        return tab.getAsSimpleTab().getRotationDisplacement(displacement);
-    }
-
-    /**
-     * Asynchronous stop of rotation tracking.
-     * @param tab tab on which the displacement is recorded
-     */
-    public static void stopRotationRecording(Tab tab) {
-        tab.getAsSimpleTab().stopRotationRecording();
-    }
 }

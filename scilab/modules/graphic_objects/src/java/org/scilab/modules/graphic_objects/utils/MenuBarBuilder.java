@@ -22,6 +22,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +35,7 @@ import java.util.TreeSet;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -100,8 +102,18 @@ public final class MenuBarBuilder {
      * @param figureId the figure
      */
     public static void buildFigureMenuBar(String figureId) {
-        MenuBarBuilder.isParentValid = false;
-        buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+	boolean isheadless = false;
+	
+	try {
+	    Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+	    Method meth = clazz.getMethod("isHeadless");
+	    isheadless = (Boolean) meth.invoke(null);
+	} catch (Exception e) { System.err.println(e);}
+
+        if (!isheadless) {
+            MenuBarBuilder.isParentValid = false;
+            buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+        }
     }
 
     /**
@@ -146,6 +158,7 @@ public final class MenuBarBuilder {
         protected static final String INSTRUCTION = "instruction";
         protected static final String TRUE = "true";
         protected static final String ICON = "icon";
+        protected static final String MACOSX = "macosx";
 
         private Document dom;
         private Collection<String> internalMethodNames;
@@ -258,6 +271,7 @@ public final class MenuBarBuilder {
             Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
 
             boolean separator = false;
+            boolean macosx = true;
 
             while (submenu != null) {
                 if (submenu.getNodeName() == SEPARATOR) {
@@ -302,6 +316,12 @@ public final class MenuBarBuilder {
                             // Set the accelerator
                             String acceleratorString = attributes.item(i).getNodeValue();
                             GraphicController.getController().setProperty(menuId, __GO_UI_ACCELERATOR__, acceleratorString);
+                        } else if (attributes.item(i).getNodeName() == MACOSX) {
+                            macosx = attributes.item(i).getNodeValue().equals(TRUE);
+                            if (!macosx && OS.get() == OS.MAC) {
+                                GraphicController.getController().removeRelationShipAndDelete(menuId);
+                                separator = false;
+                            }
                         }
                     }
 
@@ -334,8 +354,6 @@ public final class MenuBarBuilder {
                         GraphicController.getController().setProperty(menuId, __GO_UI_SEPARATOR__, true);
                         separator = false;
                     }
-
-
                 }
                 // Read next child
                 submenu = submenu.getNextSibling();

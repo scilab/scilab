@@ -85,13 +85,13 @@ int read_write_bsparse(char *fname, unsigned long fname_len)
         iCol += piNbItemRow[i];
     }
 
-    sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
+    sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

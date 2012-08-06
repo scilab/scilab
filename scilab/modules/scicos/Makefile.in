@@ -820,6 +820,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/parser.mli \
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/lexer.mli \
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/parser.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/linenum.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/lexer.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(TARGET)
 

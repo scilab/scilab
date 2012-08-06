@@ -114,9 +114,6 @@ import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.waitbar.ScilabWaitBarBridge;
-import org.scilab.modules.gui.waitbar.SimpleWaitBar;
-import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.window.ScilabWindowBridge;
 import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.gui.window.Window;
@@ -1505,24 +1502,6 @@ public class ScilabBridge {
      */
     public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
         ScilabCanvasBridge.setBackgroundColor(canvas, red, green, blue);
-    }
-
-    /**
-     * Get the displacement in pixel that should be used for rotating axes
-     * @param tab tab on which the displacement is recorded
-     * @param displacement out parameter, [x,y] array of displacement in pixels
-     * @return true if the displacement recording continue, false otherwise
-     */
-    public static boolean getRotationDisplacement(Tab tab, int[] displacement) {
-        return ScilabTabBridge.getRotationDisplacement(tab, displacement);
-    }
-
-    /**
-     * Asynchronous stop of rotation tracking.
-     * @param tab tab on which the displacement is recorded
-     */
-    public static void stopRotationRecording(Tab tab) {
-        ScilabTabBridge.stopRotationRecording(tab);
     }
 
     /**
@@ -5106,62 +5085,6 @@ public class ScilabBridge {
      */
     public static void setParentForLocation(MessageBox messageBox, SimpleTab parent) {
         ScilabMessageBoxBridge.setParentForLocation(messageBox, parent);
-    }
-
-    /******************/
-    /* WaitBar Bridge */
-    /******************/
-
-    /**
-     * Create a new WaitBar
-     * @return the created WaitBar
-     */
-    public static SimpleWaitBar createWaitBar() {
-        return ScilabWaitBarBridge.createWaitBar();
-    }
-
-    /**
-     * Set the title of the WaitBar
-     * @param waitBar the WaitBar
-     * @param title the title to set
-     */
-    public static void setTitle(WaitBar waitBar, String title) {
-        ScilabWaitBarBridge.setTitle(waitBar, title);
-    }
-
-    /**
-     * Set the message of the WaitBar
-     * @param waitBar the WaitBar
-     * @param message the message to set
-     */
-    public static void setMessage(WaitBar waitBar, String[] message) {
-        ScilabWaitBarBridge.setMessage(waitBar, message);
-    }
-
-    /**
-     * Set the current value of the WaitBar
-     * @param waitBar the WaitBar
-     * @param value the value to set
-     */
-    public static void setValue(WaitBar waitBar, int value) {
-        ScilabWaitBarBridge.setValue(waitBar, value);
-    };
-
-    /**
-     * Close the WaitBar
-     * @param waitBar the WaitBar
-     */
-    public static void close(WaitBar waitBar) {
-        ScilabWaitBarBridge.close(waitBar);
-    }
-
-    /**
-     * Indicates if the total execution time is known
-     * @param waitBar the WaitBar
-     * @param status true if the total progress time in unknown
-     */
-    public static void setIndeterminateMode(WaitBar waitBar, boolean status) {
-        ScilabWaitBarBridge.setIndeterminateMode(waitBar, status);
     }
 
     /***********************/

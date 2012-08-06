@@ -30,8 +30,6 @@ function demo_anim7()
 
   show_window(); //raise the graphic window
 
-  drawlater();
-
 
   //Create the data
   //---------------
@@ -70,8 +68,6 @@ function demo_anim7()
   curAxe.rotation_angles=[103 138];
   curAxe.isoView = "on";
 
-  drawnow();
-
 
   //animation loop
   //--------------
@@ -85,8 +81,6 @@ function demo_anim7()
     end
 
     realtime(k);
-    
-    drawlater();
 
     //compute more facets
     u=U(K(k-1):K(k));
@@ -105,7 +99,6 @@ function demo_anim7()
       e.data = data;// update the Fac3d entity
     end
 
-    drawnow();
   end
 
   if is_handle_valid(curFig) then
@@ -116,4 +109,4 @@ endfunction
 
 
 demo_anim7();
-clear demo_anim7;
+clear demo_anim7;

@@ -263,12 +263,20 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             totalSize = seekShortCount(fd, 2, totalSize); //axes_size
             if is_higher_than( [4 1 2 0] ) then
                 totalSize = seekShortCount(fd, 2, totalSize); //viewport
-                totalSize = seekString(fd, totalSize); // info_message
+                if is_higher_than([5 4 0 0]) then
+                    totalSize = seekStringInt(fd, totalSize); // info_message
+                else
+                    totalSize = seekString(fd, totalSize); // info_message
+                end
                 totalSize = seekString(fd, totalSize); // tag
             end
 
             totalSize = seekBool(fd, totalSize); // auto_resize
-            totalSize = seekString(fd, totalSize); // figure_name
+            if is_higher_than([5 4 0 0]) then
+                totalSize = seekStringInt(fd, totalSize); // figure_name
+            else
+                totalSize = seekString(fd, totalSize); // figure_name
+            end
             totalSize = seekShort(fd, totalSize); //figure_id
             totalSize = seekMatrix(fd, totalSize); // color_map
             totalSize = seekBool(fd, totalSize); // pixmap
@@ -793,7 +801,7 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
                 totalSize = seekInt(fd, totalSize); // background
             end
 
-            if (is_higher_than([5 0 3 0])) then
+            if is_higher_than([5 0 3 0]) then
                 totalSize = seekMatrix(fd, totalSize); // data
             else
                 global parentAxesView;
@@ -1023,7 +1031,11 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
                 totalSize = seekMatrix(fd, totalSize); // Foregroundcolor
                 totalSize = seekString(fd, totalSize); // Label
                 totalSize = seekBool(fd, totalSize); // Visible
-                totalSize = seekString(fd, totalSize); // Callback
+                if is_higher_than([5 4 0 0]) then
+                    totalSize = seekStringInt(fd, totalSize); // Callback
+                else
+                    totalSize = seekString(fd, totalSize); // Callback
+                end
                 totalSize = seekInt(fd, totalSize); // Callback Type
                 totalSize = seekString(fd, totalSize); // Tag
             end
@@ -1070,7 +1082,11 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
                 totalSize = seekMatrix(fd, totalSize); // Value
                 totalSize = seekString(fd, totalSize); // VerticalAlignment
                 totalSize = seekBool(fd, totalSize); // Visible
-                totalSize = seekString(fd, totalSize); // Callback
+                if is_higher_than([5 4 0 0]) then
+                    totalSize = seekStringInt(fd, totalSize); // Callback
+                else
+                    totalSize = seekString(fd, totalSize); // Callback
+                end
                 totalSize = seekInt(fd, totalSize); // Callback Type
                 totalSize = seekUserdata(fd, totalSize); // Userdata
                 totalSize = seekString(fd, totalSize); // Tag
@@ -1241,7 +1257,11 @@ function newSize = seekStringMatrix(fd, currentSize)
     row = mget(1, "il", fd);
     col = mget(1, "il", fd);
     for i = 1 : row * col
-        currentSize = seekString(fd, currentSize); // String
+        if is_higher_than([5 4 0 0])
+            currentSize = seekStringInt(fd, currentSize); // String
+        else
+            currentSize = seekString(fd, currentSize); // String
+        end
     end
     newSize = currentSize + 4 * 2;
 endfunction

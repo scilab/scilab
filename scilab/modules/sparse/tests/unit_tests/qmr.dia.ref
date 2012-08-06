@@ -117,10 +117,7 @@ function y = func_A(x)
     y = Amat*x;
 endfunction
 assert_checkfalse(execstr("qmr(func_A)","errcatch") == 0);
-lasterror(execstr("10000","errcatch") == 0)
- ans  =
- 
- qmr: Wrong number of input arguments: At least 2 expected.   
+lasterror(execstr("10000","errcatch") == 0);
 // 2. Test with 2 input arguments and all output arguments
 // =======================================================
 function y = func_qmr(x,t)

@@ -94,7 +94,7 @@ int sci_mpopup(char *fname, unsigned long fname_len)
 
     pstRes = uiWaitContextMenu(pstUicontextmenuUID);
 
-    iRet = createSingleString(pvApiCtx, nbInputArgument + 1, pstRes);
+    iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstRes);
     if (iRet)
     {
         freeAllocatedMatrixOfString(iRows, iCols, pstAllMenuLabels);
@@ -103,9 +103,9 @@ int sci_mpopup(char *fname, unsigned long fname_len)
 
     freeAllocatedMatrixOfString(iRows, iCols, pstAllMenuLabels);
 
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
-    ReturnArguments();
+    ReturnArguments(pvApiCtx);
 
     return TRUE;
 }

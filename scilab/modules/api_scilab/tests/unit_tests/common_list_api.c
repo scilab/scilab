@@ -16,10 +16,10 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int get_list_info(int* _piAddress);
+int get_list_info(void* _pvCtx, int* _piAddress);
 void insert_indent(void);
 
-static int iLocalTab = 0;
+static int iLocalTab = 1;
 
 int common_list(char *fname,unsigned long fname_len)
 {
@@ -35,11 +35,11 @@ int common_list(char *fname,unsigned long fname_len)
         return 0;
     }
 
-    get_list_info(piAddr);
-    AssignOutputVariable(1) = 0;
+    get_list_info(pvApiCtx, piAddr);
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     return 0;
 }
-int get_list_info(int* _piAddress)
+int get_list_info(void* _pvCtx, int* _piAddress)
 {
     SciErr sciErr;
     int i       = 0;
@@ -47,7 +47,7 @@ int get_list_info(int* _piAddress)
     int iItem   = 0;
 
     //get list item number, failed if variable is not a kind of list
-    sciErr = getListItemNumber(pvApiCtx, _piAddress, &iItem);
+    sciErr = getListItemNumber(_pvCtx, _piAddress, &iItem);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -62,14 +62,14 @@ int get_list_info(int* _piAddress)
         int iType           = 0;
         int* piAddrChild    = NULL;
 
-        sciErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
+        sciErr = getListItemAddress(_pvCtx, _piAddress, i + 1, &piAddrChild);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
-        sciErr = getVarType(pvApiCtx, piAddrChild, &iType);
+        sciErr = getVarType(_pvCtx, piAddrChild, &iType);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -81,7 +81,7 @@ int get_list_info(int* _piAddress)
             insert_indent();
             sciprint("Child %d -> ", i + 1);
             iLocalTab++;
-            iRet = get_list_info(piAddrChild);
+            iRet = get_list_info(_pvCtx, piAddrChild);
             iLocalTab--;
 
             if(iRet)

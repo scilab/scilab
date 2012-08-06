@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-SciErr printf_info(int _iVar);
+SciErr printf_info(void* _pvCtx, int _iVar);
 
 int common_function(char *fname, unsigned long fname_len)
 {
@@ -25,9 +25,9 @@ int common_function(char *fname, unsigned long fname_len)
     int *piAddr1    = NULL;
     int iBool       = 0;
 
-    for (i = 0 ; i < nbInputArgument ; i++)
+    for (i = 0 ; i < nbInputArgument(pvApiCtx) ; i++)
     {
-        sciErr = printf_info(i + 1);
+        sciErr = printf_info(pvApiCtx, i + 1);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -39,7 +39,7 @@ int common_function(char *fname, unsigned long fname_len)
     //1 for true, 0 for false
     iBool = sciErr.iErr == 0 ? 1 : 0;
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, 1, 1, &iBool);
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &iBool);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -47,10 +47,11 @@ int common_function(char *fname, unsigned long fname_len)
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }
-SciErr printf_info(int _iVar)
+
+SciErr printf_info(void* _pvCtx, int _iVar)
 {
     SciErr sciErr;
     int* piAddr     = NULL;
@@ -60,7 +61,7 @@ SciErr printf_info(int _iVar)
     int iItem       = 0;
     int iComplex    = 0;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
+    sciErr = getVarAddressFromPosition(_pvCtx, _iVar, &piAddr);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -68,7 +69,7 @@ SciErr printf_info(int _iVar)
 
     sciprint("Variable %d information:\n", _iVar);
 
-    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    sciErr = getVarType(_pvCtx, piAddr, &iType);
     if (sciErr.iErr)
     {
         return sciErr;
@@ -99,7 +100,7 @@ SciErr printf_info(int _iVar)
             char* pstSign       = pstSigned;
             int iPrec           = 0;
 
-            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
+            sciErr = getMatrixOfIntegerPrecision(_pvCtx, piAddr, &iPrec);
             if (sciErr.iErr)
             {
                 return sciErr;
@@ -130,15 +131,15 @@ SciErr printf_info(int _iVar)
             return sciErr;
     }
 
-    if (isVarComplex(pvApiCtx, piAddr))
+    if (isVarComplex(_pvCtx, piAddr))
     {
         sciprint("\tComplex: Yes\n");
     }
 
     sciprint("\tDimensions: ");
-    if (isVarMatrixType(pvApiCtx, piAddr))
+    if (isVarMatrixType(_pvCtx, piAddr))
     {
-        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+        sciErr = getVarDimension(_pvCtx, piAddr, &iRows, &iCols);
         if (sciErr.iErr)
         {
             return sciErr;
@@ -148,7 +149,7 @@ SciErr printf_info(int _iVar)
     }
     else
     {
-        sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
+        sciErr = getListItemNumber(_pvCtx, piAddr, &iItem);
         if (sciErr.iErr)
         {
             return sciErr;

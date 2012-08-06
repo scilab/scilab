@@ -174,8 +174,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         try {
             // Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
             // use as delegates for various com.apple.eawt.ApplicationListener methods
-            OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
-            OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
+            OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("macosxAbout", (Class[]) null));
+            OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("macosxQuit", (Class[]) null));
+            OSXAdapter.setPreferencesHandler(this, getClass().getDeclaredMethod("macosxPreferences", (Class[]) null));
             OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("puffin", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
@@ -184,15 +185,29 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     /**
      * This method is called by the OSXAdapter class when the specific Mac
-     * OS X about menu is called. It is the only case where this method
+     * OS X "About" menu is called. It is the only case where this method
      * should be used
      */
-    public void OSXabout() {
-        InterpreterManagement.requestScilabExec("about()");
+    public void macosxAbout() {
+        InterpreterManagement.requestScilabExec("about();");
     }
 
-    public void OSXquit() {
-        InterpreterManagement.requestScilabExec("exit()");
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Quit Scilab" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxQuit() {
+        InterpreterManagement.requestScilabExec("exit();");
+    }
+
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X "Preferences" menu is called. It is the only case where this method
+     * should be used
+     */
+    public void macosxPreferences() {
+        InterpreterManagement.requestScilabExec("preferences();");
     }
 
     /**

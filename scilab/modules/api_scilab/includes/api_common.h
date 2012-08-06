@@ -55,7 +55,7 @@ extern "C" {
 
 /*Rhs*/
     int* getNbInputArgument(void* _pvCtx);
-#define nbInputArgument (*getNbInputArgument(pvApiCtx))
+#define nbInputArgument(PVCTX) (*getNbInputArgument(PVCTX))
 
 #ifdef Rhs
 #undef Rhs
@@ -64,7 +64,7 @@ extern "C" {
 
 /*Top*/
     int* getNbArgumentOnStack(void* _pvCtx);
-#define nbArgumentOnStack (*getNbArgumentOnStack(pvApiCtx))
+#define nbArgumentOnStack(PVCTX) (*getNbArgumentOnStack(PVCTX))
 
 #ifdef Top
 #undef Top
@@ -73,21 +73,23 @@ extern "C" {
 
 /*Lhs*/
     int* getNbOutputArgument(void* _pvCtx);
-#define nbOutputArgument (*getNbOutputArgument(pvApiCtx))
+#define nbOutputArgument(PVCTX) (*getNbOutputArgument(PVCTX))
 #ifdef Lhs
 #undef Lhs
 #endif
 #define Lhs (*getNbOutputArgument(pvApiCtx))
 
+/*PutLhs*/
     int* assignOutputVariable(void* _pvCtx, int _iVal);
-#define AssignOutputVariable(x) (*assignOutputVariable(pvApiCtx, x))
+#define AssignOutputVariable(PVCTX, x) (*assignOutputVariable(PVCTX, x))
 #ifdef LhsVar
 #undef LhsVar
 #endif
 #define LhsVar(x) (*assignOutputVariable(pvApiCtx, x))
 
+/*PutLhsVar*/
     int returnArguments(void* _pvCtx);
-#define ReturnArguments() if (! returnArguments(pvApiCtx)) { return 0; }
+#define ReturnArguments(PVCTX) if (! returnArguments(PVCTX)) { return 0; }
 #ifdef PutLhsVar
 #undef PutLhsVar
 #endif

@@ -114,8 +114,10 @@ public final class SciDocMain {
                 if (isToolbox) {
                     urlBase = conf.getWebSiteURL() + language + "/";
                 }
-                if (format.equalsIgnoreCase("html") || format.equalsIgnoreCase("web")) {
-                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase);
+                if (format.equalsIgnoreCase("html")) {
+                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.HTML);
+                } else if (format.equalsIgnoreCase("web")) {
+                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.WEB);
                 } else if (format.equalsIgnoreCase("chm")) {
                     converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, conf.getWebSiteURL(), isToolbox, urlBase, language);
                 }
@@ -126,7 +128,7 @@ public final class SciDocMain {
             converter.registerExternalXMLHandler(HTMLScilabHandler.getInstance(outputDirectory, imagedir));
             converter.convert();
 
-            fileToExec = ScilabImageConverter.getInstance().getFileWithScilabCode();
+            fileToExec = ScilabImageConverter.getFileWithScilabCode();
 
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));

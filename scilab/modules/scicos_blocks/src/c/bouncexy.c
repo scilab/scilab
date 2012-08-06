@@ -295,6 +295,7 @@ static void freeScoData(scicos_block * block)
         sco->scope.cachedAxeUID = NULL;
 
         FREE(sco);
+        *(block->work) = NULL;
     }
 }
 
@@ -365,6 +366,12 @@ static char const* getFigure(scicos_block * block)
 
     sco_data *sco = (sco_data *) * (block->work);
 
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
     // fast path for an existing object
     if (sco->scope.cachedFigureUID != NULL)
     {
@@ -416,6 +423,12 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
 
     sco_data *sco = (sco_data *) * (block->work);
 
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
+
     // fast path for an existing object
     if (sco->scope.cachedAxeUID != NULL)
     {
@@ -466,6 +479,12 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
     int color;
 
     sco_data *sco = (sco_data *) * (block->work);
+
+    // assert the sco is not NULL
+    if (sco == NULL)
+    {
+        return NULL;
+    }
 
     // fast path for an existing object
     if (sco->scope.cachedArcsUIDs != NULL && sco->scope.cachedArcsUIDs[row] != NULL)

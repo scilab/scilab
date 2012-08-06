@@ -871,6 +871,8 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
+    int iMarkMode = 0;
+    int *piMarkMode = &iMarkMode;
 
     if (height < 0.0 || width < 0.0)
     {
@@ -910,6 +912,9 @@ char * ConstructRectangle(char * pparentsubwinUID, double x, double y,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_MARK_MODE__, jni_bool, (void **)&piMarkMode);
+    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &iMarkMode, jni_bool, 1);
 
     /*
      * Initializes the contour properties (background, foreground, etc)

@@ -26,6 +26,11 @@ using namespace org_scilab_modules_graphic_objects;
 
 void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnType_ _returnType, void **_pvData)
 {
+    // do not perform anything if the id is undefined
+    if (_pstID == NULL)
+    {
+        return;
+    }
 
     /* All the Data model properties have the DATA_MODEL prefix */
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)

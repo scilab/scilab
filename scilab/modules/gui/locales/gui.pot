@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-06 10:22+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -715,8 +715,8 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 43
-# File: scilab_fake_localization_file.c, line: 51
+# File: scilab_fake_localization_file.c, line: 42
+# File: scilab_fake_localization_file.c, line: 50
 msgid "&File"
 msgstr ""
 
@@ -802,13 +802,13 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 18
-# File: scilab_fake_localization_file.c, line: 58
+# File: scilab_fake_localization_file.c, line: 57
 msgid "P&age setup..."
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 19
-# File: scilab_fake_localization_file.c, line: 59
+# File: scilab_fake_localization_file.c, line: 58
 msgid "&Print..."
 msgstr ""
 
@@ -819,13 +819,13 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 21
-# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 44
 msgid "&Tools"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 22
-# File: scilab_fake_localization_file.c, line: 67
+# File: scilab_fake_localization_file.c, line: 66
 msgid "Show/Hide &Toolbar"
 msgstr ""
 
@@ -846,7 +846,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 61
+# File: scilab_fake_localization_file.c, line: 60
 msgid "&Edit"
 msgstr ""
 
@@ -857,419 +857,414 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 28
-msgid "&Redraw figure"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 29
 msgid "&Clear figure"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 30
+# File: scilab_fake_localization_file.c, line: 29
 msgid "&Figure properties"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 31
+# File: scilab_fake_localization_file.c, line: 30
 msgid "&Axes properties"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 32
+# File: scilab_fake_localization_file.c, line: 31
 msgid "&Start entity picker"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 33
+# File: scilab_fake_localization_file.c, line: 32
 msgid "S&top entity picker"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 33
 msgid "&Start datatip manager"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 35
+# File: scilab_fake_localization_file.c, line: 34
 msgid "Stop datatip manager"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 35
 msgid "&MVC"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 37
+# File: scilab_fake_localization_file.c, line: 36
 msgid "&Log View (Trace all View notifications)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 38
+# File: scilab_fake_localization_file.c, line: 37
 msgid "&All Objects View (All objects with properties)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 38
 msgid "&Ged-like View (Future ged)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 40
-# File: scilab_fake_localization_file.c, line: 49
-# File: scilab_fake_localization_file.c, line: 83
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 48
+# File: scilab_fake_localization_file.c, line: 82
 msgid "&?"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 41
+# File: scilab_fake_localization_file.c, line: 40
 msgid "&Scilab Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 42
-# File: scilab_fake_localization_file.c, line: 50
-# File: scilab_fake_localization_file.c, line: 97
+# File: scilab_fake_localization_file.c, line: 41
+# File: scilab_fake_localization_file.c, line: 49
+# File: scilab_fake_localization_file.c, line: 96
 msgid "&About Scilab..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 44
+# File: scilab_fake_localization_file.c, line: 43
 msgid "&Close"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 46
+# File: scilab_fake_localization_file.c, line: 45
 msgid "&Incremental Search"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 47
+# File: scilab_fake_localization_file.c, line: 46
 msgid "In&crease font size"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 48
+# File: scilab_fake_localization_file.c, line: 47
 msgid "&Decrease font size"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 52
+# File: scilab_fake_localization_file.c, line: 51
 msgid "&Execute..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 53
+# File: scilab_fake_localization_file.c, line: 52
 msgid "&Open a file..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 54
+# File: scilab_fake_localization_file.c, line: 53
 msgid "&Load environment..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 55
+# File: scilab_fake_localization_file.c, line: 54
 msgid "&Save environment..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 56
+# File: scilab_fake_localization_file.c, line: 55
 msgid "&Change current directory..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 57
+# File: scilab_fake_localization_file.c, line: 56
 msgid "&Display current directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 60
+# File: scilab_fake_localization_file.c, line: 59
 msgid "&Quit"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 62
+# File: scilab_fake_localization_file.c, line: 61
 msgid "C&ut"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 63
+# File: scilab_fake_localization_file.c, line: 62
 msgid "&Copy"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 64
+# File: scilab_fake_localization_file.c, line: 63
 msgid "&Paste"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 65
+# File: scilab_fake_localization_file.c, line: 64
 msgid "&Empty clipboard"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 66
+# File: scilab_fake_localization_file.c, line: 65
 msgid "&Select all"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 68
+# File: scilab_fake_localization_file.c, line: 67
 msgid "Clear &History"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 69
+# File: scilab_fake_localization_file.c, line: 68
 msgid "Clear C&onsole"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 70
+# File: scilab_fake_localization_file.c, line: 69
 msgid "P&references"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 71
+# File: scilab_fake_localization_file.c, line: 70
 msgid "&Control"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 72
+# File: scilab_fake_localization_file.c, line: 71
 msgid "&Resume"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 73
+# File: scilab_fake_localization_file.c, line: 72
 msgid "&Abort"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 74
+# File: scilab_fake_localization_file.c, line: 73
 msgid "&Interrupt"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 75
+# File: scilab_fake_localization_file.c, line: 74
 msgid "&Applications"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 76
+# File: scilab_fake_localization_file.c, line: 75
 msgid "&SciNotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 77
+# File: scilab_fake_localization_file.c, line: 76
 msgid "&Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 78
+# File: scilab_fake_localization_file.c, line: 77
 msgid "&Matlab to Scilab translator"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 79
+# File: scilab_fake_localization_file.c, line: 78
 msgid "M&odule manager - ATOMS"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 80
+# File: scilab_fake_localization_file.c, line: 79
 msgid "&Variable Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 81
+# File: scilab_fake_localization_file.c, line: 80
 msgid "&Command History"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 82
+# File: scilab_fake_localization_file.c, line: 81
 msgid "&File Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 84
+# File: scilab_fake_localization_file.c, line: 83
 msgid "Scilab &Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 85
+# File: scilab_fake_localization_file.c, line: 84
 msgid "Scilab &Demonstrations"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 86
+# File: scilab_fake_localization_file.c, line: 85
 msgid "&Links"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 87
+# File: scilab_fake_localization_file.c, line: 86
 msgid "Scilab &Web Site"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 88
+# File: scilab_fake_localization_file.c, line: 87
 msgid "Scilab &Online Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 89
+# File: scilab_fake_localization_file.c, line: 88
 msgid "Scilab &Wiki"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 90
+# File: scilab_fake_localization_file.c, line: 89
 msgid "Scilab &ATOMS Web Site"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 91
+# File: scilab_fake_localization_file.c, line: 90
 msgid "&File Exchange"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 92
+# File: scilab_fake_localization_file.c, line: 91
 msgid "&Mailing Lists"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 93
+# File: scilab_fake_localization_file.c, line: 92
 msgid "Mailing Lists &Archives"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 94
+# File: scilab_fake_localization_file.c, line: 93
 msgid "&Forge"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 95
+# File: scilab_fake_localization_file.c, line: 94
 msgid "&Bugs And Requests"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 96
+# File: scilab_fake_localization_file.c, line: 95
 msgid "&Scilab Enterprises"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 98
+# File: scilab_fake_localization_file.c, line: 97
 msgid "Rotate"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 99
+# File: scilab_fake_localization_file.c, line: 98
 msgid "Zoom Area"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 100
+# File: scilab_fake_localization_file.c, line: 99
 msgid "Original View"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 101
+# File: scilab_fake_localization_file.c, line: 100
 msgid "toggle datatip mode"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 102
-# File: scilab_fake_localization_file.c, line: 113
+# File: scilab_fake_localization_file.c, line: 101
+# File: scilab_fake_localization_file.c, line: 112
 # File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 93
 msgid "Help Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 103
+# File: scilab_fake_localization_file.c, line: 102
 msgid "Launch SciNotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 104
+# File: scilab_fake_localization_file.c, line: 103
 msgid "Open a file"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 105
+# File: scilab_fake_localization_file.c, line: 104
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 88
 msgid "Cut"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 106
+# File: scilab_fake_localization_file.c, line: 105
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 95
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 593
 msgid "Copy"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 107
+# File: scilab_fake_localization_file.c, line: 106
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 102
 msgid "Paste"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 108
+# File: scilab_fake_localization_file.c, line: 107
 msgid "Print..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 109
+# File: scilab_fake_localization_file.c, line: 108
 msgid "Module manager - ATOMS"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 110
+# File: scilab_fake_localization_file.c, line: 109
 msgid "Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 111
+# File: scilab_fake_localization_file.c, line: 110
 msgid "Scilab Preferences"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 112
+# File: scilab_fake_localization_file.c, line: 111
 msgid "Scilab Demonstrations"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 196
+# File: scilab_fake_localization_file.c, line: 195
 # File: etc/graphics_menubar.xml, line: 15
 msgid "Select a file to load"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 199
+# File: scilab_fake_localization_file.c, line: 198
 # File: etc/graphics_menubar.xml, line: 18
 msgid "Figure loaded.\n"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 207
+# File: scilab_fake_localization_file.c, line: 206
 # File: etc/graphics_menubar.xml, line: 26
 msgid "Select a file to write"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 213
+# File: scilab_fake_localization_file.c, line: 212
 # File: etc/graphics_menubar.xml, line: 32
 msgid "Figure saved.\n"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 225
-# File: scilab_fake_localization_file.c, line: 236
-# File: scilab_fake_localization_file.c, line: 247
-# File: scilab_fake_localization_file.c, line: 258
-# File: scilab_fake_localization_file.c, line: 269
-# File: scilab_fake_localization_file.c, line: 282
-# File: scilab_fake_localization_file.c, line: 293
-# File: scilab_fake_localization_file.c, line: 304
-# File: scilab_fake_localization_file.c, line: 315
-# File: scilab_fake_localization_file.c, line: 326
+# File: scilab_fake_localization_file.c, line: 224
+# File: scilab_fake_localization_file.c, line: 235
+# File: scilab_fake_localization_file.c, line: 246
+# File: scilab_fake_localization_file.c, line: 257
+# File: scilab_fake_localization_file.c, line: 268
+# File: scilab_fake_localization_file.c, line: 281
+# File: scilab_fake_localization_file.c, line: 292
+# File: scilab_fake_localization_file.c, line: 303
+# File: scilab_fake_localization_file.c, line: 314
+# File: scilab_fake_localization_file.c, line: 325
 # File: etc/graphics_menubar.xml, line: 44
 # File: etc/graphics_menubar.xml, line: 55
 # File: etc/graphics_menubar.xml, line: 66
@@ -1284,103 +1279,139 @@ msgid "Select a file name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 769
+# File: scilab_fake_localization_file.c, line: 765
 msgid "Colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 814
+# File: scilab_fake_localization_file.c, line: 810
 msgid "Desktop color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 825
+# File: scilab_fake_localization_file.c, line: 821
 msgid "Use system color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 843
+# File: scilab_fake_localization_file.c, line: 839
 msgid "Text "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 850
+# File: scilab_fake_localization_file.c, line: 846
 msgid "Background "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 857
+# File: scilab_fake_localization_file.c, line: 853
 msgid "Cursor "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 869
+# File: scilab_fake_localization_file.c, line: 865
 msgid "Syntax highlighting colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 885
+# File: scilab_fake_localization_file.c, line: 881
 msgid "Keyword color "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 897
+# File: scilab_fake_localization_file.c, line: 893
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 904
+# File: scilab_fake_localization_file.c, line: 900
 msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 911
+# File: scilab_fake_localization_file.c, line: 907
 msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 918
+# File: scilab_fake_localization_file.c, line: 914
 msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 946
+# File: scilab_fake_localization_file.c, line: 942
 msgid "Fonts"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 981
+# File: scilab_fake_localization_file.c, line: 977
 msgid "Desktop font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 985
+# File: scilab_fake_localization_file.c, line: 981
 msgid "Use system font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1001
+# File: scilab_fake_localization_file.c, line: 997
 msgid "Desktop text font: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1017
+# File: scilab_fake_localization_file.c, line: 1013
 msgid "Custom font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1031
+# File: scilab_fake_localization_file.c, line: 1027
 msgid "Fonts to use:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1034
+# File: scilab_fake_localization_file.c, line: 1030
 msgid "Desktop text font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1040
+# File: scilab_fake_localization_file.c, line: 1036
 msgid "Custom:"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1240
+msgid "Web"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1256
+msgid "Web browser and mailer"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1258
+msgid "Use default web browser"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1264
+msgid "Command for web browser: "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1279
+# File: scilab_fake_localization_file.c, line: 1310
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1289
+msgid "Use default mailer"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1295
+msgid "Command for mailer: "
 msgstr ""
 
 #
@@ -1745,23 +1776,24 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2486
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2475
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2505
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2494
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2639
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2628
 msgid "No print service found."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1772,6 +1804,7 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 74
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 154
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 164
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -2075,6 +2108,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -2082,11 +2116,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 50
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 51
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -2178,6 +2214,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
+#, c-format
 msgid "All %s files"
 msgstr ""
 

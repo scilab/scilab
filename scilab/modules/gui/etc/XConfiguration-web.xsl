@@ -9,15 +9,15 @@
   -->
 
   <xsl:template match="web">
-    <Title text="Web browser and mailer">
+    <Title text="_(Web browser and mailer)">
       <Grid>
-        <Checkbox checked="{@default-browser}" selected-value="true" unselected-value="false" listener="ActionListener" text="Use default web browser" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+        <Checkbox checked="{@default-browser}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Use default web browser)" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
           <actionPerformed choose="default-browser">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Checkbox>
         <Panel gridx="2" gridy="1" weightx="1"/>
-        <Label gridx="1" gridy="2" weightx="0" text="Command for web browser: "/>
+        <Label gridx="1" gridy="2" weightx="0" text="_(Command for web browser: )"/>
         <FileSelector gridx="2" gridy="2" weightx="1" anchor="above_baseline"
                       listener="EntryListener"
                       href="{@command-browser}"
@@ -32,7 +32,7 @@
             <xsl:call-template name="context"/>
           </entryChanged>
         </FileSelector>
-        <Label gridx="2" gridy="3" text="(Don't forget to quote path containing white spaces)">
+        <Label gridx="2" gridy="3" text="_((Don't forget to quote path containing white spaces))">
           <xsl:attribute name="enable">
             <xsl:if test="@default-browser='false'">
               <xsl:text>true</xsl:text>
@@ -42,13 +42,13 @@
         <Panel height="5" gridx="1" gridy="4">
           <VSpace height="5"/>
         </Panel>
-        <Checkbox checked="{@default-mailer}" selected-value="true" unselected-value="false" listener="ActionListener" text="Use default mailer" gridx="1" gridy="5" fill="none" weightx="0" anchor="west">
+        <Checkbox checked="{@default-mailer}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Use default mailer)" gridx="1" gridy="5" fill="none" weightx="0" anchor="west">
           <actionPerformed choose="default-mailer">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Checkbox>
         <Panel gridx="2" gridy="5" weightx="1"/>
-        <Label gridx="1" gridy="6" weightx="0" text="Command for mailer: "/>
+        <Label gridx="1" gridy="6" weightx="0" text="_(Command for mailer: )"/>
         <FileSelector gridx="2" gridy="6" weightx="1" anchor="above_baseline"
                       listener="EntryListener"
                       href="{@command-mailer}"
@@ -63,7 +63,7 @@
             <xsl:call-template name="context"/>
           </entryChanged>
         </FileSelector>
-        <Label gridx="2" gridy="7" text="(Don't forget to quote path containing white spaces)">
+        <Label gridx="2" gridy="7" text="_((Don't forget to quote path containing white spaces))">
           <xsl:attribute name="enable">
             <xsl:if test="@default-mailer='false'">
               <xsl:text>true</xsl:text>

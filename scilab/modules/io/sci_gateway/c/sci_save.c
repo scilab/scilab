@@ -138,11 +138,11 @@ int sci_save(char *fname, unsigned long fname_len)
     }
 
 
-    //new -> %_export_to_hdf5
-    //old
+    //old save
+
     if (iOldSave)
-    {
-        if (getWarningMode())
+    {//show warning only for variable save, not for environment.
+        if (getWarningMode() && Rhs > 1)
         {
             sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
             sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));

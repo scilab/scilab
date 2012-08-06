@@ -119,5 +119,6 @@ libscijvm_algo_la_CPPFLAGS = $(libscijvm_la_CPPFLAGS)
 CHECK_SRC= $(libscijvm_la_SOURCES)
 INCLUDE_FLAGS = $(libscijvm_la_CPPFLAGS)
 
+CLEANFILES = etc/jvm_options.xml
 
 include $(top_srcdir)/Makefile.incl.am

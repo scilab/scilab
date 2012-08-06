@@ -70,14 +70,14 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     issparse =  (GetType(3) == 5);
     if (!issparse)
     {
-        GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m, &nbis, &C);
+        GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbis, &m, &C);
     }
     else
     {
-        GetRhsVar(3, SPARSE_MATRIX_DATATYPE, &m, &nbis, &Sp);
+        GetRhsVar(3, SPARSE_MATRIX_DATATYPE, &nbis, &m, &Sp);
     }
 
-    if ( nbis != n )
+    if ( nbis != n ) // car C est passee en transposee dans la macro qpsolve
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"), fname, 3, n, "C");
         return 0;

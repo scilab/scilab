@@ -42,6 +42,6 @@ int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
     }
 
     createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
-    AssignOutputVariable(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     return 0;
 }

@@ -49,7 +49,7 @@ msgid "PID"
 msgstr "Identification des paramètres"
 
 msgid "Inverted pendulum"
-msgstr "Pendule inversée"
+msgstr "Pendule inversé"
 
 msgid "Flat systems"
 msgstr "Systèmes plats"

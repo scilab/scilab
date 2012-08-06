@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 
 /**
  * Scilab code to PNG converter
@@ -32,21 +33,30 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     private static ScilabImageConverter instance;
     private final StringBuilder buffer;
+    private final HTMLDocbookTagConverter.GenerationType type;
 
-    private ScilabImageConverter() {
+    private ScilabImageConverter(HTMLDocbookTagConverter.GenerationType type) {
         buffer = new StringBuilder(8192);
+        this.type = type;
     }
 
     public String getMimeType() {
         return "image/scilab";
     }
 
-    public String getFileWithScilabCode() {
-        if (buffer.length() != 0) {
+    /**
+     * {@inheritDoc}
+     */
+    public boolean mustRegenerate() {
+        return false;
+    }
+
+    public static String getFileWithScilabCode() {
+        if (instance.buffer.length() != 0) {
             try {
                 File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
-                byte[] arr = buffer.toString().getBytes();
+                byte[] arr = instance.buffer.toString().getBytes();
                 out.write(arr, 0, arr.length);
                 out.flush();
                 out.close();
@@ -68,11 +78,15 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ScilabImageConverter getInstance() {
+    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
         if (instance == null) {
-            instance = new ScilabImageConverter();
+            instance = new ScilabImageConverter(type);
         }
 
+        return instance;
+    }
+
+    public static ScilabImageConverter getInstance() {
         return instance;
     }
 
@@ -115,6 +129,76 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
-        return "<img src=\'" + imageName + "\'/>";
+        return getHTMLCodeToReturn(code, "<img src=\'" + imageName + "\'/>");
+    }
+
+    public String getHTMLCodeToReturn(String code, String imageTag) {
+        if (type == HTMLDocbookTagConverter.GenerationType.WEB) {
+            /* Prepare the code for the html inclusion */
+            code = convertCode(code);
+            /* Provide a tooltip */
+            return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
+        } else {
+            /* No tooltip in the javahelp browser ...
+             * too limited html capabilities */
+            return imageTag;
+        }
+    }
+
+    private static final String convertCode(String code) {
+        if (code == null || code.length() == 0) {
+            return "";
+        }
+
+        StringBuffer buffer = new StringBuffer(2 * code.length());
+        int start = 0;
+        int end = code.length() - 1;
+        char c = code.charAt(0);
+
+        // first we trim
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (start < end) {
+                c = code.charAt(++start);
+            } else {
+                break;
+            }
+        }
+        c = code.charAt(end);
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (end > 0) {
+                c = code.charAt(--end);
+            } else {
+                break;
+            }
+        }
+
+        // replace chars by their html entities equivalent
+        for (int j = start; j <= end; j++) {
+            c = code.charAt(j);
+            switch (c) {
+            case '&':
+                buffer.append("&amp;");
+                break;
+            case '<':
+                buffer.append("&lt;");
+                break;
+            case '>':
+                buffer.append("&gt;");
+                break;
+            case '\n':
+                buffer.append("<br />");
+                break;
+            case '\'':
+                buffer.append("&#039;");
+                break;
+            case '\"':
+                buffer.append("&quot;");
+                break;
+            default:
+                buffer.append(c);
+            }
+        }
+
+        return buffer.toString();
     }
 }

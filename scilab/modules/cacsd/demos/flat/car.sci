@@ -155,7 +155,6 @@ function draw_car(C,pos)
       (1+cos(phi)/8) (-1/6+sin(phi)/8)]
     C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
     drawnow()
-    show_pixmap();
   end
 endfunction
 

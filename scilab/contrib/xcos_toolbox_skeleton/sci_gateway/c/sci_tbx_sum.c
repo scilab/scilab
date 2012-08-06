@@ -64,7 +64,7 @@ int sci_tbx_sum(char *fname)
     /* call c business function */
     dOut = business_sum(dVarOne, dVarTwo);
 
-    createScalarDouble(pvApiCtx, nbInputArgument + 1, dOut);
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, dOut);
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
 }
 

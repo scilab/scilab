@@ -198,11 +198,11 @@ public class Export {
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
-            };
+                    @Override
+                    public void updateObject(String id, String property) {
+                        // Don't update during the export
+                    }
+                };
 
             try {
                 canvas.setMainDrawer(visitor);
@@ -296,11 +296,16 @@ public class Export {
                 DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
-                    @Override
-                    public void updateObject(String id, String property) {
-                        // Don't update during the export
-                    }
-                };
+                        @Override
+                        public void updateObject(String id, String property) {
+                            // Don't update during the export
+                        }
+
+                        @Override
+                        public void deleteObject(String id) {
+                            // Don't delete during the export
+                        }
+                    };
                 joglCanvas.setMainDrawer(visitor);
                 joglCanvas.redraw();
                 GraphicController.getController().unregister(visitor);
@@ -336,11 +341,16 @@ public class Export {
 
         G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-            @Override
-            public void updateObject(String id, String property) {
-                // Don't update during the export
-            }
-        };
+                @Override
+                public void updateObject(String id, String property) {
+                    // Don't update during the export
+                }
+
+                @Override
+                public void deleteObject(String id) {
+                    // Don't delete during the export
+                }
+            };
         visitor.setDrawingTools(canvas.getDrawingTools());
         canvas.setMainDrawer(visitor);
         visitorsToExp.put(visitor, exporter);
@@ -353,33 +363,33 @@ public class Export {
      */
     private static Exporter getExporter(TYPE type) {
         switch (type) {
-            case PNG :
-                return new PNGExporter();
-            case GIF :
-                return new GIFExporter();
-            case JPEG :
-                return new JPEGExporter();
-            case BMP :
-                return new BMPExporter();
-            case PPM :
-                return new PPMExporter();
-            case SVG :
-                if (!svgLoaded) {
-                    ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
-                    svgLoaded = true;
-                }
-                return new SVGExporter();
-            case PDF :
-                loadPDF();
-                return new PDFExporter();
-            case PS :
-                loadPDF();
-                return new PSExporter();
-            case EPS :
-                loadPDF();
-                return new PSExporter();
-            default :
-                break;
+        case PNG :
+            return new PNGExporter();
+        case GIF :
+            return new GIFExporter();
+        case JPEG :
+            return new JPEGExporter();
+        case BMP :
+            return new BMPExporter();
+        case PPM :
+            return new PPMExporter();
+        case SVG :
+            if (!svgLoaded) {
+                ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
+                svgLoaded = true;
+            }
+            return new SVGExporter();
+        case PDF :
+            loadPDF();
+            return new PDFExporter();
+        case PS :
+            loadPDF();
+            return new PSExporter();
+        case EPS :
+            loadPDF();
+            return new PSExporter();
+        default :
+            break;
         }
 
         return null;
@@ -667,16 +677,16 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new PSDocumentGraphics2D(true, out, width, height) {
-                    @Override
-                    protected void writePageHeader() throws IOException {
-                        super.writePageHeader();
-                        if (params.orientation == ExportParams.LANDSCAPE) {
-                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                        } else {
-                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                        @Override
+                        protected void writePageHeader() throws IOException {
+                            super.writePageHeader();
+                            if (params.orientation == ExportParams.LANDSCAPE) {
+                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                            } else {
+                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                            }
                         }
-                    }
-                };
+                    };
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
 
@@ -725,16 +735,16 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new EPSDocumentGraphics2D(true) {
-                    @Override
-                    protected void writePageHeader() throws IOException {
-                        super.writePageHeader();
-                        if (params.orientation == ExportParams.LANDSCAPE) {
-                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                        } else {
-                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                        @Override
+                        protected void writePageHeader() throws IOException {
+                            super.writePageHeader();
+                            if (params.orientation == ExportParams.LANDSCAPE) {
+                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                            } else {
+                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                            }
                         }
-                    }
-                };
+                    };
                 g2d.setupDocument(out, width, height);
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }

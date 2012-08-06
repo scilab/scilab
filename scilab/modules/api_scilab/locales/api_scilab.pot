@@ -14,13 +14,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-07-25 19:17+0100\n"
+"Revision-Date: 2012-08-06 10:22+0100\n"
 
 # File: src/cpp/api_boolean.cpp, line: 35
 # File: src/cpp/api_boolean_sparse.cpp, line: 33
 # File: src/cpp/api_boolean_sparse.cpp, line: 116
-# File: src/cpp/api_common.cpp, line: 216
-# File: src/cpp/api_common.cpp, line: 364
+# File: src/cpp/api_common.cpp, line: 227
+# File: src/cpp/api_common.cpp, line: 375
 # File: src/cpp/api_double.cpp, line: 67
 # File: src/cpp/api_int.cpp, line: 33
 # File: src/cpp/api_int.cpp, line: 84
@@ -108,8 +108,8 @@ msgstr ""
 # File: src/cpp/api_boolean_sparse.cpp, line: 144
 # File: src/cpp/api_boolean_sparse.cpp, line: 152
 # File: src/cpp/api_boolean_sparse.cpp, line: 180
-# File: src/cpp/api_common.cpp, line: 1245
-# File: src/cpp/api_common.cpp, line: 1264
+# File: src/cpp/api_common.cpp, line: 1256
+# File: src/cpp/api_common.cpp, line: 1275
 # File: src/cpp/api_double.cpp, line: 110
 # File: src/cpp/api_double.cpp, line: 128
 # File: src/cpp/api_double.cpp, line: 192
@@ -179,9 +179,9 @@ msgstr ""
 # File: src/cpp/api_string.cpp, line: 122
 # File: src/cpp/api_string.cpp, line: 132
 # File: src/cpp/api_string.cpp, line: 215
-# File: src/cpp/api_string.cpp, line: 418
-# File: src/cpp/api_string.cpp, line: 433
-# File: src/cpp/api_string.cpp, line: 453
+# File: src/cpp/api_string.cpp, line: 425
+# File: src/cpp/api_string.cpp, line: 440
+# File: src/cpp/api_string.cpp, line: 460
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
 msgstr ""
@@ -189,7 +189,7 @@ msgstr ""
 #
 # File: src/cpp/api_boolean.cpp, line: 157
 # File: src/cpp/api_boolean_sparse.cpp, line: 187
-# File: src/cpp/api_common.cpp, line: 1350
+# File: src/cpp/api_common.cpp, line: 1361
 # File: src/cpp/api_double.cpp, line: 262
 # File: src/cpp/api_double.cpp, line: 303
 # File: src/cpp/api_int.cpp, line: 674
@@ -222,7 +222,7 @@ msgstr ""
 # File: src/cpp/api_poly.cpp, line: 311
 # File: src/cpp/api_sparse.cpp, line: 305
 # File: src/cpp/api_string.cpp, line: 235
-# File: src/cpp/api_string.cpp, line: 468
+# File: src/cpp/api_string.cpp, line: 475
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
 msgstr ""
@@ -236,7 +236,7 @@ msgstr ""
 # File: src/cpp/api_boolean.cpp, line: 205
 # File: src/cpp/api_boolean.cpp, line: 212
 # File: src/cpp/api_boolean_sparse.cpp, line: 239
-# File: src/cpp/api_common.cpp, line: 383
+# File: src/cpp/api_common.cpp, line: 394
 # File: src/cpp/api_double.cpp, line: 365
 # File: src/cpp/api_double.cpp, line: 372
 # File: src/cpp/api_int.cpp, line: 779
@@ -251,8 +251,8 @@ msgstr ""
 # File: src/cpp/api_sparse.cpp, line: 373
 # File: src/cpp/api_string.cpp, line: 260
 # File: src/cpp/api_string.cpp, line: 267
-# File: src/cpp/api_string.cpp, line: 485
 # File: src/cpp/api_string.cpp, line: 492
+# File: src/cpp/api_string.cpp, line: 499
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
 msgstr ""
@@ -302,194 +302,194 @@ msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 92
+# File: src/cpp/api_common.cpp, line: 98
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 96
+# File: src/cpp/api_common.cpp, line: 102
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 114
+# File: src/cpp/api_common.cpp, line: 120
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 130
+# File: src/cpp/api_common.cpp, line: 136
 #, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 149
+# File: src/cpp/api_common.cpp, line: 155
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 153
+# File: src/cpp/api_common.cpp, line: 159
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 171
+# File: src/cpp/api_common.cpp, line: 177
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 187
+# File: src/cpp/api_common.cpp, line: 193
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 220
+# File: src/cpp/api_common.cpp, line: 231
 #, c-format
 msgid "%s: matrix argument excepted"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 237
-# File: src/cpp/api_common.cpp, line: 244
+# File: src/cpp/api_common.cpp, line: 248
+# File: src/cpp/api_common.cpp, line: 255
 #, c-format
 msgid "%s: Unable to get dimension of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 263
+# File: src/cpp/api_common.cpp, line: 274
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 292
+# File: src/cpp/api_common.cpp, line: 303
 #, c-format
 msgid "%s: Unable to get name of argument #%d"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 334
+# File: src/cpp/api_common.cpp, line: 345
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 390
+# File: src/cpp/api_common.cpp, line: 401
 #, c-format
 msgid "%s: Unable to get type of variable \"%s\""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 525
-# File: src/cpp/api_common.cpp, line: 571
-# File: src/cpp/api_common.cpp, line: 673
-# File: src/cpp/api_common.cpp, line: 850
-# File: src/cpp/api_common.cpp, line: 880
-# File: src/cpp/api_common.cpp, line: 915
-# File: src/cpp/api_common.cpp, line: 945
-# File: src/cpp/api_common.cpp, line: 992
-# File: src/cpp/api_common.cpp, line: 1022
-# File: src/cpp/api_common.cpp, line: 1057
-# File: src/cpp/api_common.cpp, line: 1087
-# File: src/cpp/api_common.cpp, line: 1122
-# File: src/cpp/api_common.cpp, line: 1152
+# File: src/cpp/api_common.cpp, line: 536
+# File: src/cpp/api_common.cpp, line: 582
+# File: src/cpp/api_common.cpp, line: 684
+# File: src/cpp/api_common.cpp, line: 861
+# File: src/cpp/api_common.cpp, line: 891
+# File: src/cpp/api_common.cpp, line: 926
+# File: src/cpp/api_common.cpp, line: 956
+# File: src/cpp/api_common.cpp, line: 1003
+# File: src/cpp/api_common.cpp, line: 1033
+# File: src/cpp/api_common.cpp, line: 1068
+# File: src/cpp/api_common.cpp, line: 1098
+# File: src/cpp/api_common.cpp, line: 1133
+# File: src/cpp/api_common.cpp, line: 1163
 #, c-format
 msgid "%s: Unable to get argument dimension"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 532
+# File: src/cpp/api_common.cpp, line: 543
 #, c-format
 msgid "%s: Unable to get variable address"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 539
-# File: src/cpp/api_common.cpp, line: 644
+# File: src/cpp/api_common.cpp, line: 550
+# File: src/cpp/api_common.cpp, line: 655
 #, c-format
 msgid "%s: Unable to get argument type"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 550
-# File: src/cpp/api_common.cpp, line: 585
-# File: src/cpp/api_common.cpp, line: 593
-# File: src/cpp/api_common.cpp, line: 660
-# File: src/cpp/api_common.cpp, line: 700
-# File: src/cpp/api_common.cpp, line: 713
-# File: src/cpp/api_common.cpp, line: 726
-# File: src/cpp/api_common.cpp, line: 739
-# File: src/cpp/api_common.cpp, line: 752
-# File: src/cpp/api_common.cpp, line: 765
-# File: src/cpp/api_string.cpp, line: 528
-# File: src/cpp/api_string.cpp, line: 538
-# File: src/cpp/api_string.cpp, line: 563
-# File: src/cpp/api_string.cpp, line: 573
-# File: src/cpp/api_string.cpp, line: 590
-# File: src/cpp/api_string.cpp, line: 601
-# File: src/cpp/api_string.cpp, line: 616
-# File: src/cpp/api_string.cpp, line: 633
-# File: src/cpp/api_string.cpp, line: 644
-# File: src/cpp/api_string.cpp, line: 661
-# File: src/cpp/api_string.cpp, line: 685
-# File: src/cpp/api_string.cpp, line: 695
-# File: src/cpp/api_string.cpp, line: 720
-# File: src/cpp/api_string.cpp, line: 730
-# File: src/cpp/api_string.cpp, line: 747
-# File: src/cpp/api_string.cpp, line: 757
-# File: src/cpp/api_string.cpp, line: 773
-# File: src/cpp/api_string.cpp, line: 791
-# File: src/cpp/api_string.cpp, line: 801
-# File: src/cpp/api_string.cpp, line: 818
-# File: src/cpp/api_string.cpp, line: 833
-# File: src/cpp/api_string.cpp, line: 848
-# File: src/cpp/api_string.cpp, line: 863
-# File: src/cpp/api_string.cpp, line: 878
+# File: src/cpp/api_common.cpp, line: 561
+# File: src/cpp/api_common.cpp, line: 596
+# File: src/cpp/api_common.cpp, line: 604
+# File: src/cpp/api_common.cpp, line: 671
+# File: src/cpp/api_common.cpp, line: 711
+# File: src/cpp/api_common.cpp, line: 724
+# File: src/cpp/api_common.cpp, line: 737
+# File: src/cpp/api_common.cpp, line: 750
+# File: src/cpp/api_common.cpp, line: 763
+# File: src/cpp/api_common.cpp, line: 776
+# File: src/cpp/api_string.cpp, line: 535
+# File: src/cpp/api_string.cpp, line: 545
+# File: src/cpp/api_string.cpp, line: 571
+# File: src/cpp/api_string.cpp, line: 581
+# File: src/cpp/api_string.cpp, line: 598
+# File: src/cpp/api_string.cpp, line: 609
+# File: src/cpp/api_string.cpp, line: 624
+# File: src/cpp/api_string.cpp, line: 641
+# File: src/cpp/api_string.cpp, line: 652
+# File: src/cpp/api_string.cpp, line: 669
+# File: src/cpp/api_string.cpp, line: 693
+# File: src/cpp/api_string.cpp, line: 703
+# File: src/cpp/api_string.cpp, line: 728
+# File: src/cpp/api_string.cpp, line: 738
+# File: src/cpp/api_string.cpp, line: 755
+# File: src/cpp/api_string.cpp, line: 765
+# File: src/cpp/api_string.cpp, line: 781
+# File: src/cpp/api_string.cpp, line: 799
+# File: src/cpp/api_string.cpp, line: 809
+# File: src/cpp/api_string.cpp, line: 826
+# File: src/cpp/api_string.cpp, line: 841
+# File: src/cpp/api_string.cpp, line: 856
+# File: src/cpp/api_string.cpp, line: 871
+# File: src/cpp/api_string.cpp, line: 886
 #, c-format
 msgid "%s: Unable to get argument data"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 556
-# File: src/cpp/api_common.cpp, line: 577
-# File: src/cpp/api_common.cpp, line: 679
+# File: src/cpp/api_common.cpp, line: 567
+# File: src/cpp/api_common.cpp, line: 588
+# File: src/cpp/api_common.cpp, line: 690
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 602
+# File: src/cpp/api_common.cpp, line: 613
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 623
+# File: src/cpp/api_common.cpp, line: 634
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 652
+# File: src/cpp/api_common.cpp, line: 663
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 687
+# File: src/cpp/api_common.cpp, line: 698
 #, c-format
 msgid "%s: Unable to get argument precision"
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 775
+# File: src/cpp/api_common.cpp, line: 786
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
@@ -497,8 +497,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/cpp/api_common.cpp, line: 793
-# File: src/cpp/api_common.cpp, line: 801
+# File: src/cpp/api_common.cpp, line: 804
+# File: src/cpp/api_common.cpp, line: 812
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
 msgstr ""
@@ -779,20 +779,27 @@ msgid "matrix of string"
 msgstr ""
 
 #
-# File: src/cpp/api_string.cpp, line: 468
+# File: src/cpp/api_string.cpp, line: 354
+# File: src/cpp/api_string.cpp, line: 393
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
+msgstr ""
+
+#
+# File: src/cpp/api_string.cpp, line: 475
 msgid "matrix of wide string"
 msgstr ""
 
 #
-# File: src/cpp/api_string.cpp, line: 520
-# File: src/cpp/api_string.cpp, line: 555
+# File: src/cpp/api_string.cpp, line: 527
+# File: src/cpp/api_string.cpp, line: 563
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_string.cpp, line: 677
-# File: src/cpp/api_string.cpp, line: 712
+# File: src/cpp/api_string.cpp, line: 685
+# File: src/cpp/api_string.cpp, line: 720
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr ""

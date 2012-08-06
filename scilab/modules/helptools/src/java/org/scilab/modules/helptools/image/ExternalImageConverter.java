@@ -22,4 +22,6 @@ public interface ExternalImageConverter {
     public String convertToImage(File f, Map<String, String> attributes, File imageFile, String imageName);
 
     public String convertToImage(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName);
+
+    public boolean mustRegenerate();
 }
