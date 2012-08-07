@@ -748,7 +748,7 @@ public final class Xcos {
             instance.addDiagram(null, null);
 
             /* terminate any remaining simulation */
-            InterpreterManagement.putCommandInScilabQueue("haltscicos");
+            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), then haltscicos(), end;");
 
             /* Saving modified data */
             instance.palette.saveConfig();
