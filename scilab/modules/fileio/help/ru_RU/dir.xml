@@ -29,9 +29,9 @@
         <term>path</term>
         <listitem>
           <para>
-            строковая матрица, указывющая путь до директории (обычно
+            строковая матрица, указывающая путь до директории (обычно
             заканчивающаяся маской <literal>*</literal>). Значение по
-            умолчанию <literal>.</literal> (точка)
+            умолчанию <literal>.</literal> (точка).
           </para>
         </listitem>
       </varlistentry>
@@ -41,7 +41,7 @@
           <para>
             типизированный список <literal>tlist</literal> типа
             <literal>dir</literal> с полями:
-            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> и <varname>isdir</varname>
+            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> и <varname>isdir</varname>.
           </para>
         </listitem>
       </varlistentry>
@@ -84,7 +84,7 @@
       переопределив функцию <function>%dir_p</function>.
     </para>
     <para>
-      Начиная с Scilab 5.3.1, завершение "/" or "\" (см. <link
+      Начиная с Scilab 5.3.1, завершение "/" или "\" (см. <link
       linkend="filesep">filesep</link>) отображается для каждой директории.
     </para>
   </refsection>
