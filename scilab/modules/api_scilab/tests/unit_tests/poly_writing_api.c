@@ -43,7 +43,7 @@ int write_poly(char *fname, unsigned long fname_len)
     pdblReal[4]             = pdblPoly4;
     pdblReal[5]             = pdblPoly5;
 
-    sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+    sciErr = createMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -51,6 +51,6 @@ int write_poly(char *fname, unsigned long fname_len)
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

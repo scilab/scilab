@@ -2,6 +2,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -62,18 +63,16 @@ function demo_nmplot_rosenvar()
     contour ( xdata , ydata , rosenbrockC , [2 10 100 500 1000 2000] )
     nmplot_simplexhistory ( nm );
     drawnow();
+    demo_viewCode(filename);
     //
     // Cleanup
     deletefile(simplexfn);
     nm = nmplot_destroy(nm);
     mprintf("End of demo.\n");
-
-    //
-    // Load this script into the editor
-    //
-    editor ( dname + filename );
-
 endfunction
 
 demo_nmplot_rosenvar()
 clear demo_nmplot_rosenvar;
+
+
+

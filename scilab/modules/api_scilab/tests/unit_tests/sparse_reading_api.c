@@ -72,6 +72,6 @@ int read_sparse(char *fname,unsigned long fname_len)
 	}
 
 	//assign allocated variables to Lhs position
-	AssignOutputVariable(1) = 0;
+	AssignOutputVariable(pvApiCtx, 1) = 0;
 	return 0;
 }

@@ -49,6 +49,13 @@ public class LaTeXImageConverter implements ExternalImageConverter {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean mustRegenerate() {
+        return true;
+    }
+
+    /**
      * Since it is a singleton class...
      * @return this
      */

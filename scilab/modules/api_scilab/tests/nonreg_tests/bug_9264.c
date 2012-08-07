@@ -85,6 +85,6 @@ int sci_bug9264(char *fname)
         freeArrayOfString(str, size);
     }
 
-    AssignOutputVariable(1) = 0;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     return 0;
 }

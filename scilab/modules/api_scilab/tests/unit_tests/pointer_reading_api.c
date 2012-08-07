@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <stdlib.h>
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -23,7 +23,7 @@ int read_pointer(char *fname, unsigned long fname_len)
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (nbInputArgument == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         //create mode
         double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
@@ -31,9 +31,9 @@ int read_pointer(char *fname, unsigned long fname_len)
         pdblData[1]			= 3;
         pdblData[2]			= 2;
         pdblData[3]			= 4;
-        sciErr = createPointer(pvApiCtx, nbInputArgument + 1, (void*)pdblData);
+        sciErr = createPointer(pvApiCtx, nbInputArgument(pvApiCtx) + 1, (void*)pdblData);
     }
-    else if (nbInputArgument == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         //read mode
         int iType			= 0;
@@ -53,7 +53,7 @@ int read_pointer(char *fname, unsigned long fname_len)
             return 0;
         }
         pdblData = (double*)pvPtr;
-        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, 2, 2, pdblData);
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 2, 2, pdblData);
     }
     else
     {
@@ -64,6 +64,6 @@ int read_pointer(char *fname, unsigned long fname_len)
         printError(&sciErr, 0);
         return 0;
     }
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

@@ -46,7 +46,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             xmlXPathContextPtr xpathCtxt = NULL;
             xmlXPathObjectPtr xpathObj = NULL;
             char *jvm_option_string = NULL;
-            char * heapSize = getJavaHeapSize();
+            char *xpath_query = NULL;
+            char *heapSize = getJavaHeapSize();
 
             int indice = 0;
             {
@@ -74,8 +75,14 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             }
 
             xpathCtxt = xmlXPathNewContext(doc);
-            xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
+            /* Retrieve all nodes without the os tag + only the one from our operating system */
+#define XPATH_QUERY "//jvm_options/option[not(@os)] | //jvm_options/option[@os='%s']"
 
+            xpath_query = (char *)MALLOC(sizeof(char) * ((int)strlen(XPATH_QUERY) + (int)strlen(OSNAME) + 1));
+            sprintf(xpath_query, XPATH_QUERY, OSNAME);
+
+            xpathObj = xmlXPathEval((const xmlChar*)xpath_query, xpathCtxt);
+            FREE(xpath_query);
             if (xpathObj && xpathObj->nodesetval->nodeMax)
             {
                 /* the Xpath has been understood and there are node */

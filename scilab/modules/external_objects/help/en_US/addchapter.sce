@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Python Environment",SCI+"/modules/external_objects/help/en_US",%T);
+//add_help_chapter("External objects",SCI+"/modules/external_objects/help/en_US",%T);

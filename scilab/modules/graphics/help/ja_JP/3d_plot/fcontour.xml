@@ -10,21 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fcontour">
-  <refnamediv>
-    <refname>fcontour</refname>
-    <refpurpose>関数により定義された3次元曲面上に等高線を描画</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
-      fcontour(xr,yr,f,nz,&lt;opt_args&gt;)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>説明</title>
-    <para>この関数は廃止されており,
-      <link linkend="contour">contour</link> 関数に統合されています.
-    </para>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="fcontour">
+    <refnamediv>
+        <refname>fcontour</refname>
+        <refpurpose>関数により定義された3次元曲面上に等高線を描画
+            <emphasis role="bold">この関数は廃止されています.</emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
+            fcontour(xr,yr,f,nz,&lt;opt_args&gt;)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>この関数は廃止されており,
+            <link linkend="contour">contour</link> 関数に統合されています.
+        </para>
+    </refsection>
 </refentry>

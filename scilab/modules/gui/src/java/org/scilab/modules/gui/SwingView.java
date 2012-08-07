@@ -988,7 +988,9 @@ public final class SwingView implements GraphicView {
         }
         // Remove children which have been deleted
         Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-        for (String childId : updatedObject.getChildren()) {
+        String[] oldChildren = (String[]) updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
+        for (int childIndex = 0; childIndex < oldChildren.length; childIndex++) {
+            String childId = oldChildren[childIndex];
             if (!newChildrenSet.contains(childId)) {
                 // Remove the child
                 updatedObject.removeChild(childId);
