@@ -11,54 +11,62 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tempname">
-  <refnamediv>
-    <refname>tempname</refname>
-    <refpurpose>Unique name for temporary file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>tmp_name = tempname([prefix])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>tmp_name</term>
-        <listitem>
-          <para>a string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>prefix</term>
-        <listitem>
-          <para>a string: prefix of filename (On Windows, 3 characters maximum).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Creates a file with a unique filename in the TMPDIR directory.</para>
-    <para>tmp_nam = tempname() returns a unique string, tmp_nam, suitable for use as a temporary filename.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>tempname</refname>
+        <refpurpose>unique name for temporary file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>tmp_name = tempname([prefix])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>tmp_name</term>
+                <listitem>
+                    <para>a string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>prefix</term>
+                <listitem>
+                    <para>
+                        a string: prefix of filename (On Windows, 3 characters maximum).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>tempname</function> creates a file with a unique 
+            filename in the <varname>TMPDIR</varname> directory.
+        </para>
+        <para>
+            <code>tmp_name = tempname()</code> returns an unique string, 
+            <varname>tmp_name</varname>, suitable for use as a temporary filename.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
       F1 = tempname()
       isfile(F1)
       F2 = tempname('TMP')
       isfile(F2)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Function tempname introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function tempname introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

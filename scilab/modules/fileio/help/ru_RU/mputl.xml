@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mputl" xml:lang="ru">
+    <refnamediv>
+        <refname>mputl</refname>
+        <refpurpose>записывает строки в текстовый файл</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>r = mputl(txt, file_desc)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        возвращает <literal>%t</literal> или <literal>%f</literal> для проверки правильно ли функция записала файл.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_desc</term>
+                <listitem>
+                    <para>
+                        символьная строка, указывающая имя файла или
+                    </para>
+                    <para>
+                        целочисленный скаляр: дескриптор файла, возвращённый функцией <function>mopen</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>
+                        вектор строк, текст для записи в файл.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>mputl</function> позволяет записывать вектор строковых значений в виде последовательности строк в текстовый файл.
+        </para>
+        <para>
+            Функция <function>mputl</function> поддерживает запись строк, закодированных в ANSI/ASCII и UTF-8.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/text_mputl.txt','wt');
+mputl('Привет, Мир!',fd);
+mclose(fd);
+ 
+mputl('Незатейливый ""Привет, Мир!""',TMPDIR+"/text_mputl_simple.txt");
+ 
+fd = mopen(TMPDIR+'/text_mputl.txt','rt');
+disp(mgetl(fd));
+mclose(fd);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+
