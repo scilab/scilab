@@ -11,45 +11,91 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="movefile" xml:lang="en">
-  <refnamediv>
-    <refname>movefile</refname>
-    <refpurpose>Move file or directory</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>movefile('source','destination')
-      [status,message] = movefile('source','destination')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>movefile('source','destination') moves the file or directory ,
-      source (and subdirectories) to the file or directory, destination.
-    </para>
-    <para>If source is a directory, destination can not be a file. movefile
-      replaces existing files without warning.
-    </para>
-    <para>[status, message] = movefile('source','destination') moves source
-      to destination, returning the status and a message. 
-    </para>
-    <para>Whatever the operating system, if the move succeeds, the status is 1
-      and the message is empty ; if the move fails, the status is 0 and the
-      message is not empty.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"> 
+    <refnamediv>
+        <refname>movefile</refname>
+        <refpurpose>moves file or directory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>movefile(source,destination)
+            [status,message] = movefile(source,destination)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>source</term>
+                <listitem>
+                    <para>
+                        a character string.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destination</term>
+                <listitem>
+                    <para>
+                        a character string.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        an integer: the status of the operation.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>message</term>
+                <listitem>
+                    <para>
+                        a character string: a message about an error.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>movefile(source, destination)</code> moves the file or directory 
+            <varname>source</varname> (and subdirectories) to the file or directory 
+            <varname>destination</varname>.
+        </para>
+        <para>
+            If <varname>source</varname> is a directory, <varname>destination</varname> cannot be a file.
+            <warning>
+                <function>movefile</function> replaces existing files without 
+                warning.
+            </warning>
+        </para>
+        <para>
+            <code>[status, message] = movefile(source, destination)</code> moves <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>. 
+        </para>
+        <para>
+            Whatever the operating system, if the move succeeds, the 
+            <varname>status</varname> is 1 and the <varname>message</varname> is 
+            empty; if the move fails, the <varname>status</varname> is 0 and the 
+            <varname>message</varname> is not empty.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
       copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
       [status,message] = movefile(TMPDIR+"/scilab.start",TMPDIR+"/renamed_scilab.start")
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="copyfile">copyfile</link>
-      </member>
-    </simplelist>
-  </refsection>
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="copyfile">copyfile</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

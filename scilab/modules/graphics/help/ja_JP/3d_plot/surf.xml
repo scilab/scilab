@@ -10,226 +10,230 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="surf">
-  <refnamediv>
-    <refname>surf</refname>
-    <refpurpose>3次元曲面プロット</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>surf(Z,&lt;GlobalProperty&gt;)
-      surf(Z,color,&lt;GlobalProperty&gt;)
-      surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)
-      surf(&lt;axes_handle&gt;,...)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>Z</term>
-        <listitem>
-          <para>曲面の高さを定義する実数行列.省略することはできません.
-            Zデータは<literal> m</literal>x<literal>n</literal>行列です.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>X,Y</term>
-        <listitem>
-          <para>実数の行列とベクトル: 常にセットで設定し,これらのデータは新しい標準グリッドを
-            定義します.この新しいグリッドの<literal>X</literal> および
-            <literal>Y</literal> 要素は<literal>Z</literal>の次元に一致している必要があります
-            (下記説明参照).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>color</term>
-        <listitem>
-          <para>オプションの実数行列で,グリッドの
-            各点<literal>(X(j),Y(i))</literal>に関する色の値を定義します
-            (下記説明参照).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;GlobalProperty&gt;</term>
-        <listitem>
-          <para>このオプションの引数は,
-            グローバルオブジェクトのプロパティを定義する
-            一連の命令<literal>{PropertyName,PropertyValue}</literal>を表し,
-            このプロットで作成された全ての曲線に適用されます
-            (利用可能なプロパティの完全なリストについては,
-            <link linkend="GlobalProperty">GlobalProperty</link>を参照.)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;axes_handle&gt;</term>
-        <listitem>
-          <para>このオプションの引数は,
-            カレントの軸 (<link linkend="gca">gca</link>参照)ではなく,
-            <literal>axes_handle</literal>により指定された軸の内部へのプロットを
-            強制します.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>surf</literal> は,
-      <literal>X</literal>  <literal>Y</literal>座標で定義される矩形グリッドを用いて
-      パラメータ表現の曲面をカラーでプロットします.
-      (if <literal>{X,Y}</literal>が指定されない場合, このグリッドは
-      <literal>Z</literal>行列の次元により定義されます); このグリッドの各点において
-      Z座標は<literal>Z</literal>行列により指定されます(必須のデータのみ).
-      <literal>surf</literal>はMatlabの構文をより良く扱うために作成されました.
-      グラフィックの互換性を改善するために, Matlabユーザは
-      ( <link linkend="plot3d">plot3d</link>ではなく)
-      <literal>surf</literal> を使用する必要があります.
-    </para>
-    <para>データエントリの仕様 :</para>
-    <para>このパラグラフでは,より明確化するために,
-      <literal>GlobalProperty</literal>オプション引数について言及しません.
-      これは,それらがentry dataと干渉しないからです.
-      (<literal>"Xdata"</literal>, <literal>"Ydata"</literal> および
-      <literal>"Zdata"</literal> プロパティを除く, <link linkend="GlobalProperty">GlobalProperty</link>参照). 
-      これらのオプションの引数も全て使用可能と仮定されます.
-    </para>
-    <para>
-      <literal>Z</literal>行列のみが指定された場合, surf(Z)は,
-      <literal>1:size(Z,2)</literal>をx軸,<literal>1:size(Z,1)</literal>をy軸として定義した
-      グリッドに対して行列<literal>Z</literal>をプロットします.
-    </para>
-    <para>
-      組<literal>{X,Y,Z}</literal>が指定された場合,
-      <literal>Z</literal>は,大きさ(<literal>Z</literal>)= [<literal>m</literal>x<literal>n</literal>]
-      の行列とします.
-      <literal>X</literal>または <literal>Y</literal> 次のようになります :
-    </para>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="surf">
+    <refnamediv>
+        <refname>surf</refname>
+        <refpurpose>3次元曲面プロット</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>surf(Z,&lt;GlobalProperty&gt;)
+            surf(Z,color,&lt;GlobalProperty&gt;)
+            surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)
+            surf(&lt;axes_handle&gt;,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>曲面の高さを定義する実数行列.省略することはできません.
+                        Zデータは<literal> m</literal>x<literal>n</literal>行列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X,Y</term>
+                <listitem>
+                    <para>実数の行列とベクトル: 常にセットで設定し,これらのデータは新しい標準グリッドを
+                        定義します.この新しいグリッドの<literal>X</literal> および
+                        <literal>Y</literal> 要素は<literal>Z</literal>の次元に一致している必要があります
+                        (下記説明参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>オプションの実数行列で,グリッドの
+                        各点<literal>(X(j),Y(i))</literal>に関する色の値を定義します
+                        (下記説明参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;GlobalProperty&gt;</term>
+                <listitem>
+                    <para>このオプションの引数は,
+                        グローバルオブジェクトのプロパティを定義する
+                        一連の命令<literal>{PropertyName,PropertyValue}</literal>を表し,
+                        このプロットで作成された全ての曲線に適用されます
+                        (利用可能なプロパティの完全なリストについては,
+                        <link linkend="GlobalProperty">GlobalProperty</link>を参照.)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;axes_handle&gt;</term>
+                <listitem>
+                    <para>このオプションの引数は,
+                        カレントの軸 (<link linkend="gca">gca</link>参照)ではなく,
+                        <literal>axes_handle</literal>により指定された軸の内部へのプロットを
+                        強制します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
         <para>
-          a) ベクトル : <literal>X</literal> がベクトルの場合,
-          length(<literal>X</literal>)=<literal>n</literal>です.
-          <literal>Y</literal>がベクトルの場合,
-          length(<literal>Y</literal>)=<literal>m</literal>です.
+            <literal>surf</literal> は,
+            <literal>X</literal>  <literal>Y</literal>座標で定義される矩形グリッドを用いて
+            パラメータ表現の曲面をカラーでプロットします.
+            (if <literal>{X,Y}</literal>が指定されない場合, このグリッドは
+            <literal>Z</literal>行列の次元により定義されます); このグリッドの各点において
+            Z座標は<literal>Z</literal>行列により指定されます(必須のデータのみ).
+            <literal>surf</literal>はMatlabの構文をより良く扱うために作成されました.
+            グラフィックの互換性を改善するために, Matlabユーザは
+            ( <link linkend="plot3d">plot3d</link>ではなく)
+            <literal>surf</literal> を使用する必要があります.
+        </para>
+        <para>データエントリの仕様 :</para>
+        <para>このパラグラフでは,より明確化するために,
+            <literal>GlobalProperty</literal>オプション引数について言及しません.
+            これは,それらがentry dataと干渉しないからです.
+            (<literal>"Xdata"</literal>, <literal>"Ydata"</literal> および
+            <literal>"Zdata"</literal> プロパティを除く, <link linkend="GlobalProperty">GlobalProperty</link>参照). 
+            これらのオプションの引数も全て使用可能と仮定されます.
         </para>
         <para>
-          b) 行列 : この場合, size(<literal>X</literal>) (または
-          size(<literal>Y</literal>)) は size(<literal>Z</literal>)に等しい必要があります.
+            <literal>Z</literal>行列のみが指定された場合, surf(Z)は,
+            <literal>1:size(Z,2)</literal>をx軸,<literal>1:size(Z,1)</literal>をy軸として定義した
+            グリッドに対して行列<literal>Z</literal>をプロットします.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>Colorエントリの仕様  :</para>
-    <para>前記のように, 曲面は矩形グリッドのサポートにより作成されます.
-      以下のような2つの独立変数 <literal>i</literal> および
-      <literal>j</literal>を考えてみましょう:
-    </para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../images/surf_01.gif"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>この仮想的な矩形グリッドは,
-      <literal>XY</literal>平面に支持された
-      実際の曲面を構築する際に使用されます.
-      実際には,
-      <literal>X</literal>,<literal>Y</literal> および <literal>Z</literal>
-      データは
-      (<literal>X</literal> または <literal>Y</literal> がベクトルの場合でも, 下記参照)
-      同じ大きさを有し,
-      曲面を指定する3つの関数<literal>x(i,j)</literal>, <literal>y(i,j)</literal> および
-      <literal>z(i,j)</literal>として扱うことができます.
-      <literal>X</literal> または<literal>Y</literal>がベクトルの場合,
-      内部的には行列<literal>Z</literal>の次元と一致する正しい行列を作成する
-      ために使用されます(グリッドは強制的に矩形領域となります).
-    </para>
-    <para>
-      3つの関数<literal>x(i,j)</literal>, <literal>y(i,j)</literal>
-      および <literal>z(i,j)</literal>を考えると,
-      連続する2つの<literal>i</literal> and <literal>j</literal>の間で
-      定義される曲面の部分は,パッチと呼ばれます.
-    </para>
-    <para>デフォルトで, color行列がsurfのコール時に付加されない場合,
-      colorパラメータは<literal>Z</literal>データにリンクされます.
-      <literal>color</literal>行列が指定された場合,
-      2種類の異なる手段でパッチに適用されます:
-      頂点または各パッチの中心.
-    </para>
-    <para>
-      これにより,
-      <literal>Z</literal> が [<literal>m</literal>x<literal>n</literal>]行列の場合,
-      <literal>C color</literal>行列の次元は[<literal>m</literal>x<literal>n</literal>]
-      (頂点毎に1つの色)または
-      [<literal>m-1</literal>x<literal>n-1</literal>] (パッチ毎に1色)とします.
-    </para>
-    <para>Colorの表現はいくつかのGlobalProperyの設定によっても変化します:</para>
-    <para>
-      <literal>FaceColor</literal>プロパティは影モードを設定します :
-      この値は<literal> 'interp'</literal> または <literal>'flat'</literal> (デフォルトモード)となります. 
-      <literal>'interp'</literal>が選択された場合, 
-      パッチに双一次色補間が適用されます.
-      size(<literal>C</literal>) が size(<literal>Z</literal>)-1 に等しい場合
-      (すなわち,各パッチ毎に1色のみが指定される場合),
-      パッチを定義する頂点の色はそのパッチに指定された色に設定されます.
-    </para>
-    <para>
-      <literal>'flat'</literal> (デフォルトモード) が有効の場合,
-      カラー小平面表現(パッチ毎に1色)を使用します.
-      size(<literal>C</literal>)がsize(<literal>Z</literal>) (すなわち,
-      各頂点毎に1つの色のみを指定した場合)に等しい場合, <literal>C</literal> 
-      の最後の行と列は無視されます.
-    </para>
-    <para/>
-    <para>
-      <literal>GlobalProperty</literal> 引数は曲面をカスタマイズする際に使用されます.
-      以下にその動作について簡単に説明します:
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>GlobalProperty</term>
-        <listitem>
-          <para>このオプションは曲面の描画方法を指定するために使用できます.
-            これは,
-            <literal>PropertyName</literal>およびその値
-            <literal>PropertyValue</literal>(<literal>PropertyName</literal>の型に
-            依存して文字列,整数または...となります)
-            を定義する文字列から構成される一連の命令となります.
-            複数のプロパティを設定することもできます:
-            面および縁の色, 色データ, 色データのマッピング, クリッピングおよび
-            曲面の縁の厚さ...
-            (<link linkend="GlobalProperty">GlobalProperty</link>参照 )
-          </para>
-          <para>
-            これらのプロパティは全てsurfaceエンティティプロパティにより(再)設定できます
-            (<link linkend="surface_properties">surface_properties</link>参照).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>注意</title>
-    <para>デフォルトで, 連続する曲面のプロットは重ね描きされます.
-      前のプロットを消去するには,<literal>clf()</literal>を使用してください. 
-      T<literal>auto_clear</literal>モードをデフォルトのモードとして有効にするには,
-      デフォルトの軸を以下のように編集してください:
-    </para>
-    <para>da=gda();</para>
-    <para>da.auto_clear = 'on'</para>
-    <para>
-      コマンド <literal>surf</literal> によりデモを参照できます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            組<literal>{X,Y,Z}</literal>が指定された場合,
+            <literal>Z</literal>は,大きさ(<literal>Z</literal>)= [<literal>m</literal>x<literal>n</literal>]
+            の行列とします.
+            <literal>X</literal>または <literal>Y</literal> 次のようになります :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    a) ベクトル : <literal>X</literal> がベクトルの場合,
+                    length(<literal>X</literal>)=<literal>n</literal>です.
+                    <literal>Y</literal>がベクトルの場合,
+                    length(<literal>Y</literal>)=<literal>m</literal>です.
+                </para>
+                <para>
+                    b) 行列 : この場合, size(<literal>X</literal>) (または
+                    size(<literal>Y</literal>)) は size(<literal>Z</literal>)に等しい必要があります.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Colorエントリの仕様  :</para>
+        <para>前記のように, 曲面は矩形グリッドのサポートにより作成されます.
+            以下のような2つの独立変数 <literal>i</literal> および
+            <literal>j</literal>を考えてみましょう:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/surf_01.gif"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>この仮想的な矩形グリッドは,
+            <literal>XY</literal>平面に支持された
+            実際の曲面を構築する際に使用されます.
+            実際には,
+            <literal>X</literal>,<literal>Y</literal> および <literal>Z</literal>
+            データは
+            (<literal>X</literal> または <literal>Y</literal> がベクトルの場合でも, 下記参照)
+            同じ大きさを有し,
+            曲面を指定する3つの関数<literal>x(i,j)</literal>, <literal>y(i,j)</literal> および
+            <literal>z(i,j)</literal>として扱うことができます.
+            <literal>X</literal> または<literal>Y</literal>がベクトルの場合,
+            内部的には行列<literal>Z</literal>の次元と一致する正しい行列を作成する
+            ために使用されます(グリッドは強制的に矩形領域となります).
+        </para>
+        <para>
+            3つの関数<literal>x(i,j)</literal>, <literal>y(i,j)</literal>
+            および <literal>z(i,j)</literal>を考えると,
+            連続する2つの<literal>i</literal> and <literal>j</literal>の間で
+            定義される曲面の部分は,パッチと呼ばれます.
+        </para>
+        <para>デフォルトで, color行列がsurfのコール時に付加されない場合,
+            colorパラメータは<literal>Z</literal>データにリンクされます.
+            <literal>color</literal>行列が指定された場合,
+            2種類の異なる手段でパッチに適用されます:
+            頂点または各パッチの中心.
+        </para>
+        <para>
+            これにより,
+            <literal>Z</literal> が [<literal>m</literal>x<literal>n</literal>]行列の場合,
+            <literal>C color</literal>行列の次元は[<literal>m</literal>x<literal>n</literal>]
+            (頂点毎に1つの色)または
+            [<literal>m-1</literal>x<literal>n-1</literal>] (パッチ毎に1色)とします.
+        </para>
+        <para>Colorの表現はいくつかのGlobalProperyの設定によっても変化します:</para>
+        <para>
+            <literal>FaceColor</literal>プロパティは影モードを設定します :
+            この値は<literal> 'interp'</literal> または <literal>'flat'</literal> (デフォルトモード)となります. 
+            <literal>'interp'</literal>が選択された場合, 
+            パッチに双一次色補間が適用されます.
+            size(<literal>C</literal>) が size(<literal>Z</literal>)-1 に等しい場合
+            (すなわち,各パッチ毎に1色のみが指定される場合),
+            パッチを定義する頂点の色はそのパッチに指定された色に設定されます.
+        </para>
+        <para>
+            <literal>'flat'</literal> (デフォルトモード) が有効の場合,
+            カラー小平面表現(パッチ毎に1色)を使用します.
+            size(<literal>C</literal>)がsize(<literal>Z</literal>) (すなわち,
+            各頂点毎に1つの色のみを指定した場合)に等しい場合, <literal>C</literal> 
+            の最後の行と列は無視されます.
+        </para>
+        <para/>
+        <para>
+            <literal>GlobalProperty</literal> 引数は曲面をカスタマイズする際に使用されます.
+            以下にその動作について簡単に説明します:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>GlobalProperty</term>
+                <listitem>
+                    <para>このオプションは曲面の描画方法を指定するために使用できます.
+                        これは,
+                        <literal>PropertyName</literal>およびその値
+                        <literal>PropertyValue</literal>(<literal>PropertyName</literal>の型に
+                        依存して文字列,整数または...となります)
+                        を定義する文字列から構成される一連の命令となります.
+                        複数のプロパティを設定することもできます:
+                        面および縁の色, 色データ, 色データのマッピング, クリッピングおよび
+                        曲面の縁の厚さ...
+                        (<link linkend="GlobalProperty">GlobalProperty</link>参照 )
+                    </para>
+                    <para>
+                        これらのプロパティは全てsurfaceエンティティプロパティにより(再)設定できます
+                        (<link linkend="surface_properties">surface_properties</link>参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>注意</title>
+        <para>デフォルトで, 連続する曲面のプロットは重ね描きされます.
+            前のプロットを消去するには,<literal>clf()</literal>を使用してください. 
+            T<literal>auto_clear</literal>モードをデフォルトのモードとして有効にするには,
+            デフォルトの軸を以下のように編集してください:
+        </para>
+        <para>da=gda();</para>
+        <para>da.auto_clear = 'on'</para>
+        <para>
+            コマンド <literal>surf</literal> によりデモを参照できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>surf();</scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 // Zの初期化 
 
 Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
@@ -316,28 +320,28 @@ surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','ye
 
 xdel(winsid())
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="plot2d">plot2d</link>
-      </member>
-      <member>
-        <link linkend="clf">clf</link>
-      </member>
-      <member>
-        <link linkend="xdel">xdel</link>
-      </member>
-      <member>
-        <link linkend="delete">delete</link>
-      </member>
-      <member>
-        <link linkend="LineSpec">LineSpec</link>
-      </member>
-      <member>
-        <link linkend="GlobalProperty">GlobalProperty</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="clf">clf</link>
+            </member>
+            <member>
+                <link linkend="xdel">xdel</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="LineSpec">LineSpec</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">GlobalProperty</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
