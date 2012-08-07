@@ -32,7 +32,7 @@ int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     iSize = 4 + (iRows * iCols * (iComplex + 1) * (sizeof(double) / sizeof(int)));
     if (iSize != _iBufferSize)
     {
-        printf("Bad buffer size : \n\treceived : %d\n\texpected : %d\n", _iBufferSize, iSize);
+        printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
 
@@ -87,7 +87,7 @@ int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 
     if (iSize != _iBufferSize)
     {
-        printf("Bad buffer size : \n\treceived : %d\n\texpected : %d\n", _iBufferSize, iSize);
+        printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
     pstData = (char **)malloc(iRows * iCols * sizeof(char *));
@@ -100,7 +100,7 @@ int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
         pstInData += piInLen[i];
     }
 
-    sciErr = createMatrixOfString(_pvCtx, 1, iRows, iCols, (const char *const *)pstData);
+    sciErr = createMatrixOfString(_pvCtx, 1, iRows, iCols, (const char * const *)pstData);
     for (i = 0; i < iRows * iCols; i++)
     {
         free(pstData[i]);
@@ -128,7 +128,7 @@ int deserialize_boolean(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     iSize = 4 + (iRows * iCols);
     if (iSize != _iBufferSize)
     {
-        printf("Bad buffer size : \n\treceived : %d\n\texpected : %d\n", _iBufferSize, iSize);
+        printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
 
@@ -166,12 +166,12 @@ int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     {
         iItemSize = sizeof(int);
     }
-/*
-    else if(iPrecision == SCI_INT64 || iPrecision == SCI_UINT64)
-    {
-        iItemSize = sizeof(long long);
-    }
-*/
+    /*
+        else if(iPrecision == SCI_INT64 || iPrecision == SCI_UINT64)
+        {
+            iItemSize = sizeof(long long);
+        }
+    */
     iSize = iRows * iCols;
     if ((iSize * iItemSize) % sizeof(int))
     {
@@ -185,7 +185,7 @@ int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     iSize += 4;
     if (iSize != _iBufferSize)
     {
-        printf("Bad buffer size : \n\treceived : %d\n\texpected : %d\n", _iBufferSize, iSize);
+        printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
 
@@ -193,34 +193,34 @@ int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 
     switch (iPrecision)
     {
-    case SCI_INT8:
-        sciErr = createMatrixOfInteger8(_pvCtx, 1, iRows, iCols, (char *)pvData);
-        break;
-    case SCI_UINT8:
-        sciErr = createMatrixOfUnsignedInteger8(_pvCtx, 1, iRows, iCols, (unsigned char *)pvData);
-        break;
-    case SCI_INT16:
-        sciErr = createMatrixOfInteger16(_pvCtx, 1, iRows, iCols, (short *)pvData);
-        break;
-    case SCI_UINT16:
-        sciErr = createMatrixOfUnsignedInteger16(_pvCtx, 1, iRows, iCols, (unsigned short *)pvData);
-        break;
-    case SCI_INT32:
-        sciErr = createMatrixOfInteger32(_pvCtx, 1, iRows, iCols, (int *)pvData);
-        break;
-    case SCI_UINT32:
-        sciErr = createMatrixOfUnsignedInteger32(_pvCtx, 1, iRows, iCols, (unsigned int *)pvData);
-        break;
-/*
-    case SCI_INT64 : 
-        sciErr = createMatrixOfInteger64(_pvCtx, 1, iRows, iCols, (long long*)pvData);
-        break;
-    case SCI_UINT64 : 
-        sciErr = createMatrixOfUnsignedInteger64(_pvCtx, 1, iRows, iCols, (unsigned long long*)pvData);
-        break;
-*/
-    default:
-        break;
+        case SCI_INT8:
+            sciErr = createMatrixOfInteger8(_pvCtx, 1, iRows, iCols, (char *)pvData);
+            break;
+        case SCI_UINT8:
+            sciErr = createMatrixOfUnsignedInteger8(_pvCtx, 1, iRows, iCols, (unsigned char *)pvData);
+            break;
+        case SCI_INT16:
+            sciErr = createMatrixOfInteger16(_pvCtx, 1, iRows, iCols, (short *)pvData);
+            break;
+        case SCI_UINT16:
+            sciErr = createMatrixOfUnsignedInteger16(_pvCtx, 1, iRows, iCols, (unsigned short *)pvData);
+            break;
+        case SCI_INT32:
+            sciErr = createMatrixOfInteger32(_pvCtx, 1, iRows, iCols, (int *)pvData);
+            break;
+        case SCI_UINT32:
+            sciErr = createMatrixOfUnsignedInteger32(_pvCtx, 1, iRows, iCols, (unsigned int *)pvData);
+            break;
+            /*
+                case SCI_INT64 :
+                    sciErr = createMatrixOfInteger64(_pvCtx, 1, iRows, iCols, (long long*)pvData);
+                    break;
+                case SCI_UINT64 :
+                    sciErr = createMatrixOfUnsignedInteger64(_pvCtx, 1, iRows, iCols, (unsigned long long*)pvData);
+                    break;
+            */
+        default:
+            break;
     }
 
     if (sciErr.iErr)
@@ -253,7 +253,7 @@ int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BOOL _bDa
 
     if (iSize != _iBufferSize)
     {
-        printf("Bad buffer size : \n\treceived : %d\n\texpected : %d\n", _iBufferSize, iSize);
+        printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
 

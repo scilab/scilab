@@ -33,7 +33,7 @@ typedef struct table_struct
     char *name;    /** its name **/
 } MPITable;
 
-// Declaration of all the profile function declared and 
+// Declaration of all the profile function declared and
 // used in sci_gateway
 int sci_mpi_init(char *fname, unsigned long fname_len);
 int sci_mpi_finalize(char *fname, unsigned long fname_len);
@@ -43,6 +43,9 @@ int sci_mpi_recv(char *fname, unsigned long fname_len);
 int sci_mpi_send(char *fname, unsigned long fname_len);
 int sci_mpi_get_processor_name(char *fname, unsigned long fname_len);
 int sci_mpi_bcast(char *fname, unsigned long fname_len);
+int sci_mpi_irecv(char *fname, unsigned long fname_len);
+int sci_mpi_isend(char *fname, unsigned long fname_len);
+int sci_mpi_wait(char *fname, unsigned long fname_len);
 
 /*
 int intsmpi_comm_size (char *fname,unsigned long fname_len));

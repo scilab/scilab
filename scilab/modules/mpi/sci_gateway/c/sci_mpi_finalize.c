@@ -16,20 +16,28 @@
  * SCILAB function : mpi_finalize, fin = 2
  ******************************************/
 
+static void mpi_finalize_internal()
+{
+    free(listRequestPointer);
+    free(listRequestPointerSize);
+    free(request);
+}
+
 int sci_mpi_finalize(char *fname, unsigned long fname_len)
 {
     int iRet;
-
     CheckRhs(0, 0);
     CheckLhs(1, 1);
+    mpi_finalize_internal();
     iRet = MPI_Finalize();
     if (iRet != MPI_SUCCESS)
     {
+        printf("ici %d\n", iRet);
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
 
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror("%s: Could not finalize the MPI instance\n", fname, error_string);
+        Scierror("%s: Could not finalize the MPI instance: %s\n", fname, error_string);
         return 1;
     }
 

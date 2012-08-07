@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2009 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2011-2011 - DIGITEO - Sylvestre LEDRU
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,50 +9,121 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
+#include <mpi.h>
+#include "api_scilab.h"
 #include "gw_mpi.h"
 #include "sci_mpi.h"
-#include "s_mpi_isend.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "MALLOC.h"
+#include "serialization.h"
 
-/******************************************
- * SCILAB function : mpi_isend, fin = 3
- ******************************************/
+#define TAG 0
 
-int intsmpi_isend (char *fname,unsigned long fname_len)
+
+int sci_mpi_isend(char *fname, unsigned long fname_len)
 {
-	int nopt,iopos,m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,un=1,l5,l6;
-	static rhs_opts opts[]={
-		{-1,"comm","i",0,0,0},
-		{-1,NULL,NULL,NULL,0,0}};
-	static int xdat0[]= {MPI_COMM_WORLD}, *dat0 = xdat0;
-	nopt=NumOpt();
-	CheckRhs(3,3+nopt);
-	CheckLhs(1,2);
-	/*  checking variable buff */
-	GetRhsVar(1,"d",&m1,&n1,&l1);
-	/*  checking variable dest */
-	GetRhsVar(2,"i",&m2,&n2,&l2);
-	CheckScalar(2,m2,n2);
-	/*  checking variable tag */
-	GetRhsVar(3,"i",&m3,&n3,&l3);
-	CheckScalar(3,m3,n3);
-	iopos=Rhs;
-	if ( get_optionals(fname,opts) == 0) return 0;
-	/* default value to optional argument comm */
-	if ( opts[0].position == -1 ){
-		iopos++ ; opts[0].position = iopos;
-		opts[0].m = 1;opts[0].n = 1;
-		CreateVarFromPtr(opts[0].position,opts[0].type,&opts[0].m,&opts[0].n,&dat0);
-		opts[0].l = VarPtr(opts[0].position);
-	}
-	else { 
-		GetRhsVar(4,"i",&m4,&n4,&l4);
-		CheckScalar(4,m4,n4);
-	} 
-	/* cross variable size checking */
-	CreateVar(5,"i",&un,&un,&l5);/* named: request */
-	CreateVar(6,"i",&un,&un,&l6);/* named: res */
-	s_mpi_isend(stk(l1),&m1,&n1,istk(l2),istk(l3),istk(opts[0].l),istk(l5),istk(l6));
-	LhsVar(1)= 5;
-	LhsVar(2)= 6;
-	return 0;
+    SciErr sciErr;
+    int iRet = 0;
+    int *piAddr = NULL;
+    int *piAddr2 = NULL;
+    int *piAddr3 = NULL;
+    int iType = 0;
+
+    int *piBuffer = NULL;
+    int iBufferSize = 0;
+    double NodeID = 0;
+    double RequestID = 0;
+
+    CheckRhs(3, 3);
+    CheckLhs(1, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    if (getScalarDouble(pvApiCtx, piAddr2, &NodeID))
+    {
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    if (getScalarDouble(pvApiCtx, piAddr3, &RequestID))
+    {
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    switch (iType)
+    {
+        case sci_matrix:
+            iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_strings:
+            iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_boolean:
+            iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
+            break;
+        case sci_ints:
+            iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        default:
+            Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
+            break;
+    }
+
+    if (iRet)
+    {
+    }
+
+    iRet = MPI_Isend(piBuffer, iBufferSize, MPI_INT, NodeID, TAG, MPI_COMM_WORLD, &request[(int)RequestID]);
+    if (iRet != MPI_SUCCESS)
+    {
+        char error_string[MPI_MAX_ERROR_STRING];
+        int length_of_error_string;
+
+        MPI_Error_string(iRet, error_string, &length_of_error_string);
+        Scierror("%s: Could not send the variable to the node %d: %s\n", fname, NodeID, error_string);
+        return 1;
+    }
+
+    free(piBuffer);
+    if (createScalarBoolean(pvApiCtx, 1, !iRet))
+    {
+        return 1;
+    }
+
+    LhsVar(1) = 1;
+    PutLhsVar();
+    return 0;
 }

@@ -1,3 +1,7 @@
+dans mpi_irev, on pourrait stocker le nom de la variable pour apres la mettre
+via le mpi_wait avec la bonne valeur
+
+
 
 A faire:
 * Implement:
@@ -7,6 +11,12 @@ MPI_Irecv (this function should not return anything, this should be done by
 MPI_Wait
 MPI_Cancel
 MPI_Test
+
+MPI_Irecv is failing for now because it is hard to guess the future size of
+the incoming data (needs to be allocated in MPI_Irecv and data constructed in
+MPI_Wait)
+Workaround: allocated a big data
+
 
 
 * ecrire d'autres tests

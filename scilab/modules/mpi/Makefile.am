@@ -19,7 +19,10 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
     sci_gateway/c/sci_mpi_send.c \
+    sci_gateway/c/sci_mpi_irecv.c \
+    sci_gateway/c/sci_mpi_isend.c \
     sci_gateway/c/sci_mpi_bcast.c \
+    sci_gateway/c/sci_mpi_wait.c \
     sci_gateway/c/sci_mpi_get_processor_name.c
 
 # Includes need for the compilation

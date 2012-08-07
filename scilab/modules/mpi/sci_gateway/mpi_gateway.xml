@@ -30,4 +30,7 @@
     <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="MPI_Send"/>
     <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
     <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="MPI_Bast"/>
+    <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="MPI_Irecv"/>
+    <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="MPI_Isend"/>
+    <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="MPI_Wait"/>
 </GATEWAY>

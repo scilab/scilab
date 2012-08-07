@@ -10,7 +10,8 @@
 // This test sends a rand matrix of double complex and, on each slave,
 // it adds +1 to each element
 // and send it back to the master
-// 
+//
+
 MPI_Init();
 rnk =    MPI_Comm_rank();
 sizeNodes =    MPI_Comm_size();
@@ -22,24 +23,16 @@ Master = ~ SLV;            // slaves are all other
 
 if Master
     for slaveId = 1:sizeNodes-1
-        value = rand(100,100) + rand(100,100) * %i;
-        MPI_Send(value, slaveId);
-    end
-
-    for slaveId = 1:sizeNodes-1
-        tag=0;
-        valueBack=MPI_Recv(slaveId, tag);
-        assert_checkequal(valueBack,value + 1);
+        value = slaveId*2
+        MPI_Isend(value, slaveId, 42);
     end
 else
     rankSource=0;
     tag=0;
-    value=MPI_Recv(rankSource, tag);
-    value=value+1;
-    // Send back to the master
-    MPI_Send(value,0);
-
+    MPI_Irecv(rankSource, tag, 42);
+    value=MPI_Wait(42)
+    assert_checkequal(value,2);
 end
 
 MPI_Finalize();
-exit
+exit()
