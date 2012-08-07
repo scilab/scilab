@@ -21,6 +21,7 @@ import org.scilab.modules.gui.ged.axes.Axes;
 import org.scilab.modules.gui.ged.figure.Figure;
 import org.scilab.modules.gui.ged.legend.Legend;
 import org.scilab.modules.gui.ged.polyline.Polyline;
+import org.scilab.modules.gui.ged.surface.Surface;
 
 /**
 * Manager object exchange.
@@ -48,7 +49,7 @@ public class SwapObject {
                 polyline(objectID);
                 break;
             case SURFACE:
-                /*not implemented yet */
+                surface(objectID);
                 break;
             default:
                 axesORfigure(objectID, clickX, clickY);
@@ -163,6 +164,20 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Polyline(objectID));
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
+        } catch (NullPointerException npe){ }
+    }
+
+    /**
+    * Loads the properties of the surface.
+    *
+    * @param objectID Enters the identification of surface.
+    */
+    private void surface(String objectID) {
+        adjust();
+        //Load the polyline panel.
+        SwingInspector.pReceive.add(new Surface(objectID));
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.surface);
         } catch (NullPointerException npe){ }
     }
 }
