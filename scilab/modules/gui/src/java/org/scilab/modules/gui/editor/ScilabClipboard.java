@@ -80,14 +80,18 @@ public class ScilabClipboard {
             AxesHandler.axesBound(axesFrom, axesTo);
             AxesHandler.setAxesVisible(axesTo);
             CommonHandler.insert(axesTo, object);
-            objectUid = null;
+            if (!needDuplication) {
+                objectUid = null;
+            }
             return object;
         } else { /* If doesn't exists an axes will duplicate the origin axes */
             axesTo = AxesHandler.duplicateAxes(axesFrom);
             if (axesTo != null) { /* If duplicated sucessfull then adjust the bounds and paste */
                 AxesHandler.axesBound(axesFrom, axesTo);
                 CommonHandler.insert(axesTo, object);
-                objectUid = null;
+                if (!needDuplication) {
+                    objectUid = null;
+                }
                 return object;
             }
             return null;

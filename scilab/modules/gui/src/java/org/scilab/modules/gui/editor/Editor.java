@@ -127,6 +127,7 @@ public class Editor {
             boolean notBlank = AxesHandler.isAxesNotBlank(figureUid);
             clipboardCopy.setEnabled(notBlank);
 
+            pasteStyle.setEnabled(ScilabClipboard.getInstance().canPasteStyle());
             undo.setEnabled(editorHistory.isUndoEnabled());
             redo.setEnabled(editorHistory.isRedoEnabled());
 
