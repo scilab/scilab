@@ -1,6 +1,14 @@
 
-
 A faire:
+* Implement:
+MPI_Barrier
+MPI_Reduce
+MPI_Irecv (this function should not return anything, this should be done by 
+MPI_Wait
+MPI_Cancel
+MPI_Test
+
+
 * ecrire d'autres tests
 * gestion du tag dans le send et le recv
 => a mettre à jour. c'est hardcodé dans un des deux
@@ -8,7 +16,6 @@ A faire:
 * gestion des gather
 * MPI barrier
 * test unitaire de bcast
-* cable les redure
 * porter l'exemple pi.cc
 //   x = mpiallreduce(y,operation,comm)
 
@@ -37,12 +44,6 @@ freemat a
 
 
 Mandatory functions :
-
-mpi_init
-MPI_Comm_rank
-MPI_Comm_size
-MPI_Send
-MPI_Recv
 
 MPI_Reduce
 MPI_Finalize

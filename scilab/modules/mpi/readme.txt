@@ -1,6 +1,7 @@
 lancer un test unitaire:
 mpirun -c 2 ./bin/scilab -nwni -f modules/mpi/tests/unit_tests/mpi_init.tst 
 
+mpirun -c 2 -tag-output <command> will show which nodes display what
 
 mpirun -c 5 ./bin/scilab -nwni -e "MPIHelloWorld()"
 
