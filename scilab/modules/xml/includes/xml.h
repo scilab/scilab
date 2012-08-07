@@ -10,8 +10,6 @@
  *
  */
 
-extern "C"
-{
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
@@ -21,4 +19,3 @@ extern "C"
 #include <libxml/xmlschemas.h>
 #include <libxml/relaxng.h>
 #include <libxml/xmlreader.h>
-}

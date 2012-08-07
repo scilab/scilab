@@ -78,7 +78,7 @@ int read_double(char *fname, unsigned long fname_len)
     //if variable is complex, switch real part and imaginary part otherwise multiply by -1
     if (iComplex)
     {
-        sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblImg, pdblReal);
+        sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblImg, pdblReal);
     }
     else
     {
@@ -86,7 +86,7 @@ int read_double(char *fname, unsigned long fname_len)
         {
             pdblReal[i] = pdblReal[i] * -1;
         }
-        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal);
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblReal);
     }
 
     if (sciErr.iErr)
@@ -95,6 +95,6 @@ int read_double(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

@@ -100,16 +100,16 @@ xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.dia.ref \
 loader.sce
 
 install-data-local:
-    $(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \
-    $(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
-    $(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/xcos_toolbox_skeleton; \
-    for file in $(SKELETON_FILES) ; do \
-        filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
-        echo "$(mkinstalldirs) -m 755 $$filePath/"; \
-        $(mkinstalldirs) -m 755 $$filePath/; \
-        echo "$(INSTALL_DATA) $$file $$filePath" ; \
-        $(INSTALL_DATA) "$$file" $$filePath; \
-    done
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/xcos_toolbox_skeleton; \
+	for file in $(SKELETON_FILES) ; do \
+	    filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
+	    echo "$(mkinstalldirs) -m 755 $$filePath/"; \
+	    $(mkinstalldirs) -m 755 $$filePath/; \
+	    echo "$(INSTALL_DATA) $$file $$filePath" ; \
+	    $(INSTALL_DATA) "$$file" $$filePath; \
+	done
 
 mostlyclean-local:
 	rm -rf archives \

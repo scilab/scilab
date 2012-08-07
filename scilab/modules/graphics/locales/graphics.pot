@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:34+0100\n"
+"Revision-Date: 2012-08-06 10:23+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -769,21 +769,21 @@ msgstr ""
 # File: src/c/BuildObjects.c, line: 367
 # File: src/c/BuildObjects.c, line: 431
 # File: src/c/BuildObjects.c, line: 779
-# File: src/c/BuildObjects.c, line: 1026
-# File: src/c/BuildObjects.c, line: 1171
-# File: src/c/BuildObjects.c, line: 1308
-# File: src/c/BuildObjects.c, line: 1494
-# File: src/c/BuildObjects.c, line: 1884
+# File: src/c/BuildObjects.c, line: 1031
+# File: src/c/BuildObjects.c, line: 1176
+# File: src/c/BuildObjects.c, line: 1313
+# File: src/c/BuildObjects.c, line: 1499
+# File: src/c/BuildObjects.c, line: 1889
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 877
+# File: src/c/BuildObjects.c, line: 879
 msgid "Width and height must be positive.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 1424
+# File: src/c/BuildObjects.c, line: 1429
 msgid "Impossible case when building axis\n"
 msgstr ""
 

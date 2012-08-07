@@ -12,10 +12,10 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "xml.h"
 
 extern "C"
 {
-#include "xml.h"
 #include "gw_xml.h"
 #include "Scierror.h"
 #include "api_scilab.h"

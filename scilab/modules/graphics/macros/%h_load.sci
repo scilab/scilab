@@ -15,9 +15,9 @@ function h=%h_load(fd)
   init_immediate_drawing = 0;
 
   version=mget(4,'uc',fd)
-
   // saving/loading character with 'c' is actually quite buggy
   characterFormat = 'uc';
+  stringFormat = 'il';
 
   immediate_drawing="";
 
@@ -68,11 +68,19 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       axes_size=mget(2,'sl',fd); //axes_size
       if ( is_higher_than([4 1 2 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
-        info_message = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // info_message
+        if is_higher_than([5 4 0 0]) then
+            info_message = ascii(mget(mget(1,stringFormat,fd),characterFormat,fd)) ; // info_message
+        else
+            info_message = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // info_message
+        end
         tag = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // tag
       end
       auto_resize=toggle(mget(1,characterFormat,fd)); // auto_resize
-      figure_name=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // figure_name
+      if is_higher_than([5 4 0 0]) then
+          figure_name=ascii(mget(mget(1,stringFormat,fd),characterFormat,fd)) // figure_name
+      else
+          figure_name=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // figure_name
+      end
       figure_id=mget(1,'sl',fd); // figure_id
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
@@ -93,11 +101,19 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       axes_size=mget(2,'sl',fd); // axes_size
       if ( is_higher_than([4 1 2 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
-        info_message = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // info_message
+        if is_higher_than([5 4 0 0]) then
+            info_message = ascii(mget(mget(1,stringFormat,fd),characterFormat,fd)) ; // info_message
+        else
+            info_message = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // info_message
+        end
         tag = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // tag
       end
       auto_resize=toggle(mget(1,characterFormat,fd)); // auto_resize
-      figure_name=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // figure_name
+      if is_higher_than([5 4 0 0]) then
+          figure_name=ascii(mget(mget(1,stringFormat,fd),characterFormat,fd)) // figure_name
+      else
+          figure_name=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // figure_name
+      end
       figure_id=mget(1,'sl',fd); // figure_id
       // create the figure
       h=scf(figure_id);
@@ -1374,7 +1390,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.foregroundcolor = mget(ncolors,"dl",fd); // ForegroundColor (data)
       h.label = ascii(mget(mget(1,"c",fd),"c",fd)); // Label
       h.visible = toggle(mget(1,"c",fd)); // Visible
-      h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      if is_higher_than( [5 4 0 0] ) then
+        h.callback = ascii(mget(mget(1, stringFormat,fd),"c",fd)); // Callback
+      else
+        h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      end
       h.callback_type = mget(1,"il",fd); // Callback Type
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
     end
@@ -1434,7 +1454,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.value = mget(ndata,"dl",fd); // Value (data)
       h.verticalalignment = ascii(mget(mget(1,"c",fd),"c",fd)); // VerticalAlignment
       h.visible = toggle(mget(1,"c",fd)); // Visible
-      h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      if is_higher_than( [5 4 0 0] ) then
+        h.callback = ascii(mget(mget(1, stringFormat,fd),"c",fd)); // Callback
+      else
+        h.callback = ascii(mget(mget(1,"c",fd),"c",fd)); // Callback
+      end
       h.callback_type = mget(1,"il",fd); // Callback Type
       load_user_data(fd); // Userdata
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
@@ -1487,7 +1511,11 @@ function strMat = load_text_matrix( fd )
   nbCol = mget( 1, 'il', fd ) ;
   for i = 1:nbRow
     for j = 1:nbCol
-      strMat(i,j) = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ;
+      if is_higher_than([5 4 0 0]) then
+        strMat(i,j) = ascii(mget(mget(1,stringFormat,fd),characterFormat,fd)) ;
+      else
+        strMat(i,j) = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ;
+      end
     end
   end
 endfunction

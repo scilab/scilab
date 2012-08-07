@@ -9,14 +9,14 @@
 
 // rmdir remove a directory
 function [status,msg]=rmdir(varargin)
-  lhs=argn(1);   
+  lhs=argn(1);
   rhs=argn(2);
-  
+
   DirName = '';
   status = 0;
   msg = '';
   SubDirMode = %F;
-  
+
   select rhs
     case 0
      error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'rmdir'));
@@ -36,34 +36,34 @@ function [status,msg]=rmdir(varargin)
   else
      error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'rmdir'));
   end
-  
+
   if ~SubDirMode then
-    if findfiles(DirName)<>[] then 
+    if findfiles(DirName)<>[] then
       status = 0
-      msg = 'Error : The directory is not empty.'
+      msg = gettext("Error: The directory is not empty.")
     else
       [status,msg] = hidden_rmdir(DirName);
     end
   else
   	[status,msg] = hidden_rmdir(DirName);
-  end   
+  end
 endfunction
 //------------------------------------------------------------------------
 function [status,msg]=hidden_rmdir(DirName)
   status = 0;
   msg = '';
-  
+
   if isdir(DirName) then
     bOK = removedir(DirName);
     if bOK then
       msg = '';
       status = 1;
     else
-      msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext('Undefined'));
+      msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext("Undefined"));
       status = 0;
     end
   else
-    msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext('The system cannot find the file specified.'));
+    msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext("The system cannot find the file specified."));
     status = 0;
   end
   

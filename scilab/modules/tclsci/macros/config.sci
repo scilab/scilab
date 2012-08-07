@@ -11,7 +11,7 @@ function config()
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
   sciGUI_init()
-  
+  warnobsolete("preferences", "5.4.1");
   vt=format();
   if (vt(1)==0) then v4="v"; else v4="e"; end;
   v5=string(vt(2));

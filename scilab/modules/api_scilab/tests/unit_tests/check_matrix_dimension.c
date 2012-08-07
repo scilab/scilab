@@ -64,6 +64,6 @@ int check_matrix_dimension(char * fname)
     }
 
     //no return value
-    AssignOutputVariable(0) = 1;
+    AssignOutputVariable(pvApiCtx, 0) = 1;
     return 0;
 }

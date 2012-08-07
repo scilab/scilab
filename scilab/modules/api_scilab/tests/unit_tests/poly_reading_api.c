@@ -138,7 +138,7 @@ int read_poly(char *fname, unsigned long fname_len)
         }
     }
 
-    sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+    sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -156,6 +156,6 @@ int read_poly(char *fname, unsigned long fname_len)
     free(pdblReal);
     free(pdblImg);
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

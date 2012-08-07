@@ -12,18 +12,29 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="config">
-  <refnamediv>
-    <refname>config</refname>
-    <refpurpose> Scilab general configuration.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>config()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>config()</literal> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>config</refname>
+        <refpurpose>
+            Scilab general configuration. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>config()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>config()</literal> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function config is obsolete.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

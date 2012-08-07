@@ -195,7 +195,6 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "%e",
                      "%pi",
                      "%modalWarning",
-                     "%exportFileName",
                      "%nan",
                      "%inf",
                      "SCI",
@@ -212,15 +211,15 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "%z",
                      "%s",
                      "$",
-                     "%driverName",
                      "%toolboxes",
                      "%toolboxes_dir",
                      "TICTOC",
-                     "%helps_modules"
+                     "%helps_modules",
+                     "%_atoms_cache"
                    };
     int i = 0;
 
-#define NBELEMENT 33
+#define NBELEMENT 32
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++)

@@ -102,8 +102,18 @@ public final class MenuBarBuilder {
      * @param figureId the figure
      */
     public static void buildFigureMenuBar(String figureId) {
-        MenuBarBuilder.isParentValid = false;
-        buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+	boolean isheadless = false;
+	
+	try {
+	    Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+	    Method meth = clazz.getMethod("isHeadless");
+	    isheadless = (Boolean) meth.invoke(null);
+	} catch (Exception e) { System.err.println(e);}
+
+        if (!isheadless) {
+            MenuBarBuilder.isParentValid = false;
+            buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
+        }
     }
 
     /**
@@ -309,7 +319,7 @@ public final class MenuBarBuilder {
                         } else if (attributes.item(i).getNodeName() == MACOSX) {
                             macosx = attributes.item(i).getNodeValue().equals(TRUE);
                             if (!macosx && OS.get() == OS.MAC) {
-                                GraphicController.getController().setProperty(menuId, __GO_VISIBLE__, false);
+                                GraphicController.getController().removeRelationShipAndDelete(menuId);
                                 separator = false;
                             }
                         }

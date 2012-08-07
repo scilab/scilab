@@ -10,49 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Matplot1">
-  <refnamediv>
-    <refname>Matplot1</refname>
-    <refpurpose>行列の2次元カラープロット</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>Matplot1(a,rect)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>大きさ (n1,n2)の実数行列.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rect</term>
-        <listitem>
-          <para>
-            <literal>[xmin,ymin,xmax,ymax]</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      行列 <literal>int(a)</literal> のエントリはカレントのカラーマップの
-      カラーマップエントリとして使用されます.
-      <literal>rect</literal> はカレントのスケールで矩形を指定します.
-      行列はこの矩形の中に描画されます.
-      各行列のエントリはその色で塗られた小さな矩形として描画されます.
-      ある行列のエントリがカラーマップの外側の場合,
-      対応する矩形は表示されません.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="Matplot1">
+    <refnamediv>
+        <refname>Matplot1</refname>
+        <refpurpose>行列の2次元カラープロット</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Matplot1(a,rect)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>大きさ (n1,n2)の実数行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        <literal>[xmin,ymin,xmax,ymax]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            行列 <literal>int(a)</literal> のエントリはカレントのカラーマップの
+            カラーマップエントリとして使用されます.
+            <literal>rect</literal> はカレントのスケールで矩形を指定します.
+            行列はこの矩形の中に描画されます.
+            各行列のエントリはその色で塗られた小さな矩形として描画されます.
+            ある行列のエントリがカラーマップの外側の場合,
+            対応する矩形は表示されません.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>Matplot1();</scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 //--- 最初の例
 clf();
 ax=gca();//カレントの軸のハンドルを取得
@@ -87,25 +91,25 @@ for k=-n:n,
 end
 f.pixmap='off';
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="colormap">colormap</link>
-      </member>
-      <member>
-        <link linkend="plot2d">plot2d</link>
-      </member>
-      <member>
-        <link linkend="Matplot">Matplot</link>
-      </member>
-      <member>
-        <link linkend="grayplot">grayplot</link>
-      </member>
-      <member>
-        <link linkend="Matplot_properties">Matplot_properties</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colormap">colormap</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Matplot_properties">Matplot_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -11,57 +11,57 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="clear_pixmap">
-  <refnamediv>
-    <refname>clear_pixmap</refname>
-    <refpurpose>erase the pixmap
-      buffer <emphasis role="bold">This function is obsolete.</emphasis>
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>clear_pixmap()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
-      the drawings are send to a pixmap memory instead of the screen display.
-    </para>
-    <para/>
-    <para>
-      The <literal>clear_pixmap()</literal> instruction erase the pixmap, but not
-      the screen.
-    </para>
-    <para/>
-    <para>The pixmap mode can be used to obtain smooth animations.</para>
-   <para>
-      WARNING: This function is obsolete from Scilab 5.4.0 and is going to be removed with Scilab 5.4.1 Please use <link linkend="drawlater">drawlater</link>/<link linkend="drawnow">drawnow</link> instead.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="figure_properties">figure_properties</link>
-      </member>
-      <member>
-        <link linkend="show_pixmap">show_pixmap</link>
-      </member>
-      <member>
-        <link linkend="drawlater">drawlater</link>
-      </member>
-      <member>
-        <link linkend="drawnow">drawnow</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Function clear_pixmap is obsolete.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    <refnamediv>
+        <refname>clear_pixmap</refname>
+        <refpurpose>erase the pixmap
+            buffer <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>clear_pixmap()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
+            the drawings are send to a pixmap memory instead of the screen display.
+        </para>
+        <para/>
+        <para>
+            The <literal>clear_pixmap()</literal> instruction erase the pixmap, but not
+            the screen.
+        </para>
+        <para/>
+        <para>The pixmap mode can be used to obtain smooth animations.</para>
+        <para>
+            WARNING: This function is obsolete from Scilab 5.4.0 and is going to be removed with Scilab 5.4.1. Please use <link linkend="drawlater">drawlater</link>/<link linkend="drawnow">drawnow</link> instead.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="show_pixmap">show_pixmap</link>
+            </member>
+            <member>
+                <link linkend="drawlater">drawlater</link>
+            </member>
+            <member>
+                <link linkend="drawnow">drawnow</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function clear_pixmap is obsolete.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

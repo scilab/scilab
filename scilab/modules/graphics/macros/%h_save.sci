@@ -10,12 +10,13 @@
 
 
 function %h_save(h,fd)
-  version=[5 4 0 0]
+  version=[5 4 0 1]
   mput(version,'uc',fd)
   
   // There are issues when saving characters with 'c' format
   // characterFormat format behave smoothly
   characterFormat = 'uc';
+  stringFormat = 'il';
   
   hsize = size(h);
   mput(hsize,characterFormat,fd); 
@@ -49,12 +50,12 @@ function save_graphichandle(h,fd)
     mput(h.figure_size,'sl',fd) // figure size
     mput(h.axes_size,'sl',fd) // axes_size
     mput(h.viewport,'sl',fd) // viewport
-    mput(length(ascii(h.info_message)),characterFormat,fd) ; // info_message
+    mput(length(ascii(h.info_message)),stringFormat,fd) ; // info_message
     mput(ascii(h.info_message),characterFormat,fd) ;
     mput(length(ascii(h.tag)),characterFormat,fd) ; // tag
     mput(ascii(h.tag),characterFormat,fd) ;
     mput(bool2s(h.auto_resize=='on'),characterFormat,fd) // auto_resize
-    mput(length(ascii(h.figure_name)),characterFormat,fd); // figure_name
+    mput(length(ascii(h.figure_name)),stringFormat,fd); // figure_name
     mput(ascii(h.figure_name),characterFormat,fd);
     mput(h.figure_id,'sl',fd); // figure_id
     
@@ -625,7 +626,7 @@ function save_graphichandle(h,fd)
     mput(h.foregroundcolor,"dl",fd); // ForegroundColor (data)
     mput(length(h.label),"c",fd);mput(ascii(h.label),"c",fd); // Label
     mput(bool2s(h.visible=="on"),"c",fd); // Visible
-    mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
+    mput(length(h.callback),stringFormat,fd);mput(ascii(h.callback),"c",fd); // Callback
     mput(h.callback_type,"il",fd); // Callback Type
     mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
     mput(bool2s(h.checked=="on"),"c",fd); // Checked
@@ -677,7 +678,7 @@ function save_graphichandle(h,fd)
     mput(h.value,"dl",fd); // Value (data)
     mput(length(h.verticalalignment),"c",fd);mput(ascii(h.verticalalignment),"c",fd); // VerticalAlignment
     mput(bool2s(h.visible=="on"),"c",fd); // Visible
-    mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
+    mput(length(h.callback),stringFormat,fd);mput(ascii(h.callback),"c",fd); // Callback
     mput(h.callback_type,"il",fd); // Callback Type
     user_data=h.user_data;save(fd,user_data); // Userdata
     mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
@@ -702,7 +703,7 @@ function save_text_matrix(strMat,fd)
   mput( nbCol, 'il', fd ) ;
   for i = 1:nbRow
     for j = 1:nbCol
-      mput(length(ascii(strMat(i,j))),characterFormat,fd) ;
+      mput(length(ascii(strMat(i,j))), stringFormat, fd) ;
       mput(ascii(strMat(i,j)),characterFormat,fd) ;
     end
   end

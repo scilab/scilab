@@ -35,13 +35,13 @@ int doubleExample(char *fname, unsigned long fname_len)
 
     if (isEmptyMatrix(pvApiCtx, piAddr))
     {
-        iRet = createEmptyMatrix(pvApiCtx, nbInputArgument + 1);
+        iRet = createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
         if (iRet)
         {
             return iRet;
         }
 
-        AssignOutputVariable(1) = 0;
+        AssignOutputVariable(pvApiCtx, 1) = 0;
     }
     else if (isDoubleType(pvApiCtx, piAddr))
     {
@@ -58,7 +58,7 @@ int doubleExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                iRet = createScalarComplexDouble(pvApiCtx, nbInputArgument + 1, dblReal, dblImg);
+                iRet = createScalarComplexDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dblReal, dblImg);
                 if (iRet)
                 {
                     return iRet;
@@ -72,7 +72,7 @@ int doubleExample(char *fname, unsigned long fname_len)
                     return iRet;
                 }
 
-                iRet = createScalarDouble(pvApiCtx, nbInputArgument + 1, dblReal);
+                iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dblReal);
                 if (iRet)
                 {
                     return iRet;
@@ -95,7 +95,7 @@ int doubleExample(char *fname, unsigned long fname_len)
                     return sciErr.iErr;
                 }
 
-                sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal, pdblImg);
+                sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblReal, pdblImg);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -111,7 +111,7 @@ int doubleExample(char *fname, unsigned long fname_len)
                     return sciErr.iErr;
                 }
 
-                sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal);
+                sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblReal);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -120,7 +120,7 @@ int doubleExample(char *fname, unsigned long fname_len)
             }
         }
 
-        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     }
 
     return 0;
