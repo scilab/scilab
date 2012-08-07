@@ -10,99 +10,103 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Sfgrayplot">
-  <refnamediv>
-    <refname>Sfgrayplot</refname>
-    <refpurpose>関数により定義された曲面の平滑化2次元カラープロット
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
-      Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x,y</term>
-        <listitem>
-          <para>大きさ n1 および n2の実数行ベクトル.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>scilab 関数 (z=f(x,y))</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;opt_args&gt;</term>
-        <listitem>
-          <para>
-            一連の命令<literal>key1=value1,
-              key2=value2
-            </literal>
-            ,... を表します.
-            ただし, <literal>key1</literal>,
-            <literal>key2,...</literal> は以下のどれかとすることができます:
-            strf, rect, nax, zminmax, colminmax, mesh, colout
-            (最初の3つについては <link linkend="plot2d">plot2d</link>,  最後の4つに
-            ついては<link linkend="fec">fec</link> を参照).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>strf,rect,nax</term>
-        <listitem>
-          <para>
-            <link linkend="plot2d">plot2d</link>参照.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>zminmax, colminmax, mesh, colout</term>
-        <listitem>
-          <para>
-            <link linkend="fec">fec</link>参照.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>Sfgrayplot</literal> は
-      <literal>fgrayplot</literal> と同じですが,プロットが平滑化されるところが
-      異なります. 平滑化には関数 <literal>fec</literal> が使用されます. 
-      面の描画の際には,以下のグリッド (ここでは n1=5, n2=3)から構築された
-      一連の三角形上では線形であると仮定されます:
-    </para>
-    <screen><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="Sfgrayplot">
+    <refnamediv>
+        <refname>Sfgrayplot</refname>
+        <refpurpose>関数により定義された曲面の平滑化2次元カラープロット
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
+            Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y</term>
+                <listitem>
+                    <para>大きさ n1 および n2の実数行ベクトル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>scilab 関数 (z=f(x,y))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        一連の命令<literal>key1=value1,
+                            key2=value2
+                        </literal>
+                        ,... を表します.
+                        ただし, <literal>key1</literal>,
+                        <literal>key2,...</literal> は以下のどれかとすることができます:
+                        strf, rect, nax, zminmax, colminmax, mesh, colout
+                        (最初の3つについては <link linkend="plot2d">plot2d</link>,  最後の4つに
+                        ついては<link linkend="fec">fec</link> を参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strf,rect,nax</term>
+                <listitem>
+                    <para>
+                        <link linkend="plot2d">plot2d</link>参照.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zminmax, colminmax, mesh, colout</term>
+                <listitem>
+                    <para>
+                        <link linkend="fec">fec</link>参照.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Sfgrayplot</literal> は
+            <literal>fgrayplot</literal> と同じですが,プロットが平滑化されるところが
+            異なります. 平滑化には関数 <literal>fec</literal> が使用されます. 
+            面の描画の際には,以下のグリッド (ここでは n1=5, n2=3)から構築された
+            一連の三角形上では線形であると仮定されます:
+        </para>
+        <screen><![CDATA[ 
 _____________
 | /| /| /| /|
 |/_|/_|/_|/_| 
 | /| /| /| /| 
 |/_|/_|/_|/_|
  ]]></screen>
-    <para>
-      関数 <link linkend="colorbar">colorbar</link> は色スケールを参照する
-      際にも使用できます
-      (しかし,最小値と最大値が既知(または計算する)必要があります).
-    </para>
-    <para>
-      Sfgrayplotの代わりに, <link linkend="Sgrayplot">Sgrayplot</link> を
-      使用することができ,若干高速化される可能性があります.
-    </para>
-    <para>
-      デモを参照するにはコマンド <literal>Sfgrayplot()</literal> を入力してください.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            関数 <link linkend="colorbar">colorbar</link> は色スケールを参照する
+            際にも使用できます
+            (しかし,最小値と最大値が既知(または計算する)必要があります).
+        </para>
+        <para>
+            Sfgrayplotの代わりに, <link linkend="Sgrayplot">Sgrayplot</link> を
+            使用することができ,若干高速化される可能性があります.
+        </para>
+        <para>
+            デモを参照するにはコマンド <literal>Sfgrayplot()</literal> を入力してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>Sfgrayplot();</scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 // 例 #1: 4 個の面をプロット
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
@@ -162,22 +166,22 @@ xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
 drawnow() ;
 show_window()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="fec">fec</link>
-      </member>
-      <member>
-        <link linkend="fgrayplot">fgrayplot</link>
-      </member>
-      <member>
-        <link linkend="grayplot">grayplot</link>
-      </member>
-      <member>
-        <link linkend="Sgrayplot">Sgrayplot</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fec">fec</link>
+            </member>
+            <member>
+                <link linkend="fgrayplot">fgrayplot</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Sgrayplot">Sgrayplot</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
