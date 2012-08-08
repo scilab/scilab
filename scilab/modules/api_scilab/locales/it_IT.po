@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-28 14:13+0000\n"
+"PO-Revision-Date: 2012-07-31 13:51+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: it\n"
 
 #, c-format
@@ -179,6 +179,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
+"reale o uno scalare intero.\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
@@ -282,6 +284,10 @@ msgstr "matrice di stringhe"
 
 msgid "matrix of string"
 msgstr "matrice di stringhe"
+
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
+msgstr ""
 
 msgid "matrix of wide string"
 msgstr "matrice di stringhe grandi"

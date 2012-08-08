@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-26 17:02+0000\n"
+"PO-Revision-Date: 2012-08-02 19:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: uk\n"
 
 #, c-format
@@ -344,6 +344,10 @@ msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю, "
 "де кількість стовпчиків менша за кількість рідків.\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: помилкові значення вхідних параметрів №%d та №%d.\n"
 
 #, c-format
 msgid ""

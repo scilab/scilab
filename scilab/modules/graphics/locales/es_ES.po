@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: es\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -37,12 +37,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
 
 #, c-format
-msgid "%s: Objects must have the same axes.\n"
-msgstr "%s: Los objetos deben tener los mismos ejes.\n"
-
-#, c-format
 msgid "%s: The handle is no more valid.\n"
 msgstr "%s: El manejador ya no es válido.\n"
+
+#, c-format
+msgid "%s: Objects must have the same axes.\n"
+msgstr "%s: Los objetos deben tener los mismos ejes.\n"
 
 #, c-format
 msgid "%s: The %d th handle is not a polyline handle.\n"
@@ -1014,9 +1014,6 @@ msgstr ""
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Módulo gráfico de Scilab no instalado.\n"
 
-msgid "Average monthly temperatures in french cities"
-msgstr ""
-
 msgid "Computing in progress..."
 msgstr ""
 
@@ -1191,6 +1188,15 @@ msgid "For data-scaled axes, please use Matplot1(..)"
 msgstr ""
 
 msgid "Axes are scaled with M's indices"
+msgstr ""
+
+#, c-format
+msgid ""
+"Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\n"
+"pixel(i,j) is drawn with color number int(M(i,j))"
+msgstr ""
+
+msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
 msgstr ""
 
 #, c-format
@@ -1678,6 +1684,9 @@ msgstr "Número de color"
 
 msgid "Name"
 msgstr "Nombre"
+
+msgid "Average monthly temperatures in french cities"
+msgstr ""
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr ""

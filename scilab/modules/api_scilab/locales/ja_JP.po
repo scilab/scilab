@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-29 14:21+0000\n"
+"PO-Revision-Date: 2012-08-07 03:12+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ja\n"
 
 #, c-format
@@ -264,6 +264,10 @@ msgstr "文字列行列"
 
 msgid "matrix of string"
 msgstr "文字列の行列"
+
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
+msgstr "%s: ワイド文字列 #%d を変換できません"
 
 msgid "matrix of wide string"
 msgstr "ワイド文字列の行列"

@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -551,9 +551,6 @@ msgstr "&Editar"
 msgid "&Select as current figure"
 msgstr "&Selecionar como figura atual"
 
-msgid "&Redraw figure"
-msgstr "&Redesenhar figura"
-
 msgid "&Clear figure"
 msgstr "&Limpar figura"
 
@@ -848,6 +845,27 @@ msgstr ""
 msgid "Custom:"
 msgstr ""
 
+msgid "Web"
+msgstr ""
+
+msgid "Web browser and mailer"
+msgstr ""
+
+msgid "Use default web browser"
+msgstr ""
+
+msgid "Command for web browser: "
+msgstr ""
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+
+msgid "Use default mailer"
+msgstr ""
+
+msgid "Command for mailer: "
+msgstr ""
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -1101,6 +1119,7 @@ msgstr "Plano de fundo do Console..."
 msgid "No print service found."
 msgstr ""
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1110,6 +1129,7 @@ msgstr ""
 "modo onde mixar uicontrols e gráficos não está disponível. Digite %s para "
 "mais informações."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Em alguns casos, %s resolve o caso"
 
@@ -1291,6 +1311,7 @@ msgstr "Salvar e executar"
 msgid "Empty tab"
 msgstr "Aba vazia"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1298,9 +1319,11 @@ msgstr ""
 "A aba com uuid %s não pode ser restaurada.\n"
 "Por favor, relate o erro com a mensagem anterior e anexe o arquivo %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Tem certeza de que deseja fechar %s?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Tem certeza de que deseja fechar %s e %s?"
 
@@ -1355,6 +1378,7 @@ msgstr "Todas as imagens PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Todos os arquivos RTF"
 
+#, c-format
 msgid "All %s files"
 msgstr "Todos os arquivos %s"
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -37,6 +37,60 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Erro de alocação de memória.\n"
+
+msgid "Straight"
+msgstr "Direto"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertical"
+msgstr "Vertical"
+
+msgid "Simulation"
+msgstr "Simulação"
+
+msgid "No trace nor debug printing"
+msgstr "Sem emissão de rastreio e depuração"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Rastreio de simulação leve (alterna entre parte discreta e contínua)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Rastreio da execução de bloco e chamadas de depuração por bloco"
+
+msgid "Debug block calls without trace"
+msgstr "Depurar as chamadas de bloco sem rastreio"
+
+msgid "Default simulation settings"
+msgstr ""
+
+msgid "Final integration time"
+msgstr "Tempo final de integração"
+
+msgid "Real time scaling"
+msgstr "Escala em tempo real"
+
+msgid "Integrator absolute tolerance"
+msgstr "Tolerância absoluta do integrador"
+
+msgid "Integrator relative tolerance"
+msgstr "Tolerância relativa do integrador"
+
+msgid "Tolerance on time"
+msgstr "Tolerância de tempo"
+
+msgid "Max integration time interval"
+msgstr "Intervalo máximo de tempo de integração"
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
+
+msgid "Default trace settings"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -370,9 +424,6 @@ msgstr "Detalhes"
 msgid "Show parent diagram"
 msgstr "Mostrar diagrama pai"
 
-msgid "Simulation"
-msgstr "Simulação"
-
 msgid "Setup"
 msgstr "Configuração"
 
@@ -676,45 +727,12 @@ msgstr "Cor do texto"
 msgid "Link Style"
 msgstr "Estilo do link"
 
-msgid "Straight"
-msgstr "Direto"
-
-msgid "Horizontal"
-msgstr "Horizontal"
-
-msgid "Vertical"
-msgstr "Vertical"
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Definir nível de depuração (0,1,2,3) <br/> que realiza scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "Executar rastreio e depuração"
-
-msgid "Final integration time"
-msgstr "Tempo final de integração"
-
-msgid "Real time scaling"
-msgstr "Escala em tempo real"
-
-msgid "Integrator absolute tolerance"
-msgstr "Tolerância absoluta do integrador"
-
-msgid "Integrator relative tolerance"
-msgstr "Tolerância relativa do integrador"
-
-msgid "Tolerance on time"
-msgstr "Tolerância de tempo"
-
-msgid "Max integration time interval"
-msgstr "Intervalo máximo de tempo de integração"
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "maximum step size (0 means no limit)"
-msgstr "tamanho máximo de passo (0 significa ilimitado)"
 
 msgid "Default"
 msgstr "Padrão"
@@ -760,18 +778,6 @@ msgid ""
 msgstr ""
 "Clique no diagrama para adicionar um ponto de vínculo ou um alvo compatível "
 "para encerrar"
-
-msgid "No trace nor debug printing"
-msgstr "Sem emissão de rastreio e depuração"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Rastreio de simulação leve (alterna entre parte discreta e contínua)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Rastreio da execução de bloco e chamadas de depuração por bloco"
-
-msgid "Debug block calls without trace"
-msgstr "Depurar as chamadas de bloco sem rastreio"
 
 msgid "All supported formats"
 msgstr ""
