@@ -68,6 +68,8 @@ Bug Fixes
 
 * Bug #11606 fixed - exit() was too slow in nw mode when driver("png") was set.
 
+* Bug #11612 fixed - Index of the max value of a negative sparse was wrong.
+
 * Bug #11618 fixed - A(:) returned wrong values when A was a complex sparse matrix.
 
 * Bug #11628 fixed - Clearing a shortcut did not work is Preferences.

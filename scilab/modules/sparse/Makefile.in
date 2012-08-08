@@ -140,22 +140,21 @@ am__objects_1 = libscisparse_algo_la-spUtils.lo \
 	libscisparse_algo_la-spOutput.lo \
 	libscisparse_algo_la-spAllocate.lo \
 	libscisparse_algo_la-spSolve.lo
-am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
-	dspful.lo blkslv.lo wspcle.lo wspt.lo wspssp.lo lspmat.lo \
-	lsosp.lo blkfc1.lo wspxsp.lo lspful.lo blkfct.lo symfct.lo \
-	dspt.lo wspos.lo dful2sp.lo sputil.lo lspt.lo dspxs.lo \
-	sp2col.lo dcompa.lo sz2ptr.lo spt.lo lcompa.lo wspmat.lo \
-	iperm.lo wspful.lo spif1b.lo spextr.lo lful2sp.lo dspos.lo \
-	dspasp.lo inpnv.lo spreshape.lo spsort.lo wperm.lo dij2sp.lo \
-	dspcsp.lo spcho2.lo lspos.lo wspe2.lo spif.lo lspasp.lo \
-	dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo dspmsp.lo \
-	dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo wsosp.lo \
-	dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo wcompa.lo \
-	lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo wspasp.lo \
-	wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo dspis.lo \
-	wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo spord.lo \
-	dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo writebuf.lo \
-	ta2lpd.lo
+am__objects_2 = spcompack.lo wsposp.lo findl.lo spcho1.lo dspful.lo \
+	blkslv.lo wspcle.lo wspt.lo wspssp.lo lspmat.lo lsosp.lo \
+	blkfc1.lo wspxsp.lo lspful.lo blkfct.lo symfct.lo dspt.lo \
+	wspos.lo dful2sp.lo sputil.lo lspt.lo dspxs.lo sp2col.lo \
+	dcompa.lo sz2ptr.lo spt.lo lcompa.lo wspmat.lo iperm.lo \
+	wspful.lo spif1b.lo spextr.lo lful2sp.lo dspos.lo dspasp.lo \
+	inpnv.lo spreshape.lo spsort.lo wperm.lo dij2sp.lo dspcsp.lo \
+	spcho2.lo lspos.lo wspe2.lo spif.lo lspasp.lo dspisp.lo \
+	wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo dspmsp.lo dsposp.lo \
+	wsmsp.lo wspms.lo lspisp.lo dspcle.lo wsosp.lo dspssp.lo \
+	lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo wcompa.lo lspxsp.lo \
+	spisp.lo dperm.lo spind.lo dspe2.lo wspasp.lo wij2sp.lo \
+	wspcsp.lo lspops.lo spifp.lo isort1.lo dspis.lo wspxs.lo \
+	lspe2.lo wspisp.lo dsmsp.lo dspms.lo spord.lo dsosp.lo \
+	dspmat.lo wspmsp.lo lspis.lo writebuf.lo ta2lpd.lo
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscisparse_algo_la_rpath =
@@ -170,8 +169,7 @@ am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_symfcti.lo libscisparse_la-sci_mfull.lo \
 	libscisparse_la-sci_luget.lo libscisparse_la-sci_ordmmd.lo \
 	libscisparse_la-sci_spget.lo libscisparse_la-sci_spclean.lo \
-	libscisparse_la-sci_spmin.lo libscisparse_la-sci_spchol.lo \
-	libscisparse_la-sci_spmax.lo libscisparse_la-sci_lusolve.lo \
+	libscisparse_la-sci_spchol.lo libscisparse_la-sci_lusolve.lo \
 	libscisparse_la-sci_fadj2sp.lo libscisparse_la-gw_sparse.lo \
 	libscisparse_la-sci_sfinit.lo libscisparse_la-sci_sparse.lo \
 	libscisparse_la-sci_mspget.lo
@@ -180,8 +178,8 @@ am__objects_4 = sci_f_spcompa.lo sci_f_sparse.lo sci_f_full.lo \
 	sci_f_bfinit.lo spops.lo sci_f_spmatrix.lo sci_f_blkfc1i.lo \
 	sci_f_lufact.lo sci_f_symfcti.lo sci_f_luget.lo \
 	sci_f_ordmmd.lo sci_f_spget.lo sci_f_spclean.lo \
-	sci_f_spchol.lo sci_f_spmax.lo sci_f_lusolve.lo \
-	sci_f_fadj2sp.lo sci_f_sfinit.lo sci_f_ta2lpd.lo
+	sci_f_spchol.lo sci_f_lusolve.lo sci_f_fadj2sp.lo \
+	sci_f_sfinit.lo sci_f_ta2lpd.lo
 am_libscisparse_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscisparse_la_rpath =
@@ -484,7 +482,6 @@ src/c/spSolve.c
 # src/c/spFortran.c
 SPARSE_FORTRAN_SOURCES = src/fortran/spcompack.f \
 src/fortran/wsposp.f \
-src/fortran/dspmax.f \
 src/fortran/findl.f \
 src/fortran/spcho1.f \
 src/fortran/dspful.f \
@@ -569,7 +566,6 @@ src/fortran/dsosp.f \
 src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
-src/fortran/dspmin.f \
 src/fortran/writebuf.f \
 src/fortran/ta2lpd.f
 
@@ -590,9 +586,7 @@ sci_gateway/c/sci_luget.c \
 sci_gateway/c/sci_ordmmd.c \
 sci_gateway/c/sci_spget.c \
 sci_gateway/c/sci_spclean.c \
-sci_gateway/c/sci_spmin.c \
 sci_gateway/c/sci_spchol.c \
-sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
 sci_gateway/c/gw_sparse.c \
@@ -618,7 +612,6 @@ sci_gateway/fortran/sci_f_ordmmd.f \
 sci_gateway/fortran/sci_f_spget.f \
 sci_gateway/fortran/sci_f_spclean.f \
 sci_gateway/fortran/sci_f_spchol.f \
-sci_gateway/fortran/sci_f_spmax.f \
 sci_gateway/fortran/sci_f_lusolve.f \
 sci_gateway/fortran/sci_f_fadj2sp.f \
 sci_gateway/fortran/sci_f_sfinit.f \
@@ -651,7 +644,7 @@ modulename = sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA = license.txt 
+libscisparse_la_root_DATA = license.txt
 
 #### sparse : init scripts ####
 libscisparse_la_etcdir = $(mydatadir)/etc
@@ -851,8 +844,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spcompa.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmatrix.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmax.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spmin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_symfcti.Plo@am__quote@
 
 .c.o:
@@ -1051,26 +1042,12 @@ libscisparse_la-sci_spclean.lo: sci_gateway/c/sci_spclean.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spclean.lo `test -f 'sci_gateway/c/sci_spclean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spclean.c
 
-libscisparse_la-sci_spmin.lo: sci_gateway/c/sci_spmin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spmin.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spmin.Tpo -c -o libscisparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-sci_spmin.Tpo $(DEPDIR)/libscisparse_la-sci_spmin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmin.c' object='libscisparse_la-sci_spmin.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spmin.lo `test -f 'sci_gateway/c/sci_spmin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmin.c
-
 libscisparse_la-sci_spchol.lo: sci_gateway/c/sci_spchol.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spchol.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spchol.Tpo -c -o libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-sci_spchol.Tpo $(DEPDIR)/libscisparse_la-sci_spchol.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spchol.c' object='libscisparse_la-sci_spchol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/c/sci_spchol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spchol.c
-
-libscisparse_la-sci_spmax.lo: sci_gateway/c/sci_spmax.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_spmax.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_spmax.Tpo -c -o libscisparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-sci_spmax.Tpo $(DEPDIR)/libscisparse_la-sci_spmax.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_spmax.c' object='libscisparse_la-sci_spmax.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_spmax.lo `test -f 'sci_gateway/c/sci_spmax.c' || echo '$(srcdir)/'`sci_gateway/c/sci_spmax.c
 
 libscisparse_la-sci_lusolve.lo: sci_gateway/c/sci_lusolve.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_lusolve.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_lusolve.Tpo -c -o libscisparse_la-sci_lusolve.lo `test -f 'sci_gateway/c/sci_lusolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lusolve.c
@@ -1128,9 +1105,6 @@ spcompack.lo: src/fortran/spcompack.f
 
 wsposp.lo: src/fortran/wsposp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wsposp.lo `test -f 'src/fortran/wsposp.f' || echo '$(srcdir)/'`src/fortran/wsposp.f
-
-dspmax.lo: src/fortran/dspmax.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmax.lo `test -f 'src/fortran/dspmax.f' || echo '$(srcdir)/'`src/fortran/dspmax.f
 
 findl.lo: src/fortran/findl.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o findl.lo `test -f 'src/fortran/findl.f' || echo '$(srcdir)/'`src/fortran/findl.f
@@ -1384,9 +1358,6 @@ wspmsp.lo: src/fortran/wspmsp.f
 lspis.lo: src/fortran/lspis.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lspis.lo `test -f 'src/fortran/lspis.f' || echo '$(srcdir)/'`src/fortran/lspis.f
 
-dspmin.lo: src/fortran/dspmin.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmin.lo `test -f 'src/fortran/dspmin.f' || echo '$(srcdir)/'`src/fortran/dspmin.f
-
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
@@ -1446,9 +1417,6 @@ sci_f_spclean.lo: sci_gateway/fortran/sci_f_spclean.f
 
 sci_f_spchol.lo: sci_gateway/fortran/sci_f_spchol.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_spchol.lo `test -f 'sci_gateway/fortran/sci_f_spchol.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_spchol.f
-
-sci_f_spmax.lo: sci_gateway/fortran/sci_f_spmax.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_spmax.lo `test -f 'sci_gateway/fortran/sci_f_spmax.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_spmax.f
 
 sci_f_lusolve.lo: sci_gateway/fortran/sci_f_lusolve.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_lusolve.lo `test -f 'sci_gateway/fortran/sci_f_lusolve.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lusolve.f
