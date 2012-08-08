@@ -85,6 +85,8 @@ Bug Fixes
 * Bug #11701 fixed - Under Windows a CR was added in SciNotes each time the file
                      is saved.
 
+* Bug #11703 fixed - Exception when select text in SciNotes color prefs.
+
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
