@@ -82,6 +82,10 @@ Bug Fixes
 
 * Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages. 
 
+* Bug #11701 fixed - Under Windows a CR was added in SciNotes each time the file
+                     is saved.
+
+
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
 
