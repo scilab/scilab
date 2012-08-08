@@ -101,7 +101,7 @@ public class DatatipCreate {
             int maxLength = DataX.length;
             for (int i = 0 ; i < (maxLength - 1) ; i++) {
                 if (coordDoubleXY[0] >= DataX[i]) {
-                    if (coordDoubleXY[0] <= DataX[i+1]) {
+                    if (coordDoubleXY[0] <= DataX[i + 1]) {
                         coordDoubleXY[0] = DataX[i];
                         coordDoubleXY[1] = DataY[i];
                     }
@@ -111,9 +111,9 @@ public class DatatipCreate {
                 coordDoubleXY[0] = DataX[0];
                 coordDoubleXY[1] = DataY[0];
             }
-            if (coordDoubleXY[0] > DataX[maxLength-1]) {
-                coordDoubleXY[0] = DataX[maxLength-1];
-                coordDoubleXY[1] = DataY[maxLength-1];
+            if (coordDoubleXY[0] > DataX[maxLength - 1]) {
+                coordDoubleXY[0] = DataX[maxLength - 1];
+                coordDoubleXY[1] = DataY[maxLength - 1];
             }
         }
         /*Create the new datatip*/

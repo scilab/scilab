@@ -1,12 +1,12 @@
 <package name="org.scilab.modules.gui.datatip">
-  <object name="DatatipCreate">
-	<method name="createDatatipProgramCoord" returnType="String" modifier="static">
-      <parameter name="polylineUid" type="String"/>
-      <parameter name="coordDoubleXY" type="double[]"/>
-    </method>
-	<method name="createDatatipProgramIndex" returnType="String" modifier="static">
-      <parameter name="polylineUid" type="String"/>
-      <parameter name="indexPoint" type="int"/>
-    </method>
-  </object>
+    <object name="DatatipCreate">
+        <method name="createDatatipProgramCoord" returnType="String" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="coordDoubleXY" type="double[]"/>
+        </method>
+        <method name="createDatatipProgramIndex" returnType="String" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="indexPoint" type="int"/>
+        </method>
+    </object>
 </package>
