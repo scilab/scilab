@@ -37,16 +37,15 @@ namespace types
             }
             else if(pIT->isColon() || pIT->isImplicitList())
             {//: or a:b:c
-                if(_pRef == NULL)
-                {
-                    _pArgsOut->push_back(NULL);
-                    bUndefine = true;
-                    continue;
-                }
-
                 ImplicitList* pIL = pIT->getAs<ImplicitList>();
                 if(pIL->isComputable() == false)
                 {//: or $
+                    if(_pRef == NULL)
+                    {//not enough information to compute indexes.
+                        _pArgsOut->push_back(NULL);
+                        bUndefine = true;
+                        continue;
+                    }
                     //evalute polynom with "MaxDim"
                     int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
                     Double dbl(iMaxDim);
