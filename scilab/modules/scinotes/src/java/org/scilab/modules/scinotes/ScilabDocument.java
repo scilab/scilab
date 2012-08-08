@@ -275,19 +275,18 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void addEOL() {
         if (SciNotesOptions.getSciNotesPreferences().addLineTermination) {
             int len = getLength();
-            int lenEOL = getEOL().length();
-            if (getLength() >= lenEOL) {
+            if (getLength() >= 1) {
                 try {
-                    String end = getText(len - lenEOL, lenEOL);
-                    if (!end.equals(getEOL())) {
-                        insertString(len, getEOL(), null);
+                    String end = getText(len - 1, 1);
+                    if (!end.equals("\n")) {
+                        insertString(len, "\n", null);
                     }
                 } catch (BadLocationException e) {
                     System.err.println(e);
                 }
             } else {
                 try {
-                    insertString(len, getEOL(), null);
+                    insertString(len, "\n", null);
                 } catch (BadLocationException e) {
                     System.err.println(e);
                 }

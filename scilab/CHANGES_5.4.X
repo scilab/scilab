@@ -15,6 +15,11 @@
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
+Xcos
+====
+
+* Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
+
 
 Obsolete functions
 ==================
@@ -32,6 +37,12 @@ Documentation
     - Special functions. See bug #11643.
 
 
+Compilation
+===========
+
+* Switch to Scirenderer 0.5.6.
+
+
 Bug Fixes
 =========
 
@@ -42,6 +53,9 @@ Bug Fixes
 
 * Bug #8151 fixed - Under Mac OS X, item "Scilab/Quit Scilab" and "File/Quit" were
                     duplicates.
+
+* Bug #8488 fixed - NaN values was propagated when we performed the min/max between
+                    several matrices.
 
 * Bug #11411 fixed - save function used unsigned char to store length of string.
                      Now it is an integer.
@@ -79,6 +93,11 @@ Bug Fixes
 * Bug #11655 fixed - external_object help chapter was empty.
 
 * Bug #11659 fixed - twinkle displayed warning messages about show_pixmap function.
+
+* Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages. 
+
+* Bug #11701 fixed - Under Windows a CR was added in SciNotes each time the file
+                     is saved.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab

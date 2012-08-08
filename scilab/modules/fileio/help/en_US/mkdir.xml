@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -14,35 +14,113 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mkdir" xml:lang="en">
     <refnamediv>
         <refname>mkdir</refname>
-        <refpurpose>Make new directory</refpurpose>
+        <refpurpose>makes a new directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            mkdir('dirname')
-            mkdir('parentdir','newdir')
-            status=mkdir( ... )
-            [status,msg]=mkdir( ... )
+            mkdir(dirname)
+            mkdir(parentdir, dirname)
+            status = mkdir( ... )
+            [status, msg] = mkdir( ... )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirname</term>
+                <listitem>
+                    <para>
+                        a character string: a directory to create.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>parentdir</term>
+                <listitem>
+                    <para>
+                        a character string: a directory in which the new directory <varname>dirname</varname> will be created.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        an integer: the status of the operation.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msg</term>
+                <listitem>
+                    <para>
+                        a character string: a message about an error.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
-            <literal>mkdir('dirname')</literal> creates the directory <literal>dirname</literal> in the current
-            directory, if <literal>dirname</literal> represents a relative path. Otherwise, <literal>dirname</literal>
-            represents an absolute path and mkdir attempts to create the absolute
-            directory <literal>dirname</literal>
+            <code>mkdir(dirname)</code> creates the directory <varname>dirname</varname> in the current directory, if <varname>dirname</varname> represents a relative path. Otherwise, <varname>dirname</varname> represents an absolute path and <function>mkdir</function> attempts to create the absolute directory <varname>dirname</varname>.
         </para>
         <para>
-            <literal>mkdir('parentdir', 'dirname')</literal> creates the directory <literal>dirname</literal> in the
-            existing directory <literal>parentdir</literal>, where <literal>parentdir</literal> is an absolute or relative
-            pathname.
+            <code>mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the directory <varname>parentdir</varname> (if <varname>parentdir</varname> is not existing it will be created), where <varname>parentdir</varname> is an absolute or relative pathname.
         </para>
         <para>
-            <literal>[status,message] = mkdir(parentdir, 'dirname')</literal> creates the directory
-            <literal>dirname</literal> in the existing directory <literal>parentdir</literal>, returning the status, a
-            message. Here, status is 1 for success, 2 if it already exists, -2 if it
-            is a filename and 0 otherwise.
+            <code>[status,msg] = mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the existing directory <varname>parentdir</varname>, returning the status and the message about an error. 
+        </para>
+        <para>   
+            <informaltable frame='all'>
+                <tr>
+                    <td>
+                        <varname>status</varname>
+                    </td>
+                    <td>
+                        <varname>msg</varname>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        -2
+                    </td>
+                    <td>
+                        mkdir: An error occurred: A file with the same name already exists in dirname
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        mkdir: An error occurred: Impossible to create directory dirname
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    
+                    <td>
+                        Success
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        mkdir: An error occurred: This directory already exists in dirname
+                        
+                    </td>
+                </tr>
+            </informaltable>
+            	
         </para>
     </refsection>
     <refsection>
