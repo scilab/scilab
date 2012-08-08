@@ -144,9 +144,9 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     if (bAppendMode)
     {
         int iVersion = getSODFormatAttribute(iH5File);
-        if (iVersion != -1 && iVersion != SOD_FILE_VERSION)
+        if (iVersion != -1 && iVersion > SOD_FILE_VERSION)
         {
-            Scierror(999, _("%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+            Scierror(999, _("%s: Wrong SOD file format version. Expected: %d from file: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
 
