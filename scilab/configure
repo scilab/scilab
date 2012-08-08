@@ -17484,7 +17484,7 @@ $as_echo "$as_me: SWIG runtime library directory is '$SWIG_RUNTIME_LIBS_DIR'" >&
 
     fi
 
-    # Giws is the equivalent of Swig developped by the Scilab team
+    # Giws is the equivalent of Swig developed by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
 

@@ -1103,7 +1103,7 @@ the the JNI libraries."])],
 
     fi
 
-    # Giws is the equivalent of Swig developped by the Scilab team
+    # Giws is the equivalent of Swig developed by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
         AC_GIWS([1.3.0])
