@@ -154,6 +154,12 @@ AC_PROG_GREP
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
+# Need MacosX Version to specify some path.                                  
+case "$host_os" in
+     *Darwin* | *darwin*)
+     	      AC_GET_MACOSX_VERSION
+     ;;
+esac
 
 case "$host" in
     *darwin*)
@@ -179,6 +185,24 @@ case "$host" in
         LDFLAGS="$LDFLAGS -L$FINK_PREFIX/lib/"
         ;;
 esac
+
+AC_ARG_WITH(min_macosx_version,
+AC_HELP_STRING([--with-min-macosx-version],[Force compilers to generate binaries compatible with MacOSX minimal version.]))
+case "$host" in
+    *darwin*)
+    if test -n "$with_min_macosx_version"; then
+       MIN_MACOSX_VERSION=$with_min_macosx_version
+       #Append to the default flags on Apple machines
+       ARCH_CFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_CXXFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_FFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_LDFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       # We need this to be passed to all linker commands
+       LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_MACOSX_VERSION"
+    fi
+;;
+esac
+
 
 #####################################################
 ## Look for pkg-config
@@ -595,12 +619,11 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-    ARCH_CFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
-    ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
-    ARCH_FFLAGS="-mmacosx-version-min=10.5"
-    ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_CFLAGS="$ARCH_CFLAGS -no_compact_linkedit"
+    ARCH_CXXFLAGS="$ARCH_CXXFLAGS -no_compact_linkedit"
+    ARCH_LDFLAGS="$ARCH_LDFLAGS -no_compact_linkedit"
     # We need this to be passed to all linker commands
-    LDFLAGS="$LDFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    LDFLAGS="$LDFLAGS -no_compact_linkedit"
 
     case "$F77" in
          gfortran-*|gfortran)
@@ -773,11 +796,6 @@ AM_CONDITIONAL(XCOS, test "$XCOS_ENABLE" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
-   # Need MacosX Version to specify some path.
-   case "$host_os" in
-                   *Darwin* | *darwin*)
-                   AC_GET_MACOSX_VERSION;;
-  esac
 
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
