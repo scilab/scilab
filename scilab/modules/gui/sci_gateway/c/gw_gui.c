@@ -62,7 +62,8 @@ static gw_generic_table Tab[]=
 	{sci_uiputfile,"uiputfile"},
 	{sci_about,"about"},
 	{sci_useeditor,"useeditor"},
-        {sci_fire_closing_finished,"fire_closing_finished"}
+        {sci_fire_closing_finished,"fire_closing_finished"},
+        {sci_datatipcreate,"datatipCreate"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

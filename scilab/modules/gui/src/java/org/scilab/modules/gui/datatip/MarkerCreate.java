@@ -48,21 +48,8 @@ public class MarkerCreate {
         String axesUid = DatatipCreate.datatipAxesHandler (figureUid, pixelMouseCoordInt);
         double[] pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble (pixelMouseCoordInt);
         double[] graphicCoord = DatatipCreate.transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
-        String newMarker = DatatipCreate.askToCreateObject ();
-        String[] markerLabel = setMarkerLabel ();
-        markerBounds = DatatipCreate.getDatatipBounds (markerLabel);
-        markerPosition = DatatipCreate.setDatatipPosition (graphicCoord);
-        GraphicController.getController().setGraphicObjectRelationship(axesUid, newMarker);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, markerBounds);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_STRINGS__, markerLabel);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BOX__, true);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_POSITION__, markerPosition);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_LINE_MODE__, true);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_BOX_MODE__, 1);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_FILL_MODE__, true);
-        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BACKGROUND__, 1);
-        return newMarker;
+        String markerUid = markerProperties (graphicCoord, axesUid);
+        return markerUid;
     }
 
     /**
@@ -89,5 +76,31 @@ public class MarkerCreate {
 
         markersUid.add(markerUid);
         return markersUid;
+    }
+
+    /**
+    * Set all default marker properties;
+    *
+    * @param graphicCoord double array with graphic position x and y.
+    * @param axesUid Axes handler string.
+    * @return Marker handler string.
+    */
+    public static String markerProperties (double[] graphicCoord, String axesUid) {
+
+        String newMarker = DatatipCreate.askToCreateObject ();
+        String[] markerLabel = setMarkerLabel ();
+        markerBounds = DatatipCreate.getDatatipBounds (markerLabel);
+        markerPosition = DatatipCreate.setDatatipPosition (graphicCoord);
+        GraphicController.getController().setGraphicObjectRelationship(axesUid, newMarker);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, markerBounds);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_STRINGS__, markerLabel);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BOX__, true);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_POSITION__, markerPosition);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_LINE_MODE__, true);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_TEXT_BOX_MODE__, 1);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_FILL_MODE__, true);
+        GraphicController.getController().setProperty(newMarker, GraphicObjectProperties.__GO_BACKGROUND__, 1);
+        return newMarker;
     }
 }

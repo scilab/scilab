@@ -131,7 +131,8 @@ src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp \
-src/jni/EditorManager.cpp
+src/jni/EditorManager.cpp \
+src/jni/DatatipCreate.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -141,7 +142,8 @@ src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
 src/jni/ScilabDisplayTree.giws.xml \
-src/jni/EditorManager.giws.xml
+src/jni/EditorManager.giws.xml \
+src/jni/Datatip.giws.xml
 
 SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 
@@ -193,7 +195,8 @@ sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 sci_gateway/cpp/sci_useeditor.cpp \
-sci_gateway/cpp/sci_fire_closing_finished.cpp
+sci_gateway/cpp/sci_fire_closing_finished.cpp \
+sci_gateway/cpp/sci_datatipcreate.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
