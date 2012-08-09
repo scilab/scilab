@@ -543,53 +543,14 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
 
 int EqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _pOut)
 {
-    if(_pSparse1->isScalar())
-    {//sp == SP
-        SparseBool* pSB = new SparseBool(_pSparse2->getRows() , _pSparse2->getCols());
-
-        std::complex<double> dbl = _pSparse1->getImg(0, 0);
-        for(int i = 0 ; i < pSB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pSB->getCols() ; j++)
-            {
-                if(_pSparse2->getImg(i, j) == dbl)
-                {
-                    pSB->set(i, j, true);
-                }
-            }
-        }
-
-        *_pOut = pSB;
-        return 0;
-    }
-
-    if(_pSparse2->isScalar())
-    {//SP == sp
-        SparseBool* pSB = new SparseBool(_pSparse1->getRows() , _pSparse1->getCols());
-        std::complex<double> dbl = _pSparse2->getImg(0, 0);
-
-        for(int i = 0 ; i < pSB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pSB->getCols() ; j++)
-            {
-                if(_pSparse1->getImg(i, j) == dbl)
-                {
-                    pSB->set(i, j, true);
-                }
-            }
-        }
-
-        *_pOut = pSB;
-        return 0;
-    }
-
-    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
+    if((_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols()) //matrix case
+        || _pSparse1->isScalar() || _pSparse2->isScalar()) //scalar cases
     {
-        return 1;
+        *_pOut = _pSparse1->newEqualTo(*_pSparse2);
+        return 0;
     }
 
-    *_pOut = _pSparse1->newEqualTo(*_pSparse2);
-    return 0;
+    return 1;
 }
 
 int EqualToDoubleAndSparse(Double* _pDouble, Sparse* _pSparse, GenericType** _pOut)

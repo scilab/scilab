@@ -18,34 +18,63 @@ using namespace types;
 
 InternalType *GenericComparisonNonEqual(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
-    InternalType* pResult = GenericComparisonEqual(_pLeftOperand, _pRightOperand);
-    if(pResult == NULL)
-    {//to call overloading
-        return NULL;
-    }
+    if(_pLeftOperand->isSparse() && _pRightOperand->isSparse())
+    {
+        InternalType *pResult = NULL;
+        Sparse* pL = _pLeftOperand->getAs<Sparse>();
+        Sparse* pR = _pRightOperand->getAs<Sparse>();
 
-    if(pResult->isBool())
-    {
-        Bool *pB = pResult->getAs<Bool>();
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        int iResult = NotEqualToSparseAndSparse(pL, pR, (GenericType**)&pResult);
+        if(iResult)
         {
-            pB->set(i, pB->get(i) == 0);
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
-        return pB;
+
+        return pResult;
     }
-    else if(pResult->isSparseBool())
+    else
     {
-        SparseBool *pSB = pResult->getAs<SparseBool>();
-        for(int i = 0 ; i < pSB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pSB->getCols() ; j++)
-            {
-                bool b = !pSB->get(i, j);
-                pSB->set(i, j, !pSB->get(i, j));
-            }
+        InternalType* pResult = GenericComparisonEqual(_pLeftOperand, _pRightOperand);
+        if(pResult == NULL)
+        {//to call overloading
+            return NULL;
         }
-        return pSB;
+
+        if(pResult->isBool())
+        {
+            Bool *pB = pResult->getAs<Bool>();
+            for(int i = 0 ; i < pB->getSize() ; i++)
+            {
+                pB->set(i, pB->get(i) == 0);
+            }
+            return pB;
+        }
+        else if(pResult->isSparseBool())
+        {
+            SparseBool *pSB = pResult->getAs<SparseBool>();
+            for(int i = 0 ; i < pSB->getRows() ; i++)
+            {
+                for(int j = 0 ; j < pSB->getCols() ; j++)
+                {
+                    bool b = !pSB->get(i, j);
+                    pSB->set(i, j, !pSB->get(i, j));
+                }
+            }
+            return pSB;
+        }
     }
 
     return NULL;
+}
+
+int NotEqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _pOut)
+{
+    if((_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols()) //matrix case
+        || _pSparse1->isScalar() || _pSparse2->isScalar()) //scalar cases
+    {
+        *_pOut = _pSparse1->newNotEqualTo(*_pSparse2);
+        return 0;
+    }
+
+    return 1;
 }

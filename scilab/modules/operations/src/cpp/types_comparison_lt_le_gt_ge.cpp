@@ -169,57 +169,15 @@ int SparseLessSparse(Sparse* _pSparse1, Sparse* _pSparse2, SparseBool** _pOut)
         return 0;
     }
 
-    SparseBool* pB = NULL;
-    if(_pSparse1->isScalar())
-    {//sp < SP
-        pB = new SparseBool(_pSparse2->getRows(), _pSparse2->getCols());
-        double dblRef = _pSparse1->get(0, 0);
-
-        for(int i = 0 ; i < pB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pB->getCols() ; j++)
-            {
-                pB->set(i, j, dblRef < _pSparse2->get(i, j));
-            }
-        }
-
-        *_pOut = pB;
-        return 0;
-    }
-    else if(_pSparse2->isScalar())
-    {//SP < sp
-        pB = new SparseBool(_pSparse1->getRows(), _pSparse1->getCols());
-        double dblRef = _pSparse2->get(0, 0);
-
-        for(int i = 0 ; i < pB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pB->getCols() ; j++)
-            {
-                pB->set(i, j, _pSparse1->get(i, j) < dblRef);
-            }
-        }
-
-        *_pOut = pB;
+    if(_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
+        (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
+    {
+        *_pOut = _pSparse1->newLessThan(*_pSparse2);
         return 0;
     }
 
-    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
-    {
-        return 1;
-    }
-
-    //SP < SP
-    pB = new SparseBool(_pSparse1->getRows(), _pSparse1->getCols());
-    for(int i = 0 ; i < pB->getRows() ; i++)
-    {
-        for(int j = 0 ; j < pB->getCols() ; j++)
-        {
-            pB->set(i, j, _pSparse1->get(i, j) < _pSparse2->get(i, j));
-        }
-    }
-
-    *_pOut = pB;
-    return 0;
+    *_pOut = NULL;
+    return 1;
 }
 
 int DoubleLessSparse(Double* _pDouble, Sparse* _pSparse, SparseBool** _pOut)
@@ -383,57 +341,15 @@ int SparseLessEqualSparse(Sparse* _pSparse1, Sparse* _pSparse2, SparseBool** _pO
         return 0;
     }
 
-    SparseBool* pB = NULL;
-    if(_pSparse1->isScalar())
-    {//sp <= SP
-        pB = new SparseBool(_pSparse2->getRows(), _pSparse2->getCols());
-        double dblRef = _pSparse1->get(0, 0);
-
-        for(int i = 0 ; i < pB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pB->getCols() ; j++)
-            {
-                pB->set(i, j, dblRef <= _pSparse2->get(i, j));
-            }
-        }
-
-        *_pOut = pB;
-        return 0;
-    }
-    else if(_pSparse2->isScalar())
-    {//SP <= sp
-        pB = new SparseBool(_pSparse1->getRows(), _pSparse1->getCols());
-        double dblRef = _pSparse2->get(0, 0);
-
-        for(int i = 0 ; i < pB->getRows() ; i++)
-        {
-            for(int j = 0 ; j < pB->getCols() ; j++)
-            {
-                pB->set(i, j, _pSparse1->get(i, j) <= dblRef);
-            }
-        }
-
-        *_pOut = pB;
+    if(_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
+        (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
+    {
+        *_pOut = _pSparse1->newLessOrEqual(*_pSparse2);
         return 0;
     }
 
-    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
-    {
-        return 1;
-    }
-
-    //SP <= SP
-    pB = new SparseBool(_pSparse1->getRows(), _pSparse1->getCols());
-    for(int i = 0 ; i < pB->getRows() ; i++)
-    {
-        for(int j = 0 ; j < pB->getCols() ; j++)
-        {
-            pB->set(i, j, _pSparse1->get(i, j) <= _pSparse2->get(i, j));
-        }
-    }
-
-    *_pOut = pB;
-    return 0;
+    *_pOut = NULL;
+    return 1;
 }
 
 int DoubleLessEqualSparse(Double* _pDouble, Sparse* _pSparse, SparseBool** _pOut)

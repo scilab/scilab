@@ -14,6 +14,8 @@
 #define __TYPES_COMPARISON_NON_EQUAL_HXX__
 
 #include "generic_operations.hxx"
+#include "sparse.hxx"
 
+int NotEqualToSparseAndSparse(types::Sparse* _pSparse1, types::Sparse* _pSarse2, types::GenericType** _pOut);
 
 #endif /* !__TYPES_COMPARISON_NON_EQUAL_HXX__ */
