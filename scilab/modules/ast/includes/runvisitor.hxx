@@ -991,7 +991,7 @@ namespace ast
                 }
             }
 
-            if(bCase == false)
+            if(bCase == false && e.default_case_get() != NULL)
             {//default case
                 e.default_case_get()->accept(*this);
             }
@@ -1052,7 +1052,7 @@ namespace ast
                                 expected_size_set(1);
                                 Function::ReturnValue Ret = pCall->call(in, expected_getSize(), out, this);
                                 expected_size_set(iSaveExpectedSize);
-            
+
                                 if(Ret == Callable::OK)
                                 {
                                     if(out.size() == 0)
@@ -1607,7 +1607,7 @@ namespace ast
                     pIT->toString(ostr);
                     scilabWriteW(ostr.str().c_str());
                 }
-                
+
                 pIT->DecreaseRef();
             }
             else
