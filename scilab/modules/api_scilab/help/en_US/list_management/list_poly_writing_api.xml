@@ -163,54 +163,54 @@ int list_createlist(char *fname,unsigned long fname_len)
 	int piBool[]            = {1,0,1,0,1,0,1,0,1};
 	double* pdblDataPtr     = NULL;
 
-	sciErr = createList(pvApiCtx, nbInputArgument + 1, 8, &piAddr);
+	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 8, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, nbInputArgument + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
+	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument + 1, piAddr, 2, 2, 3, pstData);
+	sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 2, 2, 3, pstData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfInteger16InList(pvApiCtx, nbInputArgument + 1, piAddr, 3, 2, 3, psData);
+	sciErr = createMatrixOfInteger16InList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 3, 2, 3, psData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfPolyInList(pvApiCtx, nbInputArgument + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
+	sciErr = createMatrixOfPolyInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	sciErr = createComplexSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	sciErr = createComplexSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfBooleanInList(pvApiCtx, nbInputArgument + 1, piAddr, 6, 3, 3, piBool);
+	sciErr = createMatrixOfBooleanInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 6, 3, 3, piBool);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	sciErr = createBooleanSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
+	sciErr = createBooleanSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -218,21 +218,21 @@ int list_createlist(char *fname,unsigned long fname_len)
 	}
 
 	//add list in list
-	sciErr = createListInList(pvApiCtx, nbInputArgument + 1, piAddr, 8, 3, &piChild);
+	sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 8, 3, &piChild);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument + 1, piChild, 1, 3, 2, pdblData1);
+	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 1, 3, 2, pdblData1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
+	sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -245,14 +245,14 @@ int list_createlist(char *fname,unsigned long fname_len)
 	pdblDataPtr[2]  = 3;
 	pdblDataPtr[3]  = 4;
 
-	sciErr = createPointerInList(pvApiCtx, nbInputArgument + 1, piChild, 3, pdblDataPtr);
+	sciErr = createPointerInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 3, pdblDataPtr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	AssignOutputVariable(1) = nbInputArgument + 1;
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	return 0;
 }
  ]]></programlisting>

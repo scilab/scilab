@@ -91,7 +91,7 @@ int common_list(char *fname,unsigned long fname_len)
     }
 
     get_list_info(piAddr);
-    AssignOutputVariable(1) = 0;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     return 0;
 }
 int get_list_info(int* _piAddress)

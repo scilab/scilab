@@ -27,7 +27,8 @@
     <!--Lib_name: booleanExample-->
     <!--Func_list: booleanExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+                <![CDATA[ 
 #include "api_scilab.h"
 
 int booleanExample(char *fname,unsigned long fname_len)
@@ -56,7 +57,7 @@ int booleanExample(char *fname,unsigned long fname_len)
             {
                 return 0;
             }
-            iRet = createScalarBoolean(pvApiCtx, nbInputArgument + 1, iBool);
+            iRet = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iBool);
             if(iRet)
             {
                 return 0;
@@ -75,18 +76,18 @@ int booleanExample(char *fname,unsigned long fname_len)
                 return 0;
             }
 
-            sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, iRows, iCols, piBool);
+            sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, piBool);
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
         }
-        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     }
     else
     {
-        AssignOutputVariable(1) = 0;
+        AssignOutputVariable(pvApiCtx, 1) = 0;
     }
     return 0;
 }

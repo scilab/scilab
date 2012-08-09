@@ -75,7 +75,7 @@ fileData = ['#include ""api_scilab.h""'
 '    }'
 ''
 '    createScalarBoolean(pvApiCtx, Rhs + 1, iRet);'
-'    AssignOutputVariable(1) = Rhs + 1;'
+'    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;'
 '    return 0;'
 '}'];
 
