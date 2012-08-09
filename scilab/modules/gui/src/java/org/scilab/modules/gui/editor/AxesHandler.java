@@ -112,7 +112,8 @@ public class AxesHandler {
     }
 
     /**
-     * Set the AxesTo bounds with the max bounds between axesFrom and axesTo(used when paste new objects to make all object visible)
+     * Set the AxesTo bounds with the max bounds between axesFrom
+     * and axesTo(used when paste new objects to make all object visible)
      *
      * @param axesFrom Axes from you want to merge the bounds
      * @param axesTo Axes that will be set the max bounds between the two axes
@@ -131,6 +132,8 @@ public class AxesHandler {
         newBounds[5] = Math.max(axesFB[5], axesTB[5]);
 
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__, newBounds);
+        Boolean tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_TIGHT_LIMITS__, tight_lim);
     }
 
     /**

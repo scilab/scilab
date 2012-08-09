@@ -155,14 +155,14 @@ public class CommonHandler {
      * @param uid object unique identifier.
      */
     public static void insert(String axes, String uid) {
-        GraphicController.getController().setGraphicObjectRelationship(axes, uid);
+
         String typeName = (String)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
             GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
             GraphicController.getController().setGraphicObjectRelationship(newCompound, uid);
-        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__) {
+        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ || typeName == GraphicObjectProperties.__GO_FAC3D__) {
             GraphicController.getController().setGraphicObjectRelationship(axes, uid);
         }
     }
