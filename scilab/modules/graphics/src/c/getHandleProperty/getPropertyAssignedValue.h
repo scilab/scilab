@@ -22,6 +22,7 @@
 #include <stdlib.h> /* for size_t */
 #include "dynlib_graphics.h"
 #include "sci_types.h"
+#include "stack-c.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
