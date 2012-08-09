@@ -31,16 +31,16 @@ public class SciNotesAutosave implements ActionListener {
 
     static {
         Scilab.registerFinalHook(new Runnable() {
-            public void run() {
-                for (File f : toRemove) {
-                    if (f.exists()) {
-                        try {
-                            f.delete();
-                        } catch (Exception e) { }
+                public void run() {
+                    for (File f : toRemove) {
+                        if (f.exists()) {
+                            try {
+                                f.delete();
+                            } catch (Exception e) { }
+                        }
                     }
                 }
-            }
-        });
+            });
     }
 
     private Timer timer;
@@ -94,18 +94,18 @@ public class SciNotesAutosave implements ActionListener {
                         if (!as.sourceFlag) {
                             file = new File(as.singleDirectory, filename);
                         }
-                        boolean different = new File(sep.getName()).equals(file);
+                        boolean identic = new File(sep.getName()).equals(file);
 
                         boolean success = SaveFile.doSave(sep, i, file, ed.getEditorKit(), false, true);
                         if (!success) {
                             ed.getInfoBar().setText(String.format(SciNotesMessages.AUTOSAVE_ERROR, filename));
                             return;
                         } else {
-                            if (!different) {
+                            ((ScilabDocument) sep.getDocument()).setContentModifiedSinceBackup(false);
+                            if (identic) {
                                 ((ScilabDocument) sep.getDocument()).setContentModified(false);
                                 sep.setLastModified(file.lastModified());
                             } else {
-                                ((ScilabDocument) sep.getDocument()).setContentModifiedSinceBackup(false);
                                 if (as.automaticDelete) {
                                     toRemove.add(file);
                                 }

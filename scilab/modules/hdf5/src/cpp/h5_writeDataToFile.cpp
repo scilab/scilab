@@ -23,6 +23,8 @@ extern "C"
 #include "core_math.h"
 #include "h5_writeDataToFile.h"
 #include "h5_attributeConstants.h"
+#include "h5_readDataFromFile.h"
+#include "version.h"
 }
 
 static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
@@ -164,6 +166,54 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
     }
 
     return 0;
+}
+
+int updateScilabVersion(int _iFile)
+{
+    herr_t status;
+    //try to read attribute
+    char* pstScilabVersion = getScilabVersionAttribute(_iFile);
+    if (pstScilabVersion)
+    {
+        //delete before write
+        status = H5Adelete(_iFile, g_SCILAB_CLASS_SCI_VERSION);
+        if (status < 0)
+        {
+            return -1;
+        }
+    }
+
+    if (strstr(SCI_VERSION_STRING, "branch"))
+    {
+        //compiled by user
+        char pstVersion[64];
+        sprintf(pstVersion, "%s %d.%d.%d", SCI_VERSION_STRING, SCI_VERSION_MAJOR, SCI_VERSION_MINOR, SCI_VERSION_MAINTENANCE);
+        status = addAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION, pstVersion);
+    }
+    else
+    {
+        //compiled by compilation chain
+        status = addAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION, SCI_VERSION_STRING);
+    }
+
+    return status;
+}
+
+int updateFileVersion(int _iFile)
+{
+    herr_t status;
+    //try to read attribute
+    int iHdf5Version = getSODFormatAttribute(_iFile);
+    if (iHdf5Version != -1)
+    {
+        status = H5Adelete(_iFile, g_SCILAB_CLASS_SOD_VERSION);
+        if (status < 0)
+        {
+            return -1;
+        }
+    }
+
+    return addIntAttribute(_iFile, g_SCILAB_CLASS_SOD_VERSION, SOD_FILE_VERSION);
 }
 
 static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)

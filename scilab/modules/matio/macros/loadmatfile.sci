@@ -10,7 +10,7 @@
 
 function loadmatfile(varargin)
 // Loads variables in a Matlab binary or ASCII file into Scilab
-// This function has been developped following the 'MAT-File Format' description:
+// This function has been developed following the 'MAT-File Format' description:
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 
 // Verify that all inputs are character strings

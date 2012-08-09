@@ -261,5 +261,5 @@ sparse: Operations on sparse matrices (interfaced by S. Steer INRIA, Bruno Pinco
 
 tclsci: interface with TCL/TK developed by Allan CORNET.
 
-scicos: developped by then INRIA's Metalau project
-        PDE Scicos palette: developped by  EADS-CCR.
+scicos: developed by then INRIA's Metalau project
+        PDE Scicos palette: developed by  EADS-CCR.

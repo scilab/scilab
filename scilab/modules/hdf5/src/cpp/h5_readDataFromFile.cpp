@@ -178,6 +178,19 @@ static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
     return iRet;
 }
 
+/*
+** WARNING : this function returns an allocated value that must be freed.
+*/
+char* getScilabVersionAttribute(int _iFile)
+{
+    return readAttribute(_iFile, g_SCILAB_CLASS_SCI_VERSION);
+}
+
+int getSODFormatAttribute(int _iFile)
+{
+    return readIntAttribute(_iFile, g_SCILAB_CLASS_SOD_VERSION);
+}
+
 int getDatasetDimension(int _iDatasetId, int* _piRows, int * _piCols)
 {
     int iRet                = 0;

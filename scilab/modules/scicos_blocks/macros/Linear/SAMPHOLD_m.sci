@@ -44,7 +44,7 @@ case 'set' then
       in=[model.in model.in2];
       [model,graphics,ok]=set_io(model,graphics,list(in,it),list(in,it),1,[])
       if ok then
-         graphics.exprs=label;
+         graphics.exprs=exprs;
          arg1.graphics=graphics;arg1.model=model;
          x=arg1
          break

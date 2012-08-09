@@ -35,6 +35,8 @@ extern "C"
 #include "Scierror.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
+#include "h5_attributeConstants.h"
+#include "expandPathVariable.h"
 }
 
 #include "forceJHDF5load.hxx"
@@ -67,6 +69,7 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     int iNbItem             = 0;
     int iFile               = 0;
     bool bImport            = false;
+    int iSelectedVar        = in.size() - 1;
 
 #ifndef _MSC_VER
     forceJHDF5load();
@@ -93,8 +96,17 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
         ScierrorW(999,_W("%ls: Cannot open file %s.\n"), L"import_to_hdf5", pstFileName);
         return types::Function::Error;
     }
-    iNbItem = getVariableNames(iFile, NULL);
-    if(iNbItem != 0)
+
+
+    //manage version information
+    int iVersion = getSODFormatAttribute(iFile);
+    if (iVersion > SOD_FILE_VERSION)
+    {//can't read file with version newer that me !
+        ScierrorW(999, _W("%ls: Wrong SOD file format version. Max Expected: %d Found: %d\n"), L"import_to_hdf5", SOD_FILE_VERSION, iVersion);
+        return types::Function::Error;
+    }
+
+    if (iSelectedVar)
     {
         char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
         wchar_t** pwstVarNameList = (wchar_t**)MALLOC(sizeof(wchar_t*) * iNbItem);
