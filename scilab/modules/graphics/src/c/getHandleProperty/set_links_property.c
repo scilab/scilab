@@ -29,6 +29,7 @@
 #include "localization.h"
 #include "HandleManagement.h"
 #include "MALLOC.h"
+#include "sci_types.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -45,7 +46,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    if ( !isParameterHandle( valueType ) )
+    if ( !( valueType == sci_handles ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Graphic handle array expected.\n"), "links");
         return SET_PROPERTY_ERROR;

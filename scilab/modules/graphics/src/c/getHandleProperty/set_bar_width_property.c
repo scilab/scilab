@@ -37,7 +37,7 @@ int set_bar_width_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     BOOL status = FALSE;
     double barWidth = 0.;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "bar_width");
         return SET_PROPERTY_ERROR;
@@ -53,7 +53,7 @@ int set_bar_width_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_width");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "bar_width");
         return SET_PROPERTY_ERROR;
     }
 

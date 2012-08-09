@@ -36,7 +36,7 @@ int set_outside_colors_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     int  values[2];
     int nbColors = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "outside_colors");
         return SET_PROPERTY_ERROR;
@@ -54,7 +54,7 @@ int set_outside_colors_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     nbColors = sciGetNumColors(pobjUID);
 
     if (   values[0] > nbColors || values[0] < -1
-      || values[1] > nbColors || values[1] < -1)
+            || values[1] > nbColors || values[1] < -1)
     {
         /* It is possible to set color_range outside the colormap, however it won't be used.*/
         sciprint(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "outside_colors");
@@ -68,7 +68,7 @@ int set_outside_colors_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "outside_colors");
         return SET_PROPERTY_ERROR;
     }
 

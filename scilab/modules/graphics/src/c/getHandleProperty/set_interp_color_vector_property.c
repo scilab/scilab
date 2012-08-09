@@ -39,7 +39,7 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
         return SET_PROPERTY_ERROR;
@@ -53,15 +53,15 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
      */
     if (piNumElements == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
         return SET_PROPERTY_ERROR;
     }
 
-    if( ( nbCol == 3 && iNumElements == 3 ) ||
-        ( nbCol == 4 && iNumElements == 4 ) )
+    if ( ( nbCol == 3 && iNumElements == 3 ) ||
+            ( nbCol == 4 && iNumElements == 4 ) )
     {
         int tmp[4];
-        getDoubleMatrixFromStack( stackPointer );
+        stk( stackPointer );
 
         copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
 
@@ -73,14 +73,14 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_vector");
             return SET_PROPERTY_ERROR;
         }
 
     }
     else
     {
-        Scierror(999, _("The number of column of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+        Scierror(999, _("The number of column of the color vector must match the number of points defining the line (which must be %d or %d).\n"), 3, 4);
         return SET_PROPERTY_ERROR;
     }
 }

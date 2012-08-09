@@ -37,7 +37,7 @@ int set_clip_state_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     BOOL status = FALSE;
     int clipState = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "clip_state");
         return SET_PROPERTY_ERROR;
@@ -69,7 +69,7 @@ int set_clip_state_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_state");
         return SET_PROPERTY_ERROR;
     }
 }

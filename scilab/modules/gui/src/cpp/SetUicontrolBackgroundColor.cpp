@@ -14,7 +14,7 @@
  */
 
 #include "SetUicontrolBackgroundColor.hxx"
-
+#include "stack-c.h"
 int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
@@ -25,34 +25,34 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPoint
 
     if (valueType == sci_strings)
     {
-      if(nbCol != 1 || nbRow == 0)
+        if (nbCol != 1 || nbRow == 0)
         {
-          /* Wrong string size */
-          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
-          return SET_PROPERTY_ERROR;
+            /* Wrong string size */
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
+            return SET_PROPERTY_ERROR;
         }
 
-      allColors = new double[3];
-      nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
+        allColors = new double[3];
+        nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
 
-      if (nbValues != 3)
+        if (nbValues != 3)
         {
-          /* Wrong string format */
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
-          return SET_PROPERTY_ERROR;
+            /* Wrong string format */
+            Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
+            return SET_PROPERTY_ERROR;
         }
 
     }
     else if (valueType == sci_matrix)
     {
-        if(nbCol != 3 || nbRow != 1)
+        if (nbCol != 3 || nbRow != 1)
         {
             /* Wrong matrix size */
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
             return SET_PROPERTY_ERROR;
         }
 
-        allColors = getDoubleMatrixFromStack(stackPointer);
+        allColors = stk(stackPointer);
 
     }
     else

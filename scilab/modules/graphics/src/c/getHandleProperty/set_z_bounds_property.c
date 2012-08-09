@@ -34,9 +34,9 @@
 int set_z_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
-    double * values = getDoubleMatrixFromStack( stackPointer );
+    double * values = stk( stackPointer );
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_bounds");
         return SET_PROPERTY_ERROR;
@@ -56,7 +56,7 @@ int set_z_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_bounds");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_bounds");
         return SET_PROPERTY_ERROR;
     }
 }

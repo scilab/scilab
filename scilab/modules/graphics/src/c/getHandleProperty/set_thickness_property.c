@@ -29,7 +29,7 @@
 int set_thickness_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "thickness");
         return SET_PROPERTY_ERROR;

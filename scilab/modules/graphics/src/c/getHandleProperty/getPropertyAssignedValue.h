@@ -21,32 +21,10 @@
 
 #include <stdlib.h> /* for size_t */
 #include "dynlib_graphics.h"
+#include "sci_types.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
-/**
- * return if a stack parameter is a Handle
- * @param type type of the parameter
- */
-GRAPHICS_IMPEXP BOOL isParameterHandle( int type ) ;
-
-/**
- * return if a stack parameter is a Handle
- * @param type type of the parameter
- */
-GRAPHICS_IMPEXP BOOL isParameterDoubleMatrix( int type ) ;
-
-/**
- * return if a stack parameter is a tlist
- * @param type type of the parameter
- **/
-GRAPHICS_IMPEXP BOOL isParameterTlist( int type ) ;
-
-/**
- * return if a stack parameter is a string matrix
- * @param type type of the parameter
- */
-GRAPHICS_IMPEXP BOOL isParameterStringMatrix( int type ) ;
 
 /**
  * retrieve a single double from the stack

@@ -37,7 +37,7 @@ int set_anti_aliasing_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     int quality = 0;
     BOOL status = FALSE;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "anti_aliasing");
         return SET_PROPERTY_ERROR ;

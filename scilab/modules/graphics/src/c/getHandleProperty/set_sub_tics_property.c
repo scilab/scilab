@@ -41,7 +41,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     char* type = NULL;
     char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "sub_tics");
         return SET_PROPERTY_ERROR ;
@@ -65,7 +65,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         }
         else
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_tics");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_tics");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -73,7 +73,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     {
         int autoSubticks;
         int i;
-        double * values = getDoubleMatrixFromStack( stackPointer );
+        double * values = stk( stackPointer );
 
         result = SET_PROPERTY_SUCCEED;
 
@@ -92,7 +92,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
         if (status == FALSE)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
             return SET_PROPERTY_ERROR;
         }
 
@@ -102,7 +102,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
             nbTicks = (int) values[i];
 
-            if( nbTicks < 0 )
+            if ( nbTicks < 0 )
             {
                 nbTicks = 0;
             }
@@ -117,14 +117,14 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
         if (result == SET_PROPERTY_ERROR)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
         }
 
         return result;
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
         return SET_PROPERTY_ERROR;
     }
     return SET_PROPERTY_SUCCEED;

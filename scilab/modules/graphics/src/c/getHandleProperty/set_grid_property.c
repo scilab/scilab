@@ -41,9 +41,9 @@ int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
     int gridStyles[3];
     char* gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
 
-    double * values = getDoubleMatrixFromStack( stackPointer );
+    double * values = stk( stackPointer );
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "grid");
         return SET_PROPERTY_ERROR;
@@ -59,7 +59,7 @@ int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
 
     if (piGridColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
         return SET_PROPERTY_ERROR;
     }
 
@@ -92,7 +92,7 @@ int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
         return SET_PROPERTY_ERROR;
     }
 

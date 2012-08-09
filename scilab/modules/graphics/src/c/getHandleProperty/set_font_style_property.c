@@ -39,7 +39,7 @@ int set_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     /* number of fonts available */
     int nbInstalledFonts = getNbInstalledFonts();
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "font_style");
         return SET_PROPERTY_ERROR;
@@ -62,7 +62,7 @@ int set_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_style");
         return SET_PROPERTY_ERROR;
     }
 

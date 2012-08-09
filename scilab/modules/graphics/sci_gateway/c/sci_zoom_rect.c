@@ -69,7 +69,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
         return FALSE;
     }
 
-    rectVect = getDoubleMatrixFromStack(stackPointer);
+    rectVect = stk(stackPointer);
     for (i = 0; i < 4; i++)
     {
         rect[i] = rectVect[i];

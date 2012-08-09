@@ -37,7 +37,7 @@ int set_figure_id_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     int id = 0;
     BOOL status = FALSE;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "figure_id");
         return SET_PROPERTY_ERROR ;
@@ -53,7 +53,7 @@ int set_figure_id_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_id");
         return SET_PROPERTY_ERROR;
     }
 

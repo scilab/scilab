@@ -32,40 +32,40 @@
 /*------------------------------------------------------------------------*/
 int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status = FALSE;
-  int markSizeUnit = 0;
+    BOOL status = FALSE;
+    int markSizeUnit = 0;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "mark_size_unit");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_strings ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "mark_size_unit");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  /* 0 : point, 1 : tabulated */
-  if ( isStringParamEqual( stackPointer, "point") )
-  {
-    markSizeUnit = 0;
-  }
-  else if ( isStringParamEqual( stackPointer, "tabulated" ) )
-  {
-    markSizeUnit = 1;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "mark_size_unit", "'point'", "'tabulated'");
+    /* 0 : point, 1 : tabulated */
+    if ( isStringParamEqual( stackPointer, "point") )
+    {
+        markSizeUnit = 0;
+    }
+    else if ( isStringParamEqual( stackPointer, "tabulated" ) )
+    {
+        markSizeUnit = 1;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "mark_size_unit", "'point'", "'tabulated'");
 
-  }
+    }
 
-  status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_size_unit");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size_unit");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -33,47 +33,47 @@
 /*------------------------------------------------------------------------*/
 int set_y_location_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status = FALSE;
-  int axisLocation = 0;
+    BOOL status = FALSE;
+    int axisLocation = 0;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "y_location");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_strings ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "y_location");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( isStringParamEqual( stackPointer, "left" ) )
-  {
-    axisLocation = 4;
-  }
-  else if ( isStringParamEqual( stackPointer, "right" ) )
-  {
-    axisLocation = 5;
-  }
-  else if ( isStringParamEqual( stackPointer, "middle" ) )
-  {
-    axisLocation = 2;
-  }
-  else if ( isStringParamEqual( stackPointer, "origin" ) )
-  {
-    axisLocation = 3;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "y_location", "left, right, middle, origin");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( isStringParamEqual( stackPointer, "left" ) )
+    {
+        axisLocation = 4;
+    }
+    else if ( isStringParamEqual( stackPointer, "right" ) )
+    {
+        axisLocation = 5;
+    }
+    else if ( isStringParamEqual( stackPointer, "middle" ) )
+    {
+        axisLocation = 2;
+    }
+    else if ( isStringParamEqual( stackPointer, "origin" ) )
+    {
+        axisLocation = 3;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "y_location", "left, right, middle, origin");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_location");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_location");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

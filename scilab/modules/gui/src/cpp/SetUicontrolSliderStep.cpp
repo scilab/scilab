@@ -13,6 +13,7 @@
  */
 
 #include "SetUicontrolSliderStep.hxx"
+#include "stack-c.h"
 
 int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
@@ -25,19 +26,19 @@ int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, size_t stackPointer, i
         return SET_PROPERTY_ERROR;
     }
 
-    if( nbRow == 1 && nbCol == 1)
+    if ( nbRow == 1 && nbCol == 1)
     {
         double pdblStep[2];
-        double* pdblStackVal = getDoubleMatrixFromStack(stackPointer);
+        double* pdblStackVal = stk(stackPointer);
 
         pdblStep[0] = pdblStackVal[0];
         pdblStep[1] = 0.1;// default big value : 10%
-        
+
         status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), pdblStep, jni_double_vector, 2);
     }
-    else if(nbRow == 1 && nbCol == 2)
+    else if (nbRow == 1 && nbCol == 2)
     {
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), getDoubleMatrixFromStack(stackPointer), jni_double_vector, 2);
+        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), stk(stackPointer), jni_double_vector, 2);
     }
     else
     {
