@@ -14,11 +14,7 @@ package org.scilab.modules.xcos.graph;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.logging.Logger;
-
-import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
@@ -30,7 +26,6 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
     private static final Logger LOG = Logger.getLogger(CompilationEngineStatus.class.getName());
 
     private boolean compilationNeeded;
-    private File compilationData;
 
     /**
      * Default constructor.
@@ -55,93 +50,6 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
      */
     public boolean isCompilationNeeded() {
         return compilationNeeded;
-    }
-
-    /**
-     * @param compilationData
-     *            the source and compiled diagram data
-     */
-    public void setCompilationData(File compilationData) {
-        this.compilationData = compilationData;
-
-        /*
-         * When the compiled data change, we remove the previous stored data.
-         */
-        if (compilationData != null) {
-            boolean status = compilationData.delete();
-            if (!status) {
-                LOG.warning("Unable to delete temp file");
-            }
-        }
-    }
-
-    /**
-     * @return the compilationData the source and compiled diagram data
-     */
-    public File getCompilationData() {
-        return compilationData;
-    }
-
-    /**
-     * Get the command used to store the simulated data out of the stack.
-     *
-     * @return the scilab command
-     */
-    public String getStoreSimulationDataCommand() {
-        final StringBuilder command = new StringBuilder();
-
-        /*
-         * Create a data file if needed
-         */
-        if (getCompilationData() == null || !getCompilationData().exists()) {
-            try {
-                setCompilationData(new File(FileUtils.createTempFile()));
-            } catch (IOException e) {
-                LOG.warning(e.toString());
-
-                /*
-                 * Restart compilation next time
-                 */
-                setCompilationNeeded(true);
-            }
-        }
-
-        /*
-         * Create the commands
-         */
-        command.append("path='" + getCompilationData().getAbsolutePath() + "'; ");
-        command.append("if and([exists('%cpr') exists('scs_m')]) <> %t then ");
-        command.append("  deletefile(path);");
-        command.append("else ");
-        command.append("  export_to_hdf5(path, '%cpr', 'scs_m'); ");
-        command.append("end ");
-
-        return command.toString();
-    }
-
-    /**
-     * Get the command used to load the simulated data into the stack.
-     *
-     * @return a Scilab command throws IllegalStateException when the file
-     *         cannot be loaded.
-     */
-    public String getLoadSimulationDataCommand() {
-        final StringBuilder command = new StringBuilder();
-
-        /*
-         * Check state
-         */
-        if (getCompilationData() == null || !getCompilationData().exists()) {
-            throw new IllegalStateException("compilation data doesn't exist.");
-        }
-
-        /*
-         * Create the commands
-         */
-        command.append("path = '" + getCompilationData().getAbsolutePath() + "' ; ");
-        command.append("import_from_hdf5(path); ");
-
-        return command.toString();
     }
 
     /*

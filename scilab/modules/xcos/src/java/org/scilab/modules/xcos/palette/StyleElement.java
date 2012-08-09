@@ -39,8 +39,7 @@ import com.mxgraph.view.mxStylesheet;
  * Decode a palette into a {@link mxStylesheet}.
  */
 public class StyleElement extends AbstractElement<mxStylesheet> {
-    private static final List<String> DATA_FIELD_NAMES = asList("palette",
-            "name", "blockNames", "blocks", "icons", "style");
+    private static final List<String> DATA_FIELD_NAMES = asList("palette", "name", "blockNames", "icons", "style");
 
     /** Mutable field to easily get the data through methods */
     private ScilabTList data;
@@ -53,7 +52,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
     /**
      * Check if the element can be decoded by the current class.
-     * 
+     *
      * @param element
      *            the data
      * @return <code>false</code> if {@link #decode(ScilabType, mxStylesheet)}
@@ -71,7 +70,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
     /**
      * Decode the current element on the into argument.
-     * 
+     *
      * @param element
      *            the Scilab data
      * @param into
@@ -83,8 +82,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
      *      java.lang.Object)
      */
     @Override
-    public mxStylesheet decode(ScilabType element, mxStylesheet into)
-            throws ScicosFormatException {
+    public mxStylesheet decode(ScilabType element, mxStylesheet into) throws ScicosFormatException {
         data = (ScilabTList) element;
         final mxStylesheet styleSheet = into;
 
@@ -101,7 +99,6 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
         int field = 2;
         String[][] blockNames = ((ScilabString) data.get(field)).getData();
 
-        field++;
         field++;
         field++;
         String[][] styles = ((ScilabString) data.get(field)).getData();
@@ -122,10 +119,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
                 /*
                  * Inherit attributes from the Icon style
                  */
-                final Map<String, Object> style = styleSheet.getCellStyle(
-                        styles[i][j],
-                        styleSheet.getCellStyle("Icon",
-                                styleSheet.getDefaultVertexStyle()));
+                final Map<String, Object> style = styleSheet.getCellStyle(styles[i][j], styleSheet.getCellStyle("Icon", styleSheet.getDefaultVertexStyle()));
 
                 /*
                  * Translate Paths to URLs and check validity
@@ -145,7 +139,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
     /**
      * Validate the path URI.
-     * 
+     *
      * @param url
      *            the path to validate
      * @return the non-null valid path
@@ -170,18 +164,17 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
         if (f.exists()) {
             return u.toString();
         } else {
-            throw new RuntimeException(String.format(
-                    XcosMessages.IMAGE_URL_DOESNT_EXIST, url));
+            throw new RuntimeException(String.format(XcosMessages.IMAGE_URL_DOESNT_EXIST, url));
         }
     }
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -228,28 +221,23 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
         // the third field must contains the block name (row column)
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // the fourth field is handled by the PreLoadedElement decoder
         field++;
 
-        // the fifth field is handled by the PreLoadedElement decoder
+        // the fifth field must contains a valid style
         field++;
-
-        // the sixth field must contains a valid style
-        field++;
-        if (!(data.get(field) instanceof ScilabString)
-                || data.get(field).getWidth() != 1) {
+        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
 
     /**
      * Not used
-     * 
+     *
      * @param from
      *            Not used
      * @param element

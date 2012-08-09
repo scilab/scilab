@@ -26,11 +26,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.javasci.JavasciException;
+import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
@@ -131,25 +130,19 @@ public final class Palette {
     /**
      * Load an xcos palette into the palette manager
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
      * @param category
      *            TreePath of the palette
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path, final String[] category) {
+    public static void loadPal(final String name, final String[] category) throws JavasciException {
         /*
          * Import the palette
          */
-        final ScilabTList data = new ScilabTList();
-        final String file = new File(path).getAbsolutePath();
-        try {
-            final int fileId = H5Read.openFile(file);
-            H5Read.readDataFromFile(fileId, data);
-            H5Read.closeFile(fileId);
-        } catch (final HDF5Exception e) {
-            throw new RuntimeException(String.format(UNABLE_TO_IMPORT, file), e);
-        }
+        final ScilabTList data = (ScilabTList) Scilab.getInCurrentScilabSession(name);
 
         /*
          * handle shared data on the EDT thread
@@ -221,12 +214,14 @@ public final class Palette {
     /**
      * Load an xcos palette into the palette manager at the root category.
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path) {
-        loadPal(path, null);
+    public static void loadPal(final String name) throws JavasciException {
+        loadPal(name, null);
     }
 
     /**

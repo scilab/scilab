@@ -79,8 +79,8 @@ function pal = xcosPal(name, scs_m)
     end
     
     // default instance
-    pal = tlist(["palette", "name", "blockNames",  "blocks", "icons", "style"],..
-                            [],     [],            [],       [],      []);
+    pal = tlist(["palette", "name",  "blockNames", "icons", "style"],..
+                                [],        [],      [],      []);
                             
     // find palette name
     if ~isempty(scs_m.objs) then
