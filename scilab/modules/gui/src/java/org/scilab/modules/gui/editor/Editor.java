@@ -277,21 +277,21 @@ public class Editor {
         legends = new JMenu(Messages.gettext("Legend"));
 
         copy = new JMenuItem(Messages.gettext("Copy"));
-        copy.setToolTipText(Messages.gettext("Copy selected curve."));
+        copy.setToolTipText(Messages.gettext("Copy selected object"));
         cut = new JMenuItem(Messages.gettext("Cut"));
-        cut.setToolTipText(Messages.gettext("Cut selected curve."));
+        cut.setToolTipText(Messages.gettext("Cut selected object"));
         paste = new JMenuItem(Messages.gettext("Paste"));
-        paste.setToolTipText(Messages.gettext("Paste copied curve to this figure."));
+        paste.setToolTipText(Messages.gettext("Paste copied object to this figure"));
         delete = new JMenuItem(Messages.gettext("Delete"));
-        delete.setToolTipText(Messages.gettext("Delete selected curve."));
+        delete.setToolTipText(Messages.gettext("Delete selected object"));
         clear = new JMenuItem(Messages.gettext("Clear"));
-        clear.setToolTipText(Messages.gettext("Clear figure."));
+        clear.setToolTipText(Messages.gettext("Clears the figure"));
         hide = new JMenuItem(Messages.gettext("Hide"));
-        hide.setToolTipText(Messages.gettext("Hide selected curve."));
+        hide.setToolTipText(Messages.gettext("Hide selected object"));
         unhide = new JMenuItem(Messages.gettext("Unhide all"));
-        unhide.setToolTipText(Messages.gettext("Unhide all curves."));
+        unhide.setToolTipText(Messages.gettext("Unhide all objects"));
         clipboardCopy = new JMenuItem(Messages.gettext("Copy to Clipboard"));
-        clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard."));
+        clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard"));
         labelX = new JMenuItem(Messages.gettext("Label X"));
         labelX.setToolTipText(Messages.gettext("Insert a label in X axis"));
         labelY = new JMenuItem(Messages.gettext("Label Y"));
@@ -299,9 +299,9 @@ public class Editor {
         labelZ = new JMenuItem(Messages.gettext("Label Z"));
         labelZ.setToolTipText(Messages.gettext("Insert a label in Z axis"));
         insert = new JMenuItem(Messages.gettext("Insert"));
-        insert.setToolTipText(Messages.gettext("Insert a legend to current selected item"));
+        insert.setToolTipText(Messages.gettext("Insert a legend to the selected curve"));
         remove = new JMenuItem(Messages.gettext("Remove"));
-        remove.setToolTipText(Messages.gettext("Remove a legend of current selected item"));
+        remove.setToolTipText(Messages.gettext("Remove the legend from the selected curve"));
         ged = new JMenuItem(Messages.gettext("Open Quick Editor"));
         ged.setToolTipText(Messages.gettext("Initialize the graphics editor"));
         editdata = new JMenuItem(Messages.gettext("Edit curve data"));
@@ -571,9 +571,9 @@ public class Editor {
         String oldFigure = CommonHandler.getParentFigure(currentObject);
         if (!CommonHandler.cmpColorMap(figureUid, oldFigure)) {
             String msg =  "The colormap from source figure seems to be different from the destination figure." +
-                          "\nThis may influence the final appearence from the object." +
+                          "\nThis may influence the final appearance from the object." +
                           "\nDo you want copy the color map too?";
-            int i = JOptionPane.showConfirmDialog(dialogComponent, msg, "Warning", JOptionPane.YES_NO_OPTION);
+            int i = JOptionPane.showConfirmDialog(dialogComponent, Messages.gettext(msg), Messages.gettext("Warning"), JOptionPane.YES_NO_OPTION);
 
             if (i == JOptionPane.YES_OPTION) {
                 CommonHandler.cloneColorMap(oldFigure, figureUid);
