@@ -231,6 +231,10 @@
       <callback instruction='useeditor([SCILAB_FIGURE_ID], %f);' type="0"/>
     </submenu>
 
+    <submenu label="Plot Browser">
+      <callback instruction='org.scilab.modules.gui.plotbrowser.StartPlotBrowser.plotBrowser' type="3"/>
+    </submenu>
+
     <submenu label="Scilab Graphic Editor - GED">
       <submenu label="&amp;Quick Editor">
         <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
