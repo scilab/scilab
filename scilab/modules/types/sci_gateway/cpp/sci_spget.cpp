@@ -13,6 +13,7 @@
 #include "types_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
+#include "gsort.hxx"
 
 extern "C"
 {
@@ -21,86 +22,178 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-#define CONST
-
-Function::ReturnValue sci_spget(typed_list &in, int nbRes, typed_list &out)
+types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Sparse *pRetVal = NULL;
-    if(in.size() != 1)
+    types::Double* pValues      = NULL;
+    types::Double* pCoordSorted = NULL;
+    types::Bool* pBools         = NULL;
+
+    int iRows           = 0;
+    int iCols           = 0;
+    bool bComplex       = false;
+    int nonZeros        = 0;
+    double* pRows       = NULL;
+    double* pNonZeroR   = NULL;
+    double* pNonZeroI   = NULL;
+
+    if (in.size() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"spget", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if(in[0]->isSparse() == false)
+    if (in[0]->isSparse())
+    {
+        types::Sparse* sp = in[0]->getAs<types::Sparse>();
+        nonZeros = static_cast<int>(sp->nonZeros());
+
+        printf("size %d\n", sp->getSize());
+        if (nonZeros == 0)
+        {
+            out.push_back(types::Double::Empty());
+            if (_iRetCount > 1)
+            {
+                out.push_back(types::Double::Empty());
+            }
+
+            if (_iRetCount > 2)
+            {
+                types::Double* pSize = new types::Double(1, 2);
+                pSize->set(0, sp->getRows());
+                pSize->set(1, sp->getCols());
+                out.push_back(pSize);
+            }
+
+            return types::Function::OK;
+        }
+
+        pRows = new double[nonZeros * 2];
+        sp->outputRowCol(pRows);
+
+        if (_iRetCount > 1)
+        {
+            pNonZeroR = new double[nonZeros];
+            pNonZeroI = new double[nonZeros];
+            sp->outputValues(pNonZeroR, pNonZeroI);
+        }
+
+        iRows = sp->getRows();
+        iCols = sp->getCols();
+        bComplex = sp->isComplex();
+
+        pValues = new types::Double(nonZeros, 1, bComplex);
+
+    }
+    else if (in[0]->isSparseBool())
+    {
+        types::SparseBool* sp = in[0]->getAs<types::SparseBool>();
+        nonZeros = static_cast<int>(sp->nbTrue());
+
+        if (nonZeros == 0)
+        {
+            out.push_back(types::Double::Empty());
+            if (_iRetCount > 1)
+            {
+                out.push_back(types::Double::Empty());
+            }
+
+            if (_iRetCount > 2)
+            {
+                types::Double* pSize = new types::Double(1, 2);
+                pSize->set(0, sp->getRows());
+                pSize->set(1, sp->getCols());
+                out.push_back(pSize);
+            }
+
+            return types::Function::OK;
+        }
+
+
+        pRows = new double[nonZeros * 2];
+        sp->outputRowCol(pRows);
+
+        iRows = sp->getRows();
+        iCols = sp->getCols();
+
+        pBools = new types::Bool(nonZeros, 1);
+    }
+    else
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: sparse matrix expected.\n"), L"spget", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if(nbRes > 3)
+    if (_iRetCount > 3)
     {
         ScierrorW(999, _W("%ls: Wrong number of output arguments: %d to %d expected.\n"), L"spget", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    types::Sparse* sp = in[0]->getAs<Sparse>();
-    int const nonZeros = static_cast<int>(sp->nonZeros());
+    types::Double* pCoord = new types::Double(nonZeros, 2);
+    pCoord->set(pRows);
 
-    Double* pCoord = new Double(nonZeros, 2);
-    Double* pValues = NULL;
-    if(nbRes > 1)
+    if (_iRetCount > 1)
     {
-        pValues = new Double(nonZeros, 1, sp->isComplex());
-    }
-
-    double* pRows = new double[nonZeros * 2];
-    sp->outputRowCol(pRows);
-    double* pCols = pRows + nonZeros;
-
-    double* pNonZeroR = new double[nonZeros];
-    double* pNonZeroI = new double[nonZeros];
-    sp->outputValues(pNonZeroR, pNonZeroI);
-
-    int iIndex = 0;
-    for(int iCol = 0 ; iCol < sp->getRows() ; iCol++)
-    {
-        for(int i = 0 ; i < nonZeros ; i++)
+        if (pBools)
         {
-            if(pRows[i] == iCol + 1)
-            {//good row
-                pCoord->set(iIndex, 0, pRows[i]);
-                pCoord->set(iIndex, 1, pCols[i]);
-                if(pValues)
-                {
-                    pValues->set(iIndex, pNonZeroR[i]);
-                    if(pValues->isComplex())
-                    {
-                        pValues->setImg(iIndex, pNonZeroI[i]);
-                    }
-                }
-                iIndex++;
+            pCoordSorted = gsort(pCoord, NULL, L"i", L"lr");
+            for (int i = 0 ; i < nonZeros ; i++)
+            {
+                pBools->set(i, true);
             }
+        }
+        else
+        {
+            types::Double* pIndex = new types::Double(nonZeros, 1);
+            pCoordSorted = gsort(pCoord, pIndex, L"i", L"lr");
+            if (pValues->isComplex())
+            {
+                for (int i = 0 ; i < nonZeros ; i++)
+                {
+                    pValues->set(i, pNonZeroR[(int)pIndex->get(i) - 1]);
+                    pValues->setImg(i, pNonZeroI[(int)pIndex->get(i) - 1]);
+                }
+            }
+            else
+            {
+                for (int i = 0 ; i < nonZeros ; i++)
+                {
+                    pValues->set(i, pNonZeroR[(int)pIndex->get(i) - 1]);
+                }
+            }
+
+            delete[] pNonZeroR;
+            delete[] pNonZeroI;
+            delete pIndex;
+        }
+    }
+    else
+    {
+        pCoordSorted = gsort(pCoord, NULL, L"i", L"lr");
+    }
+
+    out.push_back(pCoordSorted);
+    if (_iRetCount > 1)
+    {
+        if (pBools)
+        {
+            out.push_back(pBools);
+        }
+        else
+        {
+            out.push_back(pValues);
         }
     }
 
-    out.push_back(pCoord);
-    if(nbRes > 1)
+    if (_iRetCount > 2)
     {
-        out.push_back(pValues);
-    }
-
-    if(nbRes > 2)
-    {
-        Double* pSize = new Double(1, 2);
-        pSize->set(0, sp->getRows());
-        pSize->set(1, sp->getCols());
+        types::Double* pSize = new types::Double(1, 2);
+        pSize->set(0, iRows);
+        pSize->set(1, iCols);
         out.push_back(pSize);
     }
 
+    delete pCoord;
     delete[] pRows;
-    delete[] pNonZeroR;
-    delete[] pNonZeroI;
-    return Function::OK;
+    return types::Function::OK;
 }
