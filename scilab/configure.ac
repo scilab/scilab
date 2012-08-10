@@ -851,16 +851,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                    AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
-                   # Java HDF5 is only needed for Xcos. Should be dropped in 5.4.X (with X > 0)
-                   if test "$with_xcos" != no -a "$with_gui" != no;  then
-                      AC_JAVA_HDF5()
-                      if test "$MACOSX" = 1; then
-                         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
-                      else
-                         AC_JNI_HDF5()
-                      fi
-                   fi #HDF5_ENABLE
-
                 fi
 
 
@@ -2180,15 +2170,9 @@ echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
 echo ""
-if test $HDF5_ENABLE = yes;  then
-   echo "HDF5 configuration:"
-   echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
-   echo "  HDF5 LIBS ........... = $HDF5_LIBS"
-   echo "  HDF5 Java ........... = $JHDF5"
-   echo "  JHDF5 LIBS (JNI) .... = $JHDF5_LIBS"
-else
-   echo "Not using HDF5"
-fi
+echo "HDF5 configuration:"
+echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
+echo "  HDF5 LIBS ........... = $HDF5_LIBS"
 
 echo ""
 echo "PCRE configuration:"

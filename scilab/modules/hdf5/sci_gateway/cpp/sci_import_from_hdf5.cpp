@@ -27,7 +27,6 @@ extern "C"
 #include "intmacr2tree.h"
 #include "expandPathVariable.h"
 }
-#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 //#define TIME_DEBUG
@@ -63,10 +62,6 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     checkInputArgumentAtLeast(pvApiCtx, 1);
     CheckLhs(1, 1);
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     iCloseList = 0;
 

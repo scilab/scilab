@@ -10,8 +10,6 @@ scirenderer.jar=${thirdparty.dir}/scirenderer-0.5.6.jar
 
 jogl2.jar=${thirdparty.dir}/jogl2.jar
 
-jhdf5.jar=${thirdparty.dir}/jhdf5.jar
-
 jhall.jar=${thirdparty.dir}/jhall.jar
 
 gluegen2.jar=${thirdparty.dir}/gluegen2-rt.jar
@@ -88,10 +86,6 @@ library.types.dir=${modules.dir}/types/${build.jar.dir}/
 library.types.src.dir=${modules.dir}/types/${library.src.path}
 library.types.name=org.scilab.modules.types.jar
 
-library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
-library.hdf5.src.dir=${modules.dir}/hdf5/${library.src.path}
-library.hdf5.name=org.scilab.modules.hdf5.jar
-
 library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
 library.xcos.src.dir=${modules.dir}/xcos/${library.src.path}
 library.xcos.name=org.scilab.modules.xcos.jar
@@ -122,8 +116,6 @@ library.output_stream.name=org.scilab.modules.output_stream.jar
 library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
 library.preferences.src.dir=${modules.dir}/preferences/${library.src.path}
 library.preferences.name=org.scilab.modules.preferences.jar
-
-build_hdf5=true
 
 build_javasci=true
 

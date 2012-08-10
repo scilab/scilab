@@ -34,7 +34,6 @@ extern "C"
 #include "splitpath.h"
 #include "scicurdir.h"
 }
-#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 int iLevel = 0;
@@ -74,10 +73,6 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     CheckInputArgumentAtLeast(pvApiCtx, 2);
     CheckLhs(0, 1);
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
     iNbVar = extractVarNameList(1, Rhs, pstNameList);
