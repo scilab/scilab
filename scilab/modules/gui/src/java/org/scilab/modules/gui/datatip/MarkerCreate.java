@@ -19,8 +19,6 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.gui.datatip.DatatipCreate;
 
 /**
@@ -63,19 +61,6 @@ public class MarkerCreate {
         String markerLabelDown = "  ";
         String[] markerLabel = { markerLabelUp , markerLabelDown };
         return markerLabel;
-    }
-
-    /**
-    * Save all created markers unique identifiers into an ArrayList
-    *
-    * @param markersUid ArrayList containing all created markers unique identifiers
-    * @param markerid marker unique identifier string
-    * @return ArrayList containing all created markers unique identifiers updated
-    */
-    public static ArrayList<String> getAllMarkersUid (ArrayList<String> markersUid, String markerUid) {
-
-        markersUid.add(markerUid);
-        return markersUid;
     }
 
     /**

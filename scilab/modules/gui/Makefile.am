@@ -133,7 +133,7 @@ src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp \
 src/jni/EditorManager.cpp \
 src/jni/StartGED.cpp \
-src/jni/DatatipCreate.cpp
+src/jni/DatatipFunctions.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -199,7 +199,8 @@ sci_gateway/cpp/sci_usecanvas.cpp \
 sci_gateway/cpp/sci_useeditor.cpp \
 sci_gateway/cpp/sci_fire_closing_finished.cpp \
 sci_gateway/cpp/sci_openged.cpp \
-sci_gateway/cpp/sci_datatipcreate.cpp
+sci_gateway/cpp/sci_datatipcreate.cpp \
+sci_gateway/cpp/sci_datatipremove.cpp
 
 
 libscigui_la_CPPFLAGS = \

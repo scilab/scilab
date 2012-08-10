@@ -197,11 +197,14 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_fire_closing_finished.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\jni\EditorManager.cpp" />
     <ClCompile Include="..\jni\StartGED.cpp" />
+    <ClCompile Include="..\jni\DatatipFunctions.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="..\jni\SwingView.cpp" />
@@ -457,6 +460,7 @@
     <ClInclude Include="..\..\includes\Widget.h" />
     <ClInclude Include="..\jni\EditorManager.hxx" />
     <ClInclude Include="..\jni\StartGED.hxx" />
+    <ClInclude Include="..\jni\DatatipFunctions.hxx" />
     <ClInclude Include="..\cpp\CallClipboard.hxx" />
     <ClInclude Include="..\cpp\CallColorChooser.hxx" />
     <ClInclude Include="..\cpp\CallFontChooser.hxx" />

@@ -26,70 +26,65 @@ import java.util.ArrayList;
 public class DatatipDelete {
 
     /**
-    * Delete a datatip of a specific index
+    * Delete a specific datatip;
     *
-    * @param index Position to delete de datatip.
-    * @param datatipsUid Arraylist containing all created datatip's unique identifier.
-    * @param markersUid Arraylist containing all created merker's unique identifier.
+    * @param markerUid Datatip marker unique identifier.
     */
-    public static void deleteDatatip (Integer index, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
+    public static void deleteDatatip (String markerUid) {
 
-        String datatipUidToDelete = datatipsUid.get(index / 2);
-        GraphicController.getController().removeRelationShipAndDelete(datatipUidToDelete);
-        String markerUidToDelete = markersUid.get(index / 2);
-        GraphicController.getController().removeRelationShipAndDelete(markerUidToDelete);
+        String parentUid = (String) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_PARENT__);
+        String[] childrenUid = (String[]) GraphicController.getController().getProperty(parentUid, GraphicObjectProperties.__GO_CHILDREN__);
+        for (int i = 0 ; i < childrenUid.length ; i++) {
+            if (markerUid == childrenUid[i]) {
+                GraphicController.getController().removeRelationShipAndDelete(childrenUid[i]);
+                GraphicController.getController().removeRelationShipAndDelete(childrenUid[i + 1]);
+            }
+        }
     }
 
-    /**
-    * Remove the coordinates of deleted datatip
-    *
-    * @param index Position to remove the coordinates from ArrayList
-    * @param datatipsCoord ArrayList containing all created datatips coordinates
-    * @return ArrayList containing all created datatips coordinates updated
-    */
-    public static ArrayList<Double> romoveDatatipCoords (Integer index, ArrayList<Double> datatipsCoord) {
+    public static void datatipRemoveProgramIndex (String polylineUid, int indexRemove) {
 
-        datatipsCoord.remove(index + 1);
-        datatipsCoord.remove(index + 1 - 1);
-        return datatipsCoord;
+        int numDatatips = 0;
+        String compoundUid = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT__);
+        String axesUid = (String) GraphicController.getController().getProperty(compoundUid, GraphicObjectProperties.__GO_PARENT__);
+        String[] childrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
+        for (int i = 0 ; i < childrenUid.length ; i++) {
+            String objType = (String) GraphicController.getController().getProperty(childrenUid[i], GraphicObjectProperties.__GO_TYPE__);
+            if (objType == "Text") {
+                numDatatips++;
+            }
+        }
+        numDatatips = (numDatatips / 2);
+        if (indexRemove <= numDatatips & indexRemove > 0) {
+            int indexDel = (2 * indexRemove) - 1;
+            String datatipUid = childrenUid[indexDel];
+            String markerUid = childrenUid[indexDel - 1];
+            GraphicController.getController().removeRelationShipAndDelete(datatipUid);
+            GraphicController.getController().removeRelationShipAndDelete(markerUid);
+        }
     }
 
-    /**
-    * Remove the unique identifier of deleted datatip
-    *
-    * @param index Position to remove
-    * @param datatipsUid ArrayList containing all created datatips unique identifiers
-    * @return ArrayList containing all created datatips unique identifiers updated
-    */
-    public static ArrayList<String> romoveDatatipUid (Integer index, ArrayList<String> datatipsUid) {
+    public static void datatipRemoveProgramHandler (String datatipUid, String figureUid) {
 
-        datatipsUid.remove(index / 2);
-        return datatipsUid;
-    }
-
-    /**
-    * Remove the unique identifier of deleted datatip's marker
-    *
-    * @param index Position to remove
-    * @param markersUid ArrayList containing all created merkers unique identifiers
-    * @return ArrayList containing all created merkers unique identifiers updated
-    */
-    public static ArrayList<String> romoveMarkerUid (Integer index, ArrayList<String> markersUid) {
-
-        markersUid.remove(index / 2);
-        return markersUid;
-    }
-
-    /**
-    * Remove the unique identifier of polyline on which datatip were created
-    *
-    * @param index Position to remove
-    * @param polylinesUid ArrayList containing all polylines unique identifiers
-    * @return ArrayList containing all polylines unique identifiers updated
-    */
-    public static ArrayList<String> romovePolylineUid (Integer index, ArrayList<String> polylinesUid) {
-
-        polylinesUid.remove(index / 2);
-        return polylinesUid;
+        int posDelete = -1;
+        String[] childrenUid = (String[]) GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_CHILDREN__);
+        String axesUid = childrenUid[0];
+        childrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
+        String objType = (String) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_TYPE__);
+        if (objType == "Text") {
+            for (int i = 0 ; i < childrenUid.length ; i++) {
+                if (datatipUid == childrenUid[i]) {
+                    posDelete = i;
+                }
+            }
+        }
+        if (posDelete >= 0) {
+            GraphicController.getController().removeRelationShipAndDelete(childrenUid[posDelete]);
+            if (posDelete % 2 == 0) {
+                GraphicController.getController().removeRelationShipAndDelete(childrenUid[posDelete + 1]);
+            } else {
+                GraphicController.getController().removeRelationShipAndDelete(childrenUid[posDelete - 1]);
+            }
+        }
     }
 }

@@ -33,24 +33,26 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatipcreate(char *fname, unsigned long fname_len)
+int sci_datatipremove(char *fname, unsigned long fname_len)
 {
-    int n = 0, nbRow = 0, nbCol = 0, l1 = 0, i = 0;
-    int* piAddr	= NULL;
-    int out_index = 0;
-    int stkAdr = 0;
-    int indexPoint = 0;
-    char* datatip_handler = NULL;
-    char* pstFigureUID = NULL;
-    double* pdblReal = NULL;
-    SciErr sciErr;
-    CheckInputArgument(pvApiCtx, 2, 2);
-    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs == 2)
+    SciErr sciErr;
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+    int nbRow = 0, nbCol = 0;
+    char* pFigureUID = NULL;
+    char* datatipUID = NULL;
+    char* polylineUID = NULL;
+    int stkAdr = 0;
+    int* piAddr	= NULL;
+    double* pdblReal = NULL;
+    int indexPos = 0;
+
+    if (Rhs == 1)
     {
 
-        /* Get Polyline Handler */
+        pFigureUID = (char*)getCurrentFigure();
+
         GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
 
         if (nbRow * nbCol != 1)
@@ -59,9 +61,24 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+        datatipUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
 
-        /* Get Second Input Argument - Index Or Coordinates*/
+        DatatipDelete::datatipRemoveProgramHandler(getScilabJavaVM(), (char*)datatipUID, (char*)pFigureUID);
+
+    }
+    else if (Rhs == 2)
+    {
+
+        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+
+        if (nbRow * nbCol != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            return FALSE;
+        }
+
+        polylineUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
         if (sciErr.iErr)
         {
@@ -79,35 +96,25 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
         if (nbRow * nbCol == 1)
         {
 
-            /* Create Datatip Using "datatip_handle = datatipCreate(polyline_handle,index)" */
+            indexPos = (int) pdblReal[0];
 
-            indexPoint = (int) pdblReal[0];
-
-            datatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), (char*)pstFigureUID, indexPoint);
+            DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPos);
 
         }
-        else if (nbRow * nbCol == 2)
+        else
         {
 
-            /* Create Datatip Using "datatip_handle = datatipCreate(polyline_handle,pt)" */
+            Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 2);
+            return FALSE;
 
-            datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)pstFigureUID, pdblReal, 2);
-            //char* DatatipCreate::createDatatipProgramCoord (JavaVM * jvm_, char const* polylineUid, double const* coordDoubleXY, int coordDoubleXYSize);
         }
 
     }
     else
     {
 
-        Scierror(999, _("%s: Wrong number for input argument: %d expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong number for input argument: %d or %d expected.\n"), fname, 1, 2);
         return FALSE;
     }
 
-    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &out_index);
-    hstk(out_index)[0] = getHandle(datatip_handler);
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-
-    return TRUE;
 }
-

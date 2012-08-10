@@ -395,6 +395,9 @@
     <ClCompile Include="..\jni\StartGED.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\DatatipFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -402,6 +405,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -861,6 +870,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\StartGED.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\DatatipFunctions.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

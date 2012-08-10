@@ -30,6 +30,7 @@ import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.EntityPicker;
 
 import org.scilab.modules.gui.datatip.MarkerCreate;
+import org.scilab.modules.gui.datatip.DatatipDrag;
 
 /**
  * Create a datatip and set its properties
@@ -43,11 +44,12 @@ public class DatatipCreate {
     public static double[] coordDoubleXY = new double[2];
     static EntityPicker ep = new EntityPicker();
     public static double[] graphCoordDouble = new double[3];
-    private static int validPixels = 0;
-    private static Integer yVerify;
-    private static int lastPixel;
+    public static Integer[] coordInteger = new Integer[2];
+    public static double[] graphicCoord = new double[3];
+    public static String polylineUidEnd = null;
     public static Integer newX;
     public static Integer newY;
+    public static int middleLineFactor;
 
     /**
     * Given a mouse coordinate point x, y in pixels
@@ -63,7 +65,7 @@ public class DatatipCreate {
         Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
         String axesUid = datatipAxesHandler(figureUid, pixelMouseCoordInt);
         double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
-        double[] graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
+        graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
         String newDatatip = datatipProperties (graphicCoord, axesUid);
         return newDatatip;
     }
@@ -81,44 +83,51 @@ public class DatatipCreate {
         String compoundUid = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT__);
         String axesUid = (String) GraphicController.getController().getProperty(compoundUid, GraphicObjectProperties.__GO_PARENT__);
         String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
+
+        middleLineFactor = 0;
         /*Convert input coordinates to Integer*/
         graphCoordDouble[0] = coordDoubleXY[0];
         graphCoordDouble[1] = coordDoubleXY[1];
         graphCoordDouble[2] = 0.0;
         double[] pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axesUid, graphCoordDouble);
-        double tempX = pixelCoordinates[0];
-        double tempY = pixelCoordinates[1];
-        int xInt = (int) tempX;
-        int yInt = (int) tempY;
-        Integer xInteger = (Integer) xInt;
-        Integer yInteger = (Integer) yInt;
-        /*Check if input coordinates is over polyline*/
-        String polylineUidTest = ep.pick (figureUid, xInteger, yInteger);
-        if (polylineUidTest == null) {
-            /*Put the new datatip in the closest point if it is not over polyline*/
-            double[] DataX = (double[]) PolylineData.getDataX (polylineUid);
-            double[] DataY = (double[]) PolylineData.getDataY (polylineUid);
-            int maxLength = DataX.length;
-            for (int i = 0 ; i < (maxLength - 1) ; i++) {
-                if (coordDoubleXY[0] >= DataX[i]) {
-                    if (coordDoubleXY[0] <= DataX[i + 1]) {
-                        coordDoubleXY[0] = DataX[i];
-                        coordDoubleXY[1] = DataY[i];
-                    }
+        int xInt = (int) pixelCoordinates[0];
+        int yInt = (int) pixelCoordinates[1];
+        coordInteger[0] = (Integer) xInt;
+        coordInteger[1] = (Integer) yInt;
+
+        /*Put the new datatip in the closest point if it is not over polyline*/
+        int yVerify = 0;
+        Integer[] axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
+        for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
+            polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
+            if (polylineUidEnd != null) {
+                if (polylineUidEnd.equals(polylineUid)) {
+                    middleLineFactor++;
                 }
             }
-            if (coordDoubleXY[0] < DataX[0]) {
-                coordDoubleXY[0] = DataX[0];
-                coordDoubleXY[1] = DataY[0];
-            }
-            if (coordDoubleXY[0] > DataX[maxLength - 1]) {
-                coordDoubleXY[0] = DataX[maxLength - 1];
-                coordDoubleXY[1] = DataY[maxLength - 1];
+        }
+        for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
+            polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
+            if (polylineUidEnd != null) {
+                if (polylineUidEnd.equals(polylineUid)) {
+                    break;
+                }
             }
         }
+        if (middleLineFactor % 2 == 0) {
+            newY = yVerify + (middleLineFactor / 2);
+        } else {
+            middleLineFactor++;
+            newY = yVerify + (middleLineFactor / 2);
+        }
+        newX = coordInteger[0];
+        Integer[] pixelMouseCoordInt = { newX , newY };
+        double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
+        graphicCoord = transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
+
         /*Create the new datatip*/
-        String newDatatip = datatipProperties (coordDoubleXY, axesUid);
-        String newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
+        String newDatatip = datatipProperties (graphicCoord, axesUid);
+        String newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
         return newDatatip;
     }
 
@@ -141,8 +150,8 @@ public class DatatipCreate {
         } else if (indexPoint < 0) {
             indexPoint = 0;
         }
-        coordDoubleXY[0] = DataX[indexPoint];
-        coordDoubleXY[1] = DataY[indexPoint];
+        coordDoubleXY[0] = DataX[indexPoint - 1];
+        coordDoubleXY[1] = DataY[indexPoint - 1];
         String newDatatip = datatipProperties (coordDoubleXY, axesUid);
         String newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
         return newDatatip;
@@ -184,7 +193,7 @@ public class DatatipCreate {
     */
     public static double[] transformPixelCoordToGraphic(String axesUid, double[] pixelMouseCoordDouble) {
 
-        double[] graphicCoord = CallRenderer.get2dViewFromPixelCoordinates(axesUid, pixelMouseCoordDouble);
+        graphicCoord = CallRenderer.get2dViewFromPixelCoordinates(axesUid, pixelMouseCoordDouble);
         return graphicCoord;
     }
 
@@ -241,47 +250,6 @@ public class DatatipCreate {
         datatipPosition[1] = graphicCoord[1];
         datatipPosition[2] = 0.0;
         return datatipPosition;
-    }
-
-    /**
-    * Save all created datatips coordinates into an ArrayList
-    *
-    * @param datatipsCoord ArrayList containing all created datatips coordinates
-    * @param datatipid datatip unique identifier to get its coordinates
-    * @return ArrayList containing all created datatips coordinates updated
-    */
-    public static ArrayList<Double> getAllDatatipsCoord (ArrayList<Double> datatipsCoord, String markerUid) {
-
-        Double[] graphicCoord = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
-        datatipsCoord.add(graphicCoord[0]);
-        datatipsCoord.add(graphicCoord[1]);
-        return datatipsCoord;
-    }
-
-    /**
-    * Save all created datatips unique identifiers into an ArrayList
-    *
-    * @param datatipsUid ArrayList containing all created datatips unique identifiers
-    * @param datatipid datatip unique identifier
-    * @return ArrayList containing all created datatips unique identifiers updated
-    */
-    public static ArrayList<String> getAllDatatipsUid (ArrayList<String> datatipsUid, String datatipUid) {
-
-        datatipsUid.add(datatipUid);
-        return datatipsUid;
-    }
-
-    /**
-    * Save all polylines unique identifiers on which datatips were created
-    *
-    * @param polylinesUid ArrayList containing all polylines unique identifiers
-    * @param polylineid polyline unique identifier string
-    * @return ArrayList containing all polylines unique identifiers updated
-    */
-    public static ArrayList<String> getAllPolylinesUid (ArrayList<String> polylinesUid, String uid) {
-
-        polylinesUid.add(uid);
-        return polylinesUid;
     }
 
     /**
