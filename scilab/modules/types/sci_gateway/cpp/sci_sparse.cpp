@@ -14,7 +14,7 @@
 #include "function.hxx"
 #include "sparse.hxx"
 
-extern "C" 
+extern "C"
 {
 #include "charEncoding.h"
 #include "Scierror.h"
@@ -137,6 +137,12 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             }
         case InternalType::RealDouble :
             {
+                if(in[0]->getAs<Double>()->isEmpty())
+                {
+                    out.push_back(types::Double::Empty());
+                    return types::Function::OK;
+                }
+
                 pRetVal = new types::Sparse(*in[0]->getAs<Double>());
                 break;
             }
