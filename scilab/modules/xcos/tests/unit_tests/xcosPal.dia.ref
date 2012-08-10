@@ -15,7 +15,7 @@ pal = xcosPal()
  
        pal(1)
  
-!palette  name  blockNames  blocks  icons  style  !
+!palette  name  blockNames  icons  style  !
  
        pal(2)
  
@@ -32,17 +32,13 @@ pal = xcosPal()
        pal(5)
  
      []
- 
-       pal(6)
- 
-     []
 pal = xcosPal(name)
  pal  =
  
  
        pal(1)
  
-!palette  name  blockNames  blocks  icons  style  !
+!palette  name  blockNames  icons  style  !
  
        pal(2)
  
@@ -59,17 +55,13 @@ pal = xcosPal(name)
        pal(5)
  
      []
- 
-       pal(6)
- 
-     []
 pal = xcosPal(scs_m)
  pal  =
  
  
        pal(1)
  
-!palette  name  blockNames  blocks  icons  style  !
+!palette  name  blockNames  icons  style  !
  
        pal(2)
  
@@ -87,16 +79,6 @@ pal = xcosPal(scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.sod     !
-!                                          !
-!TMPDIR/LOOKUP2D.sod     !
-!                                          !
-!TMPDIR/INTRPLBLK_f.sod  !
-!                                          !
-!TMPDIR/INTRP2BLK_f.sod  !
- 
-       pal(5)
- 
 !TMPDIR/LOOKUP_c.gif     !
 !                                           !
 !TMPDIR/LOOKUP2D.gif     !
@@ -105,7 +87,7 @@ pal = xcosPal(scs_m)
 !                                           !
 !TMPDIR/INTRP2BLK_f.gif  !
  
-       pal(6)
+       pal(5)
  
 !noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
 !                                                                   !
@@ -120,7 +102,7 @@ pal = xcosPal([], scs_m)
  
        pal(1)
  
-!palette  name  blockNames  blocks  icons  style  !
+!palette  name  blockNames  icons  style  !
  
        pal(2)
  
@@ -138,16 +120,6 @@ pal = xcosPal([], scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.sod     !
-!                                          !
-!TMPDIR/LOOKUP2D.sod     !
-!                                          !
-!TMPDIR/INTRPLBLK_f.sod  !
-!                                          !
-!TMPDIR/INTRP2BLK_f.sod  !
- 
-       pal(5)
- 
 !TMPDIR/LOOKUP_c.gif     !
 !                                           !
 !TMPDIR/LOOKUP2D.gif     !
@@ -156,7 +128,7 @@ pal = xcosPal([], scs_m)
 !                                           !
 !TMPDIR/INTRP2BLK_f.gif  !
  
-       pal(6)
+       pal(5)
  
 !noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
 !                                                                   !
@@ -171,7 +143,7 @@ pal = xcosPal(name, scs_m)
  
        pal(1)
  
-!palette  name  blockNames  blocks  icons  style  !
+!palette  name  blockNames  icons  style  !
  
        pal(2)
  
@@ -189,16 +161,6 @@ pal = xcosPal(name, scs_m)
  
        pal(4)
  
-!TMPDIR/LOOKUP_c.sod     !
-!                                          !
-!TMPDIR/LOOKUP2D.sod     !
-!                                          !
-!TMPDIR/INTRPLBLK_f.sod  !
-!                                          !
-!TMPDIR/INTRP2BLK_f.sod  !
- 
-       pal(5)
- 
 !TMPDIR/LOOKUP_c.gif     !
 !                                           !
 !TMPDIR/LOOKUP2D.gif     !
@@ -207,7 +169,7 @@ pal = xcosPal(name, scs_m)
 !                                           !
 !TMPDIR/INTRP2BLK_f.gif  !
  
-       pal(6)
+       pal(5)
  
 !noLabel=1;image=file://TMPDIR/LOOKUP_c.svg;     !
 !                                                                   !
