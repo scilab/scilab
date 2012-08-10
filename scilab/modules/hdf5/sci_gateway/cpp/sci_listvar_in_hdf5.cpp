@@ -23,9 +23,11 @@ extern "C"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
+#include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
 }
 
+#include "listvar_in_hdf5_v1.hxx"
 #include <vector>
 
 typedef struct __VAR_INFO__
@@ -90,6 +92,25 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     }
     FREE(pstFileName);
     FREE(pstFile);
+
+    //manage version information
+    int iVersion = getSODFormatAttribute(iFile);
+    if(iVersion != SOD_FILE_VERSION)
+    {
+        if (iVersion > SOD_FILE_VERSION)
+        {//can't read file with version newer that me !
+            Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+            return 1;
+        }
+        else
+        {//call older import functions and exit or ... EXIT !
+            if(iVersion == 1 || iVersion == -1)
+            {
+                //sciprint("old sci_listvar_in_hdf5_v1\n");
+                return sci_listvar_in_hdf5_v1(fname, fname_len);
+            }
+        }
+    }
 
     iNbItem = getVariableNames(iFile, NULL);
     if (iNbItem != 0)
@@ -282,18 +303,11 @@ static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
 
 static bool read_double(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
-    int iRet = 0;
-    int iRows = 0;
-    int iCols = 0;
+    int iSize = 0;
     int iComplex = 0;
 
-    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
-    iComplex = isComplexData(_iDatasetId);
-
-    _pInfo->iDims = 2;
-    _pInfo->piDims[0] = iRows;
-    _pInfo->piDims[1] = iCols;
-    _pInfo->iSize = (2 + (iRows * iCols * (iComplex + 1))) * 8;
+    iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    _pInfo->iSize = (2 + (iSize * (iComplex + 1))) * 8;
 
     generateInfo(_pInfo, "constant");
     return true;
@@ -302,31 +316,26 @@ static bool read_double(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
 static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
     int iRet = 0;
-    int iRows = 0;
-    int iCols = 0;
+    int iSize = 0;
+    int iComplex = 0;
     char** pstData = NULL;
 
-    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
+    iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
 
-    _pInfo->iDims = 2;
-    _pInfo->piDims[0] = iRows;
-    _pInfo->piDims[1] = iCols;
-
-    pstData = (char **)MALLOC(iRows * iCols * sizeof(char *));
-    iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
+    pstData = (char **)MALLOC(iSize * sizeof(char *));
+    iRet = readStringMatrix(_iDatasetId, pstData);
 
 
-    for (int i = 0 ; i < iRows * iCols ; i++)
+    for (int i = 0 ; i < _pInfo->piDims[0] * _pInfo->piDims[1] ; i++)
     {
         _pInfo->iSize += (int)strlen(pstData[i]) * 4;
-        FREE(pstData[i]);
     }
 
     FREE(pstData);
     //always full double size
     _pInfo->iSize += (8 - (_pInfo->iSize % 8));
     //header + offset
-    _pInfo->iSize += 16 + (1 + iRows * iCols) * 4;
+    _pInfo->iSize += 16 + (1 + iSize) * 4;
 
     generateInfo(_pInfo, "string");
     return true;
@@ -334,16 +343,11 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
 
 static bool read_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
-    int iRet = 0;
-    int iRows = 0;
-    int iCols = 0;
+    int iSize = 0;
+    int iComplex = 0;
 
-    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
-
-    _pInfo->iDims = 2;
-    _pInfo->piDims[0] = iRows;
-    _pInfo->piDims[1] = iCols;
-    _pInfo->iSize = (3 + iRows * iCols) * 4;
+    iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    _pInfo->iSize = (3 + iSize) * 4;
 
     generateInfo(_pInfo, "boolean");
     return true;
@@ -352,17 +356,14 @@ static bool read_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, VarInf
 static bool read_integer(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
     int iRet = 0;
-    int iRows = 0;
-    int iCols = 0;
     int iPrec = 0;
+    int iSize = 0;
+    int iComplex = 0;
 
-    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
-    iRet = getDatasetPrecision(_iDatasetId, &iPrec);
+    iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    getDatasetPrecision(_iDatasetId, &iPrec);
 
-    _pInfo->iDims = 2;
-    _pInfo->piDims[0] = iRows;
-    _pInfo->piDims[1] = iCols;
-    _pInfo->iSize = 16 + iRows * iCols * (iPrec % 10);
+    _pInfo->iSize = 16 + iSize * (iPrec % 10);
 
     generateInfo(_pInfo, "integer");
     return true;
@@ -419,42 +420,31 @@ static bool read_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddress,
 static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
     int iRet = 0;
-    int iRows = 0;
-    int iCols = 0;
     int iComplex = 0;
     char pstVarName[64] = { 0 };
     double **pdblReal = NULL;
     double **pdblImg = NULL;
     int *piNbCoef = NULL;
+    int iSize = 0;
 
-    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
-    if (iRet)
-    {
-        return false;
-    }
-
-    iComplex = isComplexData(_iDatasetId);
-
-    _pInfo->iDims = 2;
-    _pInfo->piDims[0] = iRows;
-    _pInfo->piDims[1] = iCols;
-    _pInfo->iSize = 8 * 4 + (iRows * iCols + 1) * 4;
+    iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    _pInfo->iSize = 8 * 4 + (iSize + 1) * 4;
 
     if (iComplex)
     {
-        piNbCoef = (int *)MALLOC(iRows * iCols * sizeof(int));
-        pdblReal = (double **)MALLOC(iRows * iCols * sizeof(double *));
-        pdblImg = (double **)MALLOC(iRows * iCols * sizeof(double *));
-        iRet = readPolyComplexMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+        piNbCoef = (int *)MALLOC(iSize * sizeof(int));
+        pdblReal = (double **)MALLOC(iSize * sizeof(double *));
+        pdblImg = (double **)MALLOC(iSize * sizeof(double *));
+        iRet = readPolyComplexMatrix(_iDatasetId, pstVarName, 2, _pInfo->piDims, piNbCoef, pdblReal, pdblImg);
     }
     else
     {
-        piNbCoef = (int *)MALLOC(iRows * iCols * sizeof(int));
-        pdblReal = (double **)MALLOC(iRows * iCols * sizeof(double *));
-        iRet = readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+        piNbCoef = (int *)MALLOC(iSize * sizeof(int));
+        pdblReal = (double **)MALLOC(iSize * sizeof(double *));
+        iRet = readPolyMatrix(_iDatasetId, pstVarName, 2, _pInfo->piDims, piNbCoef, pdblReal);
     }
 
-    for (int i = 0 ; i < iRows * iCols ; i++)
+    for (int i = 0 ; i < iSize ; i++)
     {
         _pInfo->iSize += piNbCoef[i] * 8 * (iComplex + 1);
         FREE(pdblReal[i]);

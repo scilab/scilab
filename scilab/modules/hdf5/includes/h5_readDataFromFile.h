@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -32,6 +32,7 @@ HDF5_SCILAB_IMPEXP int getDataSetId(int  _iFile);
 
 HDF5_SCILAB_IMPEXP int getDataSetIdFromName(int _iFile, char *_pstName);
 
+HDF5_SCILAB_IMPEXP int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims);
 HDF5_SCILAB_IMPEXP int getDatasetDims(int _iDatasetId, int *_piRows, int *_piCols);
 HDF5_SCILAB_IMPEXP int getListDims(int _iDatasetId, int *_piItem);
 
@@ -43,25 +44,25 @@ HDF5_SCILAB_IMPEXP int getSparseDimension(int _iDatasetId, int* _piRows, int * _
 
 HDF5_SCILAB_IMPEXP int readEmptyMatrix(int _iDatasetId);
 
-HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData);
-HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
+HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, double *_pdblData);
+HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg);
 
-HDF5_SCILAB_IMPEXP int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData);
+HDF5_SCILAB_IMPEXP int readStringMatrix(int _iDatasetId, char **_pstData);
 
-HDF5_SCILAB_IMPEXP int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
+HDF5_SCILAB_IMPEXP int readBooleanMatrix(int _iDatasetId, int* _piData);
 
-HDF5_SCILAB_IMPEXP int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData);
-HDF5_SCILAB_IMPEXP int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
+HDF5_SCILAB_IMPEXP int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblData);
+HDF5_SCILAB_IMPEXP int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
 
-HDF5_SCILAB_IMPEXP int readInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData);
-HDF5_SCILAB_IMPEXP int readInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData);
-HDF5_SCILAB_IMPEXP int readInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
-HDF5_SCILAB_IMPEXP int readInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData);
+HDF5_SCILAB_IMPEXP int readInteger8Matrix(int _iDatasetId, char* _pcData);
+HDF5_SCILAB_IMPEXP int readInteger16Matrix(int _iDatasetId, short* _psData);
+HDF5_SCILAB_IMPEXP int readInteger32Matrix(int _iDatasetId, int* _piData);
+HDF5_SCILAB_IMPEXP int readInteger64Matrix(int _iDatasetId, long long* _pllData);
 
-HDF5_SCILAB_IMPEXP int readUnsignedInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData);
-HDF5_SCILAB_IMPEXP int readUnsignedInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData);
-HDF5_SCILAB_IMPEXP int readUnsignedInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData);
-HDF5_SCILAB_IMPEXP int readUnsignedInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData);
+HDF5_SCILAB_IMPEXP int readUnsignedInteger8Matrix(int _iDatasetId, unsigned char* _pucData);
+HDF5_SCILAB_IMPEXP int readUnsignedInteger16Matrix(int _iDatasetId, unsigned short* _pusData);
+HDF5_SCILAB_IMPEXP int readUnsignedInteger32Matrix(int _iDatasetId, unsigned int* _puiData);
+HDF5_SCILAB_IMPEXP int readUnsignedInteger64Matrix(int _iDatasetId, unsigned long long* _pullData);
 
 HDF5_SCILAB_IMPEXP int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg);
 HDF5_SCILAB_IMPEXP int readSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal);

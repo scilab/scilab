@@ -17,7 +17,12 @@ endif
 
 HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \
-src/c/h5_readDataFromFile.c
+src/c/h5_readDataFromFile.c \
+src/c/h5_readDataFromFile_v1.c \
+src/cpp/import_from_hdf5_v1.cpp \
+src/cpp/listvar_in_hdf5_v1.cpp
+
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
