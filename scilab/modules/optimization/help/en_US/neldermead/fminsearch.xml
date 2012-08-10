@@ -509,7 +509,7 @@ endfunction
 opt = optimset ( "PlotFcns" , optimplotfval );
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );
  ]]></programlisting>
-<scilab:image>
+<scilab:image localized="true">
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
