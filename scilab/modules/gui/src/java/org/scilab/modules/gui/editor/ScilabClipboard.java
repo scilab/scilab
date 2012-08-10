@@ -77,9 +77,13 @@ public class ScilabClipboard {
 
         String axesTo = AxesHandler.clickedAxes(figure, position);
         if (axesTo != null) { /* If there is an axes in the clicked position then adjust the bounds, make the axes visible and paste */
-            AxesHandler.axesBound(axesFrom, axesTo);
             AxesHandler.setAxesVisible(axesTo);
             CommonHandler.insert(axesTo, object);
+            /* 
+             * must be set up after insertion of the object
+             * else tight_limits don't are set up correctly
+             */
+            AxesHandler.axesBound(axesFrom, axesTo);
             if (!needDuplication) {
                 objectUid = null;
             }
@@ -87,8 +91,8 @@ public class ScilabClipboard {
         } else { /* If doesn't exists an axes will duplicate the origin axes */
             axesTo = AxesHandler.duplicateAxes(axesFrom);
             if (axesTo != null) { /* If duplicated sucessfull then adjust the bounds and paste */
-                AxesHandler.axesBound(axesFrom, axesTo);
                 CommonHandler.insert(axesTo, object);
+                AxesHandler.axesBound(axesFrom, axesTo);
                 if (!needDuplication) {
                     objectUid = null;
                 }

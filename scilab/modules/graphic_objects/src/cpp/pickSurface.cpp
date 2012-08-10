@@ -92,6 +92,8 @@ public:
 };
 
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret);
+void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, 
+                        double mx, double my,double mz,double mw,double &retZ);
 
 /*
  * Given a ray (point(x, y,z) + direction(dx, dy, dz))
@@ -115,6 +117,24 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &X);
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
+
+
+
+    char *axes_uid;
+    int zoom_enabled = 0;
+    int *ptr = &zoom_enabled;
+    double *bounds;
+    getGraphicObjectProperty(uid, __GO_PARENT_AXES__, jni_string, (void**) &axes_uid);
+    getGraphicObjectProperty(axes_uid, __GO_ZOOM_ENABLED__, jni_bool, (void**) &ptr);
+
+    if (zoom_enabled)
+    {
+        getGraphicObjectProperty(axes_uid, __GO_ZOOM_BOX__, jni_double_vector, (void**) &bounds);
+    }
+    else
+    {
+        getGraphicObjectProperty(axes_uid, __GO_DATA_BOUNDS__, jni_double_vector, (void**) &bounds);
+    }
 
 
     getGraphicObjectProperty(uid, __GO_TYPE__, jni_string, (void**) &type);
@@ -143,23 +163,8 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
                 Vec3 P1 = Vec3(X[i+1], Y[j],   Z[(i+1) + j*numX]);
                 Vec3 P2 = Vec3(X[i+1], Y[j+1], Z[(i+1) + (j+1)*numX]);
                 Vec3 P3 = Vec3(X[i],   Y[j+1], Z[i + (j+1)*numX]);
-                Vec3 ret;
 
-                /*test first triangle*/
-                if (test_tri(P0, P1, P2, direction, point, ret) == 1)
-                {
-                    /* ray intersects the triangle, then we project only the Z cordinate
-                     * and store the nearest projected Z.
-                     */
-                    double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
-                    lastZ = lastZ < curZ ? lastZ : curZ;
-                }
-                /*test second triangle*/
-                if (test_tri(P0, P2, P3, direction, point, ret) == 1)
-                {
-                    double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
-                    lastZ = lastZ < curZ ? lastZ : curZ;
-                }
+                QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
             }
         }
     } 
@@ -190,24 +195,31 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
             Vec3 P1 = Vec3(X[i+1], Y[i+1], Z[i+1]);
             Vec3 P2 = Vec3(X[i+2], Y[i+2], Z[i+2]);
             Vec3 P3 = Vec3(X[i+3], Y[i+3], Z[i+3]);
-            Vec3 ret;
 
-            /*test first triangle*/
-            if (test_tri(P0, P1, P2, direction, point, ret) == 1)
-            {
-                /* ray intersects the triangle, then we project only the Z cordinate
-                 * and store the nearest projected Z.
-                 */
-                double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
-                lastZ = lastZ < curZ ? lastZ : curZ;
-            }
-            /*test second triangle*/
-            if (test_tri(P0, P2, P3, direction, point, ret) == 1)
-            {
-                double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
-                lastZ = lastZ < curZ ? lastZ : curZ;
-            }
+            QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
         }
+    }
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+
+        int numX = 0;
+        int* piNumX = &numX;
+        int numY = 0;
+        int* piNumY = &numY;
+
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
+
+        /* Gray plot is a plane with Z = 0 and bounds = {x[0], x[n-1], y[0], y[m-1]}
+         * where n = size of vector x and m = size of vector y
+         */
+
+        Vec3 P0 = Vec3(X[0],      Y[0],      0);
+        Vec3 P1 = Vec3(X[numX-1], Y[0],      0);
+        Vec3 P2 = Vec3(X[numX-1], Y[numY-1], 0);
+        Vec3 P3 = Vec3(X[0],      Y[numY-1], 0);
+
+        QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
     }
 
     return lastZ;
@@ -255,3 +267,43 @@ int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
 
     return 1;
 }
+
+bool isInViewBox(double * bounds, Vec3 point)
+{
+    return (bounds[0] <= point.x && bounds[1] >= point.x &&
+            bounds[2] <= point.y && bounds[3] >= point.y &&
+            bounds[4] <= point.z && bounds[5] >= point.z);
+}
+
+void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, 
+                        double mx, double my,double mz,double mw,double &retZ)
+{
+    Vec3 ret;
+
+    /*test first triangle*/
+    if (test_tri(P0, P1, P2, direction, point, ret) == 1)
+    {
+        /*the intersection point can be outside the view box(invisible)*/
+        if (isInViewBox(bounds, ret))
+        {
+            /* ray intersects the triangle, then we project only the Z cordinate
+             * and store the nearest projected Z.
+             */
+            double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+            retZ = retZ < curZ ? retZ : curZ;
+        }
+    }
+    /*test second triangle*/
+    if (test_tri(P0, P2, P3, direction, point, ret) == 1)
+    {
+        if (isInViewBox(bounds, ret))
+        {
+            double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+            retZ = retZ < curZ ? retZ : curZ;
+        }
+    }
+}
+
+
+
+

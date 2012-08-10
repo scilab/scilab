@@ -147,19 +147,26 @@ public class EntityPicker {
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
         /* Fast bound check*/
-        double m = (x1 + x0) / 2;
+        double m = (x1 + x0)/2;
         double dx = m - x0;
 
-        Double ca = (y1 - y0) / (x1 - x0);
+        double ca = (y1 - y0) / (x1 - x0);
 
-        Double yy = y0 + ca * (x - x0);
+        double yy = y0 + ca * (x - x0);
 
-        if (y >= (yy - dy)) {
-            if (y <= (yy + dy)) {
-                return (Math.abs(m - x) <= Math.abs(dx));
-            }
-        }
-        return false;
+        double pix = this.dx/selectionDelta;
+        double m_y = (y1 + y0)/2;
+        double dy = m_y - y0;
+
+        boolean ca_inf = (Math.abs(x1 - x0) < Math.abs(pix*2));
+        boolean in_bounds = (Math.abs(m - x) <= Math.abs(pix*2)) && (Math.abs(m_y - y) <= Math.abs(dy));
+
+        /*
+         * test if (x, y) belongs or is closer to the line
+         * if the angular coeficent -> inf(ca_inf), the interpolation fails
+         * then we use "in_bunds" test.
+         */ 
+        return (Math.abs(m - x) <= Math.abs(dx)) && (y >= (yy - this.dy)) && (y <= (yy + this.dy)) || (ca_inf && in_bounds);
     }
 
     /**
@@ -411,7 +418,7 @@ public class EntityPicker {
         Vector3d Dir = v0.minus(v1).getNormalized();
 
 
-        String[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__};
+        String[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
         String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         double Z = 2.0;
         String picked = null;

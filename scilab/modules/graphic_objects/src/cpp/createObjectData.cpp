@@ -47,7 +47,7 @@ char * createObject3dData(char *obj, char *newObj, char *type)
     }
 
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0 || strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         ptr = &numElementsArray[0];
         getGraphicObjectProperty(obj, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&ptr);

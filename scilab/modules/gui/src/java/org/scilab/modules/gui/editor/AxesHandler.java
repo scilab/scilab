@@ -132,6 +132,7 @@ public class AxesHandler {
         newBounds[5] = Math.max(axesFB[5], axesTB[5]);
 
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__, newBounds);
+
         Boolean tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_TIGHT_LIMITS__, tight_lim);
     }
@@ -156,7 +157,6 @@ public class AxesHandler {
      */
     public static Boolean isInZoomBoxBounds(String uid, double x, double y) {
         Double[] bounds = (Double[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_ZOOM_BOX__);
-
         if (x >= bounds[0] && x <= bounds[1]) {
             if (y >= bounds[2] && y <= bounds[3]) {
                 return true;
