@@ -177,6 +177,7 @@
     <None Include="..\resources\SCE.ICO" />
     <None Include="..\resources\SCI.ICO" />
     <None Include="..\resources\scilab.ico" />
+    <None Include="..\resources\sod.ico" />
     <None Include="..\resources\TST.ICO" />
     <None Include="..\resources\xcos.ico" />
   </ItemGroup>

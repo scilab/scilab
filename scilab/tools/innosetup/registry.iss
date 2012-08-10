@@ -13,7 +13,7 @@
 ;
 ;-------------------------------------------------------------------------------
 
-; files assocociation .sce .sci .tst .bin .sav
+; files assocociation .sce .sci .tst .bin .sav .sod
 ;-------------------------------------------------------------------------------
 ; Files Association (registry input)
 ;-------------------------------------------------------------------------------
@@ -165,7 +165,19 @@ Root: HKCR; Subkey: {#APPLICATION_EXTENSION_COSF}; ValueType: string; ValueData:
 Root: HKCR; Subkey: {#APPLICATION_EXTENSION_COSF}\DefaultIcon; ValueType: string; ValueData: {app}\bin\wscilex.exe,{#ICON_COSF_POS}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSCICOS
 ;
 Root: HKCR; Subkey: {#APPLICATION_EXTENSION_COSF}\shell\{cm:RegKeyRunWith} {#ScilabName}\command; ValueType: string; ValueData: """{app}\bin\wscilex.exe"" {#ARGUMENT_ACTION_RUN} ""%1"""; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSCICOS;
+;-------------------------------------------------------------------------------
+;Files .sod
+#define APPLICATION_EXTENSION_SOD "Scilab5.sod"
+#define SOD_ENTRY ".sod"
+#define ICON_SOD_POS 10
 ;
+Root: HKCR; Subkey: {#SOD_ENTRY}; ValueType: string; ValueData: {#APPLICATION_EXTENSION_SOD}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSOD
+;
+Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SOD}; ValueType: string; ValueData: "{#ScilabName} Application"; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSOD
+;
+Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SOD}\DefaultIcon; ValueType: string; ValueData: {app}\bin\wscilex.exe,{#ICON_SOD_POS}; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSOD
+;
+Root: HKCR; Subkey: {#APPLICATION_EXTENSION_SOD}\shell\{cm:RegKeyRunWith} {#ScilabName}\command; ValueType: string; ValueData: """{app}\bin\wscilex.exe"" {#ARGUMENT_ACTION_RUN} ""%1"""; Flags: deletekey uninsdeletekey noerror; Tasks: AssociateSOD;
 ;-------------------------------------------------------------------------------
 Root: HKCU; Subkey: SOFTWARE\Scilab\{#ScilabName}\Settings; ValueType: string; ValueData: {cm:LANGUAGE}; Flags: createvalueifdoesntexist uninsdeletekey noerror; ValueName: LANGUAGE
 ;

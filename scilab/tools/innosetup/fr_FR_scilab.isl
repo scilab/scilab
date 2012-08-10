@@ -110,7 +110,9 @@ fr_FR.DescriptionAssociateBinSav =Associer les fichiers *.bin, *.sav avec scilab
 ;
 fr_FR.DescriptionAssociateGraph =Associer les fichiers *.graph *.graphb avec scilab
 ;
-fr_FR.DescriptionAssociateScicos =Associer les fichiers *.xcos *.cos *.cosf avec scilab
+fr_FR.DescriptionAssociateScicos =Associer les fichiers *.xcos *.cos *.cosf *.zcos avec scilab
+;
+fr_FR.DescriptionAssociateSOD =Associer les fichiers *.sod avec scilab
 ;
 fr_FR.DescriptionDefaultInstall =Installation (Par défaut)
 fr_FR.DescriptionFullInstall =Installation Complete
