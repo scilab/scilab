@@ -17,8 +17,6 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import java.util.ArrayList;
-
 /**
  * Highlight and discolor the selected datatip
  * @author Gustavo Barbosa Libotte
@@ -26,30 +24,29 @@ import java.util.ArrayList;
 public class DatatipHighlight {
 
     private static boolean isSelected = false;
-    public static String markerid;
     public static Integer firstColorMarker;
+    public static String oldMarker;
 
     /**
     * Highlight a datatip and its marker when selected
     *
-    * @param datatipIndex Integer referring to the selected datatip.
-    * @param markersUid Arraylist containing all created merker's unique identifier.
+    * @param markerUid Datatip marker unique identifier.
     */
-    public static void highlightSelected (Integer datatipIndex, ArrayList<String> markersUid) {
-        if (datatipIndex != null) {
+    public static void highlightSelected (String markerUid) {
+        if (markerUid != null) {
             if (!isSelected) {
-                markerid = markersUid.get (datatipIndex / 2);
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__);
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__);
+                GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
+                oldMarker = markerUid;
             } else {
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
-                markerid = markersUid.get (datatipIndex / 2);
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__);
-                GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
+                GraphicController.getController().setProperty(oldMarker, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__);
+                GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
+                oldMarker = markerUid;
             }
             isSelected = true;
         } else {
-            GraphicController.getController().setProperty(markerid, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
+            GraphicController.getController().setProperty(oldMarker, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
             isSelected = false;
         }
     }

@@ -28,40 +28,40 @@ import org.scilab.modules.gui.datatip.DatatipHighlight;
  */
 public class DatatipSelect {
 
-    private static Integer indexToSelect = null;
-
     /**
     * Select a datatip when click on it
     *
     * @param figureUid Figure unique identifier.
     * @param coordIntX Integer with pixel mouse position x.
     * @param coordIntY Integer with pixel mouse position y.
-    * @param datatipsCoord Arraylist containing all created datatip's user coordinates.
-    * @param datatipsUid Arraylist containing all created datatip's unique identifier.
-    * @param markersUid Arraylist containing all created merker's unique identifier.
-    * @return Integer index of selected datatip.
+    * @return String containing the datatip marker unique identifier
     */
-    public static Integer selectDatatip (String figureUid, Integer coordIntX, Integer coordIntY, ArrayList<Double> datatipsCoord, ArrayList<String> datatipsUid, ArrayList<String> markersUid) {
+    public static String selectDatatip (String figureUid, Integer coordIntX, Integer coordIntY) {
 
         Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
         String axesUid = DatatipCreate.datatipAxesHandler(figureUid, pixelMouseCoordInt);
         double[] clickPositionDouble = DatatipCreate.transformPixelCoordToDouble(pixelMouseCoordInt);
         double[] clickGraphPos = DatatipCreate.transformPixelCoordToGraphic(axesUid, clickPositionDouble);
 
-        for (int i = 0 ; i < datatipsCoord.size() ; i = i + 2) {
+        String[] axesChildrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
 
-            String markerid = markersUid.get (i / 2);
-            Double[] markerCorners = (Double[]) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_CORNERS__);
-            if (clickGraphPos[0] >= markerCorners[0] & clickGraphPos[0] <= markerCorners[6]) {
-                if (clickGraphPos[1] >= markerCorners[1] & clickGraphPos[1] <= markerCorners[7]) {
-                    indexToSelect = i;
-                    DatatipHighlight.highlightSelected (indexToSelect, markersUid);
-                    return indexToSelect;
+        for (int i = 0 ; i < axesChildrenUid.length ; i++) {
+
+            String objType = (String) GraphicController.getController().getProperty(axesChildrenUid[i], GraphicObjectProperties.__GO_TYPE__);
+            if (objType == "Text") {
+                Integer textBoxMode = (Integer) GraphicController.getController().getProperty(axesChildrenUid[i], GraphicObjectProperties.__GO_TEXT_BOX_MODE__);
+                if (textBoxMode == 1) {
+                    Double[] markerCorners = (Double[]) GraphicController.getController().getProperty(axesChildrenUid[i], GraphicObjectProperties.__GO_CORNERS__);
+                    if (clickGraphPos[0] >= markerCorners[0] & clickGraphPos[0] <= markerCorners[6]) {
+                        if (clickGraphPos[1] >= markerCorners[1] & clickGraphPos[1] <= markerCorners[7]) {
+                            DatatipHighlight.highlightSelected (axesChildrenUid[i]);
+                            return axesChildrenUid[i];
+                        }
+                    }
                 }
             }
         }
-        indexToSelect = null;
-        DatatipHighlight.highlightSelected (indexToSelect, markersUid);
-        return indexToSelect;
+        DatatipHighlight.highlightSelected (null);
+        return null;
     }
 }

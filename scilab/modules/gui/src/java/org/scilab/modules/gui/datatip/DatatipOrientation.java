@@ -37,38 +37,38 @@ public class DatatipOrientation {
     public static Double[] newDatatipPosition = new Double[3];
     public static double xSize;
     public static double ySize;
+    private static String datatipUid;
 
     /**
     * Set the orientation of the datatip accordind to its position
     *
-    * @param figureUid Figure unique identifier.
-    * @param datatipsUid Arraylist containing all created datatip's unique identifier.
-    * @param markersUid Arraylist containing all created merker's unique identifier.
-    * @param pixelCoordInt Initial click info in pixels.
+    * @param markerUid datatip marker unique identifier
     */
-    public static void setOrientation (String figureUid, ArrayList<String> datatipsUid, ArrayList<String> markersUid, Integer[] pixelCoordInt) {
+    public static void setOrientation (String markerUid) {
 
-        for (int i = 0 ; i < datatipsUid.size() ; i++) {
-            Integer selectIndex = 2 * i;
+        String axesUid = (String) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_PARENT__);
+        String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
+        String[] axesChildrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
 
-            String datatipid = datatipsUid.get (selectIndex / 2);
-            datatipCorners = (Double[]) GraphicController.getController().getProperty(datatipid, GraphicObjectProperties.__GO_CORNERS__);
-
-            String markerid = markersUid.get (selectIndex / 2);
-            markerPosition = (Double[]) GraphicController.getController().getProperty(markerid, GraphicObjectProperties.__GO_POSITION__);
-
-            xSize = datatipCorners[9] - datatipCorners[0];
-            ySize = datatipCorners[4] - datatipCorners[1];
-
-            String axesUid = DatatipCreate.datatipAxesHandler(figureUid, pixelCoordInt);
-
-            Double[] axesDataBounds = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_DATA_BOUNDS__);
-            Double[] axesZoomBox = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_ZOOM_BOX__);
-
-            boolean zoomEnabled = AxesHandler.isZoomBoxEnabled(axesUid);
-
-            autoOrientation (zoomEnabled, axesDataBounds, axesZoomBox, markerPosition, xSize, ySize, datatipid);
+        for (int i = 0 ; i < axesChildrenUid.length ; i++) {
+            if (axesChildrenUid[i] == markerUid) {
+                datatipUid = axesChildrenUid[i+1];
+                break;
+            }
         }
+
+        datatipCorners = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_CORNERS__);
+        markerPosition = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
+
+        xSize = datatipCorners[9] - datatipCorners[0];
+        ySize = datatipCorners[4] - datatipCorners[1];
+
+        Double[] axesDataBounds = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_DATA_BOUNDS__);
+        Double[] axesZoomBox = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_ZOOM_BOX__);
+
+        boolean zoomEnabled = AxesHandler.isZoomBoxEnabled(axesUid);
+
+        autoOrientation (zoomEnabled, axesDataBounds, axesZoomBox, markerPosition, xSize, ySize, datatipUid);
     }
 
     /**
