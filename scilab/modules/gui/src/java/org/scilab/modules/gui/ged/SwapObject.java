@@ -119,7 +119,7 @@ public class SwapObject {
     private void axes(String axesID) {
         adjust();
         //Load the Axes panel.
-        SwingInspector.pReceive.add(new Axes(axesID));
+        SwingInspector.pReceive.add(new Axes(axesID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.axes);
         } catch (NullPointerException npe){ }
@@ -133,7 +133,7 @@ public class SwapObject {
     private void figure(String objectID) {
         adjust();
         //Load the figure panel.
-        SwingInspector.pReceive.add(new Figure(objectID));
+        SwingInspector.pReceive.add(new Figure(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
         } catch (NullPointerException npe){ }
@@ -147,7 +147,7 @@ public class SwapObject {
     private void legend(String objectID) {
         adjust();
         //Load the legend panel.
-        SwingInspector.pReceive.add(new Legend(objectID));
+        SwingInspector.pReceive.add(new Legend(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.legend);
         } catch (NullPointerException npe){ }
@@ -161,7 +161,7 @@ public class SwapObject {
     private void polyline(String objectID) {
         adjust();
         //Load the polyline panel.
-        SwingInspector.pReceive.add(new Polyline(objectID));
+        SwingInspector.pReceive.add(new Polyline(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
         } catch (NullPointerException npe){ }
@@ -175,7 +175,7 @@ public class SwapObject {
     private void surface(String objectID) {
         adjust();
         //Load the polyline panel.
-        SwingInspector.pReceive.add(new Surface(objectID));
+        SwingInspector.pReceive.add(new Surface(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.surface);
         } catch (NullPointerException npe){ }
