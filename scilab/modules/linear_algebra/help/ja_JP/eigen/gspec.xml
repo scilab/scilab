@@ -10,32 +10,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gspec">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gspec">
     <refnamediv>
         <refname>gspec</refname>
-        <refpurpose>
-            eigenvalues of matrix pencil. <emphasis role="bold">This function is obsolete.</emphasis>
-        </refpurpose>
+        <refpurpose>行列ペンシルの固有値 (古い関数)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[al,be]=gspec(A,E)
             [al,be,Z]=gspec(A,E)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            This function is now included in the <literal>spec</literal> function.
-            the calling syntax must be replaced by
+            この関数は現在では <literal>spec</literal> 関数に統合されています.
+            呼び出し手順は以下のように置き換られています
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role = ""><![CDATA[ 
 [al,be]=spec(A,E)
 [al,be,Z]=spec(A,E)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

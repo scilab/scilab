@@ -10,50 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="classmarkov">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="classmarkov">
     <refnamediv>
         <refname>classmarkov</refname>
-        <refpurpose> recurrent and transient classes of Markov matrix</refpurpose>
+        <refpurpose>マルコフ行列の再帰的(recurrent)および一時的(transient)なクラス</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>real N x N Markov matrix. Sum of entries in each row should add to one.</para>
+                    <para>実数 N x N マルコフ行列. 各行のエントリの合計を
+                        1に加えたもの
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>perm</term>
                 <listitem>
-                    <para>integer permutation vector.</para>
+                    <para>整数置換ベクトル.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rec, tr</term>
                 <listitem>
-                    <para>integer vector, number (number of states in each recurrent classes, number of transient states).</para>
+                    <para>整数ベクトル, 数値 (各再帰的クラスにおける状態量の数,
+                        一時的な状態量の数).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>indsRec,indsT</term>
                 <listitem>
-                    <para>integer vectors. (Indexes of recurrent and transient states).</para>
+                    <para>整数ベクトル. (再帰的および一時的な状態量の添字).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Returns a permutation vector <literal>perm</literal> such that
+            以下のような置換ベクトル<literal>perm</literal>を返します
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role = ""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
@@ -62,25 +66,27 @@ M(perm,perm) = [M11 0 0 0 0   0]
                [* *        *  Q]
  ]]></programlisting>
         <para>
-            Each <literal>Mii</literal> is a Markov matrix of dimension <literal>rec(i)  i=1,..,r</literal>.
-            <literal>Q</literal> is sub-Markov matrix of dimension <literal>tr</literal>.
-            States 1 to sum(rec) are recurrent and states from r+1 to n
-            are transient. 
-            One has <literal>perm=[indsRec,indsT]</literal> where indsRec is a  vector of size sum(rec) 
-            and indsT is a vector of size tr.
+            各 <literal>Mii</literal> は<literal>rec(i)  i=1,..,r</literal>次の
+            マルコフ行列です.
+            <literal>Q</literal> は<literal>tr</literal>次のサブマルコフ行列です.
+            1 から sum(rec)の状態量は再帰的で,
+            r+1からnは一時的な状態量です.
+            <literal>perm=[indsRec,indsT]</literal>となります.
+            ただし, indsRec は大きさ sum(rec)のベクトル,
+            indsT は大きさ trのベクトルです.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//P has two recurrent classes (with 2 and 1 states) 2 transient states
+//P は2つの再帰的なクラス (2および1個の状態量を有する) 2つの一時的な状態量
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="genmarkov">genmarkov</link>

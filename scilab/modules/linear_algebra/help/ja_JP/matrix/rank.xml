@@ -10,60 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rank">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rank">
     <refnamediv>
         <refname>rank</refname>
-        <refpurpose> rank</refpurpose>
+        <refpurpose>階数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[i]=rank(X)
             [i]=rank(X,tol)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex matrix</para>
+                    <para>実数または複素行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>nonnegative real number</para>
+                    <para>非負実数</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>rank(X)</literal> is the numerical rank of <literal>X</literal>
-            i.e. the number of singular values of X that are larger than
-            <literal>norm(size(X),'inf') * norm(X) * %eps</literal>.
+            <literal>rank(X)</literal> は, <literal>X</literal>の数値的な階数(ランク),
+            すなわち <literal>norm(size(X),'inf') * norm(X) * %eps</literal> より大きな
+            X の特異値の数です.
         </para>
         <para>
-            <literal>rank(X,tol)</literal> is the number of singular values of
-            <literal>X</literal> that are larger than <literal>tol</literal>.
+            <literal>rank(X,tol)</literal> は,<literal>tol</literal>
+            より大きな<literal>X</literal>の特異値の数です.
         </para>
         <para>
-            Note that the default value of <literal>tol</literal> is proportional to
-            <literal>norm(X)</literal>. As a consequence
-            <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.
+            <literal>tol</literal> のデフォルト値は
+            <literal>norm(X)</literal>に比例することに注意してください. 
+            結果として,<literal>rank([1.d-80,0;0,1.d-80])</literal> は 2 になります!.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 rank([1.d-80,0;0,1.d-80])
 rank([1,0;0,1.d-80])
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="svd">svd</link>

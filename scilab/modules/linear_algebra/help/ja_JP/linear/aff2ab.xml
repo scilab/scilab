@@ -10,23 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aff2ab">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="aff2ab">
     <refnamediv>
         <refname>aff2ab</refname>
-        <refpurpose> linear (affine) function to A,b conversion</refpurpose>
+        <refpurpose>線形 (アフィン)関数を A,b に変換</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parameters</title>
         <variablelist>
             <varlistentry>
                 <term>afunction</term>
                 <listitem>
                     <para>
-                        a scilab function <literal> Y =fct(X,D) </literal> where <literal>X, D, Y</literal> are <literal>list</literal> of matrices
+                        scilab 関数 <literal> Y =fct(X,D) </literal> 
+                        ただし, <literal>X, D, Y</literal> は行列の <literal>list</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +35,8 @@
                 <term>dimX</term>
                 <listitem>
                     <para>
-                        a p x 2 integer matrix (<literal>p</literal> is the number of matrices in <literal>X</literal>)
+                        p x 2 整数行列 (<literal>p</literal> は
+                        <literal>X</literal>の行列の数)
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,7 +44,7 @@
                 <term>D</term>
                 <listitem>
                     <para>
-                        a <literal>list</literal> of real matrices (or any other valid Scilab object).
+                        実数行列の<literal>list</literal>  (または任意の有効なScilab オブジェクト).
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,75 +52,75 @@
                 <term>flag</term>
                 <listitem>
                     <para>
-                        optional parameter (<literal>flag='f'</literal> or <literal>flag='sp'</literal>)
+                        オプションのパラメータ (<literal>flag='f'</literal> または <literal>flag='sp'</literal>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>a real matrix</para>
+                    <para>実数行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
                     <para>
-                        a real vector having same row dimension as <literal>A</literal>
+                        <literal>A</literal>と同じ行次元を有する実数ベクトル
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>aff2ab</literal>  returns the matrix representation of an affine
-            function (in the canonical basis).
+            <literal>aff2ab</literal>  はアフィン関数の(正準形式の)行列表現を返します.
         </para>
         <para>
-            <literal>afunction</literal> is a function with imposed syntax:
-            <literal> Y=afunction(X,D) </literal> where <literal> X=list(X1,X2,...,Xp) </literal> is
-            a list of p real matrices, and <literal> Y=list(Y1,...,Yq) </literal> is
-            a list of q real real matrices which depend linearly of
-            the <literal> Xi</literal>'s. The (optional) input <literal> D</literal> contains 
-            parameters needed to compute Y as a function of X. 
-            (It is generally a list of matrices).
+            <literal>afunction</literal> は以下の規定の構文を有する関数です:
+            <literal> Y=afunction(X,D) </literal> 
+            ただし, <literal> X=list(X1,X2,...,Xp) </literal> は
+            p 個の実数行列のリスト,<literal> Y=list(Y1,...,Yq) </literal> は
+            <literal> Xi</literal>に線形に依存するq 個の実数行列のリストです.
+            (オプションの) 入力 <literal> D</literal> は, X の関数として
+            Yを計算するために必要なパラメータを有しています.
         </para>
         <para>
-            <literal> dimX</literal> is a p x 2 matrix: <literal>dimX(i)=[nri,nci]</literal>
-            is the actual number of rows and columns of matrix <literal>Xi</literal>.
-            These dimensions determine <literal>na</literal>, the column dimension of 
-            the resulting matrix <literal>A</literal>: <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.
+            <literal> dimX</literal> は p x 2 行列です: <literal>dimX(i)=[nri,nci]</literal>
+            は行列<literal>Xi</literal>の行と列の実際の数です.
+            これらの次元は,結果の行列<literal>A</literal>の列の次元である
+            <literal>na</literal> を以下のように定義します:
+            <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.
         </para>
         <para>
-            If the optional parameter <literal>flag='sp'</literal> the resulting <literal>A</literal>
-            matrix is returned as a sparse matrix.
+            オプションのパラメータ <literal>flag='sp'</literal> が指定された場合,
+            結果の行列 <literal>A</literal>は疎行列として返されます.
         </para>
         <para>
-            This function is useful to solve a system of linear equations
-            where the unknown variables are matrices.
+            この関数は,未知変数が行列であるような
+            線形方程式のシステムを解くために有用です.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
-// Lyapunov equation solver (one unknown variable, one constraint)
+// リアプノフ方程式ソルバ (未知変数1つ, 拘束条件1つ)
 deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
 A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
 [Aly,bly]=aff2ab(lyapunov,dimX,D);
 [Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); lyapunov(Xv,D)
 Xm=Xv(:); A'*Xm+Xm*A-Q
 
-// Lyapunov equation solver with redundant constraint X=X'
-// (one variable, two constraints) D is global variable
+// 冗長な拘束 t X=X'を有するリアプノフ方程式ソルバ
+// (変数1つ, 拘束条件2つt) D はグローバル変数
 deff('Y=ly2(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q,Xm''-Xm)')
 A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
 [Aly,bly]=aff2ab(ly2,dimX,D);
 [Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); ly2(Xv,D)
 
-// Francis equations
-// Find matrices X1 and X2 such that:
+// フランシス方程式
+// 以下のような行列 X1 および X2 を見つける:
 // A1*X1 - X1*A2 + B*X2 -A3 = 0
 // D1*X1 -D2 = 0 
 deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:),...
@@ -131,7 +133,7 @@ dimX=[[m1,n2];[m3,m2]];
 [Xf,KerAf]=linsolve(Af,bf);Xsol=vec2list(Xf,dimX)
 bruce(Xsol,D)
 
-// Find all X which commute with A
+// Aを変換する全てのXを見つける
 deff('y=f(X,D)','y=list(D(:)*X(:)-X(:)*D(:))')
 A=rand(3,3);dimX=[3,3];[Af,bf]=aff2ab(f,dimX,list(A));
 [Xf,KerAf]=linsolve(Af,bf);[p,q]=size(KerAf);
@@ -139,8 +141,8 @@ Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
 C=Xsol(:); A*C-C*A
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="linsolve">linsolve</link>

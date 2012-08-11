@@ -10,13 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="svd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="svd">
     <refnamediv>
         <refname>svd</refname>
-        <refpurpose>  singular value decomposition</refpurpose>
+        <refpurpose>特異値分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>s=svd(X)
             [U,S,V]=svd(X)
             [U,S,V]=svd(X,0) (obsolete)
@@ -25,76 +25,83 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>a real or complex matrix</para>
+                    <para>実数または複素行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>real vector (singular values)</para>
+                    <para>実数ベクトル (特異値)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>S</term>
                 <listitem>
-                    <para>real diagonal matrix (singular values)</para>
+                    <para>実数対角行列 (特異値)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>U,V</term>
                 <listitem>
-                    <para>orthogonal or unitary square matrices (singular vectors).</para>
+                    <para>直交またはユニタリ正方行列(特異値).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>real number</para>
+                    <para>実数</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>[U,S,V] = svd(X)</literal> produces a diagonal matrix
-            <literal>S</literal> , of the same dimension as <literal>X</literal> and with
-            nonnegative diagonal elements in decreasing order, and unitary
-            matrices <literal>U</literal> and <literal>V</literal> so that <literal>X = U*S*V'</literal>.
+            <literal>[U,S,V] = svd(X)</literal> は
+            <literal>X</literal> と同次元で
+            降順に非負の対角要素を有する
+            対角行列 <literal>S</literal>および
+            <literal>X = U*S*V'</literal>となる
+            ユニタリ行列 <literal>U</literal> と <literal>V</literal>
+            を出力する.
         </para>
         <para>
-            <literal>[U,S,V] = svd(X,0)</literal> produces the "economy
-            size" decomposition. If <literal>X</literal> is m-by-n with m &gt;
-            n, then only the first n columns of <literal>U</literal> are computed
-            and <literal>S</literal> is n-by-n.
+            <literal>[U,S,V] = svd(X,0)</literal> は
+            "エコノミーサイズ"分解を出力する.
+            <literal>X</literal> がm行n列 (m &gt; n)の場合,
+            <literal>U</literal> の最初のn列のみが計算され,
+            <literal>S</literal>は n行n列となる.
         </para>
         <para>
-            <literal>s= svd(X)</literal> by itself, returns a vector <literal>s</literal>
-            containing the singular values.
+            <literal>s= svd(X)</literal> は
+            特異値を含むベクトル<literal>s</literal>を返す.
         </para>
         <para>
-            <literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
-            singular values larger than <literal>tol</literal>.
+            <literal>[U,S,V,rk]=svd(X,tol)</literal> は
+            <literal>rk</literal>に加えて,
+            <literal>X</literal> の数値ランク,すなわち
+            <literal>tol</literal>より大きな特異値の数を出力する.
         </para>
         <para>
-            The default value of <literal>tol</literal> is the same as in <literal>rank</literal>.
+            <literal>tol</literal>のデフォルト値は
+            <literal>rank</literal>とのもの同じである.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 X=rand(4,2)*rand(2,4)
 svd(X)
 sqrt(spec(X*X'))
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参考</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rank">rank</link>
@@ -117,10 +124,10 @@ sqrt(spec(X*X'))
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>使用される関数</title>
         <para>
-            svd decompositions are based on  the Lapack routines DGESVD for
-            real matrices and  ZGESVD for the complex case.
+            svd 分解はLapackのルーチン DGESVD (実数行列の場合)および
+            ZGESVD (複素数の場合)に基づいている.
         </para>
     </refsection>
 </refentry>
