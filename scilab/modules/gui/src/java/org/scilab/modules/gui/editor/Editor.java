@@ -24,6 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import org.scilab.modules.gui.datatip.DatatipSelect;
 import org.scilab.modules.gui.editor.ScilabClipboard;
 import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
@@ -76,7 +77,7 @@ public class Editor {
 
     Component dialogComponent;
 
-    enum SelectionType {POLYLINE, LEGEND, SURFACE};
+    enum SelectionType {POLYLINE, LEGEND, SURFACE, DATATIP};
     SelectionType selectedType;
 
     public Editor() {
@@ -757,6 +758,9 @@ public class Editor {
                     case SURFACE:
                         Inspector.getInspector(SelectionEnum.SURFACE , selected, 0, 0);
                         break;
+                    case DATATIP:
+                        Inspector.getInspector(SelectionEnum.DATATIP , selected, 0, 0);
+                        break;
                 }
             } else {
                 Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, figureUid, lastClick[0], lastClick[1]);
@@ -815,17 +819,24 @@ public class Editor {
             selectedType = SelectionType.LEGEND;
             return selectedLegend.legend;
         } else {
-            /*try pick a polyline*/
-            String picked = entityPicker.pick(figureUid, pos[0], pos[1]);
-            if (picked != null) {
-                selectedType = SelectionType.POLYLINE;
-                return picked;
+            /*try pick a datatip*/
+            String selectedDatatip = DatatipSelect.selectDatatip(figureUid, pos[0], pos[1]);
+            if (selectedDatatip != null) {
+                selectedType = SelectionType.DATATIP;
+                return selectedDatatip;
             } else {
-                picked = entityPicker.pickSurface(figureUid, pos);
+                /*try pick a polyline*/
+                String picked = entityPicker.pick(figureUid, pos[0], pos[1]);
                 if (picked != null) {
-                    selectedType = SelectionType.SURFACE;
+                    selectedType = SelectionType.POLYLINE;
+                    return picked;
+                } else {
+                    picked = entityPicker.pickSurface(figureUid, pos);
+                    if (picked != null) {
+                        selectedType = SelectionType.SURFACE;
+                    }
+                    return picked;
                 }
-                return picked;
             }
         }
     }

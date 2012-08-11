@@ -120,6 +120,10 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                             String markerUid = MarkerCreate.createMarker ( windowUid, arg0.getX(), arg0.getY() );
                         }
                     }
+                } else if (arg0.getClickCount() == 2) {
+                    //open GED with the properties of DataTip
+                    //not implemented yet
+                    //editor.onClickGED();
                 }
             } else if (arg0.getButton() == 3) {
                 selectedDatatip = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY());
