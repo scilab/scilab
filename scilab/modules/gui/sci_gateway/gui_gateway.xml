@@ -72,4 +72,5 @@
     <PRIMITIVE gatewayId="25" primitiveId="39" primitiveName="openged" />
     <PRIMITIVE gatewayId="25" primitiveId="40" primitiveName="datatipCreate" />
     <PRIMITIVE gatewayId="25" primitiveId="41" primitiveName="datatipRemove" />
+    <PRIMITIVE gatewayId="25" primitiveId="42" primitiveName="plotbrowser" />
 </GATEWAY>

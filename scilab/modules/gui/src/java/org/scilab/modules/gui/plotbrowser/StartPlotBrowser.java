@@ -12,8 +12,6 @@
 
 package org.scilab.modules.gui.plotbrowser;
 
-import org.scilab.modules.gui.editor.EditorEventListener;
-
 /**
  * Manages the action of the buttons on the toolbar and menubar.
  *
@@ -24,7 +22,7 @@ public class StartPlotBrowser {
     /**
     * Initializes the Plot Browser.
     */
-    public static void plotBrowser() {
-        PlotBrowser.getPlotBrowser(EditorEventListener.windowUid);
+    public static void plotBrowser(String uid) {
+        PlotBrowser.getPlotBrowser(uid);
     }
 }

@@ -232,7 +232,7 @@
     </submenu>
 
     <submenu label="Plot Browser">
-      <callback instruction='org.scilab.modules.gui.plotbrowser.StartPlotBrowser.plotBrowser' type="3"/>
+      <callback instruction="plotbrowser([SCILAB_FIGURE_ID])" type="-2"/>
     </submenu>
 
     <submenu label="Scilab Graphic Editor - GED">
