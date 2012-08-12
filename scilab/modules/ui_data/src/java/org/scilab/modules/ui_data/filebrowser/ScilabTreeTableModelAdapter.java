@@ -23,6 +23,7 @@ import javax.swing.event.TreeExpansionListener;
  * The tree table model abstract implementation
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabTreeTableModelAdapter extends AbstractTableModel {
 
     private JTree tree;
@@ -37,13 +38,13 @@ public class ScilabTreeTableModelAdapter extends AbstractTableModel {
         this.tree = tree;
         this.treeTableModel = treeTableModel;
         tree.addTreeExpansionListener(new TreeExpansionListener() {
-                public void treeExpanded(TreeExpansionEvent event) {
-                    fireTableDataChanged();
-                }
-                public void treeCollapsed(TreeExpansionEvent event) {
-                    fireTableDataChanged();
-                }
-            });
+            public void treeExpanded(TreeExpansionEvent event) {
+                fireTableDataChanged();
+            }
+            public void treeCollapsed(TreeExpansionEvent event) {
+                fireTableDataChanged();
+            }
+        });
     }
 
     /**

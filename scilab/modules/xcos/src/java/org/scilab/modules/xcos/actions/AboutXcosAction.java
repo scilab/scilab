@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Display about box for Xcos
  */
+@SuppressWarnings(value = { "serial" })
 public class AboutXcosAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.ABOUT_XCOS;

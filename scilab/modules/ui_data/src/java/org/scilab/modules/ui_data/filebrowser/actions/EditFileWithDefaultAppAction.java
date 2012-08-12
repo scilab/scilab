@@ -28,6 +28,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to edit a file with the default associated application
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class EditFileWithDefaultAppAction extends CommonCallBack {
 
     private static final boolean isWindows = (OS.get() == OS.WINDOWS);

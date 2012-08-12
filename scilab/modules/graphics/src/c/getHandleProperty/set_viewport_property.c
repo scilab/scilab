@@ -30,38 +30,38 @@
 /*------------------------------------------------------------------------*/
 int set_viewport_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int values[4];
-  BOOL status = FALSE;
+    int values[4];
+    BOOL status = FALSE;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "viewport");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_matrix ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "viewport");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( nbRow * nbCol != 2 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "viewport", 2);
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( nbRow * nbCol != 2 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "viewport", 2);
+        return SET_PROPERTY_ERROR ;
+    }
 
-  /* For now we just use viewport positions */
-  copyDoubleVectorToIntFromStack(stackPointer, values, 2);
+    /* For now we just use viewport positions */
+    copyDoubleVectorToIntFromStack(stackPointer, values, 2);
 
-  /* dummy values */
-  values[2] = 0;
-  values[3] = 0;
+    /* dummy values */
+    values[2] = 0;
+    values[3] = 0;
 
-  status = setGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, values, jni_int_vector, 2);
+    status = setGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, values, jni_int_vector, 2);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "viewport");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

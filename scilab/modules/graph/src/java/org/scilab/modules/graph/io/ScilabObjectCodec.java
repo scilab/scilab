@@ -54,6 +54,7 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
     /**
      * Throw when we cannot load the XML.
      */
+    @SuppressWarnings(value = { "serial" })
     public class UnrecognizeFormatException extends Exception {
         /**
          * Default constructor

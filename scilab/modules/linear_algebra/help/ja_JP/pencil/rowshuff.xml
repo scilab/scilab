@@ -10,37 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowshuff">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowshuff">
     <refnamediv>
         <refname>rowshuff</refname>
-        <refpurpose> shuffle algorithm</refpurpose>
+        <refpurpose>シャッフルアルゴリズム</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
                 <listitem>
                     <para>
-                        square real pencil <literal>Fs = s*E-A</literal>
+                        正方実数ペンシル <literal>Fs = s*E-A</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Ws</term>
                 <listitem>
-                    <para>polynomial matrix</para>
+                    <para>多項式行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Fs1</term>
                 <listitem>
                     <para>
-                        square real pencil <literal>F1s = s*E1 -A1</literal> with <literal>E1</literal> non-singular
+                        正方実数ペンシル <literal>F1s = s*E1 -A1</literal>,
+                        ただし  <literal>E1</literal> は正則
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,46 +49,47 @@
                 <term>alfa</term>
                 <listitem>
                     <para>
-                        real number (<literal>alfa = 0</literal> is the default value)
+                        実数 (<literal>alfa = 0</literal> がデフォルト値)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Shuffle algorithm: Given the pencil <literal>Fs=s*E-A</literal>, returns Ws=W(s) 
-            (square polynomial matrix) such that:
+            シャッフルアルゴリズム: ペンシル <literal>Fs=s*E-A</literal>を指定すると, 以下のような(正方多項式行列)
+            Ws=W(s) を返します:
         </para>
         <para>
-            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> is a pencil with non singular <literal>E1</literal> matrix.
+            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> は正則なペンシル行列 <literal>E1</literal> です.
         </para>
         <para>
-            This is possible iff the pencil <literal>Fs = s*E-A</literal> is regular (i.e. invertible).
-            The degree of <literal>Ws</literal> is equal to the index of the pencil.
+            これは,ペンシル<literal>Fs = s*E-A</literal>が正則 (すなわち,可逆)の場合に限り可能です.
+            <literal>Ws</literal> の次数はペンシルの添字に等しくなります.
         </para>
         <para>
-            The poles at infinity of <literal>Fs</literal> are put to <literal>alfa</literal> and the zeros of <literal>Ws</literal> are at <literal>alfa</literal>.
+            <literal>Fs</literal>の無限大にある極は<literal>alfa</literal>に配置され,
+            <literal>Ws</literal>のゼロは<literal>alfa</literal>に配置されます.
         </para>
         <para>
-            Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>
+            <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>に注意してください.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 F=randpencil([],[2],[1,2,3],[]);
-F=rand(5,5)*F*rand(5,5);   // 5 x 5 regular pencil with 3 evals at 1,2,3
+F=rand(5,5)*F*rand(5,5);   // 3つの評価点を1,2,3に有する5 x 5 の正則ペンシル
 [Ws,F1]=rowshuff(F,-1);
 [E1,A1]=pen2ea(F1);
-svd(E1)           //E1 non singular
+svd(E1)           //E1 正則
 roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pencan">pencan</link>

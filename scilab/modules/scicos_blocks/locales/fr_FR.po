@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-02-02 07:13+0000\n"
-"Last-Translator: Clément David <c.david86@gmail.com>\n"
+"PO-Revision-Date: 2012-08-03 08:50+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -720,6 +720,56 @@ msgstr "[1, Taille d'enregistrement = "
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Valeur erronée des index du paramètre '%s' : %s"
+
+msgid "Read from an input file"
+msgstr "Lire depuis un fichier d'entrée"
+
+msgid "Read is done on:"
+msgstr "La lecture est faite sur :"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+"&nbsp; - Un fichier texte formaté si un format (type Fortran) est donné"
+
+msgid "Empty matrix or scalar expected."
+msgstr "Une matrice vide ou un scalaire attendu."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "Valeur erronée du paramètre '%s' : %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+"Simulation en cours. Vous ne pouvez pas <br />passer de formaté à non "
+"formaté."
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+"Simulation en cours. Vous ne pouvez pas modifier le nom de fichier d'entrée."
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr ""
+"Simulation en cours. Vous ne pouvez pas modifier la sélection du temps "
+"d'enregistrement."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "Valeur erronée du paramètre '%s' : %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "Format erroné du paramètre  '%s' : %s"
+
+msgid "Buffer size must be at least 2."
+msgstr "La taille de la mémoire tampon doit être au moins de 2."
+
+msgid "You must read at least one field in record."
+msgstr "Vous devez lire au moins un champs dans l'enregistrement."
+
+msgid "Strictly positive indexes expected."
+msgstr "Des valeurs d'indices strictement positives attendues."
 
 msgid "Step Function"
 msgstr "Fonction de Heaviside"

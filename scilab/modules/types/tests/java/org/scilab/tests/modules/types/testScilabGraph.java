@@ -1,4 +1,4 @@
-package org.scilab.tests.modules.hdf5;
+package org.scilab.tests.modules.types;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
@@ -13,28 +13,24 @@ package org.scilab.tests.modules.hdf5;
 
 import org.junit.*;
 
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-
-import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
-import org.scilab.modules.hdf5.write.H5Write;
 
 import java.io.File;
 
 public class testScilabGraph {
     private final static String tempDir = System.getProperty("java.io.tmpdir");
 
-    public static void main(String[] args) throws NullPointerException, HDF5Exception {
+    public static void main(String[] args) throws NullPointerException {
         testScilabGraph test = new testScilabGraph();
         test.testFakeMetanetGraph();
     }
 
     @Test
-    public void testFakeMetanetGraph() throws NullPointerException, HDF5Exception {
+    public void testFakeMetanetGraph() throws NullPointerException {
         /* PROFILES */
         ScilabList PROFILES = new ScilabList();
         PROFILES.add(new ScilabDouble(1.2));
@@ -165,16 +161,6 @@ public class testScilabGraph {
         graph.add(NODES);
         graph.add(EDGES);
 
-
-        int fileId = H5Write.createFile(fileName);
-        H5Write.writeInDataSet(fileId, "FakeGraph", graph);
-        H5Write.closeFile(fileId);
-
-        ScilabTList data = new ScilabTList();
-        fileId = H5Read.openFile(fileName);
-        H5Read.readDataFromFile(fileId, data);
-        H5Write.closeFile(fileId);
-        new File(fileName).delete();
     }
 
     private double[][] zeros(int rows, int cols) {

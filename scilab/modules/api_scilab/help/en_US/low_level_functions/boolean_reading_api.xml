@@ -134,14 +134,14 @@ int read_write_boolean(char *fname,unsigned long fname_len)
         piBool[i] = piBool[i] == 0 ? 1 : 0;
     }
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, iRows, iCols, piBool);
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, piBool);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }
  ]]></programlisting>

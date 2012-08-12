@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-23 19:58+0000\n"
+"PO-Revision-Date: 2012-08-03 10:16+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -509,9 +509,6 @@ msgstr "&Upravit"
 msgid "&Select as current figure"
 msgstr "&Vybrat jako současný obrazec"
 
-msgid "&Redraw figure"
-msgstr "&Znovu nakreslit obrazec"
-
 msgid "&Clear figure"
 msgstr "&Vyčistit obrazec"
 
@@ -618,10 +615,10 @@ msgid "&Resume"
 msgstr "&Pokračovat"
 
 msgid "&Abort"
-msgstr "&Přerušit"
+msgstr "&Ukončit"
 
 msgid "&Interrupt"
-msgstr "&Přerušit"
+msgstr "Př&erušit"
 
 msgid "&Applications"
 msgstr "&Aplikace"
@@ -805,6 +802,27 @@ msgstr "Písmo textu plochy"
 
 msgid "Custom:"
 msgstr "Vlastní:"
+
+msgid "Web"
+msgstr "Internet"
+
+msgid "Web browser and mailer"
+msgstr "Internetový prohlížeč a pošta"
+
+msgid "Use default web browser"
+msgstr "Použít výchozí internetový prohlížeč"
+
+msgid "Command for web browser: "
+msgstr "Příkaz pro internetový prohlížeč: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
+
+msgid "Use default mailer"
+msgstr "Použít výchozího poštovního klienta"
+
+msgid "Command for mailer: "
+msgstr "Příkaz pro poštovního klienta: "
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1043,6 +1061,7 @@ msgstr "Pozadí Konzole..."
 msgid "No print service found."
 msgstr "Žádna služba tisku nenalezena."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1052,6 +1071,7 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1232,6 +1252,7 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1239,9 +1260,11 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1296,6 +1319,7 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 

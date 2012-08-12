@@ -15,6 +15,7 @@
 #include <math.h>
 
 #include "SetUicontrolValue.hxx"
+#include "stack-c.h"
 
 int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
@@ -49,7 +50,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
             return SET_PROPERTY_ERROR;
         }
 
-        value = getDoubleMatrixFromStack(stackPointer);
+        value = stk(stackPointer);
         valueSize = nbCol * nbRow;
     }
     else if (valueType == sci_strings) // Ascendant compatibility

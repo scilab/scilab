@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: pl\n"
 
 #, c-format
@@ -187,6 +187,51 @@ msgid "The test %s is not available from the %s module"
 msgstr "Testowy %s jest niedostępny z poziomu modułu %s"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 "%s: Zły pierwszy argument wejściowy: Oczekiwany plik z rozszerzeniem .dia."
@@ -221,7 +266,7 @@ msgstr "Plik referencyjny (%s) nie istnieje"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
 
 #, c-format

@@ -9,6 +9,7 @@ import org.scilab.modules.ui_data.actions.DefaultAction;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
+@SuppressWarnings(value = { "serial" })
 public class CloseAction extends DefaultAction {
 
     /** Name of the action */

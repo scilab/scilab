@@ -130,7 +130,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private Color saveHighlightColor;
     private boolean hasBeenSaved;
     private boolean saveHighlightEnable;
-
+    
     private EventListenerList kwListeners = new EventListenerList();
     private Map<Integer, Object> highlightedWords = new HashMap<Integer, Object>();
 
@@ -1104,7 +1104,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 }
 
                 if (highlightedWords.size() > 1) {
-                    editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+		    if (editor != null) {
+			editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+		    }
                     search = true;
                 }
                 removeHighlightOnPosition(getSelectionStart());

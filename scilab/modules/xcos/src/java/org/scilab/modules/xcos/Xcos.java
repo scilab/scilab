@@ -98,13 +98,9 @@ public final class Xcos {
      * Dependencies version
      */
     private static final List<String> MXGRAPH_VERSIONS = null;
-    private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]", "[1, 8, 7]", "[1, 8, 8]");
     private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 
     private static final String UNABLE_TO_LOAD_JGRAPHX = Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
-    private static final String UNABLE_TO_LOAD_JHDF5 = Messages
-            .gettext("Unable to load the hdf5-java (jhdf5) library. \nExpecting version %s ; Getting version %s .");
-    private static final String UNABLE_TO_LOAD_HDF5 = Messages.gettext("Unable to load the native HDF5 library.");
     private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 
     private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
@@ -219,33 +215,6 @@ public final class Xcos {
             }
         } catch (final Throwable e) {
             throw new RuntimeException(String.format(UNABLE_TO_LOAD_JGRAPHX, MXGRAPH_VERSIONS.get(0), mxGraphVersion), e);
-        }
-
-        /* HDF5 */
-        final int[] libVersion = new int[3];
-        try {
-            final Class<?> klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
-
-            /* hdf5-java */
-            int ret = (Integer) klass.getMethod("H5get_libversion", libVersion.getClass()).invoke(null, libVersion);
-            if (ret < 0) {
-                throw new Exception();
-            }
-
-            if (!HDF5_VERSIONS.contains(Arrays.toString(libVersion))) {
-                throw new Exception();
-            }
-
-            /* hdf5 */
-            ret = (Integer) klass.getMethod("H5check_version", int.class, int.class, int.class).invoke(null, libVersion[0], libVersion[1], libVersion[2]);
-            if (ret < 0) {
-                throw new RuntimeException(UNABLE_TO_LOAD_HDF5);
-            }
-
-        } catch (final Throwable e) {
-            if (!(e instanceof RuntimeException)) {
-                throw new RuntimeException(String.format(UNABLE_TO_LOAD_JHDF5, HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
-            }
         }
 
         /* Batik */
@@ -651,7 +620,7 @@ public final class Xcos {
 
         if (openedDiagrams().size() <= 1) {
             /* halt scicos (stop the simulation) */
-            InterpreterManagement.requestScilabExec("haltscicos()");
+            InterpreterManagement.requestScilabExec("if isdef('haltscicos'), haltscicos(), end;");
         }
     }
 
@@ -748,7 +717,7 @@ public final class Xcos {
             instance.addDiagram(null, null);
 
             /* terminate any remaining simulation */
-            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), then haltscicos(), end;");
+            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), haltscicos(), end;");
 
             /* Saving modified data */
             instance.palette.saveConfig();

@@ -10,44 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trace">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="trace">
     <refnamediv>
         <refname>trace</refname>
-        <refpurpose> trace</refpurpose>
+        <refpurpose>トレース</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>trace(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix, polynomial or rational matrix.</para>
+                    <para>実数または複素行列, 多項式または有理行列.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>trace(X)</literal> is the trace of the matrix <literal>X</literal>.
+            <literal>trace(X)</literal>は行列<literal>X</literal>の
+            トレースとなる.
         </para>
         <para>
-            Same as <literal>sum(diag(X))</literal>.
+            <literal>sum(diag(X))</literal>と同じである.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(3,3);
 trace(A)-sum(spec(A))
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参考</title>
         <simplelist type="inline">
             <member>
                 <link linkend="det">det</link>

@@ -87,7 +87,8 @@
     <!--Lib_name: common_function-->
     <!--Func_list: common_function-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+    <![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -98,7 +99,7 @@ int common_function(char *fname,unsigned long fname_len)
     int *piAddr1    = NULL;
     int iBool       = 0;
 
-    for(i = 0 ; i < nbInputArgument ; i++)
+    for(i = 0 ; i < nbInputArgument(pvApiCtx) ; i++)
     {
         sciErr = printf_info(i + 1);
         if(sciErr.iErr)
@@ -112,7 +113,7 @@ int common_function(char *fname,unsigned long fname_len)
     //1 for true, 0 for false
     iBool = sciErr.iErr == 0 ? 1 : 0;
 
-    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument + 1, 1, 1, &iBool);
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &iBool);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -120,7 +121,7 @@ int common_function(char *fname,unsigned long fname_len)
     }
 
     //assign allocated variables to Lhs position
-    AssignOutputVariable(1) = nbInputArgument + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }
 SciErr printf_info(int _iVar)

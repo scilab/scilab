@@ -135,7 +135,6 @@ mainsci.o
 .metadata
 autom4te.cache
 .deps
-/locale
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties

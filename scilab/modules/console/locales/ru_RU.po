@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-27 14:51+0000\n"
+"PO-Revision-Date: 2012-08-03 12:05+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -77,6 +77,9 @@ msgstr "Командное окно"
 
 msgid "Display"
 msgstr "Показать"
+
+msgid "Automatically adapt the display to the console"
+msgstr "Автоматически подстаривать вывод на экран к командному окну"
 
 msgid "Lines to display:"
 msgstr "Строки для показа:"
@@ -151,7 +154,7 @@ msgid "Confirmation dialogs"
 msgstr "Диалоги подтверждения"
 
 msgid "Warn before exiting Scilab"
-msgstr "Предупреждать перед выходом из Scilab''а"
+msgstr "Предупреждать перед выходом из Scilab'а"
 
 msgid "Warn before deleting Command History items"
 msgstr "Предупреждать перед удалением пунктов истории команд"
@@ -160,7 +163,7 @@ msgid "Warn before clearing the Console"
 msgstr "Предупреждать перед очисткой командного окна"
 
 msgid "Desktop layout"
-msgstr "Расположение рабочего стола"
+msgstr "Конфигурация рабочего стола"
 
 msgid "Integrated"
 msgstr "Совместно"
@@ -562,22 +565,22 @@ msgid "Select the memory (in MB) available in Java: "
 msgstr "Выберите память (в МБ), доступную в Java: "
 
 msgid "Desktop Layout"
-msgstr ""
+msgstr "Конфигурация рабочего стола"
 
 msgid "Select a layout"
-msgstr ""
+msgstr "Выбрать конфигурацию"
 
 msgid "(Modify the layout requires to restart Scilab)"
-msgstr ""
+msgstr "(Изменение конфигурации требует перезапуска Scilab'а)"
 
 msgid "Keys binding"
 msgstr "Привязка клавиш"
 
 msgid "Filter on action name: "
-msgstr ""
+msgstr "Фильтр по названию действия: "
 
 msgid "Component"
-msgstr ""
+msgstr "Компонент"
 
 msgid "Name: "
 msgstr "Название: "
@@ -586,13 +589,13 @@ msgid "Description: "
 msgstr "Описание: "
 
 msgid "Binding: "
-msgstr ""
+msgstr "Сочетание: "
 
 msgid "Action name"
-msgstr ""
+msgstr "Название действия"
 
 msgid "Key binding"
-msgstr ""
+msgstr "Привязка клавиш"
 
 msgid "File or Directory"
 msgstr "Файл или Каталог"

@@ -46,6 +46,7 @@ import org.scilab.modules.commons.ScilabConstants;
  * Class to have an incremental search field.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class HelpSearchField extends JPanel implements FocusListener, KeyListener {
 
     private static final String SCI = ScilabConstants.SCI.getPath();

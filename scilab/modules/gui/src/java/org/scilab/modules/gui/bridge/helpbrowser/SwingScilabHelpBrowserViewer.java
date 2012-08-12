@@ -81,6 +81,7 @@ import org.scilab.modules.localization.Messages;
  * @author Sylvestre LEDRU
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implements MouseWheelListener {
 
     private static final String SCILAB_PROTO = "scilab://";

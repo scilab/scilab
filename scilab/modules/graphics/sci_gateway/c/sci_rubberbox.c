@@ -55,7 +55,7 @@ static int getInitialRectangle(double initRect[4])
 
 
     /* pointer on the stack */
-    rect = getDoubleMatrixFromStack(rectStackPointer);
+    rect = stk(rectStackPointer);
 
     /* intialize to 0 */
     for (i = 0; i < 4; i++)

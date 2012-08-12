@@ -43,11 +43,6 @@ public final class ConfigurationConstants {
         }
     };
 
-    /**
-     * The maximum number of recently opened files
-     */
-    public static final int MAX_RECENT_FILES = 10;
-
     /*
      * Properties applicable to the ConfigurationManager change support
      */

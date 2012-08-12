@@ -30,6 +30,7 @@ import com.mxgraph.view.mxGraphView;
 /**
  * Implement the default component for the {@link ScilabGraph}.
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabComponent extends mxGraphComponent {
     /**
      * Color use to mask the graph when the graph is locked
@@ -185,6 +186,7 @@ public class ScilabComponent extends mxGraphComponent {
      * Implement a graph control which paint a foreground on top of the view
      * when the graph is locked.
      */
+    @SuppressWarnings(value = { "serial" })
     public class ScilabGraphControl extends mxGraphControl {
 
         /**

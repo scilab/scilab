@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: it\n"
 
 #, c-format
@@ -147,6 +147,12 @@ msgstr "Calcolo dei parametri ottimali"
 
 msgid "Running optimization ...\n"
 msgstr "Esecuzione della ottimizzazione in corso...\n"
+
+msgid "View Code?"
+msgstr ""
+
+msgid "YesNo"
+msgstr ""
 
 msgid "fminsearch - Rosenbrock"
 msgstr ""

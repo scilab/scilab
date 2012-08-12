@@ -70,7 +70,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
 
         if (fractionAdr != 0)
         {
-            iValue = (int)(getDoubleFromStack(fractionAdr) * 100);
+            iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
         else if (messageAdr != NULL)
@@ -96,7 +96,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
 
             GraphicHandle = getHandle(pWaitbarUID);
 
-            iValue = (int)(getDoubleFromStack(fractionAdr) * 100);
+            iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
                                      nbColMessage * nbRowMessage);
@@ -118,7 +118,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            GraphicHandle = (unsigned long)*hstk(handleAdr);
+            GraphicHandle = (unsigned long) * hstk(handleAdr);
             pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
             if (pWaitbarUID == NULL)
             {
@@ -126,7 +126,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            iValue = (int)(getDoubleFromStack(fractionAdr) * 100);
+            iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
         else if (VarType(1) == sci_strings && VarType(2) == sci_handles)    /* waitbar(mes,winId) */
@@ -140,7 +140,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            GraphicHandle = (unsigned long)*hstk(handleAdr);
+            GraphicHandle = (unsigned long) * hstk(handleAdr);
             pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
             if (pWaitbarUID == NULL)
             {
@@ -202,11 +202,11 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        GraphicHandle = (unsigned long)*hstk(handleAdr);
+        GraphicHandle = (unsigned long) * hstk(handleAdr);
         pWaitbarUID = (char*)getObjectFromHandle(GraphicHandle);
         if (pWaitbarUID != NULL)
         {
-            iValue = (int)(getDoubleFromStack(fractionAdr) * 100);
+            iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
                                      nbColMessage * nbRowMessage);

@@ -14,7 +14,7 @@ function matfile2sci(mat_file_path,result_file_path)
 // mat_file_path : path of the Matlab MAT file
 // result_file_path : path of the generated Scilab file
 //
-//This function has been developped following the "MAT-File Format" description:
+//This function has been developed following the "MAT-File Format" description:
 //www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
 
 if ~with_module("matio") then

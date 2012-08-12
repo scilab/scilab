@@ -10,36 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowcomp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowcomp">
     <refnamediv>
         <refname>rowcomp</refname>
-        <refpurpose> row compression, range</refpurpose>
+        <refpurpose>行圧縮, 範囲</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real or complex matrix</para>
+                    <para>実数または複素数の行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>optional character string, with possible values
-                        <literal>'svd'</literal> or <literal>'qr'</literal>. The default value is  <literal>'svd'</literal>.
+                    <para>オプションの文字列, 指定可能な値は
+                        <literal>'svd'</literal> または <literal>'qr'</literal>です. 
+                        デフォルト値  <literal>'svd'</literal>はです.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>optional real non negative number. The default value is 
+                    <para>オプションの非負の実数. デフォルト値は 
                         <literal>sqrt(%eps)*norm(A,1)</literal>.
                     </para>
                 </listitem>
@@ -47,60 +48,61 @@
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>square non-singular matrix (change of basis)</para>
+                    <para>正方正則行列 (基底の変更)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rk</term>
                 <listitem>
                     <para>
-                        integer (rank of <literal>A</literal>)
+                        整数 (<literal>A</literal>のランク)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Row compression of <literal>A</literal>. <literal>Ac = W*A</literal> is a row compressed matrix: i.e. 
-            <literal>Ac=[Af;0]</literal> with <literal>Af</literal> full row rank.
+            <literal>A</literal>の行圧縮. <literal>Ac = W*A</literal> は行圧縮された行列です: すなわち, 
+            <literal>Af</literal>を行フルランクとして
+            <literal>Ac=[Af;0]</literal> となります.
         </para>
         <para>
-            <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag='qr'</literal> 
-            or <literal>'svd'</literal> (default <literal>'svd'</literal>).
+            <literal>flag</literal> および <literal>tol</literal> はオプションのパラメータです: <literal>flag='qr'</literal> 
+            または <literal>'svd'</literal> (デフォルト <literal>'svd'</literal>).
         </para>
         <para>
-            <literal>tol</literal> is a tolerance parameter.
+            <literal>tol</literal> は許容誤差パラメータです.
         </para>
         <para>
-            The <literal>rk</literal> first columns of <literal>W'</literal> span the range of
-            <literal>A</literal>.
+            <literal>W'</literal>の最初の<literal>rk</literal> 列には,
+            <literal>A</literal>の範囲が広がります.
         </para>
         <para>
-            The <literal>rk</literal> first (top) rows of <literal>W</literal> span the row
-            range of <literal>A</literal>.
+            <literal>W</literal>の最初の(上側の)<literal>rk</literal> 行には,
+            <literal>A</literal>の行範囲が広がります.
         </para>
         <para>
-            A non zero vector <literal>x</literal> belongs to range(<literal>A</literal>) iff
-            <literal>W*x</literal> is row  compressed in accordance with <literal>Ac</literal>
-            i.e the norm of its last components is small w.r.t its first
-            components.
+            非ゼロベクトル <literal>x</literal> は,
+            <literal>W*x</literal>が<literal>Ac</literal>に基づき行圧縮された場合,
+            すなわち,その最後の要素のノルムが最初の要素に対して小さい場合に限り,
+            range(<literal>A</literal>)に属します.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
-A=rand(5,2)*rand(2,4);              // 4 col. vectors, 2 independent.
+A=rand(5,2)*rand(2,4);              // 4 列ベクトル, 2 つは独立.
 [X,dim]=rowcomp(A);Xp=X';
 svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim)
-x=A*rand(4,1);                      //x belongs to span(A)
+x=A*rand(4,1);                      //x は span(A)に属します
 y=X*x  
-norm(y(dim+1:$))/norm(y(1:dim))     // small
+norm(y(dim+1:$))/norm(y(1:dim))     // 小さい
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colcomp">colcomp</link>
@@ -114,10 +116,14 @@ norm(y(dim+1:$))/norm(y(1:dim))     // small
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>作者</title>
+        <para>F. D.; INRIA   </para>
+    </refsection>
+    <refsection>
+        <title>使用される関数</title>
         <para>
-            The <literal>rowcomp</literal> function is based on the <link linkend="svd">svd</link> or
-            <link linkend="qr">qr</link> decompositions.
+            <literal>rowcomp</literal> 関数は<link linkend="svd">svd</link> または
+            <link linkend="qr">qr</link> 分解です.
         </para>
     </refsection>
 </refentry>

@@ -10,90 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="glever">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="glever">
     <refnamediv>
         <refname>glever</refname>
-        <refpurpose> inverse of matrix pencil</refpurpose>
+        <refpurpose>行列ペンシルの逆</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>E, A</term>
                 <listitem>
-                    <para>two real square matrices of same dimensions</para>
+                    <para>同じ次元の正方実行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
                     <para>
-                        character string (default value '<literal>s</literal>')
+                        文字列 (デフォルト値 '<literal>s</literal>')
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Bfs,Bis</term>
                 <listitem>
-                    <para>two polynomial matrices</para>
+                    <para>多項式行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>chis</term>
                 <listitem>
-                    <para>polynomial</para>
+                    <para>多項式</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <para>
-            Computation of
+        <title>説明</title>
+        <para>一般化したLeverrierのアルゴリズムによりある行列ペンシルについて
         </para>
         <para>
             <literal>(s*E-A)^-1</literal>
         </para>
         <para>
-            by generalized Leverrier's algorithm for a matrix pencil.
+            を計算します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role = ""><![CDATA[ 
 (s*E-A)^-1 = (Bfs/chis) - Bis.
  ]]></programlisting>
         <para>
-            <literal>chis</literal> = characteristic polynomial (up to a multiplicative constant).
+            <literal>chis</literal> = 特性多項式 (乗法定数まで).
         </para>
         <para>
-            <literal>Bfs</literal>  = numerator polynomial matrix.
+            <literal>Bfs</literal>  = 分子の特性多項式行列.
         </para>
         <para>
             <literal>Bis</literal>
-            = polynomial matrix ( - expansion of <literal>(s*E-A)^-1</literal> at infinity).
+            = 多項式行列 ( - <literal>(s*E-A)^-1</literal> の無限大までの級数展開).
         </para>
         <para>
-            Note the - sign before <literal>Bis</literal>.
+            <literal>Bis</literal>の前に - 符号があることに注意してください.
         </para>
     </refsection>
     <refsection>
-        <title>Caution</title>
+        <title>注意</title>
         <para>
-            This function uses <literal>cleanp</literal> to simplify <literal>Bfs,Bis</literal> and <literal>chis</literal>.
+            この関数は,<literal>Bfs,Bis</literal> および <literal>chis</literal>を簡単化するために
+            <literal>cleanp</literal>を使用します.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 [Bfs,Bis,chis]=glever(F)
 inv(F)-((Bfs/chis) - Bis)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowshuff">rowshuff</link>

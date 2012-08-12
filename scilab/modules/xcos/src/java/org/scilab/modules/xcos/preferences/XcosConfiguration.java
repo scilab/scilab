@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,19 +30,25 @@ public class XcosConfiguration implements XConfigurationListener {
      */
     @Override
     public void configurationChanged(XConfigurationEvent e) {
-        Conf conf = new Conf(e.getModifiedPaths());
-        if (conf.changed()) {
-            XcosOptions.invalidate(conf);
-            // Xcos.configurationChanged(conf);
+        final Options options = new Options(e.getModifiedPaths());
+        if (options.changed()) {
+            XcosOptions.invalidate(options);
+        }
+
+        final KeyMap keymap = new KeyMap(e.getModifiedPaths());
+        if (keymap.changed()) {
+            XcosKeyMap.invalidate(keymap);
+
+            XcosKeyMap.updateActionKeys();
         }
     }
 
-    public static class Conf {
+    protected static class Options {
         public boolean preferences;
         public boolean edition;
         public boolean simulation;
 
-        public Conf(Set<String> path) {
+        public Options(Set<String> path) {
             if (path.contains("ALL")) {
                 preferences = true;
                 edition = true;
@@ -56,6 +62,22 @@ public class XcosConfiguration implements XConfigurationListener {
 
         public boolean changed() {
             return preferences || edition || simulation;
+        }
+    }
+
+    protected static class KeyMap {
+        public boolean keymap;
+
+        public KeyMap(Set<String> path) {
+            if (path.contains("ALL")) {
+                keymap = true;
+            } else {
+                keymap = path.contains(XcosKeyMap.KEYMAP_XPATH);
+            }
+        }
+
+        public boolean changed() {
+            return keymap;
         }
     }
 }

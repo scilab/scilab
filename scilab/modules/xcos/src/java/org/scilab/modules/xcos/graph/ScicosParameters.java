@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.preferences.XcosOptions;
  *      href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans
  *      Bound Properties</a>
  */
+@SuppressWarnings(value = { "serial" })
 public class ScicosParameters implements Serializable, Cloneable {
     /*
      * Default instance values from :

@@ -43,6 +43,7 @@ import org.scilab.modules.ui_data.variableeditor.actions.RemoveRowAction;
  * Class for the RowHeader
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class RowHeader extends JPanel implements TableModelListener {
 
     private static final Insets INSETS = new Insets(1, 0, 0, 0);
@@ -61,25 +62,25 @@ public class RowHeader extends JPanel implements TableModelListener {
         this.table = table;
         table.getModel().addTableModelListener(this);
         model = new DefaultTableModel(0, 1) {
-                public boolean isCellEditable(int iRowIndex, int iColumnIndex) {
-                    return false;
-                }
-            };
+            public boolean isCellEditable(int iRowIndex, int iColumnIndex) {
+                return false;
+            }
+        };
         rowTable = new JTable(model);
         setBorder(new AbstractBorder() {
-                public Insets getBorderInsets(Component c) {
-                    return INSETS;
-                }
+            public Insets getBorderInsets(Component c) {
+                return INSETS;
+            }
 
-                public Insets getBorderInsets(Component c, Insets insets) {
-                    return INSETS;
-                }
+            public Insets getBorderInsets(Component c, Insets insets) {
+                return INSETS;
+            }
 
-                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                    g.setColor(table.getGridColor().darker());
-                    g.drawLine(x, y, x + width, y);
-                }
-            });
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                g.setColor(table.getGridColor().darker());
+                g.drawLine(x, y, x + width, y);
+            }
+        });
         rowTable.setDoubleBuffered(true);
         rowTable.setDragEnabled(false);
         rowTable.setGridColor(table.getGridColor().darker());
@@ -96,81 +97,81 @@ public class RowHeader extends JPanel implements TableModelListener {
         add(rowTable);
         doLayout();
         rowTable.addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e)) {
-                        int row  = rowTable.rowAtPoint(e.getPoint());
-                        ListSelectionModel rsm = table.getSelectionModel();
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    int row  = rowTable.rowAtPoint(e.getPoint());
+                    ListSelectionModel rsm = table.getSelectionModel();
+                    int colC = ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount();
+                    if (colC == 0) {
+                        colC = 1;
+                    }
+
+                    if (e.isShiftDown()) {
+                        rsm.setSelectionInterval(row, clickedRow);
+                        table.setColumnSelectionInterval(0, colC - 1);
+                    } else {
+                        if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                            if (table.isRowSelected(row)) {
+                                rsm.removeSelectionInterval(row, row);
+                            } else {
+                                rsm.addSelectionInterval(row, row);
+                                table.setColumnSelectionInterval(0, colC - 1);
+                            }
+                        } else {
+                            rsm.setSelectionInterval(row, row);
+                            table.setColumnSelectionInterval(0, colC - 1);
+                        }
+                        clickedRow = row;
+                    }
+                    table.requestFocus();
+                }
+            }
+        });
+
+        rowTable.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    Point p = e.getPoint();
+                    int row;
+                    if (p.y >= rowTable.getCellRect(rowTable.getRowCount() - 1, 0, false).y) {
+                        row = rowTable.getRowCount() - 1;
+                    } else {
+                        row = rowTable.rowAtPoint(p);
+                    }
+
+                    ListSelectionModel rsm = table.getSelectionModel();
+                    int lead = rsm.getLeadSelectionIndex();
+                    if (lead != row) {
+                        if (row == rowTable.getRowCount() - 1) {
+                            ((TableVariableEditor) table).addTenRows();
+                        }
+                        table.scrollRectToVisible(table.getCellRect(row, 0, false));
+                        if (e.isShiftDown()) {
+                            rsm.setSelectionInterval(clickedRow, row);
+                        } else {
+                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                                if (rsm.isSelectedIndex(row)) {
+                                    rsm.removeSelectionInterval(lead, row);
+                                    rsm.addSelectionInterval(clickedRow, row);
+                                } else {
+                                    rsm.addSelectionInterval(clickedRow, row);
+                                }
+                            } else {
+                                rsm.setSelectionInterval(clickedRow, row);
+                            }
+                        }
+
                         int colC = ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount();
                         if (colC == 0) {
                             colC = 1;
                         }
+                        table.setColumnSelectionInterval(0, colC - 1);
 
-                        if (e.isShiftDown()) {
-                            rsm.setSelectionInterval(row, clickedRow);
-                            table.setColumnSelectionInterval(0, colC - 1);
-                        } else {
-                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
-                                if (table.isRowSelected(row)) {
-                                    rsm.removeSelectionInterval(row, row);
-                                } else {
-                                    rsm.addSelectionInterval(row, row);
-                                    table.setColumnSelectionInterval(0, colC - 1);
-                                }
-                            } else {
-                                rsm.setSelectionInterval(row, row);
-                                table.setColumnSelectionInterval(0, colC - 1);
-                            }
-                            clickedRow = row;
-                        }
                         table.requestFocus();
                     }
                 }
-            });
-
-        rowTable.addMouseMotionListener(new MouseMotionAdapter() {
-                public void mouseDragged(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e)) {
-                        Point p = e.getPoint();
-                        int row;
-                        if (p.y >= rowTable.getCellRect(rowTable.getRowCount() - 1, 0, false).y) {
-                            row = rowTable.getRowCount() - 1;
-                        } else {
-                            row = rowTable.rowAtPoint(p);
-                        }
-
-                        ListSelectionModel rsm = table.getSelectionModel();
-                        int lead = rsm.getLeadSelectionIndex();
-                        if (lead != row) {
-                            if (row == rowTable.getRowCount() - 1) {
-                                ((TableVariableEditor) table).addTenRows();
-                            }
-                            table.scrollRectToVisible(table.getCellRect(row, 0, false));
-                            if (e.isShiftDown()) {
-                                rsm.setSelectionInterval(clickedRow, row);
-                            } else {
-                                if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
-                                    if (rsm.isSelectedIndex(row)) {
-                                        rsm.removeSelectionInterval(lead, row);
-                                        rsm.addSelectionInterval(clickedRow, row);
-                                    } else {
-                                        rsm.addSelectionInterval(clickedRow, row);
-                                    }
-                                } else {
-                                    rsm.setSelectionInterval(clickedRow, row);
-                                }
-                            }
-
-                            int colC = ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount();
-                            if (colC == 0) {
-                                colC = 1;
-                            }
-                            table.setColumnSelectionInterval(0, colC - 1);
-
-                            table.requestFocus();
-                        }
-                    }
-                }
-            });
+            }
+        });
     }
 
     /**
@@ -178,11 +179,11 @@ public class RowHeader extends JPanel implements TableModelListener {
      */
     public JPopupMenu createPopupMenu() {
         JPopupMenu popup = new JPopupMenu() {
-                public void show(Component invoker, int x, int y) {
-                    ((TableVariableEditor) table).setPopupRow(rowTable.rowAtPoint(new Point(x, y)));
-                    super.show(invoker, x, y);
-                }
-            };
+            public void show(Component invoker, int x, int y) {
+                ((TableVariableEditor) table).setPopupRow(rowTable.rowAtPoint(new Point(x, y)));
+                super.show(invoker, x, y);
+            }
+        };
         popup.setBorderPainted(true);
         popup.add(InsertRowAction.createMenuItem(table, UiDataMessages.INSERTR));
         popup.add(RemoveRowAction.createMenuItem(table, UiDataMessages.REMOVER));

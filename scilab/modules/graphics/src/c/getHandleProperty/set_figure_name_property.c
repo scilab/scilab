@@ -26,6 +26,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "sci_types.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -35,7 +36,7 @@ int set_figure_name_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 {
     BOOL status = FALSE;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "figure_name");
         return SET_PROPERTY_ERROR ;
@@ -43,13 +44,13 @@ int set_figure_name_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     status = setGraphicObjectProperty(pobjUID, __GO_NAME__, getStringFromStack( stackPointer ), jni_string, 1);
 
-    if(status == TRUE)
+    if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_name");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_name");
         return SET_PROPERTY_ERROR;
     }
 }

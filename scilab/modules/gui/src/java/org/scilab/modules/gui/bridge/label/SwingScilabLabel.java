@@ -55,6 +55,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
 
     private static final long serialVersionUID = 7177323379068859441L;
@@ -464,6 +465,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     /**
      * Inner class to handle the case where the label is in LaTeX or in MathML
      */
+    @SuppressWarnings(value = { "serial" })
     public class ScilabJTextPane extends JTextPane {
 
         private int descent;

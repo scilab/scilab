@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: uk\n"
 
 #, c-format
@@ -685,6 +685,7 @@ msgstr "Замінити"
 msgid "Replace All"
 msgstr "Замінити всі"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Некоректний формальний вираз: %s"
 
@@ -700,9 +701,11 @@ msgstr "Досягнуто кінця документа"
 msgid "You have reached the beginning of the document"
 msgstr "Досягнуто початку документа"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Рядка %s не знайдено"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -723,6 +726,7 @@ msgstr ""
 " було змінено з часу останнього збереження.\n"
 "Зберегти зміни?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -810,12 +814,14 @@ msgstr "Відкрити початковий код макросу "
 msgid "Show the definition of the macro "
 msgstr "Показати місце визначення макросу "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Рядок %s, позиція %s. Функція «%s» у рядку %s."
 
 msgid "Unknown function"
 msgstr "Невідома функція"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Рядок %s, позиція %s."
 
@@ -831,6 +837,7 @@ msgstr "Зберегти файл не вдалося."
 msgid "The file could not be converted."
 msgstr "Перетворити файл не вдалося."
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s — це каталог."
 
@@ -856,6 +863,7 @@ msgstr "Не позначено жодного фрагмента тексту."
 msgid "No text to execute."
 msgstr "Немає тексту для обробки."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -868,6 +876,7 @@ msgstr "Проблеми з кодуванням"
 msgid "Cannot guess the file encoding."
 msgstr "Не вдалося визначити кодування даних файла."
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 "Не вдалося зберегти файл %s… Процедуру створення резервної копії перервано."
@@ -875,6 +884,7 @@ msgstr ""
 msgid "Backup finished..."
 msgstr "Створення резервної копії завершено…"
 
+#, c-format
 msgid "%s occurences found."
 msgstr "Знайдено відповідники %s."
 
@@ -992,12 +1002,15 @@ msgstr "Знайти файли…"
 msgid "Search in Files..."
 msgstr "Знайти у файлах…"
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s відповідників)</i></html>"
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s відповідник)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Витрачено часу: %s сек."
 

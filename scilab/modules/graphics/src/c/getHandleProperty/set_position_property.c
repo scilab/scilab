@@ -51,7 +51,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     for respectively the Label and Legend */
     if (strcmp(type, __GO_LABEL__) == 0)
     {
-        double* values = getDoubleMatrixFromStack( stackPointer );
+        double* values = stk( stackPointer );
         double* currentPosition;
         double labelPosition[3];
 
@@ -76,7 +76,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
     else if (strcmp(type, __GO_LEGEND__) == 0)
     {
-        double * values = getDoubleMatrixFromStack( stackPointer );
+        double * values = stk( stackPointer );
 
         status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
 

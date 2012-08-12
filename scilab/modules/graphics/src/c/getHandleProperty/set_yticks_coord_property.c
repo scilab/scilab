@@ -50,7 +50,7 @@ int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     int* piTicksStyle = &iTicksStyle;
     char ticksStyle = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
@@ -66,7 +66,7 @@ int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     if (piYNumberTicks == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
 
@@ -90,7 +90,7 @@ int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     if (status == FALSE)
     {
         FREE(coordsVector);
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
 

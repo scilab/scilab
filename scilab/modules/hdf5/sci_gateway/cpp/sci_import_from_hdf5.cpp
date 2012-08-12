@@ -23,10 +23,10 @@ extern "C"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
+#include "h5_attributeConstants.h"
 #include "intmacr2tree.h"
 #include "expandPathVariable.h"
 }
-#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 //#define TIME_DEBUG
@@ -63,10 +63,6 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     checkInputArgumentAtLeast(pvApiCtx, 1);
     CheckLhs(1, 1);
 
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
-
     iCloseList = 0;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
@@ -95,6 +91,14 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     FREE(pstExpandedFilename);
     FREE(pstFilename);
+
+    //manage version information
+    int iVersion = getSODFormatAttribute(iFile);
+    if (iVersion > SOD_FILE_VERSION)
+    {//can't read file with version newer that me !
+        Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+        return 1;
+    }
 
     if (iSelectedVar)
     {

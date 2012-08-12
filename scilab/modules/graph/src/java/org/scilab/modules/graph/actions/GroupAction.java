@@ -3,11 +3,11 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -28,42 +28,43 @@ import com.mxgraph.swing.util.mxGraphActions;
 /**
  * Group any blocks and ease the manipulation of them.
  */
+@SuppressWarnings(value = { "serial" })
 public class GroupAction extends MultiSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = ScilabGraphMessages.GROUP;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_G;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-	
-	/**
-	 * Default constructor
-	 * 
-	 * @param scilabGraph
-	 *            The associated graph
-	 */
-	public GroupAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = ScilabGraphMessages.GROUP;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_G;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-	/**
-	 * Create the menu associated with this action.
-	 * @param scilabGraph the associated graph
-	 * @return The associated menu
-	 */
-	public static MenuItem groupMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, GroupAction.class);
-	}
+    /**
+     * Default constructor
+     *
+     * @param scilabGraph
+     *            The associated graph
+     */
+    public GroupAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Action to be done
-	 * @param e Event descriptor 
-	 */
-	public void actionPerformed(ActionEvent e) {
-		mxGraphActions.getGroupAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
-				e.getID(), e.getActionCommand()));
-	}
+    /**
+     * Create the menu associated with this action.
+     * @param scilabGraph the associated graph
+     * @return The associated menu
+     */
+    public static MenuItem groupMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, GroupAction.class);
+    }
+
+    /**
+     * Action to be done
+     * @param e Event descriptor
+     */
+    public void actionPerformed(ActionEvent e) {
+        mxGraphActions.getGroupAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
+                e.getID(), e.getActionCommand()));
+    }
 
 }

@@ -34,7 +34,6 @@ extern "C"
 #include "splitpath.h"
 #include "scicurdir.h"
 }
-#include "forceJHDF5load.hxx"
 
 //#define PRINT_DEBUG
 int iLevel = 0;
@@ -72,12 +71,8 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     SciErr sciErr;
 
-    CheckInputArgumentAtLeast(pvApiCtx, 2);
+    CheckInputArgumentAtLeast(pvApiCtx, 1);
     CheckLhs(0, 1);
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
     iNbVar = extractVarNameList(1, Rhs, pstNameList);
@@ -86,6 +81,29 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         FREE(pstNameList);
         return 1;
     }
+
+    //if(Rhs == 1)
+    //{
+    //    pstFileName = expandPathVariable(pstNameList[0]);
+    //    int iH5File = createHDF5File(pstFileName);
+
+    //    if (iH5File < 0)
+    //    {
+    //        FREE(pstFileName);
+    //        if (iH5File == -2)
+    //        {
+    //            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" is a directory"), fname, 1, pstNameList[0]);
+    //        }
+    //        else
+    //        {
+    //            Scierror(999, _("%s: Cannot open file %s.\n"), fname, pstNameList[0]);
+    //        }
+
+    //        return 1;
+    //    }
+
+    //}
+
 
     piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar));
     for (int i = 1 ; i < Rhs ; i++)
@@ -145,8 +163,8 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     {
         int iVersion = getSODFormatAttribute(iH5File);
         if (iVersion != -1 && iVersion != SOD_FILE_VERSION)
-        {
-            Scierror(999, _("%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+        {//to update version must be the same
+            Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
 
@@ -196,7 +214,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         }
     }
 
-    if (bExport)
+    if (bExport && Rhs != 1)
     {
         //add or update scilab version and file version in hdf5 file
         if (updateScilabVersion(iH5File) < 0)
@@ -214,7 +232,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     //close hdf5 file
     closeHDF5File(iH5File);
-    if (bExport == false)
+    if (bExport == false && Rhs != 1)
     {
         //remove file
         deleteafile(pstFileName);
@@ -230,7 +248,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (bExport == true)
+    if (bExport == true || Rhs == 1)
     {
         piReturn[0] = 1;
     }

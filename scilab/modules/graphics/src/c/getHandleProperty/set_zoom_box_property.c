@@ -37,7 +37,7 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 {
     char* type = NULL;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
@@ -47,18 +47,18 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
     }
 
     /* We must have a 4x1 matrix */
     if ( nbRow * nbCol == 6 )
     {
-        return sciZoom3D(pobjUID, getDoubleMatrixFromStack(stackPointer));
+        return sciZoom3D(pobjUID, stk(stackPointer));
     }
-    else if( nbRow * nbCol == 4)
+    else if ( nbRow * nbCol == 4)
     {
-        return sciZoom2D(pobjUID, getDoubleMatrixFromStack(stackPointer));
+        return sciZoom2D(pobjUID, stk(stackPointer));
     }
     else if ( nbCol * nbRow == 0 )
     {

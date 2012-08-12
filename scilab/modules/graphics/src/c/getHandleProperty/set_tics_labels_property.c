@@ -40,7 +40,7 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     int* piNbTicksLabels = &iNbTicksLabels;
     char** stringVector = NULL;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "tics_labels");
         return SET_PROPERTY_ERROR;
@@ -50,24 +50,24 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     if (piNbTicksLabels == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( iNbTicksLabels > nbRow*nbCol )
+    if ( iNbTicksLabels > nbRow * nbCol )
     {
         Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "tics_labels", iNbTicksLabels);
         return SET_PROPERTY_ERROR;
     }
 
-    stringVector = createCopyStringMatrixFromStack( stackPointer, nbRow*nbCol );
+    stringVector = createCopyStringMatrixFromStack( stackPointer, nbRow * nbCol );
 
     /* Check if we should load LaTex / MathML Java libraries */
-    loadTextRenderingAPI(stringVector, nbRow*nbCol, 1);
+    loadTextRenderingAPI(stringVector, nbRow * nbCol, 1);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow*nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow * nbCol);
 
-    destroyStringArray(stringVector, nbRow*nbCol);
+    destroyStringArray(stringVector, nbRow * nbCol);
 
     if (status == TRUE)
     {
@@ -75,7 +75,7 @@ int set_tics_labels_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
         return SET_PROPERTY_ERROR;
     }
 }

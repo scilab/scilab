@@ -40,11 +40,18 @@ Documentation
 Compilation
 ===========
 
+* Java HDF removed (was no longer necessary).
+
 * Switch to Scirenderer 0.5.6.
+
+* Switch to JOGL 2.0 rc9
 
 
 Bug Fixes
 =========
+
+* Bug #4337 fixed - who_user did not return user's variable names, they were
+                    only displayed.
 
 * Bug #7674 fixed - In all demos Optimization and Simulation, the source
                     code was displayed by default.
@@ -98,6 +105,8 @@ Bug Fixes
 
 * Bug #11701 fixed - Under Windows a CR was added in SciNotes each time the file
                      is saved.
+
+* Bug #11703 fixed - Exception when select text in SciNotes color prefs.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab

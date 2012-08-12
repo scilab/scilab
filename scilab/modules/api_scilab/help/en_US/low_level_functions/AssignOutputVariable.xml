@@ -10,7 +10,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>AssignOutputVariable(RankPos) = RankVar;</synopsis>
+    <synopsis>AssignOutputVariable(pvApiCtx, RankPos) = RankVar;</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -55,7 +55,8 @@
       integer but will neither be used nor returned as an output
       argument.
     </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example">
+        <![CDATA[
 #include "api_scilab.h"
 int sci_mysizedouble(char * fname, unsigned long fname_len)
 {
@@ -80,13 +81,13 @@ int sci_mysizedouble(char * fname, unsigned long fname_len)
 		return 0;
 	}
 
-    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 1, 1, 1, &m_in_row); // the m_in_row parameter handles the number of lines of the matrix sent as argument
-    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 2, 1, 1, &m_in_row); // store a same value, but will neither be used nor returned to Scilab
-    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 3, 1, 1, &n_in_col); // the n_in_col parameter handles the number of columns of the matrix sent as argument
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &m_in_row); // the m_in_row parameter handles the number of lines of the matrix sent as argument
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 2, 1, 1, &m_in_row); // store a same value, but will neither be used nor returned to Scilab
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 3, 1, 1, &n_in_col); // the n_in_col parameter handles the number of columns of the matrix sent as argument
 
-    AssignOutputVariable(1) = nbInputArgument + 1; // We set the parameter "nbInputArgument + 1" as an output argument
-    AssignOutputVariable(2) = nbInputArgument + 3; // We set the parameter "nbInputArgument + 3" as an output argument
-    ReturnArguments();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1; // We set the parameter "nbInputArgument(pvApiCtx) + 1" as an output argument
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 3; // We set the parameter "nbInputArgument(pvApiCtx) + 3" as an output argument
+    ReturnArguments(pvApiCtx);
     return 0;
 }
  ]]></programlisting>

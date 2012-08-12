@@ -39,6 +39,7 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 /**
  * The table renderer to render the tree in the first column of the JTable
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabTreeTableCellRenderer extends JTree implements TableCellRenderer {
 
     private SwingScilabTreeTable table;
@@ -103,17 +104,17 @@ public class ScilabTreeTableCellRenderer extends JTree implements TableCellRende
                 TreePath selPath = getPathForLocation(e.getX(), e.getY());
                 if (selRow != -1) {
                     switch (e.getClickCount()) {
-                    case 1 :
-                        /*int sel = SwingScilabTreeTable.this.getSelectedRow();
-                              System.out.println(sel+":::"+selRow+":::"+isEditable());
-                              if (sel == selRow) {
-                              System.out.println(getCellEditor().getTreeCellEditorComponent(ScilabTreeTableCellRenderer.this, getCellEditor().getCellEditorValue(), true, false, true, selRow));
-                              }
-                              e.consume();*/
-                        break;
-                    case 2:
-                        ((CommonCallBack) ScilabTreeTableCellRenderer.this.table.getActionMap().get("validate")).callBack();
-                        e.consume();
+                        case 1 :
+                            /*int sel = SwingScilabTreeTable.this.getSelectedRow();
+                                  System.out.println(sel+":::"+selRow+":::"+isEditable());
+                                  if (sel == selRow) {
+                                  System.out.println(getCellEditor().getTreeCellEditorComponent(ScilabTreeTableCellRenderer.this, getCellEditor().getCellEditorValue(), true, false, true, selRow));
+                                  }
+                                  e.consume();*/
+                            break;
+                        case 2:
+                            ((CommonCallBack) ScilabTreeTableCellRenderer.this.table.getActionMap().get("validate")).callBack();
+                            e.consume();
                     }
                 }
             }

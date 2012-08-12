@@ -31,6 +31,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Change cwd action
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ChangeCWDAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
@@ -57,19 +58,19 @@ public class ChangeCWDAction extends CommonCallBack {
     public JButton createButton() {
         PushButton button = ScilabPushButton.createPushButton();
         button.setCallback(new CommonCallBack(null) {
-                public void callBack() {
-                    SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
-                    filechooser.setCurrentDirectory(new File(table.getComboBox().getBaseDir()));
-                    filechooser.setTitle(UiDataMessages.SELECTADIR);
-                    filechooser.setMultipleSelection(false);
-                    filechooser.setDirectorySelectionOnly();
-                    filechooser.displayAndWait();
-                    String[] paths = filechooser.getSelection();
-                    if (paths != null && paths.length != 0) {
-                        changeDir(paths[0]);
-                    }
+            public void callBack() {
+                SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
+                filechooser.setCurrentDirectory(new File(table.getComboBox().getBaseDir()));
+                filechooser.setTitle(UiDataMessages.SELECTADIR);
+                filechooser.setMultipleSelection(false);
+                filechooser.setDirectorySelectionOnly();
+                filechooser.displayAndWait();
+                String[] paths = filechooser.getSelection();
+                if (paths != null && paths.length != 0) {
+                    changeDir(paths[0]);
                 }
-            });
+            }
+        });
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getClosedDirIcon());
 
         return (SwingScilabPushButton) button.getAsSimplePushButton();
@@ -81,16 +82,16 @@ public class ChangeCWDAction extends CommonCallBack {
     public JButton createParentDirButton() {
         PushButton button = ScilabPushButton.createPushButton();
         button.setCallback(new CommonCallBack(null) {
-                public void callBack() {
-                    File f = new File(table.getComboBox().getBaseDir());
-                    if (f.exists()) {
-                        File parent = f.getParentFile();
-                        if (parent != null && parent.exists() && parent.canRead()) {
-                            changeDir(parent.getAbsolutePath());
-                        }
+            public void callBack() {
+                File f = new File(table.getComboBox().getBaseDir());
+                if (f.exists()) {
+                    File parent = f.getParentFile();
+                    if (parent != null && parent.exists() && parent.canRead()) {
+                        changeDir(parent.getAbsolutePath());
                     }
                 }
-            });
+            }
+        });
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getUpDirIcon());
 
         return (SwingScilabPushButton) button.getAsSimplePushButton();

@@ -10,11 +10,14 @@
 
 function %_sodload(%__filename__, varargin)
 
-function [varValues] = %__convertHandles__(varValues)
+    function [varValues] = %__convertVariable__(varValues, varNames)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then
-                //convert handle to tlist
+                //convert tlist to handle
                 varValues(i) = createMatrixHandle(varValues(i));
+            elseif typeof(varValues(i)) == "ScilabMacro" then
+                //convert tlist to macro
+                varValues(i) = createMacro(varValues(i), varNames(i));
             elseif isList(varValues(i)) then
                 //list container
                 varValues(i) = parseList(varValues(i));
@@ -758,6 +761,21 @@ function [varValues] = %__convertHandles__(varValues)
         end
     endfunction
 
+    function macro = createMacro(macroStr, macroName)
+        macroSt = macroStr(3);
+        if macroStr(2) == %t then
+            flag = "c";
+        else
+            flag = "n";
+        end
+        header = strsubst(macroSt(1), "function ", "");
+        body = macroSt(2:$-1);
+        if body == [] then
+            body = "";
+        end
+        deff(header, body, flag);
+        execstr("macro = " + macroName);
+    endfunction
 
     [%__lhs__, %__rhs__] = argn();
     %__resumeList__ = list();
@@ -807,7 +825,7 @@ function [varValues] = %__convertHandles__(varValues)
     end
 
     if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__resumeList__ = %__convertHandles__(%__resumeList__);
+        %__resumeList__ = %__convertVariable__(%__resumeList__, %__resumeVarlist__);
     end
 
     execstr("[" + strcat(%__resumeVarlist__, ",") + "] = resume(%__resumeList__(:))");

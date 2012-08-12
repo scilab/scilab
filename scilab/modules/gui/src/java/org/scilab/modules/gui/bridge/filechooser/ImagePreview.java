@@ -39,6 +39,7 @@ import java.awt.*;
 import java.io.File;
 
 /* ImagePreview.java by FileChooserDemo2.java. */
+@SuppressWarnings(value = { "serial" })
 public class ImagePreview extends JComponent
     implements PropertyChangeListener {
     ImageIcon thumbnail = null;

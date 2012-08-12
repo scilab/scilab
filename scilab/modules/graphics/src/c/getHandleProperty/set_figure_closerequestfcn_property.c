@@ -25,7 +25,7 @@ int set_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID, size_t stac
 {
     BOOL status = FALSE;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "closerequestfcn");
         return SET_PROPERTY_ERROR ;

@@ -25,6 +25,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * Content pane for SciNotes.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SciNotesContents extends JPanel {
 
     private ScilabTabbedPane stp;
@@ -38,13 +39,13 @@ public class SciNotesContents extends JPanel {
         super(new BorderLayout());
         stp = new ScilabTabbedPane(editor);
         add(stp);
-	addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    editor.getTextPane().requestFocus();
-                }
-		
-                public void focusLost(FocusEvent e) { }
-            });
+        addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                editor.getTextPane().requestFocus();
+            }
+
+            public void focusLost(FocusEvent e) { }
+        });
     }
 
     /**

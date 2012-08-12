@@ -16,6 +16,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "sci_types.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
@@ -120,7 +121,7 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
     if (valueType == sci_matrix)
     {
         // The parent is Scilab Main window (Console Tab)
-        value = getDoubleMatrixFromStack(stackPointer);
+        value = stk(stackPointer);
         if (value[0] != 0)
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong value for parent: 0 expected.\n")), "SetMenuParent");

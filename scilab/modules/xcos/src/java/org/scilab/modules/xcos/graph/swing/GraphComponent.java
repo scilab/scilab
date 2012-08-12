@@ -44,11 +44,12 @@ import com.mxgraph.swing.handler.mxSelectionCellsHandler;
  * Implement a specific {@link com.mxgraph.swing.mxGraphComponent} for an Xcos
  * diagram.
  */
+@SuppressWarnings(value = { "serial" })
 public class GraphComponent extends ScilabComponent {
 
     /**
      * Default constructor.
-     * 
+     *
      * @param graph
      *            the graph
      */
@@ -115,9 +116,8 @@ public class GraphComponent extends ScilabComponent {
         /*---*/
         menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getGraph()));
 
-        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-                MouseInfo.getPointerInfo().getLocation().x, MouseInfo
-                        .getPointerInfo().getLocation().y);
+        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
+                .getLocation().y);
 
         menu.setVisible(true);
     }

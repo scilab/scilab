@@ -22,6 +22,7 @@ import java.awt.*;
 /**
  * @author Pierre Lando
  */
+@SuppressWarnings(value = { "serial" })
 public class FigureFrame extends JFrame {
     private final TreeModel treeModel;
     public FigureFrame(String id) {

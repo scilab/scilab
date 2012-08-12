@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-10-04 16:15+0000\n"
+"PO-Revision-Date: 2012-08-02 20:13+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 msgid "overflow error"
 msgstr "chyba přetečení"
@@ -709,6 +709,52 @@ msgstr "[1, Velikost Záznamu = "
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Špatná hodnota pro indexy v parametru '%s': %s."
+
+msgid "Read from an input file"
+msgstr "Číst ze vstupního souboru"
+
+msgid "Read is done on:"
+msgstr "Čtení je hotovo v:"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+"&nbsp; - Soubor s formátovaným textem pokud je formát zadán (typ fortran)"
+
+msgid "Empty matrix or scalar expected."
+msgstr "Očekávána prázdná matice nebo skalár"
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "Špatná hodnota pro parametr '%s': %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+"Simulace běží !!! Nemůžete přepínat <br />mezi formátovaným a neformátovaným"
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr "Simulace běží !!! Nemůžete měnit 'název vstupního souboru"
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr "Simulace běží !!! Nemůžete měnit 'Výběr časového záznamu"
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "Špatná hodnota pro parametr '%s': %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "Špatný formát pro parametr '%s': %s."
+
+msgid "Buffer size must be at least 2."
+msgstr "Velikost vyrovnávací paměti musí být alespoň 2."
+
+msgid "You must read at least one field in record."
+msgstr "Musíte přečíst alespoň jedeno pole v záznamu."
+
+msgid "Strictly positive indexes expected."
+msgstr "Očekávány pouze kladné indexy."
 
 msgid "Step Function"
 msgstr "Skoková Funkce"

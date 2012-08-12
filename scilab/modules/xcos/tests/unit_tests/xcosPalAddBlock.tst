@@ -3,7 +3,6 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- NOT FIXED -->
 // <-- TEST WITH XCOS -->
 // <-- ENGLISH IMPOSED -->
 //
@@ -27,7 +26,13 @@ blockPath = TMPDIR + "/block.sod";
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");
 
-expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+if getos() == 'Windows' then
+    root_url = "file:///";
+else
+    root_url = "file://";
+end
+
+expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image="+ root_url +"%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -37,7 +42,7 @@ if or(expectedResult <> result) then pause, end
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, scs_m);
 
-expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" msprintf("%s/SUM_f.sod", TMPDIR) msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image="+ root_url +"%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -48,7 +53,7 @@ pal = xcosPal();
 export_to_hdf5(blockPath, "scs_m");
 pal = xcosPalAddBlock(pal, blockPath);
 
-expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image="+ root_url +"%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -57,7 +62,7 @@ if or(expectedResult <> result) then pause, end
 // check call with empty icon and style
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], []);
-expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR) msprintf("noLabel=1;image="+ root_url +"%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -75,7 +80,7 @@ cd(SCI);
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, "modules/xcos/images/palettes/NPN.png");
 
-expectedResult = ["SUM_f" blockPath iconPath msprintf("noLabel=1;image=file:%s/SUM_f.svg;", TMPDIR)];
+expectedResult = ["SUM_f" blockPath iconPath msprintf("noLabel=1;image="+ root_url +"%s/SUM_f.svg;", TMPDIR)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -90,11 +95,11 @@ cd(current);
 // check call with an empty icon and a struct style
 myStyle = struct();
 myStyle.block = [];
-myStyle.image = "file:" + iconPath;
+myStyle.image = root_url + iconPath;
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], myStyle);
 
-expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR)  msprintf("block;image=file:%s;", iconPath)];
+expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR)  msprintf("block;image="+ root_url +"%s;", iconPath)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -104,7 +109,7 @@ if or(expectedResult <> result) then pause, end
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, [], iconPath);
 
-expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR)  msprintf("noLabel=1;image=file:%s;", iconPath)];
+expectedResult = ["SUM_f" blockPath msprintf("%s/SUM_f.gif", TMPDIR)  msprintf("shape=label;image="+ root_url +"%s;", iconPath)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
@@ -114,7 +119,7 @@ if or(expectedResult <> result) then pause, end
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, blockPath, iconPath, stylePath);
 
-expectedResult = ["SUM_f" blockPath iconPath  msprintf("noLabel=1;image=file:%s;", stylePath)];
+expectedResult = ["SUM_f" blockPath iconPath  msprintf("shape=label;image="+ root_url +"%s;", stylePath)];
 expectedResult = strsubst(expectedResult, '\', '/');
 result = [pal.blockNames(1) pal.blocks(1) pal.icons(1) pal.style(1)];
 result = strsubst(result, '\', '/');
