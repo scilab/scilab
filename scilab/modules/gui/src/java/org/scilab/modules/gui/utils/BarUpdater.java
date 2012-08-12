@@ -100,11 +100,11 @@ public final class BarUpdater implements PropertyChangeListener {
             SwingScilabTab tab = (SwingScilabTab) evt.getSource();
 
             BarUpdater.updateBars(tab.getParentWindowId(),
-                    tab.getMenuBar(),
-                    tab.getToolBar(),
-                    tab.getInfoBar(),
-                    tab.getName(),
-                    tab.getWindowIcon());
+                                  tab.getMenuBar(),
+                                  tab.getToolBar(),
+                                  tab.getInfoBar(),
+                                  tab.getName(),
+                                  tab.getWindowIcon());
         }
     }
 }

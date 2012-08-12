@@ -82,7 +82,7 @@ public class SwapObject {
         position[1] = clickY;
         String axesID = AxesHandler.clickedAxes(objectID, position);
         Double[] axesMargins = (Double[]) GraphicController.getController()
-                            .getProperty(axesID, GraphicObjectProperties.__GO_MARGINS__);
+                               .getProperty(axesID, GraphicObjectProperties.__GO_MARGINS__);
         Double left, right, top, bottom;
 
         left = axesMargins[0];
@@ -91,7 +91,7 @@ public class SwapObject {
         bottom = axesMargins[3];
 
         Integer[] axesSize = (Integer[])GraphicController.getController()
-                                 .getProperty(objectID, GraphicObjectProperties.__GO_AXES_SIZE__);
+                             .getProperty(objectID, GraphicObjectProperties.__GO_AXES_SIZE__);
         Integer x, y;
 
         x = axesSize[0];
@@ -105,9 +105,9 @@ public class SwapObject {
         topBorder = y - top * y;
 
         if (position[0] > leftBorder && position[0] < rightBorder && position[1] > bottomBorder && position[1] < topBorder) {
-           axes(axesID);
+            axes(axesID);
         } else {
-           figure(objectID);
+            figure(objectID);
         }
     }
 
@@ -122,7 +122,7 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Axes(axesID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.axes);
-        } catch (NullPointerException npe){ }
+        } catch (NullPointerException npe) { }
     }
 
     /**
@@ -136,7 +136,7 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Figure(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
-        } catch (NullPointerException npe){ }
+        } catch (NullPointerException npe) { }
     }
 
     /**
@@ -150,7 +150,7 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Legend(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.legend);
-        } catch (NullPointerException npe){ }
+        } catch (NullPointerException npe) { }
     }
 
     /**
@@ -164,7 +164,7 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Polyline(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
-        } catch (NullPointerException npe){ }
+        } catch (NullPointerException npe) { }
     }
 
     /**
@@ -178,6 +178,6 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Surface(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.surface);
-        } catch (NullPointerException npe){ }
+        } catch (NullPointerException npe) { }
     }
 }

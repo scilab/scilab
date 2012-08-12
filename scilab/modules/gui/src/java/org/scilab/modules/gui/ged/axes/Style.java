@@ -70,7 +70,7 @@ public class Style extends Position {
     protected JLabel lVisible;
     protected JComboBox cVisible;
     protected String parentFigure = (String) GraphicController.getController()
-                                .getProperty(currentaxes, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+                                    .getProperty(currentaxes, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
     /**
     * Receives and passes the objectID to the parent class.
@@ -167,19 +167,19 @@ public class Style extends Position {
         pBackColorLayout.setHorizontalGroup(
             pBackColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBackColorLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(bBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(cBackColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                      .addGap(35, 35, 35)
+                      .addComponent(bBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(11, 11, 11)
+                      .addComponent(cBackColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
         pBackColorLayout.setVerticalGroup(
             pBackColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBackColorLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(bBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(1, 1, 1)
+                      .addComponent(bBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGroup(pBackColorLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(cBackColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
+                      .addGap(3, 3, 3)
+                      .addComponent(cBackColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
         );
 
         //Components of the property: Foreground Color.
@@ -213,19 +213,19 @@ public class Style extends Position {
         pForeColorLayout.setHorizontalGroup(
             pForeColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pForeColorLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(bForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(cForeColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                      .addGap(35, 35, 35)
+                      .addComponent(bForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(11, 11, 11)
+                      .addComponent(cForeColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
         pForeColorLayout.setVerticalGroup(
             pForeColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pForeColorLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(bForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(1, 1, 1)
+                      .addComponent(bForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGroup(pForeColorLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(cForeColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
+                      .addGap(3, 3, 3)
+                      .addComponent(cForeColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
         );
 
         //Components of the property: Font Color.
@@ -259,19 +259,19 @@ public class Style extends Position {
         pFontColorLayout.setHorizontalGroup(
             pFontColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pFontColorLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(bFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(cFontColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                      .addGap(35, 35, 35)
+                      .addComponent(bFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(11, 11, 11)
+                      .addComponent(cFontColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
         pFontColorLayout.setVerticalGroup(
             pFontColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pFontColorLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(bFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(1, 1, 1)
+                      .addComponent(bFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGroup(pFontColorLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(cFontColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
+                      .addGap(3, 3, 3)
+                      .addComponent(cFontColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
         );
 
         //Components of the property: Font Style.
@@ -282,11 +282,11 @@ public class Style extends Position {
         lFontStyle.setOpaque(true);
         lFontStyle.setPreferredSize(new Dimension(70, 20));
 
-        cFontStyle.setModel(new DefaultComboBoxModel(new String[] { 
-            "Monospaced", "Symbol", "Serif", "Serif Italic", "Serif Bold", 
-            "Serif Bold Italic", "SansSerif", "SansSerif Italic", 
-            "SansSerif Bold", "SansSerif Bold Italic" 
-        }));
+        cFontStyle.setModel(new DefaultComboBoxModel(new String[] {
+                                "Monospaced", "Symbol", "Serif", "Serif Italic", "Serif Bold",
+                                "Serif Bold Italic", "SansSerif", "SansSerif Italic",
+                                "SansSerif Bold", "SansSerif Bold Italic"
+                            }));
         cFontStyle.setBorder(null);
         cFontStyle.setEditor(null);
         cFontStyle.setPreferredSize(new Dimension(70, 20));
@@ -313,7 +313,7 @@ public class Style extends Position {
                 cVisibleActionPerformed(evt);
             }
         });
-   }
+    }
 
     /**
     * Positioning all the components of the Style/Appearance.
@@ -325,51 +325,51 @@ public class Style extends Position {
         pStyleLayout.setHorizontalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pStyleLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(pFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
+                      .addGap(18, 18, 18)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(pFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pStyleLayout.setVerticalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pStyleLayout.createSequentialGroup()
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(6, 6, 6)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(6, 6, 6)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pFontColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(4, 4, 4)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cFontStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(6, 6, 6)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -384,30 +384,30 @@ public class Style extends Position {
 
             /** Get the current status of the property: Background Color */
             Integer scilabBackgroundColor = (Integer) GraphicController.getController()
-                  .getProperty(currentaxes, GraphicObjectProperties.__GO_BACKGROUND__);
+                                            .getProperty(currentaxes, GraphicObjectProperties.__GO_BACKGROUND__);
             Double[] rgbBackgroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabBackgroundColor);
             cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(), rgbBackgroundColor[1].intValue(), rgbBackgroundColor[2].intValue()));
 
             /** Get the current status of the property: Foreground Color */
             Integer scilabForegroundColor = (Integer) GraphicController.getController()
-                  .getProperty(currentaxes, GraphicObjectProperties.__GO_LINE_COLOR__);
+                                            .getProperty(currentaxes, GraphicObjectProperties.__GO_LINE_COLOR__);
             Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
             cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(), rgbForegroundColor[1].intValue(), rgbForegroundColor[2].intValue()));
 
             /** Get the current status of the property: Font Color */
             Integer scilabFontColor = (Integer) GraphicController.getController()
-                  .getProperty(currentaxes, GraphicObjectProperties.__GO_FONT_COLOR__);
+                                      .getProperty(currentaxes, GraphicObjectProperties.__GO_FONT_COLOR__);
             Double[] rgbFontColor = ColorMapHandler.getRGBcolor(parentFigure, scilabFontColor);
             cFontColor.setBackground(new Color(rgbFontColor[0].intValue(), rgbFontColor[1].intValue(), rgbFontColor[2].intValue()));
 
             /** Get the current status of the property: Font Style */
             int currentFontStyle = (Integer) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_FONT_STYLE__);
+                                   .getProperty(currentaxes, GraphicObjectProperties.__GO_FONT_STYLE__);
             cFontStyle.setSelectedIndex(currentFontStyle);
 
             /** Get the current status of the property: Visible */
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(currentaxes, GraphicObjectProperties.__GO_VISIBLE__);
             if (isVisible) {
                 cVisible.setSelectedIndex(1);
             } else {
@@ -495,7 +495,7 @@ public class Style extends Position {
     private void cFontStyleActionPerformed(ActionEvent evt) {
         int setFontStyle = cFontStyle.getSelectedIndex();
         GraphicController.getController()
-                .setProperty(currentaxes, GraphicObjectProperties.__GO_FONT_STYLE__, setFontStyle);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_FONT_STYLE__, setFontStyle);
     }
 
     /**
@@ -509,6 +509,6 @@ public class Style extends Position {
             setVisible = false;
         }
         GraphicController.getController()
-                .setProperty(currentaxes, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
     }
 }

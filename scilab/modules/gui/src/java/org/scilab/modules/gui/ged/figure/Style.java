@@ -109,7 +109,7 @@ public class Style extends DataProperties {
 
         sStyle.setPreferredSize(new Dimension(50, 2));
 
-	//Components of the property: Color.
+        //Components of the property: Color.
         pColor.setBackground(new Color(255, 255, 255));
         pColor.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         pColor.setPreferredSize(new Dimension(70, 20));
@@ -135,28 +135,28 @@ public class Style extends DataProperties {
         lColor.setOpaque(true);
         lColor.setPreferredSize(new Dimension(70, 20));
 
-	//Positioning the components of the property: Color.
+        //Positioning the components of the property: Color.
         GroupLayout pColorLayout = new GroupLayout(pColor);
         pColor.setLayout(pColorLayout);
         pColorLayout.setHorizontalGroup(
             pColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pColorLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(bColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(cColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                      .addGap(35, 35, 35)
+                      .addComponent(bColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(11, 11, 11)
+                      .addComponent(cColor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
         pColorLayout.setVerticalGroup(
             pColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pColorLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(bColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(1, 1, 1)
+                      .addComponent(bColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGroup(pColorLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(cColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
+                      .addGap(3, 3, 3)
+                      .addComponent(cColor, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
         );
 
-	//Components of the property: Pixmap.
+        //Components of the property: Pixmap.
         lPixmap.setBackground(new Color(255, 255, 255));
         lPixmap.setText(" " + MessagesGED.pixmap);
         lPixmap.setAlignmentX(0.5F);
@@ -174,7 +174,7 @@ public class Style extends DataProperties {
             }
         });
 
-	//Components of the property: Pixel Drawing Mode.
+        //Components of the property: Pixel Drawing Mode.
         lPixelDrawing.setBackground(new Color(255, 255, 255));
         lPixelDrawing.setText(" " + MessagesGED.pixel_drawing_mode);
         lPixelDrawing.setAlignmentX(0.5F);
@@ -182,10 +182,11 @@ public class Style extends DataProperties {
         lPixelDrawing.setOpaque(true);
         lPixelDrawing.setPreferredSize(new Dimension(70, 20));
 
-        cPixelDrawing.setModel(new DefaultComboBoxModel(new String[] { 
-            "clear", "and", "andReverse", "copy", "andInverted",
-            "noop", "xor", "or", "nor", "equiv", "invert", "orReverse",
-            "copyInverted", "orInverted", "nand", "set" }));
+        cPixelDrawing.setModel(new DefaultComboBoxModel(new String[] {
+                                   "clear", "and", "andReverse", "copy", "andInverted",
+                                   "noop", "xor", "or", "nor", "equiv", "invert", "orReverse",
+                                   "copyInverted", "orInverted", "nand", "set"
+                               }));
         cPixelDrawing.setSelectedIndex(3);
         cPixelDrawing.setBorder(null);
         cPixelDrawing.setEditor(null);
@@ -196,7 +197,7 @@ public class Style extends DataProperties {
             }
         });
 
-	//Components of the property: Rotation Style.
+        //Components of the property: Rotation Style.
         lRotationStyle.setBackground(new Color(255, 255, 255));
         lRotationStyle.setText(" " + MessagesGED.rotation_style);
         lRotationStyle.setAlignmentX(0.5F);
@@ -204,8 +205,9 @@ public class Style extends DataProperties {
         lRotationStyle.setOpaque(true);
         lRotationStyle.setPreferredSize(new Dimension(70, 20));
 
-        cRotationStyle.setModel(new DefaultComboBoxModel(new String[] { 
-            MessagesGED.unary, MessagesGED.multiple }));
+        cRotationStyle.setModel(new DefaultComboBoxModel(new String[] {
+                                    MessagesGED.unary, MessagesGED.multiple
+                                }));
         cRotationStyle.setBorder(null);
         cRotationStyle.setEditor(null);
         cRotationStyle.setPreferredSize(new Dimension(70, 20));
@@ -214,7 +216,7 @@ public class Style extends DataProperties {
                 cRotationStyleActionPerformed(evt);
             }
         });
-   }
+    }
 
     /**
     * Positioning all the components of the Style/Appearance.
@@ -225,49 +227,49 @@ public class Style extends DataProperties {
         pStyleLayout.setHorizontalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pStyleLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
+                      .addGap(18, 18, 18)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pStyleLayout.setVerticalGroup(
             pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pStyleLayout.createSequentialGroup()
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pStyleLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(7, 7, 7)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(lPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cPixmap, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(7, 7, 7)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(lPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cPixelDrawing, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(7, 7, 7)
+                      .addGroup(pStyleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pStyleLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(lRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cRotationStyle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -282,27 +284,27 @@ public class Style extends DataProperties {
 
             /** Get the current status of the property: Background Color */
             Integer scilabColor = (Integer) GraphicController.getController()
-                  .getProperty(currentfigure, GraphicObjectProperties.__GO_BACKGROUND__);
-            Double[] rgbColor = ColorMapHandler.getRGBcolor(currentfigure,scilabColor);
+                                  .getProperty(currentfigure, GraphicObjectProperties.__GO_BACKGROUND__);
+            Double[] rgbColor = ColorMapHandler.getRGBcolor(currentfigure, scilabColor);
             cColor.setBackground(new Color(rgbColor[0].intValue(), rgbColor[1].intValue(), rgbColor[2].intValue()));
 
             /** Get the current status of the property: Pixmap */
             boolean currentPixmap = (Boolean) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_PIXMAP__);
+                                    .getProperty(currentfigure, GraphicObjectProperties.__GO_PIXMAP__);
             if (currentPixmap) {
                 cPixmap.setSelectedIndex(1);
             } else {
-		cPixmap.setSelectedIndex(0);
+                cPixmap.setSelectedIndex(0);
             }
 
             /** Get the current status of the property: Pixel Drawing Mode */
             Integer currentPixelDrawingMode = (Integer) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__);
+                                              .getProperty(currentfigure, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__);
             cPixelDrawing.setSelectedIndex(currentPixelDrawingMode);
 
             /** Get the current status of the property: Rotation Style */
             Integer currentRotationStyle = (Integer) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_ROTATION_TYPE__);
+                                           .getProperty(currentfigure, GraphicObjectProperties.__GO_ROTATION_TYPE__);
             cRotationStyle.setSelectedIndex(currentRotationStyle);
         }
     }
@@ -321,11 +323,11 @@ public class Style extends DataProperties {
         bColor.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
     }
 
-   /**
-   * Implement the action button to show/hide.
-   *
-   * @param evt ActionEvent.
-   */
+    /**
+    * Implement the action button to show/hide.
+    *
+    * @param evt ActionEvent.
+    */
     private void bStyleActionPerformed(ActionEvent evt) {
         if (bStyle.isSelected()) {
             pStyle.setVisible(false);
@@ -357,7 +359,7 @@ public class Style extends DataProperties {
             setPixmap = false;
         }
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_PIXMAP__, setPixmap);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_PIXMAP__, setPixmap);
     }
 
     /**
@@ -368,7 +370,7 @@ public class Style extends DataProperties {
     private void cPixelDrawingActionPerformed(ActionEvent evt) {
         int setPixelDrawing = cPixelDrawing.getSelectedIndex();
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__, setPixelDrawing);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__, setPixelDrawing);
     }
 
     /**
@@ -379,6 +381,6 @@ public class Style extends DataProperties {
     private void cRotationStyleActionPerformed(ActionEvent evt) {
         int setRotationStyle = cRotationStyle.getSelectedIndex();
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_ROTATION_TYPE__, setRotationStyle);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_ROTATION_TYPE__, setRotationStyle);
     }
 }

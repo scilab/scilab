@@ -50,7 +50,7 @@ public class BaseProperties extends Roof {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of polyline.
     */
-    public BaseProperties(String objectID){
+    public BaseProperties(String objectID) {
         initPropertiesBase(objectID);
         position();
         setIconsBaseProperties();
@@ -117,10 +117,10 @@ public class BaseProperties extends Roof {
         pBasePropertiesLayout.setHorizontalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addGap(18, 18, 18)
+                      .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pBasePropertiesLayout.setVerticalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class BaseProperties extends Roof {
             currentpolyline = objectID;
             // Get the current status of the property: Visible
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__);
             if (isVisible) {
                 cVisible.setSelectedIndex(1);
             } else {
@@ -179,6 +179,6 @@ public class BaseProperties extends Roof {
             setVisible = false;
         }
         GraphicController.getController()
-                .setProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+        .setProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
     }
 }

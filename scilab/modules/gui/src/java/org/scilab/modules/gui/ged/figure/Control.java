@@ -126,7 +126,7 @@ public class Control extends BaseProperties {
             }
         });
 
-	//Components of the property: Position X.
+        //Components of the property: Position X.
         lxposition.setBackground(new Color(255, 255, 255));
         lxposition.setText(" " + MessagesGED.x_position);
         lxposition.setAlignmentX(0.5F);
@@ -170,7 +170,7 @@ public class Control extends BaseProperties {
             }
         });
 
-	//Components of the property: Size X.
+        //Components of the property: Size X.
         lxsize.setBackground(new Color(255, 255, 255));
         lxsize.setText(" " + MessagesGED.x_size);
         lxsize.setAlignmentX(0.5F);
@@ -192,7 +192,7 @@ public class Control extends BaseProperties {
             }
         });
 
-	//Components of the property: Size Y.
+        //Components of the property: Size Y.
         lysize.setBackground(new Color(255, 255, 255));
         lysize.setText(" " + MessagesGED.y_size);
         lysize.setAlignmentX(0.5F);
@@ -213,7 +213,7 @@ public class Control extends BaseProperties {
                 cysizeFocusLost(evt);
             }
         });
-   }
+    }
 
     /**
     * Positioning all the components of the Control.
@@ -224,51 +224,51 @@ public class Control extends BaseProperties {
         pControlLayout.setHorizontalGroup(
             pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pControlLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
+                      .addGap(18, 18, 18)
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pControlLayout.createSequentialGroup()
+                                          .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pControlLayout.createSequentialGroup()
+                                          .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pControlLayout.createSequentialGroup()
+                                          .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pControlLayout.createSequentialGroup()
+                                          .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pControlLayout.createSequentialGroup()
+                                          .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pControlLayout.setVerticalGroup(
             pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pControlLayout.createSequentialGroup()
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -282,15 +282,15 @@ public class Control extends BaseProperties {
             currentfigure = objectID;
             /** Get the current status of the property: Auto Resize */
             boolean isAutoResize = (Boolean) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__);
+                                   .getProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__);
             if (isAutoResize) {
                 cAutoResize.setSelectedIndex(1);
             } else {
-		cAutoResize.setSelectedIndex(0);
+                cAutoResize.setSelectedIndex(0);
             }
             /** Get the current status of the property: Position */
             Integer[] currentPosition = (Integer[]) GraphicController.getController()
-                        .getProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__);
+                                        .getProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__);
             String currentXposition;
             currentXposition = currentPosition[0].toString();
             cxposition.setText(currentXposition);
@@ -299,7 +299,7 @@ public class Control extends BaseProperties {
             cyposition.setText(currentXposition);
             /** Get the current status of the property: Size */
             Integer[] currentSize = (Integer[]) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__);
+                                    .getProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__);
             String currentXsize;
             currentXsize = currentSize[0].toString();
             cxsize.setText(currentXsize);
@@ -343,7 +343,7 @@ public class Control extends BaseProperties {
             setAutoResize = false;
         }
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__, setAutoResize);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__, setAutoResize);
     }
 
     /**
@@ -356,7 +356,7 @@ public class Control extends BaseProperties {
         setPosition[0] = setXposition;
         setPosition[1] = setYposition;
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__, setPosition);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__, setPosition);
     }
 
     /**
@@ -405,7 +405,7 @@ public class Control extends BaseProperties {
         setSize[0] = setXsize;
         setSize[1] = setYsize;
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__, setSize);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__, setSize);
     }
 
     /**

@@ -21,50 +21,50 @@ import org.scilab.modules.gui.widget.Widget;
 
 
 /**
- * Interface for tree used in Scilab 
+ * Interface for tree used in Scilab
  * @author Sylvestre KOUMAR
  */
-public interface Tree extends Widget {	
-	
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	SimpleTree getAsSimpleTree();
-	
-	/**
-	 * Get the label of a tree node
-	 * @return label of a node
-	 */
-	String getLabel();
-	
-	/**
-	 * Get the icon image of a tree node
-	 * @return icon of a node
-	 */
-	Icon getIcon();
-	
-	/**
-	 * Get the callback of a tree node
-	 * @return callback of a node
-	 */
-	CommonCallBack getCallback();
-	
-	/**
-	 * Add child to a tree
-	 * @param firstChild to add
-	 */
-	void addChild(Tree firstChild);
-	
-	/**
-	 * Get children of a tree
-	 * @return vector of children
-	 */
-	Vector<Tree> getChildren();
+public interface Tree extends Widget {
 
-	/**
-	 * Display a tree
-	 */
-	void showTree();
-	
+    /**
+     * Gets this Bridge component object
+     * @return this Bridge component object
+     */
+    SimpleTree getAsSimpleTree();
+
+    /**
+     * Get the label of a tree node
+     * @return label of a node
+     */
+    String getLabel();
+
+    /**
+     * Get the icon image of a tree node
+     * @return icon of a node
+     */
+    Icon getIcon();
+
+    /**
+     * Get the callback of a tree node
+     * @return callback of a node
+     */
+    CommonCallBack getCallback();
+
+    /**
+     * Add child to a tree
+     * @param firstChild to add
+     */
+    void addChild(Tree firstChild);
+
+    /**
+     * Get children of a tree
+     * @return vector of children
+     */
+    Vector<Tree> getChildren();
+
+    /**
+     * Display a tree
+     */
+    void showTree();
+
 }

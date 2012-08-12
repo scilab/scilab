@@ -65,7 +65,7 @@ public class ListCreator {
             public void mousePressed(MouseEvent e) {
                 if (e.getX() < 20) {
                     int index = list.locationToIndex(e.getPoint());
-                    if(index != -1) {
+                    if (index != -1) {
                         JCheckBox checkbox = getCheckbox(index);
                         checkbox.setSelected(!checkbox.isSelected());
                         setVisible(!checkbox.isSelected(), uids.get(index));
@@ -113,9 +113,9 @@ public class ListCreator {
     * Loads the current status of objects.
     */
     private void getVisible() {
-        for (int index = 0; index < cbArray.size(); index++){
+        for (int index = 0; index < cbArray.size(); index++) {
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(uids.get(index), GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(uids.get(index), GraphicObjectProperties.__GO_VISIBLE__);
             JCheckBox checkboxAxis = getCheckbox(index);
             checkboxAxis.setSelected(!isVisible);
         }
@@ -128,7 +128,7 @@ public class ListCreator {
     */
     public void setVisible(boolean status, String objectID) {
         GraphicController.getController()
-                .setProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__, status);
+        .setProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__, status);
     }
 
     /**

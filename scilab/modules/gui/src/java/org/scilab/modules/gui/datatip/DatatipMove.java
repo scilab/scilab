@@ -64,7 +64,7 @@ public class DatatipMove {
         }
         for (int i = 0 ; i < axesChildrenUid.length ; i++) {
             if (axesChildrenUid[i] == markerUid) {
-                datatipUid = axesChildrenUid[i+1];
+                datatipUid = axesChildrenUid[i + 1];
                 break;
             }
         }
@@ -94,7 +94,7 @@ public class DatatipMove {
         }
         for (int i = 0 ; i < axesChildrenUid.length ; i++) {
             if (axesChildrenUid[i] == markerUid) {
-                datatipUid = axesChildrenUid[i+1];
+                datatipUid = axesChildrenUid[i + 1];
                 break;
             }
         }

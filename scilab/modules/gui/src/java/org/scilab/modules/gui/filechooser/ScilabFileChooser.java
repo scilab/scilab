@@ -53,7 +53,7 @@ public class ScilabFileChooser implements FileChooser {
      * @return the created export file chooser
      */
     public static FileChooser createExportFileChooser(String figureUID) {
-	return new ScilabFileChooser(figureUID);
+        return new ScilabFileChooser(figureUID);
     }
 
     /**

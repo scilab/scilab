@@ -80,20 +80,20 @@ public class ColorDialog extends Style {
         backcolorDialogLayout.setHorizontalGroup(
             backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backcolorDialogLayout.createSequentialGroup()
-                .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                      .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, backcolorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okBack)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(okBack)
+                      .addContainerGap())
         );
         backcolorDialogLayout.setVerticalGroup(
             backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backcolorDialogLayout.createSequentialGroup()
-                .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okBack)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(okBack)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -124,20 +124,20 @@ public class ColorDialog extends Style {
         forecolorDialogLayout.setHorizontalGroup(
             forecolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(forecolorDialogLayout.createSequentialGroup()
-                .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                      .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, forecolorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okFore)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(okFore)
+                      .addContainerGap())
         );
         forecolorDialogLayout.setVerticalGroup(
             forecolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(forecolorDialogLayout.createSequentialGroup()
-                .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okFore)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(okFore)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -172,7 +172,7 @@ public class ColorDialog extends Style {
         cForeColor.setBackground(choiceFore);
         forecolorDialog.dispose();
     }
-    
+
     /**
     * Change the color of the object.
     *
@@ -180,9 +180,9 @@ public class ColorDialog extends Style {
     */
     private void setBackgroungColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+        .setProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }
-    
+
     /**
     * Change the color of the object.
     *

@@ -80,20 +80,20 @@ public class ColorDialog extends Style {
         backColorDialogLayout.setHorizontalGroup(
             backColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                      .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, backColorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okBack)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(okBack)
+                      .addContainerGap())
         );
         backColorDialogLayout.setVerticalGroup(
             backColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okBack)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(okBack)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -101,7 +101,7 @@ public class ColorDialog extends Style {
     * JDialog - Selection of foreground colors.
     */
     @Override
-    public void dialogForegroundColor() {        
+    public void dialogForegroundColor() {
         foreColorDialog = new JDialog();
         chooser1 = new JColorChooser();
         okFore = new JButton();
@@ -123,20 +123,20 @@ public class ColorDialog extends Style {
         foreColorDialogLayout.setHorizontalGroup(
             foreColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(foreColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                      .addComponent(chooser1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, foreColorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okFore)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(okFore)
+                      .addContainerGap())
         );
         foreColorDialogLayout.setVerticalGroup(
             foreColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(foreColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okFore)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooser1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(okFore)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -166,20 +166,20 @@ public class ColorDialog extends Style {
         fontColorDialogLayout.setHorizontalGroup(
             fontColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(fontColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                      .addComponent(chooser2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, fontColorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okFont)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(okFont)
+                      .addContainerGap())
         );
         fontColorDialogLayout.setVerticalGroup(
             fontColorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(fontColorDialogLayout.createSequentialGroup()
-                .addComponent(chooser2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okFont)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooser2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(okFont)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -238,9 +238,9 @@ public class ColorDialog extends Style {
     */
     private void setBackgroungColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentaxes, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }
-    
+
     /**
     * Change the color of the object.
     *
@@ -248,9 +248,9 @@ public class ColorDialog extends Style {
     */
     private void setForegroundColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentaxes, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
     }
-    
+
     /**
     * Change the color of the object.
     *
@@ -258,6 +258,6 @@ public class ColorDialog extends Style {
     */
     private void setFontColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentaxes, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_FONT_COLOR__, scilabColor);
     }
 }

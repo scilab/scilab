@@ -79,7 +79,7 @@ public class ScilabClipboard {
         if (axesTo != null) { /* If there is an axes in the clicked position then adjust the bounds, make the axes visible and paste */
             AxesHandler.setAxesVisible(axesTo);
             CommonHandler.insert(axesTo, object);
-            /* 
+            /*
              * must be set up after insertion of the object
              * else tight_limits don't are set up correctly
              */

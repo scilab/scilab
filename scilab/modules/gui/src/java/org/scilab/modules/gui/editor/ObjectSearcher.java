@@ -119,10 +119,10 @@ public class ObjectSearcher {
         types = objTypes;
         objects.clear();
         getMultipleObjects(root);
-        if (objects.size() != 0){
+        if (objects.size() != 0) {
             String[] ret = new String[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
-                 ret[i] = objects.get(i);
+                ret[i] = objects.get(i);
             }
             return ret;
         }

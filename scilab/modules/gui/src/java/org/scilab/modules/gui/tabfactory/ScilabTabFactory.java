@@ -86,11 +86,9 @@ public class ScilabTabFactory extends DockableFactory.Stub {
                 addTabFactory(factory);
             } catch (ClassNotFoundException e) {
                 System.out.println(e);
-            }
-            catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 System.out.println(e);
-            }
-            catch (InstantiationException e) {
+            } catch (InstantiationException e) {
                 System.out.println(e);
             }
         }

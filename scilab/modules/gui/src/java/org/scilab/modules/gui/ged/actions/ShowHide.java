@@ -69,7 +69,7 @@ public class ShowHide extends CommonCallBack {
      * Implements a toggle button.
      */
     public static void toggleButton() {
-	if (click) {
+        if (click) {
             //Hide all sections.
             action(true);
             //Update the icon and tooltip.
@@ -77,7 +77,7 @@ public class ShowHide extends CommonCallBack {
             button.setToolTipText(MessagesGED.show);
 
             click = false;
-	} else {
+        } else {
             //Show all sections.
             action(false);
             //Update the icon and tooltip.
@@ -85,7 +85,7 @@ public class ShowHide extends CommonCallBack {
             button.setToolTipText(MessagesGED.hide);
 
             click = true;
-	}
+        }
     }
 
     /**
@@ -110,15 +110,15 @@ public class ShowHide extends CommonCallBack {
         switch (intValue) {
             case 0:
                 ((SwingScilabPushButton) button.getAsSimplePushButton())
-                        .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
             case 1:
                 ((SwingScilabPushButton) button.getAsSimplePushButton())
-                        .setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
+                .setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
                 break;
             default:
                 ((SwingScilabPushButton) button.getAsSimplePushButton())
-                        .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
         }
     }

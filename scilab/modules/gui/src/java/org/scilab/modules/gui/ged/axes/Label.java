@@ -223,32 +223,32 @@ public class Label extends AxisRulers {
         pAxisTitleLayout.setHorizontalGroup(
             pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pAxisTitleLayout.setVerticalGroup(
             pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -262,35 +262,35 @@ public class Label extends AxisRulers {
         pLabelLayout.setHorizontalGroup(
             pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pLabelLayout.createSequentialGroup()
-                .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(2, 2, 2)
+                      .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pLabelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pLabelLayout.createSequentialGroup()
-                        .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
+                      .addGap(18, 18, 18)
+                      .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pLabelLayout.createSequentialGroup()
+                                          .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
         );
         pLabelLayout.setVerticalGroup(
             pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pLabelLayout.createSequentialGroup()
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pLabelLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(6, 6, 6)
+                      .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pLabelLayout.createSequentialGroup()
+                                          .addGap(3, 3, 3)
+                                          .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                      .addGap(6, 6, 6)
+                      .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
     }
 
@@ -304,32 +304,32 @@ public class Label extends AxisRulers {
             currentaxes = axesID;
             /** Get the current status of the property: Title Page */
             String titlePage = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
+                               .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
 
             String[] textTitlePage = (String[])GraphicController.getController()
-                    .getProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                                     .getProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             cTitlePage.setText(textTitlePage[0]);
 
             /** Get the current status of the property: Axis Title */
             String axisTitleX = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                                .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
 
             String[] textTitleX = (String[])GraphicController.getController()
-                    .getProperty(axisTitleX, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                                  .getProperty(axisTitleX, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             cTitleX.setText(textTitleX[0]);
 
             String axisTitleY = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                                .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
 
             String[] textTitleY = (String[])GraphicController.getController()
-                    .getProperty(axisTitleY, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                                  .getProperty(axisTitleY, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             cTitleY.setText(textTitleY[0]);
 
             String axisTitleZ = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                                .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
 
             String[] textTitleZ = (String[])GraphicController.getController()
-                    .getProperty(axisTitleZ, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                                  .getProperty(axisTitleZ, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             cTitleZ.setText(textTitleZ[0]);
 
             titleAxis();
@@ -392,25 +392,25 @@ public class Label extends AxisRulers {
     private void axisTitle(int axis) {
         String[] text = new String[1];
         String axisLabel = null;
-        switch (axis){
+        switch (axis) {
             case 0:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                            .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 text[0] = cTitleX.getText();
                 break;
             case 1:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                            .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
                 text[0] = cTitleY.getText();
                 break;
             case 2:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                            .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 text[0] = cTitleZ.getText();
                 break;
         }
         GraphicController.getController()
-                .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
         titleAxis();
     }
 
@@ -473,11 +473,11 @@ public class Label extends AxisRulers {
     */
     private void TitlePage() {
         String titlePage = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
+                           .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
         String[] text = new String[1];
         text[0] = cTitlePage.getText();
         GraphicController.getController()
-                .setProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        .setProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
     }
 
     /**

@@ -25,21 +25,20 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class CheckBoxCellRenderer implements ListCellRenderer{
-  Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);  
+public class CheckBoxCellRenderer implements ListCellRenderer {
+    Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
-  public Component getListCellRendererComponent(
-                                                JList list,
-                                                Object value,
-                                                int index,
-                                                boolean isSelected,
-                                                boolean cellHasFocus)
-  {
+    public Component getListCellRendererComponent(
+        JList list,
+        Object value,
+        int index,
+        boolean isSelected,
+        boolean cellHasFocus) {
         JCheckBox checkbox = (JCheckBox) value;
         checkbox.setBackground(isSelected
-                ? list.getSelectionBackground() : list.getBackground());
+                               ? list.getSelectionBackground() : list.getBackground());
         checkbox.setForeground(isSelected
-                ? Color.ORANGE : list.getForeground());
+                               ? Color.ORANGE : list.getForeground());
 
         checkbox.setEnabled(list.isEnabled());
         checkbox.setFont(list.getFont());
@@ -47,8 +46,8 @@ public class CheckBoxCellRenderer implements ListCellRenderer{
 
         checkbox.setBorderPainted(true);
         checkbox.setBorder(isSelected ? UIManager.getBorder(
-           "List.focusCellHighlightBorder") : noFocusBorder);
+                               "List.focusCellHighlightBorder") : noFocusBorder);
 
         return checkbox;
-  }
+    }
 }

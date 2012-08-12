@@ -147,25 +147,25 @@ public class EntityPicker {
 
     private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
         /* Fast bound check*/
-        double m = (x1 + x0)/2;
+        double m = (x1 + x0) / 2;
         double dx = m - x0;
 
         double ca = (y1 - y0) / (x1 - x0);
 
         double yy = y0 + ca * (x - x0);
 
-        double pix = this.dx/selectionDelta;
-        double m_y = (y1 + y0)/2;
+        double pix = this.dx / selectionDelta;
+        double m_y = (y1 + y0) / 2;
         double dy = m_y - y0;
 
-        boolean ca_inf = (Math.abs(x1 - x0) < Math.abs(pix*2));
-        boolean in_bounds = (Math.abs(m - x) <= Math.abs(pix*2)) && (Math.abs(m_y - y) <= Math.abs(dy));
+        boolean ca_inf = (Math.abs(x1 - x0) < Math.abs(pix * 2));
+        boolean in_bounds = (Math.abs(m - x) <= Math.abs(pix * 2)) && (Math.abs(m_y - y) <= Math.abs(dy));
 
         /*
          * test if (x, y) belongs or is closer to the line
          * if the angular coeficent -> inf(ca_inf), the interpolation fails
          * then we use "in_bunds" test.
-         */ 
+         */
         return (Math.abs(m - x) <= Math.abs(dx)) && (y >= (yy - this.dy)) && (y <= (yy + this.dy)) || (ca_inf && in_bounds);
     }
 
@@ -413,8 +413,8 @@ public class EntityPicker {
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
 
 
-        Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f*pos[0], 1.0f*pos[1], 0.0));
-        Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f*pos[0], 1.0f*pos[1], 1.0));
+        Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 0.0));
+        Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 1.0));
         Vector3d Dir = v0.minus(v1).getNormalized();
 
 
@@ -425,7 +425,7 @@ public class EntityPicker {
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {
                 double curZ = SurfaceData.pickSurface(objs[i], v0.getX(), v0.getY(), v0.getZ(),
-                                            Dir.getX(), Dir.getY(), Dir.getZ(),mat[2], mat[6], mat[10], mat[14]);
+                                                      Dir.getX(), Dir.getY(), Dir.getZ(), mat[2], mat[6], mat[10], mat[14]);
                 if (curZ < Z) {
                     picked = objs[i];
                     Z = curZ;

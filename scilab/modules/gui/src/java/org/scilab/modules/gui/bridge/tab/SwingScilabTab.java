@@ -184,7 +184,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /** The listener for event handling */
     private ScilabEventListener eventHandler;
-	private EditorEventListener editorEventHandler = null;
+    private EditorEventListener editorEventHandler = null;
 
     /** A reference to the canvas used for event handling management */
     SwingScilabCanvas contentCanvas;
@@ -291,10 +291,10 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         contentCanvas = canvas;
 
-		editorEventHandler = new EditorEventListener(figure.getIdentifier());
-		contentCanvas.addEventHandlerKeyListener(editorEventHandler);
-		contentCanvas.addEventHandlerMouseListener(editorEventHandler);
-		contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+        editorEventHandler = new EditorEventListener(figure.getIdentifier());
+        contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+        contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+        contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);

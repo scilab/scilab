@@ -57,7 +57,7 @@ public class BaseProperties extends Roof {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of surface.
     */
-    public BaseProperties(String objectID){
+    public BaseProperties(String objectID) {
         initPropertiesBase(objectID);
         position();
         setIconsBaseProperties();
@@ -169,35 +169,35 @@ public class BaseProperties extends Roof {
         pBasePropertiesLayout.setHorizontalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
+                      .addGap(18, 18, 18)
+                      .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pBasePropertiesLayout.createSequentialGroup()
+                                          .addComponent(lSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pBasePropertiesLayout.createSequentialGroup()
+                                          .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                                .addGroup(pBasePropertiesLayout.createSequentialGroup()
+                                          .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
         );
         pBasePropertiesLayout.setVerticalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cSurfaceMode, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -212,7 +212,7 @@ public class BaseProperties extends Roof {
 
             // Get the current status of the property: Surface Mode
             boolean surfaceMode = (Boolean) GraphicController.getController()
-                    .getProperty(currentsurface, GraphicObjectProperties.__GO_SURFACE_MODE__);
+                                  .getProperty(currentsurface, GraphicObjectProperties.__GO_SURFACE_MODE__);
             if (surfaceMode) {
                 cSurfaceMode.setSelectedIndex(1);
             } else {
@@ -221,12 +221,12 @@ public class BaseProperties extends Roof {
 
             // Get the current status of the property: Tag
             String tag = (String) GraphicController.getController()
-                    .getProperty(currentsurface, GraphicObjectProperties.__GO_TAG__);
+                         .getProperty(currentsurface, GraphicObjectProperties.__GO_TAG__);
             cTag.setText(tag);
 
             // Get the current status of the property: Visible
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentsurface, GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(currentsurface, GraphicObjectProperties.__GO_VISIBLE__);
             if (isVisible) {
                 cVisible.setSelectedIndex(1);
             } else {
@@ -267,7 +267,7 @@ public class BaseProperties extends Roof {
             setSurfaceMode = false;
         }
         GraphicController.getController()
-                .setProperty(currentsurface, GraphicObjectProperties.__GO_SURFACE_MODE__, setSurfaceMode);
+        .setProperty(currentsurface, GraphicObjectProperties.__GO_SURFACE_MODE__, setSurfaceMode);
     }
 
     /**
@@ -275,7 +275,7 @@ public class BaseProperties extends Roof {
     */
     private void updateTag() {
         GraphicController.getController()
-                .setProperty(currentsurface, GraphicObjectProperties.__GO_TAG__, cTag.getText());
+        .setProperty(currentsurface, GraphicObjectProperties.__GO_TAG__, cTag.getText());
     }
 
     /**
@@ -307,6 +307,6 @@ public class BaseProperties extends Roof {
             setVisible = false;
         }
         GraphicController.getController()
-                .setProperty(currentsurface, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+        .setProperty(currentsurface, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
     }
 }

@@ -74,20 +74,20 @@ public class ColorDialog extends Style {
         colorDialogLayout.setHorizontalGroup(
             colorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(colorDialogLayout.createSequentialGroup()
-                .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                      .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, colorDialogLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ok)
-                .addContainerGap())
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                      .addComponent(ok)
+                      .addContainerGap())
         );
         colorDialogLayout.setVerticalGroup(
             colorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(colorDialogLayout.createSequentialGroup()
-                .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ok)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addComponent(chooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(ok)
+                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -114,6 +114,6 @@ public class ColorDialog extends Style {
     */
     private void setColor(Integer scilabColor) {
         GraphicController.getController()
-              .setProperty(currentfigure, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }
 }

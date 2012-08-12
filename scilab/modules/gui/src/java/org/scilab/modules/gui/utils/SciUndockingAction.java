@@ -97,7 +97,7 @@ public class SciUndockingAction extends AbstractAction {
         Size windowSize = newWindow.getDims();
         Size newTabSize = associatedTab.getDims();
         newWindow.setDims(new Size((windowSize.getWidth() - newTabSize.getWidth()) + oldtabSize.getWidth(),
-                (windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
+                                   (windowSize.getHeight() - newTabSize.getHeight()) + oldtabSize.getHeight()));
 
         associatedTab.setParentWindowId(newWindow.getId());
         associatedTab.requestFocus();

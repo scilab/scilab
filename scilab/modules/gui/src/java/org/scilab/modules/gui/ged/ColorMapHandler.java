@@ -131,15 +131,15 @@ public class ColorMapHandler {
 
         for (int i = 0; i < size; i++) {
             if (selectedColor[0].equals(colormap[i])
-            && selectedColor[1].equals(colormap[size + i])
-            && selectedColor[2].equals(colormap[2 * size + i])) {
+                    && selectedColor[1].equals(colormap[size + i])
+                    && selectedColor[2].equals(colormap[2 * size + i])) {
                 scilabColor = i + 1;
                 break;
             } else {
                 if (i == size - 1) {
                     Double[] newColorMap = addNewColor(size, colormap, selectedColor);
                     GraphicController.getController()
-                            .setProperty(figureID, GraphicObjectProperties.__GO_COLORMAP__, newColorMap);
+                    .setProperty(figureID, GraphicObjectProperties.__GO_COLORMAP__, newColorMap);
                     scilabColor = i + 2;
                 }
             }

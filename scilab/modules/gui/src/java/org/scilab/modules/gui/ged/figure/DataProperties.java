@@ -146,7 +146,7 @@ public class DataProperties extends Control {
             }
         });
 
-	//Components of the property: Units.
+        //Components of the property: Units.
         lUnits.setBackground(new Color(255, 255, 255));
         lUnits.setText(" " + MessagesGED.units);
         lUnits.setAlignmentX(0.5F);
@@ -154,14 +154,15 @@ public class DataProperties extends Control {
         lUnits.setOpaque(true);
         lUnits.setPreferredSize(new Dimension(127, 20));
 
-        cUnits.setModel(new DefaultComboBoxModel(new String[] { 
-            "Inches", "Centimeters", "Normalized",
-            "Points", "Pixels", "Characters"}));
+        cUnits.setModel(new DefaultComboBoxModel(new String[] {
+                            "Inches", "Centimeters", "Normalized",
+                            "Points", "Pixels", "Characters"
+                        }));
         cUnits.setSelectedIndex(4);
         cUnits.setBorder(null);
         cUnits.setEditor(null);
         cUnits.setPreferredSize(new Dimension(70, 20));
-   }
+    }
 
     /**
     * Positioning all the components of the DataProperties.
@@ -172,41 +173,41 @@ public class DataProperties extends Control {
         pDataLayout.setHorizontalGroup(
             pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pDataLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                      .addGap(18, 18, 18)
+                      .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addComponent(lFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addComponent(lFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addComponent(lUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                          .addGap(4, 4, 4)
+                                          .addComponent(cUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pDataLayout.setVerticalGroup(
             pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pDataLayout.createSequentialGroup()
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(cFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGap(6, 6, 6)
+                      .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(cFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGap(6, 6, 6)
+                      .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(pDataLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addComponent(lUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -220,13 +221,13 @@ public class DataProperties extends Control {
             currentfigure = objectID;
             /** Get the current status of the property: Figure ID */
             Integer currentFigureID = (Integer) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_ID__);
+                                      .getProperty(currentfigure, GraphicObjectProperties.__GO_ID__);
             String figureID;
             figureID = currentFigureID.toString();
             cFigureID.setText(figureID);
             /** Get the current status of the property: Figure Name */
             String figureName = (String) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_NAME__);
+                                .getProperty(currentfigure, GraphicObjectProperties.__GO_NAME__);
             cFigureName.setText(figureName);
         }
     }
@@ -260,7 +261,7 @@ public class DataProperties extends Control {
     private void updateFigureID() {
         int setfigureID = Integer.parseInt(cFigureID.getText());
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_ID__, setfigureID);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_ID__, setfigureID);
     }
 
     /**
@@ -286,7 +287,7 @@ public class DataProperties extends Control {
     */
     private void updateFigureName() {
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_NAME__, cFigureName.getText());
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_NAME__, cFigureName.getText());
     }
 
     /**

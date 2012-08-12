@@ -3174,7 +3174,7 @@ public class CallScilabBridge {
     }
 
     public static void fireClosingFinished(String figUID) {
-	SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(figUID);
-	ClosingOperationsManager.removeFromDunnoList(parentTab);
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(figUID);
+        ClosingOperationsManager.removeFromDunnoList(parentTab);
     }
 }

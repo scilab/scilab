@@ -247,42 +247,42 @@ public class Position extends Label {
         pAxesBoundsLayout.setHorizontalGroup(
             pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pAxesBoundsLayout.setVerticalGroup(
             pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pAxesBoundsLayout.createSequentialGroup()
-                .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lBoundsLeft, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cBoundsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lBoundsUp, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cBoundsUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lBoundsWidth, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cBoundsWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pAxesBoundsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lBoundsHeight, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cBoundsHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
-        
+
         //Components of the property: Margins.
         bMargins.setSelected(true);
         bMargins.setBorder(null);
@@ -395,40 +395,40 @@ public class Position extends Label {
         pMarginsLayout.setHorizontalGroup(
             pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pMarginsLayout.setVerticalGroup(
             pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pMarginsLayout.createSequentialGroup()
-                .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                      .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lMarginsLeft, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cMarginsLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lMarginsRight, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cMarginsRight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lMarginsTop, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cMarginsTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addGroup(pMarginsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lMarginsBottom, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cMarginsBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
     }
 
@@ -442,42 +442,42 @@ public class Position extends Label {
         pPositionLayout.setHorizontalGroup(
             pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pPositionLayout.createSequentialGroup()
-                .addComponent(bAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(bAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(2, 2, 2)
+                      .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pPositionLayout.createSequentialGroup()
-                .addComponent(bMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addComponent(bMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(2, 2, 2)
+                      .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
             .addGroup(pPositionLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                    .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
+                      .addGap(18, 18, 18)
+                      .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                                .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
         );
         pPositionLayout.setVerticalGroup(
             pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pPositionLayout.createSequentialGroup()
-                .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(bAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(bMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pPositionLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))))
-                .addGap(5, 5, 5)
-                .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(bAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lAxesBounds, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cAxesBounds, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                      .addGap(5, 5, 5)
+                      .addComponent(pAxesBounds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                      .addGap(4, 4, 4)
+                      .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(bMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pPositionLayout.createSequentialGroup()
+                                          .addGap(1, 1, 1)
+                                          .addGroup(pPositionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                  .addComponent(lMargins, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                                  .addComponent(cMargins, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))))
+                      .addGap(5, 5, 5)
+                      .addComponent(pMargins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
     }
 
@@ -491,7 +491,7 @@ public class Position extends Label {
             currentaxes = axesID;
             /** Get the current status of the property: Axes Bounds */
             Double[] currentBounds = (Double []) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
+                                     .getProperty(currentaxes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
             cBoundsLeft.setText(currentBounds[0].toString());
             cBoundsUp.setText(currentBounds[1].toString());
             cBoundsWidth.setText(currentBounds[2].toString());
@@ -500,7 +500,7 @@ public class Position extends Label {
 
             /** Get the current status of the property: Margins */
             Double[] currentMargins = (Double []) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_MARGINS__);
+                                      .getProperty(currentaxes, GraphicObjectProperties.__GO_MARGINS__);
             cMarginsLeft.setText(currentMargins[0].toString());
             cMarginsRight.setText(currentMargins[1].toString());
             cMarginsTop.setText(currentMargins[2].toString());
@@ -523,7 +523,7 @@ public class Position extends Label {
 
     /**
     * Implement the action button to show/hide.
-    * 
+    *
     * @param evt ActionEvent.
     */
     private void bLabelActionPerformed(ActionEvent evt) {
@@ -538,7 +538,7 @@ public class Position extends Label {
 
     /**
     * Implement the action button to show/hide.
-    * 
+    *
     * @param evt ActionEvent.
     */
     private void bPositionActionPerformed(ActionEvent evt) {
@@ -551,7 +551,7 @@ public class Position extends Label {
 
     /**
     * Implement the action button to show/hide.
-    * 
+    *
     * @param evt ActionEvent.
     */
     private void bAxesBoundsActionPerformed(ActionEvent evt) {
@@ -564,7 +564,7 @@ public class Position extends Label {
 
     /**
     * Implement the action button to show/hide.
-    * 
+    *
     * @param evt ActionEvent.
     */
     private void bMarginsActionPerformed(ActionEvent evt) {
@@ -597,7 +597,7 @@ public class Position extends Label {
         String titleMarginsTop = cMarginsTop.getText();
         String titleMarginsBottom = cMarginsBottom.getText();
         String titleMargins = titleMarginsLeft + " , " + titleMarginsRight + " , "
-                             + titleMarginsTop + " , " + titleMarginsBottom;
+                              + titleMarginsTop + " , " + titleMarginsBottom;
         cMargins.setText(" [" + titleMargins + "]");
     }
 
@@ -611,7 +611,7 @@ public class Position extends Label {
         value[2] = Double.parseDouble(cBoundsWidth.getText());
         value[3] = Double.parseDouble(cBoundsHeight.getText());
         GraphicController.getController()
-                .setProperty(currentaxes, GraphicObjectProperties.__GO_AXES_BOUNDS__, value);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_AXES_BOUNDS__, value);
         titleBounds();
     }
 
@@ -697,7 +697,7 @@ public class Position extends Label {
         value[2] = Double.parseDouble(cMarginsTop.getText());
         value[3] = Double.parseDouble(cMarginsBottom.getText());
         GraphicController.getController()
-                .setProperty(currentaxes, GraphicObjectProperties.__GO_MARGINS__, value);
+        .setProperty(currentaxes, GraphicObjectProperties.__GO_MARGINS__, value);
 
         titleMargins();
     }

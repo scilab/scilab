@@ -119,16 +119,16 @@ public class BaseProperties extends Roof {
         pBasePropertiesLayout.setHorizontalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
+                      .addGap(18, 18, 18)
+                      .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+                      .addGap(4, 4, 4)
+                      .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
         );
         pBasePropertiesLayout.setVerticalGroup(
             pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                      .addGap(1, 1, 1)
+                      .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
     }
@@ -143,7 +143,7 @@ public class BaseProperties extends Roof {
             currentfigure = objectID;
             // Get the current status of the property: Visible
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__);
             if (isVisible) {
                 cVisible.setSelectedIndex(1);
             } else {
@@ -184,6 +184,6 @@ public class BaseProperties extends Roof {
             setVisible = false;
         }
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+        .setProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
     }
 }

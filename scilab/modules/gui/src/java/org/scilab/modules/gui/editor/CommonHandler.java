@@ -137,7 +137,7 @@ public class CommonHandler {
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             ret = PolylineData.createPolylineData(uid, dup);
-        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ || 
+        } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ ||
                    typeName == GraphicObjectProperties.__GO_FAC3D__  ||
                    typeName == GraphicObjectProperties.__GO_GRAYPLOT__) {
             ret = SurfaceData.createObject3dData(uid, dup, typeName);
@@ -219,7 +219,8 @@ public class CommonHandler {
      */
     public static void unhideAll(String figure) {
         String[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__,
-                            GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
+                          GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__
+                         };
         String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {

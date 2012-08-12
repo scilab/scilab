@@ -110,11 +110,11 @@ public class DatatipDrag {
             testPixel--;
             polylineUidTest = ep.pick (figureUid, newX, testPixel);
         }
-        if (middleLineFactor%2 == 0) {
-            newY = yVerify - (middleLineFactor/2);
+        if (middleLineFactor % 2 == 0) {
+            newY = yVerify - (middleLineFactor / 2);
         } else {
             middleLineFactor++;
-            newY = yVerify - (middleLineFactor/2);
+            newY = yVerify - (middleLineFactor / 2);
         }
         return newY;
     }
@@ -134,7 +134,7 @@ public class DatatipDrag {
 
         for (int i = 0 ; i < axesChildrenUid.length ; i++) {
             if (axesChildrenUid[i] == markerUid) {
-                datatipUid = axesChildrenUid[i+1];
+                datatipUid = axesChildrenUid[i + 1];
                 break;
             }
         }

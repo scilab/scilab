@@ -26,59 +26,59 @@ public class HelpBrowserTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "HelpBrowser";
     public static final String PACKAGE = "";
     public static final String CLASS = "org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory";
-    
+
     private static HelpBrowserTabFactory instance;
 
     /**
      * Default constructor
      */
     public HelpBrowserTabFactory() {
-	if (instance == null) {
-	    instance = this;
-	}
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public SwingScilabTab getTab(String uuid) {
-	return HelpBrowserTab.getHelpBrowserInstance();
+        return HelpBrowserTab.getHelpBrowserInstance();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isAValidUUID(String uuid) {
-	return ScilabHelpBrowser.HELPUUID.equals(uuid);
+        return ScilabHelpBrowser.HELPUUID.equals(uuid);
     }
 
     /**
      * @return an instance of this factory
      */
     public static HelpBrowserTabFactory getInstance() {
-	new HelpBrowserTabFactory();
-	
-	return instance;
+        new HelpBrowserTabFactory();
+
+        return instance;
     }
 }
