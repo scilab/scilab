@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="save_format" xml:lang="ru">
+  <refnamediv>
+    <refname>save_format</refname>
+    <refpurpose>формат файлов, созданных функцией "save"</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Переменные сохраняются Scilab'ом с помощью функции <link linkend="save">save</link> в следующем формате:
+    </para>
+    <para>
+      каждая запись переменной добавляется в файл последовательно. Запись переменной начинается с 6-ти чисел типа длинное целое, хранящих имя переменной в кодированном формате (см. раздел Примечания ниже), после чего следует тип переменной (длинное цело), затем, в зависимости от него, следует:
+    </para>
+    <variablelist>
+      <varlistentry>
+	<term>Матрицы значений с плавающей запятой (тип 1)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>признак вещественности/комплекснозначности <varname>it</varname> (целое число типа long integer на интервале <literal>{0,1}</literal>),
+	  </para>
+	  <para>
+	    данные (<literal>n*m*(it+1)</literal> чисел типа double)
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Полиномы (тип 2) и Неявный полином размера, используемый для (тип 129)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    признак вещественности/комплекснозначности <varname>it</varname> (целое число типа long integer в интервале <literal>{0,1}</literal>),
+	  </para>
+	  <para>
+	    формальное имя переменной (16 байт),
+	  </para>
+	  <para>
+	    <varname>index_table</varname> (таблица индексов, <literal>m*n+1</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    данные (<literal>(N-1)*(it+1)</literal> чисел типа double), где <varname>N</varname> -- это значение последнего элемента таблицы индексов <varname>index_table</varname>.
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Booleans (тип 4)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    данные (<literal>n*m</literal> целых чисел типа long integer).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Разрежённые матрицы чисел с плавающей запятой (тип 5)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    real/complex_flag <varname>it</varname> (целое число типа long integer на интервале <literal>{0,1}</literal>),
+	  </para>
+	  <para>
+	    <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (общее количество ненулевых элементов, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>number_of_non_zero_elements_per_row</varname> (число количество ненулевых элементов на строку, <literal>m</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_index_non_zero_elements</varname> (индексы столбцов ненулевых элементов, <literal>nel</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    <varname>non_zero_values</varname> (ненулевые значения, <literal>nel*(it+1)</literal> чисел типа double).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Разрежённые матрицы логических значений (тип 6)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    неиспользуемое <varname>it</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (общее количество ненулевых элементов, число типа long integer),
+	    </para>
+	  <para>
+	    <varname>number_of_non_zero_elements_per_row</varname> (число количество ненулевых элементов на строку, <literal>m</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_index_non_zero_elements</varname> (индексы столбцов ненулевых элементов, <literal>nel</literal> целых чисел типа long integer).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Разрежённая матрица Matlab'а (тип 7)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    real/complex_flag <varname>it</varname> (целое число типа long integer на интервале <literal>{0,1}</literal>),
+	  </para>
+	  <para>
+	    <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (общее количество ненулевых элементов, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>number_of_non_zero_elements_per_column</varname> (количество ненулевых элементов на столбец, <literal>n</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    <varname>row_index_non_zero_elements</varname> (индекс строки ненулевых элементов, <literal>nel</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    <varname>non_zero_values</varname> (ненулевые значения, <literal>nel*(it+1)</literal> чисел типа double).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>матрицы целых чисел (тип 8)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>integer_type</varname> (тип целого числа, число типа long integer): 1, 2, 4, или 11, 12, 14 для знаковых и беззнаковых 1-, 2-, 4-байтных целых чисел,
+	  </para>
+	  <para>
+	    данные (<literal>n*m</literal> байт для  <varname>integer_type</varname> 1 или 11, <literal>n*m</literal> чисел типа short integer для <varname>integer_type</varname> 2 или 12, <literal>n*m</literal> целых чисел типа long integer для <varname>integer_type</varname> 4 или 14).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>handles (тип 9)</term>
+	<listitem>
+	  <para>version (4 bytes)</para>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, байт),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, байт),
+	  </para>
+	  <para>данные (<literal>m*n</literal> записей в последовательной форме <varname>serialization_record</varname>)</para>
+	  <para>
+	    Запись в последовательной форме <varname>serialization_record</varname> -- это представление в плоском виде C-структуры данных, связанной с соответствующим графическим объектом. Каждый графический объект определяется (рекурсивным) набором свойств (см. справку по функции <link linkend="get">get</link>).
+	  </para>
+	  <para>
+	    Сохранённая запись <varname>serialization_record</varname> графического объекта структурирована в следующем виде:
+	  </para>
+	  <variablelist>
+	    <varlistentry>
+	      <term>serialization_record</term>
+	      <listitem>
+		<para>
+		  длина типа <varname>type_length</varname> <varname>n</varname> (байт),
+		</para>
+		<para>
+		  тип <varname>type</varname> (<literal>n</literal> байт, ascii-коды имени типа),
+		</para>
+		<para>
+		  запись <varname>property_values</varname> (переменная длина).
+		</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Строки (тип 10)</term>
+	<listitem>
+	  <para>
+	    <varname>row_size</varname> <varname>m</varname> (размер строки, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>column_size</varname> <varname>n</varname> (размер столбца, число типа long integer),
+	  </para>
+	  <para>
+	    <varname>index_table</varname> (<literal>n*m+1</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    данные (<literal>N</literal> целых чисел типа long integer, Scilab-кодировка символов (см. <link linkend="code2str">code2str</link>), где <literal>N</literal> -- это значение последнего элемента таблицы индексов <varname>index_table</varname>.
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Некомпилированные функции (тип 11)</term>
+	<listitem>
+	  <para>
+	    <varname>nout</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>lhs_names</varname> (<literal>6*nout</literal> целых чисел типа long integer, см. раздел "Примечания" ниже),
+	  </para>
+	  <para>
+	    <varname>nin</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>rhs_names</varname> (<literal>6*nin</literal> целых чисел типа long integer, см. раздел "Примечания" ниже),
+	  </para>
+	  <para>
+	    <varname>code_length</varname> <varname>N</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>code</varname> (<literal>N</literal> целых чисел типа long integer).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Компилированные функции (тип 13)</term>
+	<listitem>
+	  <para>
+	    <varname>nout</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>lhs_names</varname> (<literal>6*nout</literal> целых чисел типа long integer, см. раздел "Примечания" ниже),
+	  </para>
+	  <para>
+	    <varname>nin</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>rhs_names</varname> (<literal>6*nin</literal> целых чисел типа long integer, см. раздел "Примечания" ниже),
+	  </para>
+	  <para>
+	    <varname>pseudo_code_length</varname> <varname>N</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>pseudo_code</varname> (<literal>N</literal> целых чисел типа long integer).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Библиотеки (тип 14)</term>
+	<listitem>
+	  <para>
+	    <varname>path_length</varname> <varname>np</varname> (длина пути, целое число типа long integer),
+	  </para>
+	  <para>
+	    <varname>path_name</varname> (имя пути, <literal>np</literal> целых чисел типа long integer: последовательность кодов символов пути, (см. <link linkend="code2str">code2str</link>)),
+	  </para>
+	  <para>
+	    количество имён <varname>nn</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    имена (<literal>6*nn</literal> целых чисел типа long integer, см. раздел "Примечания" ниже).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>списки (тип 15), типизированные списки (тип 16), матричноориентированные списки (тип 17)</term>
+	<listitem>
+	  <para>
+	    количество полей <varname>n</varname> (целое число типа long integer),
+	  </para>
+	  <para>
+	    индекс (<literal>n+1</literal> целых чисел типа long integer),
+	  </para>
+	  <para>
+	    последовательность переменных <varname>variables_sequence</varname> (<literal>n</literal> переменных, каждое из которых записано в своём формате).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Указатели (тип 128)</term>
+	<listitem>
+	  <para>Не обрабатываются</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>Указатели на функцию (тип 130)</term>
+	<listitem>
+	  <para>
+	    <varname>function_ptr</varname> (указатель на функцию, целое число типа long integer, (see <link linkend="funptr">funptr</link>)),
+	  </para>
+	  <para>
+	    <varname>function_name_code</varname> (код имени функции, 6 целых чисел типа long integer, см. раздел "Примечания" ниже).
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Примечания</title>
+    <para>
+      Числа (типа long interger, short integer, double) хранятся в прямом порядке байтов.
+    </para>
+    <para>
+      Имена переменных хранятся в виде последовательности из 6 целых чисел типа long integer с особой кодировкой. См. подробности в файле <literal>cvname.f</literal>.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+	<link linkend="save">save</link>
+      </member>
+      <member>
+	<link linkend="load">load</link>
+      </member>
+      <member>
+	<link linkend="listvarinfile">listvarinfile</link>
+      </member>
+      <member>
+	<link linkend="type">type</link>
+      </member>
+      <member>
+	<link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+ 
