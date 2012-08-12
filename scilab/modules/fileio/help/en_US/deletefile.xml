@@ -26,20 +26,20 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>a string: a file name existing or not</para>
+          <para>a string: a file name existing or not.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>a boolean: <constant>%t</constant> or <constant>%f</constant></para>
+          <para>a boolean: <constant>%t</constant> or <constant>%f</constant>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function deletes a file. If file has been deleted, it will return <constant>%t</constant> else
+    <para>This function deletes a file <varname>filename</varname>. If file <varname>filename</varname> has been deleted, it will return <constant>%t</constant> else
       <constant>%f</constant>.
     </para>
   </refsection>

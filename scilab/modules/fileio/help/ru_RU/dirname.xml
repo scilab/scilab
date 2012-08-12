@@ -14,11 +14,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="dirname">
   <refnamediv>
     <refname>dirname</refname>
-    <refpurpose>получает имя директори из имён файлов</refpurpose>
+    <refpurpose>получает имя директории из имён файлов</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>dirs = dirname(files[,flag [,flagexpand]])</synopsis>
+    <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -48,7 +48,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <function>dirname</function> возвращает имя директории из файлов,
+      Функция <function>dirname</function> возвращает имя директории из файлов,
       указанных в <varname>files</varname>.
     </para>
     <para>
@@ -56,7 +56,7 @@
       преобразуются в целевой тип, указанный переменной
       <code>getos() == 'Windows'</code>. Более того, если
       <varname>flagexpand</varname> равен ИСТИНЕ, то начальные строки,
-      такие как <varname>SCIHOME</varname>, <varname>SCI</varname> или
+      такие как <literal>SCIHOME</literal>, <literal>SCI</literal> или
       <literal>~</literal> расширяются с помощью переменных среды.
     </para>
     <para>

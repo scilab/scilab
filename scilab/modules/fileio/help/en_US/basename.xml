@@ -55,7 +55,7 @@
       If <varname>flag</varname> is true the files are first converted to
       the target type given by the <code>getos() == 'Windows'</code> variable. Moreover,
       if <varname>flagexpand</varname> is true leading strings like
-      <varname>SCIHOME</varname>, <varname>SCI</varname> or <literal>~</literal>
+      <literal>SCIHOME</literal>, <literal>SCI</literal> or <literal>~</literal>
       are expanded using environment variables.
     </para>
   </refsection>

@@ -19,7 +19,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      err=mclose([fd])
+      err = mclose([fd])
       mclose('all')
     </synopsis>
   </refsynopsisdiv>
@@ -52,12 +52,12 @@
     <para>
       <code>mclose('all')</code> closes all files opened by 
       <code>file('open',..)</code> or <function>mopen</function>. 
-      <warning>
+      <caution>
         Be careful with this use of <function>mclose</function> because when 
         it is used inside a Scilab script file, it also closes the script and 
         Scilab will not execute commands written after 
         <code>mclose('all')</code>.
-      </warning>
+      </caution>
     </para>
   </refsection>
   <refsection role="see also">

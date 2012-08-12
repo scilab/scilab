@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            shortpath=getshortgpathname(longpath)
-            [shortpath,bOK]=getshortpathname(longpath)
+            shortpath = getshortgpathname(longpath)
+            [shortpath, bOK] = getshortpathname(longpath)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,8 +44,8 @@
                 <term>bOK</term>
                 <listitem>
                     <para>
-                        a boolean or a matrix of boolean: <literal>%T</literal> if
-                        path has been converted else <literal>%F</literal>.
+                        a boolean or a matrix of boolean: <constant>%T</constant> if
+                        path has been converted else <constant>%F</constant>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,9 +58,11 @@
             specified path <varname>longpath</varname> to its short form.
         </para>
         <para>
-            Note: If the path cannot be converted (bOK = %F) and in particular if the
+	  <note>
+	    Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
             operating system is not Windows, the returned short path is identical to the
             input long path.
+	  </note>
         </para>
     </refsection>
     <refsection>

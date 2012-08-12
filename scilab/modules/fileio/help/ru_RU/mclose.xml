@@ -19,7 +19,7 @@
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
     <synopsis>
-      err=mclose([fd])
+      err = mclose([fd])
       mclose('all')
     </synopsis>
   </refsynopsisdiv>
@@ -52,9 +52,9 @@
     <para>
       <code>mclose('all')</code> закрывает все файлы, открытые с помощью
       <code>file('open',..)</code> или <function>mopen</function>. 
-      <warning>
+      <caution>
 	Будьте осторожны с использованием <function>mclose</function>, поскольку, когда вы используете её внутри файла-сценария Scilab, то она также закроет и сам сценарий, и Scilab не выполнит команды, написанные после <code>mclose('all')</code>.
-      </warning>
+      </caution>
     </para>
   </refsection>
   <refsection role="see also">

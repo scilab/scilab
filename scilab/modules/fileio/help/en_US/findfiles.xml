@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>f = findfiles()
-      f=findfiles(path)
-      f=findfiles(path,filespec)
+      f = findfiles(path)
+      f = findfiles(path, filespec)
     </synopsis>
   </refsynopsisdiv>
   <refsection>

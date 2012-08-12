@@ -26,14 +26,14 @@
       <varlistentry>
         <term>fullpath</term>
         <listitem>
-          <para>строковая матрица, указывающая путь до файла</para>
+          <para>строковая матрица, указывающая путь до файла.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>extension</term>
         <listitem>
           <para>строковая матрица, часть, относящаяся к расширению;
-          может быть любой или ''</para>
+          может быть любой или <literal>''</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -41,7 +41,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <code>extension=fileext(fullpath)</code> изымает из
+      <code>extension = fileext(fullpath)</code> изымает из
       символьной строки часть, относящуюся к расширению, включая точку.
     </para>
   </refsection>

@@ -30,7 +30,7 @@
         <listitem>
           <para>a string matrix giving a directory pathname (eventually  ended
             by a pattern built with <literal>*</literal>). Default
-            value is <literal>.</literal> (a dot) 
+            value is <literal>.</literal> (a dot).
           </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
         <listitem>
           <para>
             a <literal>tlist</literal> of type <literal>dir</literal> with fields :
-            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> and <varname>isdir</varname>
+            <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> and <literal>isdir</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
     <title>Description</title>
     <para>
       <function>dir</function> can be used to get the files which match 
-      the patterns given by the path argument. 
+      the patterns given by the <varname>path</varname> argument. 
       Patterns are given to the Unix <command>ls</command> or to the Windows
       <command>dir</command> commands in order to get information about files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
@@ -58,19 +58,19 @@
 	  is a valid pattern for both Unix and Windows.
     </para>
     <para>
-      The <varname>name</varname> field of the returned variable is the column vector
+      The <literal>name</literal> field of the returned variable is the column vector
       of the file names.
     </para>
     <para>
-      The <varname>date</varname> field of the returned variable is the column vector
+      The <literal>date</literal> field of the returned variable is the column vector
       of integers containing a last modification date coded in second from 1 Jan 1970.
     </para>
     <para>
-      The <varname>bytes</varname> field of the returned variable is the column vector
+      The <literal>bytes</literal> field of the returned variable is the column vector
       of integers containing the size of the files in bytes.
     </para>
     <para>
-      The <varname>isdir</varname> field of the returned variable is the column vector
+      The <literal>isdir</literal> field of the returned variable is the column vector
       of boolean true if the corresponding name is a directory.
     </para>
     <para>

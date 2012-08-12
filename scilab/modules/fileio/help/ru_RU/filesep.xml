@@ -34,7 +34,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      Функция <function>filesep</function> возвращает разделитель директорий(<literal>'/'</literal> в GNU/Linux или <literal>'\'</literal> в Windows).
+      Функция <function>filesep</function> возвращает разделитель директорий (<literal>'/'</literal> в GNU/Linux или <literal>'\'</literal> в Windows).
     </para>
   </refsection>
   <refsection>

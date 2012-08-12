@@ -28,7 +28,7 @@
       <varlistentry>
         <term>drives</term>
         <listitem>
-          <para>матрица строк, диски</para>
+          <para>матрица строк, диски.</para>
         </listitem>
       </varlistentry>
     </variablelist>

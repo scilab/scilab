@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>fprintf(file,format,value_1,..,value_n)</synopsis>
+        <synopsis>fprintf(file, format, value_1, ..., value_n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

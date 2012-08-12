@@ -14,11 +14,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="meof">
   <refnamediv>
     <refname>meof</refname>
-    <refpurpose> check if end of file has been reached</refpurpose>
+    <refpurpose>проверяет достигнут ли конец файла</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>err=meof(fd)</synopsis>
+    <synopsis>err = meof(fd)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -55,9 +55,6 @@
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
       </member>
       <member>
         <link linkend="mfprintf">mfprintf</link>

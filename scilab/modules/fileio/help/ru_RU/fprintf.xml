@@ -22,7 +22,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>fprintf(file,format,value_1,..,value_n)</synopsis>
+    <synopsis>fprintf(file, format, value_1,..., value_n)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>

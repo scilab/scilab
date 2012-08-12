@@ -14,12 +14,12 @@
     <refnamediv>
         <refname>sscanf</refname>
         <refpurpose>
-            converts formatted input given by a string (<emphasis role="bold">this function is obsolete)</emphasis>
+            converts formatted input given by a string. <emphasis role="bold">This function is obsolete</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v_1, ..., v_n]=sscanf(string, format)</synopsis>
+        <synopsis>[v_1, ..., v_n] = sscanf(string, format)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -47,12 +47,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <warning>
+            <caution>
                 This function is obsolete, use preferably the 
                 <function>msscanf</function> function which is more efficient and 
                 is more compatible with the C <function>sscanf</function> 
                 procedure.
-            </warning>
+            </caution>
         </para>
         <para>
             The <function>sscanf</function> function interprets character string  

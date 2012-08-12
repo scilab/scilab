@@ -15,12 +15,12 @@
   <refnamediv>
     <refname>fscanf</refname>
     <refpurpose>
-      преобразует форматированный ввод, прочитанный в файле (<emphasis role="bold">эта функция устарела</emphasis>
+      преобразует форматированный ввод, прочитанный в файле. <emphasis role="bold">Эта функция устарела</emphasis>.
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>[v_1, ..., v_n]=fscanf (file, format)</synopsis>
+    <synopsis>[v_1, ..., v_n] = fscanf(file, format)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -53,7 +53,7 @@
       </warning>
     </para>
     <para>
-      Функция <function>fscanf</function> считывает симольные данные в файле, определённом аргументом <varname>file</varname>, интерпретирует их в соответствии с форматом <varname>format</varname>, и возвращает преобразованные результаты.  
+      Функция <function>fscanf</function> считывает символьные данные в файле, определённом аргументом <varname>file</varname>, интерпретирует их в соответствии с форматом <varname>format</varname>, и возвращает преобразованные результаты.  
     </para>
     <para>
       Параметр <varname>format</varname> содержит спецификации преобразования, используемые для интерпретации ввода.

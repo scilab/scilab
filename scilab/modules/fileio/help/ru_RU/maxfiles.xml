@@ -42,7 +42,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <function>maxfiles</function> устанавливает предел количества одновременно открытых файлов.
+      Функция <function>maxfiles</function> устанавливает предел количества одновременно открытых файлов.
     </para>
     <para>Минимум : 20.</para>
     <para>Максимум : 100.</para>

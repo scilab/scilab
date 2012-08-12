@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            longpath=getlongpathname(shortpath)
-            [longpath,bOK]=getlongpathname(shortpath)
+            longpath = getlongpathname(shortpath)
+            [longpath, bOK] = getlongpathname(shortpath)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,8 +42,8 @@
                 <term>bOK</term>
                 <listitem>
                     <para>
-                        a boolean or a matrix of boolean: <literal>%T</literal> if
-                        path has been converted else <literal>%F</literal>.
+                        a boolean or a matrix of boolean: <constant>%T</constant> if
+                        path has been converted else <constant>%F</constant>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,9 +57,11 @@
             primitive returns the specified name.
         </para>
         <para>
-            Note: If the path cannot be converted (bOK = %F) and in particular if the
+	  <note>
+	    Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
             operating system is not Windows, the returned long path is identical to the
             input short path.
+	  </note>
         </para>
     </refsection>
     <refsection>

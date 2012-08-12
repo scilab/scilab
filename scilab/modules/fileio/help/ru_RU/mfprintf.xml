@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -18,7 +18,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>mfprintf(fd,format,a1,...,an);</synopsis>
+    <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -64,7 +64,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a1,...,an</term>
+        <term>a1, ..., an</term>
         <listitem>
           <para>
             данные, которые преобразуются и распечатываются в соответствии с параметром формата.
@@ -99,12 +99,12 @@
     <programlisting role="example"><![CDATA[ 
  
 fd = mopen(TMPDIR+'/text.txt','wt');
-mfprintf(fd,'hello %s %d.\n','world',1);
-mfprintf(fd,'hello %s %d.\n','scilab',2);
-mfprintf(fd,'This line is built with a column vector (26:28) %d.\n',[26:28].');
-mfprintf(fd,'This line is built with a row vector (26:28) %d.\n',[26:28]);
+mfprintf(fd,'Привет, %s %d.\n','мир!',1);
+mfprintf(fd,'Привет, %s %d.\n','Scilab',2);
+mfprintf(fd,'Эта строка построена с помощью вектор-столбца (26:28) %d.\n',[26:28].');
+mfprintf(fd,'Эта строка построена с помощью вектор-строки (26:28) %d.\n',[26:28]);
 A = rand(3,6);
-mfprintf(fd,'This line is built with a matrix %.3f.\n',A);
+mfprintf(fd,'Эта строка построена с помощью матрицы %.3f.\n',A);
 mclose(fd);
 if (isdef('editor') | (funptr('editor')<>0)) then
   editor(TMPDIR+'/text.txt')
@@ -159,7 +159,7 @@ mfprintf(6,'stdout output.\n');
         <link linkend="mdelete">mdelete</link>
       </member>
       <member>
-        <link linkend="printf_conversion">printf_conversion</link>
+        <link linkend="printf_conversion">преобразование в printf</link>
       </member>
     </simplelist>
   </refsection>

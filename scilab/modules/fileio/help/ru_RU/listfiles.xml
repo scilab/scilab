@@ -66,8 +66,8 @@
       помощью <varname>paths</varname>, преобразуются в соответствии со 
       значением <code>getos() == 'Windows'</code> (см. также <link linkend="pathconvert">pathconvert</link>).
       Более того, если <varname>flagexpand</varname> равен ИСТИНЕ, то 
-      начальные строки, такие как <varname>SCIHOME</varname>, 
-      <varname>SCI</varname> или <literal>~</literal> расширяются с помощью 
+      начальные строки, такие как <literal>SCIHOME</literal>, 
+      <literal>SCI</literal> или <literal>~</literal> расширяются с помощью 
       переменных окружения.
     </para>
     <para>

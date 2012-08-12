@@ -18,7 +18,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>fprintfMat(file,M [,format,text])</synopsis>
+    <synopsis>fprintfMat(file, M [,format, text])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>
@@ -53,7 +53,7 @@
           </para>
           <para>
             <literal>precision</literal>: необязательное число,
-            которое определеяет максимальное количество символов,
+            которое определяет максимальное количество символов,
             напечатанных для всего или части выходного поля, или
             минимальное количество цифр, печатаемых для целых значений;
           </para>

@@ -17,8 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>movefile(source,destination)
-            [status,message] = movefile(source,destination)
+        <synopsis>movefile(source, destination)
+            [status, message] = movefile(source, destination)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

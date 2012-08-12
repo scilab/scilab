@@ -7,7 +7,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>listvarinfile(filename)
-      [names,typs,dims,vols]=listvarinfile(filename)
+      [names, typs, dims, vols] = listvarinfile(filename)
     </synopsis>
   </refsynopsisdiv>
   <refsection>

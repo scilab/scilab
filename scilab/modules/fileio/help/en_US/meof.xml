@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="meof">
   <refnamediv>
     <refname>meof</refname>
-    <refpurpose> check if end of file has been reached</refpurpose>
+    <refpurpose>checks if end of file has been reached</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -54,9 +54,6 @@
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
       </member>
       <member>
         <link linkend="mfprintf">mfprintf</link>

@@ -62,7 +62,7 @@
       Если <varname>flag</varname> равен ИСТИНЕ, то файлы <varname>files</varname> сначала преобразуются
       в целевой тип, указанный переменной <code>getos() == 'Windows'</code>.
       Более того, если <varname>flagexpand</varname> равен ИСТИНЕ, то первые
-      строковые значение, такие, как <varname>SCIHOME</varname>, <varname>SCI</varname>
+      строковые значение, такие, как <literal>SCIHOME</literal>, <literal>SCI</literal>
       или <literal>~</literal> разворачиваются с помощью переменных окружения.
     </para>
   </refsection>

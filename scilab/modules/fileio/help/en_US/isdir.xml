@@ -18,7 +18,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>r=isdir(path)</synopsis>
+    <synopsis>r = isdir(path)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,7 +33,7 @@
         <term>r</term>
         <listitem>
           <para>
-            a boolean: <literal>%t</literal> if <varname>path</varname> is a path to a directory.
+            a boolean: <constant>%t</constant> if <varname>path</varname> is a path to a directory.
           </para>
         </listitem>
       </varlistentry>
@@ -42,15 +42,14 @@
   <refsection>
     <title>Description</title>
     <para>
-      <code>r=isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
+      <code>r = isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
     </para>
   </refsection>
   <refsection>
     <title>Reference</title>
     <para>
       This function is based on the C function 
-      <function>stat</function>
-      .The <varname>SCI</varname> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
+      <function>stat</function>. The <literal>SCI</literal> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
     </para>
   </refsection>
   <refsection>

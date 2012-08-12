@@ -18,8 +18,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[path,fname,extension]=fileparts(fullpath)
-      value=fileparts(fullpath,sel)
+    <synopsis>[path, fname, extension] = fileparts(fullpath)
+      value = fileparts(fullpath, sel)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -68,7 +68,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <code>[path,fname,extension]=fileparts(fullpath)</code> splits the
+      <code>[path, fname, extension] = fileparts(fullpath)</code> splits the
       <varname>fullpath</varname> character string in its three parts: the path of the
       directory pointed to, the filename part, the extension part
       including the dot.

@@ -7,14 +7,14 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>pwd
-            x=pwd()
+            x = pwd()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
             <code>pwd</code> returns in <varname>ans</varname> the Scilab current directory.
-            <code>x=pwd()</code> returns in <varname>x</varname> the Scilab current
+            <code>x = pwd()</code> returns in <varname>x</varname> the Scilab current
             directory.
         </para>
     </refsection>
@@ -30,9 +30,6 @@ x=pwd()
         <simplelist type="inline">
             <member>
                 <link linkend="chdir">chdir</link>
-            </member>
-            <member>
-                <link linkend="cd">cd</link>
             </member>
         </simplelist>
     </refsection>

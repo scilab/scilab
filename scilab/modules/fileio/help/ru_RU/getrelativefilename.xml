@@ -19,7 +19,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
-    <synopsis>rel_file = getrelativefilename(abs_dir,abs_file)</synopsis>
+    <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Аргументы</title>

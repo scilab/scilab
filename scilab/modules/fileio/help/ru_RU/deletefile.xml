@@ -41,7 +41,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      Эта функция удаляет файл. Если файл удалён, то она возвращает
+      Эта функция удаляет файл <varname>filename</varname>. Если файл <varname>filename</varname> удалён, то она возвращает
       <constant>%t</constant>, а иначе <constant>%f</constant>.
     </para>
   </refsection>

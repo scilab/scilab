@@ -7,14 +7,14 @@
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
     <synopsis>pwd
-      x=pwd()
+      x = pwd()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Описание</title>
     <para>
       <code>pwd</code> возвращает в <varname>ans</varname> текущую директорию Scilab'а.
-      <code>x=pwd()</code> возвращает в <varname>x</varname> текущую директорию Scilab'а.
+      <code>x = pwd()</code> возвращает в <varname>x</varname> текущую директорию Scilab'а.
     </para>
   </refsection>
   <refsection>
@@ -29,9 +29,6 @@ x=pwd()
     <simplelist type="inline">
       <member>
         <link linkend="chdir">chdir</link>
-      </member>
-      <member>
-        <link linkend="cd">cd</link>
       </member>
     </simplelist>
   </refsection>

@@ -53,7 +53,7 @@
         <term>ierr</term>
         <listitem>
           <para>
-            указатель ошибки, 0, если ошибки не произошло
+            указатель ошибки, 0, если ошибки не произошло.
           </para>
         </listitem>
       </varlistentry>
@@ -74,7 +74,7 @@
       <varlistentry>
         <term>x(2)</term>
         <listitem>
-          <para>Режимный код файла (деситичное значение)</para>
+          <para>Режимный код файла (десятичное значение)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -149,9 +149,9 @@
   </refsection>
   <refsection>
     <title>Ссылки</title>
-    <para>Эта функция является интерфейсом к C-функции stat.</para>
+    <para>Эта функция является интерфейсом к C-функции <function>stat</function>.</para>
     <para>
-      Права обычно определяются в виде восмеричных чисел: используйте
+      Права обычно определяются в виде восьмеричных чисел: используйте
       для преобразования <code>dec2oct(x(2))</code>.
     </para>
     <para>

@@ -57,6 +57,11 @@
       Примитив <function>getshortpathname</function> преобразует указанное имя 
       пути <varname>longpath</varname> в его краткую форму.
     </para>
+    <para>
+      <note>
+	Примечание: если путь нельзя преобразовать (<varname>bOK</varname> равен <constant>%F</constant>), в особенности, если операционная система не Windows, то возвращаемый короткий путь идентичен входному длинному пути.
+      </note>
+    </para>
   </refsection>
   <refsection>
     <title>Примеры</title>

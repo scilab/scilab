@@ -41,9 +41,9 @@
       метасимволы.
     </para>
     <para>
-      <warning>
+      <caution>
 	Заметьте, что функция <function>mdelete</function> не спрашивает подтверждения, если вы вводите команду на удаление. Во избежание потери файлов, убедитесь, что вы точно указали файлы, которые вы хотите удалить.
-      </warning>
+      </caution>
     </para>
   </refsection>
   <refsection role="see also">
@@ -75,9 +75,6 @@
       </member>
       <member>
         <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
       </member>
       <member>
         <link linkend="mprintf">mprintf</link>

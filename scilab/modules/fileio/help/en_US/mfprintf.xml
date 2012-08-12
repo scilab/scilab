@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -18,7 +18,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>mfprintf(fd,format,a1,...,an);</synopsis>
+    <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -68,7 +68,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>a1,...,an</term>
+        <term>a1, ..., an</term>
         <listitem>
           <para>
             the data to be converted and printed according to

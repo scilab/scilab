@@ -26,13 +26,13 @@
       <varlistentry>
         <term>fullpath</term>
         <listitem>
-          <para>a string matrix, the given file path</para>
+          <para>a string matrix, the given file path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>extension</term>
         <listitem>
-          <para>a string matrix, the extension part is any or ''</para>
+	  <para>a string matrix, the extension part is any or <literal>''</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,7 +40,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <code>extension=fileext(fullpath)</code> splits the fullpath character string in the extension part including the dot.
+      <code>extension = fileext(fullpath)</code> splits the fullpath character string in the extension part including the dot.
     </para>
   </refsection>
   <refsection>

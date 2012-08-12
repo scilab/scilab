@@ -17,7 +17,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>rel_file = getrelativefilename(abs_dir,abs_file)</synopsis>
+    <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>

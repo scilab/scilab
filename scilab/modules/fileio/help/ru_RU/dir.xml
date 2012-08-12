@@ -41,7 +41,7 @@
           <para>
             типизированный список <literal>tlist</literal> типа
             <literal>dir</literal> с полями:
-            <varname>name</varname>, <varname>date</varname>, <varname>bytes</varname> и <varname>isdir</varname>.
+            <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> и <literal>isdir</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -62,20 +62,20 @@
       корректным шаблоном как для Unix, так и для Windows.
     </para>
     <para>
-      Поле <varname>name</varname> возвращаемой переменной является
+      Поле <literal>name</literal> возвращаемой переменной является
       вектор-столбцом имён файлов.
     </para>
     <para>
-      Поле <varname>date</varname> возвращаемой переменной является вектор-столбцом
+      Поле <literal>date</literal> возвращаемой переменной является вектор-столбцом
       целых чисел, содержащих дату последней модификации, кодированную
       в секундах от 1 Янв 1970.
     </para>
     <para>
-      Поле <varname>bytes</varname> возвращаемой переменной является вектор-столбцом
+      Поле <literal>bytes</literal> возвращаемой переменной является вектор-столбцом
       целых чисел, содержащих размер файлов в байтах.
     </para>
     <para>
-      Поле <varname>isdir</varname> возвращаемой переменной является вектор-столбцом
+      Поле <literal>isdir</literal> возвращаемой переменной является вектор-столбцом
       логического значения ИСТИНА, если соответствующее имя расположено в директории.
     </para>
     <para>

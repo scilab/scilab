@@ -52,7 +52,7 @@
           </para>
           <para>
             <literal>precision</literal>: необязательное число,
-            которое поределяет максимальное количество знаков,
+            которое определяет максимальное количество знаков,
             выводимых для всех или части выходных полей, или
             минимальное количество цифр, выводимых для целочисленных значений.
           </para>
@@ -75,7 +75,7 @@
         <listitem>
           <para>
             выходная переменная. Вектор-столбец строк. Это комментарии
-            в начале файла с именем <literal>filename</literal>.
+            в начале файла с именем <varname>filename</varname>.
           </para>
         </listitem>
       </varlistentry>
@@ -84,22 +84,22 @@
   <refsection>
     <title>Описание</title>
     <para>
-      Функция <literal>fscanfMat</literal> используется для считывания
+      Функция <function>fscanfMat</function> используется для считывания
 	  вещественной матрицы из текстового файла с именем
-	  <literal>filename</literal>. Первые нечисловые строчки файла
-	  возвращаются в переменной <literal>text</literal>, если это
+	  <varname>filename</varname>. Первые нечисловые строчки файла
+	  возвращаются в переменной <varname>text</varname>, если это
 	  запрошено, а все оставшиеся строчки должны иметь одинаковое
 	  количество столбцов (разделителем столбцов предполагается пробел
 	  или символы табуляции). Количество столбцов матрицы должно
 	  соответствовать количеству столбцов, обнаруженных в файле
-	  <literal>filename</literal>, а количество строк получается при
+	  <varname>filename</varname>, а количество строк получается при
 	  обнаружении конца файла (EOF) во входном файле. Эта функция
 	  может быть использована для чтения числовых данных, сохранённых
-	  с помощью функции <literal>fprintfMat</literal> (по умолчанию в
+	  с помощью функции <function>fprintfMat</function> (по умолчанию в
 	  качестве разделителя используется пробел).
     </para>
     <para>
-      <literal>fscanfMat</literal> поддерживает файлы с кодировкой ANSI/ASCII и UTF-8.
+      <function>fscanfMat</function> поддерживает файлы с кодировкой ANSI/ASCII и UTF-8.
     </para>
   </refsection>
   <refsection>
@@ -149,9 +149,6 @@
         <link linkend="mfscanf">mfscanf</link>
       </member>
       <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
         <link linkend="mget">mget</link>
       </member>
       <member>
@@ -168,9 +165,6 @@
       </member>
       <member>
         <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mscanf">mscanf</link>
       </member>
       <member>
         <link linkend="mseek">mseek</link>

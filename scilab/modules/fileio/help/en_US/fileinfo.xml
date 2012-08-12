@@ -17,7 +17,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x,ierr] = fileinfo(files)</synopsis>
+    <synopsis>[x, ierr] = fileinfo(files)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -26,7 +26,7 @@
         <term>files</term>
         <listitem>
           <para>a character string or a string column vector, file
-            pathname
+            pathname.
           </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
       <varlistentry>
         <term>ierr</term>
         <listitem>
-          <para>error indicator, 0, if no error has occurred</para>
+	  <para>error indicator, 0, if no error has occurred.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,7 +58,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <code>x = fileinfo(file)</code> returns
+      <code>x = fileinfo(file)</code> returns:
     </para>
     <variablelist>
       <varlistentry>
@@ -143,7 +143,7 @@
   </refsection>
   <refsection>
     <title>References</title>
-    <para>This function is an interface to the C function stat.</para>
+    <para>This function is an interface to the C function <function>stat</function>.</para>
     <para>
       Permissions are typically specified as octal numbers: <code>dec2oct(x(2))</code> to convert.
     </para>

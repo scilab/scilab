@@ -26,7 +26,7 @@
       <varlistentry>
         <term>drives</term>
         <listitem>
-          <para>a matrix of strings</para>
+          <para>a matrix of strings.</para>
         </listitem>
       </varlistentry>
     </variablelist>

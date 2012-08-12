@@ -26,7 +26,7 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>a string or matrix of string</para>
+          <para>a string or matrix of string.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -34,7 +34,7 @@
       <varlistentry>
         <term>relative_path</term>
         <listitem>
-          <para>a string or a matrix of string</para>
+	  <para>a string or a matrix of string.</para>
         </listitem>
       </varlistentry>
     </variablelist>

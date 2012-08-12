@@ -22,8 +22,8 @@
   <refsynopsisdiv>
     <title>Последовательность вызова</title>
     <synopsis>
-      copyfile(source,destination)
-      [status,message] = copyfile(source,destination)
+      copyfile(source, destination)
+      [status, message] = copyfile(source, destination)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -50,13 +50,15 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <code>copyfile(source,destination)</code> копирует файл или
+      <code>copyfile(source, destination)</code> копирует файл или
       директорию <varname>source</varname> в файл или директорию
       <varname>destination</varname> (и поддиректории).
     </para>
     <para>
       Если источник является директорией, то назначение не может быть файлом.
-      <code>copyfile</code> замещает существующие файлы без предупреждения.
+      <warning>
+	<code>copyfile</code> замещает существующие файлы без предупреждения.
+      </warning>
     </para>
     <para>
       <code>[status, message] = copyfile(source,destination)</code>
@@ -65,7 +67,7 @@
     </para>
     <para>
       Для любой операционной системы, если копирование завершилось успешно, то
-      статус равен 1, а сообщение пустое; если же копирование завершилось неудачно, то статус равен 0 и сообщение не пустое.
+      статус <varname>status</varname> равен 1, а сообщение <varname>message</varname> пустое; если же копирование завершилось неудачно, то статус <varname>status</varname> равен 0 и сообщение <varname>message</varname> не пустое.
     </para>
     <para>
       Временная отметка у файла назначения такая же, как временная отметка исходного файла.

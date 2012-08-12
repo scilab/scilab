@@ -28,7 +28,7 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>строка или матрица строк, имя полного пути</para>
+          <para>строка или матрица строк, имя полного пути.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,7 +36,7 @@
       <varlistentry>
         <term>relative_path</term>
         <listitem>
-          <para>строка или матрица строк, имя относительного пути</para>
+          <para>строка или матрица строк, имя относительного пути.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,7 +44,7 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <function>fullpath(relative_path)</function> создаёт имя полного
+      <code>fullpath(relative_path)</code> создаёт имя полного
       пути для определённого имени относительного пути
       <varname>relative_path</varname>.
     </para>

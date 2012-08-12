@@ -33,7 +33,7 @@
         <term>r</term>
         <listitem>
           <para>
-            логическое значение: <literal>%t</literal>, если <varname>path</varname> является путём до директории.
+            логическое значение: <constant>%t</constant>, если <varname>path</varname> является путём до директории.
           </para>
         </listitem>
       </varlistentry>
@@ -42,15 +42,14 @@
   <refsection>
     <title>Описание</title>
     <para>
-      <function>r=isdir(path)</function> проверяет является ли путь <varname>path</varname> путём до директории.
+      <function>r = isdir(path)</function> проверяет является ли путь <varname>path</varname> путём до директории.
     </para>
   </refsection>
   <refsection>
     <title>Сcылка</title>
     <para>
-      Эта функция основана на C-функции 
-      <function>stat</function>.Можно 
-      использовать краткие обозначения <varname>SCI</varname> и 
+      Эта функция основана на C-функции <function>stat</function>. Можно 
+      использовать краткие обозначения <literal>SCI</literal> и 
       <literal>~</literal> для директории Scilab'а и домашней директории.
     </para>
   </refsection>
