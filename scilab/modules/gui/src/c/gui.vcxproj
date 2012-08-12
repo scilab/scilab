@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -194,6 +194,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_plotbrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_fire_closing_finished.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\jni\DatatipFunctions.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
+    <ClCompile Include="..\jni\StartPlotBrowser.cpp" />
     <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
@@ -527,6 +529,7 @@
     <ClInclude Include="..\jni\Jxgetmouse.hxx" />
     <ClInclude Include="..\jni\LookAndFeelManager.hxx" />
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
+    <ClInclude Include="..\jni\StartPlotBrowser.hxx" />
     <ClInclude Include="..\jni\SwingView.hxx" />
     <ClInclude Include="..\jni\UIElementMapper.hxx" />
     <ClInclude Include="buildMainWindowTitle.h" />
