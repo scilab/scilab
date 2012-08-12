@@ -58,11 +58,11 @@
             specified path <varname>longpath</varname> to its short form.
         </para>
         <para>
-	  <note>
-	    Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
-            operating system is not Windows, the returned short path is identical to the
-            input long path.
-	  </note>
+            <note>
+                Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
+                operating system is not Windows, the returned short path is identical to the
+                input long path.
+            </note>
         </para>
     </refsection>
     <refsection>

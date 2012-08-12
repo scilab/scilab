@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tree_show">
-  <refnamediv>
-    <refname>tree_show</refname>
-    <refpurpose>Display a tree view of a list</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      tree_show(x)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>list or mlist or tlist to display.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Creates a window and displays a tree view of the given list.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>tree_show</refname>
+        <refpurpose>Display a tree view of a list</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            tree_show(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>list or mlist or tlist to display.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Creates a window and displays a tree view of the given list.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Simple example
 a=list(1,2,3);
 tree_show(a);
@@ -43,5 +43,5 @@ tree_show(Mm);
 Mt=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
 tree_show(Mt);
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

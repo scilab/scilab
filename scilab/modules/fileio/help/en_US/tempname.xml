@@ -14,8 +14,8 @@
     <refnamediv>
         <refname>tempname</refname>
         <refpurpose>
-	  creates a file with an unique filename
-	</refpurpose>
+            creates a file with an unique filename
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -67,7 +67,9 @@
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-		<revremark>Function <function>tempname</function> introduced.</revremark>
+                <revremark>
+                    Function <function>tempname</function> introduced.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

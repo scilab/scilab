@@ -11,53 +11,53 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="log10" xml:lang="en">
-  <refnamediv>
-    <refname>log10</refname>
-    <refpurpose>logaritmo na base 10</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>y=log10(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>vetor ou matriz </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Logartimo decimal. Se <literal>x</literal> é um vetor
-      <literal>log10(x)=[log10(x1),...,log10(xn)]</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>log10</refname>
+        <refpurpose>logaritmo na base 10</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y=log10(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor ou matriz </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Logartimo decimal. Se <literal>x</literal> é um vetor
+            <literal>log10(x)=[log10(x1),...,log10(xn)]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 10.^log10([1,%i,-1,-%i])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="log">log</link>
-      </member>
-      <member>
-        <link linkend="logm">logm</link>
-      </member>
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="ieee">ieee</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="logm">logm</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

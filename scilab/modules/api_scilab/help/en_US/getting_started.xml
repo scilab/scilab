@@ -188,7 +188,7 @@
                     </para>
                 </listitem>
             </orderedlist>
-
+            
         </para>
         <para>Note that almost all the API_Scilab functions returns a C structure called SciErr which contains many information about the error.</para>
         <para>

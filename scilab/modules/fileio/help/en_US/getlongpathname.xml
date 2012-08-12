@@ -57,11 +57,11 @@
             primitive returns the specified name.
         </para>
         <para>
-	  <note>
-	    Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
-            operating system is not Windows, the returned long path is identical to the
-            input short path.
-	  </note>
+            <note>
+                Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
+                operating system is not Windows, the returned long path is identical to the
+                input short path.
+            </note>
         </para>
     </refsection>
     <refsection>

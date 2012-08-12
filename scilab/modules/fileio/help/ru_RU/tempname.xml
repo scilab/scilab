@@ -14,8 +14,8 @@
     <refnamediv>
         <refname>tempname</refname>
         <refpurpose>
-	  создаёт файл с уникальным именем
-	</refpurpose>
+            создаёт файл с уникальным именем
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -46,12 +46,12 @@
         <title>Описание</title>
         <para>
             Функция <function>tempname</function> создаёт файл с уникальным 
-	    именем в директории <literal>TMPDIR</literal>.
+            именем в директории <literal>TMPDIR</literal>.
         </para>
         <para>
             <code>tmp_name = tempname()</code> возвращает уникальную строку,  
-	    <varname>tmp_name</varname>, подходящую для использования в 
-	    качестве временного файла.
+            <varname>tmp_name</varname>, подходящую для использования в 
+            качестве временного файла.
         </para>
     </refsection>
     <refsection>
@@ -68,11 +68,11 @@
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-		<revremark>
-		  Введена функция <function>tempname</function>.
-		</revremark>
+                <revremark>
+                    Введена функция <function>tempname</function>.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>
 </refentry>
- 
+

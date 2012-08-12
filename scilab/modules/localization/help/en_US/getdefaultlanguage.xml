@@ -12,36 +12,36 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getdefaultlanguage">
-  <refnamediv>
-    <refname>getdefaultlanguage</refname>
-    <refpurpose>returns the default language used by Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>getdefaultlanguage()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>getdefaultlanguage()</literal> returns the default language used by Scilab.
-      By default, this function should return <literal>en_US</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>getdefaultlanguage</refname>
+        <refpurpose>returns the default language used by Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>getdefaultlanguage()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>getdefaultlanguage()</literal> returns the default language used by Scilab.
+            By default, this function should return <literal>en_US</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 getdefaultlanguage()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="setlanguage">setlanguage</link>
-      </member>
-      <member>
-        <link linkend="getlanguage">getlanguage</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setlanguage">setlanguage</link>
+            </member>
+            <member>
+                <link linkend="getlanguage">getlanguage</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

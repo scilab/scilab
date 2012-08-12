@@ -12,67 +12,67 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="findfiles">
-  <refnamediv>
-    <refname>findfiles</refname>
-    <refpurpose>
-      поиск всех файлов с указанным уточнением файла
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>f = findfiles()
-      f = findfiles(path)
-      f = findfiles(path,filespec)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>path</term>
-        <listitem>
-          <para>символьная строка, путь.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>filespec</term>
-        <listitem>
-          <para>
-            символьная строка, уточнение файла, например,
-            <literal>"*.sce"</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>вектор-столбец строк, имена файлов.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Поиск всех файлов с указанным уточнением файла
-      <varname>filespec</varname>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>findfiles</refname>
+        <refpurpose>
+            поиск всех файлов с указанным уточнением файла
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>f = findfiles()
+            f = findfiles(path)
+            f = findfiles(path,filespec)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>символьная строка, путь.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filespec</term>
+                <listitem>
+                    <para>
+                        символьная строка, уточнение файла, например,
+                        <literal>"*.sce"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>вектор-столбец строк, имена файлов.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Поиск всех файлов с указанным уточнением файла
+            <varname>filespec</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 f=findfiles()
 f=findfiles(SCI)
 f=findfiles(SCI+'/modules/core/macros','*.sci') 
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="listfiles">listfiles</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

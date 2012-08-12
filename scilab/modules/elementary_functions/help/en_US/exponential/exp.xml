@@ -11,50 +11,50 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exp" xml:lang="en">
-  <refnamediv>
-    <refname>exp</refname>
-    <refpurpose>element-wise exponential</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>exp(X)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>scalar, vector or matrix with real or complex entries.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>exp(X)</literal> is the (element-wise) exponential of the
-      entries of <literal>X</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>exp</refname>
+        <refpurpose>element-wise exponential</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>exp(X)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>scalar, vector or matrix with real or complex entries.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>exp(X)</literal> is the (element-wise) exponential of the
+            entries of <literal>X</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[1,2,3+%i];
 log(exp(x))  //element-wise
 2^x
 exp(x*log(2))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="expm">expm</link>
-      </member>
-      <member>
-        <link linkend="log">log</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

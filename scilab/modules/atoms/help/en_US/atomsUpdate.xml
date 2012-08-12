@@ -11,98 +11,98 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsUpdate">
-  <refnamediv>
-    <refname>atomsUpdate</refname>
-    <refpurpose>Update one or several external modules</refpurpose>
-  </refnamediv>
-  <!-- ===================================================================== -->
-  <!-- Calling Sequence -->
-  <!-- ===================================================================== -->
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      result = atomsUpdate()
-      result = atomsUpdate(name[,section]])
-    </synopsis>
-  </refsynopsisdiv>
-  <!-- ===================================================================== -->
-  <!-- Parameters -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <!-- First input argument -->
-      <varlistentry>
-        <term>name</term>
-        <listitem>
-          <para>
-            1xn character string matrix  : module's technical name
-          </para>
-        </listitem>
-      </varlistentry>
-      <!-- Second input argument -->
-      <varlistentry>
-        <term>section</term>
-        <listitem>
-          <para>
-            This argument controls the list of sections where search
-            modules to update.
-          </para>
-          <para>
-            <literal>section</literal> is a single-string and its value should be :
-          </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <literal>"all"</literal>: Modules to remove are searched in both
-                "user" and "allusers" sections.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"allusers"</literal>: Modules to remove are only searched in
-                the "allusers" section.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"user"</literal>: Modules to remove are only searched in
-                the "user" section.
-              </para>
-            </listitem>
-          </itemizedlist>
-          <para>
-            If SCI is write accessible, "all" is the default value.
-            Otherwise, the default value is "user".
-          </para>
-        </listitem>
-      </varlistentry>
-      <!-- Outpu argument -->
-      <varlistentry>
-        <term>result</term>
-        <listitem>
-          <para>
-            
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Description -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>atomsUpdate</literal> update one or more external modules.
-    </para>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Examples -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>atomsUpdate</refname>
+        <refpurpose>Update one or several external modules</refpurpose>
+    </refnamediv>
+    <!-- ===================================================================== -->
+    <!-- Calling Sequence -->
+    <!-- ===================================================================== -->
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            result = atomsUpdate()
+            result = atomsUpdate(name[,section]])
+        </synopsis>
+    </refsynopsisdiv>
+    <!-- ===================================================================== -->
+    <!-- Parameters -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <!-- First input argument -->
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>
+                        1xn character string matrix  : module's technical name
+                    </para>
+                </listitem>
+            </varlistentry>
+            <!-- Second input argument -->
+            <varlistentry>
+                <term>section</term>
+                <listitem>
+                    <para>
+                        This argument controls the list of sections where search
+                        modules to update.
+                    </para>
+                    <para>
+                        <literal>section</literal> is a single-string and its value should be :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"all"</literal>: Modules to remove are searched in both
+                                "user" and "allusers" sections.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"allusers"</literal>: Modules to remove are only searched in
+                                the "allusers" section.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"user"</literal>: Modules to remove are only searched in
+                                the "user" section.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        If SCI is write accessible, "all" is the default value.
+                        Otherwise, the default value is "user".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <!-- Outpu argument -->
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Description -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>atomsUpdate</literal> update one or more external modules.
+        </para>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Examples -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
@@ -128,25 +128,25 @@ atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
 atomsRemove("toolbox_5");
 
 ]]></programlisting>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- See also -->
-  <!-- ===================================================================== -->
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="atomsInstall">atomsInstall</link>
-      </member>
-      <member>
-        <link linkend="atomsRemove">atomsRemove</link>
-      </member>
-      <member>
-        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Authors -->
-  <!-- ===================================================================== -->
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- See also -->
+    <!-- ===================================================================== -->
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atomsInstall">atomsInstall</link>
+            </member>
+            <member>
+                <link linkend="atomsRemove">atomsRemove</link>
+            </member>
+            <member>
+                <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Authors -->
+    <!-- ===================================================================== -->
 </refentry>

@@ -11,45 +11,45 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="syssize">
-  <refnamediv>
-    <refname>syssize</refname>
-    <refpurpose> 状態空間システムの大きさ</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[r,nx]=syssize(Sl)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>Sl</term>
-        <listitem>
-          <para>
-            状態空間形式の線形システム (<literal>syslin</literal> リスト)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>1 x 2 実数ベクトル</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nx</term>
-        <listitem>
-          <para>integer</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      線形システム<literal>Sl</literal>の[出力の数, 入力の数]を
-      <literal>r</literal> ベクトルとして返します.
-      <literal>nx</literal> は<literal>Sl</literal>の状態量の数です.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>syssize</refname>
+        <refpurpose> 状態空間システムの大きさ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[r,nx]=syssize(Sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        状態空間形式の線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>1 x 2 実数ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>integer</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システム<literal>Sl</literal>の[出力の数, 入力の数]を
+            <literal>r</literal> ベクトルとして返します.
+            <literal>nx</literal> は<literal>Sl</literal>の状態量の数です.
+        </para>
+    </refsection>
 </refentry>

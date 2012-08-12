@@ -11,44 +11,44 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sinh" xml:lang="en">
-  <refnamediv>
-    <refname>sinh</refname>
-    <refpurpose>seno hiperbólico</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>[t]=sinh(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x,t</term>
-        <listitem>
-          <para>vetores ou matrizes de reais ou complexos </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Os elementos do vetor <literal>t</literal> são os senos hiperbólicos
-      dos elementos do vetor <literal>x</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>sinh</refname>
+        <refpurpose>seno hiperbólico</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[t]=sinh(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,t</term>
+                <listitem>
+                    <para>vetores ou matrizes de reais ou complexos </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Os elementos do vetor <literal>t</literal> são os senos hiperbólicos
+            dos elementos do vetor <literal>x</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 asinh(sinh([0,1,%i]))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="asinh">asinh</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="asinh">asinh</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

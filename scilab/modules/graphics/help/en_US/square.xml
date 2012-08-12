@@ -11,56 +11,56 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="square">
-  <refnamediv>
-    <refname>square</refname>
-    <refpurpose> set scales for isometric plot (change the size of the window)  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xmin,xmax,ymin,ymax</term>
-        <listitem>
-          <para>four real values</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>square</literal> is used to have isometric scales on the x and y axes. 
-      The requested values 
-      <literal>xmin, xmax, ymin, ymax</literal> are the boundaries of the graphics frame
-      and <literal>square</literal> changes the graphics window dimensions in order to
-      have an isometric plot. <literal>square</literal> set the current graphics scales 
-      and can be used in conjunction with graphics routines which request
-      the current graphics scale (for instance <literal>fstrf="x0z"</literal> in <literal>plot2d</literal>).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>square</refname>
+        <refpurpose> set scales for isometric plot (change the size of the window)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmin,xmax,ymin,ymax</term>
+                <listitem>
+                    <para>four real values</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>square</literal> is used to have isometric scales on the x and y axes. 
+            The requested values 
+            <literal>xmin, xmax, ymin, ymax</literal> are the boundaries of the graphics frame
+            and <literal>square</literal> changes the graphics window dimensions in order to
+            have an isometric plot. <literal>square</literal> set the current graphics scales 
+            and can be used in conjunction with graphics routines which request
+            the current graphics scale (for instance <literal>fstrf="x0z"</literal> in <literal>plot2d</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]';
 plot2d(sin(t),cos(t))
 clf()
 square(-1,-1,1,1)
 plot2d(sin(t),cos(t))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="isoview">isoview</link>
-      </member>
-      <member>
-        <link linkend="xsetech">xsetech</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isoview">isoview</link>
+            </member>
+            <member>
+                <link linkend="xsetech">xsetech</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

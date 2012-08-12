@@ -11,56 +11,56 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="tand" xml:lang="en">
-  <refnamediv>
-    <refname>tand</refname>
-    <refpurpose>tangent, argument in degree.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=tand(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real vector or matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>real vector or matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The elements of <literal>t</literal> are the tangent of the elements
-      of <literal>x</literal> (in degree).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>tand</refname>
+        <refpurpose>tangent, argument in degree.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=tand(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The elements of <literal>t</literal> are the tangent of the elements
+            of <literal>x</literal> (in degree).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 mod=ieee();ieee(2);
 x=[0,30 45 60 90 360];
 tand(x);
 ieee(mod);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="atan">atan</link>
-      </member>
-      <member>
-        <link linkend="tan">tan</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="tan">tan</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

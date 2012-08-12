@@ -11,56 +11,56 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nextpow2" xml:lang="en">
-  <refnamediv>
-    <refname>nextpow2</refname>
-    <refpurpose>next higher power of 2.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=nextpow2(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real vector or matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>integer vector or matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      If <literal>x</literal> is a scalar, <literal>nextpow2(x)</literal>
-      returns the first <literal>p</literal> such that <literal>2^p &gt;=
-        abs(x)
-      </literal>
-      .if <literal>x</literal> is a vector or a matrix
-      <literal>nextpow2(x)</literal> applies element-wise.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>nextpow2</refname>
+        <refpurpose>next higher power of 2.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=nextpow2(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>integer vector or matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>x</literal> is a scalar, <literal>nextpow2(x)</literal>
+            returns the first <literal>p</literal> such that <literal>2^p &gt;=
+                abs(x)
+            </literal>
+            .if <literal>x</literal> is a vector or a matrix
+            <literal>nextpow2(x)</literal> applies element-wise.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 nextpow2(127)
 nextpow2(128)
 nextpow2(0:10)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="frexp">frexp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="frexp">frexp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

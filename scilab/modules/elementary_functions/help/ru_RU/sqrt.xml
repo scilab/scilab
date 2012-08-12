@@ -11,50 +11,50 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sqrt" xml:lang="ru">
-  <refnamediv>
-    <refname>sqrt</refname>
-    <refpurpose>корень квадратный</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y=sqrt(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>вещественный или комплексный скаляр или вектор/матрица</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>sqrt(x)</literal> возвращает вектор/матрицу значений квадратного корня из элементов
-      <literal>x</literal>. Результат будет комплексным, если элемент <literal>x</literal>
-      отрицательный.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>sqrt</refname>
+        <refpurpose>корень квадратный</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=sqrt(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный или комплексный скаляр или вектор/матрица</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>sqrt(x)</literal> возвращает вектор/матрицу значений квадратного корня из элементов
+            <literal>x</literal>. Результат будет комплексным, если элемент <literal>x</literal>
+            отрицательный.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
     A = matrix(4:4:16,2,2)
     sqrt(A)
     sqrt(-1)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="sqrtm">sqrtm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="sqrtm">sqrtm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

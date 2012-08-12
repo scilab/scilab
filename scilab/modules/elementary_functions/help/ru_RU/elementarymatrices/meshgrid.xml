@@ -11,44 +11,44 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="meshgrid" xml:lang="ru">
-  <refnamediv>
-    <refname>meshgrid</refname>
-    <refpurpose>создаёт матрицы или трёхмерные массивы</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      [X, Y] = meshgrid(x)
-      [X, Y] = meshgrid(x,y)
-      [X, Y, Z] = meshgrid(x,y,z)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x, y, z</term>
-        <listitem>
-          <para>векторы</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>X, Y, Z</term>
-        <listitem>
-          <para>
-            матрицы, если два входных аргумента, а если входных аргументов три, то трёхмерные массивы
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>Создаёт матрицы или трёхмерные массивы.</para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>meshgrid</refname>
+        <refpurpose>создаёт матрицы или трёхмерные массивы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [X, Y] = meshgrid(x)
+            [X, Y] = meshgrid(x,y)
+            [X, Y, Z] = meshgrid(x,y,z)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, z</term>
+                <listitem>
+                    <para>векторы</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X, Y, Z</term>
+                <listitem>
+                    <para>
+                        матрицы, если два входных аргумента, а если входных аргументов три, то трёхмерные массивы
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>Создаёт матрицы или трёхмерные массивы.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 x = -1:0.1:1;
 y = -1:0.1:1;
  
@@ -62,13 +62,13 @@ end
  
 surf(X,Y,Z)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ndgrid">ndgrid</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ndgrid">ndgrid</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

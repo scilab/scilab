@@ -11,91 +11,91 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="example_run" xml:lang="en">
-  <refnamediv>
-    <refname>example_run</refname>
-    <refpurpose>Launch the examples found in help pages.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      example_run()
-      example_run(moduleNames)
-      example_run(moduleNames, functionNames)
-      example_run(moduleNames, functionNames, language)
-      example_run(moduleNames, functionNames, language, testrunOptions, testrunExportToFile)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>moduleNames</term>
-        <listitem>
-          <para>
-            a string or a string vector: the name(s) of the modules to test. Default value is the value returned by <link linkend="getmodules">getmodules()</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>functionNames</term>
-        <listitem>
-          <para>a string or a string vector: the name(s) of the functions to test. If not given, all help pages of the module(s) will be tested.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>language</term>
-        <listitem>
-          <para>a string: the language of the help pages to test. Default value is "en_US".</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>testrunOptions</term>
-        <listitem>
-          <para>
-            Used as third input argument for <link linkend="test_run">test_run</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>testrunExportToFile</term>
-        <listitem>
-          <para>
-            Used as forth input argument for <link linkend="test_run">test_run</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function extracts the examples given in help pages and run them using <link linkend="test_run">test_run</link>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>example_run</refname>
+        <refpurpose>Launch the examples found in help pages.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            example_run()
+            example_run(moduleNames)
+            example_run(moduleNames, functionNames)
+            example_run(moduleNames, functionNames, language)
+            example_run(moduleNames, functionNames, language, testrunOptions, testrunExportToFile)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>moduleNames</term>
+                <listitem>
+                    <para>
+                        a string or a string vector: the name(s) of the modules to test. Default value is the value returned by <link linkend="getmodules">getmodules()</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>functionNames</term>
+                <listitem>
+                    <para>a string or a string vector: the name(s) of the functions to test. If not given, all help pages of the module(s) will be tested.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>language</term>
+                <listitem>
+                    <para>a string: the language of the help pages to test. Default value is "en_US".</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testrunOptions</term>
+                <listitem>
+                    <para>
+                        Used as third input argument for <link linkend="test_run">test_run</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testrunExportToFile</term>
+                <listitem>
+                    <para>
+                        Used as forth input argument for <link linkend="test_run">test_run</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function extracts the examples given in help pages and run them using <link linkend="test_run">test_run</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
 example_run("core")
 example_run("core", "argn")
 example_run("core", ["argn"; "mode"])
 example_run("core", "argn", "en_US")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="test_run">test_run</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Function example_run introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function example_run introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

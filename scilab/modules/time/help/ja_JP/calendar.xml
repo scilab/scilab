@@ -11,41 +11,41 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="calendar">
-  <refnamediv>
-    <refname>calendar</refname>
-    <refpurpose>カレンダー</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>c=calendar()
-      c = calendar(y,m)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>説明</title>
-    <para>c = calendar は現在の月に関するカレンダーを含むリストを返します.
-      カレンダーは日曜日から土曜日までとなります.
-    </para>
-    <para>c = calendar(y,m), ただし, y および m は整数で, 指定した年の
-      指定した月のカレンダーを返します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>calendar</refname>
+        <refpurpose>カレンダー</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>c=calendar()
+            c = calendar(y,m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>c = calendar は現在の月に関するカレンダーを含むリストを返します.
+            カレンダーは日曜日から土曜日までとなります.
+        </para>
+        <para>c = calendar(y,m), ただし, y および m は整数で, 指定した年の
+            指定した月のカレンダーを返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 calendar()
 calendar(1973,8)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datevec">datevec</link>
-      </member>
-      <member>
-        <link linkend="datenum">datenum</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datevec">datevec</link>
+            </member>
+            <member>
+                <link linkend="datenum">datenum</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -11,23 +11,23 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="now">
-  <refnamediv>
-    <refname>now</refname>
-    <refpurpose>Retourne la date courrante sous la forme d'un vecteur de date</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>t = now()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      t = now() la date et l'heure courante en un nombre lui correspondant (Voir <link linkend="datenum">datenum</link>)
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>now</refname>
+        <refpurpose>Retourne la date courrante sous la forme d'un vecteur de date</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>t = now()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            t = now() la date et l'heure courante en un nombre lui correspondant (Voir <link linkend="datenum">datenum</link>)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 realtimeinit(1);
 realtime(0);
 t1 = now()
@@ -36,19 +36,19 @@ realtime(10);
 t1 = now()
 datevec(t1)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="now">now</link>
-      </member>
-      <member>
-        <link linkend="datenum">datenum</link>
-      </member>
-      <member>
-        <link linkend="datevec">datevec</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="now">now</link>
+            </member>
+            <member>
+                <link linkend="datenum">datenum</link>
+            </member>
+            <member>
+                <link linkend="datevec">datevec</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

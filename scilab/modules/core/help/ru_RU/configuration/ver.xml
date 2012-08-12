@@ -11,47 +11,47 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="ver">
-  <refnamediv>
-    <refname>ver</refname>
-    <refpurpose>информация о версии Scilab'а</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>r = ver()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>матрица строк</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>Возвращает матрицу строк с информацией о Scilab'е.</para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>ver</refname>
+        <refpurpose>информация о версии Scilab'а</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>r = ver()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>матрица строк</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>Возвращает матрицу строк с информацией о Scilab'е.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 r = ver()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getversion">getversion</link>
-      </member>
-      <member>
-        <link linkend="getdebuginfo">getdebuginfo</link>
-      </member>
-      <member>
-        <link linkend="getos">getos</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getversion">getversion</link>
+            </member>
+            <member>
+                <link linkend="getdebuginfo">getdebuginfo</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

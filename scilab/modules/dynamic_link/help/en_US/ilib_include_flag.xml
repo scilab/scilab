@@ -6,42 +6,42 @@
 	* are also available at * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt 
 	* -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_include_flag">
-  <refnamediv>
-    <refname>ilib_include_flag</refname>
-    <refpurpose> Return a formated includes related string to pass to
-      system compiler
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Call Sequence</title>
-    <synopsis>compiler_flag = ilib_include_flag(path_strings)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>path_strings</term>
-        <listitem>
-          <para>Vector of relative or absolute path as string.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>compiler_flag</term>
-        <listitem>
-          <para>Compiler flag as string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function is an utility function provided to handle several
-      includes path. The result can be passed to tbx_build_gateway.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>ilib_include_flag</refname>
+        <refpurpose> Return a formated includes related string to pass to
+            system compiler
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Call Sequence</title>
+        <synopsis>compiler_flag = ilib_include_flag(path_strings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path_strings</term>
+                <listitem>
+                    <para>Vector of relative or absolute path as string.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compiler_flag</term>
+                <listitem>
+                    <para>Compiler flag as string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function is an utility function provided to handle several
+            includes path. The result can be passed to tbx_build_gateway.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
     
     includes_path = ["../src/includes";"/usr/include/somelib/includes";"."];
     includes_src_c = ilib_include_flag(includes_path);
@@ -49,14 +49,14 @@
     ilib_build('somelib',['myfun',sci_myfun'],['myfile.c'],[],[],includes_src_c);
     
 ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="tbx_build_gateway">tbx_build_gateway</link>
-        <link linkend="ilib_build">ilib_build</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tbx_build_gateway">tbx_build_gateway</link>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

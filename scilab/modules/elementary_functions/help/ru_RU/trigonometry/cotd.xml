@@ -11,59 +11,59 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cotd" xml:lang="ru">
-  <refnamediv>
-    <refname>cotd</refname>
-    <refpurpose>поэлементный котангенс, аргумент в градусах</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y=cotd(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>Вещественный массив.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>Вещественный массив тех же размеров, что и 
-            <literal>x</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Элементы <literal>y</literal> являются котангенсом соответствующих
-      элементов <literal>x</literal> в предположении, что они даны в градусах.
-      <literal>t=cos(x)./sin(x)</literal>. Для элементов, равных 
-      <literal>n*180</literal>, где <literal>n</literal> - целые числа, результат 
-      равен бесконечности, хотя  <literal>cotg(n*%pi)</literal> и большой, но конечный, 
-      поскольку <literal>%pi</literal> не может быть представлено точно. Для 
-      элементов, равных <literal>n*90</literal>, где <literal>n</literal> нечётное целое, 
-      результаты равны строго 0.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>cotd</refname>
+        <refpurpose>поэлементный котангенс, аргумент в градусах</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=cotd(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Вещественный массив.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>Вещественный массив тех же размеров, что и 
+                        <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Элементы <literal>y</literal> являются котангенсом соответствующих
+            элементов <literal>x</literal> в предположении, что они даны в градусах.
+            <literal>t=cos(x)./sin(x)</literal>. Для элементов, равных 
+            <literal>n*180</literal>, где <literal>n</literal> - целые числа, результат 
+            равен бесконечности, хотя  <literal>cotg(n*%pi)</literal> и большой, но конечный, 
+            поскольку <literal>%pi</literal> не может быть представлено точно. Для 
+            элементов, равных <literal>n*90</literal>, где <literal>n</literal> нечётное целое, 
+            результаты равны строго 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 x=[30 45 60 90];
 cotd(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="cotg">cotg</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cotg">cotg</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

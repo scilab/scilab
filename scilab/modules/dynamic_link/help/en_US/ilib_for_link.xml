@@ -11,141 +11,141 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_for_link">
-  <refnamediv>
-    <refname>ilib_for_link</refname>
-    <refpurpose> utility for shared library management with link</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>libn=ilib_for_link(names,files,libs,flag [,makename [,loadername [,libname [,ldflags [,cflags [,fflags [,cc]]]]]]])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>names</term>
-        <listitem>
-          <para>a string matrix giving the entry names which are to be linked.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>files</term>
-        <listitem>
-          <para>string matrix giving source files needed for shared library creation.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>libs</term>
-        <listitem>
-          <para>string matrix giving extra libraries needed for shared library creation</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>a string flag ("c" or "f") for C or Fortran entry points.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>makename</term>
-        <listitem>
-          <para>
-            character string. The pathname of the Makefile file without extension (default value <literal>''</literal>).
-          </para>
-          <para>This parameter is useless since Scilab 5.0.</para>
-          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>loadername</term>
-        <listitem>
-          <para>character string. The pathname of the loader file (default
-            value is   <literal>loader.sce</literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>libname</term>
-        <listitem>
-          <para>optional character string. The name of the generated shared
-            library (default value  is "", and in this case the name is derived
-            from <literal>names(1)</literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ldflags</term>
-        <listitem>
-          <para>optional character string. It can be used to add specific linker options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>cflags</term>
-        <listitem>
-          <para>optional character string. It can be used to add specific C compiler options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fflags</term>
-        <listitem>
-          <para>optional character string. It can be used to add specific Fortran compiler options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>cc</term>
-        <listitem>
-          <para>optional character string. It can be used to specify a C compiler. Default value is ""</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>libn</term>
-        <listitem>
-          <para>character string. The path of the really generated shared library file.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This tool is used to create shared libraries and to generate a
-      loader file which can be used to dynamically load the shared library
-      into Scilab with the <literal>link</literal> function. New entry points
-      given by <literal>names</literal> are then accessible through the <literal>call</literal>
-      function or with non linear tools <literal>ode</literal>, <literal>optim</literal>,...
-    </para>
-    <para>
-      The file to compile are supposed to be located given by
-      <literal>makename</literal>. If <literal>makename</literal> sets a path different to the
-      current directory, <literal>loader</literal> script must be located in
-      the same directory using the <literal>loadername</literal> variable.
-    </para>
-    <para>
-      Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
-      directory. They are all released into the public domain.
-    </para>
-    <para>
-      <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
-    </para>
-    <para>
-      <emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis>
-    </para>
-    <para>
-      On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink>
-    </para>
-    <para>
-      Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>ilib_for_link</refname>
+        <refpurpose> utility for shared library management with link</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>libn=ilib_for_link(names,files,libs,flag [,makename [,loadername [,libname [,ldflags [,cflags [,fflags [,cc]]]]]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>a string matrix giving the entry names which are to be linked.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>string matrix giving source files needed for shared library creation.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libs</term>
+                <listitem>
+                    <para>string matrix giving extra libraries needed for shared library creation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>a string flag ("c" or "f") for C or Fortran entry points.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>makename</term>
+                <listitem>
+                    <para>
+                        character string. The pathname of the Makefile file without extension (default value <literal>''</literal>).
+                    </para>
+                    <para>This parameter is useless since Scilab 5.0.</para>
+                    <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>loadername</term>
+                <listitem>
+                    <para>character string. The pathname of the loader file (default
+                        value is   <literal>loader.sce</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libname</term>
+                <listitem>
+                    <para>optional character string. The name of the generated shared
+                        library (default value  is "", and in this case the name is derived
+                        from <literal>names(1)</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldflags</term>
+                <listitem>
+                    <para>optional character string. It can be used to add specific linker options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cflags</term>
+                <listitem>
+                    <para>optional character string. It can be used to add specific C compiler options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fflags</term>
+                <listitem>
+                    <para>optional character string. It can be used to add specific Fortran compiler options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cc</term>
+                <listitem>
+                    <para>optional character string. It can be used to specify a C compiler. Default value is ""</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libn</term>
+                <listitem>
+                    <para>character string. The path of the really generated shared library file.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This tool is used to create shared libraries and to generate a
+            loader file which can be used to dynamically load the shared library
+            into Scilab with the <literal>link</literal> function. New entry points
+            given by <literal>names</literal> are then accessible through the <literal>call</literal>
+            function or with non linear tools <literal>ode</literal>, <literal>optim</literal>,...
+        </para>
+        <para>
+            The file to compile are supposed to be located given by
+            <literal>makename</literal>. If <literal>makename</literal> sets a path different to the
+            current directory, <literal>loader</literal> script must be located in
+            the same directory using the <literal>loadername</literal> variable.
+        </para>
+        <para>
+            Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
+            directory. They are all released into the public domain.
+        </para>
+        <para>
+            <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
+        </para>
+        <para>
+            <emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis>
+        </para>
+        <para>
+            On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink>
+        </para>
+        <para>
+            Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples (C code)</title>
+        <programlisting role="example"><![CDATA[
 if haveacompiler() then
 
 chdir(TMPDIR)
@@ -173,43 +173,43 @@ if norm(c-(a+b)) > %eps then pause,end
 
 end
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-      </member>
-      <member>
-        <link linkend="ilib_build">ilib_build</link>
-      </member>
-      <member>
-        <link linkend="api_scilab">api_scilab</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>This function no more accepts files with ".o" or ".obj" extensions as source files.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+            </member>
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>This function no more accepts files with ".o" or ".obj" extensions as source files.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

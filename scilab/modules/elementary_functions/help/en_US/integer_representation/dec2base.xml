@@ -11,94 +11,94 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dec2base" xml:lang="en">
-  <refnamediv>
-    <refname>dec2base</refname>
-    <refpurpose>Convert decimal to base N number in string</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>str = dec2base(d, base)</synopsis>
-    <synopsis>str = dec2base(d, base, n)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>matrix of strings corresponding to "base" representation</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>base</term>
-        <listitem>
-          <para>1-by-1 matrix of doubles, positive integer value, the base</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>matrix of doubles, positive integer values</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>str = dec2base(d, base)</literal> converts the nonnegative integer values of <literal>d</literal> to the specified base <literal>base</literal>.
-    </para>
-    <para>
-      <literal>d</literal> must have a nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
-    </para>
-    <para>
-      The returned argument <literal>str</literal> is a matrix of strings.
-    </para>
-    <para>
-      <literal>str = dec2base(d, base, n)</literal> produces a representation with at least <literal>n</literal> digits.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>dec2base</refname>
+        <refpurpose>Convert decimal to base N number in string</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>str = dec2base(d, base)</synopsis>
+        <synopsis>str = dec2base(d, base, n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>matrix of strings corresponding to "base" representation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>base</term>
+                <listitem>
+                    <para>1-by-1 matrix of doubles, positive integer value, the base</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>matrix of doubles, positive integer values</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>str = dec2base(d, base)</literal> converts the nonnegative integer values of <literal>d</literal> to the specified base <literal>base</literal>.
+        </para>
+        <para>
+            <literal>d</literal> must have a nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
+        </para>
+        <para>
+            The returned argument <literal>str</literal> is a matrix of strings.
+        </para>
+        <para>
+            <literal>str = dec2base(d, base, n)</literal> produces a representation with at least <literal>n</literal> digits.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 for b = 2:36
  disp( dec2base(666, b) )
 end 
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="base2dec">base2dec</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="oct2dec">oct2dec</link>
-      </member>
-      <member>
-        <link linkend="hex2dec">hex2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-      <member>
-        <link linkend="dec2oct">dec2oct</link>
-      </member>
-      <member>
-        <link linkend="dec2hex">dec2hex</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>This function was added in Scilab 5.4.0</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>This function was added in Scilab 5.4.0</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

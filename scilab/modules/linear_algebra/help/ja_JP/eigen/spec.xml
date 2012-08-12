@@ -183,7 +183,7 @@
                 <term>[al,be,Z] = spec(A,E)</term>
                 <listitem>
                     <para>
-                         一般化右固有ベクトルである行列 <literal>Z</literal> を返します.
+                        一般化右固有ベクトルである行列 <literal>Z</literal> を返します.
                     </para>
                 </listitem>
             </varlistentry>

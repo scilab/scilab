@@ -22,237 +22,237 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATEXPM">
-  <refnamediv>
-    <refname>MATEXPM</refname>
-    <refpurpose>Matrix Exponential</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/MATEXPM.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_MATEXPM">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>MATEXPM</refname>
+        <refpurpose>Matrix Exponential</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="MATEXPM">Matrix Exponential</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/MATEXPM.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_MATEXPM">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_MATEXPM">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_MATEXPM">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_MATEXPM">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <link linkend="MATEXPM">Example</link>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_MATEXPM">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_MATEXPM">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_MATEXPM">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_MATEXPM">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATEXPM">Matrix Exponential</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_MATEXPM">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_MATEXPM">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_MATEXPM">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <link linkend="MATEXPM">Example</link>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_MATEXPM">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_MATEXPM">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_MATEXPM">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_MATEXPM">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_MATEXPM">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_MATEXPM">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Matrix_pal">Matrix operation palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_MATEXPM">
+        <title>Description</title>
         <para>
-          <link linkend="Matrix_pal">Matrix operation palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_MATEXPM">
-    <title>Description</title>
-    <para>
-      The MATEXPM outputs the matrix exponential of a square matrix input computed by the pade's approximants.
-      The output is a square matrix with the same size of the input.
-    </para>
-    <para>
-      The equivalent of this block in Scilab is <link linkend="expm">expm</link>.
-    </para>
-    <para/>
-  </refsection>
-  <refsection id="Dialogbox_MATEXPM">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../../images/gui/MATEXPM_gui.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para/>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
+            The MATEXPM outputs the matrix exponential of a square matrix input computed by the pade's approximants.
+            The output is a square matrix with the same size of the input.
         </para>
         <para>
-          It indicates the type of the output. It support only the two types double (1) and complex (2).
-          If we input another entry in this label xcos will print the message "Datatype is not supported".
+            The equivalent of this block in Scilab is <link linkend="expm">expm</link>.
         </para>
-        <para>Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_MATEXPM">
-    <title>Example</title>
-    <programlisting role="example">
-      u=[1 2 3;2 3 1;4 2 1]
-      y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
-    </programlisting>
-  </refsection>
-  <refsection id="Defaultproperties_MATEXPM">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
+        <para/>
+    </refsection>
+    <refsection id="Dialogbox_MATEXPM">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">always active:</emphasis> no
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/gui/MATEXPM_gui.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation
-            inputs:
-          </emphasis>
-          0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation
-            outputs:
-          </emphasis>
-          0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis>
-          no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis>
-          no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">mat_expm</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_MATEXPM">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_MATEXPM">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/mat_expm.c</para>
-      </listitem>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/matz_expm.c</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Seealso_MATEXPM">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="MATMUL">MATMUL - Matrix Multiplication (xcos Block)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="expm">expm (Scilab function)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
+                </para>
+                <para>
+                    It indicates the type of the output. It support only the two types double (1) and complex (2).
+                    If we input another entry in this label xcos will print the message "Datatype is not supported".
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEXPM">
+        <title>Example</title>
+        <programlisting role="example">
+            u=[1 2 3;2 3 1;4 2 1]
+            y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
+        </programlisting>
+    </refsection>
+    <refsection id="Defaultproperties_MATEXPM">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        inputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        outputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">mat_expm</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_MATEXPM">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_MATEXPM">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/mat_expm.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/matz_expm.c</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_MATEXPM">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="MATMUL">MATMUL - Matrix Multiplication (xcos Block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="expm">expm (Scilab function)</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

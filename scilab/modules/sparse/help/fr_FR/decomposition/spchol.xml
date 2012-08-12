@@ -11,49 +11,49 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="spchol">
-  <refnamediv>
-    <refname>spchol</refname>
-    <refpurpose> Factorisation de Cholesky creuse  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>[R,P] = spchol(X)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>X  </term>
-        <listitem>
-          <para>matrice creuse réelle symétrique et définie positive.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>P  </term>
-        <listitem>
-          <para> matrice de permutation
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>R  </term>
-        <listitem>
-          <para> facteur de Cholesky
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire inférieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>spchol</refname>
+        <refpurpose> Factorisation de Cholesky creuse  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[R,P] = spchol(X)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>X  </term>
+                <listitem>
+                    <para>matrice creuse réelle symétrique et définie positive.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P  </term>
+                <listitem>
+                    <para> matrice de permutation
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R  </term>
+                <listitem>
+                    <para> facteur de Cholesky
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire inférieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 X=[
 3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
 0.,  5.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
@@ -69,22 +69,22 @@ X=[
 X=sparse(X);[R,P] = spchol(X);
 max(P*R*R'*P'-X)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sparse">sparse</link>
-      </member>
-      <member>
-        <link linkend="lusolve">lusolve</link>
-      </member>
-      <member>
-        <link linkend="luget">luget</link>
-      </member>
-      <member>
-        <link linkend="chol">chol</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sparse">sparse</link>
+            </member>
+            <member>
+                <link linkend="lusolve">lusolve</link>
+            </member>
+            <member>
+                <link linkend="luget">luget</link>
+            </member>
+            <member>
+                <link linkend="chol">chol</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

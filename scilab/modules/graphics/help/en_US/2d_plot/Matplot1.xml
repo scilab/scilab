@@ -11,52 +11,52 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="Matplot1">
-  <refnamediv>
-    <refname>Matplot1</refname>
-    <refpurpose>2D plot of a matrix using
-      colors
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>Matplot1(a,rect)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>real matrix of size (n1,n2).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rect</term>
-        <listitem>
-          <para>
-            <literal>[xmin,ymin,xmax,ymax]</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The entries of matrix <literal>int(a)</literal> are used as colormap entries
-      in the current colormap.  <literal>rect</literal> specify a rectangle in the
-      current scale and the matrix is drawn inside this rectangle. Each matrix
-      entry will be rendered as a small rectangle filled with its associated
-      color. If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image>Matplot1();</scilab:image>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>Matplot1</refname>
+        <refpurpose>2D plot of a matrix using
+            colors
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>Matplot1(a,rect)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>real matrix of size (n1,n2).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        <literal>[xmin,ymin,xmax,ymax]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The entries of matrix <literal>int(a)</literal> are used as colormap entries
+            in the current colormap.  <literal>rect</literal> specify a rectangle in the
+            current scale and the matrix is drawn inside this rectangle. Each matrix
+            entry will be rendered as a small rectangle filled with its associated
+            color. If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>Matplot1();</scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //--- first example
 clf();
 ax=gca();//get current axes handle
@@ -91,25 +91,25 @@ for k=-n:n,
 end
 f.pixmap='off';
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="colormap">colormap</link>
-      </member>
-      <member>
-        <link linkend="plot2d">plot2d</link>
-      </member>
-      <member>
-        <link linkend="Matplot">Matplot</link>
-      </member>
-      <member>
-        <link linkend="grayplot">grayplot</link>
-      </member>
-      <member>
-        <link linkend="Matplot_properties">Matplot_properties</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colormap">colormap</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Matplot_properties">Matplot_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

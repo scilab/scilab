@@ -12,108 +12,108 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mclose">
-  <refnamediv>
-    <refname>mclose</refname>
-    <refpurpose>closes an opened file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      err = mclose([fd])
-      mclose('all')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>fd</term>
-        <listitem>
-          <para>
-            a scalar: the <varname>fd</varname> parameter returned by the function <function>mopen</function> is used as a file descriptor.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>err</term>
-        <listitem>
-          <para>a scalar: an error indicator.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <function>mclose</function> must be used to close a file opened by 
-      <function>mopen</function>. If <varname>fd</varname> is omitted 
-      <function>mclose</function> closes the last opend file.
-    </para>
-    <para>
-      <code>mclose('all')</code> closes all files opened by 
-      <code>file('open',..)</code> or <function>mopen</function>. 
-      <caution>
-        Be careful with this use of <function>mclose</function> because when 
-        it is used inside a Scilab script file, it also closes the script and 
-        Scilab will not execute commands written after 
-        <code>mclose('all')</code>.
-      </caution>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="file">file</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>mclose</refname>
+        <refpurpose>closes an opened file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            err = mclose([fd])
+            mclose('all')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        a scalar: the <varname>fd</varname> parameter returned by the function <function>mopen</function> is used as a file descriptor.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>a scalar: an error indicator.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>mclose</function> must be used to close a file opened by 
+            <function>mopen</function>. If <varname>fd</varname> is omitted 
+            <function>mclose</function> closes the last opend file.
+        </para>
+        <para>
+            <code>mclose('all')</code> closes all files opened by 
+            <code>file('open',..)</code> or <function>mopen</function>. 
+            <caution>
+                Be careful with this use of <function>mclose</function> because when 
+                it is used inside a Scilab script file, it also closes the script and 
+                Scilab will not execute commands written after 
+                <code>mclose('all')</code>.
+            </caution>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

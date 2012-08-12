@@ -11,60 +11,60 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Common_isvarmatrixtype_API" xml:lang="en">
-  <refnamediv>
-    <refname>Matrix Type (Scilab gateway)</refname>
-    <refpurpose>
-      How to know if an argument or a variable is stored as a matrix.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <synopsis>int isVarMatrixType(void* _pvCtx, int* _piAddress)</synopsis>
-    <para>Named variable profile:</para>
-    <synopsis>int isNamedVarMatrixType(void* _pvCtx, const char *_pstName)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piAddress</term>
-        <listitem>
-          <para>
-            Address of the variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Returned value</term>
-        <listitem>
-          <para>
-            1 if the variable is stored as matrix otherwise 0.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This help describes how to know if a variable is stored as a matrix.</para>
-    <para>In some cases (exemple: list), a variable is not stored as a standard Scilab matrix. This function provides a way to handle both cases.</para>
-  </refsection>
-  <refsection>
-    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
-    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
-    <!--Lib_name: common_function-->
-    <!--Func_list: common_function-->
-    <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <refnamediv>
+        <refname>Matrix Type (Scilab gateway)</refname>
+        <refpurpose>
+            How to know if an argument or a variable is stored as a matrix.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>int isVarMatrixType(void* _pvCtx, int* _piAddress)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>int isNamedVarMatrixType(void* _pvCtx, const char *_pstName)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Returned value</term>
+                <listitem>
+                    <para>
+                        1 if the variable is stored as matrix otherwise 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to know if a variable is stored as a matrix.</para>
+        <para>In some cases (exemple: list), a variable is not stored as a standard Scilab matrix. This function provides a way to handle both cases.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        <!--Lib_name: common_function-->
+        <!--Func_list: common_function-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -209,10 +209,10 @@ SciErr printf_info(int _iVar)
     return sciErr;
 }
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -221,5 +221,5 @@ l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 common_function(l(1:$))
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

@@ -22,252 +22,252 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATZREIM">
-  <refnamediv>
-    <refname>MATZREIM</refname>
-    <refpurpose>Complex decomposition/composition</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/MATZREIM.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_MATZREIM">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>MATZREIM</refname>
+        <refpurpose>Complex decomposition/composition</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="MATZREIM">Complex decomposition/composition</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/MATZREIM.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_MATZREIM">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_MATZREIM">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_MATZREIM">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_MATZREIM">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_MATZREIM">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_MATZREIM">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_MATZREIM">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_MATZREIM">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATZREIM">Complex decomposition/composition</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_MATZREIM">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_MATZREIM">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_MATZREIM">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_MATZREIM">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_MATZREIM">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_MATZREIM">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_MATZREIM">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_MATZREIM">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_MATZREIM">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Mathoperations_pal">Math operations palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_MATZREIM">
+        <title>Description</title>
         <para>
-          <link linkend="Mathoperations_pal">Math operations palette</link>
+            This block decomposes a matrix of complex numbers by separating the real and imaginary parts or composes a
+            matrix of complex numbers by joining the two parts with respect to the value of
+            <emphasis role="bold">decomposition type</emphasis> parameter.
+            The following table summarize the bloc behaviour :
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_MATZREIM">
-    <title>Description</title>
-    <para>
-      This block decomposes a matrix of complex numbers by separating the real and imaginary parts or composes a
-      matrix of complex numbers by joining the two parts with respect to the value of
-      <emphasis role="bold">decomposition type</emphasis> parameter.
-      The following table summarize the bloc behaviour :
-    </para>
-    <para/>
-    <informaltable border="1" cellpadding="2">
-      <tr>
-        <td align="left" width="18%">
-          <emphasis role="bold">Decomposition type</emphasis>
-        </td>
-        <td align="left" width="20%">
-          <emphasis role="bold">Inputs</emphasis>
-        </td>
-        <td align="left" width="20%">
-          <emphasis role="bold">Outputs</emphasis>
-        </td>
-        <td align="left">
-          <emphasis role="bold">Operation</emphasis>
-        </td>
-      </tr>
-      <tr>
-        <td align="left">
-          <emphasis role="bold">1</emphasis>
-        </td>
-        <td align="left">One (complex)</td>
-        <td align="left">Two (double)</td>
-        <td align="left">
-          Decomposition: The real part and the imaginary part of the input are available respectively on the first and
-          the second outputs.
-        </td>
-      </tr>
-      <tr>
-        <td align="left">
-          <emphasis role="bold">2</emphasis>
-        </td>
-        <td align="left">Two (double)</td>
-        <td align="left">One (complex)</td>
-        <td align="left">
-          Composition: The output is a matrix of complex numbers built with the real and imaginary parts coming respectively from
-          the first and from the second inputs.
-        </td>
-      </tr>
-    </informaltable>
-    <para/>
-  </refsection>
-  <refsection id="Dialogbox_MATZREIM">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/gui/MATZREIM_gui.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      
-    </para>
-    <itemizedlist>
-      <listitem>
+        <para/>
+        <informaltable border="1" cellpadding="2">
+            <tr>
+                <td align="left" width="18%">
+                    <emphasis role="bold">Decomposition type</emphasis>
+                </td>
+                <td align="left" width="20%">
+                    <emphasis role="bold">Inputs</emphasis>
+                </td>
+                <td align="left" width="20%">
+                    <emphasis role="bold">Outputs</emphasis>
+                </td>
+                <td align="left">
+                    <emphasis role="bold">Operation</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">1</emphasis>
+                </td>
+                <td align="left">One (complex)</td>
+                <td align="left">Two (double)</td>
+                <td align="left">
+                    Decomposition: The real part and the imaginary part of the input are available respectively on the first and
+                    the second outputs.
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">2</emphasis>
+                </td>
+                <td align="left">Two (double)</td>
+                <td align="left">One (complex)</td>
+                <td align="left">
+                    Composition: The output is a matrix of complex numbers built with the real and imaginary parts coming respectively from
+                    the first and from the second inputs.
+                </td>
+            </tr>
+        </informaltable>
+        <para/>
+    </refsection>
+    <refsection id="Dialogbox_MATZREIM">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">decomposition type (1=Complex2Real&amp;amp;Imag 2=Real&amp;amp;Imag2Complex)</emphasis>
-        </para>
-        <para> Indicates the type to use for the decomposition. See the description part for more information.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_MATZREIM">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/MATZREIM_gui.gif" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type 2</emphasis>
+            
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [-1,-2] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">matz_reim</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_MATZREIM">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_MATZREIM">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_reim.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_reimc.c</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Seealso_MATZREIM">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Complex to Magnitude and Angle Conversion</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">decomposition type (1=Complex2Real&amp;amp;Imag 2=Real&amp;amp;Imag2Complex)</emphasis>
+                </para>
+                <para> Indicates the type to use for the decomposition. See the description part for more information.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_MATZREIM">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 2</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [-1,-2] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">matz_reim</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_MATZREIM">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_MATZREIM">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/matz_reim.c</para>
+            </listitem>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/matz_reimc.c</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_MATZREIM">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Complex to Magnitude and Angle Conversion</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

@@ -12,36 +12,36 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setlanguage">
-  <refnamediv>
-    <refname>setlanguage</refname>
-    <refpurpose>sets the internal LANGUAGE
-      value (for Windows only)
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>setlanguage(language)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>language</term>
-        <listitem>
-          <para>with language='fr' or  'en', ... </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>setlanguage(language)</literal> changes current language in scilab.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>setlanguage</refname>
+        <refpurpose>sets the internal LANGUAGE
+            value (for Windows only)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>setlanguage(language)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>language</term>
+                <listitem>
+                    <para>with language='fr' or  'en', ... </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>setlanguage(language)</literal> changes current language in scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 setlanguage('en_US')
 getlanguage()
 setlanguage('en')
@@ -51,16 +51,16 @@ getlanguage()
 setlanguage('fr_FR')
 getlanguage()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getlanguage">getlanguage</link>
-      </member>
-      <member>
-        <link linkend="setdefaultlanguage">setdefaultlanguage</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getlanguage">getlanguage</link>
+            </member>
+            <member>
+                <link linkend="setdefaultlanguage">setdefaultlanguage</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

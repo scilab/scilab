@@ -12,51 +12,51 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="dispfiles">
-  <refnamediv>
-    <refname>dispfiles</refname>
-    <refpurpose>выводит на экран свойства открытых файлов</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>dispfiles([units])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>units</term>
-        <listitem>
-          <para>
-            вектор целых чисел: номера логических блоков. По умолчанию
-            все открытые файлы.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Функция <function>dispfiles</function> выводит на экран свойства файлов, 
-      открытых на данный момент.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>dispfiles</refname>
+        <refpurpose>выводит на экран свойства открытых файлов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>dispfiles([units])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>units</term>
+                <listitem>
+                    <para>
+                        вектор целых чисел: номера логических блоков. По умолчанию
+                        все открытые файлы.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>dispfiles</function> выводит на экран свойства файлов, 
+            открытых на данный момент.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 dispfiles()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="file">file</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

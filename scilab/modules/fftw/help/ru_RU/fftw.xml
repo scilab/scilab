@@ -12,63 +12,63 @@
  -->
 <!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fftw" xml:lang="ru">
-  <refnamediv>
-    <refname>fftw</refname>
-    <refpurpose>Быстрое преобразование Фурье на основе библиотеки fftw</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[y]=fftw(x) 
-      [y]=fftw(x,sign) 
-      [y]=fftw(x,sign,dim,incr) 
-      [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>y,x</term>
-        <listitem>
-          <para>matrix/вектор вещественных/комплексных данных. Входные/выходные данные, которые должны быть преобразованы.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sign</term>
-        <listitem>
-          <para>Целое число. 1 или -1. Устанавливает прямое или обратное преобразование.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>dim</term>
-        <listitem>
-          <para>Целое число. Устанавливает размерность (длину) преобразования.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>incr</term>
-        <listitem>
-          <para>Целое число. Устанавливает шаг (интервал) преобразования.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>Эта функция реализует прямое/обратное Дискретное Преобразование Фурье (ДПФ) с помощью библиотеки FFTW.</para>
-    <para>С помощью этой функции можно делать одномерное (вектор), двумерное, и многомерное преобразование.</para>
-    <para>
-      За подробной информацией о синтаксисе fftw обращайтесь к функции <link linkend="fft">fft</link> Scilab'а.
-    </para>
-    <para>
-      За подробной информацией о библиотеке FFTW обращайтесь на вэб-сайт FFTW : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
-    </para>
-    <para>Примечание: Функция fftw автоматически сохраняет свои последние параметры в памяти для повторного использования.</para>
-    <para>Это значительно улучшает время вычисления при выполнении последовательных вызовов.</para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>fftw</refname>
+        <refpurpose>Быстрое преобразование Фурье на основе библиотеки fftw</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[y]=fftw(x) 
+            [y]=fftw(x,sign) 
+            [y]=fftw(x,sign,dim,incr) 
+            [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>y,x</term>
+                <listitem>
+                    <para>matrix/вектор вещественных/комплексных данных. Входные/выходные данные, которые должны быть преобразованы.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sign</term>
+                <listitem>
+                    <para>Целое число. 1 или -1. Устанавливает прямое или обратное преобразование.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dim</term>
+                <listitem>
+                    <para>Целое число. Устанавливает размерность (длину) преобразования.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>incr</term>
+                <listitem>
+                    <para>Целое число. Устанавливает шаг (интервал) преобразования.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>Эта функция реализует прямое/обратное Дискретное Преобразование Фурье (ДПФ) с помощью библиотеки FFTW.</para>
+        <para>С помощью этой функции можно делать одномерное (вектор), двумерное, и многомерное преобразование.</para>
+        <para>
+            За подробной информацией о синтаксисе fftw обращайтесь к функции <link linkend="fft">fft</link> Scilab'а.
+        </para>
+        <para>
+            За подробной информацией о библиотеке FFTW обращайтесь на вэб-сайт FFTW : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
+        </para>
+        <para>Примечание: Функция fftw автоматически сохраняет свои последние параметры в памяти для повторного использования.</para>
+        <para>Это значительно улучшает время вычисления при выполнении последовательных вызовов.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 //простое одномерное прямое преобразование 
 a = rand(50,1)+%i*rand(50,1); 
 y = fftw(a); y = fftw(a,-1); 
@@ -94,28 +94,28 @@ end
 y = fftw(a,-1,[5 6 4],[1 5 30]); 
 b = fftw(y,1,[5 6 4],[1 5 30]);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="fftw_flags">fftw_flags</link>
-      </member>
-      <member>
-        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Литература</title>
-    <para>
-      Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
-    </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fftw_flags">fftw_flags</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Литература</title>
+        <para>
+            Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+        </para>
+    </refsection>
 </refentry>

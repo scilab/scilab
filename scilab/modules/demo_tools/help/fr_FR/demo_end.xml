@@ -11,35 +11,35 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_end">
-  <refnamediv>
-    <refname>demo_end</refname>
-    <refpurpose>Termine une démonstration</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>demo_end()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      La fonction demo_end() sert déterminer une démonstration. Elle doit être utilisée
-      conjointement à la fonction demo_begin. Elle récupère  l'état l'environnement de
-      la console tel qu'il était avant l'utilisation de demo_begin : largeur de la
-      console et affectation des variables.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="demo_begin">demo_begin</link>
-      </member>
-      <member>
-        <link linkend="demo_run">demo_run</link>
-      </member>
-      <member>
-        <link linkend="demo_message">demo_message</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>demo_end</refname>
+        <refpurpose>Termine une démonstration</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>demo_end()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            La fonction demo_end() sert déterminer une démonstration. Elle doit être utilisée
+            conjointement à la fonction demo_begin. Elle récupère  l'état l'environnement de
+            la console tel qu'il était avant l'utilisation de demo_begin : largeur de la
+            console et affectation des variables.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="demo_begin">demo_begin</link>
+            </member>
+            <member>
+                <link linkend="demo_run">demo_run</link>
+            </member>
+            <member>
+                <link linkend="demo_message">demo_message</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

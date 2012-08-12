@@ -15,7 +15,7 @@
     <refnamediv>
         <refname>fscanf</refname>
         <refpurpose>
-	    converts formatted input read on a file.<emphasis role="bold">This function is obsolete</emphasis>.
+            converts formatted input read on a file.<emphasis role="bold">This function is obsolete</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

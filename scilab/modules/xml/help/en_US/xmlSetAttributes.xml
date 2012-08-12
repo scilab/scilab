@@ -11,40 +11,40 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlSetAttributes" xml:lang="en">
-  <refnamediv>
-    <refname>xmlSetAttributes</refname>
-    <refpurpose>Set the attributes name and value.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      xmlObj = xmlSetAttributes(xmlObj, nameValue)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xmlObj</term>
-        <listitem>
-          <para>xmlObj, a XML mlist typed XMLSet or XMLList or XMLElem or XMLAttr</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nameValue</term>
-        <listitem>
-          <para>nameValue, a matrix nx2 or nx3 of strings where each rows contains [name value] or [prefix name value]</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Set the attributes of an element or a list of elements.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>xmlSetAttributes</refname>
+        <refpurpose>Set the attributes name and value.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            xmlObj = xmlSetAttributes(xmlObj, nameValue)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlObj</term>
+                <listitem>
+                    <para>xmlObj, a XML mlist typed XMLSet or XMLList or XMLElem or XMLAttr</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nameValue</term>
+                <listitem>
+                    <para>nameValue, a matrix nx2 or nx3 of strings where each rows contains [name value] or [prefix name value]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Set the attributes of an element or a list of elements.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a><b><c></c></b></a><b></b></root>");
 
     // Retrieve all the nodes
@@ -67,22 +67,22 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="XMLObjects">XMLObjects</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>XML module introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XMLObjects</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

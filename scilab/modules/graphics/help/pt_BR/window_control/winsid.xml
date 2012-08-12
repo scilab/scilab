@@ -11,30 +11,30 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="winsid" xml:lang="en">
-  <refnamediv>
-    <refname>winsid</refname>
-    <refpurpose>retorna a lista de janelas de gráficos</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>x=winsid()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>vetor linha</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>winsid</literal> é usado para retornar a lista de janelas
-      de gráficos como um vetor de números das janelas.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>winsid</refname>
+        <refpurpose>retorna a lista de janelas de gráficos</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>x=winsid()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor linha</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>winsid</literal> é usado para retornar a lista de janelas
+            de gráficos como um vetor de números das janelas.
+        </para>
+    </refsection>
 </refentry>

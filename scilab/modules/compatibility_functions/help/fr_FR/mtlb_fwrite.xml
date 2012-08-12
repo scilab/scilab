@@ -11,32 +11,32 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_write">
-  <refnamediv>
-    <refname>mtlb_write</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab write</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>write</literal>. La fonction Scilab <literal>mput</literal>
-      et la fonction Matlab <literal>write</literal> se comportent différemment dans beaucoup de cas mais sont équivalentes dans plusieurs cas.
-    </para>
-    <para>
-      La fonction <literal>mtlb_write(varargin)</literal> est utilisée par
-      <literal>mfile2sci</literal> pour remplacer <literal>write</literal>. Cette fonction va
-      déterminer la sémantique correcte pendant l'exécution. Il est quelquefois possible de remplacer les appels à
-      <literal>mtlb_write</literal> par des appels à <link linkend="mput">mput</link>.
-    </para>
-    <para>
-      Attention : <literal>mtlb_write</literal> ne doit pas être utilisée pour une programmation manuelle.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>mtlb_write</refname>
+        <refpurpose>Fonction d'émulation de la fonction Matlab write</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>write</literal>. La fonction Scilab <literal>mput</literal>
+            et la fonction Matlab <literal>write</literal> se comportent différemment dans beaucoup de cas mais sont équivalentes dans plusieurs cas.
+        </para>
+        <para>
+            La fonction <literal>mtlb_write(varargin)</literal> est utilisée par
+            <literal>mfile2sci</literal> pour remplacer <literal>write</literal>. Cette fonction va
+            déterminer la sémantique correcte pendant l'exécution. Il est quelquefois possible de remplacer les appels à
+            <literal>mtlb_write</literal> par des appels à <link linkend="mput">mput</link>.
+        </para>
+        <para>
+            Attention : <literal>mtlb_write</literal> ne doit pas être utilisée pour une programmation manuelle.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -3,136 +3,136 @@
  * Add some comments about XML file
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="damp">
-  <refnamediv>
-    <refname>damp</refname>
-    <refpurpose>固有周波数およびダンピング乗数. </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>
-      [wn,z] = damp(sys)
-      [wn,z] = damp(P [,dt])
-      [wn,z] = damp(R [,dt])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>sys</term>
-        <listitem>
-          <para>
-            線形ダイナミクスシステム
-            (<link linkend="syslin">syslin</link>参照).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>P</term>
-        <listitem>
-          <para>
-            多項式配列.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>P</term>
-        <listitem>
-          <para>
-            実数または複素数の浮動小数点数の配列.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>dt</term>
-        <listitem>
-          <para>
-            非負のスカラー, デフォルト値は 0.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>wn</term>
-        <listitem>
-          <para>
-            昇順の浮動小数点数のベクトル:固有周波数 [rad/s].
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z</term>
-        <listitem>
-          <para>
-            浮動小数点数のベクトル: ダンピング乗数.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      複素極を有する分母の二次連続時間伝達関数は
-      <literal>s^2+2*z*wn*s+wn^2</literal>のように記述できます。
-      ただし,<literal>z</literal> はダンピング乗数, <literal>wn </literal>
-      は固有周波数です.
-    </para>
-    <para>
-      <literal>sys</literal> が連続時間系の場合,
-      <literal>[wn,z] = damp(sys)</literal> は
-      線形ダイナミクスシステム<literal>sys</literal>の極の
-      固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
-      ダンピング係数 <latex>\xi</latex>を<literal>z</literal>に
-      返します.配列 <literal>wn</literal> と
-      <literal>z</literal>は周波数に関して昇順となります.
-    </para>
-    <para>
-      <literal>sys</literal> が離散時間系の場合,
-      <literal>[wn,z] = damp(sys)</literal> は
-      <literal>sys</literal>の連続時間系で等価な極の
-      固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
-      ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に
-      返します.配列 <literal>wn</literal> と
-      <literal>z</literal>は周波数に関して昇順となります.
-    </para>
-    <para>
-      <literal>[wn,z] = damp(P)</literal>  は,
-      配列 <literal>P</literal>に保存された多項式の根の集合の
-      固有周波数 <latex>\omega_n</latex>(rad/s) を<literal>wn</literal>,
-      ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に返します.
-      <literal>dt</literal> が指定され, 0でない場合,
-      その根はまず連続時間系の等価な根に変換されます.
-      配列 <literal>wn</literal> および<literal>z</literal> は
-      周波数に関して昇順となります.
-    </para>
-    <para>
-      <literal>[wn,z] = damp(R)</literal>  は,
-      配列<literal>R</literal>に保存された根の集合の
-      固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
-      ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に
-      返します.
-      <literal>dt</literal> が指定され, 0でない場合,
-      その根はまず連続時間系の等価な根に変換されます.
-      
-      配列 <literal>wn(i)</literal> および<literal>z(i)</literal> は
-      それぞれ<literal>R(i)</literal>の固有周波数およびダンピング乗数と
-      なります.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>damp</refname>
+        <refpurpose>固有周波数およびダンピング乗数. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [wn,z] = damp(sys)
+            [wn,z] = damp(P [,dt])
+            [wn,z] = damp(R [,dt])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        線形ダイナミクスシステム
+                        (<link linkend="syslin">syslin</link>参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        多項式配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        実数または複素数の浮動小数点数の配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>
+                        非負のスカラー, デフォルト値は 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wn</term>
+                <listitem>
+                    <para>
+                        昇順の浮動小数点数のベクトル:固有周波数 [rad/s].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        浮動小数点数のベクトル: ダンピング乗数.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            複素極を有する分母の二次連続時間伝達関数は
+            <literal>s^2+2*z*wn*s+wn^2</literal>のように記述できます。
+            ただし,<literal>z</literal> はダンピング乗数, <literal>wn </literal>
+            は固有周波数です.
+        </para>
+        <para>
+            <literal>sys</literal> が連続時間系の場合,
+            <literal>[wn,z] = damp(sys)</literal> は
+            線形ダイナミクスシステム<literal>sys</literal>の極の
+            固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
+            ダンピング係数 <latex>\xi</latex>を<literal>z</literal>に
+            返します.配列 <literal>wn</literal> と
+            <literal>z</literal>は周波数に関して昇順となります.
+        </para>
+        <para>
+            <literal>sys</literal> が離散時間系の場合,
+            <literal>[wn,z] = damp(sys)</literal> は
+            <literal>sys</literal>の連続時間系で等価な極の
+            固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
+            ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に
+            返します.配列 <literal>wn</literal> と
+            <literal>z</literal>は周波数に関して昇順となります.
+        </para>
+        <para>
+            <literal>[wn,z] = damp(P)</literal>  は,
+            配列 <literal>P</literal>に保存された多項式の根の集合の
+            固有周波数 <latex>\omega_n</latex>(rad/s) を<literal>wn</literal>,
+            ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に返します.
+            <literal>dt</literal> が指定され, 0でない場合,
+            その根はまず連続時間系の等価な根に変換されます.
+            配列 <literal>wn</literal> および<literal>z</literal> は
+            周波数に関して昇順となります.
+        </para>
+        <para>
+            <literal>[wn,z] = damp(R)</literal>  は,
+            配列<literal>R</literal>に保存された根の集合の
+            固有周波数 <latex>\omega_n</latex>(rad/s)を<literal>wn</literal> に
+            ダンピング乗数 <latex>\xi</latex>を<literal>z</literal>に
+            返します.
+            <literal>dt</literal> が指定され, 0でない場合,
+            その根はまず連続時間系の等価な根に変換されます.
+            
+            配列 <literal>wn(i)</literal> および<literal>z(i)</literal> は
+            それぞれ<literal>R(i)</literal>の固有周波数およびダンピング乗数と
+            なります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
     s=%s;
     num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
     den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
     h=syslin('c',num/den);
     [wn,z] = damp(h)
     ]]></programlisting>
-    <para>
-      以下の例は二次系の周波数応答に関するダンピング乗数の感度を
-      示すものです.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            以下の例は二次系の周波数応答に関するダンピング乗数の感度を
+            示すものです.
+        </para>
+        <programlisting role="example"><![CDATA[
    s=%s;
    wn=1;
    clf();
@@ -148,32 +148,32 @@
    legend('$\xi='+string(Z)+'$')
    plot(wn/(2*%pi)*[1 1],[0 70],'r') // 固有周波数
    ]]></programlisting>
-    <para>
-      このコードは以下のプロットを出力します:
-    </para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../images/damp.svg"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      根の集合の固有周波数とダンピング比を計算します:
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            このコードは以下のプロットを出力します:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/damp.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            根の集合の固有周波数とダンピング比を計算します:
+        </para>
+        <programlisting role="example"><![CDATA[
     [wn,z] = damp((1:5)+%i)
     ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="spec">spec</link>
-      </member>
-      <member>
-        <link linkend="roots">roots</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

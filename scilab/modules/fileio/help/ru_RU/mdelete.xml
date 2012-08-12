@@ -12,86 +12,86 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="mdelete">
-  <refnamediv>
-    <refname>mdelete</refname>
-    <refpurpose>deletes file(s)</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>mdelete(filename)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>
-	    символьная строка: имя файлов (и путь), которые нужно удалить.
-	  </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <function>mdelete</function> может быть использована для удаления файла 
-      или набора файлов, если <varname>filename</varname> содержит 
-      метасимволы.
-    </para>
-    <para>
-      <caution>
-	Заметьте, что функция <function>mdelete</function> не спрашивает подтверждения, если вы вводите команду на удаление. Во избежание потери файлов, убедитесь, что вы точно указали файлы, которые вы хотите удалить.
-      </caution>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>mdelete</refname>
+        <refpurpose>deletes file(s)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>mdelete(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>
+                        символьная строка: имя файлов (и путь), которые нужно удалить.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>mdelete</function> может быть использована для удаления файла 
+            или набора файлов, если <varname>filename</varname> содержит 
+            метасимволы.
+        </para>
+        <para>
+            <caution>
+                Заметьте, что функция <function>mdelete</function> не спрашивает подтверждения, если вы вводите команду на удаление. Во избежание потери файлов, убедитесь, что вы точно указали файлы, которые вы хотите удалить.
+            </caution>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

@@ -11,55 +11,55 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_upper">
-  <refnamediv>
-    <refname>mtlb_upper</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab upper</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Dans plusieurs cas particuliers, la fonction Matlab <literal>upper(A)</literal> et la fonction Scilab
-      <literal>convstr(A,"u")</literal> se comportent différemment :
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_upper</refname>
+        <refpurpose>Fonction d'émulation de la fonction Matlab upper</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          Si <literal>A</literal> n'est pas une chaîne de caractères : la fonction Matlab <literal>upper</literal> peut être utilisée
-          avec <literal>A</literal> n'étant pas une chaîne de caractères mais pas la fonction Scilab <literal>convstr</literal>.
+            Dans plusieurs cas particuliers, la fonction Matlab <literal>upper(A)</literal> et la fonction Scilab
+            <literal>convstr(A,"u")</literal> se comportent différemment :
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      La fonction <literal>mtlb_upper(A)</literal> est utilisée par
-      <literal>mfile2sci</literal> pour remplacer <literal>upper(A)</literal> quand il n'était pas
-      possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-      déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-      on peut remplacer les appels à <literal>mtlb_upper</literal> :
-    </para>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> n'est pas une chaîne de caractères : la fonction Matlab <literal>upper</literal> peut être utilisée
+                    avec <literal>A</literal> n'étant pas une chaîne de caractères mais pas la fonction Scilab <literal>convstr</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          Si <literal>A</literal> est une matrice de chaînes de caractères
-          <literal>mtlb_upper(A)</literal> peut être remplacé par <literal>convstr(A,"u")</literal>
+            La fonction <literal>mtlb_upper(A)</literal> est utilisée par
+            <literal>mfile2sci</literal> pour remplacer <literal>upper(A)</literal> quand il n'était pas
+            possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+            déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+            on peut remplacer les appels à <literal>mtlb_upper</literal> :
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> est une matrice de chaînes de caractères
+                    <literal>mtlb_upper(A)</literal> peut être remplacé par <literal>convstr(A,"u")</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> n'est pas une matrice de chaînes de caractères
+                    <literal>mtlb_upper(A)</literal> peut être remplacé par <literal>A</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          Si <literal>A</literal> n'est pas une matrice de chaînes de caractères
-          <literal>mtlb_upper(A)</literal> peut être remplacé par <literal>A</literal>
+            Attention : <literal>mtlb_upper</literal> ne doit pas être utilisée pour une programmation manuelle.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Attention : <literal>mtlb_upper</literal> ne doit pas être utilisée pour une programmation manuelle.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="convstr">convstr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="convstr">convstr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

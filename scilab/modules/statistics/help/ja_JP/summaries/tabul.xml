@@ -11,83 +11,83 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tabul">
-  <refnamediv>
-    <refname>tabul</refname>
-    <refpurpose>行列またはベクトルの値の頻度</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[m]=tabul(X [,order])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>ベクトルまたは行列 (実数または複素数または文字列)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>order</term>
-        <listitem>
-          <para>(オプションの) 文字 "d" または "i" (デフォルト値: "d")を指定します</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>m</term>
-        <listitem>
-          <para>
-            列行列 (<literal>X</literal> は数値ベクトルまたは行列)
-            またはメンバー2つを有するリスト
-            (<literal>X</literal> が文字列ベクトルまたは行列).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      この関数は,数値または文字列のベクトルまたは行列<literal>X</literal>の
-      値の頻度を計算します :
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>X が数値のベクトルまたは行列の場合</term>
-        <listitem>
-          <para>
-            <literal>m</literal> は2列の行列で,
-            最初の列には<literal>X</literal>の異なる値,
-            他の列にはこれらの値の頻度が含まれます
-            (m(i,2)はm(i,1)の出現頻度です).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>X が文字列のベクトルまたは行列の場合</term>
-        <listitem>
-          <para>
-            <literal>m</literal> はリストで,
-            その最初のメンバーは	
-            <literal>X</literal>の異なる値から構成される
-            文字列(列)ベクトル,
-            2番目のメンバーは
-            その要素がこれらの値の頻度となる(列)ベクトルです
-            (m(i)(2)は文字列m(i)(1)の出現頻度です).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      オプションのパラメータ<literal>order</literal> は,  "d" または "i" とする
-      必要があり (デフォルトは
-      order="d"), Xの異なる値がソートされる順序(降順(d)または昇順(i))を指定します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>tabul</refname>
+        <refpurpose>行列またはベクトルの値の頻度</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[m]=tabul(X [,order])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>ベクトルまたは行列 (実数または複素数または文字列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>(オプションの) 文字 "d" または "i" (デフォルト値: "d")を指定します</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        列行列 (<literal>X</literal> は数値ベクトルまたは行列)
+                        またはメンバー2つを有するリスト
+                        (<literal>X</literal> が文字列ベクトルまたは行列).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,数値または文字列のベクトルまたは行列<literal>X</literal>の
+            値の頻度を計算します :
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>X が数値のベクトルまたは行列の場合</term>
+                <listitem>
+                    <para>
+                        <literal>m</literal> は2列の行列で,
+                        最初の列には<literal>X</literal>の異なる値,
+                        他の列にはこれらの値の頻度が含まれます
+                        (m(i,2)はm(i,1)の出現頻度です).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X が文字列のベクトルまたは行列の場合</term>
+                <listitem>
+                    <para>
+                        <literal>m</literal> はリストで,
+                        その最初のメンバーは	
+                        <literal>X</literal>の異なる値から構成される
+                        文字列(列)ベクトル,
+                        2番目のメンバーは
+                        その要素がこれらの値の頻度となる(列)ベクトルです
+                        (m(i)(2)は文字列m(i)(1)の出現頻度です).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            オプションのパラメータ<literal>order</literal> は,  "d" または "i" とする
+            必要があり (デフォルトは
+            order="d"), Xの異なる値がソートされる順序(降順(d)または昇順(i))を指定します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 // 最初の例
 X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
 m1 = tabul(X)
@@ -114,23 +114,23 @@ m = tabul(words);                           // 各単語の出現頻度を計算
 [occ , p] = gsort(m(2));                     // 降順に頻度をソート
 results = [m(1)(p) string(occ)]             // 結果を表示
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="dsearch">dsearch</link>
-      </member>
-      <member>
-        <link linkend="histplot">histplot</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>参考文献</title>
-    <para>
-      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 
-      fifth edition, J.Wiley &amp; Sons, 1990.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+            <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 
+            fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
 </refentry>

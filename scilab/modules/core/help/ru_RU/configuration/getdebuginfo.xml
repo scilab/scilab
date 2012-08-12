@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getdebuginfo" xml:lang="ru">
-  <refnamediv>
-    <refname>getdebuginfo</refname>
-    <refpurpose>получение информации о Scilab для отладки</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      getdebuginfo()
-      dynamic_info = getdebuginfo();
-      [dynamic_info,static_info] = getdebuginfo();
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>getdebuginfo</literal> получает информацию о Scilab'е для отладки.
-    </para>
-    <para>
-      <literal>dynamic_info = getdebuginfo();</literal> возвращает информацию о вашей системе.
-    </para>
-    <para>
-      <literal>[dynamic_info,static_info] = getdebuginfo();</literal> возвращает информацию о 
-      вашей системе и о Scilab'е.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getversion">getversion</link>
-      </member>
-      <member>
-        <link linkend="getos">getos</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>getdebuginfo</refname>
+        <refpurpose>получение информации о Scilab для отладки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            getdebuginfo()
+            dynamic_info = getdebuginfo();
+            [dynamic_info,static_info] = getdebuginfo();
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>getdebuginfo</literal> получает информацию о Scilab'е для отладки.
+        </para>
+        <para>
+            <literal>dynamic_info = getdebuginfo();</literal> возвращает информацию о вашей системе.
+        </para>
+        <para>
+            <literal>[dynamic_info,static_info] = getdebuginfo();</literal> возвращает информацию о 
+            вашей системе и о Scilab'е.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getversion">getversion</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

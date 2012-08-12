@@ -11,43 +11,43 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deletefile" xml:lang="ru">
-  <refnamediv>
-    <refname>deletefile</refname>
-    <refpurpose>удаляет файл</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>f = deletefile(filename)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>строка, имя файла (существующего или нет)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>
-            логическое значение: <constant>%t</constant> или <constant>%f</constant>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта функция удаляет файл <varname>filename</varname>. Если файл <varname>filename</varname> удалён, то она возвращает
-      <constant>%t</constant>, а иначе <constant>%f</constant>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>deletefile</refname>
+        <refpurpose>удаляет файл</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>f = deletefile(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>строка, имя файла (существующего или нет)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        логическое значение: <constant>%t</constant> или <constant>%f</constant>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция удаляет файл <varname>filename</varname>. Если файл <varname>filename</varname> удалён, то она возвращает
+            <constant>%t</constant>, а иначе <constant>%f</constant>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 fd = mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
 
@@ -57,6 +57,6 @@ end
 
 deletefile(TMPDIR+'/notexistingfile')
     ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>
 

@@ -22,308 +22,308 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATMUL">
-  <refnamediv>
-    <refname>MATMUL</refname>
-    <refpurpose>Matrix Multiplication</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/MATMUL.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_MATMUL">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>MATMUL</refname>
+        <refpurpose>Matrix Multiplication</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="MATMUL">Matrix Multiplication</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/MATMUL.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_MATMUL">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_MATMUL">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_MATMUL">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_MATMUL">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <link linkend="MATMUL">Example</link>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_MATMUL">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_MATMUL">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_MATMUL">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_MATMUL">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATMUL">Matrix Multiplication</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_MATMUL">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_MATMUL">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_MATMUL">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <link linkend="MATMUL">Example</link>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_MATMUL">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_MATMUL">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_MATMUL">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_MATMUL">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_MATMUL">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_MATMUL">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Matrix_pal">Matrix operation palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_MATMUL">
+        <title>Description</title>
         <para>
-          <link linkend="Matrix_pal">Matrix operation palette</link>
+            The MATMUL block computes the multiplication of an the first input matrix by the second input matrix/scalar.
+            When the <emphasis role="bold">Multiplication rule</emphasis> parameter is set to:
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_MATMUL">
-    <title>Description</title>
-    <para>
-      The MATMUL block computes the multiplication of an the first input matrix by the second input matrix/scalar.
-      When the <emphasis role="bold">Multiplication rule</emphasis> parameter is set to:
-    </para>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">1</emphasis>, the block computes the matrix product. The number of rows of
+                    the first matrix must be equal to the number of columns of the second matrix. The output is a matrix where the
+                    number of rows is equal to that of the first input matrix and the number of columns is equal to
+                    that of the second input matrix.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">2</emphasis>, the block computes the matrix element-wise product. The matrices must be of the same sizes. The output is a matrix of the same size that the input matrices.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">3</emphasis>, the block computes the matrix-scalar product. The output is a matrix of the same size
+                    that input matrix.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          <emphasis role="bold">1</emphasis>, the block computes the matrix product. The number of rows of
-          the first matrix must be equal to the number of columns of the second matrix. The output is a matrix where the
-          number of rows is equal to that of the first input matrix and the number of columns is equal to
-          that of the second input matrix.
+            For integer inputs, when overflow occurs the block three different forms of results :
+        </para>
+        <para>
+            1- A normal non saturated result. By example, if type is int8 and the result 128, the block output
+            value will be -128.
+        </para>
+        <para>2- A saturated result. For the previous example the block output value will be 127.</para>
+        <para>3- An error message warning the user about the overflow.</para>
+        <para>
+            The user can select one of these three forms by setting the
+            <emphasis role="bold">Do on Overflow</emphasis> field to 0,1 or 2.
         </para>
         <para/>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Dialogbox_MATMUL">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">2</emphasis>, the block computes the matrix element-wise product. The matrices must be of the same sizes. The output is a matrix of the same size that the input matrices.
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/gui/MATMUL_gui.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
         <para/>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">3</emphasis>, the block computes the matrix-scalar product. The output is a matrix of the same size
-          that input matrix.
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      For integer inputs, when overflow occurs the block three different forms of results :
-    </para>
-    <para>
-      1- A normal non saturated result. By example, if type is int8 and the result 128, the block output
-      value will be -128.
-    </para>
-    <para>2- A saturated result. For the previous example the block output value will be 127.</para>
-    <para>3- An error message warning the user about the overflow.</para>
-    <para>
-      The user can select one of these three forms by setting the
-      <emphasis role="bold">Do on Overflow</emphasis> field to 0,1 or 2.
-    </para>
-    <para/>
-  </refsection>
-  <refsection id="Dialogbox_MATMUL">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../../images/gui/MATMUL_gui.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para/>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
-        </para>
-        <para>
-          It indicates the type of the output. It support only the two types double (1) and complex (2).
-          If we input another entry in this label xcos will print the message "Datatype is not supported".
-        </para>
-        <para>Properties : Type 'vec' of size 1.</para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Multiplication rule (1= * 2= .* 3=scalar)</emphasis>
-        </para>
-        <para>Select multiplication rule. See description for more information.</para>
-        <para>Properties : Type 'vec' of size 1.</para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
-        </para>
-        <para>
-          When this parameter is set to zero the result is similar to a normal multiplication of two
-          integer matrix. When it is set to 1, on overflow the block saturate the result. When it
-          is set to 2, on overflow an error message box appears.
-        </para>
-        <para>
-          For double or complex inputs this parameter is ignored.
-        </para>
-        <para>Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_MATMUL">
-    <title>Example</title>
-    <programlisting role="example">
-      A=[1 2 3;4 5 6]
-      B=[9 8 7 6;5 4 3 2;9 7 5 3]
-      y=[46 37 28 19;115 94 73 52]
-    </programlisting>
-  </refsection>
-  <refsection id="Defaultproperties_MATMUL">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [-2,-3] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-3] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">matmul_m</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_MATMUL">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATMUL.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_MATMUL">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/matmul_m.c</para>
-      </listitem>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/matzmul_m.c</para>
-      </listitem>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/matmul2_m.c</para>
-      </listitem>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/matzmul2_m.c</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Seealso_MATMUL">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication (xcos Block)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="MATDIV">MATDIV - Matrix Division (xcos Block)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="MATBKSL">MATBKSL - Left Matrix Division (xcos Block)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="MATEXPM">MATEXPM - Matrix Exponential (xcos Block)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="SUMMATION">SUMMATION - Matrix Summation (xcos Block)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
+                </para>
+                <para>
+                    It indicates the type of the output. It support only the two types double (1) and complex (2).
+                    If we input another entry in this label xcos will print the message "Datatype is not supported".
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Multiplication rule (1= * 2= .* 3=scalar)</emphasis>
+                </para>
+                <para>Select multiplication rule. See description for more information.</para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
+                </para>
+                <para>
+                    When this parameter is set to zero the result is similar to a normal multiplication of two
+                    integer matrix. When it is set to 1, on overflow the block saturate the result. When it
+                    is set to 2, on overflow an error message box appears.
+                </para>
+                <para>
+                    For double or complex inputs this parameter is ignored.
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATMUL">
+        <title>Example</title>
+        <programlisting role="example">
+            A=[1 2 3;4 5 6]
+            B=[9 8 7 6;5 4 3 2;9 7 5 3]
+            y=[46 37 28 19;115 94 73 52]
+        </programlisting>
+    </refsection>
+    <refsection id="Defaultproperties_MATMUL">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [-2,-3] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-3] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">matmul_m</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_MATMUL">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATMUL.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_MATMUL">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/matmul_m.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/matzmul_m.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/matmul2_m.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/matzmul2_m.c</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_MATMUL">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication (xcos Block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATDIV">MATDIV - Matrix Division (xcos Block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATBKSL">MATBKSL - Left Matrix Division (xcos Block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MATEXPM">MATEXPM - Matrix Exponential (xcos Block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SUMMATION">SUMMATION - Matrix Summation (xcos Block)</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

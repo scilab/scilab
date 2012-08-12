@@ -11,48 +11,48 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="intc">
-  <refnamediv>
-    <refname>intc</refname>
-    <refpurpose>интеграл Коши</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[y]=intc(a,b,f)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>a, b</term>
-        <listitem>
-          <para>два комплексных числа</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>"внешняя" функция</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Если <literal>f</literal> -- комплекснозначная функция, то <literal> intc(a,b,f) </literal>
-      вычисляет интеграл функции <literal>f(z)dz</literal> от <literal>a</literal> до <literal>b</literal> 
-      вдоль прямой линии <literal>a b</literal> на комплексной плоскости.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="intg">intg</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>intc</refname>
+        <refpurpose>интеграл Коши</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[y]=intc(a,b,f)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>a, b</term>
+                <listitem>
+                    <para>два комплексных числа</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>"внешняя" функция</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Если <literal>f</literal> -- комплекснозначная функция, то <literal> intc(a,b,f) </literal>
+            вычисляет интеграл функции <literal>f(z)dz</literal> от <literal>a</literal> до <literal>b</literal> 
+            вдоль прямой линии <literal>a b</literal> на комплексной плоскости.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="intg">intg</link>
+            </member>
+            <member>
+                <link linkend="intl">intl</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

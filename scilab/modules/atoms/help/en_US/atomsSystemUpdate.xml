@@ -11,38 +11,38 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsSystemUpdate">
-  <refnamediv>
-    <refname>atomsSystemUpdate</refname>
-    <refpurpose>Update the list of available modules</refpurpose>
-  </refnamediv>
-  <!-- ===================================================================== -->
-  <!-- Calling Sequence -->
-  <!-- ===================================================================== -->
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      atomsSystemUpdate()
-    </synopsis>
-  </refsynopsisdiv>
-  <!-- ===================================================================== -->
-  <!-- Description -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>atomsSystemUpdate</literal> update the list of available modules.
-    </para>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Examples -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>atomsSystemUpdate</refname>
+        <refpurpose>Update the list of available modules</refpurpose>
+    </refnamediv>
+    <!-- ===================================================================== -->
+    <!-- Calling Sequence -->
+    <!-- ===================================================================== -->
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            atomsSystemUpdate()
+        </synopsis>
+    </refsynopsisdiv>
+    <!-- ===================================================================== -->
+    <!-- Description -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>atomsSystemUpdate</literal> update the list of available modules.
+        </para>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Examples -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 atomsSystemUpdate();
 ]]></programlisting>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Authors -->
-  <!-- ===================================================================== -->
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Authors -->
+    <!-- ===================================================================== -->
 </refentry>

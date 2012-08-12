@@ -11,42 +11,42 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="twinkle">
-  <refnamediv>
-    <refname>twinkle</refname>
-    <refpurpose> is used to have a graphics entity twinkle</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>twinkle(h,[n])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>h</term>
-        <listitem>
-          <para>handle of a graphics entity.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>integer.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>twinkle</literal> let the graphics entity given by its handle <literal>h</literal> twinkle. It can be used to
-      find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
-      entity twinkles 5 times, but you can change this by using optional argument <literal>n</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>twinkle</refname>
+        <refpurpose> is used to have a graphics entity twinkle</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>twinkle(h,[n])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>handle of a graphics entity.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>twinkle</literal> let the graphics entity given by its handle <literal>h</literal> twinkle. It can be used to
+            find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
+            entity twinkles 5 times, but you can change this by using optional argument <literal>n</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
 e=gce();
@@ -59,13 +59,13 @@ twinkle(p2,10)
 // axes twinkle
 twinkle(gca())
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

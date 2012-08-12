@@ -11,43 +11,43 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="soundsec">
-  <refnamediv>
-    <refname>soundsec</refname>
-    <refpurpose>generates n sampled seconds of time
-      parameter
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=soundsec(n [,rate])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>an integer, the number of seconds to generate.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rate</term>
-        <listitem>
-          <para>an integer, the number of samples per second.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      generates a vector coding time from 0 to <literal>n</literal>seconds at
-      sampled rate <literal>rate</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>soundsec</refname>
+        <refpurpose>generates n sampled seconds of time
+            parameter
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=soundsec(n [,rate])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>an integer, the number of seconds to generate.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rate</term>
+                <listitem>
+                    <para>an integer, the number of samples per second.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            generates a vector coding time from 0 to <literal>n</literal>seconds at
+            sampled rate <literal>rate</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 
@@ -55,16 +55,16 @@ t=soundsec(0.5);
 s=sin(2*%pi*440*t);
 analyze(s,200,600,22050);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="playsnd">playsnd</link>
-      </member>
-      <member>
-        <link linkend="analyze">analyze</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="playsnd">playsnd</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

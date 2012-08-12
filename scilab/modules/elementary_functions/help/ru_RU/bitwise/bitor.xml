@@ -13,64 +13,64 @@
  * 
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitor" xml:lang="ru">
-  <refnamediv>
-    <refname>bitor</refname>
-    <refpurpose>побитовое ИЛИ</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      z = bitor(x,y)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Параметры</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности (double) размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности (double) размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица целых чисел размером m на n.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание </title>
-    <para>
-      Для заданных двух положительных целых чисел x, y эта функция возвращает десятеричное число, чьё двоичное представление является результатом операции ИЛИ над двоичными представлениями x и y.
-    </para>
-    <para>
-      <literal>x</literal>, <literal>y</literal>, <literal>z</literal> должны быть одного и того же размера.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>bitor</refname>
+        <refpurpose>побитовое ИЛИ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            z = bitor(x,y)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Параметры</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности (double) размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности (double) размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица целых чисел размером m на n.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание </title>
+        <para>
+            Для заданных двух положительных целых чисел x, y эта функция возвращает десятеричное число, чьё двоичное представление является результатом операции ИЛИ над двоичными представлениями x и y.
+        </para>
+        <para>
+            <literal>x</literal>, <literal>y</literal>, <literal>z</literal> должны быть одного и того же размера.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
 // '110000' : является двоичным представлением 48 
 // '100101' : является двоичным представлением 37   
 // '110101' : является двоичным представлением результата операции ИЛИ над двоичными представлениями 48 и 37 
@@ -107,19 +107,19 @@ bitor(uint8(13), uint8(27))
 bitor(13, 27)
 
    ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="bitand">bitand</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitand">bitand</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

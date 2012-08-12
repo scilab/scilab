@@ -11,65 +11,65 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cumsum" xml:lang="en">
-  <refnamediv>
-    <refname>cumsum</refname>
-    <refpurpose>soma cumulativa</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>y=cumsum(x)
-      y=cumsum(x,'r') or y=cumsum(x,1)
-      y=cumsum(x,'c') or y=cumsum(x,2)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>vetor ou matrix (de reais ou complexos) </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>vetor ou matrix (de reais ou complexos)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Para um vetor ou uma matriz <literal>x</literal>,
-      <literal>y=cumsum(x)</literal> retorna em <literal>y</literal> a soma
-      cumulativa de todas as entradas de <literal>x</literal> tomadas coluna a
-      coluna.
-    </para>
-    <para>
-      <literal>y=cumsum(x,'c')</literal> (ou, equivalentemente,
-      <literal>y=cumsum(x,2)</literal>) retorna em <literal>y</literal> a soma
-      cumulativa das colunas de <literal>x</literal>: <literal>
-        y(i,:)=cumsum(x(i,:))
-      </literal>
-    </para>
-    <para>
-      <literal>y=cumsum(x,'r')</literal> (ou, equivalentemente,
-      <literal>y=cumsum(x,1)</literal>) retorna em <literal>y</literal> a soma
-      cumulativa das linhas de <literal>x</literal>: <literal>
-        y(:,i)=cumsum(x(:,i))
-      </literal>
-    </para>
-    <para>
-      <literal>y=cumsum(x,'m')</literal> é a soma cumulativa ao longo da
-      primeira dimensão "não-singleton" de <literal>x</literal> (para
-      compatibilidade com o Matlab).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>cumsum</refname>
+        <refpurpose>soma cumulativa</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y=cumsum(x)
+            y=cumsum(x,'r') or y=cumsum(x,1)
+            y=cumsum(x,'c') or y=cumsum(x,2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor ou matrix (de reais ou complexos) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vetor ou matrix (de reais ou complexos)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Para um vetor ou uma matriz <literal>x</literal>,
+            <literal>y=cumsum(x)</literal> retorna em <literal>y</literal> a soma
+            cumulativa de todas as entradas de <literal>x</literal> tomadas coluna a
+            coluna.
+        </para>
+        <para>
+            <literal>y=cumsum(x,'c')</literal> (ou, equivalentemente,
+            <literal>y=cumsum(x,2)</literal>) retorna em <literal>y</literal> a soma
+            cumulativa das colunas de <literal>x</literal>: <literal>
+                y(i,:)=cumsum(x(i,:))
+            </literal>
+        </para>
+        <para>
+            <literal>y=cumsum(x,'r')</literal> (ou, equivalentemente,
+            <literal>y=cumsum(x,1)</literal>) retorna em <literal>y</literal> a soma
+            cumulativa das linhas de <literal>x</literal>: <literal>
+                y(:,i)=cumsum(x(:,i))
+            </literal>
+        </para>
+        <para>
+            <literal>y=cumsum(x,'m')</literal> é a soma cumulativa ao longo da
+            primeira dimensão "não-singleton" de <literal>x</literal> (para
+            compatibilidade com o Matlab).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 cumsum(A)
 cumsum(A,'r')
@@ -80,16 +80,16 @@ w=zeros(a);
 w(1,:)=a(1,:);
 for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="cumprod">cumprod</link>
-      </member>
-      <member>
-        <link linkend="sum">sum</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cumprod">cumprod</link>
+            </member>
+            <member>
+                <link linkend="sum">sum</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

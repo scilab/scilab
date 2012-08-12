@@ -11,30 +11,30 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xinfo">
-  <refnamediv>
-    <refname>xinfo</refname>
-    <refpurpose>メッセージサブウインドウに文字列を描画する</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>xinfo(info)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>info</term>
-        <listitem>
-          <para>文字列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>xinfo</literal> は文字列d <literal>info</literal> をカレントの
-      グラフィックウインドウのメッセージサブウインドウに描画します.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>xinfo</refname>
+        <refpurpose>メッセージサブウインドウに文字列を描画する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>xinfo(info)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>文字列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>xinfo</literal> は文字列d <literal>info</literal> をカレントの
+            グラフィックウインドウのメッセージサブウインドウに描画します.
+        </para>
+    </refsection>
 </refentry>

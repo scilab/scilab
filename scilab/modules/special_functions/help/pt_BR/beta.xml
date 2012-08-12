@@ -11,60 +11,60 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="beta" xml:lang="en">
-  <refnamediv>
-    <refname>beta</refname>
-    <refpurpose>função beta</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>z = beta(x,y)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros </title>
-    <variablelist>
-      <varlistentry>
-        <term>x, y</term>
-        <listitem>
-          <para>dois reais positivos ou duas matrizes (ou vetores) de reais
-            positivos de mesmo tamanho
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z</term>
-        <listitem>
-          <para>um real ou uma matriz de reais com mesmo tamanho que
-            <literal>x</literal> com <literal>z(i,j) =
-              beta(x(i,j),y(i,j))
-            </literal>
-            .
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Computa a função beta completa : </para>
-    <programlisting role=""><![CDATA[ 
+    <refnamediv>
+        <refname>beta</refname>
+        <refpurpose>função beta</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>z = beta(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros </title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>dois reais positivos ou duas matrizes (ou vetores) de reais
+                        positivos de mesmo tamanho
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>um real ou uma matriz de reais com mesmo tamanho que
+                        <literal>x</literal> com <literal>z(i,j) =
+                            beta(x(i,j),y(i,j))
+                        </literal>
+                        .
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Computa a função beta completa : </para>
+        <programlisting role=""><![CDATA[ 
                /1
                |   x-1     y-1        gamma(x) gamma(y)
   beta(x,y) =  |  t   (1-t)    dt  =  ----------------
                /0                        gamma(x+y)
  ]]></programlisting>
-    <para>
-      Para <literal>x</literal> e <literal>y</literal> pequenos, o
-      algoritmo usa a expressão em função da função gama, de outro modo, ele
-      aplica a função exponencial no resutado da função
-      <literal>betaln</literal> function fornecido no DCDFLIB: Biblioteca de
-      Rotinas FORTRAN para Funções, Inversas e Outros Parâmetros de Distribuição
-      Cumulativa (ver <link linkend="cdfbet">cdfbet</link> para maiores
-      informações sobre DCDFLIB).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            Para <literal>x</literal> e <literal>y</literal> pequenos, o
+            algoritmo usa a expressão em função da função gama, de outro modo, ele
+            aplica a função exponencial no resutado da função
+            <literal>betaln</literal> function fornecido no DCDFLIB: Biblioteca de
+            Rotinas FORTRAN para Funções, Inversas e Outros Parâmetros de Distribuição
+            Cumulativa (ver <link linkend="cdfbet">cdfbet</link> para maiores
+            informações sobre DCDFLIB).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 // exemplo 1 :
 beta(5,2) - beta(2,5)   // simetria (deve ser exatamente 0)
 beta(0.5,0.5)           // o valor exato é pi
@@ -91,16 +91,16 @@ plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
 xtitle("A função beta em [0.2,10]x[0.2,10]")
 show_window()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="gamma">gamma</link>
-      </member>
-      <member>
-        <link linkend="cdfbet">cdfbet</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gamma">gamma</link>
+            </member>
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

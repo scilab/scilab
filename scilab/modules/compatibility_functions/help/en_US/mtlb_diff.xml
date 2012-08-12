@@ -11,53 +11,53 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_diff">
-  <refnamediv>
-    <refname>mtlb_diff</refname>
-    <refpurpose>Matlab diff emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Matlab and Scilab <literal>diff</literal> behave differently in some particular cases:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_diff</refname>
+        <refpurpose>Matlab diff emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With two input parameters: Scilab <literal>diff</literal> considers all values of first input as a vector
-          what Matlab does not.
+            Matlab and Scilab <literal>diff</literal> behave differently in some particular cases:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With two input parameters: Scilab <literal>diff</literal> considers all values of first input as a vector
+                    what Matlab does not.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With three input parameters: If dimension of first input along dimension given by third parameter
+                    reaches 1 before n interations
+                    have been made,Matlab switches to next non-singleton dimension what Scilab does not.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With three input parameters: If dimension of first input along dimension given by third parameter
-          reaches 1 before n interations
-          have been made,Matlab switches to next non-singleton dimension what Scilab does not.
+            The function <literal>mtlb_diff(A[,n[,dim]])</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>diff(A[,n[,dim]])</literal> when it was not
+            possible to know what were the inputs while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_diff</literal> calls:
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The function <literal>mtlb_diff(A[,n[,dim]])</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>diff(A[,n[,dim]])</literal> when it was not
-      possible to know what were the inputs while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_diff</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With two inputs, if <literal>A</literal> is a scalar or a vector
+                    <literal>mtlb_diff(A,n)</literal> may be replaced by <literal>diff(A,n)</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With three inputs, if size of A along dimension given by <literal>dim</literal> can not reach 1
+                    <literal>mtlb_diff(A,n,dim)</literal> may be replaced by <literal>diff(A,n,dim)</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With two inputs, if <literal>A</literal> is a scalar or a vector
-          <literal>mtlb_diff(A,n)</literal> may be replaced by <literal>diff(A,n)</literal>
+            Caution: <literal>mtlb_diff</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          With three inputs, if size of A along dimension given by <literal>dim</literal> can not reach 1
-          <literal>mtlb_diff(A,n,dim)</literal> may be replaced by <literal>diff(A,n,dim)</literal>
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_diff</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

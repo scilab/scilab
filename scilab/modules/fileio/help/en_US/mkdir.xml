@@ -107,7 +107,7 @@
                     </td>
                     
                     <td>
- 
+                        
                     </td>
                 </tr>
                 <tr>
@@ -119,9 +119,10 @@
                         
                     </td>
                 </tr>
-            </informaltable>            	
+            </informaltable>
+            
         </para>
-	<para>
+        <para>
             Whatever the operating system, if the creating of directory
             succeeds, the <varname>status</varname> is 1 and the message
             <varname>msg</varname> is empty.

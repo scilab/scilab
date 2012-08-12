@@ -11,86 +11,86 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ged">
-  <refnamediv>
-    <refname>ged</refname>
-    <refpurpose>Scilabグラフィックエディタ</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>ged(action, fignum)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>action</term>
-        <listitem>
-          <para>
-            実数: <literal>fignum</literal>で指定されたグラフィックウインドウで
-            実行されるアクション: 
-          </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                1: ウインドウ<literal>fignum</literal>をカレントの図として選択.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                2: ウインドウ <literal>fignum</literal>を再描画.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                3: ウインドウ<literal>fignum</literal>を作成.
-              </para>
-            </listitem>
-            <listitem>
-              <para>4: コピーするグラフィックエンティティをユーザに選択させます.</para>
-            </listitem>
-            <listitem>
-              <para>
-                5: アクション <literal>4</literal>によりコピーされた
-                直近のグラフィックエンティティを貼りつけます.
-              </para>
-            </listitem>
-            <listitem>
-              <para>6: ユーザにグラフィックエンティティを選択させた後,それを移動します.</para>
-            </listitem>
-            <listitem>
-              <para>7: ユーザに削除するグラフィックエンティティを選択させます.</para>
-            </listitem>
-            <listitem>
-              <para>8: ウインドウプロパティを編集するGUIを起動します.</para>
-            </listitem>
-            <listitem>
-              <para>9: カレントの軸プロパティを編集するGUIを起動します.</para>
-            </listitem>
-            <listitem>
-              <para>10: グラフィックオブジェクトを選択するエンティティピッカーを
-                起動し,グラフィックエディタGUIによりそのオブジェクトを編集します.
-              </para>
-            </listitem>
-            <listitem>
-              <para>11: エンティティエディタを停止します.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fignum</term>
-        <listitem>
-          <para>実数: グラフィックウインドウ番号r, 編集する図.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>ged</literal> は図番号<literal>fignum</literal>を指定して
-      Scilabグラフィックエディタを開始し,
-      <literal>action</literal>で指定されたアクションを実行します.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>ged</refname>
+        <refpurpose>Scilabグラフィックエディタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>ged(action, fignum)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>action</term>
+                <listitem>
+                    <para>
+                        実数: <literal>fignum</literal>で指定されたグラフィックウインドウで
+                        実行されるアクション: 
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                1: ウインドウ<literal>fignum</literal>をカレントの図として選択.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                2: ウインドウ <literal>fignum</literal>を再描画.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                3: ウインドウ<literal>fignum</literal>を作成.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>4: コピーするグラフィックエンティティをユーザに選択させます.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                5: アクション <literal>4</literal>によりコピーされた
+                                直近のグラフィックエンティティを貼りつけます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>6: ユーザにグラフィックエンティティを選択させた後,それを移動します.</para>
+                        </listitem>
+                        <listitem>
+                            <para>7: ユーザに削除するグラフィックエンティティを選択させます.</para>
+                        </listitem>
+                        <listitem>
+                            <para>8: ウインドウプロパティを編集するGUIを起動します.</para>
+                        </listitem>
+                        <listitem>
+                            <para>9: カレントの軸プロパティを編集するGUIを起動します.</para>
+                        </listitem>
+                        <listitem>
+                            <para>10: グラフィックオブジェクトを選択するエンティティピッカーを
+                                起動し,グラフィックエディタGUIによりそのオブジェクトを編集します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>11: エンティティエディタを停止します.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fignum</term>
+                <listitem>
+                    <para>実数: グラフィックウインドウ番号r, 編集する図.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>ged</literal> は図番号<literal>fignum</literal>を指定して
+            Scilabグラフィックエディタを開始し,
+            <literal>action</literal>で指定されたアクションを実行します.
+        </para>
+    </refsection>
 </refentry>

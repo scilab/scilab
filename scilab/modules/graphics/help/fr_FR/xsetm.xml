@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xsetm" xml:lang="fr">
-  <refnamediv>
-    <refname>xsetm</refname>
-    <refpurpose>boîte de dialogue pour changer des valeurs du contexte
-      graphique.<emphasis role="bold"> Fonction
-        obsolete.
-      </emphasis>
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>xsetm()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Cette fonction ainsi la fonction <link linkend="xset">xset</link>
-      était fortement liée à l'ancien mode graphique qui n'est plus supporté. Le
-      paramétrage du graphique actuel est beaucoup plus flexible (voir les
-      fonctions <link linkend="set">set</link> et <link linkend="get">get</link>
-      ainsi que la page d'aide <link linkend="graphics_entities">graphics_entities</link>). Il est possible de
-      lancer un éditeur de propriété graphiques mieux adapté à la structure
-      actuelle par l'instruction <link linkend="ged">ged</link>.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xset">xset</link>
-      </member>
-      <member>
-        <link linkend="ged">ged</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>xsetm</refname>
+        <refpurpose>boîte de dialogue pour changer des valeurs du contexte
+            graphique.<emphasis role="bold"> Fonction
+                obsolete.
+            </emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>xsetm()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction ainsi la fonction <link linkend="xset">xset</link>
+            était fortement liée à l'ancien mode graphique qui n'est plus supporté. Le
+            paramétrage du graphique actuel est beaucoup plus flexible (voir les
+            fonctions <link linkend="set">set</link> et <link linkend="get">get</link>
+            ainsi que la page d'aide <link linkend="graphics_entities">graphics_entities</link>). Il est possible de
+            lancer un éditeur de propriété graphiques mieux adapté à la structure
+            actuelle par l'instruction <link linkend="ged">ged</link>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xset">xset</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

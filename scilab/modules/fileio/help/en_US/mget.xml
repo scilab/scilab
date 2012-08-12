@@ -91,7 +91,7 @@
         </para>
         <para>
             <note>
-		On Windows, default behavior is to skip byte 13 (<literal>0x0D</literal>). 
+                On Windows, default behavior is to skip byte 13 (<literal>0x0D</literal>). 
                 <function>mopen</function> should be called with the 
                 <literal>'b'</literal> option, e.g. 
                 <code>fd1 = mopen(file1,'rb')</code>, so that all bytes will be read 

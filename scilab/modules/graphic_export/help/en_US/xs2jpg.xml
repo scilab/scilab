@@ -11,55 +11,55 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2jpg" xml:lang="en">
-  <refnamediv>
-    <refname>xs2jpg</refname>
-    <refpurpose>Export graphics to JPG.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xs2jpg(win_num, file_name [, compression_quality])
-      xs2jpg(fig, file_name [, compression_quality])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>win_num</term>
-        <listitem>
-          <para>integer, id of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fig</term>
-        <listitem>
-          <para>handle of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>file_name</term>
-        <listitem>
-          <para>string, name of the exported file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>compression_quality</term>
-        <listitem>
-          <para>real, a number between 0 and 1 (best quality). The default compression quality is set to 0.95.</para>
-          <para>Argument available since Scilab 5.3.2</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xs2jpg</literal> exports the display of a graphic window into a JPG file.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xs2jpg</refname>
+        <refpurpose>Export graphics to JPG.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xs2jpg(win_num, file_name [, compression_quality])
+            xs2jpg(fig, file_name [, compression_quality])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>win_num</term>
+                <listitem>
+                    <para>integer, id of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    <para>handle of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_name</term>
+                <listitem>
+                    <para>string, name of the exported file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compression_quality</term>
+                <listitem>
+                    <para>real, a number between 0 and 1 (best quality). The default compression quality is set to 0.95.</para>
+                    <para>Argument available since Scilab 5.3.2</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xs2jpg</literal> exports the display of a graphic window into a JPG file.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 //JPG export
@@ -68,37 +68,37 @@ xs2jpg(gcf(),'foo.jpg');
 xs2jpg(0,'foo_0.jpg', 0); // poor quality
 xs2jpg(gcf(),'foo_1.jpg', 1); // best quality
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xs2bmp">xs2bmp</link>
-      </member>
-      <member>
-        <link linkend="xs2gif">xs2gif</link>
-      </member>
-      <member>
-        <link linkend="xs2png">xs2png</link>
-      </member>
-      <member>
-        <link linkend="xs2ppm">xs2ppm</link>
-      </member>
-      <member>
-        <link linkend="xs2eps">xs2eps</link>
-      </member>
-      <member>
-        <link linkend="xs2pdf">xs2pdf</link>
-      </member>
-      <member>
-        <link linkend="xs2svg">xs2svg</link>
-      </member>
-      <member>
-        <link linkend="xs2ps">xs2ps</link>
-      </member>
-      <member>
-        <link linkend="xs2emf">xs2emf</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xs2bmp">xs2bmp</link>
+            </member>
+            <member>
+                <link linkend="xs2gif">xs2gif</link>
+            </member>
+            <member>
+                <link linkend="xs2png">xs2png</link>
+            </member>
+            <member>
+                <link linkend="xs2ppm">xs2ppm</link>
+            </member>
+            <member>
+                <link linkend="xs2eps">xs2eps</link>
+            </member>
+            <member>
+                <link linkend="xs2pdf">xs2pdf</link>
+            </member>
+            <member>
+                <link linkend="xs2svg">xs2svg</link>
+            </member>
+            <member>
+                <link linkend="xs2ps">xs2ps</link>
+            </member>
+            <member>
+                <link linkend="xs2emf">xs2emf</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

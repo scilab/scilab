@@ -12,95 +12,95 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_comparecomplex" xml:lang="en">
-  <refnamediv>
-    <refname>assert_comparecomplex</refname>
-    <refpurpose>Compare complex numbers with a tolerance.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      order = assert_comparecomplex ( a , b )
-      order = assert_comparecomplex ( a , b , reltol )
-      order = assert_comparecomplex ( a , b , reltol , abstol )
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>a :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, the first value to be compared</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>b :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, the second value to be compared</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>reltol :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>abstol :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>order :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, integer values,  the order. Returns order=0 is a is almost equal to b, order=-1 if a &lt; b, order=+1 if a &gt; b.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Compare first by real parts, then by imaginary parts.
-      Takes into account numerical accuracy issues, by using
-      a mixed relative and absolute tolerance criteria.
-    </para>
-    <para>
-      Any optional input argument equal to the empty matrix is replaced by its default value.
-    </para>
-    <para>
-      We use the following algorithm.
-    </para>
-    <para>
-      We compare first the real parts. In case of tie, we compare the imaginary parts.
-    </para>
-    <para>
-      We process the IEEE values and choose the order : -%inf &lt; 0 &lt; %inf &lt; %nan.
-      If none of the values is special, we use the condition :
-      <programlisting>
-        cond = ( abs(a-b) &lt;= reltol * max(abs(a),abs(b)) + abstol )
-      </programlisting>
-    </para>
-    <para>
-      This algorithm is designed to be used into sorting
-      algorithms.
-      It allows to take into account for the portability issues
-      related to the outputs of functions producing
-      matrix of complex doubles.
-      If this algorithm is plugged into a sorting function,
-      it allows to consistently produce a sorted matrix,
-      where the order can be independent of the operating system,
-      the compiler or other forms of issues modifying the
-      order (but not the values).
-    </para>
-    <para>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>assert_comparecomplex</refname>
+        <refpurpose>Compare complex numbers with a tolerance.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            order = assert_comparecomplex ( a , b )
+            order = assert_comparecomplex ( a , b , reltol )
+            order = assert_comparecomplex ( a , b , reltol , abstol )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>a :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the first value to be compared</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the second value to be compared</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reltol :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abstol :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, integer values,  the order. Returns order=0 is a is almost equal to b, order=-1 if a &lt; b, order=+1 if a &gt; b.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Compare first by real parts, then by imaginary parts.
+            Takes into account numerical accuracy issues, by using
+            a mixed relative and absolute tolerance criteria.
+        </para>
+        <para>
+            Any optional input argument equal to the empty matrix is replaced by its default value.
+        </para>
+        <para>
+            We use the following algorithm.
+        </para>
+        <para>
+            We compare first the real parts. In case of tie, we compare the imaginary parts.
+        </para>
+        <para>
+            We process the IEEE values and choose the order : -%inf &lt; 0 &lt; %inf &lt; %nan.
+            If none of the values is special, we use the condition :
+            <programlisting>
+                cond = ( abs(a-b) &lt;= reltol * max(abs(a),abs(b)) + abstol )
+            </programlisting>
+        </para>
+        <para>
+            This algorithm is designed to be used into sorting
+            algorithms.
+            It allows to take into account for the portability issues
+            related to the outputs of functions producing
+            matrix of complex doubles.
+            If this algorithm is plugged into a sorting function,
+            it allows to consistently produce a sorted matrix,
+            where the order can be independent of the operating system,
+            the compiler or other forms of issues modifying the
+            order (but not the values).
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // Compare real values
 assert_comparecomplex ( 1 , -1 ) // 1
 assert_comparecomplex ( -1 , 1 ) // -1
@@ -160,20 +160,20 @@ mprintf("compare(x(%d),x(%d))=%d\n",i,i+1,order)
 end
 
    ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
-  <refsection>
-    <title>Bibliography</title>
-    <para>http://gitweb.scilab.org/?p=scilab.git;a=blob;f=scilab/modules/polynomials/tests/nonreg_tests/bug_415.tst;h=0c716a3bed0dfb72c831972d19dbb0814dffde2b;hb=HEAD</para>
-    <para>http://gitweb.scilab.org/?p=scilab.git;a=blob_plain;f=scilab/modules/cacsd/tests/nonreg_tests/bug_68.tst;h=920d091d089b61bf961ea9e888b4d7d469942a14;hb=4ce3d4109dd752fce5f763be71ea639e09a12630</para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>http://gitweb.scilab.org/?p=scilab.git;a=blob;f=scilab/modules/polynomials/tests/nonreg_tests/bug_415.tst;h=0c716a3bed0dfb72c831972d19dbb0814dffde2b;hb=HEAD</para>
+        <para>http://gitweb.scilab.org/?p=scilab.git;a=blob_plain;f=scilab/modules/cacsd/tests/nonreg_tests/bug_68.tst;h=920d091d089b61bf961ea9e888b4d7d469942a14;hb=4ce3d4109dd752fce5f763be71ea639e09a12630</para>
+    </refsection>
 </refentry>

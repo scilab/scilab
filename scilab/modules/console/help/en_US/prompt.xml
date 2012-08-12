@@ -11,62 +11,62 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="prompt" xml:lang="en">
-  <refnamediv>
-    <refname>prompt</refname>
-    <refpurpose>Get/Set current prompt</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      currentprompt = prompt()
-      [currentprompt,pauselevel] = prompt()
-      prompt(userprompt)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>currentprompt</term>
-        <listitem>
-          <para>a string: current prompt returned as a character string.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pauselevel</term>
-        <listitem>
-          <para>an integer: current pause level.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>userprompt</term>
-        <listitem>
-          <para>a string: prompt to display for next user input. Then current
-            prompt will be used again.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>currentprompt = prompt()</literal> gets the current
-      prompt.
-    </para>
-    <para>
-      <literal>prompt(userprompt)</literal> sets the prompt.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="pause">pause</link>
-      </member>
-      <member>
-        <link linkend="input">input</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>prompt</refname>
+        <refpurpose>Get/Set current prompt</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            currentprompt = prompt()
+            [currentprompt,pauselevel] = prompt()
+            prompt(userprompt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>currentprompt</term>
+                <listitem>
+                    <para>a string: current prompt returned as a character string.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pauselevel</term>
+                <listitem>
+                    <para>an integer: current pause level.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>userprompt</term>
+                <listitem>
+                    <para>a string: prompt to display for next user input. Then current
+                        prompt will be used again.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>currentprompt = prompt()</literal> gets the current
+            prompt.
+        </para>
+        <para>
+            <literal>prompt(userprompt)</literal> sets the prompt.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="input">input</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

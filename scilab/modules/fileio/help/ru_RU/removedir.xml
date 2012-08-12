@@ -52,10 +52,10 @@
         </para>
         <para>[
             <code>[status] = removedir(dirname)</code> удаляет директорию 
-	    <varname>dirname</varname> и всё её содержимое, возвращая статус  
-	    <varname>status</varname>. Здесь <varname>status</varname> равен 
-	    <constant>%T</constant> в случае успеха и <constant>%F</constant> в 
-	    случае ошибки.
+            <varname>dirname</varname> и всё её содержимое, возвращая статус  
+            <varname>status</varname>. Здесь <varname>status</varname> равен 
+            <constant>%T</constant> в случае успеха и <constant>%F</constant> в 
+            случае ошибки.
         </para>
         <para>
             Функция <function>removedir</function> используется в <function>rmdir</function>.

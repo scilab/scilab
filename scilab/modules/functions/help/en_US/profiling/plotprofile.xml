@@ -11,56 +11,56 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plotprofile">
-  <refnamediv>
-    <refname>plotprofile</refname>
-    <refpurpose> extracts and displays execution profiles
-      of a Scilab function
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>plotprofile(fun)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>fun</term>
-        <listitem>
-          <para>a Scilab compiled function, or a function name (string), or an array of
-            function names
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
-      profiling (see exec).
-    </para>
-    <para>
-      When such a function is executed, the system
-      counts how many times each line is executed and how much cpu time is
-      spent executing each line. This data is stored within the
-      function data structure. The function <literal>plotprofile</literal> in an interactive
-      command which displays this results in a graphic window. When a line
-      is clicked, the source of the function is displayed with the selected line
-      highlighted.
-    </para>
-    <para>
-      NOTE: you have to click on the "Exit" item in the graphics windows to
-      exit from "plotprofile".
-    </para>
-    <para>
-      The function code is regenerated with <literal>fun2string</literal> and dumped into
-      a temporary file.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>plotprofile</refname>
+        <refpurpose> extracts and displays execution profiles
+            of a Scilab function
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>plotprofile(fun)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>a Scilab compiled function, or a function name (string), or an array of
+                        function names
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
+            profiling (see exec).
+        </para>
+        <para>
+            When such a function is executed, the system
+            counts how many times each line is executed and how much cpu time is
+            spent executing each line. This data is stored within the
+            function data structure. The function <literal>plotprofile</literal> in an interactive
+            command which displays this results in a graphic window. When a line
+            is clicked, the source of the function is displayed with the selected line
+            highlighted.
+        </para>
+        <para>
+            NOTE: you have to click on the "Exit" item in the graphics windows to
+            exit from "plotprofile".
+        </para>
+        <para>
+            The function code is regenerated with <literal>fun2string</literal> and dumped into
+            a temporary file.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //define a function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -77,19 +77,19 @@ foo(30)
 //get execution profiles
 plotprofile(foo) // click on Exit to exit
   ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="profile">profile</link>
-      </member>
-      <member>
-        <link linkend="showprofile">showprofile</link>
-      </member>
-      <member>
-        <link linkend="fun2string">fun2string</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="showprofile">showprofile</link>
+            </member>
+            <member>
+                <link linkend="fun2string">fun2string</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
