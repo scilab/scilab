@@ -45,6 +45,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
  *
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ClosingOperationsManager {
 
     private static final String EXIT_CONFIRM = Messages.gettext("Are you sure you want to close %s ?");
@@ -107,22 +108,22 @@ public class ClosingOperationsManager {
     }
 
     public static void checkTabForClosing(SwingScilabTab tab) {
-	if (tab != null && !dunnoList.isEmpty()) {
-	    if (dunnoList.contains(tab)) {
-		dunnoList.remove(tab);
-	    }
-	    if (dunnoList.isEmpty() && savedList != null) {
-		close(savedList, null, false, savedMustSave);
-		savedList = null;
-		savedMustSave = false;
-	    }
-	}
+        if (tab != null && !dunnoList.isEmpty()) {
+            if (dunnoList.contains(tab)) {
+                dunnoList.remove(tab);
+            }
+            if (dunnoList.isEmpty() && savedList != null) {
+                close(savedList, null, false, savedMustSave);
+                savedList = null;
+                savedMustSave = false;
+            }
+        }
     }
 
     public static void removeFromDunnoList(SwingScilabTab tab) {
-	if (tab != null && !dunnoList.isEmpty() && dunnoList.contains(tab)) {
-	    dunnoList.remove(tab);
-	}
+        if (tab != null && !dunnoList.isEmpty() && dunnoList.contains(tab)) {
+            dunnoList.remove(tab);
+        }
     }
 
     /**
@@ -341,12 +342,12 @@ public class ClosingOperationsManager {
      * @param child teh child to remove
      */
     public static void removeDependency(SwingScilabTab child) {
-	for (SwingScilabTab tab : deps.keySet()) {
-	    List<SwingScilabTab> children = deps.get(tab);
-	    if (children != null) {
-		children.remove(child);
-	    }
-	}
+        for (SwingScilabTab tab : deps.keySet()) {
+            List<SwingScilabTab> children = deps.get(tab);
+            if (children != null) {
+                children.remove(child);
+            }
+        }
     }
 
     /**
@@ -672,11 +673,11 @@ public class ClosingOperationsManager {
      */
     private static final boolean canClose(List<SwingScilabTab> list,
                                           SwingScilabWindow window,
-					  boolean mustSave) {
+                                          boolean mustSave) {
         CheckExitConfirmation cec = XConfiguration.get(CheckExitConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
-	dunnoList.clear();
-	savedList = null;
-	savedMustSave = false;
+        dunnoList.clear();
+        savedList = null;
+        savedMustSave = false;
 
         if (cec.checked) {
             String question = makeQuestion(list);
@@ -704,29 +705,29 @@ public class ClosingOperationsManager {
         for (SwingScilabTab t : list) {
             ClosingOperation op = closingOps.get(t);
             if (op != null) {
-		int ret = op.canClose();
-		if (ret == 0) {
-		    dunnoList.clear();
-		    return false;
-		}
-		if (ret == -1) {
-		    dunnoList.add(t);
-		}
-	    }
+                int ret = op.canClose();
+                if (ret == 0) {
+                    dunnoList.clear();
+                    return false;
+                }
+                if (ret == -1) {
+                    dunnoList.add(t);
+                }
+            }
         }
 
-	if (dunnoList.isEmpty()) {
-	    return true;
-	}
-	
-	for (SwingScilabTab tab : dunnoList) {
-	    list.remove(tab);
-	}
+        if (dunnoList.isEmpty()) {
+            return true;
+        }
 
-	savedList = list;
-	savedMustSave = mustSave;
+        for (SwingScilabTab tab : dunnoList) {
+            list.remove(tab);
+        }
 
-	return false;
+        savedList = list;
+        savedMustSave = mustSave;
+
+        return false;
     }
 
     /**

@@ -18,6 +18,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to execute the file in the console
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ExecuteFileInConsoleAction extends ExecuteCommandAction {
 
     private static final String EXEC = "exec('%s',-1)";

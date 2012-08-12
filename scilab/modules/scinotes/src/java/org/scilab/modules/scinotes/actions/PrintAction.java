@@ -26,6 +26,7 @@ import org.scilab.modules.scinotes.utils.CodeExporter;
  * @author Sylvestre Koumar
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class PrintAction extends DefaultAction {
 
     private boolean codeConverterLoaded;

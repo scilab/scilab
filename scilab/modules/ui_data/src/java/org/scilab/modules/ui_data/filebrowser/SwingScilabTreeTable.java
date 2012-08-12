@@ -63,6 +63,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * The tree table model abstract implementation
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabTreeTable extends JTable {
 
     private static final Insets INSETS = new Insets(0, 2, 0, 0);
@@ -154,7 +155,7 @@ public class SwingScilabTreeTable extends JTable {
         setAutoResizeMode(AUTO_RESIZE_NEXT_COLUMN);
 
         try {
-            isLocationInExpandControl = BasicTreeUI.class.getDeclaredMethod("isLocationInExpandControl", new Class[]{TreePath.class, int.class, int.class});
+            isLocationInExpandControl = BasicTreeUI.class.getDeclaredMethod("isLocationInExpandControl", new Class[] {TreePath.class, int.class, int.class});
             isLocationInExpandControl.setAccessible(true);
         } catch (NoSuchMethodException e) { }
 

@@ -26,6 +26,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 /**
  * @author Pierre Lando
  */
+@SuppressWarnings(value = { "serial" })
 public class PanelLayout implements LayoutManager, Serializable {
 
     public static final String GL_CANVAS = "GL_CANVAS";

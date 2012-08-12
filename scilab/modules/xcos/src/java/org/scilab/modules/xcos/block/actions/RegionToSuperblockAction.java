@@ -50,6 +50,7 @@ import com.mxgraph.util.mxRectangle;
  * Move the Selected cells to a new SuperBlock diagram
  */
 // CSOFF: ClassFanOutComplexity
+@SuppressWarnings(value = { "serial" })
 public class RegionToSuperblockAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;

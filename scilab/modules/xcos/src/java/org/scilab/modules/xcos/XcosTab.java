@@ -116,6 +116,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
+@SuppressWarnings(value = { "serial" })
 public class XcosTab extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";

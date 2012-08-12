@@ -44,6 +44,7 @@ import com.mxgraph.swing.handler.mxSelectionCellsHandler;
  * Implement a specific {@link com.mxgraph.swing.mxGraphComponent} for an Xcos
  * diagram.
  */
+@SuppressWarnings(value = { "serial" })
 public class GraphComponent extends ScilabComponent {
 
     /**

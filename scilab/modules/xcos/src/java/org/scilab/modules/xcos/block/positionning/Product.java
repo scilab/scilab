@@ -17,9 +17,10 @@ import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
 
 /**
  * Implement the PRODUCT_f block.
- * 
+ *
  * This class just install a {@link ProdPortLabelingListener} on each instance.
  */
+@SuppressWarnings(value = { "serial" })
 public class Product extends BasicBlock {
     /**
      * Default constructor

@@ -26,6 +26,7 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * @author Sylvestre Koumar
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class UnTabifyAction extends DefaultAction {
 
     /**

@@ -45,6 +45,7 @@ import org.scilab.modules.preferences.XComponent;
  * @author Pierre GRADIT
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class Table extends Panel implements XComponent, XChooser, ListSelectionListener, ActionListener {
 
     /** Universal identifier for serialization.
@@ -97,7 +98,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
 
         table.getSelectionModel().addListSelectionListener(this);
         table.getTableHeader().setReorderingAllowed(false);
-	table.setDragEnabled(false);
+        table.setDragEnabled(false);
         setupOpenMask(peer);
         setupControls(peer);
 
@@ -145,13 +146,13 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
 
     public void setupControls(Node peer) {
         if (XCommonManager.getAttribute(peer , "size").equals("dynamic")) {
-            JPanel panel = new JPanel(new GridLayout(5,1));
-            for (int i=0; i<controls.length; i++) {
+            JPanel panel = new JPanel(new GridLayout(5, 1));
+            for (int i = 0; i < controls.length; i++) {
                 panel.add(controls[i]);
                 controls[i].addActionListener((ActionListener) this);
                 controls[i].setEnabled(false);
             }
-            if (model.getRowCount()==0) {
+            if (model.getRowCount() == 0) {
                 controls[0].setEnabled(true);
             }
             this.add(panel, BorderLayout.EAST);
@@ -159,7 +160,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
     }
 
     public void openControls() {
-        for (int i=0; i<controls.length; i++) {
+        for (int i = 0; i < controls.length; i++) {
             controls[i].setEnabled(openMask[i]);
         }
     }
@@ -174,38 +175,39 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
             }
         }
         switch (id) {
-        case 0:
-            // Add new row
-            if (actionListener != null) {
-                ActionEvent transmit  = new ActionEvent(this, 0,"tableAdd", e.getWhen(), 0);
-                actionListener.actionPerformed(transmit);
-            }
-            break;
-        case 1:
-            // Move row upper
-            break;
-        case 2:
-            table.getSelectionModel().clearSelection();
-            for (int i=0; i<controls.length; i++) {
-                controls[i].setEnabled(false);
-            }
-            break;
-        case 3: break;
-        case 4:
-            // Delete row
-            System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
-            if (actionListener != null) {
-                ActionEvent transmit = new ActionEvent(this, 0, "tableDel", e.getWhen(), 0);
-                actionListener.actionPerformed(transmit);
-            }
-            break;
+            case 0:
+                // Add new row
+                if (actionListener != null) {
+                    ActionEvent transmit  = new ActionEvent(this, 0, "tableAdd", e.getWhen(), 0);
+                    actionListener.actionPerformed(transmit);
+                }
+                break;
+            case 1:
+                // Move row upper
+                break;
+            case 2:
+                table.getSelectionModel().clearSelection();
+                for (int i = 0; i < controls.length; i++) {
+                    controls[i].setEnabled(false);
+                }
+                break;
+            case 3:
+                break;
+            case 4:
+                // Delete row
+                System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
+                if (actionListener != null) {
+                    ActionEvent transmit = new ActionEvent(this, 0, "tableDel", e.getWhen(), 0);
+                    actionListener.actionPerformed(transmit);
+                }
+                break;
         }
     }
     //end Dynamic_controller
 
-    private final class CustomTableCellRenderer extends DefaultTableCellRenderer{
+    private final class CustomTableCellRenderer extends DefaultTableCellRenderer {
         public Component getTableCellRendererComponent (JTable table,
-                                                        Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
+                Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
             Component cell = super.getTableCellRendererComponent(table, obj, isSelected, hasFocus, row, column);
             if (obj instanceof java.awt.Color) {
                 cell.setBackground((java.awt.Color) obj);
@@ -288,7 +290,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
         if (externalChange && !e.getValueIsAdjusting()) {
             openControls();
             if (actionListener != null) {
-		ActionEvent transmit = new ActionEvent(this, 0, "tableSelect", System.currentTimeMillis(), 0);
+                ActionEvent transmit = new ActionEvent(this, 0, "tableSelect", System.currentTimeMillis(), 0);
                 actionListener.actionPerformed(transmit);
             }
         }
@@ -309,7 +311,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
     public final void item(final String item) {
         int selectedRow = Integer.parseInt(item);
         externalChange  = false;
-        if ((selectedRow != -1)&&(selectedRow != (table.getSelectedRow() + 1))) {
+        if ((selectedRow != -1) && (selectedRow != (table.getSelectedRow() + 1))) {
             table.setRowSelectionInterval(selectedRow - 1, selectedRow - 1);
             openControls();
         }
@@ -382,32 +384,32 @@ class Model extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-	if (nodelist != prevC) {
-	    cols = 0;
-	    for (int i = 0; i < nodelist.getLength(); i++) {
-		Node node = nodelist.item(i);
-		if (node.getNodeName().equals("tableCol")) {
-		    cols++;
-		}
-	    }
-	    prevC = nodelist;
-	}
-	    
+        if (nodelist != prevC) {
+            cols = 0;
+            for (int i = 0; i < nodelist.getLength(); i++) {
+                Node node = nodelist.item(i);
+                if (node.getNodeName().equals("tableCol")) {
+                    cols++;
+                }
+            }
+            prevC = nodelist;
+        }
+
         return cols;
     }
 
     @Override
     public int getRowCount() {
-	if (nodelist != prevR) {
-	    rows = 0;
-	    for (int i = 0; i < nodelist.getLength(); i++) {
-		Node node = nodelist.item(i);
-		if (node.getNodeName().equals("tableRow")) {
-		    rows++;
-		}
-	    }
-	    prevR = nodelist;
-	}
+        if (nodelist != prevR) {
+            rows = 0;
+            for (int i = 0; i < nodelist.getLength(); i++) {
+                Node node = nodelist.item(i);
+                if (node.getNodeName().equals("tableRow")) {
+                    rows++;
+                }
+            }
+            prevR = nodelist;
+        }
 
         return rows;
     }
@@ -491,8 +493,7 @@ class Model extends AbstractTableModel {
         String attr  = getColumnAttr(col);
         Node record  = getRowRecord(row);
         String value = XCommonManager.getAttribute(record , attr);
-        if (value.startsWith("#"))
-        {
+        if (value.startsWith("#")) {
             return XCommonManager.getColor(value);
         }
         return value;
@@ -514,7 +515,7 @@ class Model extends AbstractTableModel {
     public boolean isCellEditable(final int row, final int col) {
         Node record  = getColumnRecord(col);
         String value = XCommonManager.getAttribute(
-            record , "editable", "false");
+                           record , "editable", "false");
         return value == "true";
     }
 

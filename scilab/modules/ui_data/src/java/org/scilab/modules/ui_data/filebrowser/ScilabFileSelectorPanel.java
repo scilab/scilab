@@ -24,6 +24,7 @@ import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
  * The JPanel containing the combobox used to set the path and the two buttons
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileSelectorPanel extends JPanel {
 
     private SwingScilabTreeTable table;

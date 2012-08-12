@@ -104,6 +104,7 @@ import com.mxgraph.util.mxUtils;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
+@SuppressWarnings(value = { "serial" })
 public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
     /*
      * Property names

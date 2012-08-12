@@ -28,6 +28,7 @@ import javax.swing.table.TableCellEditor;
 /**
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class RowHeaderCellEditor extends AbstractCellEditor implements TableCellEditor {
 
     private JLabel label;
@@ -38,17 +39,17 @@ public class RowHeaderCellEditor extends AbstractCellEditor implements TableCell
      * @param table the table where to put the rowHeader
      */
     public RowHeaderCellEditor(final JTable table) {
-	label = new JLabel();
-	JTableHeader header = table.getTableHeader();
-	label.setOpaque(true);
-	label.setBorder(BorderFactory.createEmptyBorder());
-	label.setHorizontalAlignment(JLabel.CENTER);
-	label.setForeground(UIManager.getColor("textHighlightText"));
-	label.setFont(header.getFont().deriveFont(Font.BOLD));
+        label = new JLabel();
+        JTableHeader header = table.getTableHeader();
+        label.setOpaque(true);
+        label.setBorder(BorderFactory.createEmptyBorder());
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setForeground(UIManager.getColor("textHighlightText"));
+        label.setFont(header.getFont().deriveFont(Font.BOLD));
 
-	Color selected = UIManager.getColor("Table.selectionBackground");
-	float[] hsb = Color.RGBtoHSB(selected.getRed(), selected.getGreen(), selected.getBlue(), null);
-	label.setBackground(Color.getHSBColor(hsb[0], 1, hsb[2]));
+        Color selected = UIManager.getColor("Table.selectionBackground");
+        float[] hsb = Color.RGBtoHSB(selected.getRed(), selected.getGreen(), selected.getBlue(), null);
+        label.setBackground(Color.getHSBColor(hsb[0], 1, hsb[2]));
     }
 
     /**
@@ -63,7 +64,7 @@ public class RowHeaderCellEditor extends AbstractCellEditor implements TableCell
      */
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int col) {
         this.row = row;
-	label.setText(Integer.toString(row + 1));
+        label.setText(Integer.toString(row + 1));
 
         return label;
     }

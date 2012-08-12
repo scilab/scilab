@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Show the parent graph (only installed on a {@link SuperBlockDiagram})
  */
+@SuppressWarnings(value = { "serial" })
 public class ShowParentAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SHOW_PARENT;
