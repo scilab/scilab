@@ -273,10 +273,10 @@ void visitprivate(const CallExp &e)
                     {
                         types::InternalType* pArg = (*pArgs)[0];
                         if( pArg->isDouble() ||
-                            pArg->isInt() || 
-                            pArg->isBool() ||  
-                            pArg->isImplicitList() || 
-                            pArg->isColon() || 
+                            pArg->isInt() ||
+                            pArg->isBool() ||
+                            pArg->isImplicitList() ||
+                            pArg->isColon() ||
                             pArg->isDollar())
 
                         {//call "normal" extract
@@ -292,7 +292,7 @@ void visitprivate(const CallExp &e)
                             {
                                 stFields.push_back(pString->get(i));
                             }
-                            
+
                             ResultList = pIT->getAs<TList>()->extractStrings(stFields);
                             if(ResultList.empty())
                             {
@@ -315,7 +315,7 @@ void visitprivate(const CallExp &e)
 
                         //create input argument list
 
-                        //protect inputs 
+                        //protect inputs
                         for(int i = 0 ; i < pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->IncreaseRef();
@@ -377,7 +377,7 @@ void visitprivate(const CallExp &e)
                             {
                                 stFields.push_back(pString->get(i));
                             }
-                            
+
                             ResultList = pIT->getAs<MList>()->extractStrings(stFields);
                             if(ResultList.empty())
                             {
@@ -400,7 +400,7 @@ void visitprivate(const CallExp &e)
 
                         //create input argument list
 
-                        //protect inputs 
+                        //protect inputs
                         for(int i = 0 ; i < pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->IncreaseRef();
@@ -455,7 +455,7 @@ void visitprivate(const CallExp &e)
                 pOut = pIT->getAs<types::Sparse>()->extract(pArgs);
                 break;
             case types::InternalType::RealSparseBool :
-                //pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
+                pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
                 break;
             case types::InternalType::RealStruct :
                 {

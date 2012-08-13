@@ -27,46 +27,47 @@ using namespace types;
 
 bool bConditionState(types::InternalType *_pITResult)
 {
-	if(_pITResult->isDouble() &&
-        _pITResult->getAs<types::Double>()->isComplex() == false)
-	{
-		types::Double *pR = _pITResult->getAs<types::Double>();
-        if(pR->isEmpty())
-        {//[]
+    if (_pITResult->isDouble() &&
+            _pITResult->getAs<types::Double>()->isComplex() == false)
+    {
+        types::Double *pR = _pITResult->getAs<types::Double>();
+        if (pR->isEmpty())
+        {
+            //[]
             return false;
         }
 
-		double *pReal = pR->getReal();
-		for(int i = 0 ; i < pR->getSize() ; i++)
-		{
-			if(pReal[i] == 0)
-			{
-				return false;
-			}
-		}
-	}
-	else if(_pITResult->isBool())
-	{
-		types::Bool *pB		= _pITResult->getAs<types::Bool>();
-		int *piData	= pB->get();
+        double *pReal = pR->getReal();
+        for (int i = 0 ; i < pR->getSize() ; i++)
+        {
+            if (pReal[i] == 0)
+            {
+                return false;
+            }
+        }
+    }
+    else if (_pITResult->isBool())
+    {
+        types::Bool *pB		= _pITResult->getAs<types::Bool>();
+        int *piData	= pB->get();
 
-		for(int i = 0 ; i < pB->getSize() ; i++)
-		{
-			if(piData[i] == 0)
-			{
-				return false;
-				break;
-			}
-		}
-	}
-	else if(_pITResult->isInt())
-	{
-	}
-	else
-	{
-		return false;
-	}
-	return true;
+        for (int i = 0 ; i < pB->getSize() ; i++)
+        {
+            if (piData[i] == 0)
+            {
+                return false;
+                break;
+            }
+        }
+    }
+    else if (_pITResult->isInt())
+    {
+    }
+    else
+    {
+        return false;
+    }
+    return true;
 }
 
 /*
@@ -75,178 +76,14 @@ bool bConditionState(types::InternalType *_pITResult)
 types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
 {
     types::InternalType* poResult = NULL;
-    switch(_poSource->getType())
+    switch (_poSource->getType())
     {
-    case types::GenericType::RealDouble :
-        poResult = new types::Double(_iRows, _iCols, false);
-        break;
-    case types::GenericType::RealBool :
-        poResult = new types::Bool(_iRows, _iCols);
-        break;
-    case types::GenericType::RealInt8 :
-        poResult = new types::Int8(_iRows, _iCols);
-        break;
-    case types::GenericType::RealUInt8 :
-        poResult = new types::UInt8(_iRows, _iCols);
-        break;
-    case types::GenericType::RealInt16 :
-        poResult = new types::Int16(_iRows, _iCols);
-        break;
-    case types::GenericType::RealUInt16 :
-        poResult = new types::UInt16(_iRows, _iCols);
-        break;
-    case types::GenericType::RealInt32 :
-        poResult = new types::Int32(_iRows, _iCols);
-        break;
-    case types::GenericType::RealUInt32 :
-        poResult = new types::UInt32(_iRows, _iCols);
-        break;
-    case types::GenericType::RealInt64 :
-        poResult = new types::Int64(_iRows, _iCols);
-        break;
-    case types::GenericType::RealUInt64 :
-        poResult = new types::UInt64(_iRows, _iCols);
-        break;
-    case types::GenericType::RealString :
-        poResult = new types::String(_iRows, _iCols);
-        break;
-    case types::GenericType::RealPoly :
-        {
-            int* piRank = new int[_iRows * _iCols];
-            for(int i = 0 ; i < _iRows * _iCols ; i++)
-            {
-                piRank[i] = 1;
-            }
-            poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-            break;
-        }
-    case types::InternalType::RealImplicitList :
-        poResult = new types::ImplicitList();
-        break;
-    default :
-        // FIXME : What should we do here ??
-        break;
-    }
-    return poResult;
-}
-
-types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
-{
-    types::InternalType *poResult	            = NULL;
-    types::InternalType::RealType TypeSource	= _poSource->getType();
-    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
-    int iCurRow                                 = _iRows;
-    int iCurCol                                 = _iCols;
-
-
-    if(_poDest == NULL)
-    {//First call, alloc _poSource
-        poResult    = allocDest(_poSource, _iRows, _iCols);
-        TypeDest	= TypeSource;
-        iCurCol	    = 0;
-        iCurRow		= 0;
-    }
-    else
-    {
-        TypeDest    = _poDest->getType();
-        poResult    = _poDest;
-    }
-
-    if(TypeDest != TypeSource)
-    {//check if source type is compatible with dest type
-    }
-    else
-    {
-        switch(TypeDest)
-        {
         case types::GenericType::RealDouble :
-            if(poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
-            {
-                poResult->getAs<types::Double>()->setComplex(true);
-            }
-
-            poResult->getAs<types::Double>()->fillFromCol(*_piCols, _poSource->getAs<types::Double>());
-            *_piCols += _poSource->getAs<types::Double>()->getCols();
-
+            poResult = new types::Double(_iRows, _iCols, false);
             break;
-        default:
+        case types::GenericType::RealBool :
+            poResult = new types::Bool(_iRows, _iCols);
             break;
-        }
-        return poResult;
-    }
-    return NULL;
-}
-
-types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
-{
-	types::InternalType *poResult	            = NULL;
-	types::InternalType::RealType TypeSource	= _poSource->getType();
-	types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
-	int iCurRow                                 = _iRows;
-	int iCurCol                                 = _iCols;
-
-    if(_poDest == NULL)
-    {//First call, alloc _poSource
-        poResult    = allocDest(_poSource, _iRows, _iCols);
-        iCurCol	    = 0;
-        iCurRow		= 0;
-        TypeDest	= TypeSource;
-    }
-    else
-    {
-        TypeDest	= _poDest->getType();
-        poResult    = _poDest;
-    }
-
-
-    if(TypeDest != TypeSource)
-    {//check if source type is compatible with dest type
-    }
-    else
-    {
-        switch(TypeDest)
-        {
-        case types::GenericType::RealDouble :
-            if(poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
-            {
-                poResult->getAs<types::Double>()->setComplex(true);
-            }
-
-            poResult->getAs<types::Double>()->fillFromRow(*_piRows, _poSource->getAs<types::Double>());
-            *_piRows += _poSource->getAs<types::Double>()->getRows();
-
-            break;
-        default:
-            break;
-        }
-        return poResult;
-    }
-    return NULL;
-}
-
-
-/*
-_iRows : Position if _poDest allready initialized else size of the matrix
-_iCols : Position if _poDest allready initialized else size of the matrix
-*/
-types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
-{
-	types::InternalType *poResult	= NULL;
-	types::InternalType::RealType TypeSource	= _poSource->getType();
-	types::InternalType::RealType TypeDest		=	types::InternalType::RealInternal;
-	int iCurRow = _iRows;
-	int iCurCol = _iCols;
-
-	if(_poDest == NULL)
-	{
-		switch(TypeSource)
-		{
-		case types::GenericType::RealDouble :
-			poResult = new types::Double(_iRows, _iCols, false);
-			break;
-		case types::GenericType::RealBool :
-			poResult = new types::Bool(_iRows, _iCols);
-			break;
         case types::GenericType::RealInt8 :
             poResult = new types::Int8(_iRows, _iCols);
             break;
@@ -271,169 +108,435 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         case types::GenericType::RealUInt64 :
             poResult = new types::UInt64(_iRows, _iCols);
             break;
-		case types::GenericType::RealString :
-			poResult = new types::String(_iRows, _iCols);
-			break;
-		case types::GenericType::RealPoly :
-			{
-				int* piRank = new int[_iRows * _iCols];
-				for(int i = 0 ; i < _iRows * _iCols ; i++)
-				{
-					piRank[i] = 1;
-				}
-				poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-				break;
-			}
-		case types::InternalType::RealImplicitList :
-			poResult = new types::ImplicitList();
-			break;
-        default :
-            // FIXME What should we do here ...
-            break;
-		}
-		iCurCol = 0;
-		iCurRow = 0;
-		TypeDest =	TypeSource;
-	}
-	else
-	{
-		TypeDest = _poDest->getType();
-		poResult = _poDest;
-	}
-
-
-	if(TypeDest != TypeSource)
-	{//check if source type is compatible with dest type
-		switch(TypeDest)
-		{
-		case types::GenericType::RealDouble :
-			if(TypeSource == types::GenericType::RealPoly)
-			{
-				types::Double *poDest = _poDest->getAs<types::Double>();
-				//Convert Dest to RealPoly
-				int *piRank = new int[poDest->getSize()];
-				for(int i = 0 ; i < poDest->getSize() ; i++)
-				{
-					piRank[i] = 1;
-				}
-
-				poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), poDest->getRows(), poDest->getCols(),  piRank);
-
-				double *pR = poDest->getReal();
-				double *pI = poDest->getImg();
-				for(int i = 0 ; i < poDest->getSize() ; i++)
-				{
-					types::Double *pdbl = NULL;
-					if(poDest->isComplex())
-					{
-						pdbl = new types::Double(pR[i], pI[i]);
-					}
-					else
-					{
-						pdbl = new types::Double(pR[i]);
-					}
-
-					poResult->getAs<types::Polynom>()->setCoef(i, pdbl);
-					delete pdbl;
-				}
-
-				poResult->getAs<types::Polynom>()->setCoef(iCurRow, iCurCol, _poSource->getAs<types::Polynom>()->get(0)->getCoef());
-			}
-			break;
-		case types::GenericType::RealPoly :
-			if(TypeSource == types::GenericType::RealDouble)
-			{
-				//Add Source like coef of the new element
-				types::SinglePoly* pPolyOut	= poResult->getAs<types::Polynom>()->get(iCurRow, iCurCol);
-
-				pPolyOut->setRank(1);
-                pPolyOut->setCoef(_poSource->getAs<types::Double>());
-			}
-			break;
-		default:
-			break;
-		}
-		return poResult;
-	}
-	else
-	{//Just add the new value in the current item
-		switch(TypeDest)
-		{
-        case types::GenericType::RealDouble :
-            ((Double*)poResult)->append(iCurRow, iCurCol, (Double*)_poSource);
+        case types::GenericType::RealString :
+            poResult = new types::String(_iRows, _iCols);
             break;
         case types::GenericType::RealPoly :
-			poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
-			break;
-		case types::GenericType::RealBool:
-			poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource->getAs<types::Bool>());
-			break;
-		case types::GenericType::RealInt8 :
-			poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int8>());
-			break;
-		case types::GenericType::RealUInt8 :
-			poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt8>());
-			break;
-		case types::GenericType::RealInt16 :
-			poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int16>());
-			break;
-		case types::GenericType::RealUInt16 :
-			poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt16>());
-			break;
-		case types::GenericType::RealInt32 :
-			poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int32>());
-			break;
-		case types::GenericType::RealUInt32 :
-			poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt32>());
-			break;
-		case types::GenericType::RealInt64 :
-			poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int64>());
-			break;
-		case types::GenericType::RealUInt64 :
-			poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt64>());
-			break;
-		case types::GenericType::RealString :
+        {
+            int* piRank = new int[_iRows * _iCols];
+            for (int i = 0 ; i < _iRows * _iCols ; i++)
+            {
+                piRank[i] = 1;
+            }
+            poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+            break;
+        }
+        case types::InternalType::RealImplicitList :
+            poResult = new types::ImplicitList();
+            break;
+        default :
+            // FIXME : What should we do here ??
+            break;
+    }
+    return poResult;
+}
+
+types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
+{
+    types::InternalType *poResult	            = NULL;
+    types::InternalType::RealType TypeSource	= _poSource->getType();
+    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+    int iCurRow                                 = _iRows;
+    int iCurCol                                 = _iCols;
+
+
+    if (_poDest == NULL)
+    {
+        //First call, alloc _poSource
+        poResult    = allocDest(_poSource, _iRows, _iCols);
+        TypeDest	= TypeSource;
+        iCurCol	    = 0;
+        iCurRow		= 0;
+    }
+    else
+    {
+        TypeDest    = _poDest->getType();
+        poResult    = _poDest;
+    }
+
+    if (TypeDest != TypeSource)
+    {
+        //check if source type is compatible with dest type
+    }
+    else
+    {
+        switch (TypeDest)
+        {
+            case types::GenericType::RealDouble :
+                if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
+                {
+                    poResult->getAs<types::Double>()->setComplex(true);
+                }
+
+                poResult->getAs<types::Double>()->fillFromCol(*_piCols, _poSource->getAs<types::Double>());
+                *_piCols += _poSource->getAs<types::Double>()->getCols();
+
+                break;
+            default:
+                break;
+        }
+        return poResult;
+    }
+    return NULL;
+}
+
+types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
+{
+    types::InternalType *poResult	            = NULL;
+    types::InternalType::RealType TypeSource	= _poSource->getType();
+    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+    int iCurRow                                 = _iRows;
+    int iCurCol                                 = _iCols;
+
+    if (_poDest == NULL)
+    {
+        //First call, alloc _poSource
+        poResult    = allocDest(_poSource, _iRows, _iCols);
+        iCurCol	    = 0;
+        iCurRow		= 0;
+        TypeDest	= TypeSource;
+    }
+    else
+    {
+        TypeDest	= _poDest->getType();
+        poResult    = _poDest;
+    }
+
+
+    if (TypeDest != TypeSource)
+    {
+        //check if source type is compatible with dest type
+    }
+    else
+    {
+        switch (TypeDest)
+        {
+            case types::GenericType::RealDouble :
+                if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
+                {
+                    poResult->getAs<types::Double>()->setComplex(true);
+                }
+
+                poResult->getAs<types::Double>()->fillFromRow(*_piRows, _poSource->getAs<types::Double>());
+                *_piRows += _poSource->getAs<types::Double>()->getRows();
+
+                break;
+            default:
+                break;
+        }
+        return poResult;
+    }
+    return NULL;
+}
+
+
+/*
+_iRows : Position if _poDest allready initialized else size of the matrix
+_iCols : Position if _poDest allready initialized else size of the matrix
+*/
+types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
+{
+    types::InternalType *poResult	= NULL;
+    types::InternalType::RealType TypeSource	= _poSource->getType();
+    types::InternalType::RealType TypeDest		=	types::InternalType::RealInternal;
+    int iCurRow = _iRows;
+    int iCurCol = _iCols;
+
+    if (_poDest == NULL)
+    {
+        switch (TypeSource)
+        {
+            case types::GenericType::RealDouble :
+                poResult = new types::Double(_iRows, _iCols, false);
+                break;
+            case types::GenericType::RealBool :
+                poResult = new types::Bool(_iRows, _iCols);
+                break;
+            case types::GenericType::RealInt8 :
+                poResult = new types::Int8(_iRows, _iCols);
+                break;
+            case types::GenericType::RealUInt8 :
+                poResult = new types::UInt8(_iRows, _iCols);
+                break;
+            case types::GenericType::RealInt16 :
+                poResult = new types::Int16(_iRows, _iCols);
+                break;
+            case types::GenericType::RealUInt16 :
+                poResult = new types::UInt16(_iRows, _iCols);
+                break;
+            case types::GenericType::RealInt32 :
+                poResult = new types::Int32(_iRows, _iCols);
+                break;
+            case types::GenericType::RealUInt32 :
+                poResult = new types::UInt32(_iRows, _iCols);
+                break;
+            case types::GenericType::RealInt64 :
+                poResult = new types::Int64(_iRows, _iCols);
+                break;
+            case types::GenericType::RealUInt64 :
+                poResult = new types::UInt64(_iRows, _iCols);
+                break;
+            case types::GenericType::RealString :
+                poResult = new types::String(_iRows, _iCols);
+                break;
+            case types::GenericType::RealSparse :
+                poResult = new types::Sparse(_iRows, _iCols);
+                break;
+            case types::GenericType::RealSparseBool :
+                poResult = new types::SparseBool(_iRows, _iCols);
+                break;
+            case types::GenericType::RealPoly :
+            {
+                int* piRank = new int[_iRows * _iCols];
+                for (int i = 0 ; i < _iRows * _iCols ; i++)
+                {
+                    piRank[i] = 1;
+                }
+                poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+                break;
+            }
+            case types::InternalType::RealImplicitList :
+                poResult = new types::ImplicitList();
+                break;
+            default :
+                // FIXME What should we do here ...
+                break;
+        }
+        iCurCol = 0;
+        iCurRow = 0;
+        TypeDest =	TypeSource;
+    }
+    else
+    {
+        TypeDest = _poDest->getType();
+        poResult = _poDest;
+    }
+
+
+    if (TypeDest != TypeSource)
+    {
+        //check if source type is compatible with dest type
+        switch (TypeDest)
+        {
+            case types::GenericType::RealDouble :
+                if (TypeSource == types::GenericType::RealPoly)
+                {
+                    types::Double *poDest = _poDest->getAs<types::Double>();
+                    //Convert Dest to RealPoly
+                    int *piRank = new int[poDest->getSize()];
+                    for (int i = 0 ; i < poDest->getSize() ; i++)
+                    {
+                        piRank[i] = 1;
+                    }
+
+                    poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), poDest->getRows(), poDest->getCols(),  piRank);
+
+                    double *pR = poDest->getReal();
+                    double *pI = poDest->getImg();
+                    for (int i = 0 ; i < poDest->getSize() ; i++)
+                    {
+                        types::Double *pdbl = NULL;
+                        if (poDest->isComplex())
+                        {
+                            pdbl = new types::Double(pR[i], pI[i]);
+                        }
+                        else
+                        {
+                            pdbl = new types::Double(pR[i]);
+                        }
+
+                        poResult->getAs<types::Polynom>()->setCoef(i, pdbl);
+                        delete pdbl;
+                    }
+
+                    poResult->getAs<types::Polynom>()->setCoef(iCurRow, iCurCol, _poSource->getAs<types::Polynom>()->get(0)->getCoef());
+                }
+                break;
+            case types::GenericType::RealPoly :
+                if (TypeSource == types::GenericType::RealDouble)
+                {
+                    //Add Source like coef of the new element
+                    types::SinglePoly* pPolyOut	= poResult->getAs<types::Polynom>()->get(iCurRow, iCurCol);
+
+                    pPolyOut->setRank(1);
+                    pPolyOut->setCoef(_poSource->getAs<types::Double>());
+                }
+                break;
+            case types::GenericType::RealSparse :
+                if (TypeSource == types::GenericType::RealDouble)
+                {
+                    types::Double* poSource = _poSource->getAs<types::Double>();
+                    types::Sparse* spResult = poResult->getAs<types::Sparse>();
+
+                    // Set complex the result if one of inputs is complex
+                    if (poSource->isComplex())
+                    {
+                        if (spResult->isComplex() == false)
+                        {
+                            spResult->toComplex();
+                        }
+                    }
+
+                    // Add poSource at the end of spResult
+                    if (spResult->isComplex())
+                    {
+                        if (poSource->isComplex())
+                        {
+                            for (int i = 0; i < poSource->getRows(); i++)
+                            {
+                                for (int j = 0; j < poSource->getCols(); j++)
+                                {
+                                    double dbl = poSource->get(i, j);
+                                    double dblImg = poSource->getImg(i, j);
+                                    if (dbl != 0 || dblImg != 0)
+                                    {
+                                        spResult->set(i + iCurRow, j + iCurCol, std::complex<double>(dbl, dblImg));
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < poSource->getRows(); i++)
+                            {
+                                for (int j = 0; j < poSource->getCols(); j++)
+                                {
+                                    double dbl = poSource->get(i, j);
+                                    if (dbl != 0)
+                                    {
+                                        spResult->set(i + iCurRow, j + iCurCol, std::complex<double>(dbl, 0));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < poSource->getRows(); i++)
+                        {
+                            for (int j = 0; j < poSource->getCols(); j++)
+                            {
+                                double dbl = poSource->get(i, j);
+                                if (dbl != 0)
+                                {
+                                    spResult->set(i + iCurRow, j + iCurCol, dbl);
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case types::GenericType::RealSparseBool :
+                if (TypeSource == types::GenericType::RealBool)
+                {
+                    types::Bool* poSource = _poSource->getAs<types::Bool>();
+                    types::SparseBool* spResult = poResult->getAs<types::SparseBool>();
+
+                    // Add poSource at the end of spResult
+                    for (int i = 0; i < poSource->getRows(); i++)
+                    {
+                        for (int j = 0; j < poSource->getCols(); j++)
+                        {
+                            bool bValue = poSource->get(i, j);
+                            if (bValue)
+                            {
+                                spResult->set(i + iCurRow, j + iCurCol, true);
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        return poResult;
+    }
+    else
+    {
+        //Just add the new value in the current item
+        switch (TypeDest)
+        {
+            case types::GenericType::RealDouble :
+                ((Double*)poResult)->append(iCurRow, iCurCol, (Double*)_poSource);
+                break;
+            case types::GenericType::RealPoly :
+                poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
+                break;
+            case types::GenericType::RealBool:
+                poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource->getAs<types::Bool>());
+                break;
+            case types::GenericType::RealInt8 :
+                poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int8>());
+                break;
+            case types::GenericType::RealUInt8 :
+                poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt8>());
+                break;
+            case types::GenericType::RealInt16 :
+                poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int16>());
+                break;
+            case types::GenericType::RealUInt16 :
+                poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt16>());
+                break;
+            case types::GenericType::RealInt32 :
+                poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int32>());
+                break;
+            case types::GenericType::RealUInt32 :
+                poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt32>());
+                break;
+            case types::GenericType::RealInt64 :
+                poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int64>());
+                break;
+            case types::GenericType::RealUInt64 :
+                poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt64>());
+                break;
+            case types::GenericType::RealSparse :
+                poResult->getAs<types::Sparse>()->append(iCurRow, iCurCol, _poSource->getAs<types::Sparse>());
+                break;
+            case types::GenericType::RealSparseBool :
+                poResult->getAs<types::SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<types::SparseBool>());
+                break;
+            case types::GenericType::RealString :
             {
                 types::String* pSource = _poSource->getAs<types::String>();
                 poResult->getAs<types::String>()->append(iCurRow, iCurCol, pSource);
             }
-			break;
-		case types::GenericType::RealImplicitList :
-			{
-				if(_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::RealPoly)
-				{
-					poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
-				}
-				else
-				{
-					poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
-				}
+            break;
+            case types::GenericType::RealImplicitList :
+            {
+                if (_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::RealPoly)
+                {
+                    poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
+                }
+                else
+                {
+                    poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
+                }
 
-				if(_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::RealPoly)
-				{
-					poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
-				}
-				else
-				{
-					poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
-				}
+                if (_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::RealPoly)
+                {
+                    poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
+                }
+                else
+                {
+                    poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
+                }
 
-				if(_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::RealPoly)
-				{
-					poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
-				}
-				else
-				{
-					poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
-				}
-				break;
-			}
-		default:
-			break;
-		}
-		return poResult;
-	}
-	return NULL;
+                if (_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::RealPoly)
+                {
+                    poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
+                }
+                else
+                {
+                    poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
+                }
+                break;
+            }
+            default:
+                break;
+        }
+        return poResult;
+    }
+    return NULL;
 }
 
 const std::wstring* getStructNameFromExp(const Exp* _pExp)
@@ -442,15 +545,15 @@ const std::wstring* getStructNameFromExp(const Exp* _pExp)
     const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);
     const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
 
-    if(pField)
+    if (pField)
     {
         return getStructNameFromExp(pField->head_get());
     }
-    else if(pVar)
+    else if (pVar)
     {
         return &(pVar->name_get().name_get());
     }
-    else if(pCall)
+    else if (pCall)
     {
         return getStructNameFromExp(&(pCall->name_get()));
     }
@@ -470,12 +573,13 @@ bool fillStructFromExp(const Exp* _pExp, types::Struct* _pStr, int _iIndex, type
     const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
     const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
 
-    if(pVar)
-    {//x.a = y
+    if (pVar)
+    {
+        //x.a = y
         _pStr->addField(pVar->name_get().name_get());
         _pStr->get(_iIndex)->set(pVar->name_get().name_get(), _pIT);
     }
-    else if(pCall)
+    else if (pCall)
     {
     }
     else
@@ -493,8 +597,9 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
     const CallExp* pCall        = dynamic_cast<const CallExp*>(_pExp);
     const CellCallExp* pCell    = dynamic_cast<const CellCallExp*>(_pExp);
 
-    if(pField)
-    {//y.x
+    if (pField)
+    {
+        //y.x
 
         //evaluate head "y"
         typed_list *pArgs   = NULL;
@@ -502,7 +607,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
         Struct* pCurrent    = *_pCurrent;
 
         bool bOK = getStructFromExp(pField->head_get(), &pMain, &pCurrent, &pArgs, NULL);
-        if(bOK)
+        if (bOK)
         {
             pVar    = dynamic_cast<const SimpleVar*>(pField->tail_get());
 
@@ -512,11 +617,13 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             //create field "x"
             std::wstring var = pVar->name_get().name_get();
             bool bOK = pCurrent->addField(pVar->name_get().name_get());
-            if(*_pMain == NULL && _pIT != NULL)
-            {//first stack, assign value to field and return main structure
+            if (*_pMain == NULL && _pIT != NULL)
+            {
+                //first stack, assign value to field and return main structure
 
-                if(pArgs != NULL)
-                {//args returned by "parent"
+                if (pArgs != NULL)
+                {
+                    //args returned by "parent"
                     std::wstring var = pVar->name_get().name_get();
                     //be careful, extract functions copy values
 
@@ -528,7 +635,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                     delete pStr;
                     pSS->DecreaseRef();
                 }
-                else if(_pArgs == NULL || *_pArgs == NULL)
+                else if (_pArgs == NULL || *_pArgs == NULL)
                 {
                     std::wstring var = pVar->name_get().name_get();
                     //std::wcout << var << L" <- " << pIT->getTypeStr() << std::endl;
@@ -536,7 +643,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 }
                 else
                 {
-                    Struct* pStr = new Struct(1,1);
+                    Struct* pStr = new Struct(1, 1);
                     std::wstring var = pVar->name_get().name_get();
                     pStr->addField(pVar->name_get().name_get());
                     pStr->get(0)->set(pVar->name_get().name_get(), pIT);
@@ -545,15 +652,17 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 }
             }
             else
-            {//y.x.w
+            {
+                //y.x.w
                 //in this case, we are in the middle of expression
                 //we know that "x" is a struct but we can't assign value yet
                 //so assign empty struct and return new pCurrent
                 Struct* pStr = NULL;
 
                 /*try to extract field*/
-                if(pArgs == NULL)
-                {//without extract argument
+                if (pArgs == NULL)
+                {
+                    //without extract argument
                     pStr = pCurrent->get(0)->get(pVar->name_get().name_get())->getAs<Struct>();
                 }
                 else
@@ -568,20 +677,21 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                     pSS->DecreaseRef();
                 }
 
-                if(pStr == NULL)
-                {//new field or not struct field
-                    if(_pArgs == NULL || *_pArgs == NULL)
+                if (pStr == NULL)
+                {
+                    //new field or not struct field
+                    if (_pArgs == NULL || *_pArgs == NULL)
                     {
-                        pStr = new Struct(1,1);
+                        pStr = new Struct(1, 1);
                     }
                     else
                     {
-                        Struct* p = new Struct(1,1);
+                        Struct* p = new Struct(1, 1);
                         pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
                         delete p;
                     }
 
-                    if(pArgs != NULL)
+                    if (pArgs != NULL)
                     {
                         std::wstring var = pVar->name_get().name_get();
 
@@ -607,9 +717,9 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             *_pCurrent = pCurrent;
 
             //clean pArgs return by getStructFromExp
-            for(int iArg = 0 ; pArgs != NULL && iArg < pArgs->size() ; iArg++)
+            for (int iArg = 0 ; pArgs != NULL && iArg < pArgs->size() ; iArg++)
             {
-                if((*pArgs)[iArg]->isDeletable())
+                if ((*pArgs)[iArg]->isDeletable())
                 {
                     delete (*pArgs)[iArg];
                 }
@@ -622,26 +732,28 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             return false;
         }
     }
-    else if(pVar)
-    {//a.x : with x not only a SimpleVar
+    else if (pVar)
+    {
+        //a.x : with x not only a SimpleVar
         types::Struct *pStr = NULL;
         types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
-        if(pIT == NULL || pIT->isStruct() == false)
-        {//"a" doest not exist or it is another type, create it with size 1,1 and return it
+        if (pIT == NULL || pIT->isStruct() == false)
+        {
+            //"a" doest not exist or it is another type, create it with size 1,1 and return it
             //create new structure variable
-            if(_pArgs == NULL || *_pArgs == NULL)
+            if (_pArgs == NULL || *_pArgs == NULL)
             {
-                pStr = new types::Struct(1,1);
+                pStr = new types::Struct(1, 1);
             }
             else
             {
-                if((**_pArgs)[0]->isString())
+                if ((**_pArgs)[0]->isString())
                 {
-                    pStr = new types::Struct(1,1);
+                    pStr = new types::Struct(1, 1);
                 }
                 else
                 {
-                    Struct* p = new Struct(1,1);
+                    Struct* p = new Struct(1, 1);
                     pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
                     delete p;
                 }
@@ -649,7 +761,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
         }
-        else if(pIT->isStruct() == false)
+        else if (pIT->isStruct() == false)
         {
             return false;
         }
@@ -658,15 +770,16 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             pStr = pIT->getAs<Struct>();
         }
 
-        if(*_pMain == NULL)
+        if (*_pMain == NULL)
         {
             *_pMain = pStr;
         }
         *_pCurrent = pStr;
         return true;
     }
-    else if(pCall)
-    {//a(x,y)
+    else if (pCall)
+    {
+        //a(x,y)
         ExecVisitor execMe;
         Struct* pCurrent = NULL;
 
@@ -674,19 +787,20 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
         typed_list *pReturnedArgs = NULL;
 
         //Struct* pStruct = Struct::insertNew(pArgs, new Struct(1,1))->getAs<Struct>();
-        if(*_pMain == NULL)
-        {//a is the new main but can be a complex expression
+        if (*_pMain == NULL)
+        {
+            //a is the new main but can be a complex expression
             //bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pArgs, pStruct);
             bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pReturnedArgs, NULL);
-            if(bOK == false)
+            if (bOK == false)
             {
                 return false;
             }
 
-            if((*pCurrentArgs)[0]->isString())
+            if ((*pCurrentArgs)[0]->isString())
             {
                 String* pS = (*pCurrentArgs)[0]->getAs<String>();
-                if(pCurrentArgs->size() != 1 || pS->isScalar() == false)
+                if (pCurrentArgs->size() != 1 || pS->isScalar() == false)
                 {
                     //manage error
                     std::wostringstream os;
@@ -698,7 +812,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 wchar_t* pFieldName = pS->get(0);
 
                 Struct* pStr = NULL;
-                if(pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
+                if (pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
                 {
                     pStr = pCurrent->extractWithoutClone(pReturnedArgs)->getAs<Struct>();
                     pStr->setCloneInCopyValue(false);
@@ -711,36 +825,38 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 SingleStruct* pSS = pStr->get(0);
 
                 //check if field already exists
-                if(pStr->exists(pFieldName))
+                if (pStr->exists(pFieldName))
                 {
                     InternalType* pField = pSS->get(pFieldName);
-                    if(pField->isStruct())
+                    if (pField->isStruct())
                     {
                         pStr = pField->getAs<Struct>();
                     }
                     else
-                    {//erase previous value by a struct(1,1)
-                        pSS->set(pFieldName, new Struct(1,1));
+                    {
+                        //erase previous value by a struct(1,1)
+                        pSS->set(pFieldName, new Struct(1, 1));
                         pStr = pSS->get(pFieldName)->getAs<Struct>();
                     }
                 }
                 else
-                {//field does not exist
+                {
+                    //field does not exist
                     pCurrent->addField(pFieldName);
-                    pSS->set(pFieldName, new Struct(1,1));
+                    pSS->set(pFieldName, new Struct(1, 1));
                     pCurrent = pSS->get(pFieldName)->getAs<Struct>();
                 }
 
-                if(pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
+                if (pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
                 {
                     pSS->IncreaseRef();
                     delete pStr;
                     pSS->DecreaseRef();
 
                     //clean pReturnedArgs return by GetArgumentList
-                    for(int iArg = 0 ; iArg < pReturnedArgs->size() ; iArg++)
+                    for (int iArg = 0 ; iArg < pReturnedArgs->size() ; iArg++)
                     {
-                        if((*pReturnedArgs)[iArg]->isDeletable())
+                        if ((*pReturnedArgs)[iArg]->isDeletable())
                         {
                             delete (*pReturnedArgs)[iArg];
                         }
@@ -752,9 +868,10 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             {
                 /*try to extract sub struct, if it fails, resize the struct and try again*/
                 InternalType* pIT = pCurrent->extract(pCurrentArgs);
-                if(pIT == NULL)
-                {//fail to extract, pCurrent is not enough big, resize it !
-                    Struct* p = new Struct(1,1);
+                if (pIT == NULL)
+                {
+                    //fail to extract, pCurrent is not enough big, resize it !
+                    Struct* p = new Struct(1, 1);
                     pCurrent->insert(pCurrentArgs, p); //insert empty struct, caller will assign the good value
                     delete p;
                 }
@@ -767,13 +884,14 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             }
         }
         else
-        {//we have a parent, so assign "a" to this parent
+        {
+            //we have a parent, so assign "a" to this parent
             //(*_pMain)->set(0, pStruct->get(0));
         }
         *_pCurrent = pCurrent;
         return true;
     }
-    else if(pCell)
+    else if (pCell)
     {
     }
     else
@@ -790,7 +908,7 @@ void callOnPrompt(void)
 {
     types::InternalType* pOnPrompt = NULL;
     pOnPrompt = symbol::Context::getInstance()->get(symbol::Symbol(L"%onprompt"));
-    if(pOnPrompt != NULL && pOnPrompt->isCallable())
+    if (pOnPrompt != NULL && pOnPrompt->isCallable())
     {
         types::typed_list in;
         types::typed_list out;

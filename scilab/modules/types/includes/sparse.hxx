@@ -25,26 +25,6 @@
 #include "dynlib_types.h"
 
 
-namespace
-{
-    /**
-       utility struct to make a lexcially scoped finalizer.
-       Calls the given member function (default to finalize())
-       upon destruction (i.e. when going out of scope).
-     */
-    template<typename T, void(T::*Fun)()= &T::finalize> struct Finalizer
-    {
-        explicit Finalizer(T& toFinalize): o(toFinalize)
-        {
-        }
-        ~Finalizer()
-        {
-            (o.*Fun)();
-        }
-        T& o;
-    };
-}
-
 namespace types
 {
     /* Utility function to create a new var on the heap from another type
@@ -90,6 +70,8 @@ namespace types
 
 
         bool isSparse() {return true;}
+        void finalize();
+
         /*data management member function defined for compatibility with the Double API*/
         bool set(int _iRows, int _iCols, double _dblReal);
         bool set(int _iRows, int _iCols, std::complex<double> v);
@@ -142,14 +124,13 @@ namespace types
           @param  _bAsVector if _piSeqCoord contains 1D coords.
          */
         Sparse* insert(typed_list* _pArgs, InternalType* _pSource);
+
         /* append _poSource from coords _iRows, _iCols
            @param _iRows row to append from
            @param _iCols col to append from
            @param _poSource src data to append
          */
-        template<typename SrcType>
-        bool append(int _iRows, int _iCols, SrcType CONST* _poSource);
-
+        bool append(int r, int c, types::Sparse CONST* src);
 
         /*
           extract a submatrix
@@ -255,14 +236,14 @@ namespace types
         /* create a new sparse matrix containing the result of a transposition
            @return ptr to the new matrix, 0 in case of failure
          */
-        Sparse* newTransposed()const;
+        Sparse* newTransposed() const;
 
         /** create a new sparse matrix containing the non zero values set to 1.
            equivalent but faster than calling one_set() on a new copy of the
            current matrix.
            @return ptr to the new matrix, 0 in case of failure
          */
-        Sparse* newOnes()const;
+        Sparse* newOnes() const;
 
         /** @return the nb of non zero values.
          */
@@ -405,7 +386,6 @@ namespace types
     protected :
     private :
 
-        void finalize();
         /** utility function used by constructors
             @param rows : nb of rows
             @param cols : nb of columns
@@ -453,6 +433,8 @@ namespace types
         SparseBool(SparseBool const& o);
 
         bool isSparseBool(){return true;}
+        void finalize();
+
         bool toString(std::wostringstream& ostr) const;
         bool toString(std::wostringstream& ostr)
         { return const_cast<SparseBool const*>(this)->toString(ostr); }
@@ -463,13 +445,18 @@ namespace types
         bool resize(int _iNewRows, int _iNewCols);
         bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType CONST* _poSource, bool _bAsVector);
 
-        template<typename SrcType>
-        bool append(int _iRows, int _iCols, SrcType CONST* _poSource);
+        bool append(int _iRows, int _iCols, SparseBool CONST* _poSource);
 
         static SparseBool* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType CONST* _poSource, bool _bAsVector);
         SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) CONST;
+        InternalType* extract(typed_list* _pArgs);
 
         SparseBool* getColumnValues(int _iPos){return NULL;}
+
+        /* create a new sparse matrix containing the result of a transposition
+           @return ptr to the new matrix, 0 in case of failure
+         */
+        SparseBool* newTransposed() const;
 
         /** @return the nb of non zero values.
          */
@@ -517,7 +504,6 @@ namespace types
     private:
         template<typename DestIter>
         void create(int rows, int cols, Bool CONST& src, DestIter o, std::size_t n);
-        void finalize();
 
     };
     template<typename T>
