@@ -21,6 +21,7 @@ import org.scilab.modules.gui.ged.axes.Axes;
 import org.scilab.modules.gui.ged.figure.Figure;
 import org.scilab.modules.gui.ged.legend.Legend;
 import org.scilab.modules.gui.ged.polyline.Polyline;
+import org.scilab.modules.gui.ged.surface.grayplot.Grayplot;
 import org.scilab.modules.gui.ged.surface.Surface;
 
 /**
@@ -46,7 +47,7 @@ public class SwapObject {
                 fac3d(objectID);
                 break;
             case GRAYPLOT:
-                /*not implemented yet */
+                grayplot(objectID);
                 break;
             case LEGEND:
                 legend(objectID);
@@ -198,6 +199,20 @@ public class SwapObject {
         SwingInspector.pReceive.add(new Surface(objectID), "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.fac3d);
+        } catch (NullPointerException npe) { }
+    }
+
+    /**
+    * Loads the properties of the grayplot.
+    *
+    * @param objectID Enters the identification of surface.
+    */
+    private void grayplot(String objectID) {
+        adjust();
+        //Load the polyline panel.
+        SwingInspector.pReceive.add(new Grayplot(objectID), "");
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.grayplot);
         } catch (NullPointerException npe) { }
     }
 }
