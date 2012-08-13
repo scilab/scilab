@@ -105,13 +105,11 @@
             for h=0:0.1:1
             hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
             f.color_map=hsv2rgb(hsv);
-            show_pixmap()
             xpause(10000)
             end
             for v=0:0.1:1
             hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
             f.color_map=hsv2rgb(hsv);
-            show_pixmap()
             xpause(10000)
             end
         </scilab:image>
@@ -125,13 +123,11 @@ f=gcf();f.pixmap='on';
 for h=0:0.1:1
   hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
   f.color_map=hsv2rgb(hsv);
-  show_pixmap()
   xpause(10000)
 end
 for v=0:0.1:1
   hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
   f.color_map=hsv2rgb(hsv);
-  show_pixmap()
   xpause(10000)
 end
  ]]></programlisting>

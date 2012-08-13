@@ -280,20 +280,35 @@ _____________
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
 xset("colormap",hotcolormap(64))
 Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
-
+ ]]></programlisting>
+        <scilab:image>
+            x=-10:10; y=-10:10;m =rand(21,21);
+            clf()
+            xset("colormap",hotcolormap(64))
+            Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 // example #2
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
 xset("colormap",jetcolormap(64))
 colorbar(-1,1)
-Sgrayplot(t,t,m, strf="041")
-
+Sgrayplot(t,t,m, strf="041") 
+]]></programlisting>
+        <scilab:image>
+            t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+            clf()
+            xset("colormap",jetcolormap(64))
+            colorbar(-1,1)
+            Sgrayplot(t,t,m, strf="041") 
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 // example #3: an animation display cos(t)*sin(x)sin(y).
 n = 30;
 nt = 100;
@@ -311,10 +326,29 @@ c=gce(),e=c.children
 xtitle("Kaa''s eyes")
 for i = 1:nt
   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-  show_pixmap()
 end
 f.pixmap='off';
  ]]></programlisting>
+        <scilab:image>
+            n = 30;
+            nt = 100;
+            x = linspace(0,2*%pi,n);
+            y = linspace(0,%pi,n/2);
+            z = sin(x')*sin(y);
+            t = linspace(0,4*%pi,nt);
+            show_window(); clf()
+            f=gcf();
+            f.color_map=jetcolormap(64);
+            f.pixmap='on';
+            colorbar(-1,1)
+            Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
+            c=gce(),e=c.children
+            xtitle("Kaa''s eyes")
+            for i = 1:nt
+            e.data(:,3)=matrix(cos(t(i))*z,-1,1);
+            end
+            f.pixmap='off';
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
