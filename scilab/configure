@@ -11062,7 +11062,7 @@ $as_echo "$ac_java_jvm_version" >&6; }
          else
         case "$host_os" in
              *darwin* )
-                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/"
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
                   ;;
               *)
                        as_fn_error $? "Could not locate Java's jni.h include file" "$LINENO" 5
