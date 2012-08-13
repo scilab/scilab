@@ -21,5 +21,8 @@ public enum SelectionEnum {
     SURFACE,
     FIGURE,
     DATATIP,
+    PLOT3D,
+    GRAYPLOT,
+    FAC3D,
     AXES_OR_FIGURE;
 }

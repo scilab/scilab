@@ -42,14 +42,20 @@ public class SwapObject {
             case DATATIP:
                 /*not implemented yet */
                 break;
+            case FAC3D:
+                fac3d(objectID);
+                break;
+            case GRAYPLOT:
+                /*not implemented yet */
+                break;
             case LEGEND:
                 legend(objectID);
                 break;
+            case PLOT3D:
+                plot3d(objectID);
+                break;
             case POLYLINE:
                 polyline(objectID);
-                break;
-            case SURFACE:
-                surface(objectID);
                 break;
             default:
                 axesORfigure(objectID, clickX, clickY);
@@ -168,16 +174,30 @@ public class SwapObject {
     }
 
     /**
-    * Loads the properties of the surface.
+    * Loads the properties of the plot3d.
     *
     * @param objectID Enters the identification of surface.
     */
-    private void surface(String objectID) {
+    private void plot3d(String objectID) {
         adjust();
         //Load the polyline panel.
         SwingInspector.pReceive.add(new Surface(objectID), "");
         try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.surface);
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.plot3d);
+        } catch (NullPointerException npe) { }
+    }
+
+    /**
+    * Loads the properties of the fac3d.
+    *
+    * @param objectID Enters the identification of surface.
+    */
+    private void fac3d(String objectID) {
+        adjust();
+        //Load the polyline panel.
+        SwingInspector.pReceive.add(new Surface(objectID), "");
+        try {
+            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.fac3d);
         } catch (NullPointerException npe) { }
     }
 }

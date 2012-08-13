@@ -31,6 +31,9 @@ public class MessagesGED {
     public static final String figure = Messages.gettext("Figure");
     public static final String legend = Messages.gettext("Legend");
     public static final String surface = Messages.gettext("Surface");
+    public static final String plot3d = Messages.gettext("Plot3D");
+    public static final String fac3d = Messages.gettext("Fac3D");
+    public static final String grayplot = Messages.gettext("Grayplot");
 
     //Base Properties - Labels
     public static final String visible = Messages.gettext("Visible");
