@@ -11,7 +11,7 @@ if test -d ".git/rebase-merge"          || \
    test -d ".git/rebase-apply"          || \
    test -f ".git/MERGE_HEAD"            || \
    test -f ".git/CHERRY_PICK_HEAD"      || \
-   test -f ".git/BISECT_LOG"            
+   test -f ".git/BISECT_LOG"
 then
     exit 0
 fi
@@ -140,7 +140,7 @@ __indent_xml() {
     fi
 
     echo "Formatting" $file
-    "$XMLINDENT" -i 4 -o "$file" "$file" || return 4;
+    "$XMLINDENT" -w -i 4 "$file" || return 4;
     git add "$file" || return 5;
 }
 
