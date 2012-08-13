@@ -200,6 +200,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipsetinterp.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />

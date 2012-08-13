@@ -413,6 +413,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipsetinterp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\StartPlotBrowser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

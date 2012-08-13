@@ -203,8 +203,8 @@ sci_gateway/cpp/sci_fire_closing_finished.cpp \
 sci_gateway/cpp/sci_openged.cpp \
 sci_gateway/cpp/sci_datatipcreate.cpp \
 sci_gateway/cpp/sci_datatipremove.cpp \
-sci_gateway/cpp/sci_plotbrowser.cpp
-
+sci_gateway/cpp/sci_plotbrowser.cpp \
+sci_gateway/cpp/sci_datatipsetinterp.cpp
 
 
 libscigui_la_CPPFLAGS = \

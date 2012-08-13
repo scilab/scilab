@@ -83,6 +83,7 @@ JavaVM * jvm;
 protected:
 jmethodID jstringcreateDatatipProgramCoordjstringjava_lang_StringjdoubleArray_doubledoubleID; // cache method id
 jmethodID jstringcreateDatatipProgramIndexjstringjava_lang_StringjintintID; // cache method id
+jmethodID voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID; // cache method id
 
 
 
@@ -145,6 +146,8 @@ void endSynchronize();
 static char* createDatatipProgramCoord(JavaVM * jvm_, char const* polylineUid, double const* coordDoubleXY, int coordDoubleXYSize);
 
 static char* createDatatipProgramIndex(JavaVM * jvm_, char const* polylineUid, int indexPoint);
+
+static void datatipSetInterp(JavaVM * jvm_, char const* polylineUid, bool interpMode);
 
 
                         /**

@@ -8,6 +8,10 @@
             <parameter name="polylineUid" type="String"/>
             <parameter name="indexPoint" type="int"/>
         </method>
+        <method name="datatipSetInterp" returnType="void" modifier="static">
+            <parameter name="polylineUid" type="String"/>
+            <parameter name="interpMode" type="boolean"/>
+        </method>
     </object>
     <object name="DatatipDelete">
         <method name="datatipRemoveProgramIndex" returnType="void" modifier="static">

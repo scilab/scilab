@@ -126,6 +126,7 @@ curEnv->DeleteLocalRef(localInstance);
                 /* Methods ID set to NULL */
 jstringcreateDatatipProgramCoordjstringjava_lang_StringjdoubleArray_doubledoubleID=NULL;
 jstringcreateDatatipProgramIndexjstringjava_lang_StringjintintID=NULL;
+voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
@@ -156,6 +157,7 @@ exit(EXIT_FAILURE);
         /* Methods ID set to NULL */
         jstringcreateDatatipProgramCoordjstringjava_lang_StringjdoubleArray_doubledoubleID=NULL;
 jstringcreateDatatipProgramIndexjstringjava_lang_StringjintintID=NULL;
+voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID=NULL;
 
 
 }
@@ -268,6 +270,39 @@ curEnv->ExceptionDescribe() ;
 }
 
 return myStringBuffer;
+
+}
+
+void DatatipCreate::datatipSetInterp (JavaVM * jvm_, char const* polylineUid, bool interpMode){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "datatipSetInterp", "(Ljava/lang/String;Z)V" ) ;
+if (voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "datatipSetInterp" << std::endl;
+curEnv->ExceptionDescribe();
+
+exit(EXIT_FAILURE);
+}
+
+jstring polylineUid_ = curEnv->NewStringUTF( polylineUid );
+if (polylineUid != NULL && polylineUid_ == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+jboolean interpMode_ = (static_cast<bool>(interpMode) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voiddatatipSetInterpjstringjava_lang_StringjbooleanbooleanID ,polylineUid_, interpMode_);
+                        curEnv->DeleteLocalRef(polylineUid_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
 
 }
 

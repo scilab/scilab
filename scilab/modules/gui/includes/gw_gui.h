@@ -59,6 +59,7 @@ GUI_IMPEXP int sci_openged(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatipcreate(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatipremove(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_plotbrowser(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_datatipsetinterp(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/
