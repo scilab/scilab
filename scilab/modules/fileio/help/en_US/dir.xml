@@ -78,7 +78,7 @@
             of files. It can be changed redefining the function <function>%dir_p</function>.
         </para>
         <para>
-            Since Scilab 5.3.1, a trailing "/" or "\" (See <link linkend="filesep">filesep</link>) is displayed for each directory.
+            Since Scilab 5.3.1, a trailing "/" or "\" (see <link linkend="filesep">filesep</link>) is displayed for each directory.
         </para>
     </refsection>
     <refsection>

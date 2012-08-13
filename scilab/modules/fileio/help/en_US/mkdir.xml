@@ -74,7 +74,7 @@
             <code>[status,msg] = mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the existing directory <varname>parentdir</varname>, returning the status and the message about an error. 
         </para>
         <para>   
-            <informaltable frame='all'>
+            <informaltable border="1">
                 <tr>
                     <td>
                         <varname>status</varname>

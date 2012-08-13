@@ -77,9 +77,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <literal>fprintfMat</literal> записывает матрицу в
+            Функция <function>fprintfMat</function> записывает матрицу в
             форматированном файле. Каждая строка матрицы даёт строчку в
-            файле. Если указан <literal>text</literal>, то его элементы
+            файле. Если указан <varname>text</varname>, то его элементы
             вносятся (поэлементно) в начало файла, один элемент на строку.
         </para>
     </refsection>
@@ -134,9 +134,6 @@ fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
             </member>
             <member>
                 <link linkend="mputstr">mputstr</link>
-            </member>
-            <member>
-                <link linkend="mscanf">mscanf</link>
             </member>
             <member>
                 <link linkend="mseek">mseek</link>

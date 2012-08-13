@@ -66,10 +66,10 @@ isdir SCI/etc/scilab.start
             <member>
                 <link linkend="isfile">isfile</link>
             </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
         </simplelist>
-        <member>
-            <link linkend="fileinfo">fileinfo</link>
-        </member>
     </refsection>
 </refentry>
 

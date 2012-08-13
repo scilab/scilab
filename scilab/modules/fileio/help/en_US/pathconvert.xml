@@ -80,7 +80,7 @@
         </para>
         <para>
             <varname>flagexpand</varname> is an optional boolean parameter. When its value 
-            is <constant>%t</constant> leading strings like  <varname>HOME</varname>, <varname>SCI</varname> or <literal>~</literal> are 
+            is <constant>%t</constant> leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
             expanded using environment variables.
         </para>
     </refsection>

@@ -37,7 +37,7 @@
             <varlistentry>
                 <term>rel_file</term>
                 <listitem>
-                    <para>a character string : relative filename.</para>
+                    <para>a character string: relative filename.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

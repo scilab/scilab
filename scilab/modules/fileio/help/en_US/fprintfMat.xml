@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>fprintfMat(file,M [,format,text])</synopsis>
+        <synopsis>fprintfMat(file, M [,format,text])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -74,10 +74,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>fprintfMat</literal> function writes a matrix in a
+            The <function>fprintfMat</function> function writes a matrix in a
             formated file. Each row of the matrix give a line in the file. If
-            <literal>text</literal> is given then the elements of
-            <literal>text</literal> are inserted elementwise at the beginning of the
+            <varname>text</varname> is given then the elements of
+            <varname>text</varname> are inserted elementwise at the beginning of the
             file one element per line.
         </para>
     </refsection>

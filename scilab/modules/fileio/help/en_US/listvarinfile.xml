@@ -57,21 +57,17 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
-                    a Scilab data file produced by <link linkend="save">save</link>.
-                </para>
-                <para>
-                    <note>
-                        Hypermatrices are reported as plain mlists;
-                        rationals and state-spaces are reported as plain tlists;
-                        graphic handles are not recognized.
-                    </note>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <para>
+            This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
+            a Scilab data file produced by <link linkend="save">save</link>.
+        </para>
+        <para>
+            <note>
+                Hypermatrices are reported as plain mlists;
+                rationals and state-spaces are reported as plain tlists;
+                graphic handles are not recognized.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

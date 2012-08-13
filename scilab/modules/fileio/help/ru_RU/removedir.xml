@@ -50,7 +50,7 @@
             относительный путь к текущей директории или абсолютный путь для 
             <varname>dirname</varname>.
         </para>
-        <para>[
+        <para>
             <code>[status] = removedir(dirname)</code> удаляет директорию 
             <varname>dirname</varname> и всё её содержимое, возвращая статус  
             <varname>status</varname>. Здесь <varname>status</varname> равен 

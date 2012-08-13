@@ -88,7 +88,7 @@
             <varname>msg</varname>. 
         </para>
         <para>   
-            <informaltable frame='all'>
+            <informaltable border="1">
                 <tr>
                     <td>
                         <varname>status</varname>
