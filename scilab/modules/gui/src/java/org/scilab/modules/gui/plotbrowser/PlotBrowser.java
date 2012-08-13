@@ -29,6 +29,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 public class PlotBrowser {
     private static PlotBrowser instance;
     public static SwingPlotBrowser plotBrowserTab;
+    public static String currentObjectID;
 
     /**
     * Constructor.
@@ -42,7 +43,7 @@ public class PlotBrowser {
     }
 
     /**
-     * Create the plot browser (as tab) instance
+     * Create the plot browser (as tab) instance.
      *
      * @param objectID Enters the identification of object.
      * @return the instance.
@@ -79,6 +80,7 @@ public class PlotBrowser {
     * @return Shows the PlotBrowser was generated.
     */
     public static PlotBrowser getPlotBrowser(String objectID) {
+        currentObjectID = objectID;
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingPlotBrowser.PLOTBROWSERUUID);
             if (!success) {

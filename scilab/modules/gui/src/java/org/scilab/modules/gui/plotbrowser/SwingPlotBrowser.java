@@ -12,31 +12,20 @@
 package org.scilab.modules.gui.plotbrowser;
 
 import java.awt.CardLayout;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Vector;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 
 import org.scilab.modules.gui.plotbrowser.actions.CloseAction;
+import org.scilab.modules.gui.plotbrowser.actions.RefreshAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
@@ -64,11 +53,16 @@ public class SwingPlotBrowser extends SwingScilabTab {
         buildMenuBar();
         addMenuBar(menuBar);
 
+        ToolBar toolBar = ScilabToolBar.createToolBar();
+        toolBar.add(RefreshAction.createButton(MessagesPlotBrowser.refresh));
+        toolBar.addSeparator();
+
         guiComponents();
         new SwapFigure(objectID);
 
         setContentPane(desktop);
         WindowsConfigurationManager.restorationFinished(this);
+        addToolBar(toolBar);
     }
 
     /**
@@ -117,5 +111,12 @@ public class SwingPlotBrowser extends SwingScilabTab {
      */
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        setToolBar(toolBarToAdd);
     }
 }
