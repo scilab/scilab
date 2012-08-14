@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="analpf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xmlns:scilab="http://www.scilab.org" xml:id="analpf">
     <refnamediv>
         <refname>analpf</refname>
         <refpurpose> create analog low-pass filter</refpurpose>
@@ -172,11 +172,30 @@ ylabel("Gain")
 title("Analog filters of order 7")
  ]]></programlisting>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../images/analpf.svg"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image>
+                fcut=5; //hz
+                n=7;//filter order
+                hc1=analpf(n,'cheb1',[0.1 0],fcut*2*%pi);
+                hc2=analpf(n,'cheb2',[0 0.1],fcut*2*%pi);
+                he=analpf(n,'ellip',[0.1 0.1],fcut*2*%pi);
+                hb=analpf(n,'butt',[0 0],fcut*2*%pi);
+                hc1.dt='c';hc2.dt='c';he.dt='c';hb.dt='c';
+                clf();
+                [fr, hf]=repfreq(hc1,0,15);
+                plot(fr,abs(hf),'b')
+                [fr, hf]=repfreq(hc2,0,15);
+                plot(fr,abs(hf),'y')
+                [fr, hf]=repfreq(he,0,15);
+                plot(fr,abs(hf),'r')
+                [fr, hf]=repfreq(hb,0,15);
+                plot(fr,abs(hf),'c')
+                
+                legend(["Chebyshev I","Chebyshev II","Elliptic","Butterworth"]);
+                xgrid()
+                xlabel("Frequency (Hz)")
+                ylabel("Gain")
+                title("Analog filters of order 7")
+            </scilab:image>
         </para>
     </refsection>
     <refsection role="see also">

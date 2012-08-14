@@ -20,6 +20,7 @@ Documentation
 =============
 
 * Categories have been created for the following modules help pages:
+    - Signal processing. See bug #11661.
     - Functions (libraries sub-category). See bug #11642.
     - Linear algebra. See bug #11562.
     - Special functions. See bug #11643.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="window">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xmlns:scilab="http://www.scilab.org" xml:id="window">
     <refnamediv>
         <refname>window</refname>
         <refpurpose> compute symmetric window of various type</refpurpose>
@@ -150,11 +150,30 @@
     title(gettext("Magnitude plot"))
     ]]></programlisting>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../images/wfir.svg"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image>
+                clf()
+                N=24;
+                whm=window('hm',N);//Hamming window
+                wkr=window('kr',N,6);//Hamming Kaiser window
+                wch=window('ch',N,[0.005,-1]);//Chebychev window
+                //plot the window profile
+                subplot(121);plot(1:N,[whm;wkr;wch]')
+                set(gca(),'grid',[1 1]*color('gray'))
+                xlabel("n")
+                ylabel("w_n")
+                title(gettext("Profile plot"))
+                //plot the magnitude of the frequency responses
+                n=256;
+                [Whm,fr]=frmag(whm,n);
+                [Wkr,fr]=frmag(wkr,n);
+                [Wch,fr]=frmag(wch,n);
+                subplot(122);plot(fr,20*log10([Whm;Wkr;Wch]'))
+                set(gca(),'grid',[1 1]*color('gray'))
+                xlabel(gettext("Pulsation (rd/s)"))
+                ylabel(gettext("Magnitude (dB)"))
+                legend(["Hamming N=24";"Kaiser N=24, Beta=6";"Chebychev N=24, dp=0.005"]);
+                title(gettext("Magnitude plot"))
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[ 
     clf()
@@ -174,11 +193,23 @@
     title(gettext("Comparison of Kaiser window profiles"))
     ]]></programlisting>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../images/Kaiser.svg"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image>
+                clf()
+                N=140;
+                w1=window('kr',N,1);
+                w2=window('kr',N,2);
+                w4=window('kr',N,4);
+                w8=window('kr',N,8);
+                w16=window('kr',N,16);
+                
+                //plot the window profile
+                plot(1:N,[w1;w2;w4;w8;w16]')
+                set(gca(),'grid',[1 1]*color('gray'))
+                legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
+                xlabel("n")
+                ylabel("w_n")
+                title(gettext("Comparison of Kaiser window profiles"))
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[ 
     clf()
@@ -207,11 +238,32 @@
     title(gettext("Chebychev window Magnitude plot"))
     ]]></programlisting>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../images/Chebychev.svg"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image>
+                N=140;
+                w1=window('ch',N,[0.001,-1]);
+                w2=window('ch',N,[0.05,-1]);
+                w3=window('ch',N,[-1,0.4]);
+                
+                //plot the window profile
+                subplot(121);plot(1:N,[w1;w2;w3]')
+                set(gca(),'grid',[1 1]*color('gray'))
+                //legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
+                xlabel("n")
+                ylabel("w_n")
+                title(gettext("Comparison of Chebychev window profiles"))
+                //plot the magnitude of the frequency responses
+                n=256;
+                [W1,fr]=frmag(w1,n);
+                [W2,fr]=frmag(w2,n);
+                [W3,fr]=frmag(w3,n);
+                subplot(122);plot(fr,20*log10([W1;W2;W3]'))
+                set(gca(),'grid',[1 1]*color('gray'))
+                xlabel(gettext("Pulsation (rd/s)"))
+                ylabel(gettext("Magnitude (dB)"))
+                legend(["Chebychef dp=0.001";"Chebychef dp=0.05";"Chebychef df=0.4"]);
+                title(gettext("Chebychev window Magnitude plot"))
+            </scilab:image>
+             
         </para>
     </refsection>
     <refsection role="see also">
