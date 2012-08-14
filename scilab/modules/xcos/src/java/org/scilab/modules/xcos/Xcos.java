@@ -140,7 +140,7 @@ public final class Xcos {
 
     /**
      * Construct an Xcos instance.
-     *
+     * 
      * There must be only one Xcos instance per Scilab application
      */
     private Xcos(final XcosTabFactory factory) {
@@ -193,9 +193,9 @@ public final class Xcos {
 
     /**
      * Check the dependencies and the version dependencies.
-     *
+     * 
      * This method use runtime class loading to handle ClassNotFoundException.
-     *
+     * 
      * This method catch any exception and rethrow it with a well defined
      * message. Thus it doesn't pass the IllegalCatch metrics.
      */
@@ -277,7 +277,7 @@ public final class Xcos {
 
     /**
      * All Opened diagrams
-     *
+     * 
      * @return the opened diagrams list
      */
     public List<XcosDiagram> openedDiagrams() {
@@ -291,7 +291,7 @@ public final class Xcos {
 
     /**
      * Opened diagrams
-     *
+     * 
      * @param f
      *            the file
      * @return the opened diagrams list
@@ -309,7 +309,7 @@ public final class Xcos {
 
     /**
      * Check if the in memory file representation is modified
-     *
+     * 
      * @param f
      *            the file
      * @return is modified
@@ -333,10 +333,10 @@ public final class Xcos {
 
     /**
      * Open a file from it's filename.
-     *
+     * 
      * This method must be called on the EDT thread. For other use, please use
      * the {@link #xcos(String, String)} method.
-     *
+     * 
      * @param file
      *            the file to open. If null an empty diagram is created.
      * @param variable
@@ -441,7 +441,7 @@ public final class Xcos {
 
     /**
      * Log a loading error
-     *
+     * 
      * @param lastError
      *            the error description
      */
@@ -451,7 +451,7 @@ public final class Xcos {
 
     /**
      * Get an unmodifiable view of the diagrams for a specific file
-     *
+     * 
      * @param f
      *            the file
      * @return the diagram collection
@@ -467,7 +467,7 @@ public final class Xcos {
     /**
      * Add a diagram to the diagram list for a file. Be sure to set the right
      * opened status on the diagram before calling this method.
-     *
+     * 
      * @param f
      *            the file
      * @param diag
@@ -537,7 +537,7 @@ public final class Xcos {
 
     /**
      * Create a diagram collections (sorted List)
-     *
+     * 
      * @return the diagram collection
      */
     public Collection<XcosDiagram> createDiagramCollection() {
@@ -550,7 +550,7 @@ public final class Xcos {
             }
 
             @Override
-            public boolean addAll(Collection <? extends XcosDiagram > c) {
+            public boolean addAll(Collection<? extends XcosDiagram> c) {
                 final boolean status = super.addAll(c);
                 DiagramComparator.sort(this);
                 return status;
@@ -560,7 +560,7 @@ public final class Xcos {
 
     /**
      * Try to close the graph (popup save dialog)
-     *
+     * 
      * @param graph
      *            the graph to close
      * @return if we can (or not) close the graph
@@ -577,18 +577,18 @@ public final class Xcos {
 
         if (!canClose) {
             final AnswerOption ans = ScilabModalDialog.show(XcosTab.get(graph), XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS, IconType.QUESTION_ICON,
-                                     ButtonType.YES_NO_CANCEL);
+                    ButtonType.YES_NO_CANCEL);
 
             switch (ans) {
-                case YES_OPTION:
-                    canClose = diagrams.get(f).iterator().next().saveDiagram();
-                    break;
-                case NO_OPTION:
-                    canClose = true; // can close
-                    break;
-                default:
-                    canClose = false; // operation canceled
-                    break;
+            case YES_OPTION:
+                canClose = diagrams.get(f).iterator().next().saveDiagram();
+                break;
+            case NO_OPTION:
+                canClose = true; // can close
+                break;
+            default:
+                canClose = false; // operation canceled
+                break;
             }
         }
 
@@ -604,9 +604,9 @@ public final class Xcos {
 
     /**
      * Close a diagram.
-     *
+     * 
      * This method must be called on the EDT thread.
-     *
+     * 
      * @param graph
      *            the diagram to close
      */
@@ -645,7 +645,7 @@ public final class Xcos {
 
     /**
      * Does Xcos will close or not ?
-     *
+     * 
      * @param list
      *            the list to be closed
      * @return true if all files will be close on tabs close.
@@ -677,7 +677,7 @@ public final class Xcos {
 
     /**
      * Close the current xcos session.
-     *
+     * 
      * This method must be called on the EDT thread. For other use, please use
      * the {@link #closeXcosFromScilab()} method.
      */
@@ -727,22 +727,22 @@ public final class Xcos {
 
     /*
      * Scilab exported methods.
-     *
+     * 
      * All the following methods must use SwingUtilities method to assert that
      * the operations will be called on the EDT thread.
-     *
+     * 
      * @see modules/xcos/src/jni/Xcos.giws.xml
-     *
+     * 
      * @see sci_gateway/xcos_gateway.xml
-     *
+     * 
      * @see modules/xcos/sci_gateway/cpp/sci_*.cpp
      */
 
     /**
      * Main entry point
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread.
-     *
+     * 
      * @param file
      *            The filename (can be null)
      * @param variable
@@ -786,7 +786,7 @@ public final class Xcos {
 
     /**
      * Close the current xcos session from any thread.
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread. Please prefer using
      * {@link #closeSession()} when the caller is on the EDT thread.
      */
@@ -801,8 +801,10 @@ public final class Xcos {
                 }
             });
         } catch (final InterruptedException e) {
-            LOG.severe(e.toString());
+            e.printStackTrace();
         } catch (final InvocationTargetException e) {
+            e.printStackTrace();
+
             Throwable throwable = e;
             String firstMessage = null;
             while (throwable != null) {
@@ -817,9 +819,9 @@ public final class Xcos {
     /**
      * Look in each diagram to find the block corresponding to the given uid and
      * display a warning message.
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread.
-     *
+     * 
      * @param uid
      *            A String as UID.
      * @param message
@@ -991,9 +993,9 @@ public final class Xcos {
 
     /**
      * This function convert a Xcos diagram to Scilab variable.
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread.
-     *
+     * 
      * @param xcosFile
      *            The xcos diagram file
      * @return Not used (compatibility)
@@ -1055,7 +1057,7 @@ public final class Xcos {
 
     /**
      * Add a menu into xcos
-     *
+     * 
      * @param label
      *            the label to use
      * @param command
@@ -1101,9 +1103,9 @@ public final class Xcos {
 
     /**
      * Open a diagram by uid.
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread.
-     *
+     * 
      * @param uid
      *            UID path to a block.
      */
@@ -1115,9 +1117,9 @@ public final class Xcos {
 
     /**
      * Close a diagram by uid.
-     *
+     * 
      * This method invoke Xcos operation on the EDT thread.
-     *
+     * 
      * @param uid
      *            The diagram id path
      */
@@ -1129,7 +1131,7 @@ public final class Xcos {
 
     /**
      * Look for the parent diagram of the cell in the diagram hierarchy.
-     *
+     * 
      * @param cell
      *            the cell to search for
      * @return the associated diagram
@@ -1184,7 +1186,7 @@ public final class Xcos {
 
         /**
          * Create/restore a tab for a given uuid
-         *
+         * 
          * @param uuid
          *            the specific uuid
          * @return the tab instance
@@ -1275,7 +1277,7 @@ public final class Xcos {
 
         /**
          * Cache the {@link DocumentType} for the specific uuid
-         *
+         * 
          * @param uuid
          *            the uuid
          */
