@@ -76,8 +76,8 @@ public class EntityPicker {
         pos[1] += selectionDelta;
         double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
-        dx = c2d[0] - c2d2[0];
-        dy = c2d[1] - c2d2[1];
+        dx = Math.abs(c2d[0] - c2d2[0]);
+        dy = Math.abs(c2d[1] - c2d2[1]);
 
         needTransform = !isInDefaultView(curAxes);
 
@@ -239,8 +239,8 @@ public class EntityPicker {
         pos[1] += selectionDelta;
         double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
-        dx = c2d[0] - c2d2[0];
-        dy = c2d[1] - c2d2[1];
+        dx = Math.abs(c2d[0] - c2d2[0]);
+        dy = Math.abs(c2d[1] - c2d2[1]);
 
         needTransform = !isInDefaultView(curAxes);
 
