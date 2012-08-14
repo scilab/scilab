@@ -503,4 +503,13 @@ d = eigs(fn, 10, [], k, 4, opts)
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function introduced. Deprecates dnaupd, dneupd, dsaupd, dseupd, znaupd and zneupd.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

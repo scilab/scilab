@@ -19,6 +19,8 @@ Obsolete functions
 * config function is now obsolete and will be removed in Scilab 5.4.1.
   Please use 'preferences' instead.
 
+* dnaupd, dneupd, dsaupd, dseupd, znaupd and zneupd deprecated for eigs.
+
 
 Documentation
 =============

@@ -7,6 +7,9 @@
             compute a few eigenpairs of a complex linear operator OP with respect to a
             semi-inner product defined by a hermitian positive semi-definite real
             matrix B.
+            <emphasis role="bold">
+                This function is obsolete. Please use <link linkend="eigs">eigs</link>
+            </emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -781,5 +784,16 @@ printf('The convergence criterion is %d\n', tol);
     <refsection>
         <title>Used Functions</title>
         <para>Based on ARPACK routine znaupd</para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    Function obsolete for <link linkend="eigs">eigs</link>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
