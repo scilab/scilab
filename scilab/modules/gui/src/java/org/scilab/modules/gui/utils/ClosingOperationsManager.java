@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +46,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
  *
  * @author Calixte DENIZET
  */
+
 @SuppressWarnings(value = { "serial" })
 public class ClosingOperationsManager {
 
@@ -76,7 +78,7 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-            ClosingOperation op) {
+                                                ClosingOperation op) {
         if (tab != null) {
             closingOps.put(tab, op);
         }
@@ -132,20 +134,24 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationOnRoot() {
-        if (root != null) {
-            // STD mode
-            SwingScilabWindow win = getWindow(root);
-            if (win == null) {
+        if (!GraphicsEnvironment.isHeadless()) {
+            if (root != null) {
+                // STD mode
+                SwingScilabWindow win = getWindow(root);
+                if (win == null) {
+                    return true;
+                }
+                return startClosingOperation(win, true, true);
+            } else if (deps.get(null).size() != 0) {
+                // NW mode
+                List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+                for (SwingScilabTab tab : deps.get(null)) {
+                    collectTabsToClose(tab, list);
+                }
+                return close(list, null, true, true);
+            } else {
                 return true;
             }
-            return startClosingOperation(win, true, true);
-        } else if (deps.get(null).size() != 0) {
-            // NW mode
-            List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
-            for (SwingScilabTab tab : deps.get(null)) {
-                collectTabsToClose(tab, list);
-            }
-            return close(list, null, true, true);
         } else {
             return true;
         }
@@ -683,10 +689,10 @@ public class ClosingOperationsManager {
             String question = makeQuestion(list);
             final boolean[] checked = new boolean[1];
             final Action action = new AbstractAction() {
-                public void actionPerformed(ActionEvent e) {
-                    checked[0] = ((JCheckBox) e.getSource()).isSelected();
-                }
-            };
+                    public void actionPerformed(ActionEvent e) {
+                        checked[0] = ((JCheckBox) e.getSource()).isSelected();
+                    }
+                };
 
             if (question != null) {
                 if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
@@ -750,10 +756,10 @@ public class ClosingOperationsManager {
             }
         }
         switch (apps.size()) {
-            case 0:
-                return null;
-            case 1:
-                return String.format(EXIT_CONFIRM, apps.get(0));
+        case 0:
+            return null;
+        case 1:
+            return String.format(EXIT_CONFIRM, apps.get(0));
         }
 
         String str = apps.remove(0);
@@ -774,7 +780,7 @@ public class ClosingOperationsManager {
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-            List<SwingScilabTab> list) {
+                                                 List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {
