@@ -41,16 +41,11 @@ public class DatatipCreate {
     private static Integer[] datatipBounds = new Integer[2];
     public static Double[] datatipPosition = new Double[3];
     private static double[] pixelMouseCoordDouble = new double[2];
-    public static double[] coordDoubleXY = new double[2];
+    public static double[] coordDoubleXY = new double[]{0.0, 0.0};
     static EntityPicker ep = new EntityPicker();
-    public static double[] graphCoordDouble = new double[3];
-    public static Integer[] coordInteger = new Integer[2];
     public static double[] graphicCoord = new double[3];
-    public static String polylineUidEnd = null;
-    public static Integer newX;
-    public static Integer newY;
-    public static String newDatatip;
-    public static int middleLineFactor;
+    public static String newDatatip = null;
+    public static String newMarker = null;
 
     /**
     * Given a mouse coordinate point x, y in pixels
@@ -85,7 +80,8 @@ public class DatatipCreate {
         String axesUid = (String) GraphicController.getController().getProperty(compoundUid, GraphicObjectProperties.__GO_PARENT__);
         String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
 
-        String polylineInterp = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_TAG__);
+        String polylineInterp = null;
+        polylineInterp = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_TAG__);
         if (polylineInterp.equals("d_i")) {
             double[] DataX = (double[]) PolylineData.getDataX (polylineUid);
             double[] DataY = (double[]) PolylineData.getDataY (polylineUid);
@@ -102,23 +98,34 @@ public class DatatipCreate {
                     posMin = j;
                 }
             }
+
             String newDatatip = createDatatipProgramIndex(polylineUid, posMin+1);
             return newDatatip;
+
         } else {
-            middleLineFactor = 0;
-            /*Convert input coordinates to Integer*/
+
+            int middleLineFactor = 0;
+
+            double[] graphCoordDouble = new double[]{0.0, 0.0, 0.0};
             graphCoordDouble[0] = coordDoubleXY[0];
             graphCoordDouble[1] = coordDoubleXY[1];
             graphCoordDouble[2] = 0.0;
-            double[] pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axesUid, graphCoordDouble);
+
+            double[] pixelCoordinates = new double[]{0.0, 0.0};
+            pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axesUid, graphCoordDouble);
+
             int xInt = (int) pixelCoordinates[0];
             int yInt = (int) pixelCoordinates[1];
+
+            Integer[] coordInteger = new Integer[]{0, 0};
             coordInteger[0] = (Integer) xInt;
             coordInteger[1] = (Integer) yInt;
 
-            /*Put the new datatip in the closest point if it is not over polyline*/
             int yVerify = 0;
-            Integer[] axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
+            Integer[] axesDimension = new Integer[]{0, 0};
+            axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
+
+            String polylineUidEnd = null;
             for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
                 polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
                 if (polylineUidEnd != null) {
@@ -127,7 +134,9 @@ public class DatatipCreate {
                     }
                 }
             }
+
             if (middleLineFactor < 20) {
+
                 for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
                     polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
                     if (polylineUidEnd != null) {
@@ -136,21 +145,36 @@ public class DatatipCreate {
                         }
                     }
                 }
+
+                Integer newX = 0;
+                Integer newY = 0;
                 newX = coordInteger[0];
                 newY = yVerify + (middleLineFactor / 2);
-                Integer[] pixelMouseCoordInt = { newX , newY };
-                double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
+
+                Integer[] pixelMouseCoordInt = new Integer[]{0, 0};
+                pixelMouseCoordInt[0] = newX;
+                pixelMouseCoordInt[1] = newY;
+
+                double[] pixelMouseCoordDouble = new double[]{0.0, 0.0};
+                pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
+
+                double[] graphicCoord = new double[]{0.0, 0.0, 0.0};
                 graphicCoord = transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
 
-                /*Create the new datatip*/
-                String newDatatip = datatipProperties (graphicCoord, axesUid);
-                String newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
+                newDatatip = datatipProperties (graphicCoord, axesUid);
+                newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
+                return newDatatip;
+
             } else {
-                String newDatatip = datatipProperties (coordDoubleXY, axesUid);
-                String newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
+
+                newDatatip = datatipProperties (coordDoubleXY, axesUid);
+                newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
+                return newDatatip;
+
             }
-            return newDatatip;
+
         }
+
     }
 
     /**
@@ -299,6 +323,12 @@ public class DatatipCreate {
         return newDatatip;
     }
 
+    /**
+    * Set interpolation mode of a polyline;
+    *
+    * @param polylineUid Polyline handler string.
+    * @param interpMode Boolean to control interpolation mode
+    */
     public static void datatipSetInterp (String polylineUid, boolean interpMode) {
 
         if (interpMode) {
