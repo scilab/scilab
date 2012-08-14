@@ -28,6 +28,7 @@ import org.scilab.modules.gui.datatip.DatatipDrag;
 import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.gui.datatip.DatatipManagerMode;
 
+import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.EditorManager;
 import org.scilab.modules.gui.editor.EntityPicker;
@@ -35,8 +36,9 @@ import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.ged.SwapObject;
 
+import org.scilab.modules.gui.plotbrowser.PlotBrowser;
+
 import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.gui.editor.AxesHandler;
 
 /**
 * Event listener for the figure editor.
@@ -50,7 +52,7 @@ import org.scilab.modules.gui.editor.AxesHandler;
 
 public class EditorEventListener implements KeyListener, MouseListener, MouseMotionListener {
 
-    public static String windowUid;
+    String windowUid;
 
     String picked;
     EntityPicker ep;
@@ -154,6 +156,9 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             //If the GED is open, so the code is executed.
             if (Inspector.isInspectorOpened()) {
                 editor.onClickGED();
+            }
+            if (PlotBrowser.isPlotBrowserOpened()) {
+                PlotBrowser.getPlotBrowser(windowUid);
             }
         }
     }
