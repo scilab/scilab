@@ -11,41 +11,41 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlFormat" xml:lang="en">
-  <refnamediv>
-    <refname>xmlFormat</refname>
-    <refpurpose>Format a Scilab variable into XML</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      xmlCode = xmlFormat(scilabVar)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>scilabVar</term>
-        <listitem>
-          <para>scilabVar, a Scilab's variable</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xmlCode</term>
-        <listitem>
-          <para>xmlCode, a string containing XML code</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function does nothing by itself ! It needs to be overloaded to be useful.</para>
-    <para>It is used when a Scilab variable is inserted in the XML tree.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>xmlFormat</refname>
+        <refpurpose>Format a Scilab variable into XML</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            xmlCode = xmlFormat(scilabVar)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>scilabVar</term>
+                <listitem>
+                    <para>scilabVar, a Scilab's variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xmlCode</term>
+                <listitem>
+                    <para>xmlCode, a string containing XML code</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function does nothing by itself ! It needs to be overloaded to be useful.</para>
+        <para>It is used when a Scilab variable is inserted in the XML tree.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
     // This code will fail:
     // doc.root.children(1.5) = 1.23456;
@@ -60,14 +60,14 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>XML module introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

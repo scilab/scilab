@@ -25,26 +25,6 @@
 #include "Scierror.h"
 #include "stricmp.h"
 /*--------------------------------------------------------------------------*/
-BOOL isParameterHandle( int type )
-{
-    return ( type == sci_handles ) ;
-}
-/*--------------------------------------------------------------------------*/
-BOOL isParameterDoubleMatrix( int type )
-{
-    return ( type == sci_matrix ) ;
-}
-/*--------------------------------------------------------------------------*/
-BOOL isParameterTlist( int type )
-{
-    return ( type == sci_tlist ) ;
-}
-/*--------------------------------------------------------------------------*/
-BOOL isParameterStringMatrix( int type )
-{
-    return ( type == sci_strings ) ;
-}
-/*--------------------------------------------------------------------------*/
 double getDoubleFromStack( size_t stackPointer )
 {
     return *(stk( stackPointer ));

@@ -11,44 +11,44 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="twinkle" xml:lang="en">
-  <refnamediv>
-    <refname>twinkle</refname>
-    <refpurpose>Faz uma entidade gráfica piscar</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>twinkle(h,[n])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>h</term>
-        <listitem>
-          <para>manipulador de uma entidade gráfica </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>inteiro</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>twinkle</literal> faz com que a entidade gráfica dada pelo
-      seu manipulador h pisque. Pode ser usado para encontrar o objeto gráfico
-      correspondente a um manipulador gráfico em uma janela de gráficos. Por
-      padrão, a entidade gráfica pisca 5 vezes, mas você pode mudar este número
-      através do argumento opcional <literal>n</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>twinkle</refname>
+        <refpurpose>Faz uma entidade gráfica piscar</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>twinkle(h,[n])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>manipulador de uma entidade gráfica </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>inteiro</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>twinkle</literal> faz com que a entidade gráfica dada pelo
+            seu manipulador h pisque. Pode ser usado para encontrar o objeto gráfico
+            correspondente a um manipulador gráfico em uma janela de gráficos. Por
+            padrão, a entidade gráfica pisca 5 vezes, mas você pode mudar este número
+            através do argumento opcional <literal>n</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 x=linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
 e=gce(); p1=e.children(1); p2=e.children(2);
@@ -59,13 +59,13 @@ twinkle(p2,10)
 // eixos piscando
 twinkle(gca())
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -11,55 +11,55 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlXPath" xml:lang="en">
-  <refnamediv>
-    <refname>xmlXPath</refname>
-    <refpurpose>Make an XPath query on a XML document</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      result = xmlXPath(xmlObj, queryStr [, namespaces])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xmlObj</term>
-        <listitem>
-          <para>a XML mlist typed XMLDoc or XMLElem</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>queryStr</term>
-        <listitem>
-          <para>a Xpath query</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>namespaces</term>
-        <listitem>
-          <para>An optional matrix nx2 of strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>result</term>
-        <listitem>
-          <para>result can be a set of XMLElements or a number or a string or a boolean</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
-    <para>
-      For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>xmlXPath</refname>
+        <refpurpose>Make an XPath query on a XML document</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            result = xmlXPath(xmlObj, queryStr [, namespaces])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlObj</term>
+                <listitem>
+                    <para>a XML mlist typed XMLDoc or XMLElem</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>queryStr</term>
+                <listitem>
+                    <para>a Xpath query</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>namespaces</term>
+                <listitem>
+                    <para>An optional matrix nx2 of strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>result can be a set of XMLElements or a number or a string or a boolean</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
+        <para>
+            For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
 
     // Retrieve the nodes with name equals to "note"
@@ -119,25 +119,25 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
-      </member>
-      <member>
-        <ulink url="http://www.w3schools.com/xpath/">XPath tutorial</ulink>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>XML module introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
+            </member>
+            <member>
+                <ulink url="http://www.w3schools.com/xpath/">XPath tutorial</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -218,6 +218,10 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：应该为一个正整数值。\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s：输出参数的数目出错：应该为 %d 个。\n"
+
+#, c-format
 msgid "%s: '%s' option ignored.\n"
 msgstr "%s：选项“%s”被忽略了。\n"
 
@@ -228,10 +232,6 @@ msgstr "%s：“%s”中的未知线型->设置为6。\n"
 #, c-format
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s：在“%s”中发现未知的颜色->设置为黑色。\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s：输出参数的数目出错：应该为 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

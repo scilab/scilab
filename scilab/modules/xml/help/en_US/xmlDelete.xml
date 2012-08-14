@@ -11,36 +11,36 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlDelete" xml:lang="en">
-  <refnamediv>
-    <refname>xmlDelete</refname>
-    <refpurpose>Delete a XML document</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      xmlDelete(obj1 [, obj2, [...]])
-      xmlDelete("all")
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>obji</term>
-        <listitem>
-          <para>a mlist type XMLDoc or XMLValid, the document to delete</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Delete a document or a validation file (in fact free all the memory associated with this object).</para>
-    <para>When the syntax xmlDelete("all") is used, all the open documents will be deleted.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>xmlDelete</refname>
+        <refpurpose>Delete a XML document</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            xmlDelete(obj1 [, obj2, [...]])
+            xmlDelete("all")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obji</term>
+                <listitem>
+                    <para>a mlist type XMLDoc or XMLValid, the document to delete</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Delete a document or a validation file (in fact free all the memory associated with this object).</para>
+        <para>When the syntax xmlDelete("all") is used, all the open documents will be deleted.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
     root = doc.root
     xmlDelete(doc);
@@ -48,22 +48,22 @@
     // root is no more valid... so try to access it, will lead to an error
     // disp(root) => This will fail
     ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>XML module introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

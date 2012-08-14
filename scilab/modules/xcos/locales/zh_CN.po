@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: \n"
 
 #, c-format
@@ -35,6 +35,60 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+msgid "Straight"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Simulation"
+msgstr "模拟"
+
+msgid "No trace nor debug printing"
+msgstr ""
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+msgid "Debug block calls without trace"
+msgstr ""
+
+msgid "Default simulation settings"
+msgstr ""
+
+msgid "Final integration time"
+msgstr ""
+
+msgid "Real time scaling"
+msgstr ""
+
+msgid "Integrator absolute tolerance"
+msgstr ""
+
+msgid "Integrator relative tolerance"
+msgstr ""
+
+msgid "Tolerance on time"
+msgstr ""
+
+msgid "Max integration time interval"
+msgstr ""
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
+
+msgid "Default trace settings"
 msgstr ""
 
 #, c-format
@@ -354,9 +408,6 @@ msgstr "详细信息"
 msgid "Show parent diagram"
 msgstr ""
 
-msgid "Simulation"
-msgstr "模拟"
-
 msgid "Setup"
 msgstr "设置"
 
@@ -646,43 +697,10 @@ msgstr ""
 msgid "Link Style"
 msgstr ""
 
-msgid "Straight"
-msgstr ""
-
-msgid "Horizontal"
-msgstr ""
-
-msgid "Vertical"
-msgstr ""
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 
 msgid "Execution trace and Debug"
-msgstr ""
-
-msgid "Final integration time"
-msgstr ""
-
-msgid "Real time scaling"
-msgstr ""
-
-msgid "Integrator absolute tolerance"
-msgstr ""
-
-msgid "Integrator relative tolerance"
-msgstr ""
-
-msgid "Tolerance on time"
-msgstr ""
-
-msgid "Max integration time interval"
-msgstr ""
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "maximum step size (0 means no limit)"
 msgstr ""
 
 msgid "Default"
@@ -724,18 +742,6 @@ msgstr ""
 
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
-msgstr ""
-
-msgid "No trace nor debug printing"
-msgstr ""
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-
-msgid "Per block execution trace and Debug block calls"
-msgstr ""
-
-msgid "Debug block calls without trace"
 msgstr ""
 
 msgid "All supported formats"

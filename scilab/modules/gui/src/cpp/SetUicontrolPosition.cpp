@@ -13,6 +13,7 @@
  */
 
 #include "SetUicontrolPosition.hxx"
+#include "stack-c.h"
 
 int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
@@ -48,7 +49,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
             return SET_PROPERTY_ERROR;
         }
 
-        position = getDoubleMatrixFromStack(stackPointer);
+        position = stk(stackPointer);
 
     }
     else

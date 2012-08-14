@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="srfaur">
-  <refnamediv>
-    <refname>srfaur</refname>
-    <refpurpose> square-root algorithm</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>h, f, g</term>
-        <listitem>
-          <para>convenient matrices of the state-space model.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r0</term>
-        <listitem>
-          <para>E(yk*yk').</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>number of iterations.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>estimate of the solution after n iterations.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>s, t, l</term>
-        <listitem>
-          <para>intermediate matrices for  successive iterations;</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rt, tt</term>
-        <listitem>
-          <para>
-            gain matrices of the filter model after <literal>n</literal> iterations.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p, s, t, l</term>
-        <listitem>
-          <para>
-            may be given as input if more than one recursion is desired (evaluation of intermediate values of <literal>p</literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      square-root algorithm for the algebraic Riccati equation.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>srfaur</refname>
+        <refpurpose> square-root algorithm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h, f, g</term>
+                <listitem>
+                    <para>convenient matrices of the state-space model.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r0</term>
+                <listitem>
+                    <para>E(yk*yk').</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>estimate of the solution after n iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s, t, l</term>
+                <listitem>
+                    <para>intermediate matrices for  successive iterations;</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rt, tt</term>
+                <listitem>
+                    <para>
+                        gain matrices of the filter model after <literal>n</literal> iterations.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p, s, t, l</term>
+                <listitem>
+                    <para>
+                        may be given as input if more than one recursion is desired (evaluation of intermediate values of <literal>p</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            square-root algorithm for the algebraic Riccati equation.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //GENERATE SIGNAL
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed',0);rand('normal');
@@ -88,19 +88,19 @@ r0=c(1:2,1:2);
 //Make covariance matrix exactly symmetric
 Rt=(Rt+Rt')/2
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="phc">phc</link>
-      </member>
-      <member>
-        <link linkend="faurre">faurre</link>
-      </member>
-      <member>
-        <link linkend="lindquist">lindquist</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="phc">phc</link>
+            </member>
+            <member>
+                <link linkend="faurre">faurre</link>
+            </member>
+            <member>
+                <link linkend="lindquist">lindquist</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

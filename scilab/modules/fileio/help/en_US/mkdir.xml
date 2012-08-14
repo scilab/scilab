@@ -74,7 +74,7 @@
             <code>[status,msg] = mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the existing directory <varname>parentdir</varname>, returning the status and the message about an error. 
         </para>
         <para>   
-            <informaltable frame='all'>
+            <informaltable border="1">
                 <tr>
                     <td>
                         <varname>status</varname>
@@ -107,7 +107,7 @@
                     </td>
                     
                     <td>
-                        Success
+                        
                     </td>
                 </tr>
                 <tr>
@@ -120,7 +120,12 @@
                     </td>
                 </tr>
             </informaltable>
-            	
+            
+        </para>
+        <para>
+            Whatever the operating system, if the creating of directory
+            succeeds, the <varname>status</varname> is 1 and the message
+            <varname>msg</varname> is empty.
         </para>
     </refsection>
     <refsection>
@@ -146,7 +151,7 @@ cd TMPDIR;
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cd">cd</link>
+                <link linkend="chdir">chdir</link>
             </member>
             <member>
                 <link linkend="dir">dir</link>

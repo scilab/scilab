@@ -12,68 +12,68 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="oct2dec" xml:lang="ru">
-  <refnamediv>
-    <refname>oct2dec</refname>
-    <refpurpose>преобразование из восьмеричной системы счисления в десятичную</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>d=oct2dec(o)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>o</term>
-        <listitem>
-          <para>
-            матрица строк, соответствующих восьмеричному представлению
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности, положительные целые значения
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>oct2dec(x)</literal> возвращает матрицу чисел, соответствующих восьмеричному представлению.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>oct2dec</refname>
+        <refpurpose>преобразование из восьмеричной системы счисления в десятичную</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>d=oct2dec(o)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>o</term>
+                <listitem>
+                    <para>
+                        матрица строк, соответствующих восьмеричному представлению
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности, положительные целые значения
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>oct2dec(x)</literal> возвращает матрицу чисел, соответствующих восьмеричному представлению.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 oct2dec(["1" "756115"; "0" "23"])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="base2dec">base2dec</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="hex2dec">hex2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-      <member>
-        <link linkend="dec2oct">dec2oct</link>
-      </member>
-      <member>
-        <link linkend="dec2hex">dec2hex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -11,48 +11,48 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="showprofile" xml:lang="en">
-  <refnamediv>
-    <refname>showprofile</refname>
-    <refpurpose>extrai e exibe profiles (dossiês) de execução de uma função
-      Scilab
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>showprofile(fun)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>fun</term>
-        <listitem>
-          <para>função Scilab</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Para utilizar <literal>showprofile</literal> a função Scilab deve
-      ter sido preparada para profiling (análise de performance) (ver
-      exec).
-    </para>
-    <para>Para tal função,Quando tal função é executada, o sistema conta
-      quantas número de vezes que cada linha é executada e quanto tempo de cpu é
-      gasto para execução de cada linha. Estes dados são armazenados dentro da
-      estrutura de dados da função. A função <literal>showprofile</literal>
-      retorna resultados de profiling (ver <literal>profile</literal>) com o
-      texto das linhas da função.
-    </para>
-    <para>O texto da função é reconstruído com
-      <literal>fun2string</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>showprofile</refname>
+        <refpurpose>extrai e exibe profiles (dossiês) de execução de uma função
+            Scilab
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>showprofile(fun)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>função Scilab</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Para utilizar <literal>showprofile</literal> a função Scilab deve
+            ter sido preparada para profiling (análise de performance) (ver
+            exec).
+        </para>
+        <para>Para tal função,Quando tal função é executada, o sistema conta
+            quantas número de vezes que cada linha é executada e quanto tempo de cpu é
+            gasto para execução de cada linha. Estes dados são armazenados dentro da
+            estrutura de dados da função. A função <literal>showprofile</literal>
+            retorna resultados de profiling (ver <literal>profile</literal>) com o
+            texto das linhas da função.
+        </para>
+        <para>O texto da função é reconstruído com
+            <literal>fun2string</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //definindo função e preparando-a para profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -68,19 +68,19 @@ foo(30)
 //obtendo profiles
 showprofile(foo)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="profile">profile</link>
-      </member>
-      <member>
-        <link linkend="plotprofile">plotprofile</link>
-      </member>
-      <member>
-        <link linkend="fun2string">fun2string</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="plotprofile">plotprofile</link>
+            </member>
+            <member>
+                <link linkend="fun2string">fun2string</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

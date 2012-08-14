@@ -11,70 +11,70 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_int8">
-  <refnamediv>
-    <refname>int8 (Matlab function)</refname>
-    <refpurpose>Convert to 8-bit signed integer</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Matlab/Scilab equivalent</title>
-    <informaltable border="1" width="100%">
-      <tr>
-        <td align="center">
-          <emphasis role="bold">Matlab</emphasis>
-        </td>
-        <td align="center">
-          <emphasis role="bold">Scilab</emphasis>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>int8 (Matlab function)</refname>
+        <refpurpose>Convert to 8-bit signed integer</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Matlab/Scilab equivalent</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
 int8
 ]]></programlisting>
-        </td>
-        <td>
-          <programlisting role="example"><![CDATA[
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
 int8
 ]]></programlisting>
-        </td>
-      </tr>
-    </informaltable>
-  </refsection>
-  <refsection>
-    <title>Particular cases</title>
-    <para>
-For infinite values, Scilab and Matlab <emphasis role="bold">int8</emphasis> return different values.
-</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <informaltable border="1" width="100%">
-      <tr>
-        <td align="center">
-          <emphasis role="bold">Matlab</emphasis>
-        </td>
-        <td align="center">
-          <emphasis role="bold">Scilab</emphasis>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <programlisting role="example"><![CDATA[
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+        <para>
+            For infinite values, Scilab and Matlab <emphasis role="bold">int8</emphasis> return different values.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
 A = int8(inf)
 A = 127
 A = int8(-inf)
 A = -128
 ]]></programlisting>
-        </td>
-        <td>
-          <programlisting role="example"><![CDATA[
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
 A = int8(%inf)
 A = 0
 A = int8(-%inf)
 A = 0
 ]]></programlisting>
-        </td>
-      </tr>
-    </informaltable>
-  </refsection>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
 </refentry>

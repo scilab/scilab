@@ -39,8 +39,6 @@ extern "C"
 #include "expandPathVariable.h"
 }
 
-#include "forceJHDF5load.hxx"
-
 
 //#define PRINT_DEBUG
 //#define TIME_DEBUG
@@ -70,10 +68,6 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     int iFile               = 0;
     bool bImport            = false;
     int iSelectedVar        = in.size() - 1;
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     if(in.size() != 1)
     {

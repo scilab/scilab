@@ -28,12 +28,12 @@
 /*------------------------------------------------------------------------*/
 int set_mark_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "mark_size");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_matrix ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "mark_size");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  return sciSetMarkSize( pobjUID, (int) getDoubleFromStack( stackPointer ) ) ;
+    return sciSetMarkSize( pobjUID, (int) getDoubleFromStack( stackPointer ) ) ;
 }
 /*------------------------------------------------------------------------*/

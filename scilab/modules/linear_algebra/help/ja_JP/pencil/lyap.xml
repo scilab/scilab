@@ -10,48 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lyap">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lyap">
     <refnamediv>
         <refname>lyap</refname>
-        <refpurpose> Lyapunov equation</refpurpose>
+        <refpurpose>リアプノフ方程式</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[X]=lyap(A,C,'c')
             [X]=lyap(A,C,'d')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>A, C</term>
                 <listitem>
                     <para>
-                        real square matrices, <literal>C</literal> must be symmetric
+                        実数正方行列, <literal>C</literal> は対称であることが必要
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>X= lyap(A,C,flag)</literal> solves the continuous time or
-            discrete time matrix Lyapunov matrix equation:
+            <literal>X= lyap(A,C,flag)</literal> は連続時間または離散時間行列リアプノフ方程式を解きます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role = ""><![CDATA[ 
 A'*X + X*A = C       ( flag='c' )
 A'*X*A - X = C       ( flag='d' )
  ]]></programlisting>
         <para>
-            Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
-            not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
-            (<literal>flag='d'</literal>).
+            <literal>A</literal>の固有値が<literal>-A</literal>の固有値でない場合(<literal>flag='c'</literal>) 
+            または<literal>A</literal>の固有値が1を超える場合(<literal>flag='d'</literal>)にのみユニークな
+            解が得られることに注意してください.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(4,4);C=rand(A);C=C+C';
 X=lyap(A,C,'c');
@@ -60,8 +59,8 @@ X=lyap(A,C,'d');
 A'*X*A - X -C
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sylv">sylv</link>

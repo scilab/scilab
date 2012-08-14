@@ -33,6 +33,7 @@ import com.mxgraph.util.mxEventObject;
 /**
  * External action
  */
+@SuppressWarnings(value = { "serial" })
 public class ExternalAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = "";

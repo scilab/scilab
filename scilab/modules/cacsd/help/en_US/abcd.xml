@@ -11,50 +11,50 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="abcd">
-  <refnamediv>
-    <refname>abcd</refname>
-    <refpurpose> state-space matrices</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[A,B,C,D]=abcd(sl)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>sl</term>
-        <listitem>
-          <para>
-            linear system (<literal>syslin</literal> list) in state-space or transfer form
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>A,B,C,D</term>
-        <listitem>
-          <para>real matrices of appropriate dimensions</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      returns the <literal>A,B,C,D</literal> matrices from a linear system <literal>Sl</literal>.
-    </para>
-    <para>
-      Utility function. For transfer matrices <literal>Sl</literal> is converted
-      into state-space form by <literal>tf2ss</literal>.
-    </para>
-    <para>
-      The matrices <literal>A,B,C,D</literal> are the elements <literal>2</literal> to <literal>5</literal> of
-      the <literal>syslin</literal> list <literal>Sl</literal>, i.e. <literal>[A,B,C,D] = Sl(2:5)</literal> .
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>abcd</refname>
+        <refpurpose> state-space matrices</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[A,B,C,D]=abcd(sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) in state-space or transfer form
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>real matrices of appropriate dimensions</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns the <literal>A,B,C,D</literal> matrices from a linear system <literal>Sl</literal>.
+        </para>
+        <para>
+            Utility function. For transfer matrices <literal>Sl</literal> is converted
+            into state-space form by <literal>tf2ss</literal>.
+        </para>
+        <para>
+            The matrices <literal>A,B,C,D</literal> are the elements <literal>2</literal> to <literal>5</literal> of
+            the <literal>syslin</literal> list <literal>Sl</literal>, i.e. <literal>[A,B,C,D] = Sl(2:5)</literal> .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
 sys=syslin('c',A,B,C);
 sys("A")
@@ -67,16 +67,16 @@ spec(a)
 c*b-C*B
 c*a*b-C*A*B
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="syslin">syslin</link>
-      </member>
-      <member>
-        <link linkend="ssrand">ssrand</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

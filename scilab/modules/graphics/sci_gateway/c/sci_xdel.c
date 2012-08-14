@@ -29,28 +29,29 @@
 #include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xdel(char *fname,unsigned long fname_len)
+int sci_xdel(char *fname, unsigned long fname_len)
 {
-    int m1 = 0,n1 = 0,l1 = 0;
+    int m1 = 0, n1 = 0, l1 = 0;
     char *pstCurrentFigure = NULL;
-    CheckRhs(-1,1);
-    if (Rhs >= 1) {
+    CheckRhs(-1, 1);
+    if (Rhs >= 1)
+    {
         int i = 0;
-		double * windowNumbers = NULL;
-        GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+        double * windowNumbers = NULL;
+        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
 
-		/* First check that all the window numbers are valid */
-		windowNumbers = getDoubleMatrixFromStack(l1);
-		for (i = 0; i < m1 * n1; i++)
-		{
-			if (!sciIsExistingFigure((int) windowNumbers[i]))
-			{
-				Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
-				return -1;
-			}
-		}
+        /* First check that all the window numbers are valid */
+        windowNumbers = stk(l1);
+        for (i = 0; i < m1 * n1; i++)
+        {
+            if (!sciIsExistingFigure((int) windowNumbers[i]))
+            {
+                Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int) windowNumbers[i]);
+                return -1;
+            }
+        }
 
-        for (i = 0; i < m1*n1 ; i++)
+        for (i = 0; i < m1 * n1 ; i++)
         {
             sciDeleteWindow( (int) windowNumbers[i] ) ;
         }
@@ -63,7 +64,7 @@ int sci_xdel(char *fname,unsigned long fname_len)
             deleteGraphicObject(pstCurrentFigure);
         }
     }
-    LhsVar(1)=0;
+    LhsVar(1) = 0;
     PutLhsVar();
     return 0;
 }

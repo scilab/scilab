@@ -11,49 +11,49 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="stripblanks" xml:lang="en">
-  <refnamediv>
-    <refname>stripblanks</refname>
-    <refpurpose>retira espaços em branco (e tabulações) no início ou no fim de
-      strings
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>txt</term>
-        <listitem>
-          <para>um string ou uma matriz de strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>tabs</term>
-        <listitem>
-          <para>se TRUE, retira também tabulações (o valor padrão é
-            FALSE)
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>stripblanks retira espaços em branco (e tabulações) no início ou no
-      fim de strings.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>stripblanks</refname>
+        <refpurpose>retira espaços em branco (e tabulações) no início ou no fim de
+            strings
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>um string ou uma matriz de strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tabs</term>
+                <listitem>
+                    <para>se TRUE, retira também tabulações (o valor padrão é
+                        FALSE)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>stripblanks retira espaços em branco (e tabulações) no início ou no
+            fim de strings.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 a='  123   ';
 '!'+a+'!'
 '!'+stripblanks(a)+'!'
 a=['  123   ',' xyz']
 strcat(stripblanks(a))
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

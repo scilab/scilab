@@ -11,65 +11,65 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_contents_infer">
-  <refnamediv>
-    <refname>get_contents_infer</refname>
-    <refpurpose>Cherche des
-      informations dans le contenu d'une "tlist M2SCI"
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>m2scitlist</term>
-        <listitem>
-          <para>une "tlist M2SCI"</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>index</term>
-        <listitem>
-          <para>
-            un index tel que ceux retournés par <literal>macr2tree</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>infer</term>
-        <listitem>
-          <para>une tlist de type "infer"</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pos</term>
-        <listitem>
-          <para>position des informations dans la liste</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Cette fonction recherche les informations d'inférence pour un
-      index donné dans le contenu d'une Cell ou d'une Struct en tenant
-      compte des <literal>*</literal>. Si aucune information correspond à cet
-      index, les valeurs retournées sont infer=Infer() et pos=0.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="Infer">Infer</link>
-      </member>
-      <member>
-        <link linkend="Contents">Contents</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>get_contents_infer</refname>
+        <refpurpose>Cherche des
+            informations dans le contenu d'une "tlist M2SCI"
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>m2scitlist</term>
+                <listitem>
+                    <para>une "tlist M2SCI"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>index</term>
+                <listitem>
+                    <para>
+                        un index tel que ceux retournés par <literal>macr2tree</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>infer</term>
+                <listitem>
+                    <para>une tlist de type "infer"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pos</term>
+                <listitem>
+                    <para>position des informations dans la liste</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction recherche les informations d'inférence pour un
+            index donné dans le contenu d'une Cell ou d'une Struct en tenant
+            compte des <literal>*</literal>. Si aucune information correspond à cet
+            index, les valeurs retournées sont infer=Infer() et pos=0.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Infer">Infer</link>
+            </member>
+            <member>
+                <link linkend="Contents">Contents</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fsfirlin">
-  <refnamediv>
-    <refname>fsfirlin</refname>
-    <refpurpose> design of FIR, linear phase filters, frequency sampling technique</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[hst]=fsfirlin(hd,flag)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>hd</term>
-        <listitem>
-          <para>vector of desired frequency response samples</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>is equal to 1 or 2, according to the choice of type 1 or type 2 design</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>hst</term>
-        <listitem>
-          <para>vector giving the approximated continuous response on a dense grid of frequencies</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      function for the design of FIR, linear phase filters
-      using the frequency sampling technique
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>fsfirlin</refname>
+        <refpurpose> design of FIR, linear phase filters, frequency sampling technique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[hst]=fsfirlin(hd,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>hd</term>
+                <listitem>
+                    <para>vector of desired frequency response samples</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>is equal to 1 or 2, according to the choice of type 1 or type 2 design</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hst</term>
+                <listitem>
+                    <para>vector giving the approximated continuous response on a dense grid of frequencies</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            function for the design of FIR, linear phase filters
+            using the frequency sampling technique
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //
 //Example of how to use the fsfirlin macro for the design 
 //of an FIR filter by a frequency sampling technique.
@@ -69,16 +69,16 @@ n=prod(size(hst1))
 plot(fg(1:n),hst1);
 plot2d(fg(1:n)',hst2',[3],"000");
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ffilt">ffilt</link>
-      </member>
-      <member>
-        <link linkend="wfir">wfir</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ffilt">ffilt</link>
+            </member>
+            <member>
+                <link linkend="wfir">wfir</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

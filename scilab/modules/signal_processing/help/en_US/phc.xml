@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="phc">
-  <refnamediv>
-    <refname>phc</refname>
-    <refpurpose> Markovian representation</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>hk</term>
-        <listitem>
-          <para>hankel matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>dimension of the observation</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>desired dimension of the state vector for the approximated model</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>H, F, G</term>
-        <listitem>
-          <para>relevant matrices of the Markovian model</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
-      representation by the principal hankel
-      component approximation method, from the hankel matrix built
-      from the covariance sequence of a stochastic process.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>phc</refname>
+        <refpurpose> Markovian representation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>hk</term>
+                <listitem>
+                    <para>hankel matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>dimension of the observation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>desired dimension of the state vector for the approximated model</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H, F, G</term>
+                <listitem>
+                    <para>relevant matrices of the Markovian model</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
+            representation by the principal hankel
+            component approximation method, from the hankel matrix built
+            from the covariance sequence of a stochastic process.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //This example may usefully be compared with the results from 
 //the 'levin' macro (see the corresponding help and example)
 //
@@ -93,13 +93,13 @@ s=s/2/%pi/.1;
 //now we get the estimated spectrum
 imag(s),
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="levin">levin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="levin">levin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

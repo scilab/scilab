@@ -11,46 +11,46 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlNs" xml:lang="en">
-  <refnamediv>
-    <refname>xmlNs</refname>
-    <refpurpose>Create a new XML Namespace</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      ns = xmlNs(elem, [prefix, [, href]])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>elem</term>
-        <listitem>
-          <para>a mlist typed XMLElem</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>prefix</term>
-        <listitem>
-          <para>a string giving the prefix for this namespace</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>href</term>
-        <listitem>
-          <para>a string giving the href for this namespace</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Create a new XML namespace associated with a XML element. The created namespace can be used in the element or in its children.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>xmlNs</refname>
+        <refpurpose>Create a new XML Namespace</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            ns = xmlNs(elem, [prefix, [, href]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>elem</term>
+                <listitem>
+                    <para>a mlist typed XMLElem</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prefix</term>
+                <listitem>
+                    <para>a string giving the prefix for this namespace</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>href</term>
+                <listitem>
+                    <para>a string giving the href for this namespace</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a new XML namespace associated with a XML element. The created namespace can be used in the element or in its children.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlDocument("TMPDIR/foo.xml");
     doc.root = xmlElement(doc, "root");
     ns = xmlNs(doc.root, "scilab", "http://www.scilab.org");
@@ -60,37 +60,37 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="XMLObjects">XML Objects</link>
-      </member>
-      <member>
-        <link linkend="xmlDocument">xmlDocument</link>
-      </member>
-      <member>
-        <link linkend="xmlElement">xmlElement</link>
-      </member>
-      <member>
-        <link linkend="xmlAddNs">xmlAddNs</link>
-      </member>
-      <member>
-        <link linkend="xmlGetNsByHref">xmlGetNsByHref</link>
-      </member>
-      <member>
-        <link linkend="xmlGetNsByPrefix">xmlGetNsByPrefix</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>XML module introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XML Objects</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+            <member>
+                <link linkend="xmlElement">xmlElement</link>
+            </member>
+            <member>
+                <link linkend="xmlAddNs">xmlAddNs</link>
+            </member>
+            <member>
+                <link linkend="xmlGetNsByHref">xmlGetNsByHref</link>
+            </member>
+            <member>
+                <link linkend="xmlGetNsByPrefix">xmlGetNsByPrefix</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

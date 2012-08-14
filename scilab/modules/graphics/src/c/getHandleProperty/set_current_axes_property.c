@@ -28,6 +28,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "HandleManagement.h"
+#include "sci_types.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -49,7 +50,7 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
         return SET_PROPERTY_ERROR;
     }
 
-    if ( !isParameterHandle( valueType ) )
+    if ( !( valueType == sci_handles ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Handle expected.\n"), "current_axes");
         return SET_PROPERTY_ERROR;

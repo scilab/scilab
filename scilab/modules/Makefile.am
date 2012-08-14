@@ -147,9 +147,6 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la
 
-GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
-# HDF5 is here because it needs the JVM (see bug #5481)
-
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
@@ -164,8 +161,6 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/commons/libscicommons-disable.la \
 	$(top_builddir)/modules/helptools/libscihelptools-disable.la
 
-NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
-# HDF5 is here because it needs the JVM (see bug #5481)
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-23 05:07+0000\n"
+"PO-Revision-Date: 2012-08-02 19:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: uk\n"
 
 #, c-format
@@ -208,6 +208,68 @@ msgid "The test %s is not available from the %s module"
 msgstr "Тест %s недоступний з модуля %s"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано рядковий масив "
+"з рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядковий "
+"масив з рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано рядковий масив "
+"з рядків або порожню матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядковий "
+"масив з рядків або порожню матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути назву модуля "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказати коректну "
+"мову.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказати назву "
+"функції модуля «%s».\n"
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 "%s: помилковий перший параметр: слід вказувати файл з суфіксом назви .dia."
@@ -242,10 +304,10 @@ msgstr "Еталонного файла (%s) не існує"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
-"Форматування файла «%s» не відповідає специфікації XML XUnit. Кореневим "
-"теґом мав бути 'testsuites"
+"У файлі «%s» не виконується формат XML XUnit. Кореневим теґом мав бути "
+"«testsuites».\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

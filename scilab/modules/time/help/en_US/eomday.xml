@@ -11,36 +11,36 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eomday">
-  <refnamediv>
-    <refname>eomday</refname>
-    <refpurpose>Return last day of month</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>E = eomday(Y, M)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>E = eomday(Y, M) returns the last day of the year and month given by corresponding elements of arrays Y and M.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>eomday</refname>
+        <refpurpose>Return last day of month</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>E = eomday(Y, M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>E = eomday(Y, M) returns the last day of the year and month given by corresponding elements of arrays Y and M.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 eomday(2006,3);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datenum">datenum</link>
-      </member>
-      <member>
-        <link linkend="datevec">datevec</link>
-      </member>
-      <member>
-        <link linkend="weekday">weekday</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datenum">datenum</link>
+            </member>
+            <member>
+                <link linkend="datevec">datevec</link>
+            </member>
+            <member>
+                <link linkend="weekday">weekday</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

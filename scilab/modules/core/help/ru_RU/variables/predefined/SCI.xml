@@ -11,28 +11,28 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SCI" xml:lang="ru">
-  <refnamediv>
-    <refname>SCI</refname>
-    <refpurpose>переменная, содержащая путь до системных файлов Scilab.
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Неизменная переменная <literal>SCI</literal> хранит значение пути до системных файлов Scilab.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCIHOME">SCIHOME</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="TMPDIR">TMPDIR</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>SCI</refname>
+        <refpurpose>переменная, содержащая путь до системных файлов Scilab.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Неизменная переменная <literal>SCI</literal> хранит значение пути до системных файлов Scilab.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

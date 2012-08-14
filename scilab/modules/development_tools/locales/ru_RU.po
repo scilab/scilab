@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-05-05 13:42+0000\n"
+"PO-Revision-Date: 2012-08-03 12:17+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -195,6 +195,63 @@ msgid "The test %s is not available from the %s module"
 msgstr "Тест %s недоступен из модуля %s"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался массив-строка строковых "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался массив-строка строковых "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался массив-строка строковых "
+"значений или пустая матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался массив-строка строковых "
+"значений или пустая матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось имя модуля Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался допустимый язык.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось имя функции модуля "
+"'%s'.\n"
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 "%s: Неверный первый входной параметр: ожидался файл с расширением .dia."
@@ -229,7 +286,7 @@ msgstr "Файл ссылок (%s) не существует"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
 
 #, c-format

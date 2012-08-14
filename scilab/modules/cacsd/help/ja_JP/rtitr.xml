@@ -11,116 +11,116 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rtitr">
-  <refnamediv>
-    <refname>rtitr</refname>
-    <refpurpose>離散時間応答  (伝達行列)  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[y]=rtitr(Num,Den,u [,up,yp])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>Num,Den</term>
-        <listitem>
-          <para>
-            多項式行列 (それぞれの次元 : <literal>n</literal>x<literal>m</literal> および <literal>n</literal>x<literal>n</literal>)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>u</term>
-        <listitem>
-          <para>
-            実数行列 (次元 <literal>m</literal>x<literal>(t+1)</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>up,yp</term>
-        <listitem>
-          <para>
-            実数行列 (<literal>up</literal> 次元 <literal>m</literal>x<literal>(maxi(degree(Den)))</literal> (デフォルト値=<literal>0</literal>) ,
-            <literal>yp</literal> 次元 <literal>n</literal>x 
-            <literal>(maxi(degree(Den)))</literal>)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>実数行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>y=rtitr(Num,Den,u [,up,yp])</literal> は,
-      入力 <literal>u</literal> の
-      伝達行列が <literal>Den^-1 Num</literal> となる
-      離散時間線形システムの時間応答を返します.
-      ただし,<literal>y</literal> および <literal>u</literal> には
-      t=0,1,...において<literal>Den y = Num u</literal>
-      となる関係があります.
-    </para>
-    <para>
-      <literal>d1=maxi(degree(Den))</literal>,および
-      <literal>d2=maxi(degree(Num))</literal> の場合,
-      多項式行列 <literal>Den(z)</literal> および
-      <literal>Num(z)</literal> はそれぞれ以下のように
-      記述されます:
-    </para>
-    <programlisting role=""><![CDATA[ 
+    <refnamediv>
+        <refname>rtitr</refname>
+        <refpurpose>離散時間応答  (伝達行列)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y]=rtitr(Num,Den,u [,up,yp])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Num,Den</term>
+                <listitem>
+                    <para>
+                        多項式行列 (それぞれの次元 : <literal>n</literal>x<literal>m</literal> および <literal>n</literal>x<literal>n</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>
+                        実数行列 (次元 <literal>m</literal>x<literal>(t+1)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>up,yp</term>
+                <listitem>
+                    <para>
+                        実数行列 (<literal>up</literal> 次元 <literal>m</literal>x<literal>(maxi(degree(Den)))</literal> (デフォルト値=<literal>0</literal>) ,
+                        <literal>yp</literal> 次元 <literal>n</literal>x 
+                        <literal>(maxi(degree(Den)))</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>y=rtitr(Num,Den,u [,up,yp])</literal> は,
+            入力 <literal>u</literal> の
+            伝達行列が <literal>Den^-1 Num</literal> となる
+            離散時間線形システムの時間応答を返します.
+            ただし,<literal>y</literal> および <literal>u</literal> には
+            t=0,1,...において<literal>Den y = Num u</literal>
+            となる関係があります.
+        </para>
+        <para>
+            <literal>d1=maxi(degree(Den))</literal>,および
+            <literal>d2=maxi(degree(Num))</literal> の場合,
+            多項式行列 <literal>Den(z)</literal> および
+            <literal>Num(z)</literal> はそれぞれ以下のように
+            記述されます:
+        </para>
+        <programlisting role=""><![CDATA[ 
 D(z) = D_0  + D_1  z + ... + D_d1   z^d1
 N(z) = N_0  + N_1  z + ... + N_d2   z^d2
  ]]></programlisting>
-    <para>
-      そして <literal>Den y = Num u</literal> は
-      次の再帰式として解釈されます:
-    </para>
-    <programlisting role=""><![CDATA[ 
+        <para>
+            そして <literal>Den y = Num u</literal> は
+            次の再帰式として解釈されます:
+        </para>
+        <programlisting role=""><![CDATA[ 
 D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
  ]]></programlisting>
-    <para>
-      <literal>D(d1)</literal> は正則と仮定されます.
-    </para>
-    <para>
-      uの列はt=0,1,...,Tにおけるシステムの入力です:
-    </para>
-    <programlisting role=""><![CDATA[ 
+        <para>
+            <literal>D(d1)</literal> は正則と仮定されます.
+        </para>
+        <para>
+            uの列はt=0,1,...,Tにおけるシステムの入力です:
+        </para>
+        <programlisting role=""><![CDATA[ 
 u=[u(0) , u(1),...,u(T)]
  ]]></programlisting>
-    <para>
-      <literal>t=0,1,...,T+d1-d2</literal>における出力が,
-      行列<literal>y</literal>の列になります:
-    </para>
-    <programlisting role=""><![CDATA[ 
+        <para>
+            <literal>t=0,1,...,T+d1-d2</literal>における出力が,
+            行列<literal>y</literal>の列になります:
+        </para>
+        <programlisting role=""><![CDATA[ 
 y = [y(0), y(1),  .... y(T+d1-d2)]
  ]]></programlisting>
-    <para>
-      <literal>up</literal> および <literal>yp</literal> は
-      t &lt; 0 における初期条件を定義します, すなわち
-    </para>
-    <programlisting role=""><![CDATA[ 
+        <para>
+            <literal>up</literal> および <literal>yp</literal> は
+            t &lt; 0 における初期条件を定義します, すなわち
+        </para>
+        <programlisting role=""><![CDATA[ 
 up = [u(-d1), ..., u(-1)  ]
 yp = [y(-d1), ...  y(-1)  ]
  ]]></programlisting>
-    <para>
-      <literal>d1</literal> および <literal>d2</literal>の相対値に
-      依存して, <literal>up</literal>, <literal>yp</literal>
-      の最も左の要素のいくつかが無視されます.
-      <literal>up</literal> および
-      <literal>yp</literal> のデフォルト値はゼロです:
-      <literal>up = 0*ones(m,d1), yp=0*ones(n,d1)</literal>
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            <literal>d1</literal> および <literal>d2</literal>の相対値に
+            依存して, <literal>up</literal>, <literal>yp</literal>
+            の最も左の要素のいくつかが無視されます.
+            <literal>up</literal> および
+            <literal>yp</literal> のデフォルト値はゼロです:
+            <literal>up = 0*ones(m,d1), yp=0*ones(n,d1)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 z=poly(0,'z');
 Num=1+z;Den=1+z;u=[1,2,3,4,5];
 rtitr(Num,Den,u)-u
@@ -178,19 +178,19 @@ h=ss2tf(s);num=h('num');den=h('den');den=den(1,1)*eye(2,2);
 u=1;u(3,10)=0;r3=flts(u,s);
 r=rtitr(num,den,u);norm(r3-r,1)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ltitr">ltitr</link>
-      </member>
-      <member>
-        <link linkend="exp">exp</link>
-      </member>
-      <member>
-        <link linkend="flts">flts</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

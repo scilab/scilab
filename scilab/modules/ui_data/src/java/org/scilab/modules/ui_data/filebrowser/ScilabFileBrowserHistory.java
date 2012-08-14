@@ -35,6 +35,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * The File Browser history
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileBrowserHistory {
 
     private static final String PREVIOUSICON = ScilabSwingUtilities.findIcon("go-previous");

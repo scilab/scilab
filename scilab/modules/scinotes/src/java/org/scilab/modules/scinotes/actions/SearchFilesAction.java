@@ -21,6 +21,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * SearchFilesAction Class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SearchFilesAction extends SearchWordInFilesAction {
 
     /**

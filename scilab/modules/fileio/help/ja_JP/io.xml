@@ -11,33 +11,33 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="io" xml:lang="ja">
-  <refnamediv>
-    <refname>%io</refname>
-    <refpurpose>
-      標準入力および標準出力を返す変数
-      (ファイルディスクリプタ).
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>%io(1)
-      %io(2)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>説明</title>
-    <para>%io(1) は標準入力を返します (ファイルディスクリプタ 5).</para>
-    <para>%io(2) は標準出力を返します (ファイルディスクリプタ 6).</para>
-    <para>ファイルディスクリプタ 0 は標準エラーです.</para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>%io</refname>
+        <refpurpose>
+            標準入力および標準出力を返す変数
+            (ファイルディスクリプタ).
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>%io(1)
+            %io(2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>%io(1) は標準入力を返します (ファイルディスクリプタ 5).</para>
+        <para>%io(2) は標準出力を返します (ファイルディスクリプタ 6).</para>
+        <para>ファイルディスクリプタ 0 は標準エラーです.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 mfprintf(%io(2),'Scilab stdout (C)');
 mfprintf(0,'Scilab stderr (C)');
 write(%io(2),'Scilab stdout (Fortran)');
 write(0,'Scilab stderr (Fortran');
 [units,typ,names]=file()
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

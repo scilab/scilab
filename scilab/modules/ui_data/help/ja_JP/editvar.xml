@@ -12,42 +12,42 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="editvar">
-  <refnamediv>
-    <refname>editvar</refname>
-    <refpurpose> Scilab変数エディタ</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>editvar varname</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>varname</term>
-        <listitem>
-          <para>変数名. 変数はScilab上に存在する必要があります.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>editvar</literal> は標準のScilab変数エディタです.
-    </para>
-    <para>
-      <literal>editvar</literal> は以下の変数型を編集できます: 実数または複素数定数行列 (type 1), 
-      論理値行列 (type 4) 文字列の行列 (type 10). 
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>editvar</refname>
+        <refpurpose> Scilab変数エディタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>editvar varname</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>varname</term>
+                <listitem>
+                    <para>変数名. 変数はScilab上に存在する必要があります.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>editvar</literal> は標準のScilab変数エディタです.
+        </para>
+        <para>
+            <literal>editvar</literal> は以下の変数型を編集できます: 実数または複素数定数行列 (type 1), 
+            論理値行列 (type 4) 文字列の行列 (type 10). 
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 a=rand(10,10);
 editvar a;
 b=['hello';'good bye'];
 editvar b;
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

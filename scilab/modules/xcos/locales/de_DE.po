@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: de\n"
 
 #, c-format
@@ -36,6 +36,61 @@ msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+msgid "Straight"
+msgstr "Gerade"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Vertical"
+msgstr "Vertikal"
+
+msgid "Simulation"
+msgstr "Simulation"
+
+msgid "No trace nor debug printing"
+msgstr "Drucke weder Spur noch Fehlersuche"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+"Leichte Simulationsspur (diskrete und kontinuierliche Gegenstandsschalter)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
+
+msgid "Debug block calls without trace"
+msgstr "suche Fehler in den Blockaufrufen ohne Spur"
+
+msgid "Default simulation settings"
+msgstr ""
+
+msgid "Final integration time"
+msgstr "Finale Integrationszeit"
+
+msgid "Real time scaling"
+msgstr "reelle Zeitskalierung"
+
+msgid "Integrator absolute tolerance"
+msgstr "Absolute Toleranz des Integrators"
+
+msgid "Integrator relative tolerance"
+msgstr "Relative Toleranz des Integrators"
+
+msgid "Tolerance on time"
+msgstr "Zeit-Toleranz"
+
+msgid "Max integration time interval"
+msgstr "Maximales Zeitintervall der Integration"
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
+
+msgid "Default trace settings"
 msgstr ""
 
 #, c-format
@@ -368,9 +423,6 @@ msgstr "Details"
 msgid "Show parent diagram"
 msgstr "Zeige übergeordnetes Diagramm"
 
-msgid "Simulation"
-msgstr "Simulation"
-
 msgid "Setup"
 msgstr "Einstellungen"
 
@@ -672,45 +724,12 @@ msgstr "Textfarbe"
 msgid "Link Style"
 msgstr "Stil des Links"
 
-msgid "Straight"
-msgstr "Gerade"
-
-msgid "Horizontal"
-msgstr "Horizontal"
-
-msgid "Vertical"
-msgstr "Vertikal"
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Setzte Fehlersuchstufe (0,1,2,3) <br/>es führt Scicos Fehlersuche aus."
 
 msgid "Execution trace and Debug"
 msgstr ""
-
-msgid "Final integration time"
-msgstr "Finale Integrationszeit"
-
-msgid "Real time scaling"
-msgstr "reelle Zeitskalierung"
-
-msgid "Integrator absolute tolerance"
-msgstr "Absolute Toleranz des Integrators"
-
-msgid "Integrator relative tolerance"
-msgstr "Relative Toleranz des Integrators"
-
-msgid "Tolerance on time"
-msgstr "Zeit-Toleranz"
-
-msgid "Max integration time interval"
-msgstr "Maximales Zeitintervall der Integration"
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "maximum step size (0 means no limit)"
-msgstr "maximale Stufengröße (0 meint kein Limit)"
 
 msgid "Default"
 msgstr "Voreinstellung"
@@ -754,19 +773,6 @@ msgid ""
 msgstr ""
 "Klicken Sie auf das Diagramm, um einen Verbindungspunkt hinzuzufügen, oder "
 "auf ein kompatibles Ziel, um zu beenden."
-
-msgid "No trace nor debug printing"
-msgstr "Drucke weder Spur noch Fehlersuche"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-"Leichte Simulationsspur (diskrete und kontinuierliche Gegenstandsschalter)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
-
-msgid "Debug block calls without trace"
-msgstr "suche Fehler in den Blockaufrufen ohne Spur"
 
 msgid "All supported formats"
 msgstr ""

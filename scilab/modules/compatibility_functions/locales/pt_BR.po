@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -249,6 +249,10 @@ msgstr ""
 "inteiro positivo.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumento(s) de saída: esperava-se %d.\n"
+
+#, c-format
 msgid "%s: '%s' option ignored.\n"
 msgstr "%s: Opção '%s' ignorada.\n"
 
@@ -261,10 +265,6 @@ msgstr ""
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr ""
 "%s: Encontrou-se uma cor desconhecida em '%s' -> ajustado para preto.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumento(s) de saída: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

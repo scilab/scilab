@@ -33,7 +33,7 @@ int set_line_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 {
     int iLineStyle = 1;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "line_style");
         return SET_PROPERTY_ERROR;

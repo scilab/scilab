@@ -23,10 +23,11 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Set the text of a link.
- * 
+ *
  * @deprecated since 5.4.0
  */
 @Deprecated
+@SuppressWarnings(value = { "serial" })
 public class TextAction extends StyleAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.EDIT;
@@ -37,7 +38,7 @@ public class TextAction extends StyleAction {
 
     /**
      * Default constructor
-     * 
+     *
      * @param scilabGraph
      *            the current graph
      */
@@ -47,7 +48,7 @@ public class TextAction extends StyleAction {
 
     /**
      * Create the associated menu
-     * 
+     *
      * @param scilabGraph
      *            graph
      * @return menu item
@@ -58,7 +59,7 @@ public class TextAction extends StyleAction {
 
     /**
      * Action
-     * 
+     *
      * @param e
      *            parameters
      * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)

@@ -11,55 +11,55 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exp" xml:lang="en">
-  <refnamediv>
-    <refname>exp</refname>
-    <refpurpose>exponencial em relação aos elementos</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento </title>
-    <synopsis>exp(X)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>escalar, vetor ou matriz de entradas reais ou
-            complexas.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>exp(X)</literal> é a função exponencial (elemento a
-      elemento) das entradas de<literal>X</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>exp</refname>
+        <refpurpose>exponencial em relação aos elementos</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento </title>
+        <synopsis>exp(X)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>escalar, vetor ou matriz de entradas reais ou
+                        complexas.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>exp(X)</literal> é a função exponencial (elemento a
+            elemento) das entradas de<literal>X</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 x=[1,2,3+%i];
 log(exp(x))  //elemento a elemento
 2^x
 exp(x*log(2))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Ver Também </title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="coff">coff</link>
-      </member>
-      <member>
-        <link linkend="log">log</link>
-      </member>
-      <member>
-        <link linkend="expm">expm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="coff">coff</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="expm">expm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -11,57 +11,57 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isListType" xml:lang="en">
-  <refnamediv>
-    <refname>isListType, isTListType, isMListType</refname>
-    <refpurpose>
-      Check if it is a list, mlist, tlist variable.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>int isListType(void* _pvCtx, int* _piAddress)</synopsis>
-    <synopsis>int isNamedListType(void* _pvCtx, const char* _pstName)</synopsis>
-    <synopsis>int isTListType(void* _pvCtx, int* _piAddress)</synopsis>
-    <synopsis>int isNamedTListType(void* _pvCtx, const char* _pstName)</synopsis>
-    <synopsis>int isMListType(void* _pvCtx, int* _piAddress)</synopsis>
-    <synopsis>int isNamedMListType(void* _pvCtx, const char* _pstName)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piAddress</term>
-        <listitem>
-          <para>
-            Position in the Scilab memory where you want to put the variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pstName</term>
-        <listitem>
-          <para>
-            Name of the variable for "named" functions.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Return value</title>
-    <para>1 if variable is a list type, otherwise 0</para>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+    <refnamediv>
+        <refname>isListType, isTListType, isMListType</refname>
+        <refpurpose>
+            Check if it is a list, mlist, tlist variable.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>int isListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedListType(void* _pvCtx, const char* _pstName)</synopsis>
+        <synopsis>int isTListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedTListType(void* _pvCtx, const char* _pstName)</synopsis>
+        <synopsis>int isMListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedMListType(void* _pvCtx, const char* _pstName)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Return value</title>
+        <para>1 if variable is a list type, otherwise 0</para>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 fileData = [
 '#include <api_scilab.h>'
 '#include <Scierror.h>'
@@ -116,8 +116,8 @@ fileData = [
 '            sprintf(pstRet, ""%s"", ""unmanaged type"");'
 '        }'
 '    }'
-'    createSingleString(pvApiCtx, nbInputArgument + 1, pstRet);'
-'    AssignOutputVariable(1) = nbInputArgument + 1;'
+'    createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstRet);'
+'    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;'
 '    return 0;'
 '}'
 ]
@@ -155,5 +155,5 @@ end
 
 cd(currentPath);
 ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

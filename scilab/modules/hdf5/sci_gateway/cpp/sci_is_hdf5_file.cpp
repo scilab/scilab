@@ -24,7 +24,6 @@ extern "C"
 #include "MALLOC.h"
 }
 
-#include "forceJHDF5load.hxx"
 
 int sci_is_hdf5_file(char *fname, void *pvApiCtx)
 {
@@ -35,10 +34,6 @@ int sci_is_hdf5_file(char *fname, void *pvApiCtx)
 
     CheckRhs(1, 1);
     CheckLhs(1, 4);
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)

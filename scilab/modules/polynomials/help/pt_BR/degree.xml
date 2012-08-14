@@ -11,49 +11,49 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="degree" xml:lang="en">
-  <refnamediv>
-    <refname>degree</refname>
-    <refpurpose>grau da matriz de polinômios</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
-    <synopsis>[D]=degree(M)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>M</term>
-        <listitem>
-          <para>matriz de polinômios </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>D</term>
-        <listitem>
-          <para>matriz de inteiros</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Retorna a matriz de graus mais elevados de
-      <literal>M</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title> Ver Também </title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-      <member>
-        <link linkend="coeff">coeff</link>
-      </member>
-      <member>
-        <link linkend="clean">clean</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>degree</refname>
+        <refpurpose>grau da matriz de polinômios</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>[D]=degree(M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>matriz de polinômios </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>matriz de inteiros</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna a matriz de graus mais elevados de
+            <literal>M</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="coeff">coeff</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

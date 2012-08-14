@@ -118,23 +118,37 @@ int sci_save(char *fname, void *pvApiCtx)
 
                 freeAllocatedSingleString(pstVarI);
             }
-
-            if(iOldSave == FALSE)
-            {
-                int lw = 0;
-                //call "overload" to prepare data to export_to_hdf5 function.
-                C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
-            }
         }
         else
         {
-            iOldSave = TRUE;
+            iOldSave = FALSE;
         }
     }
     else
     {
         iOldSave = TRUE;
     }
+
+    //new save to sod format
+    if(iOldSave == FALSE)
+    {
+        int lw = 0;
+        //call "overload" to prepare data to export_to_hdf5 function.
+        C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+    }
+
+    //old save ( not available in scilab 6
+
+    //if (iOldSave)
+    //{//show warning only for variable save, not for environment.
+    //    if (getWarningMode() && Rhs > 1)
+    //    {
+    //        sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
+    //        sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
+    //        sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
+    //    }
+    //    C2F(intsave)();
+    //}
 
     return 0;
 }

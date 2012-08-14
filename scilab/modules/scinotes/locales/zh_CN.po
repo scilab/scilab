@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: \n"
 
 #, c-format
@@ -675,6 +675,7 @@ msgstr "替换"
 msgid "Replace All"
 msgstr "全部替换"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "不正确的正则表达式：%s"
 
@@ -690,9 +691,11 @@ msgstr "已经到达文档尾部"
 msgid "You have reached the beginning of the document"
 msgstr "已到文档开头"
 
+#, c-format
 msgid "String %s not found"
 msgstr "没有发现字符串 %s"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -711,6 +714,7 @@ msgid ""
 "save it?"
 msgstr " 自上次保存已经被修改，保存改动么？"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -795,12 +799,14 @@ msgstr "打开宏代码 "
 msgid "Show the definition of the macro "
 msgstr "显示宏定义 "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "行%s，列%s。行%s处函数‘%s’。"
 
 msgid "Unknown function"
 msgstr "未知函数"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "行%s，列%s。"
 
@@ -816,6 +822,7 @@ msgstr "不能保存此文件"
 msgid "The file could not be converted."
 msgstr "不能转换此文件"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s 是目录。"
 
@@ -840,6 +847,7 @@ msgstr "没有选择文本"
 msgid "No text to execute."
 msgstr "没有文本要执行"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr "文件编码实际是%s，并会已%s编码保存。继续？"
@@ -850,12 +858,14 @@ msgstr "编码问题"
 msgid "Cannot guess the file encoding."
 msgstr "不能猜出文件编码"
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -973,12 +983,15 @@ msgstr "搜索文件..."
 msgid "Search in Files..."
 msgstr "文件中搜索..."
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s匹配)</i></html>"
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s匹配)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "运行时间：%s秒"
 

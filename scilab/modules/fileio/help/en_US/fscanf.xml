@@ -15,12 +15,12 @@
     <refnamediv>
         <refname>fscanf</refname>
         <refpurpose>
-            converts formatted input read on a file (<emphasis role="bold">This function is obsolete</emphasis>)
+            converts formatted input read on a file. <emphasis role="bold">This function is obsolete</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v_1, ..., v_n]=fscanf (file, format)</synopsis>
+        <synopsis>[v_1, ..., v_n] = fscanf(file, format)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

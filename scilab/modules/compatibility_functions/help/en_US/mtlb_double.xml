@@ -11,67 +11,67 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_double">
-  <refnamediv>
-    <refname>mtlb_double</refname>
-    <refpurpose>Matlab double emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Matlab and Scilab <literal>double</literal> behave differently in some particular cases:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_double</refname>
+        <refpurpose>Matlab double emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With character string input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of ASCII codes.
+            Matlab and Scilab <literal>double</literal> behave differently in some particular cases:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With character string input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of ASCII codes.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With boolean input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of double values.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With boolean input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of double values.
+            The function <literal>mtlb_double(A)</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>double(A)</literal> when it was not
+            possible to know what were theinput while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_double</literal> calls:
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The function <literal>mtlb_double(A)</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>double(A)</literal> when it was not
-      possible to know what were theinput while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_double</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a character string, 
+                    <literal>mtlb_double(A)</literal> may be replaced by <literal>asciimat(A)</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a boolean matrix,
+                    <literal>mtlb_double(A)</literal> may be replaced by <literal>bool2s(A)</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a double matrix,
+                    <literal>mtlb_double(A)</literal> may be replaced by <literal>A</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          If <literal>A</literal> is a character string, 
-          <literal>mtlb_double(A)</literal> may be replaced by <literal>asciimat(A)</literal>
+            Caution: <literal>mtlb_double</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          If <literal>A</literal> is a boolean matrix,
-          <literal>mtlb_double(A)</literal> may be replaced by <literal>bool2s(A)</literal>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          If <literal>A</literal> is a double matrix,
-          <literal>mtlb_double(A)</literal> may be replaced by <literal>A</literal>
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_double</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="asciimat">asciimat</link>
-      </member>
-      <member>
-        <link linkend="bool2s">bool2s</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="asciimat">asciimat</link>
+            </member>
+            <member>
+                <link linkend="bool2s">bool2s</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

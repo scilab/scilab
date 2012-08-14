@@ -47,8 +47,6 @@
 <path value="/usr/lib64/jogl/"/>
 <path value="/usr/lib/gluegen/"/>
 <path value="/usr/lib64/gluegen/"/>
-<path value="/usr/lib/jhdf5/"/>
-<path value="/usr/lib64/jhdf5/"/>
 
 <!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
 <path value="/usr/lib" />

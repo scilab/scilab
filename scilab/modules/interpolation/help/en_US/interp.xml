@@ -1,150 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="interp" xml:lang="en">
-  <refnamediv>
-    <refname>interp</refname>
-    <refpurpose>cubic spline evaluation function</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xp</term>
-        <listitem>
-          <para>real vector or matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x,y,d</term>
-        <listitem>
-          <para>real vectors of the same size defining a cubic spline or
-            sub-spline function (called <literal>s</literal> in the
-            following)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>out_mode</term>
-        <listitem>
-          <para>(optional) string defining the evaluation of
-            <literal>s</literal> outside the [x1,xn] interval
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>yp</term>
-        <listitem>
-          <para>
-            vector or matrix of same size than <literal>xp</literal>,
-            elementwise evaluation of <literal>s</literal> on
-            <literal>xp</literal> (yp(i)=s(xp(i) or yp(i,j)=s(xp(i,j))
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>yp1, yp2, yp3</term>
-        <listitem>
-          <para>
-            vectors (or matrices) of same size than <literal>xp</literal>,
-            elementwise evaluation of the successive derivatives of
-            <literal>s</literal> on <literal>xp</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Given three vectors <literal>(x,y,d)</literal> defining a spline or
-      sub-spline function (see <link linkend="splin">splin</link>) with
-      <literal>yi=s(xi), di = s'(xi)</literal> this function evaluates
-      <literal>s</literal> (and <literal>s', s'', s'''</literal> if needed) at
-      <literal>xp(i)</literal> :
-    </para>
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../mml/interp_equation1.mml"/>
-        </imageobject>
-      </mediaobject>
-    </informalequation>
-    <para>
-      The <literal>out_mode</literal> parameter set the evaluation rule
-      for extrapolation, i.e. for <literal>xp(i)</literal> not in [x1,xn]
-      :
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>"by_zero"</term>
-        <listitem>
-          <para>an extrapolation by zero is done</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"by_nan"</term>
-        <listitem>
-          <para>extrapolation by Nan</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"C0"</term>
-        <listitem>
-          <para>the extrapolation is defined as follows :</para>
-          <informalequation>
+    <refnamediv>
+        <refname>interp</refname>
+        <refpurpose>cubic spline evaluation function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xp</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x,y,d</term>
+                <listitem>
+                    <para>real vectors of the same size defining a cubic spline or
+                        sub-spline function (called <literal>s</literal> in the
+                        following)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out_mode</term>
+                <listitem>
+                    <para>(optional) string defining the evaluation of
+                        <literal>s</literal> outside the [x1,xn] interval
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>yp</term>
+                <listitem>
+                    <para>
+                        vector or matrix of same size than <literal>xp</literal>,
+                        elementwise evaluation of <literal>s</literal> on
+                        <literal>xp</literal> (yp(i)=s(xp(i) or yp(i,j)=s(xp(i,j))
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>yp1, yp2, yp3</term>
+                <listitem>
+                    <para>
+                        vectors (or matrices) of same size than <literal>xp</literal>,
+                        elementwise evaluation of the successive derivatives of
+                        <literal>s</literal> on <literal>xp</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given three vectors <literal>(x,y,d)</literal> defining a spline or
+            sub-spline function (see <link linkend="splin">splin</link>) with
+            <literal>yi=s(xi), di = s'(xi)</literal> this function evaluates
+            <literal>s</literal> (and <literal>s', s'', s'''</literal> if needed) at
+            <literal>xp(i)</literal> :
+        </para>
+        <informalequation>
             <mediaobject>
-              <imageobject>
-                <imagedata align="center" fileref="../mml/interp_equation2.mml"/>
-              </imageobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/interp_equation1.mml"/>
+                </imageobject>
             </mediaobject>
-          </informalequation>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"natural"</term>
-        <listitem>
-          <para>the extrapolation is defined as follows
-            (<emphasis>p_i</emphasis> being the polynomial defining
-            <literal>s</literal> on [x_i,x_{i+1}]) :
-          </para>
-          <informalequation>
-            <mediaobject>
-              <imageobject>
-                <imagedata align="center" fileref="../mml/interp_equation3.mml"/>
-              </imageobject>
-            </mediaobject>
-          </informalequation>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"linear"</term>
-        <listitem>
-          <para>the extrapolation is defined as follows :</para>
-          <informalequation>
-            <mediaobject>
-              <imageobject>
-                <imagedata align="center" fileref="../mml/interp_equation4.mml"/>
-              </imageobject>
-            </mediaobject>
-          </informalequation>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"periodic"</term>
-        <listitem>
-          <para>
-            <literal>s</literal> is extended by periodicity.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+        </informalequation>
+        <para>
+            The <literal>out_mode</literal> parameter set the evaluation rule
+            for extrapolation, i.e. for <literal>xp(i)</literal> not in [x1,xn]
+            :
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"by_zero"</term>
+                <listitem>
+                    <para>an extrapolation by zero is done</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"by_nan"</term>
+                <listitem>
+                    <para>extrapolation by Nan</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"C0"</term>
+                <listitem>
+                    <para>the extrapolation is defined as follows :</para>
+                    <informalequation>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata align="center" fileref="../mml/interp_equation2.mml"/>
+                            </imageobject>
+                        </mediaobject>
+                    </informalequation>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"natural"</term>
+                <listitem>
+                    <para>the extrapolation is defined as follows
+                        (<emphasis>p_i</emphasis> being the polynomial defining
+                        <literal>s</literal> on [x_i,x_{i+1}]) :
+                    </para>
+                    <informalequation>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata align="center" fileref="../mml/interp_equation3.mml"/>
+                            </imageobject>
+                        </mediaobject>
+                    </informalequation>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"linear"</term>
+                <listitem>
+                    <para>the extrapolation is defined as follows :</para>
+                    <informalequation>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata align="center" fileref="../mml/interp_equation4.mml"/>
+                            </imageobject>
+                        </mediaobject>
+                    </informalequation>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"periodic"</term>
+                <listitem>
+                    <para>
+                        <literal>s</literal> is extended by periodicity.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -185,25 +185,25 @@ clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="splin">splin</link>
-      </member>
-      <member>
-        <link linkend="lsq_splin">lsq_splin</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="splin">splin</link>
+            </member>
+            <member>
+                <link linkend="lsq_splin">lsq_splin</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

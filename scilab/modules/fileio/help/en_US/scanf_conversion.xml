@@ -104,7 +104,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                It can be an exponential value, containing a decimal point followed by an exponent field, which consists of an <literal>E</literal> or an <literal>e</literal> followed by an (optionally signed) integer;
+                                it can be an exponential value, containing a decimal point followed by an exponent field, which consists of an <literal>E</literal> or an <literal>e</literal> followed by an (optionally signed) integer;
                             </para>
                         </listitem>
                         <listitem>

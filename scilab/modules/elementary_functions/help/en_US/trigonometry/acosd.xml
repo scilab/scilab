@@ -11,61 +11,61 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="acosd" xml:lang="en">
-  <refnamediv>
-    <refname>acosd</refname>
-    <refpurpose>element wise cosine inverse, result in degree.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=acosd(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>Real or complex vector or matrix.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>Real or complex vector or matrix.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The components of <literal>t</literal> are cosine inverse, in
-      degree, of the corresponding entries of <literal>x</literal>
-      (t=acos(x)*180/%pi). For real data in <literal>[-1, 1]</literal>, the
-      results are real in <literal>[0 180]</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      x=-0.99:0.1:0.99; 
-      plot(x,acosd(x))
-    </scilab:image>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>acosd</refname>
+        <refpurpose>element wise cosine inverse, result in degree.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=acosd(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Real or complex vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>Real or complex vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The components of <literal>t</literal> are cosine inverse, in
+            degree, of the corresponding entries of <literal>x</literal>
+            (t=acos(x)*180/%pi). For real data in <literal>[-1, 1]</literal>, the
+            results are real in <literal>[0 180]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            x=-0.99:0.1:0.99; 
+            plot(x,acosd(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 acosd(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="acos">acos</link>
-        <link linkend="cos">cos</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="acos">acos</link>
+                <link linkend="cos">cos</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

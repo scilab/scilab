@@ -23,102 +23,102 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Portaction_pal" xml:lang="en_US">
-  <refnamediv>
-    <refname>Portaction_pal</refname>
-    <refpurpose>Port &amp; Subsystem palette</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="CLKOUTV_f" fileref="../../../../images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="OUTIMPL_f" fileref="../../../../images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Module_Portaction_pal">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>Portaction_pal</refname>
+        <refpurpose>Port &amp; Subsystem palette</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CLKOUTV_f" fileref="../../../../images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="OUTIMPL_f" fileref="../../../../images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_Portaction_pal">
-    <title>Description</title>
-    <para>The Port &amp; Subsystem palette includes blocks for creating subsystems.</para>
-  </refsection>
-  <refsection id="Blocks_Portaction_pal">
-    <title>Blocks</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="CLKINV_f">CLKINV_f — Input activation port Event-Select</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port Event-Select</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="IN_f">IN_f - Regular Input Port</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="INIMPL_f">INIMPL_f — Input implicit port</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="OUT_f">OUT_f - Regular Output Port</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="SUPER_f">SUPER_f — Super block</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
+    <refsection id="Module_Portaction_pal">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Portaction_pal">
+        <title>Description</title>
+        <para>The Port &amp; Subsystem palette includes blocks for creating subsystems.</para>
+    </refsection>
+    <refsection id="Blocks_Portaction_pal">
+        <title>Blocks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CLKINV_f">CLKINV_f — Input activation port Event-Select</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port Event-Select</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="IN_f">IN_f - Regular Input Port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="INIMPL_f">INIMPL_f — Input implicit port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="OUT_f">OUT_f - Regular Output Port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SUPER_f">SUPER_f — Super block</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

@@ -11,64 +11,64 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="asind" xml:lang="ru">
-  <refnamediv>
-    <refname>asind</refname>
-    <refpurpose>арксинус, результаты в градусах</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>t=asind(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>
-            вещественный вектор или матрица. Элементы должны быть на интервале <literal>[-1
-              1]
-            </literal>
-            .
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>вещественный вектор/матрица с теми же размерами, что и 
-            <literal>x</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Элементы <literal>t</literal> являются арксинусом соответствующих элементов  <literal>x</literal>. Область определения [-1, 1]. Результаты в пределах 
-      [-90 90];
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>asind</refname>
+        <refpurpose>арксинус, результаты в градусах</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>t=asind(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вещественный вектор или матрица. Элементы должны быть на интервале <literal>[-1
+                            1]
+                        </literal>
+                        .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>вещественный вектор/матрица с теми же размерами, что и 
+                        <literal>x</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Элементы <literal>t</literal> являются арксинусом соответствующих элементов  <literal>x</literal>. Область определения [-1, 1]. Результаты в пределах 
+            [-90 90];
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 asind(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sin">sin</link>
-      </member>
-      <member>
-        <link linkend="sinm">sind</link>
-      </member>
-      <member>
-        <link linkend="asinm">asinm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="sinm">sind</link>
+            </member>
+            <member>
+                <link linkend="asinm">asinm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

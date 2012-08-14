@@ -11,80 +11,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lu">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lu">
     <refnamediv>
         <refname>lu</refname>
-        <refpurpose> LU factorization with pivoting</refpurpose>
+        <refpurpose> ピボット選択付きのLU 分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[L,U]= lu(A)
             [L,U,E]= lu(A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parameters</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real or complex  matrix (m x n).</para>
+                    <para>実数または複素数の行列 (m x n).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>L</term>
                 <listitem>
-                    <para> real or complex matrices  (m x min(m,n)).</para>
+                    <para> 実数または複素数の行列  (m x min(m,n)).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>U</term>
                 <listitem>
-                    <para>real or complex matrices  (min(m,n) x n ).</para>
+                    <para>実数または複素数の行列  (min(m,n) x n ).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>E</term>
                 <listitem>
-                    <para>a (n x n) permutation matrix.</para>
+                    <para>a (n x n) 置換行列.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
-            <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
-            upper triangular and <literal>L</literal> a general matrix without any particular 
-            structure. In fact, the matrix <literal>A</literal> is factored as <literal>E*A=B*U</literal>
-            where the matrix <literal>B</literal> is lower triangular 
-            and the matrix <literal>L</literal> is computed from <literal>L=E'*B</literal>.
+            <literal>[L,U]= lu(A)</literal> は,
+            <literal>U</literal>を上三角行列,
+            <literal>L</literal>を何らかの特別な構造を持たない一般的な行列として,
+            <literal>A = L*U</literal> となるような
+            2つの行列 <literal>L</literal> および
+            <literal>U</literal> を出力します.
+            実際は,行列<literal>A</literal>は<literal>E*A=B*U</literal>
+            のように分解されます.
+            ただし, 行列<literal>B</literal>は下三角行列,
+            行列<literal>L</literal>は<literal>L=E'*B</literal>から計算されます.
         </para>
         <para>
-            If <literal>A</literal> has rank <literal>k</literal>, rows <literal>k+1</literal> to
-            <literal>n</literal> of <literal>U</literal> are zero.
+            <literal>A</literal> がランク <literal>k</literal>を有している場合, 
+            <literal>U</literal>の行 <literal>k+1</literal> から
+            <literal>n</literal> までは 0　となります.
         </para>
         <para>
-            <literal>[L,U,E]= lu(A)</literal> produces three matrices <literal>L</literal>, <literal>U</literal> and
-            <literal>E</literal> such that <literal>E*A = L*U</literal> with
-            <literal>U</literal> upper triangular and <literal>E*L</literal> lower
-            triangular for a permutation matrix <literal>E</literal>.
+            <literal>[L,U,E]= lu(A)</literal> は,
+            上三角行列<literal>U</literal>および
+            置換行列を <literal>E</literal>とした下三角行列 <literal>E*L</literal>,
+            により<literal>E*A = L*U</literal>となるような
+            3つの行列 <literal>L</literal>, <literal>U</literal> および
+            <literal>E</literal>を出力します.
         </para>
         <para>
-            If <literal>A</literal> is a real matrix, using the function
-            <literal>lufact</literal> and  <literal>luget</literal> it is possible to obtain
-            the permutation matrices and also when <literal>A</literal> is not full
-            rank the column compression of the matrix <literal>L</literal>.
+            <literal>A</literal> が実数行列の場合, 
+            関数<literal>lufact</literal> および  <literal>luget</literal>を
+            用いることにより,
+            置換行列を得ることができます.
+            <literal>A</literal>がフルランクでない場合,行列 <literal>L</literal>
+            の列圧縮も得ることができる.
         </para>
     </refsection>
     <refsection>
-        <title>Example #1</title>
+        <title>例 #1</title>
         <para>
-            In the following example, we create the Hilbert matrix of size 4 and
-            factor it with A=LU. Notice that the matrix L is not lower triangular.
-            To get a lower triangular L matrix, we should have given the 
-            output argument E to Scilab.
+            以下の例では,大きさ4のヒルバート行列を作成し,
+            A=LU と分解します.
+            行列 L は下三角行列ではないことに注意してください.
+            下三角行列Lを取得するには,
+            出力引数 E を Scilab に指定する必要があります.
         </para>
         <programlisting role="example"><![CDATA[ 
 a = testmatrix("hilb",4);
@@ -93,10 +103,11 @@ norm(l*u-a)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Example #2</title>
+        <title>例 #2</title>
         <para>
-            In the following example, we create the Hilbert matrix of size 4 and
-            factor it with EA=LU. Notice that the matrix L is lower triangular.
+            以下の例では,大きさ4のヒルバート行列を作成し,
+            EA=LU と分解します.
+            行列 L は下三角行列であることに注意してください.
         </para>
         <programlisting role="example"><![CDATA[ 
 a = testmatrix("hilb",4);
@@ -105,9 +116,10 @@ norm(l*u-e*a)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Example #3</title>
+        <title>例 #3</title>
         <para>
-            The following example shows how to use the lufact and luget functions.
+            以下の例では, lufact および luget 関数を使用する
+            方法を示しています.
         </para>
         <programlisting role="example"><![CDATA[ 
 a=rand(4,4);
@@ -124,8 +136,8 @@ Q=full(Q);
 norm(P*L*U*Q-a)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lufact">lufact</link>
@@ -145,10 +157,10 @@ norm(P*L*U*Q-a)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>使用する関数</title>
         <para>
-            lu decompositions are based on the Lapack routines DGETRF for real
-            matrices and ZGETRF for the complex case.
+            lu 分解 Lapack ルーチン DGETRF (実数行列の場合)
+            および ZGETRF (複素数の場合) に基づいています.
         </para>
     </refsection>
 </refentry>

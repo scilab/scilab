@@ -12,82 +12,82 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_cond2reltol" xml:lang="en">
-  <refnamediv>
-    <refname>assert_cond2reltol</refname>
-    <refpurpose>Suggests a relative error, computed from the condition number.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      rtol = assert_cond2reltol ( condition )
-      rtol = assert_cond2reltol ( condition , offset )
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>condition :</term>
-        <listitem>
-          <para> a matrix of doubles, the condition number. The condition number must be strictly positive.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>offset :</term>
-        <listitem>
-          <para> a matrix of doubles, a shift for the number of required decimal digits (default offset=0). For example, offset=1 increases the accuracy requirement (decreases the relative tolerance by a factor 10^-1), offset=-1 decreases the accuracy requirement (increases the relative tolerance by a factor 10^1).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rtol :</term>
-        <listitem>
-          <para> a matrix of doubles, the relative tolerance. The relative tolerance is strictly positive, lower than 1.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Depending on the condition number, returns the corresponding relative tolerance.
-    </para>
-    <para>
-      Any optional parameter equal to the empty matrix [] is set to its default value.
-    </para>
-    <para>
-      We emphasize that this relative tolerance is only a suggestion.
-      Indeed, there may be correct reasons of using a lower or a higher relative tolerance.
-    </para>
-    <para>
-      <itemizedlist>
-        <listitem>
-          <para>
-            Consider the case where an excellent algorithm is able to make accurate computations,
-            even for an ill-conditionned problem.
-            In this case, we may require more accuracy (positive offset).
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Consider the case where there is a trade-off between performance and accuracy, where performance wins.
-            In this case, we may require less accuracy (negative offset).
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-    <para>
-      Any scalar input argument is expanded to a matrix of doubles of the same size as the other input arguments.
-    </para>
-    <para>
-      We compute the number of required digits d, then the relative tolerance is 10^-d.
-    </para>
-    <para>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>assert_cond2reltol</refname>
+        <refpurpose>Suggests a relative error, computed from the condition number.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            rtol = assert_cond2reltol ( condition )
+            rtol = assert_cond2reltol ( condition , offset )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>condition :</term>
+                <listitem>
+                    <para> a matrix of doubles, the condition number. The condition number must be strictly positive.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>offset :</term>
+                <listitem>
+                    <para> a matrix of doubles, a shift for the number of required decimal digits (default offset=0). For example, offset=1 increases the accuracy requirement (decreases the relative tolerance by a factor 10^-1), offset=-1 decreases the accuracy requirement (increases the relative tolerance by a factor 10^1).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rtol :</term>
+                <listitem>
+                    <para> a matrix of doubles, the relative tolerance. The relative tolerance is strictly positive, lower than 1.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Depending on the condition number, returns the corresponding relative tolerance.
+        </para>
+        <para>
+            Any optional parameter equal to the empty matrix [] is set to its default value.
+        </para>
+        <para>
+            We emphasize that this relative tolerance is only a suggestion.
+            Indeed, there may be correct reasons of using a lower or a higher relative tolerance.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Consider the case where an excellent algorithm is able to make accurate computations,
+                        even for an ill-conditionned problem.
+                        In this case, we may require more accuracy (positive offset).
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Consider the case where there is a trade-off between performance and accuracy, where performance wins.
+                        In this case, we may require less accuracy (negative offset).
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Any scalar input argument is expanded to a matrix of doubles of the same size as the other input arguments.
+        </para>
+        <para>
+            We compute the number of required digits d, then the relative tolerance is 10^-d.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 assert_cond2reltol ( 0 ) // 1.110D-16
 assert_cond2reltol ( 1 ) // 1.110D-16
 assert_cond2reltol ( 1.e1 ) // 1.110D-15
@@ -135,15 +135,15 @@ plot(condition,r,"g")
 legend(["Offset=0","Offset=+3","Offset=-3"]);
 
    ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

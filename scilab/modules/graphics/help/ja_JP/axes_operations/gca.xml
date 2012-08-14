@@ -11,34 +11,34 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gca">
-  <refnamediv>
-    <refname>gca</refname>
-    <refpurpose>  カレントの軸のハンドルを返す. </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>a = gca()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>カレント軸エンティティのハンドル (ハンドル型).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      このルーチンはカレントの図のカレント軸のハンドルを返す.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>gca</refname>
+        <refpurpose>  カレントの軸のハンドルを返す. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>a = gca()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>カレント軸エンティティのハンドル (ハンドル型).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンはカレントの図のカレント軸のハンドルを返す.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 subplot(211)
 a=gca() //get the current axes
 a.box="off";
@@ -52,25 +52,25 @@ a.parent.background=4;
 delete(gca()) // delete the current axes    
 xdel(0) //delete a graphics window 
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="gda">gda</link>
-      </member>
-      <member>
-        <link linkend="gcf">gcf</link>
-      </member>
-      <member>
-        <link linkend="gce">gce</link>
-      </member>
-      <member>
-        <link linkend="get">get</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gda">gda</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="gce">gce</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

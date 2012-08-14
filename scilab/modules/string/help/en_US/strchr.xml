@@ -11,66 +11,66 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strchr">
-  <refnamediv>
-    <refname>strchr</refname>
-    <refpurpose>Find the first occurrence of a character in
-      a string
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>res = strchr(haystack,char)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>haystack</term>
-        <listitem>
-          <para>A character string or matrix of character strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>char</term>
-        <listitem>
-          <para>a character.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>res</term>
-        <listitem>
-          <para>A character string or matrix of character strings</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>res = strchr(haystack,char)</literal> returns the first occurrence
-      of <literal>char</literal> in the string <literal>haystack</literal>.
-    </para>
-    <para>
-      <literal>char</literal> must contain only one string or as many strings as in <literal>haystack</literal> (each one being one-character-long).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>strchr</refname>
+        <refpurpose>Find the first occurrence of a character in
+            a string
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>res = strchr(haystack,char)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>A character string or matrix of character strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>char</term>
+                <listitem>
+                    <para>a character.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>A character string or matrix of character strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>res = strchr(haystack,char)</literal> returns the first occurrence
+            of <literal>char</literal> in the string <literal>haystack</literal>.
+        </para>
+        <para>
+            <literal>char</literal> must contain only one string or as many strings as in <literal>haystack</literal> (each one being one-character-long).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 strchr('This is a sample string','s')
 strchr(['This is a sample string','in scilab'],'s')
 strchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strrchr">strrchr</link>
-      </member>
-      <member>
-        <link linkend="strstr">strstr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strrchr">strrchr</link>
+            </member>
+            <member>
+                <link linkend="strstr">strstr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

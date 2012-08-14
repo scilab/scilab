@@ -11,100 +11,100 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2exp">
-  <refnamediv>
-    <refname>sci2exp</refname>
-    <refpurpose> converts an expression to a string</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>a scilab expression, may be</para>
-          <variablelist>
+    <refnamediv>
+        <refname>sci2exp</refname>
+        <refpurpose> converts an expression to a string</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
             <varlistentry>
-              <term>-    </term>
-              <listitem>
-                <para>constant,</para>
-              </listitem>
+                <term>a</term>
+                <listitem>
+                    <para>a scilab expression, may be</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>constant,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>polynomial</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>string matrix</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>list</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>boolean matrix</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>-    </term>
-              <listitem>
-                <para>polynomial</para>
-              </listitem>
+                <term>nam</term>
+                <listitem>
+                    <para>character string</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>-    </term>
-              <listitem>
-                <para>string matrix</para>
-              </listitem>
+                <term>t</term>
+                <listitem>
+                    <para>vector of string, contains the expression or the affectation instruction</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>-    </term>
-              <listitem>
-                <para>list</para>
-              </listitem>
+                <term>lmax</term>
+                <listitem>
+                    <para>
+                        integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned
+                    </para>
+                </listitem>
             </varlistentry>
-            <varlistentry>
-              <term>-    </term>
-              <listitem>
-                <para>boolean matrix</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nam</term>
-        <listitem>
-          <para>character string</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>vector of string, contains the expression or the affectation instruction</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lmax</term>
-        <listitem>
-          <para>
-            integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
-      given or to an expression string.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
+            given or to an expression string.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 a=[1 2;3 4]
 sci2exp(a,'aa')
 sci2exp(a,'aa',0)
 sci2exp(ssrand(2,2,2))
 sci2exp(poly([1 0 3 4],'s'),'fi')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="prettyprint">prettyprint</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prettyprint">prettyprint</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

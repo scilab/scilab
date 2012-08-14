@@ -36,6 +36,7 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Pierre GRADIT
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class Title extends Panel implements XComponent {
 
     /** Universal identifier for serialization.

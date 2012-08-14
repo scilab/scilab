@@ -33,6 +33,7 @@
 #include "DrawObjects.h"
 #include "freeArrayOfString.h"
 #include "loadTextRenderingAPI.h"
+#include "sci_types.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -50,7 +51,7 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
     double* userGrads = NULL;
     char** userLabels = NULL;
 
-    if ( !isParameterTlist( valueType ) )
+    if ( !(valueType  == sci_tlist ))
     {
         Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "y_ticks");
         return SET_PROPERTY_ERROR ;
@@ -68,7 +69,7 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
 
     if ( userGrads == NULL && nbTicsRow == -1 )
     {
-        Scierror(999, _("%s: No more memory.\n"),"set_y_ticks_property");
+        Scierror(999, _("%s: No more memory.\n"), "set_y_ticks_property");
         return SET_PROPERTY_ERROR ;
     }
 
@@ -77,11 +78,11 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
 
     setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow * nbTicsCol);
 
     if (status == FALSE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_ticks");
         FREE(userGrads);
         return SET_PROPERTY_ERROR;
     }
@@ -91,13 +92,13 @@ int set_y_ticks_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
     // We need to check the size to not be 0 because an empty matrix is a matrix of double
     // and 'getCurrentStringMatrixFromList' expect a matrix of string (see bug 5148).
     // P.Lando
-    if( nbTicsCol * nbTicsRow )
+    if ( nbTicsCol * nbTicsRow )
     {
         userLabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
         /* Check if we should load LaTex / MathML Java libraries */
         loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
 
-        setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
+        setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow * nbTicsCol);
     }
     else
     {

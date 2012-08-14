@@ -159,7 +159,7 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "Palette");
 }
 // Method(s)
 
-void Palette::loadPal (JavaVM * jvm_, char const* path, char const* const* category, int categorySize){
+void Palette::loadPal (JavaVM * jvm_, char const* name, char const* const* category, int categorySize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -170,8 +170,8 @@ if (voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_Str
 throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
 }
 
-jstring path_ = curEnv->NewStringUTF( path );
-if (path != NULL && path_ == NULL)
+jstring name_ = curEnv->NewStringUTF( name );
+if (name != NULL && name_ == NULL)
 {
 throw GiwsException::JniBadAllocException(curEnv);
 }
@@ -199,9 +199,9 @@ curEnv->SetObjectArrayElement( category_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID ,path_, category_);
+                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID ,name_, category_);
                         curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(path_);
+curEnv->DeleteLocalRef(name_);
 curEnv->DeleteLocalRef(category_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
@@ -209,7 +209,7 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void Palette::loadPal (JavaVM * jvm_, char const* path){
+void Palette::loadPal (JavaVM * jvm_, char const* name){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -220,15 +220,15 @@ if (voidloadPaljstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "loadPal");
 }
 
-jstring path_ = curEnv->NewStringUTF( path );
-if (path != NULL && path_ == NULL)
+jstring name_ = curEnv->NewStringUTF( name );
+if (name != NULL && name_ == NULL)
 {
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringID ,path_);
-                        curEnv->DeleteLocalRef(path_);
+                         curEnv->CallStaticVoidMethod(cls, voidloadPaljstringjava_lang_StringID ,name_);
+                        curEnv->DeleteLocalRef(name_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

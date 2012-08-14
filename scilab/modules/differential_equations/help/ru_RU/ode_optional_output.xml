@@ -12,164 +12,164 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="ode_optional_output">
-  <refnamediv>
-    <refname>ode_optional_output</refname>
-    <refpurpose>
-      описание необязательных выходных данных программы решения ОДУ
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта страница описывает большинство важных значений, возвращаемых в необязательных 
-      аргументах левой части <link linkend="ode">ОДУ</link> <literal>w</literal> и 
-      <literal>iw</literal>. Они корректны только для программы решения ОДУ 
-      <literal>lsode</literal>,    <literal>lsoda</literal> и  <literal>lsodar</literal>. Больше 
-      подробностей можно узнать в комментариях к fortran-коду программы решения в 
-      <literal>SCI/modules/differential_equations/src/fortran/lsod*.f</literal>.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>w(11)</term>
-        <listitem>
-          <para> размер шага в последнее используемое t (успешно).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w(12)</term>
-        <listitem>
-          <para> размер шага, который будет опробован на следующем шаге.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w(13)</term>
-        <listitem>
-          <para> 
-            текущее значение независимой переменной, которое программа решения фактически 
-            достигла, то есть текущая внутренняя точка сетки в  t.  На выходе tcur будет всегда по 
-            меньшей мере до аргумента t, но может быть и дальше (если была сделана 
-            интерполяция).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w(14)</term>
-        <listitem>
-          <para>
-            масштабный коэффициент допуска более 1.0, вычисленный, когда был обнаружен 
-            запрос на гораздо бОльшую точность (istate = -3, если обнаружено в начале задачи, в 
-            противном случае istate = -2). Если itol оставлена неизменной, а rtol и atol одинаково 
-            увеличены на коэффициент <literal>tolsf=w(14)</literal> для следующего вызова, то 
-            считается, что программа решения достигла цели. (Пользователь может также 
-            игнорировать <literal>tolsf</literal> и менять параметры допусков любым иным 
-            подходящим способом.)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w(15)</term>
-        <listitem>
-          <para>
-            значение t в момент времени переключения последнего метода, если оно было. Эта 
-            величина не важна с программой решения <literal>lsode</literal>. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(10)</term>
-        <listitem>
-          <para> 
-            количество вычислений <literal>g</literal> для задачи на данное время. Это значение важно только для программы решения <literal>lsodar</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(11)</term>
-        <listitem>
-          <para> 
-            количество шагов, выполненных на данный момент для задачи.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(12)</term>
-        <listitem>
-          <para> 
-            количество вычислений f для задачи на данный момент.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(13)</term>
-        <listitem>
-          <para> 
-            количество вычислений якобиана (и LU-разложения матрицы) для задачи на текущий 
-            момент.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(14)</term>
-        <listitem>
-          <para>порядок метода, который использовался последним (успешно).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(15)</term>
-        <listitem>
-          <para>порядок, который будет предпринят на следующем шаге.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(16)</term>
-        <listitem>
-          <para>
-            индекс элемента с наибольшей амплитудой в векторе взвешенной местной ошибки 
-            ( e(i)/ewt(i) ), на возврат ошибки с istate = -4 или -5.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(17)</term>
-        <listitem>
-          <para> 
-            фактически требуемая длина <literal>w</literal> в предположении, что длина rwork 
-            будет фиксирована для остатка задачи, и что может произойти переключение. Это 
-            определяется на нормальных возвратах и на некорректном вводе возврата для 
-            неполного хранения.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(18)</term>
-        <listitem>
-          <para> 
-            фактически требуемая длина <literal>iw</literal> в предположении, что длина <literal>iw</literal> будет фиксирована для остатка задачи, и что может произойти переключение. Это определяется на нормальных возвратах и на некорректном вводе возврата для неполного хранения.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(19)</term>
-        <listitem>
-          <para> 
-            индикатор метода для последнего успешного шага. 1 означает adams (нежёсткий), 2 
-            означает bdf (жёсткий). Это значение не важно для программы решения
-            <literal>lsode</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iw(20)</term>
-        <listitem>
-          <para> 
-            индикатор текущего метода. 1 означает adams (нежёсткий), 2 
-            означает bdf (жёсткий). Это метод, который предпримут на следующем шаге. Таким 
-            образом, он отличается от <literal>iw(19)</literal> только если переключение метода 
-            было сделано только что. Это значение не важно для программы решения    
-            <literal>lsode</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+    <refnamediv>
+        <refname>ode_optional_output</refname>
+        <refpurpose>
+            описание необязательных выходных данных программы решения ОДУ
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта страница описывает большинство важных значений, возвращаемых в необязательных 
+            аргументах левой части <link linkend="ode">ОДУ</link> <literal>w</literal> и 
+            <literal>iw</literal>. Они корректны только для программы решения ОДУ 
+            <literal>lsode</literal>,    <literal>lsoda</literal> и  <literal>lsodar</literal>. Больше 
+            подробностей можно узнать в комментариях к fortran-коду программы решения в 
+            <literal>SCI/modules/differential_equations/src/fortran/lsod*.f</literal>.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>w(11)</term>
+                <listitem>
+                    <para> размер шага в последнее используемое t (успешно).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w(12)</term>
+                <listitem>
+                    <para> размер шага, который будет опробован на следующем шаге.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w(13)</term>
+                <listitem>
+                    <para> 
+                        текущее значение независимой переменной, которое программа решения фактически 
+                        достигла, то есть текущая внутренняя точка сетки в  t.  На выходе tcur будет всегда по 
+                        меньшей мере до аргумента t, но может быть и дальше (если была сделана 
+                        интерполяция).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w(14)</term>
+                <listitem>
+                    <para>
+                        масштабный коэффициент допуска более 1.0, вычисленный, когда был обнаружен 
+                        запрос на гораздо бОльшую точность (istate = -3, если обнаружено в начале задачи, в 
+                        противном случае istate = -2). Если itol оставлена неизменной, а rtol и atol одинаково 
+                        увеличены на коэффициент <literal>tolsf=w(14)</literal> для следующего вызова, то 
+                        считается, что программа решения достигла цели. (Пользователь может также 
+                        игнорировать <literal>tolsf</literal> и менять параметры допусков любым иным 
+                        подходящим способом.)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w(15)</term>
+                <listitem>
+                    <para>
+                        значение t в момент времени переключения последнего метода, если оно было. Эта 
+                        величина не важна с программой решения <literal>lsode</literal>. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(10)</term>
+                <listitem>
+                    <para> 
+                        количество вычислений <literal>g</literal> для задачи на данное время. Это значение важно только для программы решения <literal>lsodar</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(11)</term>
+                <listitem>
+                    <para> 
+                        количество шагов, выполненных на данный момент для задачи.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(12)</term>
+                <listitem>
+                    <para> 
+                        количество вычислений f для задачи на данный момент.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(13)</term>
+                <listitem>
+                    <para> 
+                        количество вычислений якобиана (и LU-разложения матрицы) для задачи на текущий 
+                        момент.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(14)</term>
+                <listitem>
+                    <para>порядок метода, который использовался последним (успешно).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(15)</term>
+                <listitem>
+                    <para>порядок, который будет предпринят на следующем шаге.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(16)</term>
+                <listitem>
+                    <para>
+                        индекс элемента с наибольшей амплитудой в векторе взвешенной местной ошибки 
+                        ( e(i)/ewt(i) ), на возврат ошибки с istate = -4 или -5.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(17)</term>
+                <listitem>
+                    <para> 
+                        фактически требуемая длина <literal>w</literal> в предположении, что длина rwork 
+                        будет фиксирована для остатка задачи, и что может произойти переключение. Это 
+                        определяется на нормальных возвратах и на некорректном вводе возврата для 
+                        неполного хранения.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(18)</term>
+                <listitem>
+                    <para> 
+                        фактически требуемая длина <literal>iw</literal> в предположении, что длина <literal>iw</literal> будет фиксирована для остатка задачи, и что может произойти переключение. Это определяется на нормальных возвратах и на некорректном вводе возврата для неполного хранения.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(19)</term>
+                <listitem>
+                    <para> 
+                        индикатор метода для последнего успешного шага. 1 означает adams (нежёсткий), 2 
+                        означает bdf (жёсткий). Это значение не важно для программы решения
+                        <literal>lsode</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iw(20)</term>
+                <listitem>
+                    <para> 
+                        индикатор текущего метода. 1 означает adams (нежёсткий), 2 
+                        означает bdf (жёсткий). Это метод, который предпримут на следующем шаге. Таким 
+                        образом, он отличается от <literal>iw(19)</literal> только если переключение метода 
+                        было сделано только что. Это значение не важно для программы решения    
+                        <literal>lsode</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
 </refentry>

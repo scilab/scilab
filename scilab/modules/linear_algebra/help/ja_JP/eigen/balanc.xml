@@ -10,78 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balanc">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="balanc">
     <refnamediv>
         <refname>balanc</refname>
-        <refpurpose> matrix or pencil balancing</refpurpose>
+        <refpurpose>行列またはペンシルの平衡化</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Ab,X]=balanc(A)
             [Eb,Ab,X,Y]=balanc(E,A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>A:  </term>
                 <listitem>
-                    <para>a real square matrix</para>
+                    <para>実数正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X:  </term>
                 <listitem>
-                    <para>a real square invertible matrix</para>
+                    <para>可逆な実数正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>E:  </term>
                 <listitem>
                     <para>
-                        a real square matrix (same dimension as <literal>A</literal>)
+                        実数正方行列 (<literal>A</literal>と同じ次元)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Y:  </term>
                 <listitem>
-                    <para>a real square invertible matrix.</para>
+                    <para>可逆な実数正方行列.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Balance a square matrix to improve
-            its condition number.
+            正方行列の条件数を改善するために平衡化します.
         </para>
         <para>
-            <literal>[Ab,X] = balanc(A)</literal> finds a similarity transformation
-            <literal>X</literal> such that
+            <literal>[Ab,X] = balanc(A)</literal> は,
+            <literal>Ab = inv(X)*A*X</literal>が近似的に等しい
+            行ノルムおよび列ノルムを有する
+            相似変換<literal>X</literal>を見つけます.
         </para>
         <para>
-            <literal>Ab = inv(X)*A*X</literal> has approximately equal row and column norms.
+            行列ペンシルの場合,平衡化は一般化固有値問題を改善することにより
+            行われます.
         </para>
         <para>
-            For matrix pencils,balancing is done for improving the
-            generalized eigenvalue problem.
-        </para>
-        <para>
-            <literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> returns left and right transformations <literal>X</literal> and <literal>Y</literal>
-            such that <literal>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            Balancing is made in the functions <literal>bdiag</literal> and <literal>spec</literal>.
+            <literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> は,
+            <literal>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</literal> となるような
+            左および右変換
+            <literal>X</literal> および <literal>Y</literal> を返します.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>注意</title>
+        <para>
+            平衡化は関数<literal>bdiag</literal> および <literal>spec</literal>
+            で行われます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=[1/2^10,1/2^10;2^10,2^10];
 [Ab,X]=balanc(A);
@@ -89,8 +90,8 @@ norm(A(1,:))/norm(A(2,:))
 norm(Ab(1,:))/norm(Ab(2,:))
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bdiag">bdiag</link>

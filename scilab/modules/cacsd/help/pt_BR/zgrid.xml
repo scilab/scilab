@@ -11,34 +11,34 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="zgrid" xml:lang="en">
-  <refnamediv>
-    <refname>zgrid</refname>
-    <refpurpose>esboçode um z-grid</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>zgrid()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Descrição</title>
-    <para>Esboça as linhas de grid de um Z-plano: linhas de fator constante de
-      amortecimento (zeta) e freqüência natural (Wn) são esboçadas dentro do
-      círculo unitário do Z-plano.
-    </para>
-    <para>Curvas de iso-freqüência são exibidas em freqüência*passo no
-      intervalo [0,0.5]. O limite superior corresponde à freqüência de Shannon
-      <literal>( 1/dt &gt; 2*f )</literal>.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="frep2tf">frep2tf</link>
-      </member>
-      <member>
-        <link linkend="freson">freson</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>zgrid</refname>
+        <refpurpose>esboçode um z-grid</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>zgrid()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Esboça as linhas de grid de um Z-plano: linhas de fator constante de
+            amortecimento (zeta) e freqüência natural (Wn) são esboçadas dentro do
+            círculo unitário do Z-plano.
+        </para>
+        <para>Curvas de iso-freqüência são exibidas em freqüência*passo no
+            intervalo [0,0.5]. O limite superior corresponde à freqüência de Shannon
+            <literal>( 1/dt &gt; 2*f )</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+            <member>
+                <link linkend="freson">freson</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

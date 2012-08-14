@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -69,7 +69,7 @@
             <varname>flagtrail</varname> -- это необязательный логический параметр. Когда его значение равно <constant>%t</constant> (значение по умолчанию), то заключительный разделитель (<literal>'\'</literal> или <literal>'/'</literal>) добавляется к концу пути, если он был пропущен. Если <varname>flagtrail</varname> установлен в <constant>%f</constant>, то заключительный разделитель удаляется.
         </para>
         <para>
-            <varname>flagexpand</varname> -- это необязательный логический параметр. Когда его значение равно<constant>%t</constant>, то строки, с которых начинается имя пути, такие как <varname>HOME</varname>, <varname>SCI</varname> или <literal>~</literal> расширяются с помощью переменных среды.
+            <varname>flagexpand</varname> -- это необязательный логический параметр. Когда его значение равно<constant>%t</constant>, то строки, с которых начинается имя пути, такие как <literal>HOME</literal>, <literal>SCI</literal> или <literal>~</literal> расширяются с помощью переменных среды.
         </para>
     </refsection>
     <refsection>

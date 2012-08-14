@@ -11,39 +11,39 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="init_param" xml:lang="en">
-  <refnamediv>
-    <refname>init_param</refname>
-    <refpurpose>Initialize the structure which will handles the parameters
-      list
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>param_list = init_param(['param_name1',param_value1,...])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>param_list</term>
-        <listitem>
-          <para>an initialized list of parameters (if no input
-            parameters are shipped, this list is empty and is
-            of type plist).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function initialize an empty list of parameters. You must
-      initialize the list of parameters before using it.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>init_param</refname>
+        <refpurpose>Initialize the structure which will handles the parameters
+            list
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>param_list = init_param(['param_name1',param_value1,...])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>param_list</term>
+                <listitem>
+                    <para>an initialized list of parameters (if no input
+                        parameters are shipped, this list is empty and is
+                        of type plist).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function initialize an empty list of parameters. You must
+            initialize the list of parameters before using it.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Creation of an empty plist
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
@@ -51,25 +51,25 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
 // Creation of a pre-filled plist
 mylist_2 = init_param('minbound', [0 0 0], 'maxbound', [1 1 1]);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="add_param">add_param</link>
-      </member>
-      <member>
-        <link linkend="set_param">set_param</link>
-      </member>
-      <member>
-        <link linkend="get_param">get_param</link>
-      </member>
-      <member>
-        <link linkend="remove_param">remove_param</link>
-      </member>
-      <member>
-        <link linkend="is_param">is_param</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="add_param">add_param</link>
+            </member>
+            <member>
+                <link linkend="set_param">set_param</link>
+            </member>
+            <member>
+                <link linkend="get_param">get_param</link>
+            </member>
+            <member>
+                <link linkend="remove_param">remove_param</link>
+            </member>
+            <member>
+                <link linkend="is_param">is_param</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

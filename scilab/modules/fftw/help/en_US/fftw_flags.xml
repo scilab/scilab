@@ -17,97 +17,101 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
           version="5.0-subset Scilab" xml:id="fftw_flags" xml:lang="en">
-  <refnamediv>
-    <refname>fftw_flags</refname>
-    <refpurpose>set method for fft planner algorithm selection
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>
-            a string or an integer. Specifies the planner
-            algorithm. See below.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>an integer. The planner code. See below.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>S</term>
-        <listitem>
-          <para>a character string. The planner name.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function enables the selection of the algorithm used to
-      determine the fftw planner algorithm. The planner is used to
-      determine an efficient way to compute the fft.
-    </para>
-    <para>
-      Warning: the default value "FFTW_MEASURE" gives
-      quite efficient plans. Try to change it only if the fft efficiency is
-      really important and you have a lot of simmilar calls to do.
-    </para>
-   
-    <para>Accepted entries are :</para>
-    <itemizedlist>
-      <listitem>
-        <para>FFTW_ESTIMATE or 64. Specifies that, instead of actual
-        measurements of different algorithms, a simple heuristic is
-        used to pick a (probably sub-optimal) plan quickly. With this
-        flag, the input/output arrays are not overwritten during
-        planning. It is the defailt value</para>
-      </listitem>
-      <listitem>
-        <para>"FFTW_MEASURE" or 0. tells FFTW to find an optimized
-        plan by actually computing several FFTs and measuring their
-        execution time. Depending on your machine, this can take some
-        time (often a few seconds). 
-        planning option.</para>
-      </listitem>
-      <listitem>
-        <para>FFTW_PATIENT or 32. It is like "FFTW_MEASURE", but
-        considers a wider range of algorithms and often produces a
-        “more optimal” plan (especially for large transforms), but at
-        the expense of several times longer planning time (especially
-        for large transforms). </para>
-      </listitem>
-    
-      <listitem>
-        <para>FFTW_EXHAUSTIVE or 8. It is like "FFTW_PATIENT", but
-        considers an even wider range of algorithms, including many
-        that we think are unlikely to be fast, to produce the most
-        optimal plan but with a substantially increased planning
-        time. </para>
-      </listitem>
-   </itemizedlist>
-    
-
-    <para>Remark : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
-      call two times fftw. (first call for initialisation, second and others
-      calls for computation)
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>fftw_flags</refname>
+        <refpurpose>set method for fft planner algorithm selection
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        a string or an integer. Specifies the planner
+                        algorithm. See below.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>an integer. The planner code. See below.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>a character string. The planner name.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function enables the selection of the algorithm used to
+            determine the fftw planner algorithm. The planner is used to
+            determine an efficient way to compute the fft.
+        </para>
+        <para>
+            Warning: the default value "FFTW_MEASURE" gives
+            quite efficient plans. Try to change it only if the fft efficiency is
+            really important and you have a lot of simmilar calls to do.
+        </para>
+        
+        <para>Accepted entries are :</para>
+        <itemizedlist>
+            <listitem>
+                <para>FFTW_ESTIMATE or 64. Specifies that, instead of actual
+                    measurements of different algorithms, a simple heuristic is
+                    used to pick a (probably sub-optimal) plan quickly. With this
+                    flag, the input/output arrays are not overwritten during
+                    planning. It is the defailt value
+                </para>
+            </listitem>
+            <listitem>
+                <para>"FFTW_MEASURE" or 0. tells FFTW to find an optimized
+                    plan by actually computing several FFTs and measuring their
+                    execution time. Depending on your machine, this can take some
+                    time (often a few seconds). 
+                    planning option.
+                </para>
+            </listitem>
+            <listitem>
+                <para>FFTW_PATIENT or 32. It is like "FFTW_MEASURE", but
+                    considers a wider range of algorithms and often produces a
+                    “more optimal” plan (especially for large transforms), but at
+                    the expense of several times longer planning time (especially
+                    for large transforms). 
+                </para>
+            </listitem>
+            
+            <listitem>
+                <para>FFTW_EXHAUSTIVE or 8. It is like "FFTW_PATIENT", but
+                    considers an even wider range of algorithms, including many
+                    that we think are unlikely to be fast, to produce the most
+                    optimal plan but with a substantially increased planning
+                    time. 
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        
+        <para>Remark : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
+            call two times fftw. (first call for initialisation, second and others
+            calls for computation)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 A=rand(1,2^9+2^15+2^17);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");
@@ -119,22 +123,22 @@ timer();y=fft(A);timer()//first call determines the plan
 timer();y=fft(A);timer() //subsequent similar calls
 
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="fft">fft</link>
-      </member>
-      <member>
-        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-      </member>
-     <member>
-        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

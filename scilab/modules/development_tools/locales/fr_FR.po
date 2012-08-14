@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-20 14:24+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-08-03 08:08+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: fr\n"
 
 #, c-format
@@ -203,6 +203,69 @@ msgid "The test %s is not available from the %s module"
 msgstr "Le test %s n'est pas disponible dans le module %s"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ligne de chaînes "
+"de caractères attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur ligne de "
+"chaînes de caractères attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ligne de chaînes "
+"de caractères ou une matrice vide attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur ligne de "
+"chaînes de caractères ou une matrice vide attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de module Scilab "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un langage valide "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de fonction du "
+"module '%s' attendu.\n"
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr "%s : Premier argument erroné : Fichier avec un suffixe .dia attendu."
 
@@ -236,8 +299,10 @@ msgstr "Le fichier ref (%s) n'existe pas"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
+"Le fichier '%s' ne respecte pas le format XML XUnit. La balise Root "
+"attendait 'testsuites'.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

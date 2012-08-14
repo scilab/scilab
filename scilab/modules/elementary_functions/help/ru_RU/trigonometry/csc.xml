@@ -3,60 +3,60 @@
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="csc" xml:lang="ru">
-  <refnamediv>
-    <refname>csc</refname>
-    <refpurpose>
-      вычисляет поэлементно косеканс аргумента.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y = csc(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>Вещественный или комплексный массив.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>Вещественный или комплексный массив тех же размеров, что и 
-            <literal>x</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Поэлементно вычисляет косеканс аргумента. Косеканс - это периодическая 
-      функция, определяемая как 1/sin. Для вещественных данных результаты вещественны и 
-      лежат на интервале <literal>]-%inf -1] U [1 %inf[</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>csc</refname>
+        <refpurpose>
+            вычисляет поэлементно косеканс аргумента.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y = csc(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Вещественный или комплексный массив.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>Вещественный или комплексный массив тех же размеров, что и 
+                        <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Поэлементно вычисляет косеканс аргумента. Косеканс - это периодическая 
+            функция, определяемая как 1/sin. Для вещественных данных результаты вещественны и 
+            лежат на интервале <literal>]-%inf -1] U [1 %inf[</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 x=linspace(0.01,%pi-0.01,200)
 clf();
 plot(-x,csc(-x),x,csc(x))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sec">sec</link>
-      </member>
-      <member>
-        <link linkend="cscd">cscd</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sec">sec</link>
+            </member>
+            <member>
+                <link linkend="cscd">cscd</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

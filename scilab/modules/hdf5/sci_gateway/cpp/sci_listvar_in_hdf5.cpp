@@ -27,7 +27,6 @@ extern "C"
 }
 
 #include <vector>
-#include "forceJHDF5load.hxx"
 
 typedef struct __VAR_INFO__
 {
@@ -66,10 +65,6 @@ int sci_listvar_in_hdf5(char *fname, void *pvApiCtx)
 
     CheckRhs(1, 1);
     CheckLhs(1, 4);
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

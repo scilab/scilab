@@ -11,64 +11,64 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="strstr" xml:lang="ja">
-  <refnamediv>
-    <refname>strstr</refname>
-    <refpurpose>部分文字列を取得</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>res = strstr(haystack,needle)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>haystack</term>
-        <listitem>
-          <para>文字列または文字列の行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>needle</term>
-        <listitem>
-          <para>文字列または文字列の行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>res</term>
-        <listitem>
-          <para>文字列または文字列の行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>res = strstr(haystack,needle)</literal> は
-      haystackの中でneedleが最初に現れる位置からhaystackの末尾までの
-      文字列行列を返します.haystackの部分が見つからない場合は
-      ''を返します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>strstr</refname>
+        <refpurpose>部分文字列を取得</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>res = strstr(haystack,needle)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>文字列または文字列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>文字列または文字列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>文字列または文字列の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>res = strstr(haystack,needle)</literal> は
+            haystackの中でneedleが最初に現れる位置からhaystackの末尾までの
+            文字列行列を返します.haystackの部分が見つからない場合は
+            ''を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 strstr('This is a simple string','simple')
 strstr('This is a simple string','sample')
 strstr(['This is a simple string','in scilab'],'is')
 strstr(['This is a sample string','in scilab'],['a','scilab'])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strrchr">strrchr</link>
-      </member>
-      <member>
-        <link linkend="strchr">strchr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strrchr">strrchr</link>
+            </member>
+            <member>
+                <link linkend="strchr">strchr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

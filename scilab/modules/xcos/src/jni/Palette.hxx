@@ -143,9 +143,9 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void loadPal(JavaVM * jvm_, char const* path, char const* const* category, int categorySize);
+static void loadPal(JavaVM * jvm_, char const* name, char const* const* category, int categorySize);
 
-static void loadPal(JavaVM * jvm_, char const* path);
+static void loadPal(JavaVM * jvm_, char const* name);
 
 static void addCategory(JavaVM * jvm_, char const* const* name, int nameSize, bool visible);
 

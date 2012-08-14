@@ -39,7 +39,7 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     int yNumberTicks = 0;
     int *piYNumberTicks = &yNumberTicks;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
@@ -49,13 +49,13 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 
     if (piYNumberTicks == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
     }
 
     if (yNumberTicks == 1)
     {
-        if( isStringParamEqual( stackPointer, "top" ) )
+        if ( isStringParamEqual( stackPointer, "top" ) )
         {
             ticksDirection = 0;
         }
@@ -71,7 +71,7 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        if( isStringParamEqual( stackPointer, "left" ) )
+        if ( isStringParamEqual( stackPointer, "left" ) )
         {
             ticksDirection = 2;
         }
@@ -94,7 +94,7 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
     }
 }

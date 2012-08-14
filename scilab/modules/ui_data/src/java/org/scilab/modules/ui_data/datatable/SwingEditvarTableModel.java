@@ -38,6 +38,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoableEdit;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingEditvarTableModel extends DefaultTableModel {
 
     private static final long serialVersionUID = -4255704246347716837L;
@@ -747,7 +748,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         } else if (type.equals(EditVar.INTEGER)) {
             ret = new Integer(0);
         } else if (type.equals(EditVar.COMPLEX)) {
-            ret = new Double[]{0.0, 0.0};
+            ret = new Double[] {0.0, 0.0};
         } else if (type.equals(EditVar.BOOLEAN)) {
             ret = Boolean.FALSE;
         } else if (type.equals(EditVar.SPARSE) || type.equals(EditVar.COMPLEXSPARSE) || type.equals(EditVar.BOOLEANSPARSE)) {
@@ -807,21 +808,21 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     private void execCommand(final String com, final Object oldValue, final int row, final int col) {
         try {
             CommonCallBack callback = new CommonCallBack("") {
-                    public void callBack() {
-                        editor.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                        if (oldValue != null) {
-                            Object newValue;
-                            if (oldValue instanceof Vector) {
-                                newValue = (Vector) dataVector.clone();
-                            } else {
-                                newValue = getValueAt(row, col);
-                            }
-                            if (!oldValue.equals(newValue)) {
-                                undoManager.addEdit(new CellsUndoableEdit(SwingEditvarTableModel.this, newValue, oldValue, row, col));
-                            }
+                public void callBack() {
+                    editor.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    if (oldValue != null) {
+                        Object newValue;
+                        if (oldValue instanceof Vector) {
+                            newValue = (Vector) dataVector.clone();
+                        } else {
+                            newValue = getValueAt(row, col);
+                        }
+                        if (!oldValue.equals(newValue)) {
+                            undoManager.addEdit(new CellsUndoableEdit(SwingEditvarTableModel.this, newValue, oldValue, row, col));
                         }
                     }
-                };
+                }
+            };
             editor.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             ScilabInterpreterManagement.asynchronousScilabExec(callback, com);
         } catch (InterpreterException e1) {

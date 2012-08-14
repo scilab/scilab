@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tempname">
     <refnamediv>
         <refname>tempname</refname>
-        <refpurpose>unique name for temporary file</refpurpose>
+        <refpurpose>
+            creates a file with an unique filename
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -43,8 +45,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>tempname</function> creates a file with a unique 
-            filename in the <varname>TMPDIR</varname> directory.
+            The <function>tempname</function> creates a file with an unique 
+            filename in the <literal>TMPDIR</literal> directory.
         </para>
         <para>
             <code>tmp_name = tempname()</code> returns an unique string, 
@@ -65,7 +67,9 @@
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>Function tempname introduced.</revremark>
+                <revremark>
+                    Function <function>tempname</function> introduced.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

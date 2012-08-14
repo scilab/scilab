@@ -44,7 +44,7 @@ int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "auto_ticks");
         return SET_PROPERTY_ERROR ;

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: \n"
 
 #, c-format
@@ -368,9 +368,6 @@ msgstr "Erreur : Impossible de définir la variable d'environnement %s.\n"
 
 msgid "Scilab Enterprises\n"
 msgstr "Scilab Enterprises\n"
-
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Consortium Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
 msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"

@@ -40,21 +40,21 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     char xy_type = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_style");
         return SET_PROPERTY_ERROR;
     }
 
     if (    !isStringParamEqual( stackPointer, "v" )
-         && !isStringParamEqual( stackPointer, "r" )
-         && !isStringParamEqual( stackPointer, "i" ) )
+            && !isStringParamEqual( stackPointer, "r" )
+            && !isStringParamEqual( stackPointer, "i" ) )
     {
         Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "tics_style", "v, r, i");
         return SET_PROPERTY_ERROR;
     }
 
-     /* get the character 'v', 'r' or 'i' */
+    /* get the character 'v', 'r' or 'i' */
     xy_type = getStringFromStack( stackPointer )[0];
 
     if (xy_type == 'v')
@@ -78,7 +78,7 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_style");
         return SET_PROPERTY_ERROR;
     }
 }

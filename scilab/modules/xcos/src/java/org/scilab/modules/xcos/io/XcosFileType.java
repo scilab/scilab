@@ -39,7 +39,6 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -138,20 +137,6 @@ public enum XcosFileType {
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
             loadScicosDiagram(file, into);
-        }
-
-        @Override
-        public void save(String file, XcosDiagram from) throws Exception {
-            throw new UnsupportedOperationException();
-        }
-    },
-    /**
-     * Represent the Scilab I/O format.
-     */
-    SOD("sod", XcosMessages.FILE_SOD) {
-        @Override
-        public void load(String file, XcosDiagram into) {
-            new H5RWHandler(file).readDiagram(into);
         }
 
         @Override
@@ -260,18 +245,21 @@ public enum XcosFileType {
      * @return The determined filetype
      */
     public static XcosFileType findFileType(FileFilter filter) {
-        XcosFileType retValue = null;
+        final FileFilter[] filters = getSavingFilters();
 
-        for (XcosFileType currentFileType : XcosFileType.values()) {
-            final File sample = new File("sample." + currentFileType.getExtension());
-
-            if (filter.accept(sample)) {
-                retValue = currentFileType;
+        int index = 0;
+        for (FileFilter fileFilter : filters) {
+            if (fileFilter == filter)
                 break;
-            }
+
+            index++;
         }
 
-        return retValue;
+        if (index > 0) {
+            return XcosFileType.values()[index - 1];
+        } else {
+            return null;
+        }
     }
 
     /**

@@ -11,58 +11,58 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="asin" xml:lang="en">
-  <refnamediv>
-    <refname>asin</refname>
-    <refpurpose>arco-seno</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>[t]=asin(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>vetor ou matriz de reais ou complexos </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>vetor ou matriz de reais ou complexos</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      As entradas de <literal>t</literal> são os arcos-senos das entradas
-      correspondentes de <literal>x</literal>. O domínio de deifinição é [-1,
-      1]. A função toma valores em conjuntos
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>asin</refname>
+        <refpurpose>arco-seno</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[t]=asin(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor ou matriz de reais ou complexos </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>vetor ou matriz de reais ou complexos</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            As entradas de <literal>t</literal> são os arcos-senos das entradas
+            correspondentes de <literal>x</literal>. O domínio de deifinição é [-1,
+            1]. A função toma valores em conjuntos
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4]
 sin(asin(A))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sin">sin</link>
-      </member>
-      <member>
-        <link linkend="sinm">sinm</link>
-      </member>
-      <member>
-        <link linkend="asinm">asinm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="sinm">sinm</link>
+            </member>
+            <member>
+                <link linkend="asinm">asinm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

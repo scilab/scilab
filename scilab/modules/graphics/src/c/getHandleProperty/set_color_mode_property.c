@@ -39,7 +39,7 @@ int set_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     BOOL status = FALSE;
     int colorMode = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "color_mode");
         return SET_PROPERTY_ERROR;
@@ -51,7 +51,7 @@ int set_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     if (status == FALSE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_mode");
         return SET_PROPERTY_ERROR;
     }
 

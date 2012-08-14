@@ -11,30 +11,30 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="percentpi" xml:lang="en">
-  <refnamediv>
-    <refname>%pi</refname>
-    <refpurpose>ratio of circle's circumference to its diameter</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>%pi</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>%pi</literal> returns the floating-point number nearest the value of <latex>\pi</latex>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example</title>
-    <programlisting role="example"><![CDATA[sin(%pi)]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sin">sin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>%pi</refname>
+        <refpurpose>ratio of circle's circumference to its diameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>%pi</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>%pi</literal> returns the floating-point number nearest the value of <latex>\pi</latex>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[sin(%pi)]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

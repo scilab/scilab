@@ -11,58 +11,58 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="sind" xml:lang="en">
-  <refnamediv>
-    <refname>sind</refname>
-    <refpurpose>sine function, argument in degree.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>t=sind(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real vector or matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>real vector or matrix with same dimensions as
-            <literal>x</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      For a vector or a matrix x , <literal>sind(x)</literal> is the sine
-      of its elements supposed to be given in degree. The results are in [-1 1].
-      For integers <literal>n</literal>, <literal>sind(n*180)</literal> is
-      exactly zero.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>sind</refname>
+        <refpurpose>sine function, argument in degree.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=sind(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>real vector or matrix with same dimensions as
+                        <literal>x</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            For a vector or a matrix x , <literal>sind(x)</literal> is the sine
+            of its elements supposed to be given in degree. The results are in [-1 1].
+            For integers <literal>n</literal>, <literal>sind(n*180)</literal> is
+            exactly zero.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[0,30 45 60 90 360];
 sind(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sin">sin</link>
-      </member>
-      <member>
-        <link linkend="sinm">sinm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="sinm">sinm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

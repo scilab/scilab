@@ -11,27 +11,27 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xpause">
-  <refnamediv>
-    <refname>xpause</refname>
-    <refpurpose> suspend Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xpause(microsecs)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xpause</literal> suspends the current process for the number of microseconds
-      specified by the argument. The actual suspension time may
-      be longer because of other activities in
-      the system, or because of the time spent in processing the
-      call.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xpause</refname>
+        <refpurpose> suspend Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xpause(microsecs)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xpause</literal> suspends the current process for the number of microseconds
+            specified by the argument. The actual suspension time may
+            be longer because of other activities in
+            the system, or because of the time spent in processing the
+            call.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t'); 
 plot3d1(t,t,z) 
@@ -43,5 +43,5 @@ for h=0:0.1:1
   xpause(100000)
 end
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

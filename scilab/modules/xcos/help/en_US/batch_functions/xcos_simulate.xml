@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcos_simulate">
-  <refnamediv>
-    <refname>xcos_simulate</refname>
-    <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>Info=xcos_simulate(scs_m, needcompile)</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Parameters_xcos_simulate">
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>scs_m</term>: A diagram data structure (see <link linkend="scicos_diagram">scs_m structure</link>).
-        <para/>
-      </varlistentry>
-      <varlistentry>
-        <term>needcompile</term>: An integer. If it equals 4,
-        then the simulator will perform a complete compilation of the diagram.
-        If not, it will use cached value of %cpr. DEPRECATED
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection id="Module_xcos_simulate">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>xcos_simulate</refname>
+        <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>Info=xcos_simulate(scs_m, needcompile)</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Parameters_xcos_simulate">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>scs_m</term>: A diagram data structure (see <link linkend="scicos_diagram">scs_m structure</link>).
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>needcompile</term>: An integer. If it equals 4,
+                then the simulator will perform a complete compilation of the diagram.
+                If not, it will use cached value of %cpr. DEPRECATED
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection id="Module_xcos_simulate">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_xcos_simulate">
+        <title>Description</title>
+        This function is used to simulate xcos diagrams in batch
+        mode. It requires the <link linkend="scicos_diagram">scs_m
+            structure
+        </link>
+        which can be obtained by loading in Scilab the
+        <literal>.xcos</literal> file (see <link linkend="importXcosDiagram">
+            importXcosDiagram
+        </link>
+        ).
+        
         <para>
-          <link linkend="xcos">xcos</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_xcos_simulate">
-    <title>Description</title>
-    This function is used to simulate xcos diagrams in batch
-    mode. It requires the <link linkend="scicos_diagram">scs_m
-      structure
-    </link>
-    which can be obtained by loading in Scilab the
-    <literal>.xcos</literal> file (see <link linkend="importXcosDiagram">
-      importXcosDiagram
-    </link>
-    ).
-    
-    <para>
-      User can also define <literal>pre_xcos_simulate</literal>
-      function that will run before simulation.
-      <programlisting role="example"><![CDATA[
+            User can also define <literal>pre_xcos_simulate</literal>
+            function that will run before simulation.
+            <programlisting role="example"><![CDATA[
       function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
       // Do nothing
       continueSimulation = %t;
       endfunction
       ]]></programlisting>
-      If this function fails the error will be trapped and the simulation aborted.
-      If <literal>continueSimulation</literal> is set to false, the simulation will stop.
-    </para>
-    <para>
-      User can also define <literal>post_xcos_simulate</literal>
-      function that will run after simulation.
-      <programlisting role="example"><![CDATA[
+            If this function fails the error will be trapped and the simulation aborted.
+            If <literal>continueSimulation</literal> is set to false, the simulation will stop.
+        </para>
+        <para>
+            User can also define <literal>post_xcos_simulate</literal>
+            function that will run after simulation.
+            <programlisting role="example"><![CDATA[
       function post_xcos_simulate(%cpr, scs_m, needcompile)
       // Do Nothing
       endfunction
       ]]></programlisting>
-      If this function fails the error will be trapped.
-    </para>
-  </refsection>
-  <refsection id="Filecontent_xcos_simulate">
-    <title>File content</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/xcos/macros/xcos_simulate.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Examples_xcos_simulate">
-    <title>Examples</title>
-    <para>
-      The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../images/batch_simulation.png"/>
-        </imageobject>
-      </mediaobject>
-      Simulate this diagram in batch mode and change some context values.
-      <programlisting role="example"><![CDATA[
+            If this function fails the error will be trapped.
+        </para>
+    </refsection>
+    <refsection id="Filecontent_xcos_simulate">
+        <title>File content</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/xcos/macros/xcos_simulate.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Examples_xcos_simulate">
+        <title>Examples</title>
+        <para>
+            The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+                </imageobject>
+            </mediaobject>
+            Simulate this diagram in batch mode and change some context values.
+            <programlisting role="example"><![CDATA[
       importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
 
       typeof(scs_m) //The diagram data structure
@@ -110,10 +110,10 @@
       counter
 
       ]]></programlisting>
-    </para>
-    <para>
-      Statistic analysis of the diagram using pre_xcos_simulate function.
-      <programlisting role="example"><![CDATA[
+        </para>
+        <para>
+            Statistic analysis of the diagram using pre_xcos_simulate function.
+            <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
 
 typeof(scs_m) //The diagram data structure
@@ -153,16 +153,16 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
     //first batch simulation with the parameters embedded in the diagram
     xcos_simulate(scs_m, 4);
       ]]></programlisting>
-    </para>
-    <para>
-      The xcos diagram: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../images/Command.png"/>
-        </imageobject>
-      </mediaobject>
-      Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
-      <programlisting role="example"><![CDATA[
+        </para>
+        <para>
+            The xcos diagram: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../images/Command.png"/>
+                </imageobject>
+            </mediaobject>
+            Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
+            <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command.xcos")
 
 // Clear any pre_xcos_simulation;
@@ -201,16 +201,16 @@ endfunction
 xcos_simulate(scs_m, 4);
 
       ]]></programlisting>
-    </para>
-    <para>
-      The xcos diagram: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../images/Command_bode.png"/>
-        </imageobject>
-      </mediaobject>
-      Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
-      <programlisting role="example"><![CDATA[
+        </para>
+        <para>
+            The xcos diagram: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../images/Command_bode.png"/>
+                </imageobject>
+            </mediaobject>
+            Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
+            <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command_bode.xcos")
 
 // Clear any post_xcos_simulation;
@@ -252,29 +252,29 @@ endfunction
 xcos_simulate(scs_m, 4);
 
       ]]></programlisting>
-    </para>
-  </refsection>
-  <refsection id="SeeAlso_xcos_simulate">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scicos_diagram">scs_m structure</link>
-      </member>
-      <member>
-        <link linkend="importXcosDiagram"> importXcosDiagram</link>
-      </member>
-      <member>
-        <link linkend="scicosim">scicosim: xcos batch simulation function</link>
-      </member>
-      <member>
-        <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
-      </member>
-      <member>
-        <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
-      </member>
-      <member>
-        <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
-      </member>
-    </simplelist>
-  </refsection>
+        </para>
+    </refsection>
+    <refsection id="SeeAlso_xcos_simulate">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_diagram">scs_m structure</link>
+            </member>
+            <member>
+                <link linkend="importXcosDiagram"> importXcosDiagram</link>
+            </member>
+            <member>
+                <link linkend="scicosim">scicosim: xcos batch simulation function</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
+            </member>
+            <member>
+                <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+            </member>
+            <member>
+                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

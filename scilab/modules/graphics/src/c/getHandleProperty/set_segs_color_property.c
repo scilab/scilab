@@ -40,7 +40,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     int* piNbSegs = &iNbSegs;
     int* segsColors = NULL;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "segs_color");
         return SET_PROPERTY_ERROR;
@@ -50,7 +50,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     if (piNbSegs == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_color");
         return SET_PROPERTY_ERROR;
     }
 
@@ -69,11 +69,11 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else if ( nbRow * nbCol == iNbSegs )
     {
-        segsColors = (int*) MALLOC(iNbSegs*sizeof(int));
+        segsColors = (int*) MALLOC(iNbSegs * sizeof(int));
 
         if (segsColors == NULL)
         {
-            Scierror(999, _("%s: No more memory.\n"),"set_segs_colors_property");
+            Scierror(999, _("%s: No more memory.\n"), "set_segs_colors_property");
             return SET_PROPERTY_ERROR;
         }
 
@@ -89,7 +89,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_colors");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_colors");
         return SET_PROPERTY_ERROR;
     }
 

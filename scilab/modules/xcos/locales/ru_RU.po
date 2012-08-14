@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-22 12:30+0000\n"
+"PO-Revision-Date: 2012-08-03 12:28+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -36,6 +36,60 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
+
+msgid "Straight"
+msgstr "Прямой"
+
+msgid "Horizontal"
+msgstr "Горизонтальный"
+
+msgid "Vertical"
+msgstr "Вертикальный"
+
+msgid "Simulation"
+msgstr "Моделирование"
+
+msgid "No trace nor debug printing"
+msgstr "Трассировка и отладка отключены"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Трассировка только блоков интегрирования"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Трассировка всех блоков и вызовы блока отладки"
+
+msgid "Debug block calls without trace"
+msgstr "Вызовы блока отладки без трассировки"
+
+msgid "Default simulation settings"
+msgstr ""
+
+msgid "Final integration time"
+msgstr "Конечное время интегрирования"
+
+msgid "Real time scaling"
+msgstr "Количество секунд в единице времени"
+
+msgid "Integrator absolute tolerance"
+msgstr "Абсолютная погрешность интегрирования"
+
+msgid "Integrator relative tolerance"
+msgstr "Относительная погрешность интегрирования"
+
+msgid "Tolerance on time"
+msgstr "Погрешность по времени"
+
+msgid "Max integration time interval"
+msgstr "Максимальный временной интервал интегрирования"
+
+msgid "Solver kind"
+msgstr "Вид программы решения"
+
+msgid "Maximum step size (0 means no limit)"
+msgstr "Максимальный размер шага (0 означает \"без ограничения\")"
+
+msgid "Default trace settings"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -74,7 +128,7 @@ msgstr ""
 "Ожидалась версия %s ; установлена версия %s ."
 
 msgid "parent diagram not found."
-msgstr ""
+msgstr "родительская схема не найдена."
 
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -364,9 +418,6 @@ msgstr "Информация о блоке"
 
 msgid "Show parent diagram"
 msgstr "Показать основную диаграмму"
-
-msgid "Simulation"
-msgstr "Моделирование"
 
 msgid "Setup"
 msgstr "Параметры"
@@ -670,45 +721,12 @@ msgstr "Цвет текста"
 msgid "Link Style"
 msgstr "Стиль соединений"
 
-msgid "Straight"
-msgstr "Прямой"
-
-msgid "Horizontal"
-msgstr "Горизонтальный"
-
-msgid "Vertical"
-msgstr "Вертикальный"
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Выберите уровень отладки (0,1,2,3) <br/> для выполнения scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "Трассировка и отладка"
-
-msgid "Final integration time"
-msgstr "Конечное время интегрирования"
-
-msgid "Real time scaling"
-msgstr "Количество секунд в единице времени"
-
-msgid "Integrator absolute tolerance"
-msgstr "Абсолютная погрешность интегрирования"
-
-msgid "Integrator relative tolerance"
-msgstr "Относительная погрешность интегрирования"
-
-msgid "Tolerance on time"
-msgstr "Погрешность по времени"
-
-msgid "Max integration time interval"
-msgstr "Максимальный временной интервал интегрирования"
-
-msgid "Solver kind"
-msgstr "Вид программы решения"
-
-msgid "maximum step size (0 means no limit)"
-msgstr "Максимальный размер шага (0 - без ограничений)"
 
 msgid "Default"
 msgstr "По умолчанию"
@@ -753,18 +771,6 @@ msgid ""
 msgstr ""
 "Нажмите левую кнопку мыши на диаграмме для добавления узла связи или на "
 "совместимой цели для завершения"
-
-msgid "No trace nor debug printing"
-msgstr "Трассировка и отладка отключены"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Трассировка только блоков интегрирования"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Трассировка всех блоков и вызовы блока отладки"
-
-msgid "Debug block calls without trace"
-msgstr "Вызовы блока отладки без трассировки"
 
 msgid "All supported formats"
 msgstr "Все поддерживаемые форматы"

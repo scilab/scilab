@@ -14,20 +14,6 @@ USEANT=1
 endif
 endif
 
-
-
-if NEED_JAVA
-
-# This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp \
-src/jni/jhdf5load.hxx \
-src/jni/jhdf5load.cpp
-else
-
-# This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES =
-endif
-
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
@@ -40,22 +26,6 @@ HDF5_CPP_SOURCES = \
     src/cpp/h5_writeDataToFile.cpp \
     src/cpp/dynhdf5.cpp \
     src/cpp/h5_readDataFromFile.cpp
-
-FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
-
-libscihdf5_forceload_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
-libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
-libscihdf5_forceload_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
-
-libscihdf5_forceload_disable_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
-libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
-libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
-
-GIWS_WRAPPERS = src/jni/jhdf5load.giws.xml
-
-if GIWS
-BUILT_SOURCES=giws
-endif
 
 
 #### hdf5 : include files ####
@@ -94,12 +64,6 @@ noinst_LTLIBRARIES =
 noinst_LTLIBRARIES += libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
-
-if NEED_JAVA
-noinst_LTLIBRARIES += libscihdf5-forceload.la
-endif
-
-pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
 
 libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 

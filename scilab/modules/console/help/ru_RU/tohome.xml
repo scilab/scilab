@@ -11,41 +11,41 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="tohome">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-  <refnamediv>
-    <refname>tohome</refname>
-    <refpurpose>перемещение курсора в верхний левый угол командного окна</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>tohome()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Команда <literal>tohome()</literal> перемещает курсор в верхний левый
-      угол командного окна и очищает экран.
-    </para>
-    <para>
-      Можете использовать ползунок для того, чтобы посмотреть
-      историю предыдущих функций.
-    </para>
-    <para>
-      <note>
-        Заметьте, что <literal>tohome()</literal> нельзя использовать на платформах
-        Windows, когда Scilab используется в неграфическом режиме.
-      </note>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="clc">clc</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>tohome</refname>
+        <refpurpose>перемещение курсора в верхний левый угол командного окна</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>tohome()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Команда <literal>tohome()</literal> перемещает курсор в верхний левый
+            угол командного окна и очищает экран.
+        </para>
+        <para>
+            Можете использовать ползунок для того, чтобы посмотреть
+            историю предыдущих функций.
+        </para>
+        <para>
+            <note>
+                Заметьте, что <literal>tohome()</literal> нельзя использовать на платформах
+                Windows, когда Scilab используется в неграфическом режиме.
+            </note>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="clc">clc</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
 

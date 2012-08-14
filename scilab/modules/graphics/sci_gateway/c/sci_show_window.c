@@ -34,14 +34,15 @@
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
 #include "CurrentSubwin.h"
+#include "sci_types.h"
 /*--------------------------------------------------------------------------*/
-int sci_show_window( char *fname,unsigned long fname_len )
+int sci_show_window( char *fname, unsigned long fname_len )
 {
     char* pFigureUID = NULL;
     char* pstrAxesUID = NULL;
 
-    CheckRhs(0,1);
-    CheckLhs(0,1);
+    CheckRhs(0, 1);
+    CheckLhs(0, 1);
 
     if ( Rhs == 1 )
     {
@@ -52,14 +53,14 @@ int sci_show_window( char *fname,unsigned long fname_len )
         size_t stackPointer = 0 ;
         char *type = NULL;
 
-        if ( isParameterHandle( paramType ) )
+        if ( ( paramType == sci_handles ) )
         {
             /* by tis handle */
-            GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
+            GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
 
             if ( nbRow * nbCol != 1 )
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+                Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
                 return -1 ;
             }
 
@@ -67,29 +68,29 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
             if (pFigureUID == NULL)
             {
-                Scierror(999, _("%s: Handle does not or no longer exists.\n"),fname);
+                Scierror(999, _("%s: Handle does not or no longer exists.\n"), fname);
                 return -1 ;
             }
 
             getGraphicObjectProperty(pFigureUID, __GO_TYPE__, jni_string, (void **) &type);
             if (strcmp(type, __GO_FIGURE__) != 0)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
                 return -1 ;
             }
 
         }
-        else if ( isParameterDoubleMatrix( paramType ) )
+        else if ( ( paramType == sci_matrix ) )
         {
             /* by its number */
             int winNum = 0;
-            GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
+            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
             if ( nbRow * nbCol != 1 )
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname, 1, "Figure");
+                Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
                 return -1 ;
             }
-            winNum = (int) getDoubleFromStack(stackPointer);
+            winNum = (int) * (stk(stackPointer));
             pFigureUID = (char*)getFigureFromIndex(winNum);
 
             if (pFigureUID == NULL)
@@ -104,7 +105,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"),fname,1, "Figure");
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
             return -1;
         }
     }
@@ -119,7 +120,7 @@ int sci_show_window( char *fname,unsigned long fname_len )
     /* Check that the requested figure really exists */
     if ( pFigureUID == NULL )
     {
-        Scierror(999, _("%s: '%s' handle does not or no longer exists.\n"),fname,"Figure");
+        Scierror(999, _("%s: '%s' handle does not or no longer exists.\n"), fname, "Figure");
         return -1 ;
     }
 

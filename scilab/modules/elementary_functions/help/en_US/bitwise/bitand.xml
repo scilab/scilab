@@ -13,67 +13,67 @@
  * 
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitand" xml:lang="en">
-  <refnamediv>
-    <refname>bitand</refname>
-    <refpurpose>bitwise AND</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      z = bitand(x,y)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-            Must contain positive integer values.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles 
-            or a m-by-n matrix of unsigned integers.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Given x, y two positive integers, this function returns the decimal 
-      number whose the binary form is the AND of the binary representations
-      of x and y.
-    </para>
-    <para>
-      <literal>x</literal>, <literal>y</literal>, <literal>z</literal> have the same size.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>bitand</refname>
+        <refpurpose>bitwise AND</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            z = bitand(x,y)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        a m-by-n matrix of doubles
+                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        a m-by-n matrix of doubles
+                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        a m-by-n matrix of doubles
+                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles 
+                        or a m-by-n matrix of unsigned integers.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given x, y two positive integers, this function returns the decimal 
+            number whose the binary form is the AND of the binary representations
+            of x and y.
+        </para>
+        <para>
+            <literal>x</literal>, <literal>y</literal>, <literal>z</literal> have the same size.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // '1010110' : is the binary representation of 86 
 // '1011011' : is the binary representation of 91   
 // '1010010' : is the binary representation for the AND of binary representation 86 and 91 
@@ -110,19 +110,19 @@ bitand(uint8(13), uint8(27))
 bitand(13, 27)
 
    ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="bitor">bitor</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitor">bitor</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

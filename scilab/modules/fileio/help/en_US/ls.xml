@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            files=ls [path]
-            files=ls( [path] )
+            files = ls [path]
+            files = ls( [path] )
         </synopsis>
     </refsynopsisdiv>
     <refsection>

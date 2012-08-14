@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="with_texmacs" xml:lang="ru">
-  <refnamediv>
-    <refname>with_texmacs</refname>
-    <refpurpose>проверка: вызван ли Scilab TeXmacs'ом</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>r = with_texmacs()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>логическое значение</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Возвращает <literal>%t</literal>, если Scilab вызван TeXmacs'ом
-      (необходимо установить ATOMS-модуль: atomsInstall('texmacs'))
-    </para>
-  </refsection>
-  <refsection>
-    <title>История</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Эта функция будет удалена в Scilab 5.4.1</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    <refnamediv>
+        <refname>with_texmacs</refname>
+        <refpurpose>проверка: вызван ли Scilab TeXmacs'ом</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>r = with_texmacs()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>логическое значение</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Возвращает <literal>%t</literal>, если Scilab вызван TeXmacs'ом
+            (необходимо установить ATOMS-модуль: atomsInstall('texmacs'))
+        </para>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Эта функция будет удалена в Scilab 5.4.1</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

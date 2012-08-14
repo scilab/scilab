@@ -13,120 +13,120 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="read_csv" xml:lang="ru">
-  
-  <refnamediv>
     
-    <refname>read_csv</refname>
-    
-    <refpurpose>читает файл, содержащий значения, разделённые запятой (csv)</refpurpose>
-    
-  </refnamediv>
-  
-  <refsynopsisdiv>
-    
-    <title>Последовательность вызова</title>
-    
-    <synopsis>M = read_csv(fname [,sep])</synopsis>
-    
-  </refsynopsisdiv>
-  
-  <refsection>
-    
-    <title>Аргументы</title>
-    
-    <variablelist>
-      
-      <varlistentry>
+    <refnamediv>
         
-        <term>fname</term>
+        <refname>read_csv</refname>
         
-        <listitem>
-          
-          <para>символьная строка. Имя файла и путь до него.</para>
-          
-        </listitem>
+        <refpurpose>читает файл, содержащий значения, разделённые запятой (csv)</refpurpose>
         
-      </varlistentry>
-      
-      <varlistentry>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <term>sep</term>
+        <title>Последовательность вызова</title>
         
-        <listitem>
-          
-          <para>
+        <synopsis>M = read_csv(fname [,sep])</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>Аргументы</title>
+        
+        <variablelist>
             
-            символьная строка. Используемый разделитель полей, значение по умолчанию
+            <varlistentry>
+                
+                <term>fname</term>
+                
+                <listitem>
+                    
+                    <para>символьная строка. Имя файла и путь до него.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            ",".
+            <varlistentry>
+                
+                <term>sep</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        символьная строка. Используемый разделитель полей, значение по умолчанию
+                        
+                        ",".
+                        
+                    </para>
+                    
+                    <para>
+                        
+                        Можно использовать <literal>ascii(9)</literal> или <literal>"\t"</literal> для разделителя табуляцией.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-          </para>
-          
-          <para>
+            <varlistentry>
+                
+                <term>M</term>
+                
+                <listitem>
+                    
+                    <para>матрица строковых значений.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            Можно использовать <literal>ascii(9)</literal> или <literal>"\t"</literal> для разделителя табуляцией.
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Описание</title>
+        
+        <para>
             
-          </para>
-          
-        </listitem>
+            Для указанного ascii-файла с разделёнными полями, например созданного
+            
+            электронной таблицей, используя формат "Текст и запятая",
+            
+            <literal>М = read_csv(fname)</literal> возвращает соответствующую Scilab-матрицу
+            
+            строк <literal>M</literal>. Для того, чтобы выбрать иной разделитель, используйте 
+            
+            <literal>M = read_csv(fname,sep)</literal>.
+            
+        </para>
         
-      </varlistentry>
-      
-      <varlistentry>
+        <para>
+            
+            <note>
+                
+                Вы можете преобразовать часть или все элементы матрицы <literal>M</literal>
+                
+                в числовое представление используя функцию <literal>evstr</literal>,
+                
+                которая преобразует строковые значения в числовые.
+                
+            </note>
+            
+        </para>
         
-        <term>M</term>
-        
-        <listitem>
-          
-          <para>матрица строковых значений.</para>
-          
-        </listitem>
-        
-      </varlistentry>
-      
-    </variablelist>
+    </refsection>
     
-  </refsection>
-  
-  <refsection>
-    
-    <title>Описание</title>
-    
-    <para>
-      
-      Для указанного ascii-файла с разделёнными полями, например созданного
-      
-      электронной таблицей, используя формат "Текст и запятая",
-      
-      <literal>М = read_csv(fname)</literal> возвращает соответствующую Scilab-матрицу
-      
-      строк <literal>M</literal>. Для того, чтобы выбрать иной разделитель, используйте 
-      
-      <literal>M = read_csv(fname,sep)</literal>.
-      
-    </para>
-    
-    <para>
-      
-      <note>
+    <refsection>
         
-        Вы можете преобразовать часть или все элементы матрицы <literal>M</literal>
+        <title>Примеры</title>
         
-        в числовое представление используя функцию <literal>evstr</literal>,
-        
-        которая преобразует строковые значения в числовые.
-        
-      </note>
-      
-    </para>
-    
-  </refsection>
-  
-  <refsection>
-    
-    <title>Примеры</title>
-    
-    <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
       // создадим файл с какими-то данными, разделёнными табулятором
       A = 1:50;
       mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
@@ -140,31 +140,31 @@
       // сравним исходные данные и результат
       and(A == C)
     ]]></programlisting>
-    
-  </refsection>
-  
-  <refsection role="see also">
-    
-    <title>Смотрите также</title>
-    
-    <simplelist type="inline">
-      
-      <member>
         
-        <link linkend="write_csv">write_csv</link>
-        
-      </member>
-      
-      <member>
-        
-        <link linkend="evstr">evstr</link>
-        
-      </member>
-      
-    </simplelist>
+    </refsection>
     
-  </refsection>
-  
+    <refsection role="see also">
+        
+        <title>Смотрите также</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="write_csv">write_csv</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="evstr">evstr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
 </refentry>
 
 

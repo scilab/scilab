@@ -88,7 +88,7 @@
             <varname>msg</varname>. 
         </para>
         <para>   
-            <informaltable frame='all'>
+            <informaltable border="1">
                 <tr>
                     <td>
                         <varname>status</varname>
@@ -162,7 +162,7 @@ cd TMPDIR;
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="cd">cd</link>
+                <link linkend="chdir">chdir</link>
             </member>
             <member>
                 <link linkend="dir">dir</link>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-22 20:51+0000\n"
+"PO-Revision-Date: 2012-08-02 19:45+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -188,6 +188,61 @@ msgid "The test %s is not available from the %s module"
 msgstr "Test %s není dostupný z modulu %s"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno řádkové pole řetězců.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno řádkové pole "
+"řetězců.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno řádkové pole řetězců nebo "
+"prázdná matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno řádkové pole řetězců "
+"nebo prázdná matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván název modulu Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný jazyk.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván název modulu funkce "
+"'%s'.4\n"
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr "%s: Chybný první vstupní argument: Očekáván .dia soubor."
 
@@ -221,9 +276,10 @@ msgstr "Ref soubor (%s) neexistuje"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
-"Soubor '%s'se neřídí formátem XUnit XML. Značka root očekává 'testsuites"
+"Soubor '%s' se neřídí formátem Xunit XML. Očekávána kořenová značka "
+"'testsuites'.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

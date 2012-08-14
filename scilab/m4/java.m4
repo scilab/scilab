@@ -151,7 +151,7 @@ public class conftest {
     public static void main(String[[]] argv) {
         [$2]
     }
-    
+
     private static int compare(String v1, String v2) {
         String s1 = normalisedVersion(v1);
         String s2 = normalisedVersion(v2);
@@ -393,7 +393,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          else
         case "$host_os" in
              *darwin* )
-                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/"
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
                   ;;
               *)
                        AC_MSG_ERROR([Could not locate Java's jni.h include file])

@@ -22,6 +22,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Sylvestre Koumar
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class PreviousTabAction extends DefaultAction {
 
     /**

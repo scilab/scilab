@@ -41,7 +41,7 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_shift");
         return SET_PROPERTY_ERROR;
@@ -57,7 +57,7 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
 
     if (piNumElements == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_shift");
         return SET_PROPERTY_ERROR;
     }
 
@@ -67,16 +67,16 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR;
     }
 
-    if( nbElement != 0 )
+    if ( nbElement != 0 )
     {
-        shiftCoordinates = (double*) getDoubleMatrixFromStack(stackPointer);
+        shiftCoordinates = (double*) stk(stackPointer);
 
         result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 
         /* The FALSE value is used for now to identify a failed memory allocation */
         if (result == FALSE)
         {
-            Scierror(999, _("%s: No more memory.\n"),"set_z_shift_property");
+            Scierror(999, _("%s: No more memory.\n"), "set_z_shift_property");
             return SET_PROPERTY_ERROR;
         }
     }

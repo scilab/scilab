@@ -140,9 +140,6 @@
                 <link linkend="mfscanf">mfscanf</link>
             </member>
             <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
                 <link linkend="mget">mget</link>
             </member>
             <member>
@@ -159,9 +156,6 @@
             </member>
             <member>
                 <link linkend="mputstr">mputstr</link>
-            </member>
-            <member>
-                <link linkend="mscanf">mscanf</link>
             </member>
             <member>
                 <link linkend="mseek">mseek</link>

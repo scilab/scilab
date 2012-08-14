@@ -30,7 +30,7 @@
 /*------------------------------------------------------------------------*/
 int set_text_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
         return SET_PROPERTY_ERROR;

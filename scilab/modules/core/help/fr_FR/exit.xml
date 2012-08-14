@@ -11,51 +11,51 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="exit" xml:lang="fr">
-  <refnamediv>
-    <refname>exit</refname>
-    <refpurpose>Termine la session courante de scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>exit
-      exit(n)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>Termine la session courante de scilab</para>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>Le status de sortie retournera  n (si specifie). Autrement, la valeur sera zero.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>exit</refname>
+        <refpurpose>Termine la session courante de scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>exit
+            exit(n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>Termine la session courante de scilab</para>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>Le status de sortie retournera  n (si specifie). Autrement, la valeur sera zero.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 exit
 i = 4;
 exit(i);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="quit">quit</link>
-      </member>
-      <member>
-        <link linkend="abort">abort</link>
-      </member>
-      <member>
-        <link linkend="break">break</link>
-      </member>
-      <member>
-        <link linkend="resume">resume</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

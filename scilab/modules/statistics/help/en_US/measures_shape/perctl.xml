@@ -11,58 +11,58 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perctl">
-  <refnamediv>
-    <refname>perctl</refname>
-    <refpurpose> computation of percentils</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>p=perctl(x,y)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real or complex vector or matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>vector of positif integer values between 0 and 100.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Compute the matrix p of percentils (in increasing
-      order, column  first) of the real vector or matrix
-      x.
-    </para>
-    <para>The percentils are indicated by the entries of y, the values
-      of entries of y must be positive integers between
-      0 and 100. 
-    </para>
-    <para>p is a matrix whose type is
-      length(y) x 2 and the content of its first column
-      are the percentils values.
-    </para>
-    <para>The contents of its second
-      column are  the places of the computed percentiles in
-      the input matrix x.
-    </para>
-    <para>
-      The minimum or maximum values in x are assigned to
-      percentiles for percent values outside that range.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>perctl</refname>
+        <refpurpose> computation of percentils</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>p=perctl(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real or complex vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vector of positif integer values between 0 and 100.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Compute the matrix p of percentils (in increasing
+            order, column  first) of the real vector or matrix
+            x.
+        </para>
+        <para>The percentils are indicated by the entries of y, the values
+            of entries of y must be positive integers between
+            0 and 100. 
+        </para>
+        <para>p is a matrix whose type is
+            length(y) x 2 and the content of its first column
+            are the percentils values.
+        </para>
+        <para>The contents of its second
+            column are  the places of the computed percentiles in
+            the input matrix x.
+        </para>
+        <para>
+            The minimum or maximum values in x are assigned to
+            percentiles for percent values outside that range.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[6  7 0 7 10 4 2 2 7  1;
    6  0 5 5 5  2 0 6 8  10;
    8  6 4 3 5  9 8 3 4  7;
@@ -76,13 +76,13 @@ x=[6  7 0 7 10 4 2 2 7  1;
 y=[10 20 30]
 p=perctl(x,y)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Bibliography</title>
-    <para>
-      HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
-      Statistical   Packages,   The  American   Statistician,
-      Nov.1996, Vol 50, No.4
-    </para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
+            Statistical   Packages,   The  American   Statistician,
+            Nov.1996, Vol 50, No.4
+        </para>
+    </refsection>
 </refentry>

@@ -11,65 +11,65 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="glue" xml:lang="en">
-  <refnamediv>
-    <refname>glue</refname>
-    <refpurpose>Cola um conjunto de entidades gráficas em um Compound
-      ("composto") 
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>glue(H)
-      h_agreg=glue(H)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>H</term>
-        <listitem>
-          <para>um vetor de manipuladores </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>h_agreg</term>
-        <listitem>
-          <para>manipulador da entidade Compound.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Dado um vetor de manipuladores, esta função cola as entidades
-      correspondentes em um único Compound e retorna o manipulador desta nova
-      entidade.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>glue</refname>
+        <refpurpose>Cola um conjunto de entidades gráficas em um Compound
+            ("composto") 
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>glue(H)
+            h_agreg=glue(H)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>um vetor de manipuladores </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h_agreg</term>
+                <listitem>
+                    <para>manipulador da entidade Compound.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Dado um vetor de manipuladores, esta função cola as entidades
+            correspondentes em um único Compound e retorna o manipulador desta nova
+            entidade.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="get">get</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="move">move</link>
-      </member>
-      <member>
-        <link linkend="unglue">unglue</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="move">move</link>
+            </member>
+            <member>
+                <link linkend="unglue">unglue</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

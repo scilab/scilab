@@ -40,7 +40,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int value
     BOOL status = FALSE;
     char* type = NULL;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "box");
         return SET_PROPERTY_ERROR ;

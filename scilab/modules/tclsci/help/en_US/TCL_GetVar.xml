@@ -11,60 +11,60 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_GetVar">
-  <refnamediv>
-    <refname>TCL_GetVar</refname>
-    <refpurpose>Get a tcl/tk variable
-      value
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>value=TCL_GetVar(Varname [,interp])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>varname</term>
-        <listitem>
-          <para>character string. Contains the name of the tcl/tk
-            variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>interp</term>
-        <listitem>
-          <para>optional character string parameter. Name of the slave tcl
-            interpreter in which the operation has to be performed. If not
-            provided, it defaults to the main tcl interpreter created by
-            Scilab.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>value</term>
-        <listitem>
-          <para>may be a character string or a strings matrix. Contains the
-            value of the tcl/tk variable <literal>varname</literal> in the interpreter
-            <literal>interp</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>When tcl/tk support is enabled in Scilab, this routine can be used to
-      retreive the value of a tcl/tk variable.
-    </para>
-    <para>
-      More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>TCL_GetVar</refname>
+        <refpurpose>Get a tcl/tk variable
+            value
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>value=TCL_GetVar(Varname [,interp])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>varname</term>
+                <listitem>
+                    <para>character string. Contains the name of the tcl/tk
+                        variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>interp</term>
+                <listitem>
+                    <para>optional character string parameter. Name of the slave tcl
+                        interpreter in which the operation has to be performed. If not
+                        provided, it defaults to the main tcl interpreter created by
+                        Scilab.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>may be a character string or a strings matrix. Contains the
+                        value of the tcl/tk variable <literal>varname</literal> in the interpreter
+                        <literal>interp</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>When tcl/tk support is enabled in Scilab, this routine can be used to
+            retreive the value of a tcl/tk variable.
+        </para>
+        <para>
+            More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 TCL_EvalStr("toplevel .tst1");
 
 // creates a toplevel TK window. 
@@ -130,37 +130,37 @@ TCL_SetVar("ScalarTCL_slave",1.22,'SlaveInterp3')
 ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'SlaveInterp3')
 TCL_DeleteInterp('SlaveInterp3')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ScilabEval">ScilabEval</link>
-      </member>
-      <member>
-        <link linkend="TCL_EvalFile">TCL_EvalFile</link>
-      </member>
-      <member>
-        <link linkend="TCL_EvalStr">TCL_EvalStr</link>
-      </member>
-      <member>
-        <link linkend="TCL_SetVar">TCL_SetVar</link>
-      </member>
-      <member>
-        <link linkend="TCL_ExistVar">TCL_ExistVar</link>
-      </member>
-      <member>
-        <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
-      </member>
-      <member>
-        <link linkend="TCL_UpVar">TCL_UpVar</link>
-      </member>
-      <member>
-        <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
-      </member>
-      <member>
-        <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ScilabEval">ScilabEval</link>
+            </member>
+            <member>
+                <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+            </member>
+            <member>
+                <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+            </member>
+            <member>
+                <link linkend="TCL_SetVar">TCL_SetVar</link>
+            </member>
+            <member>
+                <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+            </member>
+            <member>
+                <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+            </member>
+            <member>
+                <link linkend="TCL_UpVar">TCL_UpVar</link>
+            </member>
+            <member>
+                <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+            </member>
+            <member>
+                <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

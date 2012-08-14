@@ -11,56 +11,56 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="print">
-  <refnamediv>
-    <refname>print</refname>
-    <refpurpose> prints variables  in a file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      prints <literal>xi</literal> on file <literal>'file-name'</literal>
-      with the current format, i.e. the format used by scilab to display
-      the variables. All types of variables may be "<literal>print</literal>"'ed
-    </para>
-    <para>
-      Note : <literal>xi</literal> must be a named variable, with expressions variable
-      name part of the display is unpredictable.
-    </para>
-    <para>
-      <literal>print(%io(2),...)</literal> prints on Scilab's window. this syntax may be
-      used to display variables within a macro.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>print</refname>
+        <refpurpose> prints variables  in a file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            prints <literal>xi</literal> on file <literal>'file-name'</literal>
+            with the current format, i.e. the format used by scilab to display
+            the variables. All types of variables may be "<literal>print</literal>"'ed
+        </para>
+        <para>
+            Note : <literal>xi</literal> must be a named variable, with expressions variable
+            name part of the display is unpredictable.
+        </para>
+        <para>
+            <literal>print(%io(2),...)</literal> prints on Scilab's window. this syntax may be
+            used to display variables within a macro.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
 print(%io(2),a,p,l)
 write(%io(2),a)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="write">write</link>
-      </member>
-      <member>
-        <link linkend="read">read</link>
-      </member>
-      <member>
-        <link linkend="format">format</link>
-      </member>
-      <member>
-        <link linkend="printf">printf</link>
-      </member>
-      <member>
-        <link linkend="disp">disp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
+            <member>
+                <link linkend="printf">printf</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

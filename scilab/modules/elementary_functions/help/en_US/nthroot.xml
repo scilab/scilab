@@ -11,61 +11,61 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nthroot" xml:lang="en">
-  <refnamediv>
-    <refname>nthroot</refname>
-    <refpurpose>Real nth root of real numbers</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>y=ntrhoot(x,n)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real scalar or vector/matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>real scalar</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>nthroot(x,n)</literal> is the real vector/matrix of the nth root of the
-      <literal>x</literal> elements. If <literal>x</literal> has negative elements, <literal>n</literal> must be an odd.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>nthroot</refname>
+        <refpurpose>Real nth root of real numbers</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y=ntrhoot(x,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real scalar or vector/matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>real scalar</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>nthroot(x,n)</literal> is the real vector/matrix of the nth root of the
+            <literal>x</literal> elements. If <literal>x</literal> has negative elements, <literal>n</literal> must be an odd.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 	nthroot(2,3)	
 	nthroot(-2,3)	
 	nthroot(-2,-3)
 	nthroot(2,-3)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="sqrt">sqrt</link>
-      </member>
-      <member>
-        <link linkend="sqrtm">sqrtm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="sqrt">sqrt</link>
+            </member>
+            <member>
+                <link linkend="sqrtm">sqrtm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

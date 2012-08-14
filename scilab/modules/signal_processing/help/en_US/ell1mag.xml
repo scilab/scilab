@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ell1mag">
-  <refnamediv>
-    <refname>ell1mag</refname>
-    <refpurpose> magnitude of elliptic filter</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[v]=ell1mag(eps,m1,z)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>eps</term>
-        <listitem>
-          <para>
-            passband ripple=<literal>1/(1+eps^2)</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>m1</term>
-        <listitem>
-          <para>
-            stopband ripple=<literal>1/(1+(eps^2)/m1)</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z</term>
-        <listitem>
-          <para>sample vector of values in the complex plane</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>v</term>
-        <listitem>
-          <para>elliptic filter values at sample points</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Function used for squared magnitude of an elliptic filter.
-      Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns 
-      <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=%sn(z,m1)</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>ell1mag</refname>
+        <refpurpose> magnitude of elliptic filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[v]=ell1mag(eps,m1,z)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>eps</term>
+                <listitem>
+                    <para>
+                        passband ripple=<literal>1/(1+eps^2)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m1</term>
+                <listitem>
+                    <para>
+                        stopband ripple=<literal>1/(1+(eps^2)/m1)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>sample vector of values in the complex plane</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>elliptic filter values at sample points</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Function used for squared magnitude of an elliptic filter.
+            Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns 
+            <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=%sn(z,m1)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
 'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
 alpha=%k(1-m1)/%k(1-m);')
@@ -66,13 +66,13 @@ sample=0:0.01:20;
 z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="buttmag">buttmag</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="buttmag">buttmag</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

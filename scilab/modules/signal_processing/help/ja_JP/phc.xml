@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="phc">
-  <refnamediv>
-    <refname>phc</refname>
-    <refpurpose> Markovian表現</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータs</title>
-    <variablelist>
-      <varlistentry>
-        <term>hk</term>
-        <listitem>
-          <para>ハンケル行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>観測量の次元</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>
-            指定する近似モデルの状態量の次元
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>H, F, G</term>
-        <listitem>
-          <para>Markovianモデルの行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      確率過程の共分散系列から構築されたハンケル行列から
-      主ハンケル要素近似法により
-      Markovian表現の行列<literal>H, F, G</literal>を計算する関数.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>phc</refname>
+        <refpurpose> Markovian表現</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータs</title>
+        <variablelist>
+            <varlistentry>
+                <term>hk</term>
+                <listitem>
+                    <para>ハンケル行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>観測量の次元</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        指定する近似モデルの状態量の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H, F, G</term>
+                <listitem>
+                    <para>Markovianモデルの行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            確率過程の共分散系列から構築されたハンケル行列から
+            主ハンケル要素近似法により
+            Markovian表現の行列<literal>H, F, G</literal>を計算する関数.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 //This example may usefully be compared with the results from 
 //the 'levin' macro (see the corresponding help and example)
 //
@@ -94,13 +94,13 @@ s=s/2/%pi/.1;
 //now we get the estimated spectrum
 imag(s),
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="levin">levin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="levin">levin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

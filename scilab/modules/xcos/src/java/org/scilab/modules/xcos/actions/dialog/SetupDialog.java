@@ -53,6 +53,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 // CSOFF: MagicNumber
+@SuppressWarnings(value = { "serial" })
 public class SetupDialog extends JDialog {
     private static final DecimalFormatSymbols FORMAT_SYMBOL = DecimalFormatSymbols.getInstance();
     private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00", FORMAT_SYMBOL);

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-10-05 14:16+0000\n"
+"PO-Revision-Date: 2012-08-07 03:27+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -699,6 +699,50 @@ msgstr "[1, レコードの大きさ = "
 #, c-format
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "'%s' パラメータのインデックスの値に誤りがあります: %s."
+
+msgid "Read from an input file"
+msgstr "入力ファイルから読み込む"
+
+msgid "Read is done on:"
+msgstr "読込完了:"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr "&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
+
+msgid "Empty matrix or scalar expected."
+msgstr "空の行列またはスカラーを指定してください."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "'%s'パラメータの値が間違っています: %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr "シミュレーション実行中 !!! 整形式と非整形式を<br />切り替えられません"
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr "シミュレーション実行中 !!!  入力ファイル名を<br />修正できません"
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr "シミュレーション実行中 !!!  時間レコード選択を<br />修正できません"
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "'%s'パラメータの値が間違っています: %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "'%s'パラメータのフォーマットが間違っています: %s."
+
+msgid "Buffer size must be at least 2."
+msgstr "バッファの大きさは2以上を指定してください."
+
+msgid "You must read at least one field in record."
+msgstr "レコード中のフィールドを最低1つ読み込んでください."
+
+msgid "Strictly positive indexes expected."
+msgstr "厳密に正の添字を指定してください."
 
 msgid "Step Function"
 msgstr "ステップ関数"

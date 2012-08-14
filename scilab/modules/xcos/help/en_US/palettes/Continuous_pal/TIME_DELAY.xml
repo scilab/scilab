@@ -22,227 +22,227 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TIME_DELAY">
-  <refnamediv>
-    <refname>TIME_DELAY</refname>
-    <refpurpose>Time delay</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/TIME_DELAY.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_TIME_DELAY">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>TIME_DELAY</refname>
+        <refpurpose>Time delay</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="TIME_DELAY">Time delay</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/TIME_DELAY.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_TIME_DELAY">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_TIME_DELAY">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_TIME_DELAY">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_TIME_DELAY">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_TIME_DELAY">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_TIME_DELAY">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_TIME_DELAY">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_TIME_DELAY">Example</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="TIME_DELAY">Time delay</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_TIME_DELAY">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_TIME_DELAY">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_TIME_DELAY">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_TIME_DELAY">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_TIME_DELAY">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_TIME_DELAY">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_TIME_DELAY">Example</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_TIME_DELAY">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_TIME_DELAY">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">Continuous time systems palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_TIME_DELAY">
+        <title>Description</title>
         <para>
-          <link linkend="Continuous_pal">Continuous time systems palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_TIME_DELAY">
-    <title>Description</title>
-    <para>
-      The Transport Delay block delays the input by a specified amount of
-      time. It can be used to simulate a time delay. At the start of the
-      simulation, the block outputs the Initial input parameter until the
-      simulation time exceeds the Time delay parameter, when the block
-      begins generating the delayed input. 
-    </para>
-    <para>
-      The Time delay parameter must be non-negative. 
-      
-    </para>
-  </refsection>
-  <refsection id="Dialogbox_TIME_DELAY">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/gui/TIME_DELAY_gui.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Delay</emphasis>
-        </para>
-        <para> The amount of simulation time that the input signal is delayed before being propagated to the output. The value must be nonnegative.</para>
-        <para> Properties : Type 'vec' of size 1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">initial input</emphasis>
-        </para>
-        <para> The output generated by the block between the start of the simulation and the Time delay.</para>
-        <para> Properties : Type 'vec' of size 1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Buffer size</emphasis>
-        </para>
-        <para> The initial memory allocation for the number of points to store.</para>
-        <para> Properties : Type 'vec' of size 1</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_TIME_DELAY">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            The Transport Delay block delays the input by a specified amount of
+            time. It can be used to simulate a time delay. At the start of the
+            simulation, the block outputs the Initial input parameter until the
+            simulation time exceeds the Time delay parameter, when the block
+            begins generating the delayed input. 
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+            The Time delay parameter must be non-negative. 
+            
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Dialogbox_TIME_DELAY">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/TIME_DELAY_gui.gif" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+            
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Delay</emphasis>
+                </para>
+                <para> The amount of simulation time that the input signal is delayed before being propagated to the output. The value must be nonnegative.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">initial input</emphasis>
+                </para>
+                <para> The output generated by the block between the start of the simulation and the Time delay.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Buffer size</emphasis>
+                </para>
+                <para> The initial memory allocation for the number of points to store.</para>
+                <para> Properties : Type 'vec' of size 1</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_TIME_DELAY">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">time_delay</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_TIME_DELAY">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Linear/TIME_DELAY.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_TIME_DELAY">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/time_delay.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_TIME_DELAY">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.png" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">time_delay</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_TIME_DELAY">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Linear/TIME_DELAY.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_TIME_DELAY">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/time_delay.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_TIME_DELAY">
-    <title>Example</title>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.png" valign="middle"/>
-          </imageobject>
-        </inlinemediaobject>
-      </link>
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

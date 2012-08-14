@@ -11,48 +11,48 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="quart">
-  <refnamediv>
-    <refname>quart</refname>
-    <refpurpose>四分位数の計算
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>s=quart(x)
-      s=quart(x,'r') or m=quart(x,1)
-      s=quart(x,'c') or m=quart(x,2)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>実数または複素数のベクトルまたは行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      あるベクトルまたは行列xについて,[q]=quart(x,y)
-      は,xの四分位数をベクトルqに返します.
-      
-      [q]=quart(x,'r')        (または等価な,
-      [q]=quart(x,1)) は行方向のパーセンタイルです.  
-      行列qの各列にxの対応する列のデータの四分位数を返します.
-    </para>
-    <para>
-      [q]=quart(x,'c')        (または等価な,
-      [q]=quart(x,2)) は列方向のパーセンタイルです. 
-      行列qの各行にxの対応する行のデータの四分位数を返します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>quart</refname>
+        <refpurpose>四分位数の計算
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>s=quart(x)
+            s=quart(x,'r') or m=quart(x,1)
+            s=quart(x,'c') or m=quart(x,2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数または複素数のベクトルまたは行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            あるベクトルまたは行列xについて,[q]=quart(x,y)
+            は,xの四分位数をベクトルqに返します.
+            
+            [q]=quart(x,'r')        (または等価な,
+            [q]=quart(x,1)) は行方向のパーセンタイルです.  
+            行列qの各列にxの対応する列のデータの四分位数を返します.
+        </para>
+        <para>
+            [q]=quart(x,'c')        (または等価な,
+            [q]=quart(x,2)) は列方向のパーセンタイルです. 
+            行列qの各行にxの対応する行のデータの四分位数を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x=[6 7 0 7 10 4 2 2 7 1;
    6 0 5 5 5 2 0 6 8 10;
    8 6 4 3 5 9 8 3 4 7;
@@ -67,11 +67,11 @@ q=quart(x)
 q=quart(x,'r')
 q=quart(x,'c')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>参考文献</title>
-    <para>
-      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
 </refentry>

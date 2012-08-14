@@ -11,46 +11,46 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="trfmod">
-  <refnamediv>
-    <refname>trfmod</refname>
-    <refpurpose> отображение полюсов и нулей</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[hm]=trfmod(h [,job])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Для визуализации структуры полюсов-нулей в передаточной функции последовательного ввода и последовательного вывода <literal>h</literal>.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>job='p'</term>
-        <listitem>
-          <para>визуализация многочленов (по умолчанию)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>job='f'</term>
-        <listitem>
-          <para>визуализация собственных частот и амортизации</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Интерактивное упрощение <literal>h</literal>. <literal>trfmod</literal> открывает окно диалога.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-      <member>
-        <link linkend="simp">simp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>trfmod</refname>
+        <refpurpose> отображение полюсов и нулей</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[hm]=trfmod(h [,job])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для визуализации структуры полюсов-нулей в передаточной функции последовательного ввода и последовательного вывода <literal>h</literal>.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>job='p'</term>
+                <listitem>
+                    <para>визуализация многочленов (по умолчанию)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job='f'</term>
+                <listitem>
+                    <para>визуализация собственных частот и амортизации</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Интерактивное упрощение <literal>h</literal>. <literal>trfmod</literal> открывает окно диалога.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="simp">simp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

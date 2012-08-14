@@ -548,6 +548,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "time_gw", "modules\time\sci
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graph-JAVA-tests", "modules\graph\tests\java\graph-JAVA-tests.vcxproj", "{AB7EBA0D-1B00-4B1B-BB00-62AB38E2309A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos-JAVA-tests", "modules\xcos\tests\java\xcos-JAVA-tests.vcxproj", "{DABDF840-2A2F-4B38-90B2-A4393E6DF38B}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_gw", "modules\string\sci_gateway\cpp\string_gw.vcxproj", "{AEC1F7B5-28F2-4C1F-A436-98D0352FD3F5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}

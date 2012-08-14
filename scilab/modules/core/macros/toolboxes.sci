@@ -22,7 +22,7 @@ function [y] = toolboxes(path)
   y = [];
   if (rhs == 1) & typeof(path)=="constant" then 
     // return string to exec
-    y = 'exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);';
+    y = "exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);";
     return 
   end
 

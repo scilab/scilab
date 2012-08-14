@@ -11,112 +11,112 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpolys">
-  <refnamediv>
-    <refname>xfpolys</refname>
-    <refpurpose> fill a set of polygons</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xpols,ypols</term>
-        <listitem>
-          <para>matrices of the same size (p,n) (points of the polygons).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fill</term>
-        <listitem>
-          <para>vector of size n or of size (p,n)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xfpolys</literal> fills a set of polygons of the same size defined by 
-      the two matrices <literal>xpols</literal> and <literal>ypols</literal>. 
-      The coordinates of each polygon
-      are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
-    </para>
-    <para>The polygons may be filled with a given color (flat) or painted with
-      interpolated (shaded) colors.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>flat color painting</term>
-        <listitem>
-          <para>
-            In this case <literal>fill</literal> should be a vector of size
-            <literal>n</literal>.
-            The pattern for filling polygon number i is given by
-            <literal>fill(i)</literal>:
-          </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                if <literal>fill(i)&lt;0</literal>, the polygon is filled with
-                pattern id <literal>-fill(i)</literal>.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                if <literal>fill(i)=0</literal>, the polygon is drawn with the
-                current dash style (or current color) and not filled.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                if <literal>fill(i)&gt;0</literal>, the polygon is filled with
-                pattern id <literal>fill(i)</literal>.  Then its contour is drawn with
-                the current dash (or color) and closed if necessary.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>interpolated color painting</term>
-        <listitem>
-          <para>
-            In this case <literal>fill</literal> should be a matrix with same sizes
-            as <literal>xpols</literal> and <literal>ypols</literal>. Note that
-            <literal>p</literal> must be equal to 3 or 4.
-          </para>
-          <para>
-            <literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
-            of polygon <literal>i</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      clf()
-      f=gcf();
-      a=gca();
-      a.data_bounds=[0,-10;40,30];
-      a.isoview='on';
-      x1=[0,10,20,10]';
-      y1=[10,0,10,20]';
-      c=linspace(2,100,4)';
-      xpols=[x1 x1+20 x1+10 x1+10];
-      ypols=[y1 y1    y1+10 y1-10];
-      cols= [c c($:-1:1) c([3 4 1 2]) c]
-      f.color_map=jetcolormap(max(cols));
-      xfpolys(xpols,ypols,cols)
-    </scilab:image>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xfpolys</refname>
+        <refpurpose> fill a set of polygons</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xpols,ypols</term>
+                <listitem>
+                    <para>matrices of the same size (p,n) (points of the polygons).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fill</term>
+                <listitem>
+                    <para>vector of size n or of size (p,n)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xfpolys</literal> fills a set of polygons of the same size defined by 
+            the two matrices <literal>xpols</literal> and <literal>ypols</literal>. 
+            The coordinates of each polygon
+            are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
+        </para>
+        <para>The polygons may be filled with a given color (flat) or painted with
+            interpolated (shaded) colors.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>flat color painting</term>
+                <listitem>
+                    <para>
+                        In this case <literal>fill</literal> should be a vector of size
+                        <literal>n</literal>.
+                        The pattern for filling polygon number i is given by
+                        <literal>fill(i)</literal>:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                if <literal>fill(i)&lt;0</literal>, the polygon is filled with
+                                pattern id <literal>-fill(i)</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                if <literal>fill(i)=0</literal>, the polygon is drawn with the
+                                current dash style (or current color) and not filled.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                if <literal>fill(i)&gt;0</literal>, the polygon is filled with
+                                pattern id <literal>fill(i)</literal>.  Then its contour is drawn with
+                                the current dash (or color) and closed if necessary.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>interpolated color painting</term>
+                <listitem>
+                    <para>
+                        In this case <literal>fill</literal> should be a matrix with same sizes
+                        as <literal>xpols</literal> and <literal>ypols</literal>. Note that
+                        <literal>p</literal> must be equal to 3 or 4.
+                    </para>
+                    <para>
+                        <literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
+                        of polygon <literal>i</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            clf()
+            f=gcf();
+            a=gca();
+            a.data_bounds=[0,-10;40,30];
+            a.isoview='on';
+            x1=[0,10,20,10]';
+            y1=[10,0,10,20]';
+            c=linspace(2,100,4)';
+            xpols=[x1 x1+20 x1+10 x1+10];
+            ypols=[y1 y1    y1+10 y1-10];
+            cols= [c c($:-1:1) c([3 4 1 2]) c]
+            f.color_map=jetcolormap(max(cols));
+            xfpolys(xpols,ypols,cols)
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 a=gca();
 a.data_bounds=[0,-10;210,40];
 a.foreground=color('red');
@@ -127,7 +127,7 @@ xpols=xpols+[0,60,120,180].*.ones(x1);
 ypols=[y1 y1 y1 y1];
 xfpolys(xpols,ypols,[-1,0,1,2])
  ]]></programlisting>
-    <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
 // interpolated colors
 clf()
 f=gcf();
@@ -143,7 +143,7 @@ cols= [c c($:-1:1) c([3 4 1 2]) c]
 f.color_map=jetcolormap(max(cols));
 xfpolys(xpols,ypols,cols)
  ]]></programlisting>
-    <programlisting role="example"><![CDATA[   
+        <programlisting role="example"><![CDATA[   
 // interpolated colors
 clf()
 f=gcf();
@@ -176,19 +176,19 @@ f=gcf();
 f.color_map=graycolormap(max(C));
 xfpolys(X,Y,C)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xfpoly">xfpoly</link>
-      </member>
-      <member>
-        <link linkend="xpoly">xpoly</link>
-      </member>
-      <member>
-        <link linkend="xpolys">xpolys</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xfpoly">xfpoly</link>
+            </member>
+            <member>
+                <link linkend="xpoly">xpoly</link>
+            </member>
+            <member>
+                <link linkend="xpolys">xpolys</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

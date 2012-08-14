@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="save_format" xml:lang="en">
     <refnamediv>
         <refname>save_format</refname>
@@ -10,48 +22,48 @@
             Variables are saved by Scilab with the <link linkend="save">save</link> function in the following format:
         </para>
         <para>
-            each variable record is appended consecutively to the file. The variable record begins with 6 <literal>long integer</literal> holding the variable name in encoded format (see the Remarks section below), after that comes the variable type (<literal>long integer</literal>), then, depending on it, for:
+            each variable record is appended consecutively to the file. The variable record begins with 6 long integer holding the variable name in encoded format (see the Remarks section below), after that comes the variable type (long integer), then, depending on it, for:
         </para>
         <variablelist>
             <varlistentry>
                 <term>Floating matrices (type 1)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        real/complex flag <varname>it</varname> (a <literal>long integer</literal> in {0,1}),
+                        real/complex flag <varname>it</varname> (a long integer in <literal>{0,1}</literal>),
                     </para>
                     <para>
-                        data (n*m*(it+1) <literal>double</literal>s)
+                        data (<literal>n*m*(it+1)</literal> doubles)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <variablelist>
             <varlistentry>
-                <term>Polynomials (type 2) and Size implicit indices (type 129)</term>
+                <term>Polynomials (type 2) and Size implicit polynomial used for indexing (type 129)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        real/complex flag <varname>it</varname> (long integer in {0,1}),
+                        real/complex flag <varname>it</varname> (a long integer in <literal>{0,1}</literal>),
                     </para>
                     <para>
                         formal variable name (16 bytes),
                     </para>
                     <para>
-                        <varname>index_table</varname> (m*n+1 <literal>long integer</literal>s),
+                        <varname>index_table</varname> (<literal>m*n+1</literal> long integers),
                     </para>
                     <para>
-                        data ((N-1)*(it+1) <literal>double</literal>s), where <varname>N</varname> is the 
+                        data (<literal>(N-1)*(it+1)</literal> doubles), where <varname>N</varname> is the 
                         value of the last entry of the <varname>index_table</varname>.
                     </para>
                 </listitem>
@@ -62,13 +74,13 @@
                 <term>Booleans (type 4)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        data (n*m <literal>long integer</literal>s).
+                        data (<literal>n*m</literal> long integers).
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,25 +90,25 @@
                 <term>Floating sparse matrices (type 5)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        real/complex_flag <varname>it</varname> (a <literal>long integer</literal> in {0,1}),
+                        real/complex_flag <varname>it</varname> (a long integer in <literal>{0,1}</literal>),
                     </para>
                     <para>
-                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a <literal>long integer</literal>),
+                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>number_of_non_zero_elements_per_row</varname> (m <literal>long integer</literal>s),
+                        <varname>number_of_non_zero_elements_per_row</varname> (<literal>m</literal> long integers),
                     </para>
                     <para>
-                        <varname>column_index_non_zero_elements</varname> (nel <literal>long integer</literal>s),
+                        <varname>column_index_non_zero_elements</varname> (<literal>nel</literal> long integers),
                     </para>
                     <para>
-                        <varname>non_zero_values</varname> (nel*(it+1) <literal>double</literal>s).
+                        <varname>non_zero_values</varname> (<literal>nel*(it+1)</literal> doubles).
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,22 +118,22 @@
                 <term>Boolean sparse matrices (type 6)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        unused <varname>it</varname> (a <literal>long integer</literal>),
+                        unused <varname>it</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a <literal>long integer</literal>),
+                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>number_of_non_zero_elements_per_row</varname> (m <literal>long integer</literal>s),
+                        <varname>number_of_non_zero_elements_per_row</varname> (<literal>m</literal> long integers),
                     </para>
                     <para>
-                        <varname>column_index_non_zero_elements</varname> (nel <literal>long integer</literal>s).
+                        <varname>column_index_non_zero_elements</varname> (<literal>nel</literal> long integers).
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,25 +143,25 @@
                 <term>Matlab sparse matrix (type 7)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        real/complex_flag <varname>it</varname> (a <literal>long integer</literal> in {0,1}),
+                        real/complex_flag <varname>it</varname> (a long integer in <literal>{0,1}</literal>),
                     </para>
                     <para>
-                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a <literal>long integer</literal>),
+                        <varname>total_number_of_non_zero_elements</varname> <varname>nel</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>number_of_non_zero_elements_per_column</varname> (n <literal>long integer</literal>s),
+                        <varname>number_of_non_zero_elements_per_column</varname> (<literal>n</literal> long integers),
                     </para>
                     <para>
-                        <varname>row_index_non_zero_elements</varname> (nel <literal>long integer</literal>s),
+                        <varname>row_index_non_zero_elements</varname> (<literal>nel</literal> long integers),
                     </para>
                     <para>
-                        <varname>non_zero_values</varname> (nel*(it+1) <literal>double</literal>s).
+                        <varname>non_zero_values</varname> (<literal>nel*(it+1)</literal> doubles).
                     </para>
                 </listitem>
             </varlistentry>
@@ -159,16 +171,16 @@
                 <term>Integer matrices (type 8)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>integer_type</varname> (a <literal>long integer</literal>): 1,2,4, or 11,12,14 for signed and unsigned 1,2,4 bytes integers,
+                        <varname>integer_type</varname> (a long integer): 1,2,4, or 11,12,14 for signed and unsigned 1,2,4 bytes integers,
                     </para>
                     <para>
-                        data (n*m bytes for <varname>integer_type</varname> 1 or 11, n*m <literal>short integer</literal>s for <varname>integer_type</varname> 2 or 12, n*m <literal>long integer</literal>s for <varname>integer_type</varname> 4 or
+                        data (<literal>n*m</literal> bytes for <varname>integer_type</varname> 1 or 11, <literal>n*m</literal> short integers for <varname>integer_type</varname> 2 or 12, <literal>n*m</literal> long integers for <varname>integer_type</varname> 4 or
                         14).
                     </para>
                 </listitem>
@@ -186,7 +198,7 @@
                         <varname>column_size</varname> <varname>n</varname> (a byte),
                     </para>
                     <para>
-                        data (m*n <varname>serialization_record</varname>s)
+                        data (<literal>m*n</literal> <varname>serialization_record</varname>s)
                     </para>
                     <para>
                         A <varname>serialization_record</varname> is a flat 
@@ -205,7 +217,7 @@
                                     <varname>type_length</varname> <varname>n</varname> (a byte),
                                 </para>
                                 <para>
-                                    type (n bytes, the ascii codes of the type name),
+                                    <varname>type</varname> (<literal>n</literal> bytes, the ascii codes of the type name),
                                 </para>
                                 <para>
                                     <varname>property_values</varname> record (variable length).
@@ -221,16 +233,16 @@
                 <term>Strings (type 10)</term>
                 <listitem>
                     <para>
-                        <varname>row_size</varname> <varname>m</varname> (a <literal>long integer</literal>),
+                        <varname>row_size</varname> <varname>m</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>column_size</varname> <varname>n</varname> (a <literal>long integer</literal>),
+                        <varname>column_size</varname> <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>index_table</varname> (n*m+1 <literal>long integer</literal>s),
+                        <varname>index_table</varname> (<literal>n*m+1</literal> long integers),
                     </para>
                     <para>
-                        data (N <literal>long integer</literal>s, the Scilab encoding of the characters (see <link linkend="code2str">code2str</link>), where <varname>N</varname> is the value of the last entry of the <varname>index_table</varname>.
+                        data (<literal>N</literal> long integers, the Scilab encoding of the characters (see <link linkend="code2str">code2str</link>), where <literal>N</literal> is the value of the last entry of the <varname>index_table</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -240,22 +252,22 @@
                 <term>Uncompiled functions (type 11)</term>
                 <listitem>
                     <para>
-                        <varname>nout</varname> (a <literal>long integer</literal>),
+                        <varname>nout</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>lhs_names</varname> (6*nout <literal>long integer</literal>s, see the Remarks section below),
+                        <varname>lhs_names</varname> (<literal>6*nout</literal> long integers, see the Remarks section below),
                     </para>
                     <para>
-                        <varname>nin</varname> (a <literal>long integer</literal>),
+                        <varname>nin</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>rhs_names</varname> (6*nin <literal>long integer</literal>s, see the Remarks section below),
+                        <varname>rhs_names</varname> (<literal>6*nin</literal> long integers, see the Remarks section below),
                     </para>
                     <para>
-                        <varname>code_length</varname> <varname>N</varname> (a <literal>long integer</literal>),
+                        <varname>code_length</varname> <varname>N</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>code</varname> (N <literal>long integer</literal>s).
+                        <varname>code</varname> (<literal>N</literal> long integers).
                     </para>
                 </listitem>
             </varlistentry>
@@ -265,22 +277,22 @@
                 <term>Compiled functions (type 13)</term>
                 <listitem>
                     <para>
-                        <varname>nout</varname> (a <literal>long integer</literal>),
+                        <varname>nout</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>lhs_names</varname> (6*nout <literal>long integer</literal>s, see the Remarks section below),
+                        <varname>lhs_names</varname> (<literal>6*nout</literal> long integers, see the Remarks section below),
                     </para>
                     <para>
-                        <varname>nin</varname> (a <literal>long integer</literal>),
+                        <varname>nin</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>rhs_names</varname> (6*nin <literal>long integer</literal>s, see the Remarks section below),
+                        <varname>rhs_names</varname> (<literal>6*nin</literal> long integers, see the Remarks section below),
                     </para>
                     <para>
-                        <varname>pseudo_code_length</varname> <varname>N</varname> (a <literal>long integer</literal>),
+                        <varname>pseudo_code_length</varname> <varname>N</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>pseudo_code</varname> (N <literal>long integer</literal>s).
+                        <varname>pseudo_code</varname> (<literal>N</literal> long integers).
                     </para>
                 </listitem>
             </varlistentry>
@@ -290,16 +302,16 @@
                 <term>Libraries (type 14)</term>
                 <listitem>
                     <para>
-                        <varname>path_length</varname> np (a <literal>long integer</literal>),
+                        <varname>path_length</varname> <varname>np</varname> (a long integer),
                     </para>
                     <para>
-                        <varname>path_name</varname> (np <literal>long integer</literal>s: the path character codes sequence, (see <link linkend="code2str">code2str</link>)),
+                        <varname>path_name</varname> (<literal>np</literal> long integers: the path character codes sequence, (see <link linkend="code2str">code2str</link>)),
                     </para>
                     <para>
-                        number of names nn (a <literal>long integer</literal>),
+                        number of names <varname>nn</varname> (a long integer),
                     </para>
                     <para>
-                        names (6*nn <literal>long integer</literal>s, see the Remarks section
+                        names (<literal>6*nn</literal> long integers, see the Remarks section
                         below).
                     </para>
                 </listitem>
@@ -310,13 +322,13 @@
                 <term>Lists (type 15), tlists (type 16), mlists (type 17)</term>
                 <listitem>
                     <para>
-                        number of fields <varname>n</varname> (a <literal>long integer</literal>),
+                        number of fields <varname>n</varname> (a long integer),
                     </para>
                     <para>
-                        index (n+1 <literal>long integer</literal>s),
+                        index (<literal>n+1</literal> long integers),
                     </para>
                     <para>
-                        <varname>variables_sequence</varname> (n variables, each one written according to its format).
+                        <varname>variables_sequence</varname> (<literal>n</literal> variables, each one written according to its format).
                     </para>
                 </listitem>
             </varlistentry>
@@ -334,10 +346,10 @@
                 <term>Function pointers (type 130)</term>
                 <listitem>
                     <para>
-                        <varname>function_ptr</varname> (a <literal>long integer</literal>, (see <link linkend="funptr">funptr</link>)),
+                        <varname>function_ptr</varname> (a long integer, (see <link linkend="funptr">funptr</link>)),
                     </para>
                     <para>
-                        <varname>function_name_code</varname> (6 <literal>long integer</literal>s, see the 
+                        <varname>function_name_code</varname> (6 long integers, see the 
                         Remarks section below).
                     </para>
                 </listitem>
@@ -347,11 +359,10 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            Numbers (a <literal>long interger</literal>, <literal>short integer</literal>s,  <literal>double</literal>) are stored using the 
-            little endian convention.
+            Numbers (a long interger, a short integer, a double) are stored using the little endian convention.
         </para>
         <para>
-            The variable names are stored as a sequence of 6 <literal>long integer</literal>s, with 
+            The variable names are stored as a sequence of 6 long integers, with 
             a specific encoding. See the <literal>cvname.f</literal> file for
             details.
         </para>

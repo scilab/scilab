@@ -22,208 +22,208 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SAMPHOLD_m">
-  <refnamediv>
-    <refname>SAMPHOLD_m</refname>
-    <refpurpose>Sample and hold</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/SAMPHOLD_m.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_SAMPHOLD_m">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>SAMPHOLD_m</refname>
+        <refpurpose>Sample and hold</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="SAMPHOLD_m">Sample and hold</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/SAMPHOLD_m.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_SAMPHOLD_m">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_SAMPHOLD_m">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_SAMPHOLD_m">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_SAMPHOLD_m">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_SAMPHOLD_m">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_SAMPHOLD_m">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_SAMPHOLD_m">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_SAMPHOLD_m">Example</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SAMPHOLD_m">Sample and hold</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_SAMPHOLD_m">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_SAMPHOLD_m">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_SAMPHOLD_m">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_SAMPHOLD_m">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_SAMPHOLD_m">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_SAMPHOLD_m">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_SAMPHOLD_m">Example</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_SAMPHOLD_m">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_SAMPHOLD_m">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Signalprocessing_pal">Signal Processing palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_SAMPHOLD_m">
+        <title>Description</title>
         <para>
-          <link linkend="Signalprocessing_pal">Signal Processing palette</link>
+            Each time an input event is received block copy its input on the
+            output and hold it until input event. For periodic Sample and hold,
+            event input must be generated by a <emphasis role="bold">Clock</emphasis>.
+            
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_SAMPHOLD_m">
-    <title>Description</title>
-    <para>
-      Each time an input event is received block copy its input on the
-      output and hold it until input event. For periodic Sample and hold,
-      event input must be generated by a <emphasis role="bold">Clock</emphasis>.
-      
-    </para>
-  </refsection>
-  <refsection id="Dialogbox_SAMPHOLD_m">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/gui/SAMPHOLD_m_gui.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      
-    </para>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Dialogbox_SAMPHOLD_m">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">Datatype(1=real double 2=Complex 3=int32 ...)</emphasis>
-        </para>
-        <para> Output datatype. This block can support all data types.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_SAMPHOLD_m">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/SAMPHOLD_m_gui.gif" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+            
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Datatype(1=real double 2=Complex 3=int32 ...)</emphasis>
+                </para>
+                <para> Output datatype. This block can support all data types.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_SAMPHOLD_m">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">samphold4_m</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_SAMPHOLD_m">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_SAMPHOLD_m">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/samphold4_m.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_SAMPHOLD_m">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SAMPHOLD_m_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SAMPHOLD_m_Example.png" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">samphold4_m</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_SAMPHOLD_m">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_SAMPHOLD_m">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/samphold4_m.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_SAMPHOLD_m">
-    <title>Example</title>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SAMPHOLD_m_Example.xcos">
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SAMPHOLD_m_Example.png" valign="middle"/>
-          </imageobject>
-        </inlinemediaobject>
-      </link>
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

@@ -12,49 +12,49 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dispfiles">
-  <refnamediv>
-    <refname>dispfiles</refname>
-    <refpurpose>オープンされているファイルのプロパティを表示</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>dispfiles([units])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>units</term>
-        <listitem>
-          <para>数値ベクトル, ファイルの論理ユニット. デフォルトでは
-            全てのオープンされているファイル.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>dispfiles</literal> は,
-      現在オープンされているファイルのプロパティを表示します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>dispfiles</refname>
+        <refpurpose>オープンされているファイルのプロパティを表示</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>dispfiles([units])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>units</term>
+                <listitem>
+                    <para>数値ベクトル, ファイルの論理ユニット. デフォルトでは
+                        全てのオープンされているファイル.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>dispfiles</literal> は,
+            現在オープンされているファイルのプロパティを表示します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 dispfiles()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="file">file</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -39,8 +39,6 @@ extern "C"
 
 }
 
-#include "forceJHDF5load.hxx"
-
 using namespace types;
 
 //#define PRINT_DEBUG
@@ -78,10 +76,6 @@ Function::ReturnValue sci_export_to_hdf5(typed_list &in, int _iRetCount, typed_l
     char* pstFileName       = NULL;
     bool bExport            = false;
     bool bAppendMode        = false;
-
-#ifndef _MSC_VER
-    forceJHDF5load();
-#endif
 
     if(in.size() < 2)
     {
@@ -211,7 +205,7 @@ Function::ReturnValue sci_export_to_hdf5(typed_list &in, int _iRetCount, typed_l
             }
         }
 
-        if (bExport)
+        if (bExport && in.size() != 1)
         {
             //add or update scilab version and file version in hdf5 file
             if (updateScilabVersion(iH5File) < 0)
@@ -229,7 +223,7 @@ Function::ReturnValue sci_export_to_hdf5(typed_list &in, int _iRetCount, typed_l
 
         //close hdf5 file
         closeHDF5File(iH5File);
-        if(bExport == false)
+        if(bExport == false && in.size() != 1)
         {//remove file
             deleteafileW(pwstNameList[0]);
         }

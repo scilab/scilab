@@ -11,78 +11,78 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="grep" xml:lang="en">
-  <refnamediv>
-    <refname>grep</refname>
-    <refpurpose>acha correspondências de um string em um vetor de
-      strings
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>row=grep(haystack,needle )
-      [row,which]=grep(haystack,needle )
-      row=grep(haystack,needle ,[flag])
-      [row,which]=grep(haystack,needle ,[flag])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>haystack</term>
-        <listitem>
-          <para>vetor linha de strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>needle</term>
-        <listitem>
-          <para>string ou vetor linha de strings . O(s) string(s) a serem
-            procurados em <literal>haystack.</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>row</term>
-        <listitem>
-          <para>vetor de índices: linha onde uma correspondência foi
-            encontrada, ou matriz vazia se nenhuma ocorrência tiver sido
-            encontrada
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>which</term>
-        <listitem>
-          <para>vetor de índices: índice do string needle encontrado, ou uma
-            matriz vazia, se nenhuma correspondência tiver sido
-            encontrada
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>caractere ("r" para expressão regular)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Para cada entradada de haystack , grep procura se pelo menos um
-      string em needle corresponde a um substring. Os índices das entradas de
-      haystack onde pelo menos uma entrada foi encontrada são retornados no
-      argumento row. O argumento opcional which fornece o índice do primeiro
-      string de needle encontrado. Quando se usa o terceiro parâmetro "r",
-      needle deve ser substituído por uma expressão regular. Então, grep vai
-      corresponder a haystack de acordo com as regras regulares
-      expressas.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>grep</refname>
+        <refpurpose>acha correspondências de um string em um vetor de
+            strings
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>row=grep(haystack,needle )
+            [row,which]=grep(haystack,needle )
+            row=grep(haystack,needle ,[flag])
+            [row,which]=grep(haystack,needle ,[flag])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>vetor linha de strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>string ou vetor linha de strings . O(s) string(s) a serem
+                        procurados em <literal>haystack.</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>row</term>
+                <listitem>
+                    <para>vetor de índices: linha onde uma correspondência foi
+                        encontrada, ou matriz vazia se nenhuma ocorrência tiver sido
+                        encontrada
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>which</term>
+                <listitem>
+                    <para>vetor de índices: índice do string needle encontrado, ou uma
+                        matriz vazia, se nenhuma correspondência tiver sido
+                        encontrada
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>caractere ("r" para expressão regular)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Para cada entradada de haystack , grep procura se pelo menos um
+            string em needle corresponde a um substring. Os índices das entradas de
+            haystack onde pelo menos uma entrada foi encontrada são retornados no
+            argumento row. O argumento opcional which fornece o índice do primeiro
+            string de needle encontrado. Quando se usa o terceiro parâmetro "r",
+            needle deve ser substituído por uma expressão regular. Então, grep vai
+            corresponder a haystack de acordo com as regras regulares
+            expressas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 txt=['acha correspondência em um string ou em um vetor de strings'
      'procura posição de um string em outro string'
      'Compara Strings'];
@@ -98,13 +98,13 @@ grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strindex">strindex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

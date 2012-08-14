@@ -35,13 +35,13 @@ int set_color_map_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 {
     BOOL status = FALSE;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "color_map");
         return SET_PROPERTY_ERROR ;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, getDoubleMatrixFromStack(stackPointer), jni_double_vector, nbRow*nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, stk(stackPointer), jni_double_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {
@@ -49,7 +49,7 @@ int set_color_map_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_map");
         return SET_PROPERTY_ERROR;
     }
 }

@@ -50,7 +50,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     if (VarType(1) ==  sci_matrix)
     {
         GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr);
-        defaultValues = getDoubleMatrixFromStack(defaultValuesAdr);
+        defaultValues = stk(defaultValuesAdr);
 
         defaultValuesInt = (int *)MALLOC(nbRowDefaultValues * nbColDefaultValues * sizeof(int));
         for (K = 0; K < nbRowDefaultValues * nbColDefaultValues; K++)

@@ -12,31 +12,31 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xselect">
-  <refnamediv>
-    <refname>xselect</refname>
-    <refpurpose>raise the current graphics window</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xselect()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xselect</literal>raises the current graphics window.
-      It creates the window if none exists.
-    </para>
-    <para>
-      Warning: This function is obsolete and will be removed in Scilab 5.4.
-      It has been replaced by the show_window function.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="show_window">show_window</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>xselect</refname>
+        <refpurpose>raise the current graphics window</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xselect()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xselect</literal>raises the current graphics window.
+            It creates the window if none exists.
+        </para>
+        <para>
+            Warning: This function is obsolete and will be removed in Scilab 5.4.
+            It has been replaced by the show_window function.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="show_window">show_window</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

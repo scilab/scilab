@@ -34,7 +34,7 @@ import org.scilab.modules.xcos.palette.model.VariablePath;
  * Decode a palette into a {@link PreLoaded} palette.
  */
 public class PreLoadedElement extends AbstractElement<PreLoaded> {
-    private static final List<String> DATA_FIELD_NAMES = asList("palette", "name", "blockNames", "blocks", "icons", "style");
+    private static final List<String> DATA_FIELD_NAMES = asList("palette", "name", "blockNames", "icons", "style");
 
     /** Mutable field to easily get the data through methods */
     private ScilabTList data;
@@ -97,9 +97,6 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 
         field++;
         String[][] blockNames = ((ScilabString) data.get(field)).getData();
-
-        field++;
-        String[][] blocks = ((ScilabString) data.get(field)).getData();
 
         field++;
         String[][] icons = ((ScilabString) data.get(field)).getData();
@@ -196,19 +193,13 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
-        // the fourth field must contains the block instance path (row column)
+        // the fourth field must contains the block icon path (row column)
         field++;
         if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
-        // the fifth field must contains the block icon path (row column)
-        field++;
-        if (!(data.get(field) instanceof ScilabString) || data.get(field).getWidth() != 1) {
-            throw new WrongTypeException(DATA_FIELD_NAMES, field);
-        }
-
-        // the sixth field is handled by the StyleElement decoder.
+        // the fifth field is handled by the StyleElement decoder.
     }
 
     /**

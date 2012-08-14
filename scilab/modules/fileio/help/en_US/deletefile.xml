@@ -12,40 +12,43 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deletefile" xml:lang="en">
-  <refnamediv>
-    <refname>deletefile</refname>
-    <refpurpose>deletes a file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>f = deletefile(filename)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>a string: a file name existing or not</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>a boolean: <constant>%t</constant> or <constant>%f</constant></para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function deletes a file. If file has been deleted, it will return <constant>%t</constant> else
-      <constant>%f</constant>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>deletefile</refname>
+        <refpurpose>deletes a file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>f = deletefile(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string: a file name existing or not.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        a boolean: <constant>%t</constant> or <constant>%f</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function deletes a file <varname>filename</varname>. If file <varname>filename</varname> has been deleted, it will return <constant>%t</constant> else
+            <constant>%f</constant>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 fd = mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
 
@@ -55,5 +58,5 @@ end
 
 deletefile(TMPDIR+'/notexistingfile')
     ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

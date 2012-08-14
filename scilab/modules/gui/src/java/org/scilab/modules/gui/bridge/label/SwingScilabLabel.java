@@ -55,6 +55,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
 
     private static final long serialVersionUID = 7177323379068859441L;
@@ -379,45 +380,45 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         gbc.gridheight = 1;
 
         switch (ScilabAlignment.toSwingAlignment(horizontalAlignment)) {
-        case SwingConstants.LEFT:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHWEST;
+            case SwingConstants.LEFT:
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHWEST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.WEST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHWEST;
+                        break;
+                }
                 break;
             case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.WEST;
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTH;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.CENTER;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTH;
+                        break;
+                }
                 break;
-            default: // SwingConstants.BOTTOM
-                gbc.anchor = GridBagConstraints.SOUTHWEST;
+            default: // SwingConstants.RIGHT
+                switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
+                    case SwingConstants.TOP:
+                        gbc.anchor = GridBagConstraints.NORTHEAST;
+                        break;
+                    case SwingConstants.CENTER:
+                        gbc.anchor = GridBagConstraints.EAST;
+                        break;
+                    default: // SwingConstants.BOTTOM
+                        gbc.anchor = GridBagConstraints.SOUTHEAST;
+                        break;
+                }
                 break;
-            }
-            break;
-        case SwingConstants.CENTER:
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTH;
-                break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.CENTER;
-                break;
-            default: // SwingConstants.BOTTOM
-                gbc.anchor = GridBagConstraints.SOUTH;
-                break;
-            }
-            break;
-        default: // SwingConstants.RIGHT
-            switch (ScilabAlignment.toSwingAlignment(verticalAlignment)) {
-            case SwingConstants.TOP:
-                gbc.anchor = GridBagConstraints.NORTHEAST;
-                break;
-            case SwingConstants.CENTER:
-                gbc.anchor = GridBagConstraints.EAST;
-                break;
-            default: // SwingConstants.BOTTOM
-                gbc.anchor = GridBagConstraints.SOUTHEAST;
-                break;
-            }
-            break;
         }
 
         getAlignmentPanel().add(getLabel(), gbc);
@@ -464,6 +465,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     /**
      * Inner class to handle the case where the label is in LaTeX or in MathML
      */
+    @SuppressWarnings(value = { "serial" })
     public class ScilabJTextPane extends JTextPane {
 
         private int descent;

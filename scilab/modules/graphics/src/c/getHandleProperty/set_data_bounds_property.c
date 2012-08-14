@@ -47,40 +47,40 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
                              double * yMin, double * yMax,
                              double * zMin, double * zMax )
 {
-  double * bounds = getDoubleMatrixFromStack( stackPointer ) ;
+    double * bounds = stk( stackPointer ) ;
 
-  /* initialize zMin and zMax to avoid checking between 2D and 3D */
-  *zMin = 1.0 ;
-  *zMax = 2.0 ;
+    /* initialize zMin and zMax to avoid checking between 2D and 3D */
+    *zMin = 1.0 ;
+    *zMax = 2.0 ;
 
-  if( nbRow==3 )  /* Remove the 3x2 case */
-  {
-      Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
-      return SET_PROPERTY_ERROR ;
-  }
+    if ( nbRow == 3 ) /* Remove the 3x2 case */
+    {
+        Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  switch ( nbRow*nbCol )
-  {
-  case 4 : /* 2D case */
-      *xMin = bounds[0] ;
-      *xMax = bounds[1] ;
-      *yMin = bounds[2] ;
-      *yMax = bounds[3] ;
-      break;
+    switch ( nbRow * nbCol )
+    {
+        case 4 : /* 2D case */
+            *xMin = bounds[0] ;
+            *xMax = bounds[1] ;
+            *yMin = bounds[2] ;
+            *yMax = bounds[3] ;
+            break;
 
-  case 6 : /* 3D case */
-      *xMin = bounds[0] ;
-      *xMax = bounds[1] ;
-      *yMin = bounds[2] ;
-      *yMax = bounds[3] ;
-      *zMin = bounds[4] ;
-      *zMax = bounds[5] ;
-      break ;
-  default:
-      Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
-      return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
+        case 6 : /* 3D case */
+            *xMin = bounds[0] ;
+            *xMax = bounds[1] ;
+            *yMin = bounds[2] ;
+            *yMax = bounds[3] ;
+            *zMin = bounds[4] ;
+            *zMax = bounds[5] ;
+            break ;
+        default:
+            Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
+            return SET_PROPERTY_ERROR ;
+    }
+    return SET_PROPERTY_SUCCEED ;
 }
 
 /*------------------------------------------------------------------------*/
@@ -97,7 +97,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     double   zMax = 0. ;
     int firstPlot = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "data_bounds");
         return SET_PROPERTY_ERROR;
@@ -106,7 +106,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     /* get the bounds */
     if ( getdDataBoundsFromStack( stackPointer, nbRow, nbCol, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax ) == SET_PROPERTY_ERROR )
     {
-      return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR ;
     }
 
     /* To be implemented within the MVC */
@@ -127,7 +127,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
         if (tmpBounds == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_bounds");
             return SET_PROPERTY_ERROR;
         }
 
@@ -156,7 +156,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_bounds");
         return SET_PROPERTY_ERROR;
     }
 }

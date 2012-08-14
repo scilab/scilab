@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -247,9 +247,7 @@
     <ClCompile Include="..\cpp\h5_readDataFromFile.cpp" />
     <ClCompile Include="..\cpp\h5_writeDataToFile.cpp" />
     <ClCompile Include="DllmainHdf5.c" />
-    <ClCompile Include="..\cpp\forceJHDF5load.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_hdf5.c" />
-    <ClCompile Include="..\jni\jhdf5load.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp" />
   </ItemGroup>
@@ -257,13 +255,11 @@
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h" />
     <ClInclude Include="..\..\includes\hdf5_gw.hxx" />
     <ClInclude Include="..\cpp\dynhdf5.hxx" />
-    <ClInclude Include="..\cpp\forceJHDF5load.hxx" />
     <ClInclude Include="..\..\includes\gw_hdf5.h" />
     <ClInclude Include="..\..\includes\h5_attributeConstants.h" />
     <ClInclude Include="..\..\includes\h5_fileManagement.h" />
     <ClInclude Include="..\..\includes\h5_readDataFromFile.h" />
     <ClInclude Include="..\..\includes\h5_writeDataToFile.h" />
-    <ClInclude Include="..\jni\jhdf5load.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\hdf5.pot" />

@@ -11,52 +11,52 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="denom">
-  <refnamediv>
-    <refname>denom</refname>
-    <refpurpose>分母</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>den=denom(r)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>有理または多項式または定数行列.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>den</term>
-        <listitem>
-          <para>多項式行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>den=denom(r)</literal>は
-      有理行列の分母を返します.
-    </para>
-    <para>
-      有理数は,内部的に
-      <literal>r=list(['r','num','den','dt'],num,den,[])</literal>と
-      表され,
-      <literal>denom(r</literal>) は <literal>r(3)</literal>,
-      <literal>r('den')</literal> または <literal>r.den</literal>と
-      同じになります.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="numer">numer</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>denom</refname>
+        <refpurpose>分母</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>den=denom(r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>有理または多項式または定数行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>多項式行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>den=denom(r)</literal>は
+            有理行列の分母を返します.
+        </para>
+        <para>
+            有理数は,内部的に
+            <literal>r=list(['r','num','den','dt'],num,den,[])</literal>と
+            表され,
+            <literal>denom(r</literal>) は <literal>r(3)</literal>,
+            <literal>r('den')</literal> または <literal>r.den</literal>と
+            同じになります.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="numer">numer</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

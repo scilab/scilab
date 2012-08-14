@@ -11,47 +11,47 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clock">
-  <refnamediv>
-    <refname>clock</refname>
-    <refpurpose>Return current time as date vector</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>c = clock</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>c = clock returns a 6-element date vector containing the current date and time in decimal form:</para>
-    <para>c = [year month day hour minute seconds]</para>
-    <para>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>clock</refname>
+        <refpurpose>Return current time as date vector</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>c = clock</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>c = clock returns a 6-element date vector containing the current date and time in decimal form:</para>
+        <para>c = [year month day hour minute seconds]</para>
+        <para>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 clock
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datenum">datenum</link>
-      </member>
-      <member>
-        <link linkend="datevec">datevec</link>
-      </member>
-      <member>
-        <link linkend="timer">timer</link>
-      </member>
-      <member>
-        <link linkend="etime">etime</link>
-      </member>
-      <member>
-        <link linkend="tic">tic</link>
-      </member>
-      <member>
-        <link linkend="toc">toc</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datenum">datenum</link>
+            </member>
+            <member>
+                <link linkend="datevec">datevec</link>
+            </member>
+            <member>
+                <link linkend="timer">timer</link>
+            </member>
+            <member>
+                <link linkend="etime">etime</link>
+            </member>
+            <member>
+                <link linkend="tic">tic</link>
+            </member>
+            <member>
+                <link linkend="toc">toc</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

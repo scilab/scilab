@@ -30,6 +30,7 @@ import org.scilab.modules.scinotes.KeywordEvent;
  * OpenURLAction Class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class OpenURLAction extends DefaultAction {
 
     /**
@@ -66,16 +67,16 @@ public class OpenURLAction extends DefaultAction {
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         final MenuItem menuitem = createMenu(label, null, new OpenURLAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String keyword = editor.getTextPane().getSelectedText();
-                        if (keyword == null) {
-                            KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
-                            menuitem.setEnabled(ScilabLexerConstants.MAIL == kwe.getType() || ScilabLexerConstants.URL == kwe.getType());
-                        }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String keyword = editor.getTextPane().getSelectedText();
+                    if (keyword == null) {
+                        KeywordEvent kwe = editor.getTextPane().getKeywordEvent();
+                        menuitem.setEnabled(ScilabLexerConstants.MAIL == kwe.getType() || ScilabLexerConstants.URL == kwe.getType());
                     }
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

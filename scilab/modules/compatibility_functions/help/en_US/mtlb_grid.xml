@@ -11,58 +11,58 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_grid">
-  <refnamediv>
-    <refname>mtlb_grid</refname>
-    <refpurpose>Matlab grid emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      There is no Scilab equivalent function for Matlab <literal>grid</literal> but there are equivalent instructions.
-    </para>
-    <para>
-      The function <literal>mtlb_grid(flag_or_handle[,flag])</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>grid(flag_or_handle[,flag])</literal> when it was not
-      possible to know what were the inputs while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_grid</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_grid</refname>
+        <refpurpose>Matlab grid emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With one input, if <literal>flag</literal> is equal to "on"
-          <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[1 1])</literal>
+            There is no Scilab equivalent function for Matlab <literal>grid</literal> but there are equivalent instructions.
         </para>
-      </listitem>
-      <listitem>
         <para>
-          With one input, if <literal>flag</literal> is equal to "off"
-          <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[-1 -1])</literal>
+            The function <literal>mtlb_grid(flag_or_handle[,flag])</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>grid(flag_or_handle[,flag])</literal> when it was not
+            possible to know what were the inputs while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_grid</literal> calls:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With one input, if <literal>flag</literal> is equal to "on"
+                    <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[1 1])</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With one input, if <literal>flag</literal> is equal to "off"
+                    <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[-1 -1])</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With two inputs, if <literal>flag</literal> is equal to "on"
+                    <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[1 1]</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With two inputs, if <literal>arg2</literal> is equal to "off"
+                    <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[-1 -1]</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With two inputs, if <literal>flag</literal> is equal to "on"
-          <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[1 1]</literal>
+            Caution: <literal>mtlb_grid</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          With two inputs, if <literal>arg2</literal> is equal to "off"
-          <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[-1 -1]</literal>
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_grid</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="axes_properties">axes_properties</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

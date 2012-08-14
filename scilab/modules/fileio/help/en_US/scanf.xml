@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v_1, ..., v_n]=scanf(format);</synopsis>
+        <synopsis>[v_1, ..., v_n] = scanf(format);</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>format</term>
                 <listitem>
-                    <para>specifies the format conversion.</para>
+                    <para>a character string: specifies the format conversion.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,7 +40,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>scanf</function> function get character data on standard input (<code>%io(1)</code>), interprets it according
+            The <function>scanf</function> function gets character data on standard input (<code>%io(1)</code>), interprets it according
             to a <varname>format</varname>, and returns the converted results <varname>v_1</varname>, ..., <varname>v_n</varname>.
         </para>
         <para>

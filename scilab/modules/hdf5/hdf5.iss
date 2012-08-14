@@ -19,8 +19,6 @@
 ;
 Source: bin\{#HDF5}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HDF5}\jar\org.scilab.modules.{#HDF5}.jar;DestDir: {app}\modules\{#HDF5}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;
 ;Source: bin\nohdf5.dll; DestDir: {app}\bin; DestName: scihdf5.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#HDF5}\license.txt; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB}
@@ -31,8 +29,6 @@ Source: modules\{#HDF5}\sci_gateway\{#HDF5}_gateway.xml; DestDir: {app}\modules\
 ;
 Source: modules\{#HDF5}\etc\{#HDF5}.quit; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HDF5}\etc\{#HDF5}.start; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
-;
-Source: thirdparty\j{#HDF5}.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#HDF5}\macros\buildmacros.sce; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\buildmacros.bat; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
