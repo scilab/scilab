@@ -45,6 +45,7 @@ public final class RefreshAction extends CommonCallBack {
     public void callBack() {
         StartPlotBrowser.plotBrowser(PlotBrowser.currentObjectID);
         SwingPlotBrowser.pReceive.revalidate();
+        SwingPlotBrowser.pReceive.repaint();
     }
 
     /**

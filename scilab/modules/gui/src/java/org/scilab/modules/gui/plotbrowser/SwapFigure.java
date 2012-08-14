@@ -20,7 +20,8 @@ public class SwapFigure {
 
     public SwapFigure(String objectID) {
         SwingPlotBrowser.pReceive.removeAll();
-        SwingPlotBrowser.pReceive.repaint();
         new ListCreator(objectID);
+        SwingPlotBrowser.pReceive.revalidate();
+        SwingPlotBrowser.pReceive.repaint();
     }
 }

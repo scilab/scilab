@@ -25,4 +25,5 @@ public class MessagesPlotBrowser {
     public static final String plot_browser = Messages.gettext("Plot Browser");
     public static final String polyline = Messages.gettext("Polyline");
     public static final String refresh = Messages.gettext("Refresh");
+    public static final String surface = Messages.gettext("Surface");
 }
