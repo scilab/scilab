@@ -41,13 +41,14 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
         error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), 'gsort', 1));
     end
 
+
     if mn(1) == 1 then
         // if A is a row vector and optsort = 'r', the result is the 
         // first input argument
-        if strcmp(optsort, 'r') == 0 |strcmp(optsort, 'lr') == 0 then
+        if strcmp(optsort, 'r') == 0 |strcmp(optsort, 'lr') == 0 | v == [] then
             A = A;
             if lhs == 2 then
-                if strcmp(optsort, 'lr') == 0 then
+                if strcmp(optsort, 'lr') == 0 | ij == [] then
                     k = 1;
                 else
                     k = ij(:,1);
@@ -101,10 +102,10 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
     if mn(2) == 1 then
         // if A is a column vector and optsort = 'c', the result is the 
         // first input argument
-        if strcmp(optsort, 'c') == 0 | strcmp(optsort, 'lc') == 0 then
+        if strcmp(optsort, 'c') == 0 | strcmp(optsort, 'lc') == 0 | v == [] then
             A = A;
             if lhs == 2 then
-                if strcmp(optsort, 'lc') == 0 then
+                if strcmp(optsort, 'lc') == 0 | ij == [] then
                     k = 1;
                 else
                     k = ij(:,2);
