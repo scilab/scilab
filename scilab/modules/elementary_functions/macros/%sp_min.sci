@@ -43,16 +43,25 @@ function [m, k] = %sp_min(varargin)
         // Retrieves entries of sparse matrix
         [ij, v, mn]= spget(A1);
         if lhs == 1 then
-            m = min(v);
-        else
-            [m, i] = min(v);
-            if mn(1) == 1 then
-                k = ij(i,2);
+            if v == [] then
+                m = 0;
             else
-                if mn(2) == 1 then
-                    k = ij(i,1);
+                m = min(v);
+            end
+        else
+            if v == [] then
+                m = 0;
+                k = [1 1];
+            else
+                [m, i] = min(v);
+                if mn(1) == 1 then
+                    k = ij(i,2);
                 else
-                    k = [ij(i,1) ij(i,2)];
+                    if mn(2) == 1 then
+                        k = ij(i,1);
+                    else
+                        k = [ij(i,1) ij(i,2)];
+                    end
                 end
             end
         end

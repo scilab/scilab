@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Yann COLLETTE <yann.collette@scilab.fr>
+// Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,5 +18,5 @@
 
 [v, ij] = max(sprand(50,50,0));
 
-if v~=0 then pause,end
-if ~isempty(ij) then pause,end
+assert_checkequal(v, 0);
+assert_checkequal(ij, [1 1]);
