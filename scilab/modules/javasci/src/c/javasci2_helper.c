@@ -503,7 +503,7 @@ char **getString(char *variableName, int *nbRow, int *nbCol)
     int *piLen = NULL;
     char **pstData = NULL;
 
-    //fisrt call to retrieve dimensions
+    //first call to retrieve dimensions
     sciErr = readNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, NULL, NULL);
     if (sciErr.iErr)
     {

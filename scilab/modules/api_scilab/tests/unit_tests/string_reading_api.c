@@ -44,7 +44,7 @@ int read_string(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    //fisrt call to retrieve dimensions
+    //first call to retrieve dimensions
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
     if (sciErr.iErr)
     {
