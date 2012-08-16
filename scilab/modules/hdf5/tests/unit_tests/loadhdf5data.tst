@@ -8,6 +8,10 @@
 // Load previously saved data (check backward compatibility)
 
 
+///// Empty matrix
+import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/emptymatrix.sod");
+assert_checkequal(emptymatrix, []);
+
 ///// Double
 import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/matricedoublescalar.sod");
 assert_checkequal(ascalar,42);
