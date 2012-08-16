@@ -55,9 +55,9 @@ c     ------call macro
          if(istk(il).lt.0) il=iadr(istk(il+1))
 
          if ((fin.eq.17).or.(fin.eq.54)) then
-            call funnam(ids(1,pt+1),'mini',il)
+            call funnam(ids(1,pt+1),'min',il)
          else
-            call funnam(ids(1,pt+1),'maxi',il)
+            call funnam(ids(1,pt+1),'max',il)
          endif
          fun=-1
          return
