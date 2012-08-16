@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,9 +15,8 @@
 // 1. Interface
 // ============
 
-if execstr("asin()"   ,"errcatch") == 0 then pause, end
-if execstr("asin(1,2)","errcatch") == 0 then pause, end
-
+assert_checkfalse(execstr("asin()", "errcatch") == 0);
+assert_checkfalse(execstr("asin(1,2)", "errcatch") == 0);
 
 // 2. Singular Values
 // ==================
@@ -26,18 +26,23 @@ rt3 = sqrt(3);
 v   = [0 , %pi/6 , %pi/4 , %pi/3 , %pi/2    , %pi/3 , %pi/4 , %pi/6 , 0 ];
 x   = [0 , 1/2   , rt2/2 , rt3/2 , 1        , rt3/2 , rt2/2 , 1/2   , 0 ];
 
-if or(abs(asin(x)-v) > sqrt (%eps)) then pause, end
+y = asin(x);
+assert_checkalmostequal(y,v,2*%eps,[],"element");
 
 
 // 3. Not A Number
 // ===============
 
-if ~isnan(asin(%nan))        then pause, end
-if ~isnan(asin(-%nan))       then pause, end
+assert_checktrue(isnan(asin(%nan)));
+assert_checktrue(isnan(asin(-%nan)));
 
 
 // 4. Limit values
 // ===============
+
+assert_checkequal(imag(asin(%inf)),%inf);
+assert_checkequal(imag(asin(-%inf)),%inf);
+
 
 // 5. Properties
 // =============
@@ -45,8 +50,9 @@ if ~isnan(asin(-%nan))       then pause, end
 A = rand(100,100);
 
 // asin(-x) = - asin(x)
-if or( asin(-A) + asin(A) > %eps) then pause, end
+assert_checkalmostequal(asin(-A), -asin(A), %eps);
 
 
 // asin(x) = acos(-x) - pi/2
-if or( (asin(A) - acos(-A) + %pi/2) > %eps ) then pause, end
+assert_checkalmostequal(asin(A), acos(-A) - %pi / 2, %eps, %eps, "element");
+
