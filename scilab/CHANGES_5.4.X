@@ -57,6 +57,10 @@ Bug Fixes
 
 * Bug #11509 fixed - A progression bar was missing during Atoms operations.
 
+* Bug #11533, #11652 and #11653 fixed - typos in messages of eigs function fixed,
+                     eigs help page updated and optional booleans in eigs are boolean by
+                     default to be consistent with Scilab's own data types.
+
 * Bug #11554 fixed - After using xcosPalAdd, a message was printed on 'quit'.
 
 * Bug #11592 fixed - In the documentation, example of bessel failed.

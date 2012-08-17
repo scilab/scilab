@@ -273,7 +273,7 @@ function y = A ( x )
                             <para>
                                 <term>cholB</term>
                                 <para>
-                                    if <literal>chol(B)</literal> is passed rather than <literal>B</literal>. By default, <literal>cholB</literal> is 0.
+                                    if <literal>chol(B)</literal> is passed rather than <literal>B</literal>. By default, <literal>cholB</literal> is %f.
                                 </para>
                             </para>
                         </listitem>
@@ -281,7 +281,7 @@ function y = A ( x )
                             <para>
                                 <term>isreal</term>
                                 <para>
-                                    if <literal>Af</literal> is given, <literal>isreal</literal> can be defined. By default, <literal>isreal</literal> is 1.
+                                    if <literal>Af</literal> is given, <literal>isreal</literal> can be defined. By default, <literal>isreal</literal> is %t.
                                     This argument should not be indicated if <literal>A</literal> is a matrix.
                                 </para>
                             </para>
@@ -290,7 +290,7 @@ function y = A ( x )
                             <para>
                                 <term>issym</term>
                                 <para>
-                                    if <literal>Af</literal> is given, <literal>issym</literal> can be defined. By default, <literal>isreal</literal> is 0.
+                                    if <literal>Af</literal> is given, <literal>issym</literal> can be defined. By default, <literal>issym</literal> is %f.
                                     This argument should not be indicated if <literal>A</literal> is a matrix.
                                 </para>
                             </para>
@@ -328,7 +328,7 @@ A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6*ones(9,1));
 B = eye(10,10);
 k = 8;
 sigma = 'SM';
-opts.cholB = 1;
+opts.cholB = %t;
 
 d = eigs(A)
 [d, v] = eigs(A)
@@ -358,8 +358,8 @@ function y = fn(x)
    y = A * x;
 endfunction
 
-opts.isreal = 1;
-opts.issym = 1;
+opts.isreal = %t;
+opts.issym = %t;
 
 d = eigs(fn, 10, [], k, 'LM', opts)
 
@@ -388,7 +388,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     B = eye(10,10);
     k = 8;
     sigma = 'SM';
-    opts.cholB = 1;
+    opts.cholB = %t;
     
     d = eigs(A)
 [d, v] = eigs(A)
@@ -417,8 +417,8 @@ function y = fn(x)
    y = A * x;
 endfunction
 
-opts.isreal = 1;
-opts.issym = 0;
+opts.isreal = %t;
+opts.issym = %f;
 
 d = eigs(fn, 10, [], k, 'LM', opts)
 
@@ -447,7 +447,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     B = eye(10,10);
     k = 8;
     sigma = 'LM';
-    opts.cholB = 1;
+    opts.cholB = %t;
     
     d = eigs(A)
 [d, v] = eigs(A)
@@ -476,8 +476,8 @@ function y = fn(x)
    y = A * x;
 endfunction
 
-opts.isreal = 0;
-opts.issym = 0;
+opts.isreal = %f;
+opts.issym = %f;
 
 d = eigs(fn, 10, [], k, 'LM', opts)
 
