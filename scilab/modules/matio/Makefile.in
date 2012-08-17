@@ -18,7 +18,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
 # Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -134,17 +134,16 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimatio_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscimatio_algo_la_LIBADD =
-am__libscimatio_algo_la_SOURCES_DIST = src/nomatio/nomatio.c \
-	src/c/matfile_manager.c src/c/CreateMatlabVariable.c \
-	src/c/CreateBooleanVariable.c src/c/CreateCharVariable.c \
-	src/c/CreateDoubleVariable.c src/c/CreateIntegerVariable.c \
+am__libscimatio_algo_la_SOURCES_DIST = src/c/matfile_manager.c \
+	src/c/CreateMatlabVariable.c src/c/CreateBooleanVariable.c \
+	src/c/CreateCharVariable.c src/c/CreateDoubleVariable.c \
+	src/c/CreateIntegerVariable.c \
 	src/c/CreateHyperMatrixVariable.c src/c/CreateStructVariable.c \
 	src/c/CreateSparseVariable.c src/c/CreateCellVariable.c \
 	src/c/GetMatlabVariable.c src/c/GetDoubleVariable.c \
 	src/c/GetCharVariable.c src/c/GetIntegerVariable.c \
 	src/c/GetMlistVariable.c src/c/GetCellVariable.c \
 	src/c/GetStructVariable.c src/c/GetSparseVariable.c
-@MATIO_FALSE@am__objects_1 = libscimatio_algo_la-nomatio.lo
 @MATIO_TRUE@am__objects_1 = libscimatio_algo_la-matfile_manager.lo \
 @MATIO_TRUE@	libscimatio_algo_la-CreateMatlabVariable.lo \
 @MATIO_TRUE@	libscimatio_algo_la-CreateBooleanVariable.lo \
@@ -171,20 +170,19 @@ am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
 	sci_gateway/c/sci_matfile_close.c \
 	sci_gateway/c/sci_matfile_listvar.c \
 	sci_gateway/c/sci_matfile_varreadnext.c \
-	sci_gateway/c/sci_matfile_varwrite.c \
-	src/nomatio/nomatio_gw.cpp
+	sci_gateway/c/sci_matfile_varwrite.c
 @MATIO_TRUE@am__objects_2 = libscimatio_la-gw_matio.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_open.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_close.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_listvar.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varreadnext.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varwrite.lo
-@MATIO_FALSE@am__objects_3 = libscimatio_la-nomatio_gw.lo
+am__objects_3 =
 am_libscimatio_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscimatio_la_OBJECTS = $(am_libscimatio_la_OBJECTS)
-libscimatio_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(libscimatio_la_LDFLAGS) $(LDFLAGS) -o $@
+libscimatio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(libscimatio_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -197,15 +195,6 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
-CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-CXXLD = $(CXX)
-CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscimatio_algo_la_SOURCES) $(libscimatio_la_SOURCES)
 DIST_SOURCES = $(am__libscimatio_algo_la_SOURCES_DIST) \
@@ -561,7 +550,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varreadnext.c \
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
 
-@MATIO_FALSE@MATIO_C_SOURCES = src/nomatio/nomatio.c
+@MATIO_FALSE@MATIO_C_SOURCES = 
 
 #### List of the C files ####
 @MATIO_TRUE@MATIO_C_SOURCES = src/c/matfile_manager.c \
@@ -584,7 +573,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		  src/c/GetSparseVariable.c
 
 @MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
-@MATIO_FALSE@GATEWAY_CPP_SOURCES = src/nomatio/nomatio_gw.cpp
+@MATIO_FALSE@GATEWAY_CPP_SOURCES = 
 libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -611,7 +600,7 @@ modulename = matio
 
 #### matio : Conf files ####
 libscimatio_la_rootdir = $(mydatadir)
-libscimatio_la_root_DATA = license.txt 
+libscimatio_la_root_DATA = license.txt
 
 #### matio : init scripts ####
 libscimatio_la_etcdir = $(mydatadir)/etc
@@ -624,7 +613,7 @@ libscimatio_la_LIBADD = libscimatio-algo.la
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
+.SUFFIXES: .sci .bin .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -726,9 +715,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-GetSparseVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-GetStructVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-matfile_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-nomatio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-gw_matio.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_open.Plo@am__quote@
@@ -755,13 +742,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscimatio_algo_la-nomatio.lo: src/nomatio/nomatio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscimatio_algo_la-nomatio.lo -MD -MP -MF $(DEPDIR)/libscimatio_algo_la-nomatio.Tpo -c -o libscimatio_algo_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_algo_la-nomatio.Tpo $(DEPDIR)/libscimatio_algo_la-nomatio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nomatio/nomatio.c' object='libscimatio_algo_la-nomatio.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscimatio_algo_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
 
 libscimatio_algo_la-matfile_manager.lo: src/c/matfile_manager.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscimatio_algo_la-matfile_manager.lo -MD -MP -MF $(DEPDIR)/libscimatio_algo_la-matfile_manager.Tpo -c -o libscimatio_algo_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
@@ -930,34 +910,6 @@ libscimatio_la-sci_matfile_varwrite.lo: sci_gateway/c/sci_matfile_varwrite.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_varwrite.c' object='libscimatio_la-sci_matfile_varwrite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscimatio_la-sci_matfile_varwrite.lo `test -f 'sci_gateway/c/sci_matfile_varwrite.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varwrite.c
-
-.cpp.o:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
-
-.cpp.obj:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.cpp.lo:
-@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-libscimatio_la-nomatio_gw.lo: src/nomatio/nomatio_gw.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscimatio_la-nomatio_gw.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-nomatio_gw.Tpo -c -o libscimatio_la-nomatio_gw.lo `test -f 'src/nomatio/nomatio_gw.cpp' || echo '$(srcdir)/'`src/nomatio/nomatio_gw.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-nomatio_gw.Tpo $(DEPDIR)/libscimatio_la-nomatio_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/nomatio/nomatio_gw.cpp' object='libscimatio_la-nomatio_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscimatio_la-nomatio_gw.lo `test -f 'src/nomatio/nomatio_gw.cpp' || echo '$(srcdir)/'`src/nomatio/nomatio_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
 # Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 include $(top_srcdir)/Makefile.incl.am
@@ -40,8 +40,8 @@ libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
 
 else
 
-MATIO_C_SOURCES = src/nomatio/nomatio.c
-GATEWAY_CPP_SOURCES	= src/nomatio/nomatio_gw.cpp
+MATIO_C_SOURCES =
+GATEWAY_CPP_SOURCES	=
 
 endif
 
@@ -72,7 +72,7 @@ modulename=matio
 
 #### matio : Conf files ####
 libscimatio_la_rootdir = $(mydatadir)
-libscimatio_la_root_DATA =  license.txt 
+libscimatio_la_root_DATA =  license.txt
 
 #### matio : init scripts ####
 libscimatio_la_etcdir = $(mydatadir)/etc
