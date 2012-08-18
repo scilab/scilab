@@ -39,7 +39,7 @@ msgid "%s: Feature %s is obsolete.\n"
 msgstr ""
 
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
@@ -111,7 +111,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
