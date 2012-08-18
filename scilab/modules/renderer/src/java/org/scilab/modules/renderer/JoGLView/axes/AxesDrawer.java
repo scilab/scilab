@@ -297,7 +297,7 @@ public class AxesDrawer {
         Double[] margins = axes.getMargins();
 
         // TODO :  zoom box.
-        double x = (axesBounds[0] + axesBounds[2] * margins[0]) * 2 - 1;
+        double x = (axesBounds[0] + axesBounds[2] * margins[0]) * 2 - 1;  
         double y = (1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3])) * 2 - 1;
         double w = (1 - margins[0] - margins[1]) * axesBounds[2];
         double h = (1 - margins[2] - margins[3]) * axesBounds[3];
@@ -748,10 +748,13 @@ public class AxesDrawer {
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
 
-            Vector3d point = new Vector3d(coordinates);
-            if (point.getZ() != 0.0) {
-                point = projection2d.project(point);
+            if (projection2d == null) {
+                updateAxesTransformation(axes);
+                projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
             }
+
+            Vector3d point = new Vector3d(coordinates);
+            point = projection2d.project(point);
 
             /* Convert the window coordinates to pixel coordinates, only y changes due to the differing y-axis convention */
             coords2dView[0] = point.getX();
@@ -788,9 +791,12 @@ public class AxesDrawer {
             Vector3d point = new Vector3d(coordinates[0], height - coordinates[1], 0.0);
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
-            if (point.getZ() != 0.0) {
-                point = projection2d.unproject(point);
+            if (projection2d == null) {
+                updateAxesTransformation(axes);
+                projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
             }
+
+            point = projection2d.unproject(point);
             coords2dView = point.getData();
         }
 
