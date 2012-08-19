@@ -545,7 +545,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
     }
 
     /**
-     * Allocate the a new element
+     * Allocate a new element
      *
      * @return the new element
      */
