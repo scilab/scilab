@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // Load previously saved data (check backward compatibility)
 ///// Double
 import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/matricedoublescalar_v1.sod");
