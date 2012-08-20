@@ -31,7 +31,6 @@
             <para>Here is an example of a classical use-case:</para>
         </para>
         <programlisting role="java">/*
-            * Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
             *
             * This file is released under the 3-clause BSD license. See COPYING-BSD.
             *
