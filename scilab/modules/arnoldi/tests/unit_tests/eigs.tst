@@ -206,11 +206,11 @@ assert_checkerror("eigs(sparse(A), [], 4, which)", refMsg);
 
 which = 'LM';
 assert_checkfalse(execstr("eigs(A, [], 4, which ,%nan)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A structure expected\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A structure expected"), "eigs", 5);
 assert_checkerror("eigs(A, [], 4, which ,%nan)", refMsg);
 
 assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,%nan)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A structure expected\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A structure expected"), "eigs", 5);
 assert_checkerror("eigs(sparse(A), [], 4, which, %nan)", refMsg);
 
 opts.var = %nan;
@@ -225,20 +225,20 @@ assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
 clear opts
 opts.maxiter  = [];
 assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: opts.maxiter must be a scalar.\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 5, "opts.maxiter");
 assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
 
 assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: opts.maxiter must be a scalar.\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 5, "opts.maxiter");
 assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
 
 opts.maxiter  = %nan;
 assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: opts.maxiter must be an integer positive value.\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "eigs", 5, "opts.maxiter");
 assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
 
 assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: opts.maxiter must be an integer positive value.\n"), "eigs", 5);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "eigs", 5, "opts.maxiter");
 assert_checkerror("eigs(sparse(A), [], 4, which ,opts)", refMsg);
 
 opts.maxiter  = %f;
