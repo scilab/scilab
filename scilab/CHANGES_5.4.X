@@ -52,6 +52,8 @@ Bug Fixes
 
 * Bug #8488 fixed - NaN values was propagated when we performed the min/max between
                     several matrices.
+                    
+* Bug #9693 fixed - The default value of epsg in optim help page is %eps.
 
 * Bug #9976 fixed - The inverse cdfbet function returned wrong value instead of 0.
 
