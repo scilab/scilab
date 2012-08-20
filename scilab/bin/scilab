@@ -426,10 +426,9 @@ detect_java_vm() {
                     fi
                     if test -x "${DIR}/bin/java" ; then
                         # resolve symlinked dir
-                        pushd . >/dev/null
                         cd $DIR
                         JAVA_HOME=$(pwd -P)
-                        popd >/dev/null
+                        cd $OLDPWD
 
                         export JAVA_HOME
                         if test $SCIVERBOSE -ne 0; then
