@@ -4,6 +4,8 @@
 Xcos
 ====
 
+* Bug #10041 fixed - WFILE_f block was not declared as deprecated
+
 * Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
 
 
