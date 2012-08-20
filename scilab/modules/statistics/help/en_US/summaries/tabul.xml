@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tabul">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xmlns:scilab="http://www.scilab.org" xml:id="tabul">
     <refnamediv>
         <refname>tabul</refname>
         <refpurpose> frequency of values of a matrix or vector</refpurpose>
@@ -88,24 +88,37 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-// first example
 X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
 m1 = tabul(X)
 m2 = tabul(X, "i")
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 
-// second example 
 X = ["ba" "baba" "a" "A" "AA" "a" "aa" "aa" "aa" "A" "ba"]
 m = tabul(X,"i")
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 
-// third example
 n = 50000;
 X = grand(n,1,"bin",70,0.5);
 m = tabul(X,"i");
 clf()
 plot2d3(m(:,1), m(:,2)/n)
 xtitle("empirical probabilities of B(70,0.5)")
+ ]]></programlisting>
+        <scilab:image>
+            
+            n = 50000;
+            X = grand(n,1,"bin",70,0.5);
+            m = tabul(X,"i");
+            clf()
+            plot2d3(m(:,1), m(:,2)/n)
+            xtitle("empirical probabilities of B(70,0.5)")
+            
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
-// last example : computes the occurrences of words of the scilab license
+// computes the occurrences of words of the license of scilab 
 text = read(SCI+"/license.txt",-1,1,"(A)"); // read the scilab license
 bigstr = strcat(text," ");                  // put all the lines in a big string
 sep =  [" " "," "." ";" "*" ":" "-" """"];  // words separators 

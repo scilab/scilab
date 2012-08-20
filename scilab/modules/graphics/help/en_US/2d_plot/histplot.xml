@@ -110,6 +110,10 @@ clf();histplot(20,d,normalization=%f)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
 ]]></programlisting>
+                <scilab:image>
+                    d=rand(1,10000,'normal'); 
+                    clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
+                </scilab:image>
             </member>
             <member>
                 Example #2: histogram of a binomial (B(6,0.5)) random sample
@@ -124,6 +128,17 @@ subplot(2,1,2)
 histplot(c, d, normalization=%f, style=5)
 xtitle("non normalized histogram")
 ]]></programlisting>
+                <scilab:image>
+                    d = grand(1000,1,"bin", 6, 0.5);
+                    c = linspace(-0.5,6.5,8);
+                    clf()
+                    subplot(2,1,1)
+                    histplot(c, d, style=2)
+                    xtitle("normalized histogram")
+                    subplot(2,1,2)
+                    histplot(c, d, normalization=%f, style=5)
+                    xtitle("non normalized histogram")
+                </scilab:image>
             </member>
             <member>
                 Example #3: histogram of an exponential random sample 
@@ -137,6 +152,16 @@ x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
 ]]></programlisting>
+                <scilab:image>
+                    lambda = 2;
+                    X = grand(100000,1,"exp", 1/lambda);
+                    Xmax = max(X);
+                    clf()
+                    histplot(40, X, style=2)
+                    x = linspace(0,max(Xmax),100)';
+                    plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
+                    legend(["exponential random sample histogram" "exact density curve"]);
+                </scilab:image>
             </member>
         </simplelist>
     </refsection>
