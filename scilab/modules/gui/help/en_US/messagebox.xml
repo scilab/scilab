@@ -92,7 +92,7 @@ messagebox("Single line message")
 // Multi line message with title
 messagebox(["Multi-line" "message"], "User defined title")
 
-// Icon specified by th euser
+// Icon specified by the user
 messagebox("An error message", "Error", "error")
 
 // Buttons labels + "modal" replaces title
