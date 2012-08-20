@@ -27,7 +27,7 @@ v   = [0 , %pi/6 , %pi/4 , %pi/3 , %pi/2    , %pi/3 , %pi/4 , %pi/6 , 0 ];
 x   = [0 , 1/2   , rt2/2 , rt3/2 , 1        , rt3/2 , rt2/2 , 1/2   , 0 ];
 
 y = asin(x);
-assert_checkalmostequal(y,v,2*%eps,[],"element");
+assert_checkalmostequal(y,v);
 
 
 // 3. Not A Number
@@ -50,9 +50,9 @@ assert_checkequal(imag(asin(-%inf)),%inf);
 A = rand(100,100);
 
 // asin(-x) = - asin(x)
-assert_checkalmostequal(asin(-A), -asin(A), %eps);
+assert_checkalmostequal(asin(-A), -asin(A));
 
 
 // asin(x) = acos(-x) - pi/2
-assert_checkalmostequal(asin(A), acos(-A) - %pi / 2, %eps, %eps, "element");
+assert_checkalmostequal(asin(A), acos(-A) - %pi / 2);
 
