@@ -425,10 +425,15 @@ detect_java_vm() {
                         echo "Trying to find Java in $DIR "
                     fi
                     if test -x "${DIR}/bin/java" ; then
-                        JAVA_HOME=$DIR
+                        # resolve symlinked dir
+                        pushd . >/dev/null
+                        cd $DIR
+                        JAVA_HOME=$(pwd -P)
+                        popd >/dev/null
+
                         export JAVA_HOME
                         if test $SCIVERBOSE -ne 0; then
-                            echo "found"
+                            echo "Java found in $JAVA_HOME"
                         fi
                         break
                     fi
@@ -436,7 +441,7 @@ detect_java_vm() {
             fi
 
 # if JAVA_HOME still haven't been found. Well, we can now try to find it in the path
-            if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
+            if test ! -d "$JAVA_HOME"; then
 
                 PATH_SEPARATOR=:
                 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
