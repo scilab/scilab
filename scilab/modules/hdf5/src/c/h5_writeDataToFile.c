@@ -448,15 +448,18 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
 
     piDims = convertDims(_iDims, _piDims, &iSize);
 
+    //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+    space = H5Screate_simple(_iDims, piDims, NULL);
+    if (space < 0)
+    {
+        free(piDims);
+        return -1;
+    }
+
     if (_iDims == 2 && piDims[0] == 0 && piDims[1] == 0)
     {
         // []
-        space = H5Screate_simple(0, NULL, NULL);
-        if (space < 0)
-        {
-            free(piDims);
-            return -1;
-        }
+      
 
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, _iDims, piDims);
@@ -490,13 +493,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
         return 0;
     }
 
-    //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(_iDims, piDims, NULL);
-    if (space < 0)
-    {
-        free(piDims);
-        return -1;
-    }
+    
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);

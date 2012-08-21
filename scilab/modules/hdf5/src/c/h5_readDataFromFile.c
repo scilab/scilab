@@ -267,7 +267,8 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         return -1;
     }
 
-    if(_piDims != 0)
+
+    if(_piDims != NULL)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
