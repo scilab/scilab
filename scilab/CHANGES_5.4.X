@@ -150,7 +150,9 @@ Bug Fixes
 
 * Bug #11618 fixed - A(:) returned wrong values when A was a complex sparse matrix.
 
-* Bug #11628 fixed - Clearing a shortcut did not work in Preferences.
+* Bug #11619 fixed - titlepage("Text"): the font size was no longer maximized to fit the figure's sizes.
+
+* Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
 * Bug #11640 fixed - Same behavior as in Scilab 5.3.3 plugged back at STDIN closure.
 
