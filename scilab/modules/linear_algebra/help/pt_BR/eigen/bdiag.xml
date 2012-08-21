@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,94 +10,99 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bdiag">
-    <refnamediv>
-        <refname>bdiag</refname>
-        <refpurpose> block diagonalization, generalized eigenvectors</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>real or complex square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rmax</term>
-                <listitem>
-                    <para>real number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Ab</term>
-                <listitem>
-                    <para>real or complex square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>real or complex non-singular matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>bs</term>
-                <listitem>
-                    <para>vector of integers</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bdiag" xml:lang="en">
+  <refnamediv>
+    <refname>bdiag</refname>
+    <refpurpose>diagonalização em blocos, autovetores
+      generalizados
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+    <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parâmetros</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>matriz quadrada de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rmax</term>
+        <listitem>
+          <para>número real</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ab</term>
+        <listitem>
+          <para>matriz quadrada de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>matriz de reais ou complexos não-singular</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bs</term>
+        <listitem>
+          <para>vetor de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Descrição</title>
+    <programlisting role=""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
  ]]></programlisting>
-        <para>
-            performs the block-diagonalization of matrix <literal>A</literal>.  bs
-            gives the structure of the blocks (respective sizes of the
-            blocks).  <literal>X</literal> is the change of basis i.e 
-            <literal>Ab = inv(X)*A*X</literal>is block diagonal.
-        </para>
-        <para>
-            <literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
-            default value is the l1 norm of <literal>A</literal>.
-        </para>
-        <para>
-            To get a diagonal form (if it exists) choose a large value for
-            <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
-            Generically (for real random A) the blocks are (1x1) and (2x2) and
-            <literal>X</literal> is the matrix of eigenvectors.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//Real case: 1x1 and 2x2 blocks
+    <para>
+      realiza a diagonalização em blocos da matriz <literal>A</literal>.
+      bs fornece a estrutura dos blocos (respectivos tamanhos dos blocos).
+      <literal>X</literal> é a matriz mudança de base i.e <literal>Ab =
+        inv(X)*A*X 
+      </literal>
+      édiagonal em blocos.
+    </para>
+    <para>
+      <literal>rmax</literal> controla o condicionamento de
+      <literal>X</literal>; o valor padrão é a norma L1 de
+      <literal>A</literal>.
+    </para>
+    <para>Para encontrar a forma diagonal (se existir) escolha um valor
+      suficientemente grande para <literal>rmax</literal>
+      (<literal>rmax=1/%eps</literal> , por exemplo). Genericamente, (para uma
+      matriz A de reais aleatória) os blocos são (1x1) e (2x2) e
+      <literal>X</literal> é a matriz de autovetores.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemplos</title>
+    <programlisting role="example"><![CDATA[ 
+//No caso de reais: blocos 1x1 e 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 
-//Complex case: complex 1x1 blocks
+//No caso de complexos: blocos 1x1 complexos
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="schur">schur</link>
-            </member>
-            <member>
-                <link linkend="sylv">sylv</link>
-            </member>
-            <member>
-                <link linkend="spec">spec</link>
-            </member>
-        </simplelist>
-    </refsection>
+  </refsection>
+  <refsection>
+    <title> Ver Também </title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+      <member>
+        <link linkend="sylv">sylv</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

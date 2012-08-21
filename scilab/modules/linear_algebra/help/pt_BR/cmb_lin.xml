@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,31 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cmb_lin">
-    <refnamediv>
-        <refname>cmb_lin</refname>
-        <refpurpose> symbolic linear combination</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Evaluates <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> are character
-            strings. (low-level routine)
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="mulf">mulf</link>
-            </member>
-            <member>
-                <link linkend="addf">addf</link>
-            </member>
-        </simplelist>
-    </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cmb_lin" xml:lang="en">
+  <refnamediv>
+    <refname>cmb_lin</refname>
+    <refpurpose>combinação linear simbólica</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+    <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Descrição</title>
+    <para>
+      Avalia <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x,
+        y
+      </literal>
+      são strings. (rotina de baixo-nível).
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>Ver Também</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mulf">mulf</link>
+      </member>
+      <member>
+        <link linkend="addf">addf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>
