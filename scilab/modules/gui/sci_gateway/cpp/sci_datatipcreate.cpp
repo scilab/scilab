@@ -103,6 +103,8 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
         return FALSE;
     }
 
+    nbRow = 1;
+    nbCol = 1;
     CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &out_index);
     hstk(out_index)[0] = getHandle(datatip_handler);
     LhsVar(1) = Rhs + 1;

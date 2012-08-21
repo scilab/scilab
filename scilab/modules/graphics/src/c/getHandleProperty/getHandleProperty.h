@@ -88,6 +88,7 @@ int get_mark_foreground_property(void* _pvCtx, char* pobjUID);
 int get_mark_background_property(void* _pvCtx, char* pobjUID);
 int get_bar_layout_property(void* _pvCtx, char* pobjUID);
 int get_bar_width_property(void* _pvCtx, char* pobjUID);
+int get_datatips_property(void* _pvCtx, char* pobjUID);
 int get_x_shift_property(void* _pvCtx, char* pobjUID);
 int get_y_shift_property(void* _pvCtx, char* pobjUID);
 int get_z_shift_property(void* _pvCtx, char* pobjUID);

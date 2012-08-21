@@ -69,6 +69,7 @@ public class DatatipMove {
             }
         }
         setNewPosition (datatipUid, markerUid, newX, newY);
+        updateDatatipsField (polylineUid, coordsToMove[0], coordsToMove[1], newX, newY);
     }
 
     /**
@@ -99,8 +100,16 @@ public class DatatipMove {
             }
         }
         setNewPosition (datatipUid, markerUid, newX, newY);
+        updateDatatipsField (polylineUid, coordsToMove[0], coordsToMove[1], newX, newY);
     }
 
+    /**
+    * Get the pixel integer coordinates of a datatip
+    *
+    * @param markerUid Datatip's marker unique identifier
+    * @param axesUid Axes unique identifier which the datatip belongs
+    * @return Array with x, y coordinates
+    */
     public static Integer[] getCoordInteger (String markerUid, String axesUid) {
 
         Double[] markerPosition = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
@@ -115,6 +124,14 @@ public class DatatipMove {
         return coordInteger;
     }
 
+    /**
+    * Set the new position of a datatip and its label after moved
+    *
+    * @param datatipUid Datatip unique identifier.
+    * @param markerUid Datatip's marker unique identifier.
+    * @param newX New position x of the datatip
+    * @param newX New position y of the datatip
+    */
     private static void setNewPosition (String datatipUid, String markerUid, double newX, double newY) {
 
         double[] newPosition = { newX , newY , 0.0 };
@@ -125,6 +142,29 @@ public class DatatipMove {
         Double[] datatipPosition = DatatipCreate.setDatatipPosition (newPosition);
         GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
         GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
+    }
+
+    /**
+    * Update the datatips field in the polyline handler after move
+    *
+    * @param polylineUid Polyline unique identifier.
+    * @param oldX Current position x of the datatip
+    * @param oldY Current position y of the datatip
+    * @param newX New position x of the datatip
+    * @param newX New position y of the datatip
+    */
+    public static void updateDatatipsField (String polylineUid, double oldX, double oldY, double newX, double newY) {
+
+        Double[] currentDatatips = (Double[]) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_DATATIPS__);
+        Integer numDatatips = (Integer) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_DATATIPS_SIZE__);
+        for (int i = 0 ; i < currentDatatips.length ; i++) {
+            if (currentDatatips[i] == oldX & currentDatatips[i+numDatatips] == oldY) {
+                currentDatatips[i] = newX;
+                currentDatatips[i+numDatatips] = newY;
+                break;
+            }
+        }
+        GraphicController.getController().setProperty(polylineUid, GraphicObjectProperties.__GO_DATATIPS__, currentDatatips);
     }
 
 }

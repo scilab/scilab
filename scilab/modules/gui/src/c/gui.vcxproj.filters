@@ -47,6 +47,9 @@
     <ClCompile Include="..\cpp\CallJxclick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\CallDatatipCreateField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -488,6 +491,9 @@
     <ClInclude Include="..\cpp\CallJxgetmouse.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\cpp\CallDatatipCreateField.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\cpp\CallMainWindow.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -663,6 +669,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\CallJxclick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\CallDatatipCreateField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\CallJxgetmouse.h">

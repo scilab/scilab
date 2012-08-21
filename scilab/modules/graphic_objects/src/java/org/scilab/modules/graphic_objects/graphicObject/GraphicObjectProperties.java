@@ -263,6 +263,8 @@ public class GraphicObjectProperties {
     public static final String __GO_Y_SHIFT__ =                "YShift";
     public static final String __GO_Z_SHIFT__ =                "ZShift";
     public static final String __GO_BAR_WIDTH__ =              "BarWidth";
+    public static final String __GO_DATATIPS__ =               "Datatips";
+    public static final String __GO_DATATIPS_SIZE__ =          "DatatipsSize";
 
     public static final String __GO_SURFACE_MODE__ =           "SurfaceMode";
     public static final String __GO_COLOR_MODE__ =             "ColorMode";

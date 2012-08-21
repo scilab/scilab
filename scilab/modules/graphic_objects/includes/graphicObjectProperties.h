@@ -262,6 +262,8 @@
 #define __GO_Y_SHIFT__                     "YShift"
 #define __GO_Z_SHIFT__                     "ZShift"
 #define __GO_BAR_WIDTH__                   "BarWidth"
+#define __GO_DATATIPS__                    "Datatips"
+#define __GO_DATATIPS_SIZE__               "DatatipsSize"
 
 #define __GO_SURFACE_MODE__                "SurfaceMode"
 #define __GO_COLOR_MODE__                  "ColorMode"

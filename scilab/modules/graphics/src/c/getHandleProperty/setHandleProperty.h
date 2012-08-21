@@ -86,6 +86,7 @@ int set_mark_size_property(void* _pvCtx, char* pobj, size_t stackPointer, int va
 int set_mark_foreground_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_mark_background_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_bar_width_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_datatips_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol );
 int set_bar_layout_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_x_shift_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_y_shift_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);

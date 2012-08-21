@@ -59,7 +59,6 @@ public class DatatipDrag {
         String[] axesChildrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
         coordInteger = DatatipMove.getCoordInteger (markerUid, axesUid);
         polylineUidInit = ep.pick(figureUid, coordInteger[0], coordInteger[1]);
-
         Boolean isLineModeOn = (Boolean) GraphicController.getController().getProperty(polylineUidInit, GraphicObjectProperties.__GO_LINE_MODE__);
         Integer[] axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
         for (int yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
@@ -72,7 +71,7 @@ public class DatatipDrag {
                     Integer[] pixelMouseCoordInt = { newX , newY };
                     double[] pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble(pixelMouseCoordInt);
                     double[] graphicCoord = DatatipCreate.transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
-                    setNewPosition (graphicCoord, markerUid, axesUid);
+                    setNewPosition (graphicCoord, markerUid, axesUid, polylineUidInit);
                 } else {
                     Integer[] pixelMouseCoordInt = { newX , newY };
                     double[] pixelMouseCoordDouble = DatatipCreate.transformPixelCoordToDouble(pixelMouseCoordInt);
@@ -83,7 +82,7 @@ public class DatatipDrag {
                         if (graphicCoord[0] > polylineDataX[i - 1] & graphicCoord[0] < polylineDataX[i + 1]) {
                             newCoord[0] = polylineDataX[i];
                             newCoord[1] = polylineDataY[i];
-                            setNewPosition (newCoord, markerUid, axesUid);
+                            setNewPosition (newCoord, markerUid, axesUid, polylineUidInit);
                         }
                     }
                 }
@@ -128,17 +127,17 @@ public class DatatipDrag {
     * @param indexToMove Integer referring to the selected datatip.
     * @return New position of the datatip to be saved
     */
-    private static void setNewPosition (double[] graphicCoord, String markerUid, String axesUid) {
+    private static void setNewPosition (double[] graphicCoord, String markerUid, String axesUid, String polylineUid) {
 
         String[] axesChildrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
-
         for (int i = 0 ; i < axesChildrenUid.length ; i++) {
             if (axesChildrenUid[i] == markerUid) {
                 datatipUid = axesChildrenUid[i + 1];
                 break;
             }
         }
-
+        Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
+        DatatipMove.updateDatatipsField (polylineUid, datatipPosition[0], datatipPosition[1], graphicCoord[0], graphicCoord[1]);
         datatipPosition = DatatipCreate.setDatatipPosition(graphicCoord);
         GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
         GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_POSITION__, datatipPosition);

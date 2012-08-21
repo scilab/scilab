@@ -47,6 +47,7 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
     int* piAddr	= NULL;
     double* pdblReal = NULL;
     int indexPos = 0;
+    int *status = NULL;
 
     if (Rhs == 1)
     {
@@ -116,5 +117,22 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Wrong number for input argument: %d or %d expected.\n"), fname, 1, 2);
         return FALSE;
     }
+
+    if ((status = (int *)MALLOC(sizeof(int))) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname, 0);
+        return FALSE;
+    }
+
+    nbRow = 1;
+    nbCol = 1;
+    CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &status);
+
+    FREE(status);
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+
+    return TRUE;
 
 }
