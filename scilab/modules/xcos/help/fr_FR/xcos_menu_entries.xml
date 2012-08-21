@@ -371,7 +371,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Zoom in (Ctrl+Plus)</emphasis>
+                    <emphasis role="bold">Affichage : Zoom avant (Ctrl+Pavé numérique Plus)</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-in.png"/>
@@ -383,7 +383,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Zoom out (Ctrl+Moins)</emphasis>
+                    <emphasis role="bold">Affichage : Zoom arrière (Ctrl+Pavé numérique Moins)</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-out.png"/>
@@ -397,7 +397,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Ajuster le schéma à la vue</emphasis>
+                    <emphasis role="bold">Affichage : Ajuster le diagramme à la vue</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-fit-drawing.png"/>
@@ -411,7 +411,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Normal 100%</emphasis>
+                    <emphasis role="bold">Affichage : Normal 100%</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../gui/images/icons/16x16/actions/zoom-original.png"/>
@@ -423,14 +423,14 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Navigateur de palette</emphasis>
+                    <emphasis role="bold">Affichage : Navigateur de palettes</emphasis>
                 </para>
                 <para>Ouvre le navigateur de palette.</para>
                 <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Navigateur de schéma</emphasis>
+                    <emphasis role="bold">Affichage : Navigateur de diagrammes</emphasis>
                 </para>
                 <para>
                     Affiche une fenêtre qui liste les propriétés globales du schéma et de tous les objets qu'il contient (blocs et
@@ -440,11 +440,11 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Zone d'affichage</emphasis>
+                    <emphasis role="bold">Affichage : Aperçu</emphasis>
                 </para>
                 <para>
-                    Affiche la vue <emphasis>Zone d'affichage</emphasis>. Cette fenêtre est une image complète du schéma courant.
-                    Avec la vue <emphasis>Zone d'affichage</emphasis>, vous pouvez déplacer l'aire de travail affichée sur une partie
+                    Affiche la vue <emphasis>Aperçu</emphasis>. Cette fenêtre est une image complète du schéma courant.
+                    Avec la vue <emphasis>Aperçu</emphasis>, vous pouvez déplacer l'aire de travail affichée sur une partie
                     du schéma. Vous pouvez agrandir ou réduire la vue du schéma.
                 </para>
                 <para/>
@@ -455,7 +455,7 @@
                 </mediaobject>
                 <para/>
                 <para>
-                    Ci-dessus, vous avez un exemple de la vue <emphasis>Zone d'affichage</emphasis> incluse dans la fenêtre
+                    Ci-dessus, vous avez un exemple de la vue <emphasis>Aperçu</emphasis> incluse dans la fenêtre
                     <emphasis>Xcos</emphasis> utilisée pour agrandir une partie du schéma. Sur la gauche, la fenêtre d'édition
                     présente la partie agrandie du schéma.
                 </para>
@@ -463,10 +463,10 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Vue : Détails</emphasis>
+                    <emphasis role="bold">Affichage : Détails</emphasis>
                 </para>
                 <para>
-                    Affiche une une fenêtre par bloc sélectionné qui liste les propriétés du bloc. Il présente sous forme
+                    Affiche une fenêtre par bloc sélectionné qui liste les propriétés du bloc. Il présente sous forme
                     d'arbre le contenu de la structure <emphasis>scs_m</emphasis> du bloc
                 </para>
             </listitem>

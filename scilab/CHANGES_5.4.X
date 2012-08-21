@@ -8,6 +8,8 @@ Xcos
 
 * Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
 
+* Bug #11737 fixed - Incompatibility between a xcos menu and its description in the help page
+
 
 Obsolete functions
 ==================
