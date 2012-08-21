@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Functions",SCI+"/modules/functions/help/en_US",%T);
+add_help_chapter("Advanced functions",SCI+"/modules/functions/help/en_US",%T);
 
