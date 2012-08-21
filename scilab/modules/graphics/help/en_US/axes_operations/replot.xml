@@ -58,33 +58,38 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            xdel(winsid());
-            plot()
-            f=gcf();
-            replot([-1,-1,10,2],f.children(1))
-            replot([-3,-2,8,4],f.children(2)) 
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-backupstyle='?'
+      <title>Examples</title>
+      <programlisting role="example"><![CDATA[
+      backupstyle='?'
 
-// First Example
-x=[0:0.1:2*%pi]';
-plot2d(x,sin(x)) 
-replot([-1,-1,10,2]) 
+      x=[0:0.1:2*%pi]';
+      plot2d(x,sin(x))
+      replot([-1,-1,10,2])
+      ]]></programlisting>
+      <scilab:image>
+        backupstyle='?'
 
-// Second Example
-xdel(winsid());
-plot() // plot demo
-f=gcf();
-replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
-replot([-3,-2,8,4],f.children(2)) 
- ]]></programlisting>
+        x=[0:0.1:2*%pi]';
+        plot2d(x,sin(x))
+        replot([-1,-1,10,2])
+      </scilab:image>
+
+      <programlisting role="example"><![CDATA[
+      backupstyle='?'
+      xdel(winsid());
+      plot() // plot demo
+      f=gcf();
+      replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
+      replot([-3,-2,8,4],f.children(2))
+      ]]></programlisting>
+      <scilab:image>
+        xdel(winsid());
+        plot()
+        f2=gcf();
+        replot([-1,-1,10,2],f2.children(1))
+        replot([-3,-2,8,4],f2.children(2))
+      </scilab:image>
+
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
