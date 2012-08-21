@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,48 +12,147 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cond">
-    <refnamediv>
-        <refname>cond</refname>
-        <refpurpose> condition number</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>cond(X)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>real or complex square matrix</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Condition number in 2-norm.  <literal>cond(X)</literal> is the  ratio  of  the
-            largest singular value of  <literal>X</literal>  to the smallest.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+  <refnamediv>
+    <refname>cond</refname>
+    <refpurpose> condition number</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      c = cond(X)
+      c = cond(X, p)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>real or complex matrix. If c = cond(X, p), X must be real or complex square matrix.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>scalar or string (type of norm) (default value = 2).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>real scalar, the condition number.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>c = cond(X)</term>
+        <listitem>
+          <para>
+            returns condition number in 2-norm.<literal>cond(X)</literal> is the  ratio  of  the
+            largest singular value of <literal>X</literal> to the smallest.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c = cond(X, p)</term>
+        <listitem>
+          <para>
+            returns condition number in p-norm : <literal>norm(X, p) * norm(inv(X), p)</literal>.
+            If <literal>p</literal> is specified, <literal>p</literal> can be equal to :
+          </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                p = 1. <literal>cond(X, p)</literal> returns condition number in 1-norm.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                p = 2. <literal>cond(X, p)</literal> returns condition number in 2-norm.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                p = %inf or 'inf'. <literal>cond(X, p)</literal> returns condition number in infinity norm.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                p = 'fro'. <literal>cond(X, p)</literal> returns condition number in Frobenius norm.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[ 
 A=testmatrix('hilb',6);
+// condition number in 2-norm
 cond(A)
- ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="rcond">rcond</link>
-            </member>
-            <member>
-                <link linkend="svd">svd</link>
-            </member>
-        </simplelist>
-    </refsection>
+cond(A, 2)
+
+// condition number in 1-norm
+cond(A, 1)
+
+// condition number in infinity norm
+cond(A, %inf)
+
+// condition number in Frobenius norm
+cond(A, 'fro')
+ ]]>
+    </programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rcond">rcond</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="norm">norm</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>
+          <para>
+            Calling <literal>cond(X)</literal>, where <literal>X</literal> is
+            non square matrix, is now managed. For example:
+          </para>
+          <programlisting role="">
+            <![CDATA[ 
+X = [1 0; 1 -1; 0 1];
+cond(X)
+ ]]>
+          </programlisting>
+          <para>
+            Calling <literal>cond(X, p)</literal> allows to calculate p-norm
+            condition number. For example:
+          </para>
+          <programlisting role="">
+            <![CDATA[ 
+X = [1 -6 0; 1 0 -4;1 0 2];
+cond(X, 1) // condition number in 1-norm (p = 1)
+ ]]>
+          </programlisting>
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>
