@@ -149,7 +149,7 @@
                 <term>17</term>
                 <listitem>
                     <para>
-                        liste typée orientée matrice (<link linkend="tlist">mlist</link>).
+                        liste typée orientée matrice (<link linkend="mlist">mlist</link>).
                     </para>
                 </listitem>
             </varlistentry>
