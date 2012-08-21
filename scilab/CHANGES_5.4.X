@@ -26,6 +26,7 @@ Documentation
     - Functions (libraries sub-category). See bug #11642.
     - Linear algebra. See bug #11562.
     - Special functions. See bug #11643.
+    - Functions. See bug #11722.
     - Elementary functions better organization. See bug #11723.
 
 
