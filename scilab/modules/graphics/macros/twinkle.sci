@@ -29,7 +29,8 @@ f=h;
 while f.type<>"Figure"
   f=f.parent;
 end
-realtimeinit(0.1); realtime(0);
+realtimeinit(0.2);
+realtime(0);
 k=0;
 
 v=h.visible;
