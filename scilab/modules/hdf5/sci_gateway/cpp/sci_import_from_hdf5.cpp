@@ -354,6 +354,11 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         {
             return false;
         }
+
+        // Hack to sure that piDims will not be null at line 372.
+        iDims = 2;
+        piDims = (int*)MALLOC(sizeof(int) * iDims);
+        memset(piDims, 0, sizeof(int) * iDims);
     }
 
     if (_piAddress == NULL)
