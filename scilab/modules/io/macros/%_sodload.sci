@@ -134,6 +134,9 @@ function %_sodload(%__filename__, varargin)
         fields(1) = [];
 
         h = gcf();
+        isVisible = h.visible;
+        h.visible = "off";
+
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;
@@ -149,11 +152,22 @@ function %_sodload(%__filename__, varargin)
 
         for i = 1:size(fields, "*")
             if fields(i) == "children" then
-                createMatrixHandle(figureProperties(fields(i)));
+                c = figureProperties(fields(i));
+                s = prod(c.dims);
+                createSingleHandle(c.values(s));
+                for  i = s-1:-1:1
+                    xsetech(wrect=[0 0 .1 .1])
+                    createSingleHandle(c.values(i));
+                end
+            end
+            if fields(i) == "visible" then
+                isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));
             end
         end
+
+        h.visible = isVisible;
     endfunction
 
     //

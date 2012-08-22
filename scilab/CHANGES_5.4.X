@@ -10,7 +10,7 @@ Xcos
 
 * Bug #11737 fixed - Incompatibility between a xcos menu and its description in the help page
 
-* Bug #11746 fixed - Xcos : closing the palette window with the crossing box 
+* Bug #11746 fixed - Xcos : closing the palette window with the crossing box
                      did not update the checkbox in Xcos "Affichage" menu
 
 Obsolete functions
@@ -121,7 +121,7 @@ Bug Fixes
 
 * Bug #11659 fixed - twinkle displayed warning messages about show_pixmap function.
 
-* Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages. 
+* Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages.
 
 * Bug #11697 fixed - ATOMS modules ar enow listed in the "Toolboxes" menu when
                      they are not auo-loaded.
@@ -130,6 +130,8 @@ Bug Fixes
                      is saved.
 
 * Bug #11703 fixed - Exception when select text in SciNotes color prefs.
+
+* Bug #11738 fixed - Rendering was bad and very slow when usign xsave/xload.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
