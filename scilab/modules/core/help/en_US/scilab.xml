@@ -354,7 +354,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 # Let's start Scilab in profiling mode without attaching a gdb once a SIGSEGV is met.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
@@ -368,7 +368,7 @@ echo "handle SIGSEGV nostop" &> debug.txt
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
 scilab -debug]]></programlisting>
-        <programlisting role="example-cli"><![CDATA[
+        <programlisting role="no-scilab-exec"><![CDATA[
 # Under GNU/Linux, Mac OS X or Unix:
 $ echo "disp(%pi)"|scilab-cli
 or
