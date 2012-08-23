@@ -16,29 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2012-08-23 17:35+0100\n"
 
-# File: sci_gateway/c/sci_diary.c, line: 82
 # File: sci_gateway/c/sci_host.c, line: 56
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_diary.c, line: 96
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_diary.c, line: 107
 # File: sci_gateway/c/sci_file.c, line: 477
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_diary.c, line: 113
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
 
 #
