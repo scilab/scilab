@@ -66,6 +66,8 @@ Bug Fixes
 * Bug #8488 fixed - NaN values was propagated when we performed the min/max between
                     several matrices.
 
+* Bug #9204 fixed - The Frobenius norm of a complex vector was numerically complex.
+
 * Bug #9616 fixed - In the qp_solve help page, the input arguments in calling
                     sequence did not match those in arguments section.
 
@@ -73,13 +75,13 @@ Bug Fixes
 
 * Bug #9976 fixed - The inverse cdfbet function returned wrong value instead of 0.
 
-* bug #11390 fixed - When the cond function has one input argument, matrices can be
+* Bug #10178 fixed - The norm function returned the message: "division by zero" for
+                     some sparse matrices.
+
+* Bug #11390 fixed - When the cond function has one input argument, matrices can be
                      non square. Moreover, the cond function has been updated to 
                      give the possibility to use another norm than that imposed
                      (by default 2-norm).
-
-* Bug #10178 fixed - The norm function returned the message: "division by zero" for
-                     some sparse matrices.
 
 * Bug #11411 fixed - save function used unsigned char to store length of string.
                      Now it is an integer.
