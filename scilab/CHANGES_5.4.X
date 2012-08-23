@@ -78,6 +78,9 @@ Bug Fixes
                      give the possibility to use another norm than that imposed
                      (by default 2-norm).
 
+* Bug #10178 fixed - The norm function returned the message: "division by zero" for
+                     some sparse matrices.
+
 * Bug #11411 fixed - save function used unsigned char to store length of string.
                      Now it is an integer.
 
