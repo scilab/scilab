@@ -1,7 +1,7 @@
 /*
- *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project 
+ *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
  *   <bruno.pincon@iecn.u-nancy.fr>
- *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do 
+ *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
  *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
@@ -65,105 +65,108 @@ extern CellAdr *ListCholFactors;
 
 int sci_taucs_chsolve(char* fname, unsigned long l)
 {
-	int mb = 0, nb = 0, lb = 0, lx = 0, one=1, lv = 0, lres = 0;
-	int mC_ptr = 0, nC_ptr = 0, lC_ptr = 0;
-	int mA = 0, nA = 0, i = 0, j = 0, n = 0, it_flag = 0, Refinement = 0;
-	double *b = NULL, *x = NULL, *v = NULL, *res = NULL, norm_res = 0., norm_res_bis = 0.;
-	long double *wk = NULL;
-	int A_is_upper_triangular = 0;
-	taucs_handle_factors * pC = NULL;
-	SciSparse A;
+    int mb = 0, nb = 0, lb = 0, lx = 0, one = 1, lv = 0, lres = 0;
+    int mC_ptr = 0, nC_ptr = 0, lC_ptr = 0;
+    int mA = 0, nA = 0, i = 0, j = 0, n = 0, it_flag = 0, Refinement = 0;
+    double *b = NULL, *x = NULL, *v = NULL, *res = NULL, norm_res = 0., norm_res_bis = 0.;
+    long double *wk = NULL;
+    int A_is_upper_triangular = 0;
+    taucs_handle_factors * pC = NULL;
+    SciSparse A;
 
-	/* Check numbers of input/output arguments */
-	CheckRhs(2,3); CheckLhs(1,1);
+    /* Check numbers of input/output arguments */
+    CheckRhs(2, 3);
+    CheckLhs(1, 1);
 
-	/* First get arg #1 : the pointer to the Cholesky factors */
-	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
-	pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
+    /* First get arg #1 : the pointer to the Cholesky factors */
+    GetRhsVar(1, SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
+    pC = (taucs_handle_factors *) ((unsigned long int) * stk(lC_ptr));
 
-	/* Check if this pointer is a valid ref to a Cholesky factor object */
-	if ( ! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
-	{
-		Scierror(999,_("%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors"),fname,1);
-		return 0;
-	};
+    /* Check if this pointer is a valid ref to a Cholesky factor object */
+    if ( ! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors"), fname, 1);
+        return 0;
+    };
 
-	/*  the number of rows/lines of the matrix  */
-	n = pC->n;
-	/* Get now arg #2 : the vector b */
-	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE ,&mb,&nb,&lb);
+    /*  the number of rows/lines of the matrix  */
+    n = pC->n;
+    /* Get now arg #2 : the vector b */
+    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE , &mb, &nb, &lb);
 
-	/* test if the right hand side is compatible */
-	if (mb != n || nb < 1)  
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
-		return 0;
-	};
+    /* test if the right hand side is compatible */
+    if (mb != n || nb < 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        return 0;
+    };
 
-	/* get the pointer for b */
-	b = stk(lb);
+    /* get the pointer for b */
+    b = stk(lb);
 
-	if ( Rhs == 3 )
-	{
-		GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
-		if ( mA != nA  ||  mA != n  ||  A.it == 1 )
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: not compatible with the Choleski factorisation.\n"),fname,3);
-			return 0;
-		};
-		Refinement = 1;
-		A_is_upper_triangular = is_sparse_upper_triangular(&A);
-	}
-	else
-	{
-		Refinement = 0;
-	}
-	
-	/* allocate memory for the solution x */
-	CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lx);
-	x = stk(lx);
+    if ( Rhs == 3 )
+    {
+        GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
+        if ( mA != nA  ||  mA != n  ||  A.it == 1 )
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: not compatible with the Choleski factorisation.\n"), fname, 3);
+            return 0;
+        };
+        Refinement = 1;
+        A_is_upper_triangular = is_sparse_upper_triangular(&A);
+    }
+    else
+    {
+        Refinement = 0;
+    }
 
-	/* allocate memory for a temporary vector v */
-	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lv); v = stk(lv);
+    /* allocate memory for the solution x */
+    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lx);
+    x = stk(lx);
 
-	if ( Refinement )
-	{
-		CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres); res = stk(lres);
-		if ( A_is_upper_triangular )
-			if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
-			{
-				Scierror(999,_("%s: not enough memory.\n"),fname);
-				return 0;
-			};
-	}
+    /* allocate memory for a temporary vector v */
+    CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lv);
+    v = stk(lv);
 
-	for ( j = 0; j < nb ; j++ )
-		{
-			taucs_vec_permute(n, &b[j*mb], &x[j*mb], pC->p);
-			taucs_supernodal_solve_llt(pC->C, v, &x[j*mb]);  /* FIXME : add a test here */
-			taucs_vec_ipermute(n, v, &x[j*mb], pC->p);
-			if ( Refinement )
-				{
-					/* do one iterative refinement */
-					residu_with_prec_for_chol(&A, &x[j*mb], &b[j*mb], res, &norm_res, A_is_upper_triangular, wk);
-					/*  FIXME: do a test if the norm_res has an anormal value and send a warning
-					 *         (the user has certainly not give the good matrix A 
-					 */
-					taucs_vec_permute(n, res, v, pC->p);
-					taucs_supernodal_solve_llt(pC->C, res, v);  /* FIXME : add a test here */
-					taucs_vec_ipermute(n, res, v, pC->p);
-					for ( i = 0 ; i < n ; i++ )
-						v[i] = x[j*mb+i] - v[i];    /* v is the refined solution */
-					residu_with_prec_for_chol(&A, v, &b[j*mb], res, &norm_res_bis, A_is_upper_triangular, wk);
-					/* accept it if the 2 norm of the residual is improved */
-					if ( norm_res_bis < norm_res )
-						for ( i = 0 ; i < n ; i++ )
-							x[j*mb+i] = v[i];
-				}
-		}
-  
-	FREE(wk);
-	LhsVar(1) = Rhs+1;
-	PutLhsVar();
-	return 0;
+    if ( Refinement )
+    {
+        CreateVar(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres);
+        res = stk(lres);
+        if ( A_is_upper_triangular )
+            if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
+            {
+                Scierror(999, _("%s: not enough memory.\n"), fname);
+                return 0;
+            };
+    }
+
+    for ( j = 0; j < nb ; j++ )
+    {
+        taucs_vec_permute(n, &b[j * mb], &x[j * mb], pC->p);
+        taucs_supernodal_solve_llt(pC->C, v, &x[j * mb]); /* FIXME : add a test here */
+        taucs_vec_ipermute(n, v, &x[j * mb], pC->p);
+        if ( Refinement )
+        {
+            /* do one iterative refinement */
+            residu_with_prec_for_chol(&A, &x[j * mb], &b[j * mb], res, &norm_res, A_is_upper_triangular, wk);
+            /*  FIXME: do a test if the norm_res has an anormal value and send a warning
+             *         (the user has certainly not give the good matrix A
+             */
+            taucs_vec_permute(n, res, v, pC->p);
+            taucs_supernodal_solve_llt(pC->C, res, v);  /* FIXME : add a test here */
+            taucs_vec_ipermute(n, res, v, pC->p);
+            for ( i = 0 ; i < n ; i++ )
+                v[i] = x[j * mb + i] - v[i]; /* v is the refined solution */
+            residu_with_prec_for_chol(&A, v, &b[j * mb], res, &norm_res_bis, A_is_upper_triangular, wk);
+            /* accept it if the 2 norm of the residual is improved */
+            if ( norm_res_bis < norm_res )
+                for ( i = 0 ; i < n ; i++ )
+                    x[j * mb + i] = v[i];
+        }
+    }
+
+    FREE(wk);
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }

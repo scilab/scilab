@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -21,9 +21,9 @@
 #include "warningmode.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_oemtochar(char *fname,unsigned long l)
+int sci_oemtochar(char *fname, unsigned long l)
 {
-    int l1 = 0,n1 = 0,m1 = 0;
+    int l1 = 0, n1 = 0, m1 = 0;
     char *Output = NULL;
 
     if (getWarningMode())
@@ -32,38 +32,43 @@ int sci_oemtochar(char *fname,unsigned long l)
         sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
     }
 
-    CheckRhs(1,1);
-    CheckLhs(0,1);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-    if (GetType(1) == sci_strings)	
+    if (GetType(1) == sci_strings)
     {
         char *OEMstring = NULL;
 
-        GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
         OEMstring = cstk(l1);
 
-        Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
+        Output = (char*)MALLOC((strlen(OEMstring) + 1) * sizeof(char));
         if (getScilabMode() == SCILAB_STD)
         {
-            OemToChar(OEMstring,Output);
+            OemToChar(OEMstring, Output);
         }
         else
         {
-            wsprintf(Output,"%s",OEMstring);
+            wsprintf(Output, "%s", OEMstring);
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return 0;
     }
 
     n1 = 1;
-    CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
-    if (Output) {FREE(Output);Output=NULL;}
+    m1 = (int)strlen(Output);
+    CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &Output);
+    if (Output)
+    {
+        FREE(Output);
+        Output = NULL;
+    }
 
-    LhsVar(1) = Rhs+1;
-    PutLhsVar();	
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
