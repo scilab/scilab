@@ -128,6 +128,9 @@ Bug Fixes
 
 * Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages.
 
+* Bug #11683 fixed - The figure_properties help page did not explain what happens
+                     when the event_handler and the closerequestfcn properties were both set.
+
 * Bug #11685 fixed - gcbo variable was not defined when executing functions set
                      as "closerequestfcn" and "resizefcn" properties.
 
