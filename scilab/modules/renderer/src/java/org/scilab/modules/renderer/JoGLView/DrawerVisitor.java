@@ -23,6 +23,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -53,6 +54,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
@@ -710,6 +712,26 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 invalidate(text, e);
             }
             axesDrawer.disableClipping(text.getClipProperty());
+        }
+    }
+
+    @Override
+    public void visit(Datatip datatip) {
+        if (datatip.isValid() && datatip.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
+            try {
+                textManager.draw(drawingTools, colorMap, (Text)datatip);
+                /* corners are calculated only after drawing */
+                datatip.updateTextPosition();
+
+                if (datatip.getMarkMode()) {
+                    Texture texture = markManager.getMarkSprite(datatip, colorMap);
+                    drawingTools.draw(texture, AnchorPosition.CENTER, new Vector3d(datatip.getTipData()));
+                }
+            } catch (SciRendererException e) {
+                invalidate((Text)datatip, e);
+            }
+            axesDrawer.disableClipping(datatip.getClipProperty());
         }
     }
 

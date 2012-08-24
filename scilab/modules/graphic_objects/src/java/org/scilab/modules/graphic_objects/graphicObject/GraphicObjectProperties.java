@@ -42,6 +42,7 @@ public class GraphicObjectProperties {
     public static final String __GO_UICONTROL__ =              "uicontrol";
     public static final String __GO_UIMENU__ =                 "uimenu";
     public static final String __GO_UICONTEXTMENU__ =          "uicontextmenu";
+    public static final String __GO_DATATIP__ =                "Datatip";
 
     public static final String __GO_CHILDREN__ =               "Children";
     public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";
@@ -370,5 +371,8 @@ public class GraphicObjectProperties {
     public static final String __GO_PROGRESSIONBAR__ =         "Progressionbar";
     public static final String __GO_UI_MESSAGE__ =             "UIMessage";
     public static final String __GO_UI_MESSAGE_SIZE__ =        "UIMessageSize";
+
+    public static final String __GO_DATATIP_DATA__ =           "DatatipData";
+    public static final String __GO_DATATIP_ORIENTATION__ =    "DatatipOrientation";
 
 }

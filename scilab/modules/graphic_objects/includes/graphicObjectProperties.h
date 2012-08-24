@@ -41,6 +41,7 @@
 #define __GO_UICONTROL__                   "uicontrol"
 #define __GO_UIMENU__                      "uimenu"
 #define __GO_UICONTEXTMENU__               "uicontextmenu"
+#define __GO_DATATIP__                     "Datatip"
 
 #define __GO_CHILDREN__                    "Children"
 #define __GO_CHILDREN_COUNT__              "ChildrenCount"
@@ -369,5 +370,8 @@
 #define __GO_PROGRESSIONBAR__              "Progressionbar"
 #define __GO_UI_MESSAGE__                  "UIMessage"
 #define __GO_UI_MESSAGE_SIZE__             "UIMessageSize"
+
+#define __GO_DATATIP_DATA__                "DatatipData"
+#define __GO_DATATIP_ORIENTATION__         "DatatipOrientation"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
