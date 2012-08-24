@@ -146,6 +146,9 @@ Bug Fixes
 
 * Bug #11738 fixed - Rendering was bad and very slow when usign xsave/xload.
 
+* Bug #11764 fixed - The 'ispc' m2sci help page was not updated regarding the
+                     MSDOS removal.
+
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================

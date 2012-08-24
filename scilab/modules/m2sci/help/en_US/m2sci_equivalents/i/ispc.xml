@@ -34,7 +34,7 @@ ispc
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-MSDOS
+(getos() == 'Windows')
 ]]></programlisting>
                 </td>
             </tr>
