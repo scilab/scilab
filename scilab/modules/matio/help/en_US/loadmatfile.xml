@@ -101,11 +101,12 @@ disp(B)
     </refsection>
     <refsection>
         <title>Bibliography</title>
-        <para>This function has been developed following the "MAT-File Format"
-            description: 
+        <para>
+            This function uses MATIO library (
             <literal>
-                <ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+                <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
             </literal>
+            ).
         </para>
     </refsection>
 </refentry>
