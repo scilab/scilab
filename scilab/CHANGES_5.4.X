@@ -128,6 +128,9 @@ Bug Fixes
 
 * Bugs #11666, #11667 and #11670 to 11676 fixed - Add examples in the signal processing help pages.
 
+* Bug #11685 fixed - gcbo variable was not defined when executing functions set
+                     as "closerequestfcn" and "resizefcn" properties.
+
 * Bug #11686 fixed - An error occurred when clicking outside of an uicontextmenu area.
 
 * Bug #11697 fixed - ATOMS modules ar enow listed in the "Toolboxes" menu when
