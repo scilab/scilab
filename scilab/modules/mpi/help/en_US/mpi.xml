@@ -12,42 +12,43 @@
  -->
 <!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-  <refnamediv>
-    <refname>MPI</refname>
-    <refpurpose>Access to MPI features from Scilab</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>A MPI interface is provided to Scilab. This interface allows high-performance Message Passing computations.</para>
-    <para>Like any other MPI applications, Scilab/MPI as be started through the <literal>mpirun</literal> command usually with the argument <literal>-c</literal> to specify the number of nodes started.</para>
-  </refsection>
-  <refsection>
-    <title>Supported datatype</title>
-    <para>
-      The Scilab MPI implementation supports the following Scilab datatypes (under the matrix or scalar form):
-    <simplelist type="inline"><member>Double</member><member>Boolean</member><member>int (all)</member><member>String</member><member>Sparse</member><member>Boolean Sparse</member></simplelist>
-For now, advanced data structures like list, tlist or mlist are not supported. Opening a new bug report to see them supported is a good way.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example of Scilab MPI</title>
-    <programlisting role="scilab"><![CDATA[ 
+    <refnamediv>
+        <refname>MPI</refname>
+        <refpurpose>Access to MPI features from Scilab</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>A MPI interface is provided to Scilab. This interface allows high-performance Message Passing computations.</para>
+        <para>
+            Like any other MPI applications, Scilab/MPI as be started through the <literal>mpirun</literal> command usually with the argument <literal>-c</literal> to specify the number of nodes started.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Supported datatype</title>
+        <para>
+            The Scilab MPI implementation supports the following Scilab datatypes (under the matrix or scalar form):
+            <simplelist type="inline">
+                <member>Double</member><member>Boolean</member><member>int (all)</member><member>String</member><member>Sparse</member><member>Boolean Sparse</member>
+            </simplelist>
+            For now, advanced data structures like list, tlist or mlist are not supported. Opening a new bug report to see them supported is a good way.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example of Scilab MPI</title>
+        <programlisting role="scilab"><![CDATA[ 
 // TODO. Add an example (PI ?)
 
 ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="MPI_Recv">MPI_Recv</link>
-      </member>
-      <member>
-        <link linkend="mpi_technical">Technical details about the implementation</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+            <member>
+                <link linkend="mpi_technical">Technical details about the implementation</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

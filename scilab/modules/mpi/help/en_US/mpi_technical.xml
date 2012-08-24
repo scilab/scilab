@@ -12,9 +12,6 @@
  -->
 <!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi_technical" xml:lang="en">
-    <info>
-        <pubdate>$LastChangedDate$</pubdate>
-    </info>
     <refnamediv>
         <refname>MPI implementation</refname>
         <refpurpose>Technical details about the implementation</refpurpose>
@@ -114,32 +111,35 @@
         <para>In order to store the list of requests and MPI variables expected by MPI_Irecv/MPI_Wait, static C structures containing at max 10 000 elements are used. They will be used to store the various MPI Request used for asynchronous exchanges and the reference to the expected variable from MPI_Irecv. The received value are returned by MPI_Wait.
         </para>
         <para>In the following example, the request named "42" will be stored in this datastructure. 
-            <programlisting role="example">
-                
+            <programlisting role="example"><![CDATA[ 
+
+
                 MPI_Init();
                 rnk =    MPI_Comm_rank();
                 sizeNodes =    MPI_Comm_size();
-                
-                SLV = rnk;                // handy shortcuts, master is rank 0
-                Master = ~ SLV;            // slaves are all other
-                
+
+                SLV = rnk;
+                Master = ~ SLV;
+
+                assert_checkequal(MPI_Comm_size(), 2);
+
                 if Master
-                for slaveId = 1:sizeNodes-1
-                value = slaveId*2
-                MPI_Isend(value, slaveId, 42);
-                end
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
                 else
-                rankSource=0;
-                tag=0;
-                MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
-                value=MPI_Wait(42) // the value will be returned by MPI_Wait
-                assert_checkequal(value,2);
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
+                    value=MPI_Wait(42) // the value will be returned by MPI_Wait
+                    assert_checkequal(value,2);
                 end
-                
+
                 MPI_Finalize();
                 exit()
-                
-            </programlisting>
+
+           ]]> </programlisting>
         </para>
     </refsection>
     
