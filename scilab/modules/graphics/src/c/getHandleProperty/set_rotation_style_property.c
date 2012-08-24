@@ -37,7 +37,7 @@ int set_rotation_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 
     getStringFromStack(stackPointer);
 
-    if (!isParameterStringMatrix(valueType))
+    if (!( valueType == sci_strings ))
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "rotation_style");
         return SET_PROPERTY_ERROR;

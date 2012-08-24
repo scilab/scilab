@@ -18,6 +18,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to load the file as a graph
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class LoadFileAsGraphAction extends ExecuteCommandAction {
 
     private static final String LOADGRAPH = "load_graph('%s')";

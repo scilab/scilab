@@ -56,7 +56,7 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         (*CommandLine)[*cursorLocation] = (wchar_t) key;
         if (isatty(fileno(stdin)))
         {
-            /* We are in a pipe */
+            /* We are not in a pipe */
             printf("%lc", (*CommandLine)[*cursorLocation]);
         }
         sizeOfCmd++;

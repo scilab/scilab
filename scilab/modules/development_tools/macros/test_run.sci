@@ -122,7 +122,7 @@ function test_run_result = test_run(varargin)
         params.exportFile = varargin(4);
         // Doing the XML export, force the display of the error and diff
         params.show_diff = %t;
-        params.show_error = %t; 
+        params.show_error = %t;
     end
   end
 
@@ -136,7 +136,8 @@ function test_run_result = test_run(varargin)
 // =======================================================
   if (rhs == 0) ..
            | ((rhs == 1) & (varargin(1)==[])) ..
-           | (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
+           | (((rhs == 2)|(rhs == 3)|(rhs == 4)) & (varargin(1)==[]) & (varargin(2)==[])) then
+
 
 // No input argument
 // test_run()
@@ -892,7 +893,7 @@ if grep(dia_tmp,"error on test")<>[] then
   status.message = "failed: one or several tests failed";
   status.details = details;
   if params.show_error == %t then
-    status.details = [ status.details; dia($-10:$) ]
+    status.details = [ status.details; dia($-min(10, size(dia, "*")-1):$) ]
   end
   return;
 end
@@ -1146,7 +1147,7 @@ function value = assign_option(var, option, truevalue, falsevalue)
 endfunction
 
 
-function result =  exportToXUnitFormat(exportToFile, testsuites)
+function exportToXUnitFormat(exportToFile, testsuites)
 
   if isfile(exportToFile) then
     // File already existing. Append the results

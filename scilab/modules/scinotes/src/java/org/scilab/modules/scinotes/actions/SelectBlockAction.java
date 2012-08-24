@@ -29,6 +29,7 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * Class to handle the block selection
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SelectBlockAction extends DefaultAction {
 
     protected boolean isPopup;
@@ -98,15 +99,15 @@ public class SelectBlockAction extends DefaultAction {
     protected static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key, final SelectBlockAction sba) {
         final MenuItem menuitem = createMenu(label, null, sba, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        ScilabEditorPane sep = editor.getTextPane();
-                        boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
-                        block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
-                        menuitem.setEnabled(block);
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    ScilabEditorPane sep = editor.getTextPane();
+                    boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
+                    block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
+                    menuitem.setEnabled(block);
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

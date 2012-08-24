@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pwd">
-  <refnamediv>
-    <refname>pwd</refname>
-    <refpurpose> print Scilab current directory</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>pwd</refname>
-    <refpurpose> get Scilab current directory</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>pwd
-      x=pwd()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>pwd</literal> returns in <literal>ans</literal> the Scilab current directory.
-      <literal>x=pwd()</literal> returns in <literal>x</literal> the Scilab current
-      directory.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>pwd</refname>
+        <refpurpose>gets Scilab current directory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>pwd
+            x = pwd()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>pwd</code> returns in <varname>ans</varname> the Scilab current directory.
+            <code>x = pwd()</code> returns in <varname>x</varname> the Scilab current
+            directory.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 pwd
 x=pwd()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="chdir">chdir</link>
-      </member>
-      <member>
-        <link linkend="cd">cd</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="chdir">chdir</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

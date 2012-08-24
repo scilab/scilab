@@ -11,65 +11,65 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_tril">
-  <refnamediv>
-    <refname>mtlb_tril</refname>
-    <refpurpose>Matlab tril emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Matlab and Scilab <literal>tril</literal> behave differently in some particular cases:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_tril</refname>
+        <refpurpose>Matlab tril emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With complex input: Matlab <literal>tril</literal> can be used with complex data but not Scilab one.
+            Matlab and Scilab <literal>tril</literal> behave differently in some particular cases:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With complex input: Matlab <literal>tril</literal> can be used with complex data but not Scilab one.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With character strings inputs: due to the fact the Matlab and Scilab do not consider character
+                    strings in the same way, Scilab and Matlab <literal>tril</literal> do not give the same results
+                    for this type of input.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With boolean inputs: Matlab <literal>tril</literal> can be used with boobean data but not Scilab one.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With character strings inputs: due to the fact the Matlab and Scilab do not consider character
-          strings in the same way, Scilab and Matlab <literal>tril</literal> do not give the same results
-          for this type of input.
+            The function <literal>mtlb_tril(x,k)</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>tril(x,k)</literal> when it was not
+            possible to know what were the inputs while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_tril</literal> calls:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>X</literal> contains real double values
+                    <literal>mtlb_tril(x,k)</literal> may be replaced by <literal>tril(x,k)</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>X</literal> contains boolean values
+                    <literal>mtlb_tril(x,k)</literal> may be replaced by <literal>tril(bool2s(x),k)</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With boolean inputs: Matlab <literal>tril</literal> can be used with boobean data but not Scilab one.
+            Caution: <literal>mtlb_tril</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The function <literal>mtlb_tril(x,k)</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>tril(x,k)</literal> when it was not
-      possible to know what were the inputs while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_tril</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          If <literal>X</literal> contains real double values
-          <literal>mtlb_tril(x,k)</literal> may be replaced by <literal>tril(x,k)</literal>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          If <literal>X</literal> contains boolean values
-          <literal>mtlb_tril(x,k)</literal> may be replaced by <literal>tril(bool2s(x),k)</literal>
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_tril</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="MatlabScilab_character_strings">Matlab-Scilab_character_strings</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MatlabScilab_character_strings">Matlab-Scilab_character_strings</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

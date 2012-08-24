@@ -40,7 +40,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     BOOL result = FALSE;
     double* pnoeud = NULL;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "triangles");
         return SET_PROPERTY_ERROR;
@@ -55,7 +55,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
     if (strcmp(type, __GO_FEC__) != 0)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "triangles");
         return SET_PROPERTY_ERROR;
     }
 
@@ -70,11 +70,11 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
     if (result == FALSE)
     {
-        Scierror(999, _("%s: No more memory.\n"),"set_triangles_property");
+        Scierror(999, _("%s: No more memory.\n"), "set_triangles_property");
         return SET_PROPERTY_ERROR;
     }
 
-    pnoeud = getDoubleMatrixFromStack(stackPointer);
+    pnoeud = stk(stackPointer);
 
     setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
 

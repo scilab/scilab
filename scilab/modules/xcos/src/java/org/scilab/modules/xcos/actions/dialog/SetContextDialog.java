@@ -52,6 +52,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 // CSOFF: MagicNumber
+@SuppressWarnings(value = { "serial" })
 public class SetContextDialog extends JDialog {
     private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
     private static final String SHARED_NEW_LINE = "\n";

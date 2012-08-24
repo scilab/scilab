@@ -11,177 +11,177 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Integer_management_writing_API" xml:lang="en">
-  <refnamediv>
-    <refname>Integer writing (Scilab gateway)</refname>
-    <refpurpose>
-      How to write matrices of integers in a gateway.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
+    <refnamediv>
+        <refname>Integer writing (Scilab gateway)</refname>
+        <refpurpose>
+            How to write matrices of integers in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection>
+            Create from existing data.
+        </refsection>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <para>Signed integer :</para>
+        <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const short* _psData16)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piData32)</synopsis>
+        <para>Unsigned integer :</para>
+        <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
+        <para>Named variable profile:</para>
+        <para>Signed integer :</para>
+        <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* _pcData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const short* _psData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piData32)</synopsis>
+        <para>Unsigned integer :</para>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
+    </refsynopsisdiv>
     <refsection>
-      Create from existing data.
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <para>Signed integer :</para>
-    <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8)</synopsis>
-    <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const short* _psData16)</synopsis>
-    <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piData32)</synopsis>
-    <para>Unsigned integer :</para>
-    <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
-    <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
-    <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
-    <para>Named variable profile:</para>
-    <para>Signed integer :</para>
-    <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* _pcData8)</synopsis>
-    <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const short* _psData16)</synopsis>
-    <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piData32)</synopsis>
-    <para>Unsigned integer :</para>
-    <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
-    <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
-    <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iVar</term>
-        <listitem>
-          <para>
-            Position in the Scilab memory where you want to put the variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pstName</term>
-        <listitem>
-          <para>
-            Name of the variable for "named" functions.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iRows</term>
-        <listitem>
-          <para>
-            Number of rows of the new variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iCols</term>
-        <listitem>
-          <para>
-            Numbers of columns of the new variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
-        <listitem>
-          <para>
-            Address of data array (size: _iCols * _iRows)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SciErr</term>
-        <listitem>
-          <para>
-            Error structure where is stored errors messages history and first error number.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsynopsisdiv>
+    <refsynopsisdiv>
+        <refsection>
+            Write directly in Scilab memory.
+        </refsection>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <para>Signed integer :</para>
+        <synopsis>SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
+        <para>Unsigned integer :</para>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
+        <synopsis>SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
+    </refsynopsisdiv>
     <refsection>
-      Write directly in Scilab memory.
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Returns address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <para>Signed integer :</para>
-    <synopsis>SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>
-    <synopsis>SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short** _psData16)</synopsis>
-    <synopsis>SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piData32)</synopsis>
-    <para>Unsigned integer :</para>
-    <synopsis>SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)</synopsis>
-    <synopsis>SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)</synopsis>
-    <synopsis>SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iVar</term>
-        <listitem>
-          <para>
-            Position in the Scilab memory where you want to put the variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iRows</term>
-        <listitem>
-          <para>
-            Number of rows of the new variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iCols</term>
-        <listitem>
-          <para>
-            Numbers of columns of the new variable
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
-        <listitem>
-          <para>
-            Returns address of data array (size: _iCols * _iRows)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SciErr</term>
-        <listitem>
-          <para>
-            Error structure where is stored errors messages history and first error number.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
-    <para>Two types of functions can be used to write in the memory of Scilab.</para>
-  </refsection>
-  <refsection>
-    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.c-->
-    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.tst-->
-    <!--Lib_name: integer_writing-->
-    <!--Func_list: read_integer-->
-    <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.tst-->
+        <!--Lib_name: integer_writing-->
+        <!--Func_list: read_integer-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
@@ -372,7 +372,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	puiDataOut  = (unsigned int*)create_output(64, 4, iRowsu32, iColsu32, (void*)puiData);
 
 	//create new variable
-	sciErr = createMatrixOfInteger8(pvApiCtx, nbInputArgument + 1, iRows8, iCols8, pcDataOut);
+	sciErr = createMatrixOfInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows8, iCols8, pcDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -380,7 +380,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, nbInputArgument + 2, iRowsu8, iColsu8, pucDataOut);
+	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + 2, iRowsu8, iColsu8, pucDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -388,7 +388,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfInteger16(pvApiCtx, nbInputArgument + 3, iRows16, iCols16, psDataOut);
+	sciErr = createMatrixOfInteger16(pvApiCtx, nbInputArgument(pvApiCtx) + 3, iRows16, iCols16, psDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -396,7 +396,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, nbInputArgument + 4, iRowsu16, iColsu16, pusDataOut);
+	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, nbInputArgument(pvApiCtx) + 4, iRowsu16, iColsu16, pusDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -404,7 +404,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument + 5, iRows32, iCols32, piDataOut);
+	sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 5, iRows32, iCols32, piDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -412,7 +412,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//create new variable
-	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, nbInputArgument + 6, iRowsu32, iColsu32, puiDataOut);
+	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 6, iRowsu32, iColsu32, puiDataOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -420,12 +420,12 @@ int read_integer(char *fname,unsigned long fname_len)
 	}
 
 	//assign allocated variables to Lhs position
-	AssignOutputVariable(1) = nbInputArgument + 1;
-	AssignOutputVariable(2) = nbInputArgument + 2;
-	AssignOutputVariable(3) = nbInputArgument + 3;
-	AssignOutputVariable(4) = nbInputArgument + 4;
-	AssignOutputVariable(5) = nbInputArgument + 5;
-	AssignOutputVariable(6) = nbInputArgument + 6;
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+	AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
+	AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
+	AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
+	AssignOutputVariable(pvApiCtx, 6) = nbInputArgument(pvApiCtx) + 6;
 	return 0;
 }
 
@@ -443,10 +443,10 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
 	return pvDataOut;
 }
 ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 a8  = int8([    1   -2  3   -4  5; ..
                 -6  7   -8  9   -10; ..
                 11  -12 13  -14 15]);
@@ -480,5 +480,5 @@ if or(cu16 <> au16 * 16) then error("failed"), end
 if or(c32 <> a32 * 32) then error("failed"), end
 if or(cu32 <> au32 * 64) then error("failed"), end
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

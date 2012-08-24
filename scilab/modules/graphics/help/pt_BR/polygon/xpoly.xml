@@ -11,54 +11,54 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xpoly" xml:lang="en">
-  <refnamediv>
-    <refname>xpoly</refname>
-    <refpurpose>desenha uma poligonal ou um polígono</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>xv,yv</term>
-        <listitem>
-          <para>matrizes de mesmo tamanho (os pontos da poligonal). </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>dtype</term>
-        <listitem>
-          <para>string (estilo de desenho). O valor padrão é "lines". </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>close</term>
-        <listitem>
-          <para>inteiro. Se close= 1,a poligonal é fechada; o valor padrão é
-            0.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>xpoly</literal> desenha uma poligonal descrita pelos
-      vetores de coordenadas <literal>xv</literal> e <literal>yv</literal>. Se
-      <literal>xv</literal> e <literal>yv</literal> forem matrizes, serão
-      considerados vetores obtidos por concatenação de suas colunas.
-      <literal>dtype</literal> pode ser <literal>"lines"</literal> para uso do
-      estilo de linha corrente ou <literal>"marks"</literal> para utilizar a
-      marca corrente para desenho da poligonal.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>xpoly</refname>
+        <refpurpose>desenha uma poligonal ou um polígono</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>xv,yv</term>
+                <listitem>
+                    <para>matrizes de mesmo tamanho (os pontos da poligonal). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dtype</term>
+                <listitem>
+                    <para>string (estilo de desenho). O valor padrão é "lines". </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>close</term>
+                <listitem>
+                    <para>inteiro. Se close= 1,a poligonal é fechada; o valor padrão é
+                        0.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>xpoly</literal> desenha uma poligonal descrita pelos
+            vetores de coordenadas <literal>xv</literal> e <literal>yv</literal>. Se
+            <literal>xv</literal> e <literal>yv</literal> forem matrizes, serão
+            considerados vetores obtidos por concatenação de suas colunas.
+            <literal>dtype</literal> pode ser <literal>"lines"</literal> para uso do
+            estilo de linha corrente ou <literal>"marks"</literal> para utilizar a
+            marca corrente para desenho da poligonal.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 
@@ -70,19 +70,19 @@ xpoly(x,y,"lines",1) // por padrão é fechado
 e=gce(); // retorna a entidade corrente (a última criada: aqui, é a poligonal)
 e.closed = 'off' // a poligonal está agora aberta
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xfpoly">xfpoly</link>
-      </member>
-      <member>
-        <link linkend="xfpolys">xfpolys</link>
-      </member>
-      <member>
-        <link linkend="xpolys">xpolys</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xfpoly">xfpoly</link>
+            </member>
+            <member>
+                <link linkend="xfpolys">xfpolys</link>
+            </member>
+            <member>
+                <link linkend="xpolys">xpolys</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

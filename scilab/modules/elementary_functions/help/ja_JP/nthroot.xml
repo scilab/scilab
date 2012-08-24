@@ -11,62 +11,62 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="nthroot" xml:lang="ja">
-  <refnamediv>
-    <refname>nthroot</refname>
-    <refpurpose>実数のn番目の実根</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>y=ntrhoot(x,n)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>実数,スカラーまたはベクトル/行列</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>実数スカラー</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>nthroot(x,n)</literal> は,<literal>x</literal>要素のn番目の根の実数
-      ベクトル/行列です.<literal>x</literal>が負の要素を有する場合,
-      <literal>n</literal>は奇数とする必要があります.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>nthroot</refname>
+        <refpurpose>実数のn番目の実根</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y=ntrhoot(x,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数,スカラーまたはベクトル/行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>実数スカラー</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>nthroot(x,n)</literal> は,<literal>x</literal>要素のn番目の根の実数
+            ベクトル/行列です.<literal>x</literal>が負の要素を有する場合,
+            <literal>n</literal>は奇数とする必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 	nthroot(2,3)	
 	nthroot(-2,3)	
 	nthroot(-2,-3)
 	nthroot(2,-3)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="sqrt">sqrt</link>
-      </member>
-      <member>
-        <link linkend="sqrtm">sqrtm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="sqrt">sqrt</link>
+            </member>
+            <member>
+                <link linkend="sqrtm">sqrtm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

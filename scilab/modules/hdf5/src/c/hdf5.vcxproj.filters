@@ -26,9 +26,6 @@
     <ClCompile Include="DllmainHdf5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\forceJHDF5load.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_hdf5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="h5_writeDataToFile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\jni\jhdf5load.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp">
@@ -56,12 +50,18 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_is_hdf5_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="h5_readDataFromFile_v1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\import_from_hdf5_v1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\listvar_in_hdf5_v1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\forceJHDF5load.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_hdf5.h">
@@ -79,7 +79,13 @@
     <ClInclude Include="..\..\includes\h5_writeDataToFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\jhdf5load.hxx">
+    <ClInclude Include="..\..\includes\h5_readDataFromFile_v1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\import_from_hdf5_v1.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\listvar_in_hdf5_v1.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

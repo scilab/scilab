@@ -16,7 +16,6 @@ src/c/spSolve.c
 
 SPARSE_FORTRAN_SOURCES = src/fortran/spcompack.f \
 src/fortran/wsposp.f \
-src/fortran/dspmax.f \
 src/fortran/findl.f \
 src/fortran/spcho1.f \
 src/fortran/dspful.f \
@@ -101,7 +100,6 @@ src/fortran/dsosp.f \
 src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
-src/fortran/dspmin.f \
 src/fortran/writebuf.f \
 src/fortran/ta2lpd.f
 
@@ -122,9 +120,7 @@ sci_gateway/c/sci_luget.c \
 sci_gateway/c/sci_ordmmd.c \
 sci_gateway/c/sci_spget.c \
 sci_gateway/c/sci_spclean.c \
-sci_gateway/c/sci_spmin.c \
 sci_gateway/c/sci_spchol.c \
-sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
 sci_gateway/c/gw_sparse.c \
@@ -150,7 +146,6 @@ sci_gateway/fortran/sci_f_ordmmd.f \
 sci_gateway/fortran/sci_f_spget.f \
 sci_gateway/fortran/sci_f_spclean.f \
 sci_gateway/fortran/sci_f_spchol.f \
-sci_gateway/fortran/sci_f_spmax.f \
 sci_gateway/fortran/sci_f_lusolve.f \
 sci_gateway/fortran/sci_f_fadj2sp.f \
 sci_gateway/fortran/sci_f_sfinit.f \
@@ -190,7 +185,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA =  license.txt 
+libscisparse_la_root_DATA =  license.txt
 
 
 #### sparse : init scripts ####

@@ -9,76 +9,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja_JP" xml:id="datatipSetStyle">
-  <refnamediv>
-    <refname>datatipSetStyle</refname>
-    <refpurpose>指定したポリラインのデータティップのティップ形式を設定.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>
-      datatipSetStyle(curve_handle)
-      datatipSetStyle(curve_handle,t [,boxed [,labeled]])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>curve_handle</term>
-        <listitem>
-          <para>
-            ポリラインのハンドル. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>
-            使用可能な値は 1または2です.省略時は
-            選択用ポップアップが開きます.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>boxed</term>
-        <listitem>
-          <para>
-            論理値, デフォルト値は %tです.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>labeled</term>
-        <listitem>
-          <para>
-            論理値, デフォルト値は %tです.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      データティップのポリライン用のマーカは以下の２種類です:
-    </para>
-    <para>
-      - 四角, ティップポイントを中心とする. 
-    </para>
-    <para>
-      - ティップ点の接線に沿って描画された矢印.
-      矢じりはティップ点上にあります.
-    </para>
-    <para>
-      boxedオプションが選択された場合,
-      データティップに関するテキストは
-      箱付きの領域に書きこまれます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>datatipSetStyle</refname>
+        <refpurpose>指定したポリラインのデータティップのティップ形式を設定.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            datatipSetStyle(curve_handle)
+            datatipSetStyle(curve_handle,t [,boxed [,labeled]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>curve_handle</term>
+                <listitem>
+                    <para>
+                        ポリラインのハンドル. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>
+                        使用可能な値は 1または2です.省略時は
+                        選択用ポップアップが開きます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>boxed</term>
+                <listitem>
+                    <para>
+                        論理値, デフォルト値は %tです.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labeled</term>
+                <listitem>
+                    <para>
+                        論理値, デフォルト値は %tです.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            データティップのポリライン用のマーカは以下の２種類です:
+        </para>
+        <para>
+            - 四角, ティップポイントを中心とする. 
+        </para>
+        <para>
+            - ティップ点の接線に沿って描画された矢印.
+            矢じりはティップ点上にあります.
+        </para>
+        <para>
+            boxedオプションが選択された場合,
+            データティップに関するテキストは
+            箱付きの領域に書きこまれます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
  
     x=linspace(-20,20,1000);
     clf();plot(x,sinc(x),x,sinc(x^2));
@@ -92,35 +92,35 @@
     d2=datatipCreate(e(2),200);
     
     ]]></programlisting>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../images/datatips6.svg"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datatips">datatips</link>
-      </member>
-      <member>
-        <link linkend="datatipCreate">datatipCreate</link>
-      </member>
-      <member>
-        <link linkend="datatipInitStruct">datatipInitStruct</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>履歴</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>関数datatipSetStyleが導入されました.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/datatips6.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+            <member>
+                <link linkend="datatipCreate">datatipCreate</link>
+            </member>
+            <member>
+                <link linkend="datatipInitStruct">datatipInitStruct</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数datatipSetStyleが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

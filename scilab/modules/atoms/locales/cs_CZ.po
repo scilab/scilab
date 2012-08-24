@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-26 20:01+0000\n"
+"PO-Revision-Date: 2012-08-06 19:40+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -727,6 +727,9 @@ msgstr "%s: Soubor %s neexistuje.\n"
 msgid "%s: The file %s is empty.\n"
 msgstr "%s: Soubor %s je prázdný.\n"
 
+msgid "Updating Atoms modules database..."
+msgstr "Aktualizace databáze modulů ATOMS..."
+
 #, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
@@ -789,6 +792,9 @@ msgstr ""
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
 "%s: Ani Wget ani Curl nebyly nalezeny: Prosím, nainstalujte jeden z nich\n"
+
+msgid "Download in progress... Please be patient."
+msgstr "Probíhá stahování... Čekejte prosím."
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
@@ -945,6 +951,9 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Toto není platná "
 "verze/závislost.\n"
+
+msgid "Atoms:"
+msgstr "Atoms:"
 
 #, c-format
 msgid ""

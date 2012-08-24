@@ -39,7 +39,7 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     int status1 = 0;
     int status2 = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "text_box_mode");
         return SET_PROPERTY_ERROR;
@@ -75,7 +75,7 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box_mode");
         status1 = SET_PROPERTY_ERROR;
     }
 

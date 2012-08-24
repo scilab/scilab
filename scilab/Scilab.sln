@@ -458,8 +458,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parameters", "modules\param
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graph-JAVA-tests", "modules\graph\tests\java\graph-JAVA-tests.vcxproj", "{AB7EBA0D-1B00-4B1B-BB00-62AB38E2309A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5-JAVA-tests", "modules\hdf5\tests\java\hdf5-JAVA-tests.vcxproj", "{78D46B73-ADD7-40CF-8436-B66897B18D9A}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos-JAVA-tests", "modules\xcos\tests\java\xcos-JAVA-tests.vcxproj", "{DABDF840-2A2F-4B38-90B2-A4393E6DF38B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui_data", "modules\ui_data\src\c\ui_data.vcxproj", "{142D643B-A9EC-49DB-9D48-A925A20F63B1}"

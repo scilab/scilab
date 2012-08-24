@@ -3,87 +3,87 @@
  * Add some comments about XML file
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja_JP" xml:id="convol2d">
-  <refnamediv>
-    <refname>convol2d</refname>
-    <refpurpose>離散 2-D 畳み込み, fftを使用. </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>C = convol2d(A,B)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>A</term>
-        <listitem>
-          <para>
-            実数または複素数二次元配列.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>B</term>
-        <listitem>
-          <para>
-            実数または複素数二次元配列.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>C</term>
-        <listitem>
-          <para>
-            実数または複素数二次元配列.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>convol2d</literal> は
-      完全な二次元離散畳み込みを計算するためにfftを使用します.
-      結果 <literal>C</literal> の次元は
-      <literal>size(A)+size(B)+1</literal>で指定されます.
-      <literal>B</literal>の中心要素の添字は
-      <literal>floor((size(B)+1)/2)</literal>で定義されます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>convol2d</refname>
+        <refpurpose>離散 2-D 畳み込み, fftを使用. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>C = convol2d(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        実数または複素数二次元配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        実数または複素数二次元配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        実数または複素数二次元配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>convol2d</literal> は
+            完全な二次元離散畳み込みを計算するためにfftを使用します.
+            結果 <literal>C</literal> の次元は
+            <literal>size(A)+size(B)+1</literal>で指定されます.
+            <literal>B</literal>の中心要素の添字は
+            <literal>floor((size(B)+1)/2)</literal>で定義されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
     s = [1 2 1; 0 0 0; -1 -2 -1];//Sobel horizontal edge kernel
     A = zeros(10,10);A(3:7,3:7) = 1;
     convol2d(s,A);
     ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="conv2">conv2</link>
-      </member>
-      <member>
-        <link linkend="convol">convol</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>使用する関数</title>
-    <para>
-      <literal>convol2d</literal> 関数は組込み関数
-      <link linkend="fft">fft</link> に基づいています.
-    </para>
-  </refsection>
-  <refsection>
-    <title>履歴</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>関数convol2dが導入されました.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="conv2">conv2</link>
+            </member>
+            <member>
+                <link linkend="convol">convol</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>使用する関数</title>
+        <para>
+            <literal>convol2d</literal> 関数は組込み関数
+            <link linkend="fft">fft</link> に基づいています.
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数convol2dが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

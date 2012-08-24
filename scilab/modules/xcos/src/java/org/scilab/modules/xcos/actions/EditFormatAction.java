@@ -53,7 +53,8 @@ import com.mxgraph.util.mxUtils;
 /**
  * Customize the block representation.
  */
-public class EditFormatAction extends DefaultAction {
+@SuppressWarnings(value = { "serial" })
+public final class EditFormatAction extends DefaultAction {
     /**
      * Name of the action
      */

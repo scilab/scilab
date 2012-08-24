@@ -42,7 +42,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     char* type = NULL;
     int flagcolor = (int) getDoubleFromStack( stackPointer );
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
@@ -82,7 +82,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
     }
 

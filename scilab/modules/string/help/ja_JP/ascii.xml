@@ -11,52 +11,52 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ascii" xml:lang="ja">
-  <refnamediv>
-    <refname>ascii</refname>
-    <refpurpose>文字列をアスキー変換する</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>a=ascii(txt)
-      txt=ascii(a)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>txt</term>
-        <listitem>
-          <para>文字列または文字列の行列.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>整数アスキーコードのベクトル</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      この関数はScilab文字列をアスキーコード
-      (最初の127個のコードはASCIIです)またはアスキーコードののベクトルに変換します.
-      もしくは,アスキーコードのベクトルをScilab文字列に変換します.
-    </para>
-    <para>
-      <literal>txt</literal> が文字列の行列の場合,
-      <literal>ascii(txt)</literal> は
-      <literal>ascii(strcat(txt))</literal>と等価です
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>ascii</refname>
+        <refpurpose>文字列をアスキー変換する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>a=ascii(txt)
+            txt=ascii(a)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>文字列または文字列の行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>整数アスキーコードのベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数はScilab文字列をアスキーコード
+            (最初の127個のコードはASCIIです)またはアスキーコードののベクトルに変換します.
+            もしくは,アスキーコードのベクトルをScilab文字列に変換します.
+        </para>
+        <para>
+            <literal>txt</literal> が文字列の行列の場合,
+            <literal>ascii(txt)</literal> は
+            <literal>ascii(strcat(txt))</literal>と等価です
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 ascii(["hello";"world"])
 ascii("scilab")
 ascii([115 99 105 108 97 98])
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

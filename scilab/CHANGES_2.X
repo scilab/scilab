@@ -19,7 +19,7 @@ The editor allows you to write structured documents via a wysiwyg interface
 including Scilab sessions and results.
 
 An embedded text editor scipad derived from TkNotepad 
-(www.mindspring.com/~joeja/programs.html) as been developped.
+(www.mindspring.com/~joeja/programs.html) as been developed.
 
 C Code generation from Scicos discrete models 
 
@@ -27,7 +27,7 @@ Blocks defining DAE are now usable in Scicos.
 
 Statistic toolbox added (labostat).
 
-A new graphics version based on objects and entities has been developped
+A new graphics version based on objects and entities has been developed
 (beta version). It allows to edit the properties of graphics
 objects. By default, the old graphics version is used. Tu use the new graphics
 version see the help of "graphics_entities".

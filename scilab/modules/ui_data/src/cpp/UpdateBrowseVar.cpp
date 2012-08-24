@@ -215,11 +215,12 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "%toolboxes",
                      "%toolboxes_dir",
                      "TICTOC",
-                     "%helps_modules"
+                     "%helps_modules",
+                     "%_atoms_cache"
                    };
     int i = 0;
 
-#define NBELEMENT 31
+#define NBELEMENT 32
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++)

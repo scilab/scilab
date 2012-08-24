@@ -164,13 +164,21 @@ static void endCopyPast(wchar_t * commandLine)
     int sizeOfCmd = 0;
 
     sizeOfCmd = wcslen(commandLine);
-    if (commandLine[sizeOfCmd - 1] == L'\n')
+
+    if (sizeOfCmd == 0)
     {
         setTokenInteruptExecution(SEND_COMMAND);
     }
     else
     {
-        setTokenInteruptExecution(CONTINUE_COMMAND);
+        if (commandLine[sizeOfCmd - 1] == L'\n')
+        {
+            setTokenInteruptExecution(SEND_COMMAND);
+        }
+        else
+        {
+            setTokenInteruptExecution(CONTINUE_COMMAND);
+        }
     }
 }
 
@@ -298,7 +306,7 @@ char *getCmdLine(void)
 
     if (isatty(fileno(stdin)))
     {
-        /* We are in a pipe */
+        /* We are not in a pipe */
         printPrompt(WRITE_PROMPT);
         setCharDisplay(DISP_BRIGHT);
     }

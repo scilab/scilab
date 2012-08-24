@@ -41,7 +41,7 @@ int set_labels_font_color_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     BOOL status = FALSE;
     int fontColor = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "labels_font_color");
         return SET_PROPERTY_ERROR;
@@ -57,7 +57,7 @@ int set_labels_font_color_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_color");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "labels_font_color");
         return SET_PROPERTY_ERROR;
     }
 }

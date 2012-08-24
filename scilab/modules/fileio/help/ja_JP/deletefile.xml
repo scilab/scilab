@@ -12,41 +12,43 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deletefile" xml:lang="ja">
-  <refnamediv>
-    <refname>deletefile</refname>
-    <refpurpose>ファイルを削除する</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>f = deletefile(filename)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>存在するまたは存在しないファイルの名前.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para><literal>%t</literal> または <literal>%f</literal></para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>ファイルを削除します.
-      ファイルが削除された場合に <literal>%t</literal> ,それ以外の場合に
-      <literal>%f</literal>を返します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>deletefile</refname>
+        <refpurpose>ファイルを削除する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>f = deletefile(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>存在するまたは存在しないファイルの名前.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        <literal>%t</literal> または <literal>%f</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>ファイルを削除します.
+            ファイルが削除された場合に <literal>%t</literal> ,それ以外の場合に
+            <literal>%f</literal>を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 fd = mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
 
@@ -56,5 +58,5 @@ end
 
 deletefile(TMPDIR+'/notexistingfile')
     ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

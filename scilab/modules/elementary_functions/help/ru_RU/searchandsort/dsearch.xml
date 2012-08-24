@@ -12,181 +12,181 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dsearch" xml:lang="ru">
-  <refnamediv>
-    <refname>dsearch</refname>
-    <refpurpose>
-      поиск в упорядоченных наборах
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      [ind, occ, info] = dsearch(X, s )
-      [ind, occ, info] = dsearch(X, s , ch )
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером mx на nx, для которой необходимо
-            определить расположение элементов.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>s</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером n на 1 или 1 на n, интервалы (если 
-            ch="c") или набор (если ch="d"). 
-            Значения в s должны быть в строго возрастающем порядке:
-            s(1) &lt; s(2) &lt; ... &lt; s(n)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ch</term>
-        <listitem>
-          <para>
-            матрица строковых значений размером 1 на 1, тип поиска (по умолчанию ch="c").
-            Возможными значениями являются ch="c" или ch="d".
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ind</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером mx на nx.
-            Расположение значений X на интервалах или наборе, определённых s.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>occ</term>
-        <listitem>
-          <para>
-            Если ch="c", то (n-1) на 1 или 1 на (n-1) чисел двойной точности. 
-            Если ch="d", то n на 1 или 1 на n чисел двойной точности. Количество элементов X 
-            на интервалах s.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>info</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером 1 на 1. Количество элементов X, которые 
-            не входят в интервал(ы).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта функция определяет местоположение индексов элементов в X на интервалах или наборах, 
-      определённых s.
-    </para>
-    <para>
-      Если <literal>ch="c"</literal> (по умолчанию), рассматриваются интервалы 
-      <literal>I1 = [s(1), s(2)]</literal> и <literal>Ik = (s(k), s(k+1)]</literal> для 
-      <literal>k=2,...,n-1</literal>. 
-      Заметьте, что границы <literal>I1</literal> закрыты, а левые границы 
-      <literal>I2</literal>, ..., <literal>In</literal> открыты. 
-      Для каждого элемента <literal>X(i)</literal> ищется интервал <literal>Ik</literal>, 
-      который содержит X(i), т. е. ищется такое k, что 
-      <literal>s(k)&lt;X(i)&lt;=s(k+1)</literal>.
-    </para>
-    <para>
-      Более точно,
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>ind(i)</term>
-        <listitem>
-          <para>
-            такое k, что <literal>Ik</literal> содержит X(i) или 0, если X(i) не находится ни на одном из интервалов <literal>Ik</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>occ(k)</term>
-        <listitem>
-          <para>
-            число компонентов <literal>X</literal>, которые располагаются на 
-            <literal>Ik</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>info</term>
-        <listitem>
-          <para>
-            число компонентов <literal>X</literal>, которые не располагаются ни на одном из интервалов <literal>Ik</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Если <literal>ch="d"</literal>, то рассматривается набор {s(1),s(2),...,s(n)}. 
-      Для каждого X(i) ищется такое k, что X(i)=s(k).
-    </para>
-    <para>
-      Более точно, 
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>ind(i)</term>
-        <listitem>
-          <para>
-            равно k, если X(i)=s(k) или 0, если X(i) не располагается в s.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>occ(k)</term>
-        <listitem>
-          <para>
-            число элементов X, равное s(k)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>info</term>
-        <listitem>
-          <para>
-            число элементов X, которые не располагаются в наборе 
-            {s(1),...,s(n)}.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Опция ch="c" может быть использована для эмпирической гистограммы функции, давшей набор данных.
-      Опция ch="d" может быть использована для подсчёта элементов X, которые представлены в наборе s.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <para>
-      В следующем примере мы рассматриваем 3 интервала <literal>I1=[5,11]</literal>, 
-      <literal>I2=(11,15]</literal> и <literal>I3=(15,20]</literal>.
-      Мы ищем расположение элементов <literal>X=[11 13 1 7 5 2 9]</literal> в этих
-      интервалах.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>dsearch</refname>
+        <refpurpose>
+            поиск в упорядоченных наборах
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [ind, occ, info] = dsearch(X, s )
+            [ind, occ, info] = dsearch(X, s , ch )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером mx на nx, для которой необходимо
+                        определить расположение элементов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером n на 1 или 1 на n, интервалы (если 
+                        ch="c") или набор (если ch="d"). 
+                        Значения в s должны быть в строго возрастающем порядке:
+                        s(1) &lt; s(2) &lt; ... &lt; s(n)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ch</term>
+                <listitem>
+                    <para>
+                        матрица строковых значений размером 1 на 1, тип поиска (по умолчанию ch="c").
+                        Возможными значениями являются ch="c" или ch="d".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером mx на nx.
+                        Расположение значений X на интервалах или наборе, определённых s.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>occ</term>
+                <listitem>
+                    <para>
+                        Если ch="c", то (n-1) на 1 или 1 на (n-1) чисел двойной точности. 
+                        Если ch="d", то n на 1 или 1 на n чисел двойной точности. Количество элементов X 
+                        на интервалах s.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером 1 на 1. Количество элементов X, которые 
+                        не входят в интервал(ы).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция определяет местоположение индексов элементов в X на интервалах или наборах, 
+            определённых s.
+        </para>
+        <para>
+            Если <literal>ch="c"</literal> (по умолчанию), рассматриваются интервалы 
+            <literal>I1 = [s(1), s(2)]</literal> и <literal>Ik = (s(k), s(k+1)]</literal> для 
+            <literal>k=2,...,n-1</literal>. 
+            Заметьте, что границы <literal>I1</literal> закрыты, а левые границы 
+            <literal>I2</literal>, ..., <literal>In</literal> открыты. 
+            Для каждого элемента <literal>X(i)</literal> ищется интервал <literal>Ik</literal>, 
+            который содержит X(i), т. е. ищется такое k, что 
+            <literal>s(k)&lt;X(i)&lt;=s(k+1)</literal>.
+        </para>
+        <para>
+            Более точно,
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>ind(i)</term>
+                <listitem>
+                    <para>
+                        такое k, что <literal>Ik</literal> содержит X(i) или 0, если X(i) не находится ни на одном из интервалов <literal>Ik</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>occ(k)</term>
+                <listitem>
+                    <para>
+                        число компонентов <literal>X</literal>, которые располагаются на 
+                        <literal>Ik</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>
+                        число компонентов <literal>X</literal>, которые не располагаются ни на одном из интервалов <literal>Ik</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Если <literal>ch="d"</literal>, то рассматривается набор {s(1),s(2),...,s(n)}. 
+            Для каждого X(i) ищется такое k, что X(i)=s(k).
+        </para>
+        <para>
+            Более точно, 
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>ind(i)</term>
+                <listitem>
+                    <para>
+                        равно k, если X(i)=s(k) или 0, если X(i) не располагается в s.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>occ(k)</term>
+                <listitem>
+                    <para>
+                        число элементов X, равное s(k)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>
+                        число элементов X, которые не располагаются в наборе 
+                        {s(1),...,s(n)}.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Опция ch="c" может быть использована для эмпирической гистограммы функции, давшей набор данных.
+            Опция ch="d" может быть использована для подсчёта элементов X, которые представлены в наборе s.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            В следующем примере мы рассматриваем 3 интервала <literal>I1=[5,11]</literal>, 
+            <literal>I2=(11,15]</literal> и <literal>I3=(15,20]</literal>.
+            Мы ищем расположение элементов <literal>X=[11 13 1 7 5 2 9]</literal> в этих
+            интервалах.
+        </para>
+        <programlisting role="example"><![CDATA[ 
 [ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
     ]]></programlisting>
-    <para>
-      Предыдущий пример даёт следующий выход.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            Предыдущий пример даёт следующий выход.
+        </para>
+        <screen><![CDATA[ 
 -->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
  info  =
     2.
@@ -195,57 +195,57 @@
  ind  =
     1.    2.    0.    1.    1.    0.    1.
     ]]></screen>
-    <para>
-      Теперь поясним эти результаты.
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>X(1)=11 находится в  интервале I1, следовательно ind(1)=1.</para>
-      </listitem>
-      <listitem>
-        <para> X(2)=13 находится в  интервале I2, следовательно ind(2)=2.</para>
-      </listitem>
-      <listitem>
-        <para> X(3)=1 не находится ни в одном из интервалов, следовательно ind(3)=0.</para>
-      </listitem>
-      <listitem>
-        <para> X(4)=7 находится в  интервале I1, следовательно ind(4)=1.</para>
-      </listitem>
-      <listitem>
-        <para> X(5)=5 находится в  интервале I1, следовательно ind(5)=1.</para>
-      </listitem>
-      <listitem>
-        <para> X(6)=2 не находится ни в одном из интервалов, следовательно ind(6)=0.</para>
-      </listitem>
-      <listitem>
-        <para> X(7)=9 находится в  интервале I1, следовательно ind(7)=1.</para>
-      </listitem>
-      <listitem>
-        <para> В I1 четыре элемента X (5, 7, 9 и 11), следовательно occ(1)=4.</para>
-      </listitem>
-      <listitem>
-        <para> В I2 один элемент (т. е. 13), следовательно occ(2)=1.</para>
-      </listitem>
-      <listitem>
-        <para> В I3 ни одного элемента X, следовательно occ(3)=0.</para>
-      </listitem>
-      <listitem>
-        <para> 
-          Есть два элемента X (т. е. 1, 2), которые не находятся ни в одном из интервалов, следовательно info=2.
+        <para>
+            Теперь поясним эти результаты.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      В следующем примере мы рассматриваем набор [5 11 15 20] и ищем расположение элементов
-      X в этом наборе.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <itemizedlist>
+            <listitem>
+                <para>X(1)=11 находится в  интервале I1, следовательно ind(1)=1.</para>
+            </listitem>
+            <listitem>
+                <para> X(2)=13 находится в  интервале I2, следовательно ind(2)=2.</para>
+            </listitem>
+            <listitem>
+                <para> X(3)=1 не находится ни в одном из интервалов, следовательно ind(3)=0.</para>
+            </listitem>
+            <listitem>
+                <para> X(4)=7 находится в  интервале I1, следовательно ind(4)=1.</para>
+            </listitem>
+            <listitem>
+                <para> X(5)=5 находится в  интервале I1, следовательно ind(5)=1.</para>
+            </listitem>
+            <listitem>
+                <para> X(6)=2 не находится ни в одном из интервалов, следовательно ind(6)=0.</para>
+            </listitem>
+            <listitem>
+                <para> X(7)=9 находится в  интервале I1, следовательно ind(7)=1.</para>
+            </listitem>
+            <listitem>
+                <para> В I1 четыре элемента X (5, 7, 9 и 11), следовательно occ(1)=4.</para>
+            </listitem>
+            <listitem>
+                <para> В I2 один элемент (т. е. 13), следовательно occ(2)=1.</para>
+            </listitem>
+            <listitem>
+                <para> В I3 ни одного элемента X, следовательно occ(3)=0.</para>
+            </listitem>
+            <listitem>
+                <para> 
+                    Есть два элемента X (т. е. 1, 2), которые не находятся ни в одном из интервалов, следовательно info=2.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            В следующем примере мы рассматриваем набор [5 11 15 20] и ищем расположение элементов
+            X в этом наборе.
+        </para>
+        <programlisting role="example"><![CDATA[ 
 [ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
     ]]></programlisting>
-    <para>
-      Предыдущий пример производит следующий вывод.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            Предыдущий пример производит следующий вывод.
+        </para>
+        <screen><![CDATA[ 
 -->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
  info  =
     5.
@@ -254,74 +254,74 @@
  ind  =
     2.    0.    0.    0.    1.    0.    0.
     ]]></screen>
-    <para>
-      Далее представим детальное пояснение предыдущим результатам.
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>X(1)=11 находится в наборе val в позиции №2, следовательно ind(1)=2.</para>
-      </listitem>
-      <listitem>
-        <para>X(2)=13 не находится в наборе, следовательно ind(2)=0.</para>
-      </listitem>
-      <listitem>
         <para>
-          X(3)=1 не находится в наборе, следовательно ind(3)=0.
+            Далее представим детальное пояснение предыдущим результатам.
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>X(1)=11 находится в наборе val в позиции №2, следовательно ind(1)=2.</para>
+            </listitem>
+            <listitem>
+                <para>X(2)=13 не находится в наборе, следовательно ind(2)=0.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    X(3)=1 не находится в наборе, следовательно ind(3)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    X(4)=7 не находится в наборе, следовательно ind(4)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    X(5)=5 находится в наборе val в позиции №1, следовательно ind(5)=1.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    X(6)=2 не находится в наборе, следовательно ind(6)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    X(7)=9 не находится в наборе, следовательно ind(7)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Есть один элемент X (т. е. 5-й), равный 5, следовательно occ(1)=1.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Есть один элемент X (т. е. 1-й), равный 11, следовательно occ(2)=1.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Нет элементов, соответствующих val(3), следовательно occ(3)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Нет элементов, соответствующих val(4), следовательно occ(4)=0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Есть пять элементов X (т. е. 13, 1, 7, 2, 9), которые не входят в набор,
+                    следовательно info=5.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          X(4)=7 не находится в наборе, следовательно ind(4)=0.
+            Значения в <literal>s</literal> должны идти в порядке возрастания при любом значении 
+            опции <literal>ch</literal>. В противном случае будет сформирована ошибка, как в 
+            следующем примере.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          X(5)=5 находится в наборе val в позиции №1, следовательно ind(5)=1.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          X(6)=2 не находится в наборе, следовательно ind(6)=0.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          X(7)=9 не находится в наборе, следовательно ind(7)=0.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Есть один элемент X (т. е. 5-й), равный 5, следовательно occ(1)=1.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Есть один элемент X (т. е. 1-й), равный 11, следовательно occ(2)=1.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Нет элементов, соответствующих val(3), следовательно occ(3)=0.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Нет элементов, соответствующих val(4), следовательно occ(4)=0.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Есть пять элементов X (т. е. 13, 1, 7, 2, 9), которые не входят в набор,
-          следовательно info=5.
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Значения в <literal>s</literal> должны идти в порядке возрастания при любом значении 
-      опции <literal>ch</literal>. В противном случае будет сформирована ошибка, как в 
-      следующем примере.
-    </para>
-    <screen><![CDATA[ 
+        <screen><![CDATA[ 
 -->dsearch([11 13 1 7 5 2 9], [2 1])
 !--error 999
 dsearch   : the array val (arg 2) is not well ordered
@@ -329,20 +329,20 @@ dsearch   : the array val (arg 2) is not well ordered
 !--error 999
 dsearch   : the array val (arg 2) is not well ordered
     ]]></screen>
-  </refsection>
-  <refsection>
-    <title>Более сложные примеры</title>
-    <para>
-      В следующем примере мы сравним эмпирическую гистограмму случайных равновероятных 
-      чисел на интервале [0,1) с функцией равновероятного распределения. Чтобы выполнить
-      это сравнение, мы используем алгоритм поиска по умолчанию, основанный на интервалах 
-      (ch="c"). Сформируем X в виде набора случайных равновероятных чисел на интервале [0,1). Возьмём n=10 значений лежащих на одинаковом расстоянии друг от друга на 
-      интервале [0,1] и примем связанные интервалы. Затем подсчитаем число элементов в X, 
-      которые попали в эти интервалы: 
-      это эмпирическая гистограмма функции равновероятного распределения. Ожидается, что 
-      occ/m равно 1/(n-1).
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Более сложные примеры</title>
+        <para>
+            В следующем примере мы сравним эмпирическую гистограмму случайных равновероятных 
+            чисел на интервале [0,1) с функцией равновероятного распределения. Чтобы выполнить
+            это сравнение, мы используем алгоритм поиска по умолчанию, основанный на интервалах 
+            (ch="c"). Сформируем X в виде набора случайных равновероятных чисел на интервале [0,1). Возьмём n=10 значений лежащих на одинаковом расстоянии друг от друга на 
+            интервале [0,1] и примем связанные интервалы. Затем подсчитаем число элементов в X, 
+            которые попали в эти интервалы: 
+            это эмпирическая гистограмма функции равновероятного распределения. Ожидается, что 
+            occ/m равно 1/(n-1).
+        </para>
+        <programlisting role="example"><![CDATA[ 
 m = 50000 ; 
 n = 10;
 X = grand(m,1,"def");
@@ -355,12 +355,12 @@ plot(s(1:n-1), e,"r-");
 legend(["Эксперимент","Ожидание"]);
 xtitle("Случайные равновероятные числа","X","P(X)");
  ]]></programlisting>
-    <para>
-      В следующем примере мы сравним гистограмму случайных чисел с биномиальным законом распределения с функцией биномиального закона распределения B(N,p), с N=8 и p=0,5. 
-      Чтобы выполнить это сравнение, мы используем алгоритм дискретного поиска, основанный на 
-      наборе (ch="d").
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            В следующем примере мы сравним гистограмму случайных чисел с биномиальным законом распределения с функцией биномиального закона распределения B(N,p), с N=8 и p=0,5. 
+            Чтобы выполнить это сравнение, мы используем алгоритм дискретного поиска, основанный на 
+            наборе (ch="d").
+        </para>
+        <programlisting role="example"><![CDATA[ 
 N = 8 ; 
 p = 0.5; 
 m = 50000;
@@ -375,10 +375,10 @@ plot(s,Pexa',"r-");
 xtitle("Биномиальное распределение B(8,0.5)","X","P(X)");
 legend(["Эксперимент","Ожидание"]);
 ]]></programlisting>
-    <para>
-      В следующем примере мы используем кусочные полиномы Эрмита для интерполяции набора данных.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            В следующем примере мы используем кусочные полиномы Эрмита для интерполяции набора данных.
+        </para>
+        <programlisting role="example"><![CDATA[ 
  
       // определяем основные функции Эрмита
       function y=Ll(t,k,x)
@@ -418,16 +418,16 @@ legend(["Эксперимент","Ожидание"]);
       // Примечание : можете проверить, добавив это :
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="find">find</link>
-      </member>
-      <member>
-        <link linkend="tabul">tabul</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="tabul">tabul</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -22,226 +22,226 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DERIV">
-  <refnamediv>
-    <refname>DERIV</refname>
-    <refpurpose>Derivative</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_DERIV">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>DERIV</refname>
+        <refpurpose>Derivative</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="DERIV">Derivative</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_DERIV">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_DERIV">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_DERIV">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_DERIV">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_DERIV">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_DERIV">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_DERIV">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_DERIV">Example</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="DERIV">Derivative</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_DERIV">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_DERIV">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_DERIV">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_DERIV">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_DERIV">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_DERIV">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_DERIV">Example</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_DERIV">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="Continuous_pal">Continuous time systems
-            palette
-          </link>
+    </refsection>
+    <refsection id="Palette_DERIV">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">Continuous time systems
+                        palette
+                    </link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_DERIV">
+        <title>Description</title>
+        <para>The Derivative block approximates the instantaneous derivative of
+            its input with respect to time t.
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_DERIV">
-    <title>Description</title>
-    <para>The Derivative block approximates the instantaneous derivative of
-      its input with respect to time t.
-    </para>
-    <para>It is a measure of how an output changes as its input changes Δu. The
-      derivative is given by:
-    </para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../images/DERIV_img2_eng.gif" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>The derivative block has no setting and the initial output for the
-      block is zero.
-    </para>
-  </refsection>
-  <refsection id="Defaultproperties_DERIV">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+        <para>It is a measure of how an output changes as its input changes Δu. The
+            derivative is given by:
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,1] / type
-            1
-          </emphasis>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../images/DERIV_img2_eng.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+        <para>The derivative block has no setting and the initial output for the
+            block is zero.
+        </para>
+    </refsection>
+    <refsection id="Defaultproperties_DERIV">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        inputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        outputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">deriv</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_DERIV">
+        <title>Example</title>
+        <para>In this example, we compute and display the derivative waveform of a
+            sinusoidal input signal, with amplitude 2 and frequency 1.25 Hz.
+        </para>
+        <para>The input and output waveforms of the DERIVATIVE block are shown
+            below:
+        </para>
         <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/derivative_diag.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
+    </refsection>
+    <refsection id="Interfacingfunction_DERIV">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_DERIV">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_DERIV">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,1] / type
-            1
-          </emphasis>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/DERIV_Example.png" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation
-            inputs:
-          </emphasis>
-          0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation
-            outputs:
-          </emphasis>
-          0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis>
-          no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis>
-          no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">deriv</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_DERIV">
-    <title>Example</title>
-    <para>In this example, we compute and display the derivative waveform of a
-      sinusoidal input signal, with amplitude 2 and frequency 1.25 Hz.
-    </para>
-    <para>The input and output waveforms of the DERIVATIVE block are shown
-      below:
-    </para>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/derivative_diag.png" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Interfacingfunction_DERIV">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_DERIV">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_DERIV">
-    <title>Example</title>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center" fileref="../../../../examples/continuous_pal/DERIV_Example.png" valign="middle"/>
-          </imageobject>
-        </inlinemediaobject>
-      </link>
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

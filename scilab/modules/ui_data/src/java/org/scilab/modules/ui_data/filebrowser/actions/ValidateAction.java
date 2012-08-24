@@ -27,6 +27,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to validate a file
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ValidateAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;

@@ -11,53 +11,53 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getd">
-  <refnamediv>
-    <refname>getd</refname>
-    <refpurpose> chargement de toutes les fonctions contenues dans un répertoire  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>getd(path)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>path  </term>
-        <listitem>
-          <para>chaîne de caractères, chemin du répertoire
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>. 
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>getd</refname>
+        <refpurpose> chargement de toutes les fonctions contenues dans un répertoire  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>getd(path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>path  </term>
+                <listitem>
+                    <para>chaîne de caractères, chemin du répertoire
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="exec">exec</link>
-      </member>
-      <member>
-        <link linkend="lib">lib</link>
-      </member>
-      <member>
-        <link linkend="pwd">pwd</link>
-      </member>
-      <member>
-        <link linkend="chdir">chdir</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+            <member>
+                <link linkend="chdir">chdir</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

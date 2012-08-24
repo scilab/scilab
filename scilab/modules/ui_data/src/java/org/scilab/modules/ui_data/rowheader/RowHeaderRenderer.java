@@ -33,6 +33,7 @@ import org.scilab.modules.ui_data.rowheader.RowHeader;
 /**
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
 
     private int index;
@@ -43,41 +44,41 @@ public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
      * Constructor
      */
     public RowHeaderRenderer(JTable table, boolean rowModel) {
-	this.table = table;
-	this.rowModel = rowModel;
-	JTableHeader header = table.getTableHeader();
-	setOpaque(true);
-	setBorder(BorderFactory.createEmptyBorder());
-	setHorizontalAlignment(CENTER);
-	setForeground(header.getForeground());
-	setBackground(header.getBackground());
-	setFont(header.getFont());
-	if (!rowModel) {
-	    setBorder(BorderFactory.createLineBorder(table.getGridColor().darker(), 1));
-	}
+        this.table = table;
+        this.rowModel = rowModel;
+        JTableHeader header = table.getTableHeader();
+        setOpaque(true);
+        setBorder(BorderFactory.createEmptyBorder());
+        setHorizontalAlignment(CENTER);
+        setForeground(header.getForeground());
+        setBackground(header.getBackground());
+        setFont(header.getFont());
+        if (!rowModel) {
+            setBorder(BorderFactory.createLineBorder(table.getGridColor().darker(), 1));
+        }
     }
 
     public void paintComponent(Graphics g) {
-	JTableHeader header = table.getTableHeader();
-	ListSelectionModel lsm;
-	if (rowModel) {
-	    lsm = table.getSelectionModel();
-	} else {
-	    lsm = table.getColumnModel().getSelectionModel();
-	}
+        JTableHeader header = table.getTableHeader();
+        ListSelectionModel lsm;
+        if (rowModel) {
+            lsm = table.getSelectionModel();
+        } else {
+            lsm = table.getColumnModel().getSelectionModel();
+        }
 
-	if (lsm.isSelectedIndex(index)) {
-	    Color c = UIManager.getColor("Table.selectionBackground");
-	    float[] hsb = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
-	    setBackground(Color.getHSBColor(hsb[0], 1, hsb[2]));
-	    setFont(header.getFont().deriveFont(Font.BOLD));
-	    setForeground(UIManager.getColor("textHighlightText"));
-	} else {
-	    setForeground(header.getForeground());
-	    setBackground(header.getBackground());
-	    setFont(header.getFont());
-	}
-	super.paintComponent(g);
+        if (lsm.isSelectedIndex(index)) {
+            Color c = UIManager.getColor("Table.selectionBackground");
+            float[] hsb = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
+            setBackground(Color.getHSBColor(hsb[0], 1, hsb[2]));
+            setFont(header.getFont().deriveFont(Font.BOLD));
+            setForeground(UIManager.getColor("textHighlightText"));
+        } else {
+            setForeground(header.getForeground());
+            setBackground(header.getBackground());
+            setFont(header.getFont());
+        }
+        super.paintComponent(g);
     }
 
     /**
@@ -85,13 +86,13 @@ public class RowHeaderRenderer extends JLabel implements TableCellRenderer {
      */
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         if (rowModel) {
-	    this.index = row;
-	} else {
-	    this.index = column;
-	}
+            this.index = row;
+        } else {
+            this.index = column;
+        }
 
         setText(Integer.toString(index + 1));
-	
+
         return this;
     }
 }

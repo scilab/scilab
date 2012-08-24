@@ -10,7 +10,7 @@
 
 function [value,ArrayName]=ReadmiMatrix(fd)
 // Read a variable in a Matlab binary file
-// This function has been developped following the 'MAT-File Format' description:
+// This function has been developed following the 'MAT-File Format' description:
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 // Copyright INRIA
 // Authors: SS, VC

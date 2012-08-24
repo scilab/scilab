@@ -11,44 +11,44 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_logical">
-  <refnamediv>
-    <refname>mtlb_logical</refname>
-    <refpurpose>Matlab logical emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      There is no Scilab equivalent function for Matlab <literal>logical</literal> but its behavior can be easyly reproduced.
-    </para>
-    <para>
-      The function <literal>mtlb_logical(A)</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>logical(A)</literal> when it was not
-      possible to know what was the input while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_logical</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_logical</refname>
+        <refpurpose>Matlab logical emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          If <literal>A</literal> is a boolean matrix
-          <literal>mtlb_logical(A)</literal> may be replaced by <literal>A</literal>
+            There is no Scilab equivalent function for Matlab <literal>logical</literal> but its behavior can be easyly reproduced.
         </para>
-      </listitem>
-      <listitem>
         <para>
-          If <literal>A</literal> is not an empty matrix
-          <literal>mtlb_logical(A)</literal> may be replaced by <literal>A&lt;&gt;[]</literal>
+            The function <literal>mtlb_logical(A)</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>logical(A)</literal> when it was not
+            possible to know what was the input while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_logical</literal> calls:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a boolean matrix
+                    <literal>mtlb_logical(A)</literal> may be replaced by <literal>A</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is not an empty matrix
+                    <literal>mtlb_logical(A)</literal> may be replaced by <literal>A&lt;&gt;[]</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is an empty matrix
+                    <literal>mtlb_logical(A)</literal> may be replaced by <literal>[]</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          If <literal>A</literal> is an empty matrix
-          <literal>mtlb_logical(A)</literal> may be replaced by <literal>[]</literal>
+            Caution: <literal>mtlb_logical</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_logical</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

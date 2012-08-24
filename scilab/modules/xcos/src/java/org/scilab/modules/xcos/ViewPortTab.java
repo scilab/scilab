@@ -16,6 +16,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
 
+@SuppressWarnings(value = { "serial" })
 public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-viewport-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-viewport-default-tab";
@@ -29,9 +30,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         initComponents(graph);
     }
 
-    private static class ClosingOperation
-            implements
-            org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
+    private static class ClosingOperation implements org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
         private final XcosDiagram graph;
 
         public ClosingOperation(final XcosDiagram graph) {
@@ -57,14 +56,12 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
         }
 
     }
 
-    private static class EndedRestoration implements
-            WindowsConfigurationManager.EndedRestoration {
+    private static class EndedRestoration implements WindowsConfigurationManager.EndedRestoration {
         private final XcosDiagram graph;
 
         public EndedRestoration(XcosDiagram graph) {
@@ -73,8 +70,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
 
         @Override
         public void finish() {
-            ConfigurationManager.getInstance().removeFromRecentTabs(
-                    graph.getViewPortTab());
+            ConfigurationManager.getInstance().removeFromRecentTabs(graph.getViewPortTab());
         }
     }
 
@@ -84,7 +80,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
 
     /**
      * Get the viewport for a graph.
-     * 
+     *
      * @param graph
      *            the graph
      * @return the view port
@@ -96,7 +92,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
 
     /**
      * Restore or create the viewport tab for the graph
-     * 
+     *
      * @param graph
      *            the graph
      */
@@ -106,7 +102,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
 
     /**
      * Restore or create the viewport tab for the graph
-     * 
+     *
      * @param graph
      *            the graph
      * @param visible
@@ -125,13 +121,10 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         }
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
-                new ClosingOperation(graph));
-        ClosingOperationsManager.addDependency(
-                (SwingScilabTab) XcosTab.get(graph), (SwingScilabTab) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab, new ClosingOperation(graph));
+        ClosingOperationsManager.addDependency((SwingScilabTab) XcosTab.get(graph), (SwingScilabTab) tab);
 
-        WindowsConfigurationManager.registerEndedRestoration(
-                (SwingScilabTab) tab, new EndedRestoration(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -139,8 +132,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
      */
 
     private void initComponents(XcosDiagram graph) {
-        final mxGraphOutline outline = new mxGraphOutline(
-                graph.getAsComponent());
+        final mxGraphOutline outline = new mxGraphOutline(graph.getAsComponent());
         outline.setDrawLabels(true);
 
         setContentPane(outline);
@@ -149,8 +141,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
     private SwingScilabWindow createDefaultWindow() {
         final SwingScilabWindow win;
 
-        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(
-                DEFAULT_WIN_UUID, false);
+        final SwingScilabWindow configuration = WindowsConfigurationManager.createWindow(DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {

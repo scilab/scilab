@@ -11,36 +11,36 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sda">
-  <refnamediv>
-    <refname>sda</refname>
-    <refpurpose>デフォルトの軸(Axes)を設定. </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>sda()
-      a = gda(); set(a,"default_values",1)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>ハンドル, デフォルトの軸のハンドル.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      このルーチンは軸の規範をデフォルト値にリセットします.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>sda</refname>
+        <refpurpose>デフォルトの軸(Axes)を設定. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>sda()
+            a = gda(); set(a,"default_values",1)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>ハンドル, デフォルトの軸のハンドル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンは軸の規範をデフォルト値にリセットします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 f=get("default_figure"); // 規範となる図のハンドルを取得
 a=get("default_axes");   // 規範となる軸のハンドルを取得
@@ -70,25 +70,25 @@ plot2d(x-6,[2*cos(x)+.7 2*cos(x)+.9 cos(2*x) .2+sin(3*x)],[-1,-2,-3 -4])
 xdel(0)
 plot2d(x-2,sin(x))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sdf">sdf</link>
-      </member>
-      <member>
-        <link linkend="gda">gda</link>
-      </member>
-      <member>
-        <link linkend="gdf">gdf</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sdf">sdf</link>
+            </member>
+            <member>
+                <link linkend="gda">gda</link>
+            </member>
+            <member>
+                <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

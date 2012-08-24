@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  *
  * @author Vincent COUVERT
  */
+@SuppressWarnings(value = { "serial" })
 public final class SaveAsAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SAVE_AS;

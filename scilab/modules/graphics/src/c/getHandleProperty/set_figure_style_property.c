@@ -30,28 +30,28 @@
 int set_figure_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "figure_style");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_strings ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "figure_style");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( isStringParamEqual( stackPointer, "old" ) )
-  {
-    Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
-    return SET_PROPERTY_ERROR ;
-  }
-  else if ( isStringParamEqual( stackPointer, "new" ) )
-  {
-    /* graphic mode must be new */
-    /* nothing to do */
-    return SET_PROPERTY_UNCHANGED ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "figure_style", "'old'", "'new'");
+    if ( isStringParamEqual( stackPointer, "old" ) )
+    {
+        Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
+        return SET_PROPERTY_ERROR ;
+    }
+    else if ( isStringParamEqual( stackPointer, "new" ) )
+    {
+        /* graphic mode must be new */
+        /* nothing to do */
+        return SET_PROPERTY_UNCHANGED ;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "figure_style", "'old'", "'new'");
 
-  }
-  return SET_PROPERTY_ERROR ;
+    }
+    return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

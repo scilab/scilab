@@ -17,9 +17,10 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
 
 /**
  * Implement the SUMMATION function.
- * 
+ *
  * This class just install a {@link SumPortLabelingListener} on each instance.
  */
+@SuppressWarnings(value = { "serial" })
 public class Summation extends BasicBlock {
     /**
      * Default constructor

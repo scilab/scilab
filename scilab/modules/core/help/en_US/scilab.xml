@@ -1,360 +1,360 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scilab" xml:lang="en">
-  <refnamediv>
-    <refname>scilab</refname>
-    <refpurpose>Main script to start Scilab and miscellaneous
-      tools (GNU/Linux, Unix and Mac OS X)
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>scilab &lt;Options&gt;
-      scilab-adv-cli &lt;Options&gt;
-      scilab-cli &lt;Options&gt;
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <variablelist>
-      <varlistentry>
-        <term>-args Arguments</term>
-        <listitem>
-          <para>If this option is present, arguments are passed to Scilab.
-            They can then be got by <link linkend="sciargs">sciargs</link>
-            function. For multi arguments passing use a quoted, blank separated
-            sequence of words like: <literal>scilab -args 'foo1
-              foo2'
-            </literal>
-            .Without this option, unknown arguments will not
-            be accepted.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-display Display</term>
-        <listitem>
-          <para>
-            For use under Xwindow systems only to set a specific X server
-            display. Default display is unix:0.0.
-          </para>
-          <para>
-            <literal>-display</literal> can be abbreviated by
-            <literal>-d</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-debug</term>
-        <listitem>
-          <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
-          <para>
-            Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
-            gdb.
-          </para>
-          <para>Advise: use this option on a Scilab source tree.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-debug-kdbg</term>
-        <listitem>
-          <para>Start Scilab under kdbg (Unix/Linux/Mac OS X only).</para>
-          <para>Advise: use this option on a Scilab source tree.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-profiling</term>
-        <listitem>
-          <para>Start Scilab under valgrind (Unix/Linux/Mac OS X only).</para>
-          <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
-            to valgrind (and override the existing valgrind options).
-          </para>
-          <para>Advise: use this option on a Scilab source tree.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-profiling-visu</term>
-        <listitem>
-          <para>Start Scilab under callgrind (Unix/Linux/Mac OS X only).</para>
-          <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
-            to callgrind (and override the existing callgrind options).
-          </para>
-          <para>Advise: use this option on a Scilab source tree.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-electric-fence</term>
-        <listitem>
-          <para>Start Scilab with the Electric Fence (Unix/Linux/Mac OS X only).</para>
-          <para>Advise: use this option on a Scilab source tree.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-e Instruction</term>
-        <listitem>
-          <para>If this option is present then Scilab instruction
-            <literal>Instruction</literal> is executed first (just after startup
-            file execution) into Scilab. <literal>-e</literal> and
-            <literal>-f</literal> options are mutually exclusive.
-          </para>
-          <para>
-            Note that several instructions can be used in with <literal>-e</literal>.
-          </para>
-          <programlisting role="no-scilab-exec">scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-f file</term>
-        <listitem>
-          <para>If this option is present then Scilab script
-            <literal>file</literal> is executed first (just after startup file
-            execution) into Scilab. <literal>-e</literal> and
-            <literal>-f</literal> options are mutually exclusive.
-          </para>
-          <para>A file with .xcos extension will be opened by Xcos.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-l lang</term>
-        <listitem>
-          <para>If this option is present it fixes the user language.
-            <emphasis>lang</emphasis> can be: <emphasis>ca_ES de_DE en_US es_ES
-              fr_FR ja_JP pt_BR ru_RU zh_CN zh_TW
+    <refnamediv>
+        <refname>scilab</refname>
+        <refpurpose>Main script to start Scilab and miscellaneous
+            tools (GNU/Linux, Unix and Mac OS X)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>scilab &lt;Options&gt;
+            scilab-adv-cli &lt;Options&gt;
+            scilab-cli &lt;Options&gt;
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>-args Arguments</term>
+                <listitem>
+                    <para>If this option is present, arguments are passed to Scilab.
+                        They can then be got by <link linkend="sciargs">sciargs</link>
+                        function. For multi arguments passing use a quoted, blank separated
+                        sequence of words like: <literal>scilab -args 'foo1
+                            foo2'
+                        </literal>
+                        .Without this option, unknown arguments will not
+                        be accepted.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-display Display</term>
+                <listitem>
+                    <para>
+                        For use under Xwindow systems only to set a specific X server
+                        display. Default display is unix:0.0.
+                    </para>
+                    <para>
+                        <literal>-display</literal> can be abbreviated by
+                        <literal>-d</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-debug</term>
+                <listitem>
+                    <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
+                    <para>
+                        Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
+                        gdb.
+                    </para>
+                    <para>Advise: use this option on a Scilab source tree.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-debug-kdbg</term>
+                <listitem>
+                    <para>Start Scilab under kdbg (Unix/Linux/Mac OS X only).</para>
+                    <para>Advise: use this option on a Scilab source tree.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-profiling</term>
+                <listitem>
+                    <para>Start Scilab under valgrind (Unix/Linux/Mac OS X only).</para>
+                    <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
+                        to valgrind (and override the existing valgrind options).
+                    </para>
+                    <para>Advise: use this option on a Scilab source tree.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-profiling-visu</term>
+                <listitem>
+                    <para>Start Scilab under callgrind (Unix/Linux/Mac OS X only).</para>
+                    <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
+                        to callgrind (and override the existing callgrind options).
+                    </para>
+                    <para>Advise: use this option on a Scilab source tree.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-electric-fence</term>
+                <listitem>
+                    <para>Start Scilab with the Electric Fence (Unix/Linux/Mac OS X only).</para>
+                    <para>Advise: use this option on a Scilab source tree.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-e Instruction</term>
+                <listitem>
+                    <para>If this option is present then Scilab instruction
+                        <literal>Instruction</literal> is executed first (just after startup
+                        file execution) into Scilab. <literal>-e</literal> and
+                        <literal>-f</literal> options are mutually exclusive.
+                    </para>
+                    <para>
+                        Note that several instructions can be used in with <literal>-e</literal>.
+                    </para>
+                    <programlisting role="no-scilab-exec">scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-f file</term>
+                <listitem>
+                    <para>If this option is present then Scilab script
+                        <literal>file</literal> is executed first (just after startup file
+                        execution) into Scilab. <literal>-e</literal> and
+                        <literal>-f</literal> options are mutually exclusive.
+                    </para>
+                    <para>A file with .xcos extension will be opened by Xcos.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-l lang</term>
+                <listitem>
+                    <para>If this option is present it fixes the user language.
+                        <emphasis>lang</emphasis> can be: <emphasis>ca_ES de_DE en_US es_ES
+                            fr_FR ja_JP pt_BR ru_RU zh_CN zh_TW
+                        </emphasis>
+                        (from Scilab
+                        5.2).
+                    </para>
+                    <para>
+                        Other possible <literal>lang</literal> values are
+                        <literal>'fr'</literal> for french and <literal>'en'</literal> for
+                        english for compatibility reasons. The default language is english.
+                        This default value is fixed the <literal>scilab.start</literal>
+                        file.
+                    </para>
+                    <para>On some systems, locales must be compiled to render correctly
+                        UTF-8 fonts.
+                    </para>
+                    <para>Scilab can be also called the following way:</para>
+                    <programlisting role="no-scilab-exec">LANG=ja_JP scilab
+                        # equivalent to
+                        scilab -l ja_JP
+                    </programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-mem N</term>
+                <listitem>
+                    <para>
+                        Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
+                        option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
+                        is set by <literal>scilab.start</literal> script.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-nb</term>
+                <listitem>
+                    <para>If this option is present then the scilab welcome banner is
+                        not displayed.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-ns</term>
+                <listitem>
+                    <para>If this option is present the startup file
+                        <literal>SCI/etc/scilab.start</literal> and the user startup files
+                        <literal>SCIHOME/.scilab</literal>,
+                        <literal>SCIHOME/scilab.ini</literal> are not executed.
+                    </para>
+                    <para>This option will disable many features in Scilab (Only use if
+                        you know what you are doing).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-nouserstartup</term>
+                <listitem>
+                    <para>If this option is present the user startup files
+                        <literal>SCIHOME/.scilab</literal>,
+                        <literal>SCIHOME/scilab.ini</literal> are not executed.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-noatomsautoload</term>
+                <listitem>
+                    <para>If this option is present the ATOMS modules previously installed are not loaded for this session.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-nw</term>
+                <listitem>
+                    <para>If this option is present, Scilab is started as command line
+                        with advanced features still available (graphics, export, xcos, scinotes, help browser, ...).
+                    </para>
+                    <para>
+                        This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
+                    </para>
+                    <para>From Scilab 5.2:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Scilab distribution also provides a dedicated binary which
+                                is doing the same as <literal>-nw</literal>: <literal>scilab-adv-cli</literal> (Scilab Advanced
+                                Command Line Interpreter).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>pipes are enabled for all operating systems (see the
+                                examples for further details).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-nwni / -nogui</term>
+                <listitem>
+                    <para>If this option is present, Scilab is started as command line
+                        without advanced features (graphics, export, xcos, scinotes, help browser, ...).
+                    </para>
+                    <para>
+                        This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
+                    </para>
+                    <para>From Scilab 5.2:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Scilab distribution also provides a dedicated binary which
+                                is doing the same as <literal>-nwni</literal>: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <itemizedlist>
+                        <listitem>
+                            <para>pipes are enabled for all operating systems (see the
+                                examples for further details).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>This mode does not load the Java Virtual Machine (faster to
+                        start and uses less memory).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>--texmacs</term>
+                <listitem>
+                    <para>This option is reserved for TeXMacs.</para>
+                    <para>
+                        Please install ATOMS module: <programlisting role="">atomsInstall('texmacs')</programlisting>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-version</term>
+                <listitem>
+                    <para>This option prints product version and exits.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description of environment variables</title>
+        <variablelist>
+            <varlistentry>
+                <term>SCIVERBOSE</term>
+                <listitem>
+                    <para>
+                        If this variable is present, Scilab startup script will show a startup debug information. 
+                        Mainly used for bug report and debugging purposes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>JAVA_HOME</term>
+                <listitem>
+                    <para>
+                        Specify which Java to use. For example, 
+                        <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SCI_DISABLE_TK</term>
+                <listitem>
+                    <para>Disable Tk (but not Tcl) features.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SCI_JAVA_ENABLE_HEADLESS</term>
+                <listitem>
+                    <para>
+                        Enable Java Headless VM (i.e. without GUI features).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Java Virtual Machine options</title>
+        <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
+            build documentation are based on Java features. In some cases, it can be
+            important to edit the JVM options (Java Virtual Machine).
+        </para>
+        <para>These options are available in the
+            <emphasis>jvm_options.xml</emphasis> file.
+        </para>
+        <para>In version 5.0.X and 5.1.X, this file is stored as
+            <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis>.
+        </para>
+        <para>In version &gt;= 5.2.0, the file is available in
+            <emphasis>etc/jvm_options.xml</emphasis>.
+        </para>
+        <para>
+            <emphasis>
+                By default, the three following options are
+                easily accessible in the configuration file:
             </emphasis>
-            (from Scilab
-            5.2).
-          </para>
-          <para>
-            Other possible <literal>lang</literal> values are
-            <literal>'fr'</literal> for french and <literal>'en'</literal> for
-            english for compatibility reasons. The default language is english.
-            This default value is fixed the <literal>scilab.start</literal>
-            file.
-          </para>
-          <para>On some systems, locales must be compiled to render correctly
-            UTF-8 fonts.
-          </para>
-          <para>Scilab can be also called the following way:</para>
-          <programlisting role="no-scilab-exec">LANG=ja_JP scilab
-            # equivalent to
-            scilab -l ja_JP
-          </programlisting>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-mem N</term>
-        <listitem>
-          <para>
-            Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
-            option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
-            is set by <literal>scilab.start</literal> script.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-nb</term>
-        <listitem>
-          <para>If this option is present then the scilab welcome banner is
-            not displayed.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-ns</term>
-        <listitem>
-          <para>If this option is present the startup file
-            <literal>SCI/etc/scilab.start</literal> and the user startup files
-            <literal>SCIHOME/.scilab</literal>,
-            <literal>SCIHOME/scilab.ini</literal> are not executed.
-          </para>
-          <para>This option will disable many features in Scilab (Only use if
-            you know what you are doing).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-nouserstartup</term>
-        <listitem>
-          <para>If this option is present the user startup files
-            <literal>SCIHOME/.scilab</literal>,
-            <literal>SCIHOME/scilab.ini</literal> are not executed.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-noatomsautoload</term>
-        <listitem>
-          <para>If this option is present the ATOMS modules previously installed are not loaded for this session.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-nw</term>
-        <listitem>
-          <para>If this option is present, Scilab is started as command line
-            with advanced features still available (graphics, export, xcos, scinotes, help browser, ...).
-          </para>
-          <para>
-            This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
-          </para>
-          <para>From Scilab 5.2:</para>
-          <itemizedlist>
-            <listitem>
-              <para>Scilab distribution also provides a dedicated binary which
-                is doing the same as <literal>-nw</literal>: <literal>scilab-adv-cli</literal> (Scilab Advanced
-                Command Line Interpreter).
-              </para>
-            </listitem>
-            <listitem>
-              <para>pipes are enabled for all operating systems (see the
-                examples for further details).
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-nwni / -nogui</term>
-        <listitem>
-          <para>If this option is present, Scilab is started as command line
-            without advanced features (graphics, export, xcos, scinotes, help browser, ...).
-          </para>
-          <para>
-            This option may be used with <literal>-f</literal> or <literal>-e</literal> options.
-          </para>
-          <para>From Scilab 5.2:</para>
-          <itemizedlist>
-            <listitem>
-              <para>Scilab distribution also provides a dedicated binary which
-                is doing the same as <literal>-nwni</literal>: <literal>scilab-cli</literal> (Scilab Command Line Interpreter).
-              </para>
-            </listitem>
-          </itemizedlist>
-          <itemizedlist>
-            <listitem>
-              <para>pipes are enabled for all operating systems (see the
-                examples for further details).
-              </para>
-            </listitem>
-          </itemizedlist>
-          <para>This mode does not load the Java Virtual Machine (faster to
-            start and uses less memory).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>--texmacs</term>
-        <listitem>
-          <para>This option is reserved for TeXMacs.</para>
-          <para>
-            Please install ATOMS module: <programlisting role="">atomsInstall('texmacs')</programlisting>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-version</term>
-        <listitem>
-          <para>This option prints product version and exits.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description of environment variables</title>
-    <variablelist>
-      <varlistentry>
-        <term>SCIVERBOSE</term>
-        <listitem>
-          <para>
-            If this variable is present, Scilab startup script will show a startup debug information. 
-            Mainly used for bug report and debugging purposes.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>JAVA_HOME</term>
-        <listitem>
-          <para>
-            Specify which Java to use. For example, 
-            <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SCI_DISABLE_TK</term>
-        <listitem>
-          <para>Disable Tk (but not Tcl) features.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SCI_JAVA_ENABLE_HEADLESS</term>
-        <listitem>
-          <para>
-            Enable Java Headless VM (i.e. without GUI features).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Java Virtual Machine options</title>
-    <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
-      build documentation are based on Java features. In some cases, it can be
-      important to edit the JVM options (Java Virtual Machine).
-    </para>
-    <para>These options are available in the
-      <emphasis>jvm_options.xml</emphasis> file.
-    </para>
-    <para>In version 5.0.X and 5.1.X, this file is stored as
-      <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis>.
-    </para>
-    <para>In version &gt;= 5.2.0, the file is available in
-      <emphasis>etc/jvm_options.xml</emphasis>.
-    </para>
-    <para>
-      <emphasis>
-        By default, the three following options are
-        easily accessible in the configuration file:
-      </emphasis>
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>-XmxXXXm</term>
-        <listitem>
-          <para>This option set the amount of memory available by the Java
-            Virtual Machine. By default, 256M are allocated. If you change this
-            value, check that the value does not exceed the memory available on
-            the system.
-          </para>
-          <para>Since Scilab 5.4.0, this value can be changed in the preferences menu.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-Djava.compiler=JIT</term>
-        <listitem>
-          <para>
-            This option with the argument <emphasis>JIT</emphasis> enables
-            the Java Just In Time compiler. It is activated by default.
-            <emphasis>NONE</emphasis> disables the JIT and decreases
-            dramatically performances.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-verbose:jni / -Xcheck:jni</term>
-        <listitem>
-          <para>These options enable more checks and output from the JNI
-            calls. These options are useful in case of debugging and are
-            disabled by default since they decreases performances.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>Many more options are available. They can improve the performances,
-      change look and feel, change memory managements... See: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>-XmxXXXm</term>
+                <listitem>
+                    <para>This option set the amount of memory available by the Java
+                        Virtual Machine. By default, 256M are allocated. If you change this
+                        value, check that the value does not exceed the memory available on
+                        the system.
+                    </para>
+                    <para>Since Scilab 5.4.0, this value can be changed in the preferences menu.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-Djava.compiler=JIT</term>
+                <listitem>
+                    <para>
+                        This option with the argument <emphasis>JIT</emphasis> enables
+                        the Java Just In Time compiler. It is activated by default.
+                        <emphasis>NONE</emphasis> disables the JIT and decreases
+                        dramatically performances.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-verbose:jni / -Xcheck:jni</term>
+                <listitem>
+                    <para>These options enable more checks and output from the JNI
+                        calls. These options are useful in case of debugging and are
+                        disabled by default since they decreases performances.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Many more options are available. They can improve the performances,
+            change look and feel, change memory managements... See: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 # Let's start Scilab in profiling mode without attaching a gdb once a SIGSEGV is met.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
@@ -368,7 +368,7 @@ echo "handle SIGSEGV nostop" &> debug.txt
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
 scilab -debug]]></programlisting>
-    <programlisting role="example-cli"><![CDATA[
+        <programlisting role="no-scilab-exec"><![CDATA[
 # Under GNU/Linux, Mac OS X or Unix:
 $ echo "disp(%pi)"|scilab-cli
 or
@@ -383,25 +383,25 @@ $ scilab -nw -e "help()"
 # Scilab can be used for scripting aspects:
 echo "if 1<>2 then exit(99) end"|scilab-cli
 echo $? ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="exit">exit</link>
-      </member>
-      <member>
-        <link linkend="startup">startup</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>-noatomsautoload added.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exit">exit</link>
+            </member>
+            <member>
+                <link linkend="startup">startup</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>-noatomsautoload added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

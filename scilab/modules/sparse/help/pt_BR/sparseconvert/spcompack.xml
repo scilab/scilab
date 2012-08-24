@@ -11,51 +11,51 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="spcompack" xml:lang="en">
-  <refnamediv>
-    <refname>spcompack</refname>
-    <refpurpose>converte uma representação de adjacência comprimida em
-      representação de adjacência padrão
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>xadj</term>
-        <listitem>
-          <para>vetor de inteiros de comprimento (n+1). </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xlindx</term>
-        <listitem>
-          <para>vetor de inteiros de comprimento n+1 (ponteiros). </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lindx</term>
-        <listitem>
-          <para>vetor de inteiros </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>adjncy</term>
-        <listitem>
-          <para>vetor de inteiros </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <programlisting role=""><![CDATA[ 
+    <refnamediv>
+        <refname>spcompack</refname>
+        <refpurpose>converte uma representação de adjacência comprimida em
+            representação de adjacência padrão
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>xadj</term>
+                <listitem>
+                    <para>vetor de inteiros de comprimento (n+1). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xlindx</term>
+                <listitem>
+                    <para>vetor de inteiros de comprimento n+1 (ponteiros). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lindx</term>
+                <listitem>
+                    <para>vetor de inteiros </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>adjncy</term>
+                <listitem>
+                    <para>vetor de inteiros </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <programlisting role=""><![CDATA[ 
 A função utilitária spcompak é usada para converter uma representação de adjacência
 comprimida em uma representação de adjacência padrão.
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 // A é a matriz esparsa:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -91,19 +91,19 @@ xlindx=[1,2,3,8,9,11];
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sp2adj">sp2adj</link>
-      </member>
-      <member>
-        <link linkend="adj2sp">adj2sp</link>
-      </member>
-      <member>
-        <link linkend="spget">spget</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sp2adj">sp2adj</link>
+            </member>
+            <member>
+                <link linkend="adj2sp">adj2sp</link>
+            </member>
+            <member>
+                <link linkend="spget">spget</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

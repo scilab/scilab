@@ -15,6 +15,7 @@ package org.scilab.modules.types;
 /**
  * Exception which can occurred when a Sparse matrix is created
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabSparseException extends Exception {
 
     /**

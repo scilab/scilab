@@ -74,18 +74,19 @@ function [status, msg] = xcosPalAdd(pal, category)
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string vector expected.\n"), "xcosPalAdd", "pal"));
     end
     
-    if typeof(pal) == "palette" then
-        myPalette = pal;
-        pal = TMPDIR + "/palette.sod";
-        [status, msg] = xcosPalExport(myPalette, pal);
-        if ~status then
-            return;
+    if typeof(pal) == "string" & isfile(pal) then
+        path = pal;
+        
+        clear pal
+        import_from_hdf5(path);
+        if ~exists("pal", 'l') then
+            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": palette type or path expected.\n"), "xcosPalAdd", "pal"));
         end
     end
     
-    // call the gateway with a full path string and the category as
+    // call the gateway with the variable name and the category as
     // a string vector
-    xcosPalLoad(pal, category);
+    xcosPalLoad('pal', category);
     status = %T;
 endfunction
 

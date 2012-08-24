@@ -69,6 +69,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Paul Griffiths
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class RestoreOpenedFilesAction extends DefaultCheckAction {
 
     private static final int GAP = 10;
@@ -132,11 +133,11 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         final JDialog dialog = new JDialog(owner);
         dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
 
         dialog.setPreferredSize(new Dimension(dimX, dimY));
 
@@ -145,27 +146,27 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         ok.setPreferredSize(cancel.getPreferredSize());
         Object[] buttons = new Object[2];
         ok.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selectedFiles = getOpenedFiles(tree, uuid);
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedFiles = getOpenedFiles(tree, uuid);
+                dialog.dispose();
+            }
+        });
 
         cancel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    List<UUID> editorID = ConfigSciNotesManager.getOpenFilesEditorList();
-                    for (int i = 0; i < editorID.size(); i++) {
-                        // Remove these files from the list of open files
-                        if (editorID.get(i).toString().equals(uuid)) {
-                            ConfigSciNotesManager.removeFromOpenFiles(editorID.get(i));
-                            break;
-                        }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<UUID> editorID = ConfigSciNotesManager.getOpenFilesEditorList();
+                for (int i = 0; i < editorID.size(); i++) {
+                    // Remove these files from the list of open files
+                    if (editorID.get(i).toString().equals(uuid)) {
+                        ConfigSciNotesManager.removeFromOpenFiles(editorID.get(i));
+                        break;
                     }
-                    dialog.dispose();
                 }
-            });
+                dialog.dispose();
+            }
+        });
 
         if (isWindows()) {
             buttons[0] = ok;
@@ -339,8 +340,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
          */
         @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                      boolean selected, boolean expanded, boolean leaf, int row,
-                                                      boolean hasFocus) {
+                boolean selected, boolean expanded, boolean leaf, int row,
+                boolean hasFocus) {
             if (leaf) {
                 String stringValue = tree.convertValueToText(value, selected, expanded, leaf, row, false);
                 leafRenderer.setText(stringValue);
@@ -439,16 +440,16 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
          */
         @Override
         public Component getTreeCellEditorComponent(JTree tree, Object value,
-                                                    boolean selected, boolean expanded, boolean leaf, int row) {
+                boolean selected, boolean expanded, boolean leaf, int row) {
             Component editor = renderer.getTreeCellRendererComponent(tree, value, true, expanded, leaf, row, true);
             ItemListener itemListener = new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent itemEvent) {
-                        if (stopCellEditing()) {
-                            fireEditingStopped();
-                        }
+                @Override
+                public void itemStateChanged(ItemEvent itemEvent) {
+                    if (stopCellEditing()) {
+                        fireEditingStopped();
                     }
-                };
+                }
+            };
             if (editor instanceof JCheckBox) {
                 ((JCheckBox) editor).addItemListener(itemListener);
             }

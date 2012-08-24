@@ -351,6 +351,7 @@ L18:
     if (C2F(com).sym == right || C2F(com).sym == rparen || C2F(com).sym == less ||
             C2F(com).sym == great)
     {
+        /* Incorrect assignment. */
         SciError(1);
         goto L98;
     }
@@ -485,6 +486,7 @@ L21:
         {
             /*           fun=expr is not allowed */
             C2F(putid)(&Ids[1 + (Pt + 1) * nsiz], C2F(com).syn);
+            /* Bad call to primitive */
             SciError(25);
             goto L98;
         }
@@ -594,6 +596,7 @@ L33:
         /* --> new index list is .name */
         if (C2F(com).sym != name)
         {
+            /* Invalid index.*/
             SciError(21);
             if (Err > 0)
             {
@@ -658,6 +661,7 @@ L35:
     }
     else
     {
+        /* Waiting for right parenthesis */
         SciError(3);
         if (Err > 0)
         {
@@ -773,11 +777,13 @@ L41:
     /*     begin analysis of a new lhs argument */
     if (C2F(com).sym != name)
     {
+        /* Instruction left hand side: waiting for a name */
         SciError(274);
         goto L98;
     }
     if (C2F(eqid)(C2F(com).syn, varargout))
     {
+        /* varargout keyword cannot be used here */
         SciError(275);
         goto L98;
     }
@@ -886,6 +892,7 @@ L65:
         }
         else
         {
+            /* Waiting for end of command. */
             SciError(40);
             goto L98;
         }
@@ -905,6 +912,7 @@ L65:
         C2F(errgst).err2 = Ids[4 + Pt * nsiz];
         C2F(com).comp[0] = 0;
         Lpt[2] = Lpt[3] + 1;
+        /* Missing operator, comma, or semicolon. */
         SciError(276);
         Pt = Pt - 1;
         goto L98;
@@ -912,6 +920,7 @@ L65:
     else
     {
         Lpt[2] = Lpt[3] + 1;
+        /* Missing operator, comma, or semicolon. */
         SciError(276);
         goto L98;
     }
@@ -1203,6 +1212,7 @@ L79:
         k = Lpt[6];
         if (Lin[k - 1] == eol && Lin[k] == eol)
         {
+            /* end or else is missing... */
             SciError(47);
             goto L98;
         }
@@ -1439,6 +1449,7 @@ L85:
     {
         if (C2F(com).fun > 0)
         {
+            /* Recursion problems. Sorry */
             SciError(22);
             goto L98;
         }
@@ -1870,6 +1881,7 @@ L98:
     }
 
 L99:
+    /* Recursion problems. Sorry */
     SciError(22);
     goto L1;
 
@@ -1961,6 +1973,7 @@ void C2F(parsecomment)(void)
         Err = (lkp + 2 + ll) / 2 + 1 - Lstk[Bot];
         if (Err > 0)
         {
+            /* Display the stack information */
             SciError(17);
             return ;
         }

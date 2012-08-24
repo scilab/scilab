@@ -115,9 +115,6 @@
       <fileset dir="${library.graphic_objects.src.dir}">
         <include name="**/*.java" />
       </fileset>
-      <fileset dir="${library.hdf5.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
       <fileset dir="${library.xcos.src.dir}">
         <include name="**/*.java" />
       </fileset>
@@ -141,9 +138,6 @@
         <include name="**/*.java" />
       </fileset>
       <fileset dir="${library.graphic_objects.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.hdf5.src.dir}">
         <include name="**/*.java" />
       </fileset>
       <fileset dir="${library.xcos.src.dir}">

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-29 14:50+0000\n"
+"PO-Revision-Date: 2012-08-07 03:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -57,7 +57,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 列を行�
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
 "to %d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: %s は 0 から %d の間の整数とする必要があります.\n"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 110
@@ -190,6 +190,12 @@ msgstr "最適パラメータの計算"
 
 msgid "Running optimization ...\n"
 msgstr "最適化を実行中 ...\n"
+
+msgid "View Code?"
+msgstr "コードをチェック?"
+
+msgid "YesNo"
+msgstr "YesNo"
 
 msgid "fminsearch - Rosenbrock"
 msgstr "fminsearch - Rosenbrock"
@@ -1171,9 +1177,3 @@ msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定�
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
-#~ "to %d.\n"
-#~ msgstr "%s: 入力引数 #%d の大きさが間違っています: %s は 0 から %d の範囲の整数としてください.\n"

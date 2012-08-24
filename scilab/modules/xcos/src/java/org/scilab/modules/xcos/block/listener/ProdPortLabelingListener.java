@@ -26,11 +26,12 @@ import com.mxgraph.model.mxICell;
 
 /**
  * Change the port label on ipar change.
- * 
+ *
  * This listener must be installed on "integerParameters" property.
  */
+@SuppressWarnings(value = { "serial" })
 public class ProdPortLabelingListener implements PropertyChangeListener,
-        Serializable {
+    Serializable {
 
     private static final String NOT_PRINTED_LABEL = "\u00d7";
     private static ProdPortLabelingListener instance;
@@ -54,7 +55,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
     /**
      * Change the label of the port according to the integer parameters
      * property.
-     * 
+     *
      * @param evt
      *            the event
      * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -111,7 +112,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
 
     /**
      * Has all the ports have the default value ?
-     * 
+     *
      * @param ports
      *            the ports list
      * @return true if they all have the default values
@@ -132,7 +133,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
 
     /**
      * Return the symbol for the gain value
-     * 
+     *
      * @param gain
      *            the current gain
      * @return A label representing the gain

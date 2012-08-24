@@ -35,7 +35,7 @@ int set_alignment_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     BOOL status = FALSE;
     int alignment = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "alignment");
         return SET_PROPERTY_ERROR;
@@ -67,7 +67,7 @@ int set_alignment_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"alignment");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "alignment");
         return SET_PROPERTY_ERROR;
     }
 }

@@ -12,75 +12,75 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_checkequal" xml:lang="en">
-  <refnamediv>
-    <refname>assert_checkequal</refname>
-    <refpurpose>Check that computed and expected are equal.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      assert_checkequal ( computed , expected )
-      flag = assert_checkequal ( computed , expected )
-      [flag,errmsg] = assert_checkequal ( computed , expected )
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>computed:</term>
-        <listitem>
-          <para> the computed result</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>expected :</term>
-        <listitem>
-          <para> the expected result</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of boolean, %t if computed is equal to expected, %f if not</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>errmsg :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Performs silently if computed and expected are equal.
-    </para>
-    <para>
-      If the type of both input arguments is 1 (i.e. a real matrix),
-      we check that non-nan values are equal.
-    </para>
-    <para>
-      We compare first the real parts. In case of equality, we compare the imaginary parts.
-    </para>
-    <para>
-      If the comparison shows that computed is equal to expected,
-      <itemizedlist>
-        <listitem>
-          <para>if the errmsg output variable is not used, an error is generated,</para>
-        </listitem>
-        <listitem>
-          <para>if the errmsg output variable is used, no error is generated.</para>
-        </listitem>
-      </itemizedlist>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>assert_checkequal</refname>
+        <refpurpose>Check that computed and expected are equal.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            assert_checkequal ( computed , expected )
+            flag = assert_checkequal ( computed , expected )
+            [flag,errmsg] = assert_checkequal ( computed , expected )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed:</term>
+                <listitem>
+                    <para> the computed result</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para> the expected result</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of boolean, %t if computed is equal to expected, %f if not</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Performs silently if computed and expected are equal.
+        </para>
+        <para>
+            If the type of both input arguments is 1 (i.e. a real matrix),
+            we check that non-nan values are equal.
+        </para>
+        <para>
+            We compare first the real parts. In case of equality, we compare the imaginary parts.
+        </para>
+        <para>
+            If the comparison shows that computed is equal to expected,
+            <itemizedlist>
+                <listitem>
+                    <para>if the errmsg output variable is not used, an error is generated,</para>
+                </listitem>
+                <listitem>
+                    <para>if the errmsg output variable is used, no error is generated.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // Tests with success
 assert_checkequal ( %T , %T );
 flag = assert_checkequal ( list() , list() );
@@ -97,19 +97,19 @@ assert_checkequal ( 1 , [2 3] )
 assert_checkequal ( 1 , "b" )
 
    ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
-  <refsection>
-    <title>Bibliography</title>
-    <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
 </refentry>

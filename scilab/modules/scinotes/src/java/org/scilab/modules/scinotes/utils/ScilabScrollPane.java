@@ -28,6 +28,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * A ScrollPane where the vertical scrollbar can contains marks to indicate particular positions in the document.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabScrollPane extends JScrollPane {
 
     private static final Color MARKCOLOR = new Color(229, 192, 0);

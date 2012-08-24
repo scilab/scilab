@@ -28,8 +28,8 @@ static gw_generic_table Tab[]=
     {sci_luget, "luget"},
     {sci_spclean, "spclean"},
     {sci_nnz, "nnz"},
-    {sci_spmax, "spmax"},
-    {sci_spmin, "spmin"},
+    {NULL, ""}, //spmax
+    {NULL, ""}, //spmin
     {sci_spmatrix, "spmatrix"},
     {sci_spchol, "spchol"},
     {sci_fadj2sp, "fadj2sp"},

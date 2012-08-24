@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-05-07 18:56+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"PO-Revision-Date: 2012-07-31 13:51+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: de\n"
 
 #, c-format
@@ -168,6 +168,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
 msgstr ""
+"%s: Falscher Typ des EIngangsargumentes #%d: Reeller oder ganzzahliger "
+"Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
@@ -265,6 +267,10 @@ msgid "string matrix"
 msgstr ""
 
 msgid "matrix of string"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
 msgstr ""
 
 msgid "matrix of wide string"

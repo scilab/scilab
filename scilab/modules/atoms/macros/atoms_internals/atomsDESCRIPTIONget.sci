@@ -225,12 +225,21 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     if ierr <> 0 then
       error(msprintf(gettext("%s: save (''%s'') has failed.\n"),"atomsDESCRIPTIONget", packages_path));
     end
+    clearglobal %_atoms_cache;
 
   // Just load from file
   // =========================================================================
 
   else
-    load(packages_path,"packages","categories","categories_flat");
+      global %_atoms_cache; // /!\ Do not rename this variable. Name is tracked/ignored by Variable Browser
+      if isempty(%_atoms_cache) then
+          load(packages_path,"packages","categories","categories_flat");
+          %_atoms_cache = list(packages, categories, categories_flat);
+      else
+          packages = %_atoms_cache(1);
+          categories = %_atoms_cache(2);
+          categories_flat = %_atoms_cache(3);
+      end
   end
 
 endfunction

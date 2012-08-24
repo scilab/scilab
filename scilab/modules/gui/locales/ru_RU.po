@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-24 17:17+0000\n"
+"PO-Revision-Date: 2012-08-03 12:25+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -509,9 +509,6 @@ msgstr "&Правка"
 msgid "&Select as current figure"
 msgstr "&Установить текущим графическим окном"
 
-msgid "&Redraw figure"
-msgstr "&Перерисовать графическое окно"
-
 msgid "&Clear figure"
 msgstr "&Очистить графическое окно"
 
@@ -806,6 +803,27 @@ msgstr "Шрифт текста рабочего стола"
 msgid "Custom:"
 msgstr "Своя настройка:"
 
+msgid "Web"
+msgstr "Интернет"
+
+msgid "Web browser and mailer"
+msgstr "Вэб-браузер и почтовик"
+
+msgid "Use default web browser"
+msgstr "Использовать вэб-браузер по умолчанию"
+
+msgid "Command for web browser: "
+msgstr "Команда для вэб-браузера: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Не забудьте помещать в кавычки путь, содержащий пробелы.)"
+
+msgid "Use default mailer"
+msgstr "Использовать почтовик по умолчанию"
+
+msgid "Command for mailer: "
+msgstr "Команда для почтовика: "
+
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Свойство «%s» не существует для этого дескриптора.\n"
@@ -1046,6 +1064,7 @@ msgstr "Цвет фона"
 msgid "No print service found."
 msgstr "Служба печати не найдена."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1055,6 +1074,7 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1236,6 +1256,7 @@ msgstr "Сохранить и выполнить"
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1244,9 +1265,11 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
 
@@ -1301,6 +1324,7 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 

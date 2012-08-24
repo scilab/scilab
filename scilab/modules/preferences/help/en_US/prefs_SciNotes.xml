@@ -11,93 +11,93 @@
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="prefs_SciNotes" xml:lang="en">
-  <refnamediv>
-    <refname>SciNotes preferences</refname>
-    <refpurpose>SciNotes general preferences</refpurpose>
-  </refnamediv>
-  <refsection id="prefs_SciNotes_Editor">
-    <title>Editor</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../images/scinotes/editor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      SciNotes is the default Scilab code editor. It is now possible to use an external editor using a system dependent command or a Scilab macro name.
-    </para>
-    <para>
-      <itemizedlist>
-        <listitem>
-          <para>
-            <emphasis role="bold">Use SciNotes</emphasis>: check this box if you want to use SciNotes in using commands such like editor or edit.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">External editor</emphasis>: check this radio button to use an external system editor, e.g. it is possible to enter "/usr/bin/gedit".
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Scilab command</emphasis>: check this radio button to use an editor which is callable via a Scilab macro. This macro should take the same kind of argument as the editor command.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-  </refsection>
-  <refsection id="prefs_SciNotes_General_Settings">
-    <title>SciNotes General settings</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../images/scinotes/scinotes_general_settings.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      <itemizedlist>
-        <listitem>
-          <para>
-            <emphasis role="bold">Restore previous session on start-up</emphasis>: check this box to be able to restore the previous Scilab session as it was before quiting Scilab.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Add carriage return at the end of the file</emphasis>: check this box to automatically add a CR, if none, at the end of the file.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Number of recently opened files to display</emphasis>: modify this value to fix how many files must appears in the last opened section.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Default file enconding</emphasis>: fix the default encoding to use to save a file. No more encodings are proposed since Scilab handles only these ones at execution.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Default End-Of-Line</emphasis>: fix the default end-of-line chars to use when saving the file.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scinotes">scinotes</link>
-      </member>
-      <member>
-        <link linkend="editor">editor</link>
-      </member>
-      <member>
-        <link linkend="edit">edit</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>SciNotes preferences</refname>
+        <refpurpose>SciNotes general preferences</refpurpose>
+    </refnamediv>
+    <refsection id="prefs_SciNotes_Editor">
+        <title>Editor</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/scinotes/editor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            SciNotes is the default Scilab code editor. It is now possible to use an external editor using a system dependent command or a Scilab macro name.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Use SciNotes</emphasis>: check this box if you want to use SciNotes in using commands such like editor or edit.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">External editor</emphasis>: check this radio button to use an external system editor, e.g. it is possible to enter "/usr/bin/gedit".
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Scilab command</emphasis>: check this radio button to use an editor which is callable via a Scilab macro. This macro should take the same kind of argument as the editor command.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection id="prefs_SciNotes_General_Settings">
+        <title>SciNotes General settings</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/scinotes/scinotes_general_settings.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Restore previous session on start-up</emphasis>: check this box to be able to restore the previous Scilab session as it was before quiting Scilab.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Add carriage return at the end of the file</emphasis>: check this box to automatically add a CR, if none, at the end of the file.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Number of recently opened files to display</emphasis>: modify this value to fix how many files must appears in the last opened section.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Default file enconding</emphasis>: fix the default encoding to use to save a file. No more encodings are proposed since Scilab handles only these ones at execution.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Default End-Of-Line</emphasis>: fix the default end-of-line chars to use when saving the file.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scinotes">scinotes</link>
+            </member>
+            <member>
+                <link linkend="editor">editor</link>
+            </member>
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.palette;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,11 +27,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.javasci.JavasciException;
+import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
@@ -131,25 +131,29 @@ public final class Palette {
     /**
      * Load an xcos palette into the palette manager
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
      * @param category
      *            TreePath of the palette
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path, final String[] category) {
+    public static void loadPal(final String name, final String[] category) throws JavasciException {
+        /*
+         * If the env. is headless only perform fake loading to assert data
+         * integrity.
+         */
+        if (GraphicsEnvironment.isHeadless()) {
+            LOG.warning("Headless environment detected, only perform sanity check");
+            loadPalHeadless(name);
+            return;
+        }
+
         /*
          * Import the palette
          */
-        final ScilabTList data = new ScilabTList();
-        final String file = new File(path).getAbsolutePath();
-        try {
-            final int fileId = H5Read.openFile(file);
-            H5Read.readDataFromFile(fileId, data);
-            H5Read.closeFile(fileId);
-        } catch (final HDF5Exception e) {
-            throw new RuntimeException(String.format(UNABLE_TO_IMPORT, file), e);
-        }
+        final ScilabTList data = (ScilabTList) Scilab.getInCurrentScilabSession(name);
 
         /*
          * handle shared data on the EDT thread
@@ -158,50 +162,54 @@ public final class Palette {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
-                    /*
-                     * Decode the style part of the palette
-                     */
-                    final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
                     try {
-                        new StyleElement().decode(data, styleSheet);
-                    } catch (final ScicosFormatException e) {
-                        throw new RuntimeException(e);
-                    }
+                        /*
+                         * Decode the style part of the palette
+                         */
+                        final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
+                        try {
+                            new StyleElement().decode(data, styleSheet);
+                        } catch (final ScicosFormatException e) {
+                            throw new RuntimeException(e);
+                        }
 
-                    // reload all the opened diagram (clear states)
-                    for (final XcosDiagram d : Xcos.getInstance().openedDiagrams()) {
-                        if (d != null) {
-                            final mxGraphView view = d.getView();
-                            if (view != null) {
-                                view.reload();
-                            }
+                        // reload all the opened diagram (clear states)
+                        for (final XcosDiagram d : Xcos.getInstance().openedDiagrams()) {
+                            if (d != null) {
+                                final mxGraphView view = d.getView();
+                                if (view != null) {
+                                    view.reload();
+                                }
 
-                            final mxGraphComponent comp = d.getAsComponent();
-                            if (comp != null) {
-                                comp.refresh();
+                                final mxGraphComponent comp = d.getAsComponent();
+                                if (comp != null) {
+                                    comp.refresh();
+                                }
                             }
                         }
-                    }
 
-                    final PaletteNode node = getPathNode(category, true);
-                    if (!(node instanceof Category)) {
-                        throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, "category"));
-                    }
-                    final Category cat = (Category) node;
+                        final PaletteNode node = getPathNode(category, true);
+                        if (!(node instanceof Category)) {
+                            throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, "category"));
+                        }
+                        final Category cat = (Category) node;
 
-                    /*
-                     * Adding the palette tree part of the palette
-                     */
-                    PreLoaded pal;
-                    try {
-                        pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
-                    } catch (final ScicosFormatException e) {
-                        throw new RuntimeException(e);
-                    }
-                    cat.getNode().add(pal);
-                    pal.setParent(cat);
+                        /*
+                         * Adding the palette tree part of the palette
+                         */
+                        PreLoaded pal;
+                        try {
+                            pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+                        } catch (final ScicosFormatException e) {
+                            throw new RuntimeException(e);
+                        }
+                        cat.getNode().add(pal);
+                        pal.setParent(cat);
 
-                    PaletteNode.refreshView(pal);
+                        PaletteNode.refreshView(pal);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (final InterruptedException e) {
@@ -218,15 +226,32 @@ public final class Palette {
         }
     }
 
+    private static final void loadPalHeadless(final String name) throws JavasciException {
+        try {
+            final ScilabTList data = (ScilabTList) Scilab.getInCurrentScilabSession(name);
+
+            // style check
+            new StyleElement().decode(data, new mxStylesheet());
+
+            // palette data check
+            new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+
+        } catch (ScicosFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Load an xcos palette into the palette manager at the root category.
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path) {
-        loadPal(path, null);
+    public static void loadPal(final String name) throws JavasciException {
+        loadPal(name, null);
     }
 
     /**

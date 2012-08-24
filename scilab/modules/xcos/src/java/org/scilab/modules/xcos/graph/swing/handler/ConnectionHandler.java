@@ -33,6 +33,7 @@ import com.mxgraph.view.mxGraph;
 /**
  * Connection handler used to handle multi point links.
  */
+@SuppressWarnings(value = { "serial" })
 public class ConnectionHandler extends mxConnectionHandler {
     private boolean multiPointLinkStarted;
 

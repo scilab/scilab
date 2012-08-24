@@ -22,6 +22,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
+@SuppressWarnings(value = { "serial" })
 public class ScilabVarFilteringButtonAction extends CommonCallBack {
     /** Name of the action */
     public static final String NAME = UiDataMessages.SCILABVAR;

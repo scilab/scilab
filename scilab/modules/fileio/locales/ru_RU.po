@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-24 17:18+0000\n"
+"PO-Revision-Date: 2012-08-06 17:22+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -584,6 +584,15 @@ msgstr "Файл с таким именем уже существует в "
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+msgid "Error : The directory is not empty."
+msgstr "Ошибка: Директория не пуста."
+
+msgid "Undefined"
+msgstr "Не определено"
+
+msgid "The system cannot find the file specified."
+msgstr "Система не может найти указанный файл."
 
 #, c-format
 msgid "%s: Incorrect format.\n"

@@ -67,6 +67,7 @@ import com.artenum.rosetta.util.StringConstants;
  * Swing implementation for Scilab Console in GUIs
  * @author Vincent COUVERT
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
     private static final long serialVersionUID = 1L;

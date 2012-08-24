@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-23 21:02+0000\n"
+"PO-Revision-Date: 2012-08-02 20:14+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -35,6 +35,60 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
+
+msgid "Straight"
+msgstr "Přímé"
+
+msgid "Horizontal"
+msgstr "Vodorovně"
+
+msgid "Vertical"
+msgstr "Vertikální"
+
+msgid "Simulation"
+msgstr "Simulace"
+
+msgid "No trace nor debug printing"
+msgstr "Žádné trasování nebo výpis ladění"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Křivka Simulace Světla (Přepínání Diskrétních a Průběžných částí)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Trasování spuštění pro blok a volání bloku Ladění"
+
+msgid "Debug block calls without trace"
+msgstr "Blok Ladění volá bez trasování"
+
+msgid "Default simulation settings"
+msgstr "Výchozí nastavení simulace"
+
+msgid "Final integration time"
+msgstr "Čas konečného začlenění"
+
+msgid "Real time scaling"
+msgstr "Škálování v reálném čase"
+
+msgid "Integrator absolute tolerance"
+msgstr "Absolutní tolerance integrátoru"
+
+msgid "Integrator relative tolerance"
+msgstr "Relativní tolerance integrátoru"
+
+msgid "Tolerance on time"
+msgstr "Tolerance na čas"
+
+msgid "Max integration time interval"
+msgstr "Max časový interval začlenění"
+
+msgid "Solver kind"
+msgstr "Druh řešitele"
+
+msgid "Maximum step size (0 means no limit)"
+msgstr "Maximální velikost kroku (0 znamená bez limitu)"
+
+msgid "Default trace settings"
+msgstr "Výchozí nastavení sledování"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -363,9 +417,6 @@ msgstr "Podrobnosti"
 msgid "Show parent diagram"
 msgstr "Zobrazit nadřazený graf"
 
-msgid "Simulation"
-msgstr "Simulace"
-
 msgid "Setup"
 msgstr "Nastavení"
 
@@ -668,44 +719,11 @@ msgstr "Barva textu"
 msgid "Link Style"
 msgstr "Styl propojení"
 
-msgid "Straight"
-msgstr "Přímé"
-
-msgid "Horizontal"
-msgstr "Vodorovně"
-
-msgid "Vertical"
-msgstr "Vertikální"
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "Nastavit úroveň ladění (0,1,2,3) <br/> provádí scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "Trasování spuštění a Ladění"
-
-msgid "Final integration time"
-msgstr "Čas konečného začlenění"
-
-msgid "Real time scaling"
-msgstr "Škálování v reálném čase"
-
-msgid "Integrator absolute tolerance"
-msgstr "Absolutní tolerance integrátoru"
-
-msgid "Integrator relative tolerance"
-msgstr "Relativní tolerance integrátoru"
-
-msgid "Tolerance on time"
-msgstr "Tolerance na čas"
-
-msgid "Max integration time interval"
-msgstr "Max časový interval začlenění"
-
-msgid "Solver kind"
-msgstr "Druh řešitele"
-
-msgid "maximum step size (0 means no limit)"
-msgstr "maximální velikos kroku (0 znamená bez limitu)"
 
 msgid "Default"
 msgstr "Výchozí"
@@ -749,18 +767,6 @@ msgid ""
 msgstr ""
 "Klikněte na graf pro přidání bod propojení nebo kompatibilní cíl pro "
 "dokončení"
-
-msgid "No trace nor debug printing"
-msgstr "Žádné trasování nebo výpis ladění"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Křivka Simulace Světla (Přepínání Diskrétních a Průběžných částí)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Trasování spuštění pro blok a volání bloku Ladění"
-
-msgid "Debug block calls without trace"
-msgstr "Blok Ladění volá bez trasování"
 
 msgid "All supported formats"
 msgstr "Všechny podporované formáty"

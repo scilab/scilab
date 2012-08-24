@@ -11,59 +11,59 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="binomial" xml:lang="en">
-  <refnamediv>
-    <refname>binomial</refname>
-    <refpurpose>binomial distribution probabilities</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>pr=binomial(p,n)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>pr</term>
-        <listitem>
-          <para>row vector with n+1 components</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>real number in [0,1]</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>an integer &gt;= 1</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>pr=binomial(p,n)</literal> returns the binomial probability
-      vector, i.e. <literal>pr(k+1)</literal> is the probability of
-      <literal>k</literal> success in <literal>n</literal> independent
-      Bernouilli trials with probability of success <literal>p</literal>. In
-      other words : <literal>pr(k+1) = probability(X=k)</literal> , with X a
-      random variable following the B(n,p) distribution, and numerically
-      :
-    </para>
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../mml/binomial_equation_1_en_US.mml"/>
-        </imageobject>
-      </mediaobject>
-    </informalequation>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>binomial</refname>
+        <refpurpose>binomial distribution probabilities</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>pr=binomial(p,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>pr</term>
+                <listitem>
+                    <para>row vector with n+1 components</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>real number in [0,1]</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>an integer &gt;= 1</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>pr=binomial(p,n)</literal> returns the binomial probability
+            vector, i.e. <literal>pr(k+1)</literal> is the probability of
+            <literal>k</literal> success in <literal>n</literal> independent
+            Bernouilli trials with probability of success <literal>p</literal>. In
+            other words : <literal>pr(k+1) = probability(X=k)</literal> , with X a
+            random variable following the B(n,p) distribution, and numerically
+            :
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../mml/binomial_equation_1_en_US.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // first example
 n=10;p=0.3; clf(); plot2d3(0:n,binomial(p,n));
 
@@ -90,16 +90,16 @@ x=poly(0,'x');
 pr=Cnks.*horner(x.^(0:n).*(1-x)^(n:-1:0),p);
 pr-binomial(p,n)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="cdfbin">cdfbin</link>
-      </member>
-      <member>
-        <link linkend="grand">grand</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -38,7 +38,7 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 {
     BOOL status = FALSE;
     char* format = NULL;
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "format_n");
         return SET_PROPERTY_ERROR;
@@ -54,7 +54,7 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "format_n");
         return SET_PROPERTY_ERROR;
     }
 }

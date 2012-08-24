@@ -46,6 +46,7 @@ import org.scilab.modules.commons.ScilabConstants;
  * Class to have an incremental search field.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class HelpSearchField extends JPanel implements FocusListener, KeyListener {
 
     private static final String SCI = ScilabConstants.SCI.getPath();
@@ -76,11 +77,11 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
         field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
         field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
         field.getActionMap().put(TAB, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    HelpSearchField.this.textcomp.requestFocus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HelpSearchField.this.textcomp.requestFocus();
+            }
+        });
         JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelButtons.add(new CloseButton());
         panelButtons.add(new TopBotButtons(true));
@@ -98,11 +99,11 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
         this.textcomp = textcomp;
         textcomp.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), F3);
         textcomp.getActionMap().put(F3, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    HelpSearchField.this.showField();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HelpSearchField.this.showField();
+            }
+        });
 
         text = null;
         currentPos = 0;
@@ -198,13 +199,13 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
                     final int value = sb.getValue();
                     final int h = sb.getHeight();
                     SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (rect.y < value || rect.y > value + h) {
-                                    sb.setValue(Math.max(0, rect.y - h / 2));
-                                }
+                        @Override
+                        public void run() {
+                            if (rect.y < value || rect.y > value + h) {
+                                sb.setValue(Math.max(0, rect.y - h / 2));
                             }
-                        });
+                        }
+                    });
                 }
                 textcomp.getHighlighter().addHighlight(start, end, highlighter);
                 currentPos = start;
@@ -279,11 +280,11 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        hideField();
-                    }
-                });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    hideField();
+                }
+            });
         }
     }
 
@@ -305,32 +306,32 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String str = field.getText();
-                        String txt = "";
-                        Document doc = textcomp.getDocument();
-                        try {
-                            txt = doc.getText(0, doc.getLength()).toLowerCase();
-                        } catch (BadLocationException ex) {
-                            System.err.println(ex);
-                        }
-
-                        if (str != null) {
-                            int start;
-                            str = str.toLowerCase();
-                            if (top) {
-                                currentPos = Math.max(0, currentPos - 1);;
-                                start = txt.lastIndexOf(str, currentPos);
-                            } else {
-                                currentPos++;
-                                start = txt.indexOf(str, currentPos);
-                            }
-
-                            highlightText(start, start + str.length());
-                        }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String str = field.getText();
+                    String txt = "";
+                    Document doc = textcomp.getDocument();
+                    try {
+                        txt = doc.getText(0, doc.getLength()).toLowerCase();
+                    } catch (BadLocationException ex) {
+                        System.err.println(ex);
                     }
-                });
+
+                    if (str != null) {
+                        int start;
+                        str = str.toLowerCase();
+                        if (top) {
+                            currentPos = Math.max(0, currentPos - 1);;
+                            start = txt.lastIndexOf(str, currentPos);
+                        } else {
+                            currentPos++;
+                            start = txt.indexOf(str, currentPos);
+                        }
+
+                        highlightText(start, start + str.length());
+                    }
+                }
+            });
         }
     }
 }

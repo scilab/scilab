@@ -11,61 +11,61 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strrchr">
-  <refnamediv>
-    <refname>strrchr</refname>
-    <refpurpose>Find the last occurrence of a character in a string</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>res = strrchr(str1,char)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>str1</term>
-        <listitem>
-          <para>A character string or matrix of character strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>char</term>
-        <listitem>
-          <para>a character.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>res</term>
-        <listitem>
-          <para>A character string or matrix of character strings</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.
-    </para>
-    <para> num must have same dimensions than str1 or only one char. </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>strrchr</refname>
+        <refpurpose>Find the last occurrence of a character in a string</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>res = strrchr(str1,char)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>str1</term>
+                <listitem>
+                    <para>A character string or matrix of character strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>char</term>
+                <listitem>
+                    <para>a character.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>A character string or matrix of character strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.
+        </para>
+        <para> num must have same dimensions than str1 or only one char. </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 strrchr('This is a sample string','s')
 strrchr(['This is a sample string','in scilab'],'s')
 strrchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strchr">strchr</link>
-      </member>
-      <member>
-        <link linkend="strstr">strstr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strchr">strchr</link>
+            </member>
+            <member>
+                <link linkend="strstr">strstr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

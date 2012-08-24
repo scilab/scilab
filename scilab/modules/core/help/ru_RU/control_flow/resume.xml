@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="resume">
-  <refnamediv>
-    <refname>resume</refname>
-    <refpurpose>выполнение возврата или возобновление и копирование некоторых локальных переменных</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>resume
-      [x1,..,xn]=resume(a1,..,an)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x1,..,xn</term>
-        <listitem>
-          <para>переменные в вызывающем окружении</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a1,..,an</term>
-        <listitem>
-          <para>локальные переменные</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Внутри функции инструкция <literal>resume</literal> останавливает исполнение функции;
-      <literal>[x1,..,xn]=resume(a1,..,an)</literal> останавливает исполнение функции и 
-      передаёт локальные переменные <literal>ai</literal> в вызывающее окружение под именами 
-      <literal>xi</literal>.
-    </para>
-    <para>
-      В режиме <literal>pause</literal>, можно вернуться на более высокий уровень.
-      <literal>[x1,..,xn]=resume(a1,..,an)</literal> возвращает на верхний уровень и передаёт локальные переменные 
-      <literal>ai</literal> под именами <literal>xi</literal>.
-    </para>
-    <para>
-      В <literal>execstr</literal>, вызванной функцией <literal>[x1,..,xn]=resume(a1,..,an)</literal> 
-      прекращает исполнение функции и выдаёт локальные переменные <literal>ai</literal> 
-      в вызывающее окружение под именами <literal>xi</literal>.      
-    </para>
-    <para>
-      Инструкция <literal>resume</literal> эквивалентна инструкции <literal>return</literal>.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="abort">abort</link>
-      </member>
-      <member>
-        <link linkend="break">break</link>
-      </member>
-      <member>
-        <link linkend="quit">quit</link>
-      </member>
-      <member>
-        <link linkend="pause">pause</link>
-      </member>
-      <member>
-        <link linkend="return">return</link>
-      </member>
-      <member>
-        <link linkend="execstr">execstr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>resume</refname>
+        <refpurpose>выполнение возврата или возобновление и копирование некоторых локальных переменных</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>resume
+            [x1,..,xn]=resume(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x1,..,xn</term>
+                <listitem>
+                    <para>переменные в вызывающем окружении</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,..,an</term>
+                <listitem>
+                    <para>локальные переменные</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Внутри функции инструкция <literal>resume</literal> останавливает исполнение функции;
+            <literal>[x1,..,xn]=resume(a1,..,an)</literal> останавливает исполнение функции и 
+            передаёт локальные переменные <literal>ai</literal> в вызывающее окружение под именами 
+            <literal>xi</literal>.
+        </para>
+        <para>
+            В режиме <literal>pause</literal>, можно вернуться на более высокий уровень.
+            <literal>[x1,..,xn]=resume(a1,..,an)</literal> возвращает на верхний уровень и передаёт локальные переменные 
+            <literal>ai</literal> под именами <literal>xi</literal>.
+        </para>
+        <para>
+            В <literal>execstr</literal>, вызванной функцией <literal>[x1,..,xn]=resume(a1,..,an)</literal> 
+            прекращает исполнение функции и выдаёт локальные переменные <literal>ai</literal> 
+            в вызывающее окружение под именами <literal>xi</literal>.      
+        </para>
+        <para>
+            Инструкция <literal>resume</literal> эквивалентна инструкции <literal>return</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

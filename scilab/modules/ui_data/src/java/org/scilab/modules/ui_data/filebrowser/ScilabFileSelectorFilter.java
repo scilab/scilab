@@ -46,6 +46,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * A panel with file filter and the combo to set the cwd.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileSelectorFilter extends JPanel {
 
     private static boolean isWindows = (OS.get() == OS.WINDOWS);
@@ -80,11 +81,11 @@ public class ScilabFileSelectorFilter extends JPanel {
         setFocusTraversalPolicy(new ContainerOrderFocusTraversalPolicy());
 
         validate = new JButton(new CommonCallBack(null) {
-                @Override
-                public void callBack() {
-                    stt.setFilter(getPattern());
-                }
-            });
+            @Override
+            public void callBack() {
+                stt.setFilter(getPattern());
+            }
+        });
         validate.setIcon(VALIDATE);
 
         caseSensitive = new JCheckBox(UiDataMessages.CASESENSITIVE, !isWindows);
@@ -181,11 +182,11 @@ public class ScilabFileSelectorFilter extends JPanel {
             addFocusListener(this);
             getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
             getActionMap().put("ENTER", new CommonCallBack(null) {
-                    @Override
-                    public void callBack() {
-                        stt.setFilter(getPattern());
-                    }
-                });
+                @Override
+                public void callBack() {
+                    stt.setFilter(getPattern());
+                }
+            });
             toggleContents();
         }
 

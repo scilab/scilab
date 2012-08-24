@@ -42,7 +42,7 @@ int set_mark_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     int markMode = 1;
     int markStyle = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_style");
         return SET_PROPERTY_ERROR ;
@@ -65,7 +65,7 @@ int set_mark_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_mode");
         status1 = SET_PROPERTY_ERROR;
     }
 

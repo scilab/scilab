@@ -1236,16 +1236,16 @@ function desc_out = x2f_read_CHAPTER(file_in)
         end
 
         // First case : new field
-        if regexp(FILETOPARSE(i),"/^[a-zA-Z][a-zA-Z0-9_]*\s=\s/","o") == 1 then
-            current_field_length    = regexp(FILETOPARSE(i),"/\s=\s/","o")
-            current_field           = part(FILETOPARSE(i),1:current_field_length-1);
-            current_value           = part(FILETOPARSE(i),current_field_length+3:length(FILETOPARSE(i)));
+        if regexp(FILETOPARSE(i),"/^[a-zA-Z][a-zA-Z0-9_]*\s*=\s*/","o") == 1 then
+            [current_field_start, current_field_end] = regexp(FILETOPARSE(i),"/\s*=\s*/","o")
+            current_field           = part(FILETOPARSE(i),1:current_field_start-1);
+            current_value           = part(FILETOPARSE(i),current_field_end+1:length(FILETOPARSE(i)));
             desc_out(current_field) = current_value;
             continue;
         end
 
         // Third case : Blank line
-        if length(FILETOPARSE(i)) == 0 then
+        if length(stripblanks(FILETOPARSE(i))) == 0 then
             continue;
         end
 

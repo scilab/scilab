@@ -30,6 +30,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "HandleManagement.h"
+#include "sci_types.h"
 
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
@@ -49,12 +50,12 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     char* curFigUID = NULL;
     char* pstrAxesUID = NULL;
 
-	if (pobjUID != NULL)
-	{
-		/* This property should not be called on an handle */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
-		return SET_PROPERTY_ERROR;
-	}
+    if (pobjUID != NULL)
+    {
+        /* This property should not be called on an handle */
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
+        return SET_PROPERTY_ERROR;
+    }
 
     if (nbRow * nbCol != 1)
     {
@@ -62,14 +63,14 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer
         return SET_PROPERTY_ERROR ;
     }
 
-    if ( isParameterHandle( valueType ) )
+    if ( ( valueType == sci_handles ) )
     {
 
         curFigUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
 
         if ( curFigUID == NULL )
         {
-            Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
+            Scierror(999, _("'%s' handle does not or no longer exists.\n"), "Figure");
             return SET_PROPERTY_ERROR ;
         }
         setCurrentFigure(curFigUID);
@@ -78,13 +79,13 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 
         return 0;
     }
-    else if ( isParameterDoubleMatrix( valueType ) )
+    else if ( ( valueType == sci_matrix ) )
     {
         figNum = (int) getDoubleFromStack( stackPointer ) ;
     }
     else
     {
-        Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
+        Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure", "Figure") ;
         return SET_PROPERTY_ERROR ;
     }
 

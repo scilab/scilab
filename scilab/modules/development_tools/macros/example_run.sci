@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
 //
 // This file must be used under the terms of the CeCILL.
@@ -46,21 +47,25 @@ function boolStatus = example_run(modulesName, functionsName, helpLanguage, vara
 
         moduleName = modulesName(kMod);
 
-        moduleDir = SCI + filesep() + "modules" + filesep() + moduleName + filesep() + "help" + filesep();
-        if ~isdir(moduleDir) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1));
-            return
+        if (isdir(moduleName)) then
+            moduleDir = fullfile(moduleName,"help");
+        else
+            moduleDir = fullfile(SCI,"modules",moduleName,"help");
+            if ~isdir(moduleDir) then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1));
+                return
+            end
         end
 
-        moduleDir = moduleDir + helpLanguage + filesep();
+        moduleDir = fullfile(moduleDir,helpLanguage);
         if ~isdir(moduleDir) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3));
             return
         end
 
-        tempModuleName = moduleName + "_help";
+        tempModuleName = basename(moduleName) + "_help";
 
-        workDir = TMPDIR + filesep() + tempModuleName + filesep() + "tests" + filesep() + "unit_tests" + filesep();
+        workDir = fullfile(TMPDIR,tempModuleName,"tests","unit_tests");
         if isdir(workDir) then
             rmdir(workDir, "s");
         end
@@ -87,10 +92,11 @@ function boolStatus = example_run(modulesName, functionsName, helpLanguage, vara
             end
         end
 
+        testDir=fullfile(TMPDIR,tempModuleName)
         if rhs > 3 then
-            boolStatus = test_run(TMPDIR +  filesep() + tempModuleName, [], varargin(:))
+            boolStatus = test_run(testDir, [], varargin(:))
         else
-            boolStatus = test_run(TMPDIR +  filesep() + tempModuleName, [])
+            boolStatus = test_run(testDir, [])
         end
     end
 
@@ -122,12 +128,16 @@ function createTestsFromHelp(baseDirectory, outputDirectory, helpFile)
             functionName = fileparts(helpFile, "fname");
             relPath = dirname(getrelativefilename(baseDirectory, helpFile));
 
-            mkdir(outputDirectory + relPath + filesep())
+            mkdir(fullfile(outputDirectory,relPath))
 
             if size(exampleTags, "*")>1 then
-                mputl(programListing, outputDirectory + relPath + filesep() + functionName + "_" + string(kExample) + ".tst");
+                filebase=functionName + "_" + string(kExample) + ".tst"
+                destfile=fullfile(outputDirectory,relPath,filebase);
+                mputl(programListing,destfile);
             else
-                mputl(programListing, outputDirectory + relPath + filesep() + functionName + ".tst");
+                filebase=functionName + ".tst"
+                destfile=fullfile(outputDirectory,relPath,filebase)
+                mputl(programListing,destfile);
             end
         end
     end
@@ -150,7 +160,9 @@ function xmlFilenames = findHelpFiles(directory, functionName)
                 end
             end
         else // Directory
-            xmlFilenames = [xmlFilenames;findHelpFiles(directory + allFiles(kFile) + filesep(), functionName)]
+            subDir=fullfile(directory,allFiles(kFile))
+            subxmlfiles=findHelpFiles(subDir, functionName)
+            xmlFilenames = [xmlFilenames;subxmlfiles]
         end
     end
 

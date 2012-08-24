@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-26 20:25+0000\n"
+"PO-Revision-Date: 2012-08-02 20:13+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -316,6 +316,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána vysoká matice.\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: Špatné hodnoty pro vstupní argumenty #%d a #%d.\n"
 
 #, c-format
 msgid ""

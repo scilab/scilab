@@ -18,6 +18,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to execute the file in Xcos
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ExecuteFileInXcosAction extends ExecuteCommandAction {
 
     private static final String XCOS = "xcos('%s')";

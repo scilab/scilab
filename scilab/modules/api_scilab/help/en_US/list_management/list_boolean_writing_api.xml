@@ -11,187 +11,187 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="list_boolean_writing_API" xml:lang="en">
-  <refnamediv>
-    <refname>Boolean writing (Scilab gateway)</refname>
-    <refpurpose>
-      How to add matrix of boolean in a list.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
+    <refnamediv>
+        <refname>Boolean writing (Scilab gateway)</refname>
+        <refpurpose>
+            How to add matrix of boolean in a list.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection>
+            Create from existing data.
+        </refsection>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
+    </refsynopsisdiv>
     <refsection>
-      Create from existing data.
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent of the new item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position of the new item in the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piBool</term>
+                <listitem>
+                    <para>
+                        Address of data array (size: _iRows * _iCols).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
-    <para>Named variable profile:</para>
-    <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iVar</term>
-        <listitem>
-          <para>
-            Position in the Scilab memory where you want to put the variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pstName</term>
-        <listitem>
-          <para>
-            Name of the variable for "named" functions.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piParent</term>
-        <listitem>
-          <para>
-            Address of the parent of the new item.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iItemPos</term>
-        <listitem>
-          <para>
-            Position of the new item in the list.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iRows</term>
-        <listitem>
-          <para>
-            Number of rows of the new variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iCols</term>
-        <listitem>
-          <para>
-            Number of columns of the new variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piBool</term>
-        <listitem>
-          <para>
-            Address of data array (size: _iRows * _iCols).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SciErr</term>
-        <listitem>
-          <para>
-            Error structure where is stored errors messages history and first error number.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsynopsisdiv>
+    <refsynopsisdiv>
+        <refsection>
+            Write directly in Scilab memory.
+        </refsection>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)</synopsis>
+    </refsynopsisdiv>
     <refsection>
-      Write directly in Scilab memory.
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent of the new item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position of the new item in the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piBool</term>
+                <listitem>
+                    <para>
+                        Returns address of data array (size: _iRows * _iCols).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <synopsis>SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iVar</term>
-        <listitem>
-          <para>
-            Position in the Scilab memory where you want to put the variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piParent</term>
-        <listitem>
-          <para>
-            Address of the parent of the new item.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iItemPos</term>
-        <listitem>
-          <para>
-            Position of the new item in the list.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iRows</term>
-        <listitem>
-          <para>
-            Number of rows of the new variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iCols</term>
-        <listitem>
-          <para>
-            Number of columns of the new variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piBool</term>
-        <listitem>
-          <para>
-            Returns address of data array (size: _iRows * _iCols).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SciErr</term>
-        <listitem>
-          <para>
-            Error structure where is stored errors messages history and first error number.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This help describes how to add matrix of boolean in a list.</para>
-  </refsection>
-  <refsection>
-    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
-    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
-    <!--Lib_name: list_createlist-->
-    <!--Func_list: list_createlist-->
-    <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to add matrix of boolean in a list.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
+        <!--Lib_name: list_createlist-->
+        <!--Func_list: list_createlist-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int list_createlist(char *fname,unsigned long fname_len)
@@ -218,54 +218,54 @@ int list_createlist(char *fname,unsigned long fname_len)
 	int piBool[]            = {1,0,1,0,1,0,1,0,1};
 	double* pdblDataPtr     = NULL;
 
-	sciErr = createList(pvApiCtx, nbInputArgument + 1, 8, &piAddr);
+	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 8, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, nbInputArgument + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
+	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument + 1, piAddr, 2, 2, 3, pstData);
+	sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 2, 2, 3, pstData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfInteger16InList(pvApiCtx, nbInputArgument + 1, piAddr, 3, 2, 3, psData);
+	sciErr = createMatrixOfInteger16InList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 3, 2, 3, psData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfPolyInList(pvApiCtx, nbInputArgument + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
+	sciErr = createMatrixOfPolyInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	sciErr = createComplexSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	sciErr = createComplexSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfBooleanInList(pvApiCtx, nbInputArgument + 1, piAddr, 6, 3, 3, piBool);
+	sciErr = createMatrixOfBooleanInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 6, 3, 3, piBool);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	sciErr = createBooleanSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
+	sciErr = createBooleanSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -273,21 +273,21 @@ int list_createlist(char *fname,unsigned long fname_len)
 	}
 
 	//add list in list
-	sciErr = createListInList(pvApiCtx, nbInputArgument + 1, piAddr, 8, 3, &piChild);
+	sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 8, 3, &piChild);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument + 1, piChild, 1, 3, 2, pdblData1);
+	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 1, 3, 2, pdblData1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
+	sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -300,21 +300,21 @@ int list_createlist(char *fname,unsigned long fname_len)
 	pdblDataPtr[2]  = 3;
 	pdblDataPtr[3]  = 4;
 
-	sciErr = createPointerInList(pvApiCtx, nbInputArgument + 1, piChild, 3, pdblDataPtr);
+	sciErr = createPointerInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 3, pdblDataPtr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	AssignOutputVariable(1) = nbInputArgument + 1;
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	return 0;
 }
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -326,5 +326,5 @@ for i = 1 : size_ref
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

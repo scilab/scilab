@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:35+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -1754,51 +1754,51 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 74
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 74
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 75
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 75
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 152
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 152
 msgid "&File"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 153
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 153
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 154
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 154
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 155
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 155
 msgid "&Control"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 156
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 158
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 161
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 164
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 167
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 156
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 158
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 161
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 164
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 167
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 169
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 169
 msgid "&?"
 msgstr ""
 
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 170
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 170
 msgid "&Toolboxes"
 msgstr ""
 
@@ -1926,12 +1926,12 @@ msgid "%s called at line %s of macro %s"
 msgstr ""
 
 #
-# File: macros/who_user.sci, line: 43
+# File: macros/who_user.sci, line: 62
 msgid "User variables are:"
 msgstr ""
 
 #
-# File: macros/who_user.sci, line: 47
+# File: macros/who_user.sci, line: 66
 #, c-format
 msgid "Using %s elements out of %s"
 msgstr ""

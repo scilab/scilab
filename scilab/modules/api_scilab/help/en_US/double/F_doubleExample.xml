@@ -11,23 +11,24 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="doubleExample" xml:lang="en">
-  <refnamediv>
-    <refname>double example</refname>
-    <refpurpose>
-      Double use case.
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>This example shows how to get a double variable and return it to Scilab.</para>
-  </refsection>
-  <refsection>
-    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/doubleExample.c-->
-    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/doubleExample.tst-->
-    <!--Lib_name: doubleExample-->
-    <!--Func_list: doubleExample-->
-    <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <refnamediv>
+        <refname>double example</refname>
+        <refpurpose>
+            Double use case.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This example shows how to get a double variable and return it to Scilab.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/doubleExample.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/doubleExample.tst-->
+        <!--Lib_name: doubleExample-->
+        <!--Func_list: doubleExample-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[ 
 #include "api_scilab.h"
 
 int doubleExample(char *fname,unsigned long fname_len)
@@ -49,13 +50,13 @@ int doubleExample(char *fname,unsigned long fname_len)
 
 	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(pvApiCtx, nbInputArgument + 1);
+		iRet = createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
 		if(iRet)
 		{
 			return iRet;
 		}
 
-		AssignOutputVariable(1) = 0;
+		AssignOutputVariable(pvApiCtx, 1) = 0;
 	}
 	else if(isDoubleType(pvApiCtx, piAddr))
 	{
@@ -72,7 +73,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarComplexDouble(pvApiCtx, nbInputArgument + 1, dblReal, dblImg);
+				iRet = createScalarComplexDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dblReal, dblImg);
 				if(iRet)
 				{
 					return iRet;
@@ -86,7 +87,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return iRet;
 				}
 
-				iRet = createScalarDouble(pvApiCtx, nbInputArgument + 1, dblReal);
+				iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dblReal);
 				if(iRet)
 				{
 					return iRet;
@@ -109,7 +110,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal, pdblImg);
+				sciErr = createComplexMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblReal, pdblImg);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -125,7 +126,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 					return sciErr.iErr;
 				}
 
-				sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument + 1, iRows, iCols, pdblReal);
+				sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pdblReal);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -134,16 +135,17 @@ int doubleExample(char *fname,unsigned long fname_len)
 			}
 		}
 
-        AssignOutputVariable(1) = nbInputArgument + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	}
 
 	return 0;
 }
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 a = 1;
 b = %i;
 c = [1,2,3;4,5,6];
@@ -154,5 +156,5 @@ doubleExample(b) == b
 doubleExample(c) == c
 doubleExample(d) == d
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

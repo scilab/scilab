@@ -13,1201 +13,1201 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="optim" xml:lang="en">
-  <refnamediv>
-    <refname>optim</refname>
-    <refpurpose>non-linear optimization routine</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      fopt = optim(costf, x0)
-      fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
-      [fopt, xopt] = optim(...)
-      [fopt, xopt, gopt] = optim(...)
-      [fopt, xopt, gopt, work] = optim(...)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>costf</term>
-        <listitem>
-          <para>a function, a list or a string, the objective function.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x0</term>
-        <listitem>
-          <para>real vector, the initial guess for
+    <refnamediv>
+        <refname>optim</refname>
+        <refpurpose>non-linear optimization routine</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            fopt = optim(costf, x0)
+            fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
+            [fopt, xopt] = optim(...)
+            [fopt, xopt, gopt] = optim(...)
+            [fopt, xopt, gopt, work] = optim(...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>costf</term>
+                <listitem>
+                    <para>a function, a list or a string, the objective function.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>real vector, the initial guess for
+                        <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;contr&gt;</term>
+                <listitem>
+                    <para>an optional sequence of arguments containing the lower and
+                        upper bounds on <literal>x</literal>. If bounds are required, this
+                        sequence of arguments must be <literal>"b",binf,bsup</literal> where
+                        <literal>binf</literal> and <literal>bsup</literal> are real vectors
+                        with same dimension as <literal>x0</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>algo</term>
+                <listitem>
+                    <para>a string, the algorithm to use (default
+                        <literal>algo="qn"</literal>).
+                    </para>
+                    <para>The available algorithms are:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"qn"</literal>: Quasi-Newton with BFGS
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"gc"</literal>: limited memory BFGS
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"nd"</literal>: non-differentiable.
+                            </para>
+                            <para>
+                                The <literal>"nd"</literal> algorithm does not accept
+                                bounds on <literal>x</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>df0</term>
+                <listitem>
+                    <para>
+                        real scalar, a guess of the decreasing of <literal>f</literal>
+                        at first iteration. (default <literal>df0=1</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mem</term>
+                <listitem>
+                    <para>integer, the number of variables used to approximate the
+                        Hessian (default <literal>mem=10</literal>). This feature is
+                        available for the <literal>"gc"</literal> algorithm without
+                        constraints and the non-smooth algorithm <literal>"nd"</literal>
+                        without constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;stop&gt;</term>
+                <listitem>
+                    <para>a sequence of arguments containing the parameters controlling
+                        the convergence of the algorithm. The following sequences are
+                        available: <screen>              "ar",nap
+                            "ar",nap,iter
+                            "ar",nap,iter,epsg
+                            "ar",nap,iter,epsg,epsf
+                            "ar",nap,iter,epsg,epsf,epsx            
+                        </screen>
+                    </para>
+                    <para>where:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>nap</term>
+                            <listitem>
+                                <para>
+                                    maximum number of calls to <literal>costf</literal>
+                                    allowed (default <literal>nap=100</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>iter</term>
+                            <listitem>
+                                <para>maximum number of iterations allowed (default
+                                    <literal>iter=100</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>epsg</term>
+                            <listitem>
+                                <para>threshold on gradient norm (default
+                                    <literal>epsg= %eps</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>epsf</term>
+                            <listitem>
+                                <para>
+                                    threshold controlling decreasing of <literal>f</literal>
+                                    (default <literal>epsf=0</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>epsx</term>
+                            <listitem>
+                                <para>
+                                    threshold controlling variation of <literal>x</literal>
+                                    (default <literal>epsx=0</literal>). This vector (possibly
+                                    matrix) with same size as <literal>x0</literal> can be used to
+                                    scale <literal>x</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;params&gt;</term>
+                <listitem>
+                    <para>in the case where the objective function is a C or Fortran
+                        routine, a sequence of arguments containing the method to
+                        communicate with the objective function. This option has no meaning
+                        when the cost function is a Scilab script.
+                    </para>
+                    <para>The available values for &lt;params&gt; are the
+                        following.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"in"</literal>
+                            </para>
+                            <para>That mode allows to allocate memory in the internal Scilab
+                                workspace so that the objective function can get arrays with the
+                                required size, but without directly allocating the memory. The
+                                <literal>"in"</literal> value stands for "initialization". In
+                                that mode, before the value and derivative of the objective
+                                function is to be computed, there is a dialog between the
+                                <literal>optim</literal> Scilab primitive and the objective
+                                function <literal>costf</literal>. In this dialog, the objective
+                                function is called two times, with particular values of the
+                                <literal>ind</literal> parameter. The first time,
+                                <literal>ind</literal> is set to 10 and the objective function
+                                is expected to set the <literal>nizs</literal>,
+                                <literal>nrzs</literal> and <literal>ndzs</literal> integer
+                                parameters of the <literal>nird</literal> common, which is
+                                defined as:
+                            </para>
+                            <screen>common /nird/ nizs,nrzs,ndzs    </screen>
+                            <para>This allows Scilab to allocate memory inside its internal
+                                workspace. The second time the objective function is called,
+                                <literal>ind</literal> is set to 11 and the objective function
+                                is expected to set the <literal>ti</literal>,
+                                <literal>tr</literal> and <literal>tz</literal> arrays. After
+                                this initialization phase, each time it is called, the objective
+                                function is ensured that the <literal>ti</literal>,
+                                <literal>tr</literal> and <literal>tz</literal> arrays which are
+                                passed to it have the values that have been previously
+                                initialized.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"ti",valti</literal>
+                            </para>
+                            <para>
+                                In this mode, <literal>valti</literal> is expected to be a
+                                Scilab vector variable containing integers. Whenever the
+                                objective function is called, the <literal>ti</literal> array it
+                                receives contains the values of the Scilab variable.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"td", valtd</literal>
+                            </para>
+                            <para>
+                                In this mode, <literal>valtd</literal> is expected to be a
+                                Scilab vector variable containing double values. Whenever the
+                                objective function is called, the <literal>td</literal> array it
+                                receives contains the values of the Scilab variable.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"ti",valti,"td",valtd</literal>
+                            </para>
+                            <para>This mode combines the two previous modes.</para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        The <literal>ti, td</literal> arrays may be used so that the
+                        objective function can be computed. For example, if the objective
+                        function is a polynomial, the ti array may may be used to store the
+                        coefficients of that polynomial.
+                    </para>
+                    <para>Users should choose carefully between the
+                        <literal>"in"</literal> mode and the <literal>"ti"</literal> and
+                        <literal>"td"</literal> mode, depending on the fact that the arrays
+                        are Scilab variables or not. If the data is available as Scilab
+                        variables, then the <literal>"ti", valti, "td", valtd</literal> mode
+                        should be chosen. If the data is available directly from the
+                        objective function, the <literal>"in"</literal> mode should be
+                        chosen. Notice that there is no <literal>"tr"</literal> mode, since,
+                        in Scilab, all real values are doubles.
+                    </para>
+                    <para>If neither the "in" mode, nor the "ti", "td" mode is chosen,
+                        that is, if &lt;params&gt; is not present as an option of the optim
+                        primitive, the user may should not assume that the ti,tr and td
+                        arrays can be used : reading or writing the arrays may generate
+                        unpredictable results.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"imp=iflag"</term>
+                <listitem>
+                    <para>named argument used to set the trace mode (default
+                        <literal>imp=0</literal>). The available values for
+                        <literal>iflag</literal> are <literal>imp=0,1,2 and
+                            &gt;2
+                        </literal>
+                        .
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>iflag=0: nothing (except errors) is reported (this is the
+                                default),
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>iflag=1: initial and final reports,</para>
+                        </listitem>
+                        <listitem>
+                            <para>iflag=2: adds a report per iteration,</para>
+                        </listitem>
+                        <listitem>
+                            <para>iflag&gt;2: add reports on linear search.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fopt</term>
+                <listitem>
+                    <para>the value of the objective function at the point
+                        <literal>xopt</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xopt</term>
+                <listitem>
+                    <para>
+                        best value of <literal>x</literal> found.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gopt</term>
+                <listitem>
+                    <para>the gradient of the objective function at the point
+                        <literal>xopt</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>work</term>
+                <listitem>
+                    <para>working array for hot restart for quasi-Newton method. This
+                        array is automatically initialized by <literal>optim</literal> when
+                        <literal>optim</literal> is invoked. It can be used as input
+                        parameter to speed-up the calculations.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function solves unconstrained nonlinear optimization
+            problems:
+        </para>
+        <screen>min f(x)      </screen>
+        <para>
+            where <literal>x</literal> is a vector and <literal>f(x)</literal>
+            is a function that returns a scalar. This function can also solve bound
+            constrained nonlinear optimization problems:
+        </para>
+        <screen>min f(x)
+            binf &lt;= x &lt;= bsup      
+        </screen>
+        <para>
+            where <literal>binf</literal> is the lower bound and
+            <literal>bsup</literal> is the upper bound on <literal>x</literal>.
+        </para>
+        <para>
+            The <literal>costf</literal> argument can be a Scilab function, a
+            list or a string giving the name of a C or Fortran routine (see
+            "external"). This external must return the value <literal>f</literal> of
+            the cost function at the point <literal>x</literal> and the gradient
+            <literal>g</literal> of the cost function at the point
             <literal>x</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;contr&gt;</term>
-        <listitem>
-          <para>an optional sequence of arguments containing the lower and
-            upper bounds on <literal>x</literal>. If bounds are required, this
-            sequence of arguments must be <literal>"b",binf,bsup</literal> where
-            <literal>binf</literal> and <literal>bsup</literal> are real vectors
-            with same dimension as <literal>x0</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>algo</term>
-        <listitem>
-          <para>a string, the algorithm to use (default
-            <literal>algo="qn"</literal>).
-          </para>
-          <para>The available algorithms are:</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <literal>"qn"</literal>: Quasi-Newton with BFGS
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"gc"</literal>: limited memory BFGS
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"nd"</literal>: non-differentiable.
-              </para>
-              <para>
-                The <literal>"nd"</literal> algorithm does not accept
-                bounds on <literal>x</literal>.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>df0</term>
-        <listitem>
-          <para>
-            real scalar, a guess of the decreasing of <literal>f</literal>
-            at first iteration. (default <literal>df0=1</literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>mem</term>
-        <listitem>
-          <para>integer, the number of variables used to approximate the
-            Hessian (default <literal>mem=10</literal>). This feature is
-            available for the <literal>"gc"</literal> algorithm without
-            constraints and the non-smooth algorithm <literal>"nd"</literal>
-            without constraints.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;stop&gt;</term>
-        <listitem>
-          <para>a sequence of arguments containing the parameters controlling
-            the convergence of the algorithm. The following sequences are
-            available: <screen>              "ar",nap
-              "ar",nap,iter
-              "ar",nap,iter,epsg
-              "ar",nap,iter,epsg,epsf
-              "ar",nap,iter,epsg,epsf,epsx            
-            </screen>
-          </para>
-          <para>where:</para>
-          <variablelist>
+        </para>
+        <variablelist>
             <varlistentry>
-              <term>nap</term>
-              <listitem>
-                <para>
-                  maximum number of calls to <literal>costf</literal>
-                  allowed (default <literal>nap=100</literal>).
-                </para>
-              </listitem>
+                <term>Scilab function case</term>
+                <listitem>
+                    <para>
+                        If <literal>costf</literal> is a Scilab function, its calling
+                        sequence must be:
+                    </para>
+                    <screen>[f, g, ind] = costf(x, ind)      </screen>
+                    <para>
+                        where <literal>x</literal> is the current point,
+                        <literal>ind</literal> is an integer flag described below,
+                        <literal>f</literal> is the real value of the objective function at
+                        the point <literal>x</literal> and <literal>g</literal> is a vector
+                        containing the gradient of the objective function at
+                        <literal>x</literal>. The variable <literal>ind</literal> is
+                        described below.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>iter</term>
-              <listitem>
-                <para>maximum number of iterations allowed (default
-                  <literal>iter=100</literal>).
-                </para>
-              </listitem>
+                <term>List case</term>
+                <listitem>
+                    <para>It may happen that objective function requires extra
+                        arguments. In this case, we can use the following feature. The
+                        <literal>costf</literal> argument can be the list
+                        <literal>(real_costf, arg1,...,argn)</literal>. In this case,
+                        <literal>real_costf</literal>, the first element in the list, must
+                        be a Scilab function with calling sequence: <screen>        [f,g,ind]=real_costf(x,ind,arg1,...,argn)      </screen>
+                        The <literal>x</literal>, <literal>f</literal>,
+                        <literal>g</literal>, <literal>ind</literal> arguments have the same
+                        meaning as before. In this case, each time the objective function is
+                        called back, the arguments <literal>arg1,...,argn</literal> are
+                        automatically appended at the end of the calling sequence of
+                        <literal>real_costf</literal>.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>epsg</term>
-              <listitem>
-                <para>threshold on gradient norm (default
-                  <literal>epsg=0</literal>).
-                </para>
-              </listitem>
+                <term>String case</term>
+                <listitem>
+                    <para>
+                        If <literal>costf</literal> is a string, it refers to the name
+                        of a C or Fortran routine which must be linked to Scilab
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>Fortran case</term>
+                            <listitem>
+                                <para>The calling sequence of the Fortran subroutine computing
+                                    the objective must be:
+                                </para>
+                                <screen>subroutine costf(ind,n,x,f,g,ti,tr,td)      </screen>
+                                <para>with the following declarations:</para>
+                                <screen>integer ind,n ti(*)
+                                    double precision x(n),f,g(n),td(*)
+                                    real tr(*)      
+                                </screen>
+                                <para>
+                                    The argument <literal>ind</literal> is described
+                                    below.
+                                </para>
+                                <para>If ind = 2, 3 or 4, the inputs of the routine are :
+                                    <literal>x, ind, n, ti, tr,td</literal>.
+                                </para>
+                                <para>If ind = 2, 3 or 4, the outputs of the routine are :
+                                    <literal>f</literal> and <literal>g</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>C case</term>
+                            <listitem>
+                                <para>The calling sequence of the C function computing the
+                                    objective must be:
+                                </para>
+                                <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)      </screen>
+                                <para>
+                                    The argument <literal>ind</literal> is described
+                                    below.
+                                </para>
+                                <para>The inputs and outputs of the function are the same as
+                                    in the fortran case.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            On output, <literal>ind&lt;0</literal> means that
+            <literal>f</literal> cannot be evaluated at <literal>x</literal> and
+            <literal>ind=0</literal> interrupts the optimization.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Termination criteria</title>
+        <para>Each algorithm has its own termination criteria, which may use the
+            parameters given by the user, that is <literal>nap</literal>,
+            <literal>iter</literal>, <literal>epsg</literal>, <literal>epsf</literal>
+            and <literal>epsx</literal>. Not all the parameters are taken into
+            account. In the table below, we present the specific termination
+            parameters which are taken into account by each algorithm. The
+            unconstrained solver is identified by "UNC" while the bound constrained
+            solver is identified by "BND". An empty entry means that the parameter is
+            ignored by the algorithm.
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td>Solver</td>
+                    <td>nap</td>
+                    <td>iter</td>
+                    <td>epsg</td>
+                    <td>epsf</td>
+                    <td>epsx</td>
+                </tr>
+                <tr>
+                    <td>optim/"qn" UNC</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td/>
+                    <td/>
+                </tr>
+                <tr>
+                    <td>optim/"qn" BND</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>optim/"gc" UNC</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td/>
+                    <td/>
+                </tr>
+                <tr>
+                    <td>optim/"gc" BND</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>optim/"nd" UNC</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td/>
+                    <td>X</td>
+                    <td>X</td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example: Scilab function</title>
+        <para>The following is an example with a Scilab function. Notice, for
+            simplifications reasons, the Scilab function "cost" of the following
+            example computes the objective function f and its derivative no matter of
+            the value of ind. This allows to keep the example simple. In practical
+            situations though, the computation of "f" and "g" may raise performances
+            issues so that a direct optimization may be to use the value of "ind" to
+            compute "f" and "g" only when needed.
+        </para>
+        <programlisting role="example">function [f, g, ind] = cost(x, ind)
+            xref = [1; 2; 3];
+            f = 0.5 * norm(x - xref)^2;
+            g = x - xref;
+            endfunction
+            
+            // Simplest call
+            x0 = [1; -1; 1];
+            [fopt, xopt] = optim(cost, x0)
+            
+            // Use "gc" algorithm
+            [fopt, xopt, gopt] = optim(cost, x0, "gc")
+            
+            // Use "nd" algorithm
+            [fopt, xopt, gopt] = optim(cost, x0, "nd")
+            
+            // Upper and lower bounds on x
+            [fopt, xopt, gopt] = optim(cost, "b", [-1;0;2], [0.5;1;4], x0)
+            
+            // Upper and lower bounds on x and setting up the algorithm to "gc"
+            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
+            
+            // Bound on the number of call to the objective function
+            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
+            
+            // Set max number of call to the objective function (3)
+            // Set max number of iterations (100)
+            // Set stopping threshold on the value of f (1e-6),
+            // on the value of the norm of the gradient of the objective function (1e-6)
+            // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
+            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
+            
+            // Additionnal messages are printed in the console.
+            [fopt, xopt] = optim(cost, x0, imp = 3)    
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Print messages</title>
+        <para>
+            The <literal>imp</literal> flag may take negative integer values,
+            say k. In that case, the cost function is called once every -k iterations.
+            This allows to draw the function value or write a log file.
+        </para>
+        <para>
+            This feature is available only with the <literal>"qn"</literal>
+            algorithm without constraints.
+        </para>
+        <para>In the following example, we solve the Rosenbrock test case. For
+            each iteration of the algorithm, we print the value of x, f and g.
+        </para>
+        <programlisting role="example">function [f, g, ind] = cost(x, ind)
+            xref = [1; 2; 3];
+            f = 0.5 * norm(x - xref)^2;
+            g = x - xref;
+            if (ind == 1) then
+            mprintf("f(x) = %s, |g(x)|=%s\n", string(f), string(norm(g)))
+            end
+            endfunction
+            
+            x0 = [1; -1; 1];
+            [fopt, xopt] = optim(cost, x0, imp = -1)   
+        </programlisting>
+        <para>The previous script produces the following output.</para>
+        <screen>--&gt;[fopt, xopt] = optim(cost, x0, imp = -1)
+            f(x) = 6.5, |g(x)|=3.6055513
+            f(x) = 2.8888889, |g(x)|=2.4037009
+            f(x) = 9.861D-31, |g(x)|=1.404D-15
+            f(x) = 0, |g(x)|=0
+            Norm of projected gradient lower than   0.0000000D+00.
+            xopt  =
+            1.
+            2.
+            3.
+            fopt  =
+            0.    
+        </screen>
+        <para>In the following example, we solve the Rosenbrock test case. For
+            each iteration of the algorithm, we plot the current value of x into a 2D
+            graph containing the contours of Rosenbrock's function. This allows to see
+            the progress of the algorithm while the algorithm is performing. We could
+            as well write the value of x, f and g into a log file if needed.
+        </para>
+        <programlisting role="example">// 1. Define Rosenbrock for optimization
+            function [f , g , ind] = rosenbrock (x , ind)
+            f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
+            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+            g(2) = 200. * ( x(2) - x(1)**2 )
+            endfunction
+            
+            // 2. Define rosenbrock for contouring
+            function f = rosenbrockC ( x1 , x2 )
+            x = [x1 x2]
+            ind = 4
+            [ f , g , ind ] = rosenbrock ( x , ind )
+            endfunction
+            
+            // 3. Define Rosenbrock for plotting
+            function [ f , g , ind ] = rosenbrockPlot ( x , ind )
+            [ f , g , ind ] = rosenbrock ( x , ind )
+            if (ind == 1) then
+            plot ( x(1) , x(2) , "g." )
+            end
+            endfunction
+            
+            // 4. Draw the contour of Rosenbrock's function
+            x0 = [-1.2 1.0];
+            xopt = [1.0 1.0];
+            xdata = linspace(-2,2,100);
+            ydata = linspace(-2,2,100);
+            contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
+            plot(x0(1) , x0(2) , "b.")
+            plot(xopt(1) , xopt(2) , "r*")
+            
+            // 5. Plot the optimization process, during optimization
+            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)    
+        </programlisting>
+        <scilab:image>
+            function [f, g, ind]=rosenbrock(x, ind)
+            f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
+            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+            g(2) = 200. * ( x(2) - x(1)**2 )
+            endfunction
+            
+            function f=rosenbrockC(x1, x2)
+            x = [x1 x2]
+            ind = 4
+            [ f , g , ind ] = rosenbrock ( x , ind )
+            endfunction
+            
+            function [f, g, ind]=rosenbrockPlot(x, ind)
+            [ f , g , ind ] = rosenbrock ( x , ind )
+            if (ind == 1) then
+            plot ( x(1) , x(2) , "g." )
+            end
+            endfunction
+            
+            x0 = [-1.2 1.0];
+            xopt = [1.0 1.0];
+            xdata = linspace(-2,2,100);
+            ydata = linspace(-2,2,100);
+            contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
+            plot(x0(1) , x0(2) , "b.")
+            plot(xopt(1) , xopt(2) , "r*")
+            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
+        </scilab:image>
+        
+    </refsection>
+    <refsection>
+        <title>Example: Optimizing with numerical derivatives</title>
+        <para>It is possible to optimize a problem without an explicit knowledge
+            of the derivative of the cost function. For this purpose, we can use the
+            numdiff or derivative function to compute a numerical derivative of the
+            cost function.
+        </para>
+        <para>In the following example, we use the numdiff function to solve
+            Rosenbrock's problem.
+        </para>
+        <programlisting role="example">function f = rosenbrock ( x )
+            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+            endfunction
+            
+            function [ f , g , ind ] = rosenbrockCost ( x , ind )
+            f = rosenbrock ( x );
+            g= numdiff ( rosenbrock , x );
+            endfunction
+            
+            x0 = [-1.2 1.0];
+            
+            [ fopt , xopt ] = optim ( rosenbrockCost , x0 )    
+        </programlisting>
+        <para>In the following example, we use the derivative function to solve
+            Rosenbrock's problem. Given that the step computation strategy is not the
+            same in numdiff and derivative, this might lead to improved
+            results.
+        </para>
+        <programlisting role="example">function f = rosenbrock ( x )
+            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+            endfunction
+            
+            function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
+            f = rosenbrock ( x );
+            g = derivative ( rosenbrock , x.' , order = 4 );
+            endfunction
+            
+            x0 = [-1.2 1.0];
+            [fopt , xopt] = optim ( rosenbrockCost2 , x0 )    
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Counting function evaluations and number of
+            iterations
+        </title>
+        <para>
+            The <literal>imp</literal> option can take negative values. If the
+            <literal>imp</literal> is equal to <literal>m</literal> where
+            <literal>m</literal> is a negative integer, then the cost function is
+            evaluated every -<literal>m</literal> iterations, with the
+            <literal>ind</literal> input argument equal to 1. The following example
+            uses this feature to compute the number of iterations. The global variable
+            <literal>mydata</literal> is used to store the number of function
+            evaluations as well as the number of iterations.
+        </para>
+        <programlisting role="example">function [f, g, ind] = cost(x, ind,xref)
+            global _MYDATA_
+            if ( ind == 1 )
+            _MYDATA_.niter = _MYDATA_.niter + 1
+            end
+            _MYDATA_.nfevals = _MYDATA_.nfevals + 1
+            f = 0.5 * norm(x - xref)^2;
+            g = x - xref;
+            endfunction
+            xref = [1; 2; 3];
+            x0 = [1; -1; 1];
+            global _MYDATA_
+            _MYDATA_ = tlist ( ["T_MYDATA", "niter", "nfevals"])
+            _MYDATA_.niter = 0
+            _MYDATA_.nfevals = 0
+            [f, xopt] = optim(list(cost, xref), x0, imp = -1)
+            mprintf("Number of function evaluations:%d\n", _MYDATA_.nfevals)
+            mprintf("Number of iterations:%d\n", _MYDATA_.niter) 
+        </programlisting>
+        <para>While the previous example perfectly works, there is a risk that the
+            same variable <literal>_MYDATA_</literal> is used by some internal
+            function used by <literal>optim</literal>. In this case, the value may be
+            wrong. This is why a sufficiently weird variable name has been
+            used.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example : Passing extra parameters</title>
+        <para>In most practical situations, the cost function depends on extra
+            parameters which are required to evaluate the cost function. There are
+            several methods to achieve this goal.
+        </para>
+        <para>In the following example, the cost function uses 4 parameters
+            <literal>a, b, c</literal> and <literal>d</literal>. We define the cost
+            function with additionnal input arguments, which are declared after the
+            index argument. Then we pass a list as the first input argument of the
+            <literal>optim</literal> solver. The first element of the list is the cost
+            function. The additionnal variables are directly passed to the cost
+            function.
+        </para>
+        <programlisting role="example">function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
+            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+            g(1) = 2 * a * ( x(1) - c )
+            g(2) = 2 * b * ( x(2) - d )
+            endfunction
+            
+            x0 = [1 1];
+            a = 1.0;
+            b = 2.0;
+            c = 3.0;
+            d = 4.0;
+            costf = list ( costfunction , a , b , c, d );
+            [fopt , xopt] = optim ( costf , x0 , imp = 2)    
+        </programlisting>
+        <para>In complex cases, the cost function may have so many parameters,
+            that having a function which takes all arguments as inputs is not
+            convenient. For example, consider the situation where the cost function
+            needs 12 parameters. Then, designing a function with 14 input arguments
+            (x, index and the 12 parameters) is difficult to manage. Instead, we can
+            use a more complex data structure to store our data. In the following
+            example, we use a tlist to store the 4 input arguments. This method can
+            easily be expanded to an arbitrary number of parameters.
+        </para>
+        <programlisting role="example">function [f , g , ind] = costfunction ( x , ind , parameters)
+            // Get the parameters
+            a = parameters.a
+            b = parameters.b
+            c = parameters.c
+            d = parameters.d
+            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+            g(1) = 2 * a * ( x(1) - c )
+            g(2) = 2 * b * ( x(2) - d )
+            endfunction
+            
+            x0 = [1 1];
+            a = 1.0;
+            b = 2.0;
+            c = 3.0;
+            d = 4.0;
+            // Store the parameters
+            parameters = tlist ( [
+            "T_MYPARAMS"
+            "a"
+            "b"
+            "c"
+            "d"
+            ]);
+            
+            parameters.a = a;
+            parameters.b = b;
+            parameters.c = c;
+            parameters.d = d;
+            costf = list ( costfunction , parameters );
+            [fopt , xopt] = optim ( costf , x0 , imp = 2)    
+        </programlisting>
+        <para>In the following example, the parameters are defined before the
+            optimizer is called. They are directly used in the cost function.
+        </para>
+        <programlisting role="example">// The example NOT to follow
+            function [ f , g , ind ] = costfunction ( x , ind )
+            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+            g(1) = 2 * a * ( x(1) - c )
+            g(2) = 2 * b * ( x(2) - d )
+            endfunction
+            x0 = [1 1];
+            a = 1.0;
+            b = 2.0;
+            c = 3.0;
+            d = 4.0;
+            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )   
+        </programlisting>
+        <para>While the previous example perfectly works, there is a risk that the
+            same variables are used by some internal function used by
+            <literal>optim</literal>. In this case, the value of the parameters are
+            not what is expected and the optimization can fail or, worse, give a wrong
+            result. It is also difficult to manage such a function, which requires
+            that all the parameters are defined in the calling context.
+        </para>
+        <para>In the following example, we define the cost function with the
+            classical header. Inside the function definition, we declare that the
+            parameters <literal>a, b, c</literal> and <literal>d</literal> are global
+            variables. Then we declare and set the global variables.
+        </para>
+        <programlisting role="example">// Another example NOT to follow
+            function [ f , g , ind ] = costfunction ( x , ind )
+            global a b c d
+            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+            g(1) = 2 * a * ( x(1) - c )
+            g(2) = 2 * b * ( x(2) - d )
+            endfunction
+            x0 = [1 1];
+            global a b c d
+            a = 1.0;
+            b = 2.0;
+            c = 3.0;
+            d = 4.0;
+            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )    
+        </programlisting>
+        <para>While the previous example perfectly works, there is a risk that the
+            same variables are used by some internal function used by
+            <literal>optim</literal>. In this case, the value of the parameters are
+            not what is expected and the optimization can fail or, worse, give a wrong
+            result.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example : Checking that derivatives are correct</title>
+        <para>Many optimization problem can be avoided if the derivatives are
+            computed correctly. One common reason for failure in the step-length
+            procedure is an error in the calculation of the cost function and its
+            gradient. Incorrect calculation of derivatives is by far the most common
+            user error.
+        </para>
+        <para>In the following example, we give a false implementation of
+            Rosenbrock's gradient. In order to check the computation of the
+            derivatives, we use the <literal>derivative</literal> function. We define
+            the <literal>simplified</literal> function, which delegates the
+            computation of <literal>f</literal> to the rosenbrock function. The
+            <literal>simplified</literal> function is passed as an input argument of
+            the <literal>derivative</literal> function.
+        </para>
+        <programlisting role="example">function [ f , g , index ] = rosenbrock ( x , index )
+            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+            // Exact :
+            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+            // Wrong :
+            g(1) = - 1200. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+            g(2) = 200. * ( x(2) - x(1)**2 )
+            endfunction
+            
+            function f = simplified ( x )
+            index = 1;
+            [ f , g , index ] = rosenbrock ( x , index )
+            endfunction
+            
+            x0 = [-1.2 1];
+            index = 1;
+            [ f , g , index ] = rosenbrock ( x0 , index );
+            gnd = derivative ( simplified , x0.' );
+            mprintf("Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
+            mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));    
+        </programlisting>
+        <para>The previous script produces the following output. Obviously, the
+            difference between the two gradient is enormous, which shows that the
+            wrong formula has been used in the gradient.
+        </para>
+        <programlisting role="example">      Exact derivative:[-638 -88]
+            Numerical derivative:[-215.6 -88]   
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: C function</title>
+        <para>The following is an example with a C function, where a C source code
+            is written into a file, dynamically compiled and loaded into Scilab, and
+            then used by the "optim" solver. The interface of the "rosenc" function is
+            fixed, even if the arguments are not really used in the cost function.
+            This is because the underlying optimization solvers must assume that the
+            objective function has a known, constant interface. In the following
+            example, the arrays ti and tr are not used, only the array "td" is used,
+            as a parameter of the Rosenbrock function. Notice that the content of the
+            arrays ti and td are the same that the content of the Scilab variable, as
+            expected.
+        </para>
+        <programlisting role="example">// External function written in C (C compiler required)
+            // write down the C code (Rosenbrock problem)
+            C=['#include &lt;math.h&gt;'
+            'double sq(double x)'
+            '{ return x*x;}'
+            'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
+            '                                int *ti, float *tr, double *td)'
+            '{'
+            '  double p;'
+            '  int i;'
+            '  p=td[0];'
+            '  if (*ind==2||*ind==4) {'
+            '    *f=1.0;'
+            '    for (i=1;i&lt;*n;i++)'
+            '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
+            '  }'
+            '  if (*ind==3||*ind==4) {'
+            '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
+            '    for (i=1;i&lt;*n-1;i++)'
+            '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
+            '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
+            '  }'
+            '}'];
+            cd TMPDIR;
+            mputl(C, TMPDIR+'/rosenc.c')
+            
+            // compile the C code
+            l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');
+            
+            // incremental linking
+            link(l, 'rosenc', 'c')
+            
+            //solve the problem
+            x0 = [40; 10; 50];
+            p = 100;
+            [f, xo, go] = optim('rosenc', x0, 'td', p)
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Fortran function</title>
+        <para>The following is an example with a Fortran function.</para>
+        <programlisting role="example">// External function written in Fortran (Fortran compiler required)
+            // write down the Fortran  code (Rosenbrock problem)
+            F = [ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
+            '      integer ind,n,ti(*)'
+            '      double precision x(n),f,g(n),td(*)'
+            '      real tr(*)'
+            'c'
+            '      double precision y,p'
+            '      p=td(1)'
+            '      if (ind.eq.2.or.ind.eq.4) then'
+            '        f=1.0d0'
+            '        do i=2,n'
+            '          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
+            '        enddo'
+            '      endif'
+            '      if (ind.eq.3.or.ind.eq.4) then'
+            '        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
+            '        if(n.gt.2) then'
+            '          do i=2,n-1'
+            '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
+            '     &amp;           -2.0d0*(1.0d0-x(i))'
+            '          enddo'
+            '        endif'
+            '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
+            '      endif'
+            '      return'
+            '      end'];
+            cd TMPDIR;
+            mputl(F, TMPDIR+'/rosenf.f')
+            
+            // compile the Fortran code
+            l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+            
+            // incremental linking
+            link(l, 'rosenf', 'f')
+            
+            //solve the problem
+            x0 = [40; 10; 50];
+            p = 100;
+            [f, xo, go] = optim('rosenf', x0, 'td', p)    
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Fortran function with initialization</title>
+        <para>The following is an example with a Fortran function in which the
+            "in" option is used to allocate memory inside the Scilab environment. In
+            this mode, there is a dialog between Scilab and the objective function.
+            The goal of this dialog is to initialize the parameters of the objective
+            function. Each part of this dialog is based on a specific value of the
+            "ind" parameter.
+        </para>
+        <para>At the beginning, Scilab calls the objective function, with the ind
+            parameter equals to 10. This tells the objective function to initialize
+            the sizes of the arrays it needs by setting the nizs, nrzs and ndzs
+            integer parameters of the "nird" common. Then the objective function
+            returns. At this point, Scilab creates internal variables and allocate
+            memory for the variable izs, rzs and dzs. Scilab calls the objective
+            function back again, this time with ind equals to 11. This tells the
+            objective function to initialize the arrays izs, rzs and dzs. When the
+            objective function has done so, it returns. Then Scilab enters in the real
+            optimization mode and calls the optimization solver the user requested.
+            Whenever the objective function is called, the izs, rzs and dzs arrays
+            have the values that have been previously initialized.
+        </para>
+        <programlisting role="example">//
+            // Define a fortran source code and compile it (fortran compiler required)
+            //
+            fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+            'C     -------------------------------------------'
+            'c     Example of cost function given by a subroutine'
+            'c     if n&lt;=2 returns ind=0'
+            'c     f.bonnans, oct 86'
+            '      implicit double precision (a-h,o-z)'
+            '      real rzs(1)'
+            '      double precision dzs(*)'
+            '      dimension x(n),g(n),izs(*)'
+            '      common/nird/nizs,nrzs,ndzs'
+            '      if (n.lt.3) then'
+            '        ind=0'
+            '        return'
+            '      endif'
+            '      if(ind.eq.10) then'
+            '         nizs=2'
+            '         nrzs=1'
+            '         ndzs=2'
+            '         return'
+            '      endif'
+            '      if(ind.eq.11) then'
+            '         izs(1)=5'
+            '         izs(2)=10'
+            '         dzs(2)=100.0d+0'
+            '         return'
+            '      endif'
+            '      if(ind.eq.2)go to 5'
+            '      if(ind.eq.3)go to 20'
+            '      if(ind.eq.4)go to 5'
+            '      ind=-1'
+            '      return'
+            '5     f=1.0d+0'
+            '      do 10 i=2,n'
+            '        im1=i-1'
+            '10      f=f + dzs(2)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+            '      if(ind.eq.2)return'
+            '20    g(1)=-4.0d+0*dzs(2)*(x(2)-x(1)**2)*x(1)'
+            '      nm1=n-1'
+            '      do 30 i=2,nm1'
+            '        im1=i-1'
+            '        ip1=i+1'
+            '        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
+            '30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
+            '     &amp;        2.0d+0*(1.0d+0-x(i))'
+            '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+            '      return'
+            '      end'];
+            cd TMPDIR;
+            mputl(fortransource, TMPDIR + '/rosenf.f')
+            
+            // compile the C code
+            libpath = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+            
+            // incremental linking
+            linkid = link(libpath, 'rosenf', 'f');
+            
+            x0 = 1.2 * ones(1, 5);
+            //
+            // Solve the problem
+            //
+            [f, x, g] = optim('rosenf', x0, 'in');    
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example: Fortran function with initialization on Windows with Intel
+            Fortran Compiler
+        </title>
+        <para>Under the Windows operating system with Intel Fortran Compiler, one
+            must carefully design the fortran source code so that the dynamic link
+            works properly. On Scilab's side, the optimization component is
+            dynamically linked and the symbol "nird" is exported out of the
+            optimization dll. On the cost function's side, which is also dynamically
+            linked, the "nird" common must be imported in the cost function
+            dll.
+        </para>
+        <para>The following example is a re-writing of the previous example, with
+            special attention for the Windows operating system with Intel Fortran
+            compiler as example. In that case, we introduce additionnal compiling
+            instructions, which allows the compiler to import the "nird"
+            symbol.
+        </para>
+        <programlisting role="example">fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+            'cDEC$ IF DEFINED (FORDLL)'
+            'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+            'cDEC$ ENDIF'
+            'C     -------------------------------------------'
+            'c     Example of cost function given by a subroutine'
+            'c     if n&lt;=2 returns ind=0'
+            'c     f.bonnans, oct 86'
+            '      implicit double precision (a-h,o-z)'
+            [etc...]    
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="qpsolve">qpsolve</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
+            </member>
+            <member>
+                <link linkend="leastsq">leastsq</link>
+            </member>
+            <member>
+                <link linkend="numdiff">numdiff</link>
+            </member>
+            <member>
+                <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="NDcost">NDcost</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>The following is a map from the various options to the underlying
+            solvers.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"qn" without constraints</term>
+                <listitem>
+                    <para>n1qn1 : a quasi-Newton method with a Wolfe-type line
+                        search
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>epsf</term>
-              <listitem>
-                <para>
-                  threshold controlling decreasing of <literal>f</literal>
-                  (default <literal>epsf=0</literal>).
-                </para>
-              </listitem>
+                <term>"qn" with bounds constraints</term>
+                <listitem>
+                    <para>qnbd : a quasi-Newton method with projection</para>
+                    <para>RR-0242 - A variant of a projected variable metric method for
+                        bound constrained optimization problems, Bonnans Frederic, Rapport
+                        de recherche de l'INRIA - Rocquencourt, Octobre 1983
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>epsx</term>
-              <listitem>
-                <para>
-                  threshold controlling variation of <literal>x</literal>
-                  (default <literal>epsx=0</literal>). This vector (possibly
-                  matrix) with same size as <literal>x0</literal> can be used to
-                  scale <literal>x</literal>.
-                </para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;params&gt;</term>
-        <listitem>
-          <para>in the case where the objective function is a C or Fortran
-            routine, a sequence of arguments containing the method to
-            communicate with the objective function. This option has no meaning
-            when the cost function is a Scilab script.
-          </para>
-          <para>The available values for &lt;params&gt; are the
-            following.
-          </para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <literal>"in"</literal>
-              </para>
-              <para>That mode allows to allocate memory in the internal Scilab
-                workspace so that the objective function can get arrays with the
-                required size, but without directly allocating the memory. The
-                <literal>"in"</literal> value stands for "initialization". In
-                that mode, before the value and derivative of the objective
-                function is to be computed, there is a dialog between the
-                <literal>optim</literal> Scilab primitive and the objective
-                function <literal>costf</literal>. In this dialog, the objective
-                function is called two times, with particular values of the
-                <literal>ind</literal> parameter. The first time,
-                <literal>ind</literal> is set to 10 and the objective function
-                is expected to set the <literal>nizs</literal>,
-                <literal>nrzs</literal> and <literal>ndzs</literal> integer
-                parameters of the <literal>nird</literal> common, which is
-                defined as:
-              </para>
-              <screen>common /nird/ nizs,nrzs,ndzs    </screen>
-              <para>This allows Scilab to allocate memory inside its internal
-                workspace. The second time the objective function is called,
-                <literal>ind</literal> is set to 11 and the objective function
-                is expected to set the <literal>ti</literal>,
-                <literal>tr</literal> and <literal>tz</literal> arrays. After
-                this initialization phase, each time it is called, the objective
-                function is ensured that the <literal>ti</literal>,
-                <literal>tr</literal> and <literal>tz</literal> arrays which are
-                passed to it have the values that have been previously
-                initialized.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"ti",valti</literal>
-              </para>
-              <para>
-                In this mode, <literal>valti</literal> is expected to be a
-                Scilab vector variable containing integers. Whenever the
-                objective function is called, the <literal>ti</literal> array it
-                receives contains the values of the Scilab variable.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"td", valtd</literal>
-              </para>
-              <para>
-                In this mode, <literal>valtd</literal> is expected to be a
-                Scilab vector variable containing double values. Whenever the
-                objective function is called, the <literal>td</literal> array it
-                receives contains the values of the Scilab variable.
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <literal>"ti",valti,"td",valtd</literal>
-              </para>
-              <para>This mode combines the two previous modes.</para>
-            </listitem>
-          </itemizedlist>
-          <para>
-            The <literal>ti, td</literal> arrays may be used so that the
-            objective function can be computed. For example, if the objective
-            function is a polynomial, the ti array may may be used to store the
-            coefficients of that polynomial.
-          </para>
-          <para>Users should choose carefully between the
-            <literal>"in"</literal> mode and the <literal>"ti"</literal> and
-            <literal>"td"</literal> mode, depending on the fact that the arrays
-            are Scilab variables or not. If the data is available as Scilab
-            variables, then the <literal>"ti", valti, "td", valtd</literal> mode
-            should be chosen. If the data is available directly from the
-            objective function, the <literal>"in"</literal> mode should be
-            chosen. Notice that there is no <literal>"tr"</literal> mode, since,
-            in Scilab, all real values are doubles.
-          </para>
-          <para>If neither the "in" mode, nor the "ti", "td" mode is chosen,
-            that is, if &lt;params&gt; is not present as an option of the optim
-            primitive, the user may should not assume that the ti,tr and td
-            arrays can be used : reading or writing the arrays may generate
-            unpredictable results.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"imp=iflag"</term>
-        <listitem>
-          <para>named argument used to set the trace mode (default
-            <literal>imp=0</literal>). The available values for
-            <literal>iflag</literal> are <literal>imp=0,1,2 and
-              &gt;2
-            </literal>
-            .
-          </para>
-          <itemizedlist>
-            <listitem>
-              <para>iflag=0: nothing (except errors) is reported (this is the
-                default),
-              </para>
-            </listitem>
-            <listitem>
-              <para>iflag=1: initial and final reports,</para>
-            </listitem>
-            <listitem>
-              <para>iflag=2: adds a report per iteration,</para>
-            </listitem>
-            <listitem>
-              <para>iflag&gt;2: add reports on linear search.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fopt</term>
-        <listitem>
-          <para>the value of the objective function at the point
-            <literal>xopt</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xopt</term>
-        <listitem>
-          <para>
-            best value of <literal>x</literal> found.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>gopt</term>
-        <listitem>
-          <para>the gradient of the objective function at the point
-            <literal>xopt</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>work</term>
-        <listitem>
-          <para>working array for hot restart for quasi-Newton method. This
-            array is automatically initialized by <literal>optim</literal> when
-            <literal>optim</literal> is invoked. It can be used as input
-            parameter to speed-up the calculations.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function solves unconstrained nonlinear optimization
-      problems:
-    </para>
-    <screen>min f(x)      </screen>
-    <para>
-      where <literal>x</literal> is a vector and <literal>f(x)</literal>
-      is a function that returns a scalar. This function can also solve bound
-      constrained nonlinear optimization problems:
-    </para>
-    <screen>min f(x)
-      binf &lt;= x &lt;= bsup      
-    </screen>
-    <para>
-      where <literal>binf</literal> is the lower bound and
-      <literal>bsup</literal> is the upper bound on <literal>x</literal>.
-    </para>
-    <para>
-      The <literal>costf</literal> argument can be a Scilab function, a
-      list or a string giving the name of a C or Fortran routine (see
-      "external"). This external must return the value <literal>f</literal> of
-      the cost function at the point <literal>x</literal> and the gradient
-      <literal>g</literal> of the cost function at the point
-      <literal>x</literal>.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>Scilab function case</term>
-        <listitem>
-          <para>
-            If <literal>costf</literal> is a Scilab function, its calling
-            sequence must be:
-          </para>
-          <screen>[f, g, ind] = costf(x, ind)      </screen>
-          <para>
-            where <literal>x</literal> is the current point,
-            <literal>ind</literal> is an integer flag described below,
-            <literal>f</literal> is the real value of the objective function at
-            the point <literal>x</literal> and <literal>g</literal> is a vector
-            containing the gradient of the objective function at
-            <literal>x</literal>. The variable <literal>ind</literal> is
-            described below.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>List case</term>
-        <listitem>
-          <para>It may happen that objective function requires extra
-            arguments. In this case, we can use the following feature. The
-            <literal>costf</literal> argument can be the list
-            <literal>(real_costf, arg1,...,argn)</literal>. In this case,
-            <literal>real_costf</literal>, the first element in the list, must
-            be a Scilab function with calling sequence: <screen>        [f,g,ind]=real_costf(x,ind,arg1,...,argn)      </screen>
-            The <literal>x</literal>, <literal>f</literal>,
-            <literal>g</literal>, <literal>ind</literal> arguments have the same
-            meaning as before. In this case, each time the objective function is
-            called back, the arguments <literal>arg1,...,argn</literal> are
-            automatically appended at the end of the calling sequence of
-            <literal>real_costf</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>String case</term>
-        <listitem>
-          <para>
-            If <literal>costf</literal> is a string, it refers to the name
-            of a C or Fortran routine which must be linked to Scilab
-          </para>
-          <variablelist>
-            <varlistentry>
-              <term>Fortran case</term>
-              <listitem>
-                <para>The calling sequence of the Fortran subroutine computing
-                  the objective must be:
-                </para>
-                <screen>subroutine costf(ind,n,x,f,g,ti,tr,td)      </screen>
-                <para>with the following declarations:</para>
-                <screen>integer ind,n ti(*)
-                  double precision x(n),f,g(n),td(*)
-                  real tr(*)      
-                </screen>
-                <para>
-                  The argument <literal>ind</literal> is described
-                  below.
-                </para>
-                <para>If ind = 2, 3 or 4, the inputs of the routine are :
-                  <literal>x, ind, n, ti, tr,td</literal>.
-                </para>
-                <para>If ind = 2, 3 or 4, the outputs of the routine are :
-                  <literal>f</literal> and <literal>g</literal>.
-                </para>
-              </listitem>
+                <term>"gc" without constraints</term>
+                <listitem>
+                    <para>n1qn3 : a Quasi-Newton limited memory method with BFGS.</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>C case</term>
-              <listitem>
-                <para>The calling sequence of the C function computing the
-                  objective must be:
-                </para>
-                <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)      </screen>
-                <para>
-                  The argument <literal>ind</literal> is described
-                  below.
-                </para>
-                <para>The inputs and outputs of the function are the same as
-                  in the fortran case.
-                </para>
-              </listitem>
+                <term>"gc" with bounds constraints</term>
+                <listitem>
+                    <para>gcbd : a BFGS-type method with limited memory and
+                        projection
+                    </para>
+                </listitem>
             </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      On output, <literal>ind&lt;0</literal> means that
-      <literal>f</literal> cannot be evaluated at <literal>x</literal> and
-      <literal>ind=0</literal> interrupts the optimization.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Termination criteria</title>
-    <para>Each algorithm has its own termination criteria, which may use the
-      parameters given by the user, that is <literal>nap</literal>,
-      <literal>iter</literal>, <literal>epsg</literal>, <literal>epsf</literal>
-      and <literal>epsx</literal>. Not all the parameters are taken into
-      account. In the table below, we present the specific termination
-      parameters which are taken into account by each algorithm. The
-      unconstrained solver is identified by "UNC" while the bound constrained
-      solver is identified by "BND". An empty entry means that the parameter is
-      ignored by the algorithm.
-    </para>
-    <para>
-      <informaltable border="1">
-        <tr>
-          <td>Solver</td>
-          <td>nap</td>
-          <td>iter</td>
-          <td>epsg</td>
-          <td>epsf</td>
-          <td>epsx</td>
-        </tr>
-        <tr>
-          <td>optim/"qn" UNC</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td/>
-          <td/>
-        </tr>
-        <tr>
-          <td>optim/"qn" BND</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-        </tr>
-        <tr>
-          <td>optim/"gc" UNC</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td/>
-          <td/>
-        </tr>
-        <tr>
-          <td>optim/"gc" BND</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-          <td>X</td>
-        </tr>
-        <tr>
-          <td>optim/"nd" UNC</td>
-          <td>X</td>
-          <td>X</td>
-          <td/>
-          <td>X</td>
-          <td>X</td>
-        </tr>
-      </informaltable>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example: Scilab function</title>
-    <para>The following is an example with a Scilab function. Notice, for
-      simplifications reasons, the Scilab function "cost" of the following
-      example computes the objective function f and its derivative no matter of
-      the value of ind. This allows to keep the example simple. In practical
-      situations though, the computation of "f" and "g" may raise performances
-      issues so that a direct optimization may be to use the value of "ind" to
-      compute "f" and "g" only when needed.
-    </para>
-    <programlisting role="example">function [f, g, ind] = cost(x, ind)
-      xref = [1; 2; 3];
-      f = 0.5 * norm(x - xref)^2;
-      g = x - xref;
-      endfunction
-      
-      // Simplest call
-      x0 = [1; -1; 1];
-      [fopt, xopt] = optim(cost, x0)
-      
-      // Use "gc" algorithm
-      [fopt, xopt, gopt] = optim(cost, x0, "gc")
-      
-      // Use "nd" algorithm
-      [fopt, xopt, gopt] = optim(cost, x0, "nd")
-      
-      // Upper and lower bounds on x
-      [fopt, xopt, gopt] = optim(cost, "b", [-1;0;2], [0.5;1;4], x0)
-      
-      // Upper and lower bounds on x and setting up the algorithm to "gc"
-      [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
-      
-      // Bound on the number of call to the objective function
-      [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
-      
-      // Set max number of call to the objective function (3)
-      // Set max number of iterations (100)
-      // Set stopping threshold on the value of f (1e-6),
-      // on the value of the norm of the gradient of the objective function (1e-6)
-      // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
-      [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
-      
-      // Additionnal messages are printed in the console.
-      [fopt, xopt] = optim(cost, x0, imp = 3)    
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: Print messages</title>
-    <para>
-      The <literal>imp</literal> flag may take negative integer values,
-      say k. In that case, the cost function is called once every -k iterations.
-      This allows to draw the function value or write a log file.
-    </para>
-    <para>
-      This feature is available only with the <literal>"qn"</literal>
-      algorithm without constraints.
-    </para>
-    <para>In the following example, we solve the Rosenbrock test case. For
-      each iteration of the algorithm, we print the value of x, f and g.
-    </para>
-    <programlisting role="example">function [f, g, ind] = cost(x, ind)
-      xref = [1; 2; 3];
-      f = 0.5 * norm(x - xref)^2;
-      g = x - xref;
-      if (ind == 1) then
-      mprintf("f(x) = %s, |g(x)|=%s\n", string(f), string(norm(g)))
-      end
-      endfunction
-      
-      x0 = [1; -1; 1];
-      [fopt, xopt] = optim(cost, x0, imp = -1)   
-    </programlisting>
-    <para>The previous script produces the following output.</para>
-    <screen>--&gt;[fopt, xopt] = optim(cost, x0, imp = -1)
-      f(x) = 6.5, |g(x)|=3.6055513
-      f(x) = 2.8888889, |g(x)|=2.4037009
-      f(x) = 9.861D-31, |g(x)|=1.404D-15
-      f(x) = 0, |g(x)|=0
-      Norm of projected gradient lower than   0.0000000D+00.
-      xopt  =
-      1.
-      2.
-      3.
-      fopt  =
-      0.    
-    </screen>
-    <para>In the following example, we solve the Rosenbrock test case. For
-      each iteration of the algorithm, we plot the current value of x into a 2D
-      graph containing the contours of Rosenbrock's function. This allows to see
-      the progress of the algorithm while the algorithm is performing. We could
-      as well write the value of x, f and g into a log file if needed.
-    </para>
-    <programlisting role="example">// 1. Define Rosenbrock for optimization
-      function [f , g , ind] = rosenbrock (x , ind)
-      f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
-      g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-      g(2) = 200. * ( x(2) - x(1)**2 )
-      endfunction
-      
-      // 2. Define rosenbrock for contouring
-      function f = rosenbrockC ( x1 , x2 )
-      x = [x1 x2]
-      ind = 4
-      [ f , g , ind ] = rosenbrock ( x , ind )
-      endfunction
-      
-      // 3. Define Rosenbrock for plotting
-      function [ f , g , ind ] = rosenbrockPlot ( x , ind )
-      [ f , g , ind ] = rosenbrock ( x , ind )
-      if (ind == 1) then
-      plot ( x(1) , x(2) , "g." )
-      end
-      endfunction
-      
-      // 4. Draw the contour of Rosenbrock's function
-      x0 = [-1.2 1.0];
-      xopt = [1.0 1.0];
-      xdata = linspace(-2,2,100);
-      ydata = linspace(-2,2,100);
-      contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
-      plot(x0(1) , x0(2) , "b.")
-      plot(xopt(1) , xopt(2) , "r*")
-      
-      // 5. Plot the optimization process, during optimization
-      [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)    
-    </programlisting>
-    <scilab:image>
-      function [f, g, ind]=rosenbrock(x, ind)
-      f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
-      g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-      g(2) = 200. * ( x(2) - x(1)**2 )
-      endfunction
-      
-      function f=rosenbrockC(x1, x2)
-      x = [x1 x2]
-      ind = 4
-      [ f , g , ind ] = rosenbrock ( x , ind )
-      endfunction
-      
-      function [f, g, ind]=rosenbrockPlot(x, ind)
-      [ f , g , ind ] = rosenbrock ( x , ind )
-      if (ind == 1) then
-      plot ( x(1) , x(2) , "g." )
-      end
-      endfunction
-      
-      x0 = [-1.2 1.0];
-      xopt = [1.0 1.0];
-      xdata = linspace(-2,2,100);
-      ydata = linspace(-2,2,100);
-      contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
-      plot(x0(1) , x0(2) , "b.")
-      plot(xopt(1) , xopt(2) , "r*")
-      [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
-    </scilab:image>
-
-  </refsection>
-  <refsection>
-    <title>Example: Optimizing with numerical derivatives</title>
-    <para>It is possible to optimize a problem without an explicit knowledge
-      of the derivative of the cost function. For this purpose, we can use the
-      numdiff or derivative function to compute a numerical derivative of the
-      cost function.
-    </para>
-    <para>In the following example, we use the numdiff function to solve
-      Rosenbrock's problem.
-    </para>
-    <programlisting role="example">function f = rosenbrock ( x )
-      f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-      endfunction
-      
-      function [ f , g , ind ] = rosenbrockCost ( x , ind )
-      f = rosenbrock ( x );
-      g= numdiff ( rosenbrock , x );
-      endfunction
-      
-      x0 = [-1.2 1.0];
-      
-      [ fopt , xopt ] = optim ( rosenbrockCost , x0 )    
-    </programlisting>
-    <para>In the following example, we use the derivative function to solve
-      Rosenbrock's problem. Given that the step computation strategy is not the
-      same in numdiff and derivative, this might lead to improved
-      results.
-    </para>
-    <programlisting role="example">function f = rosenbrock ( x )
-      f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-      endfunction
-      
-      function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
-      f = rosenbrock ( x );
-      g = derivative ( rosenbrock , x.' , order = 4 );
-      endfunction
-      
-      x0 = [-1.2 1.0];
-      [fopt , xopt] = optim ( rosenbrockCost2 , x0 )    
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: Counting function evaluations and number of
-      iterations
-    </title>
-    <para>
-      The <literal>imp</literal> option can take negative values. If the
-      <literal>imp</literal> is equal to <literal>m</literal> where
-      <literal>m</literal> is a negative integer, then the cost function is
-      evaluated every -<literal>m</literal> iterations, with the
-      <literal>ind</literal> input argument equal to 1. The following example
-      uses this feature to compute the number of iterations. The global variable
-      <literal>mydata</literal> is used to store the number of function
-      evaluations as well as the number of iterations.
-    </para>
-    <programlisting role="example">function [f, g, ind] = cost(x, ind,xref)
-      global _MYDATA_
-      if ( ind == 1 )
-      _MYDATA_.niter = _MYDATA_.niter + 1
-      end
-      _MYDATA_.nfevals = _MYDATA_.nfevals + 1
-      f = 0.5 * norm(x - xref)^2;
-      g = x - xref;
-      endfunction
-      xref = [1; 2; 3];
-      x0 = [1; -1; 1];
-      global _MYDATA_
-      _MYDATA_ = tlist ( ["T_MYDATA", "niter", "nfevals"])
-      _MYDATA_.niter = 0
-      _MYDATA_.nfevals = 0
-      [f, xopt] = optim(list(cost, xref), x0, imp = -1)
-      mprintf("Number of function evaluations:%d\n", _MYDATA_.nfevals)
-      mprintf("Number of iterations:%d\n", _MYDATA_.niter) 
-    </programlisting>
-    <para>While the previous example perfectly works, there is a risk that the
-      same variable <literal>_MYDATA_</literal> is used by some internal
-      function used by <literal>optim</literal>. In this case, the value may be
-      wrong. This is why a sufficiently weird variable name has been
-      used.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example : Passing extra parameters</title>
-    <para>In most practical situations, the cost function depends on extra
-      parameters which are required to evaluate the cost function. There are
-      several methods to achieve this goal.
-    </para>
-    <para>In the following example, the cost function uses 4 parameters
-      <literal>a, b, c</literal> and <literal>d</literal>. We define the cost
-      function with additionnal input arguments, which are declared after the
-      index argument. Then we pass a list as the first input argument of the
-      <literal>optim</literal> solver. The first element of the list is the cost
-      function. The additionnal variables are directly passed to the cost
-      function.
-    </para>
-    <programlisting role="example">function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
-      f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-      g(1) = 2 * a * ( x(1) - c )
-      g(2) = 2 * b * ( x(2) - d )
-      endfunction
-      
-      x0 = [1 1];
-      a = 1.0;
-      b = 2.0;
-      c = 3.0;
-      d = 4.0;
-      costf = list ( costfunction , a , b , c, d );
-      [fopt , xopt] = optim ( costf , x0 , imp = 2)    
-    </programlisting>
-    <para>In complex cases, the cost function may have so many parameters,
-      that having a function which takes all arguments as inputs is not
-      convenient. For example, consider the situation where the cost function
-      needs 12 parameters. Then, designing a function with 14 input arguments
-      (x, index and the 12 parameters) is difficult to manage. Instead, we can
-      use a more complex data structure to store our data. In the following
-      example, we use a tlist to store the 4 input arguments. This method can
-      easily be expanded to an arbitrary number of parameters.
-    </para>
-    <programlisting role="example">function [f , g , ind] = costfunction ( x , ind , parameters)
-      // Get the parameters
-      a = parameters.a
-      b = parameters.b
-      c = parameters.c
-      d = parameters.d
-      f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-      g(1) = 2 * a * ( x(1) - c )
-      g(2) = 2 * b * ( x(2) - d )
-      endfunction
-      
-      x0 = [1 1];
-      a = 1.0;
-      b = 2.0;
-      c = 3.0;
-      d = 4.0;
-      // Store the parameters
-      parameters = tlist ( [
-      "T_MYPARAMS"
-      "a"
-      "b"
-      "c"
-      "d"
-      ]);
-      
-      parameters.a = a;
-      parameters.b = b;
-      parameters.c = c;
-      parameters.d = d;
-      costf = list ( costfunction , parameters );
-      [fopt , xopt] = optim ( costf , x0 , imp = 2)    
-    </programlisting>
-    <para>In the following example, the parameters are defined before the
-      optimizer is called. They are directly used in the cost function.
-    </para>
-    <programlisting role="example">// The example NOT to follow
-      function [ f , g , ind ] = costfunction ( x , ind )
-      f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-      g(1) = 2 * a * ( x(1) - c )
-      g(2) = 2 * b * ( x(2) - d )
-      endfunction
-      x0 = [1 1];
-      a = 1.0;
-      b = 2.0;
-      c = 3.0;
-      d = 4.0;
-      [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )   
-    </programlisting>
-    <para>While the previous example perfectly works, there is a risk that the
-      same variables are used by some internal function used by
-      <literal>optim</literal>. In this case, the value of the parameters are
-      not what is expected and the optimization can fail or, worse, give a wrong
-      result. It is also difficult to manage such a function, which requires
-      that all the parameters are defined in the calling context.
-    </para>
-    <para>In the following example, we define the cost function with the
-      classical header. Inside the function definition, we declare that the
-      parameters <literal>a, b, c</literal> and <literal>d</literal> are global
-      variables. Then we declare and set the global variables.
-    </para>
-    <programlisting role="example">// Another example NOT to follow
-      function [ f , g , ind ] = costfunction ( x , ind )
-      global a b c d
-      f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-      g(1) = 2 * a * ( x(1) - c )
-      g(2) = 2 * b * ( x(2) - d )
-      endfunction
-      x0 = [1 1];
-      global a b c d
-      a = 1.0;
-      b = 2.0;
-      c = 3.0;
-      d = 4.0;
-      [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )    
-    </programlisting>
-    <para>While the previous example perfectly works, there is a risk that the
-      same variables are used by some internal function used by
-      <literal>optim</literal>. In this case, the value of the parameters are
-      not what is expected and the optimization can fail or, worse, give a wrong
-      result.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example : Checking that derivatives are correct</title>
-    <para>Many optimization problem can be avoided if the derivatives are
-      computed correctly. One common reason for failure in the step-length
-      procedure is an error in the calculation of the cost function and its
-      gradient. Incorrect calculation of derivatives is by far the most common
-      user error.
-    </para>
-    <para>In the following example, we give a false implementation of
-      Rosenbrock's gradient. In order to check the computation of the
-      derivatives, we use the <literal>derivative</literal> function. We define
-      the <literal>simplified</literal> function, which delegates the
-      computation of <literal>f</literal> to the rosenbrock function. The
-      <literal>simplified</literal> function is passed as an input argument of
-      the <literal>derivative</literal> function.
-    </para>
-    <programlisting role="example">function [ f , g , index ] = rosenbrock ( x , index )
-      f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-      // Exact :
-      g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-      // Wrong :
-      g(1) = - 1200. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-      g(2) = 200. * ( x(2) - x(1)**2 )
-      endfunction
-      
-      function f = simplified ( x )
-      index = 1;
-      [ f , g , index ] = rosenbrock ( x , index )
-      endfunction
-      
-      x0 = [-1.2 1];
-      index = 1;
-      [ f , g , index ] = rosenbrock ( x0 , index );
-      gnd = derivative ( simplified , x0.' );
-      mprintf("Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
-      mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));    
-    </programlisting>
-    <para>The previous script produces the following output. Obviously, the
-      difference between the two gradient is enormous, which shows that the
-      wrong formula has been used in the gradient.
-    </para>
-    <programlisting role="example">      Exact derivative:[-638 -88]
-      Numerical derivative:[-215.6 -88]   
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: C function</title>
-    <para>The following is an example with a C function, where a C source code
-      is written into a file, dynamically compiled and loaded into Scilab, and
-      then used by the "optim" solver. The interface of the "rosenc" function is
-      fixed, even if the arguments are not really used in the cost function.
-      This is because the underlying optimization solvers must assume that the
-      objective function has a known, constant interface. In the following
-      example, the arrays ti and tr are not used, only the array "td" is used,
-      as a parameter of the Rosenbrock function. Notice that the content of the
-      arrays ti and td are the same that the content of the Scilab variable, as
-      expected.
-    </para>
-    <programlisting role="example">// External function written in C (C compiler required)
-      // write down the C code (Rosenbrock problem)
-      C=['#include &lt;math.h&gt;'
-      'double sq(double x)'
-      '{ return x*x;}'
-      'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
-      '                                int *ti, float *tr, double *td)'
-      '{'
-      '  double p;'
-      '  int i;'
-      '  p=td[0];'
-      '  if (*ind==2||*ind==4) {'
-      '    *f=1.0;'
-      '    for (i=1;i&lt;*n;i++)'
-      '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
-      '  }'
-      '  if (*ind==3||*ind==4) {'
-      '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
-      '    for (i=1;i&lt;*n-1;i++)'
-      '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
-      '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
-      '  }'
-      '}'];
-      cd TMPDIR;
-      mputl(C, TMPDIR+'/rosenc.c')
-      
-      // compile the C code
-      l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');
-      
-      // incremental linking
-      link(l, 'rosenc', 'c')
-      
-      //solve the problem
-      x0 = [40; 10; 50];
-      p = 100;
-      [f, xo, go] = optim('rosenc', x0, 'td', p)
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: Fortran function</title>
-    <para>The following is an example with a Fortran function.</para>
-    <programlisting role="example">// External function written in Fortran (Fortran compiler required)
-      // write down the Fortran  code (Rosenbrock problem)
-      F = [ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
-      '      integer ind,n,ti(*)'
-      '      double precision x(n),f,g(n),td(*)'
-      '      real tr(*)'
-      'c'
-      '      double precision y,p'
-      '      p=td(1)'
-      '      if (ind.eq.2.or.ind.eq.4) then'
-      '        f=1.0d0'
-      '        do i=2,n'
-      '          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
-      '        enddo'
-      '      endif'
-      '      if (ind.eq.3.or.ind.eq.4) then'
-      '        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
-      '        if(n.gt.2) then'
-      '          do i=2,n-1'
-      '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
-      '     &amp;           -2.0d0*(1.0d0-x(i))'
-      '          enddo'
-      '        endif'
-      '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
-      '      endif'
-      '      return'
-      '      end'];
-      cd TMPDIR;
-      mputl(F, TMPDIR+'/rosenf.f')
-      
-      // compile the Fortran code
-      l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
-      
-      // incremental linking
-      link(l, 'rosenf', 'f')
-      
-      //solve the problem
-      x0 = [40; 10; 50];
-      p = 100;
-      [f, xo, go] = optim('rosenf', x0, 'td', p)    
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: Fortran function with initialization</title>
-    <para>The following is an example with a Fortran function in which the
-      "in" option is used to allocate memory inside the Scilab environment. In
-      this mode, there is a dialog between Scilab and the objective function.
-      The goal of this dialog is to initialize the parameters of the objective
-      function. Each part of this dialog is based on a specific value of the
-      "ind" parameter.
-    </para>
-    <para>At the beginning, Scilab calls the objective function, with the ind
-      parameter equals to 10. This tells the objective function to initialize
-      the sizes of the arrays it needs by setting the nizs, nrzs and ndzs
-      integer parameters of the "nird" common. Then the objective function
-      returns. At this point, Scilab creates internal variables and allocate
-      memory for the variable izs, rzs and dzs. Scilab calls the objective
-      function back again, this time with ind equals to 11. This tells the
-      objective function to initialize the arrays izs, rzs and dzs. When the
-      objective function has done so, it returns. Then Scilab enters in the real
-      optimization mode and calls the optimization solver the user requested.
-      Whenever the objective function is called, the izs, rzs and dzs arrays
-      have the values that have been previously initialized.
-    </para>
-    <programlisting role="example">//
-      // Define a fortran source code and compile it (fortran compiler required)
-      //
-      fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-      'C     -------------------------------------------'
-      'c     Example of cost function given by a subroutine'
-      'c     if n&lt;=2 returns ind=0'
-      'c     f.bonnans, oct 86'
-      '      implicit double precision (a-h,o-z)'
-      '      real rzs(1)'
-      '      double precision dzs(*)'
-      '      dimension x(n),g(n),izs(*)'
-      '      common/nird/nizs,nrzs,ndzs'
-      '      if (n.lt.3) then'
-      '        ind=0'
-      '        return'
-      '      endif'
-      '      if(ind.eq.10) then'
-      '         nizs=2'
-      '         nrzs=1'
-      '         ndzs=2'
-      '         return'
-      '      endif'
-      '      if(ind.eq.11) then'
-      '         izs(1)=5'
-      '         izs(2)=10'
-      '         dzs(2)=100.0d+0'
-      '         return'
-      '      endif'
-      '      if(ind.eq.2)go to 5'
-      '      if(ind.eq.3)go to 20'
-      '      if(ind.eq.4)go to 5'
-      '      ind=-1'
-      '      return'
-      '5     f=1.0d+0'
-      '      do 10 i=2,n'
-      '        im1=i-1'
-      '10      f=f + dzs(2)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
-      '      if(ind.eq.2)return'
-      '20    g(1)=-4.0d+0*dzs(2)*(x(2)-x(1)**2)*x(1)'
-      '      nm1=n-1'
-      '      do 30 i=2,nm1'
-      '        im1=i-1'
-      '        ip1=i+1'
-      '        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
-      '30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
-      '     &amp;        2.0d+0*(1.0d+0-x(i))'
-      '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
-      '      return'
-      '      end'];
-      cd TMPDIR;
-      mputl(fortransource, TMPDIR + '/rosenf.f')
-      
-      // compile the C code
-      libpath = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
-      
-      // incremental linking
-      linkid = link(libpath, 'rosenf', 'f');
-      
-      x0 = 1.2 * ones(1, 5);
-      //
-      // Solve the problem
-      //
-      [f, x, g] = optim('rosenf', x0, 'in');    
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>Example: Fortran function with initialization on Windows with Intel
-      Fortran Compiler
-    </title>
-    <para>Under the Windows operating system with Intel Fortran Compiler, one
-      must carefully design the fortran source code so that the dynamic link
-      works properly. On Scilab's side, the optimization component is
-      dynamically linked and the symbol "nird" is exported out of the
-      optimization dll. On the cost function's side, which is also dynamically
-      linked, the "nird" common must be imported in the cost function
-      dll.
-    </para>
-    <para>The following example is a re-writing of the previous example, with
-      special attention for the Windows operating system with Intel Fortran
-      compiler as example. In that case, we introduce additionnal compiling
-      instructions, which allows the compiler to import the "nird"
-      symbol.
-    </para>
-    <programlisting role="example">fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-      'cDEC$ IF DEFINED (FORDLL)'
-      'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
-      'cDEC$ ENDIF'
-      'C     -------------------------------------------'
-      'c     Example of cost function given by a subroutine'
-      'c     if n&lt;=2 returns ind=0'
-      'c     f.bonnans, oct 86'
-      '      implicit double precision (a-h,o-z)'
-      [etc...]    
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="external">external</link>
-      </member>
-      <member>
-        <link linkend="qpsolve">qpsolve</link>
-      </member>
-      <member>
-        <link linkend="datafit">datafit</link>
-      </member>
-      <member>
-        <link linkend="leastsq">leastsq</link>
-      </member>
-      <member>
-        <link linkend="numdiff">numdiff</link>
-      </member>
-      <member>
-        <link linkend="derivative">derivative</link>
-      </member>
-      <member>
-        <link linkend="NDcost">NDcost</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>References</title>
-    <para>The following is a map from the various options to the underlying
-      solvers.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>"qn" without constraints</term>
-        <listitem>
-          <para>n1qn1 : a quasi-Newton method with a Wolfe-type line
-            search
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"qn" with bounds constraints</term>
-        <listitem>
-          <para>qnbd : a quasi-Newton method with projection</para>
-          <para>RR-0242 - A variant of a projected variable metric method for
-            bound constrained optimization problems, Bonnans Frederic, Rapport
-            de recherche de l'INRIA - Rocquencourt, Octobre 1983
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"gc" without constraints</term>
-        <listitem>
-          <para>n1qn3 : a Quasi-Newton limited memory method with BFGS.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"gc" with bounds constraints</term>
-        <listitem>
-          <para>gcbd : a BFGS-type method with limited memory and
-            projection
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"nd" without constraints</term>
-        <listitem>
-          <para>n1fc1 : a bundle method</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"nd" with bounds constraints</term>
-        <listitem>
-          <para>not available</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+            <varlistentry>
+                <term>"nd" without constraints</term>
+                <listitem>
+                    <para>n1fc1 : a bundle method</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"nd" with bounds constraints</term>
+                <listitem>
+                    <para>not available</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
 </refentry>

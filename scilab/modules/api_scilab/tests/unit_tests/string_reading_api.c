@@ -44,7 +44,7 @@ int read_string(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    //fisrt call to retrieve dimensions
+    //first call to retrieve dimensions
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
     if (sciErr.iErr)
     {
@@ -102,7 +102,7 @@ int read_string(char *fname, unsigned long fname_len)
     }
 
     //create new variable
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, iRowsOut, iColsOut, &pstOut);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRowsOut, iColsOut, &pstOut);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -119,6 +119,6 @@ int read_string(char *fname, unsigned long fname_len)
 
     free(pstData);
     free(pstOut);
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

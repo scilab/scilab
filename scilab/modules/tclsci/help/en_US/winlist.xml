@@ -11,29 +11,29 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winlist">
-  <refnamediv>
-    <refname>winlist</refname>
-    <refpurpose> Return the winId of current window created by sciGUI</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>winIds=winlist()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>winIds</term>
-        <listitem>
-          <para>matrix of integer greater than 0, window identificator.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>winlist()</literal> Return the winId of current window created by sciGUI.
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>winlist</refname>
+        <refpurpose> Return the winId of current window created by sciGUI</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>winIds=winlist()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>winIds</term>
+                <listitem>
+                    <para>matrix of integer greater than 0, window identificator.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>winlist()</literal> Return the winId of current window created by sciGUI.
+        </para>
+    </refsection>
 </refentry>

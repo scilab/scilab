@@ -286,6 +286,7 @@ public final class BlockPositioning {
      *            The orientation.
      */
     private static void updatePortsPositions(BasicBlock block, List<BasicPort> ports, Orientation iter) {
+        @SuppressWarnings("serial")
         final List<BasicPort> invertedPorts = new ArrayList<BasicPort>(ports) {
             {
                 Collections.reverse(this);

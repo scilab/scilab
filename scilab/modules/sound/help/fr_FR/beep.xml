@@ -11,32 +11,32 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="beep">
-  <refnamediv>
-    <refname>beep</refname>
-    <refpurpose>Produit le son "beep"</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>beep();
-      beep('on')
-      beep('off')
-      s=beep()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>beep()</literal> produit le son "beep".
-    </para>
-    <para>
-      <literal>beep('on')</literal> active le "beep"
-    </para>
-    <para>
-      <literal>beep('off')</literal> desactive le "beep"
-    </para>
-    <para>
-      <literal>s=beep()</literal> retourne le mode courantreturns the current beep
-      mode (on or off).
-    </para>
-  </refsection>
+    <refnamediv>
+        <refname>beep</refname>
+        <refpurpose>Produit le son "beep"</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>beep();
+            beep('on')
+            beep('off')
+            s=beep()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>beep()</literal> produit le son "beep".
+        </para>
+        <para>
+            <literal>beep('on')</literal> active le "beep"
+        </para>
+        <para>
+            <literal>beep('off')</literal> desactive le "beep"
+        </para>
+        <para>
+            <literal>s=beep()</literal> retourne le mode courantreturns the current beep
+            mode (on or off).
+        </para>
+    </refsection>
 </refentry>

@@ -36,7 +36,7 @@ int set_font_foreground_property(void* _pvCtx, char* pobjUID, size_t stackPointe
     BOOL status = FALSE;
     int value = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if ( !( valueType == sci_matrix ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "font_foreground");
         return SET_PROPERTY_ERROR;
@@ -52,7 +52,7 @@ int set_font_foreground_property(void* _pvCtx, char* pobjUID, size_t stackPointe
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_foreground");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_foreground");
         return SET_PROPERTY_ERROR;
     }
 

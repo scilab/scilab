@@ -13,65 +13,65 @@
  * 
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitand" xml:lang="ja">
-  <refnamediv>
-    <refname>bitand</refname>
-    <refpurpose>ビット単位の論理積(AND)</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>
-      z = bitand(x,y)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数(uint8, uint16 または uint32)の
-            m行n列行列.値は正の整数値である必要があります.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数(uint8, uint16 または uint32)の
-            m行n列行列.値は正の整数値である必要があります.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      2つの正の整数 x および y を指定すると,この関数は2進形式が
-      x および y の2進形式の論理積となるような10進数を返します.
-    </para>
-    <para>
-      <literal>x</literal>,
-      <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>bitand</refname>
+        <refpurpose>ビット単位の論理積(AND)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            z = bitand(x,y)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            2つの正の整数 x および y を指定すると,この関数は2進形式が
+            x および y の2進形式の論理積となるような10進数を返します.
+        </para>
+        <para>
+            <literal>x</literal>,
+            <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 // '1010110' : is the binary representation of 86 
 // '1011011' : is the binary representation of 91   
 // '1010010' : is the binary representation for the AND of binary representation 86 and 91 
@@ -108,19 +108,19 @@ bitand(uint8(13), uint8(27))
 bitand(13, 27)
 
    ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="bitor">bitor</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitor">bitor</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

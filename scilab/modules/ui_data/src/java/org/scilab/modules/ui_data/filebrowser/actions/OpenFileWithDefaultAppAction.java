@@ -27,6 +27,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to open a file with the default associated application
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class OpenFileWithDefaultAppAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;

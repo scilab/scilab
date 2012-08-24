@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -257,6 +257,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数の値を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: '%s' option ignored.\n"
 msgstr "%s: '%s'オプションは無視されました.\n"
 
@@ -269,10 +273,6 @@ msgstr "%s: 未知の線スタイルです '%s' -> 6 を設定します。\n"
 #, c-format
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: 未知の色が '%s'でみつかりました -> 黒を設定します.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

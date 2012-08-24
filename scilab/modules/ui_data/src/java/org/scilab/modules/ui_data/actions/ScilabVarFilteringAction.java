@@ -15,26 +15,27 @@ package org.scilab.modules.ui_data.actions;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
+@SuppressWarnings(value = { "serial" })
 public class ScilabVarFilteringAction extends FilteringAction {
-	/** Name of the action */
-	public static final String NAME = UiDataMessages.SCILABVAR;
+    /** Name of the action */
+    public static final String NAME = UiDataMessages.SCILABVAR;
 
-	/**
-	 * Constructor
-	 * 
-	 */
-	public ScilabVarFilteringAction() {
-		super();
-	}
-	/**
-	 * Create checkbox menu for the graph menu bar
-	 * 
-	 * @return the menu
-	 */
-	public static CheckBoxMenuItem createCheckBoxMenu() {
-		CheckBoxMenuItem menu = createCheckBoxMenu( new ScilabVarFilteringAction());
-		return menu;
-	}
+    /**
+     * Constructor
+     *
+     */
+    public ScilabVarFilteringAction() {
+        super();
+    }
+    /**
+     * Create checkbox menu for the graph menu bar
+     *
+     * @return the menu
+     */
+    public static CheckBoxMenuItem createCheckBoxMenu() {
+        CheckBoxMenuItem menu = createCheckBoxMenu( new ScilabVarFilteringAction());
+        return menu;
+    }
 
 }
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:34+0100\n"
+"Revision-Date: 2012-08-23 17:34+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -226,9 +226,94 @@ msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
 msgstr ""
 
 #
-# File: macros/%sp_gsort.sci, line: 24
+# File: macros/%sp_gsort.sci, line: 35
+# File: macros/vectorfind.sci, line: 57
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_gsort.sci, line: 41
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 20
+# File: macros/%sp_min.sci, line: 20
+#, c-format
+msgid "%s: Wrong size of input argument: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 29
+# File: macros/%sp_max.sci, line: 40
+# File: macros/%sp_max.sci, line: 134
+# File: macros/%sp_max.sci, line: 250
+# File: macros/%sp_min.sci, line: 29
+# File: macros/%sp_min.sci, line: 40
+# File: macros/%sp_min.sci, line: 133
+# File: macros/%sp_min.sci, line: 208
+# File: macros/%sp_min.sci, line: 254
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 127
+# File: macros/%sp_max.sci, line: 237
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 144
+# File: macros/%sp_min.sci, line: 143
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 212
+# File: macros/%sp_max.sci, line: 262
+# File: macros/%sp_min.sci, line: 216
+# File: macros/%sp_min.sci, line: 263
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 231
+# File: macros/%sp_min.sci, line: 235
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 248
+# File: macros/%sp_min.sci, line: 252
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d of list: A sparse matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_max.sci, line: 260
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d of list: Same size as input argument #"
+"%d expected.\n"
+msgstr ""
+
+#
+# File: macros/%sp_min.sci, line: 126
+# File: macros/%sp_min.sci, line: 241
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected"
 msgstr ""
 
 #
@@ -820,10 +905,4 @@ msgstr ""
 # File: macros/vectorfind.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr ""
-
-#
-# File: macros/vectorfind.sci, line: 57
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""

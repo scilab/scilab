@@ -36,7 +36,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Start the simulation
  */
-public class StartAction extends OneBlockDependantAction {
+@SuppressWarnings(value = { "serial" })
+public final class StartAction extends OneBlockDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.START;
     /** Icon name of the action */

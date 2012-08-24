@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-22 14:41+0000\n"
+"PO-Revision-Date: 2012-08-07 03:29+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -44,6 +44,60 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリ確保エラー.\n"
+
+msgid "Straight"
+msgstr "直線"
+
+msgid "Horizontal"
+msgstr "水平"
+
+msgid "Vertical"
+msgstr "垂直"
+
+msgid "Simulation"
+msgstr "シミュレーション"
+
+msgid "No trace nor debug printing"
+msgstr "トレースもデバッグ出力も行ないません"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "軽量シミュレーショントレース (離散または連続部のスイッチ)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "ブロック毎の実行トレースとデバッグブロックコール"
+
+msgid "Debug block calls without trace"
+msgstr "トレースなしのデバッグブロックコール"
+
+msgid "Default simulation settings"
+msgstr "シミュレーション設定のデフォルト値"
+
+msgid "Final integration time"
+msgstr "積分終了時間"
+
+msgid "Real time scaling"
+msgstr "実時間スケール"
+
+msgid "Integrator absolute tolerance"
+msgstr "積算絶対許容誤差"
+
+msgid "Integrator relative tolerance"
+msgstr "積分相対誤差"
+
+msgid "Tolerance on time"
+msgstr "時間の誤差"
+
+msgid "Max integration time interval"
+msgstr "最大積分時間間隔"
+
+msgid "Solver kind"
+msgstr "ソルバーの種類"
+
+msgid "Maximum step size (0 means no limit)"
+msgstr "ステップ最大値 (0: 制限無し)"
+
+msgid "Default trace settings"
+msgstr "トレース設定のデフォルト値"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -364,9 +418,6 @@ msgstr "詳細"
 msgid "Show parent diagram"
 msgstr "親ダイアグラムを表示"
 
-msgid "Simulation"
-msgstr "シミュレーション"
-
 msgid "Setup"
 msgstr "設定"
 
@@ -652,44 +703,11 @@ msgstr "テキストの色"
 msgid "Link Style"
 msgstr "結合方法"
 
-msgid "Straight"
-msgstr "直線"
-
-msgid "Horizontal"
-msgstr "水平"
-
-msgid "Vertical"
-msgstr "垂直"
-
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "デバッグレベル設定 (0,1,2,3) <br/>scicos_debug(n)を実行します"
 
 msgid "Execution trace and Debug"
 msgstr "トレースとデバッグの実行"
-
-msgid "Final integration time"
-msgstr "積分終了時間"
-
-msgid "Real time scaling"
-msgstr "実時間スケール"
-
-msgid "Integrator absolute tolerance"
-msgstr "積算絶対許容誤差"
-
-msgid "Integrator relative tolerance"
-msgstr "積分相対誤差"
-
-msgid "Tolerance on time"
-msgstr "時間の誤差"
-
-msgid "Max integration time interval"
-msgstr "最大積分時間間隔"
-
-msgid "Solver kind"
-msgstr "ソルバーの種類"
-
-msgid "maximum step size (0 means no limit)"
-msgstr "最大反復サイズ(0は制限なし)"
 
 msgid "Default"
 msgstr "デフォルト"
@@ -731,18 +749,6 @@ msgstr "SuperBlockを生成中, お待ちください"
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr "図形をクリックしてリンク点を加えるか、あるいは互換の目標をクリックして終了してください"
-
-msgid "No trace nor debug printing"
-msgstr "トレースもデバッグ出力も行ないません"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "軽量シミュレーショントレース (離散または連続部のスイッチ)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "ブロック毎の実行トレースとデバッグブロックコール"
-
-msgid "Debug block calls without trace"
-msgstr "トレースなしのデバッグブロックコール"
 
 msgid "All supported formats"
 msgstr "サポートされる全形式"

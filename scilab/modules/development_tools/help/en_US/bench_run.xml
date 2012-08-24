@@ -11,85 +11,85 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bench_run" xml:lang="en">
-  <refnamediv>
-    <refname>bench_run</refname>
-    <refpurpose>Launch benchmark tests</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      bench_run()
-      bench_run(module[,test_name[,options]])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>module</term>
-        <listitem>
-          <para>a vector of string. It can be the name of a module or the absolute path of a toolbox.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>test_name</term>
-        <listitem>
-          <para>a vector of string</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>options</term>
-        <listitem>
-          <para>a vector of string</para>
-          <itemizedlist>
-            <listitem>
-              <para>list : list of the benchmark tests available in a module</para>
-            </listitem>
-            <listitem>
-              <para>help : displays some examples of use in the Scilab console</para>
-            </listitem>
-            <listitem>
-              <para>nb_run=value : repeat the benchmark test value times</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Search for .tst files in benchmark test library
-      execute them, and display a report about execution time.
-      The .tst files are searched in directories SCI+"/modules/*/tests/benchmark".
-    </para>
-    <para>
-      Special tags may be inserted in the .tst file, which help to
-      control the processing of the corresponding test. These tags
-      are expected to be found in Scilab comments.
-    </para>
-    <para>These are the available tags :</para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>bench_run</refname>
+        <refpurpose>Launch benchmark tests</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            bench_run()
+            bench_run(module[,test_name[,options]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>a vector of string. It can be the name of a module or the absolute path of a toolbox.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>a vector of string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>a vector of string</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>list : list of the benchmark tests available in a module</para>
+                        </listitem>
+                        <listitem>
+                            <para>help : displays some examples of use in the Scilab console</para>
+                        </listitem>
+                        <listitem>
+                            <para>nb_run=value : repeat the benchmark test value times</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
         <para>
-          &lt;-- BENCH NB RUN : 10 --&gt;
-          This test will be repeated 10 times.
+            Search for .tst files in benchmark test library
+            execute them, and display a report about execution time.
+            The .tst files are searched in directories SCI+"/modules/*/tests/benchmark".
         </para>
-      </listitem>
-      <listitem>
         <para>
-          &lt;-- BENCH START --&gt;
-          &lt;-- BENCH END --&gt;
-          The interesting part of the benchmark must be enclosed by these
-          tags.
+            Special tags may be inserted in the .tst file, which help to
+            control the processing of the corresponding test. These tags
+            are expected to be found in Scilab comments.
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <para>Some simple examples of invocation of bench_run</para>
-    <programlisting role="example"><![CDATA[
+        <para>These are the available tags :</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    &lt;-- BENCH NB RUN : 10 --&gt;
+                    This test will be repeated 10 times.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- BENCH START --&gt;
+                    &lt;-- BENCH END --&gt;
+                    The interesting part of the benchmark must be enclosed by these
+                    tags.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>Some simple examples of invocation of bench_run</para>
+        <programlisting role="example"><![CDATA[
 // Launch all tests
 bench_run();
 bench_run([]);
@@ -108,11 +108,11 @@ bench_run([],[],'list');
 bench_run([],[],'help');
 bench_run([],[],'nb_run=2000');
  ]]></programlisting>
-    <para>An example of a benchmark file. This file corresponds to the
-      file
-      SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>An example of a benchmark file. This file corresponds to the
+            file
+            SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.
+        </para>
+        <programlisting role="example"><![CDATA[
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
@@ -137,21 +137,21 @@ a = a'*a;
 b = chol(a);
 // <-- BENCH END -->
  ]]></programlisting>
-    <para>The result of the test</para>
-    <programlisting role="example"><![CDATA[
+        <para>The result of the test</para>
+        <programlisting role="example"><![CDATA[
 -->bench_run('linear_algebra','bench_chol')
 
            For Loop (as reference) ...........................      143.00 ms [ 1000000 x]
 
   001/001 - [linear_algebra] bench_chol ......................      130.60 ms [      10 x]
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="test_run">test_run</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

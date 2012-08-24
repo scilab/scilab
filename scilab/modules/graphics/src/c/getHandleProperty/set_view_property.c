@@ -33,39 +33,39 @@
 /*------------------------------------------------------------------------*/
 int set_view_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status = FALSE;
-  int viewType = 0;
+    BOOL status = FALSE;
+    int viewType = 0;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "view");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !( valueType == sci_strings ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "view");
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( isStringParamEqual( stackPointer, "2d" ) )
-  {
-    viewType = 0;
-  }
-  else if ( isStringParamEqual( stackPointer, "3d" ) )
-  {
-    viewType = 1;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "view", "'2d'", "'3d'");
+    if ( isStringParamEqual( stackPointer, "2d" ) )
+    {
+        viewType = 0;
+    }
+    else if ( isStringParamEqual( stackPointer, "3d" ) )
+    {
+        viewType = 1;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "view", "'2d'", "'3d'");
 
-  }
+    }
 
-  status = setGraphicObjectProperty(pobjUID, __GO_VIEW__, &viewType, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_VIEW__, &viewType, jni_int, 1);
 
-  if (status = TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
-    return  SET_PROPERTY_ERROR ;
-  }
+    if (status = TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+        return  SET_PROPERTY_ERROR ;
+    }
 }
 /*------------------------------------------------------------------------*/

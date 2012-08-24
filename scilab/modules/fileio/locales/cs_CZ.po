@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-14 17:26+0000\n"
+"PO-Revision-Date: 2012-08-06 19:41+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -578,6 +578,15 @@ msgstr "Soubor se stejým jménem již existuje v "
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být '%s'.\n"
+
+msgid "Error : The directory is not empty."
+msgstr "Chyba : Adresář není prázdný"
+
+msgid "Undefined"
+msgstr "Neurčeno"
+
+msgid "The system cannot find the file specified."
+msgstr "Systém nemůže nalézt zadaný soubor."
 
 #, c-format
 msgid "%s: Incorrect format.\n"

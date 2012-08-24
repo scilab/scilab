@@ -16,7 +16,6 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -29,6 +28,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
+@SuppressWarnings(value = { "serial" })
 public final class XcosDocumentationAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
@@ -41,7 +41,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -51,7 +51,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 
     /**
      * Create a button for a graph toolbar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the button
@@ -62,7 +62,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 
     /**
      * Create a menu for a graph menubar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the menu
@@ -73,7 +73,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 
     /**
      * Action associated
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)

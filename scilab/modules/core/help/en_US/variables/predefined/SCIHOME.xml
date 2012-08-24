@@ -11,64 +11,64 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SCIHOME" xml:lang="en">
-  <refnamediv>
-    <refname>SCIHOME</refname>
-    <refpurpose>contains the path to preferences, history files of your Scilab
-      session.
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The <literal>SCIHOME</literal> contains the path to preferences, history files
-      of your Scilab session.
-    </para>
-    <para>
-      <literal>SCIHOME</literal> definition:
-    </para>
-    <para>
-      On Windows XP: "C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
-    </para>
-    <para>
-      On Windows Vista and Seven:
-      "C:/User/AppData/Roaming/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
-    </para>
-    <para>
-      based on Windows %HOMEPATH% environment variable.
-    </para>
-    <para>
-      On GNU/Linux or Unix:
-      /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-    </para>
-    <para>
-      On Mac OS X:
-      /Users/lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-    </para>
-    <para>
-      &lt;User&gt; is your current login name
-    </para>
-    <para>
-      &lt;Scilab-Version&gt; is current version of Scilab used.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>SCIHOME</refname>
+        <refpurpose>contains the path to preferences, history files of your Scilab
+            session.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>SCIHOME</literal> contains the path to preferences, history files
+            of your Scilab session.
+        </para>
+        <para>
+            <literal>SCIHOME</literal> definition:
+        </para>
+        <para>
+            On Windows XP: "C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
+        </para>
+        <para>
+            On Windows Vista and Seven:
+            "C:/User/AppData/Roaming/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
+        </para>
+        <para>
+            based on Windows %HOMEPATH% environment variable.
+        </para>
+        <para>
+            On GNU/Linux or Unix:
+            /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+        </para>
+        <para>
+            On Mac OS X:
+            /Users/lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+        </para>
+        <para>
+            &lt;User&gt; is your current login name
+        </para>
+        <para>
+            &lt;Scilab-Version&gt; is current version of Scilab used.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 disp(SCIHOME);
 isdir(SCIHOME)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCI">SCI</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="TMPDIR">TMPDIR</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

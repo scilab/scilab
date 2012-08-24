@@ -12,30 +12,30 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="drawnow" xml:lang="en">
-  <refnamediv>
-    <refname>drawnow</refname>
-    <refpurpose>Desenha entidades gráficas escondidas</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>drawnow()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Descrição</title>
-    <para>Considerando a figura corrente, esta função pode ser usada para
-      desenhar as entidades gráficas escondidas e todos os seus galhos, que
-      podem ter sido adiados por uma chamada anterior à função
-      <literal>drawlater</literal>. A propriedade
-      <literal>immediate_drawing</literal> da figura corrente é ajustada para
-      <literal>"on" </literal>.
-    </para>
-    <para>Pode ser usado especialmente com a função
-      <literal>drawlater</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>drawnow</refname>
+        <refpurpose>Desenha entidades gráficas escondidas</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>drawnow()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Considerando a figura corrente, esta função pode ser usada para
+            desenhar as entidades gráficas escondidas e todos os seus galhos, que
+            podem ter sido adiados por uma chamada anterior à função
+            <literal>drawlater</literal>. A propriedade
+            <literal>immediate_drawing</literal> da figura corrente é ajustada para
+            <literal>"on" </literal>.
+        </para>
+        <para>Pode ser usado especialmente com a função
+            <literal>drawlater</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 f=get("current_figure") // manipulador da figura corrente
   
 drawlater()
@@ -54,26 +54,26 @@ draw(gca()); //desenhando os eixos correntes e seus galhos
 draw(f.children([3 4])); // desenhando os eixos especificados e seus galhos
 drawnow(); // desenhando a figura corrente
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="get">get</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="drawlater">drawlater</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Autores</title>
-    <para>Djalel ABDEMOUCHE, F.Leray</para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="drawlater">drawlater</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Autores</title>
+        <para>Djalel ABDEMOUCHE, F.Leray</para>
+    </refsection>
 </refentry>

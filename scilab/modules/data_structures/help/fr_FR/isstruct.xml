@@ -11,41 +11,41 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isstruct" xml:lang="fr">
-  <refnamediv>
-    <refname>isstruct</refname>
-    <refpurpose>Vérifie si une variable est une structure</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>bool = isstruct(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>Variable Scilab</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>bool</term>
-        <listitem>
-          <para>Un booléen</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>isstruct(x)</literal> retourne vrai si x est une structure
-      et faux sinon.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>isstruct</refname>
+        <refpurpose>Vérifie si une variable est une structure</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>bool = isstruct(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Variable Scilab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bool</term>
+                <listitem>
+                    <para>Un booléen</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>isstruct(x)</literal> retourne vrai si x est une structure
+            et faux sinon.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 isstruct(1)
 
 isstruct(cell())
@@ -57,16 +57,16 @@ info.function="isstruct";
 info.module="help";
 isstruct(info)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="struct">struct</link>
-      </member>
-      <member>
-        <link linkend="iscell">iscell</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="struct">struct</link>
+            </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

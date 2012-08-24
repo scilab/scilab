@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:35+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 205
@@ -242,7 +242,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 289
-# File: scilab_fake_localization_file.c, line: 572
+# File: scilab_fake_localization_file.c, line: 633
 msgid "Confirmation dialogs"
 msgstr ""
 
@@ -294,6 +294,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 312
 # File: scilab_fake_localization_file.c, line: 381
+# File: scilab_fake_localization_file.c, line: 458
 msgid "Select all"
 msgstr ""
 
@@ -395,6 +396,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 336
 # File: scilab_fake_localization_file.c, line: 387
+# File: scilab_fake_localization_file.c, line: 456
 msgid "Paste"
 msgstr ""
 
@@ -447,6 +449,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 346
 # File: scilab_fake_localization_file.c, line: 401
+# File: scilab_fake_localization_file.c, line: 448
 msgid "Print"
 msgstr ""
 
@@ -627,11 +630,13 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 385
+# File: scilab_fake_localization_file.c, line: 455
 msgid "Copy"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 386
+# File: scilab_fake_localization_file.c, line: 454
 msgid "Cut"
 msgstr ""
 
@@ -647,11 +652,13 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 390
+# File: scilab_fake_localization_file.c, line: 452
 msgid "Undo"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 391
+# File: scilab_fake_localization_file.c, line: 453
 msgid "Redo"
 msgstr ""
 
@@ -667,6 +674,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 394
+# File: scilab_fake_localization_file.c, line: 443
 msgid "Open"
 msgstr ""
 
@@ -682,12 +690,14 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 397
-# File: scilab_fake_localization_file.c, line: 444
+# File: scilab_fake_localization_file.c, line: 445
+# File: scilab_fake_localization_file.c, line: 505
 msgid "Save"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 398
+# File: scilab_fake_localization_file.c, line: 446
 msgid "Save as"
 msgstr ""
 
@@ -703,6 +713,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 402
+# File: scilab_fake_localization_file.c, line: 449
 msgid "Close"
 msgstr ""
 
@@ -838,6 +849,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 429
+# File: scilab_fake_localization_file.c, line: 457
 msgid "Delete"
 msgstr ""
 
@@ -882,118 +894,328 @@ msgid "Line numbering"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 441
-msgid "Save diagram"
+# File: scilab_fake_localization_file.c, line: 442
+msgid "New diagram"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 444
+msgid "Open file in Scilab current directory"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 447
-msgid "Save variable"
+msgid "Export"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 450
-msgid "Save history"
+msgid "Quit Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 453
-msgid "Save file"
+# File: scilab_fake_localization_file.c, line: 459
+msgid "Invert selection"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 460
+msgid "Block Parameters"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 461
+msgid "Region to superblock"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 463
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 464
+msgid "Zoom Out"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 465
+msgid "Fit diagram to view"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 466
+msgid "Normal 100%"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 467
+msgid "Palette browser"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 468
+msgid "Diagram browser"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 469
+msgid "Viewport"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 470
+msgid "Details"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 472
-msgid "Floating point exception (ieee): "
+msgid "Setup"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 473
+msgid "Execution trace and Debug"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 474
+msgid "Set Context"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 475
+msgid "Compile"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 476
+msgid "Start"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 477
+msgid "Stop"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 479
+msgid "Rotate"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 480
+msgid "Flip"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 481
+msgid "Mirror"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 482
+msgid "Show/Hide shadow"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 483
+msgid "Left"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 484
+msgid "Center"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 485
+msgid "Right"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 486
+msgid "Top"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 487
+msgid "Middle"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 488
-msgid "Printing format: "
+msgid "Bottom"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 489
+msgid "Border Color"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 490
+msgid "Fill Color"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 491
+msgid "Horizontal"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 492
+msgid "Straight"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 493
+msgid "Vertical"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 494
+msgid "Diagram background"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 495
+msgid "Grid"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 497
+msgid "Code generation"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 499
+msgid "Xcos Help"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 500
+msgid "Block Help"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 501
+msgid "Xcos Demos"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 502
+msgid "About Xcos"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 508
+msgid "Save variable"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 511
+msgid "Save history"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 514
+msgid "Save file"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 533
+msgid "Floating point exception (ieee): "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 549
+msgid "Printing format: "
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 563
 msgid "Width: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 523
+# File: scilab_fake_localization_file.c, line: 584
 msgid "Language setting"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 525
+# File: scilab_fake_localization_file.c, line: 586
 msgid "Default language: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 540
-# File: scilab_fake_localization_file.c, line: 564
+# File: scilab_fake_localization_file.c, line: 601
+# File: scilab_fake_localization_file.c, line: 625
 msgid "(This requires a restart of Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 550
+# File: scilab_fake_localization_file.c, line: 611
 msgid "Java Heap Memory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 552
+# File: scilab_fake_localization_file.c, line: 613
 msgid "Select the memory (in MB) available in Java: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 592
+# File: scilab_fake_localization_file.c, line: 653
 msgid "Desktop Layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 594
+# File: scilab_fake_localization_file.c, line: 655
 msgid "Select a layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 608
+# File: scilab_fake_localization_file.c, line: 669
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 625
+# File: scilab_fake_localization_file.c, line: 686
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 628
+# File: scilab_fake_localization_file.c, line: 689
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 638
+# File: scilab_fake_localization_file.c, line: 699
 msgid "Component"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 650
+# File: scilab_fake_localization_file.c, line: 711
 msgid "Name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 656
+# File: scilab_fake_localization_file.c, line: 717
 msgid "Description: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 662
+# File: scilab_fake_localization_file.c, line: 723
 msgid "Binding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 694
+# File: scilab_fake_localization_file.c, line: 755
 msgid "Action name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 695
+# File: scilab_fake_localization_file.c, line: 756
 msgid "Key binding"
 msgstr ""
 
@@ -1046,7 +1268,7 @@ msgid "Graphics handle field"
 msgstr ""
 
 #
-# File: src/c/cmdLine/getKey.c, line: 353
+# File: src/c/cmdLine/getKey.c, line: 361
 # File: src/java/org/scilab/modules/console/SciConsole.java, line: 544
 #, c-format
 msgid ""

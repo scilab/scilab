@@ -69,7 +69,14 @@ public:
 
     ScilabAbstractEnvironmentException(const ScilabAbstractEnvironmentException & e) : message(e.message), file(e.file), line(e.line) { }
 
-    ~ScilabAbstractEnvironmentException() throw() { };
+    virtual ~ScilabAbstractEnvironmentException() throw() { };
+
+    virtual const char * what() const throw()
+    {
+        return message.c_str();
+    }
+
+private:
 
     inline std::string getDescription(std::string m) const
     {
@@ -99,11 +106,6 @@ public:
         return m;
 
 #endif
-    }
-
-    virtual const char * what() const throw()
-    {
-        return message.c_str();
     }
 };
 }

@@ -11,52 +11,52 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SCIHOME" xml:lang="ru">
-  <refnamediv>
-    <refname>SCIHOME</refname>
-    <refpurpose>
-      хранит путь до настроек, истории файлов вашей сессии Scilab.
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Неизменная переменная <literal>SCIHOME</literal> хранит путь до настроек, истории файлов вашей сессии Scilab.
-    </para>
-    <para>
-      Определение <literal>SCIHOME</literal>:
-    </para>
-    <para>
-      В Windows XP: "C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
-    </para>
-    <para>
-      В Windows Vista и Seven:
-      "C:/User/AppData/Roaming/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
-    </para>
-    <para>
-      основано на переменной окружения Windows %HOMEPATH%.
-    </para>
-    <para>
-      В Linux/Unix/MacOS:
-      /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-    </para>
-    <para>
-      &lt;User&gt; -- это ваша текущая учётная запись
-    </para>
-    <para>
-      &lt;Scilab-Version&gt; -- ваша текущая версия используемого Scilab.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCI">SCI</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="TMPDIR">TMPDIR</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>SCIHOME</refname>
+        <refpurpose>
+            хранит путь до настроек, истории файлов вашей сессии Scilab.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Неизменная переменная <literal>SCIHOME</literal> хранит путь до настроек, истории файлов вашей сессии Scilab.
+        </para>
+        <para>
+            Определение <literal>SCIHOME</literal>:
+        </para>
+        <para>
+            В Windows XP: "C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
+        </para>
+        <para>
+            В Windows Vista и Seven:
+            "C:/User/AppData/Roaming/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;"
+        </para>
+        <para>
+            основано на переменной окружения Windows %HOMEPATH%.
+        </para>
+        <para>
+            В Linux/Unix/MacOS:
+            /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+        </para>
+        <para>
+            &lt;User&gt; -- это ваша текущая учётная запись
+        </para>
+        <para>
+            &lt;Scilab-Version&gt; -- ваша текущая версия используемого Scilab.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

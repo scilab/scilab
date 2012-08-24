@@ -11,50 +11,50 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_false">
-  <refnamediv>
-    <refname>mtlb_false</refname>
-    <refpurpose>Matlab false emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      There is no Scilab equivalent for Matlab <literal>false</literal>. However, Scilab <literal>zeros</literal>
-      returns a result interpreted in an equivalent way for Scilab.
-    </para>
-    <para>
-      Matlab <literal>false</literal> and Scilab <literal>zeros</literal> behave differently in some particular cases:
-    </para>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>mtlb_false</refname>
+        <refpurpose>Matlab false emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With a scalar input: Matlab <literal>false</literal> returns a n x n matrix of zeros
-          while Scilab <literal>zeros</literal> returns a 0.
+            There is no Scilab equivalent for Matlab <literal>false</literal>. However, Scilab <literal>zeros</literal>
+            returns a result interpreted in an equivalent way for Scilab.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The function <literal>mtlb_false(A)</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>false(A)</literal> when it was not
-      possible to know what was the input while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_false</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
         <para>
-          If <literal>A</literal> is a scalar
-          <literal>mtlb_false(A)</literal> may be replaced by <literal>zeros(A,A)</literal>
+            Matlab <literal>false</literal> and Scilab <literal>zeros</literal> behave differently in some particular cases:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With a scalar input: Matlab <literal>false</literal> returns a n x n matrix of zeros
+                    while Scilab <literal>zeros</literal> returns a 0.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          If <literal>A</literal> is not a scalar
-          <literal>mtlb_false(A)</literal> may be replaced by <literal>zeros(A)</literal>
+            The function <literal>mtlb_false(A)</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>false(A)</literal> when it was not
+            possible to know what was the input while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_false</literal> calls:
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_false</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a scalar
+                    <literal>mtlb_false(A)</literal> may be replaced by <literal>zeros(A,A)</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is not a scalar
+                    <literal>mtlb_false(A)</literal> may be replaced by <literal>zeros(A)</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Caution: <literal>mtlb_false</literal> has not to be used for hand coded functions.
+        </para>
+    </refsection>
 </refentry>

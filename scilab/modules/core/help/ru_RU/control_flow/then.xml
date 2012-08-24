@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="then">
-  <refnamediv>
-    <refname>then</refname>
-    <refpurpose>ключевое слово в управляющих структурах if и select</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Используется в управляющих структурах <literal>if</literal> и <literal>select</literal>.
-    </para>
-    <para>
-      Каждое ключевое слово <literal>then</literal> должно быть на той же строке, что и соответствующее ему ключевое слово <literal>if</literal>, <literal>elseif</literal> или <literal>case</literal>.
-    </para>
-    <para>
-      Ключевое слово <literal>then</literal> может быть заменено на перевод каретки или запятую.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="if">if</link>
-      </member>
-      <member>
-        <link linkend="elseif">elseif</link>
-      </member>
-      <member>
-        <link linkend="select">select</link>
-      </member>
-      <member>
-        <link linkend="case">case</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>then</refname>
+        <refpurpose>ключевое слово в управляющих структурах if и select</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Используется в управляющих структурах <literal>if</literal> и <literal>select</literal>.
+        </para>
+        <para>
+            Каждое ключевое слово <literal>then</literal> должно быть на той же строке, что и соответствующее ему ключевое слово <literal>if</literal>, <literal>elseif</literal> или <literal>case</literal>.
+        </para>
+        <para>
+            Ключевое слово <literal>then</literal> может быть заменено на перевод каретки или запятую.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="case">case</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

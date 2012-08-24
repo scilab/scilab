@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-02 12:34+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -150,7 +150,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_coserror.c, line: 67
-# File: sci_gateway/c/sci_getscicosvars.c, line: 171
+# File: sci_gateway/c/sci_getscicosvars.c, line: 173
 #, c-format
 msgid "%s : First argument must be a string.\n"
 msgstr ""
@@ -191,57 +191,57 @@ msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 141
+# File: sci_gateway/c/sci_getscicosvars.c, line: 143
 msgid ""
 "\n"
 "getscicosvars : utility function to retrieve\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 142
+# File: sci_gateway/c/sci_getscicosvars.c, line: 144
 msgid ""
 "                scicos arrays during simulation.\n"
 "\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 143
+# File: sci_gateway/c/sci_getscicosvars.c, line: 145
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 144
+# File: sci_gateway/c/sci_getscicosvars.c, line: 146
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 145
+# File: sci_gateway/c/sci_getscicosvars.c, line: 147
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 146
+# File: sci_gateway/c/sci_getscicosvars.c, line: 148
 msgid "  that must be informed with the following values :\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 183
-# File: sci_gateway/c/sci_getscicosvars.c, line: 191
-# File: sci_gateway/c/sci_getscicosvars.c, line: 220
+# File: sci_gateway/c/sci_getscicosvars.c, line: 185
+# File: sci_gateway/c/sci_getscicosvars.c, line: 193
+# File: sci_gateway/c/sci_getscicosvars.c, line: 222
 #, c-format
 msgid "%s : No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 233
+# File: sci_gateway/c/sci_getscicosvars.c, line: 235
 #, c-format
 msgid "%s : Undefined field in string matrix position : %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 511
+# File: sci_gateway/c/sci_getscicosvars.c, line: 515
 #, c-format
 msgid "%s : Error.\n"
 msgstr ""

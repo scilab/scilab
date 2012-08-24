@@ -50,6 +50,7 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -269,8 +270,9 @@ public final class ConfigurationManager {
         } else {
             // Element not found, remove the last element if
             // there is no more place.
-            if (files.size() == ConfigurationConstants.MAX_RECENT_FILES) {
-                oldElement = files.remove(ConfigurationConstants.MAX_RECENT_FILES - 1);
+            final int numberOfRecentlyOpen = XcosOptions.getPreferences().getNumberOfRecentlyOpen();
+            if (files.size() == numberOfRecentlyOpen) {
+                oldElement = files.remove(numberOfRecentlyOpen - 1);
             }
         }
 

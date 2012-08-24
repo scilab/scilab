@@ -229,7 +229,7 @@ public:
 
     virtual void disabletrace() = 0;
 
-    virtual void writeLog(const std::string & fun, const std::string & str, ...) const = 0;
+    virtual void writeLog(const std::string & fun, const std::string str, ...) const = 0;
 };
 }
 #endif //__SCILABABSTRACTENVIRONMENT_HXX__

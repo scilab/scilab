@@ -11,48 +11,48 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cmndred">
-  <refnamediv>
-    <refname>cmndred</refname>
-    <refpurpose> common denominator form</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[n,d]=cmndred(num,den)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>num, den</term>
-        <listitem>
-          <para>two polynomial matrices of same dimensions</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>[n,d]=cmndred(num,den)</literal> computes a polynomial matrix
-      <literal>n</literal> and a common denominator polynomial <literal>d</literal>
-      such that:
-    </para>
-    <para>
-      <literal>n/d=num./den</literal>
-    </para>
-    <para>
-      The rational matrix defined by <literal>num./den</literal> is <literal>n/d</literal>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="simp">simp</link>
-      </member>
-      <member>
-        <link linkend="clean">clean</link>
-      </member>
-    </simplelist>
-  </refsection>
+    <refnamediv>
+        <refname>cmndred</refname>
+        <refpurpose> common denominator form</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[n,d]=cmndred(num,den)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>num, den</term>
+                <listitem>
+                    <para>two polynomial matrices of same dimensions</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[n,d]=cmndred(num,den)</literal> computes a polynomial matrix
+            <literal>n</literal> and a common denominator polynomial <literal>d</literal>
+            such that:
+        </para>
+        <para>
+            <literal>n/d=num./den</literal>
+        </para>
+        <para>
+            The rational matrix defined by <literal>num./den</literal> is <literal>n/d</literal>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="simp">simp</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

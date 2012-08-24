@@ -39,6 +39,7 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * @author Pierre GRADIT
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class PreviewCode extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.

@@ -11,108 +11,108 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsLoaded">
-  <refnamediv>
-    <refname>atomsIsLoaded</refname>
-    <refpurpose>determines whether a module is loaded or not</refpurpose>
-  </refnamediv>
-  <!-- ===================================================================== -->
-  <!-- Calling Sequence -->
-  <!-- ===================================================================== -->
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      result = atomsIsLoaded(modules)
-    </synopsis>
-  </refsynopsisdiv>
-  <!-- ===================================================================== -->
-  <!-- Parameters -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <!-- 1st input parameter -->
-      <varlistentry>
-        <term>modules</term>
-        <listitem>
-          <para>
-            mx1, mx2 Matrix of strings:
-          </para>
-          <informaltable border="1">
-            <!-- Technical name -->
-            <tr>
-              <td>
-                <emphasis>1st Col.</emphasis>
-              </td>
-              <td>
-                <emphasis role="strong">Technical name</emphasis>
-              </td>
-              <td>
-                Mandatory
-              </td>
-              <td>
-              </td>
-            </tr>
-            <!-- Version -->
-            <tr>
-              <td>
-                <emphasis>2nd Col.</emphasis>
-              </td>
-              <td>
-                <emphasis role="strong">Version</emphasis>
-              </td>
-              <td>
-                Optional
-              </td>
-              <td>
-                If this field is empty or is not present,
-                module's version is ignored.
-              </td>
-            </tr>
-            <!-- Section -->
-            <tr>
-              <td>
-                <emphasis>3rd Col.</emphasis>
-              </td>
-              <td>
-                <emphasis role="strong">Section</emphasis>
-              </td>
-              <td>
-                Optional
-              </td>
-              <td>
-                If this field is empty or is not present,
-                module's section is ignored.
-              </td>
-            </tr>
-          </informaltable>
-        </listitem>
-      </varlistentry>
-      <!-- Output parameter -->
-      <varlistentry>
-        <term>result</term>
-        <listitem>
-          <para>
-            mx1 boolean matrix
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Description -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
-    </para>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Examples -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>atomsIsLoaded</refname>
+        <refpurpose>determines whether a module is loaded or not</refpurpose>
+    </refnamediv>
+    <!-- ===================================================================== -->
+    <!-- Calling Sequence -->
+    <!-- ===================================================================== -->
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            result = atomsIsLoaded(modules)
+        </synopsis>
+    </refsynopsisdiv>
+    <!-- ===================================================================== -->
+    <!-- Parameters -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <!-- 1st input parameter -->
+            <varlistentry>
+                <term>modules</term>
+                <listitem>
+                    <para>
+                        mx1, mx2 Matrix of strings:
+                    </para>
+                    <informaltable border="1">
+                        <!-- Technical name -->
+                        <tr>
+                            <td>
+                                <emphasis>1st Col.</emphasis>
+                            </td>
+                            <td>
+                                <emphasis role="strong">Technical name</emphasis>
+                            </td>
+                            <td>
+                                Mandatory
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <!-- Version -->
+                        <tr>
+                            <td>
+                                <emphasis>2nd Col.</emphasis>
+                            </td>
+                            <td>
+                                <emphasis role="strong">Version</emphasis>
+                            </td>
+                            <td>
+                                Optional
+                            </td>
+                            <td>
+                                If this field is empty or is not present,
+                                module's version is ignored.
+                            </td>
+                        </tr>
+                        <!-- Section -->
+                        <tr>
+                            <td>
+                                <emphasis>3rd Col.</emphasis>
+                            </td>
+                            <td>
+                                <emphasis role="strong">Section</emphasis>
+                            </td>
+                            <td>
+                                Optional
+                            </td>
+                            <td>
+                                If this field is empty or is not present,
+                                module's section is ignored.
+                            </td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+            <!-- Output parameter -->
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>
+                        mx1 boolean matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Description -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
+        </para>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Examples -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene2.test.atoms.scilab.org");
@@ -138,22 +138,22 @@ atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
 atomsRemove("toolbox_2");
 
  ]]></programlisting>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- See also -->
-  <!-- ===================================================================== -->
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="atomsLoad">atomsLoad</link>
-      </member>
-      <member>
-        <link linkend="atomsGetLoaded">atomsGetLoaded</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Authors -->
-  <!-- ===================================================================== -->
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- See also -->
+    <!-- ===================================================================== -->
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atomsLoad">atomsLoad</link>
+            </member>
+            <member>
+                <link linkend="atomsGetLoaded">atomsGetLoaded</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Authors -->
+    <!-- ===================================================================== -->
 </refentry>

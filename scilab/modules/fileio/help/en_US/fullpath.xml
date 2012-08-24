@@ -12,46 +12,46 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullpath">
-  <refnamediv>
-    <refname>fullpath</refname>
-    <refpurpose>creates an full path name for the specified relative path name.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>res = fullpath(relative_path)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>res</term>
-        <listitem>
-          <para>a string or matrix of string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>relative_path</term>
-        <listitem>
-          <para>a string or a matrix of string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <code>fullpath(relative_path)</code> сreates an full path name
-      for the specified relative path name.
-    </para>
-    <para>
-      On GNU/Linux <varname>relative_path</varname> needs to exist.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>fullpath</refname>
+        <refpurpose>creates an full path name for the specified relative path name.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>res = fullpath(relative_path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>a string or matrix of string.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>relative_path</term>
+                <listitem>
+                    <para>a string or a matrix of string.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>fullpath(relative_path)</code> сreates an full path name
+            for the specified relative path name.
+        </para>
+        <para>
+            On GNU/Linux <varname>relative_path</varname> needs to exist.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 cd(TMPDIR);
 mkdir(TMPDIR + "/niv1");
 mkdir(TMPDIR + "/niv1/niv2");
@@ -66,14 +66,14 @@ r2 = fullpath("../test2.txt")
 M = ["../../test1.txt", "../test2.txt"];
 R = fullpath(M)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Matrix of String managed (SEP 72)</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Matrix of String managed (SEP 72)</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -158,18 +158,20 @@ function elements = atomsGetLeftListboxElts(category)
             modulesNames = atomsGetAvailable(category,%T);
         end
 
+        MRVersionAvailable = atomsGetMRVersion(modulesNames);
+        modulesIsInstalled = atomsIsInstalled(modulesNames);
+
         for i=1:size(modulesNames, "*")
 
-            MRVersionAvailable = atomsGetMRVersion(modulesNames(i));
-            thisModuleTitle    = allModules(modulesNames(i))(MRVersionAvailable).Title;
+            thisModuleTitle    = allModules(modulesNames(i))(MRVersionAvailable(i)).Title;
 
-            if atomsIsInstalled(modulesNames(i)) then
+            if modulesIsInstalled(i) then
 
                 MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(modulesNames(i)),"DESC");
                 MRVersionInstalled = MRVersionInstalled(1);
                 thisModuleTitle    = allModules(modulesNames(i))(MRVersionInstalled).Title;
 
-                if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+                if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable(i)) == -1 then
                     // Not up-to-date
                     icon = "software-update-notuptodate.png";
                 else
@@ -198,6 +200,7 @@ function elements = atomsGetLeftListboxElts(category)
             items_mat = [items_mat ; "module" modulesNames(i)];
 
         end
+
     end
 
     if items_str==[] then

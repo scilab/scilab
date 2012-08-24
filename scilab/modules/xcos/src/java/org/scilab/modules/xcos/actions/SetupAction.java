@@ -25,7 +25,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Setup dialog for Xcos
  */
-public class SetupAction extends SimulationNotRunningAction {
+@SuppressWarnings(value = { "serial" })
+public final class SetupAction extends SimulationNotRunningAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SETUP;
     /** Icon name of the action */

@@ -30,7 +30,8 @@ import com.mxgraph.swing.mxGraphComponent;
 /**
  * Diagram background color changing
  */
-public class DiagramBackgroundAction extends DefaultAction {
+@SuppressWarnings(value = { "serial" })
+public final class DiagramBackgroundAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.DIAGRAM_BACKGROUND;
     /** Icon name of the action */

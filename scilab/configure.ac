@@ -154,6 +154,12 @@ AC_PROG_GREP
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
+# Need MacosX Version to specify some path.                                  
+case "$host_os" in
+     *Darwin* | *darwin*)
+     	      AC_GET_MACOSX_VERSION
+     ;;
+esac
 
 case "$host" in
     *darwin*)
@@ -179,6 +185,24 @@ case "$host" in
         LDFLAGS="$LDFLAGS -L$FINK_PREFIX/lib/"
         ;;
 esac
+
+AC_ARG_WITH(min_macosx_version,
+AC_HELP_STRING([--with-min-macosx-version],[Force compilers to generate binaries compatible with MacOSX minimal version.]))
+case "$host" in
+    *darwin*)
+    if test -n "$with_min_macosx_version"; then
+       MIN_MACOSX_VERSION=$with_min_macosx_version
+       #Append to the default flags on Apple machines
+       ARCH_CFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_CXXFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_FFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       ARCH_LDFLAGS="-mmacosx-version-min=$MIN_MACOSX_VERSION"
+       # We need this to be passed to all linker commands
+       LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_MACOSX_VERSION"
+    fi
+;;
+esac
+
 
 #####################################################
 ## Look for pkg-config
@@ -595,12 +619,11 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-    ARCH_CFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
-    ARCH_CXXFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
-    ARCH_FFLAGS="-mmacosx-version-min=10.5"
-    ARCH_LDFLAGS="-no_compact_linkedit -mmacosx-version-min=10.5"
+    ARCH_CFLAGS="$ARCH_CFLAGS -no_compact_linkedit"
+    ARCH_CXXFLAGS="$ARCH_CXXFLAGS -no_compact_linkedit"
+    ARCH_LDFLAGS="$ARCH_LDFLAGS -no_compact_linkedit"
     # We need this to be passed to all linker commands
-    LDFLAGS="$LDFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    LDFLAGS="$LDFLAGS -no_compact_linkedit"
 
     case "$F77" in
          gfortran-*|gfortran)
@@ -773,11 +796,6 @@ AM_CONDITIONAL(XCOS, test "$XCOS_ENABLE" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
-   # Need MacosX Version to specify some path.
-   case "$host_os" in
-                   *Darwin* | *darwin*)
-                   AC_GET_MACOSX_VERSION;;
-  esac
 
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
@@ -834,16 +852,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                    AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
-                   # Java HDF5 is only needed for Xcos. Should be dropped in 5.4.X (with X > 0)
-                   if test "$with_xcos" != no -a "$with_gui" != no;  then
-                      AC_JAVA_HDF5()
-                      if test "$MACOSX" = 1; then
-                         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
-                      else
-                         AC_JNI_HDF5()
-                      fi
-                   fi #HDF5_ENABLE
-
                 fi
 
 
@@ -852,7 +860,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.5],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.6],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -1086,7 +1094,7 @@ the the JNI libraries."])],
 
     fi
 
-    # Giws is the equivalent of Swig developped by the Scilab team
+    # Giws is the equivalent of Swig developed by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
         AC_GIWS([1.3.0])
@@ -2168,15 +2176,9 @@ echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
 echo ""
-if test $HDF5_ENABLE = yes;  then
-   echo "HDF5 configuration:"
-   echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
-   echo "  HDF5 LIBS ........... = $HDF5_LIBS"
-   echo "  HDF5 Java ........... = $JHDF5"
-   echo "  JHDF5 LIBS (JNI) .... = $JHDF5_LIBS"
-else
-   echo "Not using HDF5"
-fi
+echo "HDF5 configuration:"
+echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
+echo "  HDF5 LIBS ........... = $HDF5_LIBS"
 
 echo ""
 echo "PCRE configuration:"

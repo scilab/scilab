@@ -25,7 +25,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Opens context settings Window
  */
-public class SetContextAction extends SimulationNotRunningAction {
+@SuppressWarnings(value = { "serial" })
+public final class SetContextAction extends SimulationNotRunningAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SET_CONTEXT;
     /** Icon name of the action */

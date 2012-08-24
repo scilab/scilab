@@ -31,7 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * This action is only used for debugging purpose but not on any release
  * version.
  */
-public class DumpAction extends DefaultAction {
+@SuppressWarnings(value = { "serial" })
+public final class DumpAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.DUMP;
     /** Icon name of the action */

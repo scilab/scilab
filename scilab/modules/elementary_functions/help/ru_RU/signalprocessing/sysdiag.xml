@@ -11,55 +11,55 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sysdiag" xml:lang="ru">
-  <refnamediv>
-    <refname>sysdiag</refname>
-    <refpurpose>соединение блочно-диагональной системы</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Возвращает блочно-диагональную систему, созданную из подсистем, расположенных по главной диагонали.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>ai</term>
-        <listitem>
-          <para>
-            подсистемы (т. е. усилители или линейные системы в пространстве состояний или в передаточной форме)
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>Особенно используется в системных взаимосвязях.</para>
-  </refsection>
-  <refsection>
-    <title>Примечание</title>
-    <para>Не больше 17 аргументов.</para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>sysdiag</refname>
+        <refpurpose>соединение блочно-диагональной системы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Возвращает блочно-диагональную систему, созданную из подсистем, расположенных по главной диагонали.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        подсистемы (т. е. усилители или линейные системы в пространстве состояний или в передаточной форме)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Особенно используется в системных взаимосвязях.</para>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>Не больше 17 аргументов.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
 sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="brackets">brackets</link>
-      </member>
-      <member>
-        <link linkend="insertion">insertion</link>
-      </member>
-      <member>
-        <link linkend="feedback">feedback</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

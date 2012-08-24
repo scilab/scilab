@@ -51,6 +51,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: MagicNumber
+@SuppressWarnings(value = { "serial" })
 public class DebugLevelDialog extends JDialog {
     private final ScicosParameters parameters;
 

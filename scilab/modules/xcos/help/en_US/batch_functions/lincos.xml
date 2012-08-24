@@ -22,35 +22,35 @@
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lincos">
-  <refnamediv>
-    <refname>lincos</refname>
-    <refpurpose>Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Module_lincos">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+    <refnamediv>
+        <refname>lincos</refname>
+        <refpurpose>Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_lincos">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_lincos">
+        <title>Description</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            Construct a linear state-space system by linearizing a model given as an xcos diagram. The idea is to transform a <link linkend="SUPER_f">sub-diagram</link> to a linear state-space model. The sub-diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_lincos">
-    <title>Description</title>
-    <para>
-      Construct a linear state-space system by linearizing a model given as an xcos diagram. The idea is to transform a <link linkend="SUPER_f">sub-diagram</link> to a linear state-space model. The sub-diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.
-    </para>
-    <para>
-      The output is a Scilab data structure of type continuous-time state-space linear system.  
-    </para>
-    <para>
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            The output is a Scilab data structure of type continuous-time state-space linear system.  
+        </para>
+        <para>
+        </para>
+        <programlisting role="example"><![CDATA[
 // loading data
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
@@ -76,50 +76,50 @@ sys = lincos(scs_m);
 
 bode(sys);
  ]]></programlisting>
-  </refsection>
-  <refsection id="Parameters_lincos">
-    <title>Arguments</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">scs_m :</emphasis> a xcos data structure
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">x0 :</emphasis> column vector. Continuous state around which linearization to be done (default 0)
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">u0 :</emphasis> column vector. Input around which linearization to be done (default 0)
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">param :</emphasis> param: list with two elements (default list(1.d-6,0)) param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">sys :</emphasis> state-space system
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="SeeAlso_lincos">
-    <title>See Also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="steadycos">steadycos - Finds an equilibrium state of a general dynamical system described by a xcos diagram (Scilab Function)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
+    <refsection id="Parameters_lincos">
+        <title>Arguments</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">scs_m :</emphasis> a xcos data structure
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">x0 :</emphasis> column vector. Continuous state around which linearization to be done (default 0)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">u0 :</emphasis> column vector. Input around which linearization to be done (default 0)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">param :</emphasis> param: list with two elements (default list(1.d-6,0)) param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">sys :</emphasis> state-space system
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="SeeAlso_lincos">
+        <title>See Also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="steadycos">steadycos - Finds an equilibrium state of a general dynamical system described by a xcos diagram (Scilab Function)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

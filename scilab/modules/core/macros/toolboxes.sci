@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
+// Copyright (C) 2012 - Samuel GOUGEON
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -24,7 +25,8 @@ function [y] = toolboxes(path)
     y = 'exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);';
     return 
   end
-    
+
+// Non ATOMS modules
   if rhs == 0 then 
     path = SCI + filesep() + 'contrib';
   end
@@ -38,6 +40,18 @@ function [y] = toolboxes(path)
       contribs = [contribs ; files(k)];
     end
   end
+
+    // ATOMS modules without autoloading
+    installed   = atomsGetInstalled()
+    autoloading = atomsAutoloadList() 
+    for i = 1:size(installed,1)
+         if and(installed(i,1)~=autoloading(:,1)) then
+              tmpath = installed(i,4)+filesep()+"loader.sce"
+              if isfile(tmpath) then 
+                   contribs = [contribs ; installed(i,1)+filesep()+installed(i,2)]
+              end
+         end
+    end
 
   if (contribs <> []) & (getscilabmode() == 'STD') then 
     delmenu(gettext("&Toolboxes"));
@@ -54,3 +68,10 @@ function [y] = toolboxes(path)
   
 endfunction
 //===========================================================
+
+
+
+
+
+
+

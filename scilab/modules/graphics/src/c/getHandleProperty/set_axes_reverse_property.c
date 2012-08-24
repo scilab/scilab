@@ -42,7 +42,7 @@ int set_axes_reverse_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 
     char ** values = getStringMatrixFromStack( stackPointer );
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "axes_reverse");
         return SET_PROPERTY_ERROR ;

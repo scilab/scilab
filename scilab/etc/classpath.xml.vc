@@ -61,13 +61,7 @@ The option is "disableUnderMode" and can be:
 	<load on="Xcos"/>
 </path>
 
-<!-- XCOS -->
-<path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
-	<load on="Xcos"/>
-	<load on="HDF5"/>
-</path>
-
-<path value="$SCILAB/thirdparty/scirenderer-0.5.5.jar" load="onUse">
+<path value="$SCILAB/thirdparty/scirenderer-0.5.6.jar" load="onUse">
     <load on="graphics"/>
     <load on="graphic_ojects"/>
     <load on="Xcos"/>
@@ -75,7 +69,6 @@ The option is "disableUnderMode" and can be:
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
-<path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
 	<load on="Xcos"/>

@@ -75,6 +75,7 @@ import org.w3c.dom.NodeList;
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SearchFile extends SwingScilabTab {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";

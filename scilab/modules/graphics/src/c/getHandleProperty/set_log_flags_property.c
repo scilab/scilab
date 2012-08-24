@@ -52,32 +52,36 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
     int cmpteur = 0, cmpteur2 = 0, offset = 0;
 
 
-  for(i=0;i<nbtics;i++)
-  {
-    if(u_xgrads[i]<=0){
-      sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n",i);
-    }
-    else
+    for (i = 0; i < nbtics; i++)
     {
-        u_xgrads[cmpteur] = log10(u_xgrads[i]);
-        cmpteur++;
+        if (u_xgrads[i] <= 0)
+        {
+            sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n", i);
+        }
+        else
+        {
+            u_xgrads[cmpteur] = log10(u_xgrads[i]);
+            cmpteur++;
+        }
     }
-  }
 
-    if(cmpteur != nbtics)
+    if (cmpteur != nbtics)
     {
-        if((ticklabel=(char **)MALLOC(cmpteur*sizeof(char *)))==NULL){
-            Scierror(999, _("%s: No more memory.\n"),"CaseLogflagN");
-			return NULL;
+        if ((ticklabel = (char **)MALLOC(cmpteur * sizeof(char *))) == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "CaseLogflagN");
+            return NULL;
         }
 
         cmpteur2 = 0;
         offset = nbtics - cmpteur;
-        for(i=0;i<cmpteur;i++){
-            if((ticklabel[cmpteur2]=(char *)MALLOC((strlen(u_xlabels[i+offset])+1)*sizeof(char )))==NULL){
-				Scierror(999, _("%s: No more memory.\n"),"CaseLogflagN");
+        for (i = 0; i < cmpteur; i++)
+        {
+            if ((ticklabel[cmpteur2] = (char *)MALLOC((strlen(u_xlabels[i + offset]) + 1) * sizeof(char ))) == NULL)
+            {
+                Scierror(999, _("%s: No more memory.\n"), "CaseLogflagN");
             }
-            strcpy(ticklabel[cmpteur2],u_xlabels[i+offset]);
+            strcpy(ticklabel[cmpteur2], u_xlabels[i + offset]);
             cmpteur2++;
         }
 
@@ -97,22 +101,25 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels)
 {
 
-    if(old_logflag==new_logflag) { return u_xlabels; } /* nothing to do l->l or n->n */
-
-    if(u_xgrads!=NULL)
+    if (old_logflag == new_logflag)
     {
-        if(old_logflag=='n' && new_logflag=='l') /* n->l */ /* 10-> 1, 100->2 ...*/
+        return u_xlabels;    /* nothing to do l->l or n->n */
+    }
+
+    if (u_xgrads != NULL)
+    {
+        if (old_logflag == 'n' && new_logflag == 'l') /* n->l */ /* 10-> 1, 100->2 ...*/
         {
 
-            u_xlabels=CaseLogflagN2L(u_nxgrads,u_xgrads,u_xlabels);
+            u_xlabels = CaseLogflagN2L(u_nxgrads, u_xgrads, u_xlabels);
 
         }
-        else if(old_logflag=='l' && new_logflag=='n')
+        else if (old_logflag == 'l' && new_logflag == 'n')
         {
             int nbtics = *u_nxgrads;
             int i;
 
-            for(i=0;i<nbtics;i++) u_xgrads[i] = exp10(u_xgrads[i]);
+            for (i = 0; i < nbtics; i++) u_xgrads[i] = exp10(u_xgrads[i]);
 
         }
     }
@@ -131,7 +138,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     int i = 0;
     double* dataBounds = NULL;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if ( !( valueType == sci_strings ) )
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "log_flags");
         return SET_PROPERTY_ERROR ;
@@ -147,9 +154,9 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
     /* flags must be 'n' or 'l' */
     if (   (flags[0] != 'n' && flags[0] != 'l')
-           || (flags[1] != 'n' && flags[1] != 'l'))
+            || (flags[1] != 'n' && flags[1] != 'l'))
     {
-        Scierror(999, _("%s: Wrong value for argument: '%s' or '%s' expected.\n"),"flags","n","l");
+        Scierror(999, _("%s: Wrong value for argument: '%s' or '%s' expected.\n"), "flags", "n", "l");
         return SET_PROPERTY_ERROR ;
     }
 
@@ -157,7 +164,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
     if (piLogFlag == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flags");
         return SET_PROPERTY_ERROR;
     }
 
@@ -185,14 +192,14 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
     if (dataBounds == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_bounds");
         return SET_PROPERTY_ERROR;
     }
 
     /* X axes */
-    if( ( dataBounds[0] <= 0. || dataBounds[1] <= 0.) && flags[0] == 'l' )
+    if ( ( dataBounds[0] <= 0. || dataBounds[1] <= 0.) && flags[0] == 'l' )
     {
-        Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"x");
+        Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"), "x");
         return SET_PROPERTY_ERROR ;
     }
 
@@ -202,17 +209,17 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
      */
 #if 0
     ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
-                                                 ppSubWin->axes.u_xgrads,
-                                                 &ppSubWin->axes.u_nxgrads,
-                                                 ppSubWin->axes.u_xlabels  );
+                               ppSubWin->axes.u_xgrads,
+                               &ppSubWin->axes.u_nxgrads,
+                               ppSubWin->axes.u_xlabels  );
 #endif
 
     curLogFlags[0] = flags[0];
 
     /* Y axes */
-    if( ( dataBounds[2] <= 0. || dataBounds[3] <= 0. ) && flags[1] == 'l' )
+    if ( ( dataBounds[2] <= 0. || dataBounds[3] <= 0. ) && flags[1] == 'l' )
     {
-        Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"y");
+        Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"), "y");
         return SET_PROPERTY_ERROR;
     }
 
@@ -222,9 +229,9 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
      */
 #if 0
     ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],
-                                                 ppSubWin->axes.u_ygrads,
-                                                 &ppSubWin->axes.u_nygrads,
-                                                 ppSubWin->axes.u_ylabels  );
+                               ppSubWin->axes.u_ygrads,
+                               &ppSubWin->axes.u_nygrads,
+                               ppSubWin->axes.u_ylabels  );
 #endif
 
     curLogFlags[1] = flags[1];
@@ -240,7 +247,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
 
         if ( ( dataBounds[4] <= 0. || dataBounds[5] <= 0. ) && flags[2] == 'l' )
         {
-            Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"),"z");
+            Scierror(999, _("Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"), "z");
             return SET_PROPERTY_ERROR;
         }
 
@@ -250,9 +257,9 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
          */
 #if 0
         ppSubWin->axes.u_zlabels = ReBuildUserTicks( curLogFlags[2], flags[2],
-                                                     ppSubWin->axes.u_zgrads,
-                                                     &ppSubWin->axes.u_nzgrads,
-                                                     ppSubWin->axes.u_zlabels);
+                                   ppSubWin->axes.u_zgrads,
+                                   &ppSubWin->axes.u_nzgrads,
+                                   ppSubWin->axes.u_zlabels);
 #endif
 
         curLogFlags[2] = flags[2];
@@ -280,7 +287,7 @@ int set_log_flags_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flags");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flags");
         return SET_PROPERTY_ERROR;
     }
 }

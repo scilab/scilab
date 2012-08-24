@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: ru\n"
 
 #, c-format
@@ -238,6 +238,10 @@ msgstr ""
 "число.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
 msgid "%s: '%s' option ignored.\n"
 msgstr "%s: параметр «%s» проигнорирован.\n"
 
@@ -248,10 +252,6 @@ msgstr "%s: В «%s» найден неизвестный стиль линии 
 #, c-format
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: В «%s» найден неизвестный цвет -> выбран чёрный.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -12,116 +12,116 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_pca">
-  <refnamediv>
-    <refname>show_pca</refname>
-    <refpurpose> Visualization of principal components analysis results</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>show_pca(lambda, facpr, N)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      
-      <varlistentry>
-        <term>lambda</term>
-        <listitem>
-          <para>
-            is  a p x 2  numerical  matrix.  In the  first
-            column we  find the eigenvalues of  V, where V
-            is the correlation p x p matrix and in the second
-            column are the ratios of the corresponding
-            eigenvalue over the sum of eigenvalues.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>facpr</term>
-        <listitem>
-          <para>
-            are the  principal  factors: eigenvectors  of
-            V. Each column is an eigenvector element of the
-            dual of <literal>R^p</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>N</term>
-        <listitem>
-          <para>
-            Is a 2x1 integer vector. Its coefficients point to the
-            eigenvectors corresponding to the eigenvalues of the
-            correlation matrix <literal>p</literal> by <literal>p</literal> ordered by decreasing values of
-            eigenvalues. If <literal>N</literal>. is missing, we suppose
-            <literal>N=[1 2]</literal>..
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function visualize the <link linkend="pca">pca</link> results.
-    </para>
-    <para>
-      The function produces a graphics with two subplots.
-      <itemizedlist>
-        <listitem>
-          <para>
-            The graphics on the left represents the correlation circle. 
-            This graphics is based on the two principal components 1 and 2, i.e. 
-            the main components. 
-            For each parameter, it represents the linear correlation coefficient between 
-            the component and each parameter. 
-            Points which are close to the unit circle can be interpreted 
-            in terms of correlation, but points close to the center of the circle 
-            should not be interpreted. 
-            For the Axis 1, points on the right of the graphics are positively 
-            correlated to this component, while points on the left are negatively 
-            correlated. 
-            For the Axis 2, points on the top of the graphics are positively 
-            correlated to this component, while points on the bottom are negatively 
-            correlated. 
-            For example, if the point x1 is close to the circle, on the right, 
-            close to the Axis 1, this means that the component 1 is positively correlated 
-            to the parameter 1. 
-            When the data is perfectly represented by only two components, 
-            the points are on the circle. 
-            When more than two components are needed to represent the data, the
-            points are inside the circle. 
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            The graphics on the right represents the eigenvalues. 
-            The bar graph represents the eigenvalues, sorted in decreasing 
-            order. 
-            More precisely, each bar has a length equal to the ratio of the eigenvalue 
-            over the sum of the eigenvalues. 
-            The line plot represents the cumulated sum, i.e. 
-            the cumulative variances explained by the associated 
-            principal components. 
-            For example, if the cumulated sum for the eigenvalue 2 is greater than 0.9, 
-            the points are flat in a subspace associated with the two first 
-            eigenvectors: representing the data with only these two directions may be 
-            a good representation. 
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-    <para>
-      Implementation notes. 
-      The right part of the graphics is based on the second column of the 
-      <literal>lambda</literal> output argument of the <literal>pca</literal> 
-      function.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <refnamediv>
+        <refname>show_pca</refname>
+        <refpurpose> Visualization of principal components analysis results</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>show_pca(lambda, facpr, N)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            
+            <varlistentry>
+                <term>lambda</term>
+                <listitem>
+                    <para>
+                        is  a p x 2  numerical  matrix.  In the  first
+                        column we  find the eigenvalues of  V, where V
+                        is the correlation p x p matrix and in the second
+                        column are the ratios of the corresponding
+                        eigenvalue over the sum of eigenvalues.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>facpr</term>
+                <listitem>
+                    <para>
+                        are the  principal  factors: eigenvectors  of
+                        V. Each column is an eigenvector element of the
+                        dual of <literal>R^p</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>
+                        Is a 2x1 integer vector. Its coefficients point to the
+                        eigenvectors corresponding to the eigenvalues of the
+                        correlation matrix <literal>p</literal> by <literal>p</literal> ordered by decreasing values of
+                        eigenvalues. If <literal>N</literal>. is missing, we suppose
+                        <literal>N=[1 2]</literal>..
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function visualize the <link linkend="pca">pca</link> results.
+        </para>
+        <para>
+            The function produces a graphics with two subplots.
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        The graphics on the left represents the correlation circle. 
+                        This graphics is based on the two principal components 1 and 2, i.e. 
+                        the main components. 
+                        For each parameter, it represents the linear correlation coefficient between 
+                        the component and each parameter. 
+                        Points which are close to the unit circle can be interpreted 
+                        in terms of correlation, but points close to the center of the circle 
+                        should not be interpreted. 
+                        For the Axis 1, points on the right of the graphics are positively 
+                        correlated to this component, while points on the left are negatively 
+                        correlated. 
+                        For the Axis 2, points on the top of the graphics are positively 
+                        correlated to this component, while points on the bottom are negatively 
+                        correlated. 
+                        For example, if the point x1 is close to the circle, on the right, 
+                        close to the Axis 1, this means that the component 1 is positively correlated 
+                        to the parameter 1. 
+                        When the data is perfectly represented by only two components, 
+                        the points are on the circle. 
+                        When more than two components are needed to represent the data, the
+                        points are inside the circle. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The graphics on the right represents the eigenvalues. 
+                        The bar graph represents the eigenvalues, sorted in decreasing 
+                        order. 
+                        More precisely, each bar has a length equal to the ratio of the eigenvalue 
+                        over the sum of the eigenvalues. 
+                        The line plot represents the cumulated sum, i.e. 
+                        the cumulative variances explained by the associated 
+                        principal components. 
+                        For example, if the cumulated sum for the eigenvalue 2 is greater than 0.9, 
+                        the points are flat in a subspace associated with the two first 
+                        eigenvectors: representing the data with only these two directions may be 
+                        a good representation. 
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Implementation notes. 
+            The right part of the graphics is based on the second column of the 
+            <literal>lambda</literal> output argument of the <literal>pca</literal> 
+            function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[ 
 // Test a table of standard Normal random numbers
 // 100 observations in 10 dimensions.
 a=rand(100,10,"n");
@@ -131,10 +131,10 @@ show_pca(lambda,facpr)
 // more than 2 components are required to represent 
 // the data. 
  ]]>
-    </programlisting>
-    
-    <programlisting role="example">
-      <![CDATA[ 
+        </programlisting>
+        
+        <programlisting role="example">
+            <![CDATA[ 
 // Source : "Analyse en composantes principales", 
 // Jean-François Delmas et Saad Salam
 // Weight of several parts of 23 cows
@@ -180,32 +180,32 @@ scf();
 // See how the points are perfectly on the circle. 
 show_pca(lambda,facpr)
  ]]>
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="pca">pca</link>
-      </member>
-      <member>
-        <link linkend="princomp">princomp</link>
-      </member>
-    </simplelist>
-  </refsection>
-  
-  <refsection>
-    <title>Bibliography</title>
-    <para>
-      Saporta, Gilbert, Probabilites,  Analyse des
-      Donnees et Statistique, Editions Technip, Paris,
-      2011, 3ème Edition.
-    </para>
-    <para>
-      Analyse en composantes principales,
-      Jean-François Delmas et Saad Salam,
-      http://cermics.enpc.fr/scilab_new/site/Tp/Statistique/acp/index.htm
-    </para>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pca">pca</link>
+            </member>
+            <member>
+                <link linkend="princomp">princomp</link>
+            </member>
+        </simplelist>
+    </refsection>
     
-  </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            Saporta, Gilbert, Probabilites,  Analyse des
+            Donnees et Statistique, Editions Technip, Paris,
+            2011, 3ème Edition.
+        </para>
+        <para>
+            Analyse en composantes principales,
+            Jean-François Delmas et Saad Salam,
+            http://cermics.enpc.fr/scilab_new/site/Tp/Statistique/acp/index.htm
+        </para>
+        
+    </refsection>
 </refentry>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: it\n"
 
 #, c-format
@@ -681,6 +681,7 @@ msgstr "Sostituisci"
 msgid "Replace All"
 msgstr "Sostituisci tutto"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Espressione regolare non valida : %s"
 
@@ -696,9 +697,11 @@ msgstr "Raggiunta la fine del documento"
 msgid "You have reached the beginning of the document"
 msgstr "È stato raggiunto l'inizio del documento"
 
+#, c-format
 msgid "String %s not found"
 msgstr "La stringa %s non è stata trovata"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -719,6 +722,7 @@ msgstr ""
 " è stato modificato dall'ultimo salvataggio\n"
 "salvarlo?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -807,12 +811,14 @@ msgstr ""
 msgid "Show the definition of the macro "
 msgstr "Mostra la definizione della macro "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Riga %s, Colonna %s, Funzione '%s' alla riga %s."
 
 msgid "Unknown function"
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Riga %s, Colonna %s"
 
@@ -828,6 +834,7 @@ msgstr "Il file non può essere salvato."
 msgid "The file could not be converted."
 msgstr "Il file non può essere convertito."
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s è una directory."
 
@@ -852,6 +859,7 @@ msgstr "Nessun testo selezionato"
 msgid "No text to execute."
 msgstr "Nessun testo da eseguire"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -864,12 +872,14 @@ msgstr "Problemi di codifica"
 msgid "Cannot guess the file encoding."
 msgstr "Impossibile stabilire la codifica del file."
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -987,12 +997,15 @@ msgstr "Cerca file..."
 msgid "Search in Files..."
 msgstr "Cerca nei file..."
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Tempo trascorso: %s sec."
 
