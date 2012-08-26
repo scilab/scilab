@@ -374,5 +374,6 @@ public class GraphicObjectProperties {
 
     public static final String __GO_DATATIP_DATA__ =           "DatatipData";
     public static final String __GO_DATATIP_ORIENTATION__ =    "DatatipOrientation";
+    public static final String __GO_DATATIP_3COMPONENT__ =     "Datatip3Component";
 
 }

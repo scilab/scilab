@@ -30,7 +30,7 @@ public class Datatip extends Text {
     DecimalFormat tipTextFormat;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION };
+    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_3COMPONENT };
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
 
                           /**
@@ -90,6 +90,8 @@ public class Datatip extends Text {
             return DatatipObjectProperty.TIP_DATA;
         } else if (propertyName.equals(__GO_DATATIP_ORIENTATION__)) {
             return DatatipObjectProperty.TIP_ORIENTATION;
+        } else if (propertyName.equals(__GO_DATATIP_3COMPONENT__)) {
+            return DatatipObjectProperty.TIP_3COMPONENT;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -103,6 +105,8 @@ public class Datatip extends Text {
             return getTipData();
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
             return getOrientation();
+        } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
+            return isUsing3Component();
         } else {
             return super.getProperty(property);
         }
@@ -118,6 +122,8 @@ public class Datatip extends Text {
             setTipData((Double[]) value);
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
             setOrientation((Integer) value);
+        } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
+            setUse3Component((Boolean)value);
         } else {
             return super.setProperty(property, value);
         }
@@ -183,6 +189,22 @@ public class Datatip extends Text {
         updateTextPosition();
     }
 
+    /**
+     * @return true if the datatip is displaying the Z component, false otherwise.
+     */
+    public Boolean isUsing3Component() {
+        return use3component;
+    }
+
+    /**
+     * If true set the Z component to be displayed.
+     * @param useZ True to enable display the Z component, false to disable. 
+     */
+    public void setUse3Component(Boolean useZ) {
+        use3component = useZ;
+        updateText();
+        updateTextPosition();
+    }
 
     /**
      * Update the text box position based on current tipData position

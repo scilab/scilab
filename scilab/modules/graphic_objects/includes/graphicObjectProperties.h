@@ -373,5 +373,6 @@
 
 #define __GO_DATATIP_DATA__                "DatatipData"
 #define __GO_DATATIP_ORIENTATION__         "DatatipOrientation"
+#define __GO_DATATIP_3COMPONENT__          "Datatip3Component"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
