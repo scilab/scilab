@@ -8,6 +8,8 @@ Xcos
 
 * Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
 
+* Bug #11735 fixed - Output sink name was not reported as figure name
+
 * Bug #11737 fixed - Incompatibility between a xcos menu and its description in the help page
 
 * Bug #11746 fixed - Xcos : closing the palette window with the crossing box
