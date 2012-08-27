@@ -15,12 +15,13 @@
 
 [a,b]=what();
 
-if with_module('arnoldi') then
-  if grep(a,'zneupd') == [] then pause,end
+if with_module("arnoldi") then
+    assert_checkfalse(isempty(grep(a, "zneupd")));
 end
 
-if with_module('graphics') then
-  if grep(a,'zoom_rect') == [] then pause,end
+if with_module("graphics") then
+    assert_checkfalse(isempty(grep(a,"zoom_rect")));
 end
 
-if part(a(1),1) <> '%' then pause,end
+assert_checkequal(part(a(1),1), "!");
+assert_checkequal(part(a(2),1), "%");
