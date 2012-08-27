@@ -152,6 +152,8 @@ Bug Fixes
 * Bug #11760 fixed - Exceptions were thrown when trying to display invalid
                      latex or mathml.
 
+* Bug #11761 fixed - There was an exception in rendering MathML.
+
 * Bug #11764 fixed - The 'ispc' m2sci help page was not updated regarding the
                      MSDOS removal.
 
