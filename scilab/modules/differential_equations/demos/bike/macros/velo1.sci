@@ -52,7 +52,6 @@ function []=velo1()
   realtime(0)
 
   curAxe = gca();
-  show_pixmap();
 
   for i=2:1:n2
 
