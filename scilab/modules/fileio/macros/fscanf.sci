@@ -64,7 +64,7 @@ function varargout = fscanf(fil, frmt)
     buf = mgetl(fil, 1);
   end
 
-  execstr("[" + args + "] = msscanf(buf, frmt);");
+  execstr("[v0," + args + "] = msscanf(buf, frmt);"); // v0 is the number of data raed
   execstr("varargout = list(" + args + ");");
 
 endfunction
