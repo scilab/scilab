@@ -147,6 +147,8 @@ Bug Fixes
 
 * Bug #11738 fixed - Rendering was bad and very slow when usign xsave/xload.
 
+* Bug #11745 fixed - Exporter didn't export in EPS but in PS.
+
 * Bug #11760 fixed - Exceptions were thrown when trying to display invalid
                      latex or mathml.
 

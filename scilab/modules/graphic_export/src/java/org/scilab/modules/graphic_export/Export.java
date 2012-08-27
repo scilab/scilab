@@ -387,7 +387,7 @@ public class Export {
             return new PSExporter();
         case EPS :
             loadPDF();
-            return new PSExporter();
+            return new EPSExporter();
         default :
             break;
         }
