@@ -32,6 +32,7 @@ Documentation
     - Special functions. See bug #11643.
     - Functions. See bug #11722.
     - Elementary functions better organization. See bug #11723.
+    - Input/Output functions. See bug #11726.
 
 
 Compilation
