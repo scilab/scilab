@@ -97,6 +97,9 @@ Bug Fixes
 
 * Bug #11554 fixed - After using xcosPalAdd, a message was printed on 'quit'.
 
+* Bug #11568 fixed - In SciNotes, only N-1 whites were used for a tab when N
+                     was set.
+
 * Bug #11592 fixed - In the documentation, example of bessel failed.
 
 * Bug #11597 fixed - On Mac OS X, the Preferences windows was not accessible

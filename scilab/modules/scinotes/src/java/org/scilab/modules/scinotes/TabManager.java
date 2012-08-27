@@ -57,7 +57,7 @@ public class TabManager {
         }
         doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         if (indent != null) {
-            indent.setProperties(tab, n);
+            indent.setProperties(tab, SciNotesOptions.getSciNotesDisplay().indentSize);
         }
     }
 
@@ -65,7 +65,7 @@ public class TabManager {
         if (tab.equals(" ")) {
             Element startL = elem.getElement(elem.getElementIndex(position));
             int sstart = position - startL.getStartOffset();
-            int len = (sstart / lengthTab + 1) * lengthTab - (sstart + 1);
+            int len = lengthTab - (sstart % lengthTab);
             if (len == 0) {
                 len = lengthTab;
             }
