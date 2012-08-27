@@ -53,6 +53,10 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
         return instance;
     }
 
+    public static void clean() {
+        instance = null;
+    }
+
     /**
      * {@inheritDoc}
      */
