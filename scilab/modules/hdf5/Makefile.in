@@ -513,33 +513,62 @@ libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
 #### hdf5 : test file ####
 libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data
-libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.sod \
+libscihdf5_la_testsampledata_DATA = \
+tests/sample_scilab_data/booleanmatrix.sod \
+tests/sample_scilab_data/booleanmatrix_v1.sod \
 tests/sample_scilab_data/booleanscalar.sod \
+tests/sample_scilab_data/booleanscalar_v1.sod \
 tests/sample_scilab_data/booleansparse.sod \
+tests/sample_scilab_data/booleansparse_v1.sod \
+tests/sample_scilab_data/emptymatrix.sod \
 tests/sample_scilab_data/emptysparse.sod \
+tests/sample_scilab_data/emptysparse_v1.sod \
 tests/sample_scilab_data/hypermatrixcomplex.sod \
+tests/sample_scilab_data/hypermatrixcomplex_v1.sod \
 tests/sample_scilab_data/hypermatrix.sod \
+tests/sample_scilab_data/hypermatrix_v1.sod \
 tests/sample_scilab_data/int16.sod \
+tests/sample_scilab_data/int16_v1.sod \
 tests/sample_scilab_data/int32.sod \
+tests/sample_scilab_data/int32_v1.sod \
 tests/sample_scilab_data/int8.sod \
+tests/sample_scilab_data/int8_v1.sod \
 tests/sample_scilab_data/list.sod \
+tests/sample_scilab_data/list_v1.sod \
 tests/sample_scilab_data/listnested.sod \
+tests/sample_scilab_data/listnested_v1.sod \
 tests/sample_scilab_data/matricedoublecomplex.sod \
+tests/sample_scilab_data/matricedoublecomplex_v1.sod \
 tests/sample_scilab_data/matricedoublecomplexscalar.sod \
+tests/sample_scilab_data/matricedoublecomplexscalar_v1.sod \
 tests/sample_scilab_data/matricedouble.sod \
+tests/sample_scilab_data/matricedouble_v1.sod \
 tests/sample_scilab_data/matricedoublescalar.sod \
+tests/sample_scilab_data/matricedoublescalar_v1.sod \
 tests/sample_scilab_data/matricestring.sod \
+tests/sample_scilab_data/matricestring_v1.sod \
 tests/sample_scilab_data/matricestringscalar.sod \
+tests/sample_scilab_data/matricestringscalar_v1.sod \
 tests/sample_scilab_data/mlist.sod \
+tests/sample_scilab_data/mlist_v1.sod \
 tests/sample_scilab_data/polynomialscoef.sod \
+tests/sample_scilab_data/polynomialscoef_v1.sod \
 tests/sample_scilab_data/polynomials.sod \
+tests/sample_scilab_data/polynomials_v1.sod \
 tests/sample_scilab_data/sparsematrix.sod \
+tests/sample_scilab_data/sparsematrix_v1.sod \
 tests/sample_scilab_data/tlist.sod \
+tests/sample_scilab_data/tlist_v1.sod \
 tests/sample_scilab_data/uint16.sod \
+tests/sample_scilab_data/uint16_v1.sod \
 tests/sample_scilab_data/uint32.sod \
+tests/sample_scilab_data/uint32_v1.sod \
 tests/sample_scilab_data/uint8.sod \
+tests/sample_scilab_data/uint8_v1.sod \
 tests/sample_scilab_data/undefinedelement.sod \
-tests/sample_scilab_data/voidelement.sod
+tests/sample_scilab_data/undefinedelement_v1.sod \
+tests/sample_scilab_data/voidelement.sod \
+tests/sample_scilab_data/voidelement_v1.sod
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

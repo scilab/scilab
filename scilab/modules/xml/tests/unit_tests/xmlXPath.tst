@@ -56,9 +56,9 @@ assert_checktrue(length(jarPath(1).attributes.on)>0); // Should be Console
 assert_checkequal(grep(jarPath(1).parent.attributes.value,".jar"),1);
 assert_checkequal(jarPath(1).parent.attributes.load,"onUse");
 
-jarPath=xmlXPath(xmlClasspath, "//classpaths/path[@load!=''onUse'']");
+jarPath=xmlXPath(xmlClasspath, "//classpaths/path[@load=''onUse'']");
 assert_checktrue(length(jarPath(1).attributes.value)>0);
-assert_checkequal(jarPath(1).attributes.load,"startup");
+assert_checkequal(jarPath(1).attributes.load,"onUse");
 assert_checkequal(jarPath(1).parent.name,"classpaths"); // it is the root dir
 
 

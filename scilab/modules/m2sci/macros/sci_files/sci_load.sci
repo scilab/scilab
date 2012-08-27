@@ -16,7 +16,7 @@ function [tree]=sci_load(tree)
 global("varslist")
 tree.name="loadmatfile"
 
-// If no rhs, then load all environnement
+// If no rhs, then load all environment
 if rhs<=0 then
   tree.name="loadmatfile"
   tree.rhs=Rhs_tlist("scilab.mat")

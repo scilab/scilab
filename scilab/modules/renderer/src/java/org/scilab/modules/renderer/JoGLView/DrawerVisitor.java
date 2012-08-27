@@ -111,7 +111,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 GraphicObjectProperties.__GO_AUTORESIZE__,
                 GraphicObjectProperties.__GO_POSITION__,
                 GraphicObjectProperties.__GO_SIZE__,
-                GraphicObjectProperties.__GO_ID__,
+                GraphicObjectProperties.__GO_ID__
             }));
 
     private static final boolean DEBUG_MODE = false;
@@ -868,7 +868,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     private boolean needUpdate(String id, String property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
-        if ((property != null) && (object != null) && isFigureChild(id)) {
+        String objectType = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if ((property != null) && (object != null) && isFigureChild(id)
+                && !objectType.equals(GraphicObjectProperties.__GO_UICONTROL__)
+                && !objectType.equals(GraphicObjectProperties.__GO_UIMENU__)) {
 
             if (GraphicObjectProperties.__GO_VALID__.equals(property)) {
                 return false;

@@ -159,8 +159,7 @@ function %_sodload(%__filename__, varargin)
                     xsetech(wrect=[0 0 .1 .1])
                     createSingleHandle(c.values(i));
                 end
-            end
-            if fields(i) == "visible" then
+            elseif fields(i) == "visible" then
                 isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));

@@ -129,17 +129,23 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
             int column = 0;
             for (String text : textLine) {
                 if (text != null) {
-                    Dimension dimension;
+                    Dimension dimension = null;
+                    Icon icon = null;
                     if (isLatex(text)) {
                         LoadClassPath.loadOnUse("graphics_latex_textrendering");
-                        TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
-                        formula.setColor(textColor);
-                        TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, font.getSize());
-                        dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
-                        entities[column][line] = icon;
+                        try {
+                            TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
+                            formula.setColor(textColor);
+                            icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, font.getSize());
+                        } catch (Exception e) { }
                     } else if (isMathML(text)) {
                         LoadClassPath.loadOnUse("graphics_mathml_textrendering");
-                        Icon icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize(), textColor);
+                        try {
+                            icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize(), textColor);
+                        } catch (Exception e) { }
+                    }
+
+                    if (icon != null) {
                         dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
                         entities[column][line] = icon;
                     } else {
@@ -322,14 +328,14 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      */
     protected float computeAlignmentFactor(Text text) {
         switch (text.getAlignmentAsEnum()) {
-            case LEFT:
-                return 0f;
-            case CENTER:
-                return 1f / 2f;
-            case RIGHT:
-                return 1f;
-            default:
-                return 0f;
+        case LEFT:
+            return 0f;
+        case CENTER:
+            return 1f / 2f;
+        case RIGHT:
+            return 1f;
+        default:
+            return 0f;
         }
     }
 

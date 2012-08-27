@@ -75,9 +75,9 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     int iFile = openHDF5File(pstExpandedFilename);
     if (iFile < 0)
     {
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
         FREE(pstExpandedFilename);
         FREE(pstFilename);
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
         return 1;
     }
 
@@ -86,16 +86,18 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     //manage version information
     int iVersion = getSODFormatAttribute(iFile);
-    if(iVersion != SOD_FILE_VERSION)
+    if (iVersion != SOD_FILE_VERSION)
     {
         if (iVersion > SOD_FILE_VERSION)
-        {//can't read file with version newer that me !
+        {
+            //can't read file with version newer that me !
             Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
         else
-        {//call older import functions and exit or ... EXIT !
-            if(iVersion == 1 || iVersion == -1)
+        {
+            //call older import functions and exit or ... EXIT !
+            if (iVersion == 1 || iVersion == -1)
             {
                 //sciprint("old sci_import_from_hdf5_v1\n");
                 return sci_import_from_hdf5_v1(fname, fname_len);
@@ -342,8 +344,9 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
             return false;
         }
     }
-    else if(iDims > 2)
-    {//hypermatrix
+    else if (iDims > 2)
+    {
+        //hypermatrix
         return false;
     }
     else
@@ -807,7 +810,7 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int *_piAddress, char *_
     FREE(pdblReal);
 
 
-    if(iComplex)
+    if (iComplex)
     {
         for (int i = 0; i < iSize; i++)
         {

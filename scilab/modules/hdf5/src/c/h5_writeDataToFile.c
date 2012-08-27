@@ -83,16 +83,27 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t * _piDims)
     */
 }
 
-static hsize_t* convertDims(int _iDims, int* _piDims, int* _piSize)
+static hsize_t* convertDims(int* _piRank, int* _piDims, int* _piSize)
 {
     int iSize = 1;
     int i = 0;
-    hsize_t* piDims = (hsize_t*)malloc(sizeof(hsize_t) * _iDims);
-    for (i = 0 ; i < _iDims ; i++)
+    hsize_t* piDims = (hsize_t*)malloc(sizeof(hsize_t) * *_piRank);
+    for (i = 0 ; i < *_piRank ; i++)
     {
         //reverse dimensions to improve rendering in external tools
-        piDims[i] = _piDims[_iDims - 1 - i];
+        piDims[i] = _piDims[*_piRank - 1 - i];
         iSize *= (int)piDims[i];
+    }
+    /*
+     * Fix bug under Linux due to this HDF5 error:
+     * HDF5-DIAG: Error detected in HDF5 (1.8.4-patch1) thread 140525686855488:
+     *   #000: ../../../src/H5S.c line 1335 in H5Screate_simple(): zero sized dimension for non-unlimited dimension
+     *     major: Invalid arguments to routine
+     *     minor: Bad value
+     */
+    if (iSize == 0)
+    {
+        *_piRank = 0;
     }
 
     *_piSize = iSize;
@@ -240,7 +251,7 @@ int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     herr_t status;
     hid_t iCompress;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
     //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     space = H5Screate_simple(_iDims, piDims, NULL);
     if (space < 0)
@@ -446,7 +457,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     int i = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     if (_iDims == 2 && piDims[0] == 0 && piDims[1] == 0)
     {
@@ -559,7 +570,7 @@ int writeDoubleComplexMatrix(int _iFile, char *_pstDatasetName, int _iDims, int*
     compoundId = H5Tcreate (H5T_COMPOUND, sizeof(doublecomplex));
     H5Tinsert(compoundId, "real", HOFFSET(doublecomplex, r), H5T_NATIVE_DOUBLE);
     H5Tinsert(compoundId, "imag", HOFFSET(doublecomplex, i), H5T_NATIVE_DOUBLE);
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     space = H5Screate_simple(_iDims, piDims, NULL);
@@ -620,7 +631,7 @@ int writeBooleanMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDi
     hid_t iCompress;
     hid_t iDataset;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -681,7 +692,7 @@ static int writeCommonPolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVa
     char *pstPathName = NULL;
     char *pstGroupName = NULL;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
     // Create ref matrix
     pData = (hobj_ref_t *)MALLOC(iSize * sizeof(hobj_ref_t));
 
@@ -818,7 +829,7 @@ int writeInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piD
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -880,7 +891,7 @@ int writeInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -941,10 +952,10 @@ int writeInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple(_iDims, piDims, NULL);
+    iSpace = H5Screate_simple(_iDims, piDims, piDims);
     if (iSpace < 0)
     {
         FREE(piDims);
@@ -1003,7 +1014,7 @@ int writeInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -1065,7 +1076,7 @@ int writeUnsignedInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, i
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -1127,7 +1138,7 @@ int writeUnsignedInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -1189,7 +1200,7 @@ int writeUnsignedInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);
@@ -1251,7 +1262,7 @@ int writeUnsignedInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     hid_t iCompress = 0;
     int iSize = 0;
 
-    piDims = convertDims(_iDims, _piDims, &iSize);
+    piDims = convertDims(&_iDims, _piDims, &iSize);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple(_iDims, piDims, NULL);

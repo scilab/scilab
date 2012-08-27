@@ -907,9 +907,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                        [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL - or libGL are installed and if the version is correct. Note
-that you might have to update etc/librarypath.xml to provide the actual path
-the the JNI libraries."])],
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])],
                        [-lGL])
                    fi
 
