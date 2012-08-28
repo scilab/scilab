@@ -1225,7 +1225,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
 
     scale = None; /*no scaling needed */
     if (isn == FFTW_BACKWARD) scale = Divide;
-    if (isrealA & !WITHMKL) /* To have type = C2C_PLAN
+    if (isrealA & !WITHMKL) /* To have type = C2C_PLAN*/
     {
         /*A is real */
         if (issymA)
