@@ -37,6 +37,8 @@ Documentation
     - Elementary functions better organization. See bug #11723.
     - Input/Output functions. See bug #11726.
 
+* Spelling corrections for the Online help - http://help.scilab.org/
+
 
 Compilation
 ===========
