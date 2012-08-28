@@ -1225,7 +1225,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
 
     scale = None; /*no scaling needed */
     if (isn == FFTW_BACKWARD) scale = Divide;
-    if (isrealA)
+    if (isrealA & !WITHMKL) /* To have type = C2C_PLAN
     {
         /*A is real */
         if (issymA)
@@ -1284,6 +1284,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         {
             /*c2c =  ~isrealA && ~issymA;*/
             /* use inplace transform*/
+            isrealA = 0;
             type = C2C_PLAN; /*  fftw_plan_guru_split_dft plans for an FFTW_FORWARD transform*/
             if (isn == FFTW_BACKWARD)
             {
