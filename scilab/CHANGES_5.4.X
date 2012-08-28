@@ -15,6 +15,7 @@ Xcos
 * Bug #11746 fixed - Xcos : closing the palette window with the crossing box
                      did not update the checkbox in Xcos "Affichage" menu.
 
+
 Obsolete functions
 ==================
 
@@ -169,6 +170,8 @@ Bug Fixes
 
 * Bug #11764 fixed - The 'ispc' m2sci help page was not updated regarding the
                      MSDOS removal.
+
+* Bug #11774 fixed - Wrong description of the help page of "now".
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
