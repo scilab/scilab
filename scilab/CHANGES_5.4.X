@@ -4,16 +4,16 @@
 Xcos
 ====
 
-* Bug #10041 fixed - WFILE_f block was not declared as deprecated
+* Bug #10041 fixed - WFILE_f block was not declared as deprecated.
 
-* Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type
+* Bug #10781 fixed - DFlipflop incorrectly reported problem in port size or type.
 
-* Bug #11735 fixed - Output sink name was not reported as figure name
+* Bug #11735 fixed - Output sink name was not reported as figure name.
 
-* Bug #11737 fixed - Incompatibility between a xcos menu and its description in the help page
+* Bug #11737 fixed - Incompatibility between a xcos menu and its description in the help page.
 
 * Bug #11746 fixed - Xcos : closing the palette window with the crossing box
-                     did not update the checkbox in Xcos "Affichage" menu
+                     did not update the checkbox in Xcos "Affichage" menu.
 
 Obsolete functions
 ==================
