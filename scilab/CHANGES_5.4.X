@@ -13,7 +13,7 @@ Xcos
 * Bug #11737 fixed - Incompatibility between a Xcos menu and its help page description.
 
 * Bug #11746 fixed - Closing the palette window with the crossing box
-                     did not update the checkbox in Xcos "Affichage" menu.
+                     did not update the checkbox in Xcos "View" menu.
 
 
 Obsolete Functions
@@ -87,20 +87,20 @@ Bug Fixes
 
 * Bug #9976 fixed - cdfbet function returned wrong value instead of 0.
 
-* Bug #10178 fixed - norm function returned the message: "division by zero" for
+* Bug #10178 fixed - norm function returned the message "division by zero" for
                      some sparse matrices.
 
 * Bug #10677 fixed - %to_6=%to_e, crashed Scilab under Windows x64 version.
 
 * Bug #11390 fixed - When cond function had one input argument, matrices could be
-                     non square. Moreover, the cond function has been updated to
+                     non square. Moreover, cond function has been updated to
                      give the possibility to use another norm than the one imposed
                      (by default 2-norm).
 
 * Bug #11411 fixed - save function used unsigned char to store string length.
                      Now it is an integer.
 
-* Bug #11426 fixed - Save function shew a warning message while saving user environment.
+* Bug #11426 fixed - save function shew a warning message while saving user environment.
 
 * Bug #11509 fixed - A progression bar was missing during Atoms operations.
 
@@ -173,7 +173,7 @@ Bug Fixes
 * Bug #11763 fixed - In SciNotes, number of recently opened files set in
                      preferences was not taken into account.
 
-* Bug #11764 fixed - 'ispc' m2sci help page was not updated regarding the
+* Bug #11764 fixed - ispc (Matlab to Scilab Conversion Tips) help page was not updated regarding the
                      MSDOS removal.
 
 * Bug #11774 fixed - Wrong description in now help page.
