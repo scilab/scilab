@@ -1,12 +1,19 @@
             Changes between version 5.4.0-beta-3 and 5.4.0 of Scilab
             ========================================================
 
+Xcos
+====
+
+* Bug #10943 fixed - Accented character in the file path broke file loading.
+
+
 Bug Fixes
 =========
 
 * Bug #8799 fixed - gsort did not work with hypermatrices.
 
 * Bug #11558 fixed - Typo in helptools module fixed.
+
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
