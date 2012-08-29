@@ -156,6 +156,7 @@ if ~Check(a,b,c,d) then pause,end
 function a = toto(x,y)
     a = x + y;
 endfunction
+l = list(toto);
 
 ref = toto(3*5, 9*3);
 save(TMPDIR + "/savemacro.sod", "toto");
@@ -163,6 +164,12 @@ clear toto;
 load(TMPDIR + "/savemacro.sod");
 assert_checkequal(toto(3*5, 9*3), ref);
 assert_checkequal(type(toto), 13);
+
+save(TMPDIR + "/savemacro.sod", "l");
+clear l;
+load(TMPDIR + "/savemacro.sod");
+assert_checkequal(l(1)(3*5, 9*3), ref);
+assert_checkequal(type(l(1)), 13);
 
 clear toto;
 deff("a = toto(x,y)", "a = x + y;", "n");
