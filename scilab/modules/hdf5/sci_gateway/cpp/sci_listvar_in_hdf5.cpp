@@ -82,14 +82,15 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     }
 
     char* pstFileName = expandPathVariable(pstFile);
-    iFile = openHDF5File(pstFileName);
+    iFile = openHDF5File(pstFileName, 0);
     if (iFile < 0)
     {
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
         FREE(pstFileName);
         FREE(pstFile);
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
         return 1;
     }
+
     FREE(pstFileName);
     FREE(pstFile);
 

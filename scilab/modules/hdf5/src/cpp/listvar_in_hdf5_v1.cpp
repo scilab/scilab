@@ -80,7 +80,7 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
     }
 
     char* pstFileName = expandPathVariable(pstFile);
-    iFile = openHDF5File(pstFileName);
+    iFile = openHDF5File(pstFileName, 0);
     if (iFile < 0)
     {
         FREE(pstFileName);

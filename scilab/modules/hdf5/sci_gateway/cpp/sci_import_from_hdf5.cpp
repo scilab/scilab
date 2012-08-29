@@ -72,7 +72,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     //open hdf5 file
     pstExpandedFilename = expandPathVariable(pstFilename);
-    int iFile = openHDF5File(pstExpandedFilename);
+    int iFile = openHDF5File(pstExpandedFilename, 0);
     if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);

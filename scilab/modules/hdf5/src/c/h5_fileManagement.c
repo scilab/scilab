@@ -79,7 +79,7 @@ int createHDF5File(char *name)
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int openHDF5File(char *name)
+int openHDF5File(char *name, int _iAppendMode)
 {
     hid_t           file;
     char *pathdest = getPathFilename(name);
@@ -110,7 +110,14 @@ int openHDF5File(char *name)
     /* Turn off error handling */
     H5Eset_auto2(H5E_DEFAULT, NULL, NULL);
 
-    file = H5Fopen(filename, H5F_ACC_RDWR, H5P_DEFAULT);
+    if(_iAppendMode == 0)
+    {//read only
+        file = H5Fopen(filename, H5F_ACC_RDONLY, H5P_DEFAULT);
+    }
+    else
+    {//read write to append
+        file = H5Fopen(filename, H5F_ACC_RDWR, H5P_DEFAULT);
+    }
     /* The following test will display the backtrace in case of error */
     /* Deactivated because displayed each time we call 'load' to open a non-HDF5 file */
     /*if (file < 0)
