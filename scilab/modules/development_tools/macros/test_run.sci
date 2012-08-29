@@ -608,12 +608,18 @@ function status = test_single(_module, _testPath, _testName)
     execMode = "NWNI";
   end
 
-
-  if ~isempty(grep(sciFile, "<-- MPI TEST -->")) then
+  MPITestPos=grep(sciFile, "<-- MPI TEST")
+  if ~isempty(MPITestPos) then
+    mpi_node=msscanf(sciFile(MPITestPos), "// <-- MPI TEST %d -->")
+    if mpi_node == [] then
+       // No node found ? No worries, default to 2
+       mpi_node = 2
+    end
     mpi = %t;
     execMode = "NWNI";
     reference = "skip";
   end
+  clear MPITestPos
 
   if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
     xcosNeeded = %T;
@@ -738,7 +744,7 @@ else
 end
 
   if mpi == %t then
-     prefix_bin="mpirun -c 2 -bynode"
+     prefix_bin="mpirun -c " + string(mpi_node) + "  -bynode"
   else
      prefix_bin=""
   end
