@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2010 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,72 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rcond">
-    <refnamediv>
-        <refname>rcond</refname>
-        <refpurpose>  inverse condition number</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>rcond(X)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>real or complex square matrix</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>rcond(X)</literal> is an estimate for the reciprocal of the
-            condition of <literal>X</literal> in the 1-norm.
-        </para>
-        <para>
-            If <literal>X</literal> is well conditioned, <literal>rcond(X)</literal> is close to 1.
-            If not, <literal>rcond(X)</literal> is close to 0.
-        </para>
-        <para>
-            We compute the 1-norm of A with Lapack/DLANGE, compute its LU decomposition with Lapack/DGETRF 
-            and finally estimate the condition with Lapack/DGECON.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rcond">
+  <refnamediv>
+    <refname>rcond</refname>
+    <refpurpose>  estimation de l'inverse du conditionnement  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>rcond(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>matrice carrée réelle ou complexe
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>rcond(X)</literal> est une estimation de l'inverse du conditionnement de <literal>X</literal> pour la norme l_1.
+    </para>
+    <para>
+      Si <literal>X</literal> est bien conditionnée, <literal>rcond(X)</literal> est proche 1.
+      Sinon, <literal>rcond(X)</literal> est proche de 0.
+    </para>
+    <para>
+      <literal>[r,z]=rcond(X)</literal> renvoie <literal>rcond(X)</literal> dans
+      <literal>r</literal> et renvoie aussi <literal>z</literal> tel que <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal> 
+    </para>
+    <para>
+      Ainsi,  si <literal>rcond</literal> est très petit <literal>z</literal> est un vecteur se trouvant dans le noyau de X.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
 A=diag([1:10]);
 rcond(A)
 A(1,1)=0.000001;
 rcond(A)
  ]]></programlisting>
-        <para>
-            Estimating the 1-norm inverse condition number with <literal>rcond</literal> is 
-            much faster than computing the 2-norm condition number with <literal>cond</literal>.
-            As a trade-off, <literal>rcond</literal> may be less reliable.
-        </para>
-        <programlisting role="example"><![CDATA[ 
-    A=ones(1000,1000);
-    timer();cond(A);timer()
-    timer();1/rcond(A);timer()
- ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="svd">svd</link>
-            </member>
-            <member>
-                <link linkend="cond">cond</link>
-            </member>
-            <member>
-                <link linkend="inv">inv</link>
-            </member>
-        </simplelist>
-    </refsection>
+  </refsection>
+  <refsection role="see also">
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="cond">cond</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

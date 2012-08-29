@@ -291,8 +291,8 @@ plot3d2(X,Y,Z);
 // apenas no novo modo de gráficos 
 e=gce();
 e.color_mode=4; // mudando a cor
-f=e.data;
-TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,10*(f.z)+1);
+f_data=e.data;
+TL = tlist(["3d" "x" "y" "z" "color"],f_data.x,f_data.y,f_data.z,10*(f_data.z)+1);
 e.data=TL;
 e.color_flag=2;
  ]]></programlisting>

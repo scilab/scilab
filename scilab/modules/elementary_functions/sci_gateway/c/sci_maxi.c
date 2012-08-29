@@ -160,10 +160,11 @@ int func_comp(char* fname, int _iMini, void* pvApiCtx)
 		}
 		break;
 	case sci_sparse:
-		if(iModeActive)
-			sci_spmin(fname, pvApiCtx);
-		else
-			sci_spmax(fname, pvApiCtx);
+        //TODO YASP
+		//if(iModeActive)
+		//	sci_spmin(fname, pvApiCtx);
+		//else
+		//	sci_spmax(fname, pvApiCtx);
 		break;
 	default:
 		OverLoad(1);

@@ -141,7 +141,7 @@
                 <term>17</term>
                 <listitem>
                     <para>
-                        matrix oriented typed list (<link linkend="tlist">mlist</link>).
+                        matrix oriented typed list (<link linkend="mlist">mlist</link>).
                     </para>
                 </listitem>
             </varlistentry>

@@ -5,8 +5,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // Load previously saved data (check backward compatibility)
 
+
+///// Empty matrix
+import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/emptymatrix.sod");
+assert_checkequal(emptymatrix, []);
 
 ///// Double
 import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/matricedoublescalar.sod");
@@ -178,7 +184,7 @@ assert_checkequal(undefinedelement, undefinedelement_ref);
 
 // void
 voidelement_ref=list(1,,3);
-import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/voidelement.sod")
+import_from_hdf5(SCI+"/modules/hdf5/tests/sample_scilab_data/voidelement.sod");
 // Commented because of bug 9529
 //assert_checkequal(voidelement, voidelement_ref);
 

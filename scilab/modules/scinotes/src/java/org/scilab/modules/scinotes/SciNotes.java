@@ -236,6 +236,10 @@ public class SciNotes extends SwingScilabTab {
             SciNotesAutosave.stopAutosave();
             SciNotesAutosave.autosave();
         }
+        if (conf.preferences) {
+            RecentFileAction.updateRecentOpenedFilesMenu();
+        }
+
         updatePanes(conf);
     }
 

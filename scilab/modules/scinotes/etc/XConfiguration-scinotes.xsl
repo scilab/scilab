@@ -6,11 +6,11 @@
     <Title text="_(Editor)">
       <VBox>
         <HBox>
-	  <Checkbox checked="{@scinotes}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Use SciNotes)">
-	    <actionPerformed choose="scinotes">
-	      <xsl:call-template name="context"/>
-          </actionPerformed>
-	  </Checkbox>
+          <Checkbox checked="{@scinotes}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Use SciNotes)">
+            <actionPerformed choose="scinotes">
+              <xsl:call-template name="context"/>
+            </actionPerformed>
+          </Checkbox>
           <Glue/>
         </HBox>
         <xsl:variable name="enable">
@@ -272,7 +272,7 @@
         <NumericalSpinner gridx="2"
                           gridy="1"
                           weightx="0"
-                          min-value = "1"
+                          min-value = "0"
                           increment = "1"
                           length = "3"
                           listener = "ActionListener"
@@ -288,38 +288,53 @@
           </actionPerformed>
         </Checkbox>
 
-        <Label text="_(Representation: )" gridx="1" gridy="2" weightx="0"/>
-        <Radiobutton value="{@tab-representation}" expected-value="chevrons" listener="ActionListener" text="_(Chevrons)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="true">
+        <xsl:variable name="enable">
+          <xsl:choose>
+            <xsl:when test="@use-spaces='true'">
+              <xsl:text>false</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>true</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
+        <Label text="_(Representation: )" gridx="1" gridy="2" weightx="0" enable="{$enable}"/>
+        <Radiobutton value="{@tab-representation}" expected-value="chevrons" listener="ActionListener" text="_(Chevrons)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{$enable}">
           <actionPerformed choose="tab-representation">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Radiobutton>
-        <Radiobutton value="{@tab-representation}" expected-value="hrule" listener="ActionListener" text="_(Horizontal rule)" gridx="3" gridy="2" fill="none" weightx="0" anchor="west" enable="true">
+        <Radiobutton value="{@tab-representation}" expected-value="hrule" listener="ActionListener" text="_(Horizontal rule)" gridx="3" gridy="2" fill="none" weightx="0" anchor="center" enable="{$enable}">
           <actionPerformed choose="tab-representation">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Radiobutton>
-        <Radiobutton value="{@tab-representation}" expected-value="vrule" listener="ActionListener" text="_(Vertical rule)" gridx="4" gridy="2" fill="none" weightx="0" anchor="west" enable="true">
+        <Radiobutton value="{@tab-representation}" expected-value="vrule" listener="ActionListener" text="_(Vertical rule)" gridx="4" gridy="2" fill="none" weightx="0" anchor="west" enable="{$enable}">
           <actionPerformed choose="tab-representation">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Radiobutton>
 
         <Checkbox checked="{@automatic-indent}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Enable auto indentation)" gridx="1" gridy="3" fill="none" weightx="0" anchor="west">
-          <actionPerformed choose="use-spaces">
+          <actionPerformed choose="automatic-indent">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </Checkbox>
-        <Label gridy="4" text="_(Indent size: )"/>
-        <Panel gridy="4" gridx="2" >
-          <xsl:call-template name="Select">
-            <xsl:with-param name="among">
-              <option indent-size="2"/>
-              <option indent-size="4"/>
-              <option indent-size="8"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </Panel>
+        <Label gridy="4" text="_(Indent size: )" enable="{@automatic-indent}"/>
+        <NumericalSpinner gridx="2"
+                          gridy="4"
+                          weightx="0"
+                          min-value = "0"
+                          increment = "1"
+                          length = "3"
+                          enable="{@automatic-indent}"
+                          listener = "ActionListener"
+                          value = "{@indent-size}">
+          <actionPerformed choose="indent-size">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </NumericalSpinner>
       </Grid>
     </Title>
   </xsl:template>

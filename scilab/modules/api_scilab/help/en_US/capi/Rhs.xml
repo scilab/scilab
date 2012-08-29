@@ -5,6 +5,7 @@
         <refpurpose>
             A C gateway function which provides the number of input
             arguments present in the calling Scilab function
+            <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

@@ -64,14 +64,14 @@ int sci_multiplybypi(char *fname)
     }
 
     /* Create the matrix as return of the function */
-    createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, m1, n1, matrixOfDouble);
+    createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, matrixOfDouble);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
     ReturnArguments(pvApiCtx);
 

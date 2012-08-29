@@ -28,7 +28,7 @@ function [d, v] = eigs(varargin)
             resid = rand(size(varargin(1), "r"), 1).* %i;
         end
     end
-    
+
     if(rhs > 1 & typeof(varargin(1)) ==  "function")
         if(size(varargin(2)) <> 1)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive integer expected if the first input argument is a function."), "eigs",2));
@@ -326,7 +326,7 @@ function [d, v] = eigs(varargin)
 
 endfunction
 
-function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, resid, info)
+function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, resid, info)
     lhs = argn(1);
     rvec = 0;
     if(lhs > 1)
@@ -340,7 +340,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
 
     //check if A is a square matrix
     if(mA * nA < 2 | mA <> nA)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: a square matrix expected.\n"), "speigs", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A square matrix expected.\n"), "eigs", 1));
     end
 
     //check if A is complex
@@ -352,48 +352,40 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     //*************************
     //Second variable B :
     //*************************
-    if((typeof(B) <> "constant") & (typeof(B) <> "sparse"))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "speigs", 2));
+    if((typeof(%_B) <> "constant") & (typeof(%_B) <> "sparse"))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "eigs", 2));
     end
-    [mB, nB] = size(B);
+    [mB, nB] = size(%_B);
 
     //Check if B is a square matrix
     if(mB * nB == 1 | mB <> nB)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "speigs", 2));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 2));
     end
 
     //check if B is complex
-    Breal = isreal(B);
+    Breal = isreal(%_B);
     matB = mB * nB;
 
     //*************************
     //NEV :
     //*************************
     //verification du type de nev
-    if(typeof(nev) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"), "speigs", 3));
-    end
-
     //check if nev is complex?
-    if(~isreal(nev))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"), "speigs", 3));
-    end
-
-    if(size(nev, "*") <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: k must be 1 by 1 size.\n"), "speigs", 3));
+    if(typeof(nev) <> "constant") | (~isreal(nev)) | (size(nev,"*") <> 1)
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 3));
     end
 
     if(nev <> floor(nev) | (nev<=0))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "speigs", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "eigs", 3));
     end
 
     if(Asym & Areal & Breal)
         if(nev >= nA)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: For real symmetric problems, k must be in the range 1 to N - 1.\n"), "speigs", 3));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: For real symmetric problems, k must be an integer in the range 1 to N - 1.\n"), "eigs", 3));
         end
     else
         if(nev >= nA - 1)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: For real non symmetric or complex problems, k must be in the range 1 to N - 2.\n"), "speigs", 3));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: For real non symmetric or complex problems, k must be an integer in the range 1 to N - 2.\n"), "eigs", 3));
         end
     end
 
@@ -404,31 +396,33 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     select type(which)
     case 1 then
         if(typeof(which) <> "constant" | which == [] | isnan(which))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: a scalar expected.\n"), "speigs", 4));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 4));
         end
         sigma = which;
         which = 'LM';
+
     case 10 then
         [mWHICH, nWHICH] = size(which);
         if(mWHICH * nWHICH <> 1)
-            error(msprintf(gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), "speigs", 4));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "eigs", 4));
         end
         if(strcmp(which,'LM') ~= 0 & strcmp(which,'SM') ~= 0  & strcmp(which,'LR') ~= 0 & strcmp(which,'SR') ~= 0 & strcmp(which,'LI') ~= 0 & strcmp(which,'SI') ~= 0 & strcmp(which,'LA') ~= 0 & strcmp(which,'SA') ~= 0 & strcmp(which,'BE') ~= 0)
             if(Areal & Breal & Asym)
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s or %s.\n"), "speigs", 4, "LM", "SM", "LA", "SA", "BE"));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of ''%s'', ''%s'', ''%s'', ''%s'' or ''%s''.\n"), "eigs", 4, "LM", "SM", "LA", "SA", "BE"));
             else
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s, %s or %s.\n"), "speigs", 4, "LM", "SM", "LR", "SR", "LI", "SI"));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s''.\n"), "eigs", 4, "LM", "SM", "LR", "SR", "LI", "SI"));
             end
         end
         if((~Areal | ~Breal | ~Asym) & (strcmp(which,'LA') == 0 | strcmp(which,'SA') == 0 | strcmp(which,'BE') == 0))
-            error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "speigs"));
+            error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs"));
         end
         if(Areal & Breal & Asym & (strcmp(which,'LR') == 0 | strcmp(which,'SR') == 0 | strcmp(which,'LI') == 0 | strcmp(which,'SI') == 0))
-            error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "speigs"));
+            error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "eigs"));
         end
         sigma = 0;
+
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"), "speigs", 4));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"), "eigs", 4));
     end
 
     if(~Areal | ~Breal)
@@ -438,53 +432,34 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     //*************************
     //MAXITER :
     //*************************
-    if(typeof(maxiter) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "speigs", 5, "opts.maxiter"));
-    end
-
-    //check if maxiter is complex?
-    if(~isreal(maxiter))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "speigs", 5, "opts.maxiter"));
-    end
-
-    if(size(maxiter, "*") <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument(s) #%d: %s must be a scalar.\n"), "speigs", 5, "opts.maxiter"));
+    if(typeof(maxiter) <> "constant" | ~isreal(maxiter) | size(maxiter, "*") <> 1)
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 5, "opts.maxiter"));
     end
 
     if((maxiter <> floor(maxiter)) | (maxiter <= 0) )
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "speigs", 5, "opts.maxiter"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "eigs", 5, "opts.maxiter"));
     end
 
     //*************************
     //TOL :
     //*************************
-    if(typeof(tol) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "speigs", 6, "opts.tol"));
-    end
-
-    //check if tol is complex?
-    if(~isreal(tol) | isnan(tol))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "speigs", 6, "opts.tol"));
+    if(typeof(tol) <> "constant" | ~isreal(tol) | isnan(tol))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "eigs", 6, "opts.tol"));
     end
 
     if(size(tol, "*") <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"), "speigs", 6, "opts.tol"));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"), "eigs", 6, "opts.tol"));
     end
 
     //*************************
     //NCV :
     //*************************
-    if(typeof(ncv) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
-    end
-
-    //check if ncv is complex?
-    if(~isreal(ncv))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
+    if(typeof(ncv) <> "constant" | ~isreal(ncv))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv"));
     end
 
     if(size(ncv, "*") > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "speigs", 7, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv"));
     end
 
     if(isempty(ncv))
@@ -496,11 +471,11 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     else
         if(ncv <= nev | ncv > nA)
             if(Asym & Areal & Breal)
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), "speigs", 7));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), "eigs", 7));
             elseif(~Asym & Areal & Breal)
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV < N.\n"), "speigs", 7));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV < N.\n"), "eigs", 7));
             else
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), "speigs", 7));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), "eigs", 7));
             end
         end
     end
@@ -508,43 +483,43 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     //*************************
     //CHOL :
     //*************************
-    if(typeof(cholB) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
-    end
+    select typeof(cholB)
+    case "boolean"
+        if and(opts.cholB <> [%f %t]) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+        end
+    case "constant"
+        //check if chol is complex?
+        if(~isreal(cholB) | size(cholB, "*") <> 1)
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
+        end
 
-    //check if chol is complex?
-    if(~isreal(cholB))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
-    end
-
-    if(size(cholB, "*") <> 1 | cholB <> floor(cholB) | cholB > 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be between 0 and 1 .\n"), "speigs", 8, "opts.cholB"));
-    end
-
-    if(cholB <> floor(cholB) | cholB > 1)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "speigs", 8, "opts.cholB"));
+        if(and(cholB <> [0 1]))
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+        end
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
     end
 
     //*************************
     //RESID :
     //*************************
     if(typeof(resid) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "speigs", 9));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "eigs", 9));
     end
 
-    [mRESID, nRESID] = size(resid);
-    if(mRESID * nRESID ~= nA)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"), "speigs", 9, "opts.resid"));
+    if(size(resid, "*") ~= nA)
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"), "eigs", 9, "opts.resid"));
     end
 
     if(Areal & Breal)
         //resid complexe ?
         if(~isreal(resid))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector %s must be real for real problems.\n"), "speigs", 9, "opts.resid"));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector %s must be real for real problems.\n"), "eigs", 9, "opts.resid"));
         end
     else
         if(isreal(resid))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector %s must be complex for complex problems.\n"), "speigs", 9, "opts.resid"));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector %s must be complex for complex problems.\n"), "eigs", 9, "opts.resid"));
         end
     end
 
@@ -569,18 +544,18 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     end
 
     if(cholB)
-        if(~and(triu(B) == B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "speigs", 2));
+        if(~and(triu(%_B) == %_B))
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2));
         end
-        R = B;
+        R = %_B;
         Rprime = R';
     end
 
     if(~cholB & matB <> 0 & iparam(7) == 1)
         if(~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "speigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
         else
-            [R,P] = spchol(B);
+            [R,P] = spchol(%_B);
         end
         Rprime = R';
     end
@@ -597,7 +572,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
             if(cholB)
                 AMSB = A - (sigma * Rprime * R);
             else
-                AMSB = A - sigma * B;
+                AMSB = A - sigma * %_B;
             end
         end
         if(~isreal(AMSB))
@@ -652,18 +627,18 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
             if(Asym)
                 [ido, resid, v, iparam, ipntr, workd, workl, info] = dsaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
                 if(info < 0)
-                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "DSAUPD", info));
+                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSAUPD", info));
                 end
             else
                 [ido, resid, v, iparam, ipntr, workd, workl, info] = dnaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
                 if(info < 0)
-                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "DNAUPD", info));
+                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNAUPD", info));
                 end
             end
         else
             [ido, resid, v, iparam, ipntr, workd, workl, rwork, info] = znaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info);
             if(info < 0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "ZNAUPD", info));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNAUPD", info));
             end
         end
 
@@ -683,7 +658,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
                             workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) *workd(ipntr(1):ipntr(1)+nA-1);
                         else
                             if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "speigs"));
+                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
                             else
                                 workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(1):ipntr(1)+nA-1);
                             end
@@ -694,19 +669,19 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
                         if(cholB)
                             workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
                         else
-                            workd(ipntr(2):ipntr(2)+nA-1) = B * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                     elseif(ido == -1)
                         if(cholB)
                             workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
                         else
-                            workd(ipntr(2):ipntr(2)+nA-1) = B * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                         if(Areal & Breal)
                             workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) *workd(ipntr(2):ipntr(2)+nA-1);
                         else
                             if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "speigs"));
+                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
                             else
                                 workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(2):ipntr(2)+nA-1);
                             end
@@ -716,7 +691,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
                             workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) * workd(ipntr(3):ipntr(3)+nA-1);
                         else
                             if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "speigs"));
+                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
                             else
                                 workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(3):ipntr(3)+nA-1);
                             end
@@ -726,12 +701,12 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
             else
                 if(Areal & Breal)
                     if(Asym)
-                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "speigs", "DSAUPD"));
+                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "DSAUPD"));
                     else
-                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "speigs", "DNAUPD"));
+                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "DNAUPD"));
                     end
                 else
-                    error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "speigs", "ZNAUPD"));
+                    error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "ZNAUPD"));
                 end
             end
         end
@@ -741,7 +716,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
         if(Asym)
             [d, z, resid, v, iparam, iptnr, workd, workl, info_eupd] = dseupd(rvec, howmny, _select, d, z, sigma, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
             if(info_eupd <> 0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "DSEUPD", info_eupd));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSEUPD", info_eupd));
             else
                 res_d = d;
                 if(rvec)
@@ -754,7 +729,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
             sigmai = imag(sigma);
             [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(rvec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
             if(info_eupd <> 0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "DNEUPD", info_eupd));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNEUPD", info_eupd));
             else
                 res_d = complex(dr,di);
                 res_d(nev+1) = [];
@@ -774,7 +749,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
     else
         [d, z, resid, iparam, ipntr, workd, workl, rwork, info_eupd] = zneupd(rvec, howmny, _select, d, z, sigma, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info_eupd);
         if(info_eupd <> 0)
-            error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "speigs", "ZNEUPD", info_eupd));
+            error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNEUPD", info_eupd));
         else
             d(nev+1) = []
             res_d = d;
@@ -787,7 +762,7 @@ function [res_d, res_v] = speigs(A, B, nev, which, maxiter, tol, ncv, cholB, res
 endfunction
 
 
-function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym)
+function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym)
     lhs = argn(1);
     rvec = 0;
     if(lhs > 1)
@@ -798,58 +773,50 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     //Second variable nA :
     //**************************
     if(size(nA,'*') <> 1 | ~isreal(nA) | typeof(nA) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: n must be a positive integer.\n"), "feigs", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: n must be a positive integer.\n"), "eigs", 2));
     end
 
     if(floor(nA) <> nA | nA <= 0)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: n must be a positive integer.\n"), "feigs", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: n must be a positive integer.\n"), "eigs", 2));
     end
 
     //*************************
     //Third variable B :
     //*************************
-    if((typeof(B) <> "constant") & (typeof(B) <> "sparse"))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "feigs", 3));
+    if((typeof(%_B) <> "constant") & (typeof(%_B) <> "sparse"))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "eigs", 3));
     end
-    [mB, nB] = size(B);
+    [mB, nB] = size(%_B);
 
     //Check if B is a square matrix
     if(mB * nB == 1 | mB <> nB)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "feigs", 3));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 3));
     end
 
     //check if B is complex
-    Breal = isreal(B);
+    Breal = isreal(%_B);
     matB = mB * nB;
 
     //*************************
     //NEV :
     //*************************
-    //Check nev type
-    if(typeof(nev) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"), "feigs", 4));
-    end
-
+    //verification du type de nev
     //check if nev is complex?
-    if(~isreal(nev))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"), "feigs", 4));
-    end
-
-    if(size(nev,'*') <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: k must be 1 by 1 size.\n"), "feigs", 3));
+    if(typeof(nev) <> "constant") | (~isreal(nev)) | (size(nev,"*") <> 1)
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 3));
     end
 
     if(nev <> floor(nev) | (nev<=0))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "feigs", 4));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "eigs", 4));
     end
 
     if(a_sym & a_real & Breal)
         if(nev >= nA)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: For real symmetric problems, k must be in the range 1 to N - 1.\n"), "feigs", 4));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: For real symmetric problems, k must be in the range 1 to N - 1.\n"), "eigs", 4));
         end
     else
         if(nev >= nA - 1)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: For real non symmetric or complex problems, k must be in the range 1 to N - 2.\n"), "feigs", 4));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: For real non symmetric or complex problems, k must be in the range 1 to N - 2.\n"), "eigs", 4));
         end
     end
 
@@ -860,31 +827,31 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     select type(which)
     case 1 then
         if(typeof(which) <> "constant" | which == [] | isnan(which))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: a scalar expected.\n"), "feigs", 5));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: a scalar expected.\n"), "eigs", 5));
         end
         sigma = which;
         which = 'LM';
     case 10 then
         [mWHICH, nWHICH] = size(which);
         if(mWHICH * nWHICH <> 1)
-            error(msprintf(gettext("%s: Wrong dimension for input argument(s) #%d: a string expected.\n"), "feigs", 5));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "eigs", 5));
         end
         if(strcmp(which,'LM') ~= 0 & strcmp(which,'SM') ~= 0  & strcmp(which,'LR') ~= 0 & strcmp(which,'SR') ~= 0 & strcmp(which,'LI') ~= 0 & strcmp(which,'SI') ~= 0 & strcmp(which,'LA') ~= 0 & strcmp(which,'SA') ~= 0 & strcmp(which,'BE') ~= 0)
             if(a_real & Breal & a_sym)
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s or %s.\n"), "feigs", 5, "LM", "SM", "LA", "SA", "BE"));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s or %s.\n"), "eigs", 5, "LM", "SM", "LA", "SA", "BE"));
             else
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s, %s or %s.\n"), "feigs", 5, "LM", "SM", "LR", "SR", "LI", "SI"));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s, %s or %s.\n"), "eigs", 5, "LM", "SM", "LR", "SR", "LI", "SI"));
             end
         end
         if((~a_real | ~Breal | ~a_sym) & (strcmp(which,'LA') == 0 | strcmp(which,'SA') == 0 | strcmp(which,'BE') == 0))
-            error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "feigs"));
+            error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs"));
         end
         if(a_real & Breal & a_sym & (strcmp(which,'LR') == 0 | strcmp(which,'SR') == 0 | strcmp(which,'LI') == 0 | strcmp(which,'SI') == 0))
-            error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "feigs"));
+            error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "eigs"));
         end
         sigma = 0;
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"), "feigs", 5));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"), "eigs", 5));
     end
 
     if(~a_real | ~Breal)
@@ -894,55 +861,35 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     //*************************
     //MAXITER :
     //*************************
-    if(typeof(maxiter) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "feigs", 6, "opts.maxiter"));
-    end
-
-    //check if maxiter is complex?
-    if(~isreal(maxiter))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "feigs", 6, "opts.maxiter"));
-    end
-
-    if(size(maxiter,'*') <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be a scalar.\n"), "feigs", 6, "opts.maxiter"));
+    if(typeof(maxiter) <> "constant" | ~isreal(maxiter) | size(maxiter,'*') <> 1)
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 6, "opts.maxiter"));
     end
 
     if((maxiter <> floor(maxiter)) | (maxiter <= 0) )
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "feigs", 6, "opts.maxiter"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "eigs", 6, "opts.maxiter"));
     end
 
     //*************************
     //TOL :
     //*************************
-    if(typeof(tol) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "feigs", 7, "opts.tol"));
-    end
-
-    //check if tol is complex?
-    if(~isreal(tol) | isnan(tol))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "feigs", 7, "opts.tol"));
+    if(typeof(tol) <> "constant" | ~isreal(tol) | isnan(tol))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "eigs", 7, "opts.tol"));
     end
 
     if(size(tol,'*') <> 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"), "feigs", 7, "opts.tol"));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"), "eigs", 7, "opts.tol"));
     end
 
     //*************************
     //NCV :
     //*************************
-    if(typeof(ncv) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
-    end
-
-    //check if ncv is complex?
-    if(~isreal(ncv))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
+    if(typeof(ncv) <> "constant" | ~isreal(ncv))
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 8, "opts.ncv"));
     end
 
     if(size(ncv,'*') > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "feigs", 8, "opts.ncv"));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "eigs", 8, "opts.ncv"));
     end
-	
 
     if(isempty(ncv))
         if(~a_sym & a_real & Breal)
@@ -953,55 +900,56 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     else
         if(ncv <= nev | ncv > nA)
             if(a_sym & a_real & Breal)
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), "feigs", 8));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), "eigs", 8));
             elseif(~a_sym & a_real & Breal)
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV < N.\n"), "feigs", 8));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV < N.\n"), "eigs", 8));
 
             else
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), "feigs", 8));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), "eigs", 8));
             end
         end
     end
-    if(ncv == nA & rvec & ~a_sym & Areal & Breal)
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: For real non symmetric problems, %s must be less than N.\n"), "feigs", 7, "NCV"));
-    end
-
 
     //*************************
     //CHOL :
     //*************************
-    if(typeof(cholB) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 9, "opts.cholB"));
-    end
+    select typeof(cholB)
+    case "boolean"
+        if and(cholB <> [%f %t]) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+        end
+    case "constant"
+        //check if chol is complex?
+        if(~isreal(cholB) | size(cholB, "*") <> 1)
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
+        end
 
-    //check if chol is complex?
-    if(~isreal(cholB))
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "feigs", 9, "opts.cholB"));
-    end
-
-    if(size(cholB,'*') <> 1 | cholB <> floor(cholB) | cholB > 1)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be between 0 and 1 .\n"), "feigs", 9, "opts.cholB"));
+        if(and(cholB <> [0 1]))
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+        end
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
     end
 
     //*************************
     //RESID :
     //*************************
     if(typeof(resid) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "feigs", 10));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "eigs", 10));
     end
 
     if(size(resid,'*') ~= nA)
-        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: Start vector opts.resid must be N by 1.\n"), "feigs", 10));
+        error(msprintf(gettext("%s: Wrong dimension for input argument #%d: Start vector opts.resid must be N by 1.\n"), "eigs", 10));
     end
 
     if(a_real & Breal)
         //resid complexe ?
         if(~isreal(resid))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector opts.resid must be real for real problems.\n"), "feigs", 10));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector opts.resid must be real for real problems.\n"), "eigs", 10));
         end
     else
         if(isreal(resid))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector opts.resid must be complex for complex problems.\n"), "feigs", 10));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector opts.resid must be complex for complex problems.\n"), "eigs", 10));
         end
     end
 
@@ -1026,21 +974,21 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     end
 
     if(cholB)
-        if(~and(triu(B) == B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "feigs", 2));
+        if(~and(triu(%_B) == %_B))
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2));
         end
-        R = B;
+        R = %_B;
         Rprime = R';
     end
 
     if(~cholB & matB <> 0 & iparam(7) == 1)
         if(~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "feigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
         else
-            if(issparse(B))
-                [R,P] = spchol(B);
+            if(issparse(%_B))
+                [R,P] = spchol(%_B);
             else
-                R = chol(B);
+                R = chol(%_B);
             end
             Rprime = R';
         end
@@ -1080,24 +1028,23 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
         z = zeros(nA, nev) + 0 * %i;
         workev = zeros(2 * ncv, 1) + 0 * %i;
     end
-
     while(ido <> 99)
         if(a_real & Breal)
             if(a_sym)
                 [ido, resid, v, iparam, ipntr, workd, workl, info] = dsaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_aupd);
                 if(info_aupd <0)
-                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "DSAUPD", info_aupd));
+                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSAUPD", info_aupd));
                 end
             else
                 [ido, resid, v, iparam, ipntr, workd, workl, info] = dnaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_aupd);
                 if(info_aupd <0)
-                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "DNAUPD", info_aupd));
+                    error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNAUPD", info_aupd));
                 end
             end
         else
             [ido, resid, v, iparam, ipntr, workd, workl, rwork, info] = znaupd(ido, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info_aupd);
             if(info_aupd <0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "ZNAUPD", info_aupd));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNAUPD", info_aupd));
             end
         end
 
@@ -1132,13 +1079,13 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
                         if(cholB)
                             workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
                         else
-                            workd(ipntr(2):ipntr(2)+nA-1) = B * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                     elseif(ido == -1)
                         if(cholB)
                             workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
                         else
-                            workd(ipntr(2):ipntr(2)+nA-1) = B * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                         ierr = execstr('A_fun(workd(ipntr(2):ipntr(2)+nA-1))', 'errcatch');
                         if(ierr <> 0)
@@ -1156,12 +1103,12 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
             else
                 if(a_real & Breal)
                     if(a_sym)
-                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "feigs", "DSAUPD"));
+                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "DSAUPD"));
                     else
-                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "feigs", "DNAUPD"));
+                        error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "DNAUPD"));
                     end
                 else
-                    error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "feigs", "ZNAUPD"));
+                    error(msprintf(gettext("%s: Error with %s: unknown mode returned.\n"), "eigs", "ZNAUPD"));
                 end
             end
         end
@@ -1169,16 +1116,16 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
 
     if(ierr <> 0)
         if(ierr == 10)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: n does not match rows number of matrix A.\n"), "feigs", 2));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: n does not match rows number of matrix A.\n"), "eigs", 2));
         end
-        error(msprintf(gettext("%s: Wrong type or value for input arguments.\n"), "feigs"));
+        error(msprintf(gettext("%s: Wrong type or value for input arguments.\n"), "eigs"));
     end
 
     if(a_real & Breal)
         if(a_sym)
             [d, z, resid, v, iparam, iptnr, workd, workl, info_eupd] = dseupd(rvec, howmny, _select, d, z, sigma, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
             if(info <> 0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "DSEUPD", info));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSEUPD", info));
             else
                 res_d = d;
 
@@ -1192,7 +1139,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
             sigmai = imag(sigma);
             [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(rvec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
             if(info <> 0)
-                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "DNEUPD", info));
+                error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNEUPD", info));
             else
                 res_d = complex(dr,di);
                 res_d(nev+1) = [];
@@ -1212,7 +1159,7 @@ function [res_d, res_v] = feigs(A_fun, nA, B, nev, which, maxiter, tol, ncv, cho
     else
         [d, z, resid, iparam, ipntr, workd, workl, rwork, info_eupd] = zneupd(rvec, howmny, _select, d, z, sigma, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info);
         if(info <> 0)
-            error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "feigs", "ZNEUPD", info));
+            error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "ZNEUPD", info));
         else
             d(nev+1) = []
             res_d = d;

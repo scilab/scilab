@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grand">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="grand">
     <refnamediv>
         <refname>grand</refname>
         <refpurpose>Random numbers</refpurpose>
@@ -780,12 +780,28 @@ R = grand(400,800,"nor",0,1);
 scf();
 histplot(10,R);
 xtitle("Normal random numbers from grand","X","Frequency");
+ ]]></programlisting>
+        <scilab:image localized="true">
+R = grand(400,800,"nor",0,1);
+histplot(10,R);
+xtitle("Normal random numbers from grand","X","Frequency");
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[ 
 // Returns a 400-by-800 matrix of random doubles, 
 // uniform in [0,1).
 R = grand(400,800,"def");
 scf();
 histplot(10,R);
 xtitle("Uniform random numbers from grand","X","Frequency");
+ ]]></programlisting>
+        <scilab:image localized="true">
+R = grand(400,800,"def");
+histplot(10,R);
+xtitle("Uniform random numbers from grand","X","Frequency");
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[ 
 // Returns a 400-by-800 matrix of random doubles, 
 // with Poisson distribution and average equal to 5.
 R = grand(400,800,"poi",5);
@@ -793,6 +809,12 @@ scf();
 histplot(10,R);
 xtitle("Poisson random numbers from grand","X","Frequency");
  ]]></programlisting>
+        <scilab:image localized="true">
+R = grand(400,800,"poi",5);
+histplot(10,R);
+xtitle("Poisson random numbers from grand","X","Frequency");
+        </scilab:image>
+
         <para>
             In the following example, we generate random numbers from the exponential distribution and
             then compare the empirical with the theoretical distribution.
@@ -810,6 +832,18 @@ plot(x,y,"ro-");
 legend(["Empirical" "Theory"]);
 xtitle("Exponential random numbers from grand","X","Frequency");
  ]]></programlisting>
+        <scilab:image localized="true">
+lambda=1.6;
+N=100000;
+X = grand(1,N,"exp",lambda);
+classes = linspace(0,12,25);
+histplot(classes,X)
+x=linspace(0,12,25);
+y = (1/lambda)*exp(-(1/lambda)*x);
+plot(x,y,"ro-");
+legend(["Empirical" "Theory"]);
+xtitle("Exponential random numbers from grand","X","Frequency");
+        </scilab:image>
         <para>
             In the following example, we generate random numbers from the gamma distribution and
             then compare the empirical with the theoretical distribution.
@@ -828,6 +862,20 @@ plot(XS,P,"r-"); // Theoretical distribution
 legend(["Empirical" "Theory"]);
 xtitle("Cumulative distribution function of Gamma random numbers","X","F");
  ]]></programlisting>
+<scilab:image localized="true">
+N=10000;
+A=10;
+B=4;
+R=grand(1,N,"gam",A,B); 
+XS=gsort(R,"g","i")';
+PS=(1:N)'/N;
+P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
+scf();
+plot(XS,PS,"b-"); // Empirical distribution
+plot(XS,P,"r-"); // Theoretical distribution
+legend(["Empirical" "Theory"]);
+xtitle("Cumulative distribution function of Gamma random numbers","X","F");
+</scilab:image>
         <para>
             In the following example, we generate 10 random integers in the [1,365] interval.
         </para>

@@ -131,7 +131,7 @@ msgstr "Le fichier \"%s\" existe déjà.\n"
 
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
-msgstr "Écriture refusée dans le dossier \"%s\".\n"
+msgstr "Écriture refusée dans le répertoire \"%s\".\n"
 
 #, c-format
 msgid "File \"%s\" does not exist.\n"

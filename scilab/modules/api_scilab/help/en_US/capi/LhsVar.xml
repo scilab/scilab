@@ -6,6 +6,7 @@
             a C gateway function which specifies which parameters created
             inside the C gateway will be returned as an output argument into
             Scilab.
+            <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

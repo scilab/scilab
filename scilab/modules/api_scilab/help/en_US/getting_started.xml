@@ -197,6 +197,9 @@
         <para>
             As convention, gateways are stored in <literal>sci_gateway/c/</literal> (or <literal>/cpp/</literal>) and are called <literal>sci_functionName.c</literal>.
         </para>
+        <para>
+            <literal>pvApiCtx</literal> is the global context variable. Useless in the 5 family, it has been introduced to manage multithread aspects coming with the version 6 of Scilab.
+        </para>
     </refsection>
     <refsection>
         <title>Real life example</title>
@@ -356,7 +359,7 @@ int sci_foo(char *fname, unsigned long fname_len)
         <para>
             To build this code and load it to Scilab, we use the dynamic link capabilities of Scilab. Delegating the build process to Scilab, this code is multiplaform.
             <programlisting role="scilab">
-                <![CDATA[ 
+                <![CDATA[
       files=["sci_foo.c"];
       // TODO: WTF ?
       WITHOUT_AUTO_PUTLHSVAR = %t;
@@ -369,35 +372,35 @@ int sci_foo(char *fname, unsigned long fname_len)
         <para>
             Various checks can be performed:
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
--->[c, d] = foo(2, 2) 
-                   !--error 999 
+                <![CDATA[
+-->[c, d] = foo(2, 2)
+                   !--error 999
 foo: Wrong type for input argument #2: A boolean matrix expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[c, d] = foo([2,2], %t)
-                        !--error 999 
+                        !--error 999
 foo: Wrong size for input arguments: Same size expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[a,b]=foo(2+%i,%t)
-                   !--error 999 
+                   !--error 999
 foo: Wrong type for input argument #1: A real matrix expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[c, d] = foo([2,%pi], [%t, %f])
  d  =
- 
-  F T  
+
+  F T
  c  =
- 
-    4.    6.2831853 
+
+    4.    6.2831853
       ]]>
             </programlisting>
         </para>

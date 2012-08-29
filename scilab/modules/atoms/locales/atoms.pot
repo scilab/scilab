@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:23+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -884,91 +884,91 @@ msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 64
+# File: macros/atomsShow.sci, line: 63
 # File: macros/atoms_internals/atomsInstallList.sci, line: 112
 #, c-format
 msgid "%s: The package %s is not available.\n"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 79
+# File: macros/atomsShow.sci, line: 78
 msgid "Package"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 80
+# File: macros/atomsShow.sci, line: 79
 msgid "Title"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 81
+# File: macros/atomsShow.sci, line: 80
 msgid "Summary"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 82
+# File: macros/atomsShow.sci, line: 81
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 320
 msgid "Version"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 83
+# File: macros/atomsShow.sci, line: 82
 msgid "Depend"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 84
+# File: macros/atomsShow.sci, line: 83
 msgid "Category(ies)"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 85
+# File: macros/atomsShow.sci, line: 84
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 269
 msgid "Author(s)"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 86
+# File: macros/atomsShow.sci, line: 85
 msgid "Maintainer(s)"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 87
+# File: macros/atomsShow.sci, line: 86
 msgid "Entity"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 88
+# File: macros/atomsShow.sci, line: 87
 msgid "WebSite"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 89
+# File: macros/atomsShow.sci, line: 88
 msgid "License"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 90
+# File: macros/atomsShow.sci, line: 89
 msgid "Scilab Version"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 92
+# File: macros/atomsShow.sci, line: 91
 msgid "Status"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 95
+# File: macros/atomsShow.sci, line: 94
 msgid "Automatically Installed"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 96
+# File: macros/atomsShow.sci, line: 95
 msgid "Install Directory"
 msgstr ""
 
 #
-# File: macros/atomsShow.sci, line: 99
+# File: macros/atomsShow.sci, line: 98
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 323
 msgid "Description"
 msgstr ""
@@ -1585,14 +1585,14 @@ msgstr ""
 
 #
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 66
-# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 214
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 217
 msgid "All modules"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 106
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 111
-# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 212
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 215
 msgid "Main categories"
 msgstr ""
 

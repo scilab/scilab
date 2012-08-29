@@ -5,6 +5,7 @@
         <refpurpose>
             C macro which checks the number of output arguments present in
             the calling Scilab function.
+            <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

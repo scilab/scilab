@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: sci_gateway/c/gw_tclsci.c, line: 72
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -66,7 +66,7 @@ msgstr ""
 # File: sci_gateway/c/sci_TCL_ExistVar.c, line: 87
 # File: sci_gateway/c/sci_TCL_GetVar.c, line: 68
 # File: sci_gateway/c/sci_TCL_GetVar.c, line: 140
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 98
+# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 107
 # File: sci_gateway/c/sci_TCL_SetVar.c, line: 56
 # File: sci_gateway/c/sci_TCL_SetVar.c, line: 131
 # File: sci_gateway/c/sci_TCL_UnsetVar.c, line: 61
@@ -135,7 +135,7 @@ msgid "Unknown Release"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 93
+# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 102
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""

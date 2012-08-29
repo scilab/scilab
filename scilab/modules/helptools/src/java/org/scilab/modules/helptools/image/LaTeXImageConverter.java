@@ -78,8 +78,15 @@ public class LaTeXImageConverter implements ExternalImageConverter {
             if (display != null && display.equals("text")) {
                 style = TeXConstants.STYLE_TEXT;
             }
+            String fs = attributes.get("fontsize");
+            int ifs = 16;
+            if (fs != null) {
+                try {
+                    ifs = Integer.parseInt(fs);
+                } catch (Exception e) { }
+            }
 
-            icon = formula.createTeXIcon(style, Integer.parseInt(attributes.get("fontsize")));
+            icon = formula.createTeXIcon(style, ifs);
 
             Image img = new Image(icon, icon.getIconWidth(), icon.getIconHeight(), icon.getIconHeight() - icon.getIconDepth(), icon.getIconDepth());
             if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {

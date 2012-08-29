@@ -15,7 +15,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int sci_getlanguage(char *fname,unsigned long fname_len)
+int sci_getlanguage(char *fname, unsigned long fname_len)
 {
 	//static int n1,m1;
 	//char *Output=NULL;
@@ -29,7 +29,6 @@ int sci_getlanguage(char *fname,unsigned long fname_len)
 	//CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 	//LhsVar(1) = Rhs+1;
 	//C2FPutLhsVar)();
-
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

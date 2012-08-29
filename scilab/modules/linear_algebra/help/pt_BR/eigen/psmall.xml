@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,113 +10,111 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="psmall">
-    <refnamediv>
-        <refname>psmall</refname>
-        <refpurpose> spectral projection</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[Q,M]=psmall(A,thres,flag)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>real square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>thres</term>
-                <listitem>
-                    <para>real number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag</term>
-                <listitem>
-                    <para>
-                        character string (<literal>'c'</literal> or <literal>'d'</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Q,M</term>
-                <listitem>
-                    <para>real matrices</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Projection on eigen-subspace associated with eigenvalues with real
-            part &lt; <literal>thres</literal> (<literal>flag='c'</literal>) or
-            with modulus &lt; <literal>thres</literal>
-            (<literal>flag='d'</literal>).
-        </para>
-        <para>
-            The projection is defined by <literal>Q*M</literal>, <literal>Q</literal> is
-            full column rank, <literal>M</literal> is full row rank and
-            <literal>M*Q=eye</literal>.
-        </para>
-        <para>
-            If <literal>flag='c'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with real part
-            &lt; <literal>thres</literal>.
-        </para>
-        <para>
-            If <literal>flag='d'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with magnitude
-            &lt; <literal>thres</literal>.
-        </para>
-        <para>
-            If <literal>flag='c'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with real part &gt;=
-            <literal>thres</literal>.
-        </para>
-        <para>
-            If <literal>flag='d'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with magnitude &gt;=
-            <literal>thres</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="psmall" xml:lang="en">
+  <refnamediv>
+    <refname>psmall</refname>
+    <refpurpose>projeção espectral</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,M]=psmall(A,thres,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>matriz quadrada de reais </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thres</term>
+        <listitem>
+          <para>número real </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>
+            string (<literal>'c'</literal> ou
+            <literal>'d'</literal>)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M</term>
+        <listitem>
+          <para>matrizes de reais</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Projeção sobre auto-subespaço associado com autovalores com parte
+      real &lt; <literal>thres</literal> (<literal>flag='c'</literal>) ou com
+      módulo &lt; <literal>thres</literal> (<literal>flag='d'</literal>).
+    </para>
+    <para>
+      A projeção é definda por <literal>Q*M</literal>,
+      <literal>Q</literal> é de posto-coluna cheio, <literal>M</literal> é de
+      posto-linha cheio e <literal>M*Q=eye</literal>.
+    </para>
+    <para>
+      Se <literal>flag='c'</literal>, os autovalores de
+      <literal>M*A*Q</literal> = autovalores de <literal>A</literal> com parte
+      real &lt; <literal>thres</literal>.
+    </para>
+    <para>
+      Se <literal>flag='d'</literal>, os autovalores de
+      <literal>M*A*Q</literal> = autovalores de <literal>A</literal> com
+      magnitude &lt; <literal>thres</literal>.
+    </para>
+    <para>
+      Se <literal>flag='c'</literal> e se <literal>[Q1,M1]</literal> =
+      fatoração em posto cheio (<literal>fullrf</literal>) de
+      <literal>eye()-Q*M</literal>então os autovalores de
+      <literal>M1*A*Q1</literal> = autovalores de<literal> A</literal> com parte
+      real &gt;= <literal>thres</literal>.
+    </para>
+    <para>
+      Se <literal>flag='d'</literal> e se <literal>[Q1,M1]</literal> =
+      fatoração em posto cheio (<literal>fullrf</literal>) de
+      <literal>eye()-Q*M</literal> então os autovalores de
+      <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com
+      magnitude &gt;= <literal>thres</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=psmall(A,2.5,'d');
 spec(M*A*Q)
 [Q1,M1]=fullrf(eye()-Q*M);
 spec(M1*A*Q1)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="pbig">pbig</link>
-            </member>
-            <member>
-                <link linkend="proj">proj</link>
-            </member>
-            <member>
-                <link linkend="projspec">projspec</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>
-            This function is  based on the ordered schur form (scilab
-            function <literal>schur</literal>).
-        </para>
-    </refsection>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="proj">proj</link>
+      </member>
+      <member>
+        <link linkend="projspec">projspec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
+    <para>Esta função é baseada na forma de Schur ordenada (Função do
+      Scilab<literal> schur</literal>).
+    </para>
+  </refsection>
 </refentry>

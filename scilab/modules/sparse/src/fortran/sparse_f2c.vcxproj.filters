@@ -409,12 +409,6 @@
     <f2c_rule Include="dspmat.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dspmax.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dspmin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dspms.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -686,9 +680,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spmatrix.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spmax.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_symfcti.f">

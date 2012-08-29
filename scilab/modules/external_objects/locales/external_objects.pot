@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2012-08-23 17:34+0100\n"
 
 # File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
 msgid "Exception thrown in file"
@@ -393,5 +393,5 @@ msgstr ""
 
 #
 # File: src/cpp/wrapAsRef.cpp, line: 56
-msgid "Can only wrap as a reference a named variable"
+msgid "Can only wrap as a reference to a named variable"
 msgstr ""

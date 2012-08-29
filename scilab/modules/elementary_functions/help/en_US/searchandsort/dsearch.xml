@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dsearch" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"  xmlns:scilab="http://www.scilab.org"  xml:id="dsearch" xml:lang="en">
     <refnamediv>
         <refname>dsearch</refname>
         <refpurpose>
@@ -345,8 +345,8 @@ dsearch   : the array s (arg 2) is not well ordered
             this is the empirical histogram of the uniform distribution function.
             The expectation for occ/m is equal to 1/(n-1).
         </para>
-        <programlisting role="example"><![CDATA[ 
-m = 50000 ; 
+        <programlisting role="example"><![CDATA[
+m = 50000 ;
 n = 10;
 X = grand(m,1,"def");
 s = linspace(0,1,n)';
@@ -358,6 +358,19 @@ plot(s(1:n-1), e,"r-");
 legend(["Experiment","Expectation"]);
 xtitle("Uniform random numbers","X","P(X)");
  ]]></programlisting>
+        <scilab:image>
+            m = 50000 ;
+            n = 10;
+            X = grand(m,1,"def");
+            s = linspace(0,1,n)';
+            [ind, occ] = dsearch(X, s);
+            e = 1/(n-1)*ones(1,n-1);
+            scf() ; 
+            plot(s(1:n-1), occ/m,"bo");
+            plot(s(1:n-1), e,"r-");
+            legend(["Experiment","Expectation"]);
+            xtitle("Uniform random numbers","X","P(X)");
+        </scilab:image>
         <para>
             In the following example, we compare the histogram of binomially distributed
             random numbers with the binomial probability distribution function B(N,p),
@@ -380,6 +393,21 @@ plot(s,Pexa',"r-");
 xtitle("Binomial distribution B(8,0.5)","X","P(X)");
 legend(["Experiment","Expectation"]);
 ]]></programlisting>
+        <scilab:image>
+            N = 8 ; 
+            p = 0.5; 
+            m = 50000;
+            X = grand(m,1,"bin",N,p); 
+            s = (0:N)';
+            [ind, occ] = dsearch(X, s, "d");
+            Pexp = occ/m; 
+            Pexa = binomial(p,N);
+            scf() ; 
+            plot(s,Pexp,"bo");
+            plot(s,Pexa',"r-");
+            xtitle("Binomial distribution B(8,0.5)","X","P(X)");
+            legend(["Experiment","Expectation"]);
+        </scilab:image>
         <para>
             In the following example, we use piecewise Hermite polynomials to 
             interpolate a dataset.
@@ -421,9 +449,43 @@ legend(["Experiment","Expectation"]);
       plot(x,y,"bo")
       xtitle("Hermite piecewise polynomial");
       legend(["Polynomial","Data"]);
-      // NOTE : you can verify by adding these ones :
+      // NOTE : it can be verified by adding these ones :
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
+        <scilab:image>
+            
+            function y=Ll(t,k,x)
+            y=(t-x(k+1))./(x(k)-x(k+1))
+            endfunction
+            function y=Lr(t,k,x)
+            y=(t-x(k))./(x(k+1)-x(k))
+            endfunction
+            function y=Hl(t,k,x)
+            y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2
+            endfunction
+            function y=Hr(t,k,x)
+            y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2
+            endfunction
+            function y=Kl(t,k,x)
+            y=(t-x(k)).*Ll(t,k,x).^2
+            endfunction
+            function y=Kr(t,k,x)
+            y=(t-x(k+1)).*Lr(t,k,x).^2
+            endfunction
+            
+            x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+            y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+            d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+            X = linspace(0, 1, 200)';
+            ind = dsearch(X, x);
+            
+            Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+            scf();
+            plot(X,Y,"k-");
+            plot(x,y,"bo")
+            xtitle("Hermite piecewise polynomial");
+            legend(["Polynomial","Data"]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

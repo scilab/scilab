@@ -101,12 +101,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_spmatrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_spmax.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_spmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_symfcti.c">
       <Filter>Source Files</Filter>
     </ClCompile>

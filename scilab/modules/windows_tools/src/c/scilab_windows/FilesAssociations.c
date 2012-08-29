@@ -54,7 +54,8 @@ static BOOL IsASciNotesFileTST(char *chainefichier);
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsABinOrSavFile(char *chainefichier)
 {
-    if ( isGoodExtension(chainefichier, ".BIN") || isGoodExtension(chainefichier, ".SAV") )
+    if ( isGoodExtension(chainefichier, ".BIN") || isGoodExtension(chainefichier, ".SAV")
+        || isGoodExtension(chainefichier, ".SOD") )
     {
         return TRUE;
     }

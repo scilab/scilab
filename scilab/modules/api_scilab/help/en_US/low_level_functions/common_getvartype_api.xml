@@ -248,6 +248,31 @@ common_function(l(1:$))
             <member>
                 <link linkend="sci_types">sci_types</link>
             </member>
+            <member>
+                <link linkend="isPolyType">isPolyType</link>
+            </member>
+            <member>
+                <link linkend="isBooleanType">isBooleanType</link>
+            </member>
+            <member>
+                <link linkend="isListType">isListType</link>
+            </member>
+            <member>
+                <link linkend="isDoubleType">isDoubleType</link>
+            </member>
+            <member>
+                <link linkend="isIntegerType">isIntegerType</link>
+            </member>
+            <member>
+                <link linkend="isSparseType">isSparseType</link>
+            </member>
+            <member>
+                <link linkend="isBooleanSparseType">isBooleanSparseType</link>
+            </member>
+            <member>
+                <link linkend="isStringType">isStringType</link>
+            </member>
+            
         </simplelist>
     </refsection>
 </refentry>

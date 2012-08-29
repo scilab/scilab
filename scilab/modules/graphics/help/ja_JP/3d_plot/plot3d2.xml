@@ -289,7 +289,7 @@ plot3d2(X,Y,Z);
 e=gce();
 e.color_mode=4; // 色を変更
 f=e.data;
-TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,10*(f.z)+1);
+TL = tlist(["3d" "x" "y" "z" "color"],f_data.x,f_data.y,f_data.z,10*(f_data.z)+1);
 e.data=TL;
 e.color_flag=2;
  ]]></programlisting>

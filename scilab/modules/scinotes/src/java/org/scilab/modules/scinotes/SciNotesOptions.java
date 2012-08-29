@@ -65,21 +65,21 @@ public class SciNotesOptions {
         private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, boolean externalCmd, String cmd) {
             this.restartOpen = restartOpen;
             this.addLineTermination = addLineTermination;
-            this.numberOfRecentlyOpen = numberOfRecentlyOpen;
+            this.numberOfRecentlyOpen = numberOfRecentlyOpen > 0 ? numberOfRecentlyOpen : 1;
             this.encoding = encoding.toLowerCase();
 
-	    if (eol.equals("")) {
-		switch (OS.get()) {
-		case WINDOWS:
-		    this.eol = ScilabDocument.EOLWIN;
-		    break;
-		case MAC:
-		    this.eol = ScilabDocument.EOLMAC;
-		    break;
-		default:
-		    this.eol = ScilabDocument.EOLUNIX;
-		    break;
-		}
+            if (eol.equals("")) {
+                switch (OS.get()) {
+                case WINDOWS:
+                    this.eol = ScilabDocument.EOLWIN;
+                    break;
+                case MAC:
+                    this.eol = ScilabDocument.EOLMAC;
+                    break;
+                default:
+                    this.eol = ScilabDocument.EOLUNIX;
+                    break;
+                }
             } else if (eol.startsWith("Windows")) {
                 this.eol = ScilabDocument.EOLWIN;
             } else if (eol.startsWith("Mac")) {

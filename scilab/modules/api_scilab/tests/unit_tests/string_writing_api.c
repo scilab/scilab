@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ * Copyright (C) 2009-2010 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,7 +41,7 @@ int write_string(char *fname, unsigned long fname_len)
     pstData[5]		= string23;
 
     //create the variable
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, iRows, iCols, pstData);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pstData);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -51,6 +51,6 @@ int write_string(char *fname, unsigned long fname_len)
     //free container
     free(pstData);
     //assign allocated variables to Lhs position
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

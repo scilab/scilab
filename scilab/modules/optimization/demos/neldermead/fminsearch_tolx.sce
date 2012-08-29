@@ -42,7 +42,7 @@ function demo_fmin_tolx()
     //
     // Load this script into the editor
     //
-    m = messagebox(_("View Code?"), "Question", "question", _(["Yes" "No"]), "modal")
+    m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
         filename = 'fminsearch_tolx.sce';
         dname = get_absolute_file_path(filename);

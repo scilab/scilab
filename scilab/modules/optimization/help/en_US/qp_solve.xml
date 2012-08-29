@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[x [,iact [,iter [,f]]]]=qp_solve(Q,p1,C1,b,me)</synopsis>
+        <synopsis>[x [,iact [,iter [,f]]]] = qp_solve(Q, p, C, b, me)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

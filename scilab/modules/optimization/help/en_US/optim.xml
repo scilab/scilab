@@ -140,7 +140,7 @@
                             <term>epsg</term>
                             <listitem>
                                 <para>threshold on gradient norm (default
-                                    <literal>epsg=0</literal>).
+                                    <literal>epsg= %eps</literal>).
                                 </para>
                             </listitem>
                         </varlistentry>

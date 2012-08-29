@@ -11,66 +11,66 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lsq">
-    <refnamediv>
-        <refname>lsq</refname>
-        <refpurpose>線形最小二乗問題.  </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>X=lsq(A,B [,tol])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>実数または複素数の (m x n) 行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>B</term>
-                <listitem>
-                    <para>実数または複素数の (m x p) 行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>tol</term>
-                <listitem>
-                    <para>Aの実効ランクを定義するために使用される正のスカラー
-                        (Aのピボット操作付きQR分解における最前部にある部分三角行列R11の次数として
-                        定義され,条件数の推定値は&lt;= 1/tolとなります.
-                        tolのデフォルト値は <literal>sqrt(%eps)</literal>に設定されます )
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>実数または複素数の (n x p) 行列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>X=lsq(A,B)</literal> は方程式 <literal>A*X=B</literal>の
-            最小二乗解の最小ノルムを計算します.
-            一方, <literal>X=A \ B</literal>は
-            各列に最大<literal>rank(A)</literal>個の非ゼロ要素を有する最小二乗解を計算します.
-        </para>
-    </refsection>
-    <refsection>
-        <title>参考文献</title>
-        <para>
-            <literal>lsq</literal> 関数はLApack 関数 DGELSY (実行列の場合)および
-            ZGELSY (複素行列の場合)に基づいています.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+  <refnamediv>
+    <refname>lsq</refname>
+    <refpurpose>線形最小二乗問題.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>X=lsq(A,B [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の (m x n) 行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>B</term>
+        <listitem>
+          <para>実数または複素数の (m x p) 行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>Aの実効ランクを定義するために使用される正のスカラー
+            (Aのピボット操作付きQR分解における最前部にある部分三角行列R11の次数として
+            定義され,条件数の推定値は&lt;= 1/tolとなります.
+            tolのデフォルト値は <literal>sqrt(%eps)</literal>に設定されます )
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素数の (n x p) 行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>X=lsq(A,B)</literal> は方程式 <literal>A*X=B</literal>の
+      最小二乗解の最小ノルムを計算します.
+      一方, <literal>X=A \ B</literal>は
+      各列に最大<literal>rank(A)</literal>個の非ゼロ要素を有する最小二乗解を計算します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+      <literal>lsq</literal> 関数はLApack 関数 DGELSY (実行列の場合)および
+      ZGELSY (複素行列の場合)に基づいています.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
 //Build the data
 x=(1:10)';
 
@@ -92,22 +92,22 @@ X1=lsq(A,b)
 X2=A\b
 [A*X1-b, A*X2-b] //the residuals are the same
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="backslash">backslash</link>
-            </member>
-            <member>
-                <link linkend="inv">inv</link>
-            </member>
-            <member>
-                <link linkend="pinv">pinv</link>
-            </member>
-            <member>
-                <link linkend="rank">rank</link>
-            </member>
-        </simplelist>
-    </refsection>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

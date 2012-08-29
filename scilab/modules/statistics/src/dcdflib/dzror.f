@@ -80,10 +80,11 @@ C     .. Intrinsic Functions ..
       INTRINSIC abs,max,sign
 C     ..
 C     .. Statement Functions ..
-      DOUBLE PRECISION ftol
+      DOUBLE PRECISION ftol,dlamch
 C     ..
 C     .. Statement Function definitions ..
       ftol(zx) = 0.5D0*max(abstol,reltol*abs(zx))
+      eps = dlamch('e')
 C     ..
 C     .. Executable Statements ..
 
@@ -183,6 +184,11 @@ C
       b = b + w
       xlo = b
       x = xlo
+      if (x.lt.eps) then
+        x=0
+        status = 0
+        return
+      endif
 C     GET-FUNCTION-VALUE
 c      ASSIGN 200 TO i99999
       i99999=3

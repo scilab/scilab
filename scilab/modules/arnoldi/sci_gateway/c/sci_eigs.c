@@ -73,7 +73,9 @@ int sci_eigs(char *fname, void* pvApiCtx)
     double* dblNCV			= NULL;
 
     int *piAddressVarEight	= NULL;
+    int iTypeVarEight       = 0;
     double dblCHOLB			= 0;
+    int iCHOLB              = 0;
 
     int *piAddressVarNine	= NULL;
     int iTypeVarNine		= 0;
@@ -116,7 +118,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     //check if A is a square matrix
     if (iRowsOne * iColsOne == 1 || iRowsOne != iColsOne)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: A square matrix expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A square matrix expected.\n"), "eigs", 1);
         return 0;
     }
 
@@ -166,14 +168,14 @@ int sci_eigs(char *fname, void* pvApiCtx)
     if (sciErr.iErr || iTypeVarTwo != sci_matrix)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A full or sparse matrix expected\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: An empty matrix or full or sparse square matrix expected.\n"), "eigs", 2);
         return 0;
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &iRowsTwo, &iColsTwo);
     if (iRowsTwo * iColsTwo == 1 || iRowsTwo != iColsTwo)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 2);
         return 0;
     }
 
@@ -228,19 +230,19 @@ int sci_eigs(char *fname, void* pvApiCtx)
     iErr = getScalarDouble(pvApiCtx, piAddressVarThree, &dblNEV);
     if (iErr)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: A scalar expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 3);
         return 0;
     }
 
     if (dblNEV != floor(dblNEV) || (dblNEV <= 0))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "eigs", 3);
         return 0;
     }
 
     if (!finite(dblNEV))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"), "eigs", 3);
         return 0;
     }
 
@@ -261,7 +263,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     sciErr = getVarType(pvApiCtx, piAddressVarFour, &iTypeVarFour);
     if (sciErr.iErr || (iTypeVarFour != sci_matrix && iTypeVarFour != sci_strings))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: a scalar expected \n"), fname, 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 4);
         return 0;
     }
 
@@ -278,25 +280,27 @@ int sci_eigs(char *fname, void* pvApiCtx)
         {
             if (!Acomplex && Asym)
             {
-                Scierror(999, _("%s: Wrong input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n" ), fname, 4, "LM", "SM", "LA", "SA", "BE");
+                Scierror(999, _("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n" ),
+                    "eigs", 4, "LM", "SM", "LA", "SA", "BE");
                 return 0;
             }
             else
             {
-                Scierror(999, _("%s: Wrong input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n " ), fname, 4, "LM", "SM", "LR", "SR", "LI", "SI");
+                Scierror(999, _("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n " ), 
+                    "eigs", 4, "LM", "SM", "LR", "SR", "LI", "SI");
                 return 0;
             }
         }
 
         if ((Acomplex || !Asym) && (strcmp(pstData, "LA") == 0 || strcmp(pstData, "SA") == 0 || strcmp(pstData, "BE") == 0))
         {
-            Scierror(999, _("%s: Invalid sigma value for complex or non symmetric problem.\n"), fname, 4);
+            Scierror(999, _("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs", 4);
             return 0;
         }
 
         if (!Acomplex && Asym && (strcmp(pstData, "LR") == 0 || strcmp(pstData, "SR") == 0 || strcmp(pstData, "LI") == 0 || strcmp(pstData, "SI") == 0))
         {
-            Scierror(999, _("%s: Invalid sigma value for real symmetric problem.\n"), fname, 4);
+            Scierror(999, _("%s: Invalid sigma value for real symmetric problem.\n"), "eigs", 4);
             return 0;
         }
 
@@ -310,7 +314,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
         sciErr = getVarDimension(pvApiCtx, piAddressVarFour, &iRowsFour, &iColsFour);
         if (iRowsFour * iColsFour != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 4);
             return 0;
         }
 
@@ -325,7 +329,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
         if (C2F(isanan)(&SIGMA[0].r) || C2F(isanan)(&SIGMA[0].i))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: sigma must be a real.\n"), fname, 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: sigma must be a real.\n"), "eigs", 4);
             return 0;
         }
 
@@ -347,13 +351,13 @@ int sci_eigs(char *fname, void* pvApiCtx)
     iErr = getScalarDouble(pvApiCtx, piAddressVarFive, &dblMAXITER);
     if (iErr)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: %s must be a scalar.\n"), fname, 5, "opts.maxiter");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 5, "opts.maxiter");
         return 0;
     }
 
     if ((dblMAXITER != floor(dblMAXITER)) || (dblMAXITER <= 0))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), fname, 5, "opts.maxiter");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer positive value.\n"), "eigs", 5, "opts.maxiter");
         return 0;
     }
 
@@ -371,13 +375,13 @@ int sci_eigs(char *fname, void* pvApiCtx)
     iErr = getScalarDouble(pvApiCtx, piAddressVarSix, &dblTOL);
     if (iErr)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: %s must be a real scalar.\n"), fname, 6, "opts.tol");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "eigs", 6, "opts.tol");
         return 0;
     }
 
     if (C2F(isanan)(&dblTOL))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), fname, 6, "opts.tol");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "eigs", 6, "opts.tol");
         return 0;
     }
 
@@ -396,14 +400,14 @@ int sci_eigs(char *fname, void* pvApiCtx)
     if (sciErr.iErr || TypeVarSeven != sci_matrix)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
         return 0;
     }
     else
     {
         if (isVarComplex(pvApiCtx, piAddressVarSeven))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
             0;
         }
         else
@@ -411,7 +415,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
             sciErr = getVarDimension(pvApiCtx, piAddressVarSeven, &RowsSeven, &ColsSeven);
             if (RowsSeven * ColsSeven > 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
+                Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
                 return 0;
             }
 
@@ -427,7 +431,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
                 if (dblNCV[0] != floor(dblNCV[0]))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), fname, 7, "opts.ncv");
+                    Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
                     return 0;
                 }
             }
@@ -445,17 +449,44 @@ int sci_eigs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    iErr = getScalarDouble(pvApiCtx, piAddressVarEight, &dblCHOLB);
-    if (iErr)
+    sciErr = getVarType(pvApiCtx, piAddressVarEight, &iTypeVarEight);
+    if (sciErr.iErr || iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), fname, 8, "opts.cholB");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
         return 0;
     }
 
-    if (dblCHOLB != floor(dblCHOLB) || dblCHOLB > 1)
+    if(iTypeVarEight == sci_boolean)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s must be between 0 and 1.\n"), fname, 8, "opts.cholB");
-        return 0;
+        iErr = getScalarBoolean(pvApiCtx, piAddressVarEight, &iCHOLB);
+        if (iErr)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
+            return 0;
+        }
+
+        if(iCHOLB != 1 && iCHOLB != 0)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f","%t");
+            return 0;
+        }
+        dblCHOLB = (double) iCHOLB;
+    }
+    
+    if(iTypeVarEight == sci_matrix)
+    {
+        iErr = getScalarDouble(pvApiCtx, piAddressVarEight, &dblCHOLB);
+        if (iErr)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
+            return 0;
+        }
+        
+        if(dblCHOLB != 1 && dblCHOLB != 0)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f","%t");
+            return 0;
+        }
     }
 
     /****************************************
@@ -473,7 +504,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     if (sciErr.iErr || iTypeVarNine != sci_matrix)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, 9);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "eigs", 9);
         return 0;
     }
     else
@@ -481,7 +512,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
         sciErr = getVarDimension(pvApiCtx, piAddressVarNine, &iRowsNine, &iColsNine);
         if (iRowsNine*iColsNine == 1 || iRowsNine*iColsNine != N)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Start vector %s must be N by 1.\n"), fname, 9, "opts.resid");
+            Scierror(999, _("%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"), "eigs", 9, "opts.resid");
             return 0;
         }
     }
@@ -490,7 +521,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     {
         if (isVarComplex(pvApiCtx, piAddressVarNine))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Start vector %s must be real for real problems.\n"), fname, 9, "opts.resid");
+            Scierror(999, _("%s: Wrong type for input argument #%d: Start vector %s must be real for real problems.\n"), "eigs", 9, "opts.resid");
             return 0;
         }
         else
@@ -499,7 +530,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 9);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), "eigs", 9);
                 return 0;
             }
         }
@@ -510,7 +541,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 9);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), "eigs", 9);
             return 0;
         }
     }
@@ -522,14 +553,14 @@ int sci_eigs(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 9);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), "eigs", 9);
         return 0;
     }
 
     iErr = getScalarInteger32(pvApiCtx, piAddressVarTen, &iINFO);
     if (iErr)
     {
-        Scierror(999, _("%s: Wrong dimension for input argument #%d: An integer expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "eigs", 1);
         return 0;
     }
 
@@ -554,17 +585,17 @@ int sci_eigs(char *fname, void* pvApiCtx)
         case -1 :
             if (Asym && !Acomplex && !Bcomplex)
             {
-                Scierror(999, _("%s: Wrong dimension for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), fname, 7);
+                Scierror(999, _("%s: Wrong value for input argument #%d: For real symmetric problems, NCV must be k < NCV <= N.\n"), "eigs", 7);
             }
             else
             {
                 if (!Asym && !Acomplex && !Bcomplex)
                 {
-                    Scierror(999, _("%s: Wrong dimension for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV <= N.\n"), fname, 7);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: For real non symmetric problems, NCV must be k + 2 < NCV <= N.\n"), "eigs", 7);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong dimension for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), fname, 7);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: For complex problems, NCV must be k + 1 < NCV <= N.\n"), "eigs", 7);
                 }
             }
             PutLhsVar();
@@ -573,17 +604,17 @@ int sci_eigs(char *fname, void* pvApiCtx)
         case -2 :
             if (Asym && !Acomplex && !Bcomplex)
             {
-                Scierror(999, _("%s: Wrong dimension for input argument #%d: For real symmetric problems, k must be in the range 1 to N - 1.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong value for input argument #%d: For real symmetric problems, k must be an integer in the range 1 to N - 1.\n"), "eigs", 3);
             }
             else
             {
-                Scierror(999, _("%s: Wrong dimension for input argument #%d: For real non symmetric or complex problems, k must be in the range 1 to N - 2.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong value for input argument #%d: For real non symmetric or complex problems, k must be an integer in the range 1 to N - 2.\n"), "eigs", 3);
             }
             PutLhsVar();
             return 0;
 
         case -3 :
-            Scierror(999, _("%s: Wrong type for input argument(s) #%d: B must be symmetric or hermitian, definite, semi positive.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2);
             PutLhsVar();
             return 0;
 
@@ -592,16 +623,16 @@ int sci_eigs(char *fname, void* pvApiCtx)
             {
                 if (Asym)
                 {
-                    Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "DSAUPD", iINFO);
+                    Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "DSAUPD", iINFO);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "DNAUPD", iINFO);
+                    Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "DNAUPD", iINFO);
                 }
             }
             else
             {
-                Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "ZNAUPD", iINFO);
+                Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "ZNAUPD", iINFO);
             }
             PutLhsVar();
             return 0;
@@ -611,16 +642,16 @@ int sci_eigs(char *fname, void* pvApiCtx)
             {
                 if (Asym)
                 {
-                    Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), fname, "DSAUPD");
+                    Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), "eigs", "DSAUPD");
                 }
                 else
                 {
-                    Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), fname, "DNAUPD");
+                    Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), "eigs", "DNAUPD");
                 }
             }
             else
             {
-                Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), fname, "ZNAUPD");
+                Scierror(999, _("%s: Error with %s: unknown mode returned.\n"), "eigs", "ZNAUPD");
             }
             PutLhsVar();
             return 0;
@@ -630,16 +661,16 @@ int sci_eigs(char *fname, void* pvApiCtx)
             {
                 if (Asym)
                 {
-                    Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "DSEUPD", INFO_EUPD);
+                    Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "DSEUPD", INFO_EUPD);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "DNEUPD", INFO_EUPD);
+                    Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "DNEUPD", INFO_EUPD);
                 }
             }
             else
             {
-                Scierror(999, _("%s: Error with %s: info = %d \n"), fname, "ZNEUPD", INFO_EUPD);
+                Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "ZNEUPD", INFO_EUPD);
             }
             PutLhsVar();
             free(mat_eigenvalue);

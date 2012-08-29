@@ -194,7 +194,7 @@
                         to <literal>"on"</literal>. It defines the intervals of colormap indices
                         used to fill each segment. For instance, the first segment will be
                         filled by every colors whose index is between the first two elements
-                        of the vecor. It is only applicable if the polyline is defined by 3 or
+                        of the vector. It is only applicable if the polyline is defined by 3 or
                         4 points. Therefore, the size of the vector must match this
                         dimension.
                     </para>

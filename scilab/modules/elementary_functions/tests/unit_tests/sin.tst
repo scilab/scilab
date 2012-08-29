@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,44 +18,44 @@
 // 1. Interface
 // ============
 
-if execstr("sin()"   ,"errcatch")           == 0 then pause, end
-if execstr("sin(1,2)","errcatch")           == 0 then pause, end
-if execstr("sin(''my string'')","errcatch") == 0 then pause, end
+assert_checkfalse(execstr("sin()"   ,"errcatch") == 0);
+assert_checkfalse(execstr("sin(1,2)","errcatch") == 0);
+assert_checkfalse(execstr("sin(''my string'')","errcatch") == 0);
 
 // 2. Singular Values
 // ==================
 
-if ( sin(0) <> 0 ) then pause, end
-if ( sin(-0) <> -0 ) then pause, end
+assert_checkequal(sin(0), 0);
+assert_checkequal(sin(-0), -0);
 
 
 // The following tests check sin for a small number of x in the range [0,pi].
-// The variable x contains correctly rounded values of the exact value of x. 
-// The variable v contains correctly rounded values of the exact value of cos 
+// The variable x contains correctly rounded values of the exact value of x.
+// The variable v contains correctly rounded values of the exact value of cos
 // on the exact double representing the various values of x.
-// For example, the floating point number which is closest to %pi/2 is 
-// 7074237752028440 * 2^-51, which can be written with the decimal string 
-// 3.141592653589793116D+00. 
+// For example, the floating point number which is closest to %pi/2 is
+// 7074237752028440 * 2^-51, which can be written with the decimal string
+// 3.141592653589793116D+00.
 // We have sin(7074237752028440 * 2^-51) = 1.224646799147353177...*10^-16
 // exactly.
 //
-// If Scilab had support for hex, we would have used it. 
+// If Scilab had support for hex, we would have used it.
 // The exact values are computed in Wolfram Alpha.
-// We use more that 17 digits, which, if the decimal to binary conversion is 
-// correct, and if the rounding is round-to-nearest, must exactly produce 
+// We use more that 17 digits, which, if the decimal to binary conversion is
+// correct, and if the rounding is round-to-nearest, must exactly produce
 // values in this table.
 //
 // We avoid using values such as 2*%pi/3, which introduce one multiplication
-// and one addition (the test fail is the multiplication or division 
+// and one addition (the test fail is the multiplication or division
 // is not accurate, while the current test is not sensitive to this, i.e.
-// we test "sin", not "*"). 
+// we test "sin", not "*").
 //
 // Failing this test may be caused by:
 // * a bad decimal to binary conversion,
 // * a wrong implementation of sin.
 //
 x = [
-  5.235987755982988157D-01 // %pi/6 
+  5.235987755982988157D-01 // %pi/6
   7.853981633974482790D-01 // %pi/4
   1.047197551196597631D+00 // %pi/3
   1.570796326794896558D+00 // %pi/2
@@ -64,8 +65,8 @@ x = [
   3.141592653589793116D+00 // %pi
 ];
 v = [
-    4.999999999999999503D-01  
-    7.071067811865475028D-01  
+    4.999999999999999503D-01
+    7.071067811865475028D-01
     8.660254037844385893D-01
     1.000000000000000000D-00
     8.660254037844387616D-01
@@ -76,20 +77,20 @@ v = [
 
 S = sin(x);
 rtol = ceil(abs(S-v)./abs(v)/%eps);
-// Our tolerance is : get the exact floating point number, 
+// Our tolerance is : get the exact floating point number,
 // or its neighbour.
 ulptol = 1;
-if ( or(rtol>ulptol) ) then pause, end
+assert_checkfalse(rtol > ulptol);
 //
 // Check symetry on these points
 x = -x;
 S = sin(x);
 v = -v;
 rtol = ceil(abs(S-v)./abs(v)/%eps);
-// Our tolerance is : get the exact floating point number, 
+// Our tolerance is : get the exact floating point number,
 // or its neighbour.
 ulptol = 1;
-if ( or(rtol>ulptol) ) then pause, end
+assert_checkfalse(rtol > ulptol);
 
 //
 // sin(x) == x for |x| < 1.422...*2^-26
@@ -102,45 +103,45 @@ if ( or(rtol>ulptol) ) then pause, end
 // Check positive and negative normal numbers.
 x = [2^(-1022:-26) -2^(-1022:-26)];
 // Check that the values are close to x.
-// Our tolerance is : get the exact floating point number, 
+// Our tolerance is : get the exact floating point number,
 // or its neighbour.
 S = sin(x);
 rtol = ceil(abs(S-x)/%eps);
 ulptol = 1;
-if ( or(rtol>ulptol) ) then pause, end
+assert_checkfalse(rtol > ulptol);
 // Check that the values are lower or equal to 1.
 // No matter how bad our library is, we must have abs(sin(x))<= 1.
 // If this test fails, the math library is to be absolutely rejected.
-if ( or(abs(S)>1) ) then pause, end
+assert_checkfalse(abs(S) > 1);
 // Compute the number of floats for which sin(x)<>x.
 // An excellent library should produce s=0.
 // This failure happens for x=2^n and n usually close to -27.
 notexact = sum(S<>x);
 rtol = 30;
-if ( notexact>rtol ) then pause, end
+assert_checkfalse(notexact > rtol);
 
 // Check that abs(sin(x))<= 1, for large large normal floating point numbers of x.
 // If this test fails, the math library is to be absolutely rejected.
 x = [2^(0:1023) -2^(0:1023)];
 S = sin(x);
-if ( or(abs(S)>1) ) then pause, end
+assert_checkfalse(abs(S) > 1);
 
 
 // 3. Not A Number
 // ===============
 
-if ~isnan(sin(%nan)) then pause, end
-if ~isnan(sin(-%nan)) then pause, end
+assert_checktrue(isnan(sin(%nan)));
+assert_checktrue(isnan(sin(-%nan)));
 
 
 // 4. Limit values
 // ===============
 
-if ~isnan(real(sin(%inf)))    then pause, end
-if imag(sin(%inf)) <> 0       then pause, end
+assert_checktrue(isnan(real(sin(%inf))));
+assert_checkequal(imag(sin(%inf)), 0);
 
-if ~isnan(real(sin(-%inf)))   then pause, end
-if imag(sin(-%inf)) <> 0      then pause, end
+assert_checktrue(isnan(real(sin(-%inf))));
+assert_checkequal(imag(sin(-%inf)), 0);
 
 
 // 5. Properties
@@ -149,13 +150,13 @@ if imag(sin(-%inf)) <> 0      then pause, end
 // The ratio between the absolute tolerance and %eps.
 atolratio = 5;
 
-// All the tests below are based on equalities of the form C=0, 
+// All the tests below are based on equalities of the form C=0,
 // with C = f(A,B) and A, B matrices.
-// We consider the elementwise absolute error abs(C), and 
+// We consider the elementwise absolute error abs(C), and
 // focus on the maximum of this error, that is, we compute max(abs(C)).
-// This absolute error is compared to atolratio * %eps, but it is 
+// This absolute error is compared to atolratio * %eps, but it is
 // expressed as max(abs(C))/%eps.
-// Indeed, if this test fail, we first compute max(abs(C))/%eps, see 
+// Indeed, if this test fail, we first compute max(abs(C))/%eps, see
 // its value (e.g. 0.9, 1.2 or 2.3) and set the tolerance to the minimum
 // integer larger than this.
 
@@ -165,59 +166,58 @@ B = rand(100,100);
 
 // sin(-x) = - sin(x)
 C = sin(-A) + sin(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // sin(%pi - x) = sin(x)
 C = sin(%pi - A) - sin(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // sin(%pi + x) = - sin(x)
 C = sin(%pi + A) + sin(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
-// cos(2a) = 2 cos^2(a) - 1 
+// cos(2a) = 2 cos^2(a) - 1
 C = cos(2*A) - 2 * (cos(A)).^2 + 1;
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 //
 // At this point, we do not test the accuracy of sin anymore:
 // we test the matching between cos and sin.
 // Thus, these tests may be put into cos.tst or sin.tst
-// 
+//
 
 // sin(%pi/2 - x) = cos(x)
 C = sin(%pi/2 - A) - cos(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // sin(%pi/2 + x) = cos(x)
 C = sin(%pi/2 + A) - cos(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // cos^2(a) + sin^2(a) = 1
 C = (cos(A)).^2 + (sin(A)).^2 - 1;
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // cos(a + b) = cos(a) cos(b) - sin(a) sin(b)
 C = cos(A + B) - cos(A).*cos(B) + sin(A).*sin(B);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // cos(a -b) = cos(a) cos(b) + sin(a) sin(b)
 C = cos(A - B) - cos(A).*cos(B) - sin(A).*sin(B);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // sin(a + b) = sin(a) cos(b) + sin(b) cos(a)
 C = sin(A + B) - sin(A).*cos(B) - sin(B).*cos(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // sin(a -b) = sin(a) cos(b) - sin(b) cos(a)
 C = sin(A - B) - sin(A).*cos(B) + sin(B).*cos(A);
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
-// cos(2a) = cos^2(a) - sin^2(a) 
+// cos(2a) = cos^2(a) - sin^2(a)
 C = cos(2*A) - (cos(A)).^2 + (sin(A)).^2;
-if ( max(abs(C))/%eps > atolratio) then pause, end
+assert_checkfalse(max(abs(C))/%eps > atolratio);
 
 // cos(2a) = 1 - 2 sin^2(a)
 C = cos(2*A) - 1 + 2 * (sin(A)).^2;
-if ( max(abs(C))/%eps > atolratio) then pause, end
-
+assert_checkfalse(max(abs(C))/%eps > atolratio);

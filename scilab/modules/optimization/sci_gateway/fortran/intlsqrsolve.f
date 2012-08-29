@@ -109,7 +109,7 @@ c     checking variable diag (number 6)
          endif
 c     test m6*n6=n
          do  ii=0,n-1
-            if (stk(ldiag+i).le.0.0D0) then
+            if (stk(ldiag+ii).le.0.0D0) then
                err=6-iskip
                call error(116)
                return

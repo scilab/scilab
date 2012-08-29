@@ -880,7 +880,7 @@ if grep(dia_tmp,"error on test")<>[] then
   status.message = "failed: one or several tests failed";
   status.details = details;
   if params.show_error == %t then
-    status.details = [ status.details; dia($-10:$) ]
+    status.details = [ status.details; dia($-min(10, size(dia, "*")-1):$) ]
   end
   return;
 end

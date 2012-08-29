@@ -16,13 +16,13 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, 
-                        double *x,int *id, double *pqa, int *ipqa, int *ierror);
+extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2,
+                        double *x, int *id, double *pqa, int *ipqa, int *ierror);
 /*--------------------------------------------------------------------------*/
 static double return_an_inf(void);
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 /*--------------------------------------------------------------------------*/
-int sci_legendre(char *fname,unsigned long fname_len)
+int sci_legendre(char *fname, unsigned long fname_len)
 {
     /*
     *   Interface onto the (Slatec) dxleg.f code.
@@ -50,22 +50,22 @@ int sci_legendre(char *fname,unsigned long fname_len)
     double *x = NULL, xx = 0., dnu1 = 0., *pqa = NULL;
     int id = 0, ierror = 0, i = 0, j = 0, nudiff = 0;
 
-    CheckLhs(1, 1); 
+    CheckLhs(1, 1);
     CheckRhs(3, 4);
     GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &mN, &nN, &lN);
 
-    if ( ! verify_cstr(stk(lN), mN*nN, &n1, &n2) )
+    if ( ! verify_cstr(stk(lN), mN * nN, &n1, &n2) )
     {
-        Scierror(999,_("%s: Wrong type for first input argument.\n"), fname);
+        Scierror(999, _("%s: Wrong type for first input argument.\n"), fname);
         return 0;
     };
 
     if ( mN == 1 && nN == 1) N_is_scalar = 1;
 
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
-    if ( ! verify_cstr(stk(lM), mM*nM, &m1, &m2) )
+    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
+    if ( ! verify_cstr(stk(lM), mM * nM, &m1, &m2) )
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname,2);
+        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -73,30 +73,30 @@ int sci_legendre(char *fname,unsigned long fname_len)
 
     if ( ! M_is_scalar  &&  ! N_is_scalar )
     {
-        Scierror(999,_("%s: Only one of arg1 and arg2 may be a vector.\n"), fname);
+        Scierror(999, _("%s: Only one of arg1 and arg2 may be a vector.\n"), fname);
         return 0;
     };
 
-    GetRhsCVar(3,MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
+    GetRhsCVar(3, MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
     if ( it != 0 )
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
         return 0;
     };
 
-    mnx = mx*nx;
+    mnx = mx * nx;
     x = stk(lx);
     for ( i = 0 ; i < mnx ; i++ )
         if ( ! (fabs(x[i]) < 1.0) )
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"), fname,3,-1,1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"), fname, 3, -1, 1);
             return 0;
         };
 
     if ( Rhs == 4 )
     {
-        GetRhsVar(4,STRING_DATATYPE, &ms, &ns, &ls);
-        if ( strcmp(cstk(ls),"norm") == 0)
+        GetRhsVar(4, STRING_DATATYPE, &ms, &ns, &ls);
+        if ( strcmp(cstk(ls), "norm") == 0)
         {
             normalised = 1;
         }
@@ -112,8 +112,10 @@ int sci_legendre(char *fname,unsigned long fname_len)
 
     MNp1 = Max (n2 - n1, m2 - m1) + 1;
 
-    CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &MNp1, &mnx, &lpqa); pqa = stk(lpqa);
-    CreateVar(Rhs+2, MATRIX_OF_INTEGER_DATATYPE, &MNp1, &mnx, &lipqa); ipqa = istk(lipqa);
+    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &MNp1, &mnx, &lpqa);
+    pqa = stk(lpqa);
+    CreateVar(Rhs + 2, MATRIX_OF_INTEGER_DATATYPE, &MNp1, &mnx, &lipqa);
+    ipqa = istk(lipqa);
 
     if ( normalised )
     {
@@ -131,16 +133,16 @@ int sci_legendre(char *fname,unsigned long fname_len)
     {
         xx = fabs(x[i]); /* dxleg computes only for x in [0,1) */
         F2C(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id,
-            stk(lpqa+i*MNp1), istk(lipqa+i*MNp1), &ierror);
+                     stk(lpqa + i * MNp1), istk(lipqa + i * MNp1), &ierror);
         if ( ierror != 0 )
         {
             if ( ierror == 207 ) /* @TODO what is 207 ? */
             {
-                Scierror(999,_("%s: overflow or underflow of an extended range number\n"), fname);
+                Scierror(999, _("%s: overflow or underflow of an extended range number\n"), fname);
             }
             else
             {
-                Scierror(999,_("%s: error number %d\n"), fname, ierror);
+                Scierror(999, _("%s: error number %d\n"), fname, ierror);
             }
             return 0;
         };
@@ -151,7 +153,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
     *  When the "exponent" part (ipqa) is 0 then the number is exactly
     *  given by pqa else it leads to an overflow or an underflow.
     */
-    for ( i = 0 ; i < mnx*MNp1 ; i++ )
+    for ( i = 0 ; i < mnx * MNp1 ; i++ )
     {
         if ( ipqa[i] < 0 )
         {
@@ -164,22 +166,22 @@ int sci_legendre(char *fname,unsigned long fname_len)
     }
 
     /* complete the result by odd/even symmetry for negative x */
-    for ( i = 0 ; i < mnx ; i++ ) 
+    for ( i = 0 ; i < mnx ; i++ )
     {
-        if ( x[i] < 0.0 ) 
+        if ( x[i] < 0.0 )
         {
-            if ( (n1+m1) % 2 == 1 ) 
+            if ( (n1 + m1) % 2 == 1 )
             {
-                for ( j = 0 ; j < MNp1 ; j+=2 )
+                for ( j = 0 ; j < MNp1 ; j += 2 )
                 {
-                    pqa[i*MNp1 + j] = -pqa[i*MNp1 + j];
+                    pqa[i * MNp1 + j] = -pqa[i * MNp1 + j];
                 }
             }
-            else 
+            else
             {
-                for ( j = 1 ; j < MNp1 ; j+=2 )
+                for ( j = 1 ; j < MNp1 ; j += 2 )
                 {
-                    pqa[i*MNp1 + j] = -pqa[i*MNp1 + j];
+                    pqa[i * MNp1 + j] = -pqa[i * MNp1 + j];
                 }
             }
         }
@@ -199,7 +201,7 @@ static double return_an_inf()
 
     if ( first )
     {
-        inf = inf/(inf - (double) first);
+        inf = inf / (inf - (double) first);
         first = 0;
     }
     return (inf);
@@ -222,14 +224,14 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
     }
     for ( i = 1 ; i < nb_elt ; i++ )
     {
-        if ( x[i] != x[i-1]+1.0 )
+        if ( x[i] != x[i - 1] + 1.0 )
         {
             return 0;
         }
     }
 
     *xmin = (int) x[0];
-    *xmax = (int) x[nb_elt-1];
+    *xmax = (int) x[nb_elt - 1];
     return 1;
 }
 /*--------------------------------------------------------------------------*/

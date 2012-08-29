@@ -81,6 +81,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
         @Override
         public void destroy() {
+            PaletteManager.getInstance().firePropertyChange("visible", true, false);
         }
 
         @Override

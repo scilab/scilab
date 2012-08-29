@@ -140,8 +140,10 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihdf5_algo_la_LIBADD =
 am__objects_1 = libscihdf5_algo_la-h5_fileManagement.lo \
 	libscihdf5_algo_la-h5_writeDataToFile.lo \
-	libscihdf5_algo_la-dynhdf5.lo \
-	libscihdf5_algo_la-h5_readDataFromFile.lo
+	libscihdf5_algo_la-h5_readDataFromFile.lo \
+	libscihdf5_algo_la-h5_readDataFromFile_v1.lo \
+	libscihdf5_algo_la-import_from_hdf5_v1.lo \
+	libscihdf5_algo_la-listvar_in_hdf5_v1.lo
 am_libscihdf5_algo_la_OBJECTS = $(am__objects_1)
 libscihdf5_algo_la_OBJECTS = $(am_libscihdf5_algo_la_OBJECTS)
 libscihdf5_la_DEPENDENCIES = libscihdf5-algo.la
@@ -452,18 +454,20 @@ yacc_present = @yacc_present@
 
 # No GUI. Disable the Java build
 @GUI_TRUE@@XCOS_TRUE@USEANT = 1
+HDF5_SOURCES = src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c \
+src/c/h5_readDataFromFile.c \
+src/c/h5_readDataFromFile_v1.c \
+src/cpp/import_from_hdf5_v1.cpp \
+src/cpp/listvar_in_hdf5_v1.cpp
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp \
 sci_gateway/cpp/sci_is_hdf5_file.cpp \
 sci_gateway/cpp/sci_listvar_in_hdf5.cpp
 
-HDF5_CPP_SOURCES = \
-    src/cpp/h5_fileManagement.cpp \
-    src/cpp/h5_writeDataToFile.cpp \
-    src/cpp/dynhdf5.cpp \
-    src/cpp/h5_readDataFromFile.cpp
-
+@GIWS_TRUE@BUILT_SOURCES = giws
 
 #### hdf5 : include files ####
 libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -473,18 +477,13 @@ libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/operations/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
                 -I$(top_srcdir)/modules/commons/src/jni/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/system_env/includes/ \
 				-I$(top_srcdir)/modules/string/includes/ \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/functions_manager/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+				-I$(top_srcdir)/modules/system_env/includes/ \
+				-I$(top_srcdir)/modules/operations/includes/ \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS) \
 				$(AM_CPPFLAGS)
@@ -498,12 +497,12 @@ noinst_LTLIBRARIES = libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
 libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
-libscihdf5_algo_la_SOURCES = $(HDF5_CPP_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
+libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(HDF5_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
+CHECK_SRC = $(HDF5_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CPPFLAGS)
 libscihdf5_la_LIBADD = libscihdf5-algo.la
 
@@ -520,33 +519,62 @@ libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
 #### hdf5 : test file ####
 libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data
-libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.sod \
+libscihdf5_la_testsampledata_DATA = \
+tests/sample_scilab_data/booleanmatrix.sod \
+tests/sample_scilab_data/booleanmatrix_v1.sod \
 tests/sample_scilab_data/booleanscalar.sod \
+tests/sample_scilab_data/booleanscalar_v1.sod \
 tests/sample_scilab_data/booleansparse.sod \
+tests/sample_scilab_data/booleansparse_v1.sod \
+tests/sample_scilab_data/emptymatrix.sod \
 tests/sample_scilab_data/emptysparse.sod \
+tests/sample_scilab_data/emptysparse_v1.sod \
 tests/sample_scilab_data/hypermatrixcomplex.sod \
+tests/sample_scilab_data/hypermatrixcomplex_v1.sod \
 tests/sample_scilab_data/hypermatrix.sod \
+tests/sample_scilab_data/hypermatrix_v1.sod \
 tests/sample_scilab_data/int16.sod \
+tests/sample_scilab_data/int16_v1.sod \
 tests/sample_scilab_data/int32.sod \
+tests/sample_scilab_data/int32_v1.sod \
 tests/sample_scilab_data/int8.sod \
+tests/sample_scilab_data/int8_v1.sod \
 tests/sample_scilab_data/list.sod \
+tests/sample_scilab_data/list_v1.sod \
 tests/sample_scilab_data/listnested.sod \
+tests/sample_scilab_data/listnested_v1.sod \
 tests/sample_scilab_data/matricedoublecomplex.sod \
+tests/sample_scilab_data/matricedoublecomplex_v1.sod \
 tests/sample_scilab_data/matricedoublecomplexscalar.sod \
+tests/sample_scilab_data/matricedoublecomplexscalar_v1.sod \
 tests/sample_scilab_data/matricedouble.sod \
+tests/sample_scilab_data/matricedouble_v1.sod \
 tests/sample_scilab_data/matricedoublescalar.sod \
+tests/sample_scilab_data/matricedoublescalar_v1.sod \
 tests/sample_scilab_data/matricestring.sod \
+tests/sample_scilab_data/matricestring_v1.sod \
 tests/sample_scilab_data/matricestringscalar.sod \
+tests/sample_scilab_data/matricestringscalar_v1.sod \
 tests/sample_scilab_data/mlist.sod \
+tests/sample_scilab_data/mlist_v1.sod \
 tests/sample_scilab_data/polynomialscoef.sod \
+tests/sample_scilab_data/polynomialscoef_v1.sod \
 tests/sample_scilab_data/polynomials.sod \
+tests/sample_scilab_data/polynomials_v1.sod \
 tests/sample_scilab_data/sparsematrix.sod \
+tests/sample_scilab_data/sparsematrix_v1.sod \
 tests/sample_scilab_data/tlist.sod \
+tests/sample_scilab_data/tlist_v1.sod \
 tests/sample_scilab_data/uint16.sod \
+tests/sample_scilab_data/uint16_v1.sod \
 tests/sample_scilab_data/uint32.sod \
+tests/sample_scilab_data/uint32_v1.sod \
 tests/sample_scilab_data/uint8.sod \
+tests/sample_scilab_data/uint8_v1.sod \
 tests/sample_scilab_data/undefinedelement.sod \
-tests/sample_scilab_data/voidelement.sod
+tests/sample_scilab_data/undefinedelement_v1.sod \
+tests/sample_scilab_data/voidelement.sod \
+tests/sample_scilab_data/voidelement_v1.sod
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -621,7 +649,8 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -708,10 +737,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-dynhdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-import_from_hdf5_v1.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-listvar_in_hdf5_v1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-gw_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_import_from_hdf5.Plo@am__quote@
@@ -738,6 +769,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscihdf5_algo_la-h5_fileManagement.lo: src/c/h5_fileManagement.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihdf5_algo_la-h5_fileManagement.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Tpo -c -o libscihdf5_algo_la-h5_fileManagement.lo `test -f 'src/c/h5_fileManagement.c' || echo '$(srcdir)/'`src/c/h5_fileManagement.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_fileManagement.c' object='libscihdf5_algo_la-h5_fileManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihdf5_algo_la-h5_fileManagement.lo `test -f 'src/c/h5_fileManagement.c' || echo '$(srcdir)/'`src/c/h5_fileManagement.c
+
+libscihdf5_algo_la-h5_writeDataToFile.lo: src/c/h5_writeDataToFile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihdf5_algo_la-h5_writeDataToFile.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Tpo -c -o libscihdf5_algo_la-h5_writeDataToFile.lo `test -f 'src/c/h5_writeDataToFile.c' || echo '$(srcdir)/'`src/c/h5_writeDataToFile.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_writeDataToFile.c' object='libscihdf5_algo_la-h5_writeDataToFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihdf5_algo_la-h5_writeDataToFile.lo `test -f 'src/c/h5_writeDataToFile.c' || echo '$(srcdir)/'`src/c/h5_writeDataToFile.c
+
+libscihdf5_algo_la-h5_readDataFromFile.lo: src/c/h5_readDataFromFile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihdf5_algo_la-h5_readDataFromFile.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Tpo -c -o libscihdf5_algo_la-h5_readDataFromFile.lo `test -f 'src/c/h5_readDataFromFile.c' || echo '$(srcdir)/'`src/c/h5_readDataFromFile.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_readDataFromFile.c' object='libscihdf5_algo_la-h5_readDataFromFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihdf5_algo_la-h5_readDataFromFile.lo `test -f 'src/c/h5_readDataFromFile.c' || echo '$(srcdir)/'`src/c/h5_readDataFromFile.c
+
+libscihdf5_algo_la-h5_readDataFromFile_v1.lo: src/c/h5_readDataFromFile_v1.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihdf5_algo_la-h5_readDataFromFile_v1.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Tpo -c -o libscihdf5_algo_la-h5_readDataFromFile_v1.lo `test -f 'src/c/h5_readDataFromFile_v1.c' || echo '$(srcdir)/'`src/c/h5_readDataFromFile_v1.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_readDataFromFile_v1.c' object='libscihdf5_algo_la-h5_readDataFromFile_v1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscihdf5_algo_la-h5_readDataFromFile_v1.lo `test -f 'src/c/h5_readDataFromFile_v1.c' || echo '$(srcdir)/'`src/c/h5_readDataFromFile_v1.c
 
 libscihdf5_la-gw_hdf5.lo: sci_gateway/c/gw_hdf5.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscihdf5_la-gw_hdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-gw_hdf5.Tpo -c -o libscihdf5_la-gw_hdf5.lo `test -f 'sci_gateway/c/gw_hdf5.c' || echo '$(srcdir)/'`sci_gateway/c/gw_hdf5.c
@@ -767,33 +826,19 @@ libscihdf5_la-gw_hdf5.lo: sci_gateway/c/gw_hdf5.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscihdf5_algo_la-h5_fileManagement.lo: src/cpp/h5_fileManagement.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-h5_fileManagement.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Tpo -c -o libscihdf5_algo_la-h5_fileManagement.lo `test -f 'src/cpp/h5_fileManagement.cpp' || echo '$(srcdir)/'`src/cpp/h5_fileManagement.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/h5_fileManagement.cpp' object='libscihdf5_algo_la-h5_fileManagement.lo' libtool=yes @AMDEPBACKSLASH@
+libscihdf5_algo_la-import_from_hdf5_v1.lo: src/cpp/import_from_hdf5_v1.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-import_from_hdf5_v1.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-import_from_hdf5_v1.Tpo -c -o libscihdf5_algo_la-import_from_hdf5_v1.lo `test -f 'src/cpp/import_from_hdf5_v1.cpp' || echo '$(srcdir)/'`src/cpp/import_from_hdf5_v1.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-import_from_hdf5_v1.Tpo $(DEPDIR)/libscihdf5_algo_la-import_from_hdf5_v1.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/import_from_hdf5_v1.cpp' object='libscihdf5_algo_la-import_from_hdf5_v1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-h5_fileManagement.lo `test -f 'src/cpp/h5_fileManagement.cpp' || echo '$(srcdir)/'`src/cpp/h5_fileManagement.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-import_from_hdf5_v1.lo `test -f 'src/cpp/import_from_hdf5_v1.cpp' || echo '$(srcdir)/'`src/cpp/import_from_hdf5_v1.cpp
 
-libscihdf5_algo_la-h5_writeDataToFile.lo: src/cpp/h5_writeDataToFile.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-h5_writeDataToFile.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Tpo -c -o libscihdf5_algo_la-h5_writeDataToFile.lo `test -f 'src/cpp/h5_writeDataToFile.cpp' || echo '$(srcdir)/'`src/cpp/h5_writeDataToFile.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_writeDataToFile.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/h5_writeDataToFile.cpp' object='libscihdf5_algo_la-h5_writeDataToFile.lo' libtool=yes @AMDEPBACKSLASH@
+libscihdf5_algo_la-listvar_in_hdf5_v1.lo: src/cpp/listvar_in_hdf5_v1.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-listvar_in_hdf5_v1.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-listvar_in_hdf5_v1.Tpo -c -o libscihdf5_algo_la-listvar_in_hdf5_v1.lo `test -f 'src/cpp/listvar_in_hdf5_v1.cpp' || echo '$(srcdir)/'`src/cpp/listvar_in_hdf5_v1.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-listvar_in_hdf5_v1.Tpo $(DEPDIR)/libscihdf5_algo_la-listvar_in_hdf5_v1.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/listvar_in_hdf5_v1.cpp' object='libscihdf5_algo_la-listvar_in_hdf5_v1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-h5_writeDataToFile.lo `test -f 'src/cpp/h5_writeDataToFile.cpp' || echo '$(srcdir)/'`src/cpp/h5_writeDataToFile.cpp
-
-libscihdf5_algo_la-dynhdf5.lo: src/cpp/dynhdf5.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-dynhdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-dynhdf5.Tpo -c -o libscihdf5_algo_la-dynhdf5.lo `test -f 'src/cpp/dynhdf5.cpp' || echo '$(srcdir)/'`src/cpp/dynhdf5.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-dynhdf5.Tpo $(DEPDIR)/libscihdf5_algo_la-dynhdf5.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/dynhdf5.cpp' object='libscihdf5_algo_la-dynhdf5.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-dynhdf5.lo `test -f 'src/cpp/dynhdf5.cpp' || echo '$(srcdir)/'`src/cpp/dynhdf5.cpp
-
-libscihdf5_algo_la-h5_readDataFromFile.lo: src/cpp/h5_readDataFromFile.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-h5_readDataFromFile.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Tpo -c -o libscihdf5_algo_la-h5_readDataFromFile.lo `test -f 'src/cpp/h5_readDataFromFile.cpp' || echo '$(srcdir)/'`src/cpp/h5_readDataFromFile.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Tpo $(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/h5_readDataFromFile.cpp' object='libscihdf5_algo_la-h5_readDataFromFile.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-h5_readDataFromFile.lo `test -f 'src/cpp/h5_readDataFromFile.cpp' || echo '$(srcdir)/'`src/cpp/h5_readDataFromFile.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-listvar_in_hdf5_v1.lo `test -f 'src/cpp/listvar_in_hdf5_v1.cpp' || echo '$(srcdir)/'`src/cpp/listvar_in_hdf5_v1.cpp
 
 libscihdf5_la-sci_export_to_hdf5.lo: sci_gateway/cpp/sci_export_to_hdf5.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-sci_export_to_hdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Tpo -c -o libscihdf5_la-sci_export_to_hdf5.lo `test -f 'sci_gateway/cpp/sci_export_to_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_export_to_hdf5.cpp
@@ -997,13 +1042,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" "$(DESTDIR)$(libscihdf5_la_testsampledatadir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1033,6 +1080,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1111,7 +1159,7 @@ uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	uninstall-libscihdf5_la_testsampledataDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \

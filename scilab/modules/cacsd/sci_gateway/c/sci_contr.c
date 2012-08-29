@@ -1,12 +1,12 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA - 
+* Copyright (C) INRIA -
 * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -64,84 +64,105 @@ int intab01od(char* fname)
 
     /*     [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B,[TOL])   */
 
-    CheckRhs(2,3);  
-    CheckLhs(1,6);
+    CheckRhs(2, 3);
+    CheckLhs(1, 6);
 
-    if(iIsComplex(1) || GetType(1) != sci_matrix)
+    if (iIsComplex(1) || GetType(1) != sci_matrix)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, 1);
-        return 0; 
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, 1);
+        return 0;
     }
 
-    if(iIsComplex(2) || GetType(2) != sci_matrix)
+    if (iIsComplex(2) || GetType(2) != sci_matrix)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, 2);
-        return 0; 
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, 2);
+        return 0;
     }
 
-    if(Rhs == 3)
+    if (Rhs == 3)
     {
-        if(iIsComplex(3) || GetType(3) != sci_matrix)
+        if (iIsComplex(3) || GetType(3) != sci_matrix)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 3);
-            return 0; 
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 3);
+            return 0;
         }
     }
 
-    theTOL=(double) C2F(dlamch)("e",1L);
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mA,&nA,&ptrA);   
-    A=1;        /*     A */
-    N=mA;
-    theTOL=0.2*sqrt(2*theTOL)*N;
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&mB,&nB,&ptrB);   
-    B=2;        /*     B */
-    M=nB;
+    theTOL = (double) C2F(dlamch)("e", 1L);
+    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &mA, &nA, &ptrA);
+    A = 1;      /*     A */
+    N = mA;
+    theTOL = 0.2 * sqrt(2 * theTOL) * N;
+    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mB, &nB, &ptrB);
+    B = 2;      /*     B */
+    M = nB;
 
     if (nA != mB || mA != nA )
-    { 
-        Scierror(999,_("%s: Wrong values for input arguments #%d and #%d.\n"),fname, 1, 2);  return 0; 
+    {
+        Scierror(999, _("%s: Wrong values for input arguments #%d and #%d.\n"), fname, 1, 2);
+        return 0;
     }
-    if (Rhs == 3) {
+    if (Rhs == 3)
+    {
         /*    TOL is given:   ab01od(A,B,tol)   */
-        GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mtol,&ntol,&ptrTOL);  
-        theTOL=*stk(ptrTOL);    /*     TOL */
-        if (theTOL>1.0||theTOL<0.0) {
-            Scierror(999,_("%s: Wrong value for input argument #%d: Must be in [%d %d].\n"), fname, 3, 0, 1);  return 0;
+        GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &mtol, &ntol, &ptrTOL);
+        theTOL = *stk(ptrTOL);  /*     TOL */
+        if (theTOL > 1.0 || theTOL < 0.0)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in [%d %d].\n"), fname, 3, 0, 1);
+            return 0;
         }
     }
 
     /*     dimensions...    */
-    LDA=Max(1,N);  LDB=LDA;  LDU=LDA; LDV=Max(1,M);
-    LDWORK = Max(1, N*M + Max(N,M) + Max(N,3*M));
+    LDA = Max(1, N);
+    LDB = LDA;
+    LDU = LDA;
+    LDV = Max(1, M);
+    LDWORK = Max(1, N * M + Max(N, M) + Max(N, 3 * M));
 
     /*     other parameters of AB01OD   */
-    JOBU= "N"; if (Lhs >= 2)  JOBU="I";
-    JOBV= "N"; if (Lhs >= 4)  JOBV="I";
+    JOBU = "N";
+    if (Lhs >= 2)  JOBU = "I";
+    JOBV = "N";
+    if (Lhs >= 4)  JOBV = "I";
 
     /*     creating NCONT,U,KSTAIR,V,IWORK,DWORK   */
-    CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),(un=1,&un),&ptrNCONT);  NCONT=Rhs+1;
-    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&N,&N,&ptrU);  U=Rhs+2;
-    CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&N,&ptrKSTAIR);  KSTAIR=Rhs+3;
-    CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&M,&M,&ptrV);  V=Rhs+4;
-    CreateVar(Rhs+5,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&M,&ptrIWORK);
-    CreateVar(Rhs+6,MATRIX_OF_DOUBLE_DATATYPE,(un=1,&un),&LDWORK,&ptrDWORK);
+    un = 1;
+    CreateVar(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &un, &un, &ptrNCONT);
+    NCONT = Rhs + 1;
+    CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &N, &N, &ptrU);
+    U = Rhs + 2;
+    CreateVar(Rhs + 3, MATRIX_OF_INTEGER_DATATYPE, &un, &N, &ptrKSTAIR);
+    KSTAIR = Rhs + 3;
+    CreateVar(Rhs + 4, MATRIX_OF_DOUBLE_DATATYPE, &M, &M, &ptrV);
+    V = Rhs + 4;
+    CreateVar(Rhs + 5, MATRIX_OF_INTEGER_DATATYPE, &un, &M, &ptrIWORK);
+    CreateVar(Rhs + 6, MATRIX_OF_DOUBLE_DATATYPE, &un, &LDWORK, &ptrDWORK);
     C2F(ab01od)( "A", JOBU, JOBV, &N, &M, stk(ptrA), &LDA,
-        stk(ptrB), &LDB, stk(ptrU), &LDU, stk(ptrV), &LDV,
-        istk(ptrNCONT), &INDCON, istk(ptrKSTAIR), &theTOL,
-        istk(ptrIWORK), stk(ptrDWORK), &LDWORK, &INFO );
-    if (INFO != 0) {
+                 stk(ptrB), &LDB, stk(ptrU), &LDU, stk(ptrV), &LDV,
+                 istk(ptrNCONT), &INDCON, istk(ptrKSTAIR), &theTOL,
+                 istk(ptrIWORK), stk(ptrDWORK), &LDWORK, &INFO );
+    if (INFO != 0)
+    {
         C2F(errorinfo)("ab01od", &INFO, 6L);
         return 0;
     }
-    if (Lhs >= 3) {
+    if (Lhs >= 3)
+    {
         /*     resizing KSTAIR      */
-        CreateVar(Rhs+7,MATRIX_OF_INTEGER_DATATYPE,(un=1,&un),&INDCON,&ptrJUNK);
-        KSTAIR=Rhs+7;
-        C2F(icopy)(&INDCON,istk(ptrKSTAIR),(un=1,&un),istk(ptrJUNK),(one=1,&one)); }
+        CreateVar(Rhs + 7, MATRIX_OF_INTEGER_DATATYPE, &un, &INDCON, &ptrJUNK);
+        KSTAIR = Rhs + 7;
+        one = 1;
+        C2F(icopy)(&INDCON, istk(ptrKSTAIR), &un, istk(ptrJUNK), &one);
+    }
     /*     lhs variables: [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B)   */
-    LhsVar(1)=NCONT; LhsVar(2)=U;
-    LhsVar(3)=KSTAIR; LhsVar(4)=V;
-    LhsVar(5)=A; LhsVar(6)=B;
+    LhsVar(1) = NCONT;
+    LhsVar(2) = U;
+    LhsVar(3) = KSTAIR;
+    LhsVar(4) = V;
+    LhsVar(5) = A;
+    LhsVar(6) = B;
     return 0;
 }
 /*--------------------------------------------------------------------------*/

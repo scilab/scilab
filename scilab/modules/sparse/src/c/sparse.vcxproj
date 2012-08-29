@@ -216,8 +216,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="..\..\sci_gateway\c\sci_spcompa.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_spget.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_spmatrix.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spmax.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spmin.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_symfcti.c" />
     <ClCompile Include="spAllocate.c" />
     <ClCompile Include="spBuild.c" />
