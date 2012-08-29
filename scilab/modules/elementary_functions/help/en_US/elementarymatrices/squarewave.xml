@@ -40,7 +40,7 @@
                 <term>percent</term>
                 <listitem>
                     <para>real positive scalar, the percent of the period in which the
-                        signal is positive. Defaut value is 50.
+                        signal is positive. Default value is 50.
                     </para>
                 </listitem>
             </varlistentry>

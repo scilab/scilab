@@ -91,7 +91,7 @@ complex([1 2 3])
             If <literal>a</literal> is a scalar and <literal>b</literal> 
             is a matrix, then the result <literal>c</literal> has the same 
             size as <literal>b</literal>.
-            Similarily, if <literal>b</literal> is a scalar and <literal>a</literal> 
+            Similarly, if <literal>b</literal> is a scalar and <literal>a</literal> 
             is a matrix, then the result <literal>c</literal> has the same 
             size as <literal>a</literal>.
         </para>

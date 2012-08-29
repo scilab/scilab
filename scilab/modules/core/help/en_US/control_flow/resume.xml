@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>x1,..,xn</term>
                 <listitem>
-                    <para>variables in calling environnement</para>
+                    <para>variables in calling environment</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

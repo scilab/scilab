@@ -61,7 +61,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>repmat(A,m,n)</literal> or similarily
+            <literal>repmat(A,m,n)</literal> or similarly
             <literal>repmat(A,[m,n])</literal> returns a large matrix
             consisting of an <literal>m</literal>-by- <literal>n</literal>
             tiling of copies of <literal>A</literal>. The size of the result

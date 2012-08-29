@@ -83,7 +83,7 @@
             Note that <literal>ones(3)</literal> is <literal>ones(a)</literal>
             with <literal>a=3</literal> i.e it is NOT a 3x3 matrix!
         </para>
-        <para>ones() is eqivalent to ones(1,1).</para>
+        <para>ones() is equivalent to ones(1,1).</para>
     </refsection>
     <refsection>
         <title>Examples</title>

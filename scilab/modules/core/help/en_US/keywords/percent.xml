@@ -18,8 +18,7 @@
         <para>
             For example the function <literal>%rmr</literal> performs the multiplication (<literal>m</literal>)
             operation <literal>x*y</literal> for <literal>x</literal> and <literal>y</literal> rational matrices (<literal>r</literal>).
-            The coding conventions are given by the readme file in 
-            directory <literal>SCI/modules/overloading/macros</literal>.
+            The coding conventions are given in the <link linkend="overloading">overloading</link> help page.
         </para>
     </refsection>
     <refsection>

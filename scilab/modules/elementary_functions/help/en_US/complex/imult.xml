@@ -29,7 +29,7 @@
         <title>Description</title>
         <para>
             <literal>imult(x)</literal> is a more efficient way to multiply x by
-            i than y = %i*x, without the problems occuring when x comprises "special"
+            i than y = %i*x, without the problems occurring when x comprises "special"
             floating point numbers as %inf and %nan.
         </para>
     </refsection>

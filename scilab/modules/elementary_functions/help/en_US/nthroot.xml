@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=ntrhoot(x,n)</synopsis>
+        <synopsis>y=nthroot(x,n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

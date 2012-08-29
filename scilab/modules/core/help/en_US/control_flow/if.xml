@@ -46,7 +46,7 @@
         </para>
         <para>
             The  <literal>expri</literal> are expressions with numeric or boolean
-            values. If <literal>expri</literal> is a nonscalar value then the condition is true only if
+            values. If <literal>expri</literal> is a non-scalar value then the condition is true only if
             all entries of this value are true or different from zero.
         </para>
         <para>

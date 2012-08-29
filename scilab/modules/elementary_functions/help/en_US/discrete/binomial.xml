@@ -48,7 +48,7 @@
             <literal>pr=binomial(p,n)</literal> returns the binomial probability
             vector, i.e. <literal>pr(k+1)</literal> is the probability of
             <literal>k</literal> success in <literal>n</literal> independent
-            Bernouilli trials with probability of success <literal>p</literal>. In
+            Bernoulli trials with probability of success <literal>p</literal>. In
             other words : <literal>pr(k+1) = probability(X=k)</literal> , with X a
             random variable following the B(n,p) distribution, and numerically
             :

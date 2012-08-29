@@ -40,7 +40,7 @@
         <title>Description</title>
         <para>
             <literal>error</literal> function allows to issue an error message and to
-            handle the error. By defaut <literal>error</literal> stops the current
+            handle the error. By default <literal>error</literal> stops the current
             execution and resume to the prompt level. This default can be changed
             using the <literal>errcatch</literal> or <literal>execstr(...,'errcatch')</literal> functions.
         </para>

@@ -31,7 +31,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a scalar, a vector, a matrix or a mutlti-array.</para>
+                    <para>a scalar, a vector, a matrix or a multi-array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

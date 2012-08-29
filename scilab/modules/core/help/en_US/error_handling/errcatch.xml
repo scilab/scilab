@@ -94,7 +94,7 @@
         </para>
         <para/>
         <para>
-            The <literal>errcatch</literal> actions apply to the current evalution
+            The <literal>errcatch</literal> actions apply to the current evaluation
             context (<literal>function</literal>, <literal>exec</literal>, <literal>pause</literal>) 
             and all the sub-levels. A  second <literal>errcatch</literal> call in a sub-level hides the 
             initial one for this sub-level. If a second <literal>errcatch</literal> call is made at the
