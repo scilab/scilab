@@ -31,7 +31,6 @@ if Master
         tag=0;
         MPI_Irecv(slaveId, tag, 43);
         valueBack=MPI_Wait(43);
-        disp(valueBack);
         assert_checkequal(valueBack,value + 1);
     end
 else
@@ -41,10 +40,11 @@ else
     MPI_Irecv(rankSource, tag, 42);
     value=MPI_Wait(42)
     value=value+1;
-    disp(value);
     // Isend back to the master
     MPI_Isend(value, 0, 43);
 
 end
 
 MPI_Finalize();
+exit()
+

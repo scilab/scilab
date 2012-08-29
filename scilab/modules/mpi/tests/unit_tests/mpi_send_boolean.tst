@@ -44,3 +44,5 @@ end
 
 MPI_Finalize()
 
+exit()
+

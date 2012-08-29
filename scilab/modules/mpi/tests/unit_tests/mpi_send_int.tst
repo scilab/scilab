@@ -40,4 +40,5 @@ else
 end
 
 MPI_Finalize()
+exit()
 
