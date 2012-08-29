@@ -110,8 +110,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if ((iTypeOne == sci_list) ||
-        (iTypeOne == sci_tlist))
+    if ((iTypeOne == sci_list) || (iTypeOne == sci_tlist))
     {
         OverLoad(1);
         return 0;
@@ -146,8 +145,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
                 else if (strcmp("nonsymmetric", option) == 0) iopt = 2; /*user claims full transform */
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),
-                        fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
                     freeAllocatedSingleString(option);
                     option = NULL;
                     return 0;
@@ -158,8 +156,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),
-                    fname, Rhs, "\"full\", \"same\"", "\"valid\"");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"full\", \"same\"", "\"valid\"");
                 return 0;
             }
         }
@@ -182,9 +179,8 @@ int sci_fftw(char *fname, unsigned long fname_len)
         /* check value of second rhs argument */
         if ((isn !=  FFTW_FORWARD) && (isn !=  FFTW_BACKWARD))
         {
-            Scierror(53, _("%s: Wrong value for input argument #%d: %d or %d expected.\n"),
-                fname, 2, FFTW_FORWARD, FFTW_BACKWARD);
-            return(0);
+            Scierror(53, _("%s: Wrong value for input argument #%d: %d or %d expected.\n"), fname, 2, FFTW_FORWARD, FFTW_BACKWARD);
+            return 0;
         }
     }
 
@@ -193,7 +189,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
     if (!getArrayOfDouble(pvApiCtx, piAddr, &ndimsA, &dimsA, &Ar, &Ai))
     {
         Scierror(999, _("%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"),
-            fname, 1);
+                 fname, 1);
         return 0;
     }
 
@@ -406,32 +402,32 @@ SciErr getScalarIntArg(void* _pvCtx, int _iVar, char *fname, int *value)
 
         switch (iPrec)
         {
-        case SCI_INT8 :
+            case SCI_INT8 :
             {
                 getScalarInteger8(_pvCtx, piAddr, &t_c);
                 *value = (int)t_c;
             }
-        case SCI_INT16 :
+            case SCI_INT16 :
             {
                 getScalarInteger16(_pvCtx, piAddr, &t_s);
                 *value = (int)t_s;
             }
-        case SCI_INT32 :
+            case SCI_INT32 :
             {
                 getScalarInteger32(_pvCtx, piAddr, &t_i);
                 *value = (int)t_i;
             }
-        case SCI_UINT8 :
+            case SCI_UINT8 :
             {
                 getScalarUnsignedInteger8(_pvCtx, piAddr, &t_uc);
                 *value = (int)t_uc;
             }
-        case SCI_UINT16 :
+            case SCI_UINT16 :
             {
                 getScalarUnsignedInteger16(_pvCtx, piAddr, &t_us);
                 *value = (int)t_us;
             }
-        case SCI_UINT32 :
+            case SCI_UINT32 :
             {
                 getScalarUnsignedInteger32(_pvCtx, piAddr, &t_ui);
                 *value = (int)t_ui;
@@ -441,8 +437,8 @@ SciErr getScalarIntArg(void* _pvCtx, int _iVar, char *fname, int *value)
     else
     {
         addErrorMessage(&sciErr, API_ERROR_GET_INT,
-            _("%s: Wrong type for argument #%d: An integer or a floating point number expected.\n"),
-            fname, _iVar);
+                        _("%s: Wrong type for argument #%d: An integer or a floating point number expected.\n"),
+                        fname, _iVar);
         return sciErr;
     }
     return sciErr;
@@ -489,13 +485,13 @@ SciErr getVectorIntArg(void* _pvCtx, int _iVar, char *fname, int *pndims, int **
     if (ndims <= 0)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_INT,
-            _("%s: Wrong size for input argument #%d.\n"), fname, _iVar);
+                        _("%s: Wrong size for input argument #%d.\n"), fname, _iVar);
         return sciErr;
     }
     if ((Dim = (int *)MALLOC(ndims * sizeof(int))) == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_INT,
-            _("%s: Cannot allocate more memory.\n"), fname);
+                        _("%s: Cannot allocate more memory.\n"), fname);
         return sciErr;
     }
     *pDim = Dim;
@@ -509,30 +505,30 @@ SciErr getVectorIntArg(void* _pvCtx, int _iVar, char *fname, int *pndims, int **
         getMatrixOfIntegerPrecision(_pvCtx, piAddr, &iPrec);
         switch (iPrec)
         {
-        case SCI_INT8 :
-            getMatrixOfInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_c);
-            for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_c[i]);
-            break;
-        case SCI_INT16 :
-            getMatrixOfInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_s);
-            for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_s[i]);
-            break;
-        case SCI_INT32 :
-            getMatrixOfInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_i);
-            for (i = 0; i < ndims; i++)  Dim[i]  = (int)(p_i[i]);
-            break;
-        case SCI_UINT8 :
-            getMatrixOfUnsignedInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_uc);
-            for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_uc[i]);
-            break;
-        case SCI_UINT16 :
-            getMatrixOfUnsignedInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_us);
-            for (i = 0; i < ndims; i++) Dim[i]  = (int) p_us[i];
-            break;
-        case SCI_UINT32 :
-            getMatrixOfUnsignedInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_ui);
-            for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_ui[i]);
-            break;
+            case SCI_INT8 :
+                getMatrixOfInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_c);
+                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_c[i]);
+                break;
+            case SCI_INT16 :
+                getMatrixOfInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_s);
+                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_s[i]);
+                break;
+            case SCI_INT32 :
+                getMatrixOfInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_i);
+                for (i = 0; i < ndims; i++)  Dim[i]  = (int)(p_i[i]);
+                break;
+            case SCI_UINT8 :
+                getMatrixOfUnsignedInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_uc);
+                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_uc[i]);
+                break;
+            case SCI_UINT16 :
+                getMatrixOfUnsignedInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_us);
+                for (i = 0; i < ndims; i++) Dim[i]  = (int) p_us[i];
+                break;
+            case SCI_UINT32 :
+                getMatrixOfUnsignedInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_ui);
+                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_ui[i]);
+                break;
         }
     }
     else
@@ -540,7 +536,7 @@ SciErr getVectorIntArg(void* _pvCtx, int _iVar, char *fname, int *pndims, int **
         FREE(Dim);
         Dim = NULL;
         addErrorMessage(&sciErr, API_ERROR_GET_INT,
-            _("%s: Wrong type for argument #%d: An array of floating point or integer numbers expected.\n"), fname, _iVar);
+                        _("%s: Wrong type for argument #%d: An array of floating point or integer numbers expected.\n"), fname, _iVar);
         return sciErr;
     }
     return sciErr;
@@ -574,14 +570,16 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     {
         AssignOutputVariable(_pvCtx, 1) =  1;
         ReturnArguments(_pvCtx);
-        return(0);
+        return 0;
     }
 
     gdim.rank = ndims;
     if ((gdim.dims = (fftw_iodim *)MALLOC(sizeof(fftw_iodim) * gdim.rank)) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-        goto ERR;
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
 
     j = 0;
@@ -601,18 +599,22 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     gdim.howmany_dims = NULL;
 
 
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, iopt, gdim))  goto ERR;
-
+    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, iopt, gdim))
+    {
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
+    }
 
     /***********************************
     * Return results in lhs argument *
     ***********************************/
 
     ReturnArguments(_pvCtx);
-ERR:
+
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
-    return(0);
+    return 0;
 }
 
 
@@ -652,7 +654,7 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     {
         AssignOutputVariable(_pvCtx, 1) =  1;
         ReturnArguments(_pvCtx);
-        return(0);
+        return 0;
     }
 
 
@@ -661,19 +663,25 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     if (isVarMatrixType(pvApiCtx, piAddr) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 3);
-        goto ERR;
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     sciErr = getVectorIntArg(pvApiCtx, 3, fname, &rank, &Sel);
     if (sciErr.iErr)
     {
         Scierror(sciErr.iErr, getErrorMessage(sciErr));
-        goto ERR;
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     /* size of Sel must be less than ndimsA */
     if (rank <= 0 || rank >= ndimsA)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"), fname, 3, 1, ndimsA - 1);
-        goto ERR;
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     /* check values of Sel[i] */
     for (i = 0; i < rank; i++)
@@ -681,17 +689,23 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         if (Sel[i] <= 0)
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Positive integers expected.\n"), fname, 3);
-            goto ERR;
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         if (Sel[i] > ndimsA)
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be less than %d.\n"), fname, 3, ndimsA);
-            goto ERR;
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         if (i > 0 && Sel[i] <= Sel[i - 1])
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), fname, 3);
-            goto ERR;
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
     }
 
@@ -700,7 +714,9 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     if ((gdim.dims = (fftw_iodim *)MALLOC(sizeof(fftw_iodim) * gdim.rank)) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-        goto ERR;
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
 
     pd = 1; /* used to store prod(Dims(1:sel(k-1)))*/
@@ -734,7 +750,9 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         if ((gdim.howmany_dims = (fftw_iodim *)MALLOC(gdim.howmany_rank * sizeof(fftw_iodim))) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            goto ERR;
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         pd = 1;
         for (j = 1; j <= (Sel[0] - 1); j++) pd *= dimsA[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
@@ -783,16 +801,22 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         }
     }
 
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))  goto ERR;
+    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))
+    {
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
+    }
+
     /***********************************
     * Return results in lhs argument *
     ***********************************/
 
     ReturnArguments(_pvCtx);
-ERR:
+
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
-    return(0);
+    return 0;
 }
 
 int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
@@ -829,7 +853,7 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     {
         AssignOutputVariable(_pvCtx, 1) =  1;
         ReturnArguments(_pvCtx);
-        return(0);
+        return 0;
     }
 
     /******************** get and check third argument (dim) ****************************************/
@@ -837,76 +861,148 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     if (isVarMatrixType(pvApiCtx, piAddr) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 3);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     sciErr = getVectorIntArg(pvApiCtx, 3, fname, &ndims, &Dim1);
     if (sciErr.iErr)
     {
         Scierror(sciErr.iErr, getErrorMessage(sciErr));
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
-    /* check values of Dim1[i} */
+    /* check values of Dim1[i] */
     pd = 1;
     for (i = 0; i < ndims; i++)
     {
         if (Dim1[i] <= 1)
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"), fname, 3, 1);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         pd *= Dim1[i];
     }
     if ( pd > lA)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Must be less than %d.\n"), fname, 3, lA);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     if (lA % pd)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"), fname, 3, lA);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     /******************** get and check fourth argument (incr) ****************************************/
     sciErr = getVectorIntArg(pvApiCtx, 4, fname, &nincr, &Incr);
     if (sciErr.iErr)
     {
         Scierror(sciErr.iErr, getErrorMessage(sciErr));
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     if (nincr != ndims)
     {
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), fname, 3, 4);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
 
     /* check values of Incr[i] */
     if (Incr[0] <= 0)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Positive integers expected.\n"), fname, 4);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     for (i = 0; i < ndims; i++)
     {
         if (lA % Incr[i])
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"), fname, 3, lA);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         if (i > 0 && (Incr[i] <= Incr[i - 1]))
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing ""order.\n"), fname, 4);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
     }
     if ((Dim = (int *)MALLOC((2 * ndims + 1) * sizeof(int))) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
     if ((Sel = (int *)MALLOC((ndims) * sizeof(int))) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
 
 
@@ -928,7 +1024,13 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         if (Incr[k] % pd != 0)
         {
             Scierror(999, _("%s: Incompatible input arguments #%d and #%d.\n"), fname, 3, 4);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         if (Incr[k] != pd)
         {
@@ -944,7 +1046,13 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         if (lA % pd != 0)
         {
             Scierror(999, _("%s: Incompatible input arguments #%d and #%d.\n"), fname, 3, 4);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         Dim[nd++] = (int)(lA / pd);
     }
@@ -958,7 +1066,13 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     if ((gdim.dims = (fftw_iodim *)MALLOC(sizeof(fftw_iodim) * gdim.rank)) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-        goto ERR;
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
     }
 
     pd = 1; /* used to store prod(Dims(1:sel(k-1)))*/
@@ -994,7 +1108,13 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         if ((gdim.howmany_dims = (fftw_iodim *)MALLOC(gdim.howmany_rank * sizeof(fftw_iodim))) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            goto ERR;
+            FREE(Dim1);
+            FREE(Incr);
+            FREE(Dim);
+            FREE(Sel);
+            FREE(gdim.dims);
+            FREE(gdim.howmany_dims);
+            return 0;
         }
         pd = 1;
         for (j = 1; j <= (Sel[0] - 1); j++) pd *= Dim[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
@@ -1041,21 +1161,30 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             ih++;
         }
     }
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))  goto ERR;
+    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))
+    {
+        FREE(Dim1);
+        FREE(Incr);
+        FREE(Dim);
+        FREE(Sel);
+        FREE(gdim.dims);
+        FREE(gdim.howmany_dims);
+        return 0;
+    }
 
     /***********************************
     * Return results in lhs argument *
     ***********************************/
 
     ReturnArguments(_pvCtx);
-ERR:
+
     FREE(Dim1);
     FREE(Incr);
     FREE(Dim);
     FREE(Sel);
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
-    return(0);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 BOOL isHyperMatrixMlist(void* _pvCtx, int *piAddressVar)
@@ -1136,10 +1265,14 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     /* input/output address for transform variables */
     double *ri = NULL, *ii = NULL, *ro = NULL, *io = NULL;
 
+    /* for MKL special cases */
+    int * dims1 = NULL;
+    int * incr1 = NULL;
 
     /* local variable */
     int one = 1;
     int i = 0;
+    int errflag = 0;
 
 
     for (i = 0; i < ndimsA; i++)
@@ -1155,7 +1288,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         if (issymA < 0 )
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            goto ERR;
+            return 0;
         }
     }
 
@@ -1183,7 +1316,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
                 if (sciErr.iErr)
                 {
                     Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    goto ERR;
+                    return 0;
                 }
                 C2F(dset)(&lA, &dzero, Ai, &one);
             }
@@ -1194,7 +1327,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
                 if (sciErr.iErr)
                 {
                     Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    goto ERR;
+                    return 0;
                 }
                 C2F(dcopy)(&lA, Ar, &one, ri, &one);
                 Ar = ri;
@@ -1212,7 +1345,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         if (sciErr.iErr)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            goto ERR;
+            return 0;
         }
         C2F(dcopy)(&lA, Ar, &one, ri, &one);
         Ar = ri;
@@ -1237,7 +1370,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             if (sciErr.iErr)
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                goto ERR;
+                return 0;
             }
             type = R2C_PLAN;
             ro = Ar;
@@ -1250,7 +1383,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             if (sciErr.iErr)
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                goto ERR;
+                return 0;
             }
             AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(_pvCtx) + 1;
             type = R2C_PLAN; /* fftw_plan_guru_split_dft_r2c plans for an FFTW_FORWARD transform*/
@@ -1304,13 +1437,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             }
         }
     }
-    /* Set Plan */
-    p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn);
-    if (p == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        goto ERR;
-    }
+
     /* pre-treatment */
     if (scale != None)
     {
@@ -1320,69 +1447,168 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         C2F(dscal)(&lA, &ak, ri, &one);
         if (isrealA == 0) C2F(dscal)(&lA, &ak, ii, &one);
     }
-    /* execute FFTW plan */
-    ExecuteFFTWPlan(type, p, ri, ii, ro, io);
+
+    if (!WITHMKL || gdim.howmany_rank <= 1)
+    {
+        /* Set Plan */
+        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , &errflag);
+        if (errflag == 1)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+        else if (errflag == 2)
+        {
+            Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            return 0;
+        }
+        /* execute FFTW plan */
+        ExecuteFFTWPlan(type, p, ri, ii, ro, io);
+    }
+    else
+    {
+        /*FFTW MKL does not implement yet guru plan with howmany_rank>1             */
+        /*   associated loops described in gdim.howmany_rank and  gdim.howmany_dims */
+        /*   are implemented here by a set of call with howmany_rank==1             */
+        fftw_iodim *howmany_dims = gdim.howmany_dims;
+        int howmany_rank = gdim.howmany_rank;
+        int i1 = 0, i2 = 0;
+        int nloop = 0;
+        int t = 0;
+
+
+        gdim.howmany_rank = 0;
+        gdim.howmany_dims = NULL;
+
+        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , &errflag);
+        if (errflag == 1)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            FREE(dims1);
+            FREE(incr1);
+            return 0;
+        }
+        else if (errflag == 2)
+        {
+            Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            FREE(dims1);
+            FREE(incr1);
+            return 0;
+        }
+
+        /* flatten  nested loops: replace howmany_rank nested loops by a single one*/
+        /* Build temporary arrays used by flatened loop */
+        if ((dims1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            FREE(dims1);
+            FREE(incr1);
+            return 0;
+        }
+        dims1[0] = howmany_dims[0].n;
+        for (i = 1; i < howmany_rank; i++) dims1[i] = dims1[i - 1] * howmany_dims[i].n;
+        nloop = dims1[howmany_rank - 1];
+
+        if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            FREE(dims1);
+            FREE(incr1);
+            return 0;
+        }
+        t = 1;
+        for (i = 0; i < howmany_rank; i++)
+        {
+            t += (howmany_dims[i].n - 1) * howmany_dims[i].is;
+            incr1[i] = t;
+        }
+        /*loop on each "plan" */
+        i = 0; /*index on the first plan entry */
+        for (i1 = 1; i1 <= nloop; i1++)
+        {
+            /* the input and output are assumed to be complex because
+               within MKL real cases are transformed to complex ones in
+               previous steps of sci_fft_gen*/
+            ExecuteFFTWPlan(type, p, &ri[i], &ii[i], &ro[i], &io[i]);
+            i += howmany_dims[0].is;
+            /* check if  a loop ends*/
+            for (i2 = howmany_rank - 2; i2 >= 0; i2--)
+            {
+                if ((i1 % dims1[i2]) == 0)
+                {
+                    /*loop on dimension i2 ends, compute jump on the first plan entry index*/
+                    i += howmany_dims[i2 + 1].is - incr1[i2];
+                    break;
+                }
+            }
+        }
+        /* free temporary arrays */
+        FREE(dims1);
+        FREE(incr1);
+        /* reset initial value of gdim for post treatment*/
+        gdim.howmany_rank = howmany_rank;
+        gdim.howmany_dims = howmany_dims;
+
+    }
     /* Post treatment */
     switch (type)
     {
-    case R2R_PLAN:
-        if (complete_array(ro, NULL, gdim) == -1)
-        {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            goto ERR;
-        }
-        break;
-    case C2R_PLAN:
-        break;
-    case R2C_PLAN:
-        if (issymA)
-        {
-            /*R2C has been used to solve an r2r problem*/
+        case R2R_PLAN:
             if (complete_array(ro, NULL, gdim) == -1)
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                goto ERR;
+                return 0;
             }
-        }
-        else
-        {
-            if (complete_array(ro, io, gdim) == -1)
+            break;
+        case C2R_PLAN:
+            break;
+        case R2C_PLAN:
+            if (issymA)
             {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                goto ERR;
-            }
-            if (isn == FFTW_BACKWARD)
-            {
-                /*conjugate result */
-                double ak = -1.0;
-                C2F(dscal)(&lA, &ak, io, &one);
-            }
-        }
-        break;
-    case C2C_PLAN:
-        if (WITHMKL && isrealA_save)
-        {
-            if (isn == FFTW_FORWARD)
-            {
-                if (complete_array(ro, io, gdim) == -1)
+                /*R2C has been used to solve an r2r problem*/
+                if (complete_array(ro, NULL, gdim) == -1)
                 {
                     Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    goto ERR;
+                    return 0;
                 }
             }
             else
             {
-                if (complete_array(io, ro, gdim) == -1)
+                if (complete_array(ro, io, gdim) == -1)
                 {
                     Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    goto ERR;
+                    return 0;
+                }
+                if (isn == FFTW_BACKWARD)
+                {
+                    /*conjugate result */
+                    double ak = -1.0;
+                    C2F(dscal)(&lA, &ak, io, &one);
                 }
             }
-        }
-        break;
+            break;
+        case C2C_PLAN:
+            if (WITHMKL && isrealA_save)
+            {
+                if (isn == FFTW_FORWARD)
+                {
+                    if (complete_array(ro, io, gdim) == -1)
+                    {
+                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    if (complete_array(io, ro, gdim) == -1)
+                    {
+                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+                        return 0;
+                    }
+                }
+            }
+            break;
     }
 
-    return(1);
-ERR:
-    return(0);
+    return 1;
 }
