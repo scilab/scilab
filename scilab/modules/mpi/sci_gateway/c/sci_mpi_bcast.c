@@ -18,8 +18,6 @@
 #include "localization.h"
 #include "serialization.h"
 
-#define TAG 0
-
 int sci_mpi_bcast(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
@@ -88,24 +86,54 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
 
     if (iRet)
     {
+        printf("pas reussi a seraliser\n");
     }
+    int rank, length;
+    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
 
+    /* First, send the size of the data as broadcast */
+    iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, rootID, MPI_COMM_WORLD);
+
+    /* Second, restore the data with the right size */
     iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, rootID, MPI_COMM_WORLD);
+
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
 
+        printf("ICI \n"); fflush(NULL);
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror("%s: Could not send the variable to the node %d: %s\n", fname, rootID, error_string);
+        Scierror("%s: Could not broadcast the variable to the node %d: %s\n", fname, rootID, error_string);
         return 1;
     }
 
-    free(piBuffer);
-    if (createScalarBoolean(pvApiCtx, 1, !iRet))
+    switch (piBuffer[0])
     {
+    case sci_matrix:
+        iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
+        break;
+    case sci_strings:
+        iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
+        break;
+    case sci_boolean:
+        iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
+        break;
+    case sci_sparse:
+        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
+        break;
+    case sci_boolean_sparse:
+        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
+        break;
+    case sci_ints:
+        iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
+        break;
+    default:
         return 1;
+        break;
     }
+
+//    free(piBuffer);
 
     LhsVar(1) = 1;
     PutLhsVar();
