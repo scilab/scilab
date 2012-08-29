@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: ca\n"
 
 #, c-format
@@ -49,9 +49,6 @@ msgstr "Horitzontal"
 msgid "Vertical"
 msgstr "Vertical"
 
-msgid "Simulation"
-msgstr "Simulació"
-
 msgid "No trace nor debug printing"
 msgstr "No hi ha traces ni depuracions"
 
@@ -63,6 +60,21 @@ msgstr "Crides a traces i depuracions per execucions de blocs"
 
 msgid "Debug block calls without trace"
 msgstr "Crides a blocs de depuració sense traces"
+
+msgid "Number of recently opened files to display: "
+msgstr ""
+
+msgid "Default file format"
+msgstr ""
+
+msgid "Link Style"
+msgstr "Estil dels enllaços"
+
+msgid "Diagram background"
+msgstr "Fons del diagrama"
+
+msgid "Grid"
+msgstr "Quadrícula"
 
 msgid "Default simulation settings"
 msgstr ""
@@ -105,6 +117,9 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "de cadenes de text.\n"
 
+msgid "a graphical environnement is needed."
+msgstr ""
+
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -112,15 +127,6 @@ msgid ""
 msgstr ""
 "No s'ha pogut carregar la llibreria jgraphx. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
-
-#, c-format
-msgid ""
-"Unable to load the hdf5-java (jhdf5) library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-
-msgid "Unable to load the native HDF5 library."
-msgstr ""
 
 #, c-format
 msgid ""
@@ -418,6 +424,9 @@ msgstr "Detalls"
 msgid "Show parent diagram"
 msgstr "Mostra el diagrama superior"
 
+msgid "Simulation"
+msgstr "Simulació"
+
 msgid "Setup"
 msgstr "Configura"
 
@@ -450,12 +459,6 @@ msgstr "Inverteix"
 
 msgid "Show/Hide shadow"
 msgstr "Mostra/amaga les ombres"
-
-msgid "Grid"
-msgstr "Quadrícula"
-
-msgid "Diagram background"
-msgstr "Fons del diagrama"
 
 msgid "Bold"
 msgstr "Negreta"
@@ -715,9 +718,6 @@ msgstr "Color d'emplenat"
 
 msgid "Text Color"
 msgstr "Color del text"
-
-msgid "Link Style"
-msgstr "Estil dels enllaços"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
