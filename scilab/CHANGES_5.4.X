@@ -178,6 +178,8 @@ Bug Fixes
 
 * Bug #11774 fixed - Wrong description in now help page.
 
+* Bug #11787 fixed - There was a problem with toolbar refreshing under Mac OS.
+
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
             ===============================================================
