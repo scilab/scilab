@@ -4,6 +4,8 @@
 Bug Fixes
 =========
 
+* Bug #8799 fixed - gsort did not work with hypermatrices.
+
 * Bug #11558 fixed - Typo in helptools module fixed.
 
 
