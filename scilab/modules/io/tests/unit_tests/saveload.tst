@@ -123,17 +123,7 @@ a=uint32(1);assert_checktrue(Check(a));
 a=uint32(1:9);assert_checktrue(Check(a));
 a=uint32(1:10000);assert_checktrue(Check(a));
 
-
-//deff("x=a(n)","x=n+1","n");assert_checktrue(Check(a)); // Deactivated: See bug #11797
-deff("x=a(n)","x=n+1");assert_checktrue(Check(a));
-//deff("x=a","x=n+1","n");assert_checktrue(Check(a)); // Deactivated: See bug #11797
-deff("x=a","x=n+1");assert_checktrue(Check(a));
-//deff("a(n)","x=n+1","n");assert_checktrue(Check(a)); // Deactivated: See bug #11797
-deff("a(n)","x=n+1");assert_checktrue(Check(a));
-//deff("a()","x=n+1","n");assert_checktrue(Check(a)); // Deactivated: See bug #11797
-deff("a()","x=n+1");assert_checktrue(Check(a));
-
-//a=list();assert_checktrue(Check(a)); // Deactivated: See bug #11794
+a=list();assert_checktrue(Check(a));
 a=list(1);assert_checktrue(Check(a));
 a=list(1,rand(10,10),"asdfsf");assert_checktrue(Check(a));
 a=list(1,rand(10,10),"asdfsf",poly(rand(10,10),"s"));assert_checktrue(Check(a));
@@ -172,10 +162,8 @@ assert_checktrue(Check(a,b,c,d));
 a=sprand(100,100,0.1);
 b=sparse(zeros(100,100))==1;
 c=list(list(1,rand(10,10),"asdfsf",poly(rand(1,11),"s","c")),list());
-deff("d()","x=n+1","n");
 assert_checktrue(Check(a,b));
 assert_checktrue(Check(a,b,c));
-//assert_checktrue(Check(a,b,c,d)); // Deactivated: See bug #11797
 
 //test save/load macro
 function a = toto(x,y)
@@ -203,3 +191,4 @@ clear toto;
 load(TMPDIR + "/savemacro.sod");
 assert_checkequal(toto(3*5, 9*3), ref);
 assert_checkequal(type(toto), 11);
+

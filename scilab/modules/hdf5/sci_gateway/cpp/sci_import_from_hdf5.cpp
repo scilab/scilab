@@ -931,6 +931,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddres
 
     piNbItemRow = (int *)MALLOC(iRows * sizeof(int));
     piColPos = (int *)MALLOC(iNbItem * sizeof(int));
+
     iRet = readBooleanSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     if (iRet)
     {
@@ -953,7 +954,10 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddres
     }
 
     FREE(piNbItemRow);
-    FREE(piColPos);
+    if(piColPos)
+    {
+        FREE(piColPos);
+    }
 
     if (iRet)
     {
