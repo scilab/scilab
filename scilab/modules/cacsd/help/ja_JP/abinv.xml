@@ -265,8 +265,9 @@ X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
 trzeros(Sys)
 spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
 clean(ss2tf(Sys*Z))
-
-// 2nd Example
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[ 
 nx=6;ny=3;nu=2;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
 C=[zeros(ny,ny),eye(ny,ny)];D=[0,1;0,2;0,3];

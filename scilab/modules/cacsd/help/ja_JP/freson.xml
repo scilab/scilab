@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="freson">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="freson">
     <refnamediv>
         <refname>freson</refname>
         <refpurpose>ピーク周波数</refpurpose>
@@ -53,6 +53,12 @@ fr=freson(h)
 bode(h)
 g=20*log(abs(repfreq(h,fr)))/log(10)
  ]]></programlisting>
+        <scilab:image>
+            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
+            fr=freson(h)
+            bode(h)
+            g=20*log(abs(repfreq(h,fr)))/log(10)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
