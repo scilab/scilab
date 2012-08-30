@@ -2303,7 +2303,7 @@ Bug Fixes
 
 * Bug #9339 fixed - tbx_build_help function did not manage languages correctly.
 
-* Bug #9354 fixed - 'avematfile could not save imbricate structures.
+* Bug #9354 fixed - savematfile could not save imbricate structures.
 
 * Bug #9414 fixed - 'SCI' and 'SCIHOME' variables were not documented.
 
