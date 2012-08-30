@@ -191,13 +191,13 @@ msgstr ""
 # File: macros/help_from_sci.sci, line: 172
 # File: macros/help_from_sci.sci, line: 175
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr ""
 
 #
 # File: macros/help_from_sci.sci, line: 178
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr ""
 
 #

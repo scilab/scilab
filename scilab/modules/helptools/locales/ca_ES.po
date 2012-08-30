@@ -132,11 +132,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: S'està llegint del directori %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: Processant el fitxer: %s a %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: Processant el fitxer: %s\n"
 
 #, c-format

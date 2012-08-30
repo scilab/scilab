@@ -120,11 +120,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: Čtu z adresáře %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: Zpracovávám soubor: %s až %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: Zpracovávám soubor: %s\n"
 
 #, c-format

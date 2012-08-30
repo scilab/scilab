@@ -117,11 +117,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: 從目錄讀取中 %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: 檔案處理中: %s to %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: 處理檔案 %s 中\n"
 
 #, c-format

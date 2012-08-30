@@ -167,11 +167,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: ディレクトリ　%s からの読み込み\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%1$s: 加工ファイル: %3$s への %2$s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: 加工ファイル: %s\n"
 
 #, c-format

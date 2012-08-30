@@ -4,6 +4,8 @@
 Bug Fixes
 =========
 
+* Bug #11558 fixed - Typo in helptools module fixed.
+
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================

@@ -130,11 +130,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: Leyendo desde el directorio %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: Procesando archivos: de %s a %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: Procesando el archivo: %s\n"
 
 #, c-format
