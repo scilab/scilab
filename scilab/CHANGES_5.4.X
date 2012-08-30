@@ -47,7 +47,7 @@ Compilation
 
 * Scilab dependency on Java HDF has been removed.
 
-* Update to Scirenderer 0.5.6.
+* Update to Scirenderer 0.5.7.
 
 * Update to JOGL 2.0 rc9
 
