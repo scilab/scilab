@@ -6,6 +6,9 @@ Xcos
 
 * Bug #10943 fixed - Accented character in the file path broke file loading.
 
+* Bug #11717 fixed - Setting recent opened file number in preferences GUI
+                     did not apply in Xcos menu.
+
 
 Bug Fixes
 =========
