@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en_US" xml:id="damp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="damp">
     <refnamediv>
         <refname>damp</refname>
         <refpurpose>Natural frequencies and damping factors. </refpurpose>
@@ -147,22 +147,22 @@
    plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
    ]]></programlisting>
         <para>
-<scilab:image>
-   s=%s;
-   wn=1;
-   clf();
-   Z=[0.95 0.7 0.5 0.3 0.13 0.0001];
-   for k=1:size(Z,'*')
-     z=Z(k)
-     H=syslin('c',1+5*s+10*s^2,s^2+2*z*wn*s+wn^2);
-     gainplot(H,0.01,1)
-     p=gce();p=p.children;
-     p.foreground=k;
-   end
-   title("$\frac{1+5 s+10 s^2}{\omega_n^2+2\omega_n\xi s+s^2}, \quad \omega_n=1$")
-   legend('$\xi='+string(Z)+'$')
-   plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
-</scilab:image>
+            <scilab:image>
+                s=%s;
+                wn=1;
+                clf();
+                Z=[0.95 0.7 0.5 0.3 0.13 0.0001];
+                for k=1:size(Z,'*')
+                z=Z(k)
+                H=syslin('c',1+5*s+10*s^2,s^2+2*z*wn*s+wn^2);
+                gainplot(H,0.01,1)
+                p=gce();p=p.children;
+                p.foreground=k;
+                end
+                title("$\frac{1+5 s+10 s^2}{\omega_n^2+2\omega_n\xi s+s^2}, \quad \omega_n=1$")
+                legend('$\xi='+string(Z)+'$')
+                plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
+            </scilab:image>
         </para>
         <para>
             Computing the natural pulsations and daping ratio for a set of roots:

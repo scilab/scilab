@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="m_circle">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="m_circle">
     <refnamediv>
         <refname>m_circle</refname>
         <refpurpose> plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
@@ -69,13 +69,13 @@ h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
 m_circle();
 ]]></programlisting>
-<scilab:image>
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
-m_circle();
-</scilab:image>
-
+        <scilab:image>
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+            nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+            m_circle();
+        </scilab:image>
+        
         <programlisting role="example"><![CDATA[
 clf();
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
@@ -83,11 +83,11 @@ nyquist([h1;h],0.01,100,['h1';'h'])
 m_circle([-8 -6 -4]);
 ]]></programlisting>
         <scilab:image>
-clf();
-h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
-nyquist([h1;h],0.01,100,['h1';'h'])
-m_circle([-8 -6 -4]);
-</scilab:image>
+            clf();
+            h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+            nyquist([h1;h],0.01,100,['h1';'h'])
+            m_circle([-8 -6 -4]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

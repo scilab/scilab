@@ -11,7 +11,7 @@
  *
  -->
 <refentry
-  version="5.0-subset Scilab" xml:id="WFILE_f" xml:lang="fr_FR"
+  xmlns:scilab="http://www.scilab.org" xml:id="WFILE_f" xml:lang="fr_FR"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:svg="http://www.w3.org/2000/svg"

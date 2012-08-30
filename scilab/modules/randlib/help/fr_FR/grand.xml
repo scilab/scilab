@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="fr" xml:id="grand">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="grand">
     <refnamediv>
         <refname>grand</refname>
         <refpurpose> Générateur de nombres pseudo-aléatoires</refpurpose>
@@ -764,11 +764,11 @@ scf();
 histplot(10,R);
 xtitle("Nombres aléatoires (loi normale) par grand","X","Fréquence");
  ]]></programlisting>
-<scilab:image localized="true">
-R = grand(400,800,"nor",0,1);
-histplot(10,R);
-xtitle("Nombres aléatoires (loi normale) par grand","X","Fréquence");
-</scilab:image>
+        <scilab:image localized="true">
+            R = grand(400,800,"nor",0,1);
+            histplot(10,R);
+            xtitle("Nombres aléatoires (loi normale) par grand","X","Fréquence");
+        </scilab:image>
         <programlisting role="example"><![CDATA[ 
 // Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
 // uniformes dans [0,1).
@@ -777,11 +777,11 @@ scf();
 histplot(10,R);
 xtitle("Nombres aléatoires uniformes par grand","X","Fréquence");
  ]]></programlisting>
-<scilab:image localized="true">
-R = grand(400,800,"def");
-histplot(10,R);
-xtitle("Nombres aléatoires uniformes par grand","X","Fréquence");
-</scilab:image>
+        <scilab:image localized="true">
+            R = grand(400,800,"def");
+            histplot(10,R);
+            xtitle("Nombres aléatoires uniformes par grand","X","Fréquence");
+        </scilab:image>
         <programlisting role="example"><![CDATA[ 
 // Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
 // avec une distribution de Poisson de moyenne 5.
@@ -790,11 +790,11 @@ scf();
 histplot(10,R);
 xtitle("Nombres aléatoires (loi de Poisson) par grand","X","Fréquence");
  ]]></programlisting>
-<scilab:image localized="true">
-R = grand(400,800,"poi",5);
-histplot(10,R);
-xtitle("Nombres aléatoires (loi de Poisson) par grand","X","Fréquence");
-</scilab:image>
+        <scilab:image localized="true">
+            R = grand(400,800,"poi",5);
+            histplot(10,R);
+            xtitle("Nombres aléatoires (loi de Poisson) par grand","X","Fréquence");
+        </scilab:image>
         <para>
             Dans l'exemple suivant, nous produisons des nombres aléatoires
             suivant la loi exponentielle et comparons ensuite la distribution empirique
@@ -813,18 +813,18 @@ plot(x,y,"ro-");
 legend(["Empirique" "Theorique"]);
 xtitle("Loi exponentielle par grand","X","Fréquence");
  ]]></programlisting>
-<scilab:image localized="true">
-lambda=1.6;
-N=100000;
-X = grand(1,N,"exp",lambda);
-classes = linspace(0,12,25);
-histplot(classes,X)
-x=linspace(0,12,25);
-y = (1/lambda)*exp(-(1/lambda)*x);
-plot(x,y,"ro-");
-legend(["Empirique" "Theorique"]);
-xtitle("Loi exponentielle par grand","X","Fréquence");
-</scilab:image>
+        <scilab:image localized="true">
+            lambda=1.6;
+            N=100000;
+            X = grand(1,N,"exp",lambda);
+            classes = linspace(0,12,25);
+            histplot(classes,X)
+            x=linspace(0,12,25);
+            y = (1/lambda)*exp(-(1/lambda)*x);
+            plot(x,y,"ro-");
+            legend(["Empirique" "Theorique"]);
+            xtitle("Loi exponentielle par grand","X","Fréquence");
+        </scilab:image>
         <para>
             Dans l'exemple suivant, nous générons des nombres aléatoires selon la distribution
             gamma et comparons la distribution empirique et la loi de distribution théorique.
@@ -843,19 +843,19 @@ plot(XS,P,"r-"); // Theoretical distribution
 legend(["Empirique" "Théorique"]);
 xtitle("Fonction de distribution cumulée de nombres aléatoires selon la loi Gamma","X","F");
  ]]></programlisting>
-<scilab:image localized="true">
-N=10000;
-A=10;
-B=4;
-R=grand(1,N,"gam",A,B); 
-XS=gsort(R,"g","i")';
-PS=(1:N)'/N;
-P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
-plot(XS,PS,"b-");
-plot(XS,P,"r-");
-legend(["Empirique" "Théorique"]);
-xtitle("Fonction de distribution cumulée de nombres aléatoires selon la loi Gamma","X","F");
-</scilab:image>
+        <scilab:image localized="true">
+            N=10000;
+            A=10;
+            B=4;
+            R=grand(1,N,"gam",A,B); 
+            XS=gsort(R,"g","i")';
+            PS=(1:N)'/N;
+            P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
+            plot(XS,PS,"b-");
+            plot(XS,P,"r-");
+            legend(["Empirique" "Théorique"]);
+            xtitle("Fonction de distribution cumulée de nombres aléatoires selon la loi Gamma","X","F");
+        </scilab:image>
         <para>
             Dans l'exemple suivant, nous générons 10 entiers aléatoires dans l'intervalle [1,365].
         </para>

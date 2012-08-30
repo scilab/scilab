@@ -16,7 +16,7 @@
           xmlns:svg="http://www.w3.org/2000/svg" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
-          version="5.0-subset Scilab" xml:lang="fr" xml:id="get_fftw_wisdom">
+          xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="get_fftw_wisdom">
     <refnamediv>
         <refname>get_fftw_wisdom</refname>
         <refpurpose>retourne le wisdom fftw</refpurpose>

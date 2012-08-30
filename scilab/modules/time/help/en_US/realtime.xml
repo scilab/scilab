@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="realtime">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="realtime">
     <refnamediv xml:id="realtimeinit">
         <refname>realtimeinit</refname>
         <refpurpose>set  time unit</refpurpose>
@@ -83,7 +83,7 @@ realtime(10);
 getdate('s')-dt
  ]]></programlisting>
     </refsection>
-        <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 realtimeinit(1);
 realtime(0);
 t1 = now()
@@ -92,7 +92,7 @@ realtime(10);
 t1 = now()
 datevec(t1)
  ]]></programlisting>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

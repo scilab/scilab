@@ -10,70 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lsq" xml:lang="en">
-  <refnamediv>
-    <refname>lsq</refname>
-    <refpurpose>problemas de mínimos quadrados lineares</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
-    <synopsis>X=lsq(A,B [,tol])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>A</term>
-        <listitem>
-          <para>matriz de reais ou de complexos (m x n) </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>B</term>
-        <listitem>
-          <para>matriz de reais ou de complexos (m x p)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>tol</term>
-        <listitem>
-          <para>escalar positivo, usado para determinar o posto efetivo de A
-            (definido como sendo a ordem da maior submatriz triangular R11
-            regente na fatoração QR com pivoteamento de A, cujo número de
-            condicionamento estimado &lt;= 1/tol. O valor padrão de tol é
-            <literal>sqrt(%eps)</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>matriz de reais ou complexos (n x p)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>X=lsq(A,B)</literal> computa a solução de mínimo quadrado
-      de menor norma da equação <literal>A*X=B</literal>, enquanto <literal>X=A
-        \ B
-      </literal>
-      computa uma solução de mínimo quadrado com no máximo
-      <literal>posto(A)</literal> componentes não-nulos por coluna.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Referências</title>
-    <para>
-      <literal>lsq</literal> é baseado nas funções Lapack DGELSY para
-      matrizes de reais e ZGELSY para matrizes de complexos. 
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq" xml:lang="en">
+    <refnamediv>
+        <refname>lsq</refname>
+        <refpurpose>problemas de mínimos quadrados lineares</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>X=lsq(A,B [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matriz de reais ou de complexos (m x n) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>matriz de reais ou de complexos (m x p)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>escalar positivo, usado para determinar o posto efetivo de A
+                        (definido como sendo a ordem da maior submatriz triangular R11
+                        regente na fatoração QR com pivoteamento de A, cujo número de
+                        condicionamento estimado &lt;= 1/tol. O valor padrão de tol é
+                        <literal>sqrt(%eps)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>matriz de reais ou complexos (n x p)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>X=lsq(A,B)</literal> computa a solução de mínimo quadrado
+            de menor norma da equação <literal>A*X=B</literal>, enquanto <literal>X=A
+                \ B
+            </literal>
+            computa uma solução de mínimo quadrado com no máximo
+            <literal>posto(A)</literal> componentes não-nulos por coluna.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Referências</title>
+        <para>
+            <literal>lsq</literal> é baseado nas funções Lapack DGELSY para
+            matrizes de reais e ZGELSY para matrizes de complexos. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //Construindo os dados
 x=(1:10)';
 
@@ -95,22 +95,22 @@ X1=lsq(A,b)
 X2=A\b
 [A*X1-b, A*X2-b] //os resíduos são os mesmos
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title> Ver Também </title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="backslash">backslash</link>
-      </member>
-      <member>
-        <link linkend="inv">inv</link>
-      </member>
-      <member>
-        <link linkend="pinv">pinv</link>
-      </member>
-      <member>
-        <link linkend="rank">rank</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="rank">rank</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

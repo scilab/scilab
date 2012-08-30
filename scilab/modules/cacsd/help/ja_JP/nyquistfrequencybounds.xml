@@ -2,7 +2,7 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="nyquistfrequencybounds">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="nyquistfrequencybounds">
     <refnamediv>
         <refname>nyquistfrequencybounds</refname>
         <refpurpose>ナイキスト軌跡が指定した矩形に入る周波数および出る周波数を計算する.
@@ -98,37 +98,37 @@
 
     ]]></programlisting>
         <para>
-          <scilab:image>
-    s=%s
-    num=2+9*s-9*s^2-11*s^3+0.01*s^4;
-    den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
-    H=syslin('c',num,den)-1  
-
-    clf;set(gcf(),'axes_size',[805,549])
-    subplot(221)
-    nyquist(H)
-    
-    
-    subplot(222)
-    bounds=[-2 -2;2 2]
-    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
-    nyquist(H,fmin,fmax)
-    title("bounds:"+sci2exp(bounds,0));
-
-
-    subplot(223)
-    bounds=[-1.3 -0.3;0 0.3]
-    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
-    nyquist(H,fmin,fmax)
-    title("bounds:"+sci2exp(bounds,0));
-    
-    subplot(224)
-    bounds=[-1.1 -0.1;-0.8 0.1]
-    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
-    nyquist(H,fmin,1d8)
-    title("bounds:"+sci2exp(bounds,0));
-
-          </scilab:image>
+            <scilab:image>
+                s=%s
+                num=2+9*s-9*s^2-11*s^3+0.01*s^4;
+                den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
+                H=syslin('c',num,den)-1  
+                
+                clf;set(gcf(),'axes_size',[805,549])
+                subplot(221)
+                nyquist(H)
+                
+                
+                subplot(222)
+                bounds=[-2 -2;2 2]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+                
+                
+                subplot(223)
+                bounds=[-1.3 -0.3;0 0.3]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+                
+                subplot(224)
+                bounds=[-1.1 -0.1;-0.8 0.1]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,1d8)
+                title("bounds:"+sci2exp(bounds,0));
+                
+            </scilab:image>
         </para>
     </refsection>
     <refsection>

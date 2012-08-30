@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="man" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
     <refnamediv>
         <refname>Scilab documentation format</refname>
         <refpurpose>on line help XML file description format</refpurpose>
@@ -53,7 +53,7 @@
             5 subset must have version attribute set to "5.0-subset Scilab".
         </para>
         <programlisting role="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-            &lt;refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
+            &lt;refentry xmlns:scilab="http://www.scilab.org" xml:id="foo" xml:lang="en"
             xmlns="http://docbook.org/ns/docbook"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svg="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@
             &lt;!--
             * Add some comments about XML file
             --&gt;
-            &lt;refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
+            &lt;refentry xmlns:scilab="http://www.scilab.org" xml:id="foo" xml:lang="en"
             xmlns="http://docbook.org/ns/docbook"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svg="http://www.w3.org/2000/svg"
