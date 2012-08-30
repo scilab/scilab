@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -85,16 +86,21 @@ public enum XcosFileType {
             final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
             final Transformer aTransformer = tranFactory.newTransformer();
 
-            final StreamSource src = new StreamSource(file);
-            final DOMResult result = new DOMResult();
+            StreamSource src;
+            try {
+                src = new StreamSource(new File(file).toURI().toURL().toString());
+                final DOMResult result = new DOMResult();
 
-            LOG.entering("Transformer", "transform");
-            aTransformer.transform(src, result);
-            LOG.exiting("Transformer", "transform");
+                LOG.entering("Transformer", "transform");
+                aTransformer.transform(src, result);
+                LOG.exiting("Transformer", "transform");
 
-            LOG.entering("XcosCodec", "decode");
-            codec.decode(result.getNode().getFirstChild(), into);
-            LOG.exiting("XcosCodec", "decode");
+                LOG.entering("XcosCodec", "decode");
+                codec.decode(result.getNode().getFirstChild(), into);
+                LOG.exiting("XcosCodec", "decode");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

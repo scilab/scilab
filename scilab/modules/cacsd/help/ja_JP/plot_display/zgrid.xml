@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="zgrid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="zgrid">
     <refnamediv>
         <refname>zgrid</refname>
         <refpurpose> zgrid プロット</refpurpose>
@@ -93,9 +93,9 @@
     clf();zgrid(0:0.2:1,[0.2 0.6 0.8 1])
     ]]></programlisting>
         <para>
-          <scilab:image>
-zgrid(0:0.2:1,[0.2 0.6 0.8 1])
-          </scilab:image>
+            <scilab:image>
+                zgrid(0:0.2:1,[0.2 0.6 0.8 1])
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
     //zgrid with discrete time system  root locus
@@ -105,13 +105,13 @@ zgrid(0:0.2:1,[0.2 0.6 0.8 1])
 
     ]]></programlisting>
         <para>
-          <scilab:image>
-    z=poly(0,'z')
-    H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
-    clf();evans(H,1000);zgrid(0:0.1:0.5)
-          </scilab:image>
+            <scilab:image>
+                z=poly(0,'z')
+                H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
+                clf();evans(H,1000);zgrid(0:0.1:0.5)
+            </scilab:image>
         </para>
-
+        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

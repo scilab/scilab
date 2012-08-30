@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lex_sort" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lex_sort" xml:lang="en">
     <refnamediv>
         <refname>lex_sort</refname>
         <refpurpose>lexicographic matrix rows sorting</refpurpose>
@@ -54,7 +54,7 @@
             matrix <literal>M</literal> in ascending order. If required the output
             argument <literal>k</literal> contains the ordering:
             <literal>[N,k]=lex_sort(M)</literal> returns <literal>k</literal> such as
-            <literal>N</literal> is uequal to <literal>M(k,:)</literal> .
+            <literal>N</literal> is equal to <literal>M(k,:)</literal> .
         </para>
         <para>
             <literal>N=lex_sort(M,sel [,'unique'])</literal> produces the same

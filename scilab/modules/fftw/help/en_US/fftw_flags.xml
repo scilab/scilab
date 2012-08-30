@@ -16,7 +16,7 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
-          version="5.0-subset Scilab" xml:id="fftw_flags" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="fftw_flags" xml:lang="en">
     <refnamediv>
         <refname>fftw_flags</refname>
         <refpurpose>set method for fft planner algorithm selection

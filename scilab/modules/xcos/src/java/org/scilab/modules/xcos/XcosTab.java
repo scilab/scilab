@@ -107,6 +107,7 @@ import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -502,6 +503,29 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
     // CSON: JavaNCSS
 
     /**
+     * Populate recent files menu according to xcos preferences
+     *
+     * @param recent
+     * 			recent files menu
+     */
+    private void populateRecentMenu(final Menu recent) {
+        final ConfigurationManager manager = ConfigurationManager.getInstance();
+        final List<DocumentType> recentFiles = manager.getSettings().getRecent();
+        final int numberOfRecentlyOpen = XcosOptions.getPreferences().getNumberOfRecentlyOpen();
+        final int sizeOfMenu = Math.min(recentFiles.size(), numberOfRecentlyOpen);
+        for (int i = 0; i < sizeOfMenu; i++) {
+            URL url;
+            try {
+                url = new URL(recentFiles.get(i).getUrl());
+            } catch (final MalformedURLException e) {
+                Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
+                break;
+            }
+            recent.add(RecentFileAction.createMenu(url));
+        }
+    }
+
+    /**
      * Create the recent menu from the previously opened files
      *
      * @return the recent menu
@@ -512,18 +536,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         recent = ScilabMenu.createMenu();
         recent.setText(XcosMessages.RECENT_FILES);
 
-        final ConfigurationManager manager = ConfigurationManager.getInstance();
-        final List<DocumentType> recentFiles = manager.getSettings().getRecent();
-        for (int i = 0; i < recentFiles.size(); i++) {
-            URL url;
-            try {
-                url = new URL(recentFiles.get(i).getUrl());
-            } catch (final MalformedURLException e) {
-                Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
-                break;
-            }
-            recent.add(RecentFileAction.createMenu(url));
-        }
+        populateRecentMenu(recent);
 
         ConfigurationManager.getInstance().addPropertyChangeListener(ConfigurationConstants.RECENT_FILES_CHANGED, new PropertyChangeListener() {
             @Override
@@ -531,22 +544,14 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
                 assert evt.getPropertyName().equals(ConfigurationConstants.RECENT_FILES_CHANGED);
 
                 /*
-                 * We only handle menu creation there. Return when this is not
-                 * the case.
+                 * Remove all items of the recent files menu
                  */
-                if (evt.getOldValue() != null) {
-                    return;
-                }
+                ((SwingScilabMenu) recent.getAsSimpleMenu()).removeAll();
 
-                URL url;
-                try {
-                    url = new URL(((DocumentType) evt.getNewValue()).getUrl());
-                } catch (final MalformedURLException e) {
-                    Logger.getLogger(XcosTab.class.getName()).severe(e.toString());
-                    return;
-                }
-
-                ((SwingScilabMenu) recent.getAsSimpleMenu()).add((SwingScilabMenu) RecentFileAction.createMenu(url).getAsSimpleMenu(), 0);
+                /*
+                 * Populate recent files menu according to Xcos preferences
+                 */
+                populateRecentMenu(recent);
             }
         });
 

@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -74,7 +75,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     private static final String SESSION_BEGINNING = "// -- ";
     private static final String SESSION_ENDING = " -- //";
 
-    private static JTree scilabHistoryTree;
+    private static HistoryTree scilabHistoryTree;
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
@@ -204,21 +205,30 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         if (isHistoryVisible()) {
             // put the expansion in an invokeLater to avoid some kind of freeze with huge history
             SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    scilabHistoryTree.setVisible(true);
-                    if (!modelLoaded) {
-                        scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
-                        modelLoaded = true;
-                    }
+                    public void run() {
+                        scilabHistoryTree.setVisible(true);
+                        if (!modelLoaded) {
+                            scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
+                            modelLoaded = true;
+                        }
 
-                    for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
-                        scilabHistoryTree.expandRow(i);
-                    }
+                        final Object root = scilabHistoryTreeModel.getRoot();
+                        final TreePath pathRoot = new TreePath(root);
+                        final int N = scilabHistoryTreeModel.getChildCount(root);
+                        scilabHistoryTree.mustFire = false;
+                        for (int i = 0; i < N; i++) {
+                            Object o = scilabHistoryTreeModel.getChild(root, i);
+                            if (!scilabHistoryTreeModel.isLeaf(o)) {
+                                scilabHistoryTree.expandPath(pathRoot.pathByAddingChild(o));
+                            }
+                        }
+                        scilabHistoryTree.mustFire = true;
+                        scilabHistoryTree.fireTreeExpanded(pathRoot);
 
-                    WindowsConfigurationManager.restorationFinished(getBrowserTab());
-                    scrollAtBottom();
-                }
-            });
+                        WindowsConfigurationManager.restorationFinished(getBrowserTab());
+                        scrollAtBottom();
+                    }
+                });
         }
     }
 
@@ -476,11 +486,11 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     private static void scrollAtBottom() {
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                scrollPane.getHorizontalScrollBar().setValue(0);
-                scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-            }
-        });
+                public void run() {
+                    scrollPane.getHorizontalScrollBar().setValue(0);
+                    scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+                }
+            });
 
     }
 
@@ -505,6 +515,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         private boolean first = true;
         private Color defaultColor;
         private Color sessionColor = new Color(1, 168, 1);
+        boolean mustFire = true;
 
         HistoryTree(TreeModel model) {
             super(model);
@@ -512,21 +523,33 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
             setLargeModel(true);
 
             setCellRenderer(new DefaultTreeCellRenderer() {
-                {
-                    defaultColor = getTextNonSelectionColor();
-                }
+                        {
+                            defaultColor = getTextNonSelectionColor();
+                        }
 
-                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                    super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-                    if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
-                        setTextNonSelectionColor(sessionColor);
-                    } else {
-                        setTextNonSelectionColor(defaultColor);
+                    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                        if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
+                            setTextNonSelectionColor(sessionColor);
+                        } else {
+                            setTextNonSelectionColor(defaultColor);
+                        }
+
+                        return this;
                     }
+                });
+        }
 
-                    return this;
-                }
-            });
+        public void fireTreeExpanded(TreePath path) {
+            if (mustFire) {
+                super.fireTreeExpanded(path);
+            }
+        }
+
+        public void fireTreeWillExpand(TreePath path) throws ExpandVetoException {
+            if (mustFire) {
+                super.fireTreeWillExpand(path);
+            }
         }
 
         public void paint(final Graphics g) {
@@ -543,10 +566,10 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                 super.paint(g);
             } catch (Exception e) {
                 SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        paint(g);
-                    }
-                });
+                        public void run() {
+                            paint(g);
+                        }
+                    });
             }
         }
     }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: pl\n"
 
 #, c-format
@@ -23,22 +23,10 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d:oczekiwano wartości "
-"całkowitej (int).\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
 "skalar.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano wartości typu "
-"int.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"

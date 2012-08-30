@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: fr\n"
 
 #, c-format
@@ -34,10 +34,16 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
-"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -91,6 +97,12 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier positif "
 "attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
+"attendue.\n"
 
 #, c-format
 msgid ""

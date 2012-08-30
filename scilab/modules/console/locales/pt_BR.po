@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -536,7 +536,133 @@ msgstr ""
 msgid "Line numbering"
 msgstr ""
 
-msgid "Save diagram"
+msgid "New diagram"
+msgstr ""
+
+msgid "Open file in Scilab current directory"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Quit Xcos"
+msgstr ""
+
+msgid "Invert selection"
+msgstr ""
+
+msgid "Block Parameters"
+msgstr ""
+
+msgid "Region to superblock"
+msgstr ""
+
+msgid "Zoom In"
+msgstr ""
+
+msgid "Zoom Out"
+msgstr ""
+
+msgid "Fit diagram to view"
+msgstr ""
+
+msgid "Normal 100%"
+msgstr ""
+
+msgid "Palette browser"
+msgstr ""
+
+msgid "Diagram browser"
+msgstr ""
+
+msgid "Viewport"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "Execution trace and Debug"
+msgstr ""
+
+msgid "Set Context"
+msgstr ""
+
+msgid "Compile"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Rotate"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Mirror"
+msgstr ""
+
+msgid "Show/Hide shadow"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Fill Color"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Straight"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Diagram background"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "Code generation"
+msgstr ""
+
+msgid "Xcos Help"
+msgstr ""
+
+msgid "Block Help"
+msgstr ""
+
+msgid "Xcos Demos"
+msgstr ""
+
+msgid "About Xcos"
 msgstr ""
 
 msgid "Save variable"

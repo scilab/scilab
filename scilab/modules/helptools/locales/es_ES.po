@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: es\n"
 
 #, c-format
@@ -130,11 +130,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: Leyendo desde el directorio %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: Procesando archivos: de %s a %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: Procesando el archivo: %s\n"
 
 #, c-format

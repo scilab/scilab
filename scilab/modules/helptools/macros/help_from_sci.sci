@@ -169,13 +169,13 @@ if isdir(funname) then
     [tmp, out] = fileparts(files(i));
     if isempty(helpdir) then
       help_from_sci(funname + filesep() + files(i), ".", demodir);
-      printf(gettext("%s: Processing file: %s to %s\n"), "help_from_sci", funname + "/" + out, out);
+      printf(gettext("%s: Processing of file: %s to %s\n"), "help_from_sci", funname + "/" + out, out);
     else
       help_from_sci(funname + filesep() + files(i), helpdir, demodir);
-      printf(gettext("%s: Processing file: %s to %s\n"), "help_from_sci", funname + "/" + out, helpdir + "/" + out);
+      printf(gettext("%s: Processing of file: %s to %s\n"), "help_from_sci", funname + "/" + out, helpdir + "/" + out);
     end
     if ~isempty(demodir) then
-      printf(gettext("%s: Processing file: %s\n"), "help_from_sci" , demodir + "/" + out + ".dem.sce");
+      printf(gettext("%s: Processing of file: %s\n"), "help_from_sci" , demodir + "/" + out + ".dem.sce");
     else
       printf("\n");
     end

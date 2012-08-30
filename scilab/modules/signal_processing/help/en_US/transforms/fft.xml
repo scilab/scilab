@@ -16,7 +16,7 @@
           xmlns:svg="http://www.w3.org/2000/svg" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
-          version="5.0-subset Scilab" xml:lang="en" xml:id="fft">
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fft">
     <refnamediv>
         <refname>fft</refname>
         <refpurpose>fast Fourier transform.</refpurpose>

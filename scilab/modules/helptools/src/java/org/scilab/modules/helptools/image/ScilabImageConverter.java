@@ -126,6 +126,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append(code).append("\n");
+	buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-06 17:08+0000\n"
+"PO-Revision-Date: 2012-08-24 14:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: uk\n"
 
 #, c-format
@@ -149,11 +149,14 @@ msgstr "Обчислення оптимальних параметрів"
 msgid "Running optimization ...\n"
 msgstr "Виконується оптимізація…\n"
 
+msgid "No"
+msgstr "Ні"
+
 msgid "View Code?"
 msgstr "Переглянути код?"
 
-msgid "YesNo"
-msgstr "ТакНі"
+msgid "Yes"
+msgstr "Так"
 
 msgid "fminsearch - Rosenbrock"
 msgstr "fminsearch — Розенброк"

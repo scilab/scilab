@@ -10,10 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="gsort" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gsort" xml:lang="en">
     <refnamediv>
         <refname>gsort</refname>
-        <refpurpose>sorting by quick sort agorithm</refpurpose>
+        <refpurpose>sorting by quick sort algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -126,7 +126,7 @@
                     <literal>i&lt;j</literal>.
                 </para>
                 <para>
-                    <literal>B=gsort(A,'lr','i')</literal> works similarily for
+                    <literal>B=gsort(A,'lr','i')</literal> works similarly for
                     increasing lexical order.
                 </para>
             </listitem>
@@ -140,7 +140,7 @@
                     <literal>i&lt;j</literal>.
                 </para>
                 <para>
-                    <literal>B=gsort(A,'lc','i')</literal> works similarily for
+                    <literal>B=gsort(A,'lc','i')</literal> works similarly for
                     increasing lexical order.
                 </para>
             </listitem>
@@ -149,7 +149,7 @@
             If required the second return argument <literal>k</literal> contains
             the indices of the sorted values in <literal>A</literal>. If
             <literal>[B,k]=gsort(A,'g')</literal> one has <literal>B==A(k)</literal>.
-            <emphasis role="bold">The algorithme preserve the relative order of
+            <emphasis role="bold">The algorithm preserve the relative order of
                 records with equal values. 
             </emphasis>
         </para>

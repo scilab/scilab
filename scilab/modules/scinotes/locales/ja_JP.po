@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-29 14:51+0000\n"
+"PO-Revision-Date: 2012-08-11 01:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: ja\n"
 
 #, c-format
@@ -283,13 +283,13 @@ msgid "Execute"
 msgstr "実行"
 
 msgid "... file with no echo"
-msgstr ".. エコーバックなしのファイル"
+msgstr "... ファイルを実行(出力なし)"
 
 msgid "... file with echo"
-msgstr ".. エコーバック付きのファイル"
+msgstr "... ファイルを実行(出力あり)"
 
 msgid "... the selection with echo;... until the caret, with echo"
-msgstr ".. エコーバックありを選択; ..キャレットまでエコーあり"
+msgstr "... 選択部を実行(出力あり) ;... カーソルまで実行(出力あり)"
 
 msgid "Save and execute"
 msgstr "保存して実行"
@@ -310,7 +310,7 @@ msgid "About"
 msgstr "このソフトウェアについて"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "エコーバックありで選択部を評価;エコーバックありでカーソル位置まで評価"
+msgstr "選択部を評価(出力あり); カーソルまで評価(出力あり)"
 
 msgid "Complete"
 msgstr "完了"

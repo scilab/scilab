@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ones" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ones" xml:lang="en">
     <refnamediv>
         <refname>ones</refname>
         <refpurpose>matrix made of ones</refpurpose>
@@ -83,7 +83,7 @@
             Note that <literal>ones(3)</literal> is <literal>ones(a)</literal>
             with <literal>a=3</literal> i.e it is NOT a 3x3 matrix!
         </para>
-        <para>ones() is eqivalent to ones(1,1).</para>
+        <para>ones() is equivalent to ones(1,1).</para>
     </refsection>
     <refsection>
         <title>Examples</title>

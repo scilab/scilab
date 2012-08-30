@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: ca\n"
 
 #, c-format
@@ -159,10 +159,59 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ['d' 'i'].\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
+"'%s'.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
 "dispers.\n"
+
+#, c-format
+msgid "%s: Wrong size of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d of list: A sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d of list: Same size as input argument "
+"#%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -533,9 +582,3 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: La mida dels arguments d'entrada és incorrecte: Han de tenir mides "
 "compatibles.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
-"'%s'.\n"

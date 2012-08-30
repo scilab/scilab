@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="nicholschart">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="nicholschart">
     <refnamediv>
         <refname>nicholschart</refname>
         <refpurpose>ニコルス線図</refpurpose>
@@ -72,9 +72,9 @@
     nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
     ]]></programlisting>
         <para>
-          <scilab:image>
-    nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
-          </scilab:image>
+            <scilab:image>
+                nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
     //ニコルス線図のグリッドを付けたブラック図
@@ -91,17 +91,17 @@
     nicholschart(colors=color('light gray')*[1 1])
     ]]></programlisting>
         <para>
-          <scilab:image>
-    s=poly(0,'s');
-    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
-    tau=0.2;xsi=1.2;
-    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-    clf();
-    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
-    ax=gca();Leg=ax.children(1);
-    Leg.legend_location="in_lower_right";
-    nicholschart(colors=color('light gray')*[1 1])
-          </scilab:image>
+            <scilab:image>
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+                nicholschart(colors=color('light gray')*[1 1])
+            </scilab:image>
         </para>
     </refsection>
     <refsection role="see also">

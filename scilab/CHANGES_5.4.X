@@ -1,3 +1,24 @@
+            Changes between version 5.4.0-beta-3 and 5.4.0 of Scilab
+            ========================================================
+
+Xcos
+====
+
+* Bug #10943 fixed - Accented character in the file path broke file loading.
+
+* Bug #11717 fixed - Setting recent opened file number in preferences GUI
+                     did not apply in Xcos menu.
+
+
+Bug Fixes
+=========
+
+* Bug #8799 fixed - gsort did not work with hypermatrices.
+
+* Bug #11558 fixed - Typo in helptools module fixed.
+
+
+
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
 
@@ -47,7 +68,7 @@ Compilation
 
 * Scilab dependency on Java HDF has been removed.
 
-* Update to Scirenderer 0.5.6.
+* Update to Scirenderer 0.5.7.
 
 * Update to JOGL 2.0 rc9
 
@@ -177,6 +198,8 @@ Bug Fixes
                      MSDOS removal.
 
 * Bug #11774 fixed - Wrong description in now help page.
+
+* Bug #11787 fixed - There was a problem with toolbar refreshing under Mac OS.
 
 
             Changes between version 5.4.0-beta-1 and 5.4.0-beta-2 of Scilab
@@ -2301,7 +2324,7 @@ Bug Fixes
 
 * Bug #9339 fixed - tbx_build_help function did not manage languages correctly.
 
-* Bug #9354 fixed - 'avematfile could not save imbricate structures.
+* Bug #9354 fixed - savematfile could not save imbricate structures.
 
 * Bug #9414 fixed - 'SCI' and 'SCIHOME' variables were not documented.
 

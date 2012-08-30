@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="backslash">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="backslash">
     <refnamediv>
         <refname>backslash</refname>
         <refpurpose>(\) left matrix division.</refpurpose>
@@ -15,11 +15,11 @@
             <literal>x=A\b</literal> is a solution to <literal>A*x=b</literal>.
         </para>
         <para>
-            If <literal>A</literal> is square and nonsingular <literal>x=A\b</literal> (uniquely defined) is equivalent to <literal>x=inv(A)*b</literal> (but the computations are much cheaper).
+            If <literal>A</literal> is square and non-singular <literal>x=A\b</literal> (uniquely defined) is equivalent to <literal>x=inv(A)*b</literal> (but the computations are much cheaper).
         </para>
         <para>
             If <literal>A</literal> is not square, <literal>x</literal> is a least square solution,
-            i.e. <literal>norm(A*x-b)</literal> is minimal (euclidian norm). If <literal>A</literal> is full
+            i.e. <literal>norm(A*x-b)</literal> is minimal (Euclidean norm). If <literal>A</literal> is full
             column rank, the least square solution, <literal>x=A\b</literal>, is uniquely 
             defined (there is a unique <literal>x</literal> which minimizes <literal>norm(A*x-b)</literal>).
             If <literal>A</literal> is not full column rank, then the least square
