@@ -121,15 +121,17 @@ public class ScilabImageConverter implements ExternalImageConverter {
     }
 
     private final String convertToPNG(String currentFile, String code, File imageFile, String imageName) {
+        buffer.append("disp(\"Image generation from Scilab code not yet managed.\");\n");
+        /*
         buffer.append("__olddrv__=driver();\n");
         buffer.append("disp(\"Generate image " + imageName + " from Scilab code in file " + new File(currentFile).getName() + "\");\n");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append(code).append("\n");
-	buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
+        buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
-
+        */
         return getHTMLCodeToReturn(code, "<img src=\'" + imageName + "\'/>");
     }
 
