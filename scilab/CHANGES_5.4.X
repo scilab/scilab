@@ -17,6 +17,9 @@ Bug Fixes
 
 * Bug #11558 fixed - Typo in helptools module fixed.
 
+* Bug #11688 fixed - The example in example_run help page failed.
+
+* Bug #11794 fixed - Empty lists could not be saved/loaded to/from SOD files.
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab

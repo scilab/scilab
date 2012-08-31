@@ -949,14 +949,16 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         return -1;
     }
 
-    //read cols data
-    obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readInteger32Matrix(obj, _piColPos);
-    if (status < 0)
+    if(_iNbItem != 0)
     {
-        return -1;
+        //read cols data
+        obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);
+        status = readInteger32Matrix(obj, _piColPos);
+        if (status < 0)
+        {
+            return -1;
+        }
     }
-
     return 0;
 }
 

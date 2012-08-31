@@ -75,10 +75,12 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example"><![CDATA[
-example_run("core")
-example_run("core", "argn")
-example_run("core", ["argn"; "mode"])
-example_run("core", "argn", "en_US")
+if ~isempty(ls("SCI/modules/xml/help/en_US/*.xml")) then // Help XML sources must be available for this example
+    example_run("xml")
+    example_run("core", "insertion")
+    example_run("core", ["insertion"; "extraction"])
+    example_run("core", "insertion", "en_US")
+end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
