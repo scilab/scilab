@@ -9,6 +9,8 @@ Xcos
 * Bug #11717 fixed - Setting recent opened file number in preferences GUI
                      did not apply in Xcos menu.
 
+* Bug #11747 fixed - Modelica block text was visible under the block image.
+
 
 Bug Fixes
 =========
