@@ -15,6 +15,8 @@ Bug Fixes
 
 * Bug #8799 fixed - gsort did not work with hypermatrices.
 
+* Bug #11293 fixed - Line style was not taken into account.
+
 * Bug #11558 fixed - Typo in helptools module fixed.
 
 * Bug #11684 fixed - mfft failed due to MKL fftw library restrictions.

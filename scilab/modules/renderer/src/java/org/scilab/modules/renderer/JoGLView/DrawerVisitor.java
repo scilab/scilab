@@ -84,24 +84,24 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-                GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
-            ));
+                                                                                       GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+                                                                                       GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
+                                                                                       GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+                                                                                       ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
-            ));
+                                                                                       GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+                                                                                       GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
+                                                                                       GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+                                                                                       ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
-                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
-            ));
+                                                                                       GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+                                                                                       GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
+                                                                                       GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+                                                                                       ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
     private static final Set<String> SILENT_FIGURE_PROPERTIES = new HashSet<String>(Arrays.asList(new String[] {
@@ -475,7 +475,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
                 geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
 
-                geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                final int style = polyline.getPolylineStyle();
+                if (style == 1 || style == 2 || style == 4 || style == 5) {
+                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
+                } else {
+                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                }
+
                 geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
@@ -484,7 +490,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Interpolated color rendering is used only for basic polylines for now. */
                 Appearance appearance = new Appearance();
 
-                if (polyline.getInterpColorMode() && polyline.getPolylineStyle() == 1) {
+                if (polyline.getInterpColorMode() && style == 1) {
                     geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
                     appearance.setTexture(getColorMapTexture());
                 } else {
@@ -495,14 +501,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 appearance.setLineWidth(polyline.getLineThickness().floatValue());
                 appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
-                if (!polyline.getInterpColorMode() || polyline.getPolylineStyle() != 1) {
+                if (!polyline.getInterpColorMode() || style != 1) {
                     int fillColor;
 
                     /*
                      * The line color is used as fill color for the filled patch polyline style
                      * whereas the background color is used for all the other styles.
                      */
-                    if (polyline.getPolylineStyle() == 5) {
+                    if (style == 5) {
                         fillColor = polyline.getLineColor();
                     } else {
                         fillColor = polyline.getBackground();
@@ -513,9 +519,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 drawingTools.draw(geometry, appearance);
 
-                if (polyline.getPolylineStyle() == 4) {
+                if (style == 4) {
                     arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                           polyline.getLineThickness(), false, false, polyline.getLineColor());
+                                           polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
                 }
 
                 if (polyline.getMarkMode()) {
@@ -754,7 +760,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Draw the arrows */
                 if (champ.getArrowSize() != 0.0) {
                     arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
-                                           champ.getColored(), champ.getLineColor());
+                                           champ.getColored(), champ.getLineColor(), false);
                 }
             } catch (OutOfMemoryException e) {
                 invalidate(champ, e);
@@ -801,7 +807,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 /* Draw the arrows */
                 if (segs.getArrowSize() != 0.0) {
                     arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
-                                           true, segs.getLineColor());
+                                           true, segs.getLineColor(), false);
                 }
             } catch (OutOfMemoryException e) {
                 invalidate(segs, e);
@@ -868,8 +874,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         String objectType = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if ((property != null) && (object != null) && isFigureChild(id)
-                && !objectType.equals(GraphicObjectProperties.__GO_UICONTROL__)
-                && !objectType.equals(GraphicObjectProperties.__GO_UIMENU__)) {
+            && !objectType.equals(GraphicObjectProperties.__GO_UICONTROL__)
+            && !objectType.equals(GraphicObjectProperties.__GO_UIMENU__)) {
 
             if (GraphicObjectProperties.__GO_VALID__.equals(property)) {
                 return false;
