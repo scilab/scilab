@@ -24,6 +24,8 @@ Bug Fixes
 * Bug #11794 fixed - Empty lists could not be saved/loaded to/from SOD files.
 
 
+* Bug #11802 fixed - mrfit function redefined the diff function.
+
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
