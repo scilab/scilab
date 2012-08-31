@@ -124,6 +124,9 @@ namespace types
           @param  _bAsVector if _piSeqCoord contains 1D coords.
          */
         Sparse* insert(typed_list* _pArgs, InternalType* _pSource);
+        Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
+
+        static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
 
         /* append _poSource from coords _iRows, _iCols
            @param _iRows row to append from

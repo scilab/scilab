@@ -434,6 +434,9 @@ void visitprivate(const AssignExp  &e)
                     case InternalType::RealUInt64 :
                         pOut = UInt64::insertNew(pArgs, pITR);
                         break;
+                    case InternalType::RealSparse :
+                        pOut = Sparse::insertNew(pArgs, pITR);
+                        break;
                     default :
                         {
                             //manage error
@@ -455,6 +458,14 @@ void visitprivate(const AssignExp  &e)
                 if(pIT->isDouble() && pInsert->isDouble())
                 {
                     pRet = pIT->getAs<Double>()->insert(pArgs, pInsert);
+                }
+                else if(pIT->isDouble() && pInsert->isSparse())
+                {
+                    Sparse* pSp = pInsert->getAs<Sparse>();
+                    Double* pD = new Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
+                    pSp->fill(*pD);
+                    pRet = pIT->getAs<Double>()->insert(pArgs, pD);
+                    free(pD);
                 }
                 else if(pIT->isString() && pInsert->isString())
                 {
