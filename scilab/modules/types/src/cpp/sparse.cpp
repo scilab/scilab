@@ -1453,8 +1453,8 @@ namespace types
 
     Sparse* Sparse::newTransposed() const
     {
-        return new Sparse( matrixReal ? new RealSparse_t(matrixReal->transpose()) : 0
-            , matrixCplx ? new CplxSparse_t(matrixCplx->transpose()) : 0);
+        return new Sparse( matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0
+            , matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
     }
 
     struct BoolCast
@@ -1942,7 +1942,7 @@ namespace types
 
     SparseBool* SparseBool::newTransposed() const
     {
-        return new SparseBool(new BoolSparse_t(matrixBool->transpose()));
+        return new SparseBool(new BoolSparse_t(matrixBool->adjoint()));
     }
 
     std::size_t SparseBool::nbTrue() const
