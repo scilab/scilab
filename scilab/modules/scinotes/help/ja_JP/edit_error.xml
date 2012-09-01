@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="edit_error">
+    <refnamediv>
+        <refname>edit_error</refname>
+        <refpurpose>直近に記録されたエラーのソースをscilabエディタで開く</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>answ = edit_error(clearerror)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>clearerror</term>
+                <listitem>
+                    <para>論理値 - エラー条件がクリアされた場合は true,
+                        エラー条件が維持された場合はfalse
+                        (<link linkend="lasterror">lasterror</link>と同様)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>answ</term>
+                <listitem>
+                    <para>
+                        どのソースファイルが開かれているか(またはなぜファイルが開かれていないか)
+                        を示す文字列
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は直近に記録されたエラーを発生した関数のソースをscilabエディタで開きます.
+        </para>
+        <!-- , and highlights the offending line -->
+        <para>
+            この関数はライブラリで定義された関数でのみ動作します.
+            よって,内部関数,オンラインで定義された関数,
+            <link linkend="exec">exec</link> または <link linkend="getd">getd</link>で個別に
+            読み込まれた関数では動作しません.
+            これは,Scilabは現在ライブラリのパスのみを保持し,個別の関数ソースへのパスを
+            保持していないためです.
+        </para>
+        <para>
+            関数名fooと関数ファイル名foo.sciが一致することが仮定されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+acosh abc
+edit_error
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+            <member>
+                <link linkend="errclear">errclear</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
