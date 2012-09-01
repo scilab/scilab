@@ -57,36 +57,49 @@
             対応する <link linkend="graphics_entities">graphics_entities</link> が描画されます.
         </para>
         <para>
-            Scilab 5.0以降, <link linkend="uimenu">uimenu</link> または<link linkend="uicontrol">uicontrol</link>ハンドルも描画されます.
-        </para>
-        <para>
             <literal>load(filename)</literal> はパス <literal>filename</literal>で指定されたファイル
             に保存された変数を読み込みます.
         </para>
         <para>
             <literal>load(fd)</literal> は記述子 <literal>fd</literal>で指定された
             ファイルに保存された変数を読み込みます.
+            <emphasis role="bold">このプロトタイプは廃止予定であり,Scilab 6では削除されます.</emphasis>
         </para>
         <para>
-            <literal>load(filename,'x','y')</literal> または
-            <literal>load(fd,'x','y')</literal> は変数
-            <literal>x,y</literal>のみを読み込ます.
+            <literal>load(filename,'x','y')</literal> は,変数 <literal>x,y</literal>のみを読み込ます.
         </para>
-        <para>Scilabバージョン 2.5でバイナリファイル形式が変更されましたが,
-            <literal>load(filename,...)</literal> は古い形式のファイルも読み込むことができます.
+        <para>
+            <literal>load(fd,'x','y')</literal> は,変数 <literal>x,y</literal>のみを読み込みます. 
+            <emphasis role="bold">このプロトタイプは廃止予定であり,Scilab 6では削除されます.</emphasis>.
         </para>
-        <para>書き込まれたファイルは他のオペレーティングシステムやアーキテクチャ(リトルおよびビッグインディアン)に
-            対する可搬性があります.
+        <para>
+            Scilab 5シリーズと6シリーズの間でフォーマットの変更が決められました.
+            これは,5形式は文書化されておらず,仕様が既定されておらず,読み込むことが困難であったためです.
+            SOD (Scilab 6 のデフォルト形式)は完全に文書化され,HDF5ライブラリまたはアプリケーションにより
+            容易に読み込むことができます.
+        </para>
+        <para>
+            書き込まれたファイルは他のオペレーティングシステムやアーキテクチャ
+            (リトルおよびビッグインディアン)に対する可搬性があります.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
+// Scilab 5 ファミリーまでで可読なバイナリ形式
 a=eye(2,2);b=ones(a);
 save('vals.dat',a,b);
 clear a
 clear b
 load('vals.dat','a','b');
+
+// Scilab 5.4.X および Scilab 6 ファミリーの両方で可読なバイナリ形式
+a=eye(2,2);b=ones(a);
+save("val.sod", "a", "b");
+clear a
+clear b
+load("val.sod", "a", "b");
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -111,5 +124,30 @@ load('vals.dat','a','b');
                 <link linkend="mopen">mopen</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0.0</revnumber>
+                <revremark>
+                    <link linkend="uimenu">uimenu</link> または <link linkend="uicontrol">uicontrol</link> ハンドルもこの関数で読み込まれます.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            この関数は,デフォルトでScilab 6 および SOD (Scilab 6形式)を共に
+                            読み込むことができます.
+                        </listitem>
+                        <listitem>Scilab 5.X 形式は廃止予定であり,Scilab 6で削除されます.</listitem>
+                        <listitem>ファイル記述子を最初の引数とするloadは廃止予定であり,Scilabで削除されます.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
