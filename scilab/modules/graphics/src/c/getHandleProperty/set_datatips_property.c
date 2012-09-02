@@ -35,7 +35,14 @@ int set_datatips_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     BOOL status = FALSE;
     double* currentDatatipsCoords;
     double* newDatatipsCoords;
+    double *pvecx;
+    int nPoints = 0;
+    int *piNPoints = &nPoints;
     int i;
+
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void**)&pvecx);
+
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
 
     if ( !( valueType == sci_matrix ) )
     {
@@ -50,6 +57,13 @@ int set_datatips_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
 
     currentDatatipsCoords = getDoubleMatrixFromStack(stackPointer);
+
+    for (i = 0 ; i < nbRow*nbCol ; i = i + 2) {
+        if (currentDatatipsCoords[i] > pvecx[nPoints - 1] || currentDatatipsCoords[i] < pvecx[0]) {
+            Scierror(999, _("Invalid input argument for '%s' property: %g is out of bounds.\n"), "datatips", currentDatatipsCoords[i]);
+            return SET_PROPERTY_ERROR ;
+        }
+    }
 
     newDatatipsCoords = CallDatatipCreateField((char*)pobjUID, currentDatatipsCoords, nbRow * nbCol);
 
