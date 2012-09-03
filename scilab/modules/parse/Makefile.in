@@ -414,6 +414,19 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 FLEX_SCANSCILAB_CXX = src/cpp/scanscilab.cpp
 BISON_PARSESCILAB_CXX = src/cpp/parsescilab.cpp
+@BUILD_PARSER_TRUE@BUILT_SOURCES = $(FLEX_SCANSCILAB_CXX) $(BISON_PARSESCILAB_CXX)
+@BUILD_PARSER_TRUE@LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
+@BUILD_PARSER_TRUE@FLEX_SCANSCILAB_LL = src/flex/scanscilab.ll
+@BUILD_PARSER_TRUE@BISON_FLAGS = --no-lines -dvy -ra
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_YY = src/bison/parsescilab.yy
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_OUTPUT = src/bison/parsescilab.output
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_HXX = includes/parsescilab.hxx
+
+# Do not clean these files since we are storing them in the repository
+#CLEANFILES = $(BISON_PARSESCILAB_CPP) \
+#		$(BISON_PARSESCILAB_HXX) \
+#		$(BISON_PARSESCILAB_OUTPUT) \
+#		$(FLEX_SCANSCILAB_CPP)
 PARSE_CXX_SOURCES = $(BISON_PARSESCILAB_CXX) \
 			$(FLEX_SCANSCILAB_CXX) \
 			src/cpp/parser.cpp \
@@ -509,13 +522,6 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-@BUILD_PARSER_TRUE@BUILT_SOURCES = $(FLEX_SCANSCILAB_CPP) $(BISON_PARSESCILAB_CPP)
-@BUILD_PARSER_TRUE@LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CPP)
-@BUILD_PARSER_TRUE@FLEX_SCANSCILAB_LL = src/flex/scanscilab.ll
-@BUILD_PARSER_TRUE@BISON_FLAGS = --no-lines -dvy -ra
-@BUILD_PARSER_TRUE@BISON_PARSESCILAB_YY = src/bison/parsescilab.yy
-@BUILD_PARSER_TRUE@BISON_PARSESCILAB_OUTPUT = src/bison/parsescilab.output
-@BUILD_PARSER_TRUE@BISON_PARSESCILAB_HXX = includes/parsescilab.hxx
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -866,6 +872,15 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	tags uninstall uninstall-am uninstall-pkglibLTLIBRARIES
 
 
+@BUILD_PARSER_TRUE@$(FLEX_SCANSCILAB_CXX): $(FLEX_SCANSCILAB_LL)
+@BUILD_PARSER_TRUE@	$(LEX) $(AM_FLAGS) $(LFLAGS) $(FLEX_SCANSCILAB_LL)
+
+@BUILD_PARSER_TRUE@$(BISON_PARSESCILAB_CXX): $(BISON_PARSESCILAB_YY)
+@BUILD_PARSER_TRUE@	$(YACC) $(AM_FLAGS) $(BISON_FLAGS) $(YFLAGS) $(BISON_PARSESCILAB_YY) \
+@BUILD_PARSER_TRUE@	&& mv y.tab.c $(BISON_PARSESCILAB_CXX) \
+@BUILD_PARSER_TRUE@	&& mv y.tab.h $(BISON_PARSESCILAB_HXX) \
+@BUILD_PARSER_TRUE@	&& mv y.output $(BISON_PARSESCILAB_OUTPUT)
+
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
 	if test -d $(mydatadir)/tests; then \
@@ -1070,21 +1085,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-@BUILD_PARSER_TRUE@$(FLEX_SCANSCILAB_CPP): $(FLEX_SCANSCILAB_LL)
-@BUILD_PARSER_TRUE@	$(LEX) $(AM_FLAGS) $(LFLAGS) $(FLEX_SCANSCILAB_LL)
-
-@BUILD_PARSER_TRUE@$(BISON_PARSESCILAB_CPP): $(BISON_PARSESCILAB_YY)
-@BUILD_PARSER_TRUE@	$(YACC) $(AM_FLAGS) $(BISON_FLAGS) $(YFLAGS) $(BISON_PARSESCILAB_YY) \
-@BUILD_PARSER_TRUE@	&& mv y.tab.c $(BISON_PARSESCILAB_CPP) \
-@BUILD_PARSER_TRUE@	&& mv y.tab.h $(BISON_PARSESCILAB_HXX) \
-@BUILD_PARSER_TRUE@	&& mv y.output $(BISON_PARSESCILAB_OUTPUT)
-
-# Do not clean these files since we are storing them in the repository
-#CLEANFILES = $(BISON_PARSESCILAB_CPP) \
-#		$(BISON_PARSESCILAB_HXX) \
-#		$(BISON_PARSESCILAB_OUTPUT) \
-#		$(FLEX_SCANSCILAB_CPP)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

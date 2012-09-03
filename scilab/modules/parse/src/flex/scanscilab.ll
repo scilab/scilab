@@ -337,7 +337,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}[^(=] {
+^{spaces}*/({id}){spaces}[^(=<>~] {
         BEGIN(BEGINID);
 }
 
