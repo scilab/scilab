@@ -22,12 +22,12 @@ if ~ atomsIsInstalled(["toolbox_1","1.0","user"]) then bugmes();quit;end
 if ~ atomsIsInstalled(["toolbox_2","2.0","user"]) then bugmes();quit;end
 atomsLoad(["toolbox_2","2.0","user"]);
 
-Start Toolbox 2
-	Load macros
-
 Start Toolbox 1
 	Load macros
 	Load gateways
+
+Start Toolbox 2
+	Load macros
 
 if ~ atomsIsLoaded("toolbox_2")                  then bugmes();quit;end
 if ~ atomsIsLoaded(["toolbox_2","2.0"])          then bugmes();quit;end

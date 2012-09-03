@@ -1017,6 +1017,8 @@ ATOMS
 
 * ATOMS option 'offLine' has been renamed to 'offline'.
 
+* Bug #8302 fixed - wrong order when loading dependencies
+
 * Bug #9078 fixed - atomsGui took time to start gui.
 
 * Bug #9798 fixed - .quit script of Atoms modules were not evaluated at Scilab quit.
