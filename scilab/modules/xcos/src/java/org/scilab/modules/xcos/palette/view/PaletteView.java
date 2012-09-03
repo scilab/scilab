@@ -25,12 +25,13 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Implement a view of a block category.
- * 
+ *
  * As the JScrollPane doesn't allow a to specify it's associated layout, we have
  * to use a mainArea to perform what we want there. Never use the
  * {@link javax.swing.JScrollPane#add(java.awt.Component)} on this class but use
  * {@link JPanel#add(java.awt.Component)} instead.
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteView extends JPanel implements Scrollable {
     private boolean isLoaded;
 
@@ -45,11 +46,11 @@ public class PaletteView extends JPanel implements Scrollable {
     private void initComponents() {
         setBackground(Color.WHITE);
         setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,
-                XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+                                         XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
         setMinimumSize(new Dimension(
-                (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-                XcosConstants.PALETTE_BLOCK_HEIGHT
-                        + XcosConstants.PALETTE_VMARGIN));
+                           (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
+                           XcosConstants.PALETTE_BLOCK_HEIGHT
+                           + XcosConstants.PALETTE_VMARGIN));
     }
 
     /**
@@ -62,7 +63,7 @@ public class PaletteView extends JPanel implements Scrollable {
     /**
      * This class update the status of the view. If you want to save memory,
      * unload the view when hidden.
-     * 
+     *
      * @param b
      *            the load status
      */
@@ -98,13 +99,13 @@ public class PaletteView extends JPanel implements Scrollable {
      */
     @Override
     public int getScrollableBlockIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+                                           int orientation, int direction) {
         if (orientation == SwingConstants.VERTICAL) {
             return XcosConstants.PALETTE_BLOCK_HEIGHT
-                    + XcosConstants.PALETTE_VMARGIN;
+                   + XcosConstants.PALETTE_VMARGIN;
         } else {
             return XcosConstants.PALETTE_BLOCK_WIDTH
-                    + XcosConstants.PALETTE_HMARGIN;
+                   + XcosConstants.PALETTE_HMARGIN;
         }
     }
 
@@ -141,7 +142,7 @@ public class PaletteView extends JPanel implements Scrollable {
      */
     @Override
     public int getScrollableUnitIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+                                          int orientation, int direction) {
         if (orientation == SwingConstants.VERTICAL) {
             return XcosConstants.PALETTE_BLOCK_HEIGHT;
         } else {

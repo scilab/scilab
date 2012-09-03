@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Create a mask for the {@link SuperBlock}
  */
+@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskCreateAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.CREATE;
@@ -60,7 +61,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 
     /**
      * Callback to be done
-     * 
+     *
      * @param e
      *            parameters
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -74,7 +75,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
 
         block.mask();
@@ -86,15 +87,15 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 
             /* Set default values */
             ScilabList exprs = new ScilabList(
-                    Arrays.asList(
+                Arrays.asList(
+                    new ScilabDouble(),
+                    new ScilabList(
+                        Arrays.asList(
                             new ScilabDouble(),
-                            new ScilabList(
-                                    Arrays.asList(
-                                            new ScilabDouble(),
-                                            new ScilabString(
-                                                    XcosMessages.MASK_DEFAULTWINDOWNAME),
-                                            new ScilabList(Arrays
-                                                    .asList(new ScilabDouble()))))));
+                            new ScilabString(
+                                XcosMessages.MASK_DEFAULTWINDOWNAME),
+                            new ScilabList(Arrays
+                                           .asList(new ScilabDouble()))))));
 
             block.setExprs(exprs);
 
@@ -102,7 +103,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
              * Open the customization UI on a new mask creation
              */
             GraphActionManager.getInstance(graph,
-                    SuperblockMaskCustomizeAction.class).actionPerformed(e);
+                                           SuperblockMaskCustomizeAction.class).actionPerformed(e);
         }
     }
 }

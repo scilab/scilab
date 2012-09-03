@@ -31,6 +31,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RedoAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RedoAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY Y";

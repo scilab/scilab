@@ -24,6 +24,7 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * @author Calixte DENIZET
  *
  */
+@SuppressWarnings(value = { "serial" })
 public final class ToLowerCaseAction extends DefaultAction {
 
     /**
@@ -39,7 +40,7 @@ public final class ToLowerCaseAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         String str = sep.getSelectedText();
         int start = sep.getSelectionStart();

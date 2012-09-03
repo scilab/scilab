@@ -31,13 +31,14 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 /**
  * The content pane for the block view
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteManagerPanel extends JSplitPane {
 
     private PaletteManager controller;
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the {@link PaletteManager} instance
      */
@@ -63,10 +64,10 @@ public class PaletteManagerPanel extends JSplitPane {
 
         /** Setup tree */
         tree.getSelectionModel().setSelectionMode(
-                TreeSelectionModel.SINGLE_TREE_SELECTION);
+            TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addMouseListener(new PaletteManagerMouseListener());
         tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(
-                panel));
+                                          panel));
 
         tree.setEditable(false);
         tree.setDragEnabled(true);
@@ -80,25 +81,25 @@ public class PaletteManagerPanel extends JSplitPane {
 
     /**
      * Init the ScrollPane component
-     * 
+     *
      * @param panel
      *            the component
      */
     private void initJScrollPane(JScrollPane panel) {
         panel.setBackground(Color.WHITE);
         panel.getVerticalScrollBar().setBlockIncrement(
-                XcosConstants.PALETTE_BLOCK_HEIGHT
-                        + XcosConstants.PALETTE_VMARGIN);
+            XcosConstants.PALETTE_BLOCK_HEIGHT
+            + XcosConstants.PALETTE_VMARGIN);
         panel.getVerticalScrollBar().setUnitIncrement(
-                XcosConstants.PALETTE_BLOCK_HEIGHT
-                        + XcosConstants.PALETTE_VMARGIN);
+            XcosConstants.PALETTE_BLOCK_HEIGHT
+            + XcosConstants.PALETTE_VMARGIN);
 
         panel.getHorizontalScrollBar().setBlockIncrement(
-                XcosConstants.PALETTE_BLOCK_WIDTH
-                        + XcosConstants.PALETTE_HMARGIN);
+            XcosConstants.PALETTE_BLOCK_WIDTH
+            + XcosConstants.PALETTE_HMARGIN);
         panel.getHorizontalScrollBar().setUnitIncrement(
-                XcosConstants.PALETTE_BLOCK_WIDTH
-                        + XcosConstants.PALETTE_HMARGIN);
+            XcosConstants.PALETTE_BLOCK_WIDTH
+            + XcosConstants.PALETTE_HMARGIN);
     }
 
     /**
@@ -106,7 +107,7 @@ public class PaletteManagerPanel extends JSplitPane {
      */
     public void performStartUpLayout() {
         JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
-                .getView();
+                     .getView();
 
         /* Tree layout */
         tree.expandRow(1);

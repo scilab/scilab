@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,9 +25,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Remove the {@link SuperBlock} mask.
- * 
+ *
  * @see SuperBlock#unmask()
  */
+@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskRemoveAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.REMOVE;
@@ -57,7 +58,7 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            the event source
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -71,7 +72,7 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
         block.unmask();
     }

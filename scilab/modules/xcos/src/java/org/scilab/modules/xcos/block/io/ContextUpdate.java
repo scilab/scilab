@@ -61,6 +61,7 @@ public abstract class ContextUpdate extends BasicBlock {
      * Implement a listener which update the value and refresh the view when the
      * index of the port change.
      */
+    @SuppressWarnings(value = { "serial" })
     private static final class IndexChangeAdapter implements PropertyChangeListener, Serializable {
         private static IndexChangeAdapter instance;
 
@@ -116,6 +117,7 @@ public abstract class ContextUpdate extends BasicBlock {
     /**
      * Implement a listener to update the
      * {@link ContextUpdate#isContextDependent} flag.
+    @SuppressWarnings(value = { "serial" })
      */
     private static final class ExprsChangeAdapter implements PropertyChangeListener, Serializable {
         private static final Pattern INTEGER_PATTERN = Pattern.compile("\\d+");

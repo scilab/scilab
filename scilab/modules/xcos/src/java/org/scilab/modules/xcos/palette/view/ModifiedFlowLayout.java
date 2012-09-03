@@ -22,12 +22,13 @@ import java.awt.Insets;
 /**
  * A modified version of FlowLayout that allows containers using this Layout to
  * behave in a reasonable manner when placed inside a JScrollPane
- * 
+ *
  * @author Babu Kalakrishnan
  * @see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5082531
  * @see http ://www.javakb.com/Uwe/Forum.aspx/java-gui/1904/Flowlayout-JPanel-
  *      and-JScrollPane-Scrolling-vertically-impossible
  */
+@SuppressWarnings(value = { "serial" })
 public class ModifiedFlowLayout extends FlowLayout {
     public ModifiedFlowLayout() {
         super();
@@ -77,7 +78,7 @@ public class ModifiedFlowLayout extends FlowLayout {
                 Component c = target.getComponent(i);
                 if (c.isVisible()) {
                     Dimension d = minimum ? c.getMinimumSize() : c
-                            .getPreferredSize();
+                                  .getPreferredSize();
                     if ((x == 0) || ((x + d.width) <= maxwidth)) {
                         if (x > 0) {
                             x += hgap;
@@ -94,7 +95,7 @@ public class ModifiedFlowLayout extends FlowLayout {
             }
             y += rowHeight;
             return new Dimension(reqdWidth + insets.left + insets.right, y
-                    + vgap);
+                                 + vgap);
         }
     }
 }

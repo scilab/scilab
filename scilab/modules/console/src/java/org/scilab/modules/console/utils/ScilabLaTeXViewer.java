@@ -25,6 +25,7 @@ import javax.swing.text.JTextComponent;
  * Class to have a preview of a LaTeX string
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class ScilabLaTeXViewer extends JPanel {
 
     private static final int INSET = 3;

@@ -297,6 +297,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     /**
      * Listener for SuperBlock diagram events.
      */
+    @SuppressWarnings(value = { "serial" })
     private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
         private static GenericSuperBlockListener instance;
 
@@ -341,6 +342,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 
     /**
      * Listener for SuperBlock diagram events.
+    @SuppressWarnings(value = { "serial" })
      */
     private static final class ContentChangedListener implements mxIEventListener, Serializable {
         private static ContentChangedListener instance;
@@ -385,6 +387,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     }
 
     /**
+    @SuppressWarnings(value = { "serial" })
      * Update the diagram labels
      */
     private static final class LabelBlockListener implements mxIEventListener, Serializable {
