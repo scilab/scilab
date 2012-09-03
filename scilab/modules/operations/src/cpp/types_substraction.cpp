@@ -219,6 +219,12 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDou
                 (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
 
+        //return opposite
+        double* pDbl = (*_pDoubleOut)->get();
+        for(int i = 0 ; i < _pDouble2->getSize() ; i++)
+        {
+            pDbl[i] = -pDbl[i];
+        }
         return 0;
     }
 
@@ -960,6 +966,29 @@ int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_p
     int iOne = 1; //fortran 
     bool bComplex1 = _pSparse->isComplex();
     bool bComplex2 = _pDouble->isComplex();
+
+    if(_pDouble->isIdentity())
+    {//convert to sp
+        Sparse* pS = new Sparse(_pSparse->getRows(), _pSparse->getCols(), _pDouble->isComplex());
+        if(pS->isComplex())
+        {
+            for(int i = 0 ; i < Min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
+            {
+                pS->set(i, i, std::complex<double>(_pDouble->get(0), _pDouble->getImg(0)));
+            }
+        }
+        else
+        {
+            for(int i = 0 ; i < Min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
+            {
+                pS->set(i, i, _pDouble->get(0));
+            }
+        }
+
+        SubstractSparseToSparse(_pSparse, pS, _pOut);
+        delete pS;
+        return 0;
+    }
 
     if(_pDouble->isEmpty())
     {//[] - SP

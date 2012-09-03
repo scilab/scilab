@@ -1026,6 +1026,29 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
     bool bComplex1 = sp->isComplex();
     bool bComplex2 = d->isComplex();
 
+    if(d->isIdentity())
+    {//convert to sp
+        Sparse* pS = new Sparse(sp->getRows(), sp->getCols(), d->isComplex());
+        if(pS->isComplex())
+        {
+            for(int i = 0 ; i < Min(sp->getRows() , sp->getCols()) ; i++)
+            {
+                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)));
+            }
+        }
+        else
+        {
+            for(int i = 0 ; i < Min(sp->getRows() , sp->getCols()) ; i++)
+            {
+                pS->set(i, i, d->get(0));
+            }
+        }
+
+        AddSparseToSparse(sp, pS, (Sparse**)pDRes);
+        delete pS;
+        return 0;
+    }
+
     if(d->isEmpty())
     {//[] + SP
         *pDRes = sp->clone();
@@ -1131,6 +1154,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
                 pReal[i] += sp->get(0, 0);
             }
         }
+
         *pDRes = pRes;
         return 0;
     }
