@@ -11,68 +11,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="roots" xml:lang="fr">
-  <refnamediv>
-    <refname>roots</refname>
-    <refpurpose>racines d'un polynôme</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>
-      x=roots(p)
-      x=roots(p,"algo")
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>
-            un polynôme réel ou complexe, ou 
-            une m-par-1 or 1-par-m matrice de doubles, les coefficients du polynômes par ordre de puissance décroissante.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>algo</term>
-        <listitem>
-          <para>
-            une chaîne de caractères, l'algorithme à utiliser (défaut algo="f").
-            Si algo="e", alors les valeurs propres de la matrice compagnion sont utilisées.
-            Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients 
-            du polynôme sont réels et que le degré du polynôme est plus petit que 100).
-            Si algo="f" et que le polynôme est complexe, alors une erreur est générée.
-            Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est 
-            générée.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Cette fonction retourne dans le vecteur complexe
-      <literal>x</literal> les racines du polynôme <literal>p</literal>. 
-    </para>
-    <para>
-      L'option "f" utilise l'algorithme rapide RPOLY, fondé sur la méthode de Jenkins-Traub. 
-    </para>
-    <para>
-      Pour les polynôme réels de degré inférieur à 100, on peut utiliser 
-      l'option "f", qui peut être plus rapide dans certains cas.
-      Toutefois, certains polynômes sont susceptibles de poser des problèmes 
-      de convergences pour l'algorithme associé à l'option "f".
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <para>
-      Dans les exemples suivants, on calcule des racines de polynômes.
-    </para>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="roots" xml:lang="fr">
+    <refnamediv>
+        <refname>roots</refname>
+        <refpurpose>racines d'un polynôme</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            x=roots(p)
+            x=roots(p,"algo")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        un polynôme réel ou complexe, ou 
+                        une m-par-1 or 1-par-m matrice de doubles, les coefficients du polynômes par ordre de puissance décroissante.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>algo</term>
+                <listitem>
+                    <para>
+                        une chaîne de caractères, l'algorithme à utiliser (défaut algo="f").
+                        Si algo="e", alors les valeurs propres de la matrice compagnion sont utilisées.
+                        Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients 
+                        du polynôme sont réels et que le degré du polynôme est plus petit que 100).
+                        Si algo="f" et que le polynôme est complexe, alors une erreur est générée.
+                        Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est 
+                        générée.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction retourne dans le vecteur complexe
+            <literal>x</literal> les racines du polynôme <literal>p</literal>. 
+        </para>
+        <para>
+            L'option "f" utilise l'algorithme rapide RPOLY, fondé sur la méthode de Jenkins-Traub. 
+        </para>
+        <para>
+            Pour les polynôme réels de degré inférieur à 100, on peut utiliser 
+            l'option "f", qui peut être plus rapide dans certains cas.
+            Toutefois, certains polynômes sont susceptibles de poser des problèmes 
+            de convergences pour l'algorithme associé à l'option "f".
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Dans les exemples suivants, on calcule des racines de polynômes.
+        </para>
+        <programlisting role="example"><![CDATA[
 // Un polynôme réel.
 p = poly([1 2 3],"x")
 roots(p)
@@ -88,29 +88,29 @@ p = poly(A,'x')
 roots(p)
 spec(A)
  ]]></programlisting>
-    <para>
-      La représentation polynômiale peut avoir un impact significatif sur les 
-      racines.
-      Dans l'exemple suivant, suggéré par Wilkinson dans les années 60 et présenté 
-      par Moler, on considère une matrice dont les termes diagonaux sont égaux 
-      à 1, 2, ..., 20. 
-      Bien entendu, les racines du polynôme caractéristique sont 1, 2, ..., 20.
-      Si on calcule le polynôme caractéristique associé et qu'on calcule ses 
-      racines, on peut voir qu'elles sont significativement différentes des 
-      valeurs attendues.
-      Cela montre que le seul fait de représenter les coefficients dans 
-      des doubles IEEE change les racines.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            La représentation polynômiale peut avoir un impact significatif sur les 
+            racines.
+            Dans l'exemple suivant, suggéré par Wilkinson dans les années 60 et présenté 
+            par Moler, on considère une matrice dont les termes diagonaux sont égaux 
+            à 1, 2, ..., 20. 
+            Bien entendu, les racines du polynôme caractéristique sont 1, 2, ..., 20.
+            Si on calcule le polynôme caractéristique associé et qu'on calcule ses 
+            racines, on peut voir qu'elles sont significativement différentes des 
+            valeurs attendues.
+            Cela montre que le seul fait de représenter les coefficients dans 
+            des doubles IEEE change les racines.
+        </para>
+        <programlisting role="example"><![CDATA[
 A = diag(1:20);
 p = poly(A,'x')
 roots(p)
  ]]></programlisting>
-    <para>
-      L'option "f" produit une erreur si le polynôme est complexe 
-      ou que le degré est plus grand que 100.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            L'option "f" produit une erreur si le polynôme est complexe 
+            ou que le degré est plus grand que 100.
+        </para>
+        <programlisting role="example"><![CDATA[
  // Le cas suivant produit une erreur
  p = %i+%s;
  roots(p,"f")
@@ -118,35 +118,35 @@ roots(p)
  p = ones(101,1);
  roots(p,"f")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-      <member>
-        <link linkend="spec">spec</link>
-      </member>
-      <member>
-        <link linkend="companion">companion</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Bibliographie</title>
-    <para>
-      La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
-      Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
-    </para>
-  </refsection>
-  <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>
-      Le code source de rpoly.f peut être trouvé dans le repertoire
-      SCI/modules/polynomials/src/fortran de la distribution source de Scilab. Dans le cas où la
-      matrix compagnon est utilisée, le calcul des valeurs propres est effectué
-      en utilisant les routines DGEEV et ZGEEV de LAPACK.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="companion">companion</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
+            Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
+        </para>
+    </refsection>
+    <refsection>
+        <title>Fonctions Utilisées</title>
+        <para>
+            Le code source de rpoly.f peut être trouvé dans le repertoire
+            SCI/modules/polynomials/src/fortran de la distribution source de Scilab. Dans le cas où la
+            matrix compagnon est utilisée, le calcul des valeurs propres est effectué
+            en utilisant les routines DGEEV et ZGEEV de LAPACK.
+        </para>
+    </refsection>
 </refentry>

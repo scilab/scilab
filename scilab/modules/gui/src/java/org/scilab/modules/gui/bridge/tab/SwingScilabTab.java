@@ -57,7 +57,6 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
-import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.event.DockingEvent;
@@ -354,7 +353,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             public int canClose() {
                 String closeRequestFcn = (String) GraphicController.getController().getProperty(getId(), __GO_CLOSEREQUESTFCN__);
                 if (!closeRequestFcn.equals("")) {
-                    InterpreterManagement.requestScilabExec(closeRequestFcn + ";fire_closing_finished()");
+                    String closeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                          + "gcbo = getcallbackobject(\"" + getId() + "\");"
+                                          + closeRequestFcn + ";fire_closing_finished();"
+                                          + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
+                    InterpreterManagement.requestScilabExec(closeCommand);
                     return -1;
                 } else {
                     closeAction.actionPerformed(null);

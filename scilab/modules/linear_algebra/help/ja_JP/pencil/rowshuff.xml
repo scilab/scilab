@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowshuff">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rowshuff">
     <refnamediv>
         <refname>rowshuff</refname>
         <refpurpose>シャッフルアルゴリズム</refpurpose>
@@ -73,7 +73,7 @@
             <literal>Ws</literal>のゼロは<literal>alfa</literal>に配置されます.
         </para>
         <para>
-            <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>に注意してください.
+            Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>
         </para>
     </refsection>
     <refsection>
@@ -88,7 +88,7 @@ roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

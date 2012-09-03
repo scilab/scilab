@@ -11,60 +11,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="readxls" xml:lang="en">
-  <refnamediv>
-    <refname>readxls</refname>
-    <refpurpose>lê um arquivo Excel</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>sheets = readxls(file_path)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>file_path</term>
-        <listitem>
-          <para>string: o endereço do arquivo Excel</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sheets</term>
-        <listitem>
-          <para>
-            um <literal>mlist</literal> de tipo <literal>xls</literal>,
-            com um campo chamado <literal>sheets</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Dado um endereço de um arquivo Excel, esta função retorna uma
-      estrutura de dados <literal>mlist</literal> do tipo
-      <literal>xls</literal>, com um campo chamado <literal>sheets</literal>. O
-      campo <literal>sheets</literal> contém uma lista da estutura de dados
-      folha.
-    </para>
-    <para>
-      <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal>
-      onde <literal>sheetname</literal> é um string contendo o nome da folha,
-      <literal>Text</literal> é uma matriz de strings que contém os strings e
-      todas as células <literal>Value</literal> é uma matriz de números que
-      contém todos os valores das células.
-    </para>
-    <para>
-      <warning>
-      AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003)) são
-      manipulados
-      </warning>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="readxls" xml:lang="en">
+    <refnamediv>
+        <refname>readxls</refname>
+        <refpurpose>lê um arquivo Excel</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>sheets = readxls(file_path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>file_path</term>
+                <listitem>
+                    <para>string: o endereço do arquivo Excel</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sheets</term>
+                <listitem>
+                    <para>
+                        um <literal>mlist</literal> de tipo <literal>xls</literal>,
+                        com um campo chamado <literal>sheets</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Dado um endereço de um arquivo Excel, esta função retorna uma
+            estrutura de dados <literal>mlist</literal> do tipo
+            <literal>xls</literal>, com um campo chamado <literal>sheets</literal>. O
+            campo <literal>sheets</literal> contém uma lista da estutura de dados
+            folha.
+        </para>
+        <para>
+            <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal>
+            onde <literal>sheetname</literal> é um string contendo o nome da folha,
+            <literal>Text</literal> é uma matriz de strings que contém os strings e
+            todas as células <literal>Value</literal> é uma matriz de números que
+            contém todos os valores das células.
+        </para>
+        <para>
+            <warning>
+                AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003)) são
+                manipulados
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
 // algumas operações básicas sobre Sheets
 typeof(Sheets)
@@ -77,23 +77,23 @@ typeof(s1(2,:))
 
 disp(s1)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xls_open">xls_open</link>
-      </member>
-      <member>
-        <link linkend="xls_read">xls_read</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Funções Utilizadas</title>
-    <para>
-      Esta função é baseada nas funções Scilab <literal>xls_open</literal>
-      e <literal>xls_read</literal>.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xls_open">xls_open</link>
+            </member>
+            <member>
+                <link linkend="xls_read">xls_read</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Funções Utilizadas</title>
+        <para>
+            Esta função é baseada nas funções Scilab <literal>xls_open</literal>
+            e <literal>xls_read</literal>.
+        </para>
+    </refsection>
 </refentry>

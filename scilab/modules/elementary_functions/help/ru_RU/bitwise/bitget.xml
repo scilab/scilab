@@ -11,65 +11,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitget" xml:lang="ru">
-  <refnamediv>
-    <refname>bitget</refname>
-    <refpurpose>бит в определённой позиции</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      y = bitget(x,pos)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Параметры</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности (double) размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pos :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности (double) размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
-            Входная <literal>pos</literal> должна быть в диапазоне 1,2,...,bitmax
-            где bitmax - максимальное количество битов в <literal>x</literal>.
-            Должна содержать положительные целые значения. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности размером m на n 
-            или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-            или матрица беззнаковых целых чисел размером m на n.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Для заданного беззнакового целого числа <literal>x</literal>, эта функция возвращает беззнаковое целое число (0 или 1), которое является битом в позиции с номером <literal>pos</literal> в двоичном представлении <literal>x</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitget" xml:lang="ru">
+    <refnamediv>
+        <refname>bitget</refname>
+        <refpurpose>бит в определённой позиции</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            y = bitget(x,pos)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Параметры</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности (double) размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pos :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности (double) размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
+                        Входная <literal>pos</literal> должна быть в диапазоне 1,2,...,bitmax
+                        где bitmax - максимальное количество битов в <literal>x</literal>.
+                        Должна содержать положительные целые значения. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером m на n 
+                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
+                        или матрица беззнаковых целых чисел размером m на n.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для заданного беззнакового целого числа <literal>x</literal>, эта функция возвращает беззнаковое целое число (0 или 1), которое является битом в позиции с номером <literal>pos</literal> в двоичном представлении <literal>x</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
 // 19 соответствует (10011)_2
 // 2-й бит равен 1 (начиная с конца).
 x=uint8(19);
@@ -84,5 +84,5 @@ bitget(uint8(13),4:-1:1)
 // Входная x может быть положительным числом типа double
 bitget(13,4:-1:1)
    ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

@@ -10,98 +10,98 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="regexp" xml:lang="en">
-  <refnamediv>
-    <refname>regexp</refname>
-    <refpurpose>find a substring that matches the regular expression
-      string
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[start]=regexp(input,pattern,[flag])
-      [start,end,match]=regexp(input,pattern,[flag])
-      [start,end]=regexp(input,pattern,[flag])
-      [start,end,match]=regexp(input,pattern,[flag])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>input</term>
-        <listitem>
-          <para>a string.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pattern</term>
-        <listitem>
-          <para>a character string (under the rules of regular
-            expression)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>start</term>
-        <listitem>
-          <para>the starting index of each substring of str that matches the
-            regular expression string pattern
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>end</term>
-        <listitem>
-          <para>the ending index of each substring of str that matches the
-            regular expression string pattern
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>match</term>
-        <listitem>
-          <para>the text of each substring of str that matches
-            <literal>pattern</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>[flag]</term>
-        <listitem>
-          <para>'o' for matching the pattern once .</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>The rules of regular expression are similar to perl language. For a
-      quick start , see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
-      For a more in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
-      and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
-    </para>
-    <para>A difference with Perl is that matching a position but no character
-      (for example, with /^/ or /(?=o)/) is a successful match in Perl but not
-      in Scilab.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="regexp" xml:lang="en">
+    <refnamediv>
+        <refname>regexp</refname>
+        <refpurpose>find a substring that matches the regular expression
+            string
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[start]=regexp(input,pattern,[flag])
+            [start,end,match]=regexp(input,pattern,[flag])
+            [start,end]=regexp(input,pattern,[flag])
+            [start,end,match]=regexp(input,pattern,[flag])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>input</term>
+                <listitem>
+                    <para>a string.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pattern</term>
+                <listitem>
+                    <para>a character string (under the rules of regular
+                        expression)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>start</term>
+                <listitem>
+                    <para>the starting index of each substring of str that matches the
+                        regular expression string pattern
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>end</term>
+                <listitem>
+                    <para>the ending index of each substring of str that matches the
+                        regular expression string pattern
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>match</term>
+                <listitem>
+                    <para>the text of each substring of str that matches
+                        <literal>pattern</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[flag]</term>
+                <listitem>
+                    <para>'o' for matching the pattern once .</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>The rules of regular expression are similar to perl language. For a
+            quick start , see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+            For a more in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+            and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+        </para>
+        <para>A difference with Perl is that matching a position but no character
+            (for example, with /^/ or /(?=o)/) is a successful match in Perl but not
+            in Scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 regexp('xabyabbbz','/ab*/','o')
 regexp('a!','/((((((((((a))))))))))\041/')
 regexp('ABCC','/^abc$/i')
 regexp('ABC','/ab|cd/i')
 [a b c]=regexp('XABYABBBZ','/ab*/i')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strindex">strindex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

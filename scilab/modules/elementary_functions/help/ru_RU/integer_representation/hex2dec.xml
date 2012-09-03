@@ -11,71 +11,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="hex2dec" xml:lang="ru">
-  <refnamediv>
-    <refname>hex2dec</refname>
-    <refpurpose>
-      преобразование из шестнадцатеричной системы счисления в десятичную
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>d=hex2dec(h)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>h</term>
-        <listitem>
-          <para>
-            матрица строк, соответствующих шестнадцатеричному представлению
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности, положительные целые значения
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>hex2dec(x)</literal> возвращает матрицу чисел, соответствующих шестнадцатеричному представлению.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hex2dec" xml:lang="ru">
+    <refnamediv>
+        <refname>hex2dec</refname>
+        <refpurpose>
+            преобразование из шестнадцатеричной системы счисления в десятичную
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>d=hex2dec(h)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        матрица строк, соответствующих шестнадцатеричному представлению
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности, положительные целые значения
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>hex2dec(x)</literal> возвращает матрицу чисел, соответствующих шестнадцатеричному представлению.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 hex2dec(['ABC','0','A'])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="base2dec">base2dec</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="oct2dec">oct2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-      <member>
-        <link linkend="dec2oct">dec2oct</link>
-      </member>
-      <member>
-        <link linkend="dec2hex">dec2hex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

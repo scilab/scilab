@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: es\n"
 
 #, c-format
@@ -47,9 +47,6 @@ msgstr "Horizontal"
 msgid "Vertical"
 msgstr "Vertical"
 
-msgid "Simulation"
-msgstr "Simulación"
-
 msgid "No trace nor debug printing"
 msgstr "No mostrar ni la traza ni la depuración"
 
@@ -61,6 +58,21 @@ msgstr "Ejecución de traza y depuración por bloque"
 
 msgid "Debug block calls without trace"
 msgstr "Depurar llamadas de bloques sin traza"
+
+msgid "Number of recently opened files to display: "
+msgstr ""
+
+msgid "Default file format"
+msgstr ""
+
+msgid "Link Style"
+msgstr "Estilo del enlace"
+
+msgid "Diagram background"
+msgstr "Fondo de pantalla del diagrama"
+
+msgid "Grid"
+msgstr "Cuadrilla"
 
 msgid "Default simulation settings"
 msgstr ""
@@ -103,6 +115,9 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba una vector de "
 "strings.\n"
 
+msgid "a graphical environnement is needed."
+msgstr ""
+
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -110,17 +125,6 @@ msgid ""
 msgstr ""
 "Imposible cargar la biblioteca jgraphx. \n"
 "Se esperaba la versión %s ; pero se obtuvo la %s ."
-
-#, c-format
-msgid ""
-"Unable to load the hdf5-java (jhdf5) library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"Imposible cargar la biblioteca hdf5-java (jhdf5). \n"
-"Se esperaba la versión %s ; se obtuvo la versión %s ."
-
-msgid "Unable to load the native HDF5 library."
-msgstr "Imposible cargar la biblioteca nativa NDF5."
 
 #, c-format
 msgid ""
@@ -422,6 +426,9 @@ msgstr "Detalles"
 msgid "Show parent diagram"
 msgstr "Mostrar el diagrama padre"
 
+msgid "Simulation"
+msgstr "Simulación"
+
 msgid "Setup"
 msgstr "Configuración"
 
@@ -454,12 +461,6 @@ msgstr "Reflejar"
 
 msgid "Show/Hide shadow"
 msgstr "Mostrar/Ocultar sombra"
-
-msgid "Grid"
-msgstr "Cuadrilla"
-
-msgid "Diagram background"
-msgstr "Fondo de pantalla del diagrama"
 
 msgid "Bold"
 msgstr "Negrita"
@@ -718,9 +719,6 @@ msgstr "Color de relleno"
 
 msgid "Text Color"
 msgstr "Color de Texto"
-
-msgid "Link Style"
-msgstr "Estilo del enlace"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""

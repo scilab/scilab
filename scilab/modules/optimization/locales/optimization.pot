@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:23+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
@@ -226,6 +226,23 @@ msgstr ""
 # File: demos/optim/optim_output.sce, line: 42
 # File: demos/optim/optim_rosenbrock.sce, line: 34
 # File: demos/optim/optim_withderivative.sce, line: 44
+msgid "No"
+msgstr ""
+
+#
+# File: demos/neldermead/fminsearch_display.sce, line: 32
+# File: demos/neldermead/fminsearch_outputfunction.sce, line: 52
+# File: demos/neldermead/fminsearch_rosenbrock.sce, line: 42
+# File: demos/neldermead/fminsearch_tolx.sce, line: 45
+# File: demos/neldermead/neldermead_boxpost.sce, line: 148
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 203
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 158
+# File: demos/neldermead/neldermead_dimension.sce, line: 96
+# File: demos/neldermead/neldermead_outputcmd.sce, line: 74
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 41
+# File: demos/optim/optim_output.sce, line: 42
+# File: demos/optim/optim_rosenbrock.sce, line: 34
+# File: demos/optim/optim_withderivative.sce, line: 44
 msgid "View Code?"
 msgstr ""
 
@@ -243,7 +260,7 @@ msgstr ""
 # File: demos/optim/optim_output.sce, line: 42
 # File: demos/optim/optim_rosenbrock.sce, line: 34
 # File: demos/optim/optim_withderivative.sce, line: 44
-msgid "YesNo"
+msgid "Yes"
 msgstr ""
 
 #

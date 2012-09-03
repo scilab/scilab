@@ -10,25 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getpid" xml:lang="en">
-  <refnamediv>
-    <refname>getpid</refname>
-    <refpurpose>Retorna o identificador do processo Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>id=getpid()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Descrição</title>
-    <para>Retorna retorna um inteiro correspondente ao identificador do
-      processo Scilab.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getpid" xml:lang="en">
+    <refnamediv>
+        <refname>getpid</refname>
+        <refpurpose>Retorna o identificador do processo Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>id=getpid()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna retorna um inteiro correspondente ao identificador do
+            processo Scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 d='SD_'+string(getpid())+'_'
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

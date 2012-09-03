@@ -21,107 +21,107 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scicos_simulate">
-  <refnamediv>
-    <refname>scicos_simulate</refname>
-    <refpurpose>シミュレーションをバッチモードで実行する関数</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>Info=scicos_simulate(scs_m)</synopsis>
-    <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
-    <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
-    <synopsis>Info=scicos_simulate(scs_m,flag)</synopsis>
-    <synopsis>Info=scicos_simulate(scs_m ,Info [, context] [,flag])</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Parameters_scicos_simulate">
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>scs_m</term>: ダイアグラムデータ構造体 (<link linkend="scicos_diagram">scs_m 構造体</link>参照).
-        <para/>
-      </varlistentry>
-      <varlistentry>
-        <term>Info</term>: リスト.
-        初回コール時は<literal>list()</literal>,次回コール以降は
-        <literal>Info</literal>出力を<literal>Info</literal>入力として
-        指定してください.
-        <literal>Info</literal>にはコンパイルおよびシミュレーション関連情報
-        が含まれ,不要な再コンパイルを避けるために使用されます.
-        <para/>
-      </varlistentry>
-      <varlistentry>
-        <term>ContextValues</term>: 
-        Scilab構造体で,コンテキストおよびxcosブロックで使用されるシンボル変数の値を有します.
-        <para/>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>: 文字列. 
-        'nw' (no window)の場合, グラフィックウインドウを使用するブロックは実行されません.
-        このようなブロックのリストは,新規ブロック追加時に更新する必要があることに注意してください.
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection id="Module_scicos_simulate">
-    <title>モジュール</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_simulate">
+    <refnamediv>
+        <refname>scicos_simulate</refname>
+        <refpurpose>シミュレーションをバッチモードで実行する関数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Info=scicos_simulate(scs_m)</synopsis>
+        <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
+        <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
+        <synopsis>Info=scicos_simulate(scs_m,flag)</synopsis>
+        <synopsis>Info=scicos_simulate(scs_m ,Info [, context] [,flag])</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Parameters_scicos_simulate">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>scs_m</term>: ダイアグラムデータ構造体 (<link linkend="scicos_diagram">scs_m 構造体</link>参照).
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>Info</term>: リスト.
+                初回コール時は<literal>list()</literal>,次回コール以降は
+                <literal>Info</literal>出力を<literal>Info</literal>入力として
+                指定してください.
+                <literal>Info</literal>にはコンパイルおよびシミュレーション関連情報
+                が含まれ,不要な再コンパイルを避けるために使用されます.
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>ContextValues</term>: 
+                Scilab構造体で,コンテキストおよびxcosブロックで使用されるシンボル変数の値を有します.
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>: 文字列. 
+                'nw' (no window)の場合, グラフィックウインドウを使用するブロックは実行されません.
+                このようなブロックのリストは,新規ブロック追加時に更新する必要があることに注意してください.
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection id="Module_scicos_simulate">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_scicos_simulate">
+        <title>説明</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            この関数はバッチモードで xcos ダイアグラムをシミュレートする際に使用されます.
+            この関数には,<literal>.xcos</literal>ファイルをScilabにロードした際に
+            得られる <link linkend="scicos_diagram">scs_m構造体</link>を指定します
+            (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_scicos_simulate">
-    <title>説明</title>
-    <para>
-      この関数はバッチモードで xcos ダイアグラムをシミュレートする際に使用されます.
-      この関数には,<literal>.xcos</literal>ファイルをScilabにロードした際に
-      得られる <link linkend="scicos_diagram">scs_m構造体</link>を指定します
-      (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
-    </para>
-    <para>
-      <literal>ContextValues</literal>は,主ダイアグラムコンテキストで
-      設定される主要なパラメータの値を変更する際に使用することができます.
-      例: 変数 <literal>A</literal> がダイアグラムの主コンテキストで
-      1に設定された場合, <literal>A</literal> の値を
-      <literal>scicos_simulate</literal> シミュレーション時に
-      以下のように設定することにより変更することができます.
-      <programlisting role="example"><![CDATA[
+        <para>
+            <literal>ContextValues</literal>は,主ダイアグラムコンテキストで
+            設定される主要なパラメータの値を変更する際に使用することができます.
+            例: 変数 <literal>A</literal> がダイアグラムの主コンテキストで
+            1に設定された場合, <literal>A</literal> の値を
+            <literal>scicos_simulate</literal> シミュレーション時に
+            以下のように設定することにより変更することができます.
+            <programlisting role="example"><![CDATA[
     ContextValues.A=2 
     ]]></programlisting>
-    </para>
-    <para>
-      <literal>ContextValues</literal>引数を使用せずに
-      Scilab内部で定義された変数を直接使用することも可能ですが,
-      このような用途の場合,コンテキストの定義でこれが可能である
-      ことが必要です: 例えば,パラメータ<literal>A</literal>として
-      Scilab変数<literal>A</literal>の値を
-      使用するシミュレーションを可能としたい場合,
-      ダイアグラムコンテキストの定義に以下を記述する必要があります:
-      <programlisting role="example"><![CDATA[
+        </para>
+        <para>
+            <literal>ContextValues</literal>引数を使用せずに
+            Scilab内部で定義された変数を直接使用することも可能ですが,
+            このような用途の場合,コンテキストの定義でこれが可能である
+            ことが必要です: 例えば,パラメータ<literal>A</literal>として
+            Scilab変数<literal>A</literal>の値を
+            使用するシミュレーションを可能としたい場合,
+            ダイアグラムコンテキストの定義に以下を記述する必要があります:
+            <programlisting role="example"><![CDATA[
    if ~exists('A') then  A=1,end
     ]]></programlisting> 
-      この第二の手法は,Scilabで定義された<literal>A</literal>のカレントの値に依存するという
-      弱点があることに注意してください.
-    </para>
-  </refsection>
-  <refsection id="Filecontent_scicos_simulate">
-    <title>ファイルの内容</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos/macros/scicos_auto/scicos_simulate.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Examples_scicos_simulate">
-    <title>例</title><literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>のxcosダイアグラム
-    <mediaobject>
-      <imageobject>
-        <imagedata align="center" fileref="../../images/batch_simulation.png"/>
-      </imageobject>
-    </mediaobject>
-    <programlisting role="example"><![CDATA[ 
+            この第二の手法は,Scilabで定義された<literal>A</literal>のカレントの値に依存するという
+            弱点があることに注意してください.
+        </para>
+    </refsection>
+    <refsection id="Filecontent_scicos_simulate">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_auto/scicos_simulate.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Examples_scicos_simulate">
+        <title>例</title><literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>のxcosダイアグラム
+        <mediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+            </imageobject>
+        </mediaobject>
+        <programlisting role="example"><![CDATA[ 
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
 
 typeof(scs_m) //ダイアグラムデータ構造体
@@ -145,28 +145,28 @@ scicos_simulate(scs_m,list(),Context,'nw');
 counter 
 
     ]]></programlisting>
-  </refsection>
-  <refsection id="SeeAlso_scicos_simulate">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scicos_diagram">scs_m構造体</link>
-      </member>
-      <member>
-        <link linkend="importXcosDiagram"> importXcosDiagram</link>
-      </member>
-      <member>
-        <link linkend="scicosim">scicosim: xcosバッチシミュレーション関数</link>
-      </member>
-      <member>
-        <link linkend="xcos">xcos: ブロックダイアグラムエディタおよびハイブリッドシミュレータのGUI</link>
-      </member>
-      <member>
-        <link linkend="steadycos">steadycos: xcosダイアグラムの定常値を求める</link>
-      </member>
-      <member>
-        <link linkend="lincos">lincos: xcosダイアグラムから線形状態空間モデルを線形化により構築</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection id="SeeAlso_scicos_simulate">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_diagram">scs_m構造体</link>
+            </member>
+            <member>
+                <link linkend="importXcosDiagram"> importXcosDiagram</link>
+            </member>
+            <member>
+                <link linkend="scicosim">scicosim: xcosバッチシミュレーション関数</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos: ブロックダイアグラムエディタおよびハイブリッドシミュレータのGUI</link>
+            </member>
+            <member>
+                <link linkend="steadycos">steadycos: xcosダイアグラムの定常値を求める</link>
+            </member>
+            <member>
+                <link linkend="lincos">lincos: xcosダイアグラムから線形状態空間モデルを線形化により構築</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

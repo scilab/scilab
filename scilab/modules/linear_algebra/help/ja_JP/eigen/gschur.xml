@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gschur">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gschur">
     <refnamediv>
         <refname>gschur</refname>
         <refpurpose>一般化Schur分解 (古い関数).  </refpurpose>
@@ -33,7 +33,7 @@
         <para>
             最初の3つの構文は以下のように置き換えることができます
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 [As,Es]=schur(A,E)
 [As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE THE TRANPOSITION HERE
 [As,Es,Z,dim] = schur(A,E,flag) 
@@ -50,7 +50,7 @@
                         <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal>
                         となります:
                     </para>
-                    <programlisting role = ""><![CDATA[ 
+                    <programlisting role=""><![CDATA[ 
 function t=Nextern(R)
 if R(2)==0 then
   t=extern([1,R(1),R(3)])==1
@@ -74,7 +74,7 @@ endfunction
                 </listitem>
             </varlistentry>
         </variablelist>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 logical function nextern(ar,ai,beta)
 double precision ar,ai,beta
 integer r,extern
@@ -87,7 +87,7 @@ nextern=r.eq.1
 end
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

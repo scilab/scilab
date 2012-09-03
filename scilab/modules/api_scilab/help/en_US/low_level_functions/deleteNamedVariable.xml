@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="deleteNamedVariable">
-  <refnamediv>
-    <refname>deleteNamedVariable</refname>
-    <refpurpose>
-      a C gateway function uses to delete a variable from name
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>int deleteNamedVariable(void* _pvCtx, const char* _pstName)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pstName</term>
-        <listitem>
-          <para>
-            Name of the variable.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      a C gateway function uses to delete a variable from name
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="deleteNamedVariable">
+    <refnamediv>
+        <refname>deleteNamedVariable</refname>
+        <refpurpose>
+            a C gateway function uses to delete a variable from name
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>int deleteNamedVariable(void* _pvCtx, const char* _pstName)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            a C gateway function uses to delete a variable from name
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 fileData = ['#include ""api_scilab.h""'
 '#include ""MALLOC.h""'
 ''
@@ -105,5 +105,5 @@ assert_checkequal(a, 1);
 deleteNamedVariable("a");
 assert_checkequal(exists("a"), 0);
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

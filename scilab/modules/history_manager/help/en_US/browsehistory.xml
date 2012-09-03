@@ -10,80 +10,80 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="browsehistory">
-  <refnamediv>
-    <refname>browsehistory</refname>
-    <refpurpose>Open the Scilab history browser</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>browsehistory()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>Open the history browser</para>
-    <para>
-      <literal>browsehistory</literal> lists all the commands typed by the user during its various Scilab sessions.
-    </para>
-    <para>
-      <literal>browsehistory</literal> has several features: 
-      <itemizedlist>
-        <listitem><para>
-            A simple and comprehensive list
-            <para/>
-            <para>
-              <inlinemediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/browsehistory_list.png"/>
-                </imageobject>
-              </inlinemediaobject>
-            </para>
-            <para/>
-          </para>
-        </listitem>
-        <listitem><para>
-            Quick actions on the history items (copy / paste, evaluation, edition in SciNotes, etc)
-            <para/>
-            <para>
-              <inlinemediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/browsehistory_action.png"/>
-                </imageobject>
-              </inlinemediaobject>
-            </para>
-            <para/>
-          </para>
-        </listitem>
-        <listitem><para>
-            Multiple selection on history items<para/>
-            <para>
-              <inlinemediaobject>
-                <imageobject>
-                  <imagedata fileref="../images/browsehistory_multiple.png"/>
-                </imageobject>
-              </inlinemediaobject>
-            </para>
-            <para/>
-          </para>
-        </listitem>
-        <listitem><para>
-            Copy and paste from the history browser to the other Scilab components (console, SciNotes, etc)
-          </para>
-        </listitem>
-        <listitem><para>
-            Real time refresh
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Function browsehistory introduced.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="browsehistory">
+    <refnamediv>
+        <refname>browsehistory</refname>
+        <refpurpose>Open the Scilab history browser</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>browsehistory()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>Open the history browser</para>
+        <para>
+            <literal>browsehistory</literal> lists all the commands typed by the user during its various Scilab sessions.
+        </para>
+        <para>
+            <literal>browsehistory</literal> has several features: 
+            <itemizedlist>
+                <listitem><para>
+                        A simple and comprehensive list
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_list.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Quick actions on the history items (copy / paste, evaluation, edition in SciNotes, etc)
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_action.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Multiple selection on history items<para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_multiple.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Copy and paste from the history browser to the other Scilab components (console, SciNotes, etc)
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Real time refresh
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function browsehistory introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

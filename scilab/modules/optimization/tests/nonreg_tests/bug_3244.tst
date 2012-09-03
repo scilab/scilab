@@ -70,6 +70,6 @@ refMsg = msprintf(_("%s: Wrong size for input argument #%d: %d column(s) expecte
 assert_checkerror("qp_solve(1, 1, [], 1, 1)", refMsg);
 
 assert_checkfalse(execstr("qp_solve(1, 2, 3, 4, 5)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: me must be an integer in the range 0 to %d.\n"), "qp_solve", 5, 1);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be an integer in the range 0 to %d.\n"), "qp_solve", 5, "me", 1);
 assert_checkerror("qp_solve(1, 2, 3, 4, 5)", refMsg);
 

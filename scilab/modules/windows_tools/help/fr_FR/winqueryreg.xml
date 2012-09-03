@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="winqueryreg">
-  <refnamediv>
-    <refname>winqueryreg</refname>
-    <refpurpose>Obtenir une clef de la base des
-      registres de Microsoft Windows
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>value = winqueryreg('name', 'rootkey', 'subkey')
-      value = winqueryreg('rootkey', 'subkey', 'valname')
-      value = winqueryreg('rootkey', 'subkey')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>value = winqueryreg('name', 'rootkey', 'subkey') retourne les clefs
-      contenues dans rootkey\subkey dans une matrice de chaines de caracteres.
-      Le premier argument doit etre la chaine de caracteres, 'name'.
-    </para>
-    <para>Si la valeur contenue dans la base des registres est une chaine de
-      caracteres, winqueryreg retourne une chaine de caracteres. Si la valeur
-      est un entier sur 32 bits, winqueryreg retourne la valeur comme un entier
-      (int32).
-    </para>
-    <para>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
-      pour la clef valname dans rootkey\subkey.
-    </para>
-    <para>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
-      défaut" de la clef rootkey\subkey.
-    </para>
-    <para>
-      <literal>Note</literal>Les arguments 'name' et 'rootkey' sont
-      "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.
-    </para>
-    <para>Les clefs racine supportées sont: 'HKEY_CLASSES_ROOT', 'HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE', 'HKEY_USERS', 'HKEY_DYN_DATA' and 'HKEY_CURRENT_CONFIG'.</para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="winqueryreg">
+    <refnamediv>
+        <refname>winqueryreg</refname>
+        <refpurpose>Obtenir une clef de la base des
+            registres de Microsoft Windows
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>value = winqueryreg('name', 'rootkey', 'subkey')
+            value = winqueryreg('rootkey', 'subkey', 'valname')
+            value = winqueryreg('rootkey', 'subkey')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>value = winqueryreg('name', 'rootkey', 'subkey') retourne les clefs
+            contenues dans rootkey\subkey dans une matrice de chaines de caracteres.
+            Le premier argument doit etre la chaine de caracteres, 'name'.
+        </para>
+        <para>Si la valeur contenue dans la base des registres est une chaine de
+            caracteres, winqueryreg retourne une chaine de caracteres. Si la valeur
+            est un entier sur 32 bits, winqueryreg retourne la valeur comme un entier
+            (int32).
+        </para>
+        <para>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
+            pour la clef valname dans rootkey\subkey.
+        </para>
+        <para>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
+            défaut" de la clef rootkey\subkey.
+        </para>
+        <para>
+            <literal>Note</literal>Les arguments 'name' et 'rootkey' sont
+            "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.
+        </para>
+        <para>Les clefs racine supportées sont: 'HKEY_CLASSES_ROOT', 'HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE', 'HKEY_USERS', 'HKEY_DYN_DATA' and 'HKEY_CURRENT_CONFIG'.</para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 if getos() == 'Windows' then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
@@ -52,14 +52,14 @@ if getos() == 'Windows' then
   winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')
 end
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Cette fonction gére également la clé 'HKEY_CURRENT_CONFIG'.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Cette fonction gére également la clé 'HKEY_CURRENT_CONFIG'.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

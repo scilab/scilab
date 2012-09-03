@@ -219,7 +219,8 @@ public class Export {
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-            Canvas canvas = visitor.getCanvas();
+            G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
+            canvas.enableDraw();
             Exporter exporter = null;
             try {
                 canvas.redraw();
@@ -340,12 +341,8 @@ public class Export {
         params.setParamsOnGraphics(g2d);
 
         G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
+        canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
-
                 @Override
                 public void deleteObject(String id) {
                     // Don't delete during the export
@@ -387,7 +384,7 @@ public class Export {
             return new PSExporter();
         case EPS :
             loadPDF();
-            return new PSExporter();
+            return new EPSExporter();
         default :
             break;
         }

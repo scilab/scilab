@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_loader" xml:lang="en">
-  <refnamediv>
-    <refname>tbx_build_loader</refname>
-    <refpurpose>Generate loader.sce and unloader scripts (toolbox compilation process)</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      tbx_build_loader(toolbox_name)
-      tbx_build_loader(toolbox_name, toolbox_path)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>toolbox_name</term>
-        <listitem>
-          <para>Toolbox short name ; that is, the prefix of the .start file of the toolbox (which shall be in the etc subdirectory).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>toolbox_path</term>
-        <listitem>
-          <para>Root directory of toolbox sources ; the script will be generated here (default: current directory).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_build_loader" xml:lang="en">
+    <refnamediv>
+        <refname>tbx_build_loader</refname>
+        <refpurpose>Generate loader.sce and unloader scripts (toolbox compilation process)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            tbx_build_loader(toolbox_name)
+            tbx_build_loader(toolbox_name, toolbox_path)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>toolbox_name</term>
+                <listitem>
+                    <para>Toolbox short name ; that is, the prefix of the .start file of the toolbox (which shall be in the etc subdirectory).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>toolbox_path</term>
+                <listitem>
+                    <para>Root directory of toolbox sources ; the script will be generated here (default: current directory).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Recommended usage
 tbx_build_loader("mytoolbox", get_absolute_file_path('builder.sce'))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>This function generates also an unloader.sce script</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>This function generates also an unloader.sce script</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

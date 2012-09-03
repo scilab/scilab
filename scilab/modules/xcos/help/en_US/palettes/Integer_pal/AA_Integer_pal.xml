@@ -22,147 +22,147 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Integer_pal">
-  <refnamediv>
-    <refname>Integer_pal</refname>
-    <refpurpose>Integer palette</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="BITCLEAR" fileref="../../../../images/palettes/BITCLEAR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="BITSET" fileref="../../../../images/palettes/BITSET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="DFLIPFLOP" fileref="../../../../images/palettes/DFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="DLATCH" fileref="../../../../images/palettes/DLATCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="EXTRACTBITS" fileref="../../../../images/palettes/EXTRACTBITS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="INTMUL" fileref="../../../../images/palettes/INTMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="JKFLIPFLOP" fileref="../../../../images/palettes/JKFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="LOGIC" fileref="../../../../images/palettes/LOGIC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Module_Integer_pal">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Integer_pal">
+    <refnamediv>
+        <refname>Integer_pal</refname>
+        <refpurpose>Integer palette</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="BITCLEAR" fileref="../../../../images/palettes/BITCLEAR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="BITSET" fileref="../../../../images/palettes/BITSET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="DFLIPFLOP" fileref="../../../../images/palettes/DFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="DLATCH" fileref="../../../../images/palettes/DLATCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="EXTRACTBITS" fileref="../../../../images/palettes/EXTRACTBITS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="INTMUL" fileref="../../../../images/palettes/INTMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="JKFLIPFLOP" fileref="../../../../images/palettes/JKFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="LOGIC" fileref="../../../../images/palettes/LOGIC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_Integer_pal">
-    <title>Description</title>
-    <para>
-      That palette is dedicated to handle integer numbers. Various basic
-      operators for the management of bit fields and for logic are implemented
-      as well as common gates encountered in digital circuits.
-    </para>
-  </refsection>
-  <refsection id="Blocks_Integer_pal">
-    <title>Blocks</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Module_Integer_pal">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Integer_pal">
+        <title>Description</title>
         <para>
-          <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
+            That palette is dedicated to handle integer numbers. Various basic
+            operators for the management of bit fields and for logic are implemented
+            as well as common gates encountered in digital circuits.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="BITSET">BITSET - Set a Bit</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="SHIFT">SHIFT - Shift/Rotates Bits</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
+    <refsection id="Blocks_Integer_pal">
+        <title>Blocks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="BITSET">BITSET - Set a Bit</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SHIFT">SHIFT - Shift/Rotates Bits</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

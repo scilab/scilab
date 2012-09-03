@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,42 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cond">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cond" xml:lang="en">
     <refnamediv>
         <refname>cond</refname>
-        <refpurpose> condition number</refpurpose>
+        <refpurpose>número de condicionamento de uma matriz</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>cond(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>rmatriz quadrada de reais ou complexos </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Condition number in 2-norm.  <literal>cond(X)</literal> is the  ratio  of  the
-            largest singular value of  <literal>X</literal>  to the smallest.
+            Número de condicionamento em norma-2. <literal>cond(X)</literal> é a
+            razão entre o maior e o menor valor singular de
+            <literal>X</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 A=testmatrix('hilb',6);
 cond(A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rcond">rcond</link>

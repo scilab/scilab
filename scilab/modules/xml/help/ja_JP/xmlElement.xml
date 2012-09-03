@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlElement" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlElement</refname>
+        <refpurpose>XML要素を新規に作成する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            e = xmlElement(doc, name)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>XMLDoc型のmlist</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>要素名を指定する文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e</term>
+                <listitem>
+                    <para>XMLElem型のmlist</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>指定した名前を有するXML要素を新たに作成します.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
+    e = xmlElement(doc, "c");
+    e.attributes.attr = "value";
+    e.content = "!";
+    doc.root.children(3) = e;
+    xmlDump(doc)
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XML Objects</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

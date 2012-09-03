@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="wfir">
+    <refnamediv>
+        <refname>wfir</refname>
+        <refpurpose>線形位相FIRフィルタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>
+                        文字列 : <literal>'lp','hp','bp','sb'</literal> (フィルタの種類)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>forder</term>
+                <listitem>
+                    <para>
+                        フィルタの次数 (正の整数)( <literal>ftype='hp'</literal>または<literal>'sb'</literal>の場合は奇数)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cfreq</term>
+                <listitem>
+                    <para>
+                        カットオフ周波数の要素数2のベクトル (<literal>0&lt;cfreq(1),cfreq(2)&lt;.5</literal>)  
+                        <literal>ftype='lp'</literal> または <literal>'hp'</literal>の時,<literal>cfreq(1)</literal>のみが使用されます
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>
+                        ウインドウの種類 (<literal>'re','tr','hm','hn','kr','ch'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fpar</term>
+                <listitem>
+                    <para>
+                        ウインドウパラメータの要素数2のベクトルs. カイザーウインドウ <literal>fpar(1)&gt;0 fpar(2)=0</literal>. チェビシェフウインドウ <literal>fpar(1)&gt;0, fpar(2)&lt;0</literal> または <literal>fpar(1)&lt;0, 0&lt;fpar(2)&lt;.5</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wft</term>
+                <listitem>
+                    <para>時間領域フィルタ係数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wfm</term>
+                <listitem>
+                    <para>グリッド fr の周波数領域フィルタ応答</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>周波数グリッド</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ウインドウ処理法により
+            線形位相, FIRローパス, バンドパス, ハイパス, ストップバンドフィルタ
+            を作成する関数.
+            引数を指定せずにコールした場合,対話的に動作します.
+        </para>
+    </refsection>
+</refentry>

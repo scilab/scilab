@@ -15,7 +15,7 @@ assert_checkalmostequal(convol2d(A,s),reffull,100*%eps,100*%eps);
 
 assert_checkequal(convol2d([3;4],[1;2]),[3;10;8]);
 assert_checkequal(convol2d([3;4],[1;2]*%i),[3;10;8]*%i);
-assert_checkequal(convol2d([3;4]*%i,[1;2]*%i),-[3;10;8]+0*%i);
+assert_checkequal(convol2d([3;4]*%i,[1;2]*%i),-[3;10;8]);
 
 
 assert_checkequal(convol2d([1 2;3 4],[]),zeros(2,2));

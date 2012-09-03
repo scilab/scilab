@@ -8,61 +8,61 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipSetOrientation">
-  <refnamediv>
-    <refname>datatipSetOrientation</refname>
-    <refpurpose>Set the position of the text box associated with the given tip.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      datatipSetOrientation(tip_handle,orient)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>tip_handle</term>
-        <listitem>
-          <para>
-            A handle on a datatip. 
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>orient</term>
-        <listitem>
-          <para>
-            A character string with possible values:
-            <literal>"automatic"</literal> <literal>"upper
-              left"
-            </literal>
-            <literal>"upper right"</literal>,
-            <literal>"lower left"</literal>, <literal>"lower
-              right"
-            </literal>
-            .
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Set the position on the text box with respect to the polyline
-      point. With the <literal>"automatic"</literal> orientation the
-      program makes the choice of the position trying to prevent
-      text from overlapping polyline, it also tries to to keep the text
-      box within the plot boundaries.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetOrientation">
+    <refnamediv>
+        <refname>datatipSetOrientation</refname>
+        <refpurpose>Set the position of the text box associated with the given tip.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            datatipSetOrientation(tip_handle,orient)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>tip_handle</term>
+                <listitem>
+                    <para>
+                        A handle on a datatip. 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    <para>
+                        A character string with possible values:
+                        <literal>"automatic"</literal> <literal>"upper
+                            left"
+                        </literal>
+                        <literal>"upper right"</literal>,
+                        <literal>"lower left"</literal>, <literal>"lower
+                            right"
+                        </literal>
+                        .
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Set the position on the text box with respect to the polyline
+            point. With the <literal>"automatic"</literal> orientation the
+            program makes the choice of the position trying to prevent
+            text from overlapping polyline, it also tries to to keep the text
+            box within the plot boundaries.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     x=linspace(-20,20,1000);
     clf()
     plot(x,sinc(x),x,sinc(x^2));
@@ -71,19 +71,19 @@
     d2=datatipCreate(e(2),60);
     datatipSetOrientation(d2,"lower left") 
     ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datatips">datatips</link>
-      </member>
-      <member>
-        <link linkend="datatipCreate">datatipCreate</link>
-      </member>
-      <member>
-        <link linkend="datatipRemove">datatipRemove</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+            <member>
+                <link linkend="datatipCreate">datatipCreate</link>
+            </member>
+            <member>
+                <link linkend="datatipRemove">datatipRemove</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

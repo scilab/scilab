@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="linsolve">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="linsolve">
     <refnamediv>
         <refname>linsolve</refname>
         <refpurpose>線形方程式ソルバ</refpurpose>
@@ -82,22 +82,22 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
 // Benchmark with other linear sparse solver:
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
-printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
 
 tic();
 res = linsolve(A,b);
-printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
 
 tic();
 res = A\b;
-printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

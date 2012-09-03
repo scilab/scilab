@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mkdir" xml:lang="fr">
+    <refnamediv>
+        <refname>mkdir</refname>
+        <refpurpose>Cr&#233;e un nouveau r&#233;pertoire</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>S&#233;quence d'appel</title>
+        <synopsis>
+            mkdir('dirname')
+            mkdir('parentdir','newdir')
+            status=mkdir( ... )
+            [status,msg]=mkdir( ... )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>mkdir('dirname')</literal> cr&#233;e le repertoire <literal>dirname</literal>.
+            Si dirname repr&#233;sente repr&#233;sente un chemin relatif, le
+            r&#233;pertoire dirname est cr&#233;&#233; dans le r&#233;pertoire
+            courant.
+        </para>
+        <para>
+            <literal>mkdir('parentdir', 'dirname')</literal> cr&#233;e le r&#233;pertoire
+            <literal>dirname</literal> dans le r&#233;pertoire existant
+            <literal>parentdir</literal>, ou <literal>parentdir</literal> est un
+            chemin relatif ou absolu.
+        </para>
+        <para>
+            <literal>[status,message] = mkdir('parentdir', 'dirname')</literal> cr&#233;e le r&#233;pertoire
+            <literal>dirname</literal> dans le r&#233;pertoire existant
+            <literal>parentdir</literal>, retourne le status, et un message. Ici,
+            <literal>status</literal> vaut 1 si tout c'est bien pass&#233;, 2 si le
+            repertoire existe d&#233;j&#224;, -2 si c'est un nom de fichiers, 0 dans
+            un autre cas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example">
+            <![CDATA[ 
+// Chemin absolu
+mkdir(TMPDIR+"/mkdir_example_1")
+status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+
+// Chemin absolu (parentdir + dirname)
+[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+
+// Chemin relatif
+cd TMPDIR;
+[status_5,msg_5] = mkdir("mkdir_example_5")
+[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cd">cd</link>
+            </member>
+            <member>
+                <link linkend="dir">dir</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

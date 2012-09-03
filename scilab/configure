@@ -11062,7 +11062,7 @@ $as_echo "$ac_java_jvm_version" >&6; }
          else
         case "$host_os" in
              *darwin* )
-                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/"
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
                   ;;
               *)
                        as_fn_error $? "Could not locate Java's jni.h include file" "$LINENO" 5
@@ -12719,8 +12719,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar scirendere
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.5.6) of scirenderer" >&5
-$as_echo_n "checking minimal version (0.5.6) of scirenderer... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.5.7) of scirenderer" >&5
+$as_echo_n "checking minimal version (0.5.7) of scirenderer... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$SCIRENDERER:$ac_java_classpath"
    if test "x" == "x"; then
@@ -12733,7 +12733,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="0.5.6";
+        String minVersion="0.5.7";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) > 0) {
@@ -12782,7 +12782,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected at least 0.5.6. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected at least 0.5.7. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12792,7 +12792,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected at least 0.5.6. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected at least 0.5.7. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -12805,7 +12805,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="0.5.6";
+        String minVersion="0.5.7";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) != 0) {
@@ -12854,7 +12854,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 0.5.6. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 0.5.7. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12864,7 +12864,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected exact version 0.5.6. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected exact version 0.5.7. Found $STDOUT" "$LINENO" 5
             fi
 
     fi
@@ -13708,9 +13708,7 @@ if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
 else
   as_fn_error $? "\"libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL - or libGL are installed and if the version is correct. Note
-that you might have to update etc/librarypath.xml to provide the actual path
-the the JNI libraries.\"" "$LINENO" 5
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.\"" "$LINENO" 5
 fi
 
                    fi
@@ -13736,7 +13734,7 @@ $as_echo_n "checking gluegen2-rt... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13739 "configure"
+// #line 13737 "configure"
 import java.util.regex.Pattern;
 
 import jogamp.common.os.MachineDescriptionRuntime;
@@ -13910,7 +13908,7 @@ $as_echo_n "checking jhall... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13913 "configure"
+// #line 13911 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -14027,7 +14025,7 @@ $as_echo_n "checking javahelp2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14030 "configure"
+// #line 14028 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -14145,7 +14143,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14148 "configure"
+// #line 14146 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -14260,7 +14258,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14263 "configure"
+// #line 14261 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -14378,7 +14376,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14381 "configure"
+// #line 14379 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
@@ -14484,7 +14482,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14487 "configure"
+// #line 14485 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -14556,7 +14554,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14559 "configure"
+// #line 14557 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -14649,7 +14647,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14652 "configure"
+// #line 14650 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.jeuclid.LayoutContext;
@@ -14768,7 +14766,7 @@ $as_echo_n "checking fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14771 "configure"
+// #line 14769 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.fop.pdf.PDFInfo;
@@ -14885,7 +14883,7 @@ $as_echo_n "checking batik-all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14888 "configure"
+// #line 14886 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -15002,7 +15000,7 @@ $as_echo_n "checking batik... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15005 "configure"
+// #line 15003 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -15109,7 +15107,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15112 "configure"
+// #line 15110 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -15181,7 +15179,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15184 "configure"
+// #line 15182 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -15272,7 +15270,7 @@ $as_echo_n "checking commons-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15275 "configure"
+// #line 15273 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.output.CountingOutputStream;
@@ -15389,7 +15387,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15392 "configure"
+// #line 15390 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.xmlgraphics.util.Service;
@@ -15506,7 +15504,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15509 "configure"
+// #line 15507 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.avalon.framework.configuration.ConfigurationException;
@@ -15623,7 +15621,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15626 "configure"
+// #line 15624 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -15740,7 +15738,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15743 "configure"
+// #line 15741 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -15861,7 +15859,7 @@ $as_echo_n "checking commons-logging... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15864 "configure"
+// #line 15862 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.logging.LogFactory;
@@ -15978,7 +15976,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15981 "configure"
+// #line 15979 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -16085,7 +16083,7 @@ $as_echo_n "checking minimal version (0.9.7) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 16088 "configure"
+// #line 16086 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -16157,7 +16155,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 16160 "configure"
+// #line 16158 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -16254,7 +16252,7 @@ $as_echo_n "checking checkstyle... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16257 "configure"
+// #line 16255 "configure"
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
@@ -16371,7 +16369,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16374 "configure"
+// #line 16372 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.Converter;
@@ -16488,7 +16486,7 @@ $as_echo_n "checking antlr... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16491 "configure"
+// #line 16489 "configure"
 import java.util.regex.Pattern;
 
 import antlr.TokenStreamException;
@@ -16605,7 +16603,7 @@ $as_echo_n "checking junit4... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16608 "configure"
+// #line 16606 "configure"
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
@@ -16722,7 +16720,7 @@ $as_echo_n "checking cobertura... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16725 "configure"
+// #line 16723 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.cobertura.merge.Main;
@@ -16839,7 +16837,7 @@ $as_echo_n "checking asm3... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16842 "configure"
+// #line 16840 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -16955,7 +16953,7 @@ $as_echo_n "checking asm... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16958 "configure"
+// #line 16956 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -24893,7 +24891,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24896 "configure"
+#line 24894 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -25203,7 +25201,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 25206 "configure"
+#line 25204 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25781,7 +25779,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25784 "configure"
+// #line 25782 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
@@ -25898,7 +25896,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25901 "configure"
+// #line 25899 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
@@ -32218,7 +32216,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 32221 "configure"
+#line 32219 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -32324,7 +32322,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 32327 "configure"
+#line 32325 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H

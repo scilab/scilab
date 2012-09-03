@@ -14,7 +14,7 @@ c     --------------------------
       
       character*(*) fname
 	INCLUDE 'stack.h'
-      double precision zero,df0,zng,dxmin
+      double precision tol,df0,zng,dxmin
       double precision epsg,epsg1,epsf,dzs
       integer top2,topin,topind,topx,top3
       character*80   nomsub
@@ -48,10 +48,10 @@ c
       indtes=0
       imp=0
       io=wte
-      zero=stk(leps)
+      tol=stk(leps)
       df0=1.0d+0
       immx=0
-      epsg=zero
+      epsg=tol
       indtv=0
       icontr=1
       ialg=1
@@ -696,7 +696,7 @@ c     optimiseur n1fc1 : non smooth without constraints
          if (iepsx.eq.1) then
             lepsx=ldisp
             do 115 i=1,nx
-               stk(lepsx+i - 1)=zero
+               stk(lepsx+i - 1)=tol
  115        continue
             ldisp=lepsx+nx
          endif
@@ -707,12 +707,12 @@ c     optimiseur n1fc1 : non smooth without constraints
          lstk(top+1)=ldisp
          if (isim.eq.1) then
             call n1fc1(foptim,fuclid,nx,stk(lx),stk(lf),stk(lg),
-     &           stk(lepsx),df0,epsf,zero,imp,io,mode,itmax,napm,mmx,
+     &           stk(lepsx),df0,epsf,tol,imp,io,mode,itmax,napm,mmx,
      &           istk(litv),stk(ltv1),stk(ltv2),istk(lizs),sstk(lrzs),
      $           stk(ldzs))
          else
             call n1fc1(boptim,fuclid,nx,stk(lx),stk(lf),stk(lg),
-     &           stk(lepsx),df0,epsf,zero,imp,io,mode,itmax,napm,mmx,
+     &           stk(lepsx),df0,epsf,tol,imp,io,mode,itmax,napm,mmx,
      &           istk(litv),stk(ltv1),stk(ltv2),istk(lizs),sstk(lrzs),
      $           stk(ldzs))
          endif
@@ -739,7 +739,7 @@ c     optimiseur qnbd : quasi-newton with bound constraints
             lepsx=ldisp
             ldisp=lepsx + nx
             do 118 i=0,nx-1
-               stk(lepsx+i)=zero
+               stk(lepsx+i)=tol
  118        continue
          endif
          ntv1=nx*(nx+1)/2 + 4*nx + 1
@@ -770,13 +770,13 @@ c     optimiseur qnbd : quasi-newton with bound constraints
          indopt=1 +indtv
          if(isim.eq.1) then
             call qnbd(indopt,foptim,nx,stk(lx),stk(lf),
-     &           stk(lg),imp,io,zero,napm,itmax,epsf,epsg,
+     &           stk(lg),imp,io,tol,napm,itmax,epsf,epsg,
      &           stk(lepsx),df0,stk(lbi),stk(lbs),nfac,
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          else
             call qnbd(indopt,boptim,nx,stk(lx),stk(lf),
-     &           stk(lg),imp,io,zero,napm,itmax,epsf,epsg,
+     &           stk(lg),imp,io,tol,napm,itmax,epsf,epsg,
      &           stk(lepsx),df0,stk(lbi),stk(lbs),nfac,
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
@@ -800,7 +800,7 @@ c     optimiseur gcbd : Gradient Conjugate with bound constraints
             lepsx=ldisp
             ltv=lepsx + nx
             do 119 i=0,nx-1
-               stk(lepsx+i)=zero
+               stk(lepsx+i)=tol
  119        continue
          else
             ltv=ldisp
@@ -811,13 +811,13 @@ c     optimiseur gcbd : Gradient Conjugate with bound constraints
          if (indtes.ne.0) indopt=indtes
          if(isim.eq.1) then
             call gcbd(indopt,foptim,nomsub,nx,stk(lx),
-     &           stk(lf),stk(lg),imp,io,zero,napm,itmax,epsf,epsg,
+     &           stk(lf),stk(lg),imp,io,tol,napm,itmax,epsf,epsg,
      &           stk(lepsx),df0,stk(lbi),stk(lbs),nfac,
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          else
             call gcbd(indopt,boptim,nomsub,nx,stk(lx),stk(lf),
-     &           stk(lg),imp,io,zero,napm,itmax,epsf,epsg,
+     &           stk(lg),imp,io,tol,napm,itmax,epsf,epsg,
      &           stk(lepsx),df0,stk(lbi),stk(lbs),nfac,
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))

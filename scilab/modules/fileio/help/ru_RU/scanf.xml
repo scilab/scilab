@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA
+* ...
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="scanf">
+    <refnamediv>
+        <refname>scanf</refname>
+        <refpurpose>преобразует форматированный ввод в стандартном устройстве ввода</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[v_1, ..., v_n] = scanf(format);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>указывает преобразование формата.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v_1, ..., v_n</term>
+                <listitem>
+                    <para>результаты преобразования.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>scanf</function> получает символьные данные в стандартном устройстве ввода (<code>%io(1)</code>), интерпретирует их в соответствии с форматом <varname>format</varname> и возвращает преобразованные результаты <varname>v_1</varname>, ..., <varname>v_n</varname>.
+        </para>
+        <para>
+            Параметр <varname>format</varname> содержит спецификации преобразования, используемые для интерпретации ввода.
+        </para>
+        <para>
+            Параметр <varname>format</varname> может содержать символы пробелов (пробелы, табуляторы, символы перевода строки и прогона страницы), которые, за исключением двух следующих случаев, считывают ввод до следующего символа-непробела. За исключением совпадения с управляющей строкой, завершающие пробелы (включая символы новой строки) не считываются.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Любой символ, за исключением <literal>%</literal> (знак "процент"), который должен соответствовать следующему символу входного потока.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Спецификация преобразования, которая направляет преобразование следующего входного поля. См. подробности в <link linkend="scanf_conversion">преобразовании scanf</link>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="fscanf">fscanf</link>
+            </member>
+            <member>
+                <link linkend="scanf_conversion">преобразование scanf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,48 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="companion">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="companion" xml:lang="en">
     <refnamediv>
         <refname>companion</refname>
-        <refpurpose> companion matrix</refpurpose>
+        <refpurpose>matriz companheira</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento </title>
         <synopsis>A=companion(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polynomial or vector of polynomials</para>
+                    <para>polinômio ou vetor de polinômios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>square matrix</para>
+                    <para>matriz quadrada</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Returns a matrix <literal>A</literal> with characteristic polynomial equal
-            to <literal>p</literal> if <literal>p</literal> is monic. If <literal>p</literal> is not monic
-            the characteristic polynomial of <literal>A</literal> is equal to
-            <literal>p/c</literal> where <literal>c</literal> is the coefficient of largest degree
-            in <literal>p</literal>.
+            Retorna uma matriz quadrada <literal>A</literal> com o polinômio
+            característico igual a <literal>p</literal> se <literal>p</literal> é
+            mônico. Se <literal>p</literal> não é mônico, o polinômio característico
+            de <literal>A</literal> é igual a <literal>p/c</literal> onde
+            <literal>c</literal> é o coeficiente do termo de maior grau em
+            <literal>p</literal>.
         </para>
         <para>
-            If <literal>p</literal> is a vector of monic polynomials, <literal>A</literal> is block diagonal,
-            and the characteristic polynomial of the ith block is <literal>p(i)</literal>.
+            Se <literal>p</literal> é um vetor de polinômios mônicos,
+            <literal>A</literal> é diagonal em blocos, e o polinômio característico do
+            i-ésimo bloco é <literal>p(i)</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=poly([1,2,3,4,1],'s','c')
@@ -60,8 +62,8 @@ roots(p)
 spec(companion(p))
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

@@ -11,142 +11,142 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mfile2sci">
-  <refnamediv>
-    <refname>mfile2sci</refname>
-    <refpurpose> Fonction de conversion de M-file Matlab vers Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>M-file-path</term>
-        <listitem>
-          <para>une chaîne de caractères qui donne le chemin du M-file à traduire</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>result-path</term>
-        <listitem>
-          <para>une chaîne de caractères qui donne le répertoire où le résultat sera écrit. La valeur par défault est le répertoire courant.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Recmode</term>
-        <listitem>
-          <para>Flag booléen, utilisé par translatepaths pour une conversion récursive. Doit être %F pour convertir un seul M-file. Valeur par défaut : %F</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>only-double</term>
-        <listitem>
-          <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %T</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>verbose-mode</term>
-        <listitem>
-          <para>mode d'affichage des information de conversion</para>
-          <variablelist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mfile2sci">
+    <refnamediv>
+        <refname>mfile2sci</refname>
+        <refpurpose> Fonction de conversion de M-file Matlab vers Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
             <varlistentry>
-              <term>0</term>
-              <listitem>
-                <para>aucune information donnée</para>
-              </listitem>
+                <term>M-file-path</term>
+                <listitem>
+                    <para>une chaîne de caractères qui donne le chemin du M-file à traduire</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>1</term>
-              <listitem>
-                <para>les ionformations sont écrites comme commentaires du fichier Scilab</para>
-              </listitem>
+                <term>result-path</term>
+                <listitem>
+                    <para>une chaîne de caractères qui donne le répertoire où le résultat sera écrit. La valeur par défault est le répertoire courant.</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>2</term>
-              <listitem>
-                <para>les ionformations sont écrites comme commentaires du fichier Scilab et dans le fichier log</para>
-              </listitem>
+                <term>Recmode</term>
+                <listitem>
+                    <para>Flag booléen, utilisé par translatepaths pour une conversion récursive. Doit être %F pour convertir un seul M-file. Valeur par défaut : %F</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>3</term>
-              <listitem>
-                <para>les ionformations sont écrites comme commentaires du fichier Scilab, dans le fichier log et affichées dans la fenêtre Scilab (Valeur par défaut).</para>
-              </listitem>
+                <term>only-double</term>
+                <listitem>
+                    <para>Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %T</para>
+                </listitem>
             </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>prettyprintoutput</term>
-        <listitem>
-          <para>Flag booléen, si il vaut %T le code généré est réarrangé. Valeur par défaut : %F</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
-      à chaque fois que c'est possible de remplacer l'appel à une fonction Matlab par la
-      primitive ou la fonction Scilab équivalente.
-    </para>
-    <para>
-      Pour convertir un M-file, entrer l'instruction Scilab :
-      mfile2sci(fichier)
-    </para>
-    <para>
-      où fichier est une chaîne de caractère qui donne le chemin du M-file.
-      mfile2sci va générer trois fichiers dans le même répertoire :
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>&lt;function-name&gt;.sci</term>
-        <listitem>
-          <para>l'équivalent Scilab pour le M-file</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;function-name&gt;.cat</term>
-        <listitem>
-          <para>le fichier d'aide Scilab associé à la fonction</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sci_&lt;function-name&gt;.sci</term>
-        <listitem>
-          <para>la fonction Scilab requise pour convertir les appels à ce M-file dans d'autres M-files. Cette fonction peut être améliorée "à la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Des fonctions comme eye, ones, size, sum,... se comportent différemment
-      selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
-      inférer les dimensions, il remplace ces fonctions par un appel à une
-      fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
-      ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
-      Pour avoir des informations sur le remplacement, entrer :
-      help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
-    </para>
-    <para>
-      D'autres fonctions comme plot, n'ont pas d'équivalent direct en
-      Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
-      mtlb_&lt;function_name&gt;.
-    </para>
-    <para>
-      Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
-      des commentaires qui commencent par "//!" (suivant verbose-mode).
-    </para>
-    <para>
-      Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+            <varlistentry>
+                <term>verbose-mode</term>
+                <listitem>
+                    <para>mode d'affichage des information de conversion</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>0</term>
+                            <listitem>
+                                <para>aucune information donnée</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>1</term>
+                            <listitem>
+                                <para>les ionformations sont écrites comme commentaires du fichier Scilab</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>2</term>
+                            <listitem>
+                                <para>les ionformations sont écrites comme commentaires du fichier Scilab et dans le fichier log</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>3</term>
+                            <listitem>
+                                <para>les ionformations sont écrites comme commentaires du fichier Scilab, dans le fichier log et affichées dans la fenêtre Scilab (Valeur par défaut).</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prettyprintoutput</term>
+                <listitem>
+                    <para>Flag booléen, si il vaut %T le code généré est réarrangé. Valeur par défaut : %F</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
+            à chaque fois que c'est possible de remplacer l'appel à une fonction Matlab par la
+            primitive ou la fonction Scilab équivalente.
+        </para>
+        <para>
+            Pour convertir un M-file, entrer l'instruction Scilab :
+            mfile2sci(fichier)
+        </para>
+        <para>
+            où fichier est une chaîne de caractère qui donne le chemin du M-file.
+            mfile2sci va générer trois fichiers dans le même répertoire :
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>&lt;function-name&gt;.sci</term>
+                <listitem>
+                    <para>l'équivalent Scilab pour le M-file</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;function-name&gt;.cat</term>
+                <listitem>
+                    <para>le fichier d'aide Scilab associé à la fonction</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sci_&lt;function-name&gt;.sci</term>
+                <listitem>
+                    <para>la fonction Scilab requise pour convertir les appels à ce M-file dans d'autres M-files. Cette fonction peut être améliorée "à la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Des fonctions comme eye, ones, size, sum,... se comportent différemment
+            selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
+            inférer les dimensions, il remplace ces fonctions par un appel à une
+            fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
+            ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
+            Pour avoir des informations sur le remplacement, entrer :
+            help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
+        </para>
+        <para>
+            D'autres fonctions comme plot, n'ont pas d'équivalent direct en
+            Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
+            mtlb_&lt;function_name&gt;.
+        </para>
+        <para>
+            Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
+            des commentaires qui commencent par "//!" (suivant verbose-mode).
+        </para>
+        <para>
+            Un appel à <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 // Création d'un fichier .m simple
 rot90m = ["function B = rot90(A,k)"
 	"if ~isa(A, ''double'')"
@@ -192,13 +192,13 @@ exec(TMPDIR+'/rot90.sci')
 m=rand(4,2);
 rot90(m,1)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="translatepaths">translatepaths</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="translatepaths">translatepaths</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

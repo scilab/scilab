@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spaninter">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="spaninter">
     <refnamediv>
         <refname>spaninter</refname>
         <refpurpose>共通部分空間</refpurpose>
@@ -74,11 +74,11 @@ A=rand(5,3)*rand(3,4);     // A は 5 x 4, rank=3です.
 B=[A(:,2),rand(5,1)]*rand(2,2);
 [X,dim]=spaninter(A,B);
 X1=X(:,1:dim);    //共通部分
-svd(A),svd([X1,A])   // span(A) の X1
-svd(B),svd([B,X1])   // span(B) の X1
+svd(A),svd([X1,A])   // X1 in span(A)
+svd(B),svd([B,X1])   // X1 in span(B)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

@@ -10,39 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ndims" xml:lang="en">
-  <refnamediv>
-    <refname>ndims</refname>
-    <refpurpose>número de dimensões de um array</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>A</term>
-        <listitem>
-          <para>um array</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>inteiro, o número de dimensões do array</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>n=ndims(A)</literal> retorna o número de dimensões de um
-      array <literal>A</literal>. <literal>n</literal> é maior que ou igual a
-      2.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ndims" xml:lang="en">
+    <refnamediv>
+        <refname>ndims</refname>
+        <refpurpose>número de dimensões de um array</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>um array</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>inteiro, o número de dimensões do array</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>n=ndims(A)</literal> retorna o número de dimensões de um
+            array <literal>A</literal>. <literal>n</literal> é maior que ou igual a
+            2.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 A=rand(2,3);
 ndims(A)
 
@@ -52,13 +52,13 @@ size(A),ndims(A)
 H=[1/%s,1/(%s+1)]
 ndims(H)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="size">size</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

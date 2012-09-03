@@ -10,192 +10,192 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="typeof" xml:lang="en">
-  <refnamediv>
-    <refname>typeof</refname>
-    <refpurpose>object type</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[t]=typeof(object)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>object</term>
-        <listitem>
-          <para>Scilab object</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>t=typeof(object)</literal> returns one of the following
-      strings:
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>"constant"</term>
-        <listitem>
-          <para>if object is a real or complex matrix of double.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"polynomial"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="poly">polynomial matrix</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"function"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="function">function</link> (Scilab code). See also <link linkend="deff">deff</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"handle"</term>
-        <listitem>
-          <para>
-            if object is an <link linkend="graphics_entities">handle</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"string"</term>
-        <listitem>
-          <para>
-            if object is a matrix made of <link linkend="strings">character strings</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"boolean"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="matrices">boolean matrix</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"list"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="list">list</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"rational"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="rational">rational matrix</link> (transfer matrix).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"state-space"</term>
-        <listitem>
-          <para>
-            if object is a state-space model (see <link linkend="syslin">syslin</link>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"sparse"</term>
-        <listitem>
-          <para>
-            if object is a (real) <link linkend="sparse">sparse matrix</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"boolean sparse"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="sparse">boolean sparse matrix</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"hypermat"</term>
-        <listitem>
-          <para>
-            if object is an <link linkend="hypermatrices">hypermatrix</link> (N-dimension array with N
-            &gt;=3).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"st"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="struct">structure</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"ce"</term>
-        <listitem>
-          <para>
-            if object is a <link linkend="cell">cell</link> array.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"fptr"</term>
-        <listitem>
-          <para>if object is a built-in Scilab function, called also gateway (C, C++ or Fortran code).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"pointer"</term>
-        <listitem>
-          <para>
-            if object is a pointer (See a use case: <link linkend="lufact">lufact</link>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"size implicit"</term>
-        <listitem>
-          <para>if object is a size implicit polynomial used for indexing. This a purely internal value.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"library"</term>
-        <listitem>
-          <para>if object is function library.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
-        <listitem>
-          <para>
-            if object is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. (See <link linkend="int8">int</link>)
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Note that if the object is a <link linkend="tlist">tlist</link> or <link linkend="mlist">mlist</link>, typeof will return the first string in the first list entry
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="en">
+    <refnamediv>
+        <refname>typeof</refname>
+        <refpurpose>object type</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[t]=typeof(object)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>object</term>
+                <listitem>
+                    <para>Scilab object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>t=typeof(object)</literal> returns one of the following
+            strings:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"constant"</term>
+                <listitem>
+                    <para>if object is a real or complex matrix of double.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"polynomial"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="poly">polynomial matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"function"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="function">function</link> (Scilab code). See also <link linkend="deff">deff</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"handle"</term>
+                <listitem>
+                    <para>
+                        if object is an <link linkend="graphics_entities">handle</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"string"</term>
+                <listitem>
+                    <para>
+                        if object is a matrix made of <link linkend="strings">character strings</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"boolean"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="matrices">boolean matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"list"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="list">list</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"rational"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="rational">rational matrix</link> (transfer matrix).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"state-space"</term>
+                <listitem>
+                    <para>
+                        if object is a state-space model (see <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"sparse"</term>
+                <listitem>
+                    <para>
+                        if object is a (real) <link linkend="sparse">sparse matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"boolean sparse"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="sparse">boolean sparse matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"hypermat"</term>
+                <listitem>
+                    <para>
+                        if object is an <link linkend="hypermatrices">hypermatrix</link> (N-dimension array with N
+                        &gt;=3).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"st"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="struct">structure</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"ce"</term>
+                <listitem>
+                    <para>
+                        if object is a <link linkend="cell">cell</link> array.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"fptr"</term>
+                <listitem>
+                    <para>if object is a built-in Scilab function, called also gateway (C, C++ or Fortran code).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"pointer"</term>
+                <listitem>
+                    <para>
+                        if object is a pointer (See a use case: <link linkend="lufact">lufact</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"size implicit"</term>
+                <listitem>
+                    <para>if object is a size implicit polynomial used for indexing. This a purely internal value.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"library"</term>
+                <listitem>
+                    <para>if object is function library.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
+                <listitem>
+                    <para>
+                        if object is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. (See <link linkend="int8">int</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Note that if the object is a <link linkend="tlist">tlist</link> or <link linkend="mlist">mlist</link>, typeof will return the first string in the first list entry
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 typeof(1)
 typeof(poly(0,'x'))
 
@@ -214,22 +214,22 @@ typeof(L)
 
 typeof(corelib)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="type">type</link>
-      </member>
-      <member>
-        <link linkend="strings">strings</link>
-      </member>
-      <member>
-        <link linkend="syslin">syslin</link>
-      </member>
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

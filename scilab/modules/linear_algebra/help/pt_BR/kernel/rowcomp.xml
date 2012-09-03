@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,36 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowcomp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rowcomp" xml:lang="en">
     <refnamediv>
         <refname>rowcomp</refname>
-        <refpurpose> row compression, range</refpurpose>
+        <refpurpose>compressão de linhas, imagem</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento</title>
         <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real or complex matrix</para>
+                    <para>matriz de reais ou de complexos </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>optional character string, with possible values
-                        <literal>'svd'</literal> or <literal>'qr'</literal>. The default value is  <literal>'svd'</literal>.
+                    <para>string opcional, com valores possíveis
+                        <literal>'svd'</literal> ou <literal>'qr'</literal>. O valor padrão
+                        é <literal>'svd'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>optional real non negative number. The default value is 
+                    <para>número real não-negativo opcional. O valor padrão é
                         <literal>sqrt(%eps)*norm(A,1)</literal>.
                     </para>
                 </listitem>
@@ -47,60 +48,67 @@
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>square non-singular matrix (change of basis)</para>
+                    <para>matriz quadrada não-singular (matriz mudança de base)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rk</term>
                 <listitem>
                     <para>
-                        integer (rank of <literal>A</literal>)
+                        inteiro (posto de <literal>A</literal>)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Row compression of <literal>A</literal>. <literal>Ac = W*A</literal> is a row compressed matrix: i.e. 
-            <literal>Ac=[Af;0]</literal> with <literal>Af</literal> full row rank.
+            Compressão de linhas de <literal>A</literal>. <literal>Ac =
+                W*A
+            </literal>
+            éuma matriz de linhas comprimidas, i.e.
+            <literal>Ac=[Af;0]</literal> com <literal>Af</literal> de posto-linha
+            cheio.
         </para>
         <para>
-            <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag='qr'</literal> 
-            or <literal>'svd'</literal> (default <literal>'svd'</literal>).
+            <literal>flag</literal> e <literal>tol</literal> são parâmetros
+            opcionais: <literal>flag='qr'</literal> ou <literal>'svd'</literal> (o
+            padrão é <literal>'svd'</literal>).
         </para>
         <para>
-            <literal>tol</literal> is a tolerance parameter.
+            <literal>tol</literal> é um parâmetro de tolerância.
         </para>
         <para>
-            The <literal>rk</literal> first columns of <literal>W'</literal> span the range of
+            As <literal>rk</literal> primeiras colunas de <literal>W'</literal>
+            geram a imagem de <literal>A</literal>.
+        </para>
+        <para>
+            As <literal>rk</literal> primeiras linhas (do topo) de
+            <literal>W</literal> geram a imagem de linha de
             <literal>A</literal>.
         </para>
         <para>
-            The <literal>rk</literal> first (top) rows of <literal>W</literal> span the row
-            range of <literal>A</literal>.
-        </para>
-        <para>
-            A non zero vector <literal>x</literal> belongs to range(<literal>A</literal>) iff
-            <literal>W*x</literal> is row  compressed in accordance with <literal>Ac</literal>
-            i.e the norm of its last components is small w.r.t its first
-            components.
+            Um vetor não nulo <literal>x</literal> pertence à
+            Im(<literal>A</literal>) se,e só se, <literal>W*x</literal> é de linhas
+            comprimidas de acordo com <literal>Ac</literal> i.e, a norma de seus
+            últimos componentes é pequena com relação a dos seus primeiros
+            componentes.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-A=rand(5,2)*rand(2,4);              // 4 col. vectors, 2 independent.
+A=rand(5,2)*rand(2,4);              //  4 vetores colunas, 2 independentes
 [X,dim]=rowcomp(A);Xp=X';
-svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim)
-x=A*rand(4,1);                      //x belongs to span(A)
+svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim) (span="gerado")
+x=A*rand(4,1);                      //x pertence a span(A)
 y=X*x  
-norm(y(dim+1:$))/norm(y(1:dim))     // small
+norm(y(dim+1:$))/norm(y(1:dim))     // pequeno
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também </title>
         <simplelist type="inline">
             <member>
                 <link linkend="colcomp">colcomp</link>
@@ -114,10 +122,11 @@ norm(y(dim+1:$))/norm(y(1:dim))     // small
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>Função Usada </title>
         <para>
-            The <literal>rowcomp</literal> function is based on the <link linkend="svd">svd</link> or
-            <link linkend="qr">qr</link> decompositions.
+            A função <literal>rowcomp</literal> é baseada nas decomposições
+            <link linkend="svd">svd</link> (decomposição em valores singulares) ou
+            <link linkend="qr">qr</link> .
         </para>
     </refsection>
 </refentry>

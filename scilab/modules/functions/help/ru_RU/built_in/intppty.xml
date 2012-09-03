@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="intppty">
+    <refnamediv>
+        <refname>intppty</refname>
+        <refpurpose>установка свойств передачи аргумента интерфейса</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>funs=intppty()
+            intppty(fun)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        целое число, номер интерфейса (see <link linkend="funptr">funptr</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>funs</term>
+                <listitem>
+                    <para>
+                        вектор целых чисел, вектор номеров интерфейса (see <link linkend="funptr">funptr</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Программы интерфейса могут быть написаны двумя различными способами для
+            режима передачи аргументов функции.
+        </para>
+        <para>
+            В первом способе (этот способ используется по умолчанию) аргументы
+            передаются по значению. Через следующий синтаксис:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+foo(A,1+2)
+ ]]></programlisting>
+        <para>
+            аргумент, связанный с <literal>A</literal>, будет передан по значению (копия
+            <literal>A</literal> делается до того, как вызывается <literal>foo</literal>), и
+            аргумент, связанный с <literal>1+2</literal> будет передан по значению.
+        </para>
+        <para>
+            В втором способе аргументы могут быть переданы по ссылке, если есть "именованные аргументы"
+            (копия значений переменных не делается). <literal>intppty(fun)</literal> с 
+            <literal>fun&gt;0</literal> говорит Scilab'у, что интерфейс с номером <literal>fun</literal> 
+            может обрабатывать аргументы, переданные по ссылке. Через следующий интерфейс:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+foo(A,1+2)
+ ]]></programlisting>
+        <para>
+            аргумент, связанный с <literal>A</literal>, будет передан по ссылке, а
+            аргумент, связанный с <literal>1+2</literal>, будет передан по значению.
+        </para>
+        <para>
+            Внимание! Заявление, что интерфейс с номером <literal>fun</literal> 
+            может обрабатывать аргументы, переданные по ссылке, в случае, если это 
+            не так, может привести к непредсказуемым результатам.
+        </para>
+        <para>
+            <literal>intppty(fun)</literal> с <literal>fun&lt;0</literal> подавляет 
+            это свойство для интерфейса <literal>-fun</literal>.
+        </para>
+        <para>
+            <literal>intppty()</literal> возвращает вектор интерфейсов, который обрабатывают аргументы по ссылке.
+        </para>
+        <para>
+            Эта функция может быть полезна для динамически загружаемого интерфейса 
+            (см. <link linkend="addinter">addinter</link>).      
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="funptr">funptr</link>
+            </member>
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

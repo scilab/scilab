@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="pathconvert">
+    <refnamediv>
+        <refname>pathconvert</refname>
+        <refpurpose> pathnames convertion between POSIX and Windows.  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>paths</term>
+                <listitem>
+                    <para>a string matrix giving a set of pathnames</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagtrail</term>
+                <listitem>
+                    <para>
+                        a boolean optional parameter. Its default value is <constant>%t</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>
+                        a boolean optional parameter. Its default value depends on the result of <code>getos() == 'Windows'</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        a string <literal>'u'</literal> or <literal>'w'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>pathconvert</function> can be used to convert a set of pathnames
+            (given by a string matrix <varname>paths</varname>) from Windows native 
+            filename to POSIX-style pathnames and back. The target style 
+            is given by the optional string <varname>type</varname> which can be 
+            <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
+            style is set according to the value of <code>getos() == 'Windows'</code>. 
+            If <code>getos() == 'Windows'</code> is <constant>%t</constant> (resp. <constant>%f</constant> ) then default type is <literal>'w'</literal>
+            (resp.  <literal>'u'</literal>).
+        </para>
+        <para>
+            Windows pathnames starting with <literal>name:</literal> are converted to 
+            pathnames starting with <literal>/cygdrive/name/</literal> using the cygwin 
+            convention.
+        </para>
+        <para>
+            <varname>flagtrail</varname> is an optional boolean parameter. When its value 
+            is <constant>%t</constant> (default value) a trailing separator (<literal>'\'</literal> or <literal>'/'</literal>) is added 
+            at the end of the path if it was missing.  If <varname>flagtrail</varname> is
+            set to <constant>%f</constant>, the trailing separator is removed.
+        </para>
+        <para>
+            <varname>flagexpand</varname> is an optional boolean parameter. When its value 
+            is <constant>%t</constant> leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
+            expanded using environment variables.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
+pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
+pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
+pathconvert("c:/tmp",%f,%t,"u")
+pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="basename">basename</link>
+            </member>
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

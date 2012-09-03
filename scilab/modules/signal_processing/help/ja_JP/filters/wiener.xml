@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"   xml:lang="ja" xml:id="wiener">
+    <refnamediv>
+        <refname>wiener</refname>
+        <refpurpose>ウイナー推定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>f, g, h</term>
+                <listitem>
+                    <para>
+                        間隔 <literal>[t0,tf]</literal>におけるシステム行列
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>f</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[f0,f1,...,ff]</literal>, および <literal>fk</literal>は
+                                    nxn行列です
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>g</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[g0,g1,...,gf]</literal>, および
+                                    <literal>gk</literal> は nxn 行列です
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>h</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[h0,h1,...,hf]</literal>,および
+                                    <literal>hk</literal> は mxn 行列です
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q, r</term>
+                <listitem>
+                    <para>
+                        ダイナミクスおよび観測ノイズの共分散行列
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>q</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[q0,q1,...,qf]</literal>, and <literal>qk</literal> is a nxn matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>r</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[r0,r1,...,rf]</literal>, および
+                                    <literal>gk</literal> は mxm 行列です
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, p0</term>
+                <listitem>
+                    <para>
+                        初期状態量推定値および誤差共分散
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        間隔 <literal>[t0,tf]</literal>における観測量. 
+                        <literal>y=[y0,y1,...,yf]</literal>, および <literal>yk</literal> は
+                        m次列ベクトルです
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xs</term>
+                <listitem>
+                    <para>
+                        平滑化された状態推定値 <literal>xs= [xs0,xs1,...,xsf]</literal>, および
+                        <literal>xsk</literal> はn次列ベクトルです
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ps</term>
+                <listitem>
+                    <para>
+                        平滑化された推定値の誤差共分散 <literal>ps=[p0,p1,...,pf]</literal>, および
+                        <literal>pk</literal> は nxn 行列です
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xf</term>
+                <listitem>
+                    <para>
+                        平滑化された状態推定値 <literal>xf= [xf0,xf1,...,xff]</literal>, および
+                        <literal>xfk</literal> はn次列ベクトルです
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pf</term>
+                <listitem>
+                    <para>
+                        平滑化された推定値の誤差共分散 <literal>pf=[p0,p1,...,pf]</literal>, 
+                        および <literal>pk</literal> が nxn行列です
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            フォワード-バックワードカルマンフィルタ定式化により
+            ウイナー推定を出力する関数
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>
+            m0=[10 10]';
+            p0=[100 0;0 100];
+            f=[1.1 50.1;0 0.8];
+            g=[1 0;0 1];
+            h=[1 0;0 1];
+            [hi,hj]=size(h);
+            q=[.01 0;0 0.01];
+            r=20*eye(2,2);
+            rand("seed",66);
+            rand("normal");
+            p0c=chol(p0);
+            x0=m0+p0c'*rand(ones(m0));
+            y=h*x0+chol(r)'*rand(ones(1:hi))';
+            yt=y;
+            x=x0;
+            ft=[f];
+            gt=[g];
+            ht=[h];
+            qt=[q];
+            rt=[r];
+            n=10;
+            for k=1:n
+            [x1,y]=system(x0,f,g,h,q,r);
+            x=[x x1];
+            yt=[yt y];
+            x0=x1;
+            ft=[ft f];
+            gt=[gt g];
+            ht=[ht h];
+            qt=[qt q];
+            rt=[rt r];
+            end
+            [xs,ps,xf,pf]=wiener(yt,m0,p0,ft,gt,ht,qt,rt);
+            a=min([x(1,:)-2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+            b=max([x(1,:)+2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+            c=min([x(2,:)-2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+            d=max([x(2,:)+2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+            xmargin=max([abs(a),abs(b)]);
+            ymargin=max([abs(c),abs(d)]);
+            a=-0.1*xmargin+a;
+            b=.1*xmargin+b;
+            c=-0.1*ymargin+c;
+            d=.1*ymargin+d;
+            scf();
+            plot([a a b],[d c c]);
+            plot2d(x(1,:)',x(2,:)',[2],"000")
+            plot2d(xf(1,:)',xf(2,:)',[2],"000")
+            plot2d(xs(1,:)',xs(2,:)',[2],"000")
+            plot2d(xs(1,:)',xs(2,:)',[-2],"000")
+            plot2d(xf(1,:)',xf(2,:)',[-3],"000")
+            plot2d(x(1,:)',x(2,:)',[-4],"000")
+            
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// 統計量(平均および誤差共分散)を初期化
+m0=[10 10]';
+p0=[100 0;0 100];
+// システムを生成
+f=[1.1 50.1;0 0.8];
+g=[1 0;0 1];
+h=[1 0;0 1];
+[hi,hj]=size(h);
+// ノイズの統計量
+q=[.01 0;0 0.01];
+r=20*eye(2,2);
+// システム過程を初期化
+rand("seed",66);
+rand("normal");
+p0c=chol(p0);
+x0=m0+p0c'*rand(ones(m0));
+y=h*x0+chol(r)'*rand(ones(1:hi))';
+yt=y;
+// プロットする変数を初期化
+x=x0;
+// ループ
+ft=[f];
+gt=[g];
+ht=[h];
+qt=[q];
+rt=[r];
+n=10;
+for k=1:n
+    // 状態変数と観測量を
+    // 時刻 k (すなわち xk および yk) で生成
+    [x1,y]=system(x0,f,g,h,q,r);
+    x=[x x1];
+    yt=[yt y];
+    x0=x1;
+    ft=[ft f];
+    gt=[gt g];
+    ht=[ht h];
+    qt=[qt q];
+    rt=[rt r];
+end
+// ウィナーフィルタ推定を得る
+[xs,ps,xf,pf]=wiener(yt,m0,p0,ft,gt,ht,qt,rt);
+// 結果をプロット
+a=min([x(1,:)-2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+b=max([x(1,:)+2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+c=min([x(2,:)-2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+d=max([x(2,:)+2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+xmargin=max([abs(a),abs(b)]);
+ymargin=max([abs(c),abs(d)]);
+a=-0.1*xmargin+a;
+b=.1*xmargin+b;
+c=-0.1*ymargin+c;
+d=.1*ymargin+d;
+// フレーム, 状態変数 (x), および推定値 (xf, および xs)をプロット
+scf();
+plot([a a b],[d c c]);
+plot2d(x(1,:)',x(2,:)',[2],"000")
+plot2d(xf(1,:)',xf(2,:)',[2],"000")
+plot2d(xs(1,:)',xs(2,:)',[2],"000")
+// データ点をマーク (実データ: * , 推定値: o)
+plot2d(xs(1,:)',xs(2,:)',[-2],"000")
+plot2d(xf(1,:)',xf(2,:)',[-3],"000")
+plot2d(x(1,:)',x(2,:)',[-4],"000")
+ ]]></programlisting>
+    </refsection>
+</refentry>

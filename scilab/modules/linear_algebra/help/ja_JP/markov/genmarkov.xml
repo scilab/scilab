@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="genmarkov">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="genmarkov">
     <refnamediv>
         <refname>genmarkov</refname>
         <refpurpose>
@@ -68,13 +68,13 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//P は2つの再帰的クラス (状態量を2個及び1個有する)と 2つの遷移状態量を有します
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

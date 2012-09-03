@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: it\n"
 
 msgid "overflow error"
@@ -447,6 +447,14 @@ msgstr "Porta di uscita implicita"
 
 msgid "Regular output port"
 msgstr "Porta di uscita regolare"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
 
 msgid "Write to output file"
 msgstr ""

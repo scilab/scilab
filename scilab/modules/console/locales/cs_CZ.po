@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-02 19:07+0000\n"
+"PO-Revision-Date: 2012-08-24 20:02+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -526,8 +526,134 @@ msgstr "Převést uvozovky na dvojité"
 msgid "Line numbering"
 msgstr "Číslování řádků"
 
-msgid "Save diagram"
-msgstr "Uložit graf"
+msgid "New diagram"
+msgstr "Nový graf"
+
+msgid "Open file in Scilab current directory"
+msgstr "Otevřít soubor v současném adresáři Scilab"
+
+msgid "Export"
+msgstr "Exportovat"
+
+msgid "Quit Xcos"
+msgstr "Ukončit Xcos"
+
+msgid "Invert selection"
+msgstr "Obrátit výběr"
+
+msgid "Block Parameters"
+msgstr "Parametry bloku"
+
+msgid "Region to superblock"
+msgstr "Oblast do superbloku"
+
+msgid "Zoom In"
+msgstr "Přiblížit"
+
+msgid "Zoom Out"
+msgstr "Oddálit"
+
+msgid "Fit diagram to view"
+msgstr "Přizpůsobit graf pro zobrazení"
+
+msgid "Normal 100%"
+msgstr "Normální 100%"
+
+msgid "Palette browser"
+msgstr "Průzkumník palet"
+
+msgid "Diagram browser"
+msgstr "Prohlížeč grafu"
+
+msgid "Viewport"
+msgstr "Výřez"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Setup"
+msgstr "Nastavení"
+
+msgid "Execution trace and Debug"
+msgstr "Trasování spuštění a Ladění"
+
+msgid "Set Context"
+msgstr "Nastavit kontext"
+
+msgid "Compile"
+msgstr "Kompilovat"
+
+msgid "Start"
+msgstr "Spustit"
+
+msgid "Stop"
+msgstr "Zastavit"
+
+msgid "Rotate"
+msgstr "Otočit"
+
+msgid "Flip"
+msgstr "Překlopit"
+
+msgid "Mirror"
+msgstr "Zrcadlit"
+
+msgid "Show/Hide shadow"
+msgstr "Zobrazit/Skrýt stín"
+
+msgid "Left"
+msgstr "Vlevo"
+
+msgid "Center"
+msgstr "Střed"
+
+msgid "Right"
+msgstr "Vpravo"
+
+msgid "Top"
+msgstr "Zeshora"
+
+msgid "Middle"
+msgstr "Nastřed"
+
+msgid "Bottom"
+msgstr "Zezdola"
+
+msgid "Border Color"
+msgstr "Barva okraje"
+
+msgid "Fill Color"
+msgstr "Barva výplně"
+
+msgid "Horizontal"
+msgstr "Vodorovně"
+
+msgid "Straight"
+msgstr "Přímé"
+
+msgid "Vertical"
+msgstr "Svisle"
+
+msgid "Diagram background"
+msgstr "Pozadí grafu"
+
+msgid "Grid"
+msgstr "Mřížka"
+
+msgid "Code generation"
+msgstr "Vytváření kódu"
+
+msgid "Xcos Help"
+msgstr "Nápověda Xcos"
+
+msgid "Block Help"
+msgstr "Nápověda bloku"
+
+msgid "Xcos Demos"
+msgstr "Ukázky Xcos"
+
+msgid "About Xcos"
+msgstr "O Xcos"
 
 msgid "Save variable"
 msgstr "Uložit proměnnou"

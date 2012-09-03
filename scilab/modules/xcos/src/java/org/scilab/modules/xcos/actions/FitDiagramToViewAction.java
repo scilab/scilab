@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Use maximum of space inside the diagram
  */
+@SuppressWarnings(value = { "serial" })
 public final class FitDiagramToViewAction extends OneBlockDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;

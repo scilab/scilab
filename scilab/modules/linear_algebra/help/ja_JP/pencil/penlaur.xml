@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="penlaur">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="penlaur">
     <refnamediv>
         <refname>penlaur</refname>
         <refpurpose>行列ペンシルのローラン係数</refpurpose>
@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>引数</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
@@ -103,7 +103,7 @@ F=rand(6,6)*F*rand(6,6);[E,A]=pen2ea(F);
 norm(coeff(Bis,1)-Di,1)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

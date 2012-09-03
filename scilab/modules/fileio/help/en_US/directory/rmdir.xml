@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="rmdir">
+    <refnamediv>
+        <refname>rmdir</refname>
+        <refpurpose>removes a directory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            rmdir(dirname)
+            rmdir(dirname,'s')
+            [status, message] = rmdir(dirname,'s')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirname</term>
+                <listitem>
+                    <para>a character string.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>'s'</term>
+                <listitem>
+                    <para>
+                        a mark to remove directory <varname>dirname</varname> with 
+                        subdirectories.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>a boolean.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>message</term>
+                <listitem>
+                    <para>
+                        a character string: a message about an error.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>rmdir(dirname)</code> removes the directory 
+            <varname>dirname</varname> from the current directory. If the 
+            directory is not empty, you must use the s argument. If 
+            <varname>dirname</varname> is not in the current directory, specify 
+            the relative path to the current directory or the full path for 
+            <varname>dirname</varname>.
+        </para>
+        <para>
+            <code>rmdir(dirname,'s')</code> removes the directory <varname>dirname</varname> and its contents from the current directory. 
+        </para>
+        <para>
+            <code>[status, message] = rmdir(dirname,'s')</code> removes the 
+            directory <varname>dirname</varname> and its contents from the 
+            current directory, returning the status, and a message. Here, 
+            <varname>status</varname> is 1 for success and is 0 for error.
+        </para>
+        <para>
+            Whatever the operating system, if the removing of directory
+            succeeds, the <varname>status</varname> is 1 and the message
+            <varname>message</varname> is empty.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+mkdir(SCI,'Directory')
+rmdir(SCI+'/Directory')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createdir">createdir</link>
+            </member>
+            <member>
+                <link linkend="mkdir">mkdir</link>
+            </member>
+            <member>
+                <link linkend="removedir">removedir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

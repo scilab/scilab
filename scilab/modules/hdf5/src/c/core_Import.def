@@ -5,8 +5,8 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-getScilabMode
 callFunctionFromGateway
 com_
-vstk_
 freeArrayOfString
+oGetDoubleComplexFromPointer
+vGetPointerFromDoubleComplex

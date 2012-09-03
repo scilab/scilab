@@ -11,84 +11,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="mput">
-  <refnamediv>
-    <refname>mput</refname>
-    <refpurpose>
-      записывает байт или слово в заданном двоичном формате
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>mput(x [, type, fd])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>
-	    вектор целых чисел или чисел с плавающей запятой.
-	  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fd</term>
-        <listitem>
-          <para>
-            скаляр: дескриптор файла, возвращённый функцией 
-	    <function>mopen</function>.  Значение по умолчанию равно -1, 
-	    что означает последний файл, открытый функцией 
-	    <function>mopen</function>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>type</term>
-        <listitem>
-	  <para>
-	    строка: двоичный формат, используемый для записи всех элементов	<varname>x</varname>.
-	  </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Функция <function>mput</function> записывает данные в выход, 
-      определённый параметром потока <varname>fd</varname>. Данные 
-      записываются в место, на которое в данный момент указывает указатель 
-      положения в файле, и передвигает указатель дальше соответствующим
-      образом.
-    </para>
-    <para>
-      Параметр <varname>type</varname> -- это определитель преобразования, который может быть установлен любым из следующих символов (значение по умолчанию <literal>"l"</literal>):
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>"l","i","s","ul","ui","us","d","f","c","uc"</term>
-        <listitem>
-          <para>
-            для записи соответственно типов long, int, short, unsigned long, unsigned int, unsigned short, double, float, char и unsigned char. Байты, которые записываются, автоматически переставляются, если нужно (это проверяется статусом прямого порядка байтов) для того, чтобы сделать двоичные файлы, независимые от машины. Режим перестановки байтов по умолчанию может быть подавлен добавлением флага <code>swap = 0</code> в функции <function>mopen</function>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"..l" или "..b"</term>
-        <listitem>
-	  <para>
-	    Можно также записывать в режиме обратной и прямой последовательности байтов, добавляя символ <literal>"l"</literal> или <literal>"b"</literal> в конец указателя типа <varname>type</varname>. Например,
-	    <literal>"db"</literal> будет записывать тип double в режиме обратного порядка байтов.
-	  </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mput">
+    <refnamediv>
+        <refname>mput</refname>
+        <refpurpose>
+            записывает байт или слово в заданном двоичном формате
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>mput(x [, type, fd])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вектор целых чисел или чисел с плавающей запятой.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        скаляр: дескриптор файла, возвращённый функцией 
+                        <function>mopen</function>.  Значение по умолчанию равно -1, 
+                        что означает последний файл, открытый функцией 
+                        <function>mopen</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        строка: двоичный формат, используемый для записи всех элементов	<varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>mput</function> записывает данные в выход, 
+            определённый параметром потока <varname>fd</varname>. Данные 
+            записываются в место, на которое в данный момент указывает указатель 
+            положения в файле, и передвигает указатель дальше соответствующим
+            образом.
+        </para>
+        <para>
+            Параметр <varname>type</varname> -- это определитель преобразования, который может быть установлен любым из следующих символов (значение по умолчанию <literal>"l"</literal>):
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"</term>
+                <listitem>
+                    <para>
+                        для записи соответственно типов long, int, short, unsigned long, unsigned int, unsigned short, double, float, char и unsigned char. Байты, которые записываются, автоматически переставляются, если нужно (это проверяется статусом прямого порядка байтов) для того, чтобы сделать двоичные файлы, независимые от машины. Режим перестановки байтов по умолчанию может быть подавлен добавлением флага <code>swap = 0</code> в функции <function>mopen</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"..l" или "..b"</term>
+                <listitem>
+                    <para>
+                        Можно также записывать в режиме обратной и прямой последовательности байтов, добавляя символ <literal>"l"</literal> или <literal>"b"</literal> в конец указателя типа <varname>type</varname>. Например,
+                        <literal>"db"</literal> будет записывать тип double в режиме обратного порядка байтов.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 filen = 'test.bin';
 mopen(filen,'wb');
 mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
@@ -120,59 +120,59 @@ if   98<>mget(1,'cb') then pause,end
  
 mclose();
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

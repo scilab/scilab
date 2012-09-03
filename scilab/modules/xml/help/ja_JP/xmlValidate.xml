@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlValidate" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlValidate</refname>
+        <refpurpose>DTD, Relax NG または Schema により文書を検証する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            error = xmlValidate(docs [, valid])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>docs</term>
+                <listitem>
+                    <para>XMLDoc型のmlistまたはXML文書へのパスを有する文字列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>valid</term>
+                <listitem>
+                    <para>XMLValid型のmlist.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>error</term>
+                <listitem>
+                    <para>エラーが発生した場合は文字列の行列,そうでない場合は[]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            パース済みの文書または指定されたパスの一連の文書を
+            DTD, Relax NG, Schemaで検証します.
+            文書が有効な場合は空の行列,そうでない場合は
+            エラーメッセージを含む文字列の行列が返されます.
+        </para>
+        <para>
+            パスを指定して文書を検証することで性能が改善され,消費メモリが減少します.
+        </para>
+        <para>
+            現時点では外部DTDで文書を検証することはできません.
+            これを行う唯一の方法はXMLファイルに
+            <![CDATA[<!DOCTYPE foo SYSTEM "foo.dtd">]]> のような記述を行い,
+            xmlValidateを2番目の引数を付けずに使用することです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
+    dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
+    schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");
+    rng = xmlRelaxNG("SCI/modules/xml/tests/unit_tests/library.rng");
+
+    // 文書が有効かどうかを調べます
+    // エラーがない場合,ファイルは有効です
+
+    // DTD
+    xmlValidate(doc, dtd);
+
+    // Relax NG
+    xmlValidate(doc, rng);
+
+    // Schema
+    xmlValidate(doc, schema);
+
+    // 新規要素に文書が追加されます
+    doc.root.children(3) = "<a>error</a>"
+
+    // ここで検証は失敗します
+    xmlValidate(doc, dtd);
+    xmlValidate(doc, rng);
+    xmlValidate(doc, schema);
+
+    // パスを指定して文書を検証できます
+    xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml")
+    xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml")
+
+    xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
+    xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
+
+    // オープンした文書を全て削除します
+    xmlDelete(doc, dtd, schema, rng);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlDTD">xmlDTD</link>
+            </member>
+            <member>
+                <link linkend="xmlSchema">xmlSchema</link>
+            </member>
+            <member>
+                <link linkend="xmlRelaxNG">xmlRelaxNG</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

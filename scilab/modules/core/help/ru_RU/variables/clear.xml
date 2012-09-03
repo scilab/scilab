@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="clear">
-  <refnamediv>
-    <refname>clear</refname>
-    <refpurpose>уничтожает переменные</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      clear a b c
-      clear('a','b','c')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>a,b,c...</term>
-        <listitem>
-          <para>переменные любого типа и размера, но не защищённые</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта команда уничтожает переменные, которые не защищены. Она удаляет
-      перечисленные переменные из окружения. Само по себе, без аргументов, <literal>clear</literal> 
-      уничтожает все переменные за исключением переменных, защищённых с помощью 
-      <literal>predef</literal>. Таким образом, две команды <literal>predef(0)</literal> и 
-      <literal>clear</literal> уничтожают все переменные.
-    </para>
-    <para>
-      Обычно защищёнными переменными являются стандартные библиотеки и переменные с префиксом процента.
-    </para>
-    <para>
-      Обратите внимание на особый синтаксис <literal>clear a b c</literal> и 
-      <literal>clear('a','b','c')</literal>, а не <literal>clear(a,b,c)</literal>. Обратите 
-      также внимание на то, что <literal>b=[]</literal> не уничтожает <literal>b</literal>, а
-      устанавливает <literal>b</literal> пустой матрицей.
-    </para>
-    <para>
-      Команда <literal>clear</literal> может работать с несуществующими переменными, т. е. 
-      <literal>clear</literal> уничтожает несуществующие переменные как если бы они существовали.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="predef">predef</link>
-      </member>
-      <member>
-        <link linkend="who">who</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clear">
+    <refnamediv>
+        <refname>clear</refname>
+        <refpurpose>уничтожает переменные</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            clear a b c
+            clear('a','b','c')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>a,b,c...</term>
+                <listitem>
+                    <para>переменные любого типа и размера, но не защищённые</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта команда уничтожает переменные, которые не защищены. Она удаляет
+            перечисленные переменные из окружения. Само по себе, без аргументов, <literal>clear</literal> 
+            уничтожает все переменные за исключением переменных, защищённых с помощью 
+            <literal>predef</literal>. Таким образом, две команды <literal>predef(0)</literal> и 
+            <literal>clear</literal> уничтожают все переменные.
+        </para>
+        <para>
+            Обычно защищёнными переменными являются стандартные библиотеки и переменные с префиксом процента.
+        </para>
+        <para>
+            Обратите внимание на особый синтаксис <literal>clear a b c</literal> и 
+            <literal>clear('a','b','c')</literal>, а не <literal>clear(a,b,c)</literal>. Обратите 
+            также внимание на то, что <literal>b=[]</literal> не уничтожает <literal>b</literal>, а
+            устанавливает <literal>b</literal> пустой матрицей.
+        </para>
+        <para>
+            Команда <literal>clear</literal> может работать с несуществующими переменными, т. е. 
+            <literal>clear</literal> уничтожает несуществующие переменные как если бы они существовали.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="predef">predef</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

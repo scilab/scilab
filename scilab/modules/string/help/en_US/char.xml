@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="char" xml:lang="en">
+    <refnamediv>
+        <refname>char</refname>
+        <refpurpose>converts in a character array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y=char(x)
+            y=char(st1,st2,st3,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a cell array of strings, or an array of ascii codes</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>st1,st2,st3</term>
+                <listitem>
+                    <para>arrays of strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a vector of strings (column)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>One input argument :</literal>
+        </para>
+        <para>
+            Given a cell of  array of strings <literal>x</literal>, this function
+            returns a vector of strings <literal>y</literal> in which the rows are the 
+            concatenated components of corresponding rows of the cell array of strings.
+        </para>
+        <para>
+            Given an array of ascii codes <literal>x</literal>, this function
+            returns a  array of strings <literal>y</literal> corresponding into ascii
+            codes. If dimensions of <literal>x</literal> are <literal>[n1,n2,n3,n4,...]</literal>, 
+            then returned value has same size as input value except second dimension, i.e.
+            the dimensions of <literal>y</literal> are <literal>[n1,n3,n4,...]</literal>.
+        </para>
+        <para>
+            <literal>More than one input argument :</literal>
+        </para>
+        <para>
+            Given arrays of strings <literal>st1,st2,st3,...</literal>, this function 
+            returns a vector of strings in which the rows are the concatenated 
+            components of corresponding rows of <literal>st1,st2,st3,...</literal>. 
+            In the vector <literal>y</literal> all strings <literal>sti</literal> 
+            are completed by blanks to have the same length as the max length of 
+            <literal>sti</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+//Example with a hypermatrix of ascii codes :
+x=hypermat([4,2,3],61:84);
+y=char(x)
+size(x)
+size(y)
+
+//Example with more than one argument :
+st1="zeros";
+st2=["one","two"];
+st3=["three"];
+y=char(st1,st2,st3)
+size(y)
+
+//all strings rows are completed by 'blanks' to have the same length : 6
+length(y)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ascii">ascii</link>
+            </member>
+            <member>
+                <link linkend="asciimat">asciimat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

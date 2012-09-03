@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowcomp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rowcomp">
     <refnamediv>
         <refname>rowcomp</refname>
         <refpurpose>行圧縮, 範囲</refpurpose>
@@ -101,7 +101,7 @@ y=X*x
 norm(y(dim+1:$))/norm(y(1:dim))     // 小さい
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
@@ -116,14 +116,10 @@ norm(y(dim+1:$))/norm(y(1:dim))     // 小さい
         </simplelist>
     </refsection>
     <refsection>
-        <title>作者</title>
-        <para>F. D.; INRIA   </para>
-    </refsection>
-    <refsection>
         <title>使用される関数</title>
         <para>
             <literal>rowcomp</literal> 関数は<link linkend="svd">svd</link> または
-            <link linkend="qr">qr</link> 分解です.
+            <link linkend="qr">qr</link> 分解d.
         </para>
     </refsection>
 </refentry>

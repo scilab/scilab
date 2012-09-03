@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="browsehistory">
+    <refnamediv>
+        <refname>browsehistory</refname>
+        <refpurpose>Scilab履歴ブラウザを開く</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>browsehistory()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>履歴ブラウザを開きます.</para>
+        <para>
+            <literal>browsehistory</literal> は様々なScilabセッション
+            においてユーザにより入力されたコマンドの一覧を出力します.
+        </para>
+        <para>
+            <literal>browsehistory</literal> には以下の機能があります: 
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        簡潔で分かりやすい一覧出力
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_list.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        履歴の各項目に処理(コピー/ペースト, 評価,
+                        SciNotesで編集, 等)を容易に実行
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_action.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        履歴の各項目を複数選択
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/browsehistory_multiple.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        履歴ブラウザから他のScilab要素(コンソール, SciNotes,など)に
+                        コピー/ペースト
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        即時画面更新
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数 browsehistory が導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pathconvert">
+    <refnamediv>
+        <refname>pathconvert</refname>
+        <refpurpose>преобразование имён путей между POSIX и Windows.  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>paths</term>
+                <listitem>
+                    <para>
+                        матрица строк, указывающая набор имён путей.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagtrail</term>
+                <listitem>
+                    <para>
+                        логический необязательный параметр. Его значение по умолчанию равно <constant>%t</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>
+                        логический необязательный параметр. Его значение по умолчанию зависит от результата <code>getos() == 'Windows'</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        строковое значение <literal>'u'</literal> или <literal>'w'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>pathconvert</function> может быть использована для преобразования набора имён путей (заданного матрицей строк <varname>paths</varname>) из имени файла, принятого в Windows, в имена путей, принятых в POSIX, и обратно. Целевой стиль указывается необязательным строкой <varname>type</varname>, который указывает тип: <literal>'u'</literal> для Unix или <literal>'w'</literal> для Windows. Стиль по умолчанию устанавливается в соответствии со значением <code>getos() == 'Windows'</code>. Если <code>getos() == 'Windows'</code> равно <constant>%t</constant> (соответственно <constant>%f</constant> ), то тип по умолчанию равен <literal>'w'</literal> (соответственно <literal>'u'</literal>).
+        </para>
+        <para>
+            Имена путей в Windows, начинающиеся с <literal>Имя:</literal> преобразуются в имена путей, начинающихся с <literal>/cygdrive/имя/</literal>, используя конвенцию cygwin.
+        </para>
+        <para>
+            <varname>flagtrail</varname> -- это необязательный логический параметр. Когда его значение равно <constant>%t</constant> (значение по умолчанию), то заключительный разделитель (<literal>'\'</literal> или <literal>'/'</literal>) добавляется к концу пути, если он был пропущен. Если <varname>flagtrail</varname> установлен в <constant>%f</constant>, то заключительный разделитель удаляется.
+        </para>
+        <para>
+            <varname>flagexpand</varname> -- это необязательный логический параметр. Когда его значение равно<constant>%t</constant>, то строки, с которых начинается имя пути, такие как <literal>HOME</literal>, <literal>SCI</literal> или <literal>~</literal> расширяются с помощью переменных среды.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
+pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
+pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
+pathconvert("c:/tmp",%f,%t,"u")
+pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="basename">basename</link>
+            </member>
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

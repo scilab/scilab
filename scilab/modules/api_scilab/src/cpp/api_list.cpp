@@ -401,6 +401,11 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     {
         pushNamedListAddress(_pstName, piAddr);
     }
+    else
+    {
+        //Add name in stack reference list
+        createNamedVariable(iVarID);
+    }
 
     Top      = iSaveTop;
     Rhs      = iSaveRhs;

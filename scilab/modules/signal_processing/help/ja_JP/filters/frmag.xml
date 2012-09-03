@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="frmag">
+    <refnamediv>
+        <refname>frmag</refname>
+        <refpurpose>FIRおよびIIRフィルタの振幅</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [xm,fr]=frmag(sys,npts)
+            [xm,fr]=frmag(num,den,npts)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        1入力,1出力離散伝達関数,または多項式または
+                        多項式係数のベクトル,フィルタ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>
+                        多項式または多項式係数のベクトル,
+                        フィルタの分子.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>多項式または多項式係数のベクトル,
+                        フィルタの分母(デフォルト値は1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>整数, 周波数応答の点数.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xm</term>
+                <listitem>
+                    <para>
+                        点 <literal>fr</literal>における周波数応答の振幅のベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>振幅を評価する正規化周波数範囲における点.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            FIRおよびIIRフィルタの周波数応答の振幅を計算します.
+            フィルタは1または2個の係数のベクトル,
+            1また2つの多項式,または離散伝達関数の出力
+            で記述することができます.
+        </para>
+        <para>周波数刻みは
+            <literal>fr=linspace(0,1/2,npts)</literal>で指定されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm)
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm,'r')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="iir">iir</link>
+            </member>
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dllinfo" xml:lang="en">
-  <refnamediv>
-    <refname>dllinfo</refname>
-    <refpurpose>provides information about the format and symbols provided in
-      executable and DLL files (Windows).
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>infolist = dllinfo(filename,option)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>a string : a filename .dll or .exe file</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>option</term>
-        <listitem>
-          <para>a string : 'machine' , 'exports' , 'imports'</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>infolist</term>
-        <listitem>
-          <para>a list :</para>
-          <para>infolist(1) : a string : name of dll or executable.</para>
-          <para>infolist(2) : a string matrix : symbols (imported or exported)
-            or machine type (x86 or x64).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This tool provides information about the format and symbols
-      (imported or exported) provided in executable and DLL files.
-    </para>
-    <para>This tool is based on dumpbin.exe. A tool provided with Visual
-      studio SDK.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dllinfo" xml:lang="en">
+    <refnamediv>
+        <refname>dllinfo</refname>
+        <refpurpose>provides information about the format and symbols provided in
+            executable and DLL files (Windows).
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>infolist = dllinfo(filename,option)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string : a filename .dll or .exe file</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>option</term>
+                <listitem>
+                    <para>a string : 'machine' , 'exports' , 'imports'</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>infolist</term>
+                <listitem>
+                    <para>a list :</para>
+                    <para>infolist(1) : a string : name of dll or executable.</para>
+                    <para>infolist(2) : a string matrix : symbols (imported or exported)
+                        or machine type (x86 or x64).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This tool provides information about the format and symbols
+            (imported or exported) provided in executable and DLL files.
+        </para>
+        <para>This tool is based on dumpbin.exe. A tool provided with Visual
+            studio SDK.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 if getos() == 'Windows' then
   filename = SCI+'\bin\libscilab.dll';
 
@@ -77,31 +77,31 @@ if getos() == 'Windows' then
   disp(dllinfolist);
 end
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

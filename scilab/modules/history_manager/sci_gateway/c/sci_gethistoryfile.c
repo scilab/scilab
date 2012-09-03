@@ -18,28 +18,33 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_gethistoryfile(char *fname,unsigned long fname_len)
+int sci_gethistoryfile(char *fname, unsigned long fname_len)
 {
-	char *filename = NULL;
-	int m1 = 0, n1 = 0;
+    char *filename = NULL;
+    int m1 = 0, n1 = 0;
 
-	CheckRhs(0,0) ;
-	CheckLhs(0,1) ;
+    CheckRhs(0, 0) ;
+    CheckLhs(0, 1) ;
 
-	filename = getFilenameScilabHistory();
+    filename = getFilenameScilabHistory();
 
-	if (filename)
-	{
-		n1=1;
-		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(filename), &m1),&n1,&filename);
-		if (filename) {FREE(filename);filename=NULL;}
-		LhsVar(1) = Rhs+1;
-		PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("filename not defined."));
-	}
-	return 0;
+    if (filename)
+    {
+        n1 = 1;
+        m1 = (int)strlen(filename);
+        CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &filename);
+        if (filename)
+        {
+            FREE(filename);
+            filename = NULL;
+        }
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999, _("%s: An error occurred: %s\n"), fname, _("filename not defined."));
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

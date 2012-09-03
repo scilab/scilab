@@ -10,58 +10,58 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="clc">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-  <refnamediv>
-    <refname>clc</refname>
-    <refpurpose>Clear Command Window</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>clc([nblines])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>nblines</term>
-        <listitem>
-          <para>значение типа double</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>clc()</literal> очищает весь ввод и вывод в Командном окне.
-    </para>
-    <para>
-      После использования <literal>clc()</literal> вы не можете использовать
-      ползунок, чтобы посмотреть историю функцию, но вы по-прежнему можете
-      использовать клавишу со стрелкой вверх, чтобы повторно вызывать инструкции
-      из истории команд.      
-    </para>
-    <para>
-      <literal>clc(nblines)</literal> очищает <literal>nblines</literal> строк 
-      выше курсора текущей строки  и передвигает курсор на эту строку.
-    </para>
-    <para>
-      <note>
-        Заметьте, что <literal>clc([nblines])</literal> не может быть использована
-        на платформах Unix/Linux, когда Scilab используется в неграфическом режиме.
-      </note>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="tohome">tohome</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clc">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>clc</refname>
+        <refpurpose>Clear Command Window</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>clc([nblines])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>nblines</term>
+                <listitem>
+                    <para>значение типа double</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>clc()</literal> очищает весь ввод и вывод в Командном окне.
+        </para>
+        <para>
+            После использования <literal>clc()</literal> вы не можете использовать
+            ползунок, чтобы посмотреть историю функцию, но вы по-прежнему можете
+            использовать клавишу со стрелкой вверх, чтобы повторно вызывать инструкции
+            из истории команд.      
+        </para>
+        <para>
+            <literal>clc(nblines)</literal> очищает <literal>nblines</literal> строк 
+            выше курсора текущей строки  и передвигает курсор на эту строку.
+        </para>
+        <para>
+            <note>
+                Заметьте, что <literal>clc([nblines])</literal> не может быть использована
+                на платформах Unix/Linux, когда Scilab используется в неграфическом режиме.
+            </note>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tohome">tohome</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
 

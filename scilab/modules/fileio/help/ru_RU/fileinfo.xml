@@ -10,164 +10,166 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fileinfo" xml:lang="ru">
-  <refnamediv>
-    <refname>fileinfo</refname>
-    <refpurpose>предоставляет информацию о файле</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[x,ierr] = fileinfo(files)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>files</term>
-        <listitem>
-          <para>
-            символьная строка или вектор-столбец строк, имя файла и
-            путь до него
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>
-            вектор целых чисел размером 13 элементов, содержащий
-            информацию, либо пустую матрицу, если файла не существует.
-          </para>
-          <para>
-            Если <varname>files</varname> является вектор-столбцом
-            строк, то <varname>x</varname> будет матрицей размером
-            <literal>m x 13</literal>.
-          </para>
-          <para>
-            Если файла с указанным именем не существует, то в качестве
-            выходной информации будет возвращена строка из 13 элементов и в каждом элементе <constant>Nan</constant>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ierr</term>
-        <listitem>
-          <para>
-            указатель ошибки, 0, если ошибки не произошло
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <code>x = fileinfo(file)</code> возвращает:
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>x(1)</term>
-        <listitem>
-          <para>Размер файла</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(2)</term>
-        <listitem>
-          <para>Режимный код файла (деситичное значение)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(3)</term>
-        <listitem>
-          <para>Идентификатор пользователя</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(4)</term>
-        <listitem>
-          <para>Идентификатор группы</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(5)</term>
-        <listitem>
-          <para>Номер устройства</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(6)</term>
-        <listitem>
-          <para>Дата последнего изменения данных</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(7)</term>
-        <listitem>
-          <para>Дата последнего изменения статуса файла</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(8)</term>
-        <listitem>
-          <para>Дата последнего доступа</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(9)</term>
-        <listitem>
-          <para>Тип устройства (если инодное устройство)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(10)</term>
-        <listitem>
-          <para>
-            Размер блока для ввода/вывода файловой системы (в Windows всегда 0)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(11)</term>
-        <listitem>
-          <para>Количество распределённых блоков (в Windows всегда 0)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(12)</term>
-        <listitem>
-          <para>Индексный дескриптор</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x(13)</term>
-        <listitem>
-          <para>Количество жёстких ссылок</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Ссылки</title>
-    <para>Эта функция является интерфейсом к C-функции stat.</para>
-    <para>
-      Права обычно определяются в виде восмеричных чисел: используйте
-      для преобразования <code>dec2oct(x(2))</code>.
-    </para>
-    <para>
-      Числовой режим представляет собой от одной до четырёх восьмеричных цифр
-      (0-7), полученных добавлением битов со значениями 4, 2 и
-      1. Любые опущенные цифры предполагаются предварёнными
-      нулями. Первая цифра выбирает набор аттрибутов идентификатора пользователя
-      (4), группы пользователя (2) и sticky-бита (1). Вторая цифра
-      выбирает права пользователя, который владеет файлом: чтение (4),
-      запись (2) и исполнение (1); третье число выбирает права для
-      других пользователей в группе файлов с теми же самыми значениями.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="ru">
+    <refnamediv>
+        <refname>fileinfo</refname>
+        <refpurpose>предоставляет информацию о файле</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[x,ierr] = fileinfo(files)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>
+                        символьная строка или вектор-столбец строк, имя файла и
+                        путь до него
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вектор целых чисел размером 13 элементов, содержащий
+                        информацию, либо пустую матрицу, если файла не существует.
+                    </para>
+                    <para>
+                        Если <varname>files</varname> является вектор-столбцом
+                        строк, то <varname>x</varname> будет матрицей размером
+                        <literal>m x 13</literal>.
+                    </para>
+                    <para>
+                        Если файла с указанным именем не существует, то в качестве
+                        выходной информации будет возвращена строка из 13 элементов и в каждом элементе <constant>Nan</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                    <para>
+                        указатель ошибки, 0, если ошибки не произошло.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>x = fileinfo(file)</code> возвращает:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>x(1)</term>
+                <listitem>
+                    <para>Размер файла</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(2)</term>
+                <listitem>
+                    <para>Режимный код файла (десятичное значение)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(3)</term>
+                <listitem>
+                    <para>Идентификатор пользователя</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(4)</term>
+                <listitem>
+                    <para>Идентификатор группы</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(5)</term>
+                <listitem>
+                    <para>Номер устройства</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(6)</term>
+                <listitem>
+                    <para>Дата последнего изменения данных</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(7)</term>
+                <listitem>
+                    <para>Дата последнего изменения статуса файла</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(8)</term>
+                <listitem>
+                    <para>Дата последнего доступа</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(9)</term>
+                <listitem>
+                    <para>Тип устройства (если инодное устройство)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(10)</term>
+                <listitem>
+                    <para>
+                        Размер блока для ввода/вывода файловой системы (в Windows всегда 0)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(11)</term>
+                <listitem>
+                    <para>Количество распределённых блоков (в Windows всегда 0)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(12)</term>
+                <listitem>
+                    <para>Индексный дескриптор</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x(13)</term>
+                <listitem>
+                    <para>Количество жёстких ссылок</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Ссылки</title>
+        <para>
+            Эта функция является интерфейсом к C-функции <function>stat</function>.
+        </para>
+        <para>
+            Права обычно определяются в виде восьмеричных чисел: используйте
+            для преобразования <code>dec2oct(x(2))</code>.
+        </para>
+        <para>
+            Числовой режим представляет собой от одной до четырёх восьмеричных цифр
+            (0-7), полученных добавлением битов со значениями 4, 2 и
+            1. Любые опущенные цифры предполагаются предварёнными
+            нулями. Первая цифра выбирает набор аттрибутов идентификатора пользователя
+            (4), группы пользователя (2) и sticky-бита (1). Вторая цифра
+            выбирает права пользователя, который владеет файлом: чтение (4),
+            запись (2) и исполнение (1); третье число выбирает права для
+            других пользователей в группе файлов с теми же самыми значениями.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 w = fileinfo(SCI+'/etc/scilab.start')
 // права на файл
 dec2oct(w(2))
@@ -191,26 +193,26 @@ end
 FILES = [SCI;SCIHOME;'несуществующий_файл';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getdate">getdate</link>
-      </member>
-      <member>
-        <link linkend="file">file</link>
-      </member>
-      <member>
-        <link linkend="dispfiles">dispfiles</link>
-      </member>
-      <member>
-        <link linkend="newest">newest</link>
-      </member>
-      <member>
-        <link linkend="isdir">isdir</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getdate">getdate</link>
+            </member>
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="dispfiles">dispfiles</link>
+            </member>
+            <member>
+                <link linkend="newest">newest</link>
+            </member>
+            <member>
+                <link linkend="isdir">isdir</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

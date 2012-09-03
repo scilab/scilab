@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="basename" xml:lang="en">
+    <refnamediv>
+        <refname>basename</refname>
+        <refpurpose>strip directory and suffix from filenames</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>a string matrix giving a set of file names.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag, flagexpand</term>
+                <listitem>
+                    <para>boolean optional parameters. Default value is
+                        <constant>%t</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>processedFiles</term>
+                <listitem>
+                    <para>a string matrix containing the processed filenames.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>basename(files)</code> returns the basename of the file entries
+            given in <varname>files</varname>.
+        </para>
+        <para>
+            If <varname>flag</varname> is true the files are first converted to
+            the target type given by the <code>getos() == 'Windows'</code> variable. Moreover,
+            if <varname>flagexpand</varname> is true leading strings like
+            <literal>SCIHOME</literal>, <literal>SCI</literal> or <literal>~</literal>
+            are expanded using environment variables.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+files=basename('SCI/modules/fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci.k')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="pathconvert">pathconvert</link>
+            </member>
+            <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

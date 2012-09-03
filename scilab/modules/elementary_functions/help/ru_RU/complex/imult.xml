@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="imult" xml:lang="ru">
-  <refnamediv>
-    <refname>imult</refname>
-    <refpurpose>умножение на мнимую единицу i</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y=imult(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>вещественный или комплексный вектор или матрица.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>комплексный скаляр, вектор или матрица</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>imult(x)</literal> является более эффективным способом умножения <literal>x</literal> на <literal>i</literal>, чем <literal>y = %i*x</literal>, без проблем, возникающих, когда <literal>x</literal> содержит "особые" числа с плавающей запятой, такими как <literal>%inf</literal> и <literal>%nan</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="ru">
+    <refnamediv>
+        <refname>imult</refname>
+        <refpurpose>умножение на мнимую единицу i</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=imult(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный или комплексный вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>комплексный скаляр, вектор или матрица</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>imult(x)</literal> является более эффективным способом умножения <literal>x</literal> на <literal>i</literal>, чем <literal>y = %i*x</literal>, без проблем, возникающих, когда <literal>x</literal> содержит "особые" числа с плавающей запятой, такими как <literal>%inf</literal> и <literal>%nan</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

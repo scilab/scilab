@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clear">
-  <refnamediv>
-    <refname>clear</refname>
-    <refpurpose>kills variables</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      clear a b c
-      clear('a','b','c')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>a,b,c...</term>
-        <listitem>
-          <para>variables of any type and size, but not protected</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This command kills variables which are not protected.
-      It removes the named variables from the environment.
-      By itself <literal>clear</literal> kills all the variables except the variables
-      protected by <literal>predef</literal>. Thus the two commands <literal>predef(0)</literal> and <literal>clear</literal>
-      remove all the variables.
-    </para>
-    <para>
-      Normally, protected variables are standard libraries and variables with
-      the percent prefix.
-    </para>
-    <para>
-      Note the particular syntax <literal>clear a</literal> and <literal>clear('a')</literal>  
-      and not <literal>clear(a)</literal>. Note also that <literal>a=[]</literal> does not kill 
-      <literal>a</literal> but sets <literal>a</literal> to an empty matrix.
-    </para>
-    <para>
-      The command <literal>clear</literal> can kill nonexistent variables, i. e. 
-      <literal>clear</literal> kills nonexistent variables as if they exist.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="predef">predef</link>
-      </member>
-      <member>
-        <link linkend="who">who</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clear">
+    <refnamediv>
+        <refname>clear</refname>
+        <refpurpose>kills variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            clear a b c
+            clear('a','b','c')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a,b,c...</term>
+                <listitem>
+                    <para>variables of any type and size, but not protected</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This command kills variables which are not protected.
+            It removes the named variables from the environment.
+            By itself <literal>clear</literal> kills all the variables except the variables
+            protected by <literal>predef</literal>. Thus the two commands <literal>predef(0)</literal> and <literal>clear</literal>
+            remove all the variables.
+        </para>
+        <para>
+            Normally, protected variables are standard libraries and variables with
+            the percent prefix.
+        </para>
+        <para>
+            Note the particular syntax <literal>clear a</literal> and <literal>clear('a')</literal>  
+            and not <literal>clear(a)</literal>. Note also that <literal>a=[]</literal> does not kill 
+            <literal>a</literal> but sets <literal>a</literal> to an empty matrix.
+        </para>
+        <para>
+            The command <literal>clear</literal> can kill nonexistent variables, i. e. 
+            <literal>clear</literal> kills nonexistent variables as if they exist.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="predef">predef</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

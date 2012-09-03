@@ -10,68 +10,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="strsplit" xml:lang="en">
-  <refnamediv>
-    <refname>strsplit</refname>
-    <refpurpose>divide um string em um vetor de strings</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>v = strsplit(str,ind)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>string</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ind</term>
-        <listitem>
-          <para>um vetor de índices estritamente crescentes no intervalo
-            <literal>[1 length(str)-1] </literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>v</term>
-        <listitem>
-          <para>o vetor coluna resultante de strings (dimensão
-            <literal>size(ind,'*')+1 </literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>v= strsplit(str,ind)</literal> divide o string
-      <literal>str</literal> em um vetor de strings nos pontos dados pelos
-      índices em <literal>ind</literal> (após cada caractere apontado pelo
-      índice em ind).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="en">
+    <refnamediv>
+        <refname>strsplit</refname>
+        <refpurpose>divide um string em um vetor de strings</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>v = strsplit(str,ind)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>um vetor de índices estritamente crescentes no intervalo
+                        <literal>[1 length(str)-1] </literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>o vetor coluna resultante de strings (dimensão
+                        <literal>size(ind,'*')+1 </literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>v= strsplit(str,ind)</literal> divide o string
+            <literal>str</literal> em um vetor de strings nos pontos dados pelos
+            índices em <literal>ind</literal> (após cada caractere apontado pelo
+            índice em ind).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 S='strsplit divide um string em um vetor de strings';
 strsplit(S,[15 25 30])
 ind=strindex(S,' ')
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strcat"> strcat</link>
-      </member>
-      <member>
-        <link linkend="tokens"> tokens</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strcat"> strcat</link>
+            </member>
+            <member>
+                <link linkend="tokens"> tokens</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

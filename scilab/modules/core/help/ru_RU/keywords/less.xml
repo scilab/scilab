@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="less">
-  <refnamediv>
-    <refname>меньше</refname>
-    <refpurpose> (&lt;) сравнение "меньше, чем"</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="greater">
-    <refname>больше</refname>
-    <refpurpose> (&gt;) сравнение "больше, чем"</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Символы сравнения:
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>&lt;&gt;</term>
-        <listitem>
-          <para>
-            означает "неравный" (то же, что и <literal>~=</literal>)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;</term>
-        <listitem>
-          <para>означает "меньше, чем"</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&gt;</term>
-        <listitem>
-          <para>означает "больше, чем"</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&lt;=</term>
-        <listitem>
-          <para>означает "меньше либо равно"</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>&gt;=</term>
-        <listitem>
-          <para>означает "больше либо равно"</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="if">if</link>
-      </member>
-      <member>
-        <link linkend="comparison">сравнение</link>
-      </member>
-      <member>
-        <link linkend="equal">равно</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="less">
+    <refnamediv>
+        <refname>меньше</refname>
+        <refpurpose> (&lt;) сравнение "меньше, чем"</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="greater">
+        <refname>больше</refname>
+        <refpurpose> (&gt;) сравнение "больше, чем"</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Символы сравнения:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>&lt;&gt;</term>
+                <listitem>
+                    <para>
+                        означает "неравный" (то же, что и <literal>~=</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;</term>
+                <listitem>
+                    <para>означает "меньше, чем"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&gt;</term>
+                <listitem>
+                    <para>означает "больше, чем"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;=</term>
+                <listitem>
+                    <para>означает "меньше либо равно"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&gt;=</term>
+                <listitem>
+                    <para>означает "больше либо равно"</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="comparison">сравнение</link>
+            </member>
+            <member>
+                <link linkend="equal">равно</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

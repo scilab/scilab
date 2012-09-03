@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pbig">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pbig">
     <refnamediv>
         <refname>pbig</refname>
         <refpurpose>固有投影</refpurpose>
@@ -97,7 +97,7 @@ spec(M*A*Q)
 spec(M1*A*Q1)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
@@ -113,10 +113,6 @@ spec(M1*A*Q1)
                 <link linkend="schur">schur</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>作者</title>
-        <para>F. D. (1988); ;   </para>
     </refsection>
     <refsection>
         <title>使用される関数</title>

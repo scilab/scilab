@@ -10,69 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hermit">
-  <refnamediv>
-    <refname>hermit</refname>
-    <refpurpose> Hermite form</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[Ar,U]=hermit(A)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>A</term>
-        <listitem>
-          <para>polynomial matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Ar</term>
-        <listitem>
-          <para>triangular polynomial matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>U</term>
-        <listitem>
-          <para>unimodolar polynomial matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Hermite form: <literal>U</literal> is an unimodular matrix such that <literal>A*U</literal> is
-      in Hermite triangular form:
-    </para>
-    <para>
-      The output variable is <literal>Ar=A*U</literal>.
-    </para>
-    <para>
-      Warning: Experimental version
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hermit">
+    <refnamediv>
+        <refname>hermit</refname>
+        <refpurpose> Hermite form</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[Ar,U]=hermit(A)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>polynomial matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ar</term>
+                <listitem>
+                    <para>triangular polynomial matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>unimodolar polynomial matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Hermite form: <literal>U</literal> is an unimodular matrix such that <literal>A*U</literal> is
+            in Hermite triangular form:
+        </para>
+        <para>
+            The output variable is <literal>Ar=A*U</literal>.
+        </para>
+        <para>
+            Warning: Experimental version
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=[s, s*(s+1)^2, 2*s^2+s^3];
 [Ar,U]=hermit(p'*p);
 clean(p'*p*U), det(U)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="hrmt">hrmt</link>
-      </member>
-      <member>
-        <link linkend="htrianr">htrianr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hrmt">hrmt</link>
+            </member>
+            <member>
+                <link linkend="htrianr">htrianr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

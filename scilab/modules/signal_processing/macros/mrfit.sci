@@ -22,6 +22,13 @@ function [num,den]=mrfit(w,mod,r)
 //
 //  abs(freq(num,den,%i*w)) should be close to mod
 //
+
+function ww=mrfitdiff(ww)
+    //Utility fct
+    p=size(ww(:),'*');
+    ww=ww(2:p)-ww(1:p-1);
+endfunction
+
 w=w(:);mod=mod(:);
 [LHS,RHS]=argn(0);
 if w(1)==0 then w(1)=%eps;end
@@ -35,11 +42,11 @@ n=length(w);
 slinf=round(log10(mod($)/mod($-1))/log10(w($)/w($-1)));
 w($)=w($-1)*10; 
 if slinf~=0 then mod($)=mod($-1)*10^slinf;end
-logw=log10(w);logmod=log10(mod);delw=diff(logw);delmod=diff(logmod); 
+logw=log10(w);logmod=log10(mod);delw=mrfitdiff(logw);delmod=mrfitdiff(logmod); 
 
 weight=ones(length(w),1);
 
-junk=find(abs(diff(delmod./delw)) > .6);
+junk=find(abs(mrfitdiff(delmod./delw)) > .6);
 ind=1+junk;
 if junk==[] then ind=[];end;
 weight(ind)=10*ones(length(ind),1); 
@@ -60,7 +67,7 @@ mod=[mod ; exp(modnew'*log10is)];
 
 [w,ind] = gsort(-w);
 w=-w; mod=mod(ind); weight=weight(ind);
-ind=find(diff(w)>0); ind=[ind(:);length(w)];
+ind=find(mrfitdiff(w)>0); ind=[ind(:);length(w)];
 w=w(ind); mod=mod(ind); weight=weight(ind);
 
 fresp=cepstrum(w,mod);
@@ -70,9 +77,4 @@ if LHS==1 then
   num=syslin('c',num/den);
 end
 
-endfunction
-function ww=diff(ww)
-//Utility fct
-p=size(ww(:),'*');
-ww=ww(2:p)-ww(1:p-1);
 endfunction

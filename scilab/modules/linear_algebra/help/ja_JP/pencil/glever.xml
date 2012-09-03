@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="glever">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="glever">
     <refnamediv>
         <refname>glever</refname>
         <refpurpose>行列ペンシルの逆</refpurpose>
@@ -60,7 +60,7 @@
         <para>
             を計算します.
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 (s*E-A)^-1 = (Bfs/chis) - Bis.
  ]]></programlisting>
         <para>
@@ -92,7 +92,7 @@ s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 inv(F)-((Bfs/chis) - Bis)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

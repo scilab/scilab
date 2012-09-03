@@ -128,6 +128,10 @@ public final class SciDocMain {
             converter.registerExternalXMLHandler(HTMLScilabHandler.getInstance(outputDirectory, imagedir));
             converter.convert();
 
+            HTMLMathMLHandler.clean();
+            HTMLSVGHandler.clean();
+            HTMLScilabHandler.clean();
+
             fileToExec = ScilabImageConverter.getFileWithScilabCode();
 
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));

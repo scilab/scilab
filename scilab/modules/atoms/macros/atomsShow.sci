@@ -54,9 +54,8 @@ function atomsShow(package)
     // =========================================================================
 
     if ~atomsIsInstalled(package) & ~atomsIsPackage(package) then
-
         if isempty(package(2)) then
-            module_full_name = package;
+            module_full_name = package(1);
         else
             module_full_name = package(1)+" - "+package(2);
         end

@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="startup" xml:lang="en">
-  <refnamediv>
-    <refname>startup</refname>
-    <refpurpose>startup files</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The startup files <link linkend="SCIHOME">SCIHOME</link>/.scilab or
-      <link linkend="SCIHOME">SCIHOME</link>/scilab.ini are automatically executed (if
-      present) when Scilab is invoked, in addition with the file
-      <link linkend="SCI">SCI</link>/etc/scilab.start.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Remarks</title>
-    <para>Last line of startup file must be terminated by a newline to be
-      taken into account.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scilab">scilab</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCIHOME">SCIHOME</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCI">SCI</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="TMPDIR">TMPDIR</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="startup" xml:lang="en">
+    <refnamediv>
+        <refname>startup</refname>
+        <refpurpose>startup files</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The startup files <link linkend="SCIHOME">SCIHOME</link>/.scilab or
+            <link linkend="SCIHOME">SCIHOME</link>/scilab.ini are automatically executed (if
+            present) when Scilab is invoked, in addition with the file
+            <link linkend="SCI">SCI</link>/etc/scilab.start.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <para>Last line of startup file must be terminated by a newline to be
+            taken into account.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

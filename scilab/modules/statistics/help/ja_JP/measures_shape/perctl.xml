@@ -10,57 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="perctl">
-  <refnamediv>
-    <refname>perctl</refname>
-    <refpurpose>パーセンタイルの計算</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>p=perctl(x,y)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>実数または複素数のベクトルまたは行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>0 と 100の間の正の整数値のベクトル.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      実数ベクトルまたは行列xの(昇順,列が先)
-      パーセンタイルの行列pを計算します.
-    </para>
-    <para>
-      パーセンタイルはyのエントリにより示され,
-      yのエントリの値は0と100の間の正の整数とする必要があります.
-    </para>
-    <para>p は,length(y) x 2 の行列で,最初の列の内容は
-      パーセンタイルの値です.
-    </para>
-    <para>その2列目の内容は,
-      入力行列xの計算されたパーセンタイルの位置です.
-    </para>
-    <para>
-      xの最小値または最大値が
-      範囲の外側のパーセント値に関する
-      パーセンタイルに代入されます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="perctl">
+    <refnamediv>
+        <refname>perctl</refname>
+        <refpurpose>パーセンタイルの計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>p=perctl(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数または複素数のベクトルまたは行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>0 と 100の間の正の整数値のベクトル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            実数ベクトルまたは行列xの(昇順,列が先)
+            パーセンタイルの行列pを計算します.
+        </para>
+        <para>
+            パーセンタイルはyのエントリにより示され,
+            yのエントリの値は0と100の間の正の整数とする必要があります.
+        </para>
+        <para>p は,length(y) x 2 の行列で,最初の列の内容は
+            パーセンタイルの値です.
+        </para>
+        <para>その2列目の内容は,
+            入力行列xの計算されたパーセンタイルの位置です.
+        </para>
+        <para>
+            xの最小値または最大値が
+            範囲の外側のパーセント値に関する
+            パーセンタイルに代入されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x=[6  7 0 7 10 4 2 2 7  1;
    6  0 5 5 5  2 0 6 8  10;
    8  6 4 3 5  9 8 3 4  7;
@@ -74,13 +74,13 @@ x=[6  7 0 7 10 4 2 2 7  1;
 y=[10 20 30]
 p=perctl(x,y)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>参考文献</title>
-    <para>
-      HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
-      Statistical   Packages,   The  American   Statistician,
-      Nov.1996, Vol 50, No.4
-    </para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
+            Statistical   Packages,   The  American   Statistician,
+            Nov.1996, Vol 50, No.4
+        </para>
+    </refsection>
 </refentry>

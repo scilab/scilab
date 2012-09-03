@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="barhomogenize">
-  <refnamediv>
-    <refname>barhomogenize</refname>
-    <refpurpose>homogeneise toutes les barres contenues dans les axes courrants de travail</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>barhomogenize()
-      barhomogenize([h[,'style'[,'width']]])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>h</term>
-        <listitem>
-          <para>un pointeur sur les axes, (par defaut: h=gca() ).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>style:</term>
-        <listitem>
-          <para>une chaine, 'grouped' ou 'stacked' (par defaut: 'grouped').</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>width</term>
-        <listitem>
-          <para>(optionnel), un scalaire, qui defini l'epaisseur des barres
-            (un pourcentage de l'epaisseur maximun autorisé pour une barre) (par
-            defaut: width=0.8, i.e 80%).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>S'il y a plusieurs appels à la fonction bar, la fonction
-      <literal>barhomogenize</literal> permet d'homogeneiser l'epaisseur et le style
-      de toutes les barres (i.e de type <literal>polyline_style</literal> 6) contenues
-      dans les axes de travail. Ces barres doivent avoir les meme abscisses (x
-      data).
-    </para>
-    <para>
-      <literal>barhomogenize( ) :</literal> prends les valeurs suivantes par
-      defaut: h=gca(), width=0.8, style='grouped'.
-    </para>
-    <para>
-      <literal>barhomogenize(h,...) :</literal> definit les axes courants dans
-      lesquels le dessin sera réalisé.
-    </para>
-    <para>
-      <literal>barhomogenize(...,width,...) :</literal> definit l'epaisseur des
-      barres, en pourcentage (generallement : 0&lt;width&lt;=1).
-    </para>
-    <para>
-      <literal>barhomogenize(...,style,...) :</literal> definit la façon dont les
-      barres sont positionnées les unes par rapport aux autres. L'option style
-      fixée à 'grouped' permet de centrer les polylines par rapport à leurs
-      abscisses, et l'option style fixée à 'stacked' permet de les empiler.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="barhomogenize">
+    <refnamediv>
+        <refname>barhomogenize</refname>
+        <refpurpose>homogeneise toutes les barres contenues dans les axes courrants de travail</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>barhomogenize()
+            barhomogenize([h[,'style'[,'width']]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>un pointeur sur les axes, (par defaut: h=gca() ).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style:</term>
+                <listitem>
+                    <para>une chaine, 'grouped' ou 'stacked' (par defaut: 'grouped').</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>width</term>
+                <listitem>
+                    <para>(optionnel), un scalaire, qui defini l'epaisseur des barres
+                        (un pourcentage de l'epaisseur maximun autorisé pour une barre) (par
+                        defaut: width=0.8, i.e 80%).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>S'il y a plusieurs appels à la fonction bar, la fonction
+            <literal>barhomogenize</literal> permet d'homogeneiser l'epaisseur et le style
+            de toutes les barres (i.e de type <literal>polyline_style</literal> 6) contenues
+            dans les axes de travail. Ces barres doivent avoir les meme abscisses (x
+            data).
+        </para>
+        <para>
+            <literal>barhomogenize( ) :</literal> prends les valeurs suivantes par
+            defaut: h=gca(), width=0.8, style='grouped'.
+        </para>
+        <para>
+            <literal>barhomogenize(h,...) :</literal> definit les axes courants dans
+            lesquels le dessin sera réalisé.
+        </para>
+        <para>
+            <literal>barhomogenize(...,width,...) :</literal> definit l'epaisseur des
+            barres, en pourcentage (generallement : 0&lt;width&lt;=1).
+        </para>
+        <para>
+            <literal>barhomogenize(...,style,...) :</literal> definit la façon dont les
+            barres sont positionnées les unes par rapport aux autres. L'option style
+            fixée à 'grouped' permet de centrer les polylines par rapport à leurs
+            abscisses, et l'option style fixée à 'stacked' permet de les empiler.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 // Premier exemple : creation d'une barre jaune(i.e une polyline de type polyline_style=6) et de 3 barres(i.e 3 polylines de type polyline_style=6)
 subplot(2,3,1)
 xtitle('ex1: creation of 1 yellow bar and  3 bars')
@@ -113,16 +113,16 @@ barhomogenize();
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="bar">bar</link>
-      </member>
-      <member>
-        <link linkend="polyline_properties">polyline_properties</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bar">bar</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">polyline_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

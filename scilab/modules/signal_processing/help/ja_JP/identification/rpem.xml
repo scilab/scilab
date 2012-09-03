@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rpem">
+    <refnamediv>
+        <refname>rpem</refname>
+        <refpurpose>再帰推定誤差最小値推定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>w0</term>
+                <listitem>
+                    <para>
+                        <literal>list(theta,p,l,phi,psi)</literal> ただし:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>theta</term>
+                            <listitem>
+                                <para>
+                                    [a,b,c] はi<literal>3*n</literal>次の実数ベクトルです
+                                </para>
+                                <variablelist>
+                                    <varlistentry>
+                                        <term>a,b,c</term>
+                                        <listitem>
+                                            <para>
+                                                <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal>
+                                            </para>
+                                        </listitem>
+                                    </varlistentry>
+                                </variablelist>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>p</term>
+                            <listitem>
+                                <para>(3*n x 3*n) 実数行列.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>phi,psi,l</term>
+                            <listitem>
+                                <para>
+                                    <literal>3*n</literal>次の実数ベクトル
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        最初のコールで適用可能な値を以下に示します:
+                    </para>
+                    <programlisting role=""><![CDATA[ 
+theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+ ]]></programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u0</term>
+                <listitem>
+                    <para>
+                        入力の実数ベクトル (任意の大きさ). (<literal>u0($)</literal> は
+                        rpemで使用されません)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y0</term>
+                <listitem>
+                    <para>
+                        出力のベクトル (<literal>u0</literal>と同じ次元). 
+                        (<literal>y0(1)</literal>はrpemでは使用されません).
+                    </para>
+                    <para>
+                        時間領域が<literal>(t0,t0+k-1)</literal>の場合, 
+                        <literal>u0</literal>ベクトルは入力
+                    </para>
+                    <para>
+                        <literal>u(t0),u(t0+1),..,u(t0+k-1)</literal> および
+                        <literal>y0</literal>は出力
+                    </para>
+                    <para>
+                        <literal>y(t0),y(t0+1),..,y(t0+k-1)</literal>を有します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>オプションの引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>lambda</term>
+                <listitem>
+                    <para>オプションの引数 (忘却定数) 収束した時に1に近くなるように選択:</para>
+                    <para>
+                        <literal>lambda=[lambda0,alfa,beta]</literal>は下式に基づき更新されます :
+                    </para>
+                    <programlisting role=""><![CDATA[ 
+lambda(t)=alfa*lambda(t-1)+beta 
+ ]]></programlisting>
+                    <para>
+                        ただし, <literal>lambda(0)=lambda0</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>収束した際に1に近くなるように選択される縮小係数.</para>
+                    <para>
+                        <literal>k=[k0,mu,nu]</literal> は下式に基づき更新されます:
+                    </para>
+                    <programlisting role=""><![CDATA[ 
+k(t)=mu*k(t-1)+nu 
+ ]]></programlisting>
+                    <para>
+                        ただし, <literal>k(0)=k0</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        大きな引数(<literal>c=1000</literal> がデフォルト値です).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力:</title>
+        <variablelist>
+            <varlistentry>
+                <term>w1</term>
+                <listitem>
+                    <para>
+                        <literal>w0</literal>の更新.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        <literal>u0, y0</literal>における二乗予測誤差の合計(オプション).
+                    </para>
+                    <para>
+                        特に <literal>w1(1)</literal> は
+                        <literal>theta</literal>の新しい推定値です.
+                        新しい標本<literal>u1, y1</literal>が利用できる時,
+                        以下のように更新が行われます:
+                    </para>
+                    <para>
+                        <literal>[w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]])</literal>. 
+                        任意の大きな級数を扱うことができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ARMAXモデルの引数の再帰推定.
+            Ljung-Soderstromの再帰予測誤差法を使用します.
+            考慮されるモデルを以下に示します:
+        </para>
+        <programlisting role=""><![CDATA[ 
+y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+ ]]></programlisting>
+        <para>
+        </para>
+        <para>
+            このコマンドの効果は,未知の引数<literal>theta=[a,b,c]</literal>の
+            推定値を更新することです.
+        </para>
+        <para>
+            ただし,<literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal>です.
+        </para>
+    </refsection>
+</refentry>

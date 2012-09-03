@@ -109,7 +109,7 @@ int sci_foo(char *fname, unsigned long fname_len)
     ////////// Create the output arguments //////////
 
     /* Create the matrix as return of the function */
-    sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, m1, n1, newMatrixOfDouble);
+    sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, newMatrixOfDouble);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -117,7 +117,7 @@ int sci_foo(char *fname, unsigned long fname_len)
     }
 
     /* Create the matrix as return of the function */
-    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + + 2, m2, n2, newMatrixOfBoolean);
+    sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 2, m2, n2, newMatrixOfBoolean);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -126,8 +126,8 @@ int sci_foo(char *fname, unsigned long fname_len)
 
     ////////// Return the output arguments to the Scilab engine //////////
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
-    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + + 2;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
 
     ReturnArguments(pvApiCtx);
 

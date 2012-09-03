@@ -41,6 +41,9 @@ function %_sodload(%__filename__, varargin)
             for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));
+                elseif typeof(varValue(i)) == "ScilabMacro" then
+                    //convert tlist to macro
+                    varValue(i) = createMacro(varValue(i), "function");
                 elseif isList(varValue(i)) then
                     varValue(i) = parseList(varValue(i));
                 else
@@ -53,6 +56,9 @@ function %_sodload(%__filename__, varargin)
                 fieldValue = getfield(kField, varValue);
                 if typeof(fieldValue) == "ScilabMatrixHandle" then
                     fieldValue = createMatrixHandle(fieldValue);
+                elseif typeof(fieldValue) == "ScilabMacro" then
+                    //convert tlist to macro
+                    fieldValue = createMacro(fieldValue, "function");
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
@@ -134,6 +140,9 @@ function %_sodload(%__filename__, varargin)
         fields(1) = [];
 
         h = gcf();
+        isVisible = h.visible;
+        h.visible = "off";
+
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;
@@ -149,11 +158,21 @@ function %_sodload(%__filename__, varargin)
 
         for i = 1:size(fields, "*")
             if fields(i) == "children" then
-                createMatrixHandle(figureProperties(fields(i)));
+                c = figureProperties(fields(i));
+                s = prod(c.dims);
+                createSingleHandle(c.values(s));
+                for  i = s-1:-1:1
+                    xsetech(wrect=[0 0 .1 .1])
+                    createSingleHandle(c.values(i));
+                end
+            elseif fields(i) == "visible" then
+                isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));
             end
         end
+
+        h.visible = isVisible;
     endfunction
 
     //
@@ -798,7 +817,6 @@ function %_sodload(%__filename__, varargin)
 
     //multiple output variables to prevent listinfile prints
     [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
-
     //
     if size(varargin) <> 0 then
         for i = 1:size(varargin)

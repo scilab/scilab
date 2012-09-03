@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fprintf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fprintf">
     <refnamediv>
         <refname>fprintf</refname>
         <refpurpose>
@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>fprintf(file,format,value_1,..,value_n)</synopsis>
+        <synopsis>fprintf(file, format, value_1, ..., value_n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -43,7 +43,7 @@
                 <term>file</term>
                 <listitem>
                     <para>
-                        a Scilab string specifying a file name or a logical unit number (see<link linkend="file">file</link>)
+                        a Scilab string specifying a file name or a logical unit number (see <link linkend="file">file</link>)
                     </para>
                     <para>
                         Note that if <varname>file</varname>=0, the message will be display on standard error stream (stderr).

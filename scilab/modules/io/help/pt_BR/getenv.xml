@@ -10,46 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getenv" xml:lang="en">
-  <refnamediv>
-    <refname>getenv</refname>
-    <refpurpose>retorna o valor de uma variável de ambiente</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>env=getenv(str [, rep] )</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>string especificando o nome da variável de ambiente; rep : um
-            string opcional. Quando este valor opcional é usado, a função
-            <literal>getenv</literal> retorna o valor <literal>rep</literal>
-            quando a variável de ambiente <literal>str</literal> não é
-            encontrada. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>env</term>
-        <listitem>
-          <para>string que contém o valor da variável de ambiente</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Retorna o valor de uma variável de ambiente, se existir.</para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getenv" xml:lang="en">
+    <refnamediv>
+        <refname>getenv</refname>
+        <refpurpose>retorna o valor de uma variável de ambiente</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>env=getenv(str [, rep] )</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>string especificando o nome da variável de ambiente; rep : um
+                        string opcional. Quando este valor opcional é usado, a função
+                        <literal>getenv</literal> retorna o valor <literal>rep</literal>
+                        quando a variável de ambiente <literal>str</literal> não é
+                        encontrada. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>env</term>
+                <listitem>
+                    <para>string que contém o valor da variável de ambiente</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna o valor de uma variável de ambiente, se existir.</para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 getenv('SCI')
 getenv('FOO','foo') 
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

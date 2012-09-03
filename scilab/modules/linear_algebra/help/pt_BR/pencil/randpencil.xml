@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,91 +10,98 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="randpencil">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="randpencil" xml:lang="en">
     <refnamediv>
         <refname>randpencil</refname>
-        <refpurpose> random pencil</refpurpose>
+        <refpurpose>feixe aleatório</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento </title>
         <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title> Parâmetros </title>
         <variablelist>
             <varlistentry>
                 <term>eps</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vetor de inteiros </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>infi</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vetor de inteiros </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fin</term>
                 <listitem>
-                    <para>real vector, or monic polynomial, or vector of monic polynomial</para>
+                    <para>vetor de reais, ou polinômio mônico, ou vetor de polinômios
+                        mônicos 
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>eta</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vetor de inteiros </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>F</term>
                 <listitem>
                     <para>
-                        real matrix pencil <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)
+                        feixe de matrizes de reais <literal>F=s*E-A</literal>
+                        (<literal>s=poly(0,'s')</literal>)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Utility function.
-            <literal>F=randpencil(eps,infi,fin,eta)</literal> returns a random pencil <literal>F</literal>
-            with given Kronecker structure. The structure is given by:
-            <literal>eps=[eps1,...,epsk]</literal>: structure of epsilon blocks (size eps1x(eps1+1),....)
-            <literal>fin=[l1,...,ln]</literal>  set of finite eigenvalues (assumed real)  (possibly [])
-            <literal>infi=[k1,...,kp]</literal> size of J-blocks at infinity
-            <literal>ki&gt;=1</literal>  (infi=[] if no J blocks).
-            <literal>eta=[eta1,...,etap]</literal>: structure ofeta blocks (size eta1+1)xeta1,...)
+            Função utilitária. <literal>F=randpencil(eps,infi,fin,eta)</literal>
+            retorna um feixe aleatório <literal>F</literal> com dada estrutura de
+            Kronecker. A estrutura é dada por: <literal>eps=[eps1,...,epsk]</literal>:
+            estrutura de blocos epsilon (tamanho eps1x(eps1+1),....)
+            <literal>fin=[l1,...,ln]</literal> conjunto de autovalores finitos
+            (assumidos como reais) (possivelmente [])
+            <literal>infi=[k1,...,kp]</literal> tamanho de blocos J no infinito
+            <literal>ki&gt;=1</literal> (infi=[] se não há blocos J).
+            <literal>eta=[eta1,...,etap]</literal>: estrutura dos blocos eta (size
+            eta1+1)xeta1,...)
         </para>
         <para>
-            <literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should 
-            be &gt;=1.
+            <literal>epsi</literal>'s devem ser &gt;=0,
+            <literal>etai</literal>'s devem ser &gt;=0, <literal>infi</literal>'s
+            devem ser &gt;=1.
         </para>
         <para>
-            If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of 
-            <literal>fin</literal> as eigenvalues.
+            Se <literal>fin</literal> é um polinômio (mônico), o bloco finito
+            admite raízes de <literal>fin</literal> como autovalores.
         </para>
         <para>
-            If <literal>fin</literal> is a vector of polynomial, they are the finite elementary
-            divisors of <literal>F</literal> i.e. the roots of <literal>p(i)</literal> are finite
-            eigenvalues of <literal>F</literal>.
+            Se <literal>fin</literal> é um vetor de polinômios, eles são os
+            divisores elementares finitos de <literal>F</literal> ,i.e., as raízes de
+            <literal>p(i)</literal> são autovalores finitos de
+            <literal>F</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 F=randpencil([0,1],[2],[-1,0,1],[3]);
 [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
 Qd, Zd
 s=poly(0,'s');
-F=randpencil([],[1,2],s^3-2,[]); //regular pencil
+F=randpencil([],[1,2],s^3-2,[]); //feixe regular
 det(F)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também </title>
         <simplelist type="inline">
             <member>
                 <link linkend="kroneck">kroneck</link>

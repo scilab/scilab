@@ -48,6 +48,9 @@ function [] = %_save(%__filename__, varargin)
         for %__i__ = definedfields(l)
             if typeof(l(%__i__)) == "handle" then
                 result(%__i__) = extractMatrixHandle(l(%__i__));
+            elseif isMacro(l(%__i__)) | isCompiledMacro(l(%__i__)) then
+                //build an arbitrary name to the macro
+                result(%__i__) = extractMacro(l(%__i__), "function");
             elseif isList(l(%__i__)) then
                 result(%__i__) = inspectList(l(%__i__));
             else
@@ -60,6 +63,9 @@ function [] = %_save(%__filename__, varargin)
             fieldValue = getfield(kField, l);
             if typeof(fieldValue) == "handle" then
                 fieldValue = extractMatrixHandle(fieldValue);
+            elseif isMacro(fieldValue) | isCompiledMacro(fieldValue) then
+                //build an arbitrary name to the macro
+                fieldValue = extractMacro(fieldValue, "function");
             elseif isList(fieldValue) then
                 fieldValue = inspectList(fieldValue);
             end

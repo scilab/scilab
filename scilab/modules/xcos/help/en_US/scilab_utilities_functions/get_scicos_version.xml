@@ -21,59 +21,59 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="get_scicos_version">
-  <refnamediv>
-    <refname>get_scicos_version</refname>
-    <refpurpose>Get the current Scicos version</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>scicos_ver = get_scicos_version()</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Module_get_scicos_version">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get_scicos_version">
+    <refnamediv>
+        <refname>get_scicos_version</refname>
+        <refpurpose>Get the current Scicos version</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>scicos_ver = get_scicos_version()</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_get_scicos_version">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_get_scicos_version">
+        <title>Description</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            This function is used to know the current version number of Scicos.  
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_get_scicos_version">
-    <title>Description</title>
-    <para>
-      This function is used to know the current version number of Scicos.  
-    </para>
-    <para>
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+        </para>
+        <programlisting role="example"><![CDATA[ 
 scicos_ver = get_scicos_version
  ]]></programlisting>
-  </refsection>
-  <refsection id="Parameters_get_scicos_version">
-    <title>Arguments</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">scicos_ver :</emphasis> a string given the current number version of Scicos.
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_get_scicos_version">
-    <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    </refsection>
+    <refsection id="Parameters_get_scicos_version">
+        <title>Arguments</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">scicos_ver :</emphasis> a string given the current number version of Scicos.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_get_scicos_version">
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
 //Get the scicos version 
 get_scicos_version()
 ]]></programlisting>
-  </refsection>
-  <refsection id="Filecontent_get_scicos_version">
-    <title>File content</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos/macros/scicos_utils/get_scicos_version.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
+    <refsection id="Filecontent_get_scicos_version">
+        <title>File content</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_utils/get_scicos_version.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

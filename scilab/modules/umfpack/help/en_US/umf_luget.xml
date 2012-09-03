@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umf_luget">
-  <refnamediv>
-    <refname>umf_luget</refname>
-    <refpurpose> retrieve lu factors at the scilab level  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[L,U,p,q,Rd] = umf_luget(LU_ptr)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>LU_ptr  </term>
-        <listitem>
-          <para>a pointer to umf lu factors (L,U,p,q,R)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>L,U  </term>
-        <listitem>
-          <para>scilab sparse matrix</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p,q  </term>
-        <listitem>
-          <para>column vectors storing the permutations</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Rd </term>
-        <listitem>
-          <para>vector storing the (row) scaling factors</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function  may be used if you want  to plot  the sparse
-      pattern  of the lu factors (or if you  code something which
-      use the lu factors). The factorization provided by umfpack is
-      of the form:
-    </para>
-    <para>
-      P R^(-1) A Q = LU
-    </para>
-    <para>
-      where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
-      a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix.
-      The function provides the matrices L and U as Sparse scilab matrices but
-      P and Q are given as permutation vectors p and q (in fact p is the permutation 
-      associated to P') and Rd is the vector corresponding to the diagonal
-      of R.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="umf_luget">
+    <refnamediv>
+        <refname>umf_luget</refname>
+        <refpurpose> retrieve lu factors at the scilab level  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[L,U,p,q,Rd] = umf_luget(LU_ptr)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>LU_ptr  </term>
+                <listitem>
+                    <para>a pointer to umf lu factors (L,U,p,q,R)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L,U  </term>
+                <listitem>
+                    <para>scilab sparse matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p,q  </term>
+                <listitem>
+                    <para>column vectors storing the permutations</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Rd </term>
+                <listitem>
+                    <para>vector storing the (row) scaling factors</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function  may be used if you want  to plot  the sparse
+            pattern  of the lu factors (or if you  code something which
+            use the lu factors). The factorization provided by umfpack is
+            of the form:
+        </para>
+        <para>
+            P R^(-1) A Q = LU
+        </para>
+        <para>
+            where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
+            a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix.
+            The function provides the matrices L and U as Sparse scilab matrices but
+            P and Q are given as permutation vectors p and q (in fact p is the permutation 
+            associated to P') and Rd is the vector corresponding to the diagonal
+            of R.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
@@ -88,25 +88,25 @@ B(p,q) - L*U  // must be a (quasi) nul matrix
 
 umf_ludel(Lup) // clear memory
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="umfpack">umfpack</link>
-      </member>
-      <member>
-        <link linkend="umf_lufact">umf_lufact</link>
-      </member>
-      <member>
-        <link linkend="umf_lusolve">umf_lusolve</link>
-      </member>
-      <member>
-        <link linkend="umf_ludel">umf_ludel</link>
-      </member>
-      <member>
-        <link linkend="umf_luinfo">umf_luinfo</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="umf_lufact">umf_lufact</link>
+            </member>
+            <member>
+                <link linkend="umf_lusolve">umf_lusolve</link>
+            </member>
+            <member>
+                <link linkend="umf_ludel">umf_ludel</link>
+            </member>
+            <member>
+                <link linkend="umf_luinfo">umf_luinfo</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

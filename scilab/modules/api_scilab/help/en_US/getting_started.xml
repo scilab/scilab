@@ -10,7 +10,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="api_scilab_getting_started" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_getting_started" xml:lang="en">
     <refnamediv>
         <refname>Getting started with API_Scilab</refname>
         <refpurpose>How to load a C, C++ or fortran code in the Scilab engine as a new function</refpurpose>
@@ -188,7 +188,7 @@
                     </para>
                 </listitem>
             </orderedlist>
-
+            
         </para>
         <para>Note that almost all the API_Scilab functions returns a C structure called SciErr which contains many information about the error.</para>
         <para>
@@ -196,6 +196,9 @@
         </para>
         <para>
             As convention, gateways are stored in <literal>sci_gateway/c/</literal> (or <literal>/cpp/</literal>) and are called <literal>sci_functionName.c</literal>.
+        </para>
+        <para>
+            <literal>pvApiCtx</literal> is the global context variable. Useless in the 5 family, it has been introduced to manage multithread aspects coming with the version 6 of Scilab.
         </para>
     </refsection>
     <refsection>
@@ -356,7 +359,7 @@ int sci_foo(char *fname, unsigned long fname_len)
         <para>
             To build this code and load it to Scilab, we use the dynamic link capabilities of Scilab. Delegating the build process to Scilab, this code is multiplaform.
             <programlisting role="scilab">
-                <![CDATA[ 
+                <![CDATA[
       files=["sci_foo.c"];
       // TODO: WTF ?
       WITHOUT_AUTO_PUTLHSVAR = %t;
@@ -369,35 +372,35 @@ int sci_foo(char *fname, unsigned long fname_len)
         <para>
             Various checks can be performed:
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
--->[c, d] = foo(2, 2) 
-                   !--error 999 
+                <![CDATA[
+-->[c, d] = foo(2, 2)
+                   !--error 999
 foo: Wrong type for input argument #2: A boolean matrix expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[c, d] = foo([2,2], %t)
-                        !--error 999 
+                        !--error 999
 foo: Wrong size for input arguments: Same size expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[a,b]=foo(2+%i,%t)
-                   !--error 999 
+                   !--error 999
 foo: Wrong type for input argument #1: A real matrix expected.
       ]]>
             </programlisting>
             <programlisting role="no-scilab-exec">
-                <![CDATA[ 
+                <![CDATA[
 -->[c, d] = foo([2,%pi], [%t, %f])
  d  =
- 
-  F T  
+
+  F T
  c  =
- 
-    4.    6.2831853 
+
+    4.    6.2831853
       ]]>
             </programlisting>
         </para>

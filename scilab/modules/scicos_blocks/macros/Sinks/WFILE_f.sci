@@ -32,6 +32,11 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
+  warnobsolete('WRITEC_f', '6.0.0');
+  warnMessage = msprintf(_("Feature %s is obsolete."), 'WFILE_f');
+  warnAdvise = msprintf(_("Please use %s instead."), 'WRITEC_f');
+  warnXcosMessage = msprintf("%s %s", warnMessage, warnAdvise);
+  warnBlockByUID(arg1.model.label, warnXcosMessage);
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;

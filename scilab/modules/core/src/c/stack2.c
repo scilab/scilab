@@ -2293,7 +2293,7 @@ L9999:
 *     input args are supposed to be indexed by ifirst,ifirst+1,...
 *     thestring= string made of the name of a Scilab function
 *     mlhs,mlhs = number of lhs and rhs parameters of the function
-*     ifisrt,thestring,mlhs and mrhs are input parameters.
+*     ifirst,thestring,mlhs and mrhs are input parameters.
 *---------------------------------------------------------------------*/
 
 int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len)

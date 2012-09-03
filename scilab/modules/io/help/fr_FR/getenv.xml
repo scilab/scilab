@@ -10,54 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getenv">
-  <refnamediv>
-    <refname>getenv</refname>
-    <refpurpose> renvoie la valeur d'une variable d'environnement  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>env=getenv(str [, defaultReturn] )</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>str  </term>
-        <listitem>
-          <para>
-            chaîne de caractères contenant le nom de la variable d'environnement.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>defaultReturn</term>
-        <listitem>
-          <para>
-            chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>defaultReturn</literal> quand la variable d'environnement <literal>str</literal> n'existe pas.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>env  </term>
-        <listitem>
-          <para>chaîne de caractères contenant la valeur de la variable d'environnement
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="getenv">
+    <refnamediv>
+        <refname>getenv</refname>
+        <refpurpose> renvoie la valeur d'une variable d'environnement  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>env=getenv(str [, defaultReturn] )</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>str  </term>
+                <listitem>
+                    <para>
+                        chaîne de caractères contenant le nom de la variable d'environnement.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultReturn</term>
+                <listitem>
+                    <para>
+                        chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>defaultReturn</literal> quand la variable d'environnement <literal>str</literal> n'existe pas.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>env  </term>
+                <listitem>
+                    <para>chaîne de caractères contenant la valeur de la variable d'environnement
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
 getenv('SCI')
 getenv('FOO','foo')
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

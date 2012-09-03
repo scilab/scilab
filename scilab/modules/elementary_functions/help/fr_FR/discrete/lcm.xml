@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lcm">
+    <refnamediv>
+        <refname>lcm</refname>
+        <refpurpose> Plus petit commun multiple (PPCM) de polynômes
+            ou d'entiers
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[pp,fact]=lcm(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>p  </term>
+                <listitem>
+                    <para>vecteur de polynômes ou d'entiers (type égal à 8)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact  </term>
+                <listitem>
+                    <para>vecteur de polynômes ou d'entiers
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pp  </term>
+                <listitem>
+                    <para>polynôme ou un entier
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>pp=lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
+            <literal>p</literal> au sens des polynômes ou des entiers.
+        </para>
+        <para>
+            <literal>[pp,fact]=lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
+        </para>
+        <para>
+            <literal>p.*fact=pp*ones(p)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+//cas des polynomes
+s=poly(0,'s');
+p=[s,s*(s+1)^2,s^2*(s+2)];
+[pp,fact]=lcm(p);
+p.*fact, pp
+
+//cas des entiers
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

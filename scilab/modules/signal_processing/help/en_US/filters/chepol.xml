@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="chepol">
+    <refnamediv>
+        <refname>chepol</refname>
+        <refpurpose> Chebychev polynomial</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[Tn]=chepol(n,var)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer : polynomial order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>var</term>
+                <listitem>
+                    <para>string : polynomial variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tn</term>
+                <listitem>
+                    <para>
+                        polynomial in the variable <literal>var</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Recursive implementation of Chebychev polynomial.
+            <literal>Tn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var)</literal> with
+            <literal>T0=1</literal> and <literal>T1=poly(0,var)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+chepol(4,'x')
+ ]]></programlisting>
+    </refsection>
+</refentry>

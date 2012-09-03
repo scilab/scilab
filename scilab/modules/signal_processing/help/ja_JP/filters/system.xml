@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="system">
+    <refnamediv>
+        <refname>system</refname>
+        <refpurpose>観測更新</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>入力状態ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>システム行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para>入力行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>出力行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q</term>
+                <listitem>
+                    <para>入力ノイズ共分散行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>出力ノイズ共分散行列x</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1</term>
+                <listitem>
+                    <para>出力状態ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>出力観測値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            古い状態量を指定して次の観測量を生成するシステム関数を定義します.
+            システムは再帰的に計算されます
+        </para>
+        <programlisting role=""><![CDATA[ 
+x1=f*x0+g*u
+y=h*x0+v
+ ]]></programlisting>
+        <para>
+            ただし, <literal>u</literal> の分布は <literal>N(0,q)</literal>,
+            <literal>v</literal> の分布は <literal>N(0,r)</literal>です.
+        </para>
+    </refsection>
+</refentry>

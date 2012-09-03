@@ -53,6 +53,10 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
         return instance;
     }
 
+    public static void clean() {
+        instance = null;
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2emf" xml:lang="en">
-  <refnamediv>
-    <refname>xs2emf</refname>
-    <refpurpose>Export graphics to EMF (Only under Windows).</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xs2emf(win_num, file_name [,orientation])
-      xs2emf(fig, file_name [,orientation])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>win_num</term>
-        <listitem>
-          <para>integer, id of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fig</term>
-        <listitem>
-          <para>handle of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>file_name</term>
-        <listitem>
-          <para>string, name of the exported file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>orientation</term>
-        <listitem>
-          <para>optional character, with possible values 'portrait' or 'landscape'. The default value is 'portrait'.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xs2emf</literal> exports the display of a graphic window into an EMF file.
-    </para>
-    <para>The export file is obtained by creating an EPS file and converting it into EMF
-      format using pstoedit.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2emf" xml:lang="en">
+    <refnamediv>
+        <refname>xs2emf</refname>
+        <refpurpose>Export graphics to EMF (Only under Windows).</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xs2emf(win_num, file_name [,orientation])
+            xs2emf(fig, file_name [,orientation])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>win_num</term>
+                <listitem>
+                    <para>integer, id of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    <para>handle of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_name</term>
+                <listitem>
+                    <para>string, name of the exported file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation</term>
+                <listitem>
+                    <para>optional character, with possible values 'portrait' or 'landscape'. The default value is 'portrait'.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xs2emf</literal> exports the display of a graphic window into an EMF file.
+        </para>
+        <para>The export file is obtained by creating an EPS file and converting it into EMF
+            format using pstoedit.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 if getos() == 'Windows' then
   scf(0);
   plot2d();
@@ -69,37 +69,37 @@ if getos() == 'Windows' then
   xs2emf(0,'foo.emf');
 end
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xs2bmp">xs2bmp</link>
-      </member>
-      <member>
-        <link linkend="xs2gif">xs2gif</link>
-      </member>
-      <member>
-        <link linkend="xs2jpg">xs2jpg</link>
-      </member>
-      <member>
-        <link linkend="xs2png">xs2png</link>
-      </member>
-      <member>
-        <link linkend="xs2ppm">xs2ppm</link>
-      </member>
-      <member>
-        <link linkend="xs2eps">xs2eps</link>
-      </member>
-      <member>
-        <link linkend="xs2pdf">xs2pdf</link>
-      </member>
-      <member>
-        <link linkend="xs2svg">xs2svg</link>
-      </member>
-      <member>
-        <link linkend="xs2ps">xs2ps</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xs2bmp">xs2bmp</link>
+            </member>
+            <member>
+                <link linkend="xs2gif">xs2gif</link>
+            </member>
+            <member>
+                <link linkend="xs2jpg">xs2jpg</link>
+            </member>
+            <member>
+                <link linkend="xs2png">xs2png</link>
+            </member>
+            <member>
+                <link linkend="xs2ppm">xs2ppm</link>
+            </member>
+            <member>
+                <link linkend="xs2eps">xs2eps</link>
+            </member>
+            <member>
+                <link linkend="xs2pdf">xs2pdf</link>
+            </member>
+            <member>
+                <link linkend="xs2svg">xs2svg</link>
+            </member>
+            <member>
+                <link linkend="xs2ps">xs2ps</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

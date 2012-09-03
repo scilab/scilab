@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlSetAttributes" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlSetAttributes</refname>
+        <refpurpose>属性の名前と値を設定する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            xmlObj = xmlSetAttributes(xmlObj, nameValue)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlObj</term>
+                <listitem>
+                    <para>
+                        xmlObj, XMLSet または XMLList または XMLElem または XMLAttr型
+                        のXML mlist
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nameValue</term>
+                <listitem>
+                    <para>nameValue, 
+                        [name value] または [prefix name value]を各行に含む
+                        文字列の n x 2 または n x 3 行列
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>要素または要素のリストの属性を設定します.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a><b><c></c></b></a><b></b></root>");
+
+    // 全てのノードを取得します
+    xp = xmlXPath(doc, "//*");
+
+    // 属性 hello="world" および bonjour="monde" を全ノードに追加します
+    xmlSetAttributes(xp, ["hello" "world" ; "bonjour" "monde"]);
+    xmlDump(doc)
+
+    // 属性 foo="bar" をルートの最初の子に追加します
+    xmlSetAttributes(doc.root.children(1), ["foo" "bar"]);
+    xmlDump(doc)
+
+    // 属性 bar="foo" をルートの全ての子に追加します
+    xmlSetAttributes(doc.root.children, ["bar" "foo"]);
+
+    // 属性 truc="machin" を2番目の子<b>の属性のリストに追加します 
+    xmlSetAttributes(doc.root.children(2).attributes, ["truc" "machin"]);
+    xmlDump(doc)
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XMLObjects</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

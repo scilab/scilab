@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="iirgroup">
+    <refnamediv>
+        <refname>iirgroup</refname>
+        <refpurpose>IIRフィルタの群遅延Lp最適化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
+            [cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        フィルタの極およびゼロの絶対値のベクトル
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>theta</term>
+                <listitem>
+                    <para>フィルタの極およびゼロの偏角のベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omega</term>
+                <listitem>
+                    <para>フィルタ仕様を指定する周波数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wt</term>
+                <listitem>
+                    <para>関数および群遅延の重み</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>td</term>
+                <listitem>
+                    <para>指定する群遅延</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lt, grad</term>
+                <listitem>
+                    <para>基準および傾きの値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            IIRフィルタを群遅延のLp基準に基づき最適化します.
+            (Rabiner &amp; Gold pp270-273).
+        </para>
+    </refsection>
+</refentry>

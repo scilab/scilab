@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spantwo">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="spantwo">
     <refnamediv>
         <refname>spantwo</refname>
         <refpurpose>部分空間の合計および共通部分</refpurpose>
@@ -55,7 +55,7 @@
             以下のような正方行列<literal>Xp</literal> (正則だが直交である必要はない)
             を返します:
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
          [A1, 0]    (dim-dimb 行)
 Xp*[A,B]=[A2,B2]    (dima+dimb-dim 々)
          [0, B3]    (dim-dima 業)
@@ -100,7 +100,7 @@ Sl=ss2ss(syslin('c',A,B,C),rand(A));
 Slcan=ss2ss(Sl,inv(Xp));
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

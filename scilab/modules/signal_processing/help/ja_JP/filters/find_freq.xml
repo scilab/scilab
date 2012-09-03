@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="find_freq">
+    <refnamediv>
+        <refname>find_freq</refname>
+        <refpurpose>楕円フィルタ設計用に互換パラメータを得る</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[m]=find_freq(epsilon,A,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>epsilon</term>
+                <listitem>
+                    <para>通過域のリップル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>阻止域の減衰</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>フィルタ次数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>楕円フィルタの構築を行う周波数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>m1=(epsilon*epsilon)/(A*A-1)</literal>として,
+            <literal>n=K(1-m1)K(m)/(K(m1)K(1-m))</literal>となるような
+            mを探します.
+        </para>
+        <para>
+            <literal>m= omegar^2/omegac^2</literal>の場合, パラメータ
+            <literal>epsilon,A,omegac,omegar</literal> および <literal>n</literal>は
+            楕円フィルタの雛形の定義と互換になります.
+            ここで,
+            <literal>K=%k(m)</literal> は,パラメータ<literal>m</literal>を指定した
+            完全楕円積分です.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percentk">%k</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

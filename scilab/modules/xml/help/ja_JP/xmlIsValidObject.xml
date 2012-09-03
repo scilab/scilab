@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlIsValidObject" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlIsValidObject</refname>
+        <refpurpose>XMLオブジェクトの存在を調べる</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            exists = xmlIsValidObject(obj)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>XMLオブジェクトまたは変数名を含む文字列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exists</term>
+                <listitem>
+                    <para>
+                        XMLオブジェクトが存在するかどうかを示す
+                        論理値または論理値の行列
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            XML文書が削除された際,付随するオブジェクトは全て破棄されますが,
+            Scilab側ではこのオブジェクトが生存し続けます.
+            このため,この関数はScilab側であるオブジェクトが有効かどうかを
+            知るために有用です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
+    r = doc.root
+    // %Tを返します
+    xmlIsValidObject(r)
+
+    // 文書を削除
+    xmlDelete(doc);
+
+    // [%F %F]を返します
+    xmlIsValidObject(["doc" "r"])
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XML Objects</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

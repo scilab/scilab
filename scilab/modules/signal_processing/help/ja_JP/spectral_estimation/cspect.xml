@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cspect" xml:lang="ja">
+    <refnamediv>
+        <refname>cspect</refname>
+        <refpurpose>
+            相関法により2つの離散時間信号の間で推定する
+            両側相互スペクトル
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [sm [,cwp]]=cspect(nlags,npoints,wtype,x [,y] [,wpar])
+            [sm [,cwp]]=cspect(nlags,npoints,wtype,nx [,ny] [,wpar])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>ベクトル, 最初の信号のデータ.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        ベクトル, 二番目の信号のデータ. <literal>y</literal>を
+                        省略した場合,<literal>x</literal>に等しいと仮定されます(自己相関).
+                        指定された場合,<literal>x</literal>と同じ数の要素を有している必要が
+                        あります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nx</term>
+                <listitem>
+                    <para>
+                        スカラー : <literal>x</literal>信号の点の数. この場合,
+                        信号xのセグメントは<literal>getx</literal>という名前のユーザ定義の関数
+                        により読み込まれます (下記参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ny</term>
+                <listitem>
+                    <para>スカラー : 
+                        <literal>y</literal>信号の点の数. この場合,
+                        <literal>y</literal>のセグメントが <literal>gety</literal>
+                        という名前のユーザ定義関数により読み込まれます (下記参照).
+                        指定された場合,<literal>ny</literal>は<literal>nx</literal>に
+                        等しくする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nlags</term>
+                <listitem>
+                    <para>相関遅延の数s (正の整数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npoints</term>
+                <listitem>
+                    <para>変換する点の数 (正の整数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>ウインドウ型</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>'re'</literal>: 矩形
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'tr'</literal>: 三角形
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hm'</literal>: ハミング
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'hn'</literal> : ハニング
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'kr'</literal>: カイザー,この場合,wpar
+                                引数を指定する必要があります
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'ch'</literal>: チェビシェフ, この場合, wpar
+                                引数を指定する必要があります
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wpar</term>
+                <listitem>
+                    <para>
+                        <literal>Kaiser および Chebyshev
+                            ウインドウに関するオプションパラメータ:
+                        </literal>
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                'kr': <literal>wpar は厳密に正の数である必要があります</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'ch': <literal>wpar</literal> は要素数2のベクトル
+                                <literal> [main_lobe_width,side_lobe_height]である必要があります.
+                                    ただし,
+                                </literal>
+                                <literal>0&lt;main_lobe_width&lt;.5</literal>, および
+                                <literal>side_lobe_height&gt;0</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>
+                        正規化された周波数の間隔<literal>[0,1]</literal>において
+                        パワースペクトルを推定します.
+                        大きさ<literal>npoints</literal>の行配列です.
+                        自己相関関数の場合は実数,
+                        相互相関関数の場合は複素数の配列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cwp</term>
+                <listitem>
+                    <para>
+                        チェビシェフウインドウの場合は,チェビシェフウインドウのパラメータ
+                        の未指定のもの.
+                        指定されていないチェビシェフウインドウのパラメータ
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            2つの信号<literal>x</literal> および <literal>y</literal>の
+            信号の相互スペクトル,そうでない場合は <literal>x</literal>を計算します.
+            スペクトル密度は相関法により得られます.
+        </para>
+        <para/>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata>
+                        <mml:math>
+                            <mml:semantics>
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>S</mml:mi>
+                                        <mml:mi mml:fontstyle="italic">xy</mml:mi>
+                                    </mml:msub>
+                                    <mml:mrow>
+                                        <mml:mrow>
+                                            <mml:mo mml:stretchy="false">(</mml:mo>
+                                            <mml:mo mml:stretchy="false">ω</mml:mo>
+                                            <mml:mo mml:stretchy="false">)</mml:mo>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                        <mml:mfrac>
+                                            <mml:mn>1</mml:mn>
+                                            <mml:mi>N</mml:mi>
+                                        </mml:mfrac>
+                                    </mml:mrow>
+                                    <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+                                        <mml:mrow>
+                                            <mml:mrow>
+                                                <mml:munderover>
+                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                    <mml:mrow>
+                                                        <mml:mi>n</mml:mi>
+                                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                                        <mml:mn>0</mml:mn>
+                                                    </mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mi>N</mml:mi>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mn>1</mml:mn>
+                                                    </mml:mrow>
+                                                </mml:munderover>
+                                                <mml:mi>x</mml:mi>
+                                            </mml:mrow>
+                                            <mml:mrow>
+                                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                                <mml:mi>n</mml:mi>
+                                                <mml:mo mml:stretchy="false">)</mml:mo>
+                                            </mml:mrow>
+                                            <mml:msup>
+                                                <mml:mi>e</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mi>i</mml:mi>
+                                                    </mml:mrow>
+                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
+                                                    <mml:mi>n</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msup>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                    <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+                                        <mml:mrow>
+                                            <mml:mrow>
+                                                <mml:munderover>
+                                                    <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                    <mml:mrow>
+                                                        <mml:mi>n</mml:mi>
+                                                        <mml:mo mml:stretchy="false">=</mml:mo>
+                                                        <mml:mn>0</mml:mn>
+                                                    </mml:mrow>
+                                                    <mml:mrow>
+                                                        <mml:mi>N</mml:mi>
+                                                        <mml:mo mml:stretchy="false">−</mml:mo>
+                                                        <mml:mn>1</mml:mn>
+                                                    </mml:mrow>
+                                                </mml:munderover>
+                                                <mml:mover mml:accent="true">
+                                                    <mml:mi>y</mml:mi>
+                                                    <mml:mo mml:stretchy="false">ˉ</mml:mo>
+                                                </mml:mover>
+                                            </mml:mrow>
+                                            <mml:mrow>
+                                                <mml:mo mml:stretchy="false">(</mml:mo>
+                                                <mml:mi>n</mml:mi>
+                                                <mml:mo mml:stretchy="false">)</mml:mo>
+                                            </mml:mrow>
+                                            <mml:msup>
+                                                <mml:mi>e</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mi>i</mml:mi>
+                                                    <mml:mo mml:stretchy="false">ω</mml:mo>
+                                                    <mml:mi>n</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msup>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                </mml:mrow>
+                                <mml:annotation mml:encoding="StarMath 5.0"> S_{xy}(%omega)={1}
+                                    over {N} (sum from{n=0} to{N-1} x(n)e^{-i %omega n}) ( sum
+                                    from{n=0} to{N-1} bar y(n)e^{i %omega n})
+                                </mml:annotation>
+                            </mml:semantics>
+                        </mml:math>
+                    </imagedata>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>The correlation method calculates the spectral estimate as the
+            Fourier transform of a modified estimate of the auto/cross correlation
+            function. This auto/cross correlation modified estimate consist of
+            repeatedly calculating estimates of the autocorrelation function from
+            overlapping sub-segments if the data, and then averaging these estimates
+            to obtain the result.
+        </para>
+        <para>The number of points of the window is
+            <literal>2*nlags-1.</literal>
+        </para>
+        <para>
+            For batch processing, the<literal> x</literal> and
+            <literal>y</literal> data may be read segment by segment using the
+            <literal>getx </literal>and <literal>gety</literal> user defined
+            functions. These functions have the following calling sequence:
+        </para>
+        <para>
+            <literal>xk=getx(ns,offset)</literal> and
+            <literal>yk=gety(ns,offset)</literal> where <literal>ns</literal> is the
+            segment size and <literal>offset</literal> is the index of the first
+            element of the segment in the full signal.
+        </para>
+    </refsection>
+    <refsection>
+        <title>警告</title>
+        <para>5.0.2までのバージョンのScilabでは,返り値は
+            現在の値の絶対値でした.
+        </para>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>Oppenheim, A.V., and R.W. Schafer. Discrete-Time Signal Processing,
+            Upper Saddle River, NJ: Prentice-Hall, 1999
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+rand('normal');rand('seed',0);
+x=rand(1:1024-33+1);
+//eqfirでローパスフィルタを作成m
+nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
+h=eqfir(nf,bedge,des,wate);
+//有色のデータを得るために白色のデータをフィルタ処理
+h1=[h 0*ones(1:max(size(x))-1)];
+x1=[x 0*ones(1:max(size(h))-1)];
+hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
+sm=cspect(100,200,'tr',y);
+smsize=max(size(sm));fr=(1:smsize)/smsize;
+plot(fr,log(sm))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+            <member>
+                <link linkend="mese">mese</link>
+            </member>
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

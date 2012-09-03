@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="newfun" xml:lang="ru">
+    <refnamediv>
+        <refname>newfun</refname>
+        <refpurpose>добавление имени в таблицу функций</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>newfun(function_name, function_ptr)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>function_name</term>
+                <listitem>
+                    <para>
+                        символьная строка, указывающая корректное имя функции
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>function_ptr</term>
+                <listitem>
+                    <para>
+                        положительное целое число (см. ниже)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Специальная функция (только для экспертов). 
+        </para>
+        <para>
+            Добавляет имя<literal>function_name</literal> в таблицу функций, известных интерпретатору.
+        </para>
+        <para>
+            <literal>function_ptr</literal> целое число <literal>1000*fun+fin</literal>, где 
+            <literal>fun</literal> и <literal>fin</literal> являются внутренним кодом примитива
+            <literal>function_name</literal>. 
+        </para>
+        <para>
+            Эта функция может быть полезная для связи примитива со шлюзом, вызываемым в 
+            <literal>"gw_user.c"</literal> (<literal>fun=14</literal>). Тем не менее, заметьте, что
+            функция <link linkend="ilib_build">ilib_build</link> является более лёгким способом расширить  
+            Scilab новыми функциями, основанными на программном коде C, C++ или Fortran.
+        </para>
+        <para>
+            Эта функция также может быть использована для добавления псевдонимов или для того, чтобы переименовать существующие функции-примитивы.
+        </para>
+        <para>
+            Используя вместе с <literal>funptr</literal> и <literal>clearfun</literal> можно добавить 
+            псевдоним или переименовать существующую функцию-примитив.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+     absptr=funptr("abs");// получить function_ptr, связанный с функцией abs
+     newfun("abs_bis",absptr) // создать псевдоним функции abs
+     abs_bis(-1+%i)
+     clearfun("abs") // удалить abs, как известную функцию
+     
+     //переопределить abs
+     function y=abs(x)
+	y=abs_bis(real(x));
+     endfunction
+     
+     abs(-1+%i)
+  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="clearfun">clearfun</link>
+            </member>
+            <member>
+                <link linkend="funptr">funptr</link>
+            </member>
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

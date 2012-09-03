@@ -19,6 +19,8 @@ import java.beans.PropertyChangeListener;
 
 import org.flexdock.docking.props.DockablePropertySet;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -79,7 +81,10 @@ public final class BarUpdater implements PropertyChangeListener {
             parentWindow.addInfoBar(newInfoBar);
             parentWindow.setTitle(newWindowTitle);
             /** The following line is used to update the menubar, toolbar, ... displayed on screen */
-            parentWindow.validate();
+            parentWindow.getRootPane().revalidate();
+            if (OS.get() == OS.MAC) { /* Fix bug #11787 */
+                parentWindow.repaint();
+            }
             if (newIcon != null) {
                 parentWindow.setIconImage(newIcon);
             }

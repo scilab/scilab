@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="dirname">
+    <refnamediv>
+        <refname>dirname</refname>
+        <refpurpose>получает имя директории из имён файлов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>матрица строк, указывающая набор имён файлов</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag, flagexpand</term>
+                <listitem>
+                    <para>
+                        логические необязательные параметры (значение по умолчанию <constant>%t</constant>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files, dir</term>
+                <listitem>
+                    <para>матрицы строк</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>dirname</function> возвращает имя директории из файлов,
+            указанных в <varname>files</varname>.
+        </para>
+        <para>
+            Если <varname>flag</varname> равен ИСТИНЕ, то файлы сначала
+            преобразуются в целевой тип, указанный переменной
+            <code>getos() == 'Windows'</code>. Более того, если
+            <varname>flagexpand</varname> равен ИСТИНЕ, то начальные строки,
+            такие как <literal>SCIHOME</literal>, <literal>SCI</literal> или
+            <literal>~</literal> расширяются с помощью переменных среды.
+        </para>
+        <para>
+            Заметьте, что <code>dirname(files,%f)</code> может дать
+            ошибочные результаты, если пути, указанные в
+            <varname>files</varname> не соответствуют соглашению, указанному
+            переменной <code>getos() == 'Windows'</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+dirs=dirname('SCI/modules/fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="basename">basename</link>
+            </member>
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="pathconvert">pathconvert</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

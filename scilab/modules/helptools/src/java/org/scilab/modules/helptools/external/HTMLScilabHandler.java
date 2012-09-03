@@ -65,6 +65,10 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
         compt = 1;
     }
 
+    public static void clean() {
+        instance = null;
+    }
+
     /**
      * {@inheritDoc}
      */

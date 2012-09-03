@@ -23,392 +23,392 @@
  * See the file ./license.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SRFLIPFLOP" xmln.mml="http://www.w3.org/1998/Math/MathML">
-  <refnamediv>
-    <refname>SRFLIPFLOP</refname>
-    <refpurpose>SR flip-flop</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_SRFLIPFLOP">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SRFLIPFLOP" xmln.mml="http://www.w3.org/1998/Math/MathML">
+    <refnamediv>
+        <refname>SRFLIPFLOP</refname>
+        <refpurpose>SR flip-flop</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="SRFLIPFLOP">SR flip-flop</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_SRFLIPFLOP">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_SRFLIPFLOP">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_SRFLIPFLOP">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Data_Type_BITCLEAR">Data types</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_SRFLIPFLOP">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_SRFLIPFLOP">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_SRFLIPFLOP">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_SRFLIPFLOP">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_SRFLIPFLOP">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SRFLIPFLOP">SR flip-flop</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_SRFLIPFLOP">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_SRFLIPFLOP">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Data_Type_BITCLEAR">Data types</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_SRFLIPFLOP">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_SRFLIPFLOP">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_SRFLIPFLOP">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_SRFLIPFLOP">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_SRFLIPFLOP">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_SRFLIPFLOP">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_SRFLIPFLOP">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Integer_pal">Integer palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_SRFLIPFLOP">
+        <title>Description</title>
         <para>
-          <link linkend="Integer_pal">Integer palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_SRFLIPFLOP">
-    <title>Description</title>
-    <para>
-      This block describes the simplest and the most fundamental latch the SR flip flop. The
-      output <emphasis role="bold">Q</emphasis> depends of the state of the inputs
-      <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis>. The output
-      <emphasis role="bold">!Q</emphasis> is the logical negation of
-      <emphasis role="bold">Q</emphasis>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          If <emphasis role="bold">S</emphasis> (Set) is pulsed high while
-          <emphasis role="bold">R</emphasis> is held low, then the
-          <emphasis role="bold">Q</emphasis> output is forced high, and stays high when
-          <emphasis role="bold">S</emphasis> returns low.
-        </para>
-        <para/>
-      </listitem>
-      <listitem>
-        <para>
-          if <emphasis role="bold">R</emphasis> (Reset) is pulsed high while
-          <emphasis role="bold">S</emphasis> is held low, then the
-          <emphasis role="bold">Q</emphasis> output is forced low, and stays low when
-          <emphasis role="bold">R</emphasis> returns low.
-        </para>
-        <para/>
-      </listitem>
-      <listitem>
-        <para>
-          When <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis> are low,
-          <emphasis role="bold">Q(t)</emphasis> takes the value of the previous output state
-          <emphasis role="bold">Q(t-1)</emphasis>.
-        </para>
-        <para/>
-      </listitem>
-      <listitem>
-        <para>
-          When <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis> are both high,
-          both <emphasis role="bold">Q</emphasis> and <emphasis role="bold">!Q</emphasis>
-          take the low or high values; the state is unstable. Practically this case is forbidden.
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The user can set the initial output state with <emphasis role="bold">Initial Value</emphasis>
-      parameter.
-    </para>
-    <para>This block is almost used as a memory</para>
-    <para>
-      The truth table of this block is:
-    </para>
-    <para/>
-    <informaltable border="1" cellpadding="3">
-      <tr>
-        <td align="left">
-          <latex><![CDATA[\boldsymbol{S}]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[\boldsymbol{R}]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-        </td>
-        <td align="left"/>
-      </tr>
-      <tr>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[Q_n]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[!Q_n]]></latex>
-        </td>
-        <td align="left">Hold</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">Reset</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[0]]></latex>
-        </td>
-        <td align="left">Set</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[1]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[U]]></latex>
-        </td>
-        <td align="left">
-          <latex><![CDATA[U]]></latex>
-        </td>
-        <td align="left">Forbidden state</td>
-      </tr>
-    </informaltable>
-    <para>
-      where 
-      <emphasis>
-        <literal>U</literal>
-      </emphasis>
-      stands for "Unknown".
-    </para>
-  </refsection>
-  <refsection id="Data_Type_SRFLIPFLOP">
-    <title>Data types</title>
-    <para>
-      The block supports the following types :
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          Inputs:
+            This block describes the simplest and the most fundamental latch the SR flip flop. The
+            output <emphasis role="bold">Q</emphasis> depends of the state of the inputs
+            <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis>. The output
+            <emphasis role="bold">!Q</emphasis> is the logical negation of
+            <emphasis role="bold">Q</emphasis>
         </para>
         <itemizedlist>
-          <listitem>
-            <para>
-              <emphasis role="bold">R</emphasis>: scalar. Scilab's int8 data type only.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <emphasis role="bold">S</emphasis>: scalar. Scilab's int8 data type only.
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    If <emphasis role="bold">S</emphasis> (Set) is pulsed high while
+                    <emphasis role="bold">R</emphasis> is held low, then the
+                    <emphasis role="bold">Q</emphasis> output is forced high, and stays high when
+                    <emphasis role="bold">S</emphasis> returns low.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    if <emphasis role="bold">R</emphasis> (Reset) is pulsed high while
+                    <emphasis role="bold">S</emphasis> is held low, then the
+                    <emphasis role="bold">Q</emphasis> output is forced low, and stays low when
+                    <emphasis role="bold">R</emphasis> returns low.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    When <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis> are low,
+                    <emphasis role="bold">Q(t)</emphasis> takes the value of the previous output state
+                    <emphasis role="bold">Q(t-1)</emphasis>.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    When <emphasis role="bold">S</emphasis> and <emphasis role="bold">R</emphasis> are both high,
+                    both <emphasis role="bold">Q</emphasis> and <emphasis role="bold">!Q</emphasis>
+                    take the low or high values; the state is unstable. Practically this case is forbidden.
+                </para>
+            </listitem>
         </itemizedlist>
         <para>
-          A positive input is considered as logical 1, a negative or a null input as logical 0.
+            The user can set the initial output state with <emphasis role="bold">Initial Value</emphasis>
+            parameter.
+        </para>
+        <para>This block is almost used as a memory</para>
+        <para>
+            The truth table of this block is:
         </para>
         <para/>
-      </listitem>
-      <listitem>
+        <informaltable border="1" cellpadding="3">
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{S}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{R}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
+                </td>
+                <td align="left"/>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[Q_n]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[!Q_n]]></latex>
+                </td>
+                <td align="left">Hold</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">Reset</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">Set</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[U]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[U]]></latex>
+                </td>
+                <td align="left">Forbidden state</td>
+            </tr>
+        </informaltable>
         <para>
-          Outputs: scalar. Scilab's int8 data type.
+            where 
+            <emphasis>
+                <literal>U</literal>
+            </emphasis>
+            stands for "Unknown".
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Dialogbox_SRFLIPFLOP">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../gui/integer_pal/en_US/SRFLIPFLOP_gui.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para/>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Data_Type_SRFLIPFLOP">
+        <title>Data types</title>
         <para>
-          <emphasis role="bold">Initial Value</emphasis>
+            The block supports the following types :
         </para>
-        <para> Initial Value of the state Q. It must be int8 data type.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_SRFLIPFLOP">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Inputs:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">R</emphasis>: scalar. Scilab's int8 data type only.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">S</emphasis>: scalar. Scilab's int8 data type only.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    A positive input is considered as logical 1, a negative or a null input as logical 0.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    Outputs: scalar. Scilab's int8 data type.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Dialogbox_SRFLIPFLOP">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">always active:</emphasis> no
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/integer_pal/en_US/SRFLIPFLOP_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Initial Value</emphasis>
+                </para>
+                <para> Initial Value of the state Q. It must be int8 data type.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_SRFLIPFLOP">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">csuper</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_SRFLIPFLOP">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+            The following example presents a typical anti-bouncing application of the SR flipflop. The
+            output graph shows the memory effect of the flipflop.
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/SRFLIPFLOP_en_US.xcos">
+                Open this example in Xcos
+            </link>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">csuper</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_SRFLIPFLOP">
-    <title>Example</title>
-    <para>
-      The following example presents a typical anti-bouncing application of the SR flipflop. The
-      output graph shows the memory effect of the flipflop.
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/SRFLIPFLOP_en_US.xcos">
-        Open this example in Xcos
-      </link>
-    </para>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/integer_pal/en_US/srflipflop_diagram_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-  </refsection>
-  <refsection id="Interfacingfunction_SRFLIPFLOP">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection role="see also" id="Seealso_SRFLIPFLOP">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <link linkend="DLATCH">DLATCH</link>
-      </listitem>
-      <listitem>
-        <link linkend="DFLIPFLOP">DFLIPFLOP</link>
-      </listitem>
-      <listitem>
-        <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../examples/integer_pal/en_US/srflipflop_diagram_en_US.png" align="center"/>
+            </imageobject>
+        </mediaobject>
+    </refsection>
+    <refsection id="Interfacingfunction_SRFLIPFLOP">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_SRFLIPFLOP">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="DLATCH">DLATCH</link>
+            </listitem>
+            <listitem>
+                <link linkend="DFLIPFLOP">DFLIPFLOP</link>
+            </listitem>
+            <listitem>
+                <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

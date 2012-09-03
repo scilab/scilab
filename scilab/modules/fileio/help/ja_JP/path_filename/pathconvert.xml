@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pathconvert">
+    <refnamediv>
+        <refname>pathconvert</refname>
+        <refpurpose>POSIXおよびwindowsの間でパス名を変換.  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>paths</term>
+                <listitem>
+                    <para>パス名を指定する文字列行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagtrail</term>
+                <listitem>
+                    <para>オプションの論理値パラメータ.デフォルト値は TRUE.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>オプションの論理値パラメータ. デフォルト値はMSDOS変数に依存.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'u'</literal> または <literal>'w'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>pathconvert</literal> は,
+            (文字列行列 <literal>paths</literal>で指定した)
+            パス名の集合を
+            windowsネーティブなファイル名からPOSIX形式のファイル名に変換したり,
+            戻すことができます.
+            変換後の形式はオプションの文字列<literal>type</literal>で指定でき,
+            Unixの場合は <literal>'u'</literal>,Windowsの場合は<literal>'w'</literal>
+            を指定できます.
+            デフォルトの形式は<literal>getos() == "Windows"</literal>の値に基づき設定されます.
+            <literal>getos() == "Windows"</literal>が TRUE (またはFALSE) の場合,
+            デフォルトの形式は <literal>'w'</literal> (または <literal>'u'</literal>)となります.
+        </para>
+        <para>
+            <literal>name:</literal>で始まる
+            Windows のパス名は cygwinの表記法に基づき
+            <literal>/cygdrive/name/</literal>で始まるパス名に変換されます.
+        </para>
+        <para>
+            <literal>flagtrail</literal> はオプションの論理値パラメータです.
+            その値をTRUE (デフォルト値)にした時,
+            末尾セパレータ 
+            (<literal>'\'</literal> または <literal>'/'</literal>) 
+            が抜けている場合にパスの最後に追加されます.
+            <literal>flagtrail</literal> が FALSE に設定されている場合,
+            末尾セパレータは削除されます.
+        </para>
+        <para>
+            <literal>flagexpand</literal> はオプションの論理値パラメータです.
+            この値が TRUEの場合, 
+            <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
+            のような先頭文字列は環境変数により展開されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
+pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
+pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
+pathconvert("c:/tmp",%f,%t,"u")
+pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="basename">basename</link>
+            </member>
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

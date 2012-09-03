@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="schur">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="schur">
     <refnamediv>
         <refname>schur</refname>
         <refpurpose> 行列およびペンシルの[ソートされた] Schur 分解</refpurpose>
@@ -29,7 +29,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>引数</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -148,7 +148,6 @@
                                     に関連する<literal>A</literal>の固有値空間
                                     の基底を構成します.
                                 </para>
-                                
                                 <para>
                                     <literal>[U,dim]=schur(A,'d')</literal> は,
                                     <literal>A</literal>を Schur 形式に変換する
@@ -367,7 +366,7 @@ link(lp,'mytestf','f');
 [As,Es,Z,dim] = schur(A,E,'mytestf')
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

@@ -10,69 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="canon">
-  <refnamediv>
-    <refname>canon</refname>
-    <refpurpose>可制御正準形</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>Ac,Bc</term>
-        <listitem>
-          <para>正準形</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>U</term>
-        <listitem>
-          <para>カレントの基底 (正方正則行列)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ind</term>
-        <listitem>
-          <para>整数ベクトル, 可制御性の添え字</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      対<literal>(A,B)</literal>の可制御正準形を出力します.
-    </para>
-    <para>
-      <literal>Ac=inv(U)*A*U, Bc=inv(U)*B</literal>
-    </para>
-    <para>
-      ベクトル <literal>ind</literal> は,
-      ペンシル<literal>[sI - A ,  B]</literal>の<literal>epsilon_i</literal>の
-      添え字(降順)から作成されます.
-      例えば,<literal>ind=[3,2]</literal>の場合，
-      <literal>Ac</literal> および <literal>Bc</literal> は以下のようになります:
-    </para>
-    <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="canon">
+    <refnamediv>
+        <refname>canon</refname>
+        <refpurpose>可制御正準形</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ac,Bc</term>
+                <listitem>
+                    <para>正準形</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>カレントの基底 (正方正則行列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>整数ベクトル, 可制御性の添え字</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            対<literal>(A,B)</literal>の可制御正準形を出力します.
+        </para>
+        <para>
+            <literal>Ac=inv(U)*A*U, Bc=inv(U)*B</literal>
+        </para>
+        <para>
+            ベクトル <literal>ind</literal> は,
+            ペンシル<literal>[sI - A ,  B]</literal>の<literal>epsilon_i</literal>の
+            添え字(降順)から作成されます.
+            例えば,<literal>ind=[3,2]</literal>の場合，
+            <literal>Ac</literal> および <literal>Bc</literal> は以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[ 
       [*,*,*,*,*]           [*]
       [1,0,0,0,0]           [0]
 Ac=   [0,1,0,0,0]        Bc=[0]
       [*,*,*,*,*]           [*]
       [0,0,0,1,0]           [0]
  ]]></programlisting>
-    <para>
-      <literal>(A,B)</literal> が可制御の場合,適当な<literal>F</literal>を
-      選択することにより,<literal>Ac+Bc*F</literal> のエントリ
-      <literal>*</literal>を任意の値に設定(極配置)することができます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            <literal>(A,B)</literal> が可制御の場合,適当な<literal>F</literal>を
+            選択することにより,<literal>Ac+Bc*F</literal> のエントリ
+            <literal>*</literal>を任意の値に設定(極配置)することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 A=[1,2,3,4,5;
    1,0,0,0,0;
    0,1,0,0,0;
@@ -97,31 +97,31 @@ F=Bcstar\(Acstardesired-Acstar);   //フィードバックゲイン
 Ac+Bc*F         // コンパニオン形式
 spec(A+B*F/U)   // F/U は元の基底のゲイン行列.
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="obsv_mat">obsv_mat</link>
-      </member>
-      <member>
-        <link linkend="cont_mat">cont_mat</link>
-      </member>
-      <member>
-        <link linkend="ctr_gram">ctr_gram</link>
-      </member>
-      <member>
-        <link linkend="contrss">contrss</link>
-      </member>
-      <member>
-        <link linkend="ppol">ppol</link>
-      </member>
-      <member>
-        <link linkend="contr">contr</link>
-      </member>
-      <member>
-        <link linkend="stabil">stabil</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="obsv_mat">obsv_mat</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="ctr_gram">ctr_gram</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

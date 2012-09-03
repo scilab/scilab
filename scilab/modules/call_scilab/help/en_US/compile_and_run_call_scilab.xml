@@ -10,82 +10,82 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="compile_and_run_call_scilab" xml:lang="en">
-  <refnamediv>
-    <refname>Compile and run with Call Scilab</refname>
-    <refpurpose>How to compile a native application based on or using
-      Scilab
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Compilation</title>
-    <para>To compile a native code based on Call Scilab, it is necessary to
-      define some arguments, variables and paths.
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>CFLAGS. Call Scilab needs to have access to the headers of
-          Scilab core and call Scilab module.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="compile_and_run_call_scilab" xml:lang="en">
+    <refnamediv>
+        <refname>Compile and run with Call Scilab</refname>
+        <refpurpose>How to compile a native application based on or using
+            Scilab
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Compilation</title>
+        <para>To compile a native code based on Call Scilab, it is necessary to
+            define some arguments, variables and paths.
         </para>
         <itemizedlist>
-          <listitem>
-            <para>Linux/Unix/MacOSX:</para>
-            <itemizedlist>
-              <listitem>
-                <para>In the binary version of Scilab, CFLAGS must be set to
-                  /path/to/scilab/include/scilab/core/ and
-                  /path/to/scilab/include/scilab/call_scilab/
+            <listitem>
+                <para>CFLAGS. Call Scilab needs to have access to the headers of
+                    Scilab core and call Scilab module.
                 </para>
-              </listitem>
-              <listitem>
-                <para>In the source tree of Scilab, CFLAGS must be set to
-                  /path/to/scilab/modules/core/includes/ and
-                  /path/to/scilab/modules/call_scilab/includes/
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix/MacOSX:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>In the binary version of Scilab, CFLAGS must be set to
+                                    /path/to/scilab/include/scilab/core/ and
+                                    /path/to/scilab/include/scilab/call_scilab/
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>In the source tree of Scilab, CFLAGS must be set to
+                                    /path/to/scilab/modules/core/includes/ and
+                                    /path/to/scilab/modules/call_scilab/includes/
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                    <listitem>
+                        <para>Windows</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
+                    .dll, .jnilib...)
                 </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-          <listitem>
-            <para>Windows</para>
-          </listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix/MacOSX:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>In the binary version of Scilab, SCI will point to
+                                    /path/to/scilab/lib/scilab/
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>In the source tree of Scilab, SCI will point to the root
+                                    of the source tree /path/to/scilab/modules/call_scilab/.libs/
+                                    and /path/to/scilab/.libs/
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>LDFLAGS - The name of the library to link against</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix/MacOSX: It is only mandatory to link against
+                            scilab. This should include the other libraries.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
-          .dll, .jnilib...)
-        </para>
-        <itemizedlist>
-          <listitem>
-            <para>Linux/Unix/MacOSX:</para>
-            <itemizedlist>
-              <listitem>
-                <para>In the binary version of Scilab, SCI will point to
-                  /path/to/scilab/lib/scilab/
-                </para>
-              </listitem>
-              <listitem>
-                <para>In the source tree of Scilab, SCI will point to the root
-                  of the source tree /path/to/scilab/modules/call_scilab/.libs/
-                  and /path/to/scilab/.libs/
-                </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>LDFLAGS - The name of the library to link against</para>
-        <itemizedlist>
-          <listitem>
-            <para>Linux/Unix/MacOSX: It is only mandatory to link against
-              scilab. This should include the other libraries.
-            </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist>
-    <para>The following example is a Makefile to build against Scilab binary</para>
-    <programlisting role="example"><![CDATA[ 
+        <para>The following example is a Makefile to build against Scilab binary</para>
+        <programlisting role="example"><![CDATA[ 
 # A sample Makefile building a C code using Call Scilab using Scilab binary
 PATH_SCILAB = /path/to/scilab/ 
 # Note that PATH_SCILAB can be /usr/ is using a packaged version of Scilab.
@@ -98,8 +98,8 @@ all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
  ]]></programlisting>
-    <para>The following example is a Makefile to build against Scilab source tree</para>
-    <programlisting role="example"><![CDATA[ 
+        <para>The following example is a Makefile to build against Scilab source tree</para>
+        <programlisting role="example"><![CDATA[ 
 # A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
 PATH_SCILAB = /path/to/scilab/sources/
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
@@ -111,109 +111,109 @@ all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Running</title>
-    <para>To run an application based on Call Scilab, there are a few other
-      things to set up.
-    </para>
-    <para>Some global variables must me set:</para>
-    <itemizedlist>
-      <listitem>
-        <para>SCI - Path to Scilab files</para>
+    </refsection>
+    <refsection>
+        <title>Running</title>
+        <para>To run an application based on Call Scilab, there are a few other
+            things to set up.
+        </para>
+        <para>Some global variables must me set:</para>
         <itemizedlist>
-          <listitem>
-            <para>Linux/Unix/MacOSX:</para>
-            <itemizedlist>
-              <listitem>
-                <para>In the binary version of Scilab, SCI will point to
-                  /path/to/scilab/share/scilab/
+            <listitem>
+                <para>SCI - Path to Scilab files</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix/MacOSX:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>In the binary version of Scilab, SCI will point to
+                                    /path/to/scilab/share/scilab/
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>In the source tree of Scilab, SCI will point to the root
+                                    of the source tree /path/to/scilab/source/tree/
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                    <listitem>
+                        <para>Windows:</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
+                    .dll, .jnilib...)
                 </para>
-              </listitem>
-              <listitem>
-                <para>In the source tree of Scilab, SCI will point to the root
-                  of the source tree /path/to/scilab/source/tree/
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix/MacOSX:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>In the binary version of Scilab, SCI will point to
+                                    /path/to/scilab/lib/scilab/
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>In the source tree of Scilab, SCI will point to the root
+                                    of the source tree /path/to/scilab/modules/javasci/.libs/ and
+                                    /path/to/scilab/.libs/
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>LD_LIBRARY_PATH (Java) - Paths to Java native libraries
+                    (libjava.so, libjvm.so, libhpi.so)... It is usually provided by the
+                    operating system or by Scilab distribution. Please note that won't be
+                    necessary in Scilab 5.2
                 </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-          <listitem>
-            <para>Windows:</para>
-          </listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>Linux/Unix:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>JAVA_HOME/jre/lib/&lt;arch&gt;/,
+                                    JAVA_HOME/jre/lib/&lt;arch&gt;/server,
+                                    JAVA_HOME/jre/lib/&lt;arch&gt;/native_threads/ (&lt;arch&gt;
+                                    can be i386, etc...)
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                    <listitem>
+                        <para>Mac OS X:</para>
+                    </listitem>
+                    <listitem>
+                        <para>Windows</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
-          .dll, .jnilib...)
+        <para>Note that two environnement variables are taken in account for
+            specific needs:
         </para>
         <itemizedlist>
-          <listitem>
-            <para>Linux/Unix/MacOSX:</para>
-            <itemizedlist>
-              <listitem>
-                <para>In the binary version of Scilab, SCI will point to
-                  /path/to/scilab/lib/scilab/
+            <listitem>
+                <para>
+                    <literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's
+                    GUI)
                 </para>
-              </listitem>
-              <listitem>
-                <para>In the source tree of Scilab, SCI will point to the root
-                  of the source tree /path/to/scilab/modules/javasci/.libs/ and
-                  /path/to/scilab/.libs/
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in
+                    headless mode (no AWT/Swing)
                 </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
+            </listitem>
         </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>LD_LIBRARY_PATH (Java) - Paths to Java native libraries
-          (libjava.so, libjvm.so, libhpi.so)... It is usually provided by the
-          operating system or by Scilab distribution. Please note that won't be
-          necessary in Scilab 5.2
-        </para>
-        <itemizedlist>
-          <listitem>
-            <para>Linux/Unix:</para>
-            <itemizedlist>
-              <listitem>
-                <para>JAVA_HOME/jre/lib/&lt;arch&gt;/,
-                  JAVA_HOME/jre/lib/&lt;arch&gt;/server,
-                  JAVA_HOME/jre/lib/&lt;arch&gt;/native_threads/ (&lt;arch&gt;
-                  can be i386, etc...)
-                </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-          <listitem>
-            <para>Mac OS X:</para>
-          </listitem>
-          <listitem>
-            <para>Windows</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist>
-    <para>Note that two environnement variables are taken in account for
-      specific needs:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's
-          GUI)
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in
-          headless mode (no AWT/Swing)
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 # Serie of declarations to execute my binary.
 
 # With a Scilab source tree:
@@ -235,37 +235,37 @@ $ ./myExample
  
   - 42.    42.  
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="api_scilab">api Scilab</link>
-      </member>
-      <member>
-        <link linkend="call_scilab">call_scilab</link>
-      </member>
-      <member>
-        <link linkend="StartScilab">StartScilab</link>
-      </member>
-      <member>
-        <link linkend="SendScilabJob">SendScilabJob</link>
-      </member>
-      <member>
-        <link linkend="SendScilabJobs">SendScilabJobs</link>
-      </member>
-      <member>
-        <link linkend="DoubleManagement_callscilab">Double Management</link>
-      </member>
-      <member>
-        <link linkend="BooleanManagement_callscilab">Boolean Management</link>
-      </member>
-      <member>
-        <link linkend="ComplexManagement_callscilab">Complex Management</link>
-      </member>
-      <member>
-        <link linkend="StringManagement_callscilab">String Management</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="api_scilab">api Scilab</link>
+            </member>
+            <member>
+                <link linkend="call_scilab">call_scilab</link>
+            </member>
+            <member>
+                <link linkend="StartScilab">StartScilab</link>
+            </member>
+            <member>
+                <link linkend="SendScilabJob">SendScilabJob</link>
+            </member>
+            <member>
+                <link linkend="SendScilabJobs">SendScilabJobs</link>
+            </member>
+            <member>
+                <link linkend="DoubleManagement_callscilab">Double Management</link>
+            </member>
+            <member>
+                <link linkend="BooleanManagement_callscilab">Boolean Management</link>
+            </member>
+            <member>
+                <link linkend="ComplexManagement_callscilab">Complex Management</link>
+            </member>
+            <member>
+                <link linkend="StringManagement_callscilab">String Management</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

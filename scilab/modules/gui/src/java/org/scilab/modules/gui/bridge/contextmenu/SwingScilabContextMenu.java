@@ -62,13 +62,17 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
 
             public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
                 if (uid != null) {
-                    GraphicController.getController().removeRelationShipAndDelete(uid);
+                    if (GraphicController.getController().getObjectFromId(uid) != null) {
+                        GraphicController.getController().removeRelationShipAndDelete(uid);
+                    }
                 }
             }
 
             public void popupMenuCanceled(PopupMenuEvent arg0) {
                 if (uid != null) {
-                    GraphicController.getController().removeRelationShipAndDelete(uid);
+                    if (GraphicController.getController().getObjectFromId(uid) != null) {
+                        GraphicController.getController().removeRelationShipAndDelete(uid);
+                    }
                 }
             }
         });

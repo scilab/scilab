@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ereduc">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ereduc">
     <refnamediv>
         <refname>ereduc</refname>
         <refpurpose>qz変換により列階段形行列を計算</refpurpose>
@@ -92,7 +92,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>m x n</literal>行列<literal>X</literal> (正則である
+            <literal>mx n</literal>行列<literal>X</literal> (正則である
             必要はない)を指定すると,
             関数ereducは,列階段形(台形)の
             ユニタリ変換行列<literal>E=Q*X*Z</literal>
@@ -107,16 +107,12 @@ X=[1 2 3;4 5 6]
 [E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fstair">fstair</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>作者</title>
-        <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
     </refsection>
 </refentry>

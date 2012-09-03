@@ -10,57 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xclear">
-  <refnamediv>
-    <refname>xclear</refname>
-    <refpurpose> clears a graphics window</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xclear([window-id])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>window-id</term>
-        <listitem>
-          <para>integer scalar or vector</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Without any argument, this function clears the current graphic figure by turning its visibility to 'off'.
-      Otherwise it clears the graphics figures whose numbers are included 
-      in the vector <literal>window-id</literal>. For example <literal>xclear(1:3)</literal> clears windows
-      1, 2 and 3.
-      If one of the windows does not 
-      exist, then it is automatically created.
-    </para>
-    <para>
-      Function <literal>xclear</literal> is obsolete.
-      To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xclear">
+    <refnamediv>
+        <refname>xclear</refname>
+        <refpurpose> clears a graphics window</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xclear([window-id])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>window-id</term>
+                <listitem>
+                    <para>integer scalar or vector</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Without any argument, this function clears the current graphic figure by turning its visibility to 'off'.
+            Otherwise it clears the graphics figures whose numbers are included 
+            in the vector <literal>window-id</literal>. For example <literal>xclear(1:3)</literal> clears windows
+            1, 2 and 3.
+            If one of the windows does not 
+            exist, then it is automatically created.
+        </para>
+        <para>
+            Function <literal>xclear</literal> is obsolete.
+            To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 plot2d();
 scf();
 plot3d();
 xclear(0); // clear the first graphic
 xclear(); // clear the current figure
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="clf">clf</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="clf">clf</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

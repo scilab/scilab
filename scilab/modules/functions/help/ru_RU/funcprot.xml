@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="funcprot">
-  <refnamediv>
-    <refname>funcprot</refname>
-    <refpurpose>переключает режим защиты функций Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      funcprot(prot)
-      previousprot = funcprot(prot)
-      prot = funcprot()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>prot</term>
-        <listitem>
-          <para>целое число с возможными значениями 0, 1, 2</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>previousprot</term>
-        <listitem>
-          <para>целое число с возможными значениями 0, 1, 2; возвращает предыдущее значение</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Функции Scilab являются переменными. <literal>funcprot</literal> 
-      позволяет пользователю определить что Scilab должен делать при 
-      переопределении таких переменных.
-    </para>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="funcprot">
+    <refnamediv>
+        <refname>funcprot</refname>
+        <refpurpose>переключает режим защиты функций Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            funcprot(prot)
+            previousprot = funcprot(prot)
+            prot = funcprot()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>prot</term>
+                <listitem>
+                    <para>целое число с возможными значениями 0, 1, 2</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>previousprot</term>
+                <listitem>
+                    <para>целое число с возможными значениями 0, 1, 2; возвращает предыдущее значение</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
         <para>
-          Если <literal>prot == 0</literal>, то ничего особого не будет делаться.
+            Функции Scilab являются переменными. <literal>funcprot</literal> 
+            позволяет пользователю определить что Scilab должен делать при 
+            переопределении таких переменных.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          Если <literal>prot == 1</literal>, то Scilab формирует сообщение с 
-          предупреждением во время переопределения функции (это режим по умолчанию).
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Если <literal>prot == 2</literal>, то Scilab формирует ошибку во время переопределения функции.
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Если <literal>prot == 0</literal>, то ничего особого не будет делаться.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>prot == 1</literal>, то Scilab формирует сообщение с 
+                    предупреждением во время переопределения функции (это режим по умолчанию).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если <literal>prot == 2</literal>, то Scilab формирует ошибку во время переопределения функции.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
 previousprot = funcprot(1)
 deff('x = foo(a)','x = a;')
 deff('x = foo(a)','x = a + 1;')
@@ -67,14 +67,14 @@ deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
 funcprot(previousprot)]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>История</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Предыдущее значение возвращается в виде выходного аргумента при установке нового значения.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Предыдущее значение возвращается в виде выходного аргумента при установке нового значения.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

@@ -10,36 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hess">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="hess">
     <refnamediv>
         <refname>hess</refname>
-        <refpurpose> Hessenberg form</refpurpose>
+        <refpurpose> Forme de Hessenberg  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>H = hess(A)
             [U,H] = hess(A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A  </term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>matrice carrée réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>H</term>
+                <term>H  </term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>matrice carrée réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>U</term>
+                <term>U  </term>
                 <listitem>
-                    <para>orthogonal or unitary square matrix</para>
+                    <para>matrice carrée unitaire
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,33 +50,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[U,H] = hess(A)</literal> produces a unitary matrix
-            <literal>U</literal> and a Hessenberg matrix <literal>H</literal> so that
-            <literal>A = U*H*U'</literal> and <literal>U'*U</literal> =
-            Identity.  By itself, <literal>hess(A)</literal> returns <literal>H</literal>.
+            <literal>[U,H] = hess(A)</literal> Calcule une matrice unitaire <literal>U</literal>
+            et une matrice de Hessenberg <literal>H</literal> telles que <literal>A =
+                U*H*U'
+            </literal>
+            et <literal>U'*U</literal> = Identité. La syntaxe
+            <literal>H=hess(A)</literal> ne renvoie que la matrice de Hessenberg.
         </para>
         <para>
-            The Hessenberg form of a matrix is zero below the first
-            subdiagonal. If the matrix is symmetric or Hermitian, the form is
-            tridiagonal.
+            Les coefficients d'une matrice sous forme de Hessenberg sont nuls
+            sous la première sous-diagonale. Si la matrice est symétrique ou
+            hermitienne, la forme est tridiagonale.
         </para>
     </refsection>
     <refsection>
-        <title>References</title>
-        <para>
-            hess function is based on the Lapack routines
-            DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the complex case.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(3,3);[U,H]=hess(A);
 and( abs(U*H*U'-A)<1.d-10 )
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>
@@ -87,11 +85,10 @@ and( abs(U*H*U'-A)<1.d-10 )
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>Fonctions Utilisées</title>
         <para>
-            <literal>hess</literal> function is based on the Lapack routines
-            DGEHRD, DORGHR for  real matrices and  ZGEHRD, ZORGHR for the
-            complex  case.
+            Le calcul de la forme de Hessenberg determinant est basé sur les routines Lapack :
+            DGEHRD, DORGHR  pour les matrices réelles et ZGEHRD, ZORGHR pour le cas complexe.
         </para>
     </refsection>
 </refentry>

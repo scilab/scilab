@@ -169,7 +169,7 @@ char *allocateText(char *pparentsubwinUID,
                    double y,
                    BOOL autoSize,
                    double userSize[2],
-                   BOOL centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+                   int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
 {
     return NULL;
 }

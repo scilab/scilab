@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listfiles">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="listfiles">
     <refnamediv>
         <refname>listfiles</refname>
         <refpurpose>list of files</refpurpose>
@@ -63,7 +63,7 @@
             <varname>paths</varname> are converted according to the <code>getos() == 'Windows'</code>
             value (see also <link linkend="pathconvert">pathconvert</link>).
             Moreover, if <varname>flagexpand</varname> is true leading strings like
-            <varname>SCIHOME</varname>, <varname>SCI</varname> or
+            <literal>SCIHOME</literal>, <literal>SCI</literal> or
             <literal>~</literal> are expanded using environment variables.
         </para>
         <para>

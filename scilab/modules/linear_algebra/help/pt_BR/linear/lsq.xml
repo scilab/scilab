@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,74 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsq">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq" xml:lang="en">
     <refnamediv>
         <refname>lsq</refname>
-        <refpurpose> linear least square problems.  </refpurpose>
+        <refpurpose>problemas de mínimos quadrados lineares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento </title>
         <synopsis>X=lsq(A,B [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>Real or complex (m x n) matrix</para>
+                    <para>matriz de reais ou de complexos (m x n) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>B</term>
                 <listitem>
-                    <para>real or complex (m x p) matrix</para>
+                    <para>matriz de reais ou de complexos (m x p)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>positive scalar,  used to determine the effective rank of A
-                        (defined as the order of the largest leading triangular 
-                        submatrix R11 in the QR factorization with pivoting of A,
-                        whose estimated condition number &lt;= 1/tol. The tol default value is
-                        set to <literal>sqrt(%eps)</literal>.
+                    <para>escalar positivo, usado para determinar o posto efetivo de A
+                        (definido como sendo a ordem da maior submatriz triangular R11
+                        regente na fatoração QR com pivoteamento de A, cujo número de
+                        condicionamento estimado &lt;= 1/tol. O valor padrão de tol é
+                        <literal>sqrt(%eps)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex (n x p) matrix</para>
+                    <para>matriz de reais ou complexos (n x p)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            <literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
-            the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
-            solution with at at most <literal>rank(A)</literal>  nonzero components per column.
+            <literal>X=lsq(A,B)</literal> computa a solução de mínimo quadrado
+            de menor norma da equação <literal>A*X=B</literal>, enquanto <literal>X=A
+                \ B
+            </literal>
+            computa uma solução de mínimo quadrado com no máximo
+            <literal>posto(A)</literal> componentes não-nulos por coluna.
         </para>
     </refsection>
     <refsection>
-        <title>References</title>
+        <title>Referências</title>
         <para>
-            <literal>lsq</literal> function is  based on the LApack functions DGELSY for
-            real matrices and ZGELSY for complex matrices.
+            <literal>lsq</literal> é baseado nas funções Lapack DGELSY para
+            matrizes de reais e ZGELSY para matrizes de complexos. 
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-//Build the data
+//Construindo os dados
 x=(1:10)';
 
 y1=3*x+4.5+3*rand(x,'normal');
 y2=1.8*x+0.5+2*rand(x,'normal');
 plot2d(x,[y1,y2],[-2,-3])
-//Find the linear regression 
+//Achando a regressão linear 
 A=[x,ones(x)];B=[y1,y2];
 X=lsq(A,B);
 
@@ -85,16 +88,16 @@ y1e=X(1,1)*x+X(2,1);
 y2e=X(1,2)*x+X(2,2);
 plot2d(x,[y1e,y2e],[2,3])
 
-//Difference between lsq(A,b) and A\b
-A=rand(4,2)*rand(2,3);//a rank 2 matrix
+//Diferença entre lsq(A,b) e A\b
+A=rand(4,2)*rand(2,3);//uma matriz de posto 2
 b=rand(4,1);
 X1=lsq(A,b)
 X2=A\b
-[A*X1-b, A*X2-b] //the residuals are the same
+[A*X1-b, A*X2-b] //os resíduos são os mesmos
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também </title>
         <simplelist type="inline">
             <member>
                 <link linkend="backslash">backslash</link>

@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chget">
-  <refnamediv>
-    <refname>taucs_chget</refname>
-    <refpurpose> retrieve the Cholesky factorization at the scilab level  </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>C_ptr  </term>
-        <listitem>
-          <para>a pointer to the Cholesky factorization (C,p : A(p,p)=CC')</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Ct  </term>
-        <listitem>
-          <para>a scilab sparse matrix (you get the upper triangle i.e. Ct is equal to C') </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p  </term>
-        <listitem>
-          <para>column vector storing the permutation</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function  may be used if you want  to plot  the sparse
-      pattern  of the Cholesky factorization (or if you  code something which
-      use the factors). Traditionnaly, the factorization is written :
-    </para>
-    <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="taucs_chget">
+    <refnamediv>
+        <refname>taucs_chget</refname>
+        <refpurpose> retrieve the Cholesky factorization at the scilab level  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>C_ptr  </term>
+                <listitem>
+                    <para>a pointer to the Cholesky factorization (C,p : A(p,p)=CC')</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ct  </term>
+                <listitem>
+                    <para>a scilab sparse matrix (you get the upper triangle i.e. Ct is equal to C') </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p  </term>
+                <listitem>
+                    <para>column vector storing the permutation</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function  may be used if you want  to plot  the sparse
+            pattern  of the Cholesky factorization (or if you  code something which
+            use the factors). Traditionnaly, the factorization is written :
+        </para>
+        <programlisting role=""><![CDATA[ 
 P A P' = C C'
  ]]></programlisting>
-    <para>
-      with P' the permutation matrix associated to the permutation p.
-      As we get the upper triangle Ct (= C'), in scilab syntax we
-      can write :
-    </para>
-    <programlisting role=""><![CDATA[ 
+        <para>
+            with P' the permutation matrix associated to the permutation p.
+            As we get the upper triangle Ct (= C'), in scilab syntax we
+            can write :
+        </para>
+        <programlisting role=""><![CDATA[ 
 A(p,p) = Ct' * Ct
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Example #1 : a small linear test system 
 A = sparse( [ 2 -1  0  0  0;
              -1  2 -1  0  0; 
@@ -89,28 +89,28 @@ cnz_exact = nnz(Ct)
 // do not forget to clear memory
 taucs_chdel(Cptr)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="taucs_chfact">taucs_chfact</link>
-      </member>
-      <member>
-        <link linkend="taucs_chsolve">taucs_chsolve</link>
-      </member>
-      <member>
-        <link linkend="taucs_chdel">taucs_chdel</link>
-      </member>
-      <member>
-        <link linkend="taucs_chinfo">taucs_chinfo</link>
-      </member>
-      <member>
-        <link linkend="taucs_chget">taucs_chget</link>
-      </member>
-      <member>
-        <link linkend="cond2sp">cond2sp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="taucs_chfact">taucs_chfact</link>
+            </member>
+            <member>
+                <link linkend="taucs_chsolve">taucs_chsolve</link>
+            </member>
+            <member>
+                <link linkend="taucs_chdel">taucs_chdel</link>
+            </member>
+            <member>
+                <link linkend="taucs_chinfo">taucs_chinfo</link>
+            </member>
+            <member>
+                <link linkend="taucs_chget">taucs_chget</link>
+            </member>
+            <member>
+                <link linkend="cond2sp">cond2sp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

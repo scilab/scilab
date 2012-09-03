@@ -35,8 +35,14 @@ c     ------list case
 c     ------sparse case
       if(itype.eq.5) then
          call ref2val
-         fin=fin-6
-         fun=27
+         top=topk
+         il=iadr(lstk(top))
+         if(fin.eq.17) then
+               call funnam(ids(1,pt+1),'min',il)
+            else
+               call funnam(ids(1,pt+1),'max',il)
+            endif
+            fun=-1
 c        *call* spelm
          return
       endif
@@ -49,9 +55,9 @@ c     ------call macro
          if(istk(il).lt.0) il=iadr(istk(il+1))
 
          if ((fin.eq.17).or.(fin.eq.54)) then
-            call funnam(ids(1,pt+1),'mini',il)
+            call funnam(ids(1,pt+1),'min',il)
          else
-            call funnam(ids(1,pt+1),'maxi',il)
+            call funnam(ids(1,pt+1),'max',il)
          endif
          fun=-1
          return
@@ -69,9 +75,9 @@ c     ------simple case one argument which is a matrix or vector
       if(gettype(top).ne.1) then
          top=topk
          if((fin.eq.17) .or. (fin.eq.54)) then
-            call funnam(ids(1,pt+1),'mini',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'min',iadr(lstk(top-rhs+1)))
          else
-            call funnam(ids(1,pt+1),'maxi',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'max',iadr(lstk(top-rhs+1)))
          endif
          fun=-1
          return
@@ -182,9 +188,9 @@ c     check argument and compute dimension of the result.
             il=iadr(lstk(top-rhs+i))
             if(istk(il).lt.0) il=iadr(istk(il+1))
             if(fin.eq.17) then
-               call funnam(ids(1,pt+1),'mini',il)
+               call funnam(ids(1,pt+1),'min',il)
             else
-               call funnam(ids(1,pt+1),'maxi',il)
+               call funnam(ids(1,pt+1),'max',il)
             endif
             fun=-1
             return
@@ -273,6 +279,21 @@ c=====maxi mini of list arguments
          call error(999)
          return
       endif
+
+c     first item is a sparse, call overload %sp_max/min  
+      il11 = iadr(il1)
+      if(istk(il11).eq.5) then
+        if ((fin.eq.17).or.(fin.eq.54)) then
+            call funnam(ids(1,pt+1),'min',il11)
+        else
+            call funnam(ids(1,pt+1),'max',il11)
+        endif
+     
+        fun=-1
+        return
+      endif
+
+
       if(.not.getlistmat(fname,topk,topk,1,it1,m,n,lr1,lc1)
      $     ) return
       if ( it1.ne.0) then

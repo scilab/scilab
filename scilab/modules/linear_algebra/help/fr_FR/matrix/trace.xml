@@ -10,22 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trace">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="trace">
     <refnamediv>
-        <refname>trace</refname>
-        <refpurpose> trace</refpurpose>
+        <refname>trace </refname>
+        <refpurpose> trace d'une matrice  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>trace(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>X</term>
+                <term>X  </term>
                 <listitem>
-                    <para>real or complex square matrix, polynomial or rational matrix.</para>
+                    <para>matrice carrée, réelle, complexe, polynomiale ou rationnelle.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,21 +34,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>trace(X)</literal> is the trace of the matrix <literal>X</literal>.
+            <literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
         </para>
         <para>
-            Same as <literal>sum(diag(X))</literal>.
+            Identique à <literal>sum(diag(X))</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(3,3);
 trace(A)-sum(spec(A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="det">det</link>

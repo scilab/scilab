@@ -32,7 +32,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * version.
  */
 @SuppressWarnings(value = { "serial" })
-public class DumpAction extends DefaultAction {
+public final class DumpAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.DUMP;
     /** Icon name of the action */

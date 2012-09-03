@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
+"PO-Revision-Date: 2012-08-24 14:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "Language: uk\n"
 
 #, c-format
@@ -36,10 +36,21 @@ msgstr ""
 "дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"квадратну матрицю.\n"
+"%s: помилкове значення вхідного параметра №%d: значення не повинне містити "
+"%s або %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -95,6 +106,12 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
 "ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
 
 #, c-format
 msgid ""

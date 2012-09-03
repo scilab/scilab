@@ -11,26 +11,26 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="LANGUAGE">
-  <refnamediv>
-    <refname>LANGUAGE</refname>
-    <refpurpose> Variable defining the language (OBSOLETE)</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>LANGUAGE</literal> is obsolete. If you need <literal>LANGUAGE</literal>, add <literal>LANGUAGE=getlanguage()</literal>.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getlanguage">getlanguage</link>
-      </member>
-      <member>
-        <link linkend="getdefaultlanguage">getdefaultlanguage</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="LANGUAGE">
+    <refnamediv>
+        <refname>LANGUAGE</refname>
+        <refpurpose> Variable defining the language (OBSOLETE)</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>LANGUAGE</literal> is obsolete. If you need <literal>LANGUAGE</literal>, add <literal>LANGUAGE=getlanguage()</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getlanguage">getlanguage</link>
+            </member>
+            <member>
+                <link linkend="getdefaultlanguage">getdefaultlanguage</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

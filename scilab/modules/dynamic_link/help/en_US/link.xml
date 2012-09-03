@@ -10,118 +10,118 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="link" xml:lang="en">
-  <refnamediv>
-    <refname>link</refname>
-    <refpurpose>dynamic linker</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>x = link(files [, sub-names,flag]);
-      link(x , sub-names [, flag]);
-      lstID = link("show")
-      lst = link()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>files</term>
-        <listitem>
-          <para>a character string or a vector of character strings, the files
-            names used to define the new entry point (compiled routines, user
-            libraries, system libraries,..)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sub-names</term>
-        <listitem>
-          <para>a character string or a vector of character strings . Name of
-            the entry points in <literal>files</literal> to be linked.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>an integer which gives the id of a shared library linked into
-            Scilab with a previous call to <literal>link</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>
-            character string <literal>'f'</literal> or
-            <literal>'c'</literal> for Fortran (default) or C code.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>listID</term>
-        <listitem>
-          <para>returns the current linked ID routines.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>list</term>
-        <listitem>
-          <para> returns names of functions linked.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>link</literal> is a incremental/dynamic link facility: this
-      command allows to add new compiled Fortran or C routines to Scilab
-      executable code. Linked routines can be called interactively by the
-      function <literal>call</literal>. Linked routines can also be used as
-      "external" for e.g. non linear problem solvers (<literal>ode</literal>,
-      <literal>optim</literal>, <literal>intg</literal>,
-      <literal>dassl</literal>...).
-    </para>
-    <para>
-      <literal>link()</literal> returns a string matrix with linked
-      functions.
-    </para>
-    <para>
-      a call to <literal>link</literal> returns an integer which gives the
-      id of the shared library which is loaded into Scilab. This number can then
-      be used as the first argument of the link function in order to link
-      additional function from the linked shared library. The shared library is
-      removed with the <link linkend="ulink">ulink</link> command.
-    </para>
-    <para>
-      A routine can be unlinked with <link linkend="ulink">ulink</link>.
-      If the linked function has been modified between two links, it is required
-      to <link linkend="ulink">ulink</link> the previous instance before the new 
-      link.
-    </para>
-    <para>
-      <literal>link('show')</literal> returns the current linked
-      routines.
-    </para>
-    <para>To be able to link routines in a system independent way, it is
-      convenient to use the <literal>ilib_for_link</literal> utility function
-      instead of <literal>link</literal>.
-    </para>
-    <para>
-      (Experienced) users may also <literal>link</literal> a new Scilab
-      interface routine to add a set of new functions. See <link linkend="ilib_build">ilib_build</link> and <link linkend="addinter">addinter</link> functions.
-    </para>
-    <para>Number of 'link' in a scilab session can be limited by the operating
-      system. On Windows, you cannot load more than 80 dynamic libraries at the
-      same time.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="link" xml:lang="en">
+    <refnamediv>
+        <refname>link</refname>
+        <refpurpose>dynamic linker</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>x = link(files [, sub-names,flag]);
+            link(x , sub-names [, flag]);
+            lstID = link("show")
+            lst = link()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>a character string or a vector of character strings, the files
+                        names used to define the new entry point (compiled routines, user
+                        libraries, system libraries,..)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sub-names</term>
+                <listitem>
+                    <para>a character string or a vector of character strings . Name of
+                        the entry points in <literal>files</literal> to be linked.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>an integer which gives the id of a shared library linked into
+                        Scilab with a previous call to <literal>link</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character string <literal>'f'</literal> or
+                        <literal>'c'</literal> for Fortran (default) or C code.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>listID</term>
+                <listitem>
+                    <para>returns the current linked ID routines.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>list</term>
+                <listitem>
+                    <para> returns names of functions linked.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>link</literal> is a incremental/dynamic link facility: this
+            command allows to add new compiled Fortran or C routines to Scilab
+            executable code. Linked routines can be called interactively by the
+            function <literal>call</literal>. Linked routines can also be used as
+            "external" for e.g. non linear problem solvers (<literal>ode</literal>,
+            <literal>optim</literal>, <literal>intg</literal>,
+            <literal>dassl</literal>...).
+        </para>
+        <para>
+            <literal>link()</literal> returns a string matrix with linked
+            functions.
+        </para>
+        <para>
+            a call to <literal>link</literal> returns an integer which gives the
+            id of the shared library which is loaded into Scilab. This number can then
+            be used as the first argument of the link function in order to link
+            additional function from the linked shared library. The shared library is
+            removed with the <link linkend="ulink">ulink</link> command.
+        </para>
+        <para>
+            A routine can be unlinked with <link linkend="ulink">ulink</link>.
+            If the linked function has been modified between two links, it is required
+            to <link linkend="ulink">ulink</link> the previous instance before the new 
+            link.
+        </para>
+        <para>
+            <literal>link('show')</literal> returns the current linked
+            routines.
+        </para>
+        <para>To be able to link routines in a system independent way, it is
+            convenient to use the <literal>ilib_for_link</literal> utility function
+            instead of <literal>link</literal>.
+        </para>
+        <para>
+            (Experienced) users may also <literal>link</literal> a new Scilab
+            interface routine to add a set of new functions. See <link linkend="ilib_build">ilib_build</link> and <link linkend="addinter">addinter</link> functions.
+        </para>
+        <para>Number of 'link' in a scilab session can be limited by the operating
+            system. On Windows, you cannot load more than 80 dynamic libraries at the
+            same time.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //Example of the use of ilib_for_link with  a simple C code
 cd TMPDIR
 f1=['#include <math.h>'
@@ -151,34 +151,34 @@ y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'
 y1-(sin(a)+b)
 exec cleaner.sce;
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ulink">ulink</link>
-      </member>
-      <member>
-        <link linkend="call">call</link>
-      </member>
-      <member>
-        <link linkend="external">external</link>
-      </member>
-      <member>
-        <link linkend="c_link">c_link</link>
-      </member>
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
-      <member>
-        <link linkend="ilib_build">ilib_build</link>
-      </member>
-      <member>
-        <link linkend="api_scilab">api_scilab</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ulink">ulink</link>
+            </member>
+            <member>
+                <link linkend="call">call</link>
+            </member>
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="c_link">c_link</link>
+            </member>
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

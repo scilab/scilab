@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="print" xml:lang="en">
-  <refnamediv>
-    <refname>print</refname>
-    <refpurpose>imprime variáveis em um arquivo</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Imprime <literal>xi</literal> no arquivo
-      <literal>'file-name'</literal> com o formato corrente, i.e., o formato
-      utilizado pelo Scilab para exibir variáveis. Todos os tipos de variáveis
-      podem ser impressos.
-    </para>
-    <para>
-      Note que <literal>xi</literal> deve ser uma variável nomeada. Com
-      expressões, a exibição da parte do nome da variável é imprevisível.
-    </para>
-    <para>
-      <literal>print(%io(2),...)</literal> imprime na janela do Scilab.
-      Esta sintaxe pode ser utilizada para exibir variáveis dentro de um
-      macro.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="print" xml:lang="en">
+    <refnamediv>
+        <refname>print</refname>
+        <refpurpose>imprime variáveis em um arquivo</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Imprime <literal>xi</literal> no arquivo
+            <literal>'file-name'</literal> com o formato corrente, i.e., o formato
+            utilizado pelo Scilab para exibir variáveis. Todos os tipos de variáveis
+            podem ser impressos.
+        </para>
+        <para>
+            Note que <literal>xi</literal> deve ser uma variável nomeada. Com
+            expressões, a exibição da parte do nome da variável é imprevisível.
+        </para>
+        <para>
+            <literal>print(%io(2),...)</literal> imprime na janela do Scilab.
+            Esta sintaxe pode ser utilizada para exibir variáveis dentro de um
+            macro.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
 print(%io(2),a,p,l)
 write(%io(2),a)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="write">write</link>
-      </member>
-      <member>
-        <link linkend="read">read</link>
-      </member>
-      <member>
-        <link linkend="format">format</link>
-      </member>
-      <member>
-        <link linkend="printf">printf</link>
-      </member>
-      <member>
-        <link linkend="disp">disp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
+            <member>
+                <link linkend="printf">printf</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

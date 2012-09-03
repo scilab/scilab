@@ -11,37 +11,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="getdefaultlanguage">
-  <refnamediv>
-    <refname>getdefaultlanguage</refname>
-    <refpurpose>возвращает язык, используемый Scilab'ом по умолчанию</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>getdefaultlanguage()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>getdefaultlanguage()</literal> возвращает язык, используемый Scilab'ом по умолчанию.
-      По умолчанию эта функция должна возвращать <literal>en_US</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getdefaultlanguage">
+    <refnamediv>
+        <refname>getdefaultlanguage</refname>
+        <refpurpose>возвращает язык, используемый Scilab'ом по умолчанию</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>getdefaultlanguage()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>getdefaultlanguage()</literal> возвращает язык, используемый Scilab'ом по умолчанию.
+            По умолчанию эта функция должна возвращать <literal>en_US</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 getdefaultlanguage()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="setlanguage">setlanguage</link>
-      </member>
-      <member>
-        <link linkend="getlanguage">getlanguage</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setlanguage">setlanguage</link>
+            </member>
+            <member>
+                <link linkend="getlanguage">getlanguage</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

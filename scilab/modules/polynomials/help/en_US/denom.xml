@@ -10,50 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="denom">
-  <refnamediv>
-    <refname>denom</refname>
-    <refpurpose> denominator</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>den=denom(r)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>rational or polynomial or constant matrix.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>den</term>
-        <listitem>
-          <para>polynomial matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>den=denom(r)</literal> returns the denominator of a rational matrix.
-    </para>
-    <para>
-      Since rationals are internally represented as
-      <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-      <literal>denom(r</literal>) is the same as <literal>r(3)</literal>,
-      <literal>r('den')</literal> or <literal>r.den</literal>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="numer">numer</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="denom">
+    <refnamediv>
+        <refname>denom</refname>
+        <refpurpose> denominator</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>den=denom(r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>rational or polynomial or constant matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>polynomial matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>den=denom(r)</literal> returns the denominator of a rational matrix.
+        </para>
+        <para>
+            Since rationals are internally represented as
+            <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
+            <literal>denom(r</literal>) is the same as <literal>r(3)</literal>,
+            <literal>r('den')</literal> or <literal>r.den</literal>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="numer">numer</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="splin3d" xml:lang="en">
-  <refnamediv>
-    <refname>splin3d</refname>
-    <refpurpose>spline gridded 3d interpolation</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x,y,z</term>
-        <listitem>
-          <para>strictly increasing row vectors (each with at least 3
-            components) defining the 3d interpolation grid
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>v</term>
-        <listitem>
-          <para>nx x ny x nz hypermatrix (nx, ny, nz being the length of
-            <literal>x</literal>, <literal>y</literal> and
-            <literal>z</literal>)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>order</term>
-        <listitem>
-          <para>(optional) a 1x3 vector [kx,ky,kz] given the order of the
-            tensor spline in each direction (default [4,4,4], i.e. tricubic
-            spline)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>tl</term>
-        <listitem>
-          <para>a tlist of type splin3d defining the spline</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function computes a 3d tensor spline <emphasis>s</emphasis>
-      which interpolates the <emphasis>(xi,yj,zk,vijk)</emphasis> points, ie, we
-      have <emphasis>s(xi,yj,zk)=vijk</emphasis> for all
-      <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> and
-      <emphasis>k=1,..,nz</emphasis>. The resulting spline
-      <emphasis>s</emphasis> is defined by <literal>tl</literal> which consists
-      in a B-spline-tensor representation of <emphasis>s</emphasis>. The
-      evaluation of <emphasis>s</emphasis> at some points must be done by the
-      <link linkend="interp3d">interp3d</link> function (to compute
-      <emphasis>s</emphasis> and its first derivatives) or by the <link linkend="bsplin3val">bsplin3val</link> function (to compute an arbitrary
-      derivative of <emphasis>s</emphasis>) . Several kind of splines may be
-      computed by selecting the order of the spline in each direction
-      <literal>order=[kx,ky,kz]</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Remark</title>
-    <para>This function works under the conditions:</para>
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../mml/splin3d_equation1.mml"/>
-        </imageobject>
-      </mediaobject>
-    </informalequation>
-    <para>an error being issued when they are not respected.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin3d" xml:lang="en">
+    <refnamediv>
+        <refname>splin3d</refname>
+        <refpurpose>spline gridded 3d interpolation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y,z</term>
+                <listitem>
+                    <para>strictly increasing row vectors (each with at least 3
+                        components) defining the 3d interpolation grid
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>nx x ny x nz hypermatrix (nx, ny, nz being the length of
+                        <literal>x</literal>, <literal>y</literal> and
+                        <literal>z</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>(optional) a 1x3 vector [kx,ky,kz] given the order of the
+                        tensor spline in each direction (default [4,4,4], i.e. tricubic
+                        spline)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tl</term>
+                <listitem>
+                    <para>a tlist of type splin3d defining the spline</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function computes a 3d tensor spline <emphasis>s</emphasis>
+            which interpolates the <emphasis>(xi,yj,zk,vijk)</emphasis> points, ie, we
+            have <emphasis>s(xi,yj,zk)=vijk</emphasis> for all
+            <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> and
+            <emphasis>k=1,..,nz</emphasis>. The resulting spline
+            <emphasis>s</emphasis> is defined by <literal>tl</literal> which consists
+            in a B-spline-tensor representation of <emphasis>s</emphasis>. The
+            evaluation of <emphasis>s</emphasis> at some points must be done by the
+            <link linkend="interp3d">interp3d</link> function (to compute
+            <emphasis>s</emphasis> and its first derivatives) or by the <link linkend="bsplin3val">bsplin3val</link> function (to compute an arbitrary
+            derivative of <emphasis>s</emphasis>) . Several kind of splines may be
+            computed by selecting the order of the spline in each direction
+            <literal>order=[kx,ky,kz]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
+        <para>This function works under the conditions:</para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/splin3d_equation1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>an error being issued when they are not respected.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // example 1
 // =============================================================================
 
@@ -133,28 +133,28 @@ plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
 show_window()
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="linear_interpn">linear_interpn</link>
-      </member>
-      <member>
-        <link linkend="interp3d">interp3d</link>
-      </member>
-      <member>
-        <link linkend="bsplin3val">bsplin3val</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="linear_interpn">linear_interpn</link>
+            </member>
+            <member>
+                <link linkend="interp3d">interp3d</link>
+            </member>
+            <member>
+                <link linkend="bsplin3val">bsplin3val</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

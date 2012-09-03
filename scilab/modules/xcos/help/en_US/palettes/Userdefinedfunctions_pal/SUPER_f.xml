@@ -21,191 +21,191 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SUPER_f">
-  <refnamediv>
-    <refname>SUPER_f</refname>
-    <refpurpose>Super block</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/SUPER_f.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_SUPER_f">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SUPER_f">
+    <refnamediv>
+        <refname>SUPER_f</refname>
+        <refpurpose>Super block</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="SUPER_f">Super block</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/SUPER_f.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_SUPER_f">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_SUPER_f">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_SUPER_f">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_SUPER_f">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_SUPER_f">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="SeeAlso_SUPER_f">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SUPER_f">Super block</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_SUPER_f">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_SUPER_f">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_SUPER_f">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_SUPER_f">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="SeeAlso_SUPER_f">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_SUPER_f">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_SUPER_f">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_SUPER_f">
+        <title>Description</title>
         <para>
-          <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_SUPER_f">
-    <title>Description</title>
-    <para>
-      This block opens up a new Xcos window for editing a new block
-      diagram. This diagram describes the internal functions of the super
-      block.  
-    </para>
-    <para>
-      Super block inputs and outputs (regular or event) are
-      designated by special (input or output) blocks.  
-    </para>
-    <para>
-      Regular input blocks
-      must be numbered from 1 to the number of regular input ports. Regular
-      input ports of the super block are numbered from the top of the block
-      shape to the bottom.  Regular output ports must be numbered from 1 to
-      the number of regular output ports. Regular output ports of the super
-      block are numbered from the top of the block shape to the bottom.
-      Event input blocks must be numbered from 1 to the number of event
-      input ports. Event input ports of the super block are numbered from
-      the left of the block shape to the right.  Event output ports must be
-      numbered from 1 to the number of event output ports. Event output
-      ports of the super block are numbered from the left of the block shape
-      to the right.
-      
-    </para>
-  </refsection>
-  <refsection id="Defaultproperties_SUPER_f">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            This block opens up a new Xcos window for editing a new block
+            diagram. This diagram describes the internal functions of the super
+            block.  
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            Super block inputs and outputs (regular or event) are
+            designated by special (input or output) blocks.  
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+            Regular input blocks
+            must be numbered from 1 to the number of regular input ports. Regular
+            input ports of the super block are numbered from the top of the block
+            shape to the bottom.  Regular output ports must be numbered from 1 to
+            the number of regular output ports. Regular output ports of the super
+            block are numbered from the top of the block shape to the bottom.
+            Event input blocks must be numbered from 1 to the number of event
+            input ports. Event input ports of the super block are numbered from
+            the left of the block shape to the right.  Event output ports must be
+            numbered from 1 to the number of event output ports. Event output
+            ports of the super block are numbered from the left of the block shape
+            to the right.
+            
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">super</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_SUPER_f">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Misc/SUPER_f.sci</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Misc/DSUPER.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="SeeAlso_SUPER_f">
-    <title>See also</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <xref linkend="DSUPER">Masked super block</xref>
-        </term>
-        <listitem>
-          <para>Any super block can be masked to provide a black box implementation with parameters.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+    </refsection>
+    <refsection id="Defaultproperties_SUPER_f">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">super</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_SUPER_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Misc/SUPER_f.sci</para>
+            </listitem>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Misc/DSUPER.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="SeeAlso_SUPER_f">
+        <title>See also</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <xref linkend="DSUPER">Masked super block</xref>
+                </term>
+                <listitem>
+                    <para>Any super block can be masked to provide a black box implementation with parameters.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
 </refentry>

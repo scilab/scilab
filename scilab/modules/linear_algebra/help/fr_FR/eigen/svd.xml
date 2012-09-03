@@ -10,13 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="svd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="svd">
     <refnamediv>
-        <refname>svd</refname>
-        <refpurpose>  singular value decomposition</refpurpose>
+        <refname>svd </refname>
+        <refpurpose>  décomposition en valeurs singulières  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>s=svd(X)
             [U,S,V]=svd(X)
             [U,S,V]=svd(X,0) (obsolete)
@@ -25,36 +25,41 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>X</term>
+                <term>X  </term>
                 <listitem>
-                    <para>a real or complex matrix</para>
+                    <para>matrice réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s</term>
+                <term>s  </term>
                 <listitem>
-                    <para>real vector (singular values)</para>
+                    <para>vecteur réel (valeurs singulières)
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>S</term>
+                <term>S  </term>
                 <listitem>
-                    <para>real diagonal matrix (singular values)</para>
+                    <para>matrice réelle diagonale (valeurs singulières sur la diagonale)
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>U,V</term>
+                <term>U,V  </term>
                 <listitem>
-                    <para>orthogonal or unitary square matrices (singular vectors).</para>
+                    <para>matrices carrées unitaires (vecteurs singuliers).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>tol</term>
+                <term>tol  </term>
                 <listitem>
-                    <para>real number</para>
+                    <para>nombre réel positif
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,31 +67,32 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[U,S,V] = svd(X)</literal> produces a diagonal matrix
-            <literal>S</literal> , of the same dimension as <literal>X</literal> and with
-            nonnegative diagonal elements in decreasing order, and unitary
-            matrices <literal>U</literal> and <literal>V</literal> so that <literal>X = U*S*V'</literal>.
+            <literal>[U,S,V]=svd(X)</literal> renvoie une matrice diagonale <literal>S</literal>, de même
+            dimension que <literal>X</literal> avec des éléments diagonaux positifs classés
+            par ordre décroissant, ainsi que deux matrices unitaires <literal>U</literal>
+            et <literal>V</literal> telles que 
+            <literal>X = U*S*V'</literal>.<literal>[U,S,V]=svd(X,"e")</literal>
+            renvoie la décomposition réduite : si <literal>X</literal> est une
+            matrice <literal>m x n </literal> et que <literal>m &gt; n </literal> alors
+            seulement les n premières colonnes de <literal>U</literal> sont
+            calculées et <literal>S</literal> est <literal>n x n </literal>.
         </para>
         <para>
-            <literal>[U,S,V] = svd(X,0)</literal> produces the "economy
-            size" decomposition. If <literal>X</literal> is m-by-n with m &gt;
-            n, then only the first n columns of <literal>U</literal> are computed
-            and <literal>S</literal> is n-by-n.
+            <literal>s=svd(X)</literal> renvoie un vecteur <literal>s</literal> contenant
+            les valeurs singulières.
         </para>
         <para>
-            <literal>s= svd(X)</literal> by itself, returns a vector <literal>s</literal>
-            containing the singular values.
+            <literal>[U,S,V,rk]=svd(X [,tol])</literal> renvoie de plus
+            <literal>rk</literal>, le rang "numérique" de <literal>X</literal>
+            c'est à dire le nombre de valeurs singulières plus grandes
+            que <literal>tol</literal>.
         </para>
         <para>
-            <literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
-            singular values larger than <literal>tol</literal>.
-        </para>
-        <para>
-            The default value of <literal>tol</literal> is the same as in <literal>rank</literal>.
+            La valeur par défaut de <literal>tol</literal> est la même que pour la fonction <literal>rank</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 X=rand(4,2)*rand(2,4)
 svd(X)
@@ -94,7 +100,7 @@ sqrt(spec(X*X'))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rank">rank</link>
@@ -117,10 +123,10 @@ sqrt(spec(X*X'))
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>Fonctions Utilisées</title>
         <para>
-            svd decompositions are based on  the Lapack routines DGESVD for
-            real matrices and  ZGESVD for the complex case.
+            la décomposition svd est basée sur les routines  DGESVD pour les
+            matrices réelles et  ZGESVD pour le cas complexe.
         </para>
     </refsection>
 </refentry>

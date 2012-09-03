@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ * Copyright (C) 2009-2010 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,23 +20,23 @@ int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
     int* piAddr = NULL;
     char* pstVarName = NULL;
 
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstVarName))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstVarName))
     {
         //error
         return 1;
     }
 
-    if(isNamedVarExist(pvApiCtx, pstVarName))
+    if (isNamedVarExist(pvApiCtx, pstVarName))
     {
         iRet = deleteNamedVariable(pvApiCtx, pstVarName);
     }

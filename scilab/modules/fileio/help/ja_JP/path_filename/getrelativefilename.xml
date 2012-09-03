@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getrelativefilename">
+    <refnamediv>
+        <refname>getrelativefilename</refname>
+        <refpurpose>絶対ディレクトリおよび絶対ファイル名を指定すると,
+            相対ファイル名を返す.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>rel_file = getrelativefilename(abs_dir,abs_file)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>abs_dir</term>
+                <listitem>
+                    <para>文字列 : 絶対ディレクトリ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abs_file</term>
+                <listitem>
+                    <para>文字列 : 絶対ファイル名</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rel_file</term>
+                <listitem>
+                    <para>文字列 : 相対ファイル名</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>絶対ディレクトリおよび絶対ファイル名を指定すると,
+            相対ファイル名を返します.
+        </para>
+        <para>例えば, カレントのディレクトが C:\scilab\bin の場合,ファイル名
+            C:\scilab\modules\helptools\readme.txt が指定されると,
+            getrelativefilename は ..\modules\helptools\readme.txt を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+if getos() == "Windows" then
+  getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+  getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+  getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
+  getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
+  getrelativefilename(pwd(),WSCI+'\bin\Wscilex')
+else
+  getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+  getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+  getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
+  getrelativefilename(pwd(),SCI+'/bin/scilex')
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="erfc" xml:lang="fr">
-  <refnamediv>
-    <refname>erfc</refname>
-    <refpurpose>fonction erreur complémentaire.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>y = erfc(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>vecteur réel</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>vecteur réel (de même taille que x)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>erfc</literal> calcule la fonction erreur
-      complémentaire.
-    </para>
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../mml/erfc_equation1.mml"/>
-        </imageobject>
-      </mediaobject>
-    </informalequation>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erfc" xml:lang="fr">
+    <refnamediv>
+        <refname>erfc</refname>
+        <refpurpose>fonction erreur complémentaire.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>y = erfc(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vecteur réel</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vecteur réel (de même taille que x)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>erfc</literal> calcule la fonction erreur
+            complémentaire.
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/erfc_equation1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 erf([0.5,0.2])+erfc([0.5,0.2])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="erf">erf</link>
-      </member>
-      <member>
-        <link linkend="erfcx">erfcx</link>
-      </member>
-      <member>
-        <link linkend="calerf">calerf</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="erf">erf</link>
+            </member>
+            <member>
+                <link linkend="erfcx">erfcx</link>
+            </member>
+            <member>
+                <link linkend="calerf">calerf</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="zpch1">
+    <refnamediv>
+        <refname>zpch1</refname>
+        <refpurpose>チェビシェフアナログフィルタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[poles,gain]=zpch1(n,epsilon,omegac)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数 (フィルタ次数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>epsilon</term>
+                <listitem>
+                    <para>
+                        実数 : 通過域のリップル (<literal>0&lt;epsilon&lt;1</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegac</term>
+                <listitem>
+                    <para>実数 : カットオフ周波数(Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>poles</term>
+                <listitem>
+                    <para>結果のフィルタ極</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>結果のフィルタゲイン</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明n</title>
+        <para>
+            1形チェビシェフフィルタの極.
+            伝達関数は以下のように指定されます :
+        </para>
+        <programlisting role=""><![CDATA[ 
+H(s)=gain/poly(poles,'s')
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="det">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="det">
     <refnamediv>
         <refname>det</refname>
         <refpurpose>行列式</refpurpose>
@@ -59,7 +59,7 @@
             <literal>detr(X)</literal>に等しい.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <para>
             det の計算は Lapack ルーチン DGETRF (実数行列の場合) および
@@ -71,7 +71,7 @@
         <programlisting role="example"><![CDATA[ 
 x=poly(0,'x');
 det([x,1+x;2-x,x^2])
-w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   // 線形システムのゼロ
+w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
 A=rand(3,3);
 det(A), prod(spec(A))
  ]]></programlisting>

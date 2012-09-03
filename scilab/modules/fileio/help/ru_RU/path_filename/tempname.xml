@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tempname">
+    <refnamediv>
+        <refname>tempname</refname>
+        <refpurpose>
+            создаёт файл с уникальным именем
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>tmp_name = tempname([prefix])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>tmp_name</term>
+                <listitem>
+                    <para>строка: имя файла</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>prefix</term>
+                <listitem>
+                    <para>
+                        строка: префикс имени файла (в Windows максимум 3 символа).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>tempname</function> создаёт файл с уникальным 
+            именем в директории <literal>TMPDIR</literal>.
+        </para>
+        <para>
+            <code>tmp_name = tempname()</code> возвращает уникальную строку,  
+            <varname>tmp_name</varname>, подходящую для использования в 
+            качестве временного файла.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+      F1 = tempname()
+      isfile(F1)
+      F2 = tempname('TMP')
+      isfile(F2)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    Введена функция <function>tempname</function>.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

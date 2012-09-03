@@ -10,77 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Common_getvaraddr_API" xml:lang="en">
-  <refnamediv>
-    <refname>Variable Reference (Scilab gateway)</refname>
-    <refpurpose>
-      How to get the address of an argument or a variable in a gateway.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <para>Input argument profile:</para>
-    <synopsis>SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)</synopsis>
-    <para>Named variable profile:</para>
-    <synopsis>SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>_pvCtx</term>
-        <listitem>
-          <para>
-            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_iVar</term>
-        <listitem>
-          <para>
-            Position of the argument in the function call.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_pstName</term>
-        <listitem>
-          <para>
-            Scilab variable name.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>_piAddress</term>
-        <listitem>
-          <para>
-            Return address of the Scilab variable.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>SciErr</term>
-        <listitem>
-          <para>
-            Error structure where is stored errors messages history and first error number.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function retrieves the address of an argument in a gateway.</para>
-  </refsection>
-  <refsection>
-    <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
-    <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
-    <!--Lib_name: common_function-->
-    <!--Func_list: common_function-->
-    <title>Gateway Source</title>
-    <programlisting role="code_gateway">
-    <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_getvaraddr_API" xml:lang="en">
+    <refnamediv>
+        <refname>Variable Reference (Scilab gateway)</refname>
+        <refpurpose>
+            How to get the address of an argument or a variable in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position of the argument in the function call.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Scilab variable name.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Return address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function retrieves the address of an argument in a gateway.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        <!--Lib_name: common_function-->
+        <!--Func_list: common_function-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -224,11 +224,12 @@ SciErr printf_info(int _iVar)
     }
     return sciErr;
 }
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Scilab test script</title>
-    <programlisting role="code_scilab"><![CDATA[ 
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -237,5 +238,5 @@ l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 common_function(l(1:$))
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

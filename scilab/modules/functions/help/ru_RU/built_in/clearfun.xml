@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clearfun">
+    <refnamediv>
+        <refname>clearfun</refname>
+        <refpurpose>удаляет примитивы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>ret=clearfun('name')</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>'name'</term>
+                <listitem>
+                    <para>имя примитива</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ret</term>
+                <listitem>
+                    <para>логическое значение</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>clearfun('name')</literal> удаляет примитив с именем <literal>'name'</literal> 
+            из набора примитивов (встроенных функций)from the set of
+            primitives (built-in functions). <literal>clearfun</literal> возвращает 
+            <literal>%t</literal> или <literal>%f</literal>. Эта функция позволяет переименовывать
+            примитивы: примитивы Scilab'а могут быть заменены функцией, определённой пользователем.
+            Для экспертов...
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="newfun">newfun</link>
+            </member>
+            <member>
+                <link linkend="funptr">funptr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

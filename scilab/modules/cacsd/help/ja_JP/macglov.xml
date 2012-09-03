@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="macglov">
-  <refnamediv>
-    <refname>macglov</refname>
-    <refpurpose> Mac Farlane Glover 問題</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼出し手順</title>
-    <synopsis>[P,r]=macglov(Sl)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>Sl</term>
-        <listitem>
-          <para>
-            線形システム (<literal>syslin</literal> リスト)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>P</term>
-        <listitem>
-          <para>
-            線形システム (<literal>syslin</literal> リスト), ``拡張'' プラント
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>
-            1x2 ベクトル, <literal>P22</literal>の次元
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>[P,r]=macglov(Sl)</literal> は,
-      Glover-McFarlane問題の
-      標準プラント<literal>P</literal>を返します.
-    </para>
-    <para>
-      この問題の場合,
-      ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
-      ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,
-    </para>
-    <para>
-      gama_optimal = <literal>1/sqrt(ro_optimal)</literal>
-    </para>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="macglov">
+    <refnamediv>
+        <refname>macglov</refname>
+        <refpurpose> Mac Farlane Glover 問題</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[P,r]=macglov(Sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト), ``拡張'' プラント
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 ベクトル, <literal>P22</literal>の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[P,r]=macglov(Sl)</literal> は,
+            Glover-McFarlane問題の
+            標準プラント<literal>P</literal>を返します.
+        </para>
+        <para>
+            この問題の場合,
+            ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
+            ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,
+        </para>
+        <para>
+            gama_optimal = <literal>1/sqrt(ro_optimal)</literal>
+        </para>
+    </refsection>
 </refentry>

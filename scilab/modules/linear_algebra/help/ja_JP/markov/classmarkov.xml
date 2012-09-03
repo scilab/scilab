@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="classmarkov">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="classmarkov">
     <refnamediv>
         <refname>classmarkov</refname>
         <refpurpose>マルコフ行列の再帰的(recurrent)および一時的(transient)なクラス</refpurpose>
@@ -57,7 +57,7 @@
         <para>
             以下のような置換ベクトル<literal>perm</literal>を返します
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
@@ -85,7 +85,7 @@ P=genmarkov([2,1],2,'perm')
 P(perm,perm)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

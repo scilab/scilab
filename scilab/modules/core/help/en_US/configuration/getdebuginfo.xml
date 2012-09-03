@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getdebuginfo" xml:lang="en">
-  <refnamediv>
-    <refname>getdebuginfo</refname>
-    <refpurpose>get information about Scilab to debug</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>getdebuginfo()
-      dynamic_info = getdebuginfo();
-      [dynamic_info,static_info] = getdebuginfo();
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>getdebuginfo</literal> gets information about Scilab to debug.
-    </para>
-    <para>
-      <literal>dynamic_info = getdebuginfo();</literal> returns information about your
-      system.
-    </para>
-    <para>
-      <literal>[dynamic_info,static_info] = getdebuginfo();</literal> returns information
-      about your system and about Scilab.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="getversion">getversion</link>
-      </member>
-      <member>
-        <link linkend="getos">getos</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getdebuginfo" xml:lang="en">
+    <refnamediv>
+        <refname>getdebuginfo</refname>
+        <refpurpose>get information about Scilab to debug</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>getdebuginfo()
+            dynamic_info = getdebuginfo();
+            [dynamic_info,static_info] = getdebuginfo();
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>getdebuginfo</literal> gets information about Scilab to debug.
+        </para>
+        <para>
+            <literal>dynamic_info = getdebuginfo();</literal> returns information about your
+            system.
+        </para>
+        <para>
+            <literal>[dynamic_info,static_info] = getdebuginfo();</literal> returns information
+            about your system and about Scilab.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getversion">getversion</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -10,72 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="en">
-  <refnamediv>
-    <refname>modulo</refname>
-    <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="pmodulo">
-    <refname>pmodulo</refname>
-    <refpurpose>positive arithmetic remainder modulo m</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>i = modulo(n,m)</synopsis>
-    <synopsis>i = pmodulo(n,m)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>real vector or matrix </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>m</term>
-        <listitem>
-          <para>real vector or matrix </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>modulo</literal> computes <literal>i = n (modulo
-        m)
-      </literal>
-      i.e. remainder of <literal>n</literal> divided by
-      <literal>m</literal> (<literal>n</literal> and <literal>m</literal>
-      are integers).
-    </para>
-    <para>
-      <literal>i = n - m .* int (n ./ m)</literal>. Here the answer may be negative
-      if <literal>n</literal> or <literal>m</literal> are negative.
-    </para>
-    <para>
-      <literal>pmodulo</literal> computes <literal>i = n - m .* floor (n
-        ./ m)
-      </literal>
-      ,the answer is positive or zero.
-    </para>
-    <para>
-      <literal>modulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>modulo(x,0)</literal> returns %nan.
-    </para>
-    <para>
-      <literal>pmodulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>pmodulo(x,0)</literal> returns %nan.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="en">
+    <refnamediv>
+        <refname>modulo</refname>
+        <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="pmodulo">
+        <refname>pmodulo</refname>
+        <refpurpose>positive arithmetic remainder modulo m</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>i = modulo(n,m)</synopsis>
+        <synopsis>i = pmodulo(n,m)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>real vector or matrix </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>real vector or matrix </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>modulo</function> computes <code>i = n (modulo
+                m)
+            </code>
+            i.e. remainder of <varname>n</varname> divided by
+            <varname>m</varname> (<varname>n</varname> and <varname>m</varname>
+            are integers).
+        </para>
+        <para>
+            <code>i = n - m .* int (n ./ m)</code>. Here the answer may be negative
+            if <varname>n</varname> or <varname>m</varname> are negative.
+        </para>
+        <para>
+            <function>pmodulo</function> computes <code>i = n - m .* floor (n
+                ./ m)
+            </code>
+            , the answer is positive or zero.
+        </para>
+        <para>
+            <code>modulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>modulo(x,0)</code> returns <constant>%nan</constant>.
+        </para>
+        <para>
+            <code>pmodulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>pmodulo(x,0)</code> returns <constant>%nan</constant>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 n=[1,2,10,15];m=[2,2,3,5];
 modulo(n,m)
 
 modulo(-3,9)
 pmodulo(-3,9)
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

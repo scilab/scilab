@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getrelativefilename">
+    <refnamediv>
+        <refname>getrelativefilename</refname>
+        <refpurpose>given an absolute directory and an absolute filename, returns a relative file name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>abs_dir</term>
+                <listitem>
+                    <para>a character string: an absolute directory.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abs_file</term>
+                <listitem>
+                    <para>a character string: an absolute filename.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rel_file</term>
+                <listitem>
+                    <para>a character string: relative filename.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given an absolute directory <varname>abs_dir</varname> and an absolute filename <varname>abs_file</varname>,  <function>getrelativefilename</function> returns a
+            relative file name <varname>rel_file</varname>.
+        </para>
+        <para>
+            For example, if the current directory is
+            <literal>C:\scilab\bin</literal> and the filename
+            <literal>C:\scilab\modules\helptools\readme.txt</literal> is
+            given, <function>getrelativefilename</function> will return
+            <literal>..\modules\helptools\readme.txt</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+getrelativefilename(pwd(), SCI+'/COPYING')
+getrelativefilename(TMPDIR, SCI+'/COPYING')
+getrelativefilename(SCI+'/bin', SCI+'/COPYING')
+getrelativefilename(pwd(), SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(TMPDIR, SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

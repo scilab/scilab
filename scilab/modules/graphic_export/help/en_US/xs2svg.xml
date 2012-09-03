@@ -10,101 +10,101 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xs2svg" xml:lang="en">
-  <refnamediv>
-    <refname>xs2svg</refname>
-    <refpurpose>Export graphics to SVG.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xs2svg(win_num, file_name [,orientation])
-      xs2svg(fig, file_name [,orientation])
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>win_num</term>
-        <listitem>
-          <para>integer, id of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fig</term>
-        <listitem>
-          <para>handle of the figure to export.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>file_name</term>
-        <listitem>
-          <para>string, name of the exported file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>orientation</term>
-        <listitem>
-          <para>optional character, with possible values 'portrait' or
-            'landscape'. The default value is 'portrait'.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xs2svg</literal> exports the display of a graphic window into a SVG file.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2svg" xml:lang="en">
+    <refnamediv>
+        <refname>xs2svg</refname>
+        <refpurpose>Export graphics to SVG.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xs2svg(win_num, file_name [,orientation])
+            xs2svg(fig, file_name [,orientation])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>win_num</term>
+                <listitem>
+                    <para>integer, id of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    <para>handle of the figure to export.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_name</term>
+                <listitem>
+                    <para>string, name of the exported file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation</term>
+                <listitem>
+                    <para>optional character, with possible values 'portrait' or
+                        'landscape'. The default value is 'portrait'.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xs2svg</literal> exports the display of a graphic window into a SVG file.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //SVG export
 xs2svg(0,'foo.svg')
 xs2svg(gcf(),'foo.svg');
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>figure_size property</member>
-      <member>
-        <link linkend="toprint">toprint</link>
-      </member>
-      <member>
-        <link linkend="printfigure">printfigure</link>
-      </member>
-      <member>
-        <link linkend="xs2bmp">xs2bmp</link>
-      </member>
-      <member>
-        <link linkend="xs2gif">xs2gif</link>
-      </member>
-      <member>
-        <link linkend="xs2jpg">xs2jpg</link>
-      </member>
-      <member>
-        <link linkend="xs2png">xs2png</link>
-      </member>
-      <member>
-        <link linkend="xs2ppm">xs2ppm</link>
-      </member>
-      <member>
-        <link linkend="xs2eps">xs2eps</link>
-      </member>
-      <member>
-        <link linkend="xs2pdf">xs2pdf</link>
-      </member>
-      <member>
-        <link linkend="xs2ps">xs2ps</link>
-      </member>
-      <member>
-        <link linkend="xs2emf">xs2emf</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>figure_size property</member>
+            <member>
+                <link linkend="toprint">toprint</link>
+            </member>
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
+            <member>
+                <link linkend="xs2bmp">xs2bmp</link>
+            </member>
+            <member>
+                <link linkend="xs2gif">xs2gif</link>
+            </member>
+            <member>
+                <link linkend="xs2jpg">xs2jpg</link>
+            </member>
+            <member>
+                <link linkend="xs2png">xs2png</link>
+            </member>
+            <member>
+                <link linkend="xs2ppm">xs2ppm</link>
+            </member>
+            <member>
+                <link linkend="xs2eps">xs2eps</link>
+            </member>
+            <member>
+                <link linkend="xs2pdf">xs2pdf</link>
+            </member>
+            <member>
+                <link linkend="xs2ps">xs2ps</link>
+            </member>
+            <member>
+                <link linkend="xs2emf">xs2emf</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

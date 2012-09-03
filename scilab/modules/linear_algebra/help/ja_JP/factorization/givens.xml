@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="givens">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="givens">
     <refnamediv>
         <refname>givens</refname>
         <refpurpose>ギブンス変換</refpurpose>
@@ -53,8 +53,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
-        <literal>xy = [x;y]</literal>として
+        <title>説明</title><literal>xy = [x;y]</literal>として
         <para>
             <literal>U= givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
             は,次のような<literal>2</literal>x<literal>2</literal> の
@@ -76,7 +75,7 @@ U=givens(A(:,1));
 U*A
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

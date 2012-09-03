@@ -10,52 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ftest">
-  <refnamediv>
-    <refname>ftest</refname>
-    <refpurpose> Fisher ratio</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>f=ftest(samples)
-      [f,p]=ftest(samples)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>samples</term>
-        <listitem>
-          <para>real or complex matrix of type nr X nc</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal> f=ftest(samples) </literal> computes the Fisher ratio of the
-      nc samples whose  values are in the columns  of the matrix
-      <literal>samples</literal>. Each one of these samples is composed of nr
-      values. (The  Fisher ratio is the ratio  between nr times
-      the  variance of  the means  of  samples and  the mean  of
-      variances of each sample)
-    </para>
-    <para>
-      <literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
-      computed Fisher ratio f.
-    </para>
-  </refsection>
-  <refsection>
-    <title>References</title>
-    <para>
-      Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ftest">
+    <refnamediv>
+        <refname>ftest</refname>
+        <refpurpose> Fisher ratio</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>f=ftest(samples)
+            [f,p]=ftest(samples)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>samples</term>
+                <listitem>
+                    <para>real or complex matrix of type nr X nc</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal> f=ftest(samples) </literal> computes the Fisher ratio of the
+            nc samples whose  values are in the columns  of the matrix
+            <literal>samples</literal>. Each one of these samples is composed of nr
+            values. (The  Fisher ratio is the ratio  between nr times
+            the  variance of  the means  of  samples and  the mean  of
+            variances of each sample)
+        </para>
+        <para>
+            <literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
+            computed Fisher ratio f.
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 samples=[46 55 54;
          53 54 50; 
          49 58 51;
@@ -63,13 +63,13 @@ samples=[46 55 54;
          46 52 49]
 [f,p]=ftest(samples)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ftuneq">ftuneq</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ftuneq">ftuneq</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

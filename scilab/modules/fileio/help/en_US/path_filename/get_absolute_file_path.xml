@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get_absolute_file_path" xml:lang="en">
+    <refnamediv>
+        <refname>get_absolute_file_path</refname>
+        <refpurpose>
+            gives an absolute pathname of a file opened in Scilab
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a character string: filename.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pathname</term>
+                <listitem>
+                    <para>a character string: an absolute pathname.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>get_absolute_file_path</function> gives an absolute pathname 
+            of a file already opened in Scilab.
+        </para>
+        <para>
+            <function>get_absolute_file_path</function> searches in Scilab's 
+            internal list of files currently opened <varname>filename</varname> 
+            and returns its path <varname>pathname</varname>.
+        </para>
+        <para>If file is not opened, it will return an error.</para>
+        <para>
+            <warning>
+                In previous version (Scilab 5.0.x) current directory was
+                returned if file was not found.
+            </warning>
+        </para>
+        <para>This function can be used to find from where (path) is executed a
+            Scilab script.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+// exec this script
+
+a=mopen(TMPDIR+'test.sce','wt');
+disp(get_absolute_file_path('test.sce'));
+mclose(a);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

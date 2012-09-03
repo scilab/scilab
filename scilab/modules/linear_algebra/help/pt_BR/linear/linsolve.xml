@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,23 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linsolve">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linsolve" xml:lang="en">
     <refnamediv>
         <refname>linsolve</refname>
-        <refpurpose> linear equation solver</refpurpose>
+        <refpurpose>solucionador de equações lineares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
                     <para>
-                        a <literal>na x ma</literal> real matrix (possibly sparse)
+                        uma matriz <literal>na x ma</literal> de reais (possivelmente
+                        esparsa)
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,50 +35,57 @@
                 <term>b</term>
                 <listitem>
                     <para>
-                        a <literal>na x 1</literal> vector (same row dimension as <literal>A</literal>)
+                        um vetor <literal>na x 1</literal> (mesma dimensão de linha de
+                        <literal>A</literal>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x0</term>
                 <listitem>
-                    <para>a real vector</para>
+                    <para>um vetor de reais </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kerA</term>
                 <listitem>
                     <para>
-                        a <literal>ma x k</literal> real matrix
+                        uma matriz <literal>ma x k</literal> de reais
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            <literal>linsolve</literal>  computes all the solutions to <literal> A*x+b=0</literal>.
+            <literal>linsolve</literal> computa todas as soluções para <literal>
+                A*x+b=0
+            </literal>
+            .
         </para>
         <para>
-            <literal>x0</literal> is a particular solution (if any) and <literal> kerA= </literal>nullspace
-            of <literal>A</literal>. Any <literal>x=x0+kerA*w</literal> with arbitrary <literal>w</literal> satisfies
-            <literal> A*x+b=0</literal>.
+            <literal>x0</literal> é uma solução particular (se houver) e
+            <literal> kerA= </literal>núcleo de <literal>A</literal>. Qualquer
+            <literal>x=x0+kerA*w</literal> com <literal>w</literal> arbitrário
+            satisfaz <literal> A*x+b=0</literal>.
         </para>
         <para>
-            If compatible <literal>x0</literal> is given on entry, <literal>x0</literal> is returned. If not
-            a compatible <literal>x0</literal>, if any, is returned.
+            Se um compatible <literal>x0</literal> compatível é dado na entrada,
+            <literal>x0</literal> é retornado. Senão, um <literal>x0</literal>,
+            compatível é retornado, se houver.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(5,3)*rand(3,8);
-b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
-b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
-A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatível
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatível
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x é único
 
-// Benchmark with other linear sparse solver:
+// A benchmark of sparse linear solver
+
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
 b = zeros(size(A,1),1);
@@ -95,8 +103,8 @@ res = A\b;
 mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="inv">inv</link>
@@ -111,10 +119,10 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
                 <link linkend="im_inv">im_inv</link>
             </member>
             <member>
-                <link linkend="umfpack">umfpack</link>
+                <link linkend="backslash">backslash</link>
             </member>
             <member>
-                <link linkend="backslash">backslash</link>
+                <link linkend="umfpack">umfpack</link>
             </member>
         </simplelist>
     </refsection>

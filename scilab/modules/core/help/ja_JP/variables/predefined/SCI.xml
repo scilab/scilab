@@ -10,28 +10,28 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SCI" xml:lang="ja">
-  <refnamediv>
-    <refname>SCI</refname>
-    <refpurpose>Scilabのルートパスの値を有する変数.</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>説明</title>
-    <para>
-      定数変数<literal>SCI</literal>はScilabのルートパスの値を有します.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="SCIHOME">SCIHOME</link>
-      </member>
-    </simplelist>
-    <simplelist type="inline">
-      <member>
-        <link linkend="TMPDIR">TMPDIR</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCI" xml:lang="ja">
+    <refnamediv>
+        <refname>SCI</refname>
+        <refpurpose>Scilabのルートパスの値を有する変数.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            定数変数<literal>SCI</literal>はScilabのルートパスの値を有します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

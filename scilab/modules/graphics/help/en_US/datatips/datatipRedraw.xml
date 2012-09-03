@@ -8,51 +8,51 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipRedraw">
-  <refnamediv>
-    <refname>datatipRedraw</refname>
-    <refpurpose>Redraw all datatips  after a 3D rotation to adjust their positions</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      datatipRedraw()
-      datatipRedraw(axes_handle)
-      datatipRedraw(curve_handles)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>axes_handle</term>
-        <listitem>
-          <para>
-            The handle on an axes entity.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>curve_handles</term>
-        <listitem>
-          <para>
-            An array of handle on entities supporting the datatips
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Due to graphic system limitations it is not possible to adjust
-      the datatip textbox positions during a rotation. Calling this
-      function recomputes the positions for a clean rendering.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipRedraw">
+    <refnamediv>
+        <refname>datatipRedraw</refname>
+        <refpurpose>Redraw all datatips  after a 3D rotation to adjust their positions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            datatipRedraw()
+            datatipRedraw(axes_handle)
+            datatipRedraw(curve_handles)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>axes_handle</term>
+                <listitem>
+                    <para>
+                        The handle on an axes entity.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>curve_handles</term>
+                <listitem>
+                    <para>
+                        An array of handle on entities supporting the datatips
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Due to graphic system limitations it is not possible to adjust
+            the datatip textbox positions during a rotation. Calling this
+            function recomputes the positions for a clean rendering.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     clf();param3d()
     p=gce();//get the handle on the polyline
     datatipCreate(p,30);
@@ -61,25 +61,25 @@
     ax=gca();ax.rotation_angles=[35 45];// first plot below
     datatipRedraw() //second plot below
     ]]></programlisting>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../images/datatips_rot1.svg"/>
-        </imageobject>
-      </inlinemediaobject>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../images/datatips_rot2.svg"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="datatips">datatips</link>
-      </member>
-    </simplelist>
-  </refsection>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/datatips_rot1.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/datatips_rot2.svg"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

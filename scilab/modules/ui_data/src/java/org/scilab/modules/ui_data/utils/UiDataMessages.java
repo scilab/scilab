@@ -122,6 +122,9 @@ public final class UiDataMessages {
     public static final String EDITWITHDEFAULT = Messages.gettext("Edit with default application");
     public static final String OPENWITHDEFAULT = Messages.gettext("Open with default application");
 
+    public static final String PREVIOUSDIR = Messages.gettext("Previous directory");
+    public static final String NEXTDIR = Messages.gettext("Next directory");
+
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }
 

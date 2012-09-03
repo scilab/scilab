@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mkdir" xml:lang="en">
+    <refnamediv>
+        <refname>mkdir</refname>
+        <refpurpose>makes a new directory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            mkdir(dirname)
+            mkdir(parentdir, dirname)
+            status = mkdir( ... )
+            [status, msg] = mkdir( ... )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirname</term>
+                <listitem>
+                    <para>
+                        a character string: a directory to create.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>parentdir</term>
+                <listitem>
+                    <para>
+                        a character string: a directory in which the new directory <varname>dirname</varname> will be created.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        an integer: the status of the operation.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msg</term>
+                <listitem>
+                    <para>
+                        a character string: a message about an error.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>mkdir(dirname)</code> creates the directory <varname>dirname</varname> in the current directory, if <varname>dirname</varname> represents a relative path. Otherwise, <varname>dirname</varname> represents an absolute path and <function>mkdir</function> attempts to create the absolute directory <varname>dirname</varname>.
+        </para>
+        <para>
+            <code>mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the directory <varname>parentdir</varname> (if <varname>parentdir</varname> is not existing it will be created), where <varname>parentdir</varname> is an absolute or relative pathname.
+        </para>
+        <para>
+            <code>[status,msg] = mkdir(parentdir, dirname)</code> creates the directory <varname>dirname</varname> in the existing directory <varname>parentdir</varname>, returning the status and the message about an error. 
+        </para>
+        <para>   
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <varname>status</varname>
+                    </td>
+                    <td>
+                        <varname>msg</varname>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        -2
+                    </td>
+                    <td>
+                        mkdir: An error occurred: A file with the same name already exists in dirname
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        mkdir: An error occurred: Impossible to create directory dirname
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        mkdir: An error occurred: This directory already exists in dirname
+                        
+                    </td>
+                </tr>
+            </informaltable>
+            
+        </para>
+        <para>
+            Whatever the operating system, if the creating of directory
+            succeeds, the <varname>status</varname> is 1 and the message
+            <varname>msg</varname> is empty.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[ 
+// Absolute pathname
+mkdir(TMPDIR+"/mkdir_example_1")
+status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+
+// Absolute pathname (parentdir + dirname)
+[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+
+// Relative pathname
+cd TMPDIR;
+[status_5,msg_5] = mkdir("mkdir_example_5")
+[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="chdir">chdir</link>
+            </member>
+            <member>
+                <link linkend="dir">dir</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -22,5 +22,7 @@ Name: AssociateTSTDEM; Description:{cm:DescriptionAssociateTstDem}; GroupDescrip
 ;
 Name: AssociateSCICOS; Description:{cm:DescriptionAssociateScicos}; GroupDescription: Files Association:; Components: {#COMPN_XCOS}
 ;
+Name: AssociateSOD; Description:{cm:DescriptionAssociateSOD}; GroupDescription: Files Association:; Components: {#COMPN_SCILAB}
+;
 ;-------------------------------------------------------------------------------
 ;

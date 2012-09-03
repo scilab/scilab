@@ -10,55 +10,55 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_int16">
-  <refnamediv>
-    <refname>mtlb_int16</refname>
-    <refpurpose>Matlab int16 emulation function</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Matlab and Scilab <literal>int16</literal> behave differently in some particular cases:
-    </para>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mtlb_int16">
+    <refnamediv>
+        <refname>mtlb_int16</refname>
+        <refpurpose>Matlab int16 emulation function</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
         <para>
-          With complex input: Matlab <literal>int16</literal> can be used with complex values what Scilab function can not.
+            Matlab and Scilab <literal>int16</literal> behave differently in some particular cases:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    With complex input: Matlab <literal>int16</literal> can be used with complex values what Scilab function can not.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With <literal>%inf</literal>: Matlab <literal>int16</literal> returns 32767 and Scilab returns -32768.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With <literal>%nan</literal>: Matlab <literal>int16</literal> returns 0 and Scilab returns -32768.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    With <literal>-%nan</literal>: Matlab <literal>int16</literal> returns 0 and Scilab returns -32768.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With <literal>%inf</literal>: Matlab <literal>int16</literal> returns 32767 and Scilab returns -32768.
+            The function <literal>mtlb_int16(A)</literal> is used by
+            <literal>mfile2sci</literal> to replace <literal>int16(A)</literal> when it was not
+            possible to know what was the input while porting Matlab code to Scilab. This function will
+            determine the correct semantic at run time. If you want to have a
+            more efficient code it is possible to replace <literal>mtlb_int16</literal> calls:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> does not contain <literal>%inf</literal>, <literal>%nan</literal> or <literal>-%nan</literal> values
+                    <literal>mtlb_int16(A)</literal> may be replaced by <literal>int16(A)</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          With <literal>%nan</literal>: Matlab <literal>int16</literal> returns 0 and Scilab returns -32768.
+            Caution: <literal>mtlb_int16</literal> has not to be used for hand coded functions.
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          With <literal>-%nan</literal>: Matlab <literal>int16</literal> returns 0 and Scilab returns -32768.
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The function <literal>mtlb_int16(A)</literal> is used by
-      <literal>mfile2sci</literal> to replace <literal>int16(A)</literal> when it was not
-      possible to know what was the input while porting Matlab code to Scilab. This function will
-      determine the correct semantic at run time. If you want to have a
-      more efficient code it is possible to replace <literal>mtlb_int16</literal> calls:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          If <literal>A</literal> does not contain <literal>%inf</literal>, <literal>%nan</literal> or <literal>-%nan</literal> values
-          <literal>mtlb_int16(A)</literal> may be replaced by <literal>int16(A)</literal>
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      Caution: <literal>mtlb_int16</literal> has not to be used for hand coded functions.
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

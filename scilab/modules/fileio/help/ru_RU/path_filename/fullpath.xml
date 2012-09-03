@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="fullpath">
+    <refnamediv>
+        <refname>fullpath</refname>
+        <refpurpose>
+            создаёт имя полного пути для определённого имени относительного пути
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>res = fullpath(relative_path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>строка или матрица строк, имя полного пути.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>relative_path</term>
+                <listitem>
+                    <para>строка или матрица строк, имя относительного пути.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>fullpath(relative_path)</code> создаёт имя полного
+            пути для определённого имени относительного пути
+            <varname>relative_path</varname>.
+        </para>
+        <para>
+            В GNU/Linux нужно, чтобы относительный путь 
+            <varname>relative_path</varname> существовал.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+cd(TMPDIR);
+mkdir(TMPDIR + "/niv1");
+mkdir(TMPDIR + "/niv1/niv2");
+mkdir(TMPDIR + "/niv1/niv2/niv3");
+mputl(' ', TMPDIR + "/niv1/test1.txt");
+mputl(' ' , TMPDIR + "/niv1/niv2/test2.txt");
+ 
+cd(TMPDIR + "/niv1/niv2/niv3");
+ 
+r1 = fullpath("../../test1.txt")
+r2 = fullpath("../test2.txt")
+M = ["../../test1.txt", "../test2.txt"];
+R = fullpath(M)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Управление матрицей строк (SEP
+                    72)
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

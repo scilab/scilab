@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sincd">
+    <refnamediv>
+        <refname>sincd</refname>
+        <refpurpose>デジタル sinc関数または Direchlet カーネル</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[s]=sincd(n,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        <literal>flag = 1</literal>の場合,この関数は
+                        原点を中心とします;
+                        <literal>flag = 2</literal>の場合,この関数は
+                        <literal>%pi/(2*n)</literal>だけ遅れます
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        周波数の密なグリッド上の関数の値のベクトル
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Sin(N*x)/N*Sin(x)</literal>を計算する関数
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+plot(sincd(10,1)) 
+ ]]></programlisting>
+    </refsection>
+</refentry>

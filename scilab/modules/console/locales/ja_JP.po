@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-07 08:40+0000\n"
+"PO-Revision-Date: 2012-08-24 14:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 15864)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -527,8 +527,134 @@ msgstr "引用符を二重引用符に変換"
 msgid "Line numbering"
 msgstr "行番号を付ける"
 
-msgid "Save diagram"
-msgstr "ダイアグラムを保存"
+msgid "New diagram"
+msgstr "新規ダイアグラム"
+
+msgid "Open file in Scilab current directory"
+msgstr "Scilabカレントディレクトリのファイルを開く"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Quit Xcos"
+msgstr "Xcosを終了"
+
+msgid "Invert selection"
+msgstr "選択の反転"
+
+msgid "Block Parameters"
+msgstr "ブロック パラメータ"
+
+msgid "Region to superblock"
+msgstr "選択範囲をスーパーブロックに変換"
+
+msgid "Zoom In"
+msgstr "拡大"
+
+msgid "Zoom Out"
+msgstr "縮小"
+
+msgid "Fit diagram to view"
+msgstr "表示領域にダイアグラムを合わせる"
+
+msgid "Normal 100%"
+msgstr "標準 100%"
+
+msgid "Palette browser"
+msgstr "パレット ブラウザ"
+
+msgid "Diagram browser"
+msgstr "ダイアグラム ブラウザ"
+
+msgid "Viewport"
+msgstr "ビューポート"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Setup"
+msgstr "設定"
+
+msgid "Execution trace and Debug"
+msgstr "実行トレースとデバッグ"
+
+msgid "Set Context"
+msgstr "コンテキスト設定"
+
+msgid "Compile"
+msgstr "コンパイル"
+
+msgid "Start"
+msgstr "開始"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Rotate"
+msgstr "回転"
+
+msgid "Flip"
+msgstr "フリップ"
+
+msgid "Mirror"
+msgstr "反転"
+
+msgid "Show/Hide shadow"
+msgstr "影の表示/非表示"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Center"
+msgstr "中心"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Top"
+msgstr "トップ"
+
+msgid "Middle"
+msgstr "中央揃え"
+
+msgid "Bottom"
+msgstr "一番下"
+
+msgid "Border Color"
+msgstr "境界色"
+
+msgid "Fill Color"
+msgstr "色を塗る"
+
+msgid "Horizontal"
+msgstr "水平方向"
+
+msgid "Straight"
+msgstr "直線"
+
+msgid "Vertical"
+msgstr "垂直方向"
+
+msgid "Diagram background"
+msgstr "ダイアグラムの背景"
+
+msgid "Grid"
+msgstr "グリッド"
+
+msgid "Code generation"
+msgstr "コード生成"
+
+msgid "Xcos Help"
+msgstr "Xcos ヘルプ"
+
+msgid "Block Help"
+msgstr "ブロックヘルプ"
+
+msgid "Xcos Demos"
+msgstr "Xcosデモ"
+
+msgid "About Xcos"
+msgstr "Xcosについて"
 
 msgid "Save variable"
 msgstr "変数を保存"

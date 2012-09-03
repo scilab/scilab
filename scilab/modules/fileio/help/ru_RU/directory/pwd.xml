@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pwd">
+    <refnamediv>
+        <refname>pwd</refname>
+        <refpurpose>получает текущую директорию Scilab'а</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>pwd
+            x = pwd()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>pwd</code> возвращает в <varname>ans</varname> текущую директорию Scilab'а.
+            <code>x = pwd()</code> возвращает в <varname>x</varname> текущую директорию Scilab'а.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+pwd
+x=pwd()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="chdir">chdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

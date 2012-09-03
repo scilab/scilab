@@ -32,7 +32,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Launch the modelica compiler configuration TCL UI
  */
 @SuppressWarnings(value = { "serial" })
-public class InitModelicaAction extends DefaultAction {
+public final class InitModelicaAction extends DefaultAction {
     /** the name */
     public static final String NAME = XcosMessages.INIT_MODELICA;
     /** no icon */

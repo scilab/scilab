@@ -10,84 +10,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="read_csv" xml:lang="ja">
-  <refnamediv>
-    <refname>read_csv</refname>
-    <refpurpose>カンマ区切り形式のファイルを読み込む</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>M = read_csv(fname [,sep])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>fname</term>
-        <listitem>
-          <para>文字列. ファイルのパス.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sep</term>
-        <listitem>
-          <para>文字列. 使用するフィールドセパレータ, デフォルト値は
-	    <literal>","</literal>
-          </para>
-	  <para><literal>ascii(9)</literal> or <literal>"\t"</literal> for a tabulation separator are
-            accepted.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>M</term>
-        <listitem>
-          <para>文字列の行列.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      例えば表計算ソフトウエアで"テキストおよびカンマ"形式で
-      作成した,フィールドのデリミタを有するアスキーファイルを
-      指定すると, <literal>M = read_csv(fname)</literal> は対応する
-      Scilabの文字列行列を返します.
-      セパレータを変更するには, <literal>M = read_csv(fname,sep)</literal> としてください.
-    </para>
-    <para>
-      <note>
-      文字列変数を数値変数に変換するために
-      関数 <literal>evstr</literal>により<literal>M</literal>の全体あるいは一部を評価することができます.
-      </note>
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example">// タブ区切りのデータを有するファイルを作成
-      A = 1:50;
-      mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
-      
-      // csvファイルを読み込む
-      B = read_csv(TMPDIR + '/foo.csv');
-      
-      // eval B
-      C = evstr(B);
-      
-      // もとのデータと結果を比較
-      and(A == C)
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="write_csv">write_csv</link>
-      </member>
-      <member>
-        <link linkend="evstr">evstr</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="read_csv" xml:lang="ja">
+    <refnamediv>
+        <refname>read_csv</refname>
+        <refpurpose>カンマ区切り形式のファイルを読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>M = read_csv(fname [,sep])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>fname</term>
+                <listitem>
+                    <para>文字列. ファイルのパス.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sep</term>
+                <listitem>
+                    <para>文字列. 使用するフィールドセパレータ, デフォルト値は
+                        <literal>","</literal>
+                    </para>
+                    <para>
+                        <literal>ascii(9)</literal> or <literal>"\t"</literal> for a tabulation separator are
+                        accepted.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>文字列の行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            例えば表計算ソフトウエアで"テキストおよびカンマ"形式で
+            作成した,フィールドのデリミタを有するアスキーファイルを
+            指定すると, <literal>M = read_csv(fname)</literal> は対応する
+            Scilabの文字列行列を返します.
+            セパレータを変更するには, <literal>M = read_csv(fname,sep)</literal> としてください.
+        </para>
+        <para>
+            <note>
+                文字列変数を数値変数に変換するために
+                関数 <literal>evstr</literal>により<literal>M</literal>の全体あるいは一部を評価することができます.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">// タブ区切りのデータを有するファイルを作成
+            A = 1:50;
+            mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
+            
+            // csvファイルを読み込む
+            B = read_csv(TMPDIR + '/foo.csv');
+            
+            // eval B
+            C = evstr(B);
+            
+            // もとのデータと結果を比較
+            and(A == C)
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="write_csv">write_csv</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

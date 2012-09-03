@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="basename" xml:lang="ru">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>basename</refname>
+        <refpurpose>отсекает директорию и расширение от имён файлов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>
+                        матрица строковых значений, указывающая набор имён файлов
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag, flagexpand</term>
+                <listitem>
+                    <para>
+                        логические необязательные параметры. Значение по умолчанию <constant>%t</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>processedFiles</term>
+                <listitem>
+                    <para>
+                        матрица строковых значений, содержащая имена обработанных файлов.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <code>basename(files)</code> возвращает основное имя файлов, 
+            указанных в <varname>files</varname>.
+        </para>
+        <para>
+            Если <varname>flag</varname> равен ИСТИНЕ, то файлы <varname>files</varname> сначала преобразуются
+            в целевой тип, указанный переменной <code>getos() == 'Windows'</code>.
+            Более того, если <varname>flagexpand</varname> равен ИСТИНЕ, то первые
+            строковые значение, такие, как <literal>SCIHOME</literal>, <literal>SCI</literal>
+            или <literal>~</literal> разворачиваются с помощью переменных окружения.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+files=basename('SCI/modules/fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci.k')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="pathconvert">pathconvert</link>
+            </member>
+            <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

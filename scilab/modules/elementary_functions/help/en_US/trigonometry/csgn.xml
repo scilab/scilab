@@ -10,72 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="fr" xml:id="csgn">
-  <refnamediv>
-    <refname>csgn</refname>
-    <refpurpose> Returns the sign of a vector of real of complex values. </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>s = csgn(z)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>z</term>
-        <listitem>
-          <para>
-            The vector of values on which we want to compute the sign.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>s</term>
-        <listitem>
-          <para>If the real part is not equal to zero:</para>
-          <itemizedlist>
-            <listitem>
-              <para>+1 if the real part of an element is positive</para>
-            </listitem>
-            <listitem>
-              <para>-1 if the real part of an element is negative</para>
-            </listitem>
-          </itemizedlist>
-          <para>If the real part is equal to zero:</para>
-          <itemizedlist>
-            <listitem>
-              <para>+1 if the imaginary part of an element is positive</para>
-            </listitem>
-            <listitem>
-              <para>-1 if the imaginary part of an element is negative</para>
-            </listitem>
-          </itemizedlist>
-          <para>if the element is equal to zero, then returns %nan</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Returns the sign of a vector of real of complex values.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="csgn">
+    <refnamediv>
+        <refname>csgn</refname>
+        <refpurpose> Returns the sign of a vector of real of complex values. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>s = csgn(z)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        The vector of values on which we want to compute the sign.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>If the real part is not equal to zero:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>+1 if the real part of an element is positive</para>
+                        </listitem>
+                        <listitem>
+                            <para>-1 if the real part of an element is negative</para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>If the real part is equal to zero:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>+1 if the imaginary part of an element is positive</para>
+                        </listitem>
+                        <listitem>
+                            <para>-1 if the imaginary part of an element is negative</para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>if the element is equal to zero, then returns %nan</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Returns the sign of a vector of real of complex values.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 A = [1 1+%i 0 -1 1-%i -1-%i];
 csgn(A)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sign">sign</link>
-      </member>
-      <member>
-        <link linkend="signm">signm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sign">sign</link>
+            </member>
+            <member>
+                <link linkend="signm">signm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

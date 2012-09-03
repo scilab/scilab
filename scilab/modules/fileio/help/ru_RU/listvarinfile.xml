@@ -1,109 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="listvarinfile">
-  <refnamediv>
-    <refname>listvarinfile</refname>
-    <refpurpose>список переменных в файле сохранённых данных</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>listvarinfile(filename)
-      [names,typs,dims,vols]=listvarinfile(filename)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>
-	    символьная строка, имя файла (и путь), который следует 
-	    проинспектировать.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nams</term>
-        <listitem>
-          <para>
-	    матрица строк, имена переменных, сохранённых в файле <varname>filename</varname>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>dims</term>
-        <listitem>
-          <para>
-	    список, размерности переменных, сохранённых в файле 
-	    <varname>filename</varname>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>typs</term>
-        <listitem>
-          <para>
-	    числовая матрица, типы переменных, сохранённых в файле 
-	    <varname>filename</varname>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>vols</term>
-        <listitem>
-          <para>
-	    числовая матрица, размер (в байтах) переменных, сохранённых в файле <varname>filename</varname>.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="listvarinfile">
+    <refnamediv>
+        <refname>listvarinfile</refname>
+        <refpurpose>список переменных в файле сохранённых данных</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>listvarinfile(filename)
+            [names, typs, dims, vols] = listvarinfile(filename)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>
+                        символьная строка, имя файла (и путь), который следует 
+                        проинспектировать.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nams</term>
+                <listitem>
+                    <para>
+                        матрица строк, имена переменных, сохранённых в файле <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        список, размерности переменных, сохранённых в файле 
+                        <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typs</term>
+                <listitem>
+                    <para>
+                        числовая матрица, типы переменных, сохранённых в файле 
+                        <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>vols</term>
+                <listitem>
+                    <para>
+                        числовая матрица, размер (в байтах) переменных, сохранённых в файле <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
         <para>
-          Эта служебная функция составляет список переменных (наподобие <link linkend="whos">whos</link>),
-	  содержащихся в файле данных Scilab'а, полученного с помощью <link linkend="save">save</link>.
+            Эта служебная функция составляет список переменных (наподобие <link linkend="whos">whos</link>),
+            содержащихся в файле данных Scilab'а, полученного с помощью <link linkend="save">save</link>.
         </para>
         <para>
-	  <note>
-	    Гиперматрицы представляются в виде простых матричноориентированных списков (mlist);
-	    рациональные числа и пространства состояний представляются в виде 
-	    простых типизированных списков (tlist);
-	    графические дескрипторы не распознаются.
-	  </note>
+            <note>
+                Гиперматрицы представляются в виде простых матричноориентированных списков (mlist);
+                рациональные числа и пространства состояний представляются в виде 
+                простых типизированных списков (tlist);
+                графические дескрипторы не распознаются.
+            </note>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
 save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
 [names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="whos">whos</link>
-      </member>
-      <member>
-        <link linkend="save">save</link>
-      </member>
-      <member>
-        <link linkend="load">load</link>
-      </member>
-      <member>
-        <link linkend="save_format">save_format</link>
-      </member>
-      <member>
-        <link linkend="type">type</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="save">save</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="save_format">save_format</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

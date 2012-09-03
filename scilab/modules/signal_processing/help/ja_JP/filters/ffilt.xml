@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ffilt">
+    <refnamediv>
+        <refname>ffilt</refname>
+        <refpurpose>FIRローパスフィルタの係数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[x]=ffilt(ft,n,fl,fh)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>ft</term>
+                <listitem>
+                    <para>
+                        フィルタの型.ただし,<literal>ft</literal>の値には以下の値を指定できます
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>"lp"  </term>
+                            <listitem>
+                                <para>ローパスフィルタの場合</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"hp"  </term>
+                            <listitem>
+                                <para>ハイパスフィルタの場合</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"bp"  </term>
+                            <listitem>
+                                <para>バンドパスフィルタの場合</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"sb"  </term>
+                            <listitem>
+                                <para>ストップバンドフィルタの場合</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数 (指定するフィルタ標本の数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fl</term>
+                <listitem>
+                    <para>実数 (低周波数カットオフ)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fh</term>
+                <listitem>
+                    <para>実数 (高周波数カットオフ)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>フィルタ係数のベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            FIRローパス, ハイパス, バンドパス, またはストップバンドフィルタの
+            <literal>n</literal>個の係数を取得します.
+            ローパスおよびハイパスフィルタの場合,<literal>fl</literal>に
+            カットオフ周波数を1つ指定する必要があります.
+            バンドパスおよびストップバンドフィルタの場合,2つのカットオフ周波数を
+            指定する必要があり,
+            低域側を<literal>fl</literal>,高域側を<literal>fh</literal>
+            に指定します.
+        </para>
+    </refsection>
+</refentry>

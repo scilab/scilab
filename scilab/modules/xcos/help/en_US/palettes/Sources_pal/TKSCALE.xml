@@ -21,205 +21,205 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TKSCALE">
-  <refnamediv>
-    <refname>TKSCALE</refname>
-    <refpurpose>Adjust value with a graphical widget.</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/TKSCALE.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_TKSCALE">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TKSCALE">
+    <refnamediv>
+        <refname>TKSCALE</refname>
+        <refpurpose>Adjust value with a graphical widget.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="TKSCALE">Adjust value with a graphical widget.</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/TKSCALE.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_TKSCALE">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_TKSCALE">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_TKSCALE">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_TKSCALE">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_TKSCALE">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_TKSCALE">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_TKSCALE">Interfacing function</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="TKSCALE">Adjust value with a graphical widget.</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_TKSCALE">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_TKSCALE">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_TKSCALE">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_TKSCALE">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_TKSCALE">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_TKSCALE">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_TKSCALE">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_TKSCALE">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal"> Sources palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_TKSCALE">
+        <title>Description</title>
         <para>
-          <link linkend="Sources_pal"> Sources palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_TKSCALE">
-    <title>Description</title>
-    <para>
-      This source block generates a piecewise constant signal the value of which can be set interactively using a widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.
-    </para>
-    <para>
-    </para>
-  </refsection>
-  <refsection id="Dialogbox_TKSCALE">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../gui/sources_pal/en_US/TKSCALE_gui.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Min value</emphasis>
-        </para>
-        <para> An integer specifying the min value in the range of the scale.</para>
-        <para> Properties : Type 'vec' of size 1. </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Max value</emphasis>
-        </para>
-        <para> An integer specifying the max value in the range of the scale.</para>
-        <para> Properties : Type 'vec' of size 1. </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Normalization</emphasis>
-        </para>
-        <para> The output of the block is the integer value specified by the slider (an integer between Min value and the Max value) divided by this Normalization factor.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_TKSCALE">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            This source block generates a piecewise constant signal the value of which can be set interactively using a widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Dialogbox_TKSCALE">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/sources_pal/en_US/TKSCALE_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+            
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Min value</emphasis>
+                </para>
+                <para> An integer specifying the min value in the range of the scale.</para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Max value</emphasis>
+                </para>
+                <para> An integer specifying the max value in the range of the scale.</para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Normalization</emphasis>
+                </para>
+                <para> The output of the block is the integer value specified by the slider (an integer between Min value and the Max value) divided by this Normalization factor.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_TKSCALE">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">tkscaleblk</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_TKSCALE">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.xcos">
+                Open this example in Xcos
+            </link>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">tkscaleblk</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_TKSCALE">
-    <title>Example</title>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.xcos">
-        Open this example in Xcos
-      </link>
-    </para>
-    <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/sources_pal/en_US/TKSCALE_diagram_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-  </refsection>
-  <refsection id="Interfacingfunction_TKSCALE">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/TKSCALE.sci">SCI/modules/scicos_blocks/macros/Sources/TKSCALE.sci</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <para/>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../examples/sources_pal/en_US/TKSCALE_diagram_en_US.png" align="center"/>
+            </imageobject>
+        </mediaobject>
+    </refsection>
+    <refsection id="Interfacingfunction_TKSCALE">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/TKSCALE.sci">SCI/modules/scicos_blocks/macros/Sources/TKSCALE.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

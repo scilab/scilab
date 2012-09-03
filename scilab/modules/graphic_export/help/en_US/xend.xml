@@ -10,41 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xend">
-  <refnamediv>
-    <refname>xend</refname>
-    <refpurpose>Close a graphics export session</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xend()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xend</literal> is used to close a graphics session. When working on the export of a graphic, <literal>xend</literal> closes the
-      file which was opened by <literal>xinit</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xend">
+    <refnamediv>
+        <refname>xend</refname>
+        <refpurpose>Close a graphics export session</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xend()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xend</literal> is used to close a graphics session. When working on the export of a graphic, <literal>xend</literal> closes the
+            file which was opened by <literal>xinit</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 driver("Pos")
 xinit("foo.ps")
 plot2d()
 xend()
 driver("X11")
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="driver">driver</link>
-      </member>
-      <member>
-        <link linkend="xinit">xinit</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="driver">driver</link>
+            </member>
+            <member>
+                <link linkend="xinit">xinit</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

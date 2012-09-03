@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="en">
+    <refnamediv>
+        <refname>norm</refname>
+        <refpurpose>norma de matrizes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[y]=norm(x [,flag])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vetor ou matriz de reais ou complexos (armazenamento cheio ou
+                        esparso) 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>string (tipo da norma) (valor padrão = 2)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>For matrices</para>
+        <variablelist>
+            <varlistentry>
+                <term>norm(x)</term>
+                <listitem>
+                    <para>
+                        ou <literal>norm(x,2)</literal> é o maior valor singular de
+                        <literal>x</literal> (<literal>max(svd(x))</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,1)</term>
+                <listitem>
+                    <para>
+                        a norma l_1 de <literal>x</literal> (a maior soma coluna a
+                        coluna : <literal>max(sum(abs(x),'r'))</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,'inf'),norm(x,%inf)</term>
+                <listitem>
+                    <para>
+                        a norma infinitesimal de <literal>x</literal> (a maior soma
+                        linha a linha : <literal>max(sum(abs(x),'c'))</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,'fro')</term>
+                <listitem>
+                    <para>norma de Frobenius i.e.
+                        <literal>sqrt(sum(diag(x'*x)))</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Para vetores </para>
+        <variablelist>
+            <varlistentry>
+                <term>norm(v,p)</term>
+                <listitem>
+                    <para>
+                        norma l_p (<literal>sum(v(i)^p))^(1/p)</literal> .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(v)</term>
+                <listitem>
+                    <para>
+                        <literal>=norm(v,2)</literal> : norma l_2
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(v,'inf')</term>
+                <listitem>
+                    <para>
+                        <literal>max(abs(v(i)))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+A=[1,2,3];
+norm(A,1)
+norm(A,'inf')
+A=[1,2;3,4]
+max(svd(A))-norm(A)
+
+A=sparse([1 0 0 33 -1])
+norm(A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h_norm">h_norm</link>
+            </member>
+            <member>
+                <link linkend="dhnorm">dhnorm</link>
+            </member>
+            <member>
+                <link linkend="h2norm">h2norm</link>
+            </member>
+            <member>
+                <link linkend="abs">abs</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

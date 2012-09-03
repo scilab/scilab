@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2012-08-23 17:35+0100\n"
 
 # File: sci_gateway/c/sci_bsplin3val.c, line: 62
 # File: sci_gateway/c/sci_cshep2d.c, line: 50
@@ -22,8 +22,8 @@ msgstr ""
 # File: sci_gateway/c/sci_interp.c, line: 67
 # File: sci_gateway/c/sci_interp2d.c, line: 69
 # File: sci_gateway/c/sci_interp3d.c, line: 73
-# File: sci_gateway/c/sci_linear_interpn.c, line: 65
-# File: sci_gateway/c/sci_linear_interpn.c, line: 93
+# File: sci_gateway/c/sci_linear_interpn.c, line: 66
+# File: sci_gateway/c/sci_linear_interpn.c, line: 94
 # File: sci_gateway/c/sci_splin.c, line: 61
 # File: sci_gateway/c/sci_splin2d.c, line: 70
 # File: sci_gateway/c/sci_splin3d.c, line: 62
@@ -38,8 +38,8 @@ msgstr ""
 # File: sci_gateway/c/sci_interp.c, line: 73
 # File: sci_gateway/c/sci_interp2d.c, line: 75
 # File: sci_gateway/c/sci_interp3d.c, line: 79
-# File: sci_gateway/c/sci_linear_interpn.c, line: 71
-# File: sci_gateway/c/sci_linear_interpn.c, line: 99
+# File: sci_gateway/c/sci_linear_interpn.c, line: 72
+# File: sci_gateway/c/sci_linear_interpn.c, line: 100
 # File: sci_gateway/c/sci_splin.c, line: 67
 # File: sci_gateway/c/sci_splin2d.c, line: 76
 # File: sci_gateway/c/sci_splin3d.c, line: 68
@@ -85,7 +85,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 76
 # File: sci_gateway/c/sci_interp.c, line: 53
-# File: sci_gateway/c/sci_linear_interpn.c, line: 85
+# File: sci_gateway/c/sci_linear_interpn.c, line: 86
 # File: sci_gateway/c/sci_lsq_splin.c, line: 41
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
@@ -107,21 +107,21 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_interp2d.c, line: 94
 # File: sci_gateway/c/sci_interp3d.c, line: 144
-# File: sci_gateway/c/sci_linear_interpn.c, line: 172
+# File: sci_gateway/c/sci_linear_interpn.c, line: 174
 # File: sci_gateway/c/sci_splin2d.c, line: 103
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 46
+# File: sci_gateway/c/sci_linear_interpn.c, line: 47
 # File: sci_gateway/c/sci_splin.c, line: 125
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 119
+# File: sci_gateway/c/sci_linear_interpn.c, line: 121
 # File: sci_gateway/c/sci_lsq_splin.c, line: 50
 # File: sci_gateway/c/sci_lsq_splin.c, line: 58
 #, c-format
@@ -129,19 +129,19 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 127
+# File: sci_gateway/c/sci_linear_interpn.c, line: 129
 #, c-format
 msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 138
+# File: sci_gateway/c/sci_linear_interpn.c, line: 140
 #, c-format
 msgid "%s: %s must be a real %d-dim hypermatrix.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 144
+# File: sci_gateway/c/sci_linear_interpn.c, line: 146
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and grid values in dimension "
@@ -149,14 +149,14 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 154
+# File: sci_gateway/c/sci_linear_interpn.c, line: 156
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 159
+# File: sci_gateway/c/sci_linear_interpn.c, line: 161
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d or "

@@ -11,52 +11,52 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="translatepaths">
-  <refnamediv>
-    <refname>translatepaths</refname>
-    <refpurpose> convert a set of Matlab M-files directories to Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>translatepaths(dirs_path [,res_path])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>dirs_path</term>
-        <listitem>
-          <para>a character string vector which gives the paths of Matlab M-file directories to convert</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>res_path</term>
-        <listitem>
-          <para>a character string which gives the path of the directory where the Scilab functions are written to. Default value is current directory.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>translatepaths</literal>, converts all Matlab M-file contained in a set of directories to
-      Scilab functions. Each function is converted by <literal>mfile2sci</literal>.
-    </para>
-    <para>
-      Trace of conversion information is stored in a file named <literal>"log"</literal> in
-      the <literal>res_path</literal> directory
-    </para>
-    <para>
-      When called without rhs, <literal>translatepaths()</literal> launches a GUI to help to select a file/directory and options.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mfile2sci">mfile2sci</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="translatepaths">
+    <refnamediv>
+        <refname>translatepaths</refname>
+        <refpurpose> convert a set of Matlab M-files directories to Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>translatepaths(dirs_path [,res_path])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirs_path</term>
+                <listitem>
+                    <para>a character string vector which gives the paths of Matlab M-file directories to convert</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res_path</term>
+                <listitem>
+                    <para>a character string which gives the path of the directory where the Scilab functions are written to. Default value is current directory.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>translatepaths</literal>, converts all Matlab M-file contained in a set of directories to
+            Scilab functions. Each function is converted by <literal>mfile2sci</literal>.
+        </para>
+        <para>
+            Trace of conversion information is stored in a file named <literal>"log"</literal> in
+            the <literal>res_path</literal> directory
+        </para>
+        <para>
+            When called without rhs, <literal>translatepaths()</literal> launches a GUI to help to select a file/directory and options.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mfile2sci">mfile2sci</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

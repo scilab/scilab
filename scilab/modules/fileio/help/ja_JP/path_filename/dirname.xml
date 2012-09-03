@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dirname">
+    <refnamediv>
+        <refname>dirname</refname>
+        <refpurpose>ファイル名からディレクトリを得る</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>dirs = dirname(files[,flag [,flagexpand]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>ファイル名の集合を指定する文字列行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag, flagexpand</term>
+                <listitem>
+                    <para>
+                        オプションの論理値パラメータ. (デフォルト値 <literal>%t</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files, dirs</term>
+                <listitem>
+                    <para>文字列行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>dirname</literal> は <literal>files</literal> で指定したファイルエントリの
+            ディレクトリ名を返します.
+        </para>
+        <para>
+            <literal>flag</literal> が真の場合, <literal>files</literal> は
+            <literal>getos() == 'Windows'</literal>変数で指定した目標型にまず
+            変換されます.
+            更に, <literal>flagexpand</literal> が真の場合,
+            <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
+            のような接頭文字列は環境変数を用いて展開されます.
+        </para>
+        <para>
+            <literal>dirname(files,%f)</literal> は,
+            files に指定したパス名が
+            <literal>getos() == 'Windows'</literal>変数により指定される変換に従わない
+            場合に間違った結果を出力することがあるため,注意を要します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+dirs=dirname('SCI/modules/fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci')
+dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="basename">basename</link>
+            </member>
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="pathconvert">pathconvert</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

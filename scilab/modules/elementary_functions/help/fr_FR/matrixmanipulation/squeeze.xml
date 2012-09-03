@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="squeeze">
+    <refnamediv>
+        <refname>squeeze</refname>
+        <refpurpose> squeeze</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>hypOut = squeeze(hypIn)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>hypIn</term>
+                <listitem>
+                    <para>hypermatrice ou matrice réelle.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hypOut</term>
+                <listitem>
+                    <para>hypermatrcex ou matrice réelle.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para> Elimine les dimensions de type "singleton" d'une hypermatrice,
+            c'est-à -dire toutes les dimensions de taille 1.
+            Les matrices sont quant à  elles inchangées. 
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hypermat">hypermat</link>
+            </member>
+            <member>
+                <link linkend="hypermatrices">hypermatrices</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

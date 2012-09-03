@@ -10,138 +10,138 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_gen_Make">
-  <refnamediv>
-    <refname>ilib_gen_Make</refname>
-    <refpurpose> utility for ilib_build: produces a Makefile for building shared libraries</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags,cc])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>lib_name</term>
-        <listitem>
-          <para>a character string, the generic name of the library without path and extension.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>files</term>
-        <listitem>
-          <para>a vector of character string. The names of the C or Fortran files without the extension and the path part.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>libs</term>
-        <listitem>
-          <para>a vector of character string. additionnal libraries paths or [].</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>makename</term>
-        <listitem>
-          <para>character string. The path of the Makefile file.</para>
-          <para>This parameter is useless since Scilab 5.0.</para>
-          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>with_gateway</term>
-        <listitem>
-          <para>a boolean. If true a file with name &lt;lib_name&gt;_gateway is
-            added. Default value is %t
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ldflags</term>
-        <listitem>
-          <para>a string. It can be used to add specific linker options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>cflags</term>
-        <listitem>
-          <para>a string. It can be used to add specific C compiler options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fflags</term>
-        <listitem>
-          <para>a string. It can be used to add specific Fortran compiler options in the
-            generated Makefile. Default value is ""
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>cc</term>
-        <listitem>
-          <para>a string. The name of the C compiler. Default value is the C compiler detected on the host.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Utility function used by <literal>ilib_build</literal>
-    </para>
-    <para>
-      This function generates a Makefile adapted to the Operating System for
-      building shared libraries to be loaded in Scilab. Proper options and
-      paths are set.
-    </para>
-    <para>
-      Shared libraries can then be used with the <literal>link</literal> and
-      <literal>addinter</literal> scilab function for incremental/dynamic linking.
-    </para>
-    <para>
-      The shared library is build from a set of C or Fortran routines
-      stored in a directory and if required from a set of external
-      libraries.
-    </para>
-    <para>
-      Files are not required to exist, when Makefile is generated, but of
-      course are required for executing the Makefile.
-    </para>
-    <para>
-      <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_build">ilib_build</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
-      <member>
-        <link linkend="api_scilab">api_scilab</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ilib_gen_Make">
+    <refnamediv>
+        <refname>ilib_gen_Make</refname>
+        <refpurpose> utility for ilib_build: produces a Makefile for building shared libraries</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags,cc])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lib_name</term>
+                <listitem>
+                    <para>a character string, the generic name of the library without path and extension.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>a vector of character string. The names of the C or Fortran files without the extension and the path part.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libs</term>
+                <listitem>
+                    <para>a vector of character string. additionnal libraries paths or [].</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>makename</term>
+                <listitem>
+                    <para>character string. The path of the Makefile file.</para>
+                    <para>This parameter is useless since Scilab 5.0.</para>
+                    <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>with_gateway</term>
+                <listitem>
+                    <para>a boolean. If true a file with name &lt;lib_name&gt;_gateway is
+                        added. Default value is %t
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldflags</term>
+                <listitem>
+                    <para>a string. It can be used to add specific linker options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cflags</term>
+                <listitem>
+                    <para>a string. It can be used to add specific C compiler options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fflags</term>
+                <listitem>
+                    <para>a string. It can be used to add specific Fortran compiler options in the
+                        generated Makefile. Default value is ""
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cc</term>
+                <listitem>
+                    <para>a string. The name of the C compiler. Default value is the C compiler detected on the host.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function used by <literal>ilib_build</literal>
+        </para>
+        <para>
+            This function generates a Makefile adapted to the Operating System for
+            building shared libraries to be loaded in Scilab. Proper options and
+            paths are set.
+        </para>
+        <para>
+            Shared libraries can then be used with the <literal>link</literal> and
+            <literal>addinter</literal> scilab function for incremental/dynamic linking.
+        </para>
+        <para>
+            The shared library is build from a set of C or Fortran routines
+            stored in a directory and if required from a set of external
+            libraries.
+        </para>
+        <para>
+            Files are not required to exist, when Makefile is generated, but of
+            course are required for executing the Makefile.
+        </para>
+        <para>
+            <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

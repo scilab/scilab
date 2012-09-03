@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rankqr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rankqr">
     <refnamediv>
         <refname>rankqr</refname>
         <refpurpose>QR分解に基づく階数</refpurpose>
@@ -101,7 +101,7 @@
         <para>
             このルーチンは列ピボット選択付きのQR分解を使用します:
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 A * P = Q * R,  where  R = [ R11 R12 ],
                            [  0  R22 ]
  ]]></programlisting>
@@ -133,7 +133,7 @@ A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

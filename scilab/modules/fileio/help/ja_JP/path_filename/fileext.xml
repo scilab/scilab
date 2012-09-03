@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fileext">
+    <refnamediv>
+        <refname>fileext</refname>
+        <refpurpose>ファイルパスの拡張子を返す</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>extension = fileext(fullpath)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>fullpath</term>
+                <listitem>
+                    <para>文字列, 指定するファイルパス</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>extension</term>
+                <listitem>
+                    <para>文字列, 拡張子部または ''</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>extension=fileext(fullpath)</literal> は
+            フルパス文字列をドットを含む拡張子部に分割します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+extension = fileext('SCI/etc/scilab.start')
+extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

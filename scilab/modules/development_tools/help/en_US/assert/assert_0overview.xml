@@ -2,100 +2,100 @@
 <!--
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="assert_overview">
-  <refnamediv>
-    <refname>Assert Overview</refname>
-    <refpurpose>An overview of the Assert module.</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Purpose</title>
-    <para>
-      The goal of this module is to provide functions to check the
-      behavior of some other functions, for example in unit tests.
-      We emphasize the use of consistent tools for testing numerical issues,
-      with the goal of testing numerical algorithms more easily.
-      In particular, we provide a comparison function for two floating
-      point numbers, which allows to check that two numbers are "numerically almost equal",
-      i.e. that the relative error is small.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Quick start</title>
-    <para>
-      The <literal>assert_checktrue</literal> function allows to
-      check that a matrix of booleans is true.
-      The following assertion fails and generate an error.
-    </para>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="assert_overview">
+    <refnamediv>
+        <refname>Assert Overview</refname>
+        <refpurpose>An overview of the Assert module.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Purpose</title>
+        <para>
+            The goal of this module is to provide functions to check the
+            behavior of some other functions, for example in unit tests.
+            We emphasize the use of consistent tools for testing numerical issues,
+            with the goal of testing numerical algorithms more easily.
+            In particular, we provide a comparison function for two floating
+            point numbers, which allows to check that two numbers are "numerically almost equal",
+            i.e. that the relative error is small.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Quick start</title>
+        <para>
+            The <literal>assert_checktrue</literal> function allows to
+            check that a matrix of booleans is true.
+            The following assertion fails and generate an error.
+        </para>
+        <programlisting role="example"><![CDATA[
 assert_checktrue ( [%t %F] );
    ]]></programlisting>
-    <para>
-      The <literal>assert_checkequal</literal> function allows to
-      check that two variables are equal.
-      The following assertion is a success and runs silently.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            The <literal>assert_checkequal</literal> function allows to
+            check that two variables are equal.
+            The following assertion is a success and runs silently.
+        </para>
+        <programlisting role="example"><![CDATA[
 assert_checkequal ( %nan , %nan );
    ]]></programlisting>
-    <para>
-      The <literal>assert_checkalmostequal</literal> function allows to
-      check that a computed result is close to an expected result.
-      In the following script, we check that <literal>computed=1.23456</literal>
-      is close to <literal>expected=1.23457</literal>, but that
-      11 digits have been lost with respect to the maximum
-      achievable accuracy.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            The <literal>assert_checkalmostequal</literal> function allows to
+            check that a computed result is close to an expected result.
+            In the following script, we check that <literal>computed=1.23456</literal>
+            is close to <literal>expected=1.23457</literal>, but that
+            11 digits have been lost with respect to the maximum
+            achievable accuracy.
+        </para>
+        <programlisting role="example"><![CDATA[
 assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e11*%eps );
    ]]></programlisting>
-    <para>
-      A particular feature of the module is that all the assert functions
-      have the same output arguments.
-      This feature allows to get a uniform behavior and supports a
-      simple management of the errors in the case where an assertion is
-      not satisfied.
-      For example, consider the function <literal>assert_checktrue</literal>,
-      which calling sequence is:
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            A particular feature of the module is that all the assert functions
+            have the same output arguments.
+            This feature allows to get a uniform behavior and supports a
+            simple management of the errors in the case where an assertion is
+            not satisfied.
+            For example, consider the function <literal>assert_checktrue</literal>,
+            which calling sequence is:
+        </para>
+        <programlisting role="example"><![CDATA[
 flag = assert_checktrue ( condition )
 flag = assert_checktrue ( condition )
 [flag,errmsg] = assert_checktrue ( condition )
    ]]></programlisting>
-    <para>
-      If any entry in condition is false,
-      <itemizedlist>
-        <listitem><para>
-            if the errmsg output variable is not used, an error is generated,
-          </para>
-        </listitem>
-        <listitem><para>
-            if the errmsg output variable is used, no error is generated.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
-    <para>
-      The reason of this behavior is to be able to use assertions
-      both in scripts (e.g. unit tests) and in functions.
-      For example, in a typical unit test, the statement:
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            If any entry in condition is false,
+            <itemizedlist>
+                <listitem><para>
+                        if the errmsg output variable is not used, an error is generated,
+                    </para>
+                </listitem>
+                <listitem><para>
+                        if the errmsg output variable is used, no error is generated.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            The reason of this behavior is to be able to use assertions
+            both in scripts (e.g. unit tests) and in functions.
+            For example, in a typical unit test, the statement:
+        </para>
+        <programlisting role="example"><![CDATA[
 assert_checktrue ( 1+1==12 );
    ]]></programlisting>
-    <para>
-      will generate an error, as expected.
-      On the other hand, consider the situation where we want to insert
-      assertions checkings in a function.
-      We might want to manage the case where the assertion fails.
-      In this case, the calling sequence <literal>assert_checktrue ( condition )</literal>
-      generates an error, which interrupts the execution.
-      We may want to avoid this, by catching the error generated by
-      <literal>assert_checktrue</literal>.
-      This requires to use the <literal>execstr</literal> function and
-      may lead to the following source code.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            will generate an error, as expected.
+            On the other hand, consider the situation where we want to insert
+            assertions checkings in a function.
+            We might want to manage the case where the assertion fails.
+            In this case, the calling sequence <literal>assert_checktrue ( condition )</literal>
+            generates an error, which interrupts the execution.
+            We may want to avoid this, by catching the error generated by
+            <literal>assert_checktrue</literal>.
+            This requires to use the <literal>execstr</literal> function and
+            may lead to the following source code.
+        </para>
+        <programlisting role="example"><![CDATA[
 function y = myfunction ( x )
     ierr=execstr("assert_checktrue ( x==12 )","errcatch");
     if ( ierr <> 0 ) then
@@ -104,12 +104,12 @@ function y = myfunction ( x )
     y=x
 endfunction
    ]]></programlisting>
-    <para>
-      In this case, we suggest to use instead the calling
-      sequence <literal>[flag,errmsg] = assert_checktrue ( condition )</literal>,
-      which simplifies the processing of the error.
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            In this case, we suggest to use instead the calling
+            sequence <literal>[flag,errmsg] = assert_checktrue ( condition )</literal>,
+            which simplifies the processing of the error.
+        </para>
+        <programlisting role="example"><![CDATA[
 function y = myfunction2 ( x )
     [flag,errmsg] = assert_checktrue ( x==12 )
     if ( ~flag ) then
@@ -118,15 +118,15 @@ function y = myfunction2 ( x )
     y=x
 endfunction
    ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

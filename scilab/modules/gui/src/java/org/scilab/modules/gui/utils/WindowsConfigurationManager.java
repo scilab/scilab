@@ -15,6 +15,7 @@ package org.scilab.modules.gui.utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,15 +88,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     static {
         new WindowsConfigurationManager();
         Runnable runnable = new Runnable() {
-            public void run() {
-                if (mustInvalidate) {
-                    File f = new File(USER_WINDOWS_CONFIG_FILE);
-                    if (f.exists() && f.isFile()) {
-                        f.delete();
+                public void run() {
+                    if (mustInvalidate) {
+                        File f = new File(USER_WINDOWS_CONFIG_FILE);
+                        if (f.exists() && f.isFile()) {
+                            f.delete();
+                        }
                     }
                 }
-            }
-        };
+            };
 
         try {
             Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
@@ -233,11 +234,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
         Element root = doc.getDocumentElement();
         Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                 "x", (int) window.getLocation().getX(),
-                                 "y", (int) window.getLocation().getY(),
-                                 "width", (int) window.getSize().getWidth(),
-                                 "height", (int) window.getSize().getHeight()
-                                                              });
+                                                               "x", (int) window.getLocation().getX(),
+                                                               "y", (int) window.getLocation().getY(),
+                                                               "width", (int) window.getSize().getWidth(),
+                                                               "height", (int) window.getSize().getHeight()
+            });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -379,36 +380,36 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
             window.setVisible(true);
 
-            // Return only when the window is displayable
-            while (!window.isDisplayable()) {
-                Thread.yield();
-            }
-
             if (requestFocus) {
-                SwingUtility.focus(mainTab);
                 SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                synchronized (currentlyRestored) {
-                                    while (currentlyRestored.size() > 0) {
-                                        try {
-                                            currentlyRestored.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                        @Override
+                        public void run() {
+                            final Thread t = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        synchronized (currentlyRestored) {
+                                            while (currentlyRestored.size() > 0) {
+                                                try {
+                                                    currentlyRestored.wait();
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
                                         }
-                                    }
-                                }
 
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
-                                window.toFront();
-                            }
-                        });
-                        t.start();
-                    }
-                });
+                                        window.toFront();
+                                        mainTab.requestFocusInWindow();
+                                        while (!mainTab.hasFocus()) {
+                                            Thread.yield();
+                                            mainTab.requestFocusInWindow();
+                                        }
+
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                    }
+                                });
+                            t.start();
+                        }
+                    });
             }
         }
 
@@ -572,6 +573,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         boolean requestFocus = true;
+
+        if (wins.contains(NULLUUID)) {
+            wins.remove(NULLUUID);
+            wins.add(NULLUUID);
+        }
 
         for (String winuuid : wins) {
             if (!alreadyRestoredWindows.contains(winuuid)) {
@@ -862,7 +868,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                             "factory", factory.getClassName(uuid),
                                             "width", (int) dim.getWidth(),
                                             "height", (int) dim.getHeight()
-                                           });
+            });
         writeDocument();
     }
 
@@ -925,7 +931,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the application uuid
      * @return true if the operation succeded
      */
-    public static boolean restoreUUID(String uuid) {
+    public static boolean restoreUUID(final String uuid) {
         readDocument();
         clean();
 
@@ -934,7 +940,21 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             return false;
         }
 
-        startRestoration(uuid);
+        if (SwingUtilities.isEventDispatchThread()) {
+            startRestoration(uuid);
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                        public void run() {
+                            startRestoration(uuid);
+                        }
+                    });
+            } catch (InvocationTargetException e) {
+                System.err.println(e);
+            } catch (InterruptedException e) {
+                System.err.println(e);
+            }
+        }
 
         writeDocument();
         doc = null;

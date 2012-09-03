@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="window">
+    <refnamediv>
+        <refname>window</refname>
+        <refpurpose>様々な型の対称ウインドウを計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>win_l=window('re',n)
+            win_l=window('tr',n)
+            win_l=window('hn',n)
+            win_l=window('hm',n)
+            win_l=window('kr',n,alpha)
+            [win_l,cwp]=window('ch',n,par)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>ウインドウの長さ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>par</term>
+                <listitem>
+                    <para>
+                        2要素のベクトル <literal>par=[dp,df])</literal>のパラメータで, 
+                        <literal>dp</literal>(<literal>0&lt;dp&lt;.5</literal>)
+                        はメインローブの幅を規定し,<literal>df</literal>はサイドローブの高さ
+                        (<literal>df&gt;0</literal>)を規定します.
+                    </para>
+                    <para>
+                        これら2つの片方のみを指定することができ,
+                        もう片方には <literal>-1</literal>を指定する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha</term>
+                <listitem>
+                    <para>
+                        カイザーウインドウのパラメータ <literal>alpha &gt;0</literal>). 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>win</term>
+                <listitem>
+                    <para>ウインドウ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cwp</term>
+                <listitem>
+                    <para>未定義のチェビシェフウインドウのパラメータ</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            デジタル信号処理用の様々な対称ウインドウを計算する関数です.
+        </para>
+        <para>
+            カイザーウインドウは,準最適ウインドウ関数です.
+            <literal>alpha</literal>は任意の正の実数で,ウインドウの形状を定義します.
+            整数 <literal>n</literal> はウインドウの長さです.
+        </para>
+        <para>
+            構築の際,この関数は,<literal> k = n/2</literal>,すなわち,ウインドウの
+            中央,における最大値を 1 にし,ウインドウの端に向かって減少させます.
+            <literal>alpha</literal>の大きさを大きくすると,
+            ウインドはより狭くなります;
+            <literal>alpha = 0</literal> の場合,矩形ウインドウと同じになります.
+            逆に,<literal>alpha</literal> を大きくすると,フーリエ変換における
+            メインローブの幅が増加し,振幅のサイドローブは減少します.
+            つまり,このパラメータはメインローブの幅とサイドローブの面積の
+            トレードオフを制御します.
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>alpha</td>
+                <td>ウインドウ形状</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>矩形形状</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>ハミングウインドウに類似</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>ハニングウインドウに類似</td>
+            </tr>
+            <tr>
+                <td>8.6</td>
+                <td>ブラックマンウインドウに類似</td>
+            </tr>
+        </informaltable>
+        <para>
+            チェビシェフウインドウは,指定した特定のサイドローブの高さのもとで,
+            メインローブの幅を最小化します.
+            このウインドウの特徴は,等リプル特性であり,
+            全てのサイドローブは同じ高さとなります.
+        </para>
+        <para>
+            ハニングおよびハミングウインドウは非常に似ており,
+            パラメータ <literal>alpha</literal>の選択のみが異なります:
+            <literal> w=alpha+(1 - alpha)*cos(2*%pi*x/(n-1))</literal> 
+            <literal>alpha</literal> はハニングウインドでは 1/2 ,
+            ハミングウインドウでは 0.54 です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// ハミングウインドウ
+clf()
+N=64;
+w=window('hm',N);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+
+// カイザーウインドウ
+clf()
+N=64;
+w=window('kr',N,6);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+
+// チェビシェフウインドウ
+clf()
+N=64;
+[w,df]=window('ch',N,[0.005,-1]);
+subplot(121);plot2d(1:N,w,style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+subplot(122)
+n=256;[W,fr]=frmag(w,n);
+plot2d(fr,20*log10(W),style=color('blue'))
+set(gca(),'grid',[1 1]*color('gray'))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="wfir">wfir</link>
+            </member>
+            <member>
+                <link linkend="frmag">frmag</link>
+            </member>
+            <member>
+                <link linkend="ffilt">ffilt</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>IEEE. Programs for Digital Signal Processing. IEEE Press. New York: John
+            Wiley and Sons, 1979. Program 5.2.
+        </para>
+    </refsection>
+</refentry>

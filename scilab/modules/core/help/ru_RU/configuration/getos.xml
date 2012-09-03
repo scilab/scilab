@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="getos">
-  <refnamediv>
-    <refname>getos</refname>
-    <refpurpose>
-      возвращает название операционной системы и версию
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      OS=getos()
-      [OS,Version]=getos()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>[OS,Version]=getos()</literal> возвращает название операционной системы и версию.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getos">
+    <refnamediv>
+        <refname>getos</refname>
+        <refpurpose>
+            возвращает название операционной системы и версию
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            OS=getos()
+            [OS,Version]=getos()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>[OS,Version]=getos()</literal> возвращает название операционной системы и версию.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 OS=getos()
 [OS,version] = getos()
 if (getos() == "Windows") then 
@@ -37,5 +37,5 @@ if (getos() == "Darwin") then
    disp("Scilab on MacOs"); 
 end
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

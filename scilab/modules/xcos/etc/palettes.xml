@@ -673,9 +673,6 @@
       <block name="TRASH_f">
         <icon variable="SCI" path="/modules/xcos/images/palettes/TRASH_f.png"/>
       </block>
-      <block name="WFILE_f">
-        <icon variable="SCI" path="/modules/xcos/images/palettes/WFILE_f.png"/>
-      </block>
       <block name="WRITEAU_f">
         <icon variable="SCI" path="/modules/xcos/images/palettes/WRITEAU_f.png"/>
       </block>

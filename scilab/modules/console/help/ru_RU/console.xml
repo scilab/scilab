@@ -10,188 +10,188 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="console" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
-  <refnamediv>
-    <refname>console</refname>
-    <refpurpose>сочетания клавиш в Окне консоли</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <informaltable border="1">
-      <tr>
-        <td>ВВЕРХ или Ctrl+P</td>
-        <td>повторный вызов предыдущей строки.</td>
-      </tr>
-      <tr>
-        <td>ВНИЗ или Ctrl+N</td>
-        <td>повторный вызов следующей строки.</td>
-      </tr>
-      <tr>
-        <td>F1</td>
-        <td>вызов справки.</td>
-      </tr>
-      <tr>
-        <td>F2</td>
-        <td>очистить консоль.</td>
-      </tr>
-      <tr>
-        <td>F12</td>
-        <td>открывает консоль в отдельном окне (только в Windows).</td>
-      </tr>
-      <tr>
-        <td>Ctrl+пробел или TAB</td>
-        <td>
-          дополнение : Scilab отображает список всех имён, которые начинаются
-          с некоторых символов.
-        </td>
-      </tr>
-      <tr>
-        <td>Ctrl + A или HOME</td>
-        <td>переход в начало текущей строки.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + B или LEFT</td>
-        <td>перевод курсора на один символ влево.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + C</td>
-        <td>
-          прерывание работы Scilab, если ничего не выбрано в консоли,
-          иначе выбранный текст копируется в буфер обмена.
-        </td>
-      </tr>
-      <tr>
-        <td>Ctrl + D или DELETE</td>
-        <td>удаляет текущий символ.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + E или END</td>
-        <td>перемещает курсор в конец командной строки.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + F или RIGHT</td>
-        <td>перемещает курсор на один символ вправо.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + H или BACKSPACE</td>
-        <td>удаляет предыдущий символ.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + K</td>
-        <td>убивает командную строку от курсора до конца.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + S</td>
-        <td>выбирает всё.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + U</td>
-        <td>удаляет командную строку целиком.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + V</td>
-        <td>делает вставку из буфера обмена.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + W</td>
-        <td>удаляет последнее слово командной строки.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + X</td>
-        <td>прерывает работу Scilab'а</td>
-      </tr>
-      <tr>
-        <td>Ctrl + ВЛЕВО</td>
-        <td>перемещение на одно слово влево.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + RIGHT</td>
-        <td>перемещение на одно слово вправо.</td>
-      </tr>
-      <tr>
-        <td>Shift + HOME</td>
-        <td>выбор от курсора до начала инструкции.</td>
-      </tr>
-      <tr>
-        <td>Shift + END</td>
-        <td>выбор от курсора до конца инструкции.</td>
-      </tr>
-      <tr>
-        <td>Double-click</td>
-        <td>выбор текущего слова.</td>
-      </tr>
-    </informaltable>
-  </refsection>
-  <refnamediv>
-    <refname>console cli</refname>
-    <refpurpose>сочетания клавиш в неграфическом режиме NW/NWNI</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Описание</title>
-    <informaltable border="1">
-      <tr>
-        <td>ВВЕРХ или Ctrl+P</td>
-        <td>повторный вызов предыдущей строки.</td>
-      </tr>
-      <tr>
-        <td>ВНИЗ или Ctrl+N</td>
-        <td>повторный вызов следующей строки.</td>
-      </tr>
-      <tr>
-        <td>TAB</td>
-        <td>
-          дополнение: Scilab отображает список всех имён, которые
-          начинаются с некоторых.
-        </td>
-      </tr>
-      <tr>
-        <td>Ctrl + A или HOME</td>
-        <td>перемещение в начало текущей строки.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + B или ВЛЕВО</td>
-        <td>перемещает курсор на один символ влево.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + D или DELETE</td>
-        <td>удаляет текущий символ.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + E или END</td>
-        <td>перемещает курсор в конец командной строки.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + F или RIGHT</td>
-        <td>перемещает курсор на один символ вправо.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + H или BACKSPACE</td>
-        <td>удаляет предыдущий символ.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + K</td>
-        <td>удаляет командную строку от курсора до конца.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + U</td>
-        <td>удаляет командную строку от курсора до начала.</td>
-      </tr>
-      <tr>
-        <td>Ctrl + W</td>
-        <td>удаляет предыдущее слово от курсора.</td>
-      </tr>
-      <tr>
-        <td>Alt+B или Ctrl+ВЛЕВО</td>
-        <td>перемещение на одно слово влево.</td>
-      </tr>
-      <tr>
-        <td>Alt+F или Ctrl+ВПРАВО</td>
-        <td>перемещение на одно слово вправо.</td>
-      </tr>
-    </informaltable>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="console" xml:lang="ru">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>console</refname>
+        <refpurpose>сочетания клавиш в Окне консоли</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <informaltable border="1">
+            <tr>
+                <td>ВВЕРХ или Ctrl+P</td>
+                <td>повторный вызов предыдущей строки.</td>
+            </tr>
+            <tr>
+                <td>ВНИЗ или Ctrl+N</td>
+                <td>повторный вызов следующей строки.</td>
+            </tr>
+            <tr>
+                <td>F1</td>
+                <td>вызов справки.</td>
+            </tr>
+            <tr>
+                <td>F2</td>
+                <td>очистить консоль.</td>
+            </tr>
+            <tr>
+                <td>F12</td>
+                <td>открывает консоль в отдельном окне (только в Windows).</td>
+            </tr>
+            <tr>
+                <td>Ctrl+пробел или TAB</td>
+                <td>
+                    дополнение : Scilab отображает список всех имён, которые начинаются
+                    с некоторых символов.
+                </td>
+            </tr>
+            <tr>
+                <td>Ctrl + A или HOME</td>
+                <td>переход в начало текущей строки.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + B или LEFT</td>
+                <td>перевод курсора на один символ влево.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + C</td>
+                <td>
+                    прерывание работы Scilab, если ничего не выбрано в консоли,
+                    иначе выбранный текст копируется в буфер обмена.
+                </td>
+            </tr>
+            <tr>
+                <td>Ctrl + D или DELETE</td>
+                <td>удаляет текущий символ.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + E или END</td>
+                <td>перемещает курсор в конец командной строки.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + F или RIGHT</td>
+                <td>перемещает курсор на один символ вправо.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + H или BACKSPACE</td>
+                <td>удаляет предыдущий символ.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + K</td>
+                <td>убивает командную строку от курсора до конца.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + S</td>
+                <td>выбирает всё.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + U</td>
+                <td>удаляет командную строку целиком.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + V</td>
+                <td>делает вставку из буфера обмена.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + W</td>
+                <td>удаляет последнее слово командной строки.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + X</td>
+                <td>прерывает работу Scilab'а</td>
+            </tr>
+            <tr>
+                <td>Ctrl + ВЛЕВО</td>
+                <td>перемещение на одно слово влево.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + RIGHT</td>
+                <td>перемещение на одно слово вправо.</td>
+            </tr>
+            <tr>
+                <td>Shift + HOME</td>
+                <td>выбор от курсора до начала инструкции.</td>
+            </tr>
+            <tr>
+                <td>Shift + END</td>
+                <td>выбор от курсора до конца инструкции.</td>
+            </tr>
+            <tr>
+                <td>Double-click</td>
+                <td>выбор текущего слова.</td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refnamediv>
+        <refname>console cli</refname>
+        <refpurpose>сочетания клавиш в неграфическом режиме NW/NWNI</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <informaltable border="1">
+            <tr>
+                <td>ВВЕРХ или Ctrl+P</td>
+                <td>повторный вызов предыдущей строки.</td>
+            </tr>
+            <tr>
+                <td>ВНИЗ или Ctrl+N</td>
+                <td>повторный вызов следующей строки.</td>
+            </tr>
+            <tr>
+                <td>TAB</td>
+                <td>
+                    дополнение: Scilab отображает список всех имён, которые
+                    начинаются с некоторых.
+                </td>
+            </tr>
+            <tr>
+                <td>Ctrl + A или HOME</td>
+                <td>перемещение в начало текущей строки.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + B или ВЛЕВО</td>
+                <td>перемещает курсор на один символ влево.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + D или DELETE</td>
+                <td>удаляет текущий символ.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + E или END</td>
+                <td>перемещает курсор в конец командной строки.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + F или RIGHT</td>
+                <td>перемещает курсор на один символ вправо.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + H или BACKSPACE</td>
+                <td>удаляет предыдущий символ.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + K</td>
+                <td>удаляет командную строку от курсора до конца.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + U</td>
+                <td>удаляет командную строку от курсора до начала.</td>
+            </tr>
+            <tr>
+                <td>Ctrl + W</td>
+                <td>удаляет предыдущее слово от курсора.</td>
+            </tr>
+            <tr>
+                <td>Alt+B или Ctrl+ВЛЕВО</td>
+                <td>перемещение на одно слово влево.</td>
+            </tr>
+            <tr>
+                <td>Alt+F или Ctrl+ВПРАВО</td>
+                <td>перемещение на одно слово вправо.</td>
+            </tr>
+        </informaltable>
+    </refsection>
 </refentry>
 

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lyap">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lyap">
     <refnamediv>
         <refname>lyap</refname>
         <refpurpose>リアプノフ方程式</refpurpose>
@@ -39,7 +39,7 @@
         <para>
             <literal>X= lyap(A,C,flag)</literal> は連続時間または離散時間行列リアプノフ方程式を解きます:
         </para>
-        <programlisting role = ""><![CDATA[ 
+        <programlisting role=""><![CDATA[ 
 A'*X + X*A = C       ( flag='c' )
 A'*X*A - X = C       ( flag='d' )
  ]]></programlisting>
@@ -59,7 +59,7 @@ X=lyap(A,C,'d');
 A'*X*A - X -C
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

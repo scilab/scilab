@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,13 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="spec" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spec" xml:lang="en">
     <refnamediv>
         <refname>spec</refname>
-        <refpurpose>eigenvalues of matrices and pencils</refpurpose>
+        <refpurpose>autovalores de matrizes e feixes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>evals=spec(A)
             [R,diagevals]=spec(A)
             
@@ -27,32 +27,32 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>matriz quadrada de reais ou complexos </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>B</term>
                 <listitem>
-                    <para>real or complex square matrix with same dimensions as
-                        <literal> A</literal>
+                    <para>matriz quadrada de reais ou complexos com as mesmas dimensões
+                        que<literal> A</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>evals</term>
                 <listitem>
-                    <para>real or complex vector, the eigenvalues</para>
+                    <para>vetor de reais ou complexos, os autovalores</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>diagevals</term>
                 <listitem>
-                    <para>real or complex diagonal matrix (eigenvalues along the
+                    <para>matriz diagonal de reais ou complexos (autovalores ao longo da
                         diagonal)
                     </para>
                 </listitem>
@@ -60,50 +60,52 @@
             <varlistentry>
                 <term>alpha</term>
                 <listitem>
-                    <para>real or complex vector, al./be gives the eigenvalues</para>
+                    <para>vetor de reais ou complexos, al./be fornece os
+                        autovalores
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>beta</term>
                 <listitem>
-                    <para>real vector, al./be gives the eigenvalues</para>
+                    <para>vetor de reais, al./be fornece os autovalores</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>R</term>
                 <listitem>
-                    <para>real or complex invertible square matrix, matrix right
-                        eigenvectors.
+                    <para>matriz quadrada de reais ou complexos invertível, autovetores
+                        direitos da matriz 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>L</term>
+                <term>Q</term>
                 <listitem>
-                    <para>real or complex invertible square matrix, pencil left
-                        eigenvectors.
+                    <para>matriz quadrada de reais ou complexos invertível, autovetores
+                        esquerdos do feixe 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>R</term>
+                <term>Z</term>
                 <listitem>
-                    <para>real or complex invertible square matrix, pencil right
-                        eigenvectors.
+                    <para>matriz quadrada de reais ou complexos invertível, autovetores
+                        direitos do feixe
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <variablelist>
             <varlistentry>
                 <term>evals=spec(A)</term>
                 <listitem>
                     <para>
-                        returns in vector <literal>evals</literal> the
-                        eigenvalues.
+                        retorna no vetor <literal>evals</literal> os
+                        autovalores.
                     </para>
                 </listitem>
             </varlistentry>
@@ -111,17 +113,17 @@
                 <term>[R,diagevals] =spec(A)</term>
                 <listitem>
                     <para>
-                        returns in the diagonal matrix <literal>evals</literal> the
-                        eigenvalues and in <literal>R</literal> the right
-                        eigenvectors.
+                        retorna na matriz diagonal <literal>evals</literal> os
+                        autovalores e em <literal>R</literal> os autovetores
+                        direitos.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>evals=spec(A,B)</term>
                 <listitem>
-                    <para>returns the spectrum of the matrix pencil A - s B, i.e. the
-                        roots of the polynomial matrix s B - A.
+                    <para> retorna o espectro do feixe de matrizes A - s B, i.e. as
+                        raízes da matriz de polinômios s B - A.
                     </para>
                 </listitem>
             </varlistentry>
@@ -129,20 +131,20 @@
                 <term>[alpha,beta] = spec(A,B)</term>
                 <listitem>
                     <para>
-                        returns the spectrum of the matrix pencil <literal>A- s
+                        retorna o espectro do feixe de matrizes <literal>A- s
                             B
                         </literal>
-                        ,i.e. the roots of the polynomial matrix <literal>A - s
+                        ,i.e. as raízes da matriz de polinômios <literal>A - s
                             B
                         </literal>
-                        .Generalized eigenvalues alpha and beta are so that the
-                        matrix <literal>A - alpha./beta B</literal> is a singular matrix.
-                        The eigenvalues are given by <literal>al./be</literal> and if
-                        <literal>beta(i) = 0</literal> the ith eigenvalue is at infinity.
-                        (For <literal>B = eye(A), alpha./beta</literal> is
-                        <literal>spec(A)</literal>). It is usually represented as the pair
-                        (alpha,beta), as there is a reasonable interpretation for beta=0,
-                        and even for both being zero.
+                        .Auto valores generalizados alpha e beta são tais que a
+                        matriz <literal>A - alpha./beta B</literal> é uma matriz singular.
+                        Os autovalores são dados por <literal>al./be</literal> e se
+                        <literal>beta(i) = 0</literal> o i-ésimo autovalor está no infinito.
+                        (Para <literal>B = eye(A), alpha./beta</literal> é
+                        <literal>spec(A)</literal>). É usualmente representado pelo par
+                        (alpha,beta), já que há uma interpretação razoável para beta=0, e
+                        até mesmo para os dois sendo zero.
                     </para>
                 </listitem>
             </varlistentry>
@@ -150,130 +152,110 @@
                 <term>[alpha,beta,R] = spec(A,B)</term>
                 <listitem>
                     <para>
-                        returns in addition the matrix <literal>R</literal> of
-                        generalized right eigenvectors of the pencil.
+                        retorna, ainda, a matriz <literal>R</literal> de autovetores
+                        direitos generalizados do feixe.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>[al,be,L,R] = spec(A,B)</term>
+                <term>[al,be,Q,Z] = spec(A,B)</term>
                 <listitem>
                     <para>
-                        returns in addition the matrix <literal>L</literal> and
-                        <literal>R</literal> of generalized left and right eigenvectors of
-                        the pencil.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>[al,be,Z] = spec(A,E)</term>
-                <listitem>
-                    <para>
-                        returns the matrix <literal>Z</literal> of right
-                        generalized eigen vectors.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>[al,be,Q,Z] = spec(A,E)</term>
-                <listitem>
-                    <para>
-                        returns the matrices <literal>Q</literal>
-                        and <literal>Z</literal> of right and left generalized
-                        eigen vectors.
+                        rretorna ainda a matriz <literal>Q</literal> e
+                        <literal>Z</literal> de autovetores esquerdos e direitos
+                        generalizados do feixe.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>For big full / sparse matrix, you can use the Arnoldi module.</para>
     </refsection>
     <refsection>
-        <title>References</title>
-        <para>Matrix eigenvalues computations are based on the Lapack
-            routines
+        <title>Referências</title>
+        <para>As computações de autovalores de matrizes são baseadas nas rotinas
+            Lapack
         </para>
         <itemizedlist>
             <listitem>
-                <para>DGEEV and ZGEEV when the matrix are not symmetric,</para>
+                <para>DGEEV e ZGEEV quando as matrizes não são simétricas,</para>
             </listitem>
             <listitem>
-                <para>DSYEV and ZHEEV when the matrix are symmetric.</para>
+                <para>DSYEV e ZHEEV quando as matrizes são simétricas.</para>
             </listitem>
         </itemizedlist>
-        <para>A complex symmetric matrix has conjugate offdiagonal terms and real
-            diagonal terms.
+        <para>Uma matriz de complexos simétrica tem termos fora da diagonal
+            conjugados e termos diagonais reais.
         </para>
-        <para>Pencil eigenvalues computations are based on the Lapack routines
-            DGGEV and ZGGEV.
+        <para>As computações de autovalores de feixes são baseadas nas rotinas
+            Lapack DGGEV e ZGGEV.
         </para>
     </refsection>
     <refsection>
-        <title>Real and complex matrices</title>
-        <para>It must be noticed that the type of the output variables, such as
-            evals or R for example, is not necessarily the same as the type of the
-            input matrices A and B. In the following paragraph, we analyse the type of
-            the output variables in the case where one computes the eigenvalues and
-            eigenvectors of one single matrix A.
+        <title>Matrizes de reais e de complexos</title>
+        <para>Deve-se notar que o tipo das variáveis de saída, tais como evals ou
+            R por exemplo, não é necessariamente o mesmo das que das matrizes de
+            entrada A e B. No parágrafo seguinte, análisamos o tipo das variáveis de
+            saída no caso onde nos casos onde se computa os autovalores e autovetores
+            de uma única matriz A.
         </para>
         <itemizedlist>
             <listitem>
-                <para>Real A matrix</para>
+                <para>Matriz A de reais</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
-                        <para>The eigenvalues and the eigenvectors are real.</para>
+                        <para>Simétrica</para>
+                        <para>Os autovetores e autovalores são reais.</para>
                     </listitem>
                     <listitem>
-                        <para>Not symmetric</para>
-                        <para>The eigenvalues and eigenvectors are complex.</para>
+                        <para>Não simétrica</para>
+                        <para>Os autovetores e autovalores são complexos.</para>
                     </listitem>
                 </itemizedlist>
             </listitem>
             <listitem>
-                <para>Complex A matrix</para>
+                <para>Matriz A de complexos</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
-                        <para>The eigenvalues are real but the eigenvectors are
-                            complex.
+                        <para>Simétrica</para>
+                        <para>Os autovalores são reais, mas os autovetores são
+                            complexos.
                         </para>
                     </listitem>
                     <listitem>
-                        <para>Not symmetric</para>
-                        <para>The eigenvalues and the eigenvectors are complex.</para>
+                        <para>Não simétrica</para>
+                        <para>Os autovetores e autovalores são complexos.</para>
                     </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-// MATRIX EIGENVALUES
+// AUTOVALORES DA MATRIZ
 A=diag([1,2,3]);
 X=rand(3,3);
 A=inv(X)*A*X;
 spec(A)
-
+//
 x=poly(0,'x');
 pol=det(x*eye()-A)
 roots(pol)
-
+//
 [S,X]=bdiag(A);
 clean(inv(X)*A*X)
 
-// PENCIL EIGENVALUES
+// AUTOVALORES DO FEIXE
 A=rand(3,3);
 [al,be,R] = spec(A,eye(A));
 al./be
-clean(inv(R)*A*R)  //displaying the eigenvalues (generic matrix)
+clean(inv(R)*A*R)  //exibindo os autovalores (matriz genérica)
 A=A+%i*rand(A);
 E=rand(A);
-roots(det(A-%s*E))   //complex case
+roots(det(A-%s*E))   //caso de complexos
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>
@@ -289,12 +271,6 @@ roots(det(A-%s*E))   //complex case
             </member>
             <member>
                 <link linkend="colcomp">colcomp</link>
-            </member>
-            <member>
-                <link linkend="dsaupd">dsaupd</link>
-            </member>
-            <member>
-                <link linkend="dnaupd">dnaupd</link>
             </member>
         </simplelist>
     </refsection>

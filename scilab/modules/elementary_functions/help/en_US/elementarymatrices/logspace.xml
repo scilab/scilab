@@ -10,64 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="logspace" xml:lang="en">
-  <refnamediv>
-    <refname>logspace</refname>
-    <refpurpose>logarithmically spaced vector</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>logspace(d1,d2, [n])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>d1,d2</term>
-        <listitem>
-          <para>real or complex scalar (special meaning for
-            <literal>%pi</literal>)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>integer: number of requested values. It must be greater or equal to 2  (default value = 50)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      returns a row vector of <literal>n</literal> logarithmically equally
-      spaced points between <literal>10^d1</literal> and
-      <literal>10^d2</literal>. If <literal>d2=%pi</literal> then the points are
-      between <literal>10^d1</literal> and <literal>pi</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="logspace" xml:lang="en">
+    <refnamediv>
+        <refname>logspace</refname>
+        <refpurpose>logarithmically spaced vector</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>logspace(d1,d2, [n])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>d1,d2</term>
+                <listitem>
+                    <para>real or complex scalar (special meaning for
+                        <literal>%pi</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer: number of requested values. It must be greater or equal to 2  (default value = 50)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns a row vector of <literal>n</literal> logarithmically equally
+            spaced points between <literal>10^d1</literal> and
+            <literal>10^d2</literal>. If <literal>d2=%pi</literal> then the points are
+            between <literal>10^d1</literal> and <literal>pi</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 logspace(1,2,10)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="linspace">linspace</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>The logspace function accepts column vectors as input argument for the two first input arguments.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="linspace">linspace</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>The logspace function accepts column vectors as input argument for the two first input arguments.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

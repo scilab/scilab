@@ -13,150 +13,150 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="xls_read">
-  
-  <refnamediv>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="xls_read">
     
-    <refname>xls_read</refname>
-    
-    <refpurpose>читает листы в Excel-файле</refpurpose>
-    
-  </refnamediv>
-  
-  <refsynopsisdiv>
-    
-    <title>Последовательность вызова</title>
-    
-    <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
-    
-  </refsynopsisdiv>
-  
-  <refsection>
-    
-    <title>Аргументы</title>
-    
-    <variablelist>
-      
-      <varlistentry>
+    <refnamediv>
         
-        <term>fd</term>
+        <refname>xls_read</refname>
         
-        <listitem>
-          
-          <para>
-            
-            число: логическая единица на потоке Excel, возвращённая функцией <link linkend="xls_open">xls_open</link>
-            
-          </para>
-          
-        </listitem>
+        <refpurpose>читает листы в Excel-файле</refpurpose>
         
-      </varlistentry>
-      
-      <varlistentry>
-        
-        <term>Sheetpos</term>
-        
-        <listitem>
-          
-          <para>
-            
-            число: положение начала листа в потоке Excel. Это положение является одним из тех,
-            
-            которые были возвращены функцией <link linkend="xls_open">xls_open</link>.
-            
-          </para>
-          
-        </listitem>
-        
-      </varlistentry>
-      
-      <varlistentry>
-        
-        <term>Value</term>
-        
-        <listitem>
-          
-          <para>
-            
-            матрица чисел: числовые данные, найденные в листе. Ячейки без числовых
-            
-            данных представляются в виде значения <literal>NaN</literal>.
-            
-          </para>
-          
-        </listitem>
-        
-      </varlistentry>
-      
-      <varlistentry>
-        
-        <term>TextInd</term>
-        
-        <listitem>
-          
-          <para>
-            
-            матрица индексов того же размера, что и <literal>Value</literal>. Нулевой
-            
-            индекс означает, что в соответствующей ячейке Excel нет строковых значений.
-            
-            Положительный индекс <literal>i</literal> указывает на строковое значение
-            
-            <literal>SST(i)</literal>, где <literal>SST</literal> предоставлено функцией
-            
-            <link linkend="xls_open">xls_open</link>.
-            
-          </para>
-          
-        </listitem>
-        
-      </varlistentry>
-      
-    </variablelist>
+    </refnamediv>
     
-  </refsection>
-  
-  <refsection>
-    
-    <title>Описание</title>
-    
-    <para>
-      
-      Эта функция читает листы Excel, указанные логическим блоком в потоке Excel,
-      
-      и положение начала листа внутри этого потока. Она возвращает числовые и строковые
-      
-      данные, содержащиеся в ячейках Excel.
-      
-    </para>
-    
-    <para>
-      
-      Для чтения всего Excel-файла в одной функции одним-единственным вызовом можно
-      
-      использовать Функцию <link linkend="readxls">readxls</link>.
-      
-    </para>
-    
-    <para> 
-      
-      <warning> 
+    <refsynopsisdiv>
         
-        Обрабатываются только Excel-файлы BIFF8 Excel (последняя версия Excel-файлов (2003)).
+        <title>Последовательность вызова</title>
         
-      </warning>
-      
-      
-    </para>
+        <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
+        
+    </refsynopsisdiv>
     
-  </refsection>
-  
-  <refsection>
+    <refsection>
+        
+        <title>Аргументы</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>fd</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        число: логическая единица на потоке Excel, возвращённая функцией <link linkend="xls_open">xls_open</link>
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>Sheetpos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        число: положение начала листа в потоке Excel. Это положение является одним из тех,
+                        
+                        которые были возвращены функцией <link linkend="xls_open">xls_open</link>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>Value</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        матрица чисел: числовые данные, найденные в листе. Ячейки без числовых
+                        
+                        данных представляются в виде значения <literal>NaN</literal>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>TextInd</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        матрица индексов того же размера, что и <literal>Value</literal>. Нулевой
+                        
+                        индекс означает, что в соответствующей ячейке Excel нет строковых значений.
+                        
+                        Положительный индекс <literal>i</literal> указывает на строковое значение
+                        
+                        <literal>SST(i)</literal>, где <literal>SST</literal> предоставлено функцией
+                        
+                        <link linkend="xls_open">xls_open</link>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
     
-    <title>Примеры</title>
+    <refsection>
+        
+        <title>Описание</title>
+        
+        <para>
+            
+            Эта функция читает листы Excel, указанные логическим блоком в потоке Excel,
+            
+            и положение начала листа внутри этого потока. Она возвращает числовые и строковые
+            
+            данные, содержащиеся в ячейках Excel.
+            
+        </para>
+        
+        <para>
+            
+            Для чтения всего Excel-файла в одной функции одним-единственным вызовом можно
+            
+            использовать Функцию <link linkend="readxls">readxls</link>.
+            
+        </para>
+        
+        <para> 
+            
+            <warning> 
+                
+                Обрабатываются только Excel-файлы BIFF8 Excel (последняя версия Excel-файлов (2003)).
+                
+            </warning>
+            
+            
+        </para>
+        
+    </refsection>
     
-    <programlisting role="example"><![CDATA[ 
+    <refsection>
+        
+        <title>Примеры</title>
+        
+        <programlisting role="example"><![CDATA[ 
 //Декодирование ole-файла, выделение и открытие потока Excel
 [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
 
@@ -166,59 +166,59 @@
 //закрываем поток электронной таблицы
 mclose(fd)
  ]]></programlisting>
-    
-  </refsection>
-  
-  <refsection role="see also">
-    
-    <title>Смотрите также</title>
-    
-    <simplelist type="inline">
-      
-      <member>
         
-        <link linkend="xls_open">xls_open</link>
+    </refsection>
+    
+    <refsection role="see also">
         
-      </member>
-      
-      <member>
+        <title>Смотрите также</title>
         
-        <link linkend="readxls">readxls</link>
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="xls_open">xls_open</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="readxls">readxls</link>
+                
+            </member>
+            
+        </simplelist>
         
-      </member>
-      
-    </simplelist>
+    </refsection>
     
-  </refsection>
-  
-  <refsection>
+    <refsection>
+        
+        <title>Литература</title>
+        
+        <para>
+            
+            Эта функция основана на описании потока Excel из OpenOffice 
+            
+            (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
+            
+        </para>
+        
+    </refsection>
     
-    <title>Литература</title>
+    <refsection>
+        
+        <title>Используемые функции</title>
+        
+        <para>
+            
+            Эта функция ислользует файл xls.c, который можно найти в
+            
+            исходном коде Scilab в директории SCIDIR/modules/spreadsheet/src/c.
+            
+        </para>
+        
+    </refsection>
     
-    <para>
-      
-      Эта функция основана на описании потока Excel из OpenOffice 
-      
-      (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
-      
-    </para>
-    
-  </refsection>
-  
-  <refsection>
-    
-    <title>Используемые функции</title>
-    
-    <para>
-      
-      Эта функция ислользует файл xls.c, который можно найти в
-      
-      исходном коде Scilab в директории SCIDIR/modules/spreadsheet/src/c.
-      
-    </para>
-    
-  </refsection>
-  
 </refentry>
 
 

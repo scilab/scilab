@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ascii" xml:lang="en">
-  <refnamediv>
-    <refname>ascii</refname>
-    <refpurpose>string ascii conversions</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>a=ascii(txt)
-      txt=ascii(a)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>txt</term>
-        <listitem>
-          <para>A character string or a matrix of character strings.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>A vector of integer ascii codes</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>This function convert Scilab string to a vector of ascii code (the first 127 codes are ASCII) or
-      vector of ascii code to Scilab strings.
-    </para>
-    <para>
-      If <literal>txt</literal> is a matrix of string,
-      <literal>ascii(txt)</literal> is equivalent to
-      <literal>ascii(strcat(txt))</literal>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ascii" xml:lang="en">
+    <refnamediv>
+        <refname>ascii</refname>
+        <refpurpose>string ascii conversions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>a=ascii(txt)
+            txt=ascii(a)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>A character string or a matrix of character strings.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>A vector of integer ascii codes</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function convert Scilab string to a vector of ascii code (the first 127 codes are ASCII) or
+            vector of ascii code to Scilab strings.
+        </para>
+        <para>
+            If <literal>txt</literal> is a matrix of string,
+            <literal>ascii(txt)</literal> is equivalent to
+            <literal>ascii(strcat(txt))</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 ascii(["hello";"world"])
 ascii("scilab")
 ascii([115 99 105 108 97 98])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="code2str">code2str</link>
-      </member>
-      <member>
-        <link linkend="str2code">str2code</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="code2str">code2str</link>
+            </member>
+            <member>
+                <link linkend="str2code">str2code</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

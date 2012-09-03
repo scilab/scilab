@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="filter">
+    <refnamediv>
+        <refname>filter</refname>
+        <refpurpose>デジタルフィルタによりデータ系列のフィルタ処理を行う</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[y,zf] = filter(num,den,x [,zi])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>実数ベクトル : フィルタの分子の係数(降順)または多項式.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>実数ベクトル : フィルタの分母の係数(降順)または多項式.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数行ベクトル : 入力信号</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zi</term>
+                <listitem>
+                    <para>実数行ベクトルの長さ
+                        <literal>max(length(a),length(b))-1</literal>: 
+                        "直接型 II 転置"状態空間表現に関連した初期条件.
+                        デフォルト値はゼロを要素とするベクトルです.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>実数行ベクトル : フィルタ処理された信号. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zf</term>
+                <listitem>
+                    <para>実数行ベクトル : 終端状態量. 
+                        フィルタの次のバッチ処理で入力信号として使用できます. 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は"直接型 II 転置"実装によるデジタルフィルタを用いて
+            データ系列をフィルタ処理します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            Oppenheim, A. V. and R.W. Schafer. Discrete-Time Signal Processing, Englewood Cliffs, NJ: Prentice-Hall, 1989, pp. 311-312. 
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
