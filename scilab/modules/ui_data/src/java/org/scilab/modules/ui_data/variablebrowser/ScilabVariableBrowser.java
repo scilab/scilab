@@ -47,7 +47,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      */
     private ScilabVariableBrowser() {
         TextBox infobar = ScilabTextBox.createTextBox();
-        browserTab = new SwingScilabVariableBrowser(BrowseVar.COLUMNNAMES);
+        browserTab = new SwingScilabVariableBrowser(BrowseVar.COLUMNNAMES, BrowseVar.COLUMNSALIGNMENT);
         browserTab.addInfoBar(infobar);
         ((SwingScilabVariableBrowser) browserTab).setTitle(UiDataMessages.VARIABLE_BROWSER);
     }
@@ -76,10 +76,10 @@ public final class ScilabVariableBrowser implements VariableBrowser {
     public static VariableBrowser getVariableBrowser(boolean update, final Object[][] data) {
         final VariableBrowser variableBrowser = getVariableBrowser(update);
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                variableBrowser.setData(data);
-            }
-        });
+                public void run() {
+                    variableBrowser.setData(data);
+                }
+            });
         return variableBrowser;
     }
 
