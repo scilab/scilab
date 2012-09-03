@@ -1196,8 +1196,19 @@ namespace types
         {
             if (piMaxDim[0] <= getSize())
             {
-                int iNewRows = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
-                int iNewCols = 1;
+                int iNewRows = 0;
+                int iNewCols = 0;
+
+                if(getCols() == 1)
+                {
+                    iNewRows = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
+                    iNewCols = 1;
+                }
+                else
+                {
+                    iNewRows = 1;
+                    iNewCols = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
+                }
 
                 pOut = new Sparse(iNewRows, iNewCols, isComplex());
                 double* pIdx = pArg[0]->getAs<Double>()->get();
