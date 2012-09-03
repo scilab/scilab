@@ -1199,15 +1199,15 @@ namespace types
                 int iNewRows = 0;
                 int iNewCols = 0;
 
-                if(getCols() == 1)
-                {
-                    iNewRows = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
-                    iNewCols = 1;
+                if(getRows() == 1 && getCols() != 1 && (*_pArgs)[0]->isColon() == false)
+                {//special case for row vector
+                    iNewRows = 1;
+                    iNewCols = piCountDim[0];
                 }
                 else
                 {
-                    iNewRows = 1;
-                    iNewCols = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
+                    iNewRows = piCountDim[0];
+                    iNewCols = 1;
                 }
 
                 pOut = new Sparse(iNewRows, iNewCols, isComplex());
