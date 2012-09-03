@@ -36,6 +36,7 @@ int TypesModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
 

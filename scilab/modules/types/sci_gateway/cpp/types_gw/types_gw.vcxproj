@@ -231,6 +231,7 @@
     <ClCompile Include="..\sci_spcompack.cpp" />
     <ClCompile Include="..\sci_spget.cpp" />
     <ClCompile Include="..\sci_spones.cpp" />
+    <ClCompile Include="..\sci_spzeros.cpp" />
     <ClCompile Include="..\sci_struct.cpp" />
     <ClCompile Include="..\sci_tlist.cpp" />
     <ClCompile Include="..\sci_typeof.cpp" />

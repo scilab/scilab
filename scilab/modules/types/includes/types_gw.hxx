@@ -21,11 +21,11 @@
 class TypesModule
 {
 private :
-  TypesModule() {};
-  ~TypesModule() {};
+    TypesModule() {};
+    ~TypesModule() {};
 
 public :
-  TYPES_GW_IMPEXP static int Load();
+    TYPES_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_list);
@@ -49,6 +49,7 @@ CPP_GATEWAY_PROTOTYPE(sci_sp2adj);
 CPP_GATEWAY_PROTOTYPE(sci_sparse);
 CPP_GATEWAY_PROTOTYPE(sci_spcompack);
 CPP_GATEWAY_PROTOTYPE(sci_spget);
+CPP_GATEWAY_PROTOTYPE(sci_spzeros);
 CPP_GATEWAY_PROTOTYPE(sci_spones);
 CPP_GATEWAY_PROTOTYPE(sci_full);
 

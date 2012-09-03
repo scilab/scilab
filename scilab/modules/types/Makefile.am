@@ -105,6 +105,7 @@ TYPES_GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_sparse.cpp \
 	sci_gateway/cpp/sci_spcompack.cpp \
 	sci_gateway/cpp/sci_spget.cpp \
+	sci_gateway/cpp/sci_spzeros.cpp \
 	sci_gateway/cpp/sci_spones.cpp
 
 

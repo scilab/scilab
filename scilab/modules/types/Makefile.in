@@ -223,7 +223,8 @@ am__libscitypes_la_SOURCES_DIST = sci_gateway/cpp/types_gw.cpp \
 	sci_gateway/cpp/sci_nnz.cpp sci_gateway/cpp/sci_sp2adj.cpp \
 	sci_gateway/cpp/sci_sparse.cpp \
 	sci_gateway/cpp/sci_spcompack.cpp \
-	sci_gateway/cpp/sci_spget.cpp sci_gateway/cpp/sci_spones.cpp \
+	sci_gateway/cpp/sci_spget.cpp sci_gateway/cpp/sci_spzeros.cpp \
+	sci_gateway/cpp/sci_spones.cpp \
 	sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
 	sci_gateway/cpp/sci_inspectorGetItem.cpp \
 	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
@@ -249,7 +250,8 @@ am__objects_6 = libscitypes_la-types_gw.lo libscitypes_la-sci_list.lo \
 	libscitypes_la-sci_full.lo libscitypes_la-sci_nnz.lo \
 	libscitypes_la-sci_sp2adj.lo libscitypes_la-sci_sparse.lo \
 	libscitypes_la-sci_spcompack.lo libscitypes_la-sci_spget.lo \
-	libscitypes_la-sci_spones.lo $(am__objects_5)
+	libscitypes_la-sci_spzeros.lo libscitypes_la-sci_spones.lo \
+	$(am__objects_5)
 am_libscitypes_la_OBJECTS = $(am__objects_6)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
 am_testTypes_OBJECTS = testTypes-test-types.$(OBJEXT)
@@ -678,8 +680,8 @@ TYPES_GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 	sci_gateway/cpp/sci_nnz.cpp sci_gateway/cpp/sci_sp2adj.cpp \
 	sci_gateway/cpp/sci_sparse.cpp \
 	sci_gateway/cpp/sci_spcompack.cpp \
-	sci_gateway/cpp/sci_spget.cpp sci_gateway/cpp/sci_spones.cpp \
-	$(am__append_4)
+	sci_gateway/cpp/sci_spget.cpp sci_gateway/cpp/sci_spzeros.cpp \
+	sci_gateway/cpp/sci_spones.cpp $(am__append_4)
 libscitypes_java_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes
 
@@ -920,6 +922,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_spcompack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_spget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_spones.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_spzeros.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_struct.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_tlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_typeof.Plo@am__quote@
@@ -1409,6 +1412,13 @@ libscitypes_la-sci_spget.lo: sci_gateway/cpp/sci_spget.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_spget.cpp' object='libscitypes_la-sci_spget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-sci_spget.lo `test -f 'sci_gateway/cpp/sci_spget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spget.cpp
+
+libscitypes_la-sci_spzeros.lo: sci_gateway/cpp/sci_spzeros.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-sci_spzeros.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-sci_spzeros.Tpo -c -o libscitypes_la-sci_spzeros.lo `test -f 'sci_gateway/cpp/sci_spzeros.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spzeros.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-sci_spzeros.Tpo $(DEPDIR)/libscitypes_la-sci_spzeros.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_spzeros.cpp' object='libscitypes_la-sci_spzeros.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-sci_spzeros.lo `test -f 'sci_gateway/cpp/sci_spzeros.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spzeros.cpp
 
 libscitypes_la-sci_spones.lo: sci_gateway/cpp/sci_spones.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-sci_spones.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-sci_spones.Tpo -c -o libscitypes_la-sci_spones.lo `test -f 'sci_gateway/cpp/sci_spones.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spones.cpp

@@ -105,6 +105,9 @@
     <ClCompile Include="..\sci_full.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sci_spzeros.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_types_gw.h">
