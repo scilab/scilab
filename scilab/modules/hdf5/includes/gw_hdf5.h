@@ -21,6 +21,7 @@ HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname,unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname,unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_listvar_in_hdf5(char *fname,unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_is_hdf5_file(char *fname,unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5dump(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

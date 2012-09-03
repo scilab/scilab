@@ -1,0 +1,94 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#ifndef __H5FLOATDATA_HXX__
+#define __H5FLOATDATA_HXX__
+
+#include "H5BasicData.hxx"
+
+namespace org_modules_hdf5
+{
+
+    class H5FloatData : public H5Data
+    {
+
+    protected:
+
+        double * transformedData;
+
+    public:
+	
+	H5FloatData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, float * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
+	    {
+		transformedData = new double[totalSize];
+
+		if (stride == -1)
+		{ 
+		    for (unsigned int i = 0; i < (unsigned int)totalSize; i++)
+		    {
+			transformedData[i] = (double)(_data[i]); 
+		    }
+		}
+		else
+		{
+		    char * __data = (char *)_data;
+		    for (unsigned int i = 0; i < (unsigned int)totalSize; i++)
+		    {
+			transformedData[i] = (double)(*((float *)(__data + offset)));
+			__data += stride;
+		    }
+		}
+	    }
+
+	virtual ~H5FloatData()
+	    {
+		delete[] transformedData;
+	    }
+
+	virtual void * getData() const
+	    {
+		return transformedData;
+	    }
+
+        virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+            {
+		SciErr err;
+                double * newData = 0;
+                if (ndims == 1)
+                {
+                    H5BasicData<char>::alloc(pvApiCtx, lhsPosition, 1, *dims, parentList, listPosition, &newData);
+                    memcpy(static_cast<void *>(newData), static_cast<void *>(transformedData), totalSize * sizeof(double));
+                }
+                else
+                {
+                    if (ndims == 2)
+                    {
+                        H5BasicData<char>::alloc(pvApiCtx, lhsPosition, dims[0], dims[1], parentList, listPosition, &newData);
+                        H5DataConverter::C2FHypermatrix(2, dims, 0, static_cast<double *>(getData()), newData);
+                    }
+                    else
+                    {
+                        int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
+			H5BasicData<char>::alloc(pvApiCtx, lhsPosition, 1, totalSize, list, 3, &newData);
+                        H5DataConverter::C2FHypermatrix(ndims, dims, totalSize, static_cast<double *>(getData()), newData);
+                    }
+                }
+            }
+
+        virtual std::string dump(const unsigned int indentLevel) const
+            {
+		return H5DataConverter::dump(indentLevel, ndims, dims, static_cast<double *>(getData()), *this);
+	    }
+    };
+}
+
+#endif // __H5FLOATDATA_HXX__

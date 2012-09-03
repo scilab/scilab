@@ -1,0 +1,1 @@
+#define HDF5OBJECTS_DEBUG

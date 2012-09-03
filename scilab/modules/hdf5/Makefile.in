@@ -144,15 +144,25 @@ am__objects_1 = libscihdf5_algo_la-h5_fileManagement.lo \
 	libscihdf5_algo_la-h5_readDataFromFile_v1.lo \
 	libscihdf5_algo_la-import_from_hdf5_v1.lo \
 	libscihdf5_algo_la-listvar_in_hdf5_v1.lo
-am_libscihdf5_algo_la_OBJECTS = $(am__objects_1)
+am__objects_2 = libscihdf5_algo_la-H5Attribute.lo \
+	libscihdf5_algo_la-H5AttributesList.lo \
+	libscihdf5_algo_la-H5DataConverter.lo \
+	libscihdf5_algo_la-H5Dataset.lo \
+	libscihdf5_algo_la-H5Dataspace.lo libscihdf5_algo_la-H5File.lo \
+	libscihdf5_algo_la-H5Group.lo \
+	libscihdf5_algo_la-H5LinksList.lo \
+	libscihdf5_algo_la-H5Object.lo libscihdf5_algo_la-H5Type.lo \
+	libscihdf5_algo_la-H5DataFactory.lo
+am_libscihdf5_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscihdf5_algo_la_OBJECTS = $(am_libscihdf5_algo_la_OBJECTS)
 libscihdf5_la_DEPENDENCIES = libscihdf5-algo.la
-am__objects_2 = libscihdf5_la-sci_export_to_hdf5.lo \
+am__objects_3 = libscihdf5_la-sci_export_to_hdf5.lo \
 	libscihdf5_la-sci_import_from_hdf5.lo \
 	libscihdf5_la-sci_is_hdf5_file.lo \
-	libscihdf5_la-sci_listvar_in_hdf5.lo
-am__objects_3 = libscihdf5_la-gw_hdf5.lo
-am_libscihdf5_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+	libscihdf5_la-sci_listvar_in_hdf5.lo \
+	libscihdf5_la-sci_h5dump.lo
+am__objects_4 = libscihdf5_la-gw_hdf5.lo
+am_libscihdf5_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscihdf5_la_OBJECTS = $(am_libscihdf5_la_OBJECTS)
 libscihdf5_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -454,11 +464,24 @@ src/c/h5_readDataFromFile_v1.c \
 src/cpp/import_from_hdf5_v1.cpp \
 src/cpp/listvar_in_hdf5_v1.cpp
 
+HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
+		   src/cpp/H5AttributesList.cpp \
+		   src/cpp/H5DataConverter.cpp \
+		   src/cpp/H5Dataset.cpp \
+		   src/cpp/H5Dataspace.cpp \
+		   src/cpp/H5File.cpp \
+		   src/cpp/H5Group.cpp \
+		   src/cpp/H5LinksList.cpp \
+		   src/cpp/H5Object.cpp \
+		   src/cpp/H5Type.cpp \
+		   src/cpp/H5DataFactory.cpp
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp \
 sci_gateway/cpp/sci_is_hdf5_file.cpp \
-sci_gateway/cpp/sci_listvar_in_hdf5.cpp
+sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
+sci_gateway/cpp/sci_h5dump.cpp
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 
@@ -487,7 +510,7 @@ noinst_LTLIBRARIES = libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
 libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
-libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
@@ -727,6 +750,17 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Attribute.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5AttributesList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5DataConverter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5DataFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Dataset.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Dataspace.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5File.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Group.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5LinksList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Object.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-H5Type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Plo@am__quote@
@@ -735,6 +769,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_algo_la-listvar_in_hdf5_v1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-gw_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5dump.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_import_from_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_is_hdf5_file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_listvar_in_hdf5.Plo@am__quote@
@@ -830,6 +865,83 @@ libscihdf5_algo_la-listvar_in_hdf5_v1.lo: src/cpp/listvar_in_hdf5_v1.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-listvar_in_hdf5_v1.lo `test -f 'src/cpp/listvar_in_hdf5_v1.cpp' || echo '$(srcdir)/'`src/cpp/listvar_in_hdf5_v1.cpp
 
+libscihdf5_algo_la-H5Attribute.lo: src/cpp/H5Attribute.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Attribute.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Attribute.Tpo -c -o libscihdf5_algo_la-H5Attribute.lo `test -f 'src/cpp/H5Attribute.cpp' || echo '$(srcdir)/'`src/cpp/H5Attribute.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Attribute.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Attribute.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Attribute.cpp' object='libscihdf5_algo_la-H5Attribute.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Attribute.lo `test -f 'src/cpp/H5Attribute.cpp' || echo '$(srcdir)/'`src/cpp/H5Attribute.cpp
+
+libscihdf5_algo_la-H5AttributesList.lo: src/cpp/H5AttributesList.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5AttributesList.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5AttributesList.Tpo -c -o libscihdf5_algo_la-H5AttributesList.lo `test -f 'src/cpp/H5AttributesList.cpp' || echo '$(srcdir)/'`src/cpp/H5AttributesList.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5AttributesList.Tpo $(DEPDIR)/libscihdf5_algo_la-H5AttributesList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5AttributesList.cpp' object='libscihdf5_algo_la-H5AttributesList.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5AttributesList.lo `test -f 'src/cpp/H5AttributesList.cpp' || echo '$(srcdir)/'`src/cpp/H5AttributesList.cpp
+
+libscihdf5_algo_la-H5DataConverter.lo: src/cpp/H5DataConverter.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5DataConverter.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5DataConverter.Tpo -c -o libscihdf5_algo_la-H5DataConverter.lo `test -f 'src/cpp/H5DataConverter.cpp' || echo '$(srcdir)/'`src/cpp/H5DataConverter.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5DataConverter.Tpo $(DEPDIR)/libscihdf5_algo_la-H5DataConverter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5DataConverter.cpp' object='libscihdf5_algo_la-H5DataConverter.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5DataConverter.lo `test -f 'src/cpp/H5DataConverter.cpp' || echo '$(srcdir)/'`src/cpp/H5DataConverter.cpp
+
+libscihdf5_algo_la-H5Dataset.lo: src/cpp/H5Dataset.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Dataset.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Dataset.Tpo -c -o libscihdf5_algo_la-H5Dataset.lo `test -f 'src/cpp/H5Dataset.cpp' || echo '$(srcdir)/'`src/cpp/H5Dataset.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Dataset.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Dataset.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Dataset.cpp' object='libscihdf5_algo_la-H5Dataset.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Dataset.lo `test -f 'src/cpp/H5Dataset.cpp' || echo '$(srcdir)/'`src/cpp/H5Dataset.cpp
+
+libscihdf5_algo_la-H5Dataspace.lo: src/cpp/H5Dataspace.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Dataspace.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Dataspace.Tpo -c -o libscihdf5_algo_la-H5Dataspace.lo `test -f 'src/cpp/H5Dataspace.cpp' || echo '$(srcdir)/'`src/cpp/H5Dataspace.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Dataspace.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Dataspace.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Dataspace.cpp' object='libscihdf5_algo_la-H5Dataspace.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Dataspace.lo `test -f 'src/cpp/H5Dataspace.cpp' || echo '$(srcdir)/'`src/cpp/H5Dataspace.cpp
+
+libscihdf5_algo_la-H5File.lo: src/cpp/H5File.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5File.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5File.Tpo -c -o libscihdf5_algo_la-H5File.lo `test -f 'src/cpp/H5File.cpp' || echo '$(srcdir)/'`src/cpp/H5File.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5File.Tpo $(DEPDIR)/libscihdf5_algo_la-H5File.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5File.cpp' object='libscihdf5_algo_la-H5File.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5File.lo `test -f 'src/cpp/H5File.cpp' || echo '$(srcdir)/'`src/cpp/H5File.cpp
+
+libscihdf5_algo_la-H5Group.lo: src/cpp/H5Group.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Group.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Group.Tpo -c -o libscihdf5_algo_la-H5Group.lo `test -f 'src/cpp/H5Group.cpp' || echo '$(srcdir)/'`src/cpp/H5Group.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Group.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Group.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Group.cpp' object='libscihdf5_algo_la-H5Group.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Group.lo `test -f 'src/cpp/H5Group.cpp' || echo '$(srcdir)/'`src/cpp/H5Group.cpp
+
+libscihdf5_algo_la-H5LinksList.lo: src/cpp/H5LinksList.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5LinksList.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5LinksList.Tpo -c -o libscihdf5_algo_la-H5LinksList.lo `test -f 'src/cpp/H5LinksList.cpp' || echo '$(srcdir)/'`src/cpp/H5LinksList.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5LinksList.Tpo $(DEPDIR)/libscihdf5_algo_la-H5LinksList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5LinksList.cpp' object='libscihdf5_algo_la-H5LinksList.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5LinksList.lo `test -f 'src/cpp/H5LinksList.cpp' || echo '$(srcdir)/'`src/cpp/H5LinksList.cpp
+
+libscihdf5_algo_la-H5Object.lo: src/cpp/H5Object.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Object.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Object.Tpo -c -o libscihdf5_algo_la-H5Object.lo `test -f 'src/cpp/H5Object.cpp' || echo '$(srcdir)/'`src/cpp/H5Object.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Object.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Object.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Object.cpp' object='libscihdf5_algo_la-H5Object.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Object.lo `test -f 'src/cpp/H5Object.cpp' || echo '$(srcdir)/'`src/cpp/H5Object.cpp
+
+libscihdf5_algo_la-H5Type.lo: src/cpp/H5Type.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5Type.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5Type.Tpo -c -o libscihdf5_algo_la-H5Type.lo `test -f 'src/cpp/H5Type.cpp' || echo '$(srcdir)/'`src/cpp/H5Type.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5Type.Tpo $(DEPDIR)/libscihdf5_algo_la-H5Type.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5Type.cpp' object='libscihdf5_algo_la-H5Type.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5Type.lo `test -f 'src/cpp/H5Type.cpp' || echo '$(srcdir)/'`src/cpp/H5Type.cpp
+
+libscihdf5_algo_la-H5DataFactory.lo: src/cpp/H5DataFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_algo_la-H5DataFactory.lo -MD -MP -MF $(DEPDIR)/libscihdf5_algo_la-H5DataFactory.Tpo -c -o libscihdf5_algo_la-H5DataFactory.lo `test -f 'src/cpp/H5DataFactory.cpp' || echo '$(srcdir)/'`src/cpp/H5DataFactory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_algo_la-H5DataFactory.Tpo $(DEPDIR)/libscihdf5_algo_la-H5DataFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/H5DataFactory.cpp' object='libscihdf5_algo_la-H5DataFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_algo_la-H5DataFactory.lo `test -f 'src/cpp/H5DataFactory.cpp' || echo '$(srcdir)/'`src/cpp/H5DataFactory.cpp
+
 libscihdf5_la-sci_export_to_hdf5.lo: sci_gateway/cpp/sci_export_to_hdf5.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-sci_export_to_hdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Tpo -c -o libscihdf5_la-sci_export_to_hdf5.lo `test -f 'sci_gateway/cpp/sci_export_to_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_export_to_hdf5.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Tpo $(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Plo
@@ -857,6 +969,13 @@ libscihdf5_la-sci_listvar_in_hdf5.lo: sci_gateway/cpp/sci_listvar_in_hdf5.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_listvar_in_hdf5.cpp' object='libscihdf5_la-sci_listvar_in_hdf5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_listvar_in_hdf5.lo `test -f 'sci_gateway/cpp/sci_listvar_in_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_listvar_in_hdf5.cpp
+
+libscihdf5_la-sci_h5dump.lo: sci_gateway/cpp/sci_h5dump.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-sci_h5dump.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-sci_h5dump.Tpo -c -o libscihdf5_la-sci_h5dump.lo `test -f 'sci_gateway/cpp/sci_h5dump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_h5dump.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-sci_h5dump.Tpo $(DEPDIR)/libscihdf5_la-sci_h5dump.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_h5dump.cpp' object='libscihdf5_la-sci_h5dump.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_h5dump.lo `test -f 'sci_gateway/cpp/sci_h5dump.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_h5dump.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

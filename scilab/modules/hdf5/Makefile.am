@@ -22,14 +22,25 @@ src/c/h5_readDataFromFile_v1.c \
 src/cpp/import_from_hdf5_v1.cpp \
 src/cpp/listvar_in_hdf5_v1.cpp
 
-
+HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
+		   src/cpp/H5AttributesList.cpp \
+		   src/cpp/H5DataConverter.cpp \
+		   src/cpp/H5Dataset.cpp \
+		   src/cpp/H5Dataspace.cpp \
+		   src/cpp/H5File.cpp \
+		   src/cpp/H5Group.cpp \
+		   src/cpp/H5LinksList.cpp \
+		   src/cpp/H5Object.cpp \
+		   src/cpp/H5Type.cpp \
+		   src/cpp/H5DataFactory.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp \
 sci_gateway/cpp/sci_is_hdf5_file.cpp \
-sci_gateway/cpp/sci_listvar_in_hdf5.cpp
+sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
+sci_gateway/cpp/sci_h5dump.cpp
 
 if GIWS
 BUILT_SOURCES=giws
@@ -67,7 +78,7 @@ noinst_LTLIBRARIES += libscihdf5-algo.la
 
 libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
 
-libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
