@@ -598,6 +598,56 @@ function save_graphichandle(h,fd)
       mput(h.clip_box,'dl',fd) // clip_box
     end
     user_data=h.user_data;save(fd,user_data) // user_data
+
+  case "Datatip"
+    mput(length(h.type),characterFormat,fd);mput(ascii(h.type),characterFormat,fd); // type
+    mput(bool2s(h.visible=='on'),characterFormat,fd) // visible
+    //save_text_vector(h.text,fd) // text
+    save_text_matrix( h.text, fd ) ;
+    mput(size(h.data),characterFormat,fd); // data // size could be 2 or 3
+    mput(h.data,'dl',fd); 
+    mput(h.text_box,'dl',fd); // text_box
+    mput(length(h.text_box_mode),characterFormat,fd);
+    mput(ascii(h.text_box_mode),characterFormat,fd); // text_box_mode
+    
+    mput(h.foreground,'il',fd) // foreground
+    mput(h.font_style,characterFormat,fd) // font_style
+    mput(h.font_size,characterFormat,fd) // font_size
+    mput(h.font_angle,'dl',fd) // font_angle
+    
+    //adding JB Silvy 28/11/05
+    // box drawing
+    mput( bool2s( h.box       == 'on' ), characterFormat, fd ) ; // box
+    mput( bool2s( h.line_mode == 'on' ), characterFormat, fd ) ; // line_mode
+    mput( bool2s( h.fill_mode == 'on' ), characterFormat, fd ) ; // fill_mode
+    
+    mput( h.font_foreground, 'il', fd ) ; // font_foreground
+    mput( h.background     , 'il', fd ) ; // background
+    
+    mput(length(h.alignment),characterFormat,fd);
+    mput(ascii(h.alignment),characterFormat,fd) ; // alignment
+    mput(bool2s(h.fractional_font=='on'),characterFormat,fd) // fractional_font
+    
+    mput(length(h.clip_state),characterFormat,fd); // clip_state
+    mput(ascii(h.clip_state),characterFormat,fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd) // clip_box
+    end
+
+    //Datatip mark
+    mput(bool2s(h.mark_mode=='on'),characterFormat,fd); // mark_mode
+    mput(h.mark_style,characterFormat,fd); // mark_style
+    mput(h.mark_size,characterFormat,fd); // mark_size
+    mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd); // mark_size_unit
+    mput(h.mark_foreground,'il',fd); // mark_foreground
+    mput(h.mark_background,'il',fd); // mark_background
+
+    //Datatip properties
+    mput(h.tip_data, 'dl', fd);
+    mput(h.tip_orientation, 'il', fd);
+    mput( bool2s( h.tip_3component == 'on' ), characterFormat, fd );
+
+    user_data=h.user_data;save(fd,user_data) // user_data
     
   case "Axis"
     mput(length(h.type),characterFormat,fd);mput(ascii(h.type),characterFormat,fd); // type

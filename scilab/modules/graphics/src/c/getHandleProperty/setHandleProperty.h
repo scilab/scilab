@@ -181,5 +181,8 @@ int set_color_range_property(void* _pvCtx, char* pobj, size_t stackPointer, int 
 int set_grid_position_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_anti_aliasing_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_tag_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_tip_data_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_tip_orientation_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_tip_3component_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

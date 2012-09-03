@@ -301,6 +301,8 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/get_datatip_property.c \
+src/c/getHandleProperty/set_datatip_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

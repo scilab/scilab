@@ -181,5 +181,8 @@ int get_grid_position_property(void* _pvCtx, char* pobjUID);
 int get_anti_aliasing_property(void* _pvCtx, char* pobjUID);
 int get_tag_property(void* _pvCtx, char* pobjUID);
 int get_UID(void* _pvCtx, char *pobjUID);
+int get_tip_data_property(void* _pvCtx, char *pobjUID);
+int get_tip_orientation_property(void* _pvCtx, char *pobjUID);
+int get_tip_3component_property(void* _pvCtx, char *pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

@@ -543,6 +543,22 @@ function %h_p(h)
                 "tag = "+h.tag
             ]
 
+        // Datatip
+        // =====================================================================
+
+        case "Datatip"
+            u=h.user_data
+            t=[t;
+                "parent: "+h.parent.type
+                "children: "+fmtchildren(h.children)
+                "visible = "+sci2exp(h.visible)
+                "tip_data = "+sci2exp(h.tip_data)
+                "tip_orientation = "+sci2exp(h.tip_orientation)
+                "tip_3component = "+sci2exp(h.tip_3component)
+                "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
+            ]
+
         // Title
         // =====================================================================
 

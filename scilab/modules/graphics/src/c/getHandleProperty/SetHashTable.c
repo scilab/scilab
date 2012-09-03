@@ -52,7 +52,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 158
+#define NB_PROPERTIES 161
 
 /**
 * list of all property names and associated functions in scilab
@@ -217,7 +217,10 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"showhiddenhandles", SetConsoleShowHiddenHandles},
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},
-    {"closerequestfcn", set_figure_closerequestfcn_property}
+    {"closerequestfcn", set_figure_closerequestfcn_property},
+    {"tip_data", set_tip_data_property},
+    {"tip_orientation", set_tip_orientation_property},
+    {"tip_3component", set_tip_3component_property}
 };
 
 /*--------------------------------------------------------------------------*/

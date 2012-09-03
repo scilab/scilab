@@ -1338,6 +1338,94 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
+  case "Datatip"
+    visible         = toggle(mget(1,characterFormat,fd)) // visible
+
+    if is_higher_than( [4 1 2 0] ) then
+      text            = load_text_matrix( fd ) ;
+    else
+      text            = load_text_vector(fd) // text
+    end
+    sz              = mget(2,characterFormat,fd)
+    data            = matrix(mget(prod(sz),'dl',fd),sz(1),-1) // data
+    text_box        = mget(2,'dl',fd) // text_box
+    text_box_mode   = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // text_box_mode
+
+    // draw the text
+    if text_box_mode == 'off' then
+      xstring(data(1),data(2),text)
+    else
+      xstringb(data(1),data(2),text,text_box(1),text_box(2))
+    end
+
+    h=get('hdl');
+	set(h,"data",data);
+    set(h,"visible",visible) ;
+    set(h,"text_box_mode",text_box_mode)
+    set(h,"foreground"           , mget(1,'il',fd)); // foreground
+    set(h,"font_style"           , mget(1,characterFormat,fd)); // font_style
+
+    if text_box_mode == 'filled' then // font_size
+      mget(1,characterFormat,fd) ;
+    else
+      set(h,"font_size", mget(1,characterFormat,fd));
+    end
+
+    set(h,"font_angle"           , mget(1,'dl',fd)); // font_angle
+
+    //adding JB Silvy 28/11/05
+    // box drawing
+    if is_higher_than([3 1 0 1]) then
+      set( h, "box"      , toggle( mget( 1, characterFormat, fd ) ) ) ; // box
+      set( h, "line_mode", toggle( mget( 1, characterFormat, fd ) ) ) ; // line_mode
+      set( h, "fill_mode", toggle( mget( 1, characterFormat, fd ) ) ) ; // fill_mode
+
+      set( h, "font_foreground", mget( 1, 'il', fd ) ) ; // font_foreground
+      set( h, "background"     , mget( 1, 'il', fd ) ) ; // background
+    end
+
+    if is_higher_than( [4 1 2 0] ) then
+      set( h, "alignment", ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)  ) ) ; // alignment
+      set( h, "fractional_font", toggle( mget( 1, characterFormat, fd ) ) ) ; // fractional_font
+    end
+
+    clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
+    if clip_state=='on' then
+      clip_box     = mget(4,'dl',fd) // clip_box
+      set(h,"clip_box",clip_box) ; // clip_box
+    else
+      clip_box=[]
+    end
+    set(h,"clip_state",clip_state);
+
+    //Datatip mark
+    mark_mode      = toggle(mget(1,characterFormat,fd)); // mark_mode
+    mark_style     = mget(1,characterFormat,fd); // mark_style
+    mark_size      = mget(1,characterFormat,fd); // mark_size
+
+    msu='tabulated';
+    if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
+	  msu='tabulated';
+    else
+	  msu='point';
+    end
+
+    mark_foreground=mget(1,'il',fd); // mark_foreground
+    mark_background=mget(1,'il',fd); // mark_background
+    set(h,"mark_style",mark_style);
+    set(h,"mark_size",mark_size);
+    set(h,"mark_mode",mark_mode);
+    set(h,"foreground",foreground);
+    set(h,"mark_size_unit",msu);
+    set(h,"mark_foreground",mark_foreground);
+    set(h,"mark_background",mark_background);
+
+    //Datatip properties
+    set(h, tip_data, mget(3, 'dl', fd));
+    set(h, tip_orientation, mget(1, 'il', fd));
+    set(h, tip_3component, toggle(mget(1, characterFormat, fd)));
+    
+    load_user_data(fd) // user_data
   case 'Axis'
     if is_higher_than([3 1 0 0]) then
 
