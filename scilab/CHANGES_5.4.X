@@ -38,14 +38,18 @@ Bug Fixes
 * Bug #11810 fixed - In EditVar, undesired data were added when the edition
                      is cancelled.
 
-* Bug #11810 fixed - In BrowseVar, contents of "visibility" column are left
+* Bug #11810 fixed - In BrowseVar, contents of "visibility" column were left
                      aligned.
+
+* Bug #11810 fixed - In Editvar, under mac OS, there was no vertical/horizontal
+                     lines.
 
 * Bug #11834 fixed - In SciNotes there was not a menu to set font or colors.
 
 * Bug #11838 fixed - Maximized state of a window was not saved in quitting.
 
 * Bug #11840 fixed - In Xcos, dialogs could not be closed on escape.
+
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab

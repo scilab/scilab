@@ -196,6 +196,11 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.setCellSelectionEnabled(true);
 
         table.setBackground(Color.WHITE);
+        if (table.getGridColor().equals(Color.WHITE)) {
+            table.setGridColor(new Color(128, 128, 128));
+        }
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
 
         for (int i = 0; i < aligment.length; i++) {
             align(table, columnsName[i], aligment[i]);
