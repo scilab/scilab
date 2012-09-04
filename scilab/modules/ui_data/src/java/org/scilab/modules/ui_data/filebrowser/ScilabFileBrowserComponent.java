@@ -50,7 +50,6 @@ public class ScilabFileBrowserComponent extends JPanel {
         add(new ScilabFileSelectorFilter(stt), BorderLayout.PAGE_END);
 
         JScrollPane jsp = new JScrollPane(stt);
-        jsp.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
         jsp.getViewport().setBackground(bg);
         add(jsp, BorderLayout.CENTER);
     }
