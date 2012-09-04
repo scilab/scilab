@@ -84,6 +84,7 @@ import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
  *
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
     TreeExpansionListener {
 

@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * CellRenderer for boolean type
  * @author Allan SIMON
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabBooleanRenderer extends DefaultTableCellRenderer {
 
     /**

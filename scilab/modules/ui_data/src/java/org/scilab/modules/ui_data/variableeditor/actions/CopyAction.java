@@ -29,6 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopyAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CopyAction extends CopySelectionAction {
 
     private static final String KEY = "OSSCKEY C";

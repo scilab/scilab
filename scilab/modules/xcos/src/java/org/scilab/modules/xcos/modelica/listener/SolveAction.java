@@ -34,6 +34,7 @@ import org.scilab.modules.xcos.modelica.model.Model;
 /**
  * Solve the model.
  */
+@SuppressWarnings(value = { "serial" })
 public final class SolveAction extends AbstractAction {
     private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; " + "if(compile_init_modelica(fw, paremb, jaco)) then "
             + "mopen('%s', 'w'); end ";

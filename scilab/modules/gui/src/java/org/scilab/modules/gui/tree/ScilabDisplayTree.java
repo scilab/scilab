@@ -133,9 +133,9 @@ public class ScilabDisplayTree {
         for (int i = 4; i < myShapedTree.length; i = i + 4) {
             tree = new ScilabTree(myShapedTree[i + 1][0], myShapedTree[i + 2][0], myShapedTree[i + 3][0]);
             treeVsPosition.put(myShapedTree[i][0], tree);
-            ((ScilabTree) treeVsPosition.get(myShapedTree[i][2])).addChild(tree);
+            treeVsPosition.get(myShapedTree[i][2]).addChild(tree);
         }
-        return ((ScilabTree) treeVsPosition.get(myShapedTree[0][0]));
+        return treeVsPosition.get(myShapedTree[0][0]);
     }
 
 }

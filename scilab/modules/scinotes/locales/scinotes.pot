@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-23 17:35+0100\n"
+"Revision-Date: 2012-09-03 11:07+0100\n"
 
 # File: sci_gateway/c/gw_scinotes.c, line: 37
 #, c-format
@@ -755,109 +755,109 @@ msgid "Use space"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 916
+# File: scilab_fake_localization_file.c, line: 927
 msgid "Representation: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 917
+# File: scilab_fake_localization_file.c, line: 928
 msgid "Chevrons"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 922
+# File: scilab_fake_localization_file.c, line: 933
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 298
 msgid "Horizontal rule"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 927
+# File: scilab_fake_localization_file.c, line: 938
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 299
 msgid "Vertical rule"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 933
+# File: scilab_fake_localization_file.c, line: 944
 msgid "Enable auto indentation"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 938
+# File: scilab_fake_localization_file.c, line: 949
 msgid "Indent size: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 953
+# File: scilab_fake_localization_file.c, line: 968
 msgid "Enable autosave in Scinotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 959
+# File: scilab_fake_localization_file.c, line: 974
 msgid "Save options"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 961
+# File: scilab_fake_localization_file.c, line: 976
 msgid "Save every "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 975
+# File: scilab_fake_localization_file.c, line: 990
 msgid " minutes "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 980
+# File: scilab_fake_localization_file.c, line: 995
 msgid "Close options"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 981
+# File: scilab_fake_localization_file.c, line: 996
 msgid "Delete automatically saved files"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 988
+# File: scilab_fake_localization_file.c, line: 1003
 msgid "Filename"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 990
+# File: scilab_fake_localization_file.c, line: 1005
 msgid "Append filename with: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1008
+# File: scilab_fake_localization_file.c, line: 1023
 msgid "Replace extension with: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1028
+# File: scilab_fake_localization_file.c, line: 1043
 msgid "Location"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1030
+# File: scilab_fake_localization_file.c, line: 1045
 msgid "Source file directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1035
+# File: scilab_fake_localization_file.c, line: 1050
 msgid "Single directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1042
+# File: scilab_fake_localization_file.c, line: 1057
 msgid "Choose an autosave directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1059
+# File: scilab_fake_localization_file.c, line: 1074
 msgid "Default header"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1061
+# File: scilab_fake_localization_file.c, line: 1076
 msgid "Add a default header to new file"
 msgstr ""
 

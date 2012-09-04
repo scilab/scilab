@@ -29,6 +29,7 @@ import org.scilab.modules.localization.Messages;
  * Class ScilabVariableEditor
  * Implements a ScilabWindow containing Variable Editor (JTable)
  */
+@SuppressWarnings(value = { "serial" })
 public final class ScilabVariableEditor extends SwingScilabWindow implements VariableEditor {
 
     private static Map<String, Component> map = new HashMap();
@@ -99,7 +100,7 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
      */
     public void updateData(String name, String type, Object[][] data, double[] rowsIndex, double[] colsIndex) {
         if (map.containsKey(name)) {
-            ((SwingScilabVariableEditor) editorTab).updateData(map.get(name), name, type, data, rowsIndex, colsIndex);
+            editorTab.updateData(map.get(name), name, type, data, rowsIndex, colsIndex);
         }
     }
 
@@ -126,7 +127,7 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editorTab);
             window.setVisible(true);
             window.toFront();
-            final JTable table = ((SwingScilabVariableEditor) editorTab).getCurrentTable();
+            final JTable table = editorTab.getCurrentTable();
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     int r = -1;

@@ -25,6 +25,7 @@ import org.scilab.modules.scinotes.ScilabDocument;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SelectAllAction extends DefaultAction {
 
     /**

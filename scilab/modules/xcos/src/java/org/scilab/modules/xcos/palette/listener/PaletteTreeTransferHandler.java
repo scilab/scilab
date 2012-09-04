@@ -39,6 +39,7 @@ import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 /**
  * Used to modify the palette tree
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteTreeTransferHandler extends TransferHandler {
 
     private static final Logger LOG = Logger.getLogger(PaletteTreeTransferHandler.class.getName());

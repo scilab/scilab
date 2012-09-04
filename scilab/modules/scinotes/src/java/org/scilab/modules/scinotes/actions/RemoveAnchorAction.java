@@ -41,7 +41,7 @@ public class RemoveAnchorAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         Element root = doc.getDefaultRootElement();
         ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(sep.getCaretPosition()));

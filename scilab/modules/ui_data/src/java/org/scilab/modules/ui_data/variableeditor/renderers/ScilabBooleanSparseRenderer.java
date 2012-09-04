@@ -23,6 +23,7 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
  * CellRenderer for boolean type
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabBooleanSparseRenderer extends ScilabBooleanRenderer {
 
     /**
@@ -33,7 +34,7 @@ public class ScilabBooleanSparseRenderer extends ScilabBooleanRenderer {
     }
 
     protected static boolean isNothing(Object value) {
-	return value == null || (value instanceof Boolean && !((Boolean) value).booleanValue());
+        return value == null || (value instanceof Boolean && !((Boolean) value).booleanValue());
     }
 
     /**
@@ -41,21 +42,21 @@ public class ScilabBooleanSparseRenderer extends ScilabBooleanRenderer {
      */
     protected void setValue(Object value) {
         if (isNothing(value)) {
-	    super.setValue(null);
-	} else {
-	    super.setValue(value);
-	}
+            super.setValue(null);
+        } else {
+            super.setValue(value);
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-	if (isNothing(value) && !isSelected && ((SwingEditvarTableModel) table.getModel()).getScilabMatrixRowCount() > row && ((SwingEditvarTableModel) table.getModel()).getScilabMatrixColCount() > column) {
-	    setBackground(Color.LIGHT_GRAY);
-	} else {
-	    setBackground(null);
-	}
-	return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        if (isNothing(value) && !isSelected && ((SwingEditvarTableModel) table.getModel()).getScilabMatrixRowCount() > row && ((SwingEditvarTableModel) table.getModel()).getScilabMatrixColCount() > column) {
+            setBackground(Color.LIGHT_GRAY);
+        } else {
+            setBackground(null);
+        }
+        return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
     }
 }

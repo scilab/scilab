@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -123,7 +124,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * Create a JTable with data Model.
      * @param columnsName : Titles of JTable columns.
      */
-    public SwingScilabVariableBrowser(String[] columnsName) {
+    public SwingScilabVariableBrowser(String[] columnsName, int[] aligment) {
         super(UiDataMessages.VARIABLE_BROWSER, VARBROWSERUUID);
 
         setAssociatedXMLIDForHelp("browsevar");
@@ -141,35 +142,35 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         dataModel = new SwingTableModel<Object>(columnsName);
 
         table = new JTable(dataModel) {
-            //Implement table cell tool tips.
-            public String getToolTipText(MouseEvent e) {
-                String tip = null;
-                TableModel model = ((JTable) e.getSource()).getModel();
-                java.awt.Point p = e.getPoint();
-                int rowIndex = rowAtPoint(p);
+                //Implement table cell tool tips.
+                public String getToolTipText(MouseEvent e) {
+                    String tip = null;
+                    TableModel model = ((JTable) e.getSource()).getModel();
+                    java.awt.Point p = e.getPoint();
+                    int rowIndex = rowAtPoint(p);
 
-                if (rowIndex >= 0) {
-                    rowIndex = convertRowIndexToModel(rowIndex);
-                    int colIndex = columnAtPoint(p);
-                    if (colIndex == BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
-                        try {
-                            tip = Messages.gettext("Scilab type:") + " " + model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
-                        } catch (IllegalArgumentException exception) {
-                            /* If the type is not known/managed, don't crash */
-                        }
-                    } else {
+                    if (rowIndex >= 0) {
+                        rowIndex = convertRowIndexToModel(rowIndex);
+                        int colIndex = columnAtPoint(p);
+                        if (colIndex == BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
+                            try {
+                                tip = Messages.gettext("Scilab type:") + " " + model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
+                            } catch (IllegalArgumentException exception) {
+                                /* If the type is not known/managed, don't crash */
+                            }
+                        } else {
 
-                        if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
-                            /* Use the getModel() method because the
-                             * column 5 has been removed from display
-                             * but still exist in the model */
-                            tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
+                            if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
+                                /* Use the getModel() method because the
+                                 * column 5 has been removed from display
+                                 * but still exist in the model */
+                                tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
+                            }
                         }
                     }
+                    return tip;
                 }
-                return tip;
-            }
-        };
+            };
 
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -195,6 +196,10 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.setCellSelectionEnabled(true);
 
         table.setBackground(Color.WHITE);
+
+        for (int i = 0; i < aligment.length; i++) {
+            align(table, columnsName[i], aligment[i]);
+        }
 
         JScrollPane scrollPane = new JScrollPane(table);
         setContentPane(scrollPane);
@@ -239,6 +244,18 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         this.updateRowFiltering();
     }
 
+    private static void align(JTable table, String name, int alignment) {
+        if (alignment != -1) {
+            DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+            renderer.setHorizontalAlignment(alignment);
+            try {
+                TableColumn col = table.getColumn(name);
+                if (col != null) {
+                    col.setCellRenderer(renderer);
+                }
+            } catch (IllegalArgumentException e) { }
+        }
+    }
 
     /**
      * Update the display after filtering
@@ -264,7 +281,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         rowSorter.setRowFilter(compoundRowFilter);
         table.setRowSorter(rowSorter);
-
     }
 
     /**
@@ -290,13 +306,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                 if (clickedRow != -1) {
                     String variableName = ((JTable) e.getSource()).getValueAt(clickedRow, 1).toString();
                     final ActionListener action = new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
+                            public void actionPerformed(ActionEvent e) {
 
-                        }
-                    };
+                            }
+                        };
 
                     String variableVisibility = ((JTable) e.getSource())
-                                                .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+                        .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
 
                     // Global variables are not editable yet
                     if (variableVisibility.equals("global")) {

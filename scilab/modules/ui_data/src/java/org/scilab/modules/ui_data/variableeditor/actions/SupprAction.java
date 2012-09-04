@@ -28,6 +28,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * SupprAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SupprAction extends CommonCallBack {
 
     private static final String KEY = "DELETE";
@@ -74,7 +75,7 @@ public final class SupprAction extends CommonCallBack {
             if ((cols.length == 1 && rows.length == 1) || (rows.length >= 2 && cols.length >= 2 && rows[1] >= oldRows && cols[1] >= oldCols)) {
                 oldValue = model.getValueAt(rows[0], cols[0]);
             } else {
-                oldValue = (Vector) model.cloneDatas();
+                oldValue = model.cloneDatas();
             }
             table.setColumnSelectionInterval(cols[0], cols[cols.length - 1]);
             table.setRowSelectionInterval(rows[0], rows[rows.length - 1]);

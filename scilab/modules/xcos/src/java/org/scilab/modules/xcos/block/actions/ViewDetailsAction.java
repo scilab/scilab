@@ -32,6 +32,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View the details of the action
  */
+@SuppressWarnings(value = { "serial" })
 public final class ViewDetailsAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.DETAILS;

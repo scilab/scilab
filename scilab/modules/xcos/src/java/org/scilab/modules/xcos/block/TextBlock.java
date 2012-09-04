@@ -31,6 +31,7 @@ import com.mxgraph.util.mxConstants;
 /**
  * A textblock is used to annotate diagrams.
  */
+@SuppressWarnings(value = { "serial" })
 public final class TextBlock extends BasicBlock {
     private static final String INTERFUNCTION_NAME = "TEXT_f";
 

@@ -65,6 +65,7 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
@@ -205,30 +206,30 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         if (isHistoryVisible()) {
             // put the expansion in an invokeLater to avoid some kind of freeze with huge history
             SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        scilabHistoryTree.setVisible(true);
-                        if (!modelLoaded) {
-                            scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
-                            modelLoaded = true;
-                        }
-
-                        final Object root = scilabHistoryTreeModel.getRoot();
-                        final TreePath pathRoot = new TreePath(root);
-                        final int N = scilabHistoryTreeModel.getChildCount(root);
-                        scilabHistoryTree.mustFire = false;
-                        for (int i = 0; i < N; i++) {
-                            Object o = scilabHistoryTreeModel.getChild(root, i);
-                            if (!scilabHistoryTreeModel.isLeaf(o)) {
-                                scilabHistoryTree.expandPath(pathRoot.pathByAddingChild(o));
-                            }
-                        }
-                        scilabHistoryTree.mustFire = true;
-                        scilabHistoryTree.fireTreeExpanded(pathRoot);
-
-                        WindowsConfigurationManager.restorationFinished(getBrowserTab());
-                        scrollAtBottom();
+                public void run() {
+                    scilabHistoryTree.setVisible(true);
+                    if (!modelLoaded) {
+                        scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
+                        modelLoaded = true;
                     }
-                });
+
+                    final Object root = scilabHistoryTreeModel.getRoot();
+                    final TreePath pathRoot = new TreePath(root);
+                    final int N = scilabHistoryTreeModel.getChildCount(root);
+                    scilabHistoryTree.mustFire = false;
+                    for (int i = 0; i < N; i++) {
+                        Object o = scilabHistoryTreeModel.getChild(root, i);
+                        if (!scilabHistoryTreeModel.isLeaf(o)) {
+                            scilabHistoryTree.expandPath(pathRoot.pathByAddingChild(o));
+                        }
+                    }
+                    scilabHistoryTree.mustFire = true;
+                    scilabHistoryTree.fireTreeExpanded(pathRoot);
+
+                    WindowsConfigurationManager.restorationFinished(getBrowserTab());
+                    scrollAtBottom();
+                }
+            });
         }
     }
 
@@ -486,11 +487,11 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     private static void scrollAtBottom() {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    scrollPane.getHorizontalScrollBar().setValue(0);
-                    scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-                }
-            });
+            public void run() {
+                scrollPane.getHorizontalScrollBar().setValue(0);
+                scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+            }
+        });
 
     }
 
@@ -510,6 +511,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         }
     }
 
+    @SuppressWarnings(value = { "serial" })
     static class HistoryTree extends JTree {
 
         private boolean first = true;
@@ -523,21 +525,21 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
             setLargeModel(true);
 
             setCellRenderer(new DefaultTreeCellRenderer() {
-                        {
-                            defaultColor = getTextNonSelectionColor();
-                        }
+                {
+                    defaultColor = getTextNonSelectionColor();
+                }
 
-                    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-                        if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
-                            setTextNonSelectionColor(sessionColor);
-                        } else {
-                            setTextNonSelectionColor(defaultColor);
-                        }
-
-                        return this;
+                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                    super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                    if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
+                        setTextNonSelectionColor(sessionColor);
+                    } else {
+                        setTextNonSelectionColor(defaultColor);
                     }
-                });
+
+                    return this;
+                }
+            });
         }
 
         public void fireTreeExpanded(TreePath path) {
@@ -566,10 +568,10 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                 super.paint(g);
             } catch (Exception e) {
                 SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            paint(g);
-                        }
-                    });
+                    public void run() {
+                        paint(g);
+                    }
+                });
             }
         }
     }

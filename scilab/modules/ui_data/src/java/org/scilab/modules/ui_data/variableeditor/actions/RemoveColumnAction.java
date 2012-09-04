@@ -28,6 +28,7 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  * Set Precision Action class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RemoveColumnAction extends CommonCallBack {
 
     private final JTable table;
@@ -49,7 +50,7 @@ public final class RemoveColumnAction extends CommonCallBack {
     public void callBack() {
         int[] cols = table.getSelectedColumns();
         if (cols.length == 0) {
-            cols = new int[]{((TableVariableEditor) table).getPopupColumn()};
+            cols = new int[] {((TableVariableEditor) table).getPopupColumn()};
         }
         SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
         model.removeColumns(cols);
