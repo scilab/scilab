@@ -29,14 +29,14 @@ OutputBaseFilename={#ScilabBaseFilename}-nojre
 #endif
 AppName={#ScilabName}
 AppVerName={#ScilabName}
-DefaultDirName={pf}\{#ScilabBaseDirectory}
+DefaultDirName={code:DefDirRoot}\{#ScilabBaseDirectory}
 DefaultGroupName={#ScilabName}
 SetupIconFile=tools\innosetup\puffin.ico
 ;InfoAfterfile=README_Windows.txt
 LicenseFile=COPYING
 ChangesAssociations=yes
 WindowVisible=false
-AppPublisher=DIGITEO
+AppPublisher=Scilab Enterprises
 AppPublisherURL=http://www.scilab.org
 AppSupportURL=http://bugzilla.scilab.org/
 AppUpdatesURL=http://www.scilab.org/products/scilab/download
@@ -53,8 +53,8 @@ Compression=lzma/ultra64
 InternalCompressLevel=ultra64
 SolidCompression=true
 VersionInfoVersion={#ScilabVersion}
-VersionInfoCompany=DIGITEO
+VersionInfoCompany=Scilab Enterprises
 ; minimun right to install Scilab
-PrivilegesRequired=poweruser
+PrivilegesRequired=none
 ;-------------------------------------------------------------------------------
 ;
