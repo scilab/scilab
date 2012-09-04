@@ -12,6 +12,12 @@ Xcos
 * Bug #11747 fixed - Modelica block text was visible under the block image.
 
 
+Compilation
+===========
+
+* Update to Scirenderer 0.5.8.
+
+
 Bug Fixes
 =========
 
