@@ -342,7 +342,12 @@ public class Export {
 
         G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
         canvas.disableDraw();
-        DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure);
+        DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
+                @Override
+                public void deleteObject(String id) {
+                    // Don't delete during the export
+                }
+            };
         visitor.setDrawingTools(canvas.getDrawingTools());
         canvas.setMainDrawer(visitor);
         visitorsToExp.put(visitor, exporter);

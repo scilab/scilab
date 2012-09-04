@@ -23,6 +23,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Bruno JOFRET
  *
  */
+@SuppressWarnings(value = { "serial" })
 public final class UndoAction extends DefaultAction {
 
     /**

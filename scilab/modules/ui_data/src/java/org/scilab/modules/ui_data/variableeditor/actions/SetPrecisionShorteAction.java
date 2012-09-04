@@ -29,6 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.renderers.ScilabComplexRenderer
  * Set Precision Action class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SetPrecisionShorteAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY shift S";

@@ -51,7 +51,7 @@ typedef struct fftw_plan_st
 fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
     double *ri, double *ii,
     double *ro, double *io,
-    unsigned flags, int isn);
+                      unsigned flags, int isn, int *errflag);
 
 int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan);
 

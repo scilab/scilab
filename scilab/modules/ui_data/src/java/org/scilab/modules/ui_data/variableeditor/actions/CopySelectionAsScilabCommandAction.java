@@ -29,6 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopySelectionAsScilabCommandAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CopySelectionAsScilabCommandAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY E";

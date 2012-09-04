@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
  */
 // CSOFF: FanOutComplexity
 // CSOFF: DataAbstractionCoupling
+@SuppressWarnings(value = { "serial" })
 public final class MainPanel extends JPanel {
     private static final int[] EXTENDED_STATUS_LAYOUT_DATA = new int[] { 2, 6 };
 
@@ -93,7 +94,7 @@ public final class MainPanel extends JPanel {
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the modelica controller
      */
@@ -138,12 +139,12 @@ public final class MainPanel extends JPanel {
 
     /**
      * Create a tree model associated with the current
-     * 
+     *
      * @return the model of a tree
      */
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-                controller.getRoot());
+            controller.getRoot());
         final TreeModel model = new DefaultTreeModel(rootNode);
 
         for (Struct struct : controller.getRoot().getElements().getStruct()) {
@@ -155,7 +156,7 @@ public final class MainPanel extends JPanel {
 
     /**
      * Recursively create the nodes for the data
-     * 
+     *
      * @param struct
      *            the data
      * @return the parent node
@@ -185,7 +186,7 @@ public final class MainPanel extends JPanel {
         if (path.getPathCount() > 1) {
             ret = new ArrayList<Terminal>();
             final Struct struct = (Struct) ((DefaultMutableTreeNode) path
-                    .getLastPathComponent()).getUserObject();
+                                            .getLastPathComponent()).getUserObject();
 
             for (Object child : struct.getSubnodes().getTerminalOrStruct()) {
                 if (child instanceof Terminal) {
@@ -209,15 +210,15 @@ public final class MainPanel extends JPanel {
         control.add(solver);
 
         solverComboBox.setModel(new javax.swing.DefaultComboBoxModel(
-                ModelicaController.ComputationMethod.values()));
+                                    ModelicaController.ComputationMethod.values()));
         solverComboBox
-                .setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
+        .setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
 
         control.add(solverComboBox);
 
         embeddedParametersButton.setText(ModelicaMessages.PARAMETER_EMBEDDING);
         embeddedParametersButton
-                .setToolTipText(ModelicaMessages.PARAMETER_EMBEDDING_EXPLAINED);
+        .setToolTipText(ModelicaMessages.PARAMETER_EMBEDDING_EXPLAINED);
         control.add(embeddedParametersButton);
         generateJacobianButton.setText(ModelicaMessages.GENERATE_JACOBIAN);
         control.add(generateJacobianButton);
@@ -227,8 +228,8 @@ public final class MainPanel extends JPanel {
     }
 
     /**
-	 * 
-	 */
+     *
+     */
     private void initExtendedStatus() {
         diffSt.setTitle(ModelicaMessages.DIFF_ST);
         extendedStatus.add(diffSt);
@@ -249,8 +250,8 @@ public final class MainPanel extends JPanel {
     }
 
     /**
-	 * 
-	 */
+     *
+     */
     private void initGlobalStatus() {
         javax.swing.JPanel globalTop = new javax.swing.JPanel();
         javax.swing.JPanel globalBottom = new javax.swing.JPanel();
@@ -279,14 +280,14 @@ public final class MainPanel extends JPanel {
         setLayout(new java.awt.BorderLayout());
 
         globalStatus.setBorder(javax.swing.BorderFactory
-                .createTitledBorder(ModelicaMessages.GLOBAL));
+                               .createTitledBorder(ModelicaMessages.GLOBAL));
         globalStatus
-                .setLayout(new BoxLayout(globalStatus, BoxLayout.PAGE_AXIS));
+        .setLayout(new BoxLayout(globalStatus, BoxLayout.PAGE_AXIS));
 
         extendedStatus.setBorder(javax.swing.BorderFactory
-                .createTitledBorder(ModelicaMessages.EXTENDED));
+                                 .createTitledBorder(ModelicaMessages.EXTENDED));
         extendedStatus.setLayout(new GridLayout(EXTENDED_STATUS_LAYOUT_DATA[0],
-                EXTENDED_STATUS_LAYOUT_DATA[1]));
+                                                EXTENDED_STATUS_LAYOUT_DATA[1]));
 
         splitPanel.setContinuousLayout(true);
 
@@ -356,7 +357,7 @@ public final class MainPanel extends JPanel {
                 diffSt.setText(Long.toString(stats.getDerivativeStates()));
                 fixedParams.setText(Long.toString(stats.getFixedParameters()));
                 relaxedParams.setText(Long.toString(stats
-                        .getRelaxedParameters()));
+                                                    .getRelaxedParameters()));
                 discretes.setText(Long.toString(stats.getDiscreteStates()));
                 relaxedVars.setText(Long.toString(stats.getRelaxedVariables()));
                 fixedVars.setText(Long.toString(stats.getFixedVariables()));
@@ -409,7 +410,7 @@ public final class MainPanel extends JPanel {
 
     /**
      * Install the listener on the table model
-     * 
+     *
      * @param statistics
      *            the statistics
      */
@@ -438,25 +439,25 @@ public final class MainPanel extends JPanel {
             public void tableChanged(TableModelEvent e) {
                 if (e instanceof TerminalTableModel.TerminalTableModelEvent
                         && ((TerminalTableModel.TerminalTableModelEvent) e)
-                                .isAfterCommit()) {
+                .isAfterCommit()) {
                     final int rowIndex = e.getFirstRow();
                     final int columnIndex = e.getColumn();
 
                     if (TerminalAccessor.values()[columnIndex] == WEIGHT) {
                         final TerminalTableModel model = (TerminalTableModel) e
-                                .getSource();
+                                                         .getSource();
                         final Terminal terminal = model.getTerminals().get(
-                                rowIndex);
+                                                      rowIndex);
 
                         if (terminal.getKind().equals("fixed_parameter")
-                                || terminal.getKind().equals("variable")) {
+                        || terminal.getKind().equals("variable")) {
                             final double data = (Double) getData(WEIGHT,
-                                    terminal);
+                                                                 terminal);
                             final boolean isFixed = data >= 1.0;
 
                             tableModel.setValueAt(isFixed, rowIndex,
-                                    Arrays.asList(TerminalAccessor.values())
-                                            .indexOf(FIXED));
+                                                  Arrays.asList(TerminalAccessor.values())
+                                                  .indexOf(FIXED));
                         }
 
                     }
@@ -472,17 +473,17 @@ public final class MainPanel extends JPanel {
             @Override
             public void tableChanged(TableModelEvent e) {
                 if (e instanceof TerminalTableModel.TerminalTableModelEvent
-                        && !embeddedParametersButton.isSelected()) {
+                && !embeddedParametersButton.isSelected()) {
                     final int rowIndex = e.getFirstRow();
                     final int columnIndex = e.getColumn();
 
                     if (TerminalAccessor.values()[columnIndex] == TerminalAccessor.WEIGHT) {
                         final TerminalTableModel model = (TerminalTableModel) e
-                                .getSource();
+                                                         .getSource();
                         final Terminal terminal = model.getTerminals().get(
-                                rowIndex);
+                                                      rowIndex);
                         final Double weight = TerminalAccessor.getData(
-                                TerminalAccessor.WEIGHT, terminal);
+                                                  TerminalAccessor.WEIGHT, terminal);
 
                         if (weight.doubleValue() >= 1.0) {
                             controller.setCompileNeeded(true);

@@ -46,7 +46,7 @@ public class OpenURLAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         KeywordEvent kwe = sep.getKeywordEvent(sep.getSelectionEnd());
         if (ScilabLexerConstants.URL == kwe.getType() || ScilabLexerConstants.MAIL == kwe.getType()) {
             try {

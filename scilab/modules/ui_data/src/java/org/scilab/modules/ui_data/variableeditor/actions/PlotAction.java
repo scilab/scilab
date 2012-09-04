@@ -36,6 +36,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class PlotAction extends CommonCallBack {
 
     public static final int PLOT2D = 0;
@@ -77,19 +78,20 @@ public final class PlotAction extends CommonCallBack {
     private static final String COM_CONTOUR2D = "L?8625083632641564278=xget(\"fpf\");xset(\"fpf\",\" \");contour2d(1:%s,1:%s,%s,10);xset(\"fpf\",L?8625083632641564278);clear(\"L?8625083632641564278\")";
     private static final String COM_PIE = "L?8625083632641564278=%s;pie(L?8625083632641564278(find(L?8625083632641564278>0&L?8625083632641564278<>%%inf&L?8625083632641564278<>%%nan)))";
 
-    private static final String[] COMMANDS = new String[]{COM_PLOT2D, COM_MATPLOT, COM_GRAYPLOT, COM_SGRAYPLOT, COM_CHAMP, COM_HISTPLOT, COM_MESH, COM_SURF, COM_HIST3D, COM_CONTOUR2D, COM_PIE};
+    private static final String[] COMMANDS = new String[] {COM_PLOT2D, COM_MATPLOT, COM_GRAYPLOT, COM_SGRAYPLOT, COM_CHAMP, COM_HISTPLOT, COM_MESH, COM_SURF, COM_HIST3D, COM_CONTOUR2D, COM_PIE};
     private static final String[] IMG = new String[] {
-            "application-x-scilab-plot2d",
-            "application-x-scilab-Matplot",
-            "application-x-scilab-grayplot",
-            "application-x-scilab-Sgrayplot",
-            "application-x-scilab-champ",
-            "application-x-scilab-histplot",
-            "application-x-scilab-mesh",
-            "application-x-scilab-surf",
-            "application-x-scilab-hist3d",
-            "application-x-scilab-contour2d",
-            "application-x-scilab-pie" };
+        "application-x-scilab-plot2d",
+        "application-x-scilab-Matplot",
+        "application-x-scilab-grayplot",
+        "application-x-scilab-Sgrayplot",
+        "application-x-scilab-champ",
+        "application-x-scilab-histplot",
+        "application-x-scilab-mesh",
+        "application-x-scilab-surf",
+        "application-x-scilab-hist3d",
+        "application-x-scilab-contour2d",
+        "application-x-scilab-pie"
+    };
 
     private static final String CREATE = "Create";
 
@@ -157,29 +159,29 @@ public final class PlotAction extends CommonCallBack {
 
         String com = COMMANDS[type];
         switch (type) {
-        case 0:
-        case 1:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 10:
-            com = String.format(com, datas);
-            break;
-        case 2:
-        case 3:
-            com = String.format(com, rowC, colC, datas);
-            break;
-        case 4:
-            com = String.format(com, rowC, colC, datas, datas);
-            break;
-        case 9:
-            if (rowC >= 2 && colC >= 2) {
+            case 0:
+            case 1:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 10:
+                com = String.format(com, datas);
+                break;
+            case 2:
+            case 3:
                 com = String.format(com, rowC, colC, datas);
-            } else {
-                return;
-            }
-            break;
+                break;
+            case 4:
+                com = String.format(com, rowC, colC, datas, datas);
+                break;
+            case 9:
+                if (rowC >= 2 && colC >= 2) {
+                    com = String.format(com, rowC, colC, datas);
+                } else {
+                    return;
+                }
+                break;
         }
 
         model.execCommand("clf();" + com);
@@ -198,12 +200,12 @@ public final class PlotAction extends CommonCallBack {
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         final JPopupMenu popup = new JPopupMenu() {
-                @Override
-                public void show(Component c, int x, int y) {
-                    SwingScilabPushButton but = (SwingScilabPushButton) button.getAsSimplePushButton();
-                    super.show(but, 0, but.getBounds(null).height);
-                }
-            };
+            @Override
+            public void show(Component c, int x, int y) {
+                SwingScilabPushButton but = (SwingScilabPushButton) button.getAsSimplePushButton();
+                super.show(but, 0, but.getBounds(null).height);
+            }
+        };
         popup.setBorderPainted(true);
 
         popup.add(PlotAction.createJMenuItem(editor, "plot2d", true));
@@ -221,15 +223,15 @@ public final class PlotAction extends CommonCallBack {
         popup.pack();
 
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CommonCallBack(null) {
-                @Override
-                public void callBack() {
-                    if (!popup.isVisible()) {
-                        popup.show(null, 0, 0);
-                    } else {
-                        popup.setVisible(false);
-                    }
+            @Override
+            public void callBack() {
+                if (!popup.isVisible()) {
+                    popup.show(null, 0, 0);
+                } else {
+                    popup.setVisible(false);
                 }
-            });
+            }
+        });
 
         return button;
     }

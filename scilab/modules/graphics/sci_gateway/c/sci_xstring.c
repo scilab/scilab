@@ -117,7 +117,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
 
     if (nbElement == 1)
     {
-        Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, FALSE, NULL, NULL, isboxed
+        Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, 0, NULL, NULL, isboxed
                   && (angle == 0), TRUE, FALSE, ALIGN_LEFT);
     }
     else
@@ -138,7 +138,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
             if (Rhs >= 5 && m5 * n5 == nbElement)
                 isboxed = (*stk(l5) != 0);
 
-            Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, FALSE, NULL, NULL, isboxed
+            Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, 0, NULL, NULL, isboxed
                       && (angle == 0), TRUE, FALSE, ALIGN_LEFT);
         }
 

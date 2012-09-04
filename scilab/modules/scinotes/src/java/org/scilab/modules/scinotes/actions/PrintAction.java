@@ -49,7 +49,7 @@ public class PrintAction extends DefaultAction {
             LoadClassPath.loadOnUse("pdf_ps_eps_graphic_export");
             codeConverterLoaded = true;
         }
-        ScilabEditorPane pane = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane pane = getEditor().getTextPane();
         CodeExporter.convert(pane, null, CodeExporter.PRINT, PageSetupAction.getPageFormat());
     }
 

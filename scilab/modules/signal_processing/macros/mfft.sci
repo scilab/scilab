@@ -7,8 +7,8 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [xk]=mfft(x,flag,dim)
-//<xk>=mfft(x,flag,dim)
+function xk=mfft(x,flag,dim)
+//xk=mfft(x,flag,dim)
 //macro which calculates the fft for a multi-dimensional signal
 // x    :x(i,j,k,...) input signal in the form of a row vector
 //      :whose values are arranged so that the i index runs the
@@ -23,22 +23,19 @@ function [xk]=mfft(x,flag,dim)
 //dimension and three points along its third dimension the row
 //vector is arranged as follows
 //
-//      x=<x(1,1,1),x(2,1,1),x(3,1,1),
-//         x(1,2,1),x(2,2,1),x(3,2,1),
-//               x(1,1,2),x(2,1,2),x(3,1,2),
-//               x(1,2,2),x(2,2,2),x(3,2,2),
-//                     x(1,1,3),x(2,1,3),x(3,1,3),
-//                     x(1,2,3),x(2,2,3),x(3,2,3)>
+//      x=[x(1,1,1),x(2,1,1),x(3,1,1),...
+//         x(1,2,1),x(2,2,1),x(3,2,1),...
+//         x(1,1,2),x(2,1,2),x(3,1,2),...
+//         x(1,2,2),x(2,2,2),x(3,2,2),...
+//         x(1,1,3),x(2,1,3),x(3,1,3),...
+//         x(1,2,3),x(2,2,3),x(3,2,3)]
 //
 //and the dim vector is as follows
 //
-//      dim=<3,2,3>
+//      dim=[3,2,3]
 //
 //!
 
-   xk=x;
-   dims=[1 matrix(dim,1,max(size(dim)))];
-   for k=1:max(size(dim)),
-      xk=fft(xk,flag,dim(k),prod(dims(1:k)));
-   end,
+  xk=matrix(fft(matrix(x,dim),flag),size(x))
+
 endfunction

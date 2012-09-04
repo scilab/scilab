@@ -35,6 +35,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CutAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY X";
@@ -85,7 +86,7 @@ public final class CutAction extends CommonCallBack {
             if ((cols.length == 1 && rows.length == 1) || (rows.length >= 2 && cols.length >= 2 && rows[1] >= oldRows && cols[1] >= oldCols)) {
                 oldValue = model.getValueAt(rows[0], cols[0]);
             } else {
-                oldValue = (Vector) model.cloneDatas();
+                oldValue = model.cloneDatas();
             }
 
             for (int i = rows[0]; i <= rows[rows.length - 1]; i++) {

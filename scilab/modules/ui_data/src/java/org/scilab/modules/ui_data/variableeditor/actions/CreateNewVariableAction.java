@@ -49,6 +49,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CreateNewVariableAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY N";
@@ -115,7 +116,7 @@ public final class CreateNewVariableAction extends CommonCallBack {
 
     public Object[] askForNewMatrix() {
         final JDialog dialog = new JDialog();
-        final Object[] ret = new Object[]{ "", new Integer(0), new Integer(0), "" };
+        final Object[] ret = new Object[] { "", new Integer(0), new Integer(0), "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
@@ -152,11 +153,11 @@ public final class CreateNewVariableAction extends CommonCallBack {
 
         final JSpinner spinRow = new JSpinner();
         ((SpinnerNumberModel) spinRow.getModel()).setMinimum(new Comparable<Integer>() {
-                @Override
-                public int compareTo(Integer o) {
-                    return -o.intValue();
-                }
-            });
+            @Override
+            public int compareTo(Integer o) {
+                return -o.intValue();
+            }
+        });
         spinRow.setValue(0);
         ((JSpinner.DefaultEditor) spinRow.getEditor()).getTextField().setColumns(6);
         gbc.gridx = 1;
@@ -171,11 +172,11 @@ public final class CreateNewVariableAction extends CommonCallBack {
 
         final JSpinner spinCol = new JSpinner();
         ((SpinnerNumberModel) spinCol.getModel()).setMinimum(new Comparable<Integer>() {
-                @Override
-                public int compareTo(Integer o) {
-                    return -o.intValue();
-                }
-            });
+            @Override
+            public int compareTo(Integer o) {
+                return -o.intValue();
+            }
+        });
         spinCol.setValue(0);
         ((JSpinner.DefaultEditor) spinCol.getEditor()).getTextField().setColumns(6);
         gbc.gridx = 1;
@@ -215,22 +216,22 @@ public final class CreateNewVariableAction extends CommonCallBack {
         dialog.setContentPane(panel);
 
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                    ret[0] = textField.getText();
-                    ret[1] = spinRow.getValue();
-                    ret[2] = spinCol.getValue();
-                    ret[3] = fillField.getText();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+                ret[0] = textField.getText();
+                ret[1] = spinRow.getValue();
+                ret[2] = spinCol.getValue();
+                ret[3] = fillField.getText();
+            }
+        });
 
         dialog.setTitle(UiDataMessages.CREATENEWVAR);
         dialog.pack();

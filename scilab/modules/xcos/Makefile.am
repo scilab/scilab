@@ -152,6 +152,7 @@ images/blocks/HYSTHERESIS.svg \
 images/blocks/IdealTransformer.svg \
 images/blocks/Inductor.svg \
 images/blocks/INTEGRAL.svg \
+images/blocks/Modelica.svg \
 images/blocks/NMOS.svg \
 images/blocks/NPN.svg \
 images/blocks/PerteDP.svg \

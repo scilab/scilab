@@ -9,17 +9,37 @@ Xcos
 * Bug #11717 fixed - Setting recent opened file number in preferences GUI
                      did not apply in Xcos menu.
 
+* Bug #11747 fixed - Modelica block text was visible under the block image.
+
+
+Compilation
+===========
+
+* Update to Scirenderer 0.5.8.
+
 
 Bug Fixes
 =========
 
 * Bug #8799 fixed - gsort did not work with hypermatrices.
 
+* Bug #11293 fixed - Line style was not taken into account.
+
 * Bug #11558 fixed - Typo in helptools module fixed.
+
+* Bug #11684 fixed - mfft failed due to MKL fftw library restrictions.
 
 * Bug #11688 fixed - The example in example_run help page failed.
 
 * Bug #11794 fixed - Empty lists could not be saved/loaded to/from SOD files.
+
+* Bug #11802 fixed - mrfit function redefined the diff function.
+
+* Bug #11810 fixed - In EditVar, undesired data were added when the edition
+                     is cancelled.
+
+* Bug #11810 fixed - In BrowseVar, contents of "visibility" column are left
+                     aligned.
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
@@ -150,7 +170,9 @@ Bug Fixes
 
 * Bug #11618 fixed - A(:) returned wrong values when A was a complex sparse matrix.
 
-* Bug #11628 fixed - Clearing a shortcut did not work in Preferences.
+* Bug #11619 fixed - titlepage("Text"): the font size was no longer maximized to fit the figure's sizes.
+
+* Bug #11628 fixed - Clearing a shortcut did not work is Preferences.
 
 * Bug #11640 fixed - Same behavior as in Scilab 5.3.3 plugged back at STDIN closure.
 
@@ -994,6 +1016,8 @@ ATOMS
    an ATOMS module.
 
 * ATOMS option 'offLine' has been renamed to 'offline'.
+
+* Bug #8302 fixed - wrong order when loading dependencies
 
 * Bug #9078 fixed - atomsGui took time to start gui.
 

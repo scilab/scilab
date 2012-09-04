@@ -38,20 +38,26 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>modulo</literal> вычисляет <literal>i= n (modulo m)</literal>,
-            т. е. остаток от деления <literal>n</literal> на <literal>m</literal> 
-            (<literal>n</literal> и <literal>m</literal> - целые числа).
+            <function>modulo</function> вычисляет <code>i= n (modulo m)</code>,
+            т. е. остаток от деления <varname>n</varname> на <varname>m</varname>
+            (<varname>n</varname> и <varname>m</varname> - целые числа).
         </para>
         <para>
-            <literal>i= n - m .* int (n ./ m)</literal>. Здесь ответ может быть 
-            отрицательным, если <literal>n</literal> или <literal>m</literal> 
+            <code>i= n - m .* int (n ./ m)</code>. Здесь ответ может быть
+            отрицательным, если <varname>n</varname> или <varname>m</varname>
             являются отрицательными.
         </para>
         <para>
-            <literal>pmodulo</literal> вычисляет <literal>i = n - m .* floor (n
+            <function>pmodulo</function> вычисляет <code>i = n - m .* floor (n
                 ./ m)
-            </literal>
-            ,ответ является положительным либо равен нулю.
+            </code>
+            , ответ является положительным либо равным нулю.
+        </para>
+        <para>
+          <code>modulo(x,0)</code> возвращает сообщение об ошибке: "Деление на нуль...". При <code>ieee(2)</code>, <code>modulo(x,0)</code> возвращает <constant>%nan</constant>.
+        </para>
+        <para>
+            <code>pmodulo(x,0)</code> возвращает сообщение об ошибке: "Деление на нуль...". При <code>ieee(2)</code>, <code>pmodulo(x,0)</code> возвращает <constant>%nan</constant>.
         </para>
     </refsection>
     <refsection>

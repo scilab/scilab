@@ -13,6 +13,7 @@
 package org.scilab.modules.ui_data;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
@@ -45,6 +46,8 @@ public class BrowseVar {
                                                             Messages.gettext("Type int value")
     };
 
+    public static final int[] COLUMNSALIGNMENT = new int[]{-1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
+
     private static final ImageIcon NO_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("noicon"));
     private static final ImageIcon DOUBLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("double"));
     private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("polynomial"));
@@ -75,7 +78,7 @@ public class BrowseVar {
         case 1:
             return DOUBLE_ICON;
         case 2:
-          return POLYNOMIAL_ICON;
+            return POLYNOMIAL_ICON;
         case 4:
             return BOOLEAN_ICON;
         case 5:
@@ -83,7 +86,7 @@ public class BrowseVar {
         case 7:
             return SPARSE_ICON;
         case 8:
-          return INT_ICON;
+            return INT_ICON;
         case 9:
             return HANDLE_ICON;
         case 10:
@@ -91,8 +94,8 @@ public class BrowseVar {
         case 11:
         case 13:
             return FUNCTION_ICON;
-        /*case 14:
-            return LIBRARY_ICON;*/
+            /*case 14:
+              return LIBRARY_ICON;*/
         case 15:
             return LIST_ICON;
         case 16:

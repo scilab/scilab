@@ -25,6 +25,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CopySelectionAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 class CopySelectionAction extends CommonCallBack {
 
     protected SwingScilabVariableEditor editor;

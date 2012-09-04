@@ -23,6 +23,7 @@ import org.scilab.modules.scinotes.TrailingWhiteManager;
  * RemoveTrailingWhiteAction Class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RemoveTrailingWhiteAction extends DefaultAction {
 
     /**
@@ -38,7 +39,7 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
         int pos = sep.getCaretPosition();

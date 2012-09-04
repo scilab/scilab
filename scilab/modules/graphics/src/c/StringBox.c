@@ -55,7 +55,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                             xPos, yPos,
                             TRUE,
                             NULL,
-                            FALSE,
+                            0,
                             &defaultColor, &defaultColor,
                             FALSE, FALSE, FALSE,
                             ALIGN_LEFT);

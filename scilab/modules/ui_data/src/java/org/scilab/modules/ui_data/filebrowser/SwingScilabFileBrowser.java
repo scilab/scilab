@@ -33,6 +33,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * uses JTable
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SwingScilabFileBrowser extends SwingScilabTab {
 
     public static final String FILEBROWSERUUID = "3b649047-6a71-4998-bd8e-00d367a4793d";

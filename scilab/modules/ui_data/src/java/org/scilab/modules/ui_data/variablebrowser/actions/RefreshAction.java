@@ -26,6 +26,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  * RefreshAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RefreshAction extends CommonCallBack {
 
     /**
