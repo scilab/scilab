@@ -75,7 +75,6 @@ public class Uicontrol extends GraphicObject {
     private static final String DEFAULTFONTNAME = "helvetica";
     private static final String DEFAULTFONTWEIGHT = "normal";
     private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
-
     private static final String DEFAULTRELIEF = __GO_UI_RAISED_RELIEF__;
 
     private UicontrolStyle style;
@@ -157,6 +156,7 @@ public class Uicontrol extends GraphicObject {
      */
     public Uicontrol() {
         super();
+        setVisible(false); /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
     }
 
     /**

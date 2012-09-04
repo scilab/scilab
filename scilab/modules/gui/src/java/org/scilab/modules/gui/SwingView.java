@@ -490,6 +490,9 @@ public final class SwingView implements GraphicView {
      * @param id the uicontrol id
      */
     private void setDefaultProperties(Widget uiControlObject, String id) {
+        /* Visible property is set first to avoid to see the object rendered before all its properties to be set (See bug #10346) */
+        SwingViewWidget.update(uiControlObject, __GO_VISIBLE__,
+                               (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
         SwingViewWidget.update(uiControlObject, __GO_UI_BACKGROUNDCOLOR__,
                                (Double[]) GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
         SwingViewWidget.update(uiControlObject, __GO_UI_ENABLE__,
@@ -518,8 +521,6 @@ public final class SwingView implements GraphicView {
                                (String) GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
         SwingViewWidget.update(uiControlObject, __GO_POSITION__,
                                (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
-        SwingViewWidget.update(uiControlObject, __GO_VISIBLE__,
-                               (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
     }
 
     @Override
