@@ -12,6 +12,26 @@
             　　ループ変数の定義と命令を分離するために使用されます.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+      i = 0
+      while i<5 do
+          disp("i");
+          i = i + 1;
+      end
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+n=5;
+for i = 1:n do
+    for j = 1:n do
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
