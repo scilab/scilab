@@ -43,6 +43,8 @@ Bug Fixes
 
 * Bug #11834 fixed - In SciNotes there was not a menu to set font or colors.
 
+* Bug #11838 fixed - Maximized state of a window was not saved in quitting.
+
 * Bug #11840 fixed - In Xcos, dialogs could not be closed on escape.
 
 
