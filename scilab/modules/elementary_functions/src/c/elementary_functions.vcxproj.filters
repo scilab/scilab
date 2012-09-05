@@ -203,6 +203,12 @@
     <ClCompile Include="..\cpp\min.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\sum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\prod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h">
@@ -338,6 +344,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="expm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\sum.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\prod.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

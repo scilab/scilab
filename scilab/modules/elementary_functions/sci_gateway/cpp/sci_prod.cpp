@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,18 +16,17 @@
 #include "string.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-#include "sum.hxx"
+#include "prod.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "charEncoding.h"
 #include "basic_functions.h"
 }
 
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn       = NULL;
     types::Double* pDblOut      = NULL;
@@ -39,15 +36,17 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     int iOrientation    = 0;
     int iOuttype        = 1; // 1 = native | 2 = double (type of output value)
 
+    int* piDimsArray = NULL;
+
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: %d to %d expected.\n"), "sum", 1, 3);
-        return Function::Error;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "prod", 1, 3);
+        return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "sum", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "prod", 1);
         return types::Function::Error;
     }
 
@@ -144,7 +143,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_sum";
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_prod";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
@@ -152,7 +151,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "prod", 3);
             return types::Function::Error;
         }
 
@@ -168,7 +167,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : native or double.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : native or double.\n"), "prod", 3);
             return types::Function::Error;
         }
     }
@@ -181,7 +180,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "prod", 2);
                 return types::Function::Error;
             }
 
@@ -189,7 +188,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "prod", 2);
                 return types::Function::Error;
             }
         }
@@ -247,11 +246,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 if (in.size() == 2)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c, m, native or double.\n"), "sum", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c, m, native or double.\n"), "prod", 2);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c or m.\n"), "sum", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c or m.\n"), "prod", 2);
                 }
 
                 return types::Function::Error;
@@ -259,7 +258,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or a string expected.\n"), "sum", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or a string expected.\n"), "prod", 2);
             return types::Function::Error;
         }
     }
@@ -271,11 +270,12 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         {
             if (iOrientation == 0)
             {
-                out.push_back(new Double(0));
+                pDblOut = new types::Double(1);
+                out.push_back(pDblOut);
             }
             else
             {
-                out.push_back(Double::Empty());
+                out.push_back(types::Double::Empty());
             }
 
             if (in[0]->isDouble() == false)
@@ -286,7 +286,8 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             return types::Function::OK;
         }
-        else if (iOrientation > pDblIn->getDims())
+
+        if (iOrientation > pDblIn->getDims())
         {
             if (in[0]->isDouble())
             {
@@ -304,7 +305,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            pDblOut = sum(pDblIn, iOrientation);
+            pDblOut = prod(pDblIn, iOrientation);
             if (in[0]->isDouble() == false)
             {
                 delete pDblIn;
@@ -321,7 +322,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            pPolyOut = sum(pPolyIn, iOrientation);
+            pPolyOut = prod(pPolyIn, iOrientation);
         }
     }
 
@@ -419,6 +420,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         out.push_back(pDblOut);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

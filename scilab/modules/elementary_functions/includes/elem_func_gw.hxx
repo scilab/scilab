@@ -20,10 +20,10 @@
 class ElemFuncModule
 {
 private :
-	ElemFuncModule(){};
-	~ElemFuncModule(){};
+    ElemFuncModule() {};
+    ~ElemFuncModule() {};
 public :
-	EXTERN_EF_GW static int Load();
+    EXTERN_EF_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_isequal);
@@ -32,6 +32,7 @@ CPP_GATEWAY_PROTOTYPE(sci_eye);
 CPP_GATEWAY_PROTOTYPE(sci_zeros);
 CPP_GATEWAY_PROTOTYPE(sci_ones);
 CPP_GATEWAY_PROTOTYPE(sci_rand);
+CPP_GATEWAY_PROTOTYPE(sci_prod);
 CPP_GATEWAY_PROTOTYPE(sci_sum);
 CPP_GATEWAY_PROTOTYPE(sci_matrix);
 CPP_GATEWAY_PROTOTYPE(sci_abs);

@@ -57,6 +57,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/cumprod.cpp \
     src/cpp/diag.cpp \
     src/cpp/gsort.cpp \
+    src/cpp/prod.cpp \
+    src/cpp/sum.cpp \
     src/cpp/max.cpp \
     src/cpp/min.cpp
 
@@ -282,7 +284,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_prod.c \
     sci_gateway/c/sci_tril.c \
     sci_gateway/c/sci_triu.c \
     sci_gateway/c/sci_sqrt.c \
@@ -300,7 +301,6 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_FORTRAN_SOURCES =  \
     sci_gateway/fortran/sci_f_testmatrix.f \
-    sci_gateway/fortran/sci_f_prod.f \
     sci_gateway/fortran/sci_f_matrix.f \
     sci_gateway/fortran/sci_f_size.f \
     sci_gateway/fortran/sci_f_tril.f \
@@ -333,6 +333,7 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_size.cpp \
     sci_gateway/cpp/sci_eye.cpp \
     sci_gateway/cpp/sci_rand.cpp \
+    sci_gateway/cpp/sci_prod.cpp \
     sci_gateway/cpp/sci_sum.cpp \
     sci_gateway/cpp/sci_zeros.cpp \
     sci_gateway/cpp/sci_ones.cpp \

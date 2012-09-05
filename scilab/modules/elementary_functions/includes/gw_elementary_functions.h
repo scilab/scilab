@@ -19,8 +19,8 @@
 /*--------------------------------------------------------------------------*/
 ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
-int sci_chinesehat(char *fname,unsigned long fname_len);
-int sci_spones(char *fname,unsigned long fname_len);
+int sci_chinesehat(char *fname, unsigned long fname_len);
+int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
 
 // YaSp
@@ -53,7 +53,7 @@ int sci_isequalbitwise(char *fname, unsigned long fname_len);
 //C_GATEWAY_PROTOTYPE(sci_mini);
 C_GATEWAY_PROTOTYPE(sci_nearfloat);
 C_GATEWAY_PROTOTYPE(sci_number_properties);
-C_GATEWAY_PROTOTYPE(sci_prod);
+//C_GATEWAY_PROTOTYPE(sci_prod);
 C_GATEWAY_PROTOTYPE(sci_real);
 C_GATEWAY_PROTOTYPE(sci_round);
 C_GATEWAY_PROTOTYPE(sci_sign);

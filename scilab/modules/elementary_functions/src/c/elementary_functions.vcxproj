@@ -209,6 +209,8 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="..\cpp\gsort.cpp" />
     <ClCompile Include="..\cpp\max.cpp" />
     <ClCompile Include="..\cpp\min.cpp" />
+    <ClCompile Include="..\cpp\prod.cpp" />
+    <ClCompile Include="..\cpp\sum.cpp" />
     <ClCompile Include="abs.c" />
     <ClCompile Include="acos.c" />
     <ClCompile Include="add_vector.c" />
@@ -301,6 +303,8 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\cpp\gsort.hxx" />
     <ClInclude Include="..\cpp\max.hxx" />
     <ClInclude Include="..\cpp\min.hxx" />
+    <ClInclude Include="..\cpp\prod.hxx" />
+    <ClInclude Include="..\cpp\sum.hxx" />
     <ClInclude Include="cmp.h" />
     <ClInclude Include="convertbase.h" />
     <ClInclude Include="expm.h" />
