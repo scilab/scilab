@@ -26,7 +26,7 @@ void deleteGraphicObject(char *_sId)
     CallGraphicController::removeRelationShipAndDelete(getScilabJavaVM(), _sId);
 }
 
-void deleteDataObject(char* _sId)
+void deleteDataObject(char const* _sId)
 {
     DataController::deleteDataObject(_sId);
 }

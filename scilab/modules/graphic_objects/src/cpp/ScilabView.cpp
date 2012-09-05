@@ -24,6 +24,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include "deleteGraphicObject.h"
 }
 
 /**
@@ -164,6 +165,8 @@ void ScilabView::deleteObject(char const* pstId)
 
     // Remove the corresponding handle.
     m_handleList.erase(pstId);
+
+    deleteDataObject(pstId);
 }
 
 void ScilabView::updateObject(char const* pstId, char const* pstProperty)
