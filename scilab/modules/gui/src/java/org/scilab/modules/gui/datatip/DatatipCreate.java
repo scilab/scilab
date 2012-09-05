@@ -13,12 +13,10 @@
 package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.renderer.CallRenderer;
-
 import org.scilab.modules.graphic_objects.PolylineData;
 
 import java.lang.String;
@@ -26,10 +24,7 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 
 import org.scilab.modules.gui.editor.AxesHandler;
-
 import org.scilab.modules.gui.editor.EntityPicker;
-
-import org.scilab.modules.gui.datatip.MarkerCreate;
 import org.scilab.modules.gui.datatip.DatatipDrag;
 
 /**
@@ -47,7 +42,7 @@ public class DatatipCreate {
     public static double[] datatipCoordinates = new double[2];
     static EntityPicker ep = new EntityPicker();
     public static String newDatatip = null;
-    public static String newMarker = null;
+
 
     /**
     * Given a mouse coordinate point x, y in pixels
@@ -66,7 +61,7 @@ public class DatatipCreate {
         double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
         graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
         insertPoint (polylineUid, graphicCoord[0], graphicCoord[1]);
-        String newDatatip = datatipProperties (graphicCoord, axesUid);
+        String newDatatip = datatipProperties (graphicCoord, polylineUid);
         return newDatatip;
     }
 
@@ -148,14 +143,12 @@ public class DatatipCreate {
                 graphicCoord = transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
 
                 insertPoint (polylineUid, graphicCoord[0], graphicCoord[1]);
-                newDatatip = datatipProperties (graphicCoord, axesUid);
-                newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
+                newDatatip = datatipProperties (graphicCoord, polylineUid);
                 return newDatatip;
 
             } else {
                 insertPoint (polylineUid, coordDoubleXY[0], coordDoubleXY[1]);
-                newDatatip = datatipProperties (coordDoubleXY, axesUid);
-                newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
+                newDatatip = datatipProperties (coordDoubleXY, polylineUid);
                 return newDatatip;
 
             }
@@ -172,20 +165,11 @@ public class DatatipCreate {
         String axesUid = (String) GraphicController.getController().getProperty(compoundUid, GraphicObjectProperties.__GO_PARENT__);
         String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
 
-        String[] childrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
+        String[] childrenUid = (String[]) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_CHILDREN__);
         for (int i = 0 ; i < childrenUid.length ; i++) {
             String objType = (String) GraphicController.getController().getProperty(childrenUid[i], GraphicObjectProperties.__GO_TYPE__);
-            if (objType == "Text") {
-                Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(childrenUid[i], GraphicObjectProperties.__GO_POSITION__);
-                double[] doublePosition = new double[datatipPosition.length];
-                for (int j = 0 ; j < datatipPosition.length ; j++) {
-                    doublePosition[j] = (double) datatipPosition[j];
-                }
-                coordInteger = getDatatipPositionInteger (doublePosition, axesUid);
-                String polylineUidEnd = ep.pick (figureUid, coordInteger[0], coordInteger[1]);
-                if (polylineUidEnd.equals(polylineUid)) {
-                    GraphicController.getController().removeRelationShipAndDelete(childrenUid[i]);
-                }
+            if (objType == GraphicObjectProperties.__GO_DATATIP__) {
+                GraphicController.getController().removeRelationShipAndDelete(childrenUid[i]);
             }
         }
 
@@ -233,16 +217,14 @@ public class DatatipCreate {
 
                 graphicCoord = transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
 
-                newDatatip = datatipProperties (graphicCoord, axesUid);
-                newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
+                newDatatip = datatipProperties (graphicCoord, polylineUid);
                 fieldArray[i] = graphicCoord[0];
                 fieldArray[i + (coordDoubleXY.length / 2)] = graphicCoord[1];
 
             } else {
                 graphicCoord[0] = datatipCoordinates[0];
                 graphicCoord[1] = datatipCoordinates[1];
-                newDatatip = datatipProperties (graphicCoord, axesUid);
-                newMarker = MarkerCreate.markerProperties (graphicCoord, axesUid);
+                newDatatip = datatipProperties (graphicCoord, polylineUid);
                 fieldArray[i] = datatipCoordinates[0];
                 fieldArray[i + (coordDoubleXY.length / 2)] = datatipCoordinates[1];
             }
@@ -273,8 +255,7 @@ public class DatatipCreate {
         coordDoubleXY[0] = DataX[indexPoint - 1];
         coordDoubleXY[1] = DataY[indexPoint - 1];
         insertPoint (polylineUid, coordDoubleXY[0], coordDoubleXY[1]);
-        String newDatatip = datatipProperties (coordDoubleXY, axesUid);
-        String newMarker = MarkerCreate.markerProperties (coordDoubleXY, axesUid);
+        String newDatatip = datatipProperties (coordDoubleXY, polylineUid);
         return newDatatip;
     }
 
@@ -351,39 +332,10 @@ public class DatatipCreate {
     */
     public static String askToCreateObject() {
 
-        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_TEXT__));
+        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
         return newDatatip;
     }
 
-    /**
-    * Set the datatip label according to graphic coordinates
-    *
-    * @param graphicCoord Vector containing the graphic coordinates in double precision.
-    * @return String vector with datatip label.
-    */
-    public static String[] setDatatipLabel(double[] graphicCoord) {
-
-        DecimalFormat numDecimal = new DecimalFormat("#.#####");
-        String datatipLabelX = numDecimal.format(graphicCoord[0]);
-        datatipLabelX = " X:" + datatipLabelX + "  ";
-        String datatipLabelY = numDecimal.format(graphicCoord[1]);
-        datatipLabelY = " Y:" + datatipLabelY + "  ";
-        String[] datatipLabel = { datatipLabelX , datatipLabelY };
-        return datatipLabel;
-    }
-
-    /**
-    * Calculate datatip box bounds accordind to length of its label
-    *
-    * @param datatipLabel Vector containing the graphic coordinates in double precision.
-    * @return String vector with datatip label.
-    */
-    public static Integer[] getDatatipBounds(String[] datatipLabel) {
-
-        datatipBounds[0] = datatipLabel.length;
-        datatipBounds[1] = 1;
-        return datatipBounds;
-    }
 
     /**
     * Set the position which datatip will be shown in graphic
@@ -409,18 +361,10 @@ public class DatatipCreate {
     private static String datatipProperties (double[] graphicCoord, String axesUid) {
 
         String newDatatip = askToCreateObject();
-        String[] datatipLabel = setDatatipLabel(graphicCoord);
-        datatipBounds = getDatatipBounds(datatipLabel);
         datatipPosition = setDatatipPosition(graphicCoord);
+
+        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
         GraphicController.getController().setGraphicObjectRelationship(axesUid, newDatatip);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, datatipBounds);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_TEXT_STRINGS__, datatipLabel);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_BOX__, true);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_POSITION__, datatipPosition);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_LINE_MODE__, true);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_FILL_MODE__, true);
-        GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_BACKGROUND__, 8);
         return newDatatip;
     }
 

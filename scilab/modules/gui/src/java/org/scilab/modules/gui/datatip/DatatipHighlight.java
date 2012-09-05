@@ -25,29 +25,32 @@ public class DatatipHighlight {
 
     private static boolean isSelected = false;
     public static Integer firstColorMarker;
-    public static String oldMarker;
+    public static String oldDatatip = null;
 
     /**
-    * Highlight a datatip and its marker when selected
+    * Highlight a datatip and its mark when selected
     *
-    * @param markerUid Datatip marker unique identifier.
+    * @param datatipUid Datatip unique identifier.
     */
-    public static void highlightSelected (String markerUid) {
-        if (markerUid != null) {
+    public static void highlightSelected (String datatipUid) {
+        if (datatipUid != null) {
             if (!isSelected) {
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__);
-                GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
-                oldMarker = markerUid;
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
+                GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
+                oldDatatip = datatipUid;
+                isSelected = true;
             } else {
-                GraphicController.getController().setProperty(oldMarker, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
-                firstColorMarker = (Integer) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__);
-                GraphicController.getController().setProperty(markerUid, GraphicObjectProperties.__GO_BACKGROUND__, 12);
-                oldMarker = markerUid;
+                GraphicController.getController().setProperty(oldDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, firstColorMarker);
+                firstColorMarker = (Integer) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
+                GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
+                oldDatatip = datatipUid;
+                isSelected = false;
             }
-            isSelected = true;
         } else {
-            GraphicController.getController().setProperty(oldMarker, GraphicObjectProperties.__GO_BACKGROUND__, firstColorMarker);
-            isSelected = false;
+            if (oldDatatip != null) {
+                GraphicController.getController().setProperty(oldDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, firstColorMarker);
+                isSelected = false;
+            }
         }
     }
 }

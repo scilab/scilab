@@ -16,5 +16,5 @@ using namespace org_scilab_modules_gui_datatip;
 
 double* CallDatatipCreateField(char const* polylineUid, double const* coordDoubleXY, int coordDoubleXYSize)
 {
-    DatatipCreate::createDatatipField(getScilabJavaVM(), polylineUid, coordDoubleXY, coordDoubleXYSize);
+    return DatatipCreate::createDatatipField(getScilabJavaVM(), polylineUid, coordDoubleXY, coordDoubleXYSize);
 }

@@ -20,7 +20,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
-import org.scilab.modules.gui.datatip.MarkerCreate;
 import org.scilab.modules.gui.datatip.DatatipSelect;
 import org.scilab.modules.gui.datatip.DatatipDelete;
 import org.scilab.modules.gui.datatip.DatatipMove;
@@ -94,7 +93,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
         if (DatatipManagerMode.getDatatipManagerMode()) {
             if (selectedDatatip != null) {
-                DatatipOrientation.setOrientation (selectedDatatip);
+                //DatatipOrientation.setOrientation (selectedDatatip);
             }
         }
     }
@@ -115,22 +114,22 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             if (arg0.getButton() == 1) {
                 if (arg0.getClickCount() == 1) {
                     selectedDatatip = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY());
-                    picked = ep.pick(windowUid, arg0.getX(), arg0.getY());
                     if (selectedDatatip == null) {
+                        picked = ep.pick(windowUid, arg0.getX(), arg0.getY());
                         if (picked != null) {
-                            String datatipUid = DatatipCreate.createDatatip ( windowUid, arg0.getX(), arg0.getY() );
-                            String markerUid = MarkerCreate.createMarker ( windowUid, arg0.getX(), arg0.getY() );
+                            String datatipUid = DatatipCreate.createDatatip(windowUid, arg0.getX(), arg0.getY());
                         }
                     }
-                } else if (arg0.getClickCount() == 2) {
+                } else if (arg0.getClickCount() == 2) {	
                     //open GED with the properties of DataTip
                     //not implemented yet
                     //editor.onClickGED();
                 }
             } else if (arg0.getButton() == 3) {
-                selectedDatatip = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY());
+                Integer pos[] = {arg0.getX(), arg0.getY()};
+                selectedDatatip = ep.pickDatatip(windowUid, pos);
                 if (selectedDatatip != null) {
-                    DatatipDelete.deleteDatatip (selectedDatatip);
+                    DatatipDelete.deleteDatatip(selectedDatatip);
                     selectedDatatip = null;
                 }
             }
@@ -190,8 +189,8 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             isInRotation = true;
         }
         if (selectedDatatip != null) {
-            DatatipDrag.dragDatatip (selectedDatatip, arg0.getX(), arg0.getY());
-            DatatipOrientation.setOrientation (selectedDatatip);
+            DatatipDrag.dragDatatip(selectedDatatip, arg0.getX(), arg0.getY());
+            //DatatipOrientation.setOrientation (selectedDatatip);
         }
     }
 

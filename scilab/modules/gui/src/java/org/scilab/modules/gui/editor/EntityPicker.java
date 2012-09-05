@@ -126,12 +126,12 @@ public class EntityPicker {
 
         double[] oldPoint = null;
         if (needTransform) {
-            oldPoint = transformPoint(curAxes, datax[0], datay[0]);
+            oldPoint = transformPoint(curAxes, datax[0], datay[0], 0.0);
         }
 
         for (Integer i = 0; i < (size - 1); ++i) {
             if (needTransform) {
-                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1]);
+                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1], 0.0);
                 if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
                     return i;
                 }
@@ -191,7 +191,7 @@ public class EntityPicker {
 
         for (int i = 0; i < datax.length; ++i) {
             if (needTransform) {
-                double[] point = transformPoint(curAxes, datax[i], datay[i]);
+                double[] point = transformPoint(curAxes, datax[i], datay[i], 0.0);
                 if ((Math.abs(point[0] - x) <= deltax) && (Math.abs(point[1] - y) <= deltay)) {
                     return i;
                 }
@@ -271,8 +271,8 @@ public class EntityPicker {
      *
      * @return the projected point.
      */
-    private double[] transformPoint(Axes axes, double x, double y) {
-        double point[] = {x, y, 0.0};
+    private double[] transformPoint(Axes axes, double x, double y, double z) {
+        double point[] = {x, y, z};
         return AxesDrawer.compute2dViewCoordinates(axes, point);
     }
 
@@ -434,6 +434,54 @@ public class EntityPicker {
         }
 
         return picked;
+    }
+
+
+    public String pickDatatip(String figure, Integer[] pos) {
+
+        String axes = AxesHandler.clickedAxes(figure, pos);
+        if (axes == null) {
+            return null;
+        }
+
+        curAxes = AxesHandler.getAxesFromUid(axes);
+        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__); 
+
+        if (datatips != null) {
+
+            needTransform = !isInDefaultView(curAxes);
+            double[] pix_pos = {1.0 * pos[0], 1.0 * pos[1], 1.0};
+            double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pix_pos);
+            pix_pos[0] += 1.0;
+            pix_pos[1] += 1.0;
+            double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pix_pos);
+
+            double dx = Math.abs(c2d[0] - c2d2[0]);
+            double dy = Math.abs(c2d[1] - c2d2[1]);
+
+            for (int i = 0; i < datatips.length; ++i) {
+
+                Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatips[i], GraphicObjectProperties.__GO_DATATIP_DATA__);
+                double point[] = {tip_pos[0], tip_pos[1], tip_pos[2]};
+
+                if (needTransform) {
+                    point = transformPoint(curAxes, tip_pos[0], tip_pos[1], tip_pos[2]);
+                }
+
+                Integer size = CommonHandler.getMarkSize(datatips[i]);
+                Integer unit = CommonHandler.getMarkSizeUnit(datatips[i]);
+
+                int finalSize = (unit == 1) ? (8 + 2 * size) : size;
+                finalSize /= 2;
+
+                if ((Math.abs(point[0] - c2d[0]) <= dx*finalSize) && (Math.abs(point[1] - c2d[1]) <= dy*finalSize)) {
+                    return datatips[i];
+                }
+            
+            }
+        }
+
+        return null;
     }
 }
 
