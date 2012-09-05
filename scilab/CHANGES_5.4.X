@@ -41,6 +41,8 @@ Bug Fixes
 * Bug #11810 fixed - In BrowseVar, contents of "visibility" column are left
                      aligned.
 
+* Bug #11834 fixed - In SciNotes there was not a menu to set font or colors.
+
 * Bug #11840 fixed - In Xcos, dialogs could not be closed on escape.
 
 

@@ -204,7 +204,7 @@
         </Checkbox>
         <Panel gridx="2" gridy="1" weightx="1"/>
         <Link gridx="3" gridy="1" weightx="0" listener="MouseListener" text="_(Set syntax Colors)" enable="{@keywords-colorization}">
-          <mouseClicked set="path" value="3/" context="/" enable="{@keywords-colorization}"/>
+          <mouseClicked set="path" value="scinotes/header" context="/" enable="{@keywords-colorization}"/>
         </Link>
         <Checkbox checked="{@highlight-brackets}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Highlight corresponding brackets)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
           <actionPerformed choose="highlight-brackets">
