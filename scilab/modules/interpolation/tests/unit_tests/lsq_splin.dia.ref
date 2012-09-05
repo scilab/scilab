@@ -5,13 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 a = 0; b = 2*%pi;
-sigma = 0.1;  // standard deviation of the gaussian noise
-m = 200;       // number of experimental points
+// standard deviation of the gaussian noise
+sigma = 0.1;
+// number of experimental points
+m = 200;
 xd = linspace(a,b,m)';
 yd = sin(xd) + grand(xd,"nor",0,sigma);
-n = 6; // number of breakpoints
+// number of breakpoints
+n = 6;
 x = linspace(a,b,n)';
 // compute the spline
-[y, d] = lsq_splin(xd, yd, x);  // use equal weights
-if or(size(y)<> [6 1]) then bugmes();quit;end
-if or(size(d)<> [6 1]) then bugmes();quit;end
+// use equal weights
+[y, d] = lsq_splin(xd, yd, x);
+assert_checkequal(size(y), [6 1]);
+assert_checkequal(size(d), [6 1]);
