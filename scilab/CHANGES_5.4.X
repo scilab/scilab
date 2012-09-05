@@ -29,6 +29,9 @@ Improvements
    schema
    If the file does not exist, propose to create it.
 
+* Search is now possible in the console. Shortcut F3 or CTRL+F enables it.
+  See Bug #11841.
+
 
 Removed functions
 ==================
