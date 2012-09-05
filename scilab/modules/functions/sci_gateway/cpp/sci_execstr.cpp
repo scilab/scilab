@@ -48,6 +48,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	wchar_t *pstCommand = NULL;
     Parser parser;
 
+    int iOldSilentError = ConfigVariable::getSilentError();
 	if(in.size() < 1 || in.size() > 3)
 	{
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"execstr" , 1, 3);
@@ -67,6 +68,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
         {
             bErrCatch = true;
+            ConfigVariable::setSilentError(1);
         }
         else
         {
@@ -151,8 +153,13 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         ConfigVariable::setPromptMode(-1);
     }
 
-	std::list<Exp *>::iterator j;
-	std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
+    if(bErrCatch)
+    {
+        ConfigVariable::setSilentError(1);
+    }
+
+    std::list<Exp *>::iterator j;
+    std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
@@ -196,6 +203,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                     }
                     else if(Ret == Callable::Error)
                     {
+                        ConfigVariable::setSilentError(iOldSilentError);
                         if(ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
@@ -215,6 +223,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 }
                 catch(ScilabMessage sm)
                 {
+                    ConfigVariable::setSilentError(iOldSilentError);
                     wostringstream os;
                     PrintVisitor printMe(os);
                     (*j)->accept(printMe);
@@ -266,6 +275,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		}
         catch(ScilabMessage sm)
         {
+            ConfigVariable::setSilentError(iOldSilentError);
             if(bErrCatch  == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
@@ -311,6 +321,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         }
 		catch(ScilabError se)
 		{
+            ConfigVariable::setSilentError(iOldSilentError);
             if(ConfigVariable::getLastErrorMessage() == L"")
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
@@ -341,8 +352,9 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		}
 	}
 
-    //restore previous prompt mode
+    //restore previous prompt mode and silent mode
     ConfigVariable::setPromptMode(oldVal);
+    ConfigVariable::setSilentError(iOldSilentError);
 
     if(bErrCatch)
     {
